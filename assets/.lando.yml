@@ -1,0 +1,5 @@
+# Configure this according to the actual project name.
+name: silverback
+recipe: drupal8
+config:
+  webroot: web

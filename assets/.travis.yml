@@ -1,0 +1,36 @@
+language: php
+dist: trusty
+sudo: false
+
+php:
+  - 7.2
+node_js:
+  - 10.9
+
+cache:
+  directories:
+  - ~/.npm
+  - ~/.cache
+  - ~/.composer/cache
+
+before_install:
+  - echo 'sendmail_path = /bin/true' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - phpenv config-rm xdebug.ini
+  - composer self-update
+
+install:
+  - composer install
+  - cd tests && npm install
+  - source .envrc
+
+script:
+  - ./install.sh
+  - drush serve > log.txt 2>&1 &
+  - until netstat -an 2>/dev/null | grep '8888.*LISTEN'; sleep 1; curl -I http://127.0.0.1:8888 ; do true; done
+  - if [[ -d web/modules/custom ]]; then phpunit web/modules/custom fi
+  - cd tests && export CYPRESS_TAGS="@COMPLETED" && cypress run
+  - kill $(jobs -p) || true
+
+notifications:
+  email: false
+
