@@ -30,8 +30,10 @@ class SilverbackCommand extends Command {
     $this->fileSystem = $fileSystem;
     $this->cacheDir = '/tmp/silverback/cache';
     $fileSystem->mkdir($this->cacheDir);
-    $env = new Dotenv(getcwd());
-    $env->load();
+    if ($fileSystem->exists('.env')) {
+      $env = new Dotenv(getcwd());
+      $env->load();
+    }
   }
 
   /**
