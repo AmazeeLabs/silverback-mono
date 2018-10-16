@@ -23,9 +23,7 @@ Given(/^I am logged in as an administrator$/, login("admin", "admin"));
 
 When(/^I use the administration credentials to log in$/, login("admin", "admin"));
 
-
 When(/^I use invalid administration credentials to log in$/, login("admin", "invalid"));
-
 
 Then(/^I should see an error message containing "(.*)"$/, (message) => {
   cy.get('.messages--error').contains(message);

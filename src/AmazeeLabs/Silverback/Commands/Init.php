@@ -2,24 +2,11 @@
 
 namespace AmazeeLabs\Silverback\Commands;
 
-use AmazeeLabs\Silverback\Helpers\EnvironmentQuestion;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
-class Init extends Command {
-
-  /**
-   * @var \Symfony\Component\Filesystem\Filesystem
-   */
-  protected $fileSystem;
-
-  public function __construct(Filesystem $fileSystem) {
-    parent::__construct();
-    $this->fileSystem = $fileSystem;
-  }
+class Init extends SilverbackCommand {
 
   protected function configure() {
     $this->setName('init');
@@ -27,30 +14,8 @@ class Init extends Command {
   }
 
   protected function execute(InputInterface $input, OutputInterface $output) {
-    /** @var \Symfony\Component\Console\Helper\QuestionHelper $questionHelper */
-    $questionHelper = $this->getHelper('question');
-
-    $rootDir = realpath(__DIR__ . '/../../../../../../../');
-
-    $projectName = $questionHelper->ask($input, $output, new EnvironmentQuestion(
-      'Specify the project name',
-      basename($rootDir)
-    ));
-
-    $jiraHost = $questionHelper->ask($input, $output, new EnvironmentQuestion(
-      'Specify the Jira host to use',
-      'jira.amazeelabs.com'
-    ));
-
-    $jiraUser = $questionHelper->ask($input, $output, new EnvironmentQuestion(
-      'Jira username',
-      ''
-    ));
-
-    $jiraPass = $questionHelper->ask($input, $output, new EnvironmentQuestion(
-      'Jira password [web]:',
-      ''
-    ));
+    parent::execute($input, $output);
+    $projectName = basename($this->rootDirectory);
 
     $environment = [
       'SB_PROJECT_NAME' => [
@@ -77,17 +42,25 @@ class Init extends Command {
         'value' => 'admin',
         'description' => 'Drupal admin password.',
       ],
+      'SB_TEST_CONTENT' => [
+        'value' => '',
+        'description' =>  'The name of a default content module to install.'
+      ],
       'SB_JIRA_HOST' => [
-        'value' => $jiraHost,
+        'value' => '',
         'description' => 'Jira host to download testfiles from.',
       ],
       'SB_JIRA_USER' => [
-        'value' => $jiraUser,
+        'value' => '',
         'description' => 'Jira username.',
       ],
       'SB_JIRA_PASS' => [
-        'value' => $jiraPass,
+        'value' => '',
         'description' => 'Jira password.',
+      ],
+      'SB_JIRA_PROJECTS' => [
+        'value' => '',
+        'description' => 'Jira projects, as handle:id pairs. e.g. PRO:12345. May contain multiple space separated values.',
       ],
       'DRUSH_OPTIONS_URI' => [
         'value' => '$SB_BASE_URL',
@@ -98,35 +71,49 @@ class Init extends Command {
         'description' => 'Cypress base url.'
       ],
       'CYPRESS_TAGS' => [
-        'value' => '@assignee:$JIRA_USER and @WIP',
-        'description' => '`cypress run` will only execute tests tagged like this:'
+        'value' => '@assignee:$SB_JIRA_USER and @WIP',
+        'description' => '`cypress run` will only execute tests based on tags.'
       ],
     ];
 
     $finder = new Finder();
-    $finder->files()->in(__DIR__ . '/../../../../assets');
+    $finder->files()->in($this->rootDirectory . '/vendor/amazeelabs/silverback/assets');
     $finder->ignoreDotFiles(FALSE);
 
     foreach ($finder as $file) {
       $this->fileSystem->copy(
         $file->getRealPath(),
-        $rootDir . '/' . $file->getRelativePath() . '/' . $file->getFilename(),
+        $this->rootDirectory . '/' . $file->getRelativePath() . '/' . $file->getFilename(),
         TRUE
       );
     }
 
-    if (file_exists($rootDir . '/.lando.yml')) {
-      unlink($rootDir . '/.lando.yml');
+    if (file_exists($this->rootDirectory . '/.lando.yml')) {
+      unlink($this->rootDirectory . '/.lando.yml');
     }
-    file_put_contents($rootDir . '/.lando.yml', "name: $projectName\nrecipe: drupal8\nconfig:\n  webroot: web\n");
+    file_put_contents($this->rootDirectory . '/.lando.yml', "name: $projectName\nrecipe: drupal8\nconfig:\n  webroot: web\n");
 
-    if (file_exists($rootDir . '/.env.example')) {
-      unlink($rootDir . '/.env.example');
+    if (file_exists($this->rootDirectory . '/.env.example')) {
+      unlink($this->rootDirectory . '/.env.example');
     }
 
-    file_put_contents($rootDir . '/.env.example', implode("\n", array_map(function ($env) use ($environment) {
+    file_put_contents($this->rootDirectory . '/.env.example', implode("\n", array_map(function ($env) use ($environment) {
       return "# {$environment[$env]['description']}\n$env=\"{$environment[$env]['value']}\"\n";
     }, array_keys($environment))));
+
+    $composerJson = json_decode(file_get_contents($this->rootDirectory . '/composer.json'), TRUE);
+    $updateHook = './vendor/bin/silverback init --no-interaction';
+    foreach (['post-install-cmd', 'post-update-cmd'] as $hook) {
+      if (!in_array($updateHook, $composerJson['scripts'][$hook])) {
+        $composerJson['scripts'][$hook][] = $updateHook;
+      }
+    }
+    $composerJson['scripts']['run-tests'] = [
+      "if [[ -d web/modules/custom ]]; then phpunit web/modules/custom; fi",
+      "cd tests && npm install && CYPRESS_TAGS=@COMPLETED cypress run",
+    ];
+    $composerJson['extra']['enable-patching'] = TRUE;
+    file_put_contents($this->rootDirectory . '/composer.json', json_encode($composerJson, JSON_PRETTY_PRINT ));
   }
 
 }

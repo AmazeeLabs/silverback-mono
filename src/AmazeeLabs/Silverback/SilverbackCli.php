@@ -14,10 +14,10 @@ class SilverbackCli extends Application {
   public function __construct($name = 'silverback', $version = '0.1') {
     parent::__construct($name, $version);
     $fileSystem = new Filesystem();
-    $this->add(new Setup());
-    $this->add(new Teardown());
+    $this->add(new Setup($fileSystem));
+    $this->add(new Teardown($fileSystem));
     $this->add(new Init($fileSystem));
-    $this->add(new DownloadTests());
+    $this->add(new DownloadTests($fileSystem));
   }
 
 }

@@ -10,6 +10,7 @@
         }
     ],
     "require": {
+        "vlucas\/phpdotenv": "^2.4",
         "drupal/better_normalizers": "1.x-dev",
         "drupal/console": "^1.0.2",
         "drupal/core": "8.6.1",
@@ -21,9 +22,6 @@
         "drupal/redirect": "^1.2",
         "drupal/typed_data": "1.x-dev",
         "drush/drush": "^9.0.0"
-    },
-    "require-dev": {
-      "composer/composer": "^1.7"
     },
     "bin": [ "bin/silverback" ],
     "autoload": {
