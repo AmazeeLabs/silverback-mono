@@ -1,0 +1,41 @@
+language: php
+dist: trusty
+sudo: false
+
+php:
+- 7.2
+node_js:
+- 10.9
+
+env:
+  global:
+  - DRUPAL_BUILD_DIR=$TRAVIS_BUILD_DIR/../drupal
+
+cache:
+  directories:
+  - ~/.npm
+  - ~/.cache
+  - ~/.composer/cache
+
+before_install:
+- echo 'sendmail_path = /bin/true' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+- phpenv config-rm xdebug.ini
+- composer self-update
+
+install:
+- composer create-project drupal-composer/drupal-project:8.x-dev $DRUPAL_BUILD_DIR
+- cd $DRUPAL_BUILD_DIR
+- php -r "\$json = json_decode(file_get_contents('composer.json'), TRUE); \$json['repositories'][] = ['type' => 'path', 'url' => '$TRAVIS_BUILD_DIR' ]; echo json_encode(\$json, JSON_PRETTY_PRINT);"
+- composer require amazeelabs/silverback
+- ./vendor/bin/silverback init
+- source .envrc
+
+script:
+- silverback setup
+- drush serve > log.txt 2>&1 &
+- until netstat -an 2>/dev/null | grep '8888.*LISTEN'; sleep 1; curl -I http://127.0.0.1:8888 ; do true; done
+- composer run-tests
+- kill $(jobs -p) || true
+
+notifications:
+  email: false
