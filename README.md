@@ -5,7 +5,7 @@
 `amazee/silverback` is a composer package adding common project dependencies, tooling and configuration scaffolding to Amazee Drupal projects. It aims to improve product quality and reduce maintenance costs by encouraging three simple principles:
 
 1. **Maximize open source:** Lower initial costs, technical debt and maintenance costs by using and contributing to open source code as much as possible. For every feature required by a project that is not solvable by configuration or theming, try to find a generic solution that can be contributed and added as a dependency to `amazeelabs/silverback`.
-2. **Minimize requirements:** It has to be as easy as possible to work on a project. If you need the production database and a local elasticsearch cluster to edit CSS files, you are doing microservices terribly wrong. *Example:* By default silverback development sites run on SQLite. MySQL is considered a performance optimization, and its not in the projects scope to test Drupal's database abstraction layer.
+2. **Minimize requirements:** It has to be as easy as possible to work on a project. If you need the production database and a local elasticsearch cluster to edit CSS files, you are doing microservices terribly wrong. *Example:* By default silverback development sites run on SQLite. MySQL is considered a performance optimization, and it's not in the projects scope to test Drupal's database abstraction layer.
 3. **Testability first:** A project has to be fully testable with only the git repository at any time. All required assets (test content, media, configuration) have to be set up during the installation process. It **must not** rely on production data. Every feature and bug fix has to bring a test case that can be reproduced. It might take more time initially, but it will pay off.
 
 ## Installation
@@ -74,7 +74,7 @@ Another invocation of `silverback setup` will scratch the current install and an
 
 ### Test content
 
-Silverback assumes that production databases are somewhat confidential and copying them all over the place might be a major security risk. So, no database syncing. Every new feature should provide illustrative test content by including a *test content module*, that contains [`default_content`](https://www.drupal.org/project/default_content) exports or install hooks to create reproducable and testable content.
+Silverback assumes that production databases are somewhat confidential and copying them all over the place might be a major security risk. So, no database syncing. Every new feature should provide illustrative test content by including a *test content module*, that contains [`default_content`](https://www.drupal.org/project/default_content) exports or install hooks to create reproducible and testable content.
 
 > After `silverback setup` a project has to be fully operational and testable.
 
@@ -106,7 +106,7 @@ You can learn how to write standard javascript tests from the [Cypress documenta
 
 The preferred way for writing tests is to use [Gherkin] to provide a specification of your feature ***before*** implementing it, and then adding step definitions to actually test your application.
 
-One general misconception about behavior testing is to think it is there so you don't have to write test code but just *"plain english"*. *But thats not true!* As a side effect, you *might* be able to reuse some step definitions here and there, but the main goal is to create digestable feature definitions that all stakeholders can understand and participate on.
+One general misconception about behavior testing is to think it is there so you don't have to write test code but just *"plain English"*. *But that's not true!* As a side effect, you *might* be able to reuse some step definitions here and there, but the main goal is to create digestable feature definitions that all stakeholders can understand and participate on.
 
 There is a lot of literature on writing good test specifications:
 
@@ -195,6 +195,7 @@ To get the most out of (and in to) `amazeelabs/silverback`, the development proc
 6. Apply the pull request as a patch in your projects `composer.json`.
 7. If there are dependency changes, you have to add them temporarily to your project's
 `composer.json`. Composer patches can't affect dependencies since they are collecteded before patches are applied.
+
 
 [Travis]: http://travis-ci.org
 [Cypress]: https://www.cypress.io
