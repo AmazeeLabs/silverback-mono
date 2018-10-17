@@ -29,6 +29,7 @@ install:
 - composer require amazeelabs/silverback
 - ./vendor/bin/silverback init
 - source .envrc
+- if [[ -n "$SB_JIRA_PROJECTS" ]]; then silverback download-tests; fi
 
 script:
 - silverback setup
