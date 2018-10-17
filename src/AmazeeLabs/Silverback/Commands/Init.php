@@ -44,7 +44,7 @@ class Init extends SilverbackCommand {
       ],
       'SB_TEST_CONTENT' => [
         'value' => '',
-        'description' =>  'The name of a default content module to install.'
+        'description' => 'The name of a default content module to install.'
       ],
       'SB_JIRA_HOST' => [
         'value' => '',
@@ -87,6 +87,11 @@ class Init extends SilverbackCommand {
         TRUE
       );
     }
+
+    // Add the composer project name to docker-compose.yml
+    $dockerComposeFile = "$this->rootDirectory/docker-compose.yml";
+    $dockerComposeYmlContents = file_get_contents($dockerComposeFile);
+    file_put_contents($dockerComposeFile, str_replace('${COMPOSE_PROJECT_NAME}', $projectName, $dockerComposeYmlContents));
 
     if (file_exists($this->rootDirectory . '/.lando.yml')) {
       unlink($this->rootDirectory . '/.lando.yml');
