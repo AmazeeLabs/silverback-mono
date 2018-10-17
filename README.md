@@ -193,8 +193,9 @@ To get the most out of (and in to) `amazeelabs/silverback`, the development proc
     * New or modified documentation pages in `docs` (**TODO:** use https://docusaurus.io/?).
     * Example configuration in `config`.
 6. Apply the pull request as a patch in your projects `composer.json`.
-7. If there are dependency changes, you have to add them temporarily to your projects
-`composer.json`. Composer patches can't affect dependencies since they are collected before patches are applied.
+7. If there are dependency changes, you have to add them temporarily to your project's
+`composer.json`. Composer patches can't affect dependencies since they are collecteded before patches are applied.
+
 
 ## Lagoon
 
