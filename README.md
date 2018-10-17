@@ -84,7 +84,7 @@ Silverback assumes that production databases are somewhat confidential and copyi
 
 There are two levels of testing which will be executed by the [Travis] configuration added by `silverback init`.
 
-Custom modules are testet with [Drupal's standard testing frameworks](https://www.drupal.org/docs/8/testing). [Travis] will execute all Drupal tests in `web/modules/custom`.
+Custom modules are tested with [Drupal's standard testing frameworks](https://www.drupal.org/docs/8/testing). [Travis] will execute all Drupal tests in `web/modules/custom`.
 
 For end to end testing, a [Cypress] configuration is provided in the `tests` folder. `silverback init` should have added some basic tests that you can run immediately.
 
@@ -108,7 +108,7 @@ The preferred way for writing tests is to use [Gherkin] to provide a specificati
 
 One general misconception about behavior testing is to think it is there so you don't have to write test code but just *"plain english"*. *But thats not true!* As a side effect, you *might* be able to reuse some step definitions here and there, but the main goal is to create digestable feature definitions that all stakeholders can understand and participate on.
 
-There is a lot of literatur on writing good test specifications:
+There is a lot of literature on writing good test specifications:
 
 - [How the training wheels came off](http://aslakhellesoy.com/post/11055981222/the-training-wheels-came-off) by Aslak Hellesøy
 - [The cucumber.io blog](https://cucumber.io/blog)
@@ -193,7 +193,7 @@ To get the most out of (and in to) `amazeelabs/silverback`, the development proc
     * New or modified documentation pages in `docs` (**TODO:** use https://docusaurus.io/?).
     * Example configuration in `config`.
 6. Apply the pull request as a patch in your projects `composer.json`.
-7. If there are dependency changes, you have to add them temporarily to your projects
+7. If there are dependency changes, you have to add them temporarily to your project's
 `composer.json`. Composer patches can't affect dependencies since they are collecteded before patches are applied.
 
 [Travis]: http://travis-ci.org
