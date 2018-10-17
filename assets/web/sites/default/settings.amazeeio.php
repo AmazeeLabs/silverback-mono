@@ -54,7 +54,7 @@ if (getenv('LAGOON')) {
 }
 
 ### Lagoon Redis connection
-if (getenv('LAGOON')){
+if (getenv('LAGOON') && file_exists(DRUPAL_ROOT . '/modules/contrib/redis/src')) {
   $settings['redis.connection']['interface'] = 'PhpRedis';
   $settings['redis.connection']['host'] = getenv('REDIS_HOST') ?: 'redis';
   $settings['redis.connection']['port'] = 6379;
@@ -162,5 +162,3 @@ if (file_exists(__DIR__ . '/settings.local.php')) {
 if (file_exists(__DIR__ . '/services.local.yml')) {
   $settings['container_yamls'][] = __DIR__ . '/services.local.yml';
 }
-
-$settings['install_profile'] = 'config_installer';
