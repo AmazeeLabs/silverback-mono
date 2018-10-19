@@ -2,6 +2,7 @@
 
 namespace AmazeeLabs\Silverback;
 
+use AmazeeLabs\Silverback\Commands\ClearCache;
 use AmazeeLabs\Silverback\Commands\DownloadTests;
 use AmazeeLabs\Silverback\Commands\Init;
 use AmazeeLabs\Silverback\Commands\Setup;
@@ -18,6 +19,7 @@ class SilverbackCli extends Application {
     $this->add(new Teardown($fileSystem));
     $this->add(new Init($fileSystem));
     $this->add(new DownloadTests($fileSystem));
+    $this->add(new ClearCache($fileSystem));
   }
 
 }

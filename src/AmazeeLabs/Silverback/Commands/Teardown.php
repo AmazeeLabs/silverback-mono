@@ -11,7 +11,7 @@ class Teardown extends SilverbackCommand {
   protected function configure() {
     $this->setName('teardown');
     $this->setDescription('Remove an existing test site.');
-    $this->addOption('restore', 'r', InputOption::VALUE_OPTIONAL, 'Restore the latest a backup of the current site.');
+    $this->addOption('restore', 'r', InputOption::VALUE_NONE, 'Restore the latest a backup of the current site.');
   }
 
   protected function execute(InputInterface $input, OutputInterface $output) {

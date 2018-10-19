@@ -54,8 +54,8 @@ class SilverbackCommand extends Command {
     $finder->ignoreDotFiles(FALSE);
     foreach ($finder as $file) {
       $this->fileSystem->copy(
-        $source . $file->getRelativePath() . '/' . $file->getFilename(),
-        $destination . $file->getRelativePath() . '/' . $file->getFilename()
+        rtrim($source, '/') . '/' . $file->getRelativePath() . '/' . $file->getFilename(),
+        rtrim($destination) . '/' . $file->getRelativePath() . '/' . $file->getFilename()
       );
     }
   }

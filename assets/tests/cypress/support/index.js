@@ -21,3 +21,13 @@ import './commands'
 
 // Import silverback specific helpers.
 import './silverback';
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+  // Incompatibility between Drupal's tableheader.js and cypress.
+  // https://github.com/cypress-io/cypress/issues/2429
+  // https://www.drupal.org/project/drupal/issues/2997194
+  if (err.message.startsWith("Cannot read property 'displace' of undefined")) {
+    return false;
+  }
+});
+
