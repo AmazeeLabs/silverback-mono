@@ -26,3 +26,6 @@ node_modules
 
 cypress/integration
 !cypress/integration/.gitkeep
+
+# Ignore the development install log.
+.install.log
