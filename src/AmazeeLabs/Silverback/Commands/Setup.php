@@ -14,7 +14,7 @@ class Setup extends SilverbackCommand {
   protected function configure() {
     $this->setName('setup');
     $this->setDescription('Install a new test site.');
-    $this->addOption('backup', 'b', InputOption::VALUE_OPTIONAL, 'Create a backup of the current site.');
+    $this->addOption('backup', 'b', InputOption::VALUE_NONE, 'Create a backup of the current site.');
   }
 
   protected function execute(InputInterface $input, OutputInterface $output) {
@@ -54,7 +54,9 @@ class Setup extends SilverbackCommand {
       file_put_contents('web/sites/default/.install.log', $process->getOutput());
 
       if ($testContent = getenv('SB_TEST_CONTENT')) {
-        $process = new Process(['./vendor/bin/drush', 'en', '-y', $testContent]);
+        $process = new Process([
+          './vendor/bin/drush', 'en', '-y', $testContent,
+        ], getcwd(), null, null, null);
         $process->run();
         if (!$process->isSuccessful()) {
           throw new ProcessFailedException($process);
