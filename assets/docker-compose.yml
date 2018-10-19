@@ -12,7 +12,6 @@ x-volumes:
 
 x-environment:
   &default-environment
-    SB_ENVIRONMENT: amazeeio
     LAGOON_PROJECT: *lagoon-project
     # Route that should be used locally
     LAGOON_ROUTE: http://${COMPOSE_PROJECT_NAME}.docker.amazee.io
