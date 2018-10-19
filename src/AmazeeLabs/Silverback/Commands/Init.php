@@ -88,10 +88,22 @@ class Init extends SilverbackCommand {
       );
     }
 
-    // Add the composer project name to docker-compose.yml
-    $dockerComposeFile = "$this->rootDirectory/docker-compose.yml";
-    $dockerComposeYmlContents = file_get_contents($dockerComposeFile);
-    file_put_contents($dockerComposeFile, str_replace('${COMPOSE_PROJECT_NAME}', $projectName, $dockerComposeYmlContents));
+    // Perform string replacement for project-specific values on some files.
+    $replacements = [
+      '${COMPOSE_PROJECT_NAME}' => $projectName,
+      '${AMAZEEIO_PROJECT_URL}' => str_replace('_', '.', $projectName) . '.amazee.io',
+    ];
+    $projectSpecificFiles = [
+      'docker-compose.yml',
+      '.lagoon.yml',
+    ];
+    foreach ($projectSpecificFiles as $filename) {
+      $filepath = "$this->rootDirectory/$filename";
+      $contents = file_get_contents($filepath);
+      $toReplace = array_keys($replacements);
+      $values = array_values($replacements);
+      file_put_contents($filepath, str_replace($toReplace, $values, $contents));
+    }
 
     if (file_exists($this->rootDirectory . '/.lando.yml')) {
       unlink($this->rootDirectory . '/.lando.yml');
