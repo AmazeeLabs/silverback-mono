@@ -16,8 +16,6 @@
         "drupal/core": "8.6.2",
         "drupal/default_content": "1.x-dev",
         "drupal/entity_usage": "^2.0@alpha",
-        "drupal/graphql": "4.x-dev",
-        "drupal/graphql_twig": "^1.0@beta",
         "drupal/redirect": "^1.2",
         "drupal/typed_data": "1.x-dev",
         "drush/drush": "^9.0.0"
