@@ -119,12 +119,6 @@ class Init extends SilverbackCommand {
     }, array_keys($environment))));
 
     $composerJson = json_decode(file_get_contents($this->rootDirectory . '/composer.json'), TRUE);
-    $updateHook = './vendor/bin/silverback init --no-interaction';
-    foreach (['post-install-cmd', 'post-update-cmd'] as $hook) {
-      if (!in_array($updateHook, $composerJson['scripts'][$hook])) {
-        $composerJson['scripts'][$hook][] = $updateHook;
-      }
-    }
     $composerJson['scripts']['run-tests'] = [
       "if [[ -d web/modules/custom ]]; then phpunit web/modules/custom; fi",
       "cd tests && npm install && CYPRESS_TAGS=@COMPLETED cypress run",

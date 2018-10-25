@@ -18,7 +18,11 @@
         "drupal/entity_usage": "^2.0@alpha",
         "drupal/redirect": "^1.2",
         "drupal/typed_data": "1.x-dev",
-        "drush/drush": "^9.0.0"
+        "drush/drush": "^9.0.0",
+        "drupal/moderation_state_columns": "dev-1.x",
+        "drupal/moderation_state_buttons_widget": "dev-1.x",
+        "drupal/webpack_react": "dev-1.x",
+        "drupal/admin_toolbar": "^1"
     },
     "bin": [ "bin/silverback" ],
     "autoload": {

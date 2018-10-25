@@ -38,6 +38,8 @@ services:
       - container:amazeeio-ssh-agent
     environment:
       << : *default-environment # loads the defined environment variables from the top
+    ports:
+    - "1234:1234"
 
   nginx:
     build:
