@@ -18,7 +18,8 @@
         "drupal/entity_usage": "^2.0@alpha",
         "drupal/redirect": "^1.2",
         "drupal/typed_data": "1.x-dev",
-        "drush/drush": "^9.0.0"
+        "drush/drush": "^9.0.0",
+        "drupal/moderation_state_permissions": "dev-1.x"
     },
     "bin": [ "bin/silverback" ],
     "autoload": {
