@@ -124,7 +124,7 @@ class Init extends SilverbackCommand {
       "cd tests && npm install && CYPRESS_TAGS=@COMPLETED cypress run",
     ];
     $composerJson['extra']['enable-patching'] = TRUE;
-    file_put_contents($this->rootDirectory . '/composer.json', json_encode($composerJson, JSON_PRETTY_PRINT || JSON_UNESCAPED_SLASHES));
+    file_put_contents($this->rootDirectory . '/composer.json', json_encode($composerJson, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
   }
 
 }
