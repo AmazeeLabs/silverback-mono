@@ -22,6 +22,7 @@
         "drupal/moderation_state_columns": "dev-1.x",
         "drupal/moderation_state_buttons_widget": "dev-1.x",
         "drupal/webpack_react": "dev-1.x",
+        "drupal/user_reference_access": "dev-1.x",
         "drupal/admin_toolbar": "^1",
         "drupal/moderation_state_permissions": "dev-1.x"
     },
