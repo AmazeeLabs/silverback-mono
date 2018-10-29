@@ -22,7 +22,8 @@
         "drupal/moderation_state_columns": "dev-1.x",
         "drupal/moderation_state_buttons_widget": "dev-1.x",
         "drupal/webpack_react": "dev-1.x",
-        "drupal/admin_toolbar": "^1"
+        "drupal/admin_toolbar": "^1",
+        "drupal/moderation_state_permissions": "dev-1.x"
     },
     "bin": [ "bin/silverback" ],
     "autoload": {
