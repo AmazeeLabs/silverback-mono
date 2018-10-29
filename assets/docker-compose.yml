@@ -38,6 +38,8 @@ services:
       - container:amazeeio-ssh-agent
     environment:
       << : *default-environment # loads the defined environment variables from the top
+    ports:
+    - "1234:1234"
     extra_hosts:
     - "${COMPOSE_PROJECT_NAME}.docker.amazee.io:172.17.0.1"
 

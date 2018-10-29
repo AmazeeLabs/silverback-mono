@@ -32,6 +32,10 @@ tasks:
         command: drush -y updb
         service: cli
     - run:
+        name: drush webpack:build
+        command: if drush | grep -q "webpack:build"; then drush webpack:build; fi
+        service: cli
+    - run:
         name: drush cr
         command: drush -y cr
         service: cli

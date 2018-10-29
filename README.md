@@ -33,6 +33,7 @@ cd my-project
 composer remove drupal/core
 composer require amazeelabs/silverback
 ./vendor/bin/silverback init
+yarn
 ```
 
 If you've set up `direnv` correctly, it will complain at this point that there is an unknown `.envrc` file. Just execute `direnv allow` to enable it. From now own environment variables and executable search paths will be set automatically whenever you enter this directory.
@@ -212,3 +213,15 @@ Lagoon doesn't yet support just-in-time fetching of site aliases for drush 9. Pl
 [Gherkin]: https://docs.cucumber.io/gherkin/reference/
 [Behave Pro]: https://marketplace.atlassian.com/apps/1211664/behave-pro-for-bdd-jira-git-cucumber?hosting=cloud&tab=overview
 [Pygmy]: https://docs.amazee.io/local_docker_development/pygmy.html
+
+## Webpack
+
+The project is set up to use webpack to bundle drupal libraries, so they can be written in modern javascript and import packages from npm. Setup:
+
+- `drush en -y webpack_babel` (there's webpack_react too if you need react)
+- `yarn webpack-dev` - starts the local webpack dev server. This needs to be on all the time during development, so the libraries are built. If you don't want to change anything, but have the libraries working, run `drush webpack:build`.
+
+### Known issues
+
+- In case of javascript errors, first try disabling the aggregation at _/admin/config/development/performance_.
+- Only one `yarn webpack-dev` can be running at any given point in time.
