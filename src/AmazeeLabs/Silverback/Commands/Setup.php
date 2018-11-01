@@ -47,17 +47,22 @@ class Setup extends SilverbackCommand {
         '--account-name', getenv('SB_ADMIN_USER'),
         '--account-pass', getenv('SB_ADMIN_PASS'),
       ], getcwd(), null, null, null);
-      $process->run();
+      $process->start();
+      foreach ($process as $type => $line) {
+        $output->writeln($line);
+      }
       if (!$process->isSuccessful()) {
         throw new ProcessFailedException($process);
       }
-      file_put_contents('web/sites/default/.install.log', $process->getOutput());
 
       if ($testContent = getenv('SB_TEST_CONTENT')) {
         $process = new Process([
           './vendor/bin/drush', 'en', '-y', $testContent,
         ], getcwd(), null, null, null);
-        $process->run();
+        $process->start();
+        foreach ($process as $type => $line) {
+          $output->writeln($line);
+        }
         if (!$process->isSuccessful()) {
           throw new ProcessFailedException($process);
         }

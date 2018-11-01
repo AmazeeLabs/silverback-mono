@@ -12,7 +12,6 @@ class ClearCache extends SilverbackCommand {
   protected function configure() {
     $this->setName('clear-cache');
     $this->setDescription('Remove all cached site installs.');
-    $this->addOption('restore', 'r', InputOption::VALUE_OPTIONAL, 'Restore the latest a backup of the current site.');
   }
 
   protected function execute(InputInterface $input, OutputInterface $output) {
@@ -24,10 +23,15 @@ class ClearCache extends SilverbackCommand {
     }
 
     $finder->in($this->cacheDir)->directories();
+    $clear = [];
     foreach ($finder as $dir) {
-      if ($dir->getRelativePath() !== 'backup') {
-        $this->fileSystem->remove($this->cacheDir . '/'. $dir->getRelativePath());
+      if ($dir->getRelativePathname() !== 'backup') {
+        $clear[] = $dir->getRelativePathname();
       }
+    }
+
+    foreach ($clear as $dir) {
+      $this->fileSystem->remove($this->cacheDir . '/' . $dir);
     }
 
   }
