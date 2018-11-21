@@ -13,7 +13,7 @@
         "vlucas\/phpdotenv": "^2.4",
         "drupal/better_normalizers": "1.x-dev",
         "drupal/console": "^1.0.2",
-        "drupal/core": "8.6.2",
+        "drupal/core": "8.6.3",
         "drupal/default_content": "1.x-dev",
         "drupal/entity_usage": "^2.0@alpha",
         "drupal/redirect": "^1.2",
