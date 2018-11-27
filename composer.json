@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "vlucas\/phpdotenv": "^2.4",
+        "vlucas/phpdotenv": "^2.4",
         "drupal/better_normalizers": "1.x-dev",
         "drupal/console": "^1.0.2",
         "drupal/core": "8.6.3",
@@ -27,7 +27,8 @@
         "drupal/moderation_state_permissions": "dev-1.x",
         "drupal/workspace": "^1",
         "drupal/multiversion": "^1",
-        "drupal/deploy": "^1"
+        "drupal/deploy": "^1",
+        "drupal/tmgmt": "^1.6"
     },
     "bin": [ "bin/silverback" ],
     "autoload": {
