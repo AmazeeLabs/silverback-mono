@@ -1,0 +1,11 @@
+services:
+
+  serializer.encoder.webform_jsonschema:
+    class: Drupal\webform_jsonschema\Encoder\JsonEncoder
+    tags:
+      - { name: encoder, format: webform_jsonschema }
+
+  webform_jsonschema.route_subscriber:
+    class: 'Drupal\webform_jsonschema\Routing\EventSubscriber'
+    tags:
+      - { name: 'event_subscriber' }

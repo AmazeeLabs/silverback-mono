@@ -1,0 +1,7 @@
+name: Webform JSON Schema
+type: module
+description: 'Expose webforms as JSON Schema, UI Schema, and Form Data. Make webforms work with react-jsonschema-form.'
+package: Webform
+core: 8.x
+dependencies:
+- webform
