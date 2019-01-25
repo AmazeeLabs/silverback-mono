@@ -2,6 +2,7 @@
 
 namespace Drupal\webform_jsonschema;
 
+use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Render\Element;
 use Drupal\webform\Entity\Webform;
 use Drupal\webform\Plugin\WebformElement\WebformCompositeBase;
@@ -23,6 +24,17 @@ class Transformer {
         'title' => $webform->label(),
       ] + self::itemsToSchema(self::toItems($webform));
     return $schema;
+  }
+
+  /**
+   * Transforms a webform to UI Schema.
+   *
+   * @param \Drupal\webform\Entity\Webform $webform
+   *
+   * @return array
+   */
+  public static function toUiSchema(Webform $webform) {
+    return self::itemsToUiSchema(self::toItems($webform));
   }
 
   /**
@@ -219,6 +231,53 @@ class Transformer {
       }
     }
     return $items;
+  }
+
+  /**
+   * Creates a UI Schema out of WebformItem's.
+   *
+   * @param \Drupal\webform_jsonschema\WebformItem[] $items
+   *
+   * @return array
+   */
+  protected static function itemsToUiSchema(array $items) {
+    $ui_schema = [];
+    foreach ($items as $key => $item) {
+      $ui_schema[$key] = [];
+
+      if ($item->element['#type'] === 'textarea') {
+        $ui_schema[$key]['ui:widget'] = 'textarea';
+      }
+      elseif (
+        $item->element['#type'] === 'webform_buttons' ||
+        $item->element['#type'] === 'checkboxes' ||
+        $item->element['#type'] === 'webform_buttons_other' ||
+        $item->element['#type'] === 'webform_checkboxes_other'
+      ) {
+        $ui_schema[$key]['ui:widget'] = 'checkboxes';
+      }
+      elseif (
+        $item->element['#type'] === 'radios' ||
+        $item->element['#type'] === 'webform_radios_other'
+      ) {
+        $ui_schema[$key]['ui:widget'] = 'radio';
+      }
+
+      if (
+        isset($item->element['#webform_jsonschema']['uiSchema']) &&
+        is_array($item->element['#webform_jsonschema']['uiSchema'])
+      ) {
+        $ui_schema[$key] = NestedArray::mergeDeepArray([
+          $ui_schema[$key],
+          $item->element['#webform_jsonschema']['uiSchema'],
+        ]);
+      }
+
+      if ($item->children) {
+        $ui_schema[$key] += self::itemsToUiSchema($item->children);
+      }
+    }
+    return $ui_schema;
   }
 
 }
