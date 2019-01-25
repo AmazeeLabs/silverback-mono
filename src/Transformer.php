@@ -276,6 +276,12 @@ class Transformer {
       if ($item->children) {
         $ui_schema[$key] += self::itemsToUiSchema($item->children);
       }
+
+      if (empty($ui_schema[$key])) {
+        // Prevent empty array/object PHP-to-JSON conversion issues by removing
+        // empty items.
+        unset($ui_schema[$key]);
+      }
     }
     return $ui_schema;
   }
