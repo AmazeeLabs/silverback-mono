@@ -60,4 +60,26 @@ class SilverbackCommand extends Command {
     }
   }
 
+  protected function getConfigDirectory() {
+    $configDir = 'config/sync';
+    if (!$this->fileSystem->exists('config/sync/core.extension.yml')) {
+      $this->copyDir('vendor/amazeelabs/silverback/config', 'config/sync');
+    }
+    return $configDir;
+  }
+
+  protected function getConfigHash() {
+    $configDir = $this->getConfigDirectory();
+
+    $finder = new Finder();
+    $finder->files()->in($this->rootDirectory .'/'. $configDir);
+    $files = [];
+    foreach ($finder as $file) {
+      $files[] = md5(file_get_contents($file->getRealPath()));
+    }
+
+
+    return md5(serialize($files));
+  }
+
 }
