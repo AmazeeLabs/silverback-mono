@@ -26,7 +26,7 @@ When(/^I use the administration credentials to log in$/, login("admin", "admin")
 When(/^I use invalid administration credentials to log in$/, login("admin", "invalid"));
 
 Then(/^I should see an error message containing "(.*)"$/, (message) => {
-  cy.get('.messages--error').contains(message);
+  cy.get('div[role="alert"]').contains(message);
 });
 
 Then(/^I should see the administration toolbar$/, () => {
@@ -34,5 +34,5 @@ Then(/^I should see the administration toolbar$/, () => {
 });
 
 Then(/^the page should be displayed with the "seven" theme$/, () => {
-  cy.get('#block-seven-content');
+  cy.get('#block-seven-page-title');
 });
