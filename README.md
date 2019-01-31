@@ -10,7 +10,7 @@
 
 ## Installation
 
-### Prerequesites
+### Prerequisites
 
 To create or work on a Silverback project the following tools have to be available on your system:
 
