@@ -26,10 +26,9 @@
         "drupal/user_reference_access": "dev-1.x",
         "drupal/admin_toolbar": "^1",
         "drupal/moderation_state_permissions": "dev-1.x",
-        "drupal/workspace": "^1",
-        "drupal/multiversion": "^1",
-        "drupal/deploy": "^1",
-        "drupal/tmgmt": "^1.6"
+        "drupal/tmgmt": "^1.6",
+        "drupal/linkit": "^5",
+        "drupal/ckeditor5_sections": "1.0-alpha7"
     },
     "bin": [ "bin/silverback" ],
     "autoload": {
