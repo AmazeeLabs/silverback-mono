@@ -3,6 +3,7 @@ module:
   block_content: 0
   breakpoint: 0
   config: 0
+  config_translation: 0
   datetime: 0
   dblog: 0
   dynamic_page_cache: 0
@@ -13,7 +14,9 @@ module:
   filter: 0
   help: 0
   image: 0
+  language: 0
   link: 0
+  locale: 0
   menu_ui: 0
   node: 0
   options: 0
@@ -23,12 +26,20 @@ module:
   system: 0
   taxonomy: 0
   text: 0
+  tmgmt: 0
+  tmgmt_config: 0
+  tmgmt_content: 0
+  tmgmt_file: 0
+  tmgmt_language_combination: 0
+  tmgmt_local: 0
+  tmgmt_locale: 0
   toolbar: 0
   tour: 0
   update: 0
   user: 0
   views_ui: 0
   menu_link_content: 1
+  content_translation: 10
   views: 10
   minimal: 1000
 theme:

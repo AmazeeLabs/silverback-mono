@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.user.compact
+    - field.field.user.user.tmgmt_translation_skills
     - field.field.user.user.user_picture
   module:
     - user
@@ -15,5 +16,7 @@ bundle: user
 mode: compact
 content: {  }
 hidden:
+  langcode: true
   member_for: true
+  tmgmt_translation_skills: true
   user_picture: true

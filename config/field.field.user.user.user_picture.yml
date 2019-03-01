@@ -5,8 +5,15 @@ dependencies:
   config:
     - field.storage.user.user_picture
   module:
+    - content_translation
     - image
     - user
+third_party_settings:
+  content_translation:
+    translation_sync:
+      alt: alt
+      title: title
+      file: '0'
 _core:
   default_config_hash: Iiq0AttdhgbebJwabSFwQQ1ORn64GoGz0xSZ_eyCJ8A
 id: user.user.user_picture
