@@ -28,7 +28,7 @@
         "drupal/moderation_state_permissions": "dev-1.x",
         "drupal/tmgmt": "^1.6",
         "drupal/linkit": "^5",
-        "drupal/ckeditor5_sections": "1.0-alpha10"
+        "drupal/ckeditor5_sections": "1.0-alpha11"
     },
     "bin": [ "bin/silverback" ],
     "autoload": {
