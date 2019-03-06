@@ -5,7 +5,6 @@ module.exports = {
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Sections', link: '/sections/' },
     ],
     sidebarDepth: 2,
     sidebar: 'auto',
