@@ -1,14 +1,17 @@
 module.exports = {
   title: 'Silverback',
-  description: 'Just playing around',
+  description: 'Silverback documentation.',
+  base: '/silverback/',
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Delivery', link: '/delivery/' },
-      { text: 'External', link: 'https://google.com' },
+      { text: 'Sections', link: '/sections/' },
     ],
     sidebarDepth: 2,
     sidebar: 'auto',
     displayAllHeaders: true
   },
-}
+  markdown: {
+    lineNumbers: true
+  }
+};
