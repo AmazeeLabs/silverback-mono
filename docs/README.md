@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.com/AmazeeLabs/silverback.svg?branch=master)](https://travis-ci.com/AmazeeLabs/silverback)
-
 # Amazee Silverback
 
 `amazee/silverback` is a composer package adding common project dependencies, tooling and configuration scaffolding to Amazee Drupal projects. It aims to improve product quality and reduce maintenance costs by encouraging three simple principles:
