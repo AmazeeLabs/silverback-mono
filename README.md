@@ -33,8 +33,11 @@ cd my-project
 composer remove drupal/core
 composer require amazeelabs/silverback
 ./vendor/bin/silverback init
+composer install
 yarn
 ```
+
+Note that the seemingly unnecessary extra `composer install` is to allow patches to be applied.
 
 If you've set up `direnv` correctly, it will complain at this point that there is an unknown `.envrc` file. Just execute `direnv allow` to enable it. From now own environment variables and executable search paths will be set automatically whenever you enter this directory. Here is how it should look in case of a correct installation:  
 ```
