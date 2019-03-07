@@ -1,4 +1,0 @@
-# Silverback features
-
-
-## [Multilingual](multilingual/)

@@ -5,6 +5,8 @@
 The [CKEditor5 Sections module] for Drupal allows to create custom WYSIWYG 
 interfaces for complex document structures by composing simple html templates.
 
+[CKEditor5 Sections module]: http://drupal.org/project/sections
+
 ## Installation
 
 ## Configuration
@@ -38,8 +40,38 @@ with the defined property name.
 [HTML datasets]: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset
 
 ### Example template
-<<< @/sections/example/template.html{2,9,10,20,29,38,39}
+```html
+<div class="teaser" itemtype="teaser" data-layout="">
 
+  <div ck-type="drupal-media"
+       data-media-type="image"
+       itemprop="image"
+       itemtype="image"
+       class="teaser__image"
+  ></div>
+
+  <div class="teaser__content">
+
+    <h2 ck-type="text"
+        itemprop="headline"
+        class="teaser__headline"
+    >Headline placeholder</h2>
+
+    <div ck-type="text"
+         itemprop="text"
+         class="teaser__text"
+    >Teaser content placeholder
+    </div>
+
+    <a ck-type="button"
+       itemtype="button"
+       itemprop="link"
+       class="teaser__link"
+    >Link text placeholder</a>
+
+  </div>
+</div>
+```
 ### Example document
 ```html
 <div class="teaser" data-layout="image-left">
