@@ -75,6 +75,10 @@ class Init extends SilverbackCommand {
         'value' => '',
         'description' => '`cypress run` will only execute tests based on tags. Examples: "@assignee:$SB_JIRA_USER and @WIP", "@COMPLETED".'
       ],
+      'DRUPAL_HASH_SALT' => [
+        'value' => 'BANANA',
+        'description' => 'Hash salt required by drupal and used in settings.php.'
+      ],
     ];
 
     $finder = new Finder();
