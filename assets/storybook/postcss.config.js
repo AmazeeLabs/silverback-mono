@@ -1,5 +1,10 @@
 module.exports = {
 	plugins: {
-		'postcss-easy-import': {}
-	}
+		'postcss-import': {},
+		'postcss-url': {
+			url: 'inline',
+		}
+	},
+	module: true,
+	url: false
 };

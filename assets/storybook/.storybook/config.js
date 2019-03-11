@@ -1,5 +1,4 @@
 import { configure } from '@storybook/html';
-import '../styles.css';
 import '../scripts';
 
 // automatically import all files ending in *.stories.js
