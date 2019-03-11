@@ -20,7 +20,6 @@ You just have to require the `amazeelabs/silverback` composer package and initia
 
 ```bash
 cd my-project
-composer remove drupal/core
 composer require amazeelabs/silverback
 ./vendor/bin/silverback init
 composer install

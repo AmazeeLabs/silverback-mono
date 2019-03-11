@@ -75,6 +75,10 @@ class Init extends SilverbackCommand {
         'value' => '',
         'description' => '`cypress run` will only execute tests based on tags. Examples: "@assignee:$SB_JIRA_USER and @WIP", "@COMPLETED".'
       ],
+      'DRUPAL_HASH_SALT' => [
+        'value' => 'BANANA',
+        'description' => 'Hash salt required by drupal and used in settings.php.'
+      ],
     ];
 
     $finder = new Finder();
@@ -132,6 +136,9 @@ class Init extends SilverbackCommand {
     $composerJson['extra']['merge-plugin']['replace'] = TRUE;
 
     file_put_contents($this->rootDirectory . '/composer.json', json_encode(array_filter($composerJson), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+
+    // Link the storybook dist directory to the library dist folder.
+    symlink('../../../../storybook/dist', 'web/themes/custom/storybook/dist');
   }
 
 }

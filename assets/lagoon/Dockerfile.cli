@@ -6,6 +6,7 @@ COPY patches /app/patches
 RUN composer install --no-dev
 RUN yarn install --pure-lockfile
 COPY . /app
+RUN cd storybook && yarn && yarn run build-storybook && ln -s storybook-static ../web/storybook
 
 ENV NODE_ENV production
 

@@ -1,0 +1,15 @@
+.silverback-example {
+  border: 1px solid hotpink;
+  padding: 1em;
+}
+
+.silverback-example .banana {
+  width: 100%;
+  height: 300px;
+  background: url('./images/bananas.jpg');
+}
+
+.silverback-example div {
+  margin-bottom: 2em;
+}
+
