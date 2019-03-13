@@ -46,4 +46,5 @@ class DownloadTests extends SilverbackCommand {
     }
 
   }
+
 }
