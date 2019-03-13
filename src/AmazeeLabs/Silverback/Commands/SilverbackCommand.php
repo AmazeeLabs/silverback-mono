@@ -72,12 +72,11 @@ class SilverbackCommand extends Command {
     $configDir = $this->getConfigDirectory();
 
     $finder = new Finder();
-    $finder->files()->in($this->rootDirectory .'/'. $configDir);
+    $finder->files()->in($this->rootDirectory . '/' . $configDir);
     $files = [];
     foreach ($finder as $file) {
       $files[] = md5(file_get_contents($file->getRealPath()));
     }
-
 
     return md5(serialize($files));
   }

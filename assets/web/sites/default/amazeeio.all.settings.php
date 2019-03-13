@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * amazee.io Drupal 8 all environment configuration file.

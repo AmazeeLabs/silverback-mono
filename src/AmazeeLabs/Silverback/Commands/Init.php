@@ -44,7 +44,7 @@ class Init extends SilverbackCommand {
       ],
       'SB_TEST_CONTENT' => [
         'value' => '',
-        'description' => 'The name of a default content module to install.'
+        'description' => 'The name of a default content module to install.',
       ],
       'SB_JIRA_HOST' => [
         'value' => '',
@@ -65,19 +65,19 @@ class Init extends SilverbackCommand {
       ],
       'DRUSH_OPTIONS_URI' => [
         'value' => '$SB_BASE_URL',
-        'description' => 'Drush base url.'
+        'description' => 'Drush base url.',
       ],
       'CYPRESS_BASE_URL' => [
         'value' => '$SB_BASE_URL',
-        'description' => 'Cypress base url.'
+        'description' => 'Cypress base url.',
       ],
       'CYPRESS_TAGS' => [
         'value' => '',
-        'description' => '`cypress run` will only execute tests based on tags. Examples: "@assignee:$SB_JIRA_USER and @WIP", "@COMPLETED".'
+        'description' => '`cypress run` will only execute tests based on tags. Examples: "@assignee:$SB_JIRA_USER and @WIP", "@COMPLETED".',
       ],
       'DRUPAL_HASH_SALT' => [
         'value' => 'BANANA',
-        'description' => 'Hash salt required by drupal and used in settings.php.'
+        'description' => 'Hash salt required by drupal and used in settings.php.',
       ],
     ];
 
