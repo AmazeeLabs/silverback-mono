@@ -132,13 +132,15 @@ class Init extends SilverbackCommand {
     $composerJson['extra']['enable-patching'] = TRUE;
 
     // Search for composer.json overrides in the local packages directory.
-    $composerJson['extra']['merge-plugin']['include'][] = 'packages/composer.json';
+    $composerJson['extra']['merge-plugin']['include'] = ['packages/composer.json'];
     $composerJson['extra']['merge-plugin']['replace'] = TRUE;
 
     file_put_contents($this->rootDirectory . '/composer.json', json_encode(array_filter($composerJson), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
     // Link the storybook dist directory to the library dist folder.
-    symlink('../../../../storybook/dist', 'web/themes/custom/storybook/dist');
+    if (!file_exists('web/themes/custom/storybook/dist')) {
+      symlink('../../../../storybook/dist', 'web/themes/custom/storybook/dist');
+    }
   }
 
 }
