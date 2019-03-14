@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
+    "build-storybook": "build-storybook -c .storybook -o build",
     "build-library": "webpack --mode production"
   },
   "keywords": [],
@@ -33,9 +33,7 @@
     "twig-loader": "https://github.com/AmazeeLabs/twig-loader.git",
     "typescript": "^3.3.3333",
     "url-loader": "^1.1.2",
-    "webpack-cli": "^3.2.3"
-  },
-  "devDependencies": {
+    "webpack-cli": "^3.2.3",
     "@babel/core": "^7.3.4",
     "@storybook/html": "^5.0.1",
     "babel-loader": "^8.0.5"

@@ -62,6 +62,19 @@ services:
       - amazeeio-network
       - default
 
+  storybook:
+    build:
+      context: .
+      dockerfile: lagoon/Dockerfile.storybook
+    labels:
+      lagoon.type: nginx
+    environment:
+      <<: *default-environment # loads the defined environment variables from the top
+      LAGOON_LOCALDEV_URL: storybook.${COMPOSE_PROJECT_NAME}.docker.amazee.io # generate another route for nginx, by default we go to varnish
+    networks:
+      - amazeeio-network
+      - default
+
   php:
     build:
       context: .
