@@ -2,12 +2,12 @@
 
 /**
  * @file
+ * Drupal 8 local development override configuration file.
  */
 
 use Drupal\Component\Assertion\Handle;
 
 /**
- * @file
  * Default development database.
  */
 $databases['default']['default'] = array(

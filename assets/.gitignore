@@ -24,6 +24,10 @@
 /web/themes/development
 node_modules
 
+# Ignore local development settings/services.
+/web/sites/*/settings.local.php
+/web/sites/*/services.local.yml
+
 cypress/integration
 !cypress/integration/.gitkeep
 

@@ -15,13 +15,13 @@
  * - production.services.yml
  *   For services only for the production environment.
  * - development.settings.php
- *   For settings only for the development environment (devevlopment sites, docker).
+ *   For settings only for the development environment (development sites, docker).
  * - development.services.yml
- *   For services only for the development environment (devevlopment sites, docker).
+ *   For services only for the development environment (development sites, docker).
  * - settings.local.php
- *   For settings only for the local environment, this file will not be commited in GIT!
+ *   For settings only for the local environment, this file will not be committed in GIT!
  * - services.local.yml
- *   For services only for the local environment, this file will not be commited in GIT!
+ *   For services only for the local environment, this file will not be committed in GIT!
  */
 
 // Lagoon Database connection.
@@ -117,7 +117,7 @@ if (getenv('LAGOON')) {
 // If your site runs on multiple domains, you need to add these domains here.
 if (getenv('LAGOON_ROUTES')) {
   $settings['trusted_host_patterns'] = array(
-  // Escape dots, remove schema, use commas as regex separator.
+    // Escape dots, remove schema, use commas as regex separator.
     '^' . str_replace(['.', 'https://', 'http://', ','], ['\.', '', '', '|'], getenv('LAGOON_ROUTES')) . '$',
   );
 }
@@ -133,32 +133,38 @@ if (getenv('LAGOON')) {
 }
 
 // Settings for all environments.
-if (file_exists(__DIR__ . '/all.settings.php')) {
-  include __DIR__ . '/amazeeio.all.settings.php';
+$env_settings = __DIR__ . '/amazeeio.all.settings.php';
+if (file_exists($env_settings)) {
+  include $env_settings;
 }
 
 // Services for all environments.
-if (file_exists(__DIR__ . '/all.services.yml')) {
-  $settings['container_yamls'][] = __DIR__ . '/amazeeio.all.services.yml';
+$env_services = __DIR__ . '/amazeeio.all.services.yml';
+if (file_exists($env_services)) {
+  $settings['container_yamls'][] = $env_services;
 }
 
 if (getenv('LAGOON_ENVIRONMENT_TYPE')) {
   // Environment specific settings files.
-  if (file_exists(__DIR__ . '/' . getenv('LAGOON_ENVIRONMENT_TYPE') . '.settings.php')) {
-    include __DIR__ . '/amazeeio.' . getenv('LAGOON_ENVIRONMENT_TYPE') . '.settings.php';
+  $env_settings = __DIR__ . '/amazeeio.' . getenv('LAGOON_ENVIRONMENT_TYPE') . '.settings.php';
+  if (file_exists($env_settings)) {
+    include $env_settings;
   }
 
   // Environment specific services files.
-  if (file_exists(__DIR__ . '/' . getenv('LAGOON_ENVIRONMENT_TYPE') . '.services.yml')) {
-    $settings['container_yamls'][] = __DIR__ . '/amazeeio.' . getenv('LAGOON_ENVIRONMENT_TYPE') . '.services.yml';
+  $env_services = __DIR__ . '/amazeeio.' . getenv('LAGOON_ENVIRONMENT_TYPE') . '.services.yml';
+  if (file_exists($env_services)) {
+    $settings['container_yamls'][] = $env_services;
   }
 }
 
 // Last: this servers specific settings files.
-if (file_exists(__DIR__ . '/settings.local.php')) {
-  include __DIR__ . '/settings.local.php';
+$env_settings = __DIR__ . '/settings.local.php';
+if (file_exists($env_settings)) {
+  include $env_settings;
 }
 // Last: This server specific services file.
-if (file_exists(__DIR__ . '/services.local.yml')) {
-  $settings['container_yamls'][] = __DIR__ . '/services.local.yml';
+$env_services = __DIR__ . '/services.local.yml';
+if (file_exists($env_services)) {
+  $settings['container_yamls'][] = $env_services;
 }
