@@ -15,31 +15,30 @@ class Setup extends SilverbackCommand {
     $this->setName('setup');
     $this->setDescription('Install a new test site.');
     $this->addOption('backup', 'b', InputOption::VALUE_NONE, 'Create a backup of the current site.');
+    $this->addOption('force', 'f', InputOption::VALUE_NONE, 'Force installation.');
   }
 
   protected function execute(InputInterface $input, OutputInterface $output) {
     parent::execute($input, $output);
 
+    $configDir = 'config/sync';
+    $hash = $this->getConfigHash($this->rootDirectory . '/' . $configDir);
+
+    if ($input->getOption('force')) {
+      $this->fileSystem->remove($this->cacheDir . '/' . $hash);
+    }
+
     if ($input->getOption('backup') && $this->fileSystem->exists('web/sites/default/files')) {
       $this->copyDir('web/sites/default/files', $this->cacheDir . '/backup');
     }
 
-    $configDir = 'config/sync';
     if (!$this->fileSystem->exists('config/sync/core.extension.yml')) {
       $this->copyDir('vendor/amazeelabs/silverback/config', 'config/sync');
     }
 
-    $finder = new Finder();
-    $finder->files()->in($this->rootDirectory . '/' . $configDir);
-    $files = [];
-    foreach ($finder as $file) {
-      $files[] = md5(file_get_contents($file->getRealPath()));
-    }
-
     $this->fileSystem->remove('web/sites/default/files');
 
-    $hash = md5(serialize($files));
-    if (!$this->fileSystem->exists($this->cacheDir . '/' . $hash)) {
+    if (!$this->fileSystem->exists($this->cacheDir . '/' . $hash) || $this->getOption('force')) {
       $process = new Process([
         './vendor/bin/drush', 'si', '-y', 'minimal',
         '--sites-subdir', 'default',
