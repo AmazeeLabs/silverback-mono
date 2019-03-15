@@ -259,7 +259,7 @@ link:
 `amazeelabs/silverback` will by default pull the latest version of the module
 from [drupal.org](http://www.drupal.org/project/ckeditor5_sections). If you
 intend to contribute to the module and use the latest version you might want to
-depend on the most recent build from [github](http://github.com/AmazeeLabs/ckeditor5_sections) instead.
+depend on the most recent build from [GitHub](http://github.com/AmazeeLabs/ckeditor5_sections) instead.
 
 In this case you have to add a new repository to your projects `composer.json`:
 
@@ -290,6 +290,8 @@ version constraints:
 composer require drupal/ckeditor5_sections:"8.x-1.x-dev as 1.0"
 ```
 
+See [Composer documentation](https://getcomposer.org/doc/articles/aliases.md#require-inline-alias) for more information on using aliases.
+
 ### CKEditor5 packages
 
 Apart from the packages provided by CKSource, this module uses three packages
@@ -309,13 +311,13 @@ The editor also uses a set of custom web components, that are maintained in a
 built upon the [LitElement](https://lit-element.polymer-project.org/) framework.
 
 The repository also contains a storybook setup to showcase and test all components.
-Just run `yarn run storybook` and you are ready to go.
+Run `yarn run storybook` and you are ready to go.
 
 ### Building the editor
 
 After updating any of the packages above, they have to be pulled into the
 `ckeditor5_sections` module. To do that, navigate into the `editor` directory of
-the module and run `yarn upgrade-packages`. After that the editor can be rebuilt
+the module and run `yarn upgrade-packages`. After that, the editor can be rebuilt
 using `yarn build`. The compiled assets should be committed to the module to make
 them available on install.
 
