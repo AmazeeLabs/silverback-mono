@@ -9,11 +9,19 @@ interfaces for complex document structures by composing simple html templates.
 
 ## Installation
 
+TODO
+
 ## Configuration
+
+TODO
 
 ### Master template mode
 
+TODO
+
 ## Creating templates
+
+TODO
 
 ### Data binding
 
@@ -102,6 +110,68 @@ link:
   __content: Link text
 ```
 
-## Local editor build
+## Contributing
 
-## Custom components
+`amazeelabs/silverback` will by default pull the latest version of the module
+from [drupal.org](http://www.drupal.org/project/ckeditor5_sections). If you
+intend to contribute to the module and use the latest version you might want to
+depend on the most recent build from [github](http://github.com/AmazeeLabs/ckeditor5_sections) instead.
+
+In this case you have to add a new repository to your projects `composer.json`:
+
+```json
+{
+  "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "drupal/ckeditor5_sections",
+        "version": "8.x-1.x-dev",
+        "type": "drupal-module",
+        "source": {
+          "type": "git",
+          "url": "https://github.com/AmazeeLabs/ckeditor5_sections.git",
+          "reference": "8.x-1.x"
+        }
+      }
+    }
+  ]
+}
+```
+
+And require it while *"pretending"* to use the latest stable to calm the gods of
+version constraints:
+
+```bash
+composer require drupal/ckeditor5_sections:"8.x-1.x-dev as 1.0"
+```
+
+### CKEditor5 packages
+
+Apart from the packages provided by CKSource, this module uses three packages
+maintained by Amazee Labs:
+
+* **[@amazeelabs/ckeditor5-template](http://github.com/Amazeelabs/ckeditor5-template)**: Templating mechanisms, containers and
+overall editor logic.
+* **[@amazeelabs/ckeditor5-drupal-linkit](http://github.com/Amazeelabs/ckeditor5-drupal-linkit)**: Integration with the [LinkIt](http://drupal.org/project/linkit) module.
+* **[@amazeelabs/ckeditor5-drupal-media](http://github.com/Amazeelabs/ckeditor5-drupal-media)**: For embedding media entities in documents.
+
+To work on these packages, please head over to the forked [ckeditor5](http://github.com/AmazeeLabs/ckeditor5) repository. Information how to use it can be obtained from the [official documentation](https://ckeditor.com/docs/ckeditor5/latest/framework/guides/contributing/development-environment.html). For a general introduction to CKEditor5 development have a look at the [plugin development guide](https://ckeditor.com/docs/ckeditor5/latest/framework/guides/quick-start.html).
+
+### Custom components
+
+The editor also uses a set of custom web components, that are maintained in a
+[separate repository](http://github.com/AmazeeLabs/editor-components). They are
+built upon the [LitElement](https://lit-element.polymer-project.org/) framework.
+
+The repository also contains a storybook setup to showcase and test all components.
+Just run `yarn run storybook` and you are ready to go.
+
+### Building the editor
+
+After updating any of the packages above, they have to be pulled into the
+`ckeditor5_sections` module. To do that, navigate into the `editor` directory of
+the module and run `yarn upgrade-packages`. After that the editor can be rebuilt
+using `yarn build`. The compiled assets should be committed to the module to make
+them available on install.
+
