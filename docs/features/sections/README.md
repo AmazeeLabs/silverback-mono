@@ -9,21 +9,164 @@ interfaces for complex document structures by composing simple html templates.
 
 ## Installation
 
-TODO
+After enabling the module you have to create a new text format that uses the
+_CKEditor5 Sections_ editor. Upon selecting the editor, a couple of configuration
+options will pop up.
 
-## Configuration
+### Template directory
+The editor will scan a directory for template definitions. By default this is
+set to the `sections` directory packaged with the module. You can just create
+a custom directory anywhere in your project and point the editor to it.
 
-TODO
+![Template directory](./images/config_1.png)
 
-### Master template mode
 
-TODO
+A template has to consist of a `.yml` and a `.html` file. The `.yml` contains
+meta information about the template. Currently it's just the template label
+and the icon to be displayed for inserting it into the document.
 
-## Creating templates
+```yaml
+label: Text
+icon: text
+```
 
-TODO
+The `.html` file contains the actual template data structure. This are standard
+HTML elements along with some special attributes to trigger editor behavior. For
+more on this read on further below.
 
-### Data binding
+### Operation modes
+
+The editor can operate in two different modes:
+
+When selecting *"Default root element"*, it allows to choose which templates are
+enabled for this instance. The user will then be able to add an arbitrary number
+of these templates to the document. A common use case for this would be a blog
+article type.
+
+When choosing any other template as the *"Root element"* the editor will be
+locked down and enforce that the document consists of exactly this one template.
+This template can still have sub-templates (more about that in the section
+[containers](#containers)), but its useful if you have to maintain strict control
+over the document structure, like for a layouted landing page.
+
+![Operation modes](./images/config_2.png)
+
+### Editor build
+
+The module comes with a pre-built version of the editor. It is also possible to
+create a project specific build with custom plugins and behavior. This select
+box allows to choose which build to use.
+
+![Editor build](./images/config_3.png)
+
+> TODO: Fix issues with local editor builds and finish this documentation.
+
+### LinkIt integration
+
+The [LinkIt](http://drupal.org/project/linkit) module is used to create links
+within the editor and support the user choosing link destinations. The LinkIt
+integration has to be enabled and a Linkit profile has to be available for this
+to work.
+
+![Linkit integration](./images/config_4.png)
+
+
+### Media previews
+
+To display media previews when directly outputting the editor content, the 
+*Sections media* output filter has to be enabled.
+
+![Media preview filter](./images/config_5.png)
+
+## Writing templates
+
+An editor template can contain arbitrary HTML elements that will be used to
+render the editing interface. The element structure of a template is locked.
+Users can only edit parts that are marked with a `ck-type` attribute, which will
+invoke a widget to modify the specific area.
+
+### Text
+
+```html
+<div class="text">
+  <h2 ck-type="text">Enter a headline ...</h2>
+  <div class="text__content" ck-type="text">Enter some content ...</div>
+</div>
+```
+
+This template will enforce a structure of a fixed `h2` headline and a free text
+field. The `ck-type` attribute will make the editor apply a specific widget to
+make this element editable.
+
+If applied to a block element (`<p>`, `<h2>` ...), only inline editing is enabled.
+On container elements (`<div>`, `<td>`, `<li>` ...) users can insert more block
+level elements like lists, tables or quotes. When setting the `ck-plain` attribute
+to `true` **all** formatting options are disabled and the element is treated as
+plain text.
+
+### Media
+
+```html
+<div ck-type="drupal-media" data-media-uuid=""
+     data-media-type="image" data-media-display="editor"></div>
+```
+
+Allows to embed a Drupal media entity into the document. The `data-media-type`
+attribute allows narrow down the list of allowed entities, while `data-media-display`
+sets the entity display mode that is used for the in-editor preview.
+
+### Button
+
+```html
+<div ck-type="button" link-target="" title="" target="" rel="">
+  <div ck-type="text">Click me!</div>
+</div>
+```
+
+Injects a dedicated button element (and in this case a nested text element for
+the button text). This element will also display a inline link icon that will
+bring up the [LinkIt] dialogue.
+
+### Container
+
+```html
+<div ck-type="container" ck-contains="text image quote"></div>
+```
+
+This renders an element that allows to add an arbitrary number of `text`, `image`
+or `quote` templates and reorder them.
+
+### Gallery
+
+```html
+<div ck-type="gallery" ck-contains="image"></div>
+```
+
+Renders a gallery that contains one specific item type and allows the user to add
+an arbitrary number of slides.
+
+### Tabs
+
+```html
+<div ck-type="tabs" ck-contains="text"></div>
+```
+
+Renders a tabs that contains one specific item type and allows the user to add
+an arbitrary number of tabs and add labels to them.
+
+
+## Gotchas!
+
+* Templates don't include styling. Stylesheets for the editor experience have
+to be added by the project as a library.
+* Don't use `ck-type` at a templates root element.
+* Every element should have a distinct class to be recognised and processed
+properly.
+
+## WIP: Data binding
+
+> At the time of writing, this section is a draft on how to implement proper two
+way data binding. It's not available in the module yet.
 
 An editor template can be annotated with microdata attributes `itemtype` and
 `itemprop`. Using this information the engine is able to extract structured data
@@ -47,7 +190,8 @@ with the defined property name.
   
 [HTML datasets]: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset
 
-### Example template
+Example template
+
 ```html
 <div class="teaser" itemtype="teaser" data-layout="">
 
