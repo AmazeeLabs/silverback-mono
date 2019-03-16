@@ -35,5 +35,9 @@ module.exports = {
   },
   markdown: {
     lineNumbers: true
+  },
+  algolia: {
+    indexName: 'silverback',
+    apiKey: '96b7a6dce03d75cac64b0e9715fea89e'
   }
 };
