@@ -1,1 +1,3 @@
-import './stories/editor/columns/columns';
+const components = require.context('./editor', true, /\/index\.(ts|js)$/);
+components.keys().forEach(filename => components(filename));
+

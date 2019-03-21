@@ -1,25 +1,26 @@
-import { addDecorator, configure } from '@storybook/react';
+import { addDecorator, configure } from '@storybook/html';
 import { withA11y } from '@storybook/addon-a11y';
+import { setConsoleOptions } from '@storybook/addon-console';
 import '../scripts';
-import twig from './twig';
+
+import Twig from 'twig';
+import twigDrupal from 'twig-drupal-filters';
+
+// Add the filters to Drupal.
+twigDrupal(Twig);
 
 // Automatically import all files ending in *.stories.js
-const req = require.context('../stories', true, /\.stories\.tsx?$/);
+const twig = require.context('../twig', true, /\.stories\.(ts|js)$/);
+const editor = require.context('../editor', true, /\.stories\.(ts|js)$/);
 function loadStories() {
-  req.keys().forEach(filename => req(filename));
+  twig.keys().forEach(filename => twig(filename));
+  editor.keys().forEach(filename => editor(filename));
 }
 
 // Helps make UI components more accessible.
-addDecorator(withA11y)
-
-// Inject a decorator that wraps all string elements into a div and set
-// the result as its inner html value to be compatible to @storybook/react.
-addDecorator((story) => {
-  const result = story();
-  if (typeof result !== "string") {
-    return result;
-  }
-  return twig(result);
+addDecorator(withA11y);
+setConsoleOptions({
+  panelExclude: [],
 });
 
 configure(loadStories, module);

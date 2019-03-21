@@ -3,15 +3,17 @@ const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const jsRule = {
-  test: /\.tsx?$/,
+  test: /\.(ts|js)$/,
   loader: 'babel-loader',
   options: {
     presets: [
       ["@babel/env", {
         targets: {chrome: '63'},
       }],
-      ["@babel/react"],
       ["@babel/typescript"]
+    ],
+    plugins: [
+      ["@babel/plugin-proposal-decorators", { legacy: true }],
     ]
   }
 };
@@ -44,21 +46,6 @@ module.exports = {
             'css-loader',
             'postcss-loader',
         ]
-      },
-      {
-        test: /\.twig$/,
-        use: [
-          {
-            loader: 'twig-loader',
-            options: {
-              twigOptions: {
-                namespaces: {
-                  storybook: 'stories'
-                }
-              }
-            }
-          }
-        ],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
