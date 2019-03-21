@@ -4,6 +4,8 @@ A Drupal module that provides /webform_jsonschema/{webform_id} REST endpoint:
 - GET: returns JSON Schema + UI Schema + Form Data to be used with https://github.com/mozilla-services/react-jsonschema-form
 - POST: handles the webform submission
 
+The REST module is not listed as a dependency. It needs to be enabled manually.
+
 ## Known issues
 
 - Drupal messages are shown on drupal frontend on validation errors.

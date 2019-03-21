@@ -37,8 +37,8 @@ class WebformJsonSchemaResource extends ResourceBase {
       $token_generator = \Drupal::service('csrf_token');
       $response = new ResourceResponse([
         'schema' => Transformer::toJsonSchema($webform),
-        'ui' => new \stdClass(),
-        'data' => new \stdClass(),
+        'ui' => Transformer::toUiSchema($webform),
+//        'data' => new \stdClass(),
         'csrfToken' => $token_generator->get(\Drupal\Core\Access\CsrfRequestHeaderAccessCheck::TOKEN_KEY),
       ]);
       $response->addCacheableDependency($webform);
