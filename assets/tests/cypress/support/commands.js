@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 /**
- * Execute a sequence of commands and take a a named snapshot afterwards.
+ * Execute a sequence of commands and take a named snapshot afterwards.
  *
  * Next time time the snapshot is loaded and the commands are skipped.
  *
