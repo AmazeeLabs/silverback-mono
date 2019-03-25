@@ -313,7 +313,7 @@ class Transformer {
     $buttons = [];
     foreach ($items as $key => $item) {
       if ($item->element['#type'] == 'webform_actions') {
-        $buttons[$key] = [
+        $buttons[] = [
           // Now we just have submit, but we might want to introduce other
           // button later, e.g. reset.
           'type' => 'submit',
