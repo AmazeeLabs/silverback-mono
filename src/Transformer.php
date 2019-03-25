@@ -38,6 +38,17 @@ class Transformer {
   }
 
   /**
+   * Extracts the button definitions from the UI schema.
+   *
+   * @param \Drupal\webform\Entity\Webform $webform
+   *
+   * @return array
+   */
+  public static function toButtons(Webform $webform) {
+    return self::itemsToButtons(self::toItems($webform));
+  }
+
+  /**
    * Transforms a webform to WebformItem's.
    *
    * @param \Drupal\webform\Entity\Webform $webform
@@ -289,6 +300,29 @@ class Transformer {
       }
     }
     return $ui_schema;
+  }
+
+  /**
+   * Creates an array of buttons out of the WebformItems.
+   *
+   * @param \Drupal\webform_jsonschema\WebformItem[] $items
+   *
+   * @return array
+   */
+  protected static function itemsToButtons($items) {
+    $buttons = [];
+    foreach ($items as $key => $item) {
+      if ($item->element['#type'] == 'webform_actions') {
+        $buttons[$key] = [
+          // Now we just have submit, but we might want to introduce other
+          // button later, e.g. reset.
+          'type' => 'submit',
+          'value' => $item->element['#title'],
+        ];
+      }
+    }
+
+    return $buttons;
   }
 
 }

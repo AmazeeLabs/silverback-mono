@@ -38,6 +38,18 @@ class WebformJsonSchemaResource extends ResourceBase {
       $response = new ResourceResponse([
         'schema' => Transformer::toJsonSchema($webform),
         'ui' => Transformer::toUiSchema($webform),
+        /**
+         * The buttons cannot be part of the schema. They need to be added as
+         * children of the form element, so we put them under a separate key.
+         * The items should be mapped in a way similar to this:
+         *
+         * <code>
+         * <Form schema={schema} uiSchema={uiSchema} formData={formData}>
+         *   {buttons.map(({ value }) => <button type="submit">{value}</button>}
+         * </Form>
+         * </code>
+         */
+        'buttons' => Transformer::toButtons($webform),
 //        'data' => new \stdClass(),
         'csrfToken' => $token_generator->get(\Drupal\Core\Access\CsrfRequestHeaderAccessCheck::TOKEN_KEY),
       ]);
