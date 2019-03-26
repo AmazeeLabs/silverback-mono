@@ -98,9 +98,7 @@ class Transformer {
         if (!isset($item->element['#type']) || in_array($item->element['#type'], $ignore, TRUE)) {
           $properties = [];
         }
-        elseif ($item->element['#type'] === 'checkbox'||
-          $item->element['#type'] === 'webform_jsonschema_toggle'
-        ) {
+        elseif ($item->element['#type'] === 'checkbox') {
           $properties['type'] = 'boolean';
         }
         elseif ($item->element['#type'] === 'textarea') {
@@ -260,9 +258,6 @@ class Transformer {
 
       if ($item->element['#type'] === 'textarea') {
         $ui_schema[$key]['ui:widget'] = 'textarea';
-      }
-      elseif ($item->element['#type'] === 'webform_jsonschema_toggle') {
-        $ui_schema[$key]['ui:widget'] = 'toggle';
       }
       elseif (
         $item->element['#type'] === 'webform_buttons' ||

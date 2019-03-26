@@ -1,7 +1,0 @@
-name: 'Webform JSONSchema elements'
-type: module
-description: 'Some additional webform elements for the JSONSchema integration.'
-core: 8.x
-package: 'Webform'
-dependencies:
-  - webform_jsonschema
