@@ -26,6 +26,14 @@ function hook_webform_jsonschema_ui_schema_alter(array &$uiSchema, Drupal\webfor
   $uiSchema['my_element']['ui:widget'] = 'myCustomWidget';
 }
 
+/**
+ * Alter the 'buttons' part of the webform_jsonschema output.
+ *
+ * @param array $buttons
+ *   A list of buttons. Each button has a 'type' and a 'value'.
+ * @param \Drupal\webform\Entity\Webform $webform
+ *   The given webform object.
+ */
 function hook_webform_jsonschema_buttons_alter(array &$buttons, Drupal\webform\Entity\Webform $webform) {
   // Add another submit button.
   $buttons[] = [
