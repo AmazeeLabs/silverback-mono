@@ -337,7 +337,7 @@ class Transformer {
     $buttons = [];
     foreach ($items as $key => $item) {
       if ($item->elementPlugin instanceof JsonSchemaElementInterface) {
-        $item->elementPlugin->addJsonSchemaUiSchema($buttons, $item->element);
+        $item->elementPlugin->addJsonSchemaButtons($buttons, $item->element);
       }
       elseif ($item->element['#type'] == 'webform_actions') {
         $buttons[] = [
