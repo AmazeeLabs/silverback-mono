@@ -3,6 +3,7 @@
 namespace Drupal\webform_jsonschema;
 
 use Drupal\Component\Utility\NestedArray;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Render\Element;
 use Drupal\webform\Entity\Webform;
 use Drupal\webform\Plugin\WebformElement\WebformCompositeBase;
@@ -13,16 +14,32 @@ use Drupal\webform\Plugin\WebformElement\WebformCompositeBase;
 class Transformer {
 
   /**
+   * @var \Drupal\Core\Extension\ModuleHandlerInterface
+   */
+  protected $moduleHandler;
+
+  /**
+   * Transformer constructor.
+   *
+   * @param \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler
+   */
+  public function __construct(ModuleHandlerInterface $moduleHandler) {
+    $this->moduleHandler = $moduleHandler;
+  }
+
+  /**
    * Transforms a webform to JSON Schema.
    *
    * @param \Drupal\webform\Entity\Webform $webform
    *
    * @return array
    */
-  public static function toJsonSchema(Webform $webform) {
+  public function toJsonSchema(Webform $webform) {
     $schema = [
-        'title' => $webform->label(),
-      ] + self::itemsToSchema(self::toItems($webform));
+      'title' => $webform->label(),
+    ] + self::itemsToSchema($this->toItems($webform));
+    $this->moduleHandler->alter(
+      'webform_jsonschema_schema', $schema, $webform);
     return $schema;
   }
 
@@ -33,8 +50,11 @@ class Transformer {
    *
    * @return array
    */
-  public static function toUiSchema(Webform $webform) {
-    return self::itemsToUiSchema(self::toItems($webform));
+  public function toUiSchema(Webform $webform) {
+    $uiSchema = self::itemsToUiSchema($this->toItems($webform));
+    $this->moduleHandler->alter(
+      'webform_jsonschema_ui_schema', $uiSchema, $webform);
+    return $uiSchema;
   }
 
   /**
@@ -44,8 +64,11 @@ class Transformer {
    *
    * @return array
    */
-  public static function toButtons(Webform $webform) {
-    return self::itemsToButtons(self::toItems($webform));
+  public function toButtons(Webform $webform) {
+    $buttons = self::itemsToButtons($this->toItems($webform));
+    $this->moduleHandler->alter(
+      'webform_jsonschema_buttons', $buttons, $webform);
+    return $buttons;
   }
 
   /**
@@ -55,7 +78,7 @@ class Transformer {
    *
    * @return \Drupal\webform_jsonschema\WebformItem[]
    */
-  protected static function toItems(Webform $webform) {
+  public function toItems(Webform $webform) {
     $elements = $webform->getElementsInitialized();
     return self::getStructureElements($elements);
   }
@@ -90,7 +113,6 @@ class Transformer {
         $properties += self::itemsToSchema($item->children);
       }
       else {
-
         $ignore = [
           'value',
           'webform_element', // No idea what this is.
@@ -180,7 +202,6 @@ class Transformer {
           // Not supported yet.
           $properties = [];
         }
-
       }
       if (!empty($properties)) {
         if ($multivalue = $item->elementPlugin->hasMultipleValues($item->element)) {
@@ -316,7 +337,6 @@ class Transformer {
         ];
       }
     }
-
     return $buttons;
   }
 

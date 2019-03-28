@@ -9,3 +9,13 @@ services:
     class: 'Drupal\webform_jsonschema\Routing\EventSubscriber'
     tags:
       - { name: 'event_subscriber' }
+
+  webform_jsonschema.transformer:
+    class: 'Drupal\webform_jsonschema\Transformer'
+    arguments:
+      ['@module_handler']
+
+  webform_jsonschema.submission:
+    class: 'Drupal\webform_jsonschema\Submission'
+    arguments:
+      ['@webform_jsonschema.transformer']

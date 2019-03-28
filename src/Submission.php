@@ -13,6 +13,20 @@ use Drupal\webform\WebformSubmissionInterface;
 class Submission {
 
   /**
+   * @var \Drupal\webform_jsonschema\Transformer
+   */
+  protected $transformer;
+
+  /**
+   * Submission constructor.
+   *
+   * @param \Drupal\webform_jsonschema\Transformer $transformer
+   */
+  public function __construct(Transformer $transformer) {
+    $this->transformer = $transformer;
+  }
+
+  /**
    * Handles webform submission.
    *
    * @param string $webform_id
@@ -39,7 +53,7 @@ class Submission {
    *       ],
    *     ]
    */
-  public static function submit($webform_id, $data) {
+  public function submit($webform_id, $data) {
     $error_message = NULL;
     try {
       $webform = Webform::load($webform_id);
@@ -55,7 +69,7 @@ class Submission {
           ],
         ];
       }
-      $schema = Transformer::toJsonSchema($webform);
+      $schema = $this->transformer->toJsonSchema($webform);
       $data = self::flattenData($data, $schema);
       $path_mapping = self::getPathMapping($schema);
       $result = WebformSubmissionForm::submitFormValues([
