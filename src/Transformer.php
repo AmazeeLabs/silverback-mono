@@ -7,6 +7,7 @@ use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Render\Element;
 use Drupal\webform\Entity\Webform;
 use Drupal\webform\Plugin\WebformElement\WebformCompositeBase;
+use Drupal\webform_jsonschema\JsonSchemaElementInterface;
 
 /**
  * Transforms webforms to JSON Schema.
@@ -95,6 +96,7 @@ class Transformer {
       'type' => 'object',
     ];
 
+
     foreach ($items as $key => $item) {
       if (!empty($item->element['#required'])) {
         $schema['required'][] = $key;
@@ -119,6 +121,9 @@ class Transformer {
         ];
         if (!isset($item->element['#type']) || in_array($item->element['#type'], $ignore, TRUE)) {
           $properties = [];
+        }
+        elseif ($item->elementPlugin instanceof JsonSchemaElementInterface) {
+          $item->elementPlugin->addJsonSchema($properties, $item->element);
         }
         elseif ($item->element['#type'] === 'checkbox') {
           $properties['type'] = 'boolean';
@@ -280,6 +285,9 @@ class Transformer {
       if ($item->element['#type'] === 'textarea') {
         $ui_schema[$key]['ui:widget'] = 'textarea';
       }
+      elseif ($item->elementPlugin instanceof JsonSchemaElementInterface) {
+        $item->elementPlugin->addJsonSchemaUiSchema($ui_schema[$key], $item->element);
+      }
       elseif (
         $item->element['#type'] === 'webform_buttons' ||
         $item->element['#type'] === 'checkboxes' ||
@@ -328,7 +336,10 @@ class Transformer {
   protected static function itemsToButtons($items) {
     $buttons = [];
     foreach ($items as $key => $item) {
-      if ($item->element['#type'] == 'webform_actions') {
+      if ($item->elementPlugin instanceof JsonSchemaElementInterface) {
+        $item->elementPlugin->addJsonSchemaUiSchema($buttons, $item->element);
+      }
+      elseif ($item->element['#type'] == 'webform_actions') {
         $buttons[] = [
           // Now we just have submit, but we might want to introduce other
           // button later, e.g. reset.
