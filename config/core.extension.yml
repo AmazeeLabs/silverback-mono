@@ -2,6 +2,7 @@ module:
   block: 0
   block_content: 0
   breakpoint: 0
+  components: 0
   config: 0
   config_translation: 0
   datetime: 0
