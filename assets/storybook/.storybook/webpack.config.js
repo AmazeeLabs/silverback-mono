@@ -1,30 +1,36 @@
-const common = require('../common-loaders');
 const path = require('path');
 
-module.exports = ({ config, mode }) => {
-	// Reuse common webpack configuration.
-	config.module.rules.push(common.javascript);
-	config.module.rules.push(common.assets);
-	config.module.rules.push(common.postcss);
+// Import common configurations.
+const common = require('../webpack.common');
 
-	// Twig webpack is only required within storybook.
-	config.module.rules.push({
-		test: /\.twig$/,
-		use: [
-			{
-				loader: 'twig-loader',
-				options: {
-					twigOptions: {
-						namespaces: {
-							storybook: path.resolve('twig')
-						}
-					}
-				}
-			}
-		],
-	});
+module.exports = ({ config }) => {
+  // Add common plugins.
+  config.plugins.push(...common.plugins);
 
-	// Support importing typescript files without extension.
-	config.resolve.extensions.push('.ts');
-	return config;
+  // Reuse common webpack configuration.
+  config.module.rules.push(common.javascript);
+  config.module.rules.push(common.assets);
+  config.module.rules.push(common.css);
+
+  // Twig webpack is only required within storybook.
+  config.module.rules.push({
+    test: /\.twig$/,
+    use: [
+      {
+        loader: 'twig-loader',
+        options: {
+          twigOptions: {
+            namespaces: {
+              storybook: path.resolve(__dirname, '../', 'twig'),
+            },
+          },
+        },
+      },
+    ],
+  });
+
+  // Support importing typescript files without extension.
+  config.resolve.extensions.push('.ts');
+
+  return config;
 };

@@ -1,0 +1,3 @@
+/* Import components styles. */
+@import './editor/**/*.css';
+@import './twig/**/*.css';
