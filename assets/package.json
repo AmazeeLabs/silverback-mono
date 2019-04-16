@@ -8,7 +8,7 @@
     "storybook": "start-storybook -c storybook/.storybook -p 6006",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack-dev": "drush webpack:serve --docker --dev-server-host=cli",
-    "lint:css": "stylelint --ignore-path storybook/.eslintignore storybook/**/*.css",
+    "lint:css": "stylelint --ignore-path storybook/.eslintignore \"storybook/**/*.css\"",
     "lint:css:fix": "yarn run lint:css --fix",
     "lint:js": "eslint --ignore-path storybook/.eslintignore storybook/ --ext ts --ext js",
     "lint:js:fix": "yarn run lint:js --fix"
