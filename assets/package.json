@@ -5,7 +5,7 @@
   "scripts": {
     "build-library": "webpack -p --config storybook/webpack.config.js --mode production",
     "build-storybook": "build-storybook -c storybook/.storybook -o storybook/build",
-    "storybook": "start-storybook -c storybook/.storybook -p 6006",
+    "storybook": "start-storybook -c storybook/.storybook",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack-dev": "drush webpack:serve --docker --dev-server-host=cli",
     "lint:css": "stylelint --ignore-path storybook/.eslintignore \"storybook/**/*.css\"",
