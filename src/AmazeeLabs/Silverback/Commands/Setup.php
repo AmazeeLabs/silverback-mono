@@ -71,6 +71,11 @@ class Setup extends SilverbackCommand {
     else {
       $this->copyDir($this->cacheDir . '/' . $hash, 'web/sites/default/files');
     }
+    
+    $private = 'web/sites/default/files/private';
+    if (!$this->fileSystem->exists($private)) {
+      $this->fileSystem->mkdir($private);
+    }
   }
 
 }
