@@ -158,11 +158,13 @@ class Transformer {
           $item->element['#type'] === 'webform_radios_other' ||
           $item->element['#type'] === 'webform_buttons_other'
         ) {
+          // TODO: currently all option keys are assumed to be strings, but
+          //   maybe other types need to be considered.
           $properties['type'] = 'string';
           $properties['anyOf'] = array_map(function($key, $value) {
             return [
               'enum' => [
-                $key,
+                (string) $key,
               ],
               'title' => (string) $value,
             ];
