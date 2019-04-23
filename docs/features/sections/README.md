@@ -5,7 +5,7 @@
 The [CKEditor5 Sections module] for Drupal allows to create custom WYSIWYG 
 interfaces for complex document structures by composing simple html templates.
 
-[CKEditor5 Sections module]: http://drupal.org/project/sections
+[CKEditor5 Sections module]: https://www.drupal.org/project/ckeditor5_sections
 
 ## Installation
 
