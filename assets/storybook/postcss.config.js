@@ -1,10 +1,14 @@
 module.exports = {
-	plugins: {
-		'postcss-import': {},
-		'postcss-url': {
-			url: 'inline',
-		}
-	},
-	module: true,
-	url: false
+  plugins: {
+    'postcss-easy-import': {},
+    'postcss-preset-env': {
+      stage: 0,
+    },
+    'postcss-url': {
+      url: 'inline',
+    },
+    'postcss-nested': {},
+  },
+  module: true,
+  url: false,
 };

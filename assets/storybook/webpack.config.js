@@ -1,36 +1,47 @@
 const path = require('path');
-const common = require('./common-loaders');
 
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// Import dependencies.
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-// For building the library, we have to extract CSS.
-common.postcss.use.unshift('css-loader');
-common.postcss.use.unshift(MiniCssExtractPlugin.loader);
+// Import common configurations.
+const common = require('./webpack.common');
 
+// Webpack configuration.
 module.exports = {
   entry: {
-    scripts: './scripts.ts',
-    editor: './editor.ts',
+    scripts: './storybook/scripts.ts',
+    editor: './storybook/editor.ts',
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
   },
+  resolve: { extensions: ['.ts', '.js'] },
 
-  resolve: {extensions: ['.ts', '.js']},
-
+  /**
+   * Plugins.
+   *
+   * Add all common plugins.
+   *
+   * MiniCssExtractPlugin()
+   * A Lightweight CSS extraction webpack plugin.
+   */
   plugins: [
+    ...common.plugins,
     new MiniCssExtractPlugin({
-      filename: "styles.css",
-      path: path.resolve(__dirname, 'dist')
-    })
+      filename: 'styles.css',
+      path: path.resolve(__dirname, 'dist'),
+    }),
   ],
-
   module: {
     rules: [
       common.javascript,
-      common.postcss,
-      common.assets
-    ]
-  }
+      // Extend common CSS configuration with those used in build process.
+      {
+        ...common.css,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', ...common.css.use],
+      },
+      common.assets,
+    ],
+  },
 };

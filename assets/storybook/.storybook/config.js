@@ -1,11 +1,15 @@
 // Add the web components polyfill to all stories.
-import "@webcomponents/webcomponentsjs/webcomponents-bundle";
+import '@babel/polyfill';
+import '@webcomponents/webcomponentsjs/webcomponents-bundle';
 
 import { addDecorator, configure } from '@storybook/html';
 import { withA11y } from '@storybook/addon-a11y';
 
 import Twig from 'twig';
 import twigDrupal from 'twig-drupal-filters';
+
+// Import styles
+import '../styles.css';
 
 // Add the filters to Drupal.
 twigDrupal(Twig);
