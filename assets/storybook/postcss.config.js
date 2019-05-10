@@ -7,8 +7,8 @@ module.exports = {
     'postcss-url': {
       url: 'inline',
     },
-    'postcss-nested': {},
     'postcss-mixins': {},
+    'postcss-nested': {},
   },
   module: true,
   url: false,
