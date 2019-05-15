@@ -53,6 +53,14 @@ class Transformer {
    */
   public function toUiSchema(Webform $webform) {
     $uiSchema = self::itemsToUiSchema($this->toItems($webform));
+
+    // Provide a general validation error message that can be displayed on the
+    // top of the form.
+    // Unfortunately, the standard error message from
+    // \Drupal\inline_form_errors\FormErrorHandler::displayErrorMessages is too
+    // hard to generate and use. So we go with a custom one.
+    $uiSchema['webform:generalValidationErrorMessage'] = t('A form validation error occurred. Please check the values you have entered.');
+
     $this->moduleHandler->alter(
       'webform_jsonschema_ui_schema', $uiSchema, $webform);
     return $uiSchema;
@@ -317,6 +325,40 @@ class Transformer {
 
       if ($item->children) {
         $ui_schema[$key] += self::itemsToUiSchema($item->children);
+      }
+
+      // Provide error messages to frontend so that they can be used with
+      // react-jsonschema-form's `transformErrors` option. See
+      // https://react-jsonschema-form.readthedocs.io/en/latest/validation/#custom-error-messages
+      //
+      // The errors keys are "Validation Keywords" from the "JSON Schema
+      // Validation" specification. See
+      // https://json-schema.org/latest/json-schema-validation.html#rfc.section.6
+      //
+      // If an element does not provide a custom error message, use the standard
+      // one which would be used by Webform module or Drupal core.
+      if (!empty($item->element['#required'])) {
+        $message = !empty($item->element['#required_error'])
+          ? $item->element['#required_error']
+          : t('@name field is required.', ['@name' => $item->element['#title']]);
+        $message = strip_tags((string) $message);
+        if ($item->elementPlugin->hasMultipleValues($item->element)) {
+          // For the required multivalue elements we use minItems=1 in
+          // Transformer::itemsToSchema. So on the frontend the `error.name`
+          // will be "minItems", but the actual meaning will be that the element
+          // is required.
+          $ui_schema[$key]['webform:validationErrorMessages']['minItems'] = $message;
+        }
+        else {
+          $ui_schema[$key]['webform:validationErrorMessages']['required'] = $message;
+        }
+      }
+      if (isset($item->element['#pattern'])) {
+        $message = !empty($item->element['#pattern_error'])
+          ? $item->element['#pattern_error']
+          : t('%name field is not in the right format.', ['%name' => $item->element['#title']]);
+        $message = strip_tags((string) $message);
+        $ui_schema[$key]['webform:validationErrorMessages']['pattern'] = $message;
       }
 
       if (empty($ui_schema[$key])) {
