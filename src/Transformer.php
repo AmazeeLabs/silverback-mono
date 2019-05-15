@@ -59,7 +59,9 @@ class Transformer {
     // Unfortunately, the standard error message from
     // \Drupal\inline_form_errors\FormErrorHandler::displayErrorMessages is too
     // hard to generate and use. So we go with a custom one.
-    $uiSchema['webform:generalValidationErrorMessage'] = t('A form validation error occurred. Please check the values you have entered.');
+    $uiSchema['webform:generalValidationErrorMessage'] = (string) t('A form validation error occurred. Please check the values you have entered.');
+    // And a one for a general submission error.
+    $uiSchema['webform:generalSubmissionErrorMessage'] = (string) t('There was an error submitting webform.');
 
     $this->moduleHandler->alter(
       'webform_jsonschema_ui_schema', $uiSchema, $webform);
