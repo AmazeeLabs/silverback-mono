@@ -28,7 +28,7 @@ install:
 - composer create-project drupal-composer/drupal-project:8.x-dev $DRUPAL_BUILD_DIR --no-interaction
 - cd $DRUPAL_BUILD_DIR
 - composer remove drupal/core
-- php -r "\$json = json_decode(file_get_contents('composer.json'), TRUE); \$json['repositories'][] = ['type' => 'path', 'url' => '$TRAVIS_BUILD_DIR' ]; echo json_encode(\$json, JSON_PRETTY_PRINT);"
+- php -r "\$json = json_decode(file_get_contents('composer.json'), TRUE); \$json['repositories'][] = ['type' => 'path', 'url' => '$TRAVIS_BUILD_DIR' ]; file_put_contents('composer.json', json_encode(\$json, JSON_PRETTY_PRINT));"
 - export BRANCH=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then echo $TRAVIS_BRANCH; else echo $TRAVIS_PULL_REQUEST_BRANCH; fi)
 - echo $BRANCH
 - composer require "amazeelabs/silverback:dev-$BRANCH"
@@ -37,10 +37,10 @@ install:
 - if [[ -n "$SB_JIRA_PROJECTS" ]]; then silverback download-tests; fi
 
 script:
-#- silverback setup
-#- drush serve > log.txt 2>&1 &
-#- until netstat -an 2>/dev/null | grep '8888.*LISTEN'; sleep 1; curl -I http://127.0.0.1:8888 ; do true; done
-#- composer run-script run-tests --timeout 0
+- silverback setup
+- drush serve :8889 > log.txt 2>&1 &
+- until netstat -an 2>/dev/null | grep '8889.*LISTEN'; sleep 1; curl -I http://127.0.0.1:8889 ; do true; done
+- composer run-script run-tests --timeout 0
 - cd $TRAVIS_BUILD_DIR/docs && npm run build
 - kill $(jobs -p) || true
 

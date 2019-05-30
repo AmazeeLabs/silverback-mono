@@ -68,7 +68,7 @@ class Init extends SilverbackCommand {
         'description' => 'Drush base url.',
       ],
       'CYPRESS_BASE_URL' => [
-        'value' => '$SB_BASE_URL',
+        'value' => 'http://localhost:8889',
         'description' => 'Cypress base url.',
       ],
       'CYPRESS_TAGS' => [
@@ -78,6 +78,10 @@ class Init extends SilverbackCommand {
       'DRUPAL_HASH_SALT' => [
         'value' => 'BANANA',
         'description' => 'Hash salt required by drupal and used in settings.php.',
+      ],
+      'PERCY_TOKEN' => [
+        'value' => '',
+        'description' => 'The API token for percy.io',
       ],
     ];
 
