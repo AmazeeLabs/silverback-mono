@@ -11,7 +11,7 @@ use Drupal\Component\Assertion\Handle;
  * Default development database.
  */
 $databases['default']['default'] = [
-  'database' => 'sites/default/files/.sqlite',
+  'database' => dirname(__FILE__) . '/files/.sqlite',
   'prefix' => '',
   'namespace' => 'Drupal\\Core\\Database\\Driver\\sqlite',
   'driver' => 'sqlite',

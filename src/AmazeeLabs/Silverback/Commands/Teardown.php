@@ -20,7 +20,7 @@ class Teardown extends SilverbackCommand {
     $siteDir = $input->getOption('cypress') ? 'cypress' : 'default';
     $this->fileSystem->remove('web/sites/' . $siteDir . '/files');
     if ($input->getOption('restore') && $this->fileSystem->exists($this->cacheDir . '/backup')) {
-      $this->copyDir($this->cacheDir . '/backup', 'web/sites/default/files');
+      $this->copyDir($this->cacheDir . '/backup', 'web/sites/' . $siteDir . '/files');
     }
   }
 

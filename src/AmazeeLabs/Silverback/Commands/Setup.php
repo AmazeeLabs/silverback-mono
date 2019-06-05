@@ -24,6 +24,7 @@ class Setup extends SilverbackCommand {
     $siteDir = $input->getOption('cypress') ? 'cypress' : 'default';
     if ($input->getOption('cypress') && !$this->fileSystem->exists('web/sites/' . $siteDir))  {
       $this->copyDir('web/sites/default', 'web/sites/' . $siteDir);
+      $this->fileSystem->remove('web/sites/' . $siteDir . '/files');
     }
 
     $configDir = 'config/sync';
@@ -77,7 +78,7 @@ class Setup extends SilverbackCommand {
     else {
       $this->copyDir($this->cacheDir . '/' . $hash, 'web/sites/' . $siteDir . '/files');
     }
-    
+
     $private = 'web/sites/' . $siteDir . '/files/private';
     if (!$this->fileSystem->exists($private)) {
       $this->fileSystem->mkdir($private);
