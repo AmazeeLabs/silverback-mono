@@ -390,7 +390,9 @@ class Transformer {
           // Now we just have submit, but we might want to introduce other
           // button later, e.g. reset.
           'type' => 'submit',
-          'value' => $item->element['#title'],
+          'value' => !empty($item->element['#submit__label'])
+            ? $item->element['#submit__label']
+            : $item->element['#title'],
         ];
       }
     }
