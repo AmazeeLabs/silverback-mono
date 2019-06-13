@@ -55,9 +55,13 @@ class Setup extends SilverbackCommand {
       if ($this->fileSystem->exists('install-cache.zip')) {
         $cache = $zippy->open('install-cache.zip');
         $cache->extract('web/sites/' . $siteDir);
-        $this->executeProcess(['./vendor/bin/drush', 'updb', '-y'], $output);
-        $this->executeProcess(['./vendor/bin/drush', 'entup', '-y'], $output);
-        $this->executeProcess(['./vendor/bin/drush', 'cim', '-y'], $output);
+        $baseCommand = ['./vendor/bin/drush'];
+        if ($input->getOption('cypress')) {
+          $baseCommand[] = '--uri=http://localhost:8889';
+        }
+        $this->executeProcess(array_merge($baseCommand, ['updb', '-y']), $output);
+        $this->executeProcess(array_merge($baseCommand, ['entup', '-y']), $output);
+        $this->executeProcess(array_merge($baseCommand, ['cim', '-y']), $output);
       }
       else {
         $this->executeProcess([
