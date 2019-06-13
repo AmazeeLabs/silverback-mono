@@ -5,13 +5,14 @@ beforeEach(function () {
     cy.drush('en toolbar');
     cy.drush('cr');
   });
-})
+  cy.drupalSession({ toolbar: 'on' });
+});
 
 const login = (user, pass) => () => {
   cy.visit('/user/login');
   cy.get('#edit-name').type(user);
   cy.get('#edit-pass').type(pass);
-  cy.get('#edit-submit').contains('Log in').click();
+  cy.get('form.user-login-form #edit-submit').click();
 };
 
 Given(/^I am on the login screen$/, () => {
@@ -37,6 +38,8 @@ Then(/^I should see an error message containing "(.*)"$/, (message) => {
 });
 
 Then(/^I should see the administration toolbar$/, () => {
+  // Cypress doesn't re-send headers unless we re-visit the page.
+  cy.visit('/');
   cy.get('#toolbar-bar');
 });
 
