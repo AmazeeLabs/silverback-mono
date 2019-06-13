@@ -71,7 +71,6 @@ Cypress.Commands.add('drupalSession', function (options) {
  */
 Cypress.Commands.overwrite('visit', (originalFn, url, options) => {
   const headers = Object.assign((options && options.headers) || {}, cy.state('drupalHeaders'));
-  debugger;
   return originalFn(url, Object.assign(options || {}, {
     'headers': headers,
   }))
@@ -82,7 +81,6 @@ Cypress.Commands.overwrite('visit', (originalFn, url, options) => {
  */
 Cypress.Commands.overwrite('request', (originalFn, url, options) => {
   const headers = Object.assign((options && options.headers) || {}, cy.state('drupalHeaders'));
-  debugger;
   return originalFn(url, Object.assign(options || {}, {
     'headers': headers,
   }))
