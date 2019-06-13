@@ -2,11 +2,12 @@
 
 namespace AmazeeLabs\Silverback\Commands;
 
+use Alchemy\Zippy\Zippy;
+use Drupal\Core\Archiver\Zip;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Exception\ProcessFailedException;
-use Symfony\Component\Process\Process;
 
 class Setup extends SilverbackCommand {
 
@@ -44,33 +45,32 @@ class Setup extends SilverbackCommand {
 
     $this->fileSystem->remove('web/sites/' . $siteDir . '/files');
 
-    if (!$this->fileSystem->exists($this->cacheDir . '/' . $hash) || $input->getOption('force')) {
-      $process = new Process([
-        './vendor/bin/drush', 'si', '-y', 'minimal',
-        '--sites-subdir', $siteDir,
-        '--config-dir', '../' . $configDir,
-        '--account-name', getenv('SB_ADMIN_USER'),
-        '--account-pass', getenv('SB_ADMIN_PASS'),
-      ], getcwd(), NULL, NULL, NULL);
-      $process->start();
-      foreach ($process as $type => $line) {
-        $output->writeln($line);
-      }
-      if (!$process->isSuccessful()) {
-        throw new ProcessFailedException($process);
-      }
+    // Remove the installation cache if a forced reinstall is requested.
+    if ($this->fileSystem->exists('install-cache.zip') && $input->getOption('force')) {
+      $this->fileSystem->remove('install-cache.zip');
+    }
 
-      if ($testContent = getenv('SB_TEST_CONTENT')) {
-        $process = new Process([
-          './vendor/bin/drush', 'en', '-y', $testContent,
-        ], getcwd(), NULL, NULL, NULL);
-        $process->start();
-        foreach ($process as $type => $line) {
-          $output->writeln($line);
-        }
-        if (!$process->isSuccessful()) {
-          throw new ProcessFailedException($process);
-        }
+    if (!$this->fileSystem->exists($this->cacheDir . '/' . $hash) || $input->getOption('force')) {
+      $zippy = Zippy::load();
+      if ($this->fileSystem->exists('install-cache.zip')) {
+        $cache = $zippy->open('install-cache.zip');
+        $cache->extract('web/sites/' . $siteDir);
+        $this->executeProcess(['./vendor/bin/drush', 'updb', '-y'], $output);
+        $this->executeProcess(['./vendor/bin/drush', 'entup', '-y'], $output);
+        $this->executeProcess(['./vendor/bin/drush', 'cim', '-y'], $output);
+      }
+      else {
+        $this->executeProcess([
+          './vendor/bin/drush', 'si', '-y', 'minimal',
+          '--sites-subdir', $siteDir,
+          '--config-dir', '../' . $configDir,
+          '--account-name', getenv('SB_ADMIN_USER'),
+          '--account-pass', getenv('SB_ADMIN_PASS'),
+        ], $output);
+
+        $zippy->create('install-cache.zip', [
+          'files' => 'web/sites/' . $siteDir . '/files',
+        ], TRUE);
       }
 
       $this->copyDir('web/sites/' . $siteDir . '/files', $this->cacheDir . '/' . $hash);

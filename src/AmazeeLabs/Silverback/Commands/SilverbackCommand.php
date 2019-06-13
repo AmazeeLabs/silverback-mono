@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\Process\Process;
 
 class SilverbackCommand extends Command {
 
@@ -24,6 +25,17 @@ class SilverbackCommand extends Command {
   protected $rootDirectory;
 
   protected $cacheDir;
+
+  protected function executeProcess(array $command, $output) {
+    $process = new Process($command, getcwd(), NULL, NULL, NULL);
+    $process->start();
+    foreach ($process as $type => $line) {
+      $output->writeln($line);
+    }
+    if (!$process->isSuccessful()) {
+      throw new ProcessFailedException($process);
+    }
+  }
 
   public function __construct(Filesystem $fileSystem) {
     parent::__construct();
