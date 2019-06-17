@@ -20,7 +20,6 @@ before_install:
 
 install:
   - composer install
-  - cd tests && npm install && cd ..
   - source .envrc
 
 script:

@@ -59,9 +59,11 @@ class Setup extends SilverbackCommand {
         if ($input->getOption('cypress')) {
           $baseCommand[] = '--uri=http://localhost:8889';
         }
-        $this->executeProcess(array_merge($baseCommand, ['updb', '-y']), $output);
-        $this->executeProcess(array_merge($baseCommand, ['entup', '-y']), $output);
-        $this->executeProcess(array_merge($baseCommand, ['cim', '-y']), $output);
+        // TODO: Currently blocked by https://www.drupal.org/project/drupal/issues/2031261
+        // For now e have to rely on the database dump to be recent.
+        //$this->executeProcess(array_merge($baseCommand, ['updb', '-y']), $output);
+        //$this->executeProcess(array_merge($baseCommand, ['entup', '-y']), $output);
+        //$this->executeProcess(array_merge($baseCommand, ['cim', '-y']), $output);
       }
       else {
         $this->executeProcess([

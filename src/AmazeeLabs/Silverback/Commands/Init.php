@@ -140,6 +140,13 @@ class Init extends SilverbackCommand {
     $composerJson['extra']['merge-plugin']['include'] = ['packages/composer.json'];
     $composerJson['extra']['merge-plugin']['replace'] = TRUE;
 
+    // Add composer scripts for tests and development
+    $composerJson['scripts']['development'] = ['vendor/amazeelabs/silverback/scripts/development'];
+    $composerJson['scripts']['run-tests'] = ['vendor/amazeelabs/silverback/scripts/run-tests'];
+
+    // Remove composer script timeout.
+    $composerJson['config']['process-timeout'] = 0;
+
     file_put_contents($this->rootDirectory . '/composer.json', json_encode(array_filter($composerJson), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
     // Link the storybook dist directory to the library dist folder.
