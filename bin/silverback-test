@@ -14,6 +14,9 @@ trap finish EXIT
 # If there is no node modules directory, run yarn.
 [[ -d node_modules ]] || yarn
 
+# Initial setup, so drush bootstrap doesn't fail.
+[[ -d web/sites/default/files/.sqlite ]] || vendor/bin/silverback setup
+
 # Start drush serve to serve Drupal.
 drush serve -q :8890 &
 DRUSH_SERVE_PID=$!
