@@ -37,7 +37,7 @@
         "drupal/cypress": "dev-1.x",
         "wikimedia/composer-merge-plugin": "^1.4"
     },
-    "bin": [ "bin/silverback" ],
+    "bin": [ "bin/silverback", "bin/silverback-dev", "bin/silverback-test" ],
     "autoload": {
         "psr-4": {
             "AmazeeLabs\\Silverback\\": "src/AmazeeLabs/Silverback"
