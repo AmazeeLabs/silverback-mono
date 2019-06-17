@@ -1,5 +1,5 @@
 language: php
-dist: trusty
+dist: xenial
 sudo: false
 
 php:
@@ -13,6 +13,11 @@ cache:
     - ~/.cache
     - ~/.composer/cache
 
+addons:
+  apt:
+    packages:
+      - libgconf-2-4
+
 before_install:
   - echo 'sendmail_path = /bin/true' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - phpenv config-rm xdebug.ini
@@ -23,7 +28,6 @@ install:
   - source .envrc
 
 script:
-  - silverback setup
   - if [[ -n "$SB_JIRA_PROJECTS" ]]; then silverback download-tests; fi
   - |
     # The regex to get jira issue number from a git branch.
@@ -37,7 +41,6 @@ script:
       export CYPRESS_TAGS="@COMPLETED"
     echo "Going to run cypress with the following tags: $CYPRESS_TAGS"
     composer run-script run-tests
-  - kill $(jobs -p) || true
 
 notifications:
   email: false
