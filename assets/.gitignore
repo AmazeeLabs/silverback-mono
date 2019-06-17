@@ -28,8 +28,9 @@ node_modules
 /web/sites/*/settings.local.php
 /web/sites/*/services.local.yml
 
-cypress/integration
-!cypress/integration/.gitkeep
+cypress/videos
+cypress/screenshots
+cypress/integration/jira/**/*.feature
 
 docker-compose.override.yml
 

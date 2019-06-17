@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+function finish {
+  echo "Cleaning up server processes."
+  pkill -f ":8889"
+  pkill -f ":8890"
+}
+
+# Make sure all running processes are cleaned up
+trap finish EXIT
+
+# If there is no vendor directory, run composer install.
+[[ -d vendor ]] || composer install
+# If there is no node modules directory, run yarn.
+[[ -d node_modules ]] || yarn
+
+# Start drush serve to serve Drupal.
+drush serve -q :8890 &
+DRUSH_SERVE_PID=$!
+
+DRUSH_SERVE_WAIT=0
+until nc -z 127.0.0.1 8890 || (($DRUSH_SERVE_WAIT > 19)); do sleep 1 && echo "Waited $DRUSH_SERVE_WAIT seconds for drush serve."; done
+echo "Drupal server operational."
+
+export SIMPLETEST_BASE_URL=http://127.0.0.1:8890
+# Run Drupal unit tests for custom modules
+if [[ -d web/modules/custom ]]; then phpunit web/modules/custom || exit 1; fi
+
+# Start drush serve to serve Drupal.
+drush serve -q :8889 &
+DRUSH_SERVE_PID=$!
+
+export CYPRESS_BASE_URL=http://localhost:8889
+DRUSH_SERVE_WAIT=0
+until nc -z 127.0.0.1 8889 || (($DRUSH_SERVE_WAIT > 19)); do sleep 1 && echo "Waited $DRUSH_SERVE_WAIT seconds for drush serve."; done
+echo "Drupal server operational."
+
+cypress run || exit 1
+
+echo "====================="
+echo "All tests successful!"
+echo "====================="

@@ -95,12 +95,12 @@ Cypress.Commands.overwrite('request', (originalFn, url, options) => {
  */
 Cypress.Commands.add('prepareSnapshot', (name, setup) => {
   cy.log(`Attempting to restore snapshot "${name}".`);
-  cy.exec(`cd .. && ./vendor/bin/silverback restore --cypress ${name}`, { failOnNonZeroExit: false }).then((result) => {
+  cy.exec(`./vendor/bin/silverback restore --cypress ${name}`, { failOnNonZeroExit: false }).then((result) => {
     if (result.code !== 0) {
       cy.log(`Snapshot "${name}" does not exist. Recreating.`);
       setup();
       cy.log(`Storing snapshot "${name}".`);
-      cy.exec(`cd .. && ./vendor/bin/silverback snapshot --cypress ${name}`);
+      cy.exec(`./vendor/bin/silverback snapshot --cypress ${name}`);
     }
   });
   cy.log(`Restored snapshot "${name}".`);
@@ -142,5 +142,5 @@ Cypress.Commands.add('inputByValue', (value) => {
  * Execute a drush command.
  */
 Cypress.Commands.add('drush', command => {
-  return cy.exec(`cd .. && drush --uri=http://localhost:8889 ${command}`);
+  return cy.exec(`drush --uri=http://localhost:8889 ${command}`);
 });

@@ -18,7 +18,7 @@ class DownloadTests extends SilverbackCommand {
   protected function execute(InputInterface $input, OutputInterface $output) {
     parent::execute($input, $output);
 
-    $this->fileSystem->mkdir('tests/cypress/integration/jira');
+    $this->fileSystem->mkdir('cypress/integration/jira');
     $required = ['SB_JIRA_HOST', 'SB_JIRA_USER', 'SB_JIRA_PASS', 'SB_JIRA_PROJECTS'];
 
     foreach ($required as $variable) {
