@@ -24,7 +24,7 @@ echo "Drupal server operational."
 
 export SIMPLETEST_BASE_URL=http://127.0.0.1:8890
 # Run Drupal unit tests for custom modules
-if [[ -d web/modules/custom ]]; then phpunit web/modules/custom || exit 1; fi
+if [[ -d web/modules/custom ]]; then vendor/bin/phpunit web/modules/custom || exit 1; fi
 
 # Start drush serve to serve Drupal.
 drush serve -q :8889 &
