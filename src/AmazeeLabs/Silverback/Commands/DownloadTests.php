@@ -42,7 +42,7 @@ class DownloadTests extends SilverbackCommand {
 
       $archive = new ZipArchive();
       $archive->open($filename);
-      $archive->extractTo($this->rootDirectory . '/tests/cypress/integration/jira/' . $handle);
+      $archive->extractTo($this->rootDirectory . '/cypress/integration/jira/' . $handle);
     }
 
   }
