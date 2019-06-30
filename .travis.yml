@@ -24,7 +24,6 @@ before_install:
 - composer self-update
 
 install:
-- cd $TRAVIS_BUILD_DIR/docs && npm install -g vuepress
 - composer create-project drupal-composer/drupal-project:8.x-dev $DRUPAL_BUILD_DIR --no-interaction
 - cd $DRUPAL_BUILD_DIR
 - composer remove drupal/core
@@ -48,7 +47,7 @@ script:
     echo "Waited $DRUSH_SERVE_WAIT seconds for drush serve."; \
   done
 - composer run-script run-tests --timeout 0
-- cd $TRAVIS_BUILD_DIR/docs && npm run build
+- cd $TRAVIS_BUILD_DIR/docs && npm install -g vuepress && npm run build
 - kill $(jobs -p) || true
 
 notifications:
