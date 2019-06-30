@@ -3,9 +3,7 @@ dist: trusty
 sudo: false
 
 php:
-- 7.2
-node_js:
-- 10.9
+  - '7.2'
 
 env:
   global:
@@ -22,6 +20,7 @@ before_install:
 - echo 'sendmail_path = /bin/true' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 - phpenv config-rm xdebug.ini
 - composer self-update
+- nvm install 10
 
 install:
 - composer create-project drupal-composer/drupal-project:8.x-dev $DRUPAL_BUILD_DIR --no-interaction
