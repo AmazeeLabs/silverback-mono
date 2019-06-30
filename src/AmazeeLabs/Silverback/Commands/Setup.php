@@ -71,6 +71,7 @@ class Setup extends SilverbackCommand {
           '--account-name', getenv('SB_ADMIN_USER'),
           '--account-pass', getenv('SB_ADMIN_PASS'),
         ], $output);
+        $this->executeProcess(['./vendor/bin/drush', 'cim', '-y'], $output);
 
         $zippy->create('install-cache.zip', [
           'files' => 'web/sites/' . $siteDir . '/files',
