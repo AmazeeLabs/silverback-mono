@@ -67,7 +67,7 @@ class Setup extends SilverbackCommand {
         $this->executeProcess([
           './vendor/bin/drush', 'si', '-y', 'minimal',
           '--sites-subdir', $siteDir,
-          '--config-dir', '../' . $configDir,
+          '--existing-config',
           '--account-name', getenv('SB_ADMIN_USER'),
           '--account-pass', getenv('SB_ADMIN_PASS'),
         ], $output);
