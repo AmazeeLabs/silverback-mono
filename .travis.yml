@@ -3,9 +3,7 @@ dist: trusty
 sudo: false
 
 php:
-- 7.2
-node_js:
-- 10.9
+  - '7.2'
 
 env:
   global:
@@ -22,9 +20,9 @@ before_install:
 - echo 'sendmail_path = /bin/true' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 - phpenv config-rm xdebug.ini
 - composer self-update
+- nvm install 10
 
 install:
-- cd $TRAVIS_BUILD_DIR/docs && npm install -g vuepress
 - composer create-project drupal-composer/drupal-project:8.x-dev $DRUPAL_BUILD_DIR --no-interaction
 - cd $DRUPAL_BUILD_DIR
 - composer remove drupal/core
@@ -39,16 +37,16 @@ install:
 script:
 - silverback setup
 - drush serve :8889 > log.txt 2>&1 &
-  # Wait for drush serve to start up, but only for 20 seconds.
-  - DRUSH_SERVE_WAIT=0
-  - until netstat -an 2>/dev/null | grep '8889.*LISTEN'; \
-      sleep 1; curl -I http://127.0.0.1:8889 \
-      || DRUSH_SERVE_WAIT=$(($DRUSH_SERVE_WAIT + 1)) \
-      && echo "Waited $DRUSH_SERVE_WAIT seconds for drush serve." \
-      && (($DRUSH_SERVE_WAIT > 19)) ; \
-      do true; done
+# Wait for drush serve to start up, but only for 20 seconds.
+- |
+  DRUSH_SERVE_WAIT=0; \
+  until curl -sS http://127.0.0.1:8889 >/dev/null || (($DRUSH_SERVE_WAIT > 19)); \
+  do sleep 1 && \
+    DRUSH_SERVE_WAIT=$(($DRUSH_SERVE_WAIT + 1)) && \
+    echo "Waited $DRUSH_SERVE_WAIT seconds for drush serve."; \
+  done
 - composer run-script run-tests --timeout 0
-- cd $TRAVIS_BUILD_DIR/docs && npm run build
+- cd $TRAVIS_BUILD_DIR/docs && npm install -g vuepress && npm run build
 - kill $(jobs -p) || true
 
 notifications:
