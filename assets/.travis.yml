@@ -24,6 +24,7 @@ before_install:
 
 install:
   - composer install
+  - yarn install
   - source .envrc
 
 script:
