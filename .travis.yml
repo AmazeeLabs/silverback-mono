@@ -3,7 +3,14 @@ dist: trusty
 sudo: false
 
 php:
-  - '7.2'
+- "7.2"
+node_js:
+- "11"
+
+addons:
+  apt:
+    packages:
+      - libgconf-2-4
 
 env:
   global:
@@ -20,9 +27,11 @@ before_install:
 - echo 'sendmail_path = /bin/true' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 - phpenv config-rm xdebug.ini
 - composer self-update
-- nvm install 10
+- nvm install 11
 
 install:
+- nvm use 11
+- cd $TRAVIS_BUILD_DIR/docs && npm install -g vuepress
 - composer create-project drupal-composer/drupal-project:8.x-dev $DRUPAL_BUILD_DIR --no-interaction
 - cd $DRUPAL_BUILD_DIR
 - composer remove drupal/core
@@ -31,23 +40,16 @@ install:
 - echo $BRANCH
 - composer require "amazeelabs/silverback:dev-$BRANCH"
 - ./vendor/bin/silverback init
-- yarn install
+- composer install
 - source .envrc
-- if [[ -n "$SB_JIRA_PROJECTS" ]]; then silverback download-tests; fi
+- yarn
 
 script:
-- silverback setup
-- drush serve :8889 > log.txt 2>&1 &
-# Wait for drush serve to start up, but only for 20 seconds.
-- |
-  DRUSH_SERVE_WAIT=0; \
-  until curl -sS http://127.0.0.1:8889 >/dev/null || (($DRUSH_SERVE_WAIT > 19)); \
-  do sleep 1 && \
-    DRUSH_SERVE_WAIT=$(($DRUSH_SERVE_WAIT + 1)) && \
-    echo "Waited $DRUSH_SERVE_WAIT seconds for drush serve."; \
-  done
-- composer run-script run-tests --timeout 0
-- cd $TRAVIS_BUILD_DIR/docs && npm install -g vuepress && npm run build
+- silverback download-tests
+- cp -R $TRAVIS_BUILD_DIR/cypress/* $DRUPAL_BUILD_DIR/cypress/integration/jira/SLB/
+- find $DRUPAL_BUILD_DIR/cypress/integration
+- silverback-test
+- cd $TRAVIS_BUILD_DIR/docs && npm run build
 - kill $(jobs -p) || true
 
 notifications:
