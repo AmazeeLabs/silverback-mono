@@ -77,16 +77,6 @@ Cypress.Commands.overwrite('visit', (originalFn, url, options) => {
 });
 
 /**
- * Override request command to inject our custom headers.
- */
-Cypress.Commands.overwrite('request', (originalFn, url, options) => {
-  const headers = Object.assign((options && options.headers) || {}, cy.state('drupalHeaders'));
-  return originalFn(url, Object.assign(options || {}, {
-    'headers': headers,
-  }))
-});
-
-/**
  * Execute a sequence of commands and take a named snapshot afterwards.
  *
  * Next time time the snapshot is loaded and the commands are skipped.
