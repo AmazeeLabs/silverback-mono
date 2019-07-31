@@ -7,26 +7,32 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Snapshot extends SilverbackCommand {
+class Snapshot extends SnapshotCommandBase {
 
+  /**
+   * {@inheritDoc}
+   */
   protected function configure() {
+    parent::configure();
     $this->setName('snapshot');
     $this->setDescription('Take a snapshot of the current state.');
-    $this->addArgument('name', InputArgument::REQUIRED, 'The snapshot name.');
-    $this->addOption('cypress', 'c', InputOption::VALUE_NONE, 'Use cypress subdir.');
   }
 
+  /**
+   * {@inheritDoc}
+   */
   protected function execute(InputInterface $input, OutputInterface $output) {
     parent::execute($input, $output);
-    $siteDir = $input->getOption('cypress') ? 'cypress' : 'default';
-    $name = $input->getArgument('name');
-    $hash = $this->getConfigHash();
-    $dirname = "$name.$hash";
 
-    if ($this->fileSystem->exists($this->cacheDir . '/' . $dirname)) {
-      $this->fileSystem->remove($this->cacheDir . '/' . $dirname);
+    $path = $this->getSnapshotStorageDirectory($input);
+
+    if ($this->fileSystem->exists($path)) {
+      $output->writeln("Removing the existing snapshot.");
+      $this->fileSystem->remove($path);
     }
-    $this->copyDir('web/sites/' . $siteDir . '/files', $this->cacheDir . '/' . $dirname);
+
+    $this->copyDir('web/sites/' . $this->getSnapshotSiteDirectory($input) . '/files', $path);
+    $output->writeln("The snapshot has been saved to $path.");
   }
 
 }

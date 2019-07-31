@@ -7,28 +7,33 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Restore extends SilverbackCommand {
+class Restore extends SnapshotCommandBase {
 
+  /**
+   * {@inheritDoc}
+   */
   protected function configure() {
+    parent::configure();
     $this->setName('restore');
     $this->setDescription('Restore a named snapshot.');
-    $this->addArgument('name', InputArgument::REQUIRED, 'The snapshot name.');
-    $this->addOption('cypress', 'c', InputOption::VALUE_NONE, 'Use cypress subdir.');
   }
 
+  /**
+   * {@inheritDoc}
+   */
   protected function execute(InputInterface $input, OutputInterface $output) {
     parent::execute($input, $output);
-    $name = $input->getArgument('name');
-    $hash = $this->getConfigHash();
-    $dirname = "$name.$hash";
-    $siteDir = $input->getOption('cypress') ? 'cypress' : 'default';
 
-    if (!$this->fileSystem->exists($this->cacheDir . '/' . $dirname)) {
-      $output->writeln("Unknown snapshot $name.");
+    $siteDir = $this->getSnapshotSiteDirectory($input);
+    $snapshotDirectory = $this->getSnapshotStorageDirectory($input);
+
+    if (!$this->fileSystem->exists($snapshotDirectory)) {
+      $output->writeln("Snapshot not found at $snapshotDirectory.");
       return 1;
     }
     $this->fileSystem->remove('web/sites/' . $siteDir . '/files');
-    $this->copyDir($this->cacheDir . '/' . $dirname, 'web/sites/' . $siteDir . '/files');
+    $this->copyDir($snapshotDirectory, 'web/sites/' . $siteDir . '/files');
+    $output->writeln("Snapshot restored from $snapshotDirectory.");
   }
 
 }

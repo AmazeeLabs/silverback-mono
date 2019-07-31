@@ -36,3 +36,6 @@ docker-compose.override.yml
 
 # Ignore the development install log.
 .install.log
+
+# Ignore the silverback persistent snapshots directory
+.silverback-snapshots
