@@ -25,7 +25,7 @@ class Setup extends SilverbackCommand {
     $siteDir = $input->getOption('cypress') ? 'cypress' : 'default';
     if ($input->getOption('cypress') && !$this->fileSystem->exists('web/sites/' . $siteDir))  {
       $this->copyDir('web/sites/default', 'web/sites/' . $siteDir);
-      $this->fileSystem->remove('web/sites/' . $siteDir . '/files');
+      $this->cleanDir('web/sites/' . $siteDir . '/files');
     }
 
     $configDir = 'config/sync';
@@ -43,7 +43,7 @@ class Setup extends SilverbackCommand {
       $this->copyDir('vendor/amazeelabs/silverback/config', 'config/sync');
     }
 
-    $this->fileSystem->remove('web/sites/' . $siteDir . '/files');
+    $this->cleanDir('web/sites/' . $siteDir . '/files');
 
     // Remove the installation cache if a forced reinstall is requested.
     if ($this->fileSystem->exists('install-cache.zip') && $input->getOption('force')) {

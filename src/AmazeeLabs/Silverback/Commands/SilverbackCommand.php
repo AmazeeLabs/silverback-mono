@@ -73,6 +73,13 @@ class SilverbackCommand extends Command {
     }
   }
 
+  protected function cleanDir($source) {
+    $finder = new Finder();
+    $finder->files()->in($source);
+    $finder->ignoreDotFiles(FALSE);
+    $this->fileSystem->remove($finder);
+  }
+
   protected function getConfigDirectory() {
     $configDir = 'config/sync';
     if (!$this->fileSystem->exists('config/sync/core.extension.yml')) {
