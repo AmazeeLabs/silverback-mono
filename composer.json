@@ -56,8 +56,7 @@
                 "#3062486 Workspace inheritance": "https://www.drupal.org/files/issues/2019-06-26/3062486-12-8.7.3-backport.patch",
                 "#3045177 workspace specific latest revision": "https://www.drupal.org/files/issues/2019-04-08/3045177-10.patch",
                 "#3037136 allow workspaces and content moderation to be installed together": "https://www.drupal.org/files/issues/2019-06-27/3037136-6.patch",
-                "#2803717 allow changes in content moderation without new revision": "https://www.drupal.org/files/issues/2019-04-17/2803717-48.patch",
-                "#3065212 workspaces views query alter multiplies rows": "https://www.drupal.org/files/issues/2019-07-01/3065212-3.drupal.Workspaces-views-query-alter-multiplies-result-set-by-number-of-languages.patch"
+                "#2803717 allow changes in content moderation without new revision": "https://www.drupal.org/files/issues/2019-04-17/2803717-48.patch"
             }
         }
     },
