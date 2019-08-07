@@ -1,3 +1,4 @@
 {
-  "ignoreTestFiles": ["*.js", "*.php"]
+  "ignoreTestFiles": ["*.js", "*.php"],
+  "video": false
 }

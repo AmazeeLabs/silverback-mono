@@ -71,8 +71,8 @@
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1",
     "@percy/cypress": "^1.0.9",
-    "cypress": "^3.3.0",
-    "cypress-cucumber-preprocessor": "^1.11.2"
+    "cypress": "^3.4.1",
+    "cypress-cucumber-preprocessor": "^1.13"
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true

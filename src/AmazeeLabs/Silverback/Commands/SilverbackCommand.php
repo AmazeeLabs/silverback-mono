@@ -77,7 +77,9 @@ class SilverbackCommand extends Command {
     $finder = new Finder();
     $finder->files()->in($source);
     $finder->ignoreDotFiles(FALSE);
-    $this->fileSystem->remove($finder);
+    foreach ($finder as $file) {
+      $this->fileSystem->remove($file->getPathname());
+    }
   }
 
   protected function getConfigDirectory() {

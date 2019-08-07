@@ -27,7 +27,7 @@ class SnapshotCommandBase extends SilverbackCommand {
    * @return string
    */
   protected function getSnapshotSiteDirectory(InputInterface $input) {
-    return $siteDir = $input->getOption('cypress') ? 'cypress' : 'default';;
+    return $siteDir = $input->getOption('cypress') ? 'cypress' : 'default';
   }
 
   /**
@@ -55,7 +55,7 @@ class SnapshotCommandBase extends SilverbackCommand {
         $baseDir = '.silverback-snapshots';
       }
     } else {
-      $baseDir = $this->cacheDir;
+      return "$this->cacheDir/$dirname";
     }
 
     return "$this->rootDirectory/$baseDir/$dirname";

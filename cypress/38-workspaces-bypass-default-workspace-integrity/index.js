@@ -3,9 +3,7 @@
 import { workspaces } from "../common/mappings";
 
 beforeEach(function () {
-  cy.prepareSnapshot('workspaces', function () {
-    cy.drush('scr cypress/integration/jira/SLB/common/00-workspaces.php');
-  });
+  cy.drush('scr cypress/integration/jira/SLB/common/00-workspaces.php');
   cy.drush('cr');
 });
 
