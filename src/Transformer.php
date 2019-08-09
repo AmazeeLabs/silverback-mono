@@ -7,7 +7,6 @@ use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Render\Element;
 use Drupal\webform\Entity\Webform;
 use Drupal\webform\Plugin\WebformElement\WebformCompositeBase;
-use Drupal\webform_jsonschema\JsonSchemaElementInterface;
 
 /**
  * Transforms webforms to JSON Schema.
@@ -122,6 +121,9 @@ class Transformer {
       }
       if ($item->children) {
         $properties['is_wrapper_element'] = TRUE;
+        if ($item->elementPlugin instanceof JsonSchemaElementInterface) {
+          $item->elementPlugin->addJsonSchema($properties, $item->element);
+        }
         $properties += self::itemsToSchema($item->children);
       }
       else {
