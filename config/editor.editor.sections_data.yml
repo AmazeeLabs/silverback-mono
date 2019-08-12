@@ -1,0 +1,18 @@
+uuid: a3037983-654b-4410-9e47-481de0c59524
+langcode: de
+status: true
+dependencies:
+  config:
+    - filter.format.sections_data
+  module:
+    - ckeditor5_sections
+format: sections_data
+editor: ckeditor5_sections
+settings:
+  editorBuild: ckeditor5_sections/editor_build
+  plugins:
+    drupallink:
+      linkit_enabled: 1
+      linkit_profile: default
+  advanced: '{}'
+image_upload: {  }

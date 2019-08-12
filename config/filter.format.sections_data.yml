@@ -1,0 +1,24 @@
+uuid: a3037983-654b-4410-9e47-481de0c59523
+langcode: de
+status: true
+dependencies:
+  module:
+    - ckeditor5_sections
+    - linkit
+name: 'Sections Data'
+format: sections_data
+weight: 0
+filters:
+  sections_media_caption:
+    id: sections_media_caption
+    provider: ckeditor5_sections
+    status: true
+    weight: 0
+    settings: {  }
+  linkit:
+    id: linkit
+    provider: linkit
+    status: true
+    weight: 1
+    settings:
+      title: true

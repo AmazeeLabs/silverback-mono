@@ -9,9 +9,32 @@ interfaces for complex document structures by composing simple html templates.
 
 ## Installation
 
-After enabling the module you have to create a new text format that uses the
-_CKEditor5 Sections_ editor. Upon selecting the editor, a couple of configuration
-options will pop up.
+After enabling the module you have to a new field of type `Sections` to a content type.
+
+![Add field](./images/sections-field.png)
+
+Choose a field cardinality and proceed to configure the field to use e.g. "Page"-template a root element.
+
+Please make sure to select the `Sections Data` as filter format as the pre-defined `sections_data`-filter is the *only
+allowed* input format and cannot be configured at the moment.
+
+![Configure field](./images/sections-field-settings.png)
+
+The editor for this field will use the template as its *"Root element"*. This template can still have sub-templates
+(more about that in the section [containers](#containers)), but it is useful if you have to maintain strict control
+over the document structure, like for a layouted landing page.
+
+Proceed then to configure the form display mode to use `Sections editor`.
+
+![Configure form mode](./images/sections-form-mode-settings.png)
+
+When adding a new piece of content the Sections field should look like this after clicking on "ADD":
+
+![Sections editor](./images/sections-editor.png).
+
+## Input filter and editor configuration
+
+The pre-defined input filter for sections can be found at `admin/config/content/formats/manage/sections_data`.
 
 ### Template directory
 The editor will scan a directory for template definitions. By default this is
@@ -33,23 +56,6 @@ icon: text
 The `.html` file contains the actual template data structure. This are standard
 HTML elements along with some special attributes to trigger editor behavior. For
 more on this read on further below.
-
-### Operation modes
-
-The editor can operate in two different modes:
-
-When selecting *"Default root element"*, it allows to choose which templates are
-enabled for this instance. The user will then be able to add an arbitrary number
-of these templates to the document. A common use case for this would be a blog
-article type.
-
-When choosing any other template as the *"Root element"* the editor will be
-locked down and enforce that the document consists of exactly this one template.
-This template can still have sub-templates (more about that in the section
-[containers](#containers)), but its useful if you have to maintain strict control
-over the document structure, like for a layouted landing page.
-
-![Operation modes](./images/config_2.png)
 
 ### Editor build
 
