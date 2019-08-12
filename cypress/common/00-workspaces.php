@@ -42,6 +42,10 @@ $dev = $create_workspace('dev', 'Dev', $stage);
 $local_1 = $create_workspace('local_1', 'Local 1', $dev);
 $local_2 = $create_workspace('local_2', 'Local 2', $dev);
 $qa = $create_workspace('qa', 'QA', $live);
+$public = $create_workspace('public', 'Public', $live);
+$drafts = $create_workspace('drafts', 'Drafts', $public);
+$drafts->auto_push = TRUE;
+$drafts->save();
 
 $createEntity = function ($storage, $values, $workspace = NULL) use ($workspaceManager, $stage) {
   return $workspaceManager->executeInWorkspace($workspace ? $workspace->id() : $stage->id(), function () use ($storage, $values) {

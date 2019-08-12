@@ -13,6 +13,8 @@ export const workspaces = {
   'Local 2': 'local_2',
   'Switzerland': 'ch',
   'Austria': 'at',
+  'Public': 'public',
+  'Drafts': 'drafts',
 };
 
 export const languages = {
