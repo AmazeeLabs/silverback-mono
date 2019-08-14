@@ -26,7 +26,7 @@
 
 // Lagoon Database connection.
 if (getenv('LAGOON')) {
-  $databases['default']['default'] = array(
+  $databases['default']['default'] = [
     'driver' => 'mysql',
     'database' => getenv('MARIADB_DATABASE') ?: 'drupal',
     'username' => getenv('MARIADB_USERNAME') ?: 'drupal',
@@ -34,7 +34,7 @@ if (getenv('LAGOON')) {
     'host' => getenv('MARIADB_HOST') ?: 'mariadb',
     'port' => 3306,
     'prefix' => '',
-  );
+  ];
 }
 
 // Lagoon Solr connection
@@ -116,10 +116,10 @@ if (getenv('LAGOON')) {
 // Trusted Host Patterns, see https://www.drupal.org/node/2410395 for more information.
 // If your site runs on multiple domains, you need to add these domains here.
 if (getenv('LAGOON_ROUTES')) {
-  $settings['trusted_host_patterns'] = array(
+  $settings['trusted_host_patterns'] = [
     // Escape dots, remove schema, use commas as regex separator.
     '^' . str_replace(['.', 'https://', 'http://', ','], ['\.', '', '', '|'], getenv('LAGOON_ROUTES')) . '$',
-  );
+  ];
 }
 
 // Temp directory.

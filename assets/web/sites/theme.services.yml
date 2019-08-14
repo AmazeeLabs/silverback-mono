@@ -1,4 +1,4 @@
-# Theming services configuration# Theming services configuration
+# Theming services configuration
 parameters:
   twig.config:
     debug: true
