@@ -34,7 +34,7 @@
         "drupal/admin_toolbar": "^1",
         "drupal/moderation_state_permissions": "dev-1.x",
         "drupal/tmgmt": "^1.6",
-        "drupal/linkit": "^5",
+        "drupal/linkit": "^5.0@beta",
         "drupal/ckeditor5_sections": "dev-1.x",
         "drupal/delivery": "dev-1.x",
         "drupal/revision_tree": "dev-1.x",
