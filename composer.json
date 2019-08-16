@@ -19,7 +19,7 @@
         "drupal/redirect": "^1.2",
         "drush/drush": "^9.0.0",
         "drupal/environment_indicator": "^3.0",
-        "drupal/field_group": "^1.0",
+        "drupal/field_group": "^3.0@RC",
         "drupal/graphql": "^3.0@RC",
         "drupal/graphql_twig": "^1.0@beta",
         "drupal/graphql_views": "^1.0@beta",
