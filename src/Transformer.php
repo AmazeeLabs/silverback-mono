@@ -5,6 +5,7 @@ namespace Drupal\webform_jsonschema;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Render\Element;
+use Drupal\webform\Element\WebformHtmlEditor;
 use Drupal\webform\Entity\Webform;
 use Drupal\webform\Plugin\WebformElement\WebformCompositeBase;
 
@@ -137,7 +138,10 @@ class Transformer {
         elseif ($item->elementPlugin instanceof JsonSchemaElementInterface) {
           $item->elementPlugin->addJsonSchema($properties, $item->element);
         }
-        elseif ($item->element['#type'] === 'checkbox') {
+        elseif (
+          $item->element['#type'] === 'checkbox' ||
+          $item->element['#type'] === 'webform_terms_of_service'
+        ) {
           $properties['type'] = 'boolean';
         }
         elseif ($item->element['#type'] === 'textarea') {
@@ -315,6 +319,13 @@ class Transformer {
         $item->element['#type'] === 'webform_radios_other'
       ) {
         $ui_schema[$key]['ui:widget'] = 'radio';
+      }
+      elseif ($item->element['#type'] === 'webform_terms_of_service') {
+        $markupBuild = WebformHtmlEditor::checkMarkup($item->element['#terms_content']);
+        $ui_schema[$key]['ui:termsOfService'] = [
+          'title' => (string) $item->element['#_webform_terms_of_service_title'],
+          'markup' => \Drupal::service('renderer')->render($markupBuild),
+        ];
       }
 
       if (
