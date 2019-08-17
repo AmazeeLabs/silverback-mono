@@ -2,6 +2,7 @@
 
 namespace Drupal\webform_jsonschema\Plugin\rest\resource;
 
+use Drupal\Core\Render\RenderContext;
 use Drupal\rest\ResourceResponse;
 use Drupal\webform\Entity\Webform;
 use Drupal\rest\Plugin\ResourceBase;
@@ -76,32 +77,39 @@ class WebformJsonSchemaResource extends ResourceBase {
    * @return \Drupal\rest\ResourceResponseInterface
    */
   public function get($webform_id) {
-    if ($webform = Webform::load($webform_id)) {
-      /** @var \Drupal\Core\Access\CsrfTokenGenerator $token_generator */
-      $token_generator = \Drupal::service('csrf_token');
-      $response = new ResourceResponse([
-        'schema' => $this->transformer->toJsonSchema($webform),
-        'ui' => $this->transformer->toUiSchema($webform),
-        /**
-         * The buttons cannot be part of the schema. They need to be added as
-         * children of the form element, so we put them under a separate key.
-         * The items should be mapped in a way similar to this:
-         *
-         * <code>
-         * <Form schema={schema} uiSchema={uiSchema} formData={formData}>
-         *   {buttons.map(({ value }) => <button type="submit">{value}</button>}
-         * </Form>
-         * </code>
-         */
-        'buttons' => $this->transformer->toButtons($webform),
-//        'data' => new \stdClass(),
-        'csrfToken' => $token_generator->get(\Drupal\Core\Access\CsrfRequestHeaderAccessCheck::TOKEN_KEY),
-      ]);
-      $response->addCacheableDependency($webform);
-      return $response;
-    }
-    throw new NotFoundHttpException(t('Cannot load webform.'));
-
+    // String translations, Drupal entity API calls and a lot of other things
+    // can emit cache metadata in the current render context.
+    // Prevent the leaked cache metadata exception by wrapping the execution in
+    // its own render context.
+    /** @var \Drupal\Core\Render\RendererInterface $renderer */
+    $renderer = \Drupal::service('renderer');
+    return $renderer->executeInRenderContext(new RenderContext(), function () use ($webform_id) {
+      if ($webform = Webform::load($webform_id)) {
+        /** @var \Drupal\Core\Access\CsrfTokenGenerator $token_generator */
+        $token_generator = \Drupal::service('csrf_token');
+        $response = new ResourceResponse([
+          'schema' => $this->transformer->toJsonSchema($webform),
+          'ui' => $this->transformer->toUiSchema($webform),
+          /**
+           * The buttons cannot be part of the schema. They need to be added as
+           * children of the form element, so we put them under a separate key.
+           * The items should be mapped in a way similar to this:
+           *
+           * <code>
+           * <Form schema={schema} uiSchema={uiSchema} formData={formData}>
+           *   {buttons.map(({ value }) => <button type="submit">{value}</button>}
+           * </Form>
+           * </code>
+           */
+          'buttons' => $this->transformer->toButtons($webform),
+          'data' => [],
+          'csrfToken' => $token_generator->get(\Drupal\Core\Access\CsrfRequestHeaderAccessCheck::TOKEN_KEY),
+        ]);
+        $response->addCacheableDependency($webform);
+        return $response;
+      }
+      throw new NotFoundHttpException(t('Cannot load webform.'));
+    });
   }
 
   /**
