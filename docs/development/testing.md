@@ -23,7 +23,7 @@ npm install
 cypress run
 ```
 
-This should run the tests in a headless browser. To run them interactively and automatically, execute `cypress open`, which will bring up the cypress interface. For more information on cypress options, please have a look at the [Cypress CLI documentation].
+This should run the tests in a headless browser. To run them interactively and automatically, execute `cypress open`, which will bring up the cypress interface. For more information on cypress options, please have a look at the [Cypress CLI documentation](https://docs.cypress.io/guides/guides/command-line.html).
 
 ## Writing tests
 
