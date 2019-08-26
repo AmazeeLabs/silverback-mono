@@ -254,6 +254,8 @@ class Transformer {
       }
     }
 
+    Conditions::apply($schema, $items);
+
     return $schema;
   }
 
@@ -381,6 +383,9 @@ class Transformer {
         // empty items.
         unset($ui_schema[$key]);
       }
+
+      // It is important to add the order since we use conditions in the schema.
+      $ui_schema['ui:order'][] = $key;
     }
     return $ui_schema;
   }
