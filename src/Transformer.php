@@ -329,6 +329,9 @@ class Transformer {
           'markup' => \Drupal::service('renderer')->render($markupBuild),
         ];
       }
+      elseif ($item->element['#type'] === 'hidden') {
+        $ui_schema[$key]['ui:widget'] = 'hidden';
+      }
 
       if (
         isset($item->element['#webform_jsonschema']['uiSchema']) &&
