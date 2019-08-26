@@ -36,7 +36,8 @@ However `react-jsonschema-form` uses a bit extended dependencies allowing to dep
 Limitations, in comparison with the default Webform conditions (Drupal states):
 - only `Visible` and `Required` states are available
 - one state can have only one trigger
-- only `Filled` trigger is available
+- only `Filled` and `Value is` triggers are available
+- `Value is` trigger works correctly only with enumerable fields
 - the dependency field should be on the same level with the target field
 
 The webform_jsonschema module provides a way to apply the above limitations to the Webform UI. But the module does not apply them automatically, because it does not know which of the forms will be used with `react-jsonschema-form`. Here is an example of how to apply them:
