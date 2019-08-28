@@ -316,6 +316,9 @@ class Conditions {
         // Allow only one condition per state.
         $row['operator'] = [
           '#markup' => t('if the following is met:'),
+          // Fix a PHP notice which happens because "operator" is supposed to be
+          // a form element.
+          '#parents' => [],
         ];
         $row['operations']['add']['#access'] = FALSE;
       }
