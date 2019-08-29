@@ -148,11 +148,11 @@ class Conditions {
       // It is important to provide all allowed values in the dependency.
       // Otherwise the form can error in unpredictable ways.
       $possibleValues = NULL;
-      if (isset($schema['properties']['address_type']['anyOf'][0]['enum'][0])) {
+      if (isset($schema['properties'][$dependencyKey]['anyOf'][0]['enum'][0])) {
         // Enumerable field.
         $possibleValues = array_map(function ($definition) {
           return $definition['enum'][0];
-        }, $schema['properties']['address_type']['anyOf']);
+        }, $schema['properties'][$dependencyKey]['anyOf']);
       }
       if ($schema['properties'][$dependencyKey]['type'] === 'boolean') {
         // Boolean field.
