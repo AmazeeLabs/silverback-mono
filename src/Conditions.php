@@ -158,18 +158,7 @@ class Conditions {
         // Boolean field.
         $possibleValues = [TRUE, FALSE];
       }
-      if ($possibleValues) {
-        $existing = array_map(function($dependency) use ($dependencyKey) {
-         return $dependency['properties'][$dependencyKey]['enum'][0];
-        }, $schema['dependencies'][$dependencyKey]['oneOf']);
-        $missing = array_diff($possibleValues, $existing);
-        foreach ($missing as $possibleValue) {
-          $schema['dependencies'][$dependencyKey]['oneOf'][]['properties'][$dependencyKey] = [
-            'enum' => [$possibleValue],
-          ];
-        }
-      }
-      else {
+      if (!$possibleValues) {
         \Drupal::logger('webform_jsonschema')->warning('Cannot detect possible values. Data: <pre>@data</pre>', [
           '@data' => Variable::export([
             '$schema' => $schema,
@@ -177,11 +166,18 @@ class Conditions {
             '$triggerArray' => $triggerArray,
           ]),
         ]);
-        $schema['dependencies'][$dependencyKey]['oneOf'][]['properties'][$dependencyKey] = [
-          'enum' => [$value],
-        ];
+        $possibleValues = [$value];
       }
 
+      $existing = array_map(function($dependency) use ($dependencyKey) {
+        return $dependency['properties'][$dependencyKey]['enum'][0];
+      }, $schema['dependencies'][$dependencyKey]['oneOf']);
+      $missing = array_diff($possibleValues, $existing);
+      foreach ($missing as $possibleValue) {
+        $schema['dependencies'][$dependencyKey]['oneOf'][]['properties'][$dependencyKey] = [
+          'enum' => [$possibleValue],
+        ];
+      }
       foreach ($schema['dependencies'][$dependencyKey]['oneOf'] as $key => $dependency) {
         if ($dependency['properties'][$dependencyKey]['enum'][0] === $value) {
           return $schema['dependencies'][$dependencyKey]['oneOf'][$key];
