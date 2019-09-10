@@ -1,8 +1,9 @@
-uuid: 773495af-feb7-49e7-9509-56b7d896739d
+uuid: 08eca71f-0dcf-401d-a052-52f4aca0e00a
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.merge
     - field.field.node.page.field_sections
     - node.type.page
   module:
@@ -10,27 +11,19 @@ dependencies:
     - user
 _core:
   default_config_hash: g1S3_GLaxq4l3I9RIca5Mlz02MxI2KmOquZpHw59akM
-id: node.page.default
+id: node.page.merge
 targetEntityType: node
 bundle: page
-mode: default
+mode: merge
 content:
-  content_moderation_control:
-    weight: -20
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_sections:
-    weight: 102
+    weight: 0
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: sections_html
     region: content
-  links:
-    weight: 101
-    region: content
-    settings: {  }
-    third_party_settings: {  }
 hidden:
+  content_moderation_control: true
   langcode: true
+  links: true

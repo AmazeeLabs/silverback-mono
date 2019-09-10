@@ -1,0 +1,10 @@
+uuid: 68b7dff0-b1c0-4dfd-aee3-1e0d02bae220
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.merge
+label: Merge
+targetEntityType: node
+cache: true

@@ -1,0 +1,10 @@
+uuid: ea6400a0-aad8-4fcc-9718-f62e6b4ef7dc
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.merge
+label: Merge
+targetEntityType: media
+cache: true
