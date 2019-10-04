@@ -27,7 +27,7 @@ You will need to setup your browser so that it triggers an Xdebug session. This 
       ```
    2. Restart the local docker container with:
       ```shell script
-      docker-compose up -d`
+      docker-compose up -d
       ```
 2. Setup PHPStorm to debug your file.
    1. In the top-right palette of icons in your PHPStorm window, click the “Start Listening for PHP Debug Connections” button. Or select that option from PHPStorm’s “Run” pull-down menu.
@@ -50,26 +50,26 @@ You will need to setup your browser so that it triggers an Xdebug session. This 
 
 If you fail to turn off debugging, you will notice `drush` commands being extremely slow.
 
-1. In the top-right palette of icons in your PHPStorm window, click the “Stop Listening for PHP Debug Connections” button. Or select that option from PHPStorm’s “Run” pull-down menu.
-
-      ![The button looks like a 80s-style phone with a sound symbol next to the hearing end.](./debugging-phpstorm-stop.png)
-
-2. Stop triggering a debug session on your web browser, by doing one of the following:
-   * Turn off Xdebug with your browser extension or bookmarklet. Either click on the “stop debugger” bookmarklet or click on the browser extension's buttons.
-
-      ![A web browser's bookmarks bar with two bookmarklets for starting and stopping the debugger](./debugging-browser.png)
-
-   * Or, just close the browser window with the web page you were debugging.
-
-3. The previous two steps should be sufficient. Optionally, restart the docker container to turn off Xdebug connections.
+1. Restart the docker container to turn off Xdebug connections.
    1. In the Silverback project root directory, edit the `docker-compose.yml` file. Edit the following line to add the `#` comment character to its beginning:
       ```yaml
       #XDEBUG_ENABLE: "true"
       ```
    2. Restart the local docker container with:
       ```shell script
-      docker-compose up -d`
+      docker-compose up -d
       ```
+
+2. In the top-right palette of icons in your PHPStorm window, click the “Stop Listening for PHP Debug Connections” button. Or select that option from PHPStorm’s “Run” pull-down menu.
+
+      ![The button looks like a 80s-style phone with a sound symbol next to the hearing end.](./debugging-phpstorm-stop.png)
+
+3. Stop triggering a debug session on your web browser, by doing one of the following:
+   * Turn off Xdebug with your browser extension or bookmarklet. Either click on the “stop debugger” bookmarklet or click on the browser extension's buttons.
+
+      ![A web browser's bookmarks bar with two bookmarklets for starting and stopping the debugger](./debugging-browser.png)
+
+   * Or, just close the browser window with the web page you were debugging.
 
 ## Debugging Tests
 
