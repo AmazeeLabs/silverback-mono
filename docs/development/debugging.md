@@ -80,31 +80,34 @@ If you fail to turn off debugging, you will notice `drush` commands being extrem
 Before you can debug on Windows 10, you will need to install and configure a loopback adapter.
 
 1. Install a Loopback adapter.
-   1. Click Start, then type `cmd` in the search box.
-   2. When `cmd.exe` appears, right-click and choose Run as administrator.
-   3. In the command prompt, type `hdwwiz.exe` and press `Enter`.
-   4. Click Next.
-   5. Select `Install the hardware that I manually select from a list (Advanced)`, then click Next.
-   6. Select `Network adapters`, then click Next.
-   7. Select `Microsoft` as the manufacturer, select `Microsoft KM-TEST Loopback Adapter` as the adapter for Windows 10, then click Next.
-   8. Select Next to confirm the installation.
-   9. Select Finish to complete the installation.
+   1. Start the Hardware Wizard.
+      1. Click the Windows `Start` menu and type `cmd` in the search box.
+      2. When `cmd.exe` appears, right-click and choose Run as administrator.
+      3. In the command prompt, type `hdwwiz.exe` and press `Enter`.
+   2. Use the Hardware Wizard.
+      1. Click Next.
+      2. Select `Install the hardware that I manually select from a list (Advanced)`, then click Next.
+      3. Select `Network adapters`, then click Next.
+      4. Select `Microsoft` as the manufacturer, select `Microsoft KM-TEST Loopback Adapter` as the adapter for Windows 10, then click Next.
+      5. Select Next to confirm the installation.
+      6. Select Finish to complete the installation.
 2. Configure the loopback adapter.
-   1. Click `Start > Settings > Network & Internet > Wi-Fi`.
-   2. Under `related settings`, click `change adapter options`.
-   3. Select the newly created connection.
-   4. Right-click on the selected connection and choose `Properties` from the menu.
-   5. Confirm that `Microsoft Loopback Adapter` or `Microsoft Loopback Adapter #` is displayed in the `Connect Using:` field. If it is not, retry properties for another adapter.
-   6. Deselect everything except `Internet Protocol 4 (TCP/IPv4)`.
-   7. Select `Internet Protocol 4 (TCP/IPv4)`, and click `Properties` to open `Internet Protocol 4 (TCP/IPv4)` Properties.
-   8. Select `Use the following IP address`. Fill in the IP address and Subnet mask with the following:
-      ```
-      IP address: 172.16.172.16
-      Subnet mask: 255.255.255.0
-      ```
-   9. Click `Advanced` to open `Advanced TCP/IP Settings`.
-   10. Switch to the `WINS` tab and select `Disable NetBIOS over TCP/IP`.
-   11. Click OK to close `Advanced TCP/IP` Settings.
-   12. Click OK to close the `Internet Protocol (TCP/IP)` Properties.
-   13. Click OK to close the connection properties.
+   1. Find the newly created adapter.
+      1. Click `Start > Settings > Network & Internet > Wi-Fi`.
+      2. Under `related settings`, click `change adapter options`.
+      3. Select the newly created adapter and right-click on it, selecting `Properties` from the drop-down menu.
+      4. Confirm that `Microsoft Loopback Adapter` or `Microsoft Loopback Adapter #` is displayed in the `Connect Using:` field. If it is not, you have accidentally selected the wrong adapter in the previous step; try that step again.
+   2. Configure the adapter.
+      1. Deselect everything except `Internet Protocol 4 (TCP/IPv4)`.
+      2. Select `Internet Protocol 4 (TCP/IPv4)`, and click `Properties` to open `Internet Protocol 4 (TCP/IPv4)` Properties.
+      3. Select `Use the following IP address`. Fill in the IP address and Subnet mask with the following:
+         ```
+         IP address: 172.16.172.16
+         Subnet mask: 255.255.255.0
+         ```
+      4. Click `Advanced` to open `Advanced TCP/IP Settings`.
+      5. Switch to the `WINS` tab and select `Disable NetBIOS over TCP/IP`.
+      6. Click OK to close `Advanced TCP/IP` Settings.
+      7. Click OK to close the `Internet Protocol (TCP/IP)` Properties.
+      8. Click OK to close the connection properties.
 3. Follow the instructions above under [Debugging PHP or Twig files](#debugging-php-or-twig-files).
