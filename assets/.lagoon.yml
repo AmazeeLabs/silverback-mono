@@ -24,12 +24,19 @@ tasks:
         service: cli
         shell: bash
     - run:
-        name: drush cim
-        command: drush -y cim
+        name: drush updb
+        # Sometimes a cache clear is required prior to running database updates.
+        # For example, see https://www.drupal.org/project/drupal/issues/2952071
+        # Make two database update attempts to workaround this issue.
+        command: drush -y updb --entity-updates --cache-clear=0 || (drush cr && drush -y updb --entity-updates --cache-clear=0)
         service: cli
     - run:
-        name: drush updb
-        command: drush -y updb
+        name: drush cr
+        command: drush -y cr
+        service: cli
+    - run:
+        name: drush cim
+        command: drush -y cim
         service: cli
     - run:
         name: drush webpack:build
@@ -39,6 +46,18 @@ tasks:
         name: drush cr
         command: drush -y cr
         service: cli
+#    - run:
+#        name: Fast-forward tracking branches
+#        # During a deploy to prod, create a new local branch from the origin's
+#        # prod branch, then push that new branch to origin. Since the new local
+#        # branch name matches an existing branch name on origin, a fast-forward
+#        # merge will occur.
+#        command: |
+#            if [[ ${LAGOON_GIT_SAFE_BRANCH} == "prod" ]]; then
+#              git fetch origin prod:demo && git push origin demo || echo "Fast-forward of \"demo\" branch failed."
+#            fi
+#        service: cli
+#        shell: bash
 
 
 
