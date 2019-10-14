@@ -2,7 +2,7 @@
 import '@babel/polyfill';
 import '@webcomponents/webcomponentsjs/webcomponents-bundle';
 
-import { addDecorator, configure } from '@storybook/html';
+import { addDecorator, addParameters, configure } from '@storybook/html';
 import { withA11y } from '@storybook/addon-a11y';
 
 import Twig from 'twig';
@@ -24,5 +24,10 @@ function loadStories() {
 
 // Helps make UI components more accessible.
 addDecorator(withA11y);
+addParameters({
+  a11y: {
+    restoreScroll: true,
+  }
+});
 
 configure(loadStories, module);
