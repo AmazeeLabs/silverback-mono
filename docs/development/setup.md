@@ -42,7 +42,7 @@ direnv: loading .envrc
 direnv: export +CYPRESS_BASE_URL ... +SB_TEST_CONTENT ~PATH
 ```
 
-Requiring and initating the package did a couple of things:
+Requiring and initiating the package did a couple of things:
 
 * A list of common project dependencies have been installed.
 * Configuration files for Travis, Lando and amazee.io have been created.
