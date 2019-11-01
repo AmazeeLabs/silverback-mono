@@ -3,10 +3,9 @@ import {viewPage} from "../common/page";
 import {workspaces, languages} from "../common/mappings";
 
 beforeEach(function () {
-  cy.drush('scr cypress/integration/jira/SLB/34-workspaces-languages/workspaces.php');
-  cy.drush('scr cypress/integration/jira/SLB/34-workspaces-languages/testpage.php');
+  cy.drupalScript('silverback:integration/34-workspaces-languages/workspaces.php');
+  cy.drupalScript('silverback:integration/34-workspaces-languages/testpage.php');
   cy.drupalSession({ user: "admin", toolbar: 'on' });
-  cy.drush('cr');
 });
 
 Given(/^there is a workspace "Switzerland" with the primary language "German" and the secondary languages "French" and "English"$/, () => {

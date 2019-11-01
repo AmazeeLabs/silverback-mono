@@ -12,6 +12,7 @@ module:
   contact: 0
   content_moderation: 0
   contextual: 0
+  cypress: 0
   datetime: 0
   dblog: 0
   delivery: 0

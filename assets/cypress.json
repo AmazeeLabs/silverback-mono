@@ -1,4 +1,0 @@
-{
-  "ignoreTestFiles": ["*.js", "*.php"],
-  "video": false
-}

@@ -3,8 +3,6 @@
 function finish {
   echo "Cleaning up server processes."
   pkill -f ":8888"
-  pkill -f ":8889"
-  pkill -f ":8890"
 }
 
 # Make sure all running processes are cleaned up
@@ -15,24 +13,15 @@ trap finish EXIT
 # If there is no node modules directory, run yarn.
 [[ -d node_modules ]] || yarn
 
-# Start drush serve for manual testing.
+export CYPRESS_BASE_URL=http://localhost:8888
+export DRUPAL_CYPRESS=on
+
+# Start drush server
 drush serve -q :8888 &
 
 DRUSH_SERVE_WAIT=0
-until nc -z 127.0.0.1 8888 || (($DRUSH_SERVE_WAIT > 19)); do sleep 1 && echo "Waited $DRUSH_SERVE_WAIT seconds for drush serve."; done
+until nc -z 127.0.0.1 8888 || ((DRUSH_SERVE_WAIT > 19)); do sleep 1 && echo "Waited $DRUSH_SERVE_WAIT seconds for drush serve."; done
 echo "Drupal server operational."
 
-# Start drush serve for simpletest.
-drush serve -q :8890 &
-DRUSH_SERVE_WAIT=0
-until nc -z 127.0.0.1 8890 || (($DRUSH_SERVE_WAIT > 19)); do sleep 1 && echo "Waited $DRUSH_SERVE_WAIT seconds for drush serve."; done
-echo "Drupal server operational."
 
-# Start drush serve for cypress.
-drush serve -q :8889 &
-DRUSH_SERVE_WAIT=0
-until nc -z 127.0.0.1 8889 || (($DRUSH_SERVE_WAIT > 19)); do sleep 1 && echo "Waited $DRUSH_SERVE_WAIT seconds for drush serve."; done
-echo "Drupal server operational."
-
-export CYPRESS_BASE_URL=http://localhost:8889
-cypress open
+vendor/bin/drush cypress:open

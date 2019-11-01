@@ -3,8 +3,7 @@
 import { workspaces } from "../common/mappings";
 
 beforeEach(function () {
-  cy.drush('scr cypress/integration/jira/SLB/common/00-workspaces.php');
-  cy.drush('cr');
+  cy.drupalScript('silverback:integration/common/00-workspaces.php');
 });
 
 Given(/^an administrator is using the "([^"]*)" workspace$/, (workspace) => {

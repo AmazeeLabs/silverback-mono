@@ -1,5 +1,0 @@
-.cache
-.backup
-integration/jira/**/*.feature
-videos
-screenshots

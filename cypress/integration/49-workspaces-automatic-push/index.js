@@ -1,6 +1,6 @@
 /* global Given, When, Then */
 beforeEach(function () {
-  cy.drush('scr cypress/integration/jira/SLB/common/00-workspaces.php');
+  cy.drupalScript('silverback:integration/common/00-workspaces.php');
 });
 
 import { workspaces } from "../common/mappings";
@@ -32,7 +32,7 @@ Then(/^workspace "([^"]*)" is configured to automatically push content$/, (works
 });
 
 Given(/^there is a page "([^"]*)" in the "([^"]*)" workspace$/, () => {
-  cy.drush('scr cypress/integration/jira/SLB/49-workspaces-automatic-push/testpage.php');
+  cy.drupalScript('silverback:integration/49-workspaces-automatic-push/testpage.php');
 });
 
 When(/^an editor creates an? "([^"]*)" revision of the page "([^"]*)" called "([^"]*)" in the "([^"]*)" workspace$/, (state, oldTitle, newTitle, workspace) => {

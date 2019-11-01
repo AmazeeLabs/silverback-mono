@@ -6,6 +6,8 @@ parameters:
   http.response.debug_cacheability_headers: true
   graphql.config:
     development: true
+  cypress.test_suites:
+    silverback: '../vendor/amazeelabs/silverback/cypress'
 
 services:
   cache.backend.null:

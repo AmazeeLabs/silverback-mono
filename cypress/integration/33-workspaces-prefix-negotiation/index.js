@@ -8,7 +8,7 @@ beforeEach(function () {
 Given(/^there is a workspace "([^"]*)" that has the configured path "([^"]*)"$/, (workspace, path) => {
   workspace = 'Test';
   path = "/test";
-  cy.drush(`scr cypress/integration/jira/SLB/common/helpers/create-workspace -- ${workspace.toLowerCase()} ${workspace} ${path}`);
+  cy.drupalScript(`silverback:integration/33-workspaces-prefix-negotiation/workspace.php`);
 });
 
 When(/^the user accesses the frontpage without a prefix$/, () => {

@@ -15,6 +15,7 @@ addons:
 env:
   global:
   - DRUPAL_BUILD_DIR=$TRAVIS_BUILD_DIR/../drupal
+  - COMPOSER_MEMORY_LIMIT=-1
 
 cache:
   directories:
@@ -46,9 +47,10 @@ install:
 
 script:
 - silverback download-tests
-- cp -R $TRAVIS_BUILD_DIR/cypress/* $DRUPAL_BUILD_DIR/cypress/integration/jira/SLB/
-- find $DRUPAL_BUILD_DIR/cypress/integration
-- silverback-test
+- cp cypress/integration/jira/SLB/* vendor/amazeelabs/silverback/cypress/integration
+- vendor/bin/silverback setup && vendor/bin/drush en cypress -y
+- vendor/bin/drush cypress:list
+- silverback-test silverback
 - cd $TRAVIS_BUILD_DIR/docs && npm run build
 - kill $(jobs -p) || true
 
