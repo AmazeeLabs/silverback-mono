@@ -62,6 +62,9 @@ class SilverbackCommand extends Command {
   }
 
   protected function copyDir($source, $destination) {
+    if ($this->fileSystem->exists($destination)) {
+      $this->fileSystem->mkdir($destination);
+    }
     $finder = new Finder();
     $finder->files()->in($source);
     $finder->ignoreDotFiles(FALSE);
