@@ -36,9 +36,6 @@
         "drupal/tmgmt": "^1.6",
         "drupal/token": "^1.5.0",
         "drupal/user_reference_access": "dev-1.x",
-        "drupal/webpack": "dev-1.x",
-        "drupal/webpack_babel": "dev-1.x",
-        "drupal/webpack_react": "dev-1.x",
         "drush/drush": "^9.7.1 | ^10.0.0",
         "vlucas/phpdotenv": "^4.0",
         "wikimedia/composer-merge-plugin": "^1.4"
@@ -54,8 +51,7 @@
             "drupal/core": {
                 "#2718657 - Drupal\\language\\LanguageNegotiator::updateConfiguration() is passed a NULL": "https://www.drupal.org/files/issues/2019-02-28/language-2718657-17.patch",
                 "#2867707 Conflict API": "https://www.drupal.org/files/issues/2019-06-24/2867707-33.drupal.WI-Phase-H-Conflict-management-and-local-workspace-merging-support.patch",
-                "#3045177 workspace specific latest revision": "https://www.drupal.org/files/issues/2019-04-08/3045177-10.patch",
-                "#3037136 allow workspaces and content moderation to be installed together": "https://www.drupal.org/files/issues/2019-10-07/3037136-39.patch"
+                "#3045177 workspace specific latest revision": "https://www.drupal.org/files/issues/2019-04-08/3045177-10.patch"
             }
         }
     },
