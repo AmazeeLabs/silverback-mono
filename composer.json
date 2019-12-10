@@ -13,7 +13,7 @@
         "ext-zip": "*",
         "alchemy/zippy": "^0.4.9",
         "cweagans/composer-patches": "^1.6.5",
-        "drupal/admin_toolbar": "^1",
+        "drupal/admin_toolbar": "^2",
         "drupal/ckeditor5_sections": "dev-1.x",
         "drupal/components": "^1.1",
         "drupal/console": "^1.0.2",
