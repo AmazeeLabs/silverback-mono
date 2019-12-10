@@ -45,7 +45,7 @@ class SilverbackCommand extends Command {
     $fileSystem->mkdir($this->cacheDir);
     if ($fileSystem->exists('.env')) {
       $env = Dotenv::createImmutable(getcwd());
-      $dotenv->safeLoad();
+      $env->safeLoad();
     }
   }
 
