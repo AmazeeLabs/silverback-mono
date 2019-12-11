@@ -8,6 +8,9 @@ COPY . /app
 RUN yarn run build-library && yarn run build-storybook
 RUN rm -rf /app/node_modules
 
+# Config directory should be non-writable.
+RUN chmod 755 /app/web/sites/default && chmod 644 /app/web/sites/default/*
+
 FROM amazeeio/php:7.2-cli-drupal
 COPY --from=builder /app /app
 
