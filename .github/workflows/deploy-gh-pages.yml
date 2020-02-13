@@ -28,13 +28,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - run: yarn run install
+      - run: cd docs && yarn run install
 
-      - run: yarn run build
+      - run: cd docs && yarn run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_dir: ./public
+          publish_dir: ./docs/.vuepress/dist
 
