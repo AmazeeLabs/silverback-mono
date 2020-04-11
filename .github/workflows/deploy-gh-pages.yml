@@ -17,6 +17,7 @@ jobs:
         with:
           repository: amazeelabs/ckeditor5_sections
           path: docs/ckeditor5_sections
+          ref: refs/heads/8.x-1.x
 
       - name: Setup Node
         uses: actions/setup-node@v1
