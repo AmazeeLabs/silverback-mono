@@ -25,7 +25,7 @@ module.exports = {
         items: [
           {text: 'Translations', link: '/features/translations/'},
           {text: 'WYSIWYG Editor', link: '/features/sections/'},
-          {text: 'CKEditor5', link: '/ckeditor5_sections'},
+          {text: 'CKEditor5', link: '/ckeditor5_sections/'},
         ]
       },
     ],
