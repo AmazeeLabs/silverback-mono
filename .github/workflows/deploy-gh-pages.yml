@@ -9,7 +9,14 @@ jobs:
   deploy:
     runs-on: ubuntu-18.04
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout silverback repo
+        uses: actions/checkout@v2
+
+      - name: Checkout ckeditor5_sections repo
+        uses: actions/checkout@v2
+        with:
+          repository: amazeelabs/ckeditor5_sections
+          path: docs/ckeditor5_sections
 
       - name: Setup Node
         uses: actions/setup-node@v1
