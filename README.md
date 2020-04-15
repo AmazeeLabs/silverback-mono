@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/AmazeeLabs/silverback.svg?branch=master)](https://travis-ci.com/AmazeeLabs/silverback)
+[![Build Status](https://travis-ci.org/AmazeeLabs/silverback.svg?branch=master)](https://travis-ci.org/AmazeeLabs/silverback)
 
 # Amazee Silverback
 
