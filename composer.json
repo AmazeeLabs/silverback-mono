@@ -9,6 +9,12 @@
             "role": "Master of desaster"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/amazeelabs/cypress"
+        }
+    ],
     "require": {
         "ext-zip": "*",
         "alchemy/zippy": "^0.4.9",
