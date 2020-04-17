@@ -30,7 +30,7 @@ You will need to setup your browser so that it triggers an Xdebug session. This 
 2. Setup PHPStorm to debug your file.
    1. In the top-right palette of icons in your PHPStorm window, click the “Start Listening for PHP Debug Connections” button. Or select that option from PHPStorm’s “Run” pull-down menu.
 
-      ![The button looks like a 80s-style phone with a red "no" symbol next to the hearing end.](./debugging-phpstorm-start.png)
+      ![The button looks like a 80s-style phone with a red 'no' symbol next to the hearing end.](./debugging-phpstorm-start.png)
    2. At the line of code you'd like to examine, look in the left gutter and click to the right of the line number to add a breakpoint for this line. A red dot will appear to indicate a breakpoint has been set.
 
       ![A line of PHP code in PHPStorm with a red dot to its left](./debugging-phpstorm-breakpoint.png)
