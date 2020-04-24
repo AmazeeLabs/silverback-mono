@@ -12,12 +12,13 @@ jobs:
       - name: Checkout silverback repo
         uses: actions/checkout@v2
 
-      - name: Checkout ckeditor5_sections repo
-        uses: actions/checkout@v2
-        with:
-          repository: amazeelabs/ckeditor5_sections
-          path: docs/ckeditor5_sections
-          ref: refs/heads/8.x-1.x
+      # Disable pulling code from other repository until we figure out what files need to be rendered in this project docs
+      # - name: Checkout ckeditor5_sections repo
+      #   uses: actions/checkout@v2
+      #   with:
+      #     repository: amazeelabs/ckeditor5_sections
+      #     path: docs/ckeditor5_sections
+      #     ref: refs/heads/8.x-1.x
 
       - name: Setup Node
         uses: actions/setup-node@v1
