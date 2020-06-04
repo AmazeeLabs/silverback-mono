@@ -4,4 +4,4 @@ description: 'Expose webforms as JSON Schema, UI Schema, and Form Data. Make web
 package: Webform
 core: 8.x
 dependencies:
-- webform
+- webform:webform
