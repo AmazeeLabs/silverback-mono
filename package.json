@@ -2,11 +2,13 @@
   "name": "silverback",
   "private": true,
   "workspaces": [
-    "packages/*/*/*",
+    "packages/composer/*/*",
+    "packages/npm/*",
     "apps/*"
   ],
   "scripts": {
-    "commit": "yarn git-cz"
+    "commit": "yarn git-cz",
+    "test": "yarn lerna run test"
   },
   "devDependencies": {
     "@commitlint/cli": "^9.1.1",
