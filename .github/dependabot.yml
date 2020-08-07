@@ -1,0 +1,7 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/packages/npm/cypress-screenplay"
+    versioning-strategy: increase
+    schedule:
+      interval: "daily"

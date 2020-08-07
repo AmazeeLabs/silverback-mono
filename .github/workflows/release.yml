@@ -1,0 +1,41 @@
+name: Release
+on:
+  push:
+    branches:
+      - development
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Create .npmrc
+        run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
+
+      - name: Git mail
+        run: git config user.email "bot@amazee.com"
+
+      - name: Git username
+        run: git config user.name "Amazee Bot"
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Bootstrap Lerna
+        run: yarn lerna bootstrap
+
+      - name: Run tests
+        run: yarn lerna run test
+
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn lerna publish -y
