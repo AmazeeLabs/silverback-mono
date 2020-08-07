@@ -59,11 +59,3 @@ describe('Screenplay', () => {
   });
 });
 ```
-
-## Advanced usage
-
-### Custom abilities
-
-### Custom interactions
-
-### Multi-ability setups
