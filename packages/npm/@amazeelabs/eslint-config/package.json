@@ -1,5 +1,5 @@
 {
-  "name": "@silverback/eslint-config",
+  "name": "@amazeelabs/eslint-config",
   "version": "1.0.2",
   "description": "ESLint configuration for silverback projects.",
   "main": "index.js",

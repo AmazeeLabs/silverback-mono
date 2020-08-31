@@ -1,5 +1,5 @@
 {
-  "name": "@silverback/prettier-config",
+  "name": "@amazeelabs/prettier-config",
   "version": "1.0.2",
   "description": "Prettier configuration for silverback projects.",
   "main": "index.js",

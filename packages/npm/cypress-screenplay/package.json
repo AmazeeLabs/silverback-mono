@@ -17,8 +17,8 @@
     "cypress": "cypress open"
   },
   "devDependencies": {
-    "@silverback/eslint-config": "^1.0.2",
-    "@silverback/prettier-config": "^1.0.2",
+    "@amazeelabs/eslint-config": "^1.0.2",
+    "@amazeelabs/prettier-config": "^1.0.2",
     "@tsconfig/recommended": "^1.0.1",
     "@types/mocha": "^8.0.3",
     "@types/sinon": "^9.0.5",

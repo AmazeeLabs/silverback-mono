@@ -1,3 +1,3 @@
 module.exports = {
-  extends: '@silverback/eslint-config',
+  extends: '@amazeelabs/eslint-config',
 };
