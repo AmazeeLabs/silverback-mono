@@ -1,0 +1,6 @@
+npm-debug.log*
+coverage
+node_modules
+/lib/
+tests/packages/*
+tests/storage

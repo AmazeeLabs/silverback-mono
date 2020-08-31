@@ -1,0 +1,14 @@
+{
+  "name": "registry",
+  "version": "1.0.0",
+  "description": "Local npm registry for external packages.",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "verdaccio": "^4.8.1",
+    "verdaccio-git": "../../"
+  },
+  "scripts": {
+    "serve": "yarn verdaccio -c config.yml"
+  }
+}
