@@ -1,7 +1,27 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
+    directory: "/"
+    versioning-strategy: increase
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
     directory: "/packages/npm/cypress-screenplay"
+    versioning-strategy: increase
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/packages/npm/@silverback/prettier-config"
+    versioning-strategy: increase
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/packages/npm/@silverback/eslint-config"
+    versioning-strategy: increase
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/packages/npm/@silverback/eslint-config-react"
     versioning-strategy: increase
     schedule:
       interval: "daily"
