@@ -1,0 +1,12 @@
+{
+  "name": "@silverback/prettier-config",
+  "version": "1.0.0",
+  "description": "Prettier configuration for silverback projects.",
+  "main": "index.js",
+  "author": "Philipp Melab",
+  "license": "MIT",
+  "private": false,
+  "peerDependencies": {
+    "prettier": ">= 2"
+  }
+}

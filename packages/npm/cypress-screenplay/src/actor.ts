@@ -40,7 +40,10 @@ export class Actor {
 
     // Search for the first matching ability.
     const ability = this.abilities
-      .filter((ability): ability is T => ability.constructor.name === type.prototype.constructor.name)
+      .filter(
+        (ability): ability is T =>
+          ability.constructor.name === type.prototype.constructor.name,
+      )
       .shift();
 
     // If no ability is found, throw an exception.
@@ -70,7 +73,7 @@ export class Actor {
    *   A list of possible interactions.
    */
   protected prepare<T extends object>(
-    interactions: { new (actor: Actor): T } | { new (actor: Actor): T }[]
+    interactions: { new (actor: Actor): T } | { new (actor: Actor): T }[],
   ): T {
     // Try to create an instance of all interactions.
     this.preparing = true;
@@ -78,7 +81,7 @@ export class Actor {
       ? interactions
       : [interactions]
     )
-      .map(interaction => {
+      .map((interaction) => {
         try {
           return new interaction(this);
         } catch (err) {
@@ -91,7 +94,7 @@ export class Actor {
           throw err;
         }
       })
-      .filter(executor => executor !== null)
+      .filter((executor) => executor !== null)
       .shift();
     this.preparing = false;
 
@@ -100,8 +103,8 @@ export class Actor {
       // this task is not supported by the current actor.
       throw new UnsupportedTaskError(
         (interactions instanceof Array ? interactions : [interactions]).map(
-          interaction => interaction.prototype.constructor.name
-        )
+          (interaction) => interaction.prototype.constructor.name,
+        ),
       );
     }
 
@@ -129,7 +132,7 @@ export class Actor {
   public ask<P, R>(
     question: Question<P, R>,
     param: P,
-    assert: (resp: R) => void
+    assert: (resp: R) => void,
   ): Actor {
     this.prepare(question).invoke(param, assert);
     return this;

@@ -4,11 +4,15 @@
   "workspaces": [
     "packages/composer/*/*",
     "packages/npm/*",
+    "packages/npm/*/*",
     "apps/*"
   ],
   "scripts": {
     "commit": "yarn git-cz",
-    "test": "yarn lerna run test"
+    "typecheck": "yarn lerna run typecheck --since",
+    "lint": "yarn lerna run lint --since",
+    "formatting": "yarn lerna run formatting --since",
+    "test": "yarn typecheck && yarn lint && yarn formatting && yarn lerna run test --since"
   },
   "devDependencies": {
     "@commitlint/cli": "^9.1.1",

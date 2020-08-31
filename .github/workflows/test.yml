@@ -25,4 +25,4 @@ jobs:
         run: yarn lerna bootstrap
 
       - name: Run tests
-        run: yarn lerna run test --since
+        run: yarn test
