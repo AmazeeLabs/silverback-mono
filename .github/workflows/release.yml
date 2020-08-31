@@ -34,7 +34,7 @@ jobs:
         run: yarn lerna bootstrap
 
       - name: Run tests
-        run: yarn lerna run test
+        run: yarn test
 
       - name: Release
         env:

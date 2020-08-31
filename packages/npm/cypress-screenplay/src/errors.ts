@@ -20,7 +20,7 @@ export class AbilityRequestError extends Error {
 export class UnsupportedTaskError<T> extends Error {
   constructor(interactions: string[]) {
     super(
-      `None of the interaction options is supported by the current actor: ${interactions}`
+      `None of the interaction options is supported by the current actor: ${interactions}`,
     );
   }
 }

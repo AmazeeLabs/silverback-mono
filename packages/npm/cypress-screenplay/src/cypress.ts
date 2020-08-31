@@ -54,7 +54,8 @@ class CypressInteraction {
 /**
  * Base class for cypress tasks.
  */
-export abstract class CypressTask<P> extends CypressInteraction
+export abstract class CypressTask<P>
+  extends CypressInteraction
   implements TaskInteraction<P> {
   abstract invoke(param: P): void;
 }
@@ -62,7 +63,8 @@ export abstract class CypressTask<P> extends CypressInteraction
 /**
  * Base class for cypress questions.
  */
-export abstract class CypressQuestion<P, R> extends CypressInteraction
+export abstract class CypressQuestion<P, R>
+  extends CypressInteraction
   implements QuestionInteraction<P, R> {
   abstract invoke(param: P, assert: (answer: R) => void): void;
 }
@@ -74,7 +76,7 @@ export abstract class CypressQuestion<P, R> extends CypressInteraction
  *   The procedure to fulfill this task.
  */
 export function createTask<P>(
-  procedure: (cy: Cypress.Chainable, param: P) => void
+  procedure: (cy: Cypress.Chainable, param: P) => void,
 ) {
   return class extends CypressTask<P> {
     invoke(param: P): void {
@@ -93,8 +95,8 @@ export function createQuestion<P, R>(
   procedure: (
     cy: Cypress.Chainable,
     param: P,
-    assert: (answer: R) => void
-  ) => void
+    assert: (answer: R) => void,
+  ) => void,
 ) {
   return class extends CypressQuestion<P, R> {
     invoke(param: P, assert: (answer: R) => void): void {
