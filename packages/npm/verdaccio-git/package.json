@@ -1,0 +1,50 @@
+{
+  "name": "verdaccio-git",
+  "version": "0.0.1",
+  "description": "Publish packages to git repositories.",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "dependencies": {
+    "@types/node": "^14.0.27",
+    "@verdaccio/commons-api": "^8.5.0",
+    "@verdaccio/local-storage": "^9.7.2",
+    "@verdaccio/streams": "^9.6.1",
+    "file-system": "^2.2.2",
+    "simple-git": "^2.20.1",
+    "sync-directory": "^2.2.6",
+    "tar": "^6.0.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.1",
+    "@types/jest": "^26.0.10",
+    "@types/node": "^14.0.27",
+    "@types/tar": "^4.0.3",
+    "@typescript-eslint/eslint-plugin": "^2.12.0",
+    "@verdaccio/babel-preset": "^9.6.1",
+    "@verdaccio/eslint-config": "^9.3.2",
+    "@verdaccio/types": "^9.5.0",
+    "eslint": "^6.6.0",
+    "jest": "^26.0.1 ",
+    "prettier": "^2.1.1",
+    "standard-version": "^8.0.0"
+  },
+  "keywords": [
+    "verdaccio,plugin,storage,git,verdaccio-git"
+  ],
+  "license": "MIT",
+  "repository": "AmazeeLabs/storage-git",
+  "author": "Philipp Melab <philipp.melab@amazee.com>",
+  "scripts": {
+    "git-daemon": "git daemon --verbose --export-all --base-path=./tests/remote --reuseaddr --enable=receive-pack",
+    "prepublishOnly": "yarn tsc --emitDeclarationOnly && yarn babel src/ --out-dir lib --extensions \".ts,.tsx\"",
+    "test": "jest && tests/run",
+    "lint": "eslint \"**/*.{js,ts}\"",
+    "formatting": "prettier --check \"**/*.{js,ts}\""
+  }
+}

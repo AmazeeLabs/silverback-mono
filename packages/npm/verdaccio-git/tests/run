@@ -1,0 +1,85 @@
+#!/usr/bin/env bash
+set -e
+
+BASEDIR="$( cd "$(dirname "$0")" > /dev/null 2>&1 ; pwd -P )"
+
+# Exit trap that will clean up everything
+function finish {
+  echo "Cleaning up"
+  pkill -P $$
+  cd "$BASEDIR"
+  rm -rf packages/test
+  rm -rf packages/foo
+  rm -rf verdaccio/storage
+  rm -rf verdaccio/node_modules/verdaccio-git
+  git checkout remote
+  git clean -f remote
+}
+trap finish EXIT
+
+yarn git-daemon &
+cd "$BASEDIR/verdaccio"
+yarn
+yarn serve &
+
+until curl --output /dev/null --silent --head --fail http://localhost:4873; do
+  sleep 1
+done
+
+echo "Cloning module"
+cd "$BASEDIR/packages"
+git clone git://localhost:9418/test.git
+cd test
+if [ "$(jq -r .version < package.json)" == '1.0.0' ]; then
+  echo "Initial module version correct."
+else
+  echo "Initial module version incorrect."
+  exit 1
+fi
+
+echo "Bumping module version"
+npm version patch
+if [ "$(jq -r .version < package.json)" == '1.0.1' ]; then
+  echo "Bumped module version correct."
+else
+  echo "Bumped module version incorrect."
+  exit 1
+fi
+
+
+echo "Publishing module"
+npm publish --registry http://localhost:4873
+
+echo "Cloning module"
+cd "$BASEDIR/packages"
+git clone git://localhost:9418/test.git foo > /dev/null
+cd foo
+
+echo "Asserting new module version"
+if [ "$(jq -r .version < package.json)" == '1.0.1' ]; then
+  echo "Updated module version correct."
+else
+  echo "Updated module version incorrect."
+  exit 1
+fi
+
+if [ "$(git tag)" == '1.0.1' ]; then
+  echo "Module tag correct."
+else
+  echo "Module tag incorrect."
+  exit 1
+fi
+
+if [ "$(git log -n 1 --format=%B)" == 'chore: release version 1.0.1' ]; then
+  echo "Commit message correct."
+else
+  echo "Commit message incorrect."
+  exit 1
+fi
+
+
+
+echo "============================================================"
+echo "All good!"
+echo "============================================================"
+
