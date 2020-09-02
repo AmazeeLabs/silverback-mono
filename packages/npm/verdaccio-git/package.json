@@ -43,7 +43,7 @@
   "scripts": {
     "git-daemon": "git daemon --verbose --export-all --base-path=./tests/remote --reuseaddr --enable=receive-pack",
     "prepublishOnly": "yarn tsc --emitDeclarationOnly && yarn babel src/ --out-dir lib --extensions \".ts,.tsx\"",
-    "test": "jest && ./tests/run",
+    "test": "jest",
     "lint": "eslint \"**/*.{js,ts}\"",
     "formatting": "prettier --check \"**/*.{js,ts}\""
   }
