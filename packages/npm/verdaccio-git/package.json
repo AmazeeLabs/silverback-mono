@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@types/node": "^14.0.27",
-    "@verdaccio/commons-api": "^8.5.0",
+    "@verdaccio/commons-api": "^9.7.1",
     "@verdaccio/local-storage": "^9.7.2",
     "@verdaccio/streams": "^9.6.1",
     "file-system": "^2.2.2",
