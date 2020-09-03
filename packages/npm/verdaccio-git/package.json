@@ -28,7 +28,7 @@
     "@typescript-eslint/eslint-plugin": "^4.0.1",
     "@verdaccio/babel-preset": "^9.7.1",
     "@verdaccio/eslint-config": "^9.3.2",
-    "@verdaccio/types": "^9.5.0",
+    "@verdaccio/types": "^9.7.2",
     "eslint": "^7.8.1",
     "jest": "^26.4.2",
     "prettier": "^2.1.1",
