@@ -8,36 +8,51 @@ jobs:
     name: Release
     runs-on: ubuntu-18.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+      - name: create ssh directory
+        run: mkdir -p ~/.ssh
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
+      - name: start ssh agent
+        run: eval "$(ssh-agent -s)"
 
-      - name: Create .npmrc
-        run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
+      - name: write private key
+        run: echo "${{secrets.SSL_PRIVATE}}" >> ~/.ssh/id_rsa
 
-      - name: Git mail
-        run: git config user.email "bot@amazee.com"
+      - name: write public key
+        run: echo "${{secrets.SSL_PUBLIC}}" >> ~/.ssh/id_rsa.pub
 
-      - name: Git username
-        run: git config user.name "Amazee Bot"
+      - name: add the ssh key
+        run: ssh-add -K ~/.ssh/id_rsa
 
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
+      # - name: Checkout
+      #   uses: actions/checkout@v2
+      #   with:
+      #     fetch-depth: 0
 
-      - name: Bootstrap Lerna
-        run: yarn lerna bootstrap
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: 12
 
-      - name: Run tests
-        run: yarn test
+      # - name: Create .npmrc
+      #   run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
 
-      - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: yarn lerna publish -y
+      # - name: Git mail
+      #   run: git config user.email "bot@amazee.com"
+
+      # - name: Git username
+      #   run: git config user.name "Amazee Bot"
+
+      # - name: Install dependencies
+      #   run: yarn install --frozen-lockfile
+
+      # - name: Bootstrap Lerna
+      #   run: yarn lerna bootstrap
+
+      # - name: Run tests
+      #   run: yarn test
+
+      # - name: Release
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #   run: yarn lerna publish -y

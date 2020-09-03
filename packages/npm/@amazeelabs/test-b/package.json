@@ -1,0 +1,16 @@
+{
+  "name": "@amazeelabs/test-b",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "test-a": "^1.0.0"
+  },
+  "config": {
+    "git-publish": {
+      "url": "git@github.com:AmazeeLabs/test-b.git",
+      "branch": "master"
+    }
+  }
+
+}
