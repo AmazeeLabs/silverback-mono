@@ -12712,18 +12712,6 @@ terminal-link@^2.0.0:
     ansi-escapes "^4.2.1"
     supports-hyperlinks "^2.0.0"
 
-test-a@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/test-a/-/test-a-1.0.0.tgz#818fd406137ab5cef6347b686f949393dff9457f"
-  integrity sha1-gY/UBhN6tc72NHtob5STk9/5RX8=
-  dependencies:
-    test-c "1.0.0"
-
-test-c@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/test-c/-/test-c-1.0.0.tgz#1cda84f634e917f19a8e325d7c7f0d75c8916078"
-  integrity sha1-HNqE9jTpF/GajjJdfH8NdciRYHg=
-
 test-exclude@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/test-exclude/-/test-exclude-6.0.0.tgz#04a8698661d805ea6fa293b6cb9e63ac044ef15e"
