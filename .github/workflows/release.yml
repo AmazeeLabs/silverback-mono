@@ -11,6 +11,8 @@ jobs:
       - uses: webfactory/ssh-agent@v0.4.0
         with:
           ssh-private-key: ${{ secrets.SSL_PRIVATE }}
+      - run: git config --global user.email "philipp.melab@gmail.com"
+      - run: git config --global user.name "Philipp Melab (on github)"
       - run: git clone git@github.com:AmazeeLabs/test-b.git
       - run: cd test-b && echo "test\n" > README.md
       - run: cd test-b && git add README.md
