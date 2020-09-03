@@ -1,6 +1,6 @@
 # verdaccio-git
 
-> Publish packages to git repositories. Cool!
+> Publish packages to git repositories.
 
 ---
 
