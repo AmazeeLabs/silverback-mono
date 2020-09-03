@@ -12,8 +12,10 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSL_PRIVATE }}
       - run: git clone git@github.com:AmazeeLabs/test-b.git
-      - run: |
-          cd test-b && echo "test\n" > README.md && git add README.md && git commit -m \"chore: test\" && git push
+      - run: cd test-b && echo "test\n" > README.md
+      - run: git add README.md
+      - run: git commit -m "test"
+      - run: git push
 
       # - name: Checkout
       #   uses: actions/checkout@v2
