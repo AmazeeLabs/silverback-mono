@@ -11,53 +11,48 @@ jobs:
       - uses: webfactory/ssh-agent@v0.4.0
         with:
           ssh-private-key: ${{ secrets.SSL_PRIVATE }}
-      - run: git config --global user.email "philipp.melab@gmail.com"
-      - run: git config --global user.name "Philipp Melab (on github)"
-      - run: git clone git@github.com:AmazeeLabs/test-b.git
-      - run: cd test-b && echo "test\n" > README.md
-      - run: cd test-b && git add README.md
-      - run: cd test-b && git commit -m "test"
-      - run: cd test-b && git push
+      - run: git config --global user.email "bot@amazeelabs.com"
+      - run: git config --global user.name "AmazeeLabs Bot"
 
-      # - name: Checkout
-      #   uses: actions/checkout@v2
-      #   with:
-      #     fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
-      # - name: Setup Node.js
-      #   uses: actions/setup-node@v1
-      #   with:
-      #     node-version: 12
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
 
-      # - name: Create .npmrc
-      #   run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
+      - name: Create .npmrc
+        run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
 
-      # - name: Git mail
-      #   run: git config user.email "bot@amazee.com"
+      - name: Git mail
+        run: git config user.email "bot@amazee.com"
 
-      # - name: Git username
-      #   run: git config user.name "Amazee Bot"
+      - name: Git username
+        run: git config user.name "Amazee Bot"
 
-      # - name: Install dependencies
-      #   run: yarn install --frozen-lockfile
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
 
-      # - name: Bootstrap Lerna
-      #   run: yarn lerna bootstrap
+      - name: Bootstrap Lerna
+        run: yarn lerna bootstrap
 
-      # - name: Run tests
-      #   run: yarn test
+      - name: Run tests
+        run: yarn test
 
-      # - name: Build verdaccio-git
-      #   run: yarn lerna run prepublishOnly
+      - name: Build verdaccio-git
+        run: yarn lerna run prepublishOnly
 
-      # - name: Start verdaccio
-      #   run: yarn git-registry &
+      - name: Start verdaccio
+        run: yarn git-registry &
 
-      # - name: Wait a moment
-      #   run: sleep 5
+      - name: Wait a moment
+        run: sleep 5
 
-      # - name: Release
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      #   run: yarn lerna publish -y
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn lerna publish -y
