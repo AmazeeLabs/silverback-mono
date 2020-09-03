@@ -11,5 +11,9 @@
       "url": "git@github.com:AmazeeLabs/test-b.git",
       "branch": "master"
     }
+  },
+  "publishConfig":{
+    "access": "restricted",
+    "registry":"registry=http://localhost:4873"
   }
 }
