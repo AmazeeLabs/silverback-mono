@@ -12,7 +12,8 @@
     "typecheck": "yarn lerna run typecheck --since",
     "lint": "yarn lerna run lint --since",
     "formatting": "yarn lerna run formatting --since",
-    "test": "yarn typecheck && yarn lint && yarn formatting && yarn lerna run test --since"
+    "test": "yarn typecheck && yarn lint && yarn formatting && yarn lerna run test --since",
+    "gitpm": "yarn verdaccio -c config.yml"
   },
   "devDependencies": {
     "@commitlint/cli": "^9.1.1",
@@ -35,5 +36,9 @@
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
+  },
+  "dependencies": {
+    "verdaccio": "^4.8.1",
+    "verdaccio-git": ">= 0.0.1"
   }
 }

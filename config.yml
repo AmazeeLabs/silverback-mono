@@ -1,0 +1,11 @@
+store:
+  git:
+    storage: ../storage
+
+packages:
+  "**":
+    access: $all
+    publish: $all
+
+logs:
+  - { type: stdout, format: pretty, level: debug }
