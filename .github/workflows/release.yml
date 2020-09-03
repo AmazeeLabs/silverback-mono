@@ -8,6 +8,10 @@ jobs:
     name: Release
     runs-on: ubuntu-18.04
     steps:
+      - uses: webfactory/ssh-agent@v0.4.0
+        with:
+          ssh-private-key: ${{ secrets.SSL_PRIVATE }}
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -35,6 +39,15 @@ jobs:
 
       - name: Run tests
         run: yarn test
+
+      - name: Build verdaccio-git
+        run: yarn lerna run prepublishOnly
+
+      - name: Start verdaccio
+        run: yarn git-registry &
+
+      - name: Wait a moment
+        run: sleep 5
 
       - name: Release
         env:
