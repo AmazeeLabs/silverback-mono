@@ -29,7 +29,7 @@
     "@verdaccio/babel-preset": "^9.7.1",
     "@verdaccio/eslint-config": "^9.3.2",
     "@verdaccio/types": "^9.5.0",
-    "eslint": "^6.6.0",
+    "eslint": "^7.8.1",
     "jest": "^26.4.2",
     "prettier": "^2.1.1",
     "standard-version": "^9.0.0"
