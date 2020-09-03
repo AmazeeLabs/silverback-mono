@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/test-b",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
@@ -12,8 +12,8 @@
       "branch": "master"
     }
   },
-  "publishConfig":{
+  "publishConfig": {
     "access": "restricted",
-    "registry":"http://localhost:4873"
+    "registry": "http://localhost:4873"
   }
 }
