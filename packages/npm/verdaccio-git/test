@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+
 BASEDIR="$( cd "$(dirname "$0")" > /dev/null 2>&1 ; pwd -P )"
 
 # Exit trap that will clean up everything
@@ -10,61 +13,66 @@ function finish {
   cd "$BASEDIR"
   rm -rf packages/test
   rm -rf packages/foo
-  rm -rf verdaccio/storage
-  rm -rf verdaccio/node_modules/verdaccio-git
+  rm -rf storage
   git checkout remote
   git clean -f remote
 }
 trap finish EXIT
 
-yarn git-daemon &
-cd "$BASEDIR/verdaccio"
-yarn
+echo "starting local git daemon"
+git daemon --verbose --export-all --base-path="$BASEDIR/remote" --reuseaddr --enable=receive-pack &
+echo "git daemon operational"
+cd "$BASEDIR"
+echo "starting local verdaccio host"
 yarn serve &
-
+echo "waiting for verdaccio to respond"
 until curl --output /dev/null --silent --head --fail http://localhost:4873; do
-  sleep 1
+ sleep 1
 done
+echo "verdaccio host operational"
 
 echo "Cloning module"
 cd "$BASEDIR/packages"
-git clone git://localhost:9418/test.git
+git clone git://127.0.0.1:9418/test.git
+
 cd test
+
 if [ "$(jq -r .version < package.json)" == '1.0.0' ]; then
-  echo "Initial module version correct."
+ echo "Initial module version correct."
 else
-  echo "Initial module version incorrect."
-  exit 1
+ echo "Initial module version incorrect."
+ exit 1
 fi
 
 echo "Bumping module version"
+
 npm version patch
 if [ "$(jq -r .version < package.json)" == '1.0.1' ]; then
-  echo "Bumped module version correct."
+ echo "Bumped module version correct."
 else
-  echo "Bumped module version incorrect."
-  exit 1
+ echo "Bumped module version incorrect."
+ exit 1
 fi
 
 
 echo "Publishing module"
-npm publish --registry http://localhost:4873
+npm publish --registry http://127.0.0.1:4873
 
 echo "Cloning module"
 cd "$BASEDIR/packages"
-git clone git://localhost:9418/test.git foo > /dev/null
+git clone git://127.0.0.1:9418/test.git foo > /dev/null
 cd foo
 
 echo "Asserting new module version"
 if [ "$(jq -r .version < package.json)" == '1.0.1' ]; then
-  echo "Updated module version correct."
+ echo "Updated module version correct."
 else
-  echo "Updated module version incorrect."
-  exit 1
+ echo "Updated module version incorrect."
+ exit 1
 fi
 
 if [ "$(git tag)" == '1.0.1' ]; then
-  echo "Module tag correct."
+ echo "Module tag correct."
 else
   echo "Module tag incorrect."
   exit 1

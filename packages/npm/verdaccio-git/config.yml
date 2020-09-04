@@ -1,9 +1,9 @@
 store:
   git:
-    storage: ../storage
+    storage: storage
 
 packages:
-  "**":
+  '**':
     access: $all
     publish: $all
 

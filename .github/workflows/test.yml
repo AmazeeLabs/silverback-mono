@@ -8,21 +8,47 @@ jobs:
     name: Test
     runs-on: ubuntu-18.04
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+      - name: Git mail
+        run: git config --global user.email "kitt@amazee.com"
+
+      - name: Git username
+        run: git config --global user.name "K.I.T.T."
 
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
           node-version: 12
 
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: node_modules
+          key: npm-${{ hashFiles('yarn.lock') }}
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
       - name: Bootstrap Lerna
         run: yarn lerna bootstrap
+
+      # TODO: We have to build & test verdaccio-git outside of lerna
+      #       because it hangs the Github action when Lerna executes
+      #       bash script that `sleep`s. Now this test will run always
+      #       and not only when verdaccio-git changes.
+      - name: Build verdaccio-git
+        run: yarn prepublishOnly
+        working-directory: packages/npm/verdaccio-git
+
+      - name: Run verdaccio-git integration test
+        run: ./test
+        working-directory: packages/npm/verdaccio-git
 
       - name: Run tests
         run: yarn test
