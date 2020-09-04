@@ -17,7 +17,7 @@ export class AbilityRequestError extends Error {
 /*
  * Exception thrown when no interaction of a task matches the actors abilities.
  */
-export class UnsupportedTaskError<T> extends Error {
+export class UnsupportedTaskError extends Error {
   constructor(interactions: string[]) {
     super(
       `None of the interaction options is supported by the current actor: ${interactions}`,

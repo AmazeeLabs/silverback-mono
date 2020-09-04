@@ -20,14 +20,10 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: "module",
   },
-  plugins: [
-    "@typescript-eslint",
-    "promise",
-    "deprecate",
-  ],
+  plugins: ["@typescript-eslint", "promise", "deprecate"],
   rules: {
     "no-unused-vars": ["off"],
-    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/no-unused-vars-experimental": ["error"],
     "deprecate/import": ["error"],
   },
 };
