@@ -1,8 +1,7 @@
-import { Logger } from '@verdaccio/types';
 import tar from 'tar';
-import fileSystem from 'file-system';
 import simpleGit from 'simple-git';
-import fs from 'fs';
+import fs from 'fs-extra';
+import { Logger } from '@verdaccio/types';
 
 type GitInfo = {
   version: string;
@@ -50,7 +49,7 @@ export const pushToGit = async (name: string, path: string, logger: Logger) => {
     );
     const git = simpleGit();
     await git.clone(info.config['git-publish'].url, `${path}/clone`);
-    fileSystem.copySync(`${path}/clone/.git`, `${path}/package/.git`);
+    fs.copySync(`${path}/clone/.git`, `${path}/package/.git`);
     logger.debug(
       `[git] Commiting version ${info.version} and pushing to ${info.config['git-publish'].url}#${info.config['git-publish'].branch}.`,
     );

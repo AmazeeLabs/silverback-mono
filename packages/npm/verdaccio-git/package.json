@@ -16,24 +16,27 @@
     "@verdaccio/local-storage": "^9.7.2",
     "@verdaccio/streams": "^9.6.1",
     "file-system": "^2.2.2",
+    "fs-extra": "^9.0.1",
     "simple-git": "^2.20.1",
     "sync-directory": "^2.2.6",
     "tar": "^6.0.5"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-typescript": "^7.10.4",
+    "@tsconfig/recommended": "^1.0.1",
     "@types/express": "^4.17.8",
+    "@types/fs-extra": "^9.0.1",
     "@types/jest": "^26.0.13",
     "@types/node": "^14.6.4",
     "@types/tar": "^4.0.3",
     "@typescript-eslint/eslint-plugin": "^4.0.1",
-    "verdaccio": "^4.8.1",
-    "@verdaccio/babel-preset": "^9.7.1",
-    "@verdaccio/eslint-config": "^9.3.2",
     "@verdaccio/types": "^9.5.0",
     "eslint": "^7.8.1",
     "jest": "^26.4.2",
     "prettier": "^2.1.1",
-    "standard-version": "^9.0.0"
+    "standard-version": "^9.0.0",
+    "verdaccio": "^4.8.1"
   },
   "keywords": [
     "verdaccio,plugin,storage,git,verdaccio-git"
@@ -42,8 +45,10 @@
   "repository": "AmazeeLabs/storage-git",
   "author": "Philipp Melab <philipp.melab@amazee.com>",
   "scripts": {
-    "prepublishOnly": "yarn babel src/ --out-dir lib --extensions \".ts,.tsx\"",
+    "prepublishOnly": "tsc",
     "test": "jest",
+    "lint": "eslint '*/**.ts'",
+    "formatting": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "serve": "yarn verdaccio -c config.yml"
   }
 }

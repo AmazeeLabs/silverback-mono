@@ -1,4 +1,12 @@
+packages
+remote
+coverage
 src/
+.eslintignore
 .eslintrc
-.babelrc
-test/
+.gitignore
+.prettierignore
+.prettierrc
+config.yml
+test
+tsconfig.json
