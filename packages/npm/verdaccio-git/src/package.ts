@@ -1,6 +1,6 @@
 import tar from 'tar';
 import simpleGit from 'simple-git';
-import fs from 'fs-extra';
+import fs, { readJSONSync, outputJSONSync } from 'fs-extra';
 import { Logger } from '@verdaccio/types';
 
 type GitInfo = {
@@ -11,6 +11,63 @@ type GitInfo = {
       branch: string;
     };
   };
+};
+
+export const processComposerPackage = async (path: string) => {
+  if (await isComposerPackage(path)) {
+    removeComposerLock(path);
+    setComposerPackageVersion(path);
+    setComposerDependencyVersions(path);
+    cleanNpmDependencies(path);
+    removeLocalComposerRepository(path);
+  }
+};
+
+export const isComposerPackage = (path: string) => {
+  return fs.existsSync(`${path}/composer.json`);
+};
+
+export const removeComposerLock = (path: string) => {
+  if (fs.existsSync(`${path}/composer.lock`)) {
+    fs.removeSync(`${path}/composer.lock`);
+  }
+};
+
+export const setComposerPackageVersion = (path: string) => {
+  const composer = readJSONSync(`${path}/composer.json`);
+  const npm = readJSONSync(`${path}/package.json`);
+  composer.version = npm.version;
+  outputJSONSync(`${path}/composer.json`, composer, { spaces: 2 });
+};
+
+export const removeLocalComposerRepository = (path: string) => {
+  const composer = readJSONSync(`${path}/composer.json`);
+  composer.repositories = composer.repositories.filter(
+    (rep: { type: string }) => rep.type !== 'path',
+  );
+  outputJSONSync(`${path}/composer.json`, composer, { spaces: 2 });
+};
+export const setComposerDependencyVersions = (path: string) => {
+  const composer = readJSONSync(`${path}/composer.json`);
+  const npm = readJSONSync(`${path}/package.json`);
+  for (const dep in composer.require) {
+    if (npm.dependencies[`@~${dep}`]) {
+      composer.require[dep] = npm.dependencies[`@~${dep}`];
+    }
+  }
+  outputJSONSync(`${path}/composer.json`, composer, { spaces: 2 });
+};
+
+export const cleanNpmDependencies = (path: string) => {
+  const npm = readJSONSync(`${path}/package.json`);
+  const deps: { [key: string]: string } = {};
+  Object.keys(npm.dependencies).forEach((key) => {
+    if (key.substr(0, 2) !== '@~') {
+      deps[key] = npm.dependencies[key];
+    }
+  });
+  npm.dependencies = deps;
+  outputJSONSync(`${path}/package.json`, npm, { spaces: 2 });
 };
 
 export const isGitPackage = (info: {
@@ -50,6 +107,9 @@ export const pushToGit = async (name: string, path: string, logger: Logger) => {
     const git = simpleGit();
     await git.clone(info.config['git-publish'].url, `${path}/clone`);
     fs.copySync(`${path}/clone/.git`, `${path}/package/.git`);
+
+    await processComposerPackage(`${path}/package/.git`);
+
     logger.debug(
       `[git] Commiting version ${info.version} and pushing to ${info.config['git-publish'].url}#${info.config['git-publish'].branch}.`,
     );

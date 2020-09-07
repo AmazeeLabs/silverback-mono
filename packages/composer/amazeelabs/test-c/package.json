@@ -1,0 +1,19 @@
+{
+  "name": "@~amazeelabs/test-c",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://localhost:4873"
+  },
+  "scripts": {
+    "postinstall": "composer install"
+  },
+  "config": {
+    "git-publish": {
+      "url": "git@github.com:AmazeeLabs/test-d.git",
+      "branch": "master"
+    }
+  }
+}
