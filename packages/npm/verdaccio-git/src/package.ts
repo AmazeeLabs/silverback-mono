@@ -51,8 +51,8 @@ export const setComposerDependencyVersions = (path: string) => {
   const composer = readJSONSync(`${path}/composer.json`);
   const npm = readJSONSync(`${path}/package.json`);
   for (const dep in composer.require) {
-    if (npm.dependencies[`@~${dep}`]) {
-      composer.require[dep] = npm.dependencies[`@~${dep}`];
+    if (npm.dependencies[`@-${dep}`]) {
+      composer.require[dep] = npm.dependencies[`@-${dep}`];
     }
   }
   outputJSONSync(`${path}/composer.json`, composer, { spaces: 2 });
@@ -62,7 +62,7 @@ export const cleanNpmDependencies = (path: string) => {
   const npm = readJSONSync(`${path}/package.json`);
   const deps: { [key: string]: string } = {};
   Object.keys(npm.dependencies).forEach((key) => {
-    if (key.substr(0, 2) !== '@~') {
+    if (key.substr(0, 2) !== '@-') {
       deps[key] = npm.dependencies[key];
     }
   });

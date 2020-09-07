@@ -1,11 +1,11 @@
 {
-  "name": "@~amazeelabs/test-d",
+  "name": "@-amazeelabs/test-d",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
     "@amazeelabs/test-a": ">= 1",
-    "@~amazeelabs/test-c": ">= 1",
+    "@-amazeelabs/test-c": ">= 1",
     "lodash": "^4.17.20"
   },
   "scripts": {

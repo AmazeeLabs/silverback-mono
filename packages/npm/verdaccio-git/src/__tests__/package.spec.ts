@@ -132,7 +132,7 @@ describe('setComposerDependencyVersions', () => {
       test: {
         'package.json': JSON.stringify({
           dependencies: {
-            '@~amazeelabs/test': '1.0.1',
+            '@-amazeelabs/test': '1.0.1',
           },
         }),
         'composer.json': JSON.stringify({
@@ -153,7 +153,7 @@ describe('setComposerDependencyVersions', () => {
       test: {
         'package.json': JSON.stringify({
           dependencies: {
-            '@~amazeelabs/test': '1.0.1',
+            '@-amazeelabs/test': '1.0.1',
           },
         }),
         'composer.json': JSON.stringify({
@@ -178,7 +178,7 @@ describe('cleanNpmDependencies', () => {
         'package.json': JSON.stringify({
           dependencies: {
             lodash: '1.0.0',
-            '@~amazeelabs/test': '1.0.1',
+            '@-amazeelabs/test': '1.0.1',
           },
         }),
       },
@@ -189,7 +189,7 @@ describe('cleanNpmDependencies', () => {
     );
 
     expect(readJSONSync('test/package.json').dependencies).not.toHaveProperty(
-      '@~amazeelabs/test',
+      '@-amazeelabs/test',
     );
   });
 });
