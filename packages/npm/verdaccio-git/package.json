@@ -48,7 +48,6 @@
     "prepublishOnly": "tsc",
     "test": "jest",
     "lint": "eslint '*/**.ts'",
-    "formatting": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "serve": "yarn verdaccio -c config.yml"
+    "formatting": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\""
   }
 }

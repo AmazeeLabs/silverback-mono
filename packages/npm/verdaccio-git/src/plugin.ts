@@ -37,7 +37,7 @@ export default class GitDataBase extends LocalDataBase {
 
   public getPackageStorage(packageName: string): IPackageStorage {
     const packageStoragePath: string = path.join(
-      path.resolve(path.dirname(this.config.self_path || ''), './storage'),
+      path.resolve(path.dirname(this.config.path || ''), './storage'),
       packageName,
     );
     return new GitPackageStorage(packageStoragePath, this.logger);

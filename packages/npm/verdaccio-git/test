@@ -11,20 +11,38 @@ function finish {
   echo "Cleaning up"
   pkill -P $$
   cd "$BASEDIR"
-  rm -rf packages/test
-  rm -rf packages/foo
-  rm -rf storage
-  git checkout remote
-  git clean -f remote
+  rm -rf .test
 }
 trap finish EXIT
 
+mkdir .test
+mkdir .test/packages
+mkdir .test/remote
+
+git init --bare .test/remote/test.git
+
 echo "starting local git daemon"
-git daemon --verbose --export-all --base-path="$BASEDIR/remote" --reuseaddr --enable=receive-pack &
+git daemon --verbose --export-all --base-path="$BASEDIR/.test/remote" --reuseaddr --enable=receive-pack &
 echo "git daemon operational"
+
+sleep 1
+
+git clone git://127.0.0.1:9418/test.git .test/packages/test
+cd "$BASEDIR/.test/packages/test"
+echo "{\"name\": \"test\", \"version\": \"1.0.0\", \"config\": {\"git-publish\": {\"url\": \"git://localhost:9418/test.git\", \"branch\": \"master\"}}}" >> package.json
+git add package.json
+echo "README" >> README.md
+git add README.md
+echo "foo=bar" >> .env
+git add .env
+git commit -m "Initial commit"
+git push
+cd "$BASEDIR"
+rm -rf .test/packages/test
+
 cd "$BASEDIR"
 echo "starting local verdaccio host"
-yarn serve &
+yarn verdaccio -c config.yml &
 echo "waiting for verdaccio to respond"
 until curl --output /dev/null --silent --head --fail http://localhost:4873; do
  sleep 1
@@ -32,7 +50,7 @@ done
 echo "verdaccio host operational"
 
 echo "Cloning module"
-cd "$BASEDIR/packages"
+cd "$BASEDIR/.test/packages"
 git clone git://127.0.0.1:9418/test.git
 
 cd test
@@ -54,25 +72,43 @@ else
  exit 1
 fi
 
+echo "Removing file"
+rm README.md
+
+echo "Changing dotfile"
+echo "foo=baz" > .env
 
 echo "Publishing module"
 npm publish --registry http://127.0.0.1:4873
 
 echo "Cloning module"
-cd "$BASEDIR/packages"
+cd "$BASEDIR/.test/packages"
 git clone git://127.0.0.1:9418/test.git foo > /dev/null
 cd foo
 
-echo "Asserting new module version"
 if [ "$(jq -r .version < package.json)" == '1.0.1' ]; then
- echo "Updated module version correct."
+  echo "Updated module version correct."
 else
- echo "Updated module version incorrect."
- exit 1
+  echo "Updated module version incorrect."
+  exit 1
+fi
+
+if [ ! -f README.md ]; then
+  echo "README.md was removed"
+else
+  echo "README.md was not removed"
+  exit 1
+fi
+
+if [ "$(cat .env)" == 'foo=baz' ]; then
+  echo "Dotfile content correct."
+else
+  echo "Dotfile content incorrect: $(cat .env)}"
+  exit 1
 fi
 
 if [ "$(git tag)" == '1.0.1' ]; then
- echo "Module tag correct."
+  echo "Module tag correct."
 else
   echo "Module tag incorrect."
   exit 1
@@ -84,8 +120,6 @@ else
   echo "Commit message incorrect."
   exit 1
 fi
-
-
 
 echo "============================================================"
 echo "All good!"
