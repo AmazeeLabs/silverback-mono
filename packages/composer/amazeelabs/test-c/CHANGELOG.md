@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/test-c@1.1.3...@-amazeelabs/test-c@1.1.4) (2020-09-07)
+
+
+### Bug Fixes
+
+* test ([f19772d](https://github.com/AmazeeLabs/silverback-mono/commit/f19772d22de684bfd485566570bc8c2efef65cb2))
+
+
+
+
+
 ## [1.1.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/test-c@1.1.2...@-amazeelabs/test-c@1.1.3) (2020-09-07)
 
 
