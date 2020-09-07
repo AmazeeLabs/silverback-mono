@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/AmazeeLabs/storage-git/compare/verdaccio-git@0.1.0...verdaccio-git@0.1.1) (2020-09-07)
+
+
+### Bug Fixes
+
+* **verdaccio-git:** git add expression ([c398a64](https://github.com/AmazeeLabs/storage-git/commit/c398a64d899ae94375150cf9f08e5e70f9bceacf))
+
+
+
+
+
 # [0.1.0](https://github.com/AmazeeLabs/storage-git/compare/verdaccio-git@0.0.4...verdaccio-git@0.1.0) (2020-09-07)
 
 

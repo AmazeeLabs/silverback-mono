@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/test-c@1.1.4...@-amazeelabs/test-c@1.1.5) (2020-09-07)
+
+
+### Bug Fixes
+
+* **verdaccio-git:** git add expression ([c398a64](https://github.com/AmazeeLabs/silverback-mono/commit/c398a64d899ae94375150cf9f08e5e70f9bceacf))
+
+
+
+
+
 ## [1.1.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/test-c@1.1.3...@-amazeelabs/test-c@1.1.4) (2020-09-07)
 
 
