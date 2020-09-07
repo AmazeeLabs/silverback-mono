@@ -11,7 +11,7 @@
   "scripts": {
     "postinstall": "composer install"
   },
-  "gitHead": "522a13cdfb29a9d1abd0b811b8a74a3b15d817ca",
+  "gitHead": "f6abd544b5e4e7e166a99b9f5fdcedc4d05788e2",
   "publishConfig": {
     "access": "public",
     "registry": "http://localhost:4873"

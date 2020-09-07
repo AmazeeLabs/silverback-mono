@@ -115,7 +115,7 @@ export const pushToGit = async (name: string, path: string, logger: Logger) => {
     );
     await git
       .cwd(`${path}/package`)
-      .add(['./*', './.*'])
+      .add(['./*'])
       .commit(`chore: release version ${info.version}`)
       .addTag(info.version)
       .push('origin')
