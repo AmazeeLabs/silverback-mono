@@ -10,5 +10,16 @@
   },
   "scripts": {
     "postinstall": "composer install"
+  },
+  "gitHead": "522a13cdfb29a9d1abd0b811b8a74a3b15d817ca",
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://localhost:4873"
+  },
+  "config": {
+    "git-publish": {
+      "url": "git@github.com:AmazeeLabs/test-c.git",
+      "branch": "master"
+    }
   }
 }
