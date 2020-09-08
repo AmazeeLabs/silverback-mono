@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.8](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/test-d@1.1.7...@-amazeelabs/test-d@1.1.8) (2020-09-08)
+
+**Note:** Version bump only for package @-amazeelabs/test-d
+
+
+
+
+
 ## [1.1.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/test-d@1.1.6...@-amazeelabs/test-d@1.1.7) (2020-09-08)
 
 **Note:** Version bump only for package @-amazeelabs/test-d
