@@ -15,6 +15,7 @@ function finish {
 }
 trap finish EXIT
 
+rm -rf .test
 mkdir .test
 mkdir .test/packages
 mkdir .test/remote
@@ -31,6 +32,8 @@ git clone git://127.0.0.1:9418/test.git .test/packages/test
 cd "$BASEDIR/.test/packages/test"
 echo "{\"name\": \"test\", \"version\": \"1.0.0\", \"config\": {\"git-publish\": {\"url\": \"git://localhost:9418/test.git\", \"branch\": \"master\"}}}" >> package.json
 git add package.json
+echo "{}" >> composer.json
+git add composer.json
 echo "README" >> README.md
 git add README.md
 echo "foo=bar" >> .env
@@ -90,6 +93,13 @@ if [ "$(jq -r .version < package.json)" == '1.0.1' ]; then
   echo "Updated module version correct."
 else
   echo "Updated module version incorrect."
+  exit 1
+fi
+
+if [ "$(jq -r .version < composer.json)" == '1.0.1' ]; then
+  echo "Updated composer version correct."
+else
+  echo "Updated composer version incorrect."
   exit 1
 fi
 
