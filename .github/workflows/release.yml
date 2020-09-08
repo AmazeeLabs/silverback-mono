@@ -45,10 +45,6 @@ jobs:
       - name: Bootstrap Lerna
         run: yarn lerna bootstrap
 
-      # TODO: We have to build & test verdaccio-git outside of lerna
-      #       because it hangs the Github action when Lerna executes
-      #       bash script that `sleep`s. Now this test will run always
-      #       and not only when verdaccio-git changes.
       - name: Build verdaccio-git
         run: yarn prepublishOnly
         working-directory: packages/npm/verdaccio-git
