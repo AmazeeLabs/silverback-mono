@@ -1,6 +1,7 @@
 import {
   cleanNpmDependencies,
   isComposerPackage,
+  processComposerPackage,
   removeComposerLock,
   removeLocalComposerRepository,
   setComposerDependencyVersions,
@@ -156,5 +157,28 @@ describe('cleanNpmDependencies', () => {
     expect(readJSONSync('test/package.json').dependencies).not.toHaveProperty(
       '@-amazeelabs/test',
     );
+  });
+});
+
+describe('processComposerPackage', () => {
+  it('skips if there is no composer.json', () => {
+    mock({
+      test: {
+        'composer.lock': '{}',
+      },
+    });
+    processComposerPackage('test');
+    expect(fs.existsSync('test/composer.lock')).toBe(true);
+  });
+  it('invokes all processes if there is no composer.json', () => {
+    mock({
+      test: {
+        'package.json': '{}',
+        'composer.json': '{}',
+        'composer.lock': '{}',
+      },
+    });
+    processComposerPackage('test');
+    expect(fs.existsSync('test/composer.lock')).toBe(false);
   });
 });
