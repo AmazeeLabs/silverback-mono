@@ -28,7 +28,6 @@ export const isComposerPackage = (path: string) => {
 };
 
 export const removeComposerLock = (path: string) => {
-  console.log('lock');
   if (fs.existsSync(`${path}/composer.lock`)) {
     fs.removeSync(`${path}/composer.lock`);
   }
