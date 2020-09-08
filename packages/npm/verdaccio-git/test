@@ -44,12 +44,14 @@ cd "$BASEDIR"
 rm -rf .test/packages/test
 
 cd "$BASEDIR"
-echo "starting local verdaccio host"
-yarn verdaccio -c config.yml &
-echo "waiting for verdaccio to respond"
-until curl --output /dev/null --silent --head --fail http://localhost:4873; do
- sleep 1
-done
+if ! (curl --output /dev/null --silent --head --fail http://localhost:4873); then
+  echo "starting local verdaccio host"
+  yarn verdaccio -c config.yml &
+  echo "waiting for verdaccio to respond"
+  until curl --output /dev/null --silent --head --fail http://localhost:4873; do
+   sleep 1
+  done
+fi
 echo "verdaccio host operational"
 
 echo "Cloning module"
