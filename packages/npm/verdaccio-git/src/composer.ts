@@ -1,5 +1,19 @@
 import fs, { readJSONSync, outputJSONSync } from 'fs-extra';
 
+/**
+ * Align composer and npm information.
+ *
+ * Processes versioning information from package.json and merges it into composer.json
+ * to manage dependencies and versioning of composer packages with lerna.
+ *
+ * 1. clears out composer.lock files
+ * 2. sets composer package version to equal npm
+ * 3. aligns all dependency versions of other maintained composer packages
+ * 4. removes composer-only dependencies from package.sjon
+ * 5. removes local repository definitions from composer.json
+ *
+ * @param path The path to the package directory.
+ */
 export const processComposerPackage = (path: string) => {
   if (isComposerPackage(path)) {
     removeComposerLock(path);
@@ -10,16 +24,31 @@ export const processComposerPackage = (path: string) => {
   }
 };
 
+/**
+ * Check if a given path is a composer package.
+ *
+ * @param path
+ */
 export const isComposerPackage = (path: string) => {
   return fs.existsSync(`${path}/composer.json`);
 };
 
+/**
+ * Remove the composer.lock if there is one in a given path.
+ *
+ * @param path
+ */
 export const removeComposerLock = (path: string) => {
   if (fs.existsSync(`${path}/composer.lock`)) {
     fs.removeSync(`${path}/composer.lock`);
   }
 };
 
+/**
+ * Copy the assigned package version from package.json to composer.json.
+ *
+ * @param path
+ */
 export const setComposerPackageVersion = (path: string) => {
   const composer = readJSONSync(`${path}/composer.json`);
   const npm = readJSONSync(`${path}/package.json`);
@@ -27,6 +56,11 @@ export const setComposerPackageVersion = (path: string) => {
   outputJSONSync(`${path}/composer.json`, composer, { spaces: 2 });
 };
 
+/**
+ * Remove any "path" repositories used for local development.
+ *
+ * @param path
+ */
 export const removeLocalComposerRepository = (path: string) => {
   const composer = readJSONSync(`${path}/composer.json`);
   if (composer.repositories) {
@@ -36,6 +70,15 @@ export const removeLocalComposerRepository = (path: string) => {
     outputJSONSync(`${path}/composer.json`, composer, { spaces: 2 });
   }
 };
+
+/**
+ * Search for composer dependency versions maintained by lerna in package.json.
+ *
+ * Searches for all composer packages (starting with "@-") in package.json and set the
+ * according required version in composer.json.
+ *
+ * @param path
+ */
 export const setComposerDependencyVersions = (path: string) => {
   const composer = readJSONSync(`${path}/composer.json`);
   const npm = readJSONSync(`${path}/package.json`);
@@ -49,6 +92,14 @@ export const setComposerDependencyVersions = (path: string) => {
   }
 };
 
+/**
+ * Remove all composer dependencies from package.json.
+ *
+ * Searches for all composer packages (starting with "@-") in package.json and removes
+ * them.
+ *
+ * @param path
+ */
 export const cleanNpmDependencies = (path: string) => {
   const npm = readJSONSync(`${path}/package.json`);
   if (npm.dependencies) {

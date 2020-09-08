@@ -46,9 +46,23 @@
   "license": "MIT",
   "repository": "AmazeeLabs/storage-git",
   "author": "Philipp Melab <philipp.melab@amazee.com>",
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/index.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 100,
+        "functions": 100,
+        "lines": 100,
+        "statements": 100
+      }
+    }
+  },
   "scripts": {
     "prepublishOnly": "tsc",
-    "test": "jest",
+    "test": "jest --coverage",
     "lint": "eslint '*/**.ts'",
     "formatting": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\""
   }

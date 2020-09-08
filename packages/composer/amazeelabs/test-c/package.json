@@ -5,16 +5,12 @@
   "license": "MIT",
   "publishConfig": {
     "access": "public",
-    "registry": "http://localhost:4873"
+    "registry": "http://localhost:4873",
+    "repository": "git@github.com:AmazeeLabs/test-c.git",
+    "branch": "master"
   },
   "scripts": {
     "postinstall": "composer install"
-  },
-  "config": {
-    "git-publish": {
-      "url": "git@github.com:AmazeeLabs/test-c.git",
-      "branch": "master"
-    }
   },
   "gitHead": "f6abd544b5e4e7e166a99b9f5fdcedc4d05788e2"
 }

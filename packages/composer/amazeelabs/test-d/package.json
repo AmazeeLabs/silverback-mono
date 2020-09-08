@@ -14,12 +14,8 @@
   "gitHead": "f6abd544b5e4e7e166a99b9f5fdcedc4d05788e2",
   "publishConfig": {
     "access": "public",
-    "registry": "http://localhost:4873"
-  },
-  "config": {
-    "git-publish": {
-      "url": "git@github.com:AmazeeLabs/test-d.git",
-      "branch": "master"
-    }
+    "registry": "http://localhost:4873",
+    "repository": "git@github.com:AmazeeLabs/test-d.git",
+    "branch": "master"
   }
 }
