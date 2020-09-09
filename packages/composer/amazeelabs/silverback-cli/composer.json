@@ -1,0 +1,46 @@
+{
+    "name": "amazeelabs/silverback",
+    "description": "Scaffolder for Amazee Silverback projects.",
+    "type": "package",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Philipp Melab<philipp.melab@gmail.com>",
+            "role": "Master of desaster"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/amazeelabs/cypress"
+        }
+    ],
+    "require": {
+        "composer/installers": "^1.9",
+        "drupal/core-composer-scaffold": "^9",
+        "drupal/core-recommended": "^9",
+        "ext-zip": "*",
+        "alchemy/zippy": "dev-master",
+        "cweagans/composer-patches": "^1.6.5",
+        "drupal/admin_toolbar": "^2.0",
+        "drush/drush": "^9.7.1 | ^10.0.0",
+        "vlucas/phpdotenv": "^4.0",
+        "wikimedia/composer-merge-plugin": "^1.4"
+    },
+    "bin": [ "bin/silverback", "bin/silverback-dev", "bin/silverback-test" ],
+    "autoload": {
+        "psr-4": {
+            "AmazeeLabs\\Silverback\\": "src/AmazeeLabs/Silverback"
+        }
+    },
+    "extra": {
+        "patches": {
+            "drupal/core": {
+                "#2718657 - Drupal\\language\\LanguageNegotiator::updateConfiguration() is passed a NULL": "https://www.drupal.org/files/issues/2019-02-28/language-2718657-17.patch",
+                "#2867707 Conflict API": "https://www.drupal.org/files/issues/2019-06-24/2867707-33.drupal.WI-Phase-H-Conflict-management-and-local-workspace-merging-support.patch",
+                "#3045177 workspace specific latest revision": "https://www.drupal.org/files/issues/2019-04-08/3045177-10.patch"
+            }
+        }
+    },
+    "composer-exit-on-patch-failure": true
+}

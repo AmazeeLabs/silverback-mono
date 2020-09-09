@@ -1,0 +1,29 @@
+uuid: 08eca71f-0dcf-401d-a052-52f4aca0e00a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.merge
+    - field.field.node.page.field_sections
+    - node.type.page
+  module:
+    - ckeditor5_sections
+    - user
+_core:
+  default_config_hash: g1S3_GLaxq4l3I9RIca5Mlz02MxI2KmOquZpHw59akM
+id: node.page.merge
+targetEntityType: node
+bundle: page
+mode: merge
+content:
+  field_sections:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: sections_html
+    region: content
+hidden:
+  content_moderation_control: true
+  langcode: true
+  links: true

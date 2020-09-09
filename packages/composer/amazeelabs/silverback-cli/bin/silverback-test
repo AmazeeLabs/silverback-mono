@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+function finish {
+  echo "Cleaning up server processes."
+  pkill -f ":8888"
+}
+
+# Make sure all running processes are cleaned up
+trap finish EXIT
+
+# If there is no vendor directory, run composer install.
+[[ -d vendor ]] || composer install
+# If there is no node modules directory, run yarn.
+[[ -d node_modules ]] || yarn
+
+# Initial setup, so drush bootstrap doesn't fail.
+[[ -d web/sites/default/files/.sqlite ]] || (vendor/bin/silverback setup && vendor/bin/drush en cypress -y)
+
+# Start drush serve to serve Drupal.
+drush serve -q :8888 &
+
+DRUSH_SERVE_WAIT=0
+until nc -z 127.0.0.1 8888 || ((DRUSH_SERVE_WAIT > 19)); do sleep 1 && echo "Waited $DRUSH_SERVE_WAIT seconds for drush serve."; done
+echo "Drupal server operational."
+
+export SIMPLETEST_BASE_URL=http://127.0.0.1:8888
+# Run Drupal unit tests for custom modules
+if [[ -d web/modules/custom ]]; then vendor/bin/phpunit web/modules/custom || exit 1; fi
+
+# Run unit tests in locally modified modules.
+if [[ -d packages/drupal ]]; then vendor/bin/phpunit packages/drupal || exit 1; fi
+
+export CYPRESS_BASE_URL=http://localhost:8888
+
+if [[ $1 ]]; then
+  vendor/bin/drush cypress:run "integration/$1/**/*.feature" || exit 1;
+else
+  vendor/bin/drush cypress:run || exit 1;
+fi
+
+
+echo "====================="
+echo "All tests successful!"
+echo "====================="
