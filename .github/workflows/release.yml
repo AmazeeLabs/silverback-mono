@@ -28,13 +28,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Cache node modules
+      - name: Cache dependencies
         uses: actions/cache@v2
         env:
-          cache-name: cache-node-modules
+          cache-name: cache-dependencies
         with:
-          path: node_modules
-          key: npm-${{ hashFiles('yarn.lock') }}
+          path: |
+            node_modules
+            **/vendor
+          key: npm-${{ hashFiles('yarn.lock', '**/composer.json', '**/composer.lock') }}
 
       - name: Create .npmrc
         run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
