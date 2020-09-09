@@ -5,7 +5,7 @@
 beforeEach(() => {
   cy.drupalInstall({
     profile: 'minimal',
-    config: '../vendor/amazeelabs/silverback/config',
-    cache: '../vendor/amazeelabs/silverback/install-cache.zip'
+    config: '../vendor/amazeelabs/silverback-cli/config',
+    cache: '../vendor/amazeelabs/silverback-cli/install-cache.zip'
   });
 });

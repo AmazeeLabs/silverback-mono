@@ -87,7 +87,7 @@ class Init extends SilverbackCommand {
     ];
 
     $finder = new Finder();
-    $finder->files()->in($this->rootDirectory . '/vendor/amazeelabs/silverback/assets');
+    $finder->files()->in($this->rootDirectory . '/vendor/amazeelabs/silverback-cli/assets');
     $finder->ignoreDotFiles(FALSE);
 
     foreach ($finder as $file) {

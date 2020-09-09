@@ -7,7 +7,7 @@ parameters:
   graphql.config:
     development: true
   cypress.test_suites:
-    silverback: '../vendor/amazeelabs/silverback/cypress'
+    silverback: '../vendor/amazeelabs/silverback-cli/cypress'
 
 services:
   cache.backend.null:

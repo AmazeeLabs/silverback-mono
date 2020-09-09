@@ -6,6 +6,6 @@ parameters:
   # Relative to the Drupal root directory.
   cypress.test_suites:
     project: '../cypress'
-    silverback: '../vendor/amazeelabs/silverback/cypress'
+    silverback: '../vendor/amazeelabs/silverback-cli/cypress'
   # The drush executable to use when executing drush in test sites.
   cypress.executable.drush: '../vendor/bin/drush'

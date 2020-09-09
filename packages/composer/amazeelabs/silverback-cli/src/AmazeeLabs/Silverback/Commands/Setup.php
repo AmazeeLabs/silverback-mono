@@ -44,11 +44,11 @@ class Setup extends SilverbackCommand {
       if ($input->getOption('force')) {
         $this->fileSystem->remove('config/sync');
       }
-      $this->copyDir('vendor/amazeelabs/silverback/profiles/' . $profile, 'config/sync');
+      $this->copyDir('vendor/amazeelabs/silverback-cli/profiles/' . $profile, 'config/sync');
     }
 
     if (!$this->fileSystem->exists('config/sync/core.extension.yml')) {
-      $this->copyDir('vendor/amazeelabs/silverback/config', 'config/sync');
+      $this->copyDir('vendor/amazeelabs/silverback-cli/config', 'config/sync');
     }
 
     $this->cleanDir('web/sites/' . $siteDir . '/files');
