@@ -77,11 +77,13 @@ class SilverbackCommand extends Command {
   }
 
   protected function cleanDir($source) {
-    $finder = new Finder();
-    $finder->files()->in($source);
-    $finder->ignoreDotFiles(FALSE);
-    foreach ($finder as $file) {
-      $this->fileSystem->remove($file->getPathname());
+    if ($this->fileSystem->exists($source)) {
+      $finder = new Finder();
+      $finder->files()->in($source);
+      $finder->ignoreDotFiles(FALSE);
+      foreach ($finder as $file) {
+        $this->fileSystem->remove($file->getPathname());
+      }
     }
   }
 
