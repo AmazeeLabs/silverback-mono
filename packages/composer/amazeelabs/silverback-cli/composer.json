@@ -1,28 +1,12 @@
 {
-    "name": "amazeelabs/silverback",
+    "name": "amazeelabs/silverback-cli",
     "description": "Scaffolder for Amazee Silverback projects.",
     "type": "package",
     "license": "GPL-2.0-or-later",
-    "authors": [
-        {
-            "name": "Philipp Melab<philipp.melab@gmail.com>",
-            "role": "Master of desaster"
-        }
-    ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/amazeelabs/cypress"
-        }
-    ],
     "require": {
-        "composer/installers": "^1.9",
-        "drupal/core-composer-scaffold": "^9",
-        "drupal/core-recommended": "^9",
         "ext-zip": "*",
         "alchemy/zippy": "dev-master",
         "cweagans/composer-patches": "^1.6.5",
-        "drupal/admin_toolbar": "^2.0",
         "drush/drush": "^9.7.1 | ^10.0.0",
         "vlucas/phpdotenv": "^4.0",
         "wikimedia/composer-merge-plugin": "^1.4"
