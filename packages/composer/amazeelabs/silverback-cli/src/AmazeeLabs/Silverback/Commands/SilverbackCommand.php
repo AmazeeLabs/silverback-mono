@@ -89,8 +89,8 @@ class SilverbackCommand extends Command {
 
   protected function getConfigDirectory() {
     $configDir = 'config/sync';
-    if (!$this->fileSystem->exists('config/sync/core.extension.yml')) {
-      $this->copyDir('vendor/amazeelabs/silverback-cli/config', 'config/sync');
+    if (!$this->fileSystem->exists('config/sync')) {
+      $this->fileSystem->mkdir('config/sync');
     }
     return $configDir;
   }

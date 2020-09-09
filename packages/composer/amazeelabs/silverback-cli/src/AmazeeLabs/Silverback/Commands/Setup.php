@@ -17,7 +17,7 @@ class Setup extends SilverbackCommand {
     $this->addOption('backup', 'b', InputOption::VALUE_NONE, 'Create a backup of the current site.');
     $this->addOption('force', 'f', InputOption::VALUE_NONE, 'Force installation.');
     $this->addOption('cypress', 'c', InputOption::VALUE_NONE, 'Use cypress subdir.');
-    $this->addOption('profile', 'p', InputOption::VALUE_OPTIONAL, 'Use profile config directory.');
+    $this->addOption('profile', 'p', InputOption::VALUE_REQUIRED, 'Use profile config directory.', 'minimal');
   }
 
   protected function execute(InputInterface $input, OutputInterface $output) {
@@ -40,23 +40,14 @@ class Setup extends SilverbackCommand {
       $this->copyDir('web/sites/' . $siteDir . '/files', $this->cacheDir . '/backup');
     }
 
-    if ($profile = $input->getOption('profile')) {
-      if ($input->getOption('force')) {
-        $this->fileSystem->remove('config/sync');
-      }
-      $this->copyDir('vendor/amazeelabs/silverback-cli/profiles/' . $profile, 'config/sync');
-    }
-
-    if (!$this->fileSystem->exists('config/sync/core.extension.yml')) {
-      $this->copyDir('vendor/amazeelabs/silverback-cli/config', 'config/sync');
-    }
-
     $this->cleanDir('web/sites/' . $siteDir . '/files');
 
     // Remove the installation cache if a forced reinstall is requested.
     if ($this->fileSystem->exists('install-cache.zip') && $input->getOption('force')) {
       $this->fileSystem->remove('install-cache.zip');
     }
+
+    $configExists = $this->fileSystem->exists('config/sync/core.extension.yml') && !$input->getOption('force');
 
     if (!$this->fileSystem->exists($this->cacheDir . '/' . $hash) || $input->getOption('force')) {
       $zippy = Zippy::load();
@@ -68,18 +59,29 @@ class Setup extends SilverbackCommand {
           $baseCommand[] = '--uri=http://localhost:8889';
         }
         $this->executeProcess(array_merge($baseCommand, ['updb', '-y', '--cache-clear=0']), $output);
-        $this->executeProcess(array_merge($baseCommand, ['cim', '-y']), $output);
+        if ($configExists) {
+          $this->executeProcess(['./vendor/bin/drush', 'cim', '-y'], $output);
+        }
+        else {
+          $this->executeProcess(['./vendor/bin/drush', 'cex', '-y'], $output);
+        }
         $this->executeProcess(array_merge($baseCommand, ['cr']), $output);
       }
       else {
-        $this->executeProcess([
-          './vendor/bin/drush', 'si', '-y', 'minimal',
+        $this->executeProcess(array_filter([
+          './vendor/bin/drush', 'si', '-y', $input->getOption('profile'),
           '--sites-subdir', $siteDir,
-          '--existing-config',
+          $configExists ?? '--existing-config',
           '--account-name', getenv('SB_ADMIN_USER'),
           '--account-pass', getenv('SB_ADMIN_PASS'),
-        ], $output);
-        $this->executeProcess(['./vendor/bin/drush', 'cim', '-y'], $output);
+        ]), $output);
+
+        if ($configExists) {
+          $this->executeProcess(['./vendor/bin/drush', 'cim', '-y'], $output);
+        }
+        else {
+          $this->executeProcess(['./vendor/bin/drush', 'cex', '-y'], $output);
+        }
 
         $zippy->create('install-cache.zip', [
           'folder' => 'web/sites/' . $siteDir . '/files',
