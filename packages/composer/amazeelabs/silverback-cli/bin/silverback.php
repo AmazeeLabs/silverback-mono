@@ -4,8 +4,11 @@
  * @file
  */
 
-use AmazeeLabs\Silverback\SilverbackCli;
+$currentDir = getcwd();
+while (!file_exists($currentDir . '/vendor/autoload.php')) {
+  $currentDir .= '/..';
+}
 
-require __DIR__ . '/../../../../vendor/autoload.php';
+require $currentDir . '/vendor/autoload.php';
 
-(new SilverbackCli())->run();
+(new AmazeeLabs\Silverback\SilverbackCli())->run();
