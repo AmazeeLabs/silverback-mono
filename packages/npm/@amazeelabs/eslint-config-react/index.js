@@ -1,6 +1,6 @@
 module.exports = {
   extends: [
-    "@silverback/eslint-config",
+    "@amazeelabs/eslint-config",
     "plugin:react/recommended",
   ],
   settings: {
