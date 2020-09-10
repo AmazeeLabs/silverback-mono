@@ -1,19 +1,7 @@
-module.exports = {
-  siteMetadata: {
-    title: 'Silverback Website',
-    description: 'Silverback website and documentation',
-    author: '@amazeelabs',
-  },
-  plugins: [
-    'gatsby-plugin-typescript',
-    'gatsby-plugin-typescript-checker',
-    'gatsby-plugin-react-helmet',
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        name: 'images',
-        path: `${__dirname}/src/images`,
-      },
-    },
-  ],
-}
+// We register the TypeScript evaluator in gatsby-config so we don't need to do
+// it in any other .js file. It automatically reads TypeScript config from
+// tsconfig.json.
+require('ts-node').register();
+
+// Use a TypeScript version of gatsby-config.js.
+module.exports = require('./gatsby-config.ts');
