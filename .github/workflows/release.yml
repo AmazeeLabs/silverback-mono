@@ -47,16 +47,16 @@ jobs:
       - name: Bootstrap Lerna
         run: yarn lerna bootstrap
 
-      - name: Build verdaccio-git
-        run: yarn prepublishOnly
-        working-directory: packages/npm/verdaccio-git
-
-      - name: Run verdaccio-git integration test
-        run: ./test
-        working-directory: packages/npm/verdaccio-git
+      # - name: Run verdaccio-git integration test
+      #   run: ./test
+      #   working-directory: packages/npm/verdaccio-git
 
       - name: Run tests
         run: yarn test
+
+      - name: Build verdaccio-git
+        run: yarn prepublishOnly
+        working-directory: packages/npm/verdaccio-git
 
       - name: Start verdaccio
         run: yarn git-registry &

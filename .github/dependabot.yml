@@ -30,7 +30,7 @@ updates:
     versioning-strategy: increase
     schedule:
       interval: "daily"
-  - package-ecosystem: "php:composer"
+  - package-ecosystem: "composer"
     directory: "/packages/composer/amazeelabs/silverback-cli"
     versioning-strategy: increase
     schedule:
