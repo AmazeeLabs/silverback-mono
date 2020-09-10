@@ -6,7 +6,7 @@
     "require": {
         "ext-zip": "*",
         "alchemy/zippy": "dev-master",
-        "cweagans/composer-patches": "^1.6.5",
+        "cweagans/composer-patches": "^1.6.7",
         "drush/drush": "^9.7.1 | ^10.0.0",
         "vlucas/phpdotenv": "^5.1",
         "wikimedia/composer-merge-plugin": "^1.4"
