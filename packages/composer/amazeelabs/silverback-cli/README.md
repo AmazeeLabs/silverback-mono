@@ -1,3 +1,4 @@
+> This project is maintained in the [silverback monorepo](https://github.com/AmazeeLabs/silverback-mono)
 # Amazee Silverback
 
 `amazee/silverback-cli` is a composer package adding tooling and configuration scaffolding to Amazee Drupal projects. It aims to improve product quality and reduce maintenance costs by encouraging three simple principles:
