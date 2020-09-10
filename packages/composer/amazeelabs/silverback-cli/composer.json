@@ -8,7 +8,7 @@
         "alchemy/zippy": "dev-master",
         "cweagans/composer-patches": "^1.6.5",
         "drush/drush": "^9.7.1 | ^10.0.0",
-        "vlucas/phpdotenv": "^4.0",
+        "vlucas/phpdotenv": "^5.1",
         "wikimedia/composer-merge-plugin": "^1.4"
     },
     "bin": [ "bin/silverback", "bin/silverback-dev", "bin/silverback-test" ],
