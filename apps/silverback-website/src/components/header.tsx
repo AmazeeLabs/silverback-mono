@@ -1,5 +1,5 @@
-import { Link } from "gatsby"
-import React from "react"
+import { Link } from 'gatsby';
+import React from 'react';
 
 type HeaderProps = {
   siteTitle: string;
@@ -8,11 +8,9 @@ type HeaderProps = {
 const Header: React.FC<HeaderProps> = ({ siteTitle }) => (
   <header>
     <h1>
-      <Link to="/">
-        {siteTitle}
-      </Link>
+      <Link to="/">{siteTitle}</Link>
     </h1>
   </header>
-)
+);
 
-export default Header
+export default Header;

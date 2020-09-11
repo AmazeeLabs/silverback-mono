@@ -1,8 +1,8 @@
-import React from "react"
-import {PageProps} from "gatsby"
+import React from 'react';
+import { PageProps } from 'gatsby';
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from '../components/layout';
+import SEO from '../components/seo';
 
 const IndexPage: React.FC<PageProps> = () => (
   <Layout>
@@ -11,6 +11,6 @@ const IndexPage: React.FC<PageProps> = () => (
     <p>Welcome to your new Gatsby site.</p>
     <p>Now go build something great.</p>
   </Layout>
-)
+);
 
-export default IndexPage
+export default IndexPage;
