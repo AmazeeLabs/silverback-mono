@@ -1,0 +1,90 @@
+parameters:
+  # Never enable this outside of testing.services.yml
+  cypress.enabled: false
+  cypress.test_suites: []
+  cypress.executable.node: 'node'
+  cypress.executable.npm: 'npm'
+  cypress.executable.drush: 'drush'
+
+services:
+  # Remove error headers since they might break cypress.
+  cypress.event_subscriber.remove_error_headers:
+    class: Drupal\cypress\EventSubscriber\RemoveErrorHeadersSubscriber
+    tags:
+      - { name: 'event_subscriber' }
+
+  # Directory parameters
+  cypress.root.factory:
+    class: Drupal\cypress\CypressRootFactory
+    arguments: ['@app.root']
+    public: false
+  cypress.root:
+    class: SplString
+    factory: cypress.root.factory:getDirectory
+    tags:
+      - { name: parameter_service }
+
+  cypress.test_directories.factory:
+    class: Drupal\cypress\CypressTestDirectoriesFactory
+    arguments:
+      - '@app.root'
+      - '@module_handler'
+      - '%cypress.test_suites%'
+      - '@site.path'
+    public: false
+  cypress.test_directories:
+    class: ArrayObject
+    factory: cypress.test_directories.factory:getDirectories
+    tags:
+      - { name: parameter_service }
+
+  cypress.process_manager:
+    class: Drupal\cypress\TtyProcessManager
+
+  cypress.npm_project_manager:
+    class: Drupal\cypress\NpmProjectManager
+    arguments:
+      - '@cypress.process_manager'
+      - '@cypress.root'
+      - '%cypress.executable.npm%'
+
+  cypress.runtime:
+    class: Drupal\cypress\CypressRuntime
+    arguments:
+      - '@cypress.root'
+      - '@cypress.npm_project_manager'
+
+  cypress:
+    class: Drupal\cypress\Cypress
+    arguments:
+      - '@cypress.process_manager'
+      - '@cypress.npm_project_manager'
+      - '@cypress.runtime'
+      - '@app.root'
+      - '@cypress.root'
+      - '@cypress.root'
+      - '@cypress.test_directories'
+      - '%cypress.executable.drush%'
+
+  # Header based sessions
+  cypress.event_subsriber:
+    class: Drupal\cypress\EventSubscriber
+    arguments: ['@session']
+    tags:
+      - { name: 'event_subscriber' }
+  cypress.negotiator.development:
+    class: Drupal\cypress\Negotiator\CypressWorkspaceNegotiator
+    arguments: ['@entity_type.manager', '@session']
+    tags:
+      - { name: workspace_negotiator, priority: 9999 }
+  cypress.authentication.development:
+    class: Drupal\cypress\Authentication\Provider\CypressAuthenticationProvider
+    arguments: ['@entity_type.manager', '@session']
+    tags:
+      - { name: authentication_provider, provider_id: 'cypress', priority: 999 }
+
+  cypress.config_factory_override:
+    class: Drupal\cypress\ConfigOverrides
+    arguments: ['@config.storage', '@?plugin.manager.language_negotiation_method']
+    tags:
+      - { name: config.factory.override, priority: -253 }
