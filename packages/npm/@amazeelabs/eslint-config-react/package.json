@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/eslint-config-react",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "ESLint configuration for silverback react projects.",
   "main": "index.js",
   "author": "Philipp Melab",
