@@ -1,6 +1,6 @@
+import { QuestionInteraction } from '../index';
 import { Actor } from './actor';
 import { TaskInteraction } from './task';
-import { QuestionInteraction } from '../index';
 
 /**
  * Cypress ability base class.
