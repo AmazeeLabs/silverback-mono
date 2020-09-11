@@ -62,7 +62,8 @@
   },
   "scripts": {
     "prepublishOnly": "tsc",
-    "test": "jest --coverage",
+    "pretest": "tsc",
+    "test": "jest --coverage && ./test",
     "lint": "eslint '*/**.ts'",
     "formatting": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\""
   }

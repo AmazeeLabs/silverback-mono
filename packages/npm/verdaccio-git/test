@@ -6,27 +6,54 @@ git config --global user.name "Your Name"
 
 BASEDIR="$( cd "$(dirname "$0")" > /dev/null 2>&1 ; pwd -P )"
 
-# Exit trap that will clean up everything
-function finish {
-  echo "Cleaning up"
-  pkill -P $$
+function _cleanup {
   cd "$BASEDIR"
-  rm -rf .test
+  set +e
+  GIT_DAEMON_PID="$(lsof -t -i:9418)"
+  VERDACCIO_DAEMON_PID="$(lsof -t -i:4873)"
+  set -e
+  if [ -n "$GIT_DAEMON_PID" ]; then
+    echo "Killing git daemon $GIT_DAEMON_PID"
+    kill "$GIT_DAEMON_PID" || true
+  fi
+  if [ -n "$VERDACCIO_DAEMON_PID" ]; then
+    echo "Killing verdaccio daemon $VERDACCIO_DAEMON_PID"
+    kill "$VERDACCIO_DAEMON_PID" || true
+  fi
+  if [ -d .test ]; then
+    rm -rf .test
+  fi
 }
-trap finish EXIT
 
-rm -rf .test
+_cleanup
+
 mkdir .test
 mkdir .test/packages
 mkdir .test/remote
 
 git init --bare .test/remote/test.git
 
+function retry {
+  local n=1
+  local max=5
+  local delay=1
+  while true; do
+    "$@" && break || {
+      if [[ $n -lt $max ]]; then
+        ((n++))
+        sleep $delay;
+      else
+        _cleanup
+        exit 1
+      fi
+    }
+  done
+}
+
 echo "starting local git daemon"
 git daemon --verbose --export-all --base-path="$BASEDIR/.test/remote" --reuseaddr --enable=receive-pack &
+retry nc -z 127.0.0.1 9418
 echo "git daemon operational"
-
-sleep 1
 
 git clone git://127.0.0.1:9418/test.git .test/packages/test
 cd "$BASEDIR/.test/packages/test"
@@ -44,15 +71,11 @@ cd "$BASEDIR"
 rm -rf .test/packages/test
 
 cd "$BASEDIR"
-if ! (curl --output /dev/null --silent --head --fail http://localhost:4873); then
-  echo "starting local verdaccio host"
-  yarn verdaccio -c config.yml &
-  echo "waiting for verdaccio to respond"
-  until curl --output /dev/null --silent --head --fail http://localhost:4873; do
-   sleep 1
-  done
-fi
-echo "verdaccio host operational"
+
+yarn verdaccio -c config.yml &
+
+retry curl --silent --head http://localhost:4873
+echo "Verdaccio operational"
 
 echo "Cloning module"
 cd "$BASEDIR/.test/packages"
@@ -67,8 +90,8 @@ else
  exit 1
 fi
 
-echo "Bumping module version"
 
+echo "Bumping module version"
 npm version patch
 if [ "$(jq -r .version < package.json)" == '1.0.1' ]; then
  echo "Bumped module version correct."
@@ -88,7 +111,7 @@ npm publish --registry http://127.0.0.1:4873
 
 echo "Cloning module"
 cd "$BASEDIR/.test/packages"
-git clone git://127.0.0.1:9418/test.git foo > /dev/null
+git clone git://127.0.0.1:9418/test.git foo
 cd foo
 
 if [ "$(jq -r .version < package.json)" == '1.0.1' ]; then
@@ -137,3 +160,5 @@ echo "============================================================"
 echo "All good!"
 echo "============================================================"
 
+_cleanup
+exit 0
