@@ -9,10 +9,7 @@
   ],
   "scripts": {
     "commit": "yarn git-cz",
-    "typecheck": "yarn lerna run typecheck --since",
-    "lint": "yarn lerna run lint --since",
-    "formatting": "yarn lerna run formatting --since",
-    "test": "yarn typecheck && yarn lint && yarn formatting && yarn lerna run test --since",
+    "test": "yarn lerna run test --since",
     "git-registry": "yarn verdaccio -c config.yml"
   },
   "devDependencies": {
