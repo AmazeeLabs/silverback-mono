@@ -1,12 +1,13 @@
-import {
-  Actor,
-  Task,
-  UnsupportedTaskError,
-  TaskInteraction,
-  QuestionInteraction,
-} from '../index';
 import { expect } from 'chai';
 import { stub } from 'sinon';
+
+import {
+  Actor,
+  QuestionInteraction,
+  Task,
+  TaskInteraction,
+  UnsupportedTaskError,
+} from '../index';
 
 class WorthlessAbility {}
 
