@@ -1,4 +1,4 @@
-import fs, { readJSONSync, outputJSONSync } from 'fs-extra';
+import fs, { outputJSONSync, readJSONSync } from 'fs-extra';
 
 /**
  * Align composer and npm information.

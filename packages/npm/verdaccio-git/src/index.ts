@@ -1,10 +1,10 @@
-import path from 'path';
-import git from 'simple-git';
-import { IPackageStorage, Config, IUploadTarball } from '@verdaccio/types';
 import LocalDataBase from '@verdaccio/local-storage';
 import LocalFS from '@verdaccio/local-storage/lib/local-fs';
+import { Config, IPackageStorage, IUploadTarball } from '@verdaccio/types';
+import path from 'path';
+import git from 'simple-git';
 
-import { pushToGit, proxyTarball } from './package';
+import { proxyTarball, pushToGit } from './package';
 
 /**
  * GitPackageStorage
