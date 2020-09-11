@@ -20,10 +20,15 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: "module",
   },
-  plugins: ["@typescript-eslint", "promise", "deprecate"],
+  plugins: ["@typescript-eslint", "promise", "deprecate", "simple-import-sort", "import"],
   rules: {
     "no-unused-vars": ["off"],
     "@typescript-eslint/no-unused-vars-experimental": ["error"],
     "deprecate/import": ["error"],
+    "simple-import-sort/sort": "error",
+    "sort-imports": "off",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error"
   },
 };
