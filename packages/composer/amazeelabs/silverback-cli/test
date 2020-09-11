@@ -3,22 +3,26 @@ set -e
 
 BASEDIR="$( cd "$(dirname "$0")" > /dev/null 2>&1 ; pwd -P )"
 TMP=$(mktemp -d)
-
-# Exit trap that will clean up everything
-function finish {
-  echo "Cleaning up"
+function _cleanup {
+  cd "$BASEDIR"
   set +e
-  kill $(lsof -t -i:8888)
-  rm -rf $TMP
+  DRUSH_DAEMON_PID="$(lsof -t -i:8888)"
+  set -e
+  if [ -n "$DRUSH_DAEMON_PID" ]; then
+    echo "Killing drush daemon $DRUSH_DAEMON_PID"
+    kill "$DRUSH_DAEMON_PID" || true
+  fi
+  if [ -d "$TMP" ]; then
+    rm -rf "$TMP"
+  fi
 }
-trap finish EXIT
 
-cd $BASEDIR
+cd "$BASEDIR"
 
-rm -rf $TMP
 
-composer create-project drupal/recommended-project $TMP --no-interaction
-cd $TMP
+_cleanup
+composer create-project drupal/recommended-project "$TMP" --no-interaction
+cd "$TMP"
 
 php -r "\$json = json_decode(file_get_contents('composer.json'), TRUE); \$json['repositories'][] = ['type' => 'path', 'url' => '$BASEDIR/../../*/*' ]; file_put_contents('composer.json', json_encode(\$json, JSON_PRETTY_PRINT));"
 
@@ -30,9 +34,23 @@ source .envrc
 ./vendor/bin/drush status
 ./vendor/bin/drush serve &
 
-if curl --output /dev/null --silent --head --fail --retry 5 retry-delay 1 --retry-max-time 10 http://localhost:8888; then
-  echo "Setup successful."
-else
-  echo "Setup failed"
-  exit 1
-fi
+function retry {
+  local n=1
+  local max=5
+  local delay=1
+  while true; do
+    "$@" && break || {
+      if [[ $n -lt $max ]]; then
+        ((n++))
+        sleep $delay;
+      else
+        echo "Setup failed."
+        _cleanup
+        exit 1
+      fi
+    }
+  done
+}
+
+retry curl --silent --head http://localhost:8888
+_cleanup
