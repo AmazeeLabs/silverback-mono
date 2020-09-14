@@ -15,8 +15,8 @@ dotenvConfig({
 });
 
 export const siteMetadata = {
-  title: 'Silverback Website',
-  description: 'Silverback website and documentation',
+  title: 'Gatsby Starter',
+  description: 'Gatsby starter for Amazee Labs projects',
   author: '@amazeelabs',
 };
 

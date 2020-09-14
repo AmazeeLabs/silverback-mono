@@ -13,8 +13,8 @@
     "git-registry": "yarn verdaccio -c config.yml"
   },
   "devDependencies": {
-    "@commitlint/cli": "^9.1.1",
-    "@commitlint/config-conventional": "^9.1.1",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "commitizen": "^4.1.2",
     "husky": "^4.3.0",
     "lerna": "^3.22.1",

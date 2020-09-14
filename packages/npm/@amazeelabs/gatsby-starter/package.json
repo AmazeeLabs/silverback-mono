@@ -1,8 +1,8 @@
 {
-  "name": "silverback-website",
+  "name": "gatsby-starter",
   "private": true,
-  "description": "Silverback website",
-  "version": "0.3.0",
+  "description": "Gatsby starter for Amazee Labs projects",
+  "version": "0.2.0",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
     "dotenv": "^8.2.0",

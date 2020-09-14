@@ -1,6 +1,6 @@
 {
   "name": "verdaccio-git",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Publish packages to git repositories.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -11,7 +11,7 @@
     "node": ">=10"
   },
   "dependencies": {
-    "@types/node": "^14.10.0",
+    "@types/node": "^14.10.1",
     "@verdaccio/commons-api": "^9.7.1",
     "@verdaccio/local-storage": "^9.7.2",
     "@verdaccio/streams": "^9.7.2",
@@ -29,11 +29,11 @@
     "@types/fs-extra": "^9.0.1",
     "@types/jest": "^26.0.13",
     "@types/mock-fs": "^4.10.0",
-    "@types/node": "^14.10.0",
+    "@types/node": "^14.10.1",
     "@types/tar": "^4.0.3",
     "@typescript-eslint/eslint-plugin": "^4.1.0",
     "@verdaccio/types": "^9.7.2",
-    "eslint": "^7.8.1",
+    "eslint": "^7.9.0",
     "jest": "^26.4.2",
     "mock-fs": "^4.13.0",
     "prettier": "^2.1.1",
