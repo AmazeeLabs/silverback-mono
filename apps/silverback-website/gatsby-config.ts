@@ -30,5 +30,5 @@ export const plugins = [
       path: './src/images',
     },
   },
-  'gatsby-plugin-postcss',
+  '@amazeelabs/gatsby-amazee-theme',
 ];
