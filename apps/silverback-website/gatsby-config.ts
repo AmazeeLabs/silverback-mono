@@ -8,12 +8,6 @@ import { config as dotenvConfig } from 'dotenv';
 
 dotenvConfig({ path: `.env` });
 
-// Read in additional environment variables based on the `CURRENT_APP_ENV`
-// environment variable.
-dotenvConfig({
-  path: `.environments/${process.env.CURRENT_APP_ENV || 'local'}.env`,
-});
-
 export const siteMetadata = {
   title: 'Silverback Website',
   description: 'Silverback website and documentation',
