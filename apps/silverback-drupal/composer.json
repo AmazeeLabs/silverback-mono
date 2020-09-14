@@ -24,7 +24,8 @@
         "drupal/core-composer-scaffold": "^9",
         "drupal/core-dev": "^9.0",
         "drupal/core-project-message": "^9",
-        "drupal/core-recommended": "^9"
+        "drupal/core-recommended": "^9",
+        "drupal/cypress": "@dev"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -73,7 +74,7 @@
             ],
             "post-create-project-cmd-message": [
                 "<bg=blue;fg=white>                                                         </>",
-                "<bg=blue;fg=white>  Congratulations, you\u2019ve installed the Drupal codebase  </>",
+                "<bg=blue;fg=white>  Congratulations, you’ve installed the Drupal codebase  </>",
                 "<bg=blue;fg=white>  from the drupal/recommended-project template!          </>",
                 "<bg=blue;fg=white>                                                         </>",
                 "",

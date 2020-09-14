@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "60106278e8eeb3fa5163e4ffff16de34",
+    "content-hash": "ab4120848f2d44565ca5e5fd1d60528b",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2336,10 +2336,10 @@
                     }
                 },
                 "patches_applied": {
+                    "Language negotiation weight": "https://www.drupal.org/files/issues/2018-10-17/3007386-language-negotiator-weight-2.patch",
                     "#2718657 - Drupal\\language\\LanguageNegotiator::updateConfiguration() is passed a NULL": "https://www.drupal.org/files/issues/2019-02-28/language-2718657-17.patch",
                     "#2867707 Conflict API": "https://www.drupal.org/files/issues/2019-06-24/2867707-33.drupal.WI-Phase-H-Conflict-management-and-local-workspace-merging-support.patch",
-                    "#3045177 workspace specific latest revision": "https://www.drupal.org/files/issues/2019-04-08/3045177-10.patch",
-                    "Language negotiation weight": "https://www.drupal.org/files/issues/2018-10-17/3007386-language-negotiator-weight-2.patch"
+                    "#3045177 workspace specific latest revision": "https://www.drupal.org/files/issues/2019-04-08/3045177-10.patch"
                 }
             },
             "autoload": {
@@ -2594,6 +2594,43 @@
             ],
             "description": "Locked core dependencies; require this project INSTEAD OF drupal/core.",
             "time": "2020-09-03T21:05:44+00:00"
+        },
+        {
+            "name": "drupal/cypress",
+            "version": "dev-drupal-cypress",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/composer/drupal/cypress",
+                "reference": "1b433b84299d7d28f7efe8460b6b1d70c42a8d85"
+            },
+            "require": {
+                "alchemy/zippy": "dev-master",
+                "drush/drush": "^10.0.0",
+                "ext-json": "*"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "^1.6"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "patches": {
+                    "drupal/core": {
+                        "Language negotiation weight": "https://www.drupal.org/files/issues/2018-10-17/3007386-language-negotiator-weight-2.patch"
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^10"
+                    }
+                }
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Cypress E2E testing helpers",
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "drush/drush",
@@ -9115,7 +9152,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "amazeelabs/silverback-cli": 20
+        "amazeelabs/silverback-cli": 20,
+        "drupal/cypress": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
