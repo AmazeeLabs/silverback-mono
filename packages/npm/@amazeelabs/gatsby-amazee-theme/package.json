@@ -4,39 +4,28 @@
   "description": "Gatsby parent theme for Amazee Labs projects.",
   "version": "0.1.0",
   "author": "Amazee Labs <developers@amazeelabs.com>",
+  "main": "index.js",
   "dependencies": {
-    "gatsby": "^2.24.54",
+    "autoprefixer": "^9.8.6",
     "gatsby-plugin-postcss": "^2.3.11",
-    "gatsby-plugin-typescript": "^2.4.19",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "tailwindcss": "^1.8.7"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config-react": "^1.0.6",
     "@amazeelabs/prettier-config": "^1.0.3",
     "@types/node": "^14.10.1",
     "@types/react-helmet": "^6.1.0",
-    "autoprefixer": "^9.8.6",
     "eslint": "^7.9.0",
     "prettier": "2.1.1",
-    "tailwindcss": "^1.8.7",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.2"
   },
-  "license": "MIT",
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "format:fix": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
-    "lint:fix": "eslint --fix \"**/*.{js,jsx,ts,tsx}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "pretest": "yarn lint && yarn format",
-    "test": "echo \"Add tests\""
+  "peerDependencies": {
+    "gatsby": "^2.24.54",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   },
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/AmazeeLabs/silverback-mono"
