@@ -44,3 +44,5 @@ docker-compose.override.yml
 # Ignore Drupal console
 /console/
 
+# Ignore phpunit result cache
+.phpunit.result.cache
