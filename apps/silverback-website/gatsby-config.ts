@@ -30,4 +30,5 @@ export const plugins = [
       path: './src/images',
     },
   },
+  'gatsby-plugin-postcss'
 ];
