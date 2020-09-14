@@ -22,7 +22,8 @@
         "composer/installers": "^1.9",
         "drupal/core-composer-scaffold": "^9",
         "drupal/core-project-message": "^9",
-        "drupal/core-recommended": "^9"
+        "drupal/core-recommended": "^9",
+        "amazeelabs/silverback-cli": "@dev"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -71,7 +72,7 @@
             ],
             "post-create-project-cmd-message": [
                 "<bg=blue;fg=white>                                                         </>",
-                "<bg=blue;fg=white>  Congratulations, you’ve installed the Drupal codebase  </>",
+                "<bg=blue;fg=white>  Congratulations, you\u2019ve installed the Drupal codebase  </>",
                 "<bg=blue;fg=white>  from the drupal/recommended-project template!          </>",
                 "<bg=blue;fg=white>                                                         </>",
                 "",
@@ -84,6 +85,20 @@
                 "  * Remove the plugin that prints this message:",
                 "      composer remove drupal/core-project-message"
             ]
+        },
+        "enable-patching": true,
+        "composer-exit-on-patch-failure": true,
+        "merge-plugin": {
+            "include": [
+                "packages/composer.json"
+            ],
+            "replace": true
         }
+    },
+    "scripts": {
+        "run-tests": [
+            "if [ -d web/modules/custom ]; then phpunit web/modules/custom; fi",
+            "yarn install && CYPRESS_TAGS=@COMPLETED cypress run"
+        ]
     }
 }
