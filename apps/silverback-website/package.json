@@ -9,7 +9,6 @@
     "gatsby": "^2.24.54",
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-typescript": "^2.4.19",
-    "gatsby-plugin-typescript-checker": "^1.1.1",
     "gatsby-source-filesystem": "^2.3.28",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -21,6 +20,7 @@
     "@types/node": "^14.10.1",
     "@types/react-helmet": "^6.1.0",
     "eslint": "^7.9.0",
+    "fork-ts-checker-webpack-plugin": "^5.1.0",
     "prettier": "2.1.1",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.2"
