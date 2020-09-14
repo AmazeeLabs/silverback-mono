@@ -1,5 +1,6 @@
 module.exports = ({ postCssPlugins = [], cssLoaderOptions = {} }) => ({
   plugins: [
+    'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-plugin-postcss`,
       options: {
