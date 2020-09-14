@@ -1,4 +1,4 @@
-// If you use Tailwind, this file and src/assets/styles/tailwind.css are the two
+// If you use Tailwind, this file and src/assets/tailwind.css are the two
 // files you will mostly be editing to set your design values.
 module.exports = {
   purge: ['./src/**/*.js', './src/**/*.jsx', './src/**/*.ts', './src/**/*.tsx'],
