@@ -8,7 +8,6 @@
     "@amazeelabs/gatsby-amazee-theme": "^0.1.0",
     "dotenv": "^8.2.0",
     "gatsby": "^2.24.60",
-    "gatsby-plugin-typescript": "^2.4.19",
     "gatsby-source-filesystem": "^2.3.28",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"

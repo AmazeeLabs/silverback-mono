@@ -15,7 +15,6 @@ export const siteMetadata = {
 };
 
 export const plugins = [
-  'gatsby-plugin-typescript',
   {
     resolve: 'gatsby-source-filesystem',
     options: {
