@@ -11,7 +11,7 @@
     "node": ">=10"
   },
   "dependencies": {
-    "@types/node": "^14.10.0",
+    "@types/node": "^14.10.1",
     "@verdaccio/commons-api": "^9.7.1",
     "@verdaccio/local-storage": "^9.7.2",
     "@verdaccio/streams": "^9.7.2",
@@ -29,7 +29,7 @@
     "@types/fs-extra": "^9.0.1",
     "@types/jest": "^26.0.13",
     "@types/mock-fs": "^4.10.0",
-    "@types/node": "^14.10.0",
+    "@types/node": "^14.10.1",
     "@types/tar": "^4.0.3",
     "@typescript-eslint/eslint-plugin": "^4.1.0",
     "@verdaccio/types": "^9.7.2",
