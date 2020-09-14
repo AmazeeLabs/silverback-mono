@@ -10,6 +10,10 @@
     },
     "repositories": [
         {
+            "type": "path",
+            "url": "../../packages/composer/*/*"
+        },
+        {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         }
