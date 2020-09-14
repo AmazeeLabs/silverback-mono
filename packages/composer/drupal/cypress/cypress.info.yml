@@ -1,4 +1,4 @@
-name: 'Cypress'
+name: "Cypress"
 type: module
-description: 'Helpers for E2E testing with Cypress.'
-core: 8.x
+description: "Helpers for E2E testing with Cypress."
+core_version_requirement: ^8 || ^9

@@ -52,6 +52,9 @@ class TestSiteInstallCommand extends CoreTestSiteInstallCommand {
    * ```
    */
   protected function getSetupClass($file) {
+    // Make sure "CypressTestSetup" is already added, else "getSetupClass" finds
+    // two new classes after including $file and gets confused.
+    require_once __DIR__ . '/CypressTestSetup.php';
     if (strpos($file, ':') !== FALSE) {
       list($suite, $path) = explode(':', $file);
       return parent::getSetupClass(
