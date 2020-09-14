@@ -2,7 +2,7 @@
   "name": "gatsby-starter",
   "private": true,
   "description": "Gatsby starter for Amazee Labs projects",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
     "dotenv": "^8.2.0",
