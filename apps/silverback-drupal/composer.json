@@ -19,11 +19,12 @@
         }
     ],
     "require": {
+        "amazeelabs/silverback-cli": "@dev",
         "composer/installers": "^1.9",
         "drupal/core-composer-scaffold": "^9",
+        "drupal/core-dev": "^9.0",
         "drupal/core-project-message": "^9",
-        "drupal/core-recommended": "^9",
-        "amazeelabs/silverback-cli": "@dev"
+        "drupal/core-recommended": "^9"
     },
     "conflict": {
         "drupal/drupal": "*"
