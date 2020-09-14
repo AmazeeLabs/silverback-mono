@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "commit": "yarn git-cz",
-    "test": "yarn lerna run test --since",
+    "test": "yarn lerna run test --since --stream --concurrency=1",
     "git-registry": "yarn verdaccio -c config.yml"
   },
   "devDependencies": {

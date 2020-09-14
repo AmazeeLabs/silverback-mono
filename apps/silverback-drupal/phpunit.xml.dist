@@ -2,8 +2,7 @@
 <phpunit bootstrap="web/core/tests/bootstrap.php" colors="true"
          beStrictAboutTestsThatDoNotTestAnything="true"
          beStrictAboutOutputDuringTests="true"
-         beStrictAboutChangesToGlobalState="true"
-         checkForUnintentionallyCoveredCode="false">
+         beStrictAboutChangesToGlobalState="true">
     <php>
         <env name="SIMPLETEST_DB" value="sqlite://localhost/sites/default/files/.sqlite"/>
     </php>
