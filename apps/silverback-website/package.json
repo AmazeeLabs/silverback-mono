@@ -2,7 +2,7 @@
   "name": "silverback-website",
   "private": true,
   "description": "Silverback website",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
     "dotenv": "^8.2.0",
