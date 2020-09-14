@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Cypress E2E testing for Drupal",
   "scripts": {
-    "test": "cd ../../../../apps/silverback-drupal && composer install && source .envrc && silverback-test cypress"
+    "test": "cd ../../../../apps/silverback-drupal && composer install && ./vendor/bin/silverback-test cypress"
   },
   "publishConfig": {
     "access": "public",
