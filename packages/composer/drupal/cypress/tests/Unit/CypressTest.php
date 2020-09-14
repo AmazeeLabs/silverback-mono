@@ -46,6 +46,7 @@ class CypressTest extends UnitTestCase {
     $cypressOptions = new CypressOptions($this->options);
 
     $npmProjectManager->ensureInitiated()->shouldBeCalledOnce();
+    $npmProjectManager->merge(realpath(__DIR__ . '/../../package.json'))->shouldBeCalledOnce();
 
     $cypressRuntime->initiate($cypressOptions)->shouldBeCalledOnce();
     $cypressRuntime->addSuite('a', '/app/tests/a')->shouldBeCalledOnce();

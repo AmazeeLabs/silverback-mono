@@ -19,6 +19,13 @@ class NpmProjectManager implements NpmProjectManagerInterface {
   protected $packageDirectory;
 
   /**
+   * The path to the Cypress module.
+   *
+   * @var string
+   */
+  protected $cypressModulePath;
+
+  /**
    * A process manager to invoke commands.
    *
    * @var \Drupal\cypress\ProcessManagerInterface

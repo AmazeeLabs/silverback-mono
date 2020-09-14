@@ -11,6 +11,13 @@
     "repository": "git@git.drupal.org:project/cypress.git",
     "branch": "8.x-1.x"
   },
+  "dependencies": {
+    "cypress": "^3.4.1",
+    "cypress-cucumber-preprocessor": "^1.17.0-beta",
+    "cypress-file-upload": "^3.3.4",
+    "cypress-shadow-dom": "^1.0.0",
+    "@testing-library/cypress": "^5.0.2"
+  },
   "author": "",
   "license": "ISC"
 }

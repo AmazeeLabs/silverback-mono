@@ -130,6 +130,8 @@ class Cypress implements CypressInterface {
       'drush' => $this->drushExecutable,
     ]);
     $this->cypressRuntime->initiate($cypressOptions);
+
+    $this->npmProjectManager->merge(realpath(__DIR__ . '/../package.json'));
     foreach ($this->testDirectories as $name => $path) {
       $this->cypressRuntime->addSuite($name, $path);
     }
