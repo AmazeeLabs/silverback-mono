@@ -2,6 +2,33 @@
 # yarn lockfile v1
 
 
+"@amazeelabs/eslint-config-react@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@amazeelabs/eslint-config-react/-/eslint-config-react-1.0.6.tgz#49be97b26e37258114074a8c392795e270a69885"
+  integrity sha512-Wwlk4wygIY6elgKkYoSqVTD/J/zFwkOOqSgv0g+QuBwQ/boHtXcc9Zt421HqRbr2eIo91G9XZH7yiRDRvMOpTg==
+  dependencies:
+    "@amazeelabs/eslint-config" "^1.1.0"
+    eslint-plugin-react "^7.20.6"
+    eslint-plugin-react-hooks "^4.1.0"
+
+"@amazeelabs/eslint-config@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@amazeelabs/eslint-config/-/eslint-config-1.1.0.tgz#956bd910e6c5f258da3d375c29a3ca09dd3f294b"
+  integrity sha512-nEouQR3+5/OvqZsL2lQHrnwDBcHCzDkJoP+elRfHBbz1muKmrm5fg0l73Xi5Ewms3uVrnrBz0oyB9ko6lhvR5A==
+  dependencies:
+    "@typescript-eslint/eslint-plugin" "^3.10.1"
+    "@typescript-eslint/parser" "^3.10.1"
+    eslint-config-prettier "^6.11.0"
+    eslint-plugin-deprecate "^0.7.0"
+    eslint-plugin-import "^2.22.0"
+    eslint-plugin-promise "^4.2.1"
+    eslint-plugin-simple-import-sort "^5.0.3"
+
+"@amazeelabs/prettier-config@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@amazeelabs/prettier-config/-/prettier-config-1.0.3.tgz#0159c9d99cfdfbf0d8db9a09371cfe0bd418e108"
+  integrity sha512-0qmig8kE1mUAqqNfQ0f06p5g84DAD54s49a4Nn+Pm0l1czTJ5D99PIJJyFVgjq6hvJGHJl9HLemoi9TK3xG3Fg==
+
 "@ardatan/aggregate-error@0.0.6":
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/@ardatan/aggregate-error/-/aggregate-error-0.0.6.tgz#fe6924771ea40fc98dc7a7045c2e872dc8527609"
@@ -8046,10 +8073,10 @@ eslint@^6.8.0:
     text-table "^0.2.0"
     v8-compile-cache "^2.0.3"
 
-eslint@^7.8.1:
-  version "7.8.1"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.8.1.tgz#e59de3573fb6a5be8ff526c791571646d124a8fa"
-  integrity sha512-/2rX2pfhyUG0y+A123d0ccXtMm7DV7sH1m3lk9nk2DZ2LReq39FXHueR9xZwshE5MdfSf0xunSaMWRqyIA6M1w==
+eslint@^7.9.0:
+  version "7.9.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.9.0.tgz#522aeccc5c3a19017cf0cb46ebfd660a79acf337"
+  integrity sha512-V6QyhX21+uXp4T+3nrNfI3hQNBDa/P8ga7LoQOenwrlEFXrEnUEE+ok1dMtaS3b6rmLXhT1TkTIsG75HMLbknA==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     "@eslint/eslintrc" "^0.1.3"
