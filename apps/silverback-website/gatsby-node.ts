@@ -17,7 +17,6 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({
     plugins: [
       // This webpack plugin runs type-checking and linting in parallel
       new ForkTsCheckerWebpackPlugin({
-        async: false,
         eslint: {
           enabled: true,
           files: '**/*.{js,jsx,ts,tsx}',
