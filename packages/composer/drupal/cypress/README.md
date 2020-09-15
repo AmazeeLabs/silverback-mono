@@ -17,7 +17,7 @@ It also includes some handy Cypress plugins out of the box:
 - An extension to test [Shadow DOM in web components].
 - And another one to [upload files] during tests.
 
-## Requirements and Installation
+## Installation
 
 Apart from standard system requirements, you will need [Composer] and [npm]
 available on your system first. From there, this is shortest path to get it up
