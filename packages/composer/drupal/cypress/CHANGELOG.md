@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@1.1.0...@-drupal/cypress@2.0.0) (2020-09-15)
+
+
+### Bug Fixes
+
+* **drupal/cypress:** tag new major version for drupal.org ([65e6958](https://github.com/AmazeeLabs/silverback-mono/commit/65e6958111e48f52cbabe98e9874af742e7aa175))
+
+
+### BREAKING CHANGES
+
+* **drupal/cypress:** increase the major version number
+
+
+
+
+
 # [1.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@1.0.4...@-drupal/cypress@1.1.0) (2020-09-15)
 
 
