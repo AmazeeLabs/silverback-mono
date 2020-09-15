@@ -95,6 +95,8 @@ export const pushToGit = async (
     );
 
     await git.clone(info.publishConfig.repository, `${path}/clone`);
+    await git.cwd(`${path}/clone`);
+    await git.checkout(info.publishConfig.branch);
 
     fs.copySync(`${path}/clone/.git`, `${path}/package/.git`);
 
@@ -107,7 +109,7 @@ export const pushToGit = async (
     await git.add(['./*']);
     await git.commit(`chore: release version ${info.version}`);
     await git.addTag(info.version);
-    await git.push('origin');
+    await git.push('origin', info.publishConfig.branch);
     await git.pushTags('origin');
   } else {
     logger.warn(
