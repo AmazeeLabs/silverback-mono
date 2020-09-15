@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@1.0.4...@-drupal/cypress@1.1.0) (2020-09-15)
+
+
+### Features
+
+* **drupal/cypress:** added cypress-screenplay library ([b769a97](https://github.com/AmazeeLabs/silverback-mono/commit/b769a976d73f355ebd3ed55e9842ac840e86a8a1))
+
+
+
+
+
 ## [1.0.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@1.0.3...@-drupal/cypress@1.0.4) (2020-09-15)
 
 **Note:** Version bump only for package @-drupal/cypress
