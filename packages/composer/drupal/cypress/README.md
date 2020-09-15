@@ -10,7 +10,7 @@ testing. It will help you to:
 - Ship custom Cypress commands and predefined cucumber step definitions with
   Drupal modules.
 
-It also includes some handy Cypress plugins out of the box:
+It also includes some useful Cypress plugins out of the box:
 
 - The [Cucumber preprocessor] to write specifications in Gherkin.
 - [Cypress testing library] to add some good-practice commands.
