@@ -2,6 +2,7 @@
   "name": "silverback",
   "version": "1.0.1",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "build-library": "webpack -p --config storybook/webpack.config.js --mode production",
     "build-storybook": "build-storybook -c storybook/.storybook -o storybook/build",
