@@ -1,6 +1,6 @@
 {
   "name": "@-drupal/cypress",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Cypress E2E testing for Drupal",
   "scripts": {
     "test": "cd ../../../../apps/silverback-drupal && composer install && bash vendor/bin/silverback-test cypress"
@@ -12,11 +12,11 @@
     "branch": "8.x-1.x"
   },
   "dependencies": {
+    "@testing-library/cypress": "^7.0.0",
     "cypress": "^5.1.0",
     "cypress-cucumber-preprocessor": "^2.5.5",
     "cypress-file-upload": "^4.1.1",
-    "cypress-shadow-dom": "^1.4.1",
-    "@testing-library/cypress": "^7.0.0"
+    "cypress-shadow-dom": "^1.4.1"
   },
   "author": "",
   "license": "ISC"

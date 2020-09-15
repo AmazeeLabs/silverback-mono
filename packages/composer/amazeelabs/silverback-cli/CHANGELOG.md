@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@1.0.5...@-amazeelabs/silverback-cli@1.0.6) (2020-09-15)
+
+
+### Bug Fixes
+
+* **drupal/cypress:** fixed Drupal 9 compatibility ([58ef26e](https://github.com/AmazeeLabs/silverback-mono/commit/58ef26e4c3db05f49485720beb2046970a04f961))
+* **silverback-cli:** ensure .env exists before starting processes ([37fcf19](https://github.com/AmazeeLabs/silverback-mono/commit/37fcf19c8c3acb97d2247a739aa5469fb79e5e5f))
+* **silverback-cli:** ensure SB_BASE_URL is defined for tests ([e20a7fe](https://github.com/AmazeeLabs/silverback-mono/commit/e20a7fe0e1c8719b4ce9f23b237ab1c1ace9faaa))
+* **silverback-cli:** fixed install cache subdirectory ([09a66ea](https://github.com/AmazeeLabs/silverback-mono/commit/09a66eaae70eedafdc77d2bb093a93ac73bead89))
+
+
+
+
+
 ## [1.0.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@1.0.4...@-amazeelabs/silverback-cli@1.0.5) (2020-09-11)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-cli
