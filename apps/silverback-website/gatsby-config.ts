@@ -22,5 +22,5 @@ export const plugins = [
       path: './src/images',
     },
   },
-  '@amazeelabs/gatsby-amazee-theme',
+  '@amazeelabs/gatsby-theme-core',
 ];
