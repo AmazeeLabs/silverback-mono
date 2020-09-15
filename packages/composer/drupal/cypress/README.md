@@ -16,6 +16,7 @@ It also includes some handy Cypress plugins out of the box:
 - [Cypress testing library] to add some good-practice commands.
 - An extension to test [Shadow DOM in web components].
 - And another one to [upload files] during tests.
+- An implementation of the [screenplay patter in cypress][cypress screenplay]
 
 ## Requirements and Installation
 
@@ -76,6 +77,7 @@ You are good to go, now draw the rest of the _drowsy_ owl!
 [cypress testing library]: https://testing-library.com/docs/cypress-testing-library/intro
 [shadow dom in web components]: https://github.com/abramenal/cypress-shadow-dom
 [upload files]: https://www.npmjs.com/package/cypress-file-upload
+[cypress screenplay]: https://www.npmjs.com/package/cypress-screenplay
 
 ## Configuration
 
