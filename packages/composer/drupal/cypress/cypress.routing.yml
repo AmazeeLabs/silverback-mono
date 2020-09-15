@@ -1,0 +1,17 @@
+cypress.entity_url:
+  path: '/cypress/entity/{entity_type}/{link_type}'
+  defaults:
+    _controller: '\Drupal\cypress\Controller\EntityController::entityRedirect'
+  requirements:
+    # Access is checked in controller.
+    _access: 'TRUE'
+
+cypress.script:
+  path: '/cypress/script'
+  methods: [POST]
+  defaults:
+    _controller: '\Drupal\cypress\Controller\ScriptController::execute'
+  requirements:
+    # Access is checked in controller.
+    _access: 'TRUE'
+

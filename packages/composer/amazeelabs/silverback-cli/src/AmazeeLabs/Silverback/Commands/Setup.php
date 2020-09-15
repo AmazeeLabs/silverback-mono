@@ -3,11 +3,9 @@
 namespace AmazeeLabs\Silverback\Commands;
 
 use Alchemy\Zippy\Zippy;
-use Drupal\Core\Archiver\Zip;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class Setup extends SilverbackCommand {
 
@@ -29,8 +27,7 @@ class Setup extends SilverbackCommand {
       $this->cleanDir('web/sites/' . $siteDir . '/files');
     }
 
-    $configDir = 'config/sync';
-    $hash = $this->getConfigHash($this->rootDirectory . '/' . $configDir);
+    $hash = $this->getConfigHash();
 
     if ($input->getOption('force')) {
       $this->fileSystem->remove($this->cacheDir . '/' . $hash);
@@ -84,7 +81,7 @@ class Setup extends SilverbackCommand {
         }
 
         $zippy->create('install-cache.zip', [
-          'folder' => 'web/sites/' . $siteDir . '/files',
+          'files' => 'web/sites/' . $siteDir . '/files',
         ], TRUE);
       }
 

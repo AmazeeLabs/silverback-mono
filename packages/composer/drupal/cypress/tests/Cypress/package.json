@@ -1,0 +1,6 @@
+{
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true,
+    "stepDefinitions": "integration"
+  }
+}

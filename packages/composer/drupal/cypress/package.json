@@ -1,0 +1,23 @@
+{
+  "name": "@-drupal/cypress",
+  "version": "1.0.0",
+  "description": "Cypress E2E testing for Drupal",
+  "scripts": {
+    "test": "cd ../../../../apps/silverback-drupal && composer install && bash vendor/bin/silverback-test cypress"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://localhost:4873",
+    "repository": "git@git.drupal.org:project/cypress.git",
+    "branch": "8.x-1.x"
+  },
+  "dependencies": {
+    "cypress": "^5.1.0",
+    "cypress-cucumber-preprocessor": "^2.5.5",
+    "cypress-file-upload": "^4.1.1",
+    "cypress-shadow-dom": "^1.4.1",
+    "@testing-library/cypress": "^7.0.0"
+  },
+  "author": "",
+  "license": "ISC"
+}

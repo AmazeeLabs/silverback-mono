@@ -1,0 +1,9 @@
+services:
+  cypress.commands:
+    class: Drupal\cypress\Commands\CypressCommands
+    arguments:
+      - '@cypress'
+      - '@cypress.test_directories'
+      - '@app.root'
+    tags:
+      - { name: drush.command }

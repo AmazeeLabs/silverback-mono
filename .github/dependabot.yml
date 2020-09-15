@@ -35,3 +35,19 @@ updates:
     versioning-strategy: increase
     schedule:
       interval: "daily"
+
+  - package-ecosystem: "composer"
+    directory: "/apps/silverback-drupal"
+    versioning-strategy: increase
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "composer"
+    directory: "/packages/composer/drupal/cypress"
+    versioning-strategy: increase
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/packages/composer/drupal/cypress"
+    versioning-strategy: increase
+    schedule:
+      interval: "daily"
