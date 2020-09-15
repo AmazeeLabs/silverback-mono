@@ -148,6 +148,7 @@ describe('pushToGit', () => {
     const extractSpy = jest.spyOn(tar, 'extract');
     const git = {
       clone: jest.fn(),
+      checkout: jest.fn(),
       cwd: jest.fn(),
       add: jest.fn(),
       commit: jest.fn(),
@@ -181,11 +182,13 @@ describe('pushToGit', () => {
     expect(logger.info).toHaveBeenCalledTimes(1);
     expect(git.clone).toHaveBeenCalledTimes(1);
     expect(git.clone).toHaveBeenCalledWith('foo', 'test/clone');
+    expect(git.checkout).toHaveBeenCalledWith('bar');
+    expect(git.cwd).toHaveBeenCalledWith('test/clone');
     expect(git.cwd).toHaveBeenCalledWith('test/package');
     expect(git.add).toHaveBeenCalledWith(['./*']);
     expect(git.commit).toHaveBeenCalledWith('chore: release version 1.0.1');
     expect(git.addTag).toHaveBeenCalledWith('1.0.1');
-    expect(git.push).toHaveBeenCalledWith('origin');
+    expect(git.push).toHaveBeenCalledWith('origin', 'bar');
     expect(git.pushTags).toHaveBeenCalledWith('origin');
     expect(composerSpy).toHaveBeenCalledWith('test/package');
     expect(extractSpy).toHaveBeenCalledWith({
