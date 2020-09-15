@@ -29,16 +29,15 @@ and running:
 1. Download and extract Drupal
 
    ```shell script
-   curl -O https://ftp.drupal.org/files/projects/drupal-8.8.5.tar.gz
-   tar -xvzf drupal-8.8.5.tar.gz
-   cd drupal-8.8.5
+   composer create-project drupal/recommended-project drupal
+   cd drupal
    ```
 
-2. Install the Cypress Module and upgrade PHPUnit
+2. Install development packages and the Cypress Module
 
    ```shell script
+   composer require --dev drupal/core-dev
    composer require drupal/cypress
-   composer require phpunit/phpunit:^7 symfony/phpunit-bridge phpspec/prophecy sebastian/global-state:^2 sebastian/environment:^3.1 phpunit/php-code-coverage:^6
    ```
 
 3. Install the minimal profile and the Cypress module
