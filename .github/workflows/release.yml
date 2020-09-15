@@ -47,9 +47,8 @@ jobs:
       - name: Bootstrap Lerna
         run: yarn lerna bootstrap
 
-      # - name: Run verdaccio-git integration test
-      #   run: ./test
-      #   working-directory: packages/npm/verdaccio-git
+      - name: Add drupal.org ssh key
+        run: ssh-keyscan git.drupal.org >> ~/.ssh/known_hosts
 
       - name: Run tests
         run: yarn test
