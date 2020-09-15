@@ -13,6 +13,9 @@ _cleanup
 # If there is no node modules directory, run yarn.
 [[ -d node_modules ]] || yarn
 
+# If there is no SB_BASE_URL, set it.
+[[ -z "$SB_BASE_URL" ]] || export SB_BASE_URL="http://localhost:8888"
+
 # Initial setup, so drush bootstrap doesn't fail.
 [[ -d web/sites/default/files/.sqlite ]] || (vendor/bin/silverback setup && vendor/bin/drush en cypress -y)
 

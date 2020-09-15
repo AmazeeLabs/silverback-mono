@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 
-function finish {
+function _finish {
   echo "Cleaning up server processes."
   pkill -f ":8888"
 }
 
 # Make sure all running processes are cleaned up
-trap finish EXIT
+_finish
+
+# If there is not .env file yet, copy .env.example.
+[[ -f .env ]] || cp .env.example .env
 
 # If there is no vendor directory, run composer install.
 [[ -d vendor ]] || composer install
@@ -25,3 +28,6 @@ echo "Drupal server operational."
 
 
 vendor/bin/drush cypress:open
+
+# Make sure all running processes are cleaned up
+_finish
