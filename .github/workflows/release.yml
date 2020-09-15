@@ -36,7 +36,7 @@ jobs:
           path: |
             node_modules
             **/vendor
-          key: npm-${{ hashFiles('yarn.lock', '**/composer.json', '**/composer.lock') }}
+          key: npm-${{ hashFiles('**/package.json', '**/composer.json') }}
 
       - name: Create .npmrc
         run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
