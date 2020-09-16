@@ -62,7 +62,7 @@
     "stylelint-config-amazee": "^1.0.3",
     "stylelint-config-standard": "^18.2.0",
     "stylelint-webpack-plugin": "^0.10.5",
-    "twig": "^1.13.2",
+    "twig": "^1.15.2",
     "twig-drupal-filters": "^3.1.2",
     "twig-loader": "^0.5.1",
     "typescript": "^3.4.2",
