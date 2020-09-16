@@ -30,6 +30,14 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
+  "scripts": {
+    "format": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "format:fix": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "eslint --fix \"**/*.{js,jsx,ts,tsx}\"",
+    "pretest": "yarn lint && yarn format",
+    "test": "echo \"Add tests\""
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
