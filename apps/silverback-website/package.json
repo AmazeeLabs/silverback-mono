@@ -6,7 +6,7 @@
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "gatsby": "^2.24.58",
+    "gatsby": "^2.24.60",
     "gatsby-plugin-postcss": "^2.3.11",
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-typescript": "^2.4.19",
