@@ -9,7 +9,7 @@ import fs, { outputJSONSync, readJSONSync } from 'fs-extra';
  * 1. clears out composer.lock files
  * 2. sets composer package version to equal npm
  * 3. aligns all dependency versions of other maintained composer packages
- * 4. removes composer-only dependencies from package.sjon
+ * 4. removes composer-only dependencies from package.json
  * 5. removes local repository definitions from composer.json
  *
  * @param path The path to the package directory.
