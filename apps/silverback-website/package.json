@@ -2,10 +2,10 @@
   "name": "silverback-website",
   "private": true,
   "description": "Silverback website",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
-    "@amazeelabs/gatsby-theme-core": "^0.1.0",
+    "@amazeelabs/gatsby-theme-core": "^0.2.0",
     "dotenv": "^8.2.0",
     "gatsby": "^2.24.60",
     "gatsby-source-filesystem": "^2.3.28",
@@ -13,7 +13,7 @@
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config-react": "^1.0.6",
+    "@amazeelabs/eslint-config-react": "^1.0.7",
     "@amazeelabs/prettier-config": "^1.0.3",
     "@types/node": "^14.10.1",
     "eslint": "^7.9.0",

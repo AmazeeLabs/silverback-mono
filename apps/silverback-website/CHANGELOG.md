@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.3.2...silverback-website@0.4.0) (2020-09-16)
+
+
+### Features
+
+* **silverback-website:** remove react-helmet ([0d97f91](https://github.com/AmazeeLabs/silverback-mono/commit/0d97f91410118a559289b5eed595df501aae24f0))
+* **silverback-website:** use @amazeelabs/gatsby-amazee-theme ([9890630](https://github.com/AmazeeLabs/silverback-mono/commit/98906309f00dad94df28eea63bd79d66586802e3))
+
+
+
+
+
 ## [0.3.2](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.3.1...silverback-website@0.3.2) (2020-09-16)
 
 **Note:** Version bump only for package silverback-website

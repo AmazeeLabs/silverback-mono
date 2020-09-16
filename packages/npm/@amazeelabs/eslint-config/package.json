@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/eslint-config",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "ESLint configuration for silverback projects.",
   "main": "index.js",
   "author": "Philipp Melab",

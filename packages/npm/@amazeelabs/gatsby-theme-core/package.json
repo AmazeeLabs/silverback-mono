@@ -2,7 +2,7 @@
   "name": "@amazeelabs/gatsby-theme-core",
   "private": true,
   "description": "Gatsby parent theme for Amazee Labs projects.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "main": "src/index.ts",
   "dependencies": {
@@ -16,7 +16,7 @@
     "tailwindcss": "^1.8.7"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config-react": "^1.0.6",
+    "@amazeelabs/eslint-config-react": "^1.0.7",
     "@amazeelabs/prettier-config": "^1.0.3",
     "@types/node": "^14.10.1",
     "@types/react-helmet": "^6.1.0",
