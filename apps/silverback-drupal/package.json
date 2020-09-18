@@ -53,7 +53,7 @@
     "postcss-loader": "^4.0.2",
     "postcss-mixins": "^7.0.0",
     "postcss-nested": "^4.1.2",
-    "postcss-preset-env": "^6.6.0",
+    "postcss-preset-env": "^6.7.0",
     "postcss-url": "^8.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.13.1",
