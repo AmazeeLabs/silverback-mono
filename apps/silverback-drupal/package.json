@@ -28,7 +28,7 @@
     "@storybook/addon-actions": "^6.0.21",
     "@storybook/addon-console": "^1.2.1",
     "@storybook/addon-knobs": "^6.0.21",
-    "@storybook/addon-notes": "^5.0.6",
+    "@storybook/addon-notes": "^5.3.21",
     "@storybook/addon-viewport": "^6.0.21",
     "@storybook/html": "^5.0.6",
     "@types/node": "^14.10.3",
