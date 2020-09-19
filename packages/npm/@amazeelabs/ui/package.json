@@ -1,0 +1,47 @@
+{
+  "name": "@amazeelabs/ui",
+  "private": true,
+  "description": "Amazee Labs UI library.",
+  "version": "0.1.0",
+  "author": "Amazee Labs <developers@amazeelabs.com>",
+  "main": "index.ts",
+  "dependencies": {},
+  "devDependencies": {
+    "@amazeelabs/eslint-config-react": "^1.0.7",
+    "@amazeelabs/prettier-config": "^1.0.3",
+    "@babel/core": "^7.11.6",
+    "@storybook/addon-actions": "^6.0.21",
+    "@storybook/addon-essentials": "^6.0.21",
+    "@storybook/addon-links": "^6.0.21",
+    "@storybook/react": "^6.0.21",
+    "@types/node": "^14.10.1",
+    "babel-loader": "^8.1.0",
+    "eslint": "^7.9.0",
+    "prettier": "2.1.1",
+    "react-is": "^16.13.1",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.2"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "format": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "format:fix": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "eslint --fix \"**/*.{js,jsx,ts,tsx}\"",
+    "pretest": "yarn lint && yarn format",
+    "test": "echo \"Add tests\""
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AmazeeLabs/silverback-mono"
+  },
+  "bugs": {
+    "url": "https://github.com/AmazeeLabs/silverback-mono/issues"
+  }
+}
