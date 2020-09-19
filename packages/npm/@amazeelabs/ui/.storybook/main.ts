@@ -7,4 +7,5 @@ export const addons = [
   '@storybook/addon-links',
   '@storybook/addon-essentials',
   '@storybook/addon-docs',
+  '@storybook/addon-a11y',
 ];
