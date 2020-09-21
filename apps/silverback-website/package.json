@@ -43,7 +43,7 @@
     "clean": "gatsby clean",
     "pretest": "yarn lint && yarn format",
     "test": "echo \"Add tests already\"",
-    "prepublish": "if [ -d ../../docs ]; then cp -R ../../docs docs; fi"
+    "prepublish": "cp -R ../../docs docs || true"
   },
   "repository": {
     "type": "git",
