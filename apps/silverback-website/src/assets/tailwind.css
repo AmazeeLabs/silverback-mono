@@ -64,9 +64,9 @@ strong {
     @apply font-bold;
 }
 
-a {
-    text-decoration: underline;
-}
+/*a {*/
+/*    text-decoration: underline;*/
+/*}*/
 
 /*
  * Component styles
