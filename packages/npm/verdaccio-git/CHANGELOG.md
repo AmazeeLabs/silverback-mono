@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.16](https://github.com/AmazeeLabs/storage-git/compare/verdaccio-git@0.1.15...verdaccio-git@0.1.16) (2020-09-21)
+
+
+### Bug Fixes
+
+* **verdaccio-git:** don't modify global config during integration test ([1617ae8](https://github.com/AmazeeLabs/storage-git/commit/1617ae893ef62907f9a1dfbcbca9bf5618bb3b86))
+
+
+
+
+
 ## [0.1.15](https://github.com/AmazeeLabs/storage-git/compare/verdaccio-git@0.1.14...verdaccio-git@0.1.15) (2020-09-21)
 
 **Note:** Version bump only for package verdaccio-git
