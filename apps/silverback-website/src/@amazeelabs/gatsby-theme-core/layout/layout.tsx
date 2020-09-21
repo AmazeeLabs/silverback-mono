@@ -5,15 +5,15 @@ import { Header } from '../components/header';
 
 export const Layout: React.FC = ({ children }) => {
   return (
-    <div className="min-h-screen bg-white flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <div className="py-10 flex-1">
-        <main>
-          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div className="px-4 sm:px-0">{children}</div>
+      <main className="-mt-32 flex-1">
+        <div className="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-lg shadow px-5 py-6 sm:px-6">
+            {children}
           </div>
-        </main>
-      </div>
+        </div>
+      </main>
       <Footer />
     </div>
   );
