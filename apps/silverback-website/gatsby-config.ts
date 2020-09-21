@@ -19,8 +19,16 @@ export const plugins = [
     resolve: 'gatsby-source-filesystem',
     options: {
       name: 'images',
-      path: './src/images',
+      path: `${__dirname}/src/images/`,
+    },
+  },
+  {
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      name: `pages`,
+      path: `${__dirname}/docs/`,
     },
   },
   '@amazeelabs/gatsby-theme-core',
+  'gatsby-plugin-mdx',
 ];
