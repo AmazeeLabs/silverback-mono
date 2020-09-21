@@ -11,7 +11,7 @@
     "commit": "yarn git-cz",
     "test": "yarn lerna run test --since --stream --concurrency=1",
     "git-registry": "yarn verdaccio -c config.yml",
-    "postinstall": "lerna bootstrap && lerna run postinstall"
+    "postinstall": "lerna bootstrap"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
