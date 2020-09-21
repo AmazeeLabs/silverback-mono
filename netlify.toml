@@ -1,3 +1,0 @@
-[build]
-  base = "apps/silverback-website"
-  publish = "public"
