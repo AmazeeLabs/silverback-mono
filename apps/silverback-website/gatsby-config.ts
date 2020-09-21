@@ -20,7 +20,7 @@ export const plugins = [
     resolve: `gatsby-source-filesystem`,
     options: {
       name: `docs`,
-      path: `${__dirname}/../../docs/`,
+      path: `${__dirname}/docs/`,
     },
   },
   {

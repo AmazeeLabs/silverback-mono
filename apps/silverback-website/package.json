@@ -42,7 +42,8 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "pretest": "yarn lint && yarn format",
-    "test": "echo \"Add tests already\""
+    "test": "echo \"Add tests already\"",
+    "prepublish": "cp -R ../../docs docs"
   },
   "repository": {
     "type": "git",
