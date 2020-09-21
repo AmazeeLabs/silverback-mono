@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.7 (2020-09-21)
+
+
+### Bug Fixes
+
+* **silverback-drupal:** run composer install on monorepo-setup ([38a6175](https://github.com/AmazeeLabs/silverback-mono/commit/38a61757bab01652d9537ec34ab3ca31520b51a6))
+
+
+
+
+
 ## [1.0.6](https://github.com/AmazeeLabs/silverback-mono/compare/silverback@1.0.5...silverback@1.0.6) (2020-09-21)
 
 **Note:** Version bump only for package silverback

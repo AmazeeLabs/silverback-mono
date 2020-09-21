@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/prettier-config@1.0.3...@amazeelabs/prettier-config@1.1.0) (2020-09-21)
+
+
+### Features
+
+* **prettier-config:** automatic line wrapping in markdown files ([b8b58d4](https://github.com/AmazeeLabs/silverback-mono/commit/b8b58d43ecfe1f8b2d979e4d3f34b4770d8070e1))
+
+
+
+
+
 ## 1.0.3 (2020-08-31)
 
 **Note:** Version bump only for package @amazeelabs/prettier-config
