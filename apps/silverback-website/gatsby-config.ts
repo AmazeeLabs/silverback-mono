@@ -26,7 +26,7 @@ export const plugins = [
     resolve: `gatsby-source-filesystem`,
     options: {
       name: `pages`,
-      path: `${__dirname}/docs/`,
+      path: `${__dirname}/src/pages/`,
     },
   },
   '@amazeelabs/gatsby-theme-core',
