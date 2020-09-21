@@ -52,8 +52,8 @@ export const createPages: GatsbyNode['createPages'] = async ({
           node: {
             id: string;
             frontmatter: {
-              path: string | null
-            }
+              path: string | null;
+            };
           };
         }[];
       };
