@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.4.2...silverback-website@0.5.0) (2020-09-21)
+
+
+### Bug Fixes
+
+* **silverback-website:** make postCss config working ([1eec37a](https://github.com/AmazeeLabs/silverback-mono/commit/1eec37aacae679268f74bdab0cd27c2327dafa2a))
+* **silverback-website:** tweak gatsby config to source mdx docs ([09506bf](https://github.com/AmazeeLabs/silverback-mono/commit/09506bf015f61548db7a54458197e6ff1697dc02))
+
+
+### Features
+
+* **silverback-website:** add @tailwindcss/ui package ([7e55e52](https://github.com/AmazeeLabs/silverback-mono/commit/7e55e5221c5c44bad6c0963a0bc7c650e0dc5418))
+* **silverback-website:** add Amazee logo and images typings ([b84fdc9](https://github.com/AmazeeLabs/silverback-mono/commit/b84fdc944c6ec67e818b8b001131a3ead6d6e7ac))
+* **silverback-website:** add code highlight ([b2cb93c](https://github.com/AmazeeLabs/silverback-mono/commit/b2cb93c7b45e485d017e5211fa2d7e265cd0e9e1))
+* **silverback-website:** add MDX parsing ([31a3dae](https://github.com/AmazeeLabs/silverback-mono/commit/31a3daeb0dbe9f00df51c0a85b78d244ad1deee6))
+* **silverback-website:** connect menu items in Header and Footer ([25013ee](https://github.com/AmazeeLabs/silverback-mono/commit/25013ee0a718619b13dfcaa341094fbe40603f96))
+* **silverback-website:** create gatsby pages out of mdx files ([4931728](https://github.com/AmazeeLabs/silverback-mono/commit/49317289d994c45f07788b33774e64ebb3d426c0))
+* **silverback-website:** improve overall styles ([98248ed](https://github.com/AmazeeLabs/silverback-mono/commit/98248edc0e1fe4861a92a1d0724a599a18acd60e))
+* **silverback-website:** improve style ([0d3ffc4](https://github.com/AmazeeLabs/silverback-mono/commit/0d3ffc4ab323e712fbda5ed491db4b3a898e2ccf))
+* **silverback-website:** improve styling of html elements ([51efa48](https://github.com/AmazeeLabs/silverback-mono/commit/51efa48fecae27a9af3f809a6030ff3cee2df883))
+* **silverback-website:** shadow Footer component ([eeb8b1b](https://github.com/AmazeeLabs/silverback-mono/commit/eeb8b1b530c004250cdc3a2dfb7f7a5eb5985ca0))
+* **silverback-website:** shadow Header component ([52228b5](https://github.com/AmazeeLabs/silverback-mono/commit/52228b592a91dbca0a8aae58db8e7de2de175bf0))
+* **silverback-website:** shadow Layout component ([c5b00f7](https://github.com/AmazeeLabs/silverback-mono/commit/c5b00f713533237b491e289f4f2a29c97911b7e8))
+
+
+
+
+
 ## [0.4.2](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.4.1...silverback-website@0.4.2) (2020-09-21)
 
 **Note:** Version bump only for package silverback-website
