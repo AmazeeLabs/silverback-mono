@@ -1,9 +1,0 @@
-{
-  "extends": ["stylelint-config-amazee"],
-  "rules": {
-    "declaration-property-value-blacklist": null,
-    "function-url-quotes": null,
-    "selector-class-pattern": null,
-    "selector-max-id": 0
-  }
-}
