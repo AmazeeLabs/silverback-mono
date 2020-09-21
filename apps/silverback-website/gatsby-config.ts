@@ -15,6 +15,14 @@ export const siteMetadata = {
 };
 
 export const plugins = [
+  'gatsby-plugin-mdx',
+  {
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      name: `docs`,
+      path: `${__dirname}/../../docs/`,
+    },
+  },
   {
     resolve: 'gatsby-source-filesystem',
     options: {
@@ -22,15 +30,7 @@ export const plugins = [
       path: `${__dirname}/src/images/`,
     },
   },
-  {
-    resolve: `gatsby-source-filesystem`,
-    options: {
-      name: `pages`,
-      path: `${__dirname}/src/pages/`,
-    },
-  },
   '@amazeelabs/gatsby-theme-core',
-  'gatsby-plugin-mdx',
   // Required due to #177 https://github.com/AmazeeLabs/silverback-mono/issues/177
   {
     resolve: `gatsby-plugin-postcss`,
