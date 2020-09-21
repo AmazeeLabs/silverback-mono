@@ -22,7 +22,7 @@ export const Footer: React.FC = () => {
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
                 <h4 className="text-sm leading-5 font-semibold tracking-wider text-gray-400 uppercase">
-                  Section #1
+                  <Link to="/">Silverback</Link>
                 </h4>
                 {/*
                 TODO: Add sub-navigation
@@ -63,7 +63,7 @@ export const Footer: React.FC = () => {
               </div>
               <div className="mt-12 md:mt-0">
                 <h4 className="text-sm leading-5 font-semibold tracking-wider text-gray-400 uppercase">
-                  Section #2
+                  <Link to="/tooling">Tooling</Link>
                 </h4>
               </div>
             </div>

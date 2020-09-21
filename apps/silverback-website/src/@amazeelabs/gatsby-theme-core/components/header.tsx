@@ -40,18 +40,18 @@ export const Header: React.FC = () => {
             </button>
           </div>
           <nav className="hidden md:flex space-x-10">
-            <a
-              href="#"
+            <Link
+              to="/"
               className="text-base leading-6 font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition ease-in-out duration-150"
             >
-              Section #1
-            </a>
-            <a
-              href="#"
+              Silverback
+            </Link>
+            <Link
+              to="/tooling"
               className="text-base leading-6 font-medium text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition ease-in-out duration-150"
             >
-              Section #2
-            </a>
+              Tooling
+            </Link>
           </nav>
         </div>
       </div>
@@ -105,22 +105,22 @@ export const Header: React.FC = () => {
               </div>
               <div>
                 <nav className="grid gap-y-8">
-                  <a
-                    href="#"
+                  <Link
+                    to="/"
                     className="-m-3 p-3 flex items-center space-x-3 rounded-md hover:bg-gray-50 transition ease-in-out duration-150"
                   >
                     <div className="text-base leading-6 font-medium text-gray-900">
-                      Section #1
+                      Silverback
                     </div>
-                  </a>
-                  <a
-                    href="#"
+                  </Link>
+                  <Link
+                    to="/tooling"
                     className="-m-3 p-3 flex items-center space-x-3 rounded-md hover:bg-gray-50 transition ease-in-out duration-150"
                   >
                     <div className="text-base leading-6 font-medium text-gray-900">
-                      Section #2
+                      Tooling
                     </div>
-                  </a>
+                  </Link>
                 </nav>
               </div>
             </div>
