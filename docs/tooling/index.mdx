@@ -1,0 +1,247 @@
+---
+title: Monorepo
+path: /tooling
+---
+
+# Monorepo
+
+## Requirements and installation
+
+The Silverback repository is set up as a monorepo managed with [Lerna]. To work
+with it, make sure these four tools are available in your environment:
+
+- [nodejs]
+- [yarn]
+- a [php] interpreter [meeting Drupal's requirements][php_requirements]
+- [composer]
+
+[php]: https://www.php.net/
+[nodejs]: https://nodejs.org/en/
+[yarn]: https://yarnpkg.com/
+[composer]: https://getcomposer.org/
+[php_requirements]:
+  https://www.drupal.org/docs/system-requirements/php-requirements
+[lerna]: https://lerna.js.org/
+
+To start working with it simply clone it, install the dependencies and bootstrap
+Lerna.
+
+```shell script
+git clone git@github.com:AmazeeLabs/silverback-mono.git
+cd silverback-mono
+yarn
+```
+
+## Directory structure
+
+- **`packages/npm`**: Contains shared node modules. The underlying folder
+  structure has to match the npm namespace. For example
+  `packages/npm/cypress-screenplay` or
+  `packages/npm/@amazeelabs/prettier-config`.
+- **`packages/composer`**: Any shared composer packages. Every package has to
+  have a namespace that has to be reflected in the folder structure. For example
+  `packages/composer/drupal/cypress`.
+- **`apps`**: Applications that reference packages, but are not published
+  anywhere.
+  - **`apps/silverback-website`**: The Gatsby website hosting this
+    documentation.
+  - **`apps/silverback-drupal`**: A Drupal installation that is linked to
+    `packages/composer` and `silverback-cli`. It's automatically updated, for
+    constantly integration testing modules.
+
+## Branching and commit conventions
+
+Commits have to satisfy the [conventional commits] specification, so we are able
+to produce automated release numbers and changelogs. The "scope" segment should
+reflect the component that has been changed.
+
+```
+fix(drupal/cypress): fixed some bug
+
+This was a very annoying bug!
+```
+
+[conventional commits]: https://www.conventionalcommits.org/en/v1.0.0/
+
+Changes have to be submitted as pull requests against the `development` branch,
+which may be merged when tests pass, and the change has been reviewed by at
+least one team member.
+
+## Release process
+
+When a pull request is merged, the automatic release process kicks in. It will
+run tests for packages affected by the changes, determine the new release
+versions and publish them to the respective ecosystem.
+
+For [npm] it just follows the standard release process. For other targets, we
+use an open source proxy registry called [Verdaccio] combined with our storage
+plugin "[verdaccio-git]", which will commit and push the new release package to
+a target git repository. The repository url and branch are defined in the
+`publishConfig` property of `package.json`, along with a `registry` setting,
+that will cause lerna's publish process to target the local verdaccio instance
+that is started during the release process.
+
+```json
+{
+  "publishConfig": {
+    "registry": "http://localhost:4873",
+    "repository": "git@github.com/my/repo.git",
+    "branch": "development"
+  }
+}
+```
+
+[verdaccio]: https://verdaccio.org/
+[verdaccio-git]: https://www.npmjs.com/package/verdaccio-git
+
+## Lifecycle hooks
+
+_All_ packages and applications have to contain a `package.json` file that may
+contain three lifecycle hooks:
+
+1. `postinstall` will run after `yarn` and is used to kick of other processes to
+   bring the monorepo into an _modifiable_ state. The most prominent example is
+   a `composer install` in `apps/silverback-drupal` that will make sure all
+   composer dependencies are installed.
+2. `prepublish` is executed before tests are run, or a package is sent to any
+   registry, npm as well as git, drupal.org or packagist. After this lifecycle
+   hook the package should be in an _executable_ state. It's a good point to
+   transpile any sources or prepare binaries.
+3. `test` is run for each package affected by the current changeset. The `test`
+   script should make sure **all** possible checks are run. This also includes
+   formatting, linting and typechecks.
+
+## Adding new packages
+
+### npm
+
+Adding a new node module that is shared on npm is pretty straightforward. Just
+create it within the `packages/npm` folder with `npm init`, or any other
+scaffolder that outputs a npm package. Lerna will pick it up and attempt to
+publish it to npm. The only problem you might face is when you create a
+namespaced package, like the ones withing the `@amazeelabs` namespace.
+Namespaced packages are treated as "private" by default, so to publish it
+publicly, you have to set the `access` property of `publishConfig`.
+
+```json
+{
+  "publishConfig": {
+    "access": "public"
+  }
+}
+```
+
+### Git
+
+Any npm package can also be published to a git remote instead of an actual npm
+registry. A use case for this are gatsby starters, which are technically npm
+packages, but are pulled from git repositories instead. To make this happen,
+follow these steps:
+
+1. Create the remote git repository
+2. Make sure the git repository accepts the public SSH key used by Silverback
+   automation (TODO: currently managed by philipp.melab@amazee.com, find a
+   better place for it)
+3. Make sure the host key is
+   [accepted by the release process](https://github.com/AmazeeLabs/silverback-mono/blob/6902e436242b61c334431cc7572e913bd906fd0b/.github/workflows/release.yml#L50-L51)
+4. Add the `publishConfig` configuration as outlined above and make sure the
+   root `private` property is **not true**, or it won't be published at all.
+
+```json
+{
+  "private": false,
+  "publishConfig": {
+    "registry": "http://localhost:4873",
+    "repository": "git@github.com/my/repo.git",
+    "branch": "development"
+  }
+}
+```
+
+To add a dependency to another npm package withing the monorepo, add it
+_manually_ to `package.json` and run `lerna bootstrap` afterwards:
+
+```json
+{
+  "dependencies": {
+    "cypress-screenplay": "^0.1.13"
+  }
+}
+```
+
+This will make sure the dependency is available and lerna is aware of it, so it
+can determine which packages are affected by changes and automatically update
+it.
+
+### packagist
+
+Packagist just reads git repositories, so just follow the steps on how to
+publish to a git repository first. Create the `package.json` file even if there
+are no npm dependencies. The deployment process uses it to also manage composer
+dependencies.
+
+Make sure to add a path repository to the packages `composer.json` file that
+allows us to install local versions of composer dependencies. It will be removed
+automatically during the publishing process.
+
+```json
+{
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../../packages/composer/*/*"
+    }
+  ]
+}
+```
+
+The npm package name in `package.json` should be the composer package name,
+prefixed with `@-`. For example `@-drupal/cypress`, so the composer package can
+be referenced as a npm package within the monorepo.
+
+When adding a composer dependency, make sure to add it to `composer.json` as a
+development dependency, to match the copy in the path repository ...
+
+```json
+{
+  "require": {
+    "amazeelabs/silverback-cli": "@dev"
+  }
+}
+```
+
+... and also depend on it by it's "npm name" in `package.json`:
+
+```json
+{
+  "dependencies": {
+    "@-amazeelabs/silverback-cli": "^1.0.0"
+  }
+}
+```
+
+While publishing the package, the dependency version in `package.json` will
+automatically updated by lerna, and the result version is written to
+`composer.json`. This way, the lerna dependency graph and change detection is
+available for composer packages too.
+
+### drupal.org
+
+Publishing to _drupal.org_ is identical to _packagist_. The release job will
+create a new tag that is pushed to the git repository. Unfortunately a new
+release won't be automatically available, like on packagist, which means we
+still have to
+["create" the release manually](https://www.drupal.org/node/1068944).
+
+## Applications
+
+Applications live in the first level of the `apps` directory and behave almost
+identical to packages. There are only two differences:
+
+1. Applications should have set `private` to `true` at the root level of their
+   `package.json` to make sure they are not accidentally published to npm.
+   Unless they are consciously released, to another git repository for example.
+2. While lockfiles (composer.lock, yarn.lock) make no sense for packages, they
+   should be added and committed for applications.
+
+Dependency management and lifecycles work exactly the same as for packages.
