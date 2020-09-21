@@ -1,5 +1,5 @@
 {
-  "name": "silverback",
+  "name": "silverback-drupal",
   "version": "1.0.6",
   "license": "MIT",
   "private": true,
@@ -11,7 +11,8 @@
     "lint:css": "stylelint --ignore-path storybook/.eslintignore \"storybook/**/*.css\"",
     "lint:css:fix": "yarn run lint:css --fix",
     "lint:js": "eslint --ignore-path storybook/.eslintignore storybook/ --ext ts --ext js",
-    "lint:js:fix": "yarn run lint:js --fix"
+    "lint:js:fix": "yarn run lint:js --fix",
+    "postinstall": "composer install"
   },
   "dependencies": {
     "@amazee/eslint-config-amazee": "^2.0.25",
