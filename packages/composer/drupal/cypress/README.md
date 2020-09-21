@@ -116,18 +116,20 @@ containing certain files or directories.
 1. `package.json`: If a test suite contains a `package.json` file, its
    dependencies and additional settings will be merged into the global
    package that is automatically maintained in `drupal-cypress-environment`.
-2. `integration`: The actual tests and implementations. The modules uses the
-   [Cucumber preprocessor] for Cypress in `nonGlobalStepDefinitions` mode. This
-   means that test specifications are written in `*.feature` files and
-   implementations in arbitrary `*.js` files stored in a directory with the same
-   name as the `*.feature` file. Please refer to the [Cucumber preprocessor]
-   documentation for a lot more details on test organisation.
+2. `integration`: The actual tests and implementations. Tests can be written in 
+   plain javascript (`*.test.js` files) or Gherkin (`*.feature` files).
+   To process the latter, the modules uses the [Cucumber preprocessor] for
+   Cypress in `nonGlobalStepDefinitions` mode. This means that test
+   specifications are written in `*.feature` files and implementations in
+   arbitrary `*.js` files stored in a directory with the same name as the
+   `*.feature` file. Please refer to the [Cucumber preprocessor] documentation
+   for a lot more details on test organisation.
 3. `steps`: This directory will be scanned for `*.js` files that contain global
    step definitions. These are available to all scenarios. Not just within
    the current suites `integration` folder, but also to other test suites. This
    can be used to share common steps defined by a Drupal module.
 4. `plugins/index.js`: This file will be automatically added to Cypress plugin
-   system and allows to add additional extensions that are not covered out of
+   system and allows adding additional extensions that are not covered out of
    the box by this module.
 5. `support/index.js`: That's the entry point for anything that would go into
    Cypress notion of `support` files. Here, for example, test suites can share
