@@ -2,7 +2,6 @@
 /// <reference types="Cypress" />
 
 import '@testing-library/cypress/add-commands';
-import 'cypress-shadow-dom';
 import './commands.js';
 
 /**

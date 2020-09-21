@@ -16,8 +16,7 @@
     "cypress": "^5.2.0",
     "cypress-cucumber-preprocessor": "^2.5.5",
     "cypress-file-upload": "^4.1.1",
-    "cypress-screenplay": "^0.1.15",
-    "cypress-shadow-dom": "^1.4.1"
+    "cypress-screenplay": "^0.1.15"
   },
   "author": "",
   "license": "ISC"
