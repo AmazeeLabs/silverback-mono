@@ -2,10 +2,10 @@
   "name": "@amazeelabs/gatsby-starter",
   "private": true,
   "description": "Gatsby starter for Amazee Labs projects",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
-    "@amazeelabs/gatsby-theme-core": "^0.2.1",
+    "@amazeelabs/gatsby-theme-core": "^0.2.2",
     "dotenv": "^8.2.0",
     "gatsby": "^2.24.58",
     "gatsby-source-filesystem": "^2.3.28",
