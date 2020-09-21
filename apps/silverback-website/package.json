@@ -1,6 +1,5 @@
 {
   "name": "silverback-website",
-  "private": true,
   "description": "Silverback website",
   "version": "0.5.0",
   "author": "Amazee Labs <developers@amazeelabs.com>",
@@ -51,5 +50,11 @@
   },
   "bugs": {
     "url": "https://github.com/AmazeeLabs/silverback-mono/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://localhost:4873",
+    "repository": "git@github.com:AmazeeLabs/silverback-website.git",
+    "branch": "master"
   }
 }
