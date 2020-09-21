@@ -1,7 +1,13 @@
 // If you use Tailwind, this file and src/assets/tailwind.css are the two
 // files you will mostly be editing to set your design values.
 module.exports = {
-  purge: ['./src/**/*.js', './src/**/*.jsx', './src/**/*.ts', './src/**/*.tsx', './src/**/*.mdx',],
+  purge: [
+    './src/**/*.js',
+    './src/**/*.jsx',
+    './src/**/*.ts',
+    './src/**/*.tsx',
+    './src/**/*.mdx',
+  ],
   theme: {
     // By default, you get Tailwind's pre-packaged design values.
     // You can add a few values to those pre-defined values, by adding keys
