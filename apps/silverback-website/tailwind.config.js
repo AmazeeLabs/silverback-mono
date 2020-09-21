@@ -1,24 +1,8 @@
 // If you use Tailwind, this file and src/assets/tailwind.css are the two
 // files you will mostly be editing to set your design values.
 module.exports = {
-  purge: ['./src/**/*.js', './src/**/*.jsx', './src/**/*.ts', './src/**/*.tsx'],
+  purge: ['./src/**/*.js', './src/**/*.jsx', './src/**/*.ts', './src/**/*.tsx', './src/**/*.mdx',],
   theme: {
-    // https://tailwindcss.com/docs/customizing-colors
-    colors: {
-      amazee: {
-        yellow: '#ffcc4f',
-        gray: '#64675E',
-        dark: '#2c3539',
-        blue: '#60839b',
-      },
-      black: '#000',
-      gray: {
-        100: '#f0f0f0',
-        200: '#ccc',
-        300: '#aaa',
-      },
-      white: '#fff',
-    },
     // By default, you get Tailwind's pre-packaged design values.
     // You can add a few values to those pre-defined values, by adding keys
     // beneath the "extend" key.
@@ -30,6 +14,15 @@ module.exports = {
       // https://tailwindcss.com/docs/breakpoints
       // If necessary, adjust spacing.
       // https://tailwindcss.com/docs/customizing-spacing
+      // https://tailwindcss.com/docs/customizing-colors
+      colors: {
+        amazee: {
+          yellow: '#ffcc4f',
+          gray: '#64675E',
+          dark: '#2c3539',
+          blue: '#60839b',
+        },
+      },
     },
   },
   variants: {
