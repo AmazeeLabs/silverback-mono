@@ -31,4 +31,22 @@ export const plugins = [
   },
   '@amazeelabs/gatsby-theme-core',
   'gatsby-plugin-mdx',
+  // Required due to #177 https://github.com/AmazeeLabs/silverback-mono/issues/177
+  {
+    resolve: `gatsby-plugin-postcss`,
+    options: {
+      postCssPlugins: [
+        // Transform @import rules by inlining content.
+        require('postcss-import'),
+        // Automatic prefixing and browser compatibility.
+        require('postcss-preset-env')({ stage: 0 }),
+        // Apply tailwind features.
+        require('tailwindcss')(),
+        // Strip CSS comments.
+        require('postcss-discard-comments'),
+        // Add vendor prefixes.
+        require('autoprefixer'),
+      ],
+    },
+  },
 ];
