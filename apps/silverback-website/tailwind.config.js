@@ -24,6 +24,7 @@ module.exports = {
       colors: {
         amazee: {
           yellow: '#ffcc4f',
+          yellowDark: '#ffb80c',
           gray: '#64675E',
           dark: '#2c3539',
           blue: '#60839b',

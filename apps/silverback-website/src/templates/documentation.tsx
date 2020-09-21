@@ -72,7 +72,7 @@ const Documentation: React.FC<PageProps<{
         ),
         a: tagWithClassName(
           'a',
-          'text-blue-700 hover:text-blue-500 leading-relaxed font-medium mb-8',
+          'text-amazee-yellowDark leading-relaxed font-medium mb-8',
         ),
         blockquote: tagWithClassName(
           'blockquote',
