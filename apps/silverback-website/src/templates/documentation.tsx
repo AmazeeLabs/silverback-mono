@@ -50,26 +50,11 @@ const Documentation: React.FC<PageProps<{
           'h2',
           'mb-4 -ml-1 text-xl font-bold tracking-wide',
         ),
-        h3: tagWithClassName(
-          'h3',
-          'mb-4 -ml-1 text-lg font-bold',
-        ),
-        h4: tagWithClassName(
-          'h4',
-          'mb-4 -ml-1 text-lg font-semibold',
-        ),
-        h5: tagWithClassName(
-          'h5',
-          'mb-4 -ml-1 text-lg font-medium',
-        ),
-        h6: tagWithClassName(
-          'h6',
-          'mb-4 -ml-1 text-base font-semibold',
-        ),
-        p: tagWithClassName(
-          'p',
-          'leading-relaxed font-light mt-2 mb-4',
-        ),
+        h3: tagWithClassName('h3', 'mb-4 -ml-1 text-lg font-bold'),
+        h4: tagWithClassName('h4', 'mb-4 -ml-1 text-lg font-semibold'),
+        h5: tagWithClassName('h5', 'mb-4 -ml-1 text-lg font-medium'),
+        h6: tagWithClassName('h6', 'mb-4 -ml-1 text-base font-semibold'),
+        p: tagWithClassName('p', 'leading-relaxed font-light mt-2 mb-4'),
         a: tagWithClassName(
           'a',
           'text-amazee-yellowDark leading-relaxed font-medium mb-8',
