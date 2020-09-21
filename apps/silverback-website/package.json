@@ -8,6 +8,7 @@
     "@amazeelabs/gatsby-theme-core": "^0.2.1",
     "@mdx-js/mdx": "^1.6.18",
     "@mdx-js/react": "^1.6.18",
+    "@tailwindcss/ui": "^0.6.2",
     "dotenv": "^8.2.0",
     "gatsby": "^2.24.63",
     "gatsby-plugin-mdx": "^1.2.40",
