@@ -1,5 +1,6 @@
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import React from 'react';
+
 import { slugify } from '../utils';
 
 export const Footer: React.FC = () => {

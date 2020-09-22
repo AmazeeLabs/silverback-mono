@@ -1,5 +1,5 @@
 import { useSiteMetadata } from '@amazeelabs/gatsby-theme-core';
-import { useStaticQuery, graphql, Link } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import React from 'react';
 
 import amazeeLogo from '../assets/logo.svg';
