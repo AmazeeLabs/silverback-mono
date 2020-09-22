@@ -1,11 +1,37 @@
 import { useSiteMetadata } from '@amazeelabs/gatsby-theme-core';
-import { Link } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
 
 import amazeeLogo from '../assets/logo.svg';
 
 export const Header: React.FC = () => {
   const { title } = useSiteMetadata();
+
+  const { allMdx } = useStaticQuery<{
+    allMdx: {
+      edges: {
+        node: {
+          frontmatter: {
+            path: string;
+            title: string;
+          };
+        };
+      }[];
+    };
+  }>(graphql`
+    query HeaderQuery {
+      allMdx {
+        edges {
+          node {
+            frontmatter {
+              path
+              title
+            }
+          }
+        }
+      }
+    }
+  `);
 
   return (
     <div className="bg-amazee-yellow pb-32">
@@ -20,19 +46,15 @@ export const Header: React.FC = () => {
               </div>
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
-                  <Link
-                    to="/"
-                    className="px-3 py-2 rounded-md text-base leading-6 font-medium text-amazee-dark hover:text-white hover:bg-amazee-dark focus:outline-none focus:text-white focus:bg-amazee-dark"
-                  >
-                    Introduction
-                  </Link>
-
-                  <Link
-                    to="/tooling"
-                    className="px-3 py-2 rounded-md text-base leading-6 font-medium text-amazee-dark hover:text-white hover:bg-amazee-dark focus:outline-none focus:text-white focus:bg-amazee-dark"
-                  >
-                    Tooling
-                  </Link>
+                  {allMdx.edges.map(({ node }, index) => (
+                    <Link
+                      key={index}
+                      to={node.frontmatter.path}
+                      className="px-3 py-2 rounded-md text-base leading-6 font-medium text-amazee-dark hover:text-white hover:bg-amazee-dark focus:outline-none focus:text-white focus:bg-amazee-dark"
+                    >
+                      {node.frontmatter.title}
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>
@@ -79,19 +101,15 @@ export const Header: React.FC = () => {
             */}
         <div className="hidden border-b border-amazee-dark md:hidden">
           <div className="px-2 py-3 space-y-1 sm:px-3">
-            <Link
-              to="/"
-              className="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700"
-            >
-              Introduction
-            </Link>
-
-            <Link
-              to="/tooling"
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-            >
-              Tooling
-            </Link>
+            {allMdx.edges.map(({ node }, index) => (
+              <Link
+                key={index}
+                to={node.frontmatter.path}
+                className="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700"
+              >
+                {node.frontmatter.title}
+              </Link>
+            ))}
           </div>
         </div>
       </nav>
