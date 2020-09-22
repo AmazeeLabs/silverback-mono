@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.0.4...@-drupal/cypress@2.1.0) (2020-09-22)
+
+
+### Features
+
+* **drupal/cypress:** enable use of the screenplay pattern ([d5734b1](https://github.com/AmazeeLabs/silverback-mono/commit/d5734b10f5b50f0f15ac00330ce180b2c3f36eba))
+
+
+
+
+
 ## [2.0.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.0.3...@-drupal/cypress@2.0.4) (2020-09-21)
 
 **Note:** Version bump only for package @-drupal/cypress
