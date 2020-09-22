@@ -60,7 +60,7 @@ const Documentation: React.FC<PageProps<{
       }}
     >
       <div className="flex items-start">
-        {!!mdx.headings.length && (
+        {mdx.headings.length > 1 && (
           <TOC items={mdx.headings.map((heading) => heading.value)} />
         )}
         <div className="bg-white rounded-lg shadow-xl px-5 py-6 sm:px-6">
