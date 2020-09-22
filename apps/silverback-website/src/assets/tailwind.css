@@ -84,7 +84,7 @@ code {
 }
 
 pre {
-  @apply font-mono text-sm p-4 rounded-md;
+  @apply font-mono text-sm p-4 rounded-md overflow-auto;
 }
 
 ul {

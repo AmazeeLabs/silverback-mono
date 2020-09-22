@@ -59,7 +59,7 @@ const Documentation: React.FC<PageProps<{
         },
       }}
     >
-      <div className="flex items-start">
+      <div className="md:flex items-start">
         {mdx.headings.length > 1 && (
           <TOC items={mdx.headings.map((heading) => heading.value)} />
         )}
