@@ -23,6 +23,7 @@ module.exports = {
       // https://tailwindcss.com/docs/customizing-colors
       colors: {
         amazee: {
+          background: '#f7f5f2',
           yellow: '#ffcc4f',
           yellowDark: '#ffb80c',
           gray: '#64675E',

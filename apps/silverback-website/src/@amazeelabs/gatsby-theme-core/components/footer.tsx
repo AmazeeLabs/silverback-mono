@@ -2,7 +2,7 @@ import { Link } from 'gatsby';
 import React from 'react';
 
 export const Footer: React.FC = () => (
-  <div className="bg-amazee-dark">
+  <footer className="bg-amazee-dark">
     <div className="max-w-screen-xl mx-auto px-4 pt-10 sm:px-6 lg:px-8">
       <div className="xl:grid xl:grid-cols-3 xl:gap-8">
         <div className="xl:col-span-1">
@@ -183,5 +183,5 @@ export const Footer: React.FC = () => (
         </div>
       </div>
     </div>
-  </div>
+  </footer>
 );
