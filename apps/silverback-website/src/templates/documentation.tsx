@@ -4,7 +4,7 @@ import { graphql, PageProps } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
 
-import { Code } from '../components/code';
+import { Code, TOC } from '../components';
 
 export const pageQuery = graphql`
   query DocQuery($id: String) {
@@ -13,6 +13,9 @@ export const pageQuery = graphql`
       body
       frontmatter {
         title
+      }
+      headings(depth: h2) {
+        value
       }
     }
   }
@@ -52,6 +55,9 @@ const Documentation: React.FC<PageProps<{
     frontmatter: {
       title: string;
     };
+    headings: {
+      value: string;
+    }[];
   };
 }>> = ({ data: { mdx } }) => (
   <>
@@ -70,7 +76,14 @@ const Documentation: React.FC<PageProps<{
         },
       }}
     >
-      <MDXRenderer>{mdx.body}</MDXRenderer>
+      <div className="flex items-start">
+        {!!mdx.headings.length && (
+          <TOC items={mdx.headings.map((heading) => heading.value)} />
+        )}
+        <div className="bg-white rounded-lg shadow-xl px-5 py-6 sm:px-6">
+          <MDXRenderer>{mdx.body}</MDXRenderer>
+        </div>
+      </div>
     </MDXProvider>
   </>
 );
