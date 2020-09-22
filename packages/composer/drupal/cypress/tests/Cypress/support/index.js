@@ -13,3 +13,7 @@ Cypress.Commands.overwrite('visit', (originalFn, url, options) => {
     'headers': headers,
   }))
 });
+
+afterEach(() => {
+  cy.drupalUninstall();
+});
