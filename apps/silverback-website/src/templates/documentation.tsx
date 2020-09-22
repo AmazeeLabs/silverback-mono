@@ -5,7 +5,7 @@ import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
 
 import { Code, TOC } from '../components';
-import { preToCodeBlock } from '../utils';
+import { preToCodeBlock, slugify } from '../utils';
 
 export const pageQuery = graphql`
   query DocQuery($id: String) {
@@ -22,6 +22,15 @@ export const pageQuery = graphql`
   }
 `;
 
+const H2: React.FC<React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLHeadingElement>,
+  HTMLHeadingElement
+>> = ({ id, children, ...props }) => (
+  <h2 id={typeof children === 'string' ? slugify(children) : id} {...props}>
+    {children}
+  </h2>
+);
+
 const Documentation: React.FC<PageProps<{
   mdx: {
     body: string;
@@ -37,6 +46,7 @@ const Documentation: React.FC<PageProps<{
     <SEO title={mdx.frontmatter.title} />
     <MDXProvider
       components={{
+        h2: H2,
         pre: (preProps) => {
           const props = preToCodeBlock(preProps);
           // if there's a codeString and some props, we passed the test
