@@ -2,6 +2,7 @@
 /// <reference types="Cypress" />
 
 import '@testing-library/cypress/add-commands';
+import 'cypress-screenplay/dist/commands';
 import './commands.js';
 
 /**
