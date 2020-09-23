@@ -1,37 +1,13 @@
 import { useSiteMetadata } from '@amazeelabs/gatsby-theme-core';
-import { graphql, Link, useStaticQuery } from 'gatsby';
+import { Link } from 'gatsby';
 import React from 'react';
 
 import amazeeLogo from '../assets/logo.svg';
+import { useNavigation } from '../hooks/useNavigation';
 
 export const Header: React.FC = () => {
   const { title } = useSiteMetadata();
-
-  const { allMdx } = useStaticQuery<{
-    allMdx: {
-      edges: {
-        node: {
-          frontmatter: {
-            path: string;
-            title: string;
-          };
-        };
-      }[];
-    };
-  }>(graphql`
-    query HeaderQuery {
-      allMdx {
-        edges {
-          node {
-            frontmatter {
-              path
-              title
-            }
-          }
-        }
-      }
-    }
-  `);
+  const { nodes } = useNavigation();
 
   return (
     <div className="pb-32 bg-amazee-yellow">
@@ -46,13 +22,13 @@ export const Header: React.FC = () => {
               </div>
               <div className="hidden md:block">
                 <div className="flex items-baseline ml-10 space-x-4">
-                  {allMdx.edges.map(({ node }, index) => (
+                  {nodes.map(({ path, title }, index) => (
                     <Link
                       key={index}
-                      to={node.frontmatter.path}
+                      to={path}
                       className="px-3 py-2 text-lg font-medium leading-6 rounded-md text-amazee-dark hover:text-white hover:bg-amazee-dark focus:outline-none focus:text-white focus:bg-amazee-dark lg:text-xl lg:px-4 lg:py-3"
                     >
-                      {node.frontmatter.title}
+                      {title}
                     </Link>
                   ))}
                 </div>
@@ -101,13 +77,13 @@ export const Header: React.FC = () => {
             */}
         <div className="hidden border-b border-amazee-dark md:hidden">
           <div className="px-2 py-3 space-y-1 sm:px-3">
-            {allMdx.edges.map(({ node }, index) => (
+            {nodes.map(({ path, title }, index) => (
               <Link
                 key={index}
-                to={node.frontmatter.path}
+                to={path}
                 className="block px-3 py-2 text-base font-medium text-white bg-gray-900 rounded-md focus:outline-none focus:text-white focus:bg-gray-700"
               >
-                {node.frontmatter.title}
+                {title}
               </Link>
             ))}
           </div>

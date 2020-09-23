@@ -1,40 +1,10 @@
-import { graphql, Link, useStaticQuery } from 'gatsby';
+import { Link } from 'gatsby';
 import React from 'react';
 
-import { slugify } from '../utils';
+import { useNavigation } from '../hooks/useNavigation';
 
 export const Footer: React.FC = () => {
-  const { allMdx } = useStaticQuery<{
-    allMdx: {
-      edges: {
-        node: {
-          frontmatter: {
-            path: string;
-            title: string;
-          };
-          headings: {
-            value: string;
-          }[];
-        };
-      }[];
-    };
-  }>(graphql`
-    query FooterQuery {
-      allMdx {
-        edges {
-          node {
-            frontmatter {
-              path
-              title
-            }
-            headings(depth: h2) {
-              value
-            }
-          }
-        }
-      }
-    }
-  `);
+  const { nodes } = useNavigation();
 
   return (
     <footer className="text-base leading-6 text-white bg-amazee-dark lg:text-md xl:text-lg">
@@ -165,28 +135,20 @@ export const Footer: React.FC = () => {
                 </g>
               </svg>
             </Link>
-            <p className="mt-8">
-              Drupal, Gatsby and React Development and Design
-            </p>
           </div>
           <div className="grid grid-cols-2 gap-8 mt-12 xl:mt-0 xl:col-span-2">
             <div className="md:grid md:grid-cols-2 md:gap-8">
-              {allMdx.edges.map(({ node }, index) => (
+              {nodes.map(({ path, title, children }, index) => (
                 <div className={index ? 'mt-12 md:mt-0' : ''} key={index}>
                   <h4 className="m-0 font-semibold leading-5 tracking-wider uppercase">
-                    <Link to={node.frontmatter.path}>
-                      {node.frontmatter.title}
-                    </Link>
+                    <Link to={path}>{title}</Link>
                   </h4>
-                  {!!node.headings.length && (
+                  {children && (
                     <ul className="mt-4 text-sm list-none lg:text-base">
-                      {node.headings.map(({ value }, index) => (
+                      {children.map(({ path, title }, index) => (
                         <li key={index}>
-                          <Link
-                            to={`${node.frontmatter.path}#${slugify(value)}`}
-                            className="leading-6"
-                          >
-                            {value}
+                          <Link to={path} className="leading-6">
+                            {title}
                           </Link>
                         </li>
                       ))}
