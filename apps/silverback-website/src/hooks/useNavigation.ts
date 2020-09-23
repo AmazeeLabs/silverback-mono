@@ -47,15 +47,15 @@ export const useNavigation = () => {
           rootNode.path !== `/${firstSegment}`
             ? rootNode
             : {
-              ...rootNode,
-              children: [
-                {
-                  path: node.frontmatter.path,
-                  title: node.frontmatter.title,
-                },
-                ...(rootNode.children || []),
-              ],
-            },
+                ...rootNode,
+                children: [
+                  {
+                    path: node.frontmatter.path,
+                    title: node.frontmatter.title,
+                  },
+                  ...(rootNode.children || []),
+                ],
+              },
         );
       } else {
         navigation.push({
@@ -65,6 +65,6 @@ export const useNavigation = () => {
       }
 
       return navigation;
-    }, [] as NavigationNode[])
+    }, [] as NavigationNode[]),
   };
 };
