@@ -6,7 +6,7 @@
 
 import { config as dotenvConfig } from 'dotenv';
 
-dotenvConfig({ path: `.env` });
+dotenvConfig({ path: '.env' });
 
 export const siteMetadata = {
   title: 'Silverback Website',
@@ -17,9 +17,9 @@ export const siteMetadata = {
 export const plugins = [
   'gatsby-plugin-mdx',
   {
-    resolve: `gatsby-source-filesystem`,
+    resolve: 'gatsby-source-filesystem',
     options: {
-      name: `docs`,
+      name: 'docs',
       path: `${__dirname}/../../docs/`,
     },
   },
@@ -33,7 +33,7 @@ export const plugins = [
   '@amazeelabs/gatsby-theme-core',
   // Required due to #177 https://github.com/AmazeeLabs/silverback-mono/issues/177
   {
-    resolve: `gatsby-plugin-postcss`,
+    resolve: 'gatsby-plugin-postcss',
     options: {
       postCssPlugins: [
         // Transform @import rules by inlining content.
