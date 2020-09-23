@@ -34,23 +34,23 @@ export const Header: React.FC = () => {
   `);
 
   return (
-    <div className="bg-amazee-yellow pb-32">
+    <div className="pb-32 bg-amazee-yellow">
       <nav className="bg-amazee-yellow">
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 my-4">
+        <div className="mx-auto my-4 max-w-7xl sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 px-4 sm:px-0">
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <Link to="/" className="flex">
-                  <img className="h-12 w-auto" src={amazeeLogo} alt={title} />
+                  <img className="w-auto h-12" src={amazeeLogo} alt={title} />
                 </Link>
               </div>
               <div className="hidden md:block">
-                <div className="ml-10 flex items-baseline space-x-4">
+                <div className="flex items-baseline ml-10 space-x-4">
                   {allMdx.edges.map(({ node }, index) => (
                     <Link
                       key={index}
                       to={node.frontmatter.path}
-                      className="px-3 py-2 rounded-md text-lg leading-6 font-medium text-amazee-dark hover:text-white hover:bg-amazee-dark focus:outline-none focus:text-white focus:bg-amazee-dark lg:text-xl lg:px-4 lg:py-3"
+                      className="px-3 py-2 text-lg font-medium leading-6 rounded-md text-amazee-dark hover:text-white hover:bg-amazee-dark focus:outline-none focus:text-white focus:bg-amazee-dark lg:text-xl lg:px-4 lg:py-3"
                     >
                       {node.frontmatter.title}
                     </Link>
@@ -58,12 +58,12 @@ export const Header: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="-mr-2 flex md:hidden">
+            <div className="flex -mr-2 md:hidden">
               {/* Mobile menu button */}
               <button className="inline-flex items-center justify-center p-2 rounded-md text-amazee-dark">
                 {/* Menu open: "hidden", Menu closed: "block" */}
                 <svg
-                  className="block h-6 w-6"
+                  className="block w-6 h-6"
                   stroke="currentColor"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -77,7 +77,7 @@ export const Header: React.FC = () => {
                 </svg>
                 {/* Menu open: "block", Menu closed: "hidden" */}
                 <svg
-                  className="hidden h-6 w-6"
+                  className="hidden w-6 h-6"
                   stroke="currentColor"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -105,7 +105,7 @@ export const Header: React.FC = () => {
               <Link
                 key={index}
                 to={node.frontmatter.path}
-                className="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700"
+                className="block px-3 py-2 text-base font-medium text-white bg-gray-900 rounded-md focus:outline-none focus:text-white focus:bg-gray-700"
               >
                 {node.frontmatter.title}
               </Link>

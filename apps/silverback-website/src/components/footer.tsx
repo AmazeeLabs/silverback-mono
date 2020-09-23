@@ -37,13 +37,13 @@ export const Footer: React.FC = () => {
   `);
 
   return (
-    <footer className="bg-amazee-dark text-white text-base lg:text-md xl:text-lg leading-6">
-      <div className="max-w-screen-xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
+    <footer className="text-base leading-6 text-white bg-amazee-dark lg:text-md xl:text-lg">
+      <div className="max-w-screen-xl px-4 py-10 mx-auto sm:px-6 lg:px-8">
         <div className="lg:grid xl:grid-cols-3 xl:gap-8">
           <div className="xl:col-span-1">
             <Link to="/" className="flex">
               <svg
-                className="h-10 lg:h-14 fill-current text-white"
+                className="h-10 text-white fill-current lg:h-14"
                 viewBox="0 0 600 316"
               >
                 <g>
@@ -169,17 +169,17 @@ export const Footer: React.FC = () => {
               Drupal, Gatsby and React Development and Design
             </p>
           </div>
-          <div className="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
+          <div className="grid grid-cols-2 gap-8 mt-12 xl:mt-0 xl:col-span-2">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               {allMdx.edges.map(({ node }, index) => (
                 <div className={index ? 'mt-12 md:mt-0' : ''} key={index}>
-                  <h4 className="leading-5 font-semibold tracking-wider uppercase m-0">
+                  <h4 className="m-0 font-semibold leading-5 tracking-wider uppercase">
                     <Link to={node.frontmatter.path}>
                       {node.frontmatter.title}
                     </Link>
                   </h4>
                   {!!node.headings.length && (
-                    <ul className="mt-4 list-none text-sm lg:text-base">
+                    <ul className="mt-4 text-sm list-none lg:text-base">
                       {node.headings.map(({ value }, index) => (
                         <li key={index}>
                           <Link

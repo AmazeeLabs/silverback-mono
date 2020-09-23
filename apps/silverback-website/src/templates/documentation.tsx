@@ -59,11 +59,11 @@ const Documentation: React.FC<PageProps<{
         },
       }}
     >
-      <div className="md:flex items-start">
+      <div className="items-start md:flex">
         {mdx.headings.length > 1 && (
           <TOC items={mdx.headings.map((heading) => heading.value)} />
         )}
-        <article className="bg-white rounded-lg shadow-xl p-6 lg:p-8 xl:p-10 prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none sm:max-w-none">
+        <article className="p-6 bg-white rounded-lg shadow-xl lg:p-8 xl:p-10 prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none sm:max-w-none">
           <MDXRenderer>{mdx.body}</MDXRenderer>
         </article>
       </div>
