@@ -50,7 +50,7 @@ export const Header: React.FC = () => {
                     <Link
                       key={index}
                       to={node.frontmatter.path}
-                      className="px-3 py-2 rounded-md text-base leading-6 font-medium text-amazee-dark hover:text-white hover:bg-amazee-dark focus:outline-none focus:text-white focus:bg-amazee-dark"
+                      className="px-3 py-2 rounded-md text-lg leading-6 font-medium text-amazee-dark hover:text-white hover:bg-amazee-dark focus:outline-none focus:text-white focus:bg-amazee-dark lg:text-xl lg:px-4 lg:py-3"
                     >
                       {node.frontmatter.title}
                     </Link>

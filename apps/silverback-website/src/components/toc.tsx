@@ -5,7 +5,7 @@ import { slugify } from '../utils';
 export const TOC: React.FC<{
   items: string[];
 }> = ({ items }) => (
-  <div className="bg-white rounded-lg shadow-xl px-5 py-6 sm:px-6 mb-8 md:mr-4 md:sticky md:top-4 flex-none">
+  <aside className="bg-white rounded-lg shadow-xl px-5 py-6 sm:px-6 mb-8 md:mr-4 md:sticky md:top-4 flex-none prose prose-sm sm:prose max-w-none sm:max-w-none">
     <h3 className="mt-0 font-bold">Table of contents</h3>
     <ul className="list-none mb-0">
       {items.map((item, index) => (
@@ -14,5 +14,5 @@ export const TOC: React.FC<{
         </li>
       ))}
     </ul>
-  </div>
+  </aside>
 );

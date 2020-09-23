@@ -32,6 +32,22 @@ module.exports = {
         },
       },
     },
+    typography: (theme) => ({
+      default: {
+        css: {
+          a: {
+            color: theme('colors.amazee.blue'),
+            textDecoration: 'none',
+          },
+          'a:hover': {
+            color: theme('colors.amazee.yellow'),
+          },
+          'a:focus': {
+            color: theme('colors.amazee.yellow'),
+          },
+        },
+      },
+    }),
   },
   variants: {
     // From https://tailwindcss.com/docs/configuring-variants/, here are all the
@@ -64,6 +80,7 @@ module.exports = {
     // Add custom plugins to implement dynamic utilities or components.
     // https://tailwindcss.com/docs/extracting-components#writing-a-component-plugin
     // https://tailwindcss.com/docs/adding-new-utilities#using-a-plugin
+    require('@tailwindcss/typography'),
     require('@tailwindcss/ui'),
   ],
   future: {

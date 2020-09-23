@@ -37,13 +37,13 @@ export const Footer: React.FC = () => {
   `);
 
   return (
-    <footer className="bg-amazee-dark">
-      <div className="max-w-screen-xl mx-auto px-4 pt-10 sm:px-6 lg:px-8">
-        <div className="xl:grid xl:grid-cols-3 xl:gap-8">
+    <footer className="bg-amazee-dark text-white text-base lg:text-md xl:text-lg leading-6">
+      <div className="max-w-screen-xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
+        <div className="lg:grid xl:grid-cols-3 xl:gap-8">
           <div className="xl:col-span-1">
             <Link to="/" className="flex">
               <svg
-                className="h-10 fill-current text-white"
+                className="h-10 lg:h-14 fill-current text-white"
                 viewBox="0 0 600 316"
               >
                 <g>
@@ -165,7 +165,7 @@ export const Footer: React.FC = () => {
                 </g>
               </svg>
             </Link>
-            <p className="mt-8 text-white text-base leading-6">
+            <p className="mt-8">
               Drupal, Gatsby and React Development and Design
             </p>
           </div>
@@ -173,18 +173,18 @@ export const Footer: React.FC = () => {
             <div className="md:grid md:grid-cols-2 md:gap-8">
               {allMdx.edges.map(({ node }, index) => (
                 <div className={index ? 'mt-12 md:mt-0' : ''} key={index}>
-                  <h4 className="text-sm leading-5 font-semibold tracking-wider text-white uppercase m-0">
+                  <h4 className="leading-5 font-semibold tracking-wider uppercase m-0">
                     <Link to={node.frontmatter.path}>
                       {node.frontmatter.title}
                     </Link>
                   </h4>
                   {!!node.headings.length && (
-                    <ul className="mt-4 list-none">
+                    <ul className="mt-4 list-none text-sm lg:text-base">
                       {node.headings.map(({ value }, index) => (
                         <li key={index}>
                           <Link
                             to={`${node.frontmatter.path}#${slugify(value)}`}
-                            className="text-sm leading-6"
+                            className="leading-6"
                           >
                             {value}
                           </Link>

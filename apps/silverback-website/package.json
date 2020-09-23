@@ -7,6 +7,7 @@
     "@amazeelabs/gatsby-theme-core": "^0.2.2",
     "@mdx-js/mdx": "^1.6.18",
     "@mdx-js/react": "^1.6.18",
+    "@tailwindcss/typography": "^0.2.0",
     "@tailwindcss/ui": "^0.6.2",
     "dotenv": "^8.2.0",
     "gatsby": "^2.24.64",

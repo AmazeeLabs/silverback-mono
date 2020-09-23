@@ -63,9 +63,9 @@ const Documentation: React.FC<PageProps<{
         {mdx.headings.length > 1 && (
           <TOC items={mdx.headings.map((heading) => heading.value)} />
         )}
-        <div className="bg-white rounded-lg shadow-xl px-5 py-6 sm:px-6">
+        <article className="bg-white rounded-lg shadow-xl p-6 lg:p-8 xl:p-10 prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none sm:max-w-none">
           <MDXRenderer>{mdx.body}</MDXRenderer>
-        </div>
+        </article>
       </div>
     </MDXProvider>
   </>
