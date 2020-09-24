@@ -9,6 +9,7 @@
     "@mdx-js/react": "^1.6.18",
     "@tailwindcss/typography": "^0.2.0",
     "@tailwindcss/ui": "^0.6.2",
+    "classnames": "^2.2.6",
     "dotenv": "^8.2.0",
     "gatsby": "^2.24.64",
     "gatsby-plugin-mdx": "^1.2.40",
@@ -20,6 +21,7 @@
   "devDependencies": {
     "@amazeelabs/eslint-config-react": "^1.0.7",
     "@amazeelabs/prettier-config": "^1.1.0",
+    "@types/classnames": "^2.2.10",
     "@types/mdx-js__react": "^1.5.2",
     "@types/node": "^14.11.2",
     "eslint": "^7.9.0",
