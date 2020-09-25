@@ -1,5 +1,7 @@
 import { graphql, useStaticQuery } from 'gatsby';
 
+import { trim } from '../utils';
+
 export type NavigationNode = {
   title: string;
   path: string;
@@ -8,63 +10,61 @@ export type NavigationNode = {
 
 export const useNavigation = () => {
   const {
-    allMdx: { edges },
+    allMdx: { distinct: navigation, group: navigationGroups },
   } = useStaticQuery<{
     allMdx: {
-      edges: {
-        node: {
-          frontmatter: {
-            path: string;
-            title: string;
+      group: {
+        edges: {
+          node: {
+            frontmatter: {
+              path: string;
+              title: string;
+              nav: string;
+            };
           };
-        };
+        }[];
       }[];
+      distinct: string[];
     };
   }>(graphql`
     query NavigationQuery {
-      allMdx(sort: { fields: frontmatter___path, order: ASC }) {
-        edges {
-          node {
-            frontmatter {
-              path
-              title
+      allMdx(sort: { fields: frontmatter___position, order: ASC }) {
+        group(field: frontmatter___nav) {
+          edges {
+            node {
+              frontmatter {
+                path
+                title
+                nav
+              }
             }
           }
         }
+        distinct(field: frontmatter___nav)
       }
     }
   `);
 
   return {
-    nodes: edges.reduce((navigation, { node }) => {
-      const firstSegment = node.frontmatter.path.substr(1).split('/').shift();
+    nodes: navigation.map((title, navIndex) => ({
+      title,
+      path: `/${trim(
+        navigationGroups[navIndex].edges[0].node.frontmatter.path,
+        '/',
+      )
+        .split('/')
+        .shift()}`,
+      children:
+        navigationGroups[navIndex].edges.length > 1
+          ? navigationGroups[navIndex].edges.reduce((children, { node }) => {
+              children.push({
+                title: node.frontmatter.title,
+                path: node.frontmatter.path,
+              });
 
-      if (
-        firstSegment &&
-        navigation.find((rootNode) => rootNode.path === `/${firstSegment}`)
-      ) {
-        navigation = navigation.map((rootNode) =>
-          rootNode.path !== `/${firstSegment}`
-            ? rootNode
-            : {
-                ...rootNode,
-                children: [
-                  {
-                    path: node.frontmatter.path,
-                    title: node.frontmatter.title,
-                  },
-                  ...(rootNode.children || []),
-                ],
-              },
-        );
-      } else {
-        navigation.push({
-          path: node.frontmatter.path,
-          title: node.frontmatter.title,
-        });
-      }
-
-      return navigation;
-    }, [] as NavigationNode[]),
+              return children;
+            }, [] as NavigationNode[])
+          : undefined,
+    })),
   };
 };

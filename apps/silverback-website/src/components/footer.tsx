@@ -1,7 +1,7 @@
 import { Link } from 'gatsby';
 import React from 'react';
 
-import { useNavigation } from '../hooks/useNavigation';
+import { useNavigation } from '../hooks';
 
 export const Footer: React.FC = () => {
   const { nodes } = useNavigation();
@@ -140,19 +140,26 @@ export const Footer: React.FC = () => {
             <div className="md:grid md:grid-cols-2 md:gap-8">
               {nodes.map(({ path, title, children }, index) => (
                 <div className={index ? 'mt-12 md:mt-0' : ''} key={index}>
-                  <h4 className="m-0 font-semibold leading-5 tracking-wider uppercase">
-                    <Link to={path}>{title}</Link>
-                  </h4>
-                  {children && (
-                    <ul className="mt-4 text-sm list-none lg:text-base">
-                      {children.map(({ path, title }, index) => (
-                        <li key={index}>
-                          <Link to={path} className="leading-6">
-                            {title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
+                  {children ? (
+                    <>
+                      <h4 className="m-0 font-semibold leading-5 tracking-wider uppercase">
+                        {title}
+                      </h4>
+
+                      <ul className="mt-4 text-sm list-none lg:text-base">
+                        {children.map(({ path, title }, index) => (
+                          <li key={index}>
+                            <Link to={path} className="leading-6">
+                              {title}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  ) : (
+                    <h4 className="m-0 font-semibold leading-5 tracking-wider uppercase">
+                      <Link to={path}>{title}</Link>
+                    </h4>
                   )}
                 </div>
               ))}
