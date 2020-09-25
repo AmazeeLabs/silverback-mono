@@ -10,7 +10,7 @@
     "@tailwindcss/ui": "^0.6.2",
     "dotenv": "^8.2.0",
     "gatsby": "^2.24.64",
-    "gatsby-plugin-mdx": "^1.2.40",
+    "gatsby-plugin-mdx": "^1.2.41",
     "gatsby-source-filesystem": "^2.3.30",
     "prism-themes": "^1.4.0",
     "react": "^16.13.1",
