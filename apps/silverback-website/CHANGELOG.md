@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.5.14...silverback-website@0.6.0) (2020-09-25)
+
+
+### Bug Fixes
+
+* **silverback-website:** fix header anchors ([311a59c](https://github.com/AmazeeLabs/silverback-mono/commit/311a59cb39c64fbcee8f751e34df42e6dd3bd2f9))
+* **silverback-website:** fix mobile TOC ([672ea75](https://github.com/AmazeeLabs/silverback-mono/commit/672ea75dfb773a8d6be394c4df0844570ded2cdb))
+* **silverback-website:** fix mobile view ([e44cab5](https://github.com/AmazeeLabs/silverback-mono/commit/e44cab5b1abee192a5b26a78c343934786ebdcfd))
+* **silverback-website:** fix order of tailwind classes ([7e4774b](https://github.com/AmazeeLabs/silverback-mono/commit/7e4774b5f0f790dbe0d6443938fb3b71f763b008))
+* **silverback-website:** fix sidebar and content width ([e6103d9](https://github.com/AmazeeLabs/silverback-mono/commit/e6103d90368a84ca20698166bfdd67679ca122be))
+* **silverback-website:** import TailwindCSS in gatsby-ssr.ts ([0f87f6d](https://github.com/AmazeeLabs/silverback-mono/commit/0f87f6daf8a847223e4f60e55672ab67f4be4cbe))
+* **silverback-website:** set header navigation active state for sub-pages ([672c6a9](https://github.com/AmazeeLabs/silverback-mono/commit/672c6a9aefcd9812924d57d5a55c97782f495e1d))
+
+
+### Features
+
+* **silverback-website:** add and tweak @tailwindcss/typography plugin ([ae6e8bc](https://github.com/AmazeeLabs/silverback-mono/commit/ae6e8bc136dd01c445fe1cfe6f044bb52442e639))
+* **silverback-website:** add slugified IDs to H2 ([019e88e](https://github.com/AmazeeLabs/silverback-mono/commit/019e88e7d919b741a1cd4af9d70830cd55591c8c))
+* **silverback-website:** add slugify utility ([2507b22](https://github.com/AmazeeLabs/silverback-mono/commit/2507b2212ee795b2d67567a7b19e0ae5b34b34a8))
+* **silverback-website:** add Table of contents sidebar ([f186fb1](https://github.com/AmazeeLabs/silverback-mono/commit/f186fb1c9d33cf639b221530a9f74d84a6dddd4a))
+* **silverback-website:** add trim utility ([5c9b52d](https://github.com/AmazeeLabs/silverback-mono/commit/5c9b52de5fc4059067b00c40a032e3a67aa7f664))
+* **silverback-website:** add useNavigation hook ([d428f67](https://github.com/AmazeeLabs/silverback-mono/commit/d428f67b67adce74c743f897cb6ebfaa9a9c714f))
+* **silverback-website:** better code highlighting with prism ([c893d6b](https://github.com/AmazeeLabs/silverback-mono/commit/c893d6b57b8b8d615dbcf4e0e1ea1e12fabc29ed))
+* **silverback-website:** hide TOC when there's only one item ([3ce0a04](https://github.com/AmazeeLabs/silverback-mono/commit/3ce0a04f5c79528650682b9826657deb3daa82ba))
+* **silverback-website:** improve navigation ([c094b62](https://github.com/AmazeeLabs/silverback-mono/commit/c094b62bdce7a2ecefb72338968b256da695860e))
+* **silverback-website:** make footer navigation dynamic ([6f336f8](https://github.com/AmazeeLabs/silverback-mono/commit/6f336f8eca113cf47f125e686fc3dc6f049715aa))
+* **silverback-website:** make header navigation dynamic ([254fad0](https://github.com/AmazeeLabs/silverback-mono/commit/254fad010743256ac2f71eb6dcf63d4ee079690c))
+* **silverback-website:** optimize and show markdown images ([5efdcd5](https://github.com/AmazeeLabs/silverback-mono/commit/5efdcd58a0f3f90ea069f8c5f38506f6e3b05bf5))
+* **silverback-website:** rewrite relative links ([308eba6](https://github.com/AmazeeLabs/silverback-mono/commit/308eba64a0256048840a37aba9f60c6613a90578))
+* **silverback-website:** show mobile menu ([0400d39](https://github.com/AmazeeLabs/silverback-mono/commit/0400d398cc0a9d5a71ad2cca3771481a3904c512))
+* **silverback-website:** style 404 page ([cbb84e8](https://github.com/AmazeeLabs/silverback-mono/commit/cbb84e86e8991bbd01cca2ee9ea9447955071908))
+* **silverback-website:** use navigation hook in header and footer ([b7c1c6a](https://github.com/AmazeeLabs/silverback-mono/commit/b7c1c6a1d2a66fa92f0a3bc1c11a5db08ede2671))
+
+
+
+
+
 ## [0.5.14](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.5.13...silverback-website@0.5.14) (2020-09-22)
 
 **Note:** Version bump only for package silverback-website

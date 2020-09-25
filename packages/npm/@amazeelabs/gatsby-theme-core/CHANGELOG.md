@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.2.2...@amazeelabs/gatsby-theme-core@0.2.3) (2020-09-25)
+
+
+### Bug Fixes
+
+* **gatsby-theme-core:** add gatsby-ssr.js to avoid missing layout ([e3a79e1](https://github.com/AmazeeLabs/silverback-mono/commit/e3a79e1c16e95e04055345e236bb47567af7c1e3))
+
+
+
+
+
 ## [0.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.2.1...@amazeelabs/gatsby-theme-core@0.2.2) (2020-09-21)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-theme-core
