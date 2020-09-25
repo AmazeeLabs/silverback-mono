@@ -4,8 +4,8 @@ import { graphql, PageProps } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
 
-import { Code, TOC } from '../components';
-import { preToCodeBlock, slugify } from '../utils';
+import { Code, TOC, TOCItem } from '../components';
+import { preToCodeBlock } from '../utils';
 
 export const pageQuery = graphql`
   query DocQuery($id: String) {
@@ -15,21 +15,10 @@ export const pageQuery = graphql`
       frontmatter {
         title
       }
-      headings(depth: h2) {
-        value
-      }
+      tableOfContents(maxDepth: 2)
     }
   }
 `;
-
-const H2: React.FC<React.DetailedHTMLProps<
-  React.HTMLAttributes<HTMLHeadingElement>,
-  HTMLHeadingElement
->> = ({ id, children, ...props }) => (
-  <h2 id={typeof children === 'string' ? slugify(children) : id} {...props}>
-    {children}
-  </h2>
-);
 
 const Documentation: React.FC<PageProps<{
   mdx: {
@@ -37,16 +26,15 @@ const Documentation: React.FC<PageProps<{
     frontmatter: {
       title: string;
     };
-    headings: {
-      value: string;
-    }[];
+    tableOfContents: {
+      items: TOCItem[];
+    };
   };
 }>> = ({ data: { mdx } }) => (
   <>
     <SEO title={mdx.frontmatter.title} />
     <MDXProvider
       components={{
-        h2: H2,
         pre: (preProps) => {
           const props = preToCodeBlock(preProps);
           // if there's a codeString and some props, we passed the test
@@ -60,8 +48,8 @@ const Documentation: React.FC<PageProps<{
       }}
     >
       <div className="items-start md:flex">
-        {mdx.headings.length > 1 && (
-          <TOC items={mdx.headings.map((heading) => heading.value)} />
+        {mdx.tableOfContents.items[0].items!.length > 1 && (
+          <TOC items={mdx.tableOfContents.items[0].items!} />
         )}
         <article className="min-w-0 p-6 bg-white rounded-lg shadow-xl lg:p-8 xl:p-10 prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none sm:max-w-none">
           <MDXRenderer>{mdx.body}</MDXRenderer>
