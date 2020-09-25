@@ -1,13 +1,32 @@
 // If you use Tailwind, this file and src/assets/tailwind.css are the two
 // files you will mostly be editing to set your design values.
 module.exports = {
-  purge: [
-    './src/**/*.js',
-    './src/**/*.jsx',
-    './src/**/*.ts',
-    './src/**/*.tsx',
-    './src/**/*.mdx',
-  ],
+  purge: {
+    content: [
+      './src/**/*.js',
+      './src/**/*.jsx',
+      './src/**/*.ts',
+      './src/**/*.tsx',
+      './src/**/*.mdx',
+    ],
+
+    // These options are passed through directly to PurgeCSS
+    options: {
+      whitelist: [
+        'scale-75',
+        'lg:scale-100',
+        '-mx-1',
+        'xl:-mx-1.5',
+        '-translate-x-full',
+        'absolute',
+        'transform',
+        'top-1/2',
+        '-translate-y-1/2',
+        'opacity-25',
+        'hover:opacity-100',
+      ],
+    },
+  },
   theme: {
     // By default, you get Tailwind's pre-packaged design values.
     // You can add a few values to those pre-defined values, by adding keys
