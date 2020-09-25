@@ -12,7 +12,7 @@
     "classnames": "^2.2.6",
     "dotenv": "^8.2.0",
     "gatsby": "^2.24.64",
-    "gatsby-plugin-mdx": "^1.2.40",
+    "gatsby-plugin-mdx": "^1.2.41",
     "gatsby-plugin-sharp": "^2.6.36",
     "gatsby-remark-autolink-headers": "^2.3.13",
     "gatsby-remark-images": "^3.3.30",
