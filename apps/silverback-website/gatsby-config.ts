@@ -20,7 +20,15 @@ export const plugins = [
   {
     resolve: 'gatsby-plugin-mdx',
     options: {
-      gatsbyRemarkPlugins: ['gatsby-remark-images'],
+      gatsbyRemarkPlugins: [
+        {
+          resolve: "gatsby-remark-relative-links",
+          options: {
+            domainRegex: /\/docs\/|\/[\w-]+\.mdx$/g,
+          }
+        },
+        'gatsby-remark-images'
+      ],
     },
   },
   {
