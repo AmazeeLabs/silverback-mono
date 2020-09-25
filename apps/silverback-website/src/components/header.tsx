@@ -26,23 +26,28 @@ export const Header: React.FC = () => {
             </div>
             <div className="hidden md:block">
               <div className="flex items-baseline ml-10 space-x-4">
-                {nodes.map(({ path, title }, index) => (
-                  <Link
-                    key={index}
-                    to={path}
-                    className={classnames(
-                      'px-3 py-2 text-lg font-medium leading-6 rounded-md hover:text-white hover:bg-amazee-dark focus:outline-none focus:text-white focus:bg-amazee-dark lg:text-xl lg:px-4 lg:py-3',
-                      {
-                        'text-white bg-amazee-dark':
-                          trim(pathname, '/') === trim(path, '/'),
-                        'text-amazee-dark':
-                          trim(pathname, '/') !== trim(path, '/'),
-                      },
-                    )}
-                  >
-                    {title}
-                  </Link>
-                ))}
+                {nodes.map(({ path, title }, index) => {
+                  const trimmedPath = trim(path, '/');
+                  const trimmedPathname = trim(pathname, '/');
+                  const isCurrentPath =
+                    trimmedPathname.split('/').shift() == trimmedPath;
+
+                  return (
+                    <Link
+                      key={index}
+                      to={path}
+                      className={classnames(
+                        'px-3 py-2 text-lg font-medium leading-6 rounded-md hover:text-white hover:bg-amazee-dark focus:outline-none focus:text-white focus:bg-amazee-dark lg:text-xl lg:px-4 lg:py-3',
+                        {
+                          'text-white bg-amazee-dark': isCurrentPath,
+                          'text-amazee-dark': !isCurrentPath,
+                        },
+                      )}
+                    >
+                      {title}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -97,22 +102,28 @@ export const Header: React.FC = () => {
         })}
       >
         <div className="px-4 py-3 space-y-1">
-          {nodes.map(({ path, title }, index) => (
-            <Link
-              key={index}
-              to={path}
-              className={classnames(
-                'block px-3 py-2 text-base font-medium leading-6 rounded-md focus:outline-none focus:bg-amazee-dark focus:text-white',
-                {
-                  'text-white bg-amazee-dark':
-                    trim(pathname, '/') === trim(path, '/'),
-                  'text-amazee-dark': trim(pathname, '/') !== trim(path, '/'),
-                },
-              )}
-            >
-              {title}
-            </Link>
-          ))}
+          {nodes.map(({ path, title }, index) => {
+            const trimmedPath = trim(path, '/');
+            const trimmedPathname = trim(pathname, '/');
+            const isCurrentPath =
+              trimmedPathname.split('/').shift() == trimmedPath;
+
+            return (
+              <Link
+                key={index}
+                to={path}
+                className={classnames(
+                  'block px-3 py-2 text-base font-medium leading-6 rounded-md focus:outline-none focus:bg-amazee-dark focus:text-white',
+                  {
+                    'text-white bg-amazee-dark': isCurrentPath,
+                    'text-amazee-dark': !isCurrentPath,
+                  },
+                )}
+              >
+                {title}
+              </Link>
+            );
+          })}
         </div>
       </div>
     </nav>
