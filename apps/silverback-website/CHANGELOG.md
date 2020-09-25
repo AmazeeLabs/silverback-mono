@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.6.0...silverback-website@0.6.1) (2020-09-25)
+
+
+### Bug Fixes
+
+* **silverback-website:** fixed broken configuration ([9f67774](https://github.com/AmazeeLabs/silverback-mono/commit/9f6777408fcc556583dff632439682902fa9878b))
+
+
+
+
+
 # [0.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.5.14...silverback-website@0.6.0) (2020-09-25)
 
 
