@@ -15,19 +15,19 @@ export const siteMetadata = {
 };
 
 export const plugins = [
-  'gatsby-plugin-mdx',
+  'gatsby-plugin-sharp',
+  'gatsby-remark-images',
   {
-    resolve: 'gatsby-source-filesystem',
+    resolve: 'gatsby-plugin-mdx',
     options: {
-      name: 'docs',
-      path: `${__dirname}/../../docs/`,
+      gatsbyRemarkPlugins: ['gatsby-remark-images'],
     },
   },
   {
     resolve: 'gatsby-source-filesystem',
     options: {
-      name: 'images',
-      path: `${__dirname}/src/images/`,
+      name: 'docs',
+      path: `${__dirname}/../../docs/`,
     },
   },
   '@amazeelabs/gatsby-theme-core',
