@@ -26,7 +26,7 @@
     "@amazeelabs/eslint-config-react": "^1.0.7",
     "@amazeelabs/prettier-config": "^1.1.0",
     "@types/classnames": "^2.2.10",
-    "@types/mdx-js__react": "^1.5.2",
+    "@types/mdx-js__react": "^1.5.3",
     "@types/node": "^14.11.2",
     "eslint": "^7.9.0",
     "fork-ts-checker-webpack-plugin": "^5.2.0",
