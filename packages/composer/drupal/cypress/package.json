@@ -14,7 +14,7 @@
   "dependencies": {
     "@testing-library/cypress": "^7.0.1",
     "cypress": "^5.3.0",
-    "cypress-cucumber-preprocessor": "^2.5.5",
+    "cypress-cucumber-preprocessor": "^3.0.0",
     "cypress-file-upload": "^4.1.1",
     "cypress-screenplay": "^0.1.15"
   },
