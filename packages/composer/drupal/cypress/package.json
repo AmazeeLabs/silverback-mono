@@ -3,7 +3,7 @@
   "version": "2.1.1",
   "description": "Cypress E2E testing for Drupal",
   "scripts": {
-    "test": "cd ../../../../apps/silverback-drupal && composer install && bash vendor/bin/silverback-test cypress && vendor/bin/phpstan analyse web/modules/contrib/cypress/cypress.module web/modules/contrib/cypress/cypress.install web/modules/contrib/cypress/src web/modules/contrib/cypress/tests web/modules/contrib/cypress/scripts"
+    "test": "cd ../../../../apps/silverback-drupal && composer install && bash vendor/bin/silverback-test cypress && vendor/bin/phpstan analyse --level=8 web/modules/contrib/cypress/cypress.module web/modules/contrib/cypress/cypress.install web/modules/contrib/cypress/src web/modules/contrib/cypress/tests web/modules/contrib/cypress/scripts"
   },
   "publishConfig": {
     "access": "public",
