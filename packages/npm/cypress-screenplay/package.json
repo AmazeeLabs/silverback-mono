@@ -20,7 +20,7 @@
     "@amazeelabs/prettier-config": "^1.1.0",
     "@tsconfig/recommended": "^1.0.1",
     "@types/mocha": "^8.0.3",
-    "@types/sinon": "^9.0.7",
+    "@types/sinon": "^9.0.8",
     "chai": "^4.2.0",
     "cypress": "^5.3.0",
     "eslint": "^7.10.0",
