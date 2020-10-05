@@ -102,5 +102,9 @@
             "if [ -d web/modules/custom ]; then phpunit web/modules/custom; fi",
             "yarn install && CYPRESS_TAGS=@COMPLETED cypress run"
         ]
+    },
+    "require-dev": {
+        "mglaman/phpstan-drupal": "^0.12.5",
+        "phpstan/extension-installer": "^1.0"
     }
 }
