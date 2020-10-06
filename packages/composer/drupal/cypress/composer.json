@@ -19,7 +19,7 @@
   "require": {
     "ext-json": "*",
     "alchemy/zippy": "dev-master",
-    "drush/drush": "^10.3.4"
+    "drush/drush": "^10.3.5"
   },
   "require-dev": {
     "mikey179/vfsstream": "^1.6"
