@@ -14,9 +14,19 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    "typeRoots": ["./node_modules/@types"],
+    "typeRoots": ["./node_modules/@types", "./src/types", "./generated/types"],
     "sourceMap": true
   },
-  "include": ["./src"],
-  "exclude": ["node_modules"]
+  "include": [
+    "./src",
+    "./generated",
+    "gatsby-node.ts",
+    "gatsby-config.ts",
+    "gatsby-browser.ts",
+    "gatsby-ssr.ts"
+  ],
+  "exclude": ["node_modules"],
+  "ts-node": {
+    "transpileOnly": true
+  }
 }

@@ -69,5 +69,5 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 
-# The graphql schema exported by `gatsby-plugin-schema-export`
-schema.gql
+# Ignore generated files
+generated

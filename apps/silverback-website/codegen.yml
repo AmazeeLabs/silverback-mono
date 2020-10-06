@@ -1,0 +1,12 @@
+overwrite: true
+schema: generated/schema.graphql
+documents:
+  - ./src/**/*.{ts,tsx}
+  - ./gatsby-node.ts
+generates:
+  generated/types/gatsby.d.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+    config:
+      noExport: true

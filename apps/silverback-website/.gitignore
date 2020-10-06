@@ -69,5 +69,5 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 
-# Ignore the exported schema
-schema.gql
+# Ignore generated files
+generated

@@ -7,9 +7,9 @@ const {
   printSchema,
 } = require("gatsby/graphql");
 
-const defaultLocation = path.resolve(process.cwd(), "schema.gql");
+const defaultLocation = path.resolve(process.cwd(), "generated/schema.graphql");
 
-module.exports.onPostBootstrap = ({ store }, options) => {
+module.exports.onPostBootstrap = ({ store, reporter }, options) => {
   const dest = options.dest || defaultLocation;
   new Promise((resolve, reject) => {
     const { schema } = store.getState();
@@ -19,11 +19,13 @@ module.exports.onPostBootstrap = ({ store }, options) => {
         return undefined;
       })
       .then(() => {
-        console.log(`[gatsby-plugin-schema-export] Exported schema to ${dest}`);
+        reporter.info(
+          `[gatsby-plugin-schema-export] Exported schema to ${dest}`
+        );
         return resolve();
       })
       .catch((e) => {
-        console.error(
+        reporter.info(
           `[gatsby-plugin-schema-export] Failed to export schema: ${e}`,
           e
         );

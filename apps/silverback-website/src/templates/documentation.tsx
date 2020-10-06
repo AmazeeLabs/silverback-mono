@@ -4,11 +4,11 @@ import { graphql, PageProps } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import React from 'react';
 
-import { Code, TOC, TOCItem } from '../components';
+import { Code, TOC } from '../components';
 import { preToCodeBlock } from '../utils';
 
 export const pageQuery = graphql`
-  query DocQuery($id: String) {
+  query Documentation($id: String) {
     mdx(id: { eq: $id }) {
       id
       body
@@ -20,43 +20,36 @@ export const pageQuery = graphql`
   }
 `;
 
-const Documentation: React.FC<PageProps<{
-  mdx: {
-    body: string;
-    frontmatter: {
-      title: string;
-    };
-    tableOfContents: {
-      items: TOCItem[];
-    };
-  };
-}>> = ({ data: { mdx } }) => (
-  <>
-    <SEO title={mdx.frontmatter.title} />
-    <MDXProvider
-      components={{
-        pre: (preProps) => {
-          const props = preToCodeBlock(preProps);
-          // if there's a codeString and some props, we passed the test
-          if (props) {
-            return <Code {...props} />;
-          } else {
-            // it's possible to have a pre without a code in it
-            return <pre {...preProps} />;
-          }
-        },
-      }}
-    >
-      <div className="items-start md:flex">
-        {mdx.tableOfContents.items[0].items!.length > 1 && (
-          <TOC items={mdx.tableOfContents.items[0].items!} />
-        )}
-        <article className="min-w-0 p-6 bg-white rounded-lg shadow-xl lg:p-8 xl:p-10 prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none sm:max-w-none">
-          <MDXRenderer>{mdx.body}</MDXRenderer>
-        </article>
-      </div>
-    </MDXProvider>
-  </>
-);
+const Documentation: React.FC<PageProps<DocumentationQuery>> = ({
+  data: { mdx },
+}) =>
+  mdx ? (
+    <>
+      {mdx.frontmatter?.title ? <SEO title={mdx.frontmatter.title} /> : null}
+      <MDXProvider
+        components={{
+          pre: (preProps) => {
+            const props = preToCodeBlock(preProps);
+            // if there's a codeString and some props, we passed the test
+            if (props) {
+              return <Code {...props} />;
+            } else {
+              // it's possible to have a pre without a code in it
+              return <pre {...preProps} />;
+            }
+          },
+        }}
+      >
+        <div className="items-start md:flex">
+          {mdx.tableOfContents.items[0].items!.length > 1 && (
+            <TOC items={mdx.tableOfContents.items[0].items!} />
+          )}
+          <article className="min-w-0 p-6 bg-white rounded-lg shadow-xl lg:p-8 xl:p-10 prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none sm:max-w-none">
+            <MDXRenderer>{mdx.body}</MDXRenderer>
+          </article>
+        </div>
+      </MDXProvider>
+    </>
+  ) : null;
 
 export default Documentation;
