@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.6.1...silverback-website@0.7.0) (2020-10-06)
+
+
+### Bug Fixes
+
+* make sure directory exists before generating types ([7b497b7](https://github.com/AmazeeLabs/silverback-mono/commit/7b497b77fd3a6df48f48063d81157fe788e5c927))
+
+
+### Features
+
+* automatic gatsby schema export ([aa6957f](https://github.com/AmazeeLabs/silverback-mono/commit/aa6957f84a3c04df67c0b846a42ebc4b96e6541e))
+* codegen setup ([0197046](https://github.com/AmazeeLabs/silverback-mono/commit/0197046fa2421cc53e72454aba0a9d4e4ff59aa7))
+
+
+
+
+
 ## [0.6.1](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.6.0...silverback-website@0.6.1) (2020-09-25)
 
 

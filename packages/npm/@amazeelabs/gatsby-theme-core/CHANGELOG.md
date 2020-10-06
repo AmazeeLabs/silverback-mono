@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.2.3...@amazeelabs/gatsby-theme-core@0.3.0) (2020-10-06)
+
+
+### Features
+
+* automatic gatsby schema export ([aa6957f](https://github.com/AmazeeLabs/silverback-mono/commit/aa6957f84a3c04df67c0b846a42ebc4b96e6541e))
+
+
+
+
+
 ## [0.2.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.2.2...@amazeelabs/gatsby-theme-core@0.2.3) (2020-09-25)
 
 

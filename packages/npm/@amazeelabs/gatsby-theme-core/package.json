@@ -1,7 +1,7 @@
 {
   "name": "@amazeelabs/gatsby-theme-core",
   "description": "Gatsby parent theme for Amazee Labs projects.",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "main": "src/index.ts",
   "publishConfig": {
@@ -23,10 +23,10 @@
     "@types/node": "^14.10.1",
     "@types/react-helmet": "^6.1.0",
     "eslint": "^7.9.0",
+    "gatsby-plugin-schema-export": "^1.1.0",
     "prettier": "2.1.1",
     "ts-node": "^9.0.0",
-    "typescript": "^4.0.2",
-    "gatsby-plugin-schema-export": "^1.0.0"
+    "typescript": "^4.0.2"
   },
   "peerDependencies": {
     "gatsby": "^2.24.58",
