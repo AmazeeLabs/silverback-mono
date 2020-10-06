@@ -25,6 +25,9 @@
   "devDependencies": {
     "@amazeelabs/eslint-config-react": "^1.0.7",
     "@amazeelabs/prettier-config": "^1.1.0",
+    "@graphql-codegen/cli": "1.17.10",
+    "@graphql-codegen/typescript": "1.17.10",
+    "@graphql-codegen/typescript-operations": "1.17.8",
     "@types/classnames": "^2.2.10",
     "@types/mdx-js__react": "^1.5.3",
     "@types/node": "^14.11.5",
@@ -50,7 +53,9 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "pretest": "yarn lint && yarn format",
-    "test": "echo \"Add tests already\""
+    "typecheck": "yarn build && yarn codegen && tsc --noEmit",
+    "codegen": "graphql-codegen --config codegen.yml",
+    "test": "yarn typecheck"
   },
   "repository": {
     "type": "git",

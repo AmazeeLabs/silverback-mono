@@ -45,21 +45,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
   // whose URLs are dynamically determined at build time.
   // https://www.gatsbyjs.org/docs/creating-and-modifying-pages/
 
-  const allDocs: {
-    data?: {
-      allMdx: {
-        edges: {
-          node: {
-            id: string;
-            frontmatter: {
-              path: string | null;
-            };
-          };
-        }[];
-      };
-    };
-    errors?: any;
-  } = await graphql(`
+  const allDocs = await graphql<AllDocsQuery>(`
     query AllDocs {
       allMdx {
         edges {
@@ -84,7 +70,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
 
   allDocs.data?.allMdx.edges.forEach(({ node }) => {
     createPage<{ id: string }>({
-      path: node.frontmatter.path || '/',
+      path: node.frontmatter?.path || '/',
       component: pathResolve(`./src/templates/documentation.tsx`),
       context: {
         id: node.id,

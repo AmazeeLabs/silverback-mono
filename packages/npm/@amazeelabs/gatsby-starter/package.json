@@ -37,7 +37,9 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "pretest": "yarn lint && yarn format",
-    "test": "echo \"Add tests\""
+    "typecheck": "yarn build && yarn codegen && tsc --noEmit",
+    "codegen": "graphql-codegen --config codegen.yml",
+    "test": "yarn typecheck"
   },
   "repository": {
     "type": "git",
