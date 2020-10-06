@@ -40,6 +40,7 @@ export const plugins = [
       ],
     },
   },
+  'gatsby-plugin-schema-export',
   {
     resolve: 'gatsby-source-filesystem',
     options: {

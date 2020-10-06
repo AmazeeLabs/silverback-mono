@@ -1,0 +1,12 @@
+{
+  "name": "gatsby-plugin-schema-export",
+  "version": "1.0.0",
+  "description": "Export the current Gatsby schema to a *.gql file.",
+  "main": "dist/index.ts",
+  "author": "Philipp Melab",
+  "license": "MIT",
+  "private": false,
+  "peerDependencies": {
+    "gatsby": "^2.24.67"
+  }
+}
