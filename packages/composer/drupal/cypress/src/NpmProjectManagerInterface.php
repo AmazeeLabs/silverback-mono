@@ -11,6 +11,8 @@ interface NpmProjectManagerInterface {
 
   /**
    * Ensure that the package has been initialised.
+   *
+   * @return void
    */
   public function ensureInitiated();
 
@@ -30,10 +32,12 @@ interface NpmProjectManagerInterface {
   /**
    * Ensure a package is installed in a given version.
    *
-   * @param $package
+   * @param string $package
    *   The npm package name.
-   * @param $version
+   * @param string $version
    *   The version string. Only strict versions supported.
+   *
+   * @return void
    */
   public function ensurePackageVersion($package, $version);
 }

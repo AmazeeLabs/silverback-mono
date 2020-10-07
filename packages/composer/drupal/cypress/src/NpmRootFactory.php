@@ -31,9 +31,9 @@ class NpmRootFactory {
   /**
    * NpmRootFactory constructor.
    *
-   * @param $appRoot
+   * @param string $appRoot
    *   The application root directory.
-   * @param $directories
+   * @param string[] $directories
    *   A list of absolute path to test directories.
    */
   public function __construct($appRoot, $directories) {

@@ -9,7 +9,7 @@ use Drupal\Tests\UnitTestCase;
 use org\bovigo\vfs\vfsStream;
 
 class CypressTestDirectoriesFactoryTest extends UnitTestCase {
-  public function testCypressTestDirectories() {
+  public function testCypressTestDirectories(): void {
     $vfs = vfsStream::setup('app');
     $appRoot = vfsStream::create([
       'app' => [
@@ -29,14 +29,11 @@ class CypressTestDirectoriesFactoryTest extends UnitTestCase {
       ],
     ], $vfs)->url() . '/app';
 
-    /** @var \Drupal\Core\Extension\Extension $moduleA */
     $moduleA = $this->prophesize(Extension::class);
     $moduleA->getPath()->willReturn('modules/a');
-    /** @var \Drupal\Core\Extension\Extension $moduleB */
     $moduleB = $this->prophesize(Extension::class);
     $moduleB->getPath()->willReturn('modules/b');
 
-    /** @var \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler */
     $moduleHandler = $this->prophesize(ModuleHandlerInterface::class);
     $moduleHandler->getModuleList()->willReturn([
       'a' => $moduleA->reveal(),

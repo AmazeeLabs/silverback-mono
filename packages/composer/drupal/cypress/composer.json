@@ -22,6 +22,7 @@
     "drush/drush": "^10.3.4"
   },
   "require-dev": {
+    "jangregor/phpstan-prophecy": "^0.8.0",
     "mglaman/phpstan-drupal": "^0.12.5",
     "mikey179/vfsstream": "^1.6",
     "phpstan/extension-installer": "^1.0"

@@ -6,6 +6,11 @@ use Drupal\node\Entity\NodeType;
 
 class CypressTestSiteInstallScript extends CypressTestSetup {
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return void
+   */
   public function setup() {
     parent::setup();
     /** @var \Drupal\Core\Extension\ModuleInstallerInterface $moduleInstaller */

@@ -51,9 +51,9 @@ class NpmProjectManager implements NpmProjectManagerInterface {
    *
    * @param \Drupal\cypress\ProcessManagerInterface $processManager
    *   A process manager to execute npm commands.
-   * @param $packageDirectory
+   * @param string $packageDirectory
    *   The directory to put the package in.
-   * @param $npmExecutable
+   * @param string $npmExecutable
    *   The npm executable to use when executing commands.
    */
   public function __construct(ProcessManagerInterface $processManager, $packageDirectory, $npmExecutable) {
@@ -67,10 +67,18 @@ class NpmProjectManager implements NpmProjectManagerInterface {
    * {@inheritDoc}
    */
   public function merge($file) {
-    $packageJson = json_decode(file_get_contents($this->packageDirectory . '/package.json'), TRUE);
+    $contents = file_get_contents($this->packageDirectory . '/package.json');
+    if (!$contents) {
+      throw new \Exception('Cannot read ' . $this->packageDirectory . '/package.json');
+    }
+    $packageJson = json_decode($contents, TRUE);
     $dependencies = $packageJson['dependencies'] ?? [];
 
-    $merge = json_decode(file_get_contents($file), TRUE);
+    $contents = file_get_contents($file);
+    if (!$contents) {
+      throw new \Exception('Cannot read ' . $file);
+    }
+    $merge = json_decode($contents, TRUE);
     if (array_key_exists('dependencies', $merge)) {
       foreach ($merge['dependencies'] as $package => $version) {
         if (isset($dependencies[$package])) {
@@ -91,12 +99,16 @@ class NpmProjectManager implements NpmProjectManagerInterface {
 
     unset($merge['dependencies']);
     // Re-read package.json since it could be modified by ensurePackageVersion.
-    $packageJson = json_decode(file_get_contents($this->packageDirectory . '/package.json'), TRUE);
+    $contents = file_get_contents($this->packageDirectory . '/package.json');
+    if (!$contents) {
+      throw new \Exception('Cannot read ' . $this->packageDirectory . '/package.json');
+    }
+    $packageJson = json_decode($contents, TRUE);
     $packageJson = NestedArray::mergeDeep($packageJson, $merge);
 
     $this->fileSystem->dumpFile(
       $this->packageDirectory . '/package.json',
-      json_encode($packageJson, JSON_PRETTY_PRINT)
+      json_encode($packageJson, JSON_PRETTY_PRINT) ?: ''
     );
   }
 
@@ -129,7 +141,11 @@ class NpmProjectManager implements NpmProjectManagerInterface {
 
     if ($this->fileSystem->exists($packageJson)) {
       $constraint = (new VersionParser())->parseConstraints($version);
-      $installedVersion = json_decode(file_get_contents($packageJson))->version;
+      $contents = file_get_contents($packageJson);
+      if (!$contents) {
+        throw new \Exception('Cannot read ' . $packageJson);
+      }
+      $installedVersion = json_decode($contents)->version;
       if ($constraint->matches((new VersionParser())->parseConstraints($installedVersion))) {
         return;
       }

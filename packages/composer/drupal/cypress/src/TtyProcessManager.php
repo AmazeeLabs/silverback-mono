@@ -13,7 +13,7 @@ class TtyProcessManager implements ProcessManagerInterface {
   /**
    * {@inheritDoc}
    */
-  public function run(array $commandLine, $workingDirectory, $environment = []) {
+  public function run($commandLine, $workingDirectory, $environment = []) {
     $process = new Process($commandLine, $workingDirectory);
     $process->inheritEnvironmentVariables(TRUE);
     $process->setTty(Tty::isTtySupported());

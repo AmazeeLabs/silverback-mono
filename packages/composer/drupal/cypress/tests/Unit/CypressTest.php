@@ -8,13 +8,26 @@ use Drupal\cypress\CypressRuntimeInterface;
 use Drupal\cypress\NpmProjectManagerInterface;
 use Drupal\cypress\ProcessManagerInterface;
 use Drupal\Tests\UnitTestCase;
+use Prophecy\Prophecy\ObjectProphecy;
 
 class CypressTest extends UnitTestCase {
+
+  /**
+   * @var \Drupal\cypress\Cypress
+   */
   protected $cypress;
+
+  /**
+   * @var string[]
+   */
   protected $options;
+
+  /**
+   * @var ObjectProphecy<ProcessManagerInterface>
+   */
   protected $processManager;
 
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
     $this->processManager = $this->prophesize(ProcessManagerInterface::class);
     $npmProjectManager = $this->prophesize(NpmProjectManagerInterface::class);
@@ -31,8 +44,6 @@ class CypressTest extends UnitTestCase {
         'a' => '/app/tests/a',
         'b' => '/app/tests/b',
       ],
-      '1.0',
-      '1.0',
       'drush'
     );
 
@@ -53,7 +64,7 @@ class CypressTest extends UnitTestCase {
     $cypressRuntime->addSuite('b', '/app/tests/b')->shouldBeCalledOnce();
   }
 
-  public function testCypressRun() {
+  public function testCypressRun(): void {
     $this->processManager->run(
       ['/app/node_modules/.bin/cypress', 'run', '--spec', 'bar'],
       '/app/drupal-cypress-environment',
@@ -62,7 +73,7 @@ class CypressTest extends UnitTestCase {
     $this->cypress->run($this->options);
   }
 
-  public function testCypressOpen() {
+  public function testCypressOpen(): void {
     $this->processManager->run(
       ['/app/node_modules/.bin/cypress', 'open', '--spec', 'bar'],
       '/app/drupal-cypress-environment',

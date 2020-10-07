@@ -8,7 +8,7 @@ use org\bovigo\vfs\vfsStream;
 use Symfony\Component\Filesystem\Filesystem;
 
 interface Procedure {
-  public function __invoke();
+  public function __invoke(): void;
 }
 
 class CachedInstallationTest extends UnitTestCase {
@@ -45,7 +45,7 @@ class CachedInstallationTest extends UnitTestCase {
    */
   protected $cachedInstall;
 
-  protected function setUp() {
+  protected function setUp(): void {
     $vfs = vfsStream::setup('app');
     $this->appRoot = vfsStream::create([
       'config' => [
@@ -109,14 +109,14 @@ class CachedInstallationTest extends UnitTestCase {
       'test123'
     ) extends CachedInstallation {
 
-      protected function zippyCompress($files, $destination) {
+      protected function zippyCompress($files, $destination): void {
         file_put_contents(
           $this->appRoot . '/' . $this->installCache,
           'bar'
         );
       }
 
-      protected function zippyExtract($archive, $destination) {
+      protected function zippyExtract($archive, $destination): void {
         file_put_contents(
           $destination . '/settings.php',
           'LOCK_ID APP_ROOT'
@@ -136,7 +136,7 @@ class CachedInstallationTest extends UnitTestCase {
     parent::setUp();
   }
 
-  protected function assertSiteInstalled() {
+  protected function assertSiteInstalled(): void {
     $this->assertStringEqualsFile(
       $this->appRoot . '/drupal/sites/default/files/.sqlite-test123',
       'foo'
@@ -148,7 +148,7 @@ class CachedInstallationTest extends UnitTestCase {
     );
   }
 
-  protected function assertSiteCached($cacheId) {
+  protected function assertSiteCached(string $cacheId): void {
     $cacheDir = $this->appRoot . '/cache/' . $cacheId;
     $this->assertStringEqualsFile(
       $cacheDir . '/files/.sqlite',
@@ -161,7 +161,7 @@ class CachedInstallationTest extends UnitTestCase {
     );
   }
 
-  protected function assertSiteNotCached($cacheId) {
+  protected function assertSiteNotCached(string $cacheId): void {
     $this->assertDirectoryNotExists(
       $this->appRoot . '/cache/' . $cacheId
     );
@@ -170,11 +170,11 @@ class CachedInstallationTest extends UnitTestCase {
   /**
    * Installation should not fail if no cache directory is set.
    */
-  public function testNoCacheDir() {
+  public function testNoCacheDir(): void {
     $this->installProcedure->shouldBeCalledOnce();
     $this->updateProcedure->shouldNotBeCalled();
     $this->cachedInstall
-      ->setCacheDir(NULL)
+      ->setCacheDir('')
       ->install($this->installer, $this->updater);
 
     $this->assertSiteInstalled();
@@ -188,7 +188,7 @@ class CachedInstallationTest extends UnitTestCase {
    * If the setup is not cacheable the whole procedure is execute and no
    * cache directory is created.
    */
-  public function testUncacheableInstall() {
+  public function testUncacheableInstall(): void {
     $this->installProcedure->shouldBeCalledOnce();
     $this->updateProcedure->shouldNotBeCalled();
 
@@ -215,12 +215,12 @@ class CachedInstallationTest extends UnitTestCase {
    * If there is no config directory, only execute the install procedure and
    * cache it accordingly.
    */
-  public function testCacheableInstallWithoutConfig() {
+  public function testCacheableInstallWithoutConfig(): void {
     $this->installProcedure->shouldBeCalledOnce();
     $this->updateProcedure->shouldNotBeCalled();
 
     $this->cachedInstall
-      ->setConfigDir(NULL)
+      ->setConfigDir('')
       ->install($this->installer, $this->updater);
     $this->cachedInstall->install($this->installer, $this->updater);
 
@@ -236,7 +236,7 @@ class CachedInstallationTest extends UnitTestCase {
    * and one for the update.
    *
    */
-  public function testCacheableInstallWithConfig() {
+  public function testCacheableInstallWithConfig(): void {
     $this->installProcedure->shouldBeCalledOnce();
     $this->updateProcedure->shouldNotBeCalled();
 
@@ -251,7 +251,7 @@ class CachedInstallationTest extends UnitTestCase {
   /**
    * Test writing of the persistent cache.
    */
-  public function testWriteToPersistentCache() {
+  public function testWriteToPersistentCache(): void {
     $this->installProcedure->shouldBeCalledOnce();
     $this->updateProcedure->shouldNotBeCalled();
 
@@ -268,7 +268,7 @@ class CachedInstallationTest extends UnitTestCase {
   /**
    * Test loading from the persistent cache.
    */
-  public function testRestoreFromPersistentCache() {
+  public function testRestoreFromPersistentCache(): void {
     $this->installProcedure->shouldNotBeCalled();
     $this->updateProcedure->shouldBeCalledOnce();
 
@@ -288,7 +288,7 @@ class CachedInstallationTest extends UnitTestCase {
    * If the install profile is different, a entirely new site install should
    * be invoked.
    */
-  public function testProfileChange() {
+  public function testProfileChange(): void {
     $this->installProcedure->shouldBeCalledTimes(2);
     $this->updateProcedure->shouldNotBeCalled();
 
@@ -307,7 +307,7 @@ class CachedInstallationTest extends UnitTestCase {
    * If the config directory is different, a entirely new site install should
    * be invoked.
    */
-  public function testConfigDirChange() {
+  public function testConfigDirChange(): void {
     $this->installProcedure->shouldBeCalledTimes(2);
     $this->updateProcedure->shouldNotBeCalled();
 
@@ -326,7 +326,7 @@ class CachedInstallationTest extends UnitTestCase {
    * If the install language is different, a entirely new site install should
    * be invoked.
    */
-  public function testLangCodeChange() {
+  public function testLangCodeChange(): void {
     $this->installProcedure->shouldBeCalledTimes(2);
     $this->updateProcedure->shouldNotBeCalled();
 
@@ -345,7 +345,7 @@ class CachedInstallationTest extends UnitTestCase {
    * If the setup class is different, a entirely new site install should
    * be invoked.
    */
-  public function testSetupClassChange() {
+  public function testSetupClassChange(): void {
     $this->installProcedure->shouldBeCalledTimes(2);
     $this->updateProcedure->shouldNotBeCalled();
 
@@ -364,7 +364,7 @@ class CachedInstallationTest extends UnitTestCase {
    * If the contents of the configuration directory change, an update should be
    * invoked.
    */
-  public function testConfigChange() {
+  public function testConfigChange(): void {
     $this->installProcedure->shouldBeCalledOnce();
     $this->updateProcedure->shouldBeCalledOnce();
 
@@ -383,7 +383,7 @@ class CachedInstallationTest extends UnitTestCase {
    * If the contents of a *.install, *.post_update.php or *.yml files change,
    * an update should be invoked.
    */
-  public function testInstallFileChanges() {
+  public function testInstallFileChanges(): void {
     $this->installProcedure->shouldBeCalledOnce();
     $this->updateProcedure->shouldBeCalledOnce();
 
@@ -402,7 +402,7 @@ class CachedInstallationTest extends UnitTestCase {
    * If the contents of a *.install, *.post_update.php or *.yml files change,
    * an update should be invoked.
    */
-  public function testUpdateFileChanges() {
+  public function testUpdateFileChanges(): void {
     $this->installProcedure->shouldBeCalledOnce();
     $this->updateProcedure->shouldBeCalledOnce();
 
@@ -421,7 +421,7 @@ class CachedInstallationTest extends UnitTestCase {
    * If the contents of a *.install, *.post_update.php or *.yml files change,
    * an update should be invoked.
    */
-  public function testYmlFileChanges() {
+  public function testYmlFileChanges(): void {
     $this->installProcedure->shouldBeCalledOnce();
     $this->updateProcedure->shouldBeCalledOnce();
 
@@ -439,7 +439,7 @@ class CachedInstallationTest extends UnitTestCase {
    *
    * If any other
    */
-  public function testCodeChanges() {
+  public function testCodeChanges(): void {
     $this->installProcedure->shouldBeCalledOnce();
     $this->updateProcedure->shouldBeCalledOnce();
 

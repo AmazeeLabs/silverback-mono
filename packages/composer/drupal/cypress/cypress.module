@@ -11,6 +11,11 @@ function cypress_enabled() {
 
 /**
  * Implements hook_module_implements_alter().
+ *
+ * @param array $implementations
+ * @param string $hook
+ *
+ * @return void
  */
 function cypress_module_implements_alter(&$implementations, $hook) {
   // Make sure our hooks run last.
@@ -28,6 +33,8 @@ function cypress_module_implements_alter(&$implementations, $hook) {
  * `X-CYPRESS-TOOLBAR` request header.
  *
  * @param array $page_top
+ *
+ * @return void
  */
 function cypress_page_top(array &$page_top) {
   /** @var \Symfony\Component\HttpFoundation\Session\SessionInterface $session */

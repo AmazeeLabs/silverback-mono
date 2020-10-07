@@ -5,6 +5,7 @@ namespace Drupal\cypress\Authentication\Provider;
 use Drupal\Core\Authentication\AuthenticationProviderFilterInterface;
 use Drupal\Core\Authentication\AuthenticationProviderInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Session\AccountInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -18,7 +19,7 @@ class CypressAuthenticationProvider implements AuthenticationProviderInterface, 
   protected $userStorage;
 
   /**
-   * @var
+   * @var SessionInterface
    */
   protected $session;
 
@@ -44,7 +45,12 @@ class CypressAuthenticationProvider implements AuthenticationProviderInterface, 
     return cypress_enabled() && ($this->session->has('CYPRESS_USER') || $request->headers->has('X-CYPRESS-USER'));
   }
 
-  protected function getUserFromRequest($request) {
+  /**
+   * @param Request $request
+   *
+   * @return string
+   */
+  protected function getUserFromRequest(Request $request) {
     return $request->headers->get('X-CYPRESS-USER') ?: $this->session->get('CYPRESS_USER');
   }
 
@@ -55,7 +61,11 @@ class CypressAuthenticationProvider implements AuthenticationProviderInterface, 
     $matches = $this->userStorage->loadByProperties([
       'name' => $this->getUserFromRequest($request),
     ]);
-    return $matches ? array_pop($matches) : NULL;
+    $account = array_pop($matches);
+    if ($account instanceof AccountInterface) {
+      return $account;
+    }
+    return NULL;
   }
 
   /**

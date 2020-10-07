@@ -115,7 +115,7 @@ class CypressRuntime implements CypressRuntimeInterface {
    */
   public function addSuite($name, $path) {
     if (!$this->fileSystem->exists($path)) {
-      return FALSE;
+      return;
     }
 
     if ($this->fileSystem->exists($path)) {

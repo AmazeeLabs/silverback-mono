@@ -15,12 +15,27 @@ use Symfony\Component\Yaml\Yaml;
  */
 class CypressCommands extends DrushCommands {
 
+  /**
+   * @var \Drupal\cypress\CypressInterface
+   */
   protected $cypress;
+
+  /**
+   * @var string[]
+   */
   protected $testDirectories;
+
+  /**
+   * @var \Symfony\Component\Filesystem\Filesystem
+   */
   protected $fileSystem;
+
+  /**
+   * @var string
+   */
   protected $appRoot;
 
-  public function __construct(CypressInterface $cypress, array $testDirectories, $appRoot) {
+  public function __construct(CypressInterface $cypress, array $testDirectories, string $appRoot) {
     parent::__construct();
     $this->testDirectories = $testDirectories;
     $this->cypress = $cypress;
@@ -30,10 +45,12 @@ class CypressCommands extends DrushCommands {
 
   /**
    * @command cypress:list
+   *
+   * @return RowsOfFields
    */
   public function list() {
     $rows = [];
-    $length = max(array_map('strlen', array_keys($this->testDirectories)));
+    $length = max(array_map('strlen', array_keys($this->testDirectories))) ?: 0;
     foreach ($this->testDirectories as $id => $dir) {
       $rows[] = [
         'Suite' => str_pad(trim($id), $length) . ' :',
@@ -43,6 +60,9 @@ class CypressCommands extends DrushCommands {
     return new RowsOfFields($rows);
   }
 
+  /**
+   * @return bool
+   */
   protected function setupTestingServices() {
     $sitePath = \Drupal::service('site.path');
     $modulePath = drupal_get_path('module', 'cypress');
@@ -74,6 +94,8 @@ class CypressCommands extends DrushCommands {
   /**
    * @command cypress:init
    * @description Initiate the cypress environment.
+   *
+   * @return void
    */
   public function init() {
     if ($this->setupTestingServices()) {
@@ -85,6 +107,8 @@ class CypressCommands extends DrushCommands {
   /**
    * @command cypress:open
    * @description Open the cypress interface.
+   *
+   * @return void
    */
   public function open() {
     if ($this->setupTestingServices()) {
@@ -96,10 +120,12 @@ class CypressCommands extends DrushCommands {
   /**
    * @command cypress:run
    * @description Run cypress tests in a headless browser.
-   * @param spec
+   *
+   * @param string $spec
    *   The specs to run. Prefixed with the test suite. `drush cypress:run cypress:integration/Session.feature`
-   * @option tags
-   *   The tags to run.
+   * @param string[] $options
+   *
+   * @return void
    */
   public function run($spec = NULL, $options = ['tags' => '']) {
     if ($this->setupTestingServices()) {
@@ -122,6 +148,8 @@ class CypressCommands extends DrushCommands {
   /**
    * @command cypress:clear
    * @description Clear cypress and simpletest caches.
+   *
+   * @return void
    */
   public function clear() {
     $this->fileSystem->remove(implode(

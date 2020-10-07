@@ -27,6 +27,8 @@ class EntityController extends ControllerBase {
 
   /**
    * {@inheritDoc}
+   *
+   * @return static
    */
   public static function create(ContainerInterface $container) {
     return new static($container->get('entity_type.manager'));
@@ -65,11 +67,12 @@ class EntityController extends ControllerBase {
       /** @var \Drupal\Core\Entity\EntityStorageInterface $storage */
       $storage = $this->entityTypeManager->getStorage($entity_type);
       $entities = $storage->loadByProperties($request->query->all());
-      if (!$entities) {
-        throw new NotFoundHttpException();
+      if ($entities) {
+        $url = array_pop($entities)->toUrl($link_type)->toString();
+        assert(is_string($url));
+        return new RedirectResponse($url);
       }
-      $entity = array_pop($entities);
-      return new RedirectResponse($entity->toUrl($link_type)->toString());
     }
+    throw new NotFoundHttpException();
   }
 }

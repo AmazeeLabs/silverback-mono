@@ -14,12 +14,12 @@ interface ProcessManagerInterface {
    *
    * @param array $commandLine
    *   The command line as list of words.
-   * @param $workingDirectory
+   * @param string|null $workingDirectory
    *   The directory to execute the command in.
    * @param array $environment
    *   A set of environment overrides.
    *
    * @return void
    */
-  public function run(array $commandLine, $workingDirectory, $environment = []);
+  public function run($commandLine, $workingDirectory, $environment = []);
 }

@@ -24,7 +24,11 @@ class TestSiteInstallCommand extends CoreTestSiteInstallCommand {
    */
   public function __construct($name = NULL) {
     parent::__construct($name);
-    $this->appRoot = getenv('DRUPAL_APP_ROOT');
+    $appRoot = getenv('DRUPAL_APP_ROOT');
+    if (!$appRoot) {
+      throw new \Exception('DRUPAL_APP_ROOT environment variable must be set.');
+    }
+    $this->appRoot = $appRoot;
   }
 
   /**
@@ -32,6 +36,8 @@ class TestSiteInstallCommand extends CoreTestSiteInstallCommand {
    *
    * Also sets parameters to install from configuration if
    * DRUPAL_CONFIG_DIR is set.
+   *
+   * @return array
    */
   public function installParameters() {
     $parameters = parent::installParameters();
@@ -55,7 +61,7 @@ class TestSiteInstallCommand extends CoreTestSiteInstallCommand {
     // Make sure "CypressTestSetup" is already added, else "getSetupClass" finds
     // two new classes after including $file and gets confused.
     require_once __DIR__ . '/CypressTestSetup.php';
-    if (strpos($file, ':') !== FALSE) {
+    if ($file && strpos($file, ':') !== FALSE) {
       list($suite, $path) = explode(':', $file);
       return parent::getSetupClass(
         "drupal-cypress-environment/suites/{$suite}/{$path}"
@@ -68,6 +74,8 @@ class TestSiteInstallCommand extends CoreTestSiteInstallCommand {
    * {@inheritDoc}
    *
    * Uses `CachedInstallation` to add setup caching.
+   *
+   * @return void
    *
    * @see \Drupal\cypress\CachedInstallation
    */
@@ -85,17 +93,17 @@ class TestSiteInstallCommand extends CoreTestSiteInstallCommand {
     $lockId = substr($this->databasePrefix, 4);
 
     $cachedInstallation = new CachedInstallation(
-      getenv('DRUPAL_APP_ROOT'),
+      $this->appRoot,
       $this->siteDirectory,
       $lockId,
-      getenv('SIMPLETEST_DB'),
+      getenv('SIMPLETEST_DB') ?: '',
       $this->databasePrefix
     );
 
     $cacheDir = implode(
       '/',
       [
-        getenv('DRUPAL_APP_ROOT'),
+        $this->appRoot,
         CypressRootFactory::CYPRESS_ROOT_DIRECTORY,
         'cache',
       ]
@@ -105,8 +113,8 @@ class TestSiteInstallCommand extends CoreTestSiteInstallCommand {
       ->setProfile($profile)
       ->setLangCode($langcode)
       ->setCacheDir($cacheDir)
-      ->setInstallCache(getenv('DRUPAL_INSTALL_CACHE'))
-      ->setConfigDir(getenv('DRUPAL_CONFIG_DIR'))
+      ->setInstallCache(getenv('DRUPAL_INSTALL_CACHE') ?: '')
+      ->setConfigDir(getenv('DRUPAL_CONFIG_DIR') ?: '')
       ->setSetupClass($setup_class);
 
     /** @var \Drupal\TestSite\TestSetupInterface $setupScript */
@@ -125,7 +133,7 @@ class TestSiteInstallCommand extends CoreTestSiteInstallCommand {
           // it changes the default theme.
           // Avoid this with an additional config import.
           $command = [$drush, 'cim', '-y'];
-          (new Process($command, getenv('DRUPAL_APP_ROOT'), $drushEnv, NULL, 0))
+          (new Process($command, $this->appRoot, $drushEnv, NULL, 0))
             ->mustRun();
         }
 
@@ -138,7 +146,7 @@ class TestSiteInstallCommand extends CoreTestSiteInstallCommand {
                    [$drush, 'cim', '-y'],
                    [$drush, 'cr', '-y'],
                  ] as $command) {
-          (new Process($command, getenv('DRUPAL_APP_ROOT'), $drushEnv, null, 0))
+          (new Process($command, $this->appRoot, $drushEnv, null, 0))
             ->mustRun();
         }
       }
