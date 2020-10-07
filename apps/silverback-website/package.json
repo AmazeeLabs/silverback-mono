@@ -11,7 +11,7 @@
     "@tailwindcss/ui": "^0.6.2",
     "classnames": "^2.2.6",
     "dotenv": "^8.2.0",
-    "gatsby": "^2.24.67",
+    "gatsby": "^2.24.68",
     "gatsby-plugin-mdx": "^1.2.44",
     "gatsby-plugin-sharp": "^2.6.39",
     "gatsby-remark-autolink-headers": "^2.3.15",
