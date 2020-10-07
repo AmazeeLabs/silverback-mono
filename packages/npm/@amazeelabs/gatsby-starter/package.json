@@ -10,7 +10,13 @@
     "gatsby": "^2.24.58",
     "gatsby-source-filesystem": "^2.3.28",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "gatsby-plugin-schema-export": "^1.1.0",
+    "gatsby-plugin-schema-snapshot": "^1.0.0",
+    "react-dom": "^16.12.0",
+    "@graphql-codegen/cli": "1.17.10",
+    "@graphql-codegen/typescript": "1.17.10",
+    "@graphql-codegen/typescript-operations": "1.17.8",
+    "@types/classnames": "^2.2.10"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config-react": "^1.0.7",
@@ -28,6 +34,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "update-schema": "GATSBY_UPDATE_SCHEMA_SNAPSHOT=true gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "format:fix": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
@@ -37,7 +44,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "pretest": "yarn lint && yarn format",
-    "typecheck": "yarn build && yarn codegen && tsc --noEmit",
+    "typecheck": "yarn codegen && tsc --noEmit",
     "codegen": "graphql-codegen --config codegen.yml",
     "test": "yarn typecheck"
   },
