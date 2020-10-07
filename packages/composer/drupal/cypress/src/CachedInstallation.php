@@ -449,10 +449,9 @@ class CachedInstallation {
     $finder->ignoreDotFiles(FALSE);
     foreach ($finder as $file) {
       $realpath = $file->getRealPath();
-      if ($realpath === FALSE) {
-        throw new \Exception('Cannot get realpath for a file: "' . $file->getRelativePath() . '/' . $file->getBasename() . '".');
+      if ($realpath !== FALSE) {
+        $files[$file->getRelativePath() . '/' . $file->getBasename()] = $realpath;
       }
-      $files[$file->getRelativePath() . '/' . $file->getBasename()] = $realpath;
     }
 
     $this->zippyCompress($files, $this->appRoot . '/' . $this->installCache);
