@@ -13,14 +13,22 @@ class ScriptController extends ControllerBase {
 
   /**
    * Execute arbitrary PHP scripts from cypress.
+   *
+   * @return Response
    */
   public function execute() {
     if (!cypress_enabled()) {
       throw new NotFoundHttpException();
     }
-    $content = json_decode(\Drupal::request()->getContent());
+    $contentError = 'Request body has to be JSON and has to contain at least the "script" key.';
+    $contentRaw = \Drupal::request()->getContent();
+    if (!$contentRaw) {
+      return new Response($contentError, 400);
+    }
+    assert(is_string($contentRaw));
+    $content = json_decode($contentRaw);
     if (!$content || !$content->script) {
-       new Response('Request body has to be JSON and has to contain at least the "script" key.', 400);
+       return new Response($contentError, 400);
     }
 
     $suite = FALSE;
@@ -30,18 +38,19 @@ class ScriptController extends ControllerBase {
     }
 
     if ($suite) {
+      /** @var array $suites */
       $suites = \Drupal::getContainer()->get('cypress.test_directories');
       if (!array_key_exists($suite, $suites)) {
         return new Response('Unknown test suite "' . $suite . '".', 404);
       }
       $path = $suites[$suite] . '/' . $path;
-
+      if (!file_exists($path)) {
+        return new Response('File "' . $path . '" not found in suite "' . $suite . ' (' . $suites[$suite] . ')".', 404);
+      }
     }
     if (!file_exists($path)) {
-      return new Response('File "' . $path . '" not found in suite "' . $suite . ' (' . $suites[$suite] . ')".', 404);
+      return new Response('File "' . $path . '" not found.', 404);
     }
-
-    $args = $content->args ?? [];
 
     ob_start();
     try {

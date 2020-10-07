@@ -9,6 +9,7 @@ use Drupal\cypress\NpmProjectManagerInterface;
 use Drupal\Tests\UnitTestCase;
 use org\bovigo\vfs\vfsStream;
 use Symfony\Component\Filesystem\Filesystem;
+use Prophecy\Prophecy\ObjectProphecy;
 
 class CypressRuntimeTest extends UnitTestCase {
 
@@ -33,11 +34,11 @@ class CypressRuntimeTest extends UnitTestCase {
   protected $cypressOptions;
 
   /**
-   * @var \Drupal\cypress\NpmProjectManagerInterface
+   * @var ObjectProphecy<NpmProjectManagerInterface>
    */
   protected $npmProjectManager;
 
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
     $this->fileSystem = vfsStream::setup();
     $this->cypressRoot = $this->fileSystem->url() . '/' . CypressRootFactory::CYPRESS_ROOT_DIRECTORY;
@@ -55,7 +56,7 @@ class CypressRuntimeTest extends UnitTestCase {
            * Use `mirror` instead of symlink since the latter is not supported
            * by vfsStream.
            */
-          public function symlink($originDir, $targetDir, $copyOnWindows = FALSE) {
+          public function symlink($originDir, $targetDir, $copyOnWindows = FALSE): bool {
             $this->mirror($originDir, $targetDir);
             return TRUE;
           }
@@ -64,12 +65,12 @@ class CypressRuntimeTest extends UnitTestCase {
     };
   }
 
-  public function testCreateCypressDirectory() {
+  public function testCreateCypressDirectory(): void {
     $this->cypressRuntime->initiate($this->cypressOptions);
     $this->assertDirectoryExists($this->cypressRoot);
   }
 
-  public function testClearDirectories() {
+  public function testClearDirectories(): void {
     vfsStream::create([
       CypressRootFactory::CYPRESS_ROOT_DIRECTORY => [
         'integration' => [ 'foo' => 'bar' ],
@@ -81,22 +82,22 @@ class CypressRuntimeTest extends UnitTestCase {
     $this->assertFileNotExists($this->cypressRoot . '/suites/foo');
   }
 
-  public function testGenerateCypressJson() {
+  public function testGenerateCypressJson(): void {
     $this->cypressRuntime->initiate($this->cypressOptions);
     $this->assertStringEqualsFile($this->cypressRoot . '/cypress.json', $this->cypressOptions->getCypressJson());
   }
 
-  public function testGeneratePluginsJs() {
+  public function testGeneratePluginsJs(): void {
     $this->cypressRuntime->initiate($this->cypressOptions);
     $this->assertFileExists($this->cypressRoot . '/plugins.js');
   }
 
-  public function testGenerateSupportJs() {
+  public function testGenerateSupportJs(): void {
     $this->cypressRuntime->initiate($this->cypressOptions);
     $this->assertFileExists($this->cypressRoot . '/support.js');
   }
 
-  public function testAddTestSuite() {
+  public function testAddTestSuite(): void {
     vfsStream::create([
       'a' => [
         'integration' => [

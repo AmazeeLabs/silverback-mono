@@ -2,6 +2,8 @@
 
 /**
  * Implements hook_uninstall().
+ *
+ * @return void
  */
 function cypress_uninstall() {
   // Remove the config keys set in GraphQLConfigOverrides::loadOverrides().

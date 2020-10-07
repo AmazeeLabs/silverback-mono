@@ -8,6 +8,8 @@ use Drupal\TestSite\TestSetupInterface;
 class CypressTestSetup implements TestSetupInterface {
   /**
    * {@inheritdoc}
+   *
+   * @return void
    */
   public function setup() {
     /** @var \Drupal\Core\Extension\ModuleInstallerInterface $moduleInstaller */

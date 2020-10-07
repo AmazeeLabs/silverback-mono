@@ -7,23 +7,23 @@ use Drupal\Tests\UnitTestCase;
 
 class CypressOptionsTest extends UnitTestCase {
 
-  public function testDefaultOption() {
+  public function testDefaultOption(): void {
     $this->assertEquals(CypressOptions::DEFAULT['baseUrl'], (new CypressOptions())->getOptions()['baseUrl']);
   }
 
-  public function testOptionOverride() {
+  public function testOptionOverride(): void {
     $this->assertEquals('http://localhost:8889', (new CypressOptions([
       'baseUrl' => 'http://localhost:8889',
     ]))->getOptions()['baseUrl']);
   }
 
-  public function testFixedOption() {
+  public function testFixedOption(): void {
     $this->assertEquals(CypressOptions::FIXED['integrationFolder'], (new CypressOptions([
       'integrationFolder' => 'foo',
     ]))->getOptions()['integrationFolder']);
   }
 
-  public function testCypressJson() {
+  public function testCypressJson(): void {
     $overrides = [
       'baseUrl' => 'http://localhost:8889',
       'trashAssetsBeforeRuns' => TRUE,
@@ -32,7 +32,7 @@ class CypressOptionsTest extends UnitTestCase {
       'tags' => '@bar',
     ];
     $cypressOptions = new CypressOptions($overrides);
-    $this->assertJsonStringEqualsJsonString(json_encode(array_merge(
+    $string = json_encode(array_merge(
       CypressOptions::DEFAULT,
       [
         'baseUrl' => 'http://localhost:8889',
@@ -40,16 +40,20 @@ class CypressOptionsTest extends UnitTestCase {
         'env' => $cypressOptions->getEnvironment(),
       ],
       CypressOptions::FIXED
-    ), JSON_PRETTY_PRINT), $cypressOptions->getCypressJson());
+    ), JSON_PRETTY_PRINT);
+    if (!$string) {
+      throw new \Exception('Could not encode JSON.');
+    }
+    $this->assertJsonStringEqualsJsonString($string, $cypressOptions->getCypressJson());
   }
 
-  public function testCliOptions() {
+  public function testCliOptions(): void {
     $this->assertEquals(['--spec', 'foo'],  (new CypressOptions([
       'spec' => 'foo'
     ]))->getCliOptions());
   }
 
-  public function testEnvironment() {
+  public function testEnvironment(): void {
     $this->assertEquals([
       'TAGS' => '@bar',
       'CYPRESS_MODULE_PATH' => realpath(__DIR__ . '/../..'),

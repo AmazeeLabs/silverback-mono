@@ -7,14 +7,35 @@ use Drupal\cypress\ProcessManagerInterface;
 use Drupal\Tests\UnitTestCase;
 use org\bovigo\vfs\vfsStream;
 use Prophecy\Argument;
+use Prophecy\Prophecy\ObjectProphecy;
+use org\bovigo\vfs\vfsStreamDirectory;
 
 class NpmProjectManagerTest extends UnitTestCase {
+
+  /**
+   * @var ObjectProphecy<ProcessManagerInterface>
+   */
   protected $processManager;
+
+  /**
+   * @var NpmProjectManager
+   */
   protected $npmProjectManager;
+
+  /**
+   * @var vfsStreamDirectory
+   */
   protected $fileSystem;
+
+  /**
+   * @var string
+   */
   protected $packageDirectory;
 
-  protected function setUp() {
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
     parent::setUp();
     $this->fileSystem = vfsStream::setup();
     $this->processManager = $this->prophesize(ProcessManagerInterface::class);
@@ -26,14 +47,14 @@ class NpmProjectManagerTest extends UnitTestCase {
     );
   }
 
-  public function testNothingExists() {
+  public function testNothingExists(): void {
     $this->processManager->run(['npm', 'init', '-y'], $this->packageDirectory)->shouldBeCalledOnce();
     $this->processManager->run(['npm', 'install'], $this->packageDirectory)->shouldBeCalledOnce();
     $this->npmProjectManager->ensureInitiated();
     $this->assertDirectoryExists($this->packageDirectory);
   }
 
-  public function testDirectoryExists() {
+  public function testDirectoryExists(): void {
     vfsStream::create([
       'drupal' => [],
     ], $this->fileSystem);
@@ -43,7 +64,7 @@ class NpmProjectManagerTest extends UnitTestCase {
     $this->assertDirectoryExists($this->packageDirectory);
   }
 
-  public function testPackageJsonExists() {
+  public function testPackageJsonExists(): void {
     vfsStream::create([
       'drupal' => [
         'package.json' => '{}'
@@ -55,7 +76,7 @@ class NpmProjectManagerTest extends UnitTestCase {
     $this->assertDirectoryExists($this->packageDirectory);
   }
 
-  public function testNodeModulesExists() {
+  public function testNodeModulesExists(): void {
     vfsStream::create([
       'drupal' => [
         'package.json' => '{}',
@@ -68,7 +89,7 @@ class NpmProjectManagerTest extends UnitTestCase {
     $this->assertDirectoryExists($this->packageDirectory);
   }
 
-  public function testPackageMissing() {
+  public function testPackageMissing(): void {
     vfsStream::create([
       'drupal' => [
         'package.json' => '{}',
@@ -82,7 +103,7 @@ class NpmProjectManagerTest extends UnitTestCase {
     $this->assertDirectoryExists($this->packageDirectory);
   }
 
-  public function testPackageMatches() {
+  public function testPackageMatches(): void {
     vfsStream::create([
       'drupal' => [
         'package.json' => '{}',
@@ -100,7 +121,7 @@ class NpmProjectManagerTest extends UnitTestCase {
     $this->assertDirectoryExists($this->packageDirectory);
   }
 
-  public function testPackageMisses() {
+  public function testPackageMisses(): void {
     vfsStream::create([
       'drupal' => [
         'package.json' => '{}',
@@ -118,7 +139,7 @@ class NpmProjectManagerTest extends UnitTestCase {
     $this->assertDirectoryExists($this->packageDirectory);
   }
 
-  public function testPackageFuzzyMatches() {
+  public function testPackageFuzzyMatches(): void {
     vfsStream::create([
       'drupal' => [
         'package.json' => '{}',
@@ -136,7 +157,7 @@ class NpmProjectManagerTest extends UnitTestCase {
     $this->assertDirectoryExists($this->packageDirectory);
   }
 
-  public function testPackageFuzzyMisses() {
+  public function testPackageFuzzyMisses(): void {
     vfsStream::create([
       'drupal' => [
         'package.json' => '{}',
@@ -154,7 +175,7 @@ class NpmProjectManagerTest extends UnitTestCase {
     $this->assertDirectoryExists($this->packageDirectory);
   }
 
-  public function testEmptyMerge() {
+  public function testEmptyMerge(): void {
     vfsStream::create([
       'drupal' => [
         'package.json' => '{}',
@@ -169,7 +190,7 @@ class NpmProjectManagerTest extends UnitTestCase {
     $this->npmProjectManager->merge($this->packageDirectory . '/foo/package.json');
   }
 
-  public function testNewDependency() {
+  public function testNewDependency(): void {
     vfsStream::create([
       'drupal' => [
         'package.json' => '{}',
@@ -184,7 +205,7 @@ class NpmProjectManagerTest extends UnitTestCase {
     $this->npmProjectManager->merge($this->packageDirectory . '/foo/package.json');
   }
 
-  public function testMatchingDependency() {
+  public function testMatchingDependency(): void {
     vfsStream::create([
       'drupal' => [
         'package.json' => '{"dependencies":{"foo":"^1.2.0"}}',
@@ -199,7 +220,7 @@ class NpmProjectManagerTest extends UnitTestCase {
     $this->npmProjectManager->merge($this->packageDirectory . '/foo/package.json');
   }
 
-  public function testDependencyUpdate() {
+  public function testDependencyUpdate(): void {
     vfsStream::create([
       'drupal' => [
         'package.json' => '{"dependencies":{"foo":"^1.1.0"}}',
@@ -214,7 +235,7 @@ class NpmProjectManagerTest extends UnitTestCase {
     $this->npmProjectManager->merge($this->packageDirectory . '/foo/package.json');
   }
 
-  public function testDependencyConflict() {
+  public function testDependencyConflict(): void {
     vfsStream::create([
       'drupal' => [
         'package.json' => '{"dependencies":{"foo":"1.1.0"}}',
@@ -229,7 +250,7 @@ class NpmProjectManagerTest extends UnitTestCase {
     $this->npmProjectManager->merge($this->packageDirectory . '/foo/package.json');
   }
 
-  public function testNewSettings() {
+  public function testNewSettings(): void {
     vfsStream::create([
       'drupal' => [
         'package.json' => '{}',
@@ -242,12 +263,16 @@ class NpmProjectManagerTest extends UnitTestCase {
 
     $this->npmProjectManager->merge($this->packageDirectory . '/foo/package.json');
 
-    $this->assertJsonStringEqualsJsonFile($this->packageDirectory . '/package.json', json_encode([
+    /**
+     * @var string $string
+     */
+    $string = json_encode([
       'foo' => 'bar'
-    ]));
+    ]);
+    $this->assertJsonStringEqualsJsonFile($this->packageDirectory . '/package.json', $string);
   }
 
-  public function testSettingsUpdate() {
+  public function testSettingsUpdate(): void {
     vfsStream::create([
       'drupal' => [
         'package.json' => '{"foo":"bar"}',
@@ -260,8 +285,12 @@ class NpmProjectManagerTest extends UnitTestCase {
 
     $this->npmProjectManager->merge($this->packageDirectory . '/foo/package.json');
 
-    $this->assertJsonStringEqualsJsonFile($this->packageDirectory . '/package.json', json_encode([
+    /**
+     * @var string $string
+     */
+    $string = json_encode([
       'foo' => 'baz'
-    ]));
+    ]);
+    $this->assertJsonStringEqualsJsonFile($this->packageDirectory . '/package.json', $string);
   }
 }

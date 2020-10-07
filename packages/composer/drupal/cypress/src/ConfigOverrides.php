@@ -47,7 +47,8 @@ class ConfigOverrides implements ConfigFactoryOverrideInterface {
       $this->negotiatorManager &&
       in_array('language.types', $names)
       && $this->negotiatorManager->hasDefinition('language-cypress')
-      && $config = $this->baseStorage->read('language.types')
+      && ($config = $this->baseStorage->read('language.types'))
+      && is_array($config)
     ) {
       foreach (array_keys($config['negotiation']) as $type) {
         $config['negotiation'][$type]['enabled']['language-cypress'] = -999;
@@ -71,6 +72,7 @@ class ConfigOverrides implements ConfigFactoryOverrideInterface {
    * {@inheritdoc}
    */
   public function createConfigObject($name, $collection = StorageInterface::DEFAULT_COLLECTION) {
+    // @phpstan-ignore-next-line Drupal also returns NULL here and feels fine.
     return NULL;
   }
 

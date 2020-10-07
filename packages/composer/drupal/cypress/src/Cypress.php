@@ -83,11 +83,11 @@ class Cypress implements CypressInterface {
    *   An npm project manager to install cypress and dependencies.
    * @param \Drupal\cypress\CypressRuntimeInterface $cypressRuntime
    *   The cypress runtime manager to add and execute test suites.
-   * @param $appRoot
+   * @param string $appRoot
    *   The Drupal app root directory.
-   * @param $npmRoot
+   * @param string $npmRoot
    *   The npm package directory where dependencies are installed.
-   * @param $cypressRoot
+   * @param string $cypressRoot
    *   The cypress configuration directory.
    * @param array $testDirectories
    *   All discovered test suites.
@@ -131,7 +131,11 @@ class Cypress implements CypressInterface {
     ]);
     $this->cypressRuntime->initiate($cypressOptions);
 
-    $this->npmProjectManager->merge(realpath(__DIR__ . '/../package.json'));
+    $realpath = realpath(__DIR__ . '/../package.json');
+    if (!$realpath) {
+      throw new \Exception('Cannot get realpath for ' . __DIR__ . '/../package.json');
+    }
+    $this->npmProjectManager->merge($realpath);
     foreach ($this->testDirectories as $name => $path) {
       $this->cypressRuntime->addSuite($name, $path);
     }

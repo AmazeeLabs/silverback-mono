@@ -107,13 +107,13 @@ class CachedInstallation {
    *
    * @param string $appRoot
    *   The path to the Drupal root directory.
-   * @param $siteDir
+   * @param string $siteDir
    *   The site directory to use.
-   * @param $lockId
+   * @param string $lockId
    *   The lock id used for this test site install.
-   * @param $dbUrl.
+   * @param string $dbUrl.
    *   The database url
-   * @param $dbPrefix
+   * @param string $dbPrefix
    *   The database prefix to use.
    */
   public function __construct($appRoot, $siteDir, $lockId, $dbUrl, $dbPrefix) {
@@ -121,7 +121,12 @@ class CachedInstallation {
     $this->appRoot = $appRoot;
     $this->siteDir = $siteDir;
     $this->lockId = $lockId;
-    $this->dbUrl = parse_url($dbUrl);
+    $dbUrl = parse_url($dbUrl);
+    if (!is_array($dbUrl)) {
+      throw new \Exception('Cannot parse given database URL: "' . $dbUrl . '".');
+    }
+    $dbUrl = array_map(function($value) { return (string) $value; }, $dbUrl);
+    $this->dbUrl = $dbUrl;
     $this->dbPrefix = $dbPrefix;
   }
 
@@ -210,6 +215,8 @@ class CachedInstallation {
    *   The path to the zip archive.
    * @param string $destination
    *   The destination directory.
+   *
+   * @return void
    */
   protected function zippyExtract($archive, $destination) {
     Zippy::load()->open($archive)->extract($destination);
@@ -222,6 +229,8 @@ class CachedInstallation {
    *   The list of files.
    * @param string $archive
    *   The path of the destination archive
+   *
+   * @return void
    */
   protected function zippyCompress($files, $archive) {
     Zippy::load()->create($archive, $files, TRUE);
@@ -260,7 +269,11 @@ class CachedInstallation {
       $finder = new Finder();
       $finder->files()->in($this->configDir);
       foreach ($finder as $file) {
-        $cacheId[] = md5(file_get_contents($file->getPath() . '/' . $file->getFilename()));
+        $contents = file_get_contents($file->getPath() . '/' . $file->getFilename());
+        if ($contents === FALSE) {
+          throw new \Exception('Cannot read ' . $file->getPath() . '/' . $file->getFilename());
+        }
+        $cacheId[] = md5($contents);
       }
     }
 
@@ -280,7 +293,11 @@ class CachedInstallation {
     ]);
 
     foreach ($finder as $file) {
-      $cacheId[] = md5(file_get_contents($file->getPath() . '/' . $file->getFilename()));
+      $contents = file_get_contents($file->getPath() . '/' . $file->getFilename());
+      if ($contents === FALSE) {
+        throw new \Exception('Cannot read ' . $file->getPath() . '/' . $file->getFilename());
+      }
+      $cacheId[] = md5($contents);
     }
 
     // Add the install cache, since update caches have to invalidate whenever
@@ -300,6 +317,8 @@ class CachedInstallation {
    *   The initial install procedure.
    * @param callable $update
    *   The update procedure.
+   *
+   * @return void
    */
   public function install(callable $install, callable $update) {
     // Abort if there is no cache directory or the setup is not cacheable.
@@ -380,11 +399,16 @@ class CachedInstallation {
    *
    * @param string $cacheDir
    *   The cache directory to write to.
+   *
+   * @return void
    */
   protected function writeCache($cacheDir) {
     $this->copyDir($this->sitePath(), $cacheDir);
     $this->fs->copy($this->dbFile(), $cacheDir . '/files/' . basename($this->dbUrl['path']));
     $settingsFile = file_get_contents($cacheDir . '/settings.php');
+    if ($settingsFile === FALSE) {
+      throw new \Exception('Cannot read ' . $cacheDir . '/settings.php');
+    }
     $settingsFile = str_replace($this->lockId, 'LOCK_ID', $settingsFile);
     $settingsFile = str_replace($this->appRoot, 'APP_ROOT', $settingsFile);
     $this->fs->dumpFile($cacheDir . '/settings.php', $settingsFile);
@@ -395,11 +419,16 @@ class CachedInstallation {
    *
    * @param string $cacheDir
    *   The cache directory to restore from.
+   *
+   * @return void
    */
   protected function restoreCache($cacheDir) {
     $this->copyDir($cacheDir, $this->sitePath());
     $this->fs->copy($cacheDir . '/files/' . basename($this->dbUrl['path']), $this->dbFile());
     $settingsFile = file_get_contents($cacheDir . '/settings.php');
+    if ($settingsFile === FALSE) {
+      throw new \Exception('Cannot read ' . $cacheDir . '/settings.php');
+    }
     $settingsFile = str_replace('LOCK_ID', $this->lockId, $settingsFile);
     $settingsFile = str_replace('APP_ROOT', $this->appRoot, $settingsFile);
     $this->fs->dumpFile($this->sitePath() . '/settings.php', $settingsFile);
@@ -410,6 +439,8 @@ class CachedInstallation {
    *
    * @param string $cacheDir
    *   The cache directory to persist.
+   *
+   * @return void
    */
   protected function writePersistentCache($cacheDir) {
     $files = [];
@@ -417,7 +448,11 @@ class CachedInstallation {
     $finder->files()->in($cacheDir);
     $finder->ignoreDotFiles(FALSE);
     foreach ($finder as $file) {
-      $files[$file->getRelativePath() . '/' . $file->getBasename()] = $file->getRealPath();
+      $realpath = $file->getRealPath();
+      if ($realpath === FALSE) {
+        throw new \Exception('Cannot get realpath for a file.');
+      }
+      $files[$file->getRelativePath() . '/' . $file->getBasename()] = $realpath;
     }
 
     $this->zippyCompress($files, $this->appRoot . '/' . $this->installCache);
@@ -428,6 +463,8 @@ class CachedInstallation {
    *
    * @param string $cacheDir
    *   The cache directory to restore to.
+   *
+   * @return void
    */
   protected function restorePersistentCache($cacheDir) {
     if ($this->fs->exists($this->appRoot . '/' . $this->installCache)) {
@@ -452,8 +489,10 @@ class CachedInstallation {
    *
    * @param string $source
    *   The source directory.
-   * @param $destination
+   * @param string $destination
    *   The destination directory.
+   *
+   * @return void
    */
   protected function copyDir($source, $destination) {
     $finder = new Finder();

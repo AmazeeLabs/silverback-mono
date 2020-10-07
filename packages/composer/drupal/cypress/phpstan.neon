@@ -1,0 +1,15 @@
+parameters:
+    level: 8
+    checkGenericClassInNonGenericObjectType: false
+    checkMissingIterableValueType: false
+    paths:
+        - cypress.module
+        - cypress.install
+        - src
+        - tests
+        - scripts
+    ignoreErrors:
+        # Maybe we should enable it at some point.
+        - '#\Drupal calls should be avoided in classes, use dependency injection instead#'
+        # That's Drupal requirement to use `new static()` and we can do nothing about it at the moment.
+        - '#\Unsafe usage of new static\(\).#'

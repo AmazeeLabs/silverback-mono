@@ -10,6 +10,11 @@ use Drupal\KernelTests\KernelTestBase;
 class CypressPathsTest extends KernelTestBase {
   public static $modules = ['cypress'];
 
+  /**
+   * {@inheritdoc}
+   *
+   * @return void
+   */
   public function register(ContainerBuilder $container) {
     parent::register($container);
     $modulePath = realpath(__DIR__ . '/../..');
@@ -18,8 +23,11 @@ class CypressPathsTest extends KernelTestBase {
     ]);
   }
 
-
+  /**
+   * @return void
+   */
   public function testCypressRoot() {
+    /** @var string $appRoot */
     $appRoot = $this->container->get('app.root');
     $this->assertEquals(
       $appRoot . '/' . CypressRootFactory::CYPRESS_ROOT_DIRECTORY,
@@ -27,7 +35,11 @@ class CypressPathsTest extends KernelTestBase {
     );
   }
 
+  /**
+   * @return void
+   */
   public function testCypressTestDirectories() {
+    /** @var string $appRoot */
     $appRoot = $this->container->get('app.root');
     $modulePath = drupal_get_path('module', 'cypress');
     $this->assertEquals(

@@ -86,7 +86,7 @@ class CypressOptions {
       );
     })), 'array_merge', [
       'env' => $this->getEnvironment(),
-    ]), JSON_PRETTY_PRINT);
+    ]), JSON_PRETTY_PRINT) ?: '';
   }
 
   /**
@@ -105,6 +105,8 @@ class CypressOptions {
 
   /**
    * Get an array of environment variables to set.
+   *
+   * @return array
    */
   public function getEnvironment() {
     return array_reduce(array_map(function ($key) {

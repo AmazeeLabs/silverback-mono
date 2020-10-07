@@ -18,8 +18,11 @@ class RemoveErrorHeadersSubscriber implements EventSubscriberInterface {
    * doesn't exit with an parse error as soon as it receives the header.
    *
    * @param \Symfony\Component\HttpKernel\Event\FilterResponseEvent $event
+   *
+   * @return void
    */
   public function onResponse(FilterResponseEvent $event) {
+    // @phpstan-ignore-next-line PHPStan thinks it is always FALSE.
     if (DRUPAL_TEST_IN_CHILD_SITE) {
       $prefix = 'X-Drupal-Assertion-';
       $count = 0;

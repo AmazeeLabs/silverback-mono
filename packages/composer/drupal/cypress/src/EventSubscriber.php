@@ -25,9 +25,10 @@ class EventSubscriber implements EventSubscriberInterface {
 
   /**
    * Write all "X-CYPRESS-*" headers to the session.
+   *
+   * @return void
    */
   public function onRequest(GetResponseEvent $event) {
-    /** @var \Symfony\Component\HttpFoundation\Session\Session $session */
     $request = $event->getRequest();
     foreach (['USER', 'LANGUAGE', 'WORKSPACE', 'TOOLBAR'] as $key) {
       if ($request->headers->has('X-CYPRESS-' . $key)) {

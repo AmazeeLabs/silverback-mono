@@ -12,15 +12,17 @@ interface CypressRuntimeInterface {
    *
    * @param \Drupal\cypress\CypressOptions $options
    *   A cypress options object.
+   *
+   * @return void
    */
   public function initiate(CypressOptions $options);
 
   /**
    * Add a test suite to the current runtime.
    *
-   * @param $name
+   * @param string $name
    *   The test suite machine name.
-   * @param $path
+   * @param string $path
    *   The absolute path to the test suite directory.
    *
    * @return void
