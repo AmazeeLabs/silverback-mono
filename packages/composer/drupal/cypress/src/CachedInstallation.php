@@ -450,7 +450,7 @@ class CachedInstallation {
     foreach ($finder as $file) {
       $realpath = $file->getRealPath();
       if ($realpath === FALSE) {
-        throw new \Exception('Cannot get realpath for a file.');
+        throw new \Exception('Cannot get realpath for a file: "' . $file->getRelativePath() . '/' . $file->getBasename() . '".');
       }
       $files[$file->getRelativePath() . '/' . $file->getBasename()] = $realpath;
     }
