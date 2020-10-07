@@ -42,6 +42,16 @@ export const plugins = [
   },
   'gatsby-plugin-schema-export',
   {
+    resolve: `gatsby-plugin-schema-snapshot`,
+    options: {
+      path: `generated/schema.snap`,
+      exclude: {
+        plugins: [`gatsby-source-npm-package-search`],
+      },
+      update: process.env.GATSBY_UPDATE_SCHEMA_SNAPSHOT,
+    },
+  },
+  {
     resolve: 'gatsby-source-filesystem',
     options: {
       name: 'docs',

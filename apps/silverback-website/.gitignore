@@ -70,5 +70,4 @@ yarn-error.log
 .yarn-integrity
 
 # Ignore generated files
-generated/*
-!generated/.gitkeep
+generated/types
