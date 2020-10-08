@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.7.0...silverback-website@0.8.0) (2020-10-08)
+
+
+### Features
+
+* **gatsby-starter:** schema snapshots ([a49dc98](https://github.com/AmazeeLabs/silverback-mono/commit/a49dc9881cc1ed6c751c188d263523c5da20fd33))
+
+
+
+
+
 # [0.7.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.6.1...silverback-website@0.7.0) (2020-10-06)
 
 
