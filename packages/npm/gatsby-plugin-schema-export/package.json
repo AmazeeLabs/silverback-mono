@@ -8,5 +8,12 @@
   "private": false,
   "peerDependencies": {
     "gatsby": "^2.24.67"
-  }
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "graphql",
+    "schema",
+    "export"
+  ]
 }
