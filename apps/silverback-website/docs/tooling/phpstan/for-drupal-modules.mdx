@@ -17,13 +17,15 @@ Main features:
 
 ## Adding PHPStan checks to a Drupal module
 
-1. Require [mglaman/phpstan-drupal](https://github.com/mglaman/phpstan-drupal) and [phpstan/extension-installer](https://github.com/phpstan/extension-installer) in the dev dependencies of the module's `composer.json`. Example:
-  ```json
-    "require-dev": {
-      "mglaman/phpstan-drupal": "^0.12.5",
-      "phpstan/extension-installer": "^1.0"
-    }
-  ```
+1. You'll need at least [mglaman/phpstan-drupal](https://github.com/mglaman/phpstan-drupal) and [phpstan/extension-installer](https://github.com/phpstan/extension-installer) as dev dependencies for your module.
+
+  Unfortunately, you cannot just add them to `require-dev` of your module `composer.json`. Because you will run tests for the module from within a Drupal installation and `composer install` will only load `require-dev` dependencies for the root project. Therefore, you need to keep your dev dependencies in a separate `-dev` project and then require this project from your testing Drupal installation.
+
+  As an example, see Cypress module ([PR #274](https://github.com/AmazeeLabs/silverback-mono/pull/274)):
+    - all dev dependencies are listed in `drupal/cypress-dev` metapackage
+    - `drupal/cypress-dev` is required from `silverback-drupal` (which is used to run tests for `cypress`)
+    - `drupal/cypress-dev` is required from `cypress` module (just as a guide for developers looking for dev dependencies)
+
 1. Create `phpstan.neon` file in the module root. Example:
   ```yaml
   parameters:
@@ -46,7 +48,7 @@ Main features:
 
 Some popular plugins for PHPStan:
 - [phpstan/phpstan-deprecation-rules](https://github.com/phpstan/phpstan-deprecation-rules) reports usages of deprecated code (consider it only if you run PHPStan from the oldest supported version of Drupal)
-- [phpstan/phpstan-strict-rules](https://github.com/phpstan/phpstan-strict-rules) provides very strict (and even draconic) rules
+- [phpstan/phpstan-strict-rules](https://github.com/phpstan/phpstan-strict-rules) provides very strict rules
 
 See other plugins at https://phpstan.org/user-guide/extension-library
 
