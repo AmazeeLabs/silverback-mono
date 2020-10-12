@@ -1,0 +1,12 @@
+{
+  "name": "drupal/cypress-dev",
+  "type": "metapackage",
+  "description": "Dev dependencies for drupal/cypress package. Created because automated tests for Drupal modules need to be executed from a Drupal environment, but modules' require-dev dependencies couldn't be loaded by Composer in this case. Similar approach as https://packagist.org/packages/drupal/core-dev",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "jangregor/phpstan-prophecy": "^0.8.0",
+    "mglaman/phpstan-drupal": "^0.12.5",
+    "mikey179/vfsstream": "^1.6",
+    "phpstan/extension-installer": "^1.0"
+  }
+}

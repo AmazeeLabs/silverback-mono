@@ -1,0 +1,5 @@
+{
+  "name": "@-drupal/cypress-dev",
+  "description": "Dev dependencies for drupal/cypress package",
+  "license": "ISC"
+}
