@@ -1,36 +1,26 @@
 // Because we used ts-node in gatsby-config.js, this file will automatically be
 // imported by Gatsby instead of gatsby-node.js.
 
-import { ForkTsCheckerWebpackPlugin } from 'fork-ts-checker-webpack-plugin/lib/ForkTsCheckerWebpackPlugin';
 // Use the type definitions that are included with Gatsby.
 import { GatsbyNode } from 'gatsby';
 import { resolve as pathResolve } from 'path';
+import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 
 export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({
-  stage,
   actions,
 }) => {
-  if (stage !== 'develop') {
-    return;
-  }
-
   actions.setWebpackConfig({
-    plugins: [
-      // This webpack plugin runs type-checking and linting in parallel
-      new ForkTsCheckerWebpackPlugin({
-        eslint: {
-          enabled: true,
-          files: '**/*.{js,jsx,ts,tsx}',
+    resolve: {
+      plugins: [new TsconfigPathsPlugin()],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.pcss$/,
+          use: ['style-loader', 'css-loader', 'postcss-loader'],
         },
-        typescript: {
-          mode: 'write-references',
-          diagnosticOptions: {
-            semantic: true,
-            syntactic: true,
-          },
-        },
-      }),
-    ],
+      ],
+    },
   });
 };
 

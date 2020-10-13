@@ -28,7 +28,7 @@ export const plugins = [
   {
     resolve: `gatsby-plugin-schema-snapshot`,
     options: {
-      path: `generated/schema.snap`,
+      path: `generated/schema.snapshot`,
       exclude: {
         plugins: [`gatsby-source-npm-package-search`],
       },

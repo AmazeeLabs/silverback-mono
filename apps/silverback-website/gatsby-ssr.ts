@@ -4,4 +4,6 @@
  * See: https://www.gatsbyjs.org/docs/ssr-apis/
  */
 
-import './src/assets/tailwind.css';
+import { WrapPageElement } from './src/gatsby-api';
+
+export const wrapPageElement = WrapPageElement;

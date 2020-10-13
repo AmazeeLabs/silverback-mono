@@ -1799,10 +1799,10 @@ enum SitePluginFieldsEnum {
   resolve
   name
   version
-  pluginOptions___name
   pluginOptions___path
-  pluginOptions___pathCheck
   pluginOptions___exclude___plugins
+  pluginOptions___name
+  pluginOptions___pathCheck
   nodeAPIs
   browserAPIs
   ssrAPIs
@@ -1919,10 +1919,10 @@ input SitePluginPackageJsonPeerDependenciesFilterListInput {
 }
 
 type SitePluginPluginOptions {
-  name: String
   path: String
-  pathCheck: Boolean
   exclude: SitePluginPluginOptionsExclude
+  name: String
+  pathCheck: Boolean
 }
 
 type SitePluginPluginOptionsExclude {
@@ -1934,10 +1934,10 @@ input SitePluginPluginOptionsExcludeFilterInput {
 }
 
 input SitePluginPluginOptionsFilterInput {
-  name: StringQueryOperatorInput
   path: StringQueryOperatorInput
-  pathCheck: BooleanQueryOperatorInput
   exclude: SitePluginPluginOptionsExcludeFilterInput
+  name: StringQueryOperatorInput
+  pathCheck: BooleanQueryOperatorInput
 }
 
 input SitePluginSortInput {
