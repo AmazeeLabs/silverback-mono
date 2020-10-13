@@ -44,7 +44,7 @@ export const plugins = [
   {
     resolve: `gatsby-plugin-schema-snapshot`,
     options: {
-      path: `generated/schema.snap`,
+      path: `generated/schema.snapshot`,
       exclude: {
         plugins: [`gatsby-source-npm-package-search`],
       },
@@ -56,25 +56,6 @@ export const plugins = [
     options: {
       name: 'docs',
       path: `${__dirname}/docs/`,
-    },
-  },
-  '@amazeelabs/gatsby-theme-core',
-  // Required due to #177 https://github.com/AmazeeLabs/silverback-mono/issues/177
-  {
-    resolve: 'gatsby-plugin-postcss',
-    options: {
-      postCssPlugins: [
-        // Transform @import rules by inlining content.
-        require('postcss-import'),
-        // Automatic prefixing and browser compatibility.
-        require('postcss-preset-env')({ stage: 0 }),
-        // Apply tailwind features.
-        require('tailwindcss')(),
-        // Strip CSS comments.
-        require('postcss-discard-comments'),
-        // Add vendor prefixes.
-        require('autoprefixer'),
-      ],
     },
   },
 ];

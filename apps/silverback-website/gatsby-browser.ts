@@ -4,4 +4,8 @@
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
 
-import './src/assets/tailwind.css';
+import './src/assets/tailwind.pcss';
+
+import { WrapPageElement } from './src/gatsby-api';
+
+export const wrapPageElement = WrapPageElement;

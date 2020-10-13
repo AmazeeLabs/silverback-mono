@@ -14,8 +14,17 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    "typeRoots": ["./node_modules/@types", "./src/types", "./generated/types"],
-    "sourceMap": true
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "@atoms/*": ["./src/components/0-atoms/*"],
+      "@molecules/*": ["./src/components/1-molecules/*"],
+      "@organisms/*": ["./src/components/2-organisms/*"],
+      "@layouts/*": ["./src/components/3-layouts/*"],
+      "@pages/*": ["./src/components/4-pages/*"],
+      "@hooks": ["./src/hooks"],
+      "@dependencies": ["./src/components/dependencies"]
+    }
   },
   "include": [
     "./src",
