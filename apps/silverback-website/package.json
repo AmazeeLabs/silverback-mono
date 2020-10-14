@@ -4,16 +4,17 @@
   "version": "0.8.2",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
-    "@amazeelabs/gatsby-theme-core": "^0.3.2",
     "@mdx-js/mdx": "^1.6.18",
     "@mdx-js/react": "^1.6.18",
-    "@storybook/addon-actions": "^6.0.26",
-    "@storybook/addon-essentials": "^6.0.26",
-    "@storybook/addon-links": "^6.0.26",
-    "@storybook/react": "^6.0.26",
     "@tailwindcss/typography": "^0.2.0",
     "@tailwindcss/ui": "^0.6.2",
     "classnames": "^2.2.6",
+    "prism-react-renderer": "^1.1.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "typescript": "^4.0.2"
+  },
+  "devDependencies": {
     "dotenv": "^8.2.0",
     "gatsby": "^2.24.82",
     "gatsby-plugin-mdx": "^1.2.47",
@@ -22,11 +23,11 @@
     "gatsby-remark-images": "^3.3.36",
     "gatsby-remark-relative-links": "^0.0.3",
     "gatsby-source-filesystem": "^2.3.35",
-    "prism-react-renderer": "^1.1.1",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0"
-  },
-  "devDependencies": {
+    "@amazeelabs/gatsby-theme-core": "^0.3.2",
+    "@storybook/addon-actions": "^6.0.26",
+    "@storybook/addon-essentials": "^6.0.26",
+    "@storybook/addon-links": "^6.0.26",
+    "@storybook/react": "^6.0.26",
     "@amazeelabs/eslint-config-react": "^1.0.7",
     "@amazeelabs/prettier-config": "^1.1.0",
     "@graphql-codegen/cli": "1.17.10",
@@ -38,7 +39,6 @@
     "@types/mdx-js__react": "^1.5.3",
     "@types/node": "^14.11.10",
     "eslint": "^7.9.0",
-    "fork-ts-checker-webpack-plugin": "^5.2.0",
     "gatsby-plugin-schema-export": "^1.1.1",
     "gatsby-plugin-schema-snapshot": "^1.0.0",
     "husky": "^4.3.0",
@@ -51,8 +51,7 @@
     "ts-jest": "^26.4.1",
     "ts-node": "^9.0.0",
     "tsconfig-paths": "^3.9.0",
-    "tsconfig-paths-webpack-plugin": "^3.3.0",
-    "typescript": "^4.0.2"
+    "tsconfig-paths-webpack-plugin": "^3.3.0"
   },
   "keywords": [
     "gatsby"
