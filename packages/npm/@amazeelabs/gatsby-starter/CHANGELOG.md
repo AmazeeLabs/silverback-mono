@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.5.1...@amazeelabs/gatsby-starter@0.5.2) (2020-10-14)
+
+
+### Bug Fixes
+
+* add query to starter so codegen doesn't fail ([f3c59d6](https://github.com/AmazeeLabs/silverback-mono/commit/f3c59d6b2784c862492d546b075597d5adfe8769))
+* remove dependencies on deleted theme component ([fae8c05](https://github.com/AmazeeLabs/silverback-mono/commit/fae8c05f2895c1b5ba1341f1675e9192dc3c0721))
+
+
+
+
+
 ## [0.5.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.5.0...@amazeelabs/gatsby-starter@0.5.1) (2020-10-09)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-starter
