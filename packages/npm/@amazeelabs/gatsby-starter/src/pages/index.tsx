@@ -1,9 +1,19 @@
-import { PageProps } from 'gatsby';
+import { graphql, PageProps } from 'gatsby';
 import React from 'react';
 
-const IndexPage: React.FC<PageProps> = () => (
+export const query = graphql`
+  query SiteName {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`;
+
+const IndexPage: React.FC<PageProps & SiteNameQuery> = ({ site }) => (
   <>
-    <h1>Hi people</h1>
+    <h1>{site?.siteMetadata?.title}</h1>
     <p>Welcome to your new Gatsby site.</p>
     <p>Now go build something great.</p>
   </>
