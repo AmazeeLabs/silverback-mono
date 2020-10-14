@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 
 // TODO: Extract to shared module.
+
 export const createDependencyContext = <T extends {}>(): [
   React.FC<{ dependencies: T }>,
   React.FC<{ dependencies: Partial<T> }>,
@@ -21,9 +22,10 @@ export const createDependencyContext = <T extends {}>(): [
 
   const error = new Error('Dependency context has not been initialised.');
 
-  const DependencyOverride: React.FC<{
-    dependencies: Partial<T>;
-  }> = ({ dependencies, children }) => {
+  const DependencyOverride: React.FC<{ dependencies: Partial<T> }> = ({
+    dependencies,
+    children,
+  }) => {
     const context = useContext(DependencyContext);
     if (!isInitialised(context)) {
       throw error;
