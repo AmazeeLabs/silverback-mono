@@ -17,6 +17,7 @@ export const siteMetadata = {
 export const plugins = [
   'gatsby-plugin-sharp',
   'gatsby-remark-images',
+  '@amazeelabs/gatsby-theme-core',
   {
     resolve: 'gatsby-plugin-mdx',
     options: {
