@@ -1,0 +1,16 @@
+{
+  "name": "@amazeelabs/jest-preset-react",
+  "version": "1.0.0",
+  "description": "Jest preset for testing react applications.",
+  "main": "jest-preset.js",
+  "author": "Philipp Melab",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@amazeelabs/jest-preset-react": "^1.0.0",
+    "@testing-library/react": "^11.0.4"
+  }
+}
