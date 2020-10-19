@@ -1,7 +1,7 @@
 {
     "name": "amazeelabs/silverback-cli",
     "description": "Scaffolder for Amazee Silverback projects.",
-    "type": "package",
+    "type": "composer-plugin",
     "license": "GPL-2.0-or-later",
     "require": {
         "ext-zip": "*",
@@ -9,15 +9,18 @@
         "cweagans/composer-patches": "^1.6.7",
         "drush/drush": "^10.3.5",
         "vlucas/phpdotenv": "^5.2",
-        "wikimedia/composer-merge-plugin": "^1.4"
+        "wikimedia/composer-merge-plugin": "^1.4",
+        "composer-plugin-api": "^1 || ^2"
     },
     "bin": [ "bin/silverback", "bin/silverback-dev", "bin/silverback-test" ],
     "autoload": {
         "psr-4": {
-            "AmazeeLabs\\Silverback\\": "src/AmazeeLabs/Silverback"
+            "AmazeeLabs\\Silverback\\": "src/AmazeeLabs/Silverback",
+            "SilverbackCli\\": "src"
         }
     },
     "extra": {
+        "class": "SilverbackCli\\Plugin",
         "patches": {
             "drupal/core": {
                 "#2718657 - Drupal\\language\\LanguageNegotiator::updateConfiguration() is passed a NULL": "https://www.drupal.org/files/issues/2019-02-28/language-2718657-17.patch",

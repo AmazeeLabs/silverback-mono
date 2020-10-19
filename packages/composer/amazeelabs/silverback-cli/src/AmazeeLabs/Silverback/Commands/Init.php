@@ -15,6 +15,10 @@ class Init extends SilverbackCommand {
 
   protected function execute(InputInterface $input, OutputInterface $output) {
     parent::execute($input, $output);
+    $this->scaffold();
+  }
+
+  public function scaffold() {
     $projectName = basename($this->rootDirectory);
 
     $environment = [
@@ -86,6 +90,13 @@ class Init extends SilverbackCommand {
       ],
     ];
 
+    if (empty($this->rootDirectory)) {
+      $this->rootDirectory = getcwd();
+    }
+
+    if (!file_exists($this->rootDirectory . '/vendor/amazeelabs/silverback-cli/assets')) {
+      return;
+    }
     $finder = new Finder();
     $finder->files()->in($this->rootDirectory . '/vendor/amazeelabs/silverback-cli/assets');
     $finder->ignoreDotFiles(FALSE);
@@ -144,7 +155,7 @@ class Init extends SilverbackCommand {
     file_put_contents($this->rootDirectory . '/composer.json', json_encode(array_filter($composerJson), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
 
     // Link the storybook dist directory to the library dist folder.
-    if (!file_exists('web/themes/custom/storybook/dist')) {
+    if (!file_exists('web/themes/custom/storybook/dist') && file_exists('../../../../storybook/dist')) {
       symlink('../../../../storybook/dist', 'web/themes/custom/storybook/dist');
     }
   }
