@@ -18,7 +18,7 @@
     "file-system": "^2.2.2",
     "fs-extra": "^9.0.1",
     "simple-git": "^2.21.0",
-    "sync-directory": "^2.2.6",
+    "sync-directory": "^2.2.7",
     "tar": "^6.0.5"
   },
   "devDependencies": {
