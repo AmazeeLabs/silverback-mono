@@ -10,8 +10,6 @@
     "@tailwindcss/ui": "^0.6.2",
     "classnames": "^2.2.6",
     "prism-react-renderer": "^1.1.1",
-    "react": "16.13.1",
-    "react-dom": "^16.13.1",
     "typescript": "^4.0.2"
   },
   "devDependencies": {
@@ -38,6 +36,8 @@
     "gatsby-remark-images": "^3.3.33",
     "gatsby-remark-relative-links": "^0.0.3",
     "gatsby-source-filesystem": "^2.3.34",
+    "react": "16.13.1",
+    "react-dom": "^16.13.1",
     "dotenv": "^8.2.0",
     "eslint": "^7.9.0",
     "husky": "^4.3.0",
