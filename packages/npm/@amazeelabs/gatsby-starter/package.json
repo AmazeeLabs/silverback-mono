@@ -9,10 +9,10 @@
     "@tailwindcss/ui": "^0.6.2",
     "classnames": "^2.2.6",
     "dotenv": "^8.2.0",
-    "gatsby": "^2.24.58",
+    "gatsby": "^2.24.83",
     "gatsby-plugin-schema-export": "^1.1.1",
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react": "16.14.0",
+    "react-dom": "16.14.0"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config-react": "^1.0.7",
@@ -48,7 +48,7 @@
     "codegen": "graphql-codegen --config codegen.yml",
     "test:ci": "jest",
     "test:watch": "jest --watch",
-    "test": "is-ci test:ci test:watch",
+    "test": "jest",
     "storybook": "start-storybook -p 6006"
   },
   "repository": {
