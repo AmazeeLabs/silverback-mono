@@ -20,7 +20,7 @@
     "@amazeelabs/jest-preset-react": "^1.0.0",
     "@amazeelabs/prettier-config": "^1.1.0",
     "@graphql-codegen/cli": "1.17.10",
-    "@graphql-codegen/typescript": "1.17.10",
+    "@graphql-codegen/typescript": "1.17.11",
     "@graphql-codegen/typescript-operations": "1.17.8",
     "@storybook/addon-actions": "^6.0.26",
     "@storybook/addon-essentials": "^6.0.26",
