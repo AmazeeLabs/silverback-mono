@@ -19,7 +19,7 @@
     "@amazeelabs/gatsby-theme-core": "^0.3.2",
     "@amazeelabs/jest-preset-react": "^1.0.0",
     "@amazeelabs/prettier-config": "^1.1.0",
-    "@graphql-codegen/cli": "1.17.10",
+    "@graphql-codegen/cli": "1.18.0",
     "@graphql-codegen/typescript": "1.17.10",
     "@graphql-codegen/typescript-operations": "1.17.8",
     "@storybook/addon-actions": "^6.0.26",
