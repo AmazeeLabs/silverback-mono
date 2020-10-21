@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.5.3...@amazeelabs/gatsby-starter@0.5.4) (2020-10-21)
+
+
+### Bug Fixes
+
+* intelligent test commands ([484e36c](https://github.com/AmazeeLabs/silverback-mono/commit/484e36c6ff9c58395d777b900c8b25bffb99c3ea))
+
+
+
+
+
 ## [0.5.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.5.2...@amazeelabs/gatsby-starter@0.5.3) (2020-10-21)
 
 

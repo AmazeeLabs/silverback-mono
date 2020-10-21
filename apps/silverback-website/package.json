@@ -1,7 +1,7 @@
 {
   "name": "silverback-website",
   "description": "Silverback website",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
     "@mdx-js/mdx": "^1.6.18",
