@@ -60,7 +60,7 @@
     "codegen": "graphql-codegen --config codegen.yml",
     "test:ci": "jest",
     "test:watch": "jest --watch",
-    "test": "jest",
+    "test": "is-ci test:ci test:watch",
     "storybook": "start-storybook -p 6006"
   },
   "repository": {
