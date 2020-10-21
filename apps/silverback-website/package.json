@@ -10,7 +10,7 @@
     "@tailwindcss/ui": "^0.6.2",
     "classnames": "^2.2.6",
     "prism-react-renderer": "^1.1.1",
-    "react": "16.13.1",
+    "react": "17.0.0",
     "react-dom": "16.13.1",
     "typescript": "^4.0.2"
   },
