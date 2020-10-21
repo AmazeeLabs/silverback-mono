@@ -1,7 +1,7 @@
 {
   "name": "silverback-website",
   "description": "Silverback website",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
     "@mdx-js/mdx": "^1.6.18",
@@ -9,10 +9,6 @@
     "@tailwindcss/typography": "^0.2.0",
     "@tailwindcss/ui": "^0.6.2",
     "classnames": "^2.2.6",
-    "prism-react-renderer": "^1.1.1",
-    "react": "16.14.0",
-    "react-dom": "16.14.0",
-    "typescript": "^4.0.2",
     "gatsby": "^2.24.83",
     "gatsby-plugin-mdx": "^1.2.49",
     "gatsby-plugin-schema-export": "^1.1.1",
@@ -22,14 +18,18 @@
     "gatsby-remark-images": "^3.3.33",
     "gatsby-remark-relative-links": "^0.0.3",
     "gatsby-source-filesystem": "^2.3.35",
+    "prism-react-renderer": "^1.1.1",
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
+    "ts-node": "^9.0.0",
     "tsconfig-paths": "^3.9.0",
     "tsconfig-paths-webpack-plugin": "^3.3.0",
-    "ts-node": "^9.0.0"
+    "typescript": "^4.0.2"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config-react": "^1.0.7",
-    "@amazeelabs/gatsby-theme-core": "^0.3.2",
-    "@amazeelabs/jest-preset-react": "^1.0.0",
+    "@amazeelabs/gatsby-theme-core": "^0.3.3",
+    "@amazeelabs/jest-preset-react": "^1.0.1",
     "@amazeelabs/prettier-config": "^1.1.0",
     "@graphql-codegen/cli": "1.18.0",
     "@graphql-codegen/typescript": "1.17.10",

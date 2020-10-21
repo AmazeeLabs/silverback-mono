@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.5.2...@amazeelabs/gatsby-starter@0.5.3) (2020-10-21)
+
+
+### Bug Fixes
+
+* align react versions ([f6d6f28](https://github.com/AmazeeLabs/silverback-mono/commit/f6d6f28311062a309fa14d174f0711a9197281ac))
+* aligned react versions (again) ([a6371dd](https://github.com/AmazeeLabs/silverback-mono/commit/a6371ddc70e6f8e73ad6f9608c7bbf0257530e03))
+* react versioning confusion ([607b788](https://github.com/AmazeeLabs/silverback-mono/commit/607b7887f25d04ee982787d14e0aa3289d3b6d10))
+* set react to be a dev dependency ([edb33e0](https://github.com/AmazeeLabs/silverback-mono/commit/edb33e0fa428fc7b65f79c34a8b4acfdfc273800))
+
+
+
+
+
 ## [0.5.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.5.1...@amazeelabs/gatsby-starter@0.5.2) (2020-10-14)
 
 
