@@ -32,7 +32,7 @@
     "dotenv": "^8.2.0",
     "eslint": "^7.9.0",
     "gatsby": "^2.24.77",
-    "gatsby-plugin-mdx": "^1.2.46",
+    "gatsby-plugin-mdx": "^1.2.49",
     "gatsby-plugin-schema-export": "^1.1.1",
     "gatsby-plugin-schema-snapshot": "^1.0.0",
     "gatsby-plugin-sharp": "^2.6.43",
