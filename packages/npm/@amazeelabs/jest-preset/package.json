@@ -9,6 +9,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "bin": {
+    "jest-preset-configure": "config/configure.js"
+  },
   "dependencies": {
     "@types/jest": "^26.0.14",
     "is-ci-cli": "^2.1.2",
