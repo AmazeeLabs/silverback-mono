@@ -10,7 +10,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@amazeelabs/jest-preset-react": "^1.0.1",
+    "@amazeelabs/jest-preset": "^1.0.1",
     "@testing-library/react": "^11.0.4"
   }
 }
