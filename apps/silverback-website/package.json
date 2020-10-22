@@ -5,7 +5,7 @@
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
     "@mdx-js/mdx": "^1.6.18",
-    "@mdx-js/react": "^1.6.18",
+    "@mdx-js/react": "^1.6.19",
     "@tailwindcss/typography": "^0.2.0",
     "@tailwindcss/ui": "^0.6.2",
     "classnames": "^2.2.6",
