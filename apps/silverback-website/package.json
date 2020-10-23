@@ -10,7 +10,7 @@
     "@tailwindcss/ui": "^0.6.2",
     "classnames": "^2.2.6",
     "gatsby": "^2.24.83",
-    "gatsby-plugin-mdx": "^1.2.50",
+    "gatsby-plugin-mdx": "^1.2.51",
     "gatsby-plugin-schema-export": "^1.1.1",
     "gatsby-plugin-schema-snapshot": "^1.0.0",
     "gatsby-plugin-sharp": "^2.6.43",
