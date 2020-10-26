@@ -9,7 +9,7 @@
     "@tailwindcss/typography": "^0.2.0",
     "@tailwindcss/ui": "^0.6.2",
     "classnames": "^2.2.6",
-    "gatsby": "^2.24.83",
+    "gatsby": "^2.24.85",
     "gatsby-plugin-mdx": "^1.2.51",
     "gatsby-plugin-schema-export": "^1.1.1",
     "gatsby-plugin-schema-snapshot": "^1.0.0",
