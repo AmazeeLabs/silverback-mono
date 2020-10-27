@@ -1,7 +1,8 @@
 {
   "name": "@amazeelabs/react-di",
   "version": "1.0.0",
-  "main": "src/index.tsx",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "license": "MIT",
   "private": false,
   "publishConfig": {
@@ -13,6 +14,8 @@
     "typescript": "^4.0.5"
   },
   "scripts": {
+    "build": "tsc",
+    "prepublish": "build",
     "test:ci": "jest",
     "test:watch": "jest --watch",
     "test": "is-ci test:ci test:watch"
