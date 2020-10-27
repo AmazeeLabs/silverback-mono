@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/jest-preset-react@1.1.0...@amazeelabs/jest-preset-react@1.1.1) (2020-10-27)
+
+
+### Bug Fixes
+
+* setup tsconfig.json as well ([d08a956](https://github.com/AmazeeLabs/silverback-mono/commit/d08a9562a550018dcdb003296434c44a8fe6b110))
+
+
+
+
+
 # [1.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/jest-preset-react@1.0.1...@amazeelabs/jest-preset-react@1.1.0) (2020-10-23)
 
 
