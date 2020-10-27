@@ -13,6 +13,7 @@
     "jest-preset-configure": "config/configure.js"
   },
   "dependencies": {
+    "@tsconfig/recommended": "^1.0.1",
     "@types/jest": "^26.0.14",
     "is-ci-cli": "^2.1.2",
     "jest-runner-eslint": "^0.10.0",

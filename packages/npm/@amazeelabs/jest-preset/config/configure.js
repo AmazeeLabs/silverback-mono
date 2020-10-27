@@ -26,18 +26,14 @@ const data = {
     projectRoot: process.env.PWD,
     files: path.join(__dirname, 'files'),
   },
-  kind: process.argv[2], // e.g. "react"
+  version: process.argv[2] || 'base', // e.g. "react"
 };
 
 const tasks = {
   copyFiles: () => {
-    for (const file of fs.readdirSync(data.paths.files)) {
-      const scr = path.join(data.paths.files, file);
-      const dest = path.join(data.paths.projectRoot, file);
-      fs.copyFileSync(scr, dest);
-      if (data.kind) {
-        utils.adjustKind(dest);
-      }
+    utils.copyFiles(path.join(data.paths.files, 'base'));
+    if (data.version !== 'base') {
+      utils.copyFiles(path.join(data.paths.files, data.version));
     }
   },
 
@@ -47,6 +43,14 @@ const tasks = {
 };
 
 const utils = {
+  copyFiles: (dirpath) => {
+    for (const file of fs.readdirSync(dirpath)) {
+      const scr = path.join(dirpath, file);
+      const dest = path.join(data.paths.projectRoot, file);
+      fs.copyFileSync(scr, dest);
+    }
+  },
+
   adjustPackageJson: (filepath) => {
     const contents = fs.readFileSync(filepath, 'utf8');
     const json = JSON.parse(contents);
@@ -58,16 +62,4 @@ const utils = {
     json.scripts['test'] = 'is-ci test:ci test:watch';
     fs.writeFileSync(filepath, JSON.stringify(json, null, 2));
   },
-
-  adjustKind: (filepath) => {
-    const contents = fs.readFileSync(filepath, 'utf8');
-    const updated = contents.replace(
-      '@amazeelabs/jest-preset',
-      '@amazeelabs/jest-preset-' + data.kind
-    ).replace(
-      '@amazeelabs/eslint-config',
-      '@amazeelabs/eslint-config-' + data.kind
-    );
-    fs.writeFileSync(filepath, updated);
-  }
 };
