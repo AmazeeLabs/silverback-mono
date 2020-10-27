@@ -1,4 +1,4 @@
-import { createDependencyContext } from '../utils/di';
+import { createDependencyContext } from '@amazeelabs/react-di';
 
 export type Link = React.FC<{
   to: string;

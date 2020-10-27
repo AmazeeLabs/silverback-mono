@@ -4,6 +4,7 @@
   "version": "0.8.5",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
+    "@amazeelabs/react-di": "^1.0.0",
     "@mdx-js/mdx": "^1.6.19",
     "@mdx-js/react": "^1.6.19",
     "@tailwindcss/typography": "^0.2.0",
