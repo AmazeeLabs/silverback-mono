@@ -15,7 +15,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "prepublish": "build",
+    "prepublish": "tsc",
     "test:ci": "jest",
     "test:watch": "jest --watch",
     "test": "is-ci test:ci test:watch"
