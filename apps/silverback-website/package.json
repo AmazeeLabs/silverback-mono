@@ -16,7 +16,7 @@
     "gatsby-plugin-schema-snapshot": "^1.0.0",
     "gatsby-plugin-sharp": "^2.6.43",
     "gatsby-remark-autolink-headers": "^2.3.15",
-    "gatsby-remark-images": "^3.3.39",
+    "gatsby-remark-images": "^3.3.40",
     "gatsby-remark-relative-links": "^0.0.3",
     "gatsby-source-filesystem": "^2.3.37",
     "prism-react-renderer": "^1.1.1",
