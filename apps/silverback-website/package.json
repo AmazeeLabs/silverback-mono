@@ -41,7 +41,7 @@
     "@storybook/react": "^6.0.27",
     "@types/classnames": "^2.2.11",
     "@types/mdx-js__react": "^1.5.3",
-    "@types/node": "^14.14.5",
+    "@types/node": "^14.14.6",
     "dotenv": "^8.2.0",
     "eslint": "^7.9.0",
     "husky": "^4.3.0",
