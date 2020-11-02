@@ -37,7 +37,7 @@
     "@graphql-codegen/typescript-operations": "1.17.8",
     "@storybook/addon-actions": "^6.0.27",
     "@storybook/addon-essentials": "^6.0.28",
-    "@storybook/addon-links": "^6.0.27",
+    "@storybook/addon-links": "^6.0.28",
     "@storybook/react": "^6.0.28",
     "@types/classnames": "^2.2.11",
     "@types/mdx-js__react": "^1.5.3",
