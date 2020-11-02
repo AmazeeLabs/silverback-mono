@@ -1,0 +1,27 @@
+{
+  extends: [
+    // Same options as in "config:base", but without "group:monorepos" and
+    // "group:recommended".
+    ":separateMajorReleases",
+    ":combinePatchMinorReleases",
+    ":ignoreUnstable",
+    ":prImmediately",
+    ":semanticPrefixFixDepsChoreOthers",
+    ":updateNotScheduled",
+    ":automergeDisabled",
+    ":ignoreModulesAndTests",
+    ":autodetectPinVersions",
+    ":prHourlyLimit2",
+    ":prConcurrentLimit20",
+    "helpers:disableTypesNodeMajor"
+  ],
+  packageRules: [
+    {
+      updateTypes: ["major", "minor", "patch", "digest"],
+      automerge: true,
+    },
+  ],
+  rangeStrategy: "replace",
+  groupName: "all",
+  schedule: ["before 5am on monday"],
+}
