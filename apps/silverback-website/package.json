@@ -34,7 +34,7 @@
     "@amazeelabs/prettier-config": "^1.1.0",
     "@graphql-codegen/cli": "1.19.0",
     "@graphql-codegen/typescript": "1.17.11",
-    "@graphql-codegen/typescript-operations": "1.17.8",
+    "@graphql-codegen/typescript-operations": "1.17.9",
     "@storybook/addon-actions": "^6.0.28",
     "@storybook/addon-essentials": "^6.0.28",
     "@storybook/addon-links": "^6.0.28",
