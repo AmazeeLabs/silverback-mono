@@ -6,7 +6,7 @@
   "dependencies": {
     "@amazeelabs/react-di": "^1.0.1",
     "@mdx-js/mdx": "^1.6.21",
-    "@mdx-js/react": "^1.6.19",
+    "@mdx-js/react": "^1.6.21",
     "@tailwindcss/typography": "^0.2.0",
     "@tailwindcss/ui": "^0.7.2",
     "classnames": "^2.2.6",
