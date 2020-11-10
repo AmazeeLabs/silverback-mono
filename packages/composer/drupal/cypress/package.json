@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@testing-library/cypress": "^7.0.1",
-    "cypress": "^5.5.0",
+    "cypress": "^5.6.0",
     "cypress-cucumber-preprocessor": "^4.0.0",
     "cypress-file-upload": "^4.1.1",
     "cypress-screenplay": "^0.1.21"
