@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/gatsby-starter",
-  "private": true,
+  "private": false,
   "description": "Gatsby starter for Amazee Labs projects",
   "version": "0.5.6",
   "author": "Amazee Labs <developers@amazeelabs.com>",
@@ -50,6 +50,12 @@
     "test:watch": "jest --watch",
     "test": "is-ci test:ci test:watch",
     "storybook": "start-storybook -p 6006"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://localhost:4873",
+    "repository": "git@github.com:AmazeeLabs/gatsby-starter.git",
+    "branch": "main"
   },
   "repository": {
     "type": "git",
