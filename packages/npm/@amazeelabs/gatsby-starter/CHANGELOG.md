@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.5.7...@amazeelabs/gatsby-starter@0.5.8) (2020-11-16)
+
+
+### Bug Fixes
+
+* **gatsby-starter:** storybook setup and optimized postcss processing ([f217cce](https://github.com/AmazeeLabs/silverback-mono/commit/f217cceae5888a0c3217b1c7f497a97bb63a9c74))
+
+
+
+
+
 ## [0.5.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.5.6...@amazeelabs/gatsby-starter@0.5.7) (2020-11-16)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-starter

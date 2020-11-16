@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.3.3...@amazeelabs/gatsby-theme-core@0.3.4) (2020-11-16)
+
+
+### Bug Fixes
+
+* **gatsby-starter:** storybook setup and optimized postcss processing ([f217cce](https://github.com/AmazeeLabs/silverback-mono/commit/f217cceae5888a0c3217b1c7f497a97bb63a9c74))
+* **gatsby-theme-core:** prettier fixes ([9451388](https://github.com/AmazeeLabs/silverback-mono/commit/9451388cb5df00bbf11f57059de12a9b50a0b2ca))
+
+
+
+
+
 ## [0.3.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.3.2...@amazeelabs/gatsby-theme-core@0.3.3) (2020-10-21)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-theme-core

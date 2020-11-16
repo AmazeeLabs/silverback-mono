@@ -1,7 +1,7 @@
 {
   "name": "silverback-website",
   "description": "Silverback website",
-  "version": "0.8.8",
+  "version": "0.8.9",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
     "@amazeelabs/react-di": "^1.0.1",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@amazeelabs/eslint-config-react": "^1.0.7",
-    "@amazeelabs/gatsby-theme-core": "^0.3.3",
+    "@amazeelabs/gatsby-theme-core": "^0.3.4",
     "@amazeelabs/jest-preset-react": "^1.1.1",
     "@amazeelabs/prettier-config": "^1.1.0",
     "@graphql-codegen/cli": "1.19.1",

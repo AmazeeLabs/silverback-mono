@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.9](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.8.8...silverback-website@0.8.9) (2020-11-16)
+
+
+### Bug Fixes
+
+* **gatsby-starter:** storybook setup and optimized postcss processing ([f217cce](https://github.com/AmazeeLabs/silverback-mono/commit/f217cceae5888a0c3217b1c7f497a97bb63a9c74))
+
+
+
+
+
 ## [0.8.8](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.8.7...silverback-website@0.8.8) (2020-11-15)
 
 **Note:** Version bump only for package silverback-website
