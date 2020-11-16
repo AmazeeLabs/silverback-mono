@@ -1,6 +1,6 @@
 import React from 'react';
 import { addDecorator } from '@storybook/react';
-import '../src/assets/tailwind.pcss';
+import '../src/assets/tailwind.css';
 import { frameworkMocks, dataMocks } from '../src/components/mocks';
 import {
   FrameworkDependencyProvider,

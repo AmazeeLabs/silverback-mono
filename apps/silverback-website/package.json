@@ -12,6 +12,7 @@
     "classnames": "^2.2.6",
     "gatsby": "^2.26.0",
     "gatsby-plugin-mdx": "^1.4.0",
+    "gatsby-plugin-postcss": "^3.1.0",
     "gatsby-plugin-schema-export": "^1.1.1",
     "gatsby-plugin-schema-snapshot": "^1.1.0",
     "gatsby-plugin-sharp": "^2.8.0",
@@ -62,7 +63,8 @@
     "test:ci": "jest",
     "test:watch": "jest --watch",
     "test": "is-ci test:ci test:watch",
-    "storybook": "start-storybook -p 6006"
+    "storybook": "start-storybook -p 6006",
+    "storybook:build": "build-storybook"
   },
   "repository": {
     "type": "git",

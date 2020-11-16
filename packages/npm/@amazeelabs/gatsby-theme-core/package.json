@@ -25,7 +25,9 @@
     "eslint": "^7.9.0",
     "prettier": "2.1.1",
     "ts-node": "^9.0.0",
-    "typescript": "^4.0.2"
+    "typescript": "^4.0.2",
+    "tsconfig-paths": "^3.9.0",
+    "tsconfig-paths-webpack-plugin": "^3.3.0"
   },
   "peerDependencies": {
     "gatsby": "^2.24.58",

@@ -4,25 +4,6 @@
 // Use the type definitions that are included with Gatsby.
 import { GatsbyNode } from 'gatsby';
 import { resolve as pathResolve } from 'path';
-import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
-
-export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({
-  actions,
-}) => {
-  actions.setWebpackConfig({
-    resolve: {
-      plugins: [new TsconfigPathsPlugin()],
-    },
-    module: {
-      rules: [
-        {
-          test: /\.pcss$/,
-          use: ['style-loader', 'css-loader', 'postcss-loader'],
-        },
-      ],
-    },
-  });
-};
 
 export const createPages: GatsbyNode['createPages'] = async ({
   graphql,

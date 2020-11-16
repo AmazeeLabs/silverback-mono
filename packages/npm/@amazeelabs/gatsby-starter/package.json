@@ -27,11 +27,10 @@
     "eslint": "^7.9.0",
     "gatsby-plugin-schema-snapshot": "^1.0.0",
     "gatsby-source-filesystem": "^2.3.28",
+    "gatsby-plugin-postcss": "^3.1.0",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
     "prettier": "2.1.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.2"
   },
@@ -49,7 +48,8 @@
     "test:ci": "jest",
     "test:watch": "jest --watch",
     "test": "is-ci test:ci test:watch",
-    "storybook": "start-storybook -p 6006"
+    "storybook": "start-storybook -p 6006",
+    "storybook:build": "build-storybook"
   },
   "publishConfig": {
     "access": "public",

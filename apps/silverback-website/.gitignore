@@ -71,3 +71,6 @@ yarn-error.log
 
 # Ignore generated files
 generated/types
+
+# Ignore storybook builds
+storybook-static

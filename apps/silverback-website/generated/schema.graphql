@@ -1799,10 +1799,29 @@ enum SitePluginFieldsEnum {
   resolve
   name
   version
+  pluginOptions___base64Width
+  pluginOptions___stripMetadata
+  pluginOptions___defaultQuality
+  pluginOptions___failOnError
+  pluginOptions___maxWidth
+  pluginOptions___linkImagesToOriginal
+  pluginOptions___showCaptions
+  pluginOptions___markdownCaptions
+  pluginOptions___sizeByPixelDensity
+  pluginOptions___backgroundColor
+  pluginOptions___quality
+  pluginOptions___withWebp
+  pluginOptions___tracedSVG
+  pluginOptions___loading
+  pluginOptions___disableBgImageOnAlpha
+  pluginOptions___disableBgImage
   pluginOptions___path
   pluginOptions___exclude___plugins
   pluginOptions___name
   pluginOptions___pathCheck
+  pluginOptions___allExtensions
+  pluginOptions___isTSX
+  pluginOptions___jsxPragma
   nodeAPIs
   browserAPIs
   ssrAPIs
@@ -1919,10 +1938,29 @@ input SitePluginPackageJsonPeerDependenciesFilterListInput {
 }
 
 type SitePluginPluginOptions {
+  base64Width: Int
+  stripMetadata: Boolean
+  defaultQuality: Int
+  failOnError: Boolean
+  maxWidth: Int
+  linkImagesToOriginal: Boolean
+  showCaptions: Boolean
+  markdownCaptions: Boolean
+  sizeByPixelDensity: Boolean
+  backgroundColor: String
+  quality: Int
+  withWebp: Boolean
+  tracedSVG: Boolean
+  loading: String
+  disableBgImageOnAlpha: Boolean
+  disableBgImage: Boolean
   path: String
   exclude: SitePluginPluginOptionsExclude
   name: String
   pathCheck: Boolean
+  allExtensions: Boolean
+  isTSX: Boolean
+  jsxPragma: String
 }
 
 type SitePluginPluginOptionsExclude {
@@ -1934,10 +1972,29 @@ input SitePluginPluginOptionsExcludeFilterInput {
 }
 
 input SitePluginPluginOptionsFilterInput {
+  base64Width: IntQueryOperatorInput
+  stripMetadata: BooleanQueryOperatorInput
+  defaultQuality: IntQueryOperatorInput
+  failOnError: BooleanQueryOperatorInput
+  maxWidth: IntQueryOperatorInput
+  linkImagesToOriginal: BooleanQueryOperatorInput
+  showCaptions: BooleanQueryOperatorInput
+  markdownCaptions: BooleanQueryOperatorInput
+  sizeByPixelDensity: BooleanQueryOperatorInput
+  backgroundColor: StringQueryOperatorInput
+  quality: IntQueryOperatorInput
+  withWebp: BooleanQueryOperatorInput
+  tracedSVG: BooleanQueryOperatorInput
+  loading: StringQueryOperatorInput
+  disableBgImageOnAlpha: BooleanQueryOperatorInput
+  disableBgImage: BooleanQueryOperatorInput
   path: StringQueryOperatorInput
   exclude: SitePluginPluginOptionsExcludeFilterInput
   name: StringQueryOperatorInput
   pathCheck: BooleanQueryOperatorInput
+  allExtensions: BooleanQueryOperatorInput
+  isTSX: BooleanQueryOperatorInput
+  jsxPragma: StringQueryOperatorInput
 }
 
 input SitePluginSortInput {
