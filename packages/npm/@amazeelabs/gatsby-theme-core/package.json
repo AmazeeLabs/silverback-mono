@@ -8,6 +8,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@amazeelabs/jest-preset-react": "^1.1.1",
     "autoprefixer": "^9.8.6",
     "gatsby-plugin-postcss": "^2.3.11",
     "gatsby-plugin-react-helmet": "^3.3.10",
@@ -27,20 +28,23 @@
     "ts-node": "^9.0.0",
     "tsconfig-paths": "^3.9.0",
     "tsconfig-paths-webpack-plugin": "^3.3.0",
-    "typescript": "^4.0.2"
+    "tsconfigs": "^5.0.0",
+    "typescript": "^4.0.2",
+    "react": "16.14.0",
+    "react-dom": "16.14.0"
   },
   "peerDependencies": {
-    "gatsby": "^2.24.58",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "gatsby": "^2.24.58"
   },
   "scripts": {
     "format": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "format:fix": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint --fix \"**/*.{js,jsx,ts,tsx}\"",
-    "pretest": "yarn lint && yarn format",
-    "test": "echo \"Add tests\""
+    "prepublish": "tsc -p ./",
+    "test": "is-ci test:ci test:watch",
+    "test:ci": "jest",
+    "test:watch": "jest --watch"
   },
   "license": "MIT",
   "repository": {
