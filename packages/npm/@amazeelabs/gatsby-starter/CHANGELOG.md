@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.5.8...@amazeelabs/gatsby-starter@0.6.0) (2020-11-17)
+
+
+### Features
+
+* **gatsby-theme-core:** moved common configuration to gatsby-theme-core ([adf77f8](https://github.com/AmazeeLabs/silverback-mono/commit/adf77f872794fdde9dce08e27e19eb2649834b26)), closes [#146](https://github.com/AmazeeLabs/silverback-mono/issues/146) [#480](https://github.com/AmazeeLabs/silverback-mono/issues/480)
+
+
+
+
+
 ## [0.5.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.5.7...@amazeelabs/gatsby-starter@0.5.8) (2020-11-16)
 
 

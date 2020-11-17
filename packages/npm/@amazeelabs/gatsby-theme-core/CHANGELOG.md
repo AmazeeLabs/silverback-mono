@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.3.4...@amazeelabs/gatsby-theme-core@0.4.0) (2020-11-17)
+
+
+### Bug Fixes
+
+* **gatsby-theme-core:** ignore generated type definitions while linting ([fab8ecc](https://github.com/AmazeeLabs/silverback-mono/commit/fab8ecc7b8e9e13c563ddd5a47e976e3dbfd4c7d))
+
+
+### Features
+
+* **gatsby-theme-core:** moved common configuration to gatsby-theme-core ([adf77f8](https://github.com/AmazeeLabs/silverback-mono/commit/adf77f872794fdde9dce08e27e19eb2649834b26)), closes [#146](https://github.com/AmazeeLabs/silverback-mono/issues/146) [#480](https://github.com/AmazeeLabs/silverback-mono/issues/480)
+
+
+
+
+
 ## [0.3.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.3.3...@amazeelabs/gatsby-theme-core@0.3.4) (2020-11-16)
 
 

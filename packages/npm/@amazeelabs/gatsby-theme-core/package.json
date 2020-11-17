@@ -1,7 +1,7 @@
 {
   "name": "@amazeelabs/gatsby-theme-core",
   "description": "Gatsby parent theme for Amazee Labs projects.",
-  "version": "0.3.4",
+  "version": "0.4.0",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "main": "index.js",
   "types": "index.d.ts",
