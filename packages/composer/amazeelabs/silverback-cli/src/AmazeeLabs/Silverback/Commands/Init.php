@@ -142,11 +142,6 @@ class Init extends SilverbackCommand {
     $composerJson['extra']['merge-plugin']['replace'] = TRUE;
 
     file_put_contents($this->rootDirectory . '/composer.json', json_encode(array_filter($composerJson), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
-
-    // Link the storybook dist directory to the library dist folder.
-    if (!file_exists('web/themes/custom/storybook/dist')) {
-      symlink('../../../../storybook/dist', 'web/themes/custom/storybook/dist');
-    }
   }
 
 }
