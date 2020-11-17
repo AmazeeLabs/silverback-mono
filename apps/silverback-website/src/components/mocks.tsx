@@ -1,30 +1,4 @@
-import { DataDependencies, FrameworkDependencies, Link } from '@dependencies';
-import React from 'react';
-
-const MockLink: Link = ({
-  to,
-  className,
-  activeClassName,
-  children,
-  onClick,
-}) => (
-  <a
-    href={to}
-    className={
-      to.includes('active') ? [className, activeClassName].join(' ') : className
-    }
-    onClick={onClick}
-  >
-    {children}
-  </a>
-);
-
-// TODO: Move to theme.
-export const frameworkMocks: FrameworkDependencies = {
-  Link: MockLink,
-  navigate: () => {},
-  SEO: () => null,
-};
+import { DataDependencies } from '@dependencies';
 
 export const dataMocks: DataDependencies = {
   useNavigation: () => [

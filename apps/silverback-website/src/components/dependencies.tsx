@@ -7,18 +7,6 @@ export type Link = React.FC<{
   onClick?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 }>;
 
-export type FrameworkDependencies = {
-  Link: Link;
-  navigate: (to: string) => void;
-  SEO: React.FC<{ title?: string }>;
-};
-
-export const [
-  FrameworkDependencyProvider,
-  FrameworkDependencyOverride,
-  useFrameworkDependencies,
-] = createDependencyContext<FrameworkDependencies>();
-
 export type NavigationNode = {
   title: string;
   path: string;

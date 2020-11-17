@@ -1,0 +1,1 @@
+export { useGatsbyDependencies } from './dependencies';

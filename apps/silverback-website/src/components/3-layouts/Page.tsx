@@ -1,5 +1,5 @@
+import { useGatsbyDependencies } from '@amazeelabs/gatsby-theme-core';
 import Logo from '@atoms/Logo';
-import { useFrameworkDependencies } from '@dependencies';
 import { useMobileMenu } from '@hooks';
 import MobileMenuButton from '@molecules/MobileMenuButton';
 import DesktopNavigation from '@organisms/DesktopNavigation';
@@ -9,7 +9,7 @@ import classnames from 'classnames';
 import React from 'react';
 
 const Page: React.FC = ({ children }) => {
-  const { Link } = useFrameworkDependencies();
+  const { Link } = useGatsbyDependencies();
   const [open, toggle] = useMobileMenu();
   return (
     <div className="flex flex-col min-h-screen">

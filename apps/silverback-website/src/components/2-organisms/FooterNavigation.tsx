@@ -1,8 +1,9 @@
-import { useDataDependencies, useFrameworkDependencies } from '@dependencies';
+import { useGatsbyDependencies } from '@amazeelabs/gatsby-theme-core';
+import { useDataDependencies } from '@dependencies';
 import React from 'react';
 
 const FooterNavigation = () => {
-  const { Link } = useFrameworkDependencies();
+  const { Link } = useGatsbyDependencies();
   const navigation = useDataDependencies().useNavigation();
   return (
     <div className="md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8">

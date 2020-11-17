@@ -917,7 +917,7 @@ type Query {
   allSitePage(filter: SitePageFilterInput, sort: SitePageSortInput, skip: Int, limit: Int): SitePageConnection!
   siteBuildMetadata(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, buildTime: DateQueryOperatorInput): SiteBuildMetadata
   allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, sort: SiteBuildMetadataSortInput, skip: Int, limit: Int): SiteBuildMetadataConnection!
-  sitePlugin(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, resolve: StringQueryOperatorInput, name: StringQueryOperatorInput, version: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, nodeAPIs: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, pluginFilepath: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput): SitePlugin
+  sitePlugin(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, resolve: StringQueryOperatorInput, name: StringQueryOperatorInput, version: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, nodeAPIs: StringQueryOperatorInput, browserAPIs: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, pluginFilepath: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput): SitePlugin
   allSitePlugin(filter: SitePluginFilterInput, sort: SitePluginSortInput, skip: Int, limit: Int): SitePluginConnection!
 }
 
@@ -1394,6 +1394,7 @@ type SitePlugin implements Node {
   version: String
   pluginOptions: SitePluginPluginOptions
   nodeAPIs: [String]
+  browserAPIs: [String]
   ssrAPIs: [String]
   pluginFilepath: String
   packageJson: SitePluginPackageJson
@@ -1509,6 +1510,7 @@ enum SitePluginFieldsEnum {
   pluginOptions___exclude___plugins
   pluginOptions___pathCheck
   nodeAPIs
+  browserAPIs
   ssrAPIs
   pluginFilepath
   packageJson___name
@@ -1539,6 +1541,7 @@ input SitePluginFilterInput {
   version: StringQueryOperatorInput
   pluginOptions: SitePluginPluginOptionsFilterInput
   nodeAPIs: StringQueryOperatorInput
+  browserAPIs: StringQueryOperatorInput
   ssrAPIs: StringQueryOperatorInput
   pluginFilepath: StringQueryOperatorInput
   packageJson: SitePluginPackageJsonFilterInput

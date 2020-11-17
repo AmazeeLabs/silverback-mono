@@ -1,10 +1,11 @@
-import { useDataDependencies, useFrameworkDependencies } from '@dependencies';
+import { useGatsbyDependencies } from '@amazeelabs/gatsby-theme-core';
+import { useDataDependencies } from '@dependencies';
 import { useSubPageMenu } from '@hooks';
 import classnames from 'classnames';
 import React from 'react';
 
 const DesktopNavigation = () => {
-  const { Link } = useFrameworkDependencies();
+  const { Link } = useGatsbyDependencies();
   const { useNavigation } = useDataDependencies();
   const navigation = useNavigation();
   const [activeItems, setActiveItem, close] = useSubPageMenu(

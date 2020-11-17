@@ -1,8 +1,9 @@
-import { useDataDependencies, useFrameworkDependencies } from '@dependencies';
+import { useGatsbyDependencies } from '@amazeelabs/gatsby-theme-core';
+import { useDataDependencies } from '@dependencies';
 import React from 'react';
 
 const MobileNavigation = () => {
-  const { Link } = useFrameworkDependencies();
+  const { Link } = useGatsbyDependencies();
   const navigation = useDataDependencies().useNavigation();
   return (
     <div className="px-4 py-3 space-y-1">

@@ -3,12 +3,14 @@
   "description": "Gatsby parent theme for Amazee Labs projects.",
   "version": "0.3.4",
   "author": "Amazee Labs <developers@amazeelabs.com>",
-  "main": "src/index.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
     "@amazeelabs/jest-preset-react": "^1.1.1",
+    "@amazeelabs/react-di": "^1.0.1",
     "autoprefixer": "^9.8.6",
     "gatsby-plugin-postcss": "^2.3.11",
     "gatsby-plugin-react-helmet": "^3.3.10",
@@ -25,13 +27,13 @@
     "@types/react-helmet": "^6.1.0",
     "eslint": "^7.9.0",
     "prettier": "2.1.1",
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
     "ts-node": "^9.0.0",
     "tsconfig-paths": "^3.9.0",
     "tsconfig-paths-webpack-plugin": "^3.3.0",
     "tsconfigs": "^5.0.0",
-    "typescript": "^4.0.2",
-    "react": "16.14.0",
-    "react-dom": "16.14.0"
+    "typescript": "^4.0.2"
   },
   "peerDependencies": {
     "gatsby": "^2.24.58"

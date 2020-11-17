@@ -68,5 +68,5 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 
-gatsby-node.js
-gatsby-ssr.js
+*.js
+*.d.ts
