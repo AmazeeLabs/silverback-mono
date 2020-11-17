@@ -3,9 +3,6 @@
   "version": "1.0.17",
   "license": "MIT",
   "private": true,
-  "scripts": {
-    "postinstall": "composer install"
-  },
   "dependencies": {
     "@-amazeelabs/silverback-cli": "^1.0.11",
     "@-drupal/cypress": "^2.1.8"
