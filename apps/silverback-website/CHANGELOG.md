@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.1](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.9.0...silverback-website@0.9.1) (2020-11-18)
+
+
+### Bug Fixes
+
+* **silverback-website:** restored accidentially deleted `gatsby-browser.ts` ([1a712a5](https://github.com/AmazeeLabs/silverback-mono/commit/1a712a527f22e1e0fa815a7d342471912c1c682f))
+
+
+
+
+
 # [0.9.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.8.9...silverback-website@0.9.0) (2020-11-17)
 
 

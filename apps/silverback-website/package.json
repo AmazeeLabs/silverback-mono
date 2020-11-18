@@ -1,7 +1,7 @@
 {
   "name": "silverback-website",
   "description": "Silverback website",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
     "@amazeelabs/gatsby-theme-core": "^0.4.0",
