@@ -1815,13 +1815,13 @@ enum SitePluginFieldsEnum {
   pluginOptions___loading
   pluginOptions___disableBgImageOnAlpha
   pluginOptions___disableBgImage
-  pluginOptions___path
-  pluginOptions___exclude___plugins
   pluginOptions___name
+  pluginOptions___path
   pluginOptions___pathCheck
   pluginOptions___allExtensions
   pluginOptions___isTSX
   pluginOptions___jsxPragma
+  pluginOptions___exclude___plugins
   nodeAPIs
   browserAPIs
   ssrAPIs
@@ -1954,13 +1954,13 @@ type SitePluginPluginOptions {
   loading: String
   disableBgImageOnAlpha: Boolean
   disableBgImage: Boolean
-  path: String
-  exclude: SitePluginPluginOptionsExclude
   name: String
+  path: String
   pathCheck: Boolean
   allExtensions: Boolean
   isTSX: Boolean
   jsxPragma: String
+  exclude: SitePluginPluginOptionsExclude
 }
 
 type SitePluginPluginOptionsExclude {
@@ -1988,13 +1988,13 @@ input SitePluginPluginOptionsFilterInput {
   loading: StringQueryOperatorInput
   disableBgImageOnAlpha: BooleanQueryOperatorInput
   disableBgImage: BooleanQueryOperatorInput
-  path: StringQueryOperatorInput
-  exclude: SitePluginPluginOptionsExcludeFilterInput
   name: StringQueryOperatorInput
+  path: StringQueryOperatorInput
   pathCheck: BooleanQueryOperatorInput
   allExtensions: BooleanQueryOperatorInput
   isTSX: BooleanQueryOperatorInput
   jsxPragma: StringQueryOperatorInput
+  exclude: SitePluginPluginOptionsExcludeFilterInput
 }
 
 input SitePluginSortInput {

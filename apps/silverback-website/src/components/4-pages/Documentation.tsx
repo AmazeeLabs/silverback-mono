@@ -12,7 +12,7 @@ const Documentation: React.FC<{
   return (
     <Page>
       <div className="items-start lg:grid grid-cols-4">
-        {toc.length > 1 ? (
+        {toc && toc.length > 1 ? (
           <aside className="py-6 mb-8 min-w-full sm:min-w-0 bg-white rounded-lg shadow-xl px-4 sm:px-6 md:mr-4 md:sticky md:top-4 prose prose-sm sm:prose max-w-none sm:max-w-none md:max-w-none">
             <h3 className="mt-0 font-bold">Table of contents</h3>
             <ul className="mb-0 list-none">
