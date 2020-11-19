@@ -1,0 +1,14 @@
+fragment NodeArticle on NodeArticle {
+  entityId
+  entityLabel
+  body {
+    summaryProcessed
+    processed
+  }
+  fieldTags {
+    entity {
+      entityId
+      entityLabel
+    }
+  }
+}

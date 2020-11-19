@@ -1,0 +1,7 @@
+fragment NodePage on NodePage {
+  entityId
+  entityLabel
+  fieldBody {
+    processed
+  }
+}

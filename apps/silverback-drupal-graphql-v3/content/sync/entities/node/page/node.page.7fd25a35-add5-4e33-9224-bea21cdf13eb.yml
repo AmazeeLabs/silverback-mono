@@ -1,0 +1,62 @@
+uuid:
+  -
+    value: 7fd25a35-add5-4e33-9224-bea21cdf13eb
+langcode:
+  -
+    value: en
+type:
+  -
+    target_id: page
+    target_type: node_type
+    target_uuid: 835f348f-808d-41c8-ab95-aacd21634351
+revision_timestamp:
+  -
+    value: '2020-11-17T15:21:20+00:00'
+    format: 'Y-m-d\TH:i:sP'
+revision_uid:
+  -
+    target_id: 0
+    target_type: user
+    target_uuid: 219eae15-ed2b-4b81-9299-2f8e73eda98e
+revision_log: {  }
+status:
+  -
+    value: true
+uid:
+  -
+    target_type: user
+    target_uuid: 0e3db8d2-be37-466e-9949-f2499a38a3f5
+title:
+  -
+    value: 'A page'
+created:
+  -
+    value: '2020-11-17T15:21:13+00:00'
+    format: 'Y-m-d\TH:i:sP'
+changed:
+  -
+    value: '2020-11-18T06:58:16+00:00'
+    format: 'Y-m-d\TH:i:sP'
+promote:
+  -
+    value: false
+sticky:
+  -
+    value: false
+default_langcode:
+  -
+    value: true
+revision_translation_affected:
+  -
+    value: true
+field_body:
+  -
+    value: 'with body'
+    format: plain_text
+    processed: "<p>with body</p>\n"
+_content_sync:
+  entity_type: node
+  entity_dependencies:
+    user:
+      - user.user.219eae15-ed2b-4b81-9299-2f8e73eda98e
+      - user.user.0e3db8d2-be37-466e-9949-f2499a38a3f5

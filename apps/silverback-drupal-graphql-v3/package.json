@@ -1,0 +1,9 @@
+{
+  "name": "@-amazeelabs/silverback-drupal-graphql-v3",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "@-drupal/cypress": ">=2.0.4",
+    "@-amazeelabs/silverback-cli": ">=1.0.7"
+  }
+}

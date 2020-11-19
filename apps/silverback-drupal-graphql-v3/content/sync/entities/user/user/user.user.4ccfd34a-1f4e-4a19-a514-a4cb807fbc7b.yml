@@ -1,0 +1,35 @@
+uuid:
+  -
+    value: 4ccfd34a-1f4e-4a19-a514-a4cb807fbc7b
+langcode:
+  -
+    value: en
+name:
+  -
+    value: GatsbyPreview
+created:
+  -
+    value: '2020-11-23T08:59:53+00:00'
+    format: 'Y-m-d\TH:i:sP'
+changed:
+  -
+    value: '2020-11-23T08:59:53+00:00'
+    format: 'Y-m-d\TH:i:sP'
+default_langcode:
+  -
+    value: true
+_content_sync:
+  entity_type: user
+  entity_dependencies: {  }
+pass:
+  -
+    value: $S$EO/8UCW39SUDpV1zXVyWE76Z0e6AtS7EW/vPE0hxai9xF7vsr4.i
+    pre_hashed: true
+mail:
+  -
+    value: do-not-reply@amazee.com
+status:
+  value: '1'
+roles:
+  - authenticated
+  - gatsby_preview

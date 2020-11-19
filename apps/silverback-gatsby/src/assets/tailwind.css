@@ -1,0 +1,45 @@
+/*
+ * The order that files are @imported is IMPORTANT!
+ *
+ * Please follow the comments on where to add additional CSS files.
+ */
+
+/* purgecss start ignore */
+/*
+ * Load here your font if needed
+ *
+ * @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+ */
+
+/*
+ * Base styles (default styles for HTML elements)
+ */
+@tailwind base;
+
+/*
+ * Add here your basic styles
+ *
+ * body {
+ *   font-family: 'Source Sans Pro', sans-serif;
+ * }
+ *
+ * h1 {
+ *  @apply text-2xl;
+ *  @apply font-bold;
+ *  @apply mb-8;
+ * }
+ */
+/*
+ * Component styles
+ *
+ * Custom components: https://tailwindcss.com/docs/extracting-components
+ */
+@tailwind components;
+
+/*
+ * Utility styles
+ *
+ * Custom utilities: https://tailwindcss.com/docs/adding-new-utilities
+ */
+/* purgecss end ignore */
+@tailwind utilities;
