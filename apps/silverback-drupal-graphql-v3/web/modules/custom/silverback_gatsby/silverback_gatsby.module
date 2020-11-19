@@ -1,0 +1,16 @@
+<?php
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\silverback_gatsby\Gatsby;
+
+function silverback_gatsby_entity_insert(EntityInterface $entity) {
+  Gatsby::onEntityOperation($entity);
+}
+
+function silverback_gatsby_entity_update(EntityInterface $entity) {
+  Gatsby::onEntityOperation($entity);
+}
+
+function silverback_gatsby_entity_delete(EntityInterface $entity) {
+  Gatsby::onEntityOperation($entity);
+}

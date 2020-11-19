@@ -1,0 +1,7 @@
+graphql.config_page:
+  path: '/node-op'
+  defaults:
+    _controller: '\Drupal\silverback_gatsby_test\Controller::nodeOp'
+  methods: ['POST']
+  requirements:
+    _access: 'TRUE'

@@ -1,0 +1,67 @@
+{
+  "name": "silverback-gastby",
+  "private": false,
+  "description": "gatsby-graphql-toolkit example for drupal/graphql:3",
+  "version": "0.5.8",
+  "author": "Amazee Labs <developers@amazeelabs.com>",
+  "dependencies": {
+    "@-amazeelabs/silverback-drupal-graphql-v3": "^1.0.0",
+    "@tailwindcss/typography": "^0.2.0",
+    "@tailwindcss/ui": "^0.6.2",
+    "classnames": "^2.2.6",
+    "cypress": "^5.6.0",
+    "dotenv": "^8.2.0",
+    "eslint-plugin-cypress": "^2.11.2",
+    "gatsby": "^2.24.83",
+    "gatsby-graphql-source-toolkit": "^0.6.3",
+    "gatsby-plugin-schema-export": "^1.1.1",
+    "p-queue": "^6.6.2",
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
+    "typescript": "^4.0.5"
+  },
+  "devDependencies": {
+    "@amazeelabs/eslint-config-react": "^1.0.7",
+    "@amazeelabs/gatsby-theme-core": "^0.3.4",
+    "@amazeelabs/jest-preset-react": "^1.1.1",
+    "@amazeelabs/prettier-config": "^1.1.0",
+    "@graphql-codegen/cli": "^1.17.10",
+    "@graphql-codegen/typescript": "^1.17.10",
+    "@graphql-codegen/typescript-operations": "^1.17.8",
+    "@types/classnames": "^2.2.10",
+    "@types/node": "^14.10.1",
+    "eslint": "^7.9.0",
+    "gatsby-plugin-postcss": "^3.1.0",
+    "gatsby-plugin-schema-snapshot": "^1.0.0",
+    "gatsby-source-filesystem": "^2.3.28",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
+    "prettier": "2.1.1",
+    "ts-node": "^9.0.0"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "serve-with-fast-builds": "ts-node serve-with-fast-builds.ts",
+    "update-schema": "GATSBY_UPDATE_SCHEMA_SNAPSHOT=true gatsby build",
+    "codegen": "graphql-codegen --config codegen.yml",
+    "test:ci": "./test.sh && jest",
+    "test:watch": "jest --watch",
+    "test": "is-ci test:ci test:watch",
+    "storybook": "start-storybook -p 6006",
+    "storybook:build": "build-storybook"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AmazeeLabs/silverback-mono"
+  },
+  "bugs": {
+    "url": "https://github.com/AmazeeLabs/silverback-mono/issues"
+  }
+}

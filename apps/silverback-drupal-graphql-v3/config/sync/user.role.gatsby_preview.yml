@@ -1,0 +1,10 @@
+uuid: 639a3420-ab62-4138-bd22-d6131bc7bc5a
+langcode: en
+status: true
+dependencies: {  }
+id: gatsby_preview
+label: 'Gatsby Preview'
+weight: 2
+is_admin: null
+permissions:
+  - 'bypass node access'
