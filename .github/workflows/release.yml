@@ -58,8 +58,8 @@ jobs:
       - name: Run tests
         run: yarn test
 
-      - name: Build packages before releasing them
-        run: yarn lerna run prepublishOnly && yarn lerna run prepare
+      - name: Build verdaccio-git
+        run: yarn prepublishOnly
         working-directory: packages/npm/verdaccio-git
 
       - name: Start verdaccio
