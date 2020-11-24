@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.4.1...@amazeelabs/gatsby-theme-core@0.4.2) (2020-11-24)
+
+
+### Bug Fixes
+
+* **gatsby-theme-core:** add gatsby webpack rules to storybook preset ([854f546](https://github.com/AmazeeLabs/silverback-mono/commit/854f5467365876f39b8f7498e37fc927b9c848e0))
+
+
+
+
+
 ## [0.4.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.4.0...@amazeelabs/gatsby-theme-core@0.4.1) (2020-11-23)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-theme-core
