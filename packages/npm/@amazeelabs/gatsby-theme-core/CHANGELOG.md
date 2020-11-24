@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.4.2...@amazeelabs/gatsby-theme-core@0.4.3) (2020-11-24)
+
+
+### Bug Fixes
+
+* **gatsby-theme-core:** transpile all files on build ([b7da13a](https://github.com/AmazeeLabs/silverback-mono/commit/b7da13a300bbe5088bd40736a0671212d6ce7866))
+
+
+
+
+
 ## [0.4.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.4.1...@amazeelabs/gatsby-theme-core@0.4.2) (2020-11-24)
 
 
