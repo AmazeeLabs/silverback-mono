@@ -43,7 +43,7 @@
     "format:fix": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint --fix \"**/*.{js,jsx,ts,tsx}\"",
-    "prepublishOnly": "tsc -p ./",
+    "prepare": "tsc -p ./",
     "test": "is-ci test:ci test:watch",
     "test:ci": "jest",
     "test:watch": "jest --watch"
