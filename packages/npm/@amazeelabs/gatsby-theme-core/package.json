@@ -3,7 +3,7 @@
   "description": "Gatsby parent theme for Amazee Labs projects.",
   "version": "0.4.2",
   "author": "Amazee Labs <developers@amazeelabs.com>",
-  "main": "index.js",
+  "main": "src/index.js",
   "types": "index.d.ts",
   "publishConfig": {
     "access": "public"
