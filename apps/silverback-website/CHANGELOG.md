@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.9.9](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.9.8...silverback-website@0.9.9) (2020-11-25)
+
+
+### Bug Fixes
+
+* forgotten schema.graphql update ([bfbf579](https://github.com/AmazeeLabs/silverback-mono/commit/bfbf579a33bf2c903de3ab2ea7dce6f51f1a2ac1))
+
+
+
+
+
 ## [0.9.8](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.9.7...silverback-website@0.9.8) (2020-11-24)
 
 **Note:** Version bump only for package silverback-website
