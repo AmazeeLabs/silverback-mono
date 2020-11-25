@@ -1,5 +1,26 @@
 # Change Log
 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 0.6.0 (2020-11-25)
+
+
+### Bug Fixes
+
+* **silverback-gatsby:** another forgotten schema.graphql ([f2c0664](https://github.com/AmazeeLabs/silverback-mono/commit/f2c06646bc432661a5951e179d2590776e667724))
+
+
+### Features
+
+* **silverback-gatsby:** example app using gatsby-graphql-toolkit ([64e354d](https://github.com/AmazeeLabs/silverback-mono/commit/64e354dfbc1ea6923de681bd2fd83bb4817f529d))
+
+
+
+
+
+# Change Log
+
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
