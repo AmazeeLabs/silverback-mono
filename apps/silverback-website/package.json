@@ -60,7 +60,7 @@
     "clean": "gatsby clean",
     "update-schema": "GATSBY_UPDATE_SCHEMA_SNAPSHOT=true gatsby build",
     "codegen": "graphql-codegen --config codegen.yml",
-    "test:ci": "jest && yarn build",
+    "test:ci": "jest && yarn codegen && yarn tsc && yarn build",
     "test:watch": "jest --watch",
     "test": "is-ci test:ci test:watch",
     "storybook": "start-storybook -p 6006",
