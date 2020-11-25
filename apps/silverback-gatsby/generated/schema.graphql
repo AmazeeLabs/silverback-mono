@@ -1870,6 +1870,9 @@ enum SitePluginFieldsEnum {
   pluginOptions___path
   pluginOptions___exclude___plugins
   pluginOptions___pathCheck
+  pluginOptions___allExtensions
+  pluginOptions___isTSX
+  pluginOptions___jsxPragma
   nodeAPIs
   ssrAPIs
   pluginFilepath
@@ -1988,6 +1991,9 @@ type SitePluginPluginOptions {
   path: String
   exclude: SitePluginPluginOptionsExclude
   pathCheck: Boolean
+  allExtensions: Boolean
+  isTSX: Boolean
+  jsxPragma: String
 }
 
 type SitePluginPluginOptionsExclude {
@@ -2003,6 +2009,9 @@ input SitePluginPluginOptionsFilterInput {
   path: StringQueryOperatorInput
   exclude: SitePluginPluginOptionsExcludeFilterInput
   pathCheck: BooleanQueryOperatorInput
+  allExtensions: BooleanQueryOperatorInput
+  isTSX: BooleanQueryOperatorInput
+  jsxPragma: StringQueryOperatorInput
 }
 
 input SitePluginSortInput {
