@@ -14,6 +14,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "postinstall": "yarn build",
     "prepublish": "tsc",
     "test:ci": "jest",
     "test:watch": "jest --watch",
