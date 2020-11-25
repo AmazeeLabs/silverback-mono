@@ -1815,13 +1815,16 @@ enum SitePluginFieldsEnum {
   pluginOptions___loading
   pluginOptions___disableBgImageOnAlpha
   pluginOptions___disableBgImage
-  pluginOptions___name
+  pluginOptions___extensions
+  pluginOptions___lessBabel
+  pluginOptions___mediaTypes
   pluginOptions___path
+  pluginOptions___exclude___plugins
+  pluginOptions___name
   pluginOptions___pathCheck
   pluginOptions___allExtensions
   pluginOptions___isTSX
   pluginOptions___jsxPragma
-  pluginOptions___exclude___plugins
   nodeAPIs
   browserAPIs
   ssrAPIs
@@ -1954,13 +1957,16 @@ type SitePluginPluginOptions {
   loading: String
   disableBgImageOnAlpha: Boolean
   disableBgImage: Boolean
-  name: String
+  extensions: [String]
+  lessBabel: Boolean
+  mediaTypes: [String]
   path: String
+  exclude: SitePluginPluginOptionsExclude
+  name: String
   pathCheck: Boolean
   allExtensions: Boolean
   isTSX: Boolean
   jsxPragma: String
-  exclude: SitePluginPluginOptionsExclude
 }
 
 type SitePluginPluginOptionsExclude {
@@ -1988,13 +1994,16 @@ input SitePluginPluginOptionsFilterInput {
   loading: StringQueryOperatorInput
   disableBgImageOnAlpha: BooleanQueryOperatorInput
   disableBgImage: BooleanQueryOperatorInput
-  name: StringQueryOperatorInput
+  extensions: StringQueryOperatorInput
+  lessBabel: BooleanQueryOperatorInput
+  mediaTypes: StringQueryOperatorInput
   path: StringQueryOperatorInput
+  exclude: SitePluginPluginOptionsExcludeFilterInput
+  name: StringQueryOperatorInput
   pathCheck: BooleanQueryOperatorInput
   allExtensions: BooleanQueryOperatorInput
   isTSX: BooleanQueryOperatorInput
   jsxPragma: StringQueryOperatorInput
-  exclude: SitePluginPluginOptionsExcludeFilterInput
 }
 
 input SitePluginSortInput {
