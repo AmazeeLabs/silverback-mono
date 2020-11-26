@@ -17,6 +17,9 @@ class Gatsby {
       'page',
       'article',
     ],
+    'taxonomy_term' => [
+      'tags',
+    ],
   ];
 
   public static function onEntityOperation(EntityInterface $entity) {

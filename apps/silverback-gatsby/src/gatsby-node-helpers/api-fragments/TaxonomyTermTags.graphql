@@ -1,0 +1,4 @@
+fragment TaxonomyTermTags on TaxonomyTermTags {
+  entityId
+  entityLabel
+}

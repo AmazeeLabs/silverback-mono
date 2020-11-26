@@ -20,6 +20,13 @@ const IndexPage: React.FC<PageProps> = () => {
           body {
             summaryProcessed
           }
+          fieldTags {
+            entity {
+              ... on DrupalTaxonomyTermTags {
+                entityLabel
+              }
+            }
+          }
         }
       }
     }
@@ -43,6 +50,9 @@ const IndexPage: React.FC<PageProps> = () => {
           <a href={`/articles/${article.entityId}`}>{article.entityLabel}</a>
           <br />
           Summary: {article.body?.summaryProcessed}
+          <br />
+          Tags:{' '}
+          {article.fieldTags?.map((it) => it?.entity?.entityLabel).join(', ')}
           <br />
         </div>
       ))}

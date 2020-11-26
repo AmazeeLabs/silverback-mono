@@ -7,8 +7,7 @@ fragment NodeArticle on NodeArticle {
   }
   fieldTags {
     entity {
-      entityId
-      entityLabel
+      ...TaxonomyTermTags
     }
   }
 }
