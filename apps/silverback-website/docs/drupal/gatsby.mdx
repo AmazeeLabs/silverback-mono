@@ -1,0 +1,138 @@
+---
+title: Gatsby
+path: /drupal/gatsby
+nav: Drupal
+position: 3
+---
+
+# Gatsby
+
+An example how to connect Gatsby to Drupal via
+[gatsby-graphql-toolkit](https://github.com/gatsbyjs/gatsby-graphql-toolkit).
+
+## What's in the example
+
+- **Drupal:** Manages the content and exposes it via GraphQL v3 module.
+- **Gatsby Preview:** A website used by editors to preview unpublished content.
+- **Gatsby Site:** A production website serving pre-built static content.
+
+Gatsby Preview and Gatsby Site are the same app. The first one is served with
+`gatsby develop`, so it supports hot reload. The second one uses `gatsby build`
+to produce static files.
+
+Content fetched from Drupal:
+
+- Page and Article content types.
+- Tags taxonomy terms which are used on the Article content.
+
+## Features
+
+- 👋 Drupal content updates trigger Gatsby Preview refresh and Gatsby Site
+  rebuild.
+- 👍 Gatsby reacts to that: it fetches the content from Drupal and rebuilds the
+  affected pages.
+- 🚀 Gatsby fetches only the content which was updated since the last build.
+  This is true for both Gatsby Preview and Gatsby Site. You could call this Fast
+  Builds.
+- 👌 Gatsby knows Drupal's content references. E.g. if a tag label is updated,
+  Gatsby will refetch it and update all pages where it is used.
+
+## How it works
+
+Follow the links to get more technical details.
+
+### Overview
+
+- [apps/silverback-drupal-graphql-v3](https://github.com/AmazeeLabs/silverback-mono/tree/development/apps/silverback-drupal-graphql-v3)
+  - Uses Drupal's GraphQL v3 module.
+  - Uses a custom silverback_gatsby module to ping Gatsby Preview refresh and
+    Gatsby Site rebuild.
+- [apps/silverback-gatsby](https://github.com/AmazeeLabs/silverback-mono/tree/development/apps/silverback-gatsby)
+  - Uses gatsby-graphql-toolkit to
+    - transform Drupal's GraphQL schema into Gatsby's GraphQL schema
+    - fetch content (and content changes) from Drupal
+
+### Gatsby Preview
+
+- Serves the site with `gatsby develop`.
+- A POST request to `{gatsbyPreviewUrl}/__refresh` refreshes the content and
+  updates the frontend.
+
+### Gatsby Site
+
+- Serves the site with `gatsby build && gatsby serve`.
+- In the current setup there is a custom express app which runs
+  `gatsby build && gatsby serve` and exposes `{customAppUrl}/__rebuild` to
+  re-run the commands. The content cache is preserved between the re-runs, so
+  the re-builds are fast. The Gatsby Site is down during the rebuild time, but
+  for testing purposes it's fine.
+
+### How the example setup is tested
+
+See details in
+[apps/silverback-gatsby/test.sh](https://github.com/AmazeeLabs/silverback-mono/blob/development/apps/silverback-gatsby/test.sh).
+
+## How to run Gatsby Site fast builds in production
+
+Options:
+
+- Something (Gatsby Cloud, Lagoon, etc.) exposes an endpoint to build the files
+  and deploy them to somewhere (Netlify, Fastly, etc.)
+- Gatsby Site is hosted on Lagoon. There is some way for Drupal to trigger a
+  Gatsby Site deployment.
+- A custom Node.js app like in the current setup. However, to avoid the downtime
+  it would need to pre-build files in a separate directory and then symlink it
+  to the public directory.
+
+## How to run the example locally
+
+You'll need a usual set of command line tools: Git, Yarn, Composer. Plus one
+which is not that common: [direnv](https://direnv.net/docs/installation.html)
+(don't forget about the [hook installation](https://direnv.net/docs/hook.html)!)
+
+Prepare:
+
+```shell
+git clone https://github.com/AmazeeLabs/silverback-mono
+cd silverback-mono
+yarn
+
+cd apps/silverback-drupal-graphql-v3
+direnv allow
+silverback setup
+drush -y cim
+drush -y content-sync:import # Ignore the errors.
+
+cd ../..
+
+cd apps/silverback-gatsby
+direnv allow
+yarn codegen
+```
+
+To run Drupal (from `apps/silverback-drupal-graphql-v3`):
+
+- Start the server: `drush serve`
+- Login to drupal: `drush uli`
+
+To run Gatsby (from `apps/silverback-gatsby`):
+
+- Preview:
+  - `yarn develop`
+  - Visit [http://localhost:8000/](http://localhost:8000/) to see the site
+  - Visit
+    [http://localhost:8000/\_\_\_graphql](http://localhost:8000/___graphql) to
+    see the GraphQL schema
+- Site:
+  - `yarn serve-with-fast-builds`
+  - Visit [http://localhost:9000/](http://localhost:9000/)
+
+It is not possible to run Gatsby Preview and Gatsby Site in parallel from the
+same directory because they use the same `.cache`. Bur if you really want to
+make them work together:
+
+- Get a separate clone of silverback-mono.
+- Prepare it.
+- Run Gatsby Site (or Gatsby Preview) from there.
+
+**Have fun!**
