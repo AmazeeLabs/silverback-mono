@@ -44,7 +44,7 @@
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "eslint --fix \"**/*.{js,jsx,ts,tsx}\"",
     "prepare": "tsc -p ./",
-    "postinstall": "yarn prepare",
+    "postinstall": "tsc -p ./",
     "test": "is-ci test:ci test:watch",
     "test:ci": "jest",
     "test:watch": "jest --watch"
