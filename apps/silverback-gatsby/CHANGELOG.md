@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.6.1...silverback-gastby@0.7.0) (2020-11-26)
+
+
+### Bug Fixes
+
+* **silverback-gatsby:** forgotten schema.graphql ([d23111f](https://github.com/AmazeeLabs/silverback-mono/commit/d23111f5331cfe6bd8a2318c616f9a83715e6230))
+
+
+### Features
+
+* **silverback-gatsby:** resolve content relations for Tags ([59a2cf1](https://github.com/AmazeeLabs/silverback-mono/commit/59a2cf110380519384c10a182950d2651702f31f))
+
+
+
+
+
 ## [0.6.1](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.6.0...silverback-gastby@0.6.1) (2020-11-25)
 
 **Note:** Version bump only for package silverback-gastby

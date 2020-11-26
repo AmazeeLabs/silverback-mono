@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal-graphql-v3@1.1.1...@-amazeelabs/silverback-drupal-graphql-v3@1.2.0) (2020-11-26)
+
+
+### Features
+
+* **silverback-gatsby:** resolve content relations for Tags ([59a2cf1](https://github.com/AmazeeLabs/silverback-mono/commit/59a2cf110380519384c10a182950d2651702f31f))
+
+
+
+
+
 ## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal-graphql-v3@1.1.0...@-amazeelabs/silverback-drupal-graphql-v3@1.1.1) (2020-11-25)
 
 
