@@ -21,16 +21,6 @@ export const sourceNodes = async (gatsbyApi: SourceNodesArgs) => {
       lastBuildTime,
       gatsbyApi.getNodes(),
     );
-    console.log(
-      `ℹ️ sourceNodes will (re)fetch ${
-        nodeEvents.filter((it) => it.eventName === 'UPDATE').length
-      } nodes.`,
-    );
-    console.log(
-      `ℹ️ sourceNodes will delete ${
-        nodeEvents.filter((it) => it.eventName === 'DELETE').length
-      } nodes.`,
-    );
     await sourceNodeChanges(config, { nodeEvents });
   } else {
     console.log(`ℹ️ sourceNodes will fetch all nodes.`);
@@ -56,7 +46,10 @@ export const createPages: GatsbyNode['createPages'] = async ({
           }
           fieldTags {
             entity {
-              entityLabel
+              ... on DrupalTaxonomyTermTags {
+                id
+                entityLabel
+              }
             }
           }
         }
@@ -65,7 +58,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
   `);
   if (!data) {
     console.error('errors', errors);
-    throw new Error('Cannot fetch content updates.');
+    throw new Error('Cannot fetch articles from Gatsby.');
   }
   data.allDrupalNodeArticle.nodes.forEach((article) => {
     actions.createPage({
