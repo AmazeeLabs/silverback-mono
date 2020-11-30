@@ -25,7 +25,7 @@ module.exports = {
     "no-unused-vars": ["off"],
     "@typescript-eslint/no-unused-vars-experimental": ["error"],
     "deprecate/import": ["error"],
-    "simple-import-sort/sort": "error",
+    "simple-import-sort/imports": "error",
     "sort-imports": "off",
     "import/first": "error",
     "import/newline-after-import": "error",
