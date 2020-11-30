@@ -29,7 +29,9 @@
         "drupal/core-composer-scaffold",
         "drupal/core-project-message",
       ],
-      updateTypes: ["minor", "patch", "digest"],
+      major: {
+        enabled: false,
+      },
     }
   ],
   rangeStrategy: "replace",
