@@ -1,4 +1,4 @@
-import { drupalNodeOpUrl, previewUrl } from './constants';
+import { drupalNodeOpUrl, previewUrl, refreshDelay } from './constants';
 
 describe('Test Gatsby Preview', () => {
   it('checks if pre-created content is there', () => {
@@ -10,7 +10,6 @@ describe('Test Gatsby Preview', () => {
 
   it('creates unpublished content', () => {
     const title = 'Another unpublished article';
-    const refreshDelay = 10_000;
 
     cy.visit(previewUrl);
     cy.contains('a', title).should('not.exist');

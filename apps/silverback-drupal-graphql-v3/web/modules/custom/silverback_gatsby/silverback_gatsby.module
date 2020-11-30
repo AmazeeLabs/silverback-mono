@@ -35,7 +35,7 @@ function silverback_gatsby_toolbar() {
       '#type' => 'toolbar_item',
       'tab' => [
         '#type' => 'link',
-        '#title' => 'Gatsby Preview status: Idle',
+        '#title' => 'Gatsby Preview status: Unknown',
         '#url' => Url::fromUri(Gatsby::PREVIEW_URL),
         '#attributes' => [
           'class' => ['silverback-gatsby-preview-refresh-status-link'],
