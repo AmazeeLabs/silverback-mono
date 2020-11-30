@@ -72,3 +72,5 @@ yarn-error.log
 # Ignore generated files
 generated/types
 /cypress/screenshots
+
+_local
