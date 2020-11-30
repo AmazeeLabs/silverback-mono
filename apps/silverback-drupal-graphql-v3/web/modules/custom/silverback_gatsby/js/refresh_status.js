@@ -1,11 +1,11 @@
 (function ($) {
-  setInterval(() => {
+  function getIsRefreshing() {
     $.ajax({
       type: "post",
       url: drupalSettings.isGatsbyRefreshingUrl,
-      success: function (data) {
+      success: function (isRefreshing) {
         $(".silverback-gatsby-preview-refresh-status-link").text(
-          "Gatsby Preview status: " + (data ? "Rebuilding" : "Idle")
+          "Gatsby Preview status: " + (isRefreshing ? "Rebuilding" : "Idle")
         );
       },
       error: function () {
@@ -14,5 +14,7 @@
         );
       },
     });
-  }, 2_000);
+  }
+  setInterval(getIsRefreshing, 2_000);
+  getIsRefreshing();
 })(jQuery);
