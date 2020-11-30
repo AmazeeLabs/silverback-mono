@@ -4,8 +4,10 @@
 
 ## Entry points
 
-- [silverback_gatsby](./web/modules/custom/silverback_gatsby) is a tiny custom module which triggers Gatsby Preview refresh and Gatsby Site rebuild.
-  - [Gatsby::SUPPORTED_ENTITIES_BUNDLES](./web/modules/custom/silverback_gatsby/src/Gatsby.php) should match to [drupalNodes](../silverback-gatsby/src/gatsby-node-helpers/drupal-nodes.ts) on Gatsby side.
+- [silverback_gatsby](./web/modules/custom/silverback_gatsby) is a tiny custom module.
+  - It triggers Gatsby Preview refresh and Gatsby Site rebuild.
+  - It adds "Gatsby Preview status" to the admin toolbar.
+  - Important: [Gatsby::SUPPORTED_ENTITIES_BUNDLES](./web/modules/custom/silverback_gatsby/src/Gatsby.php) should match to [drupalNodes](../silverback-gatsby/src/gatsby-node-helpers/drupal-nodes.ts) on Gatsby side.
 
 There is a special GatsbyPreview user having the "Bypass content access control" permission. This one is used by Gatsby Preview to fetch unpublished content.
 

@@ -20,6 +20,7 @@
   },
   "include": [
     "./src",
+    "./plugins",
     "./generated",
     "gatsby-node.ts",
     "gatsby-config.ts",

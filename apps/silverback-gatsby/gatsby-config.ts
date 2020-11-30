@@ -36,4 +36,5 @@ export const plugins = [
       update: process.env.GATSBY_UPDATE_SCHEMA_SNAPSHOT,
     },
   },
+  'gatsby-plugin-is-refreshing',
 ];

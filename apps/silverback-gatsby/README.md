@@ -23,6 +23,10 @@ The app is set up with [Amazee Gatsby Starter](https://github.com/AmazeeLabs/gat
 
 See [test.sh](./test.sh) and [cypress/integration](./cypress/integration).
 
+## How Drupal is informed about the Preview Refresh status
+
+See [gatsby-plugin-is-refreshing](./plugins/gatsby-plugin-is-refreshing).
+
 ## Drupal part
 
 See [apps/silverback-drupal-graphql-v3](../silverback-drupal-graphql-v3).

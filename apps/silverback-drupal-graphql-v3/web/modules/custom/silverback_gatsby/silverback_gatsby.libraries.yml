@@ -1,0 +1,7 @@
+refresh_status:
+  version: VERSION
+  js:
+    js/refresh_status.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
