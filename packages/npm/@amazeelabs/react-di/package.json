@@ -14,8 +14,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "postinstall": "tsc",
-    "prepublish": "tsc",
+    "prepare": "tsc",
     "test:ci": "jest",
     "test:watch": "jest --watch",
     "test": "is-ci test:ci test:watch"
