@@ -101,7 +101,7 @@ that is started during the release process.
 _All_ packages and applications have to contain a `package.json` file that may
 contain three lifecycle hooks:
 
-1. `postinstall` will run after `yarn` and is used to kick of other processes to
+1. `prepare` will run after `yarn` and is used to kick of other processes to
    bring the monorepo into an _modifiable_ state. The most prominent example is
    a `composer install` in `apps/silverback-drupal` that will make sure all
    composer dependencies are installed.

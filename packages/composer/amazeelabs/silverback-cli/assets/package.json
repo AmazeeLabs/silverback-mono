@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "postinstall": "composer install"
+    "prepare": "composer install"
   },
   "dependencies": {
     "@-drupal/cypress": ">=2.0.4",
