@@ -22,8 +22,8 @@
     "gatsby-remark-relative-links": "^0.0.3",
     "gatsby-source-filesystem": "^2.5.0",
     "prism-react-renderer": "^1.1.1",
-    "react": "16.14.0",
-    "react-dom": "16.14.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "ts-node": "^9.0.0",
     "tsconfig-paths": "^3.9.0",
     "tsconfig-paths-webpack-plugin": "^3.3.0",
@@ -33,9 +33,9 @@
     "@amazeelabs/eslint-config-react": "^1.0.7",
     "@amazeelabs/jest-preset-react": "^1.1.1",
     "@amazeelabs/prettier-config": "^1.1.0",
-    "@graphql-codegen/cli": "1.19.4",
-    "@graphql-codegen/typescript": "1.19.0",
-    "@graphql-codegen/typescript-operations": "1.17.12",
+    "@graphql-codegen/cli": "^1.19.4",
+    "@graphql-codegen/typescript": "^1.19.0",
+    "@graphql-codegen/typescript-operations": "^1.17.12",
     "@storybook/addon-actions": "^6.0.28",
     "@storybook/addon-essentials": "^6.0.28",
     "@storybook/addon-links": "^6.0.28",
@@ -47,7 +47,7 @@
     "eslint": "^7.9.0",
     "husky": "^4.3.0",
     "lint-staged": "^10.5.1",
-    "prettier": "2.2.1"
+    "prettier": "^2.2.1"
   },
   "keywords": [
     "gatsby"
