@@ -14,6 +14,7 @@
     "autoprefixer": "^10.0.0",
     "gatsby-plugin-postcss": "^3.0.0",
     "gatsby-plugin-react-helmet": "^3.3.10",
+    "postcss": "^8.1.10",
     "postcss-discard-comments": "^4.0.2",
     "postcss-import": "^13.0.0",
     "postcss-preset-env": "^6.7.0",
