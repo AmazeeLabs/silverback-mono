@@ -24,8 +24,12 @@
       // silverback-drupal-graphql-v3 requires some modules which are not yet
       // ported to Drupal 9. Avoid Drupal core update.
       paths: ["apps/silverback-drupal-graphql-v3/composer.json"],
-      packageNames: ["drupal/core-recommended"],
-      enabled: false,
+      packageNames: [
+        "drupal/core-recommended",
+        "drupal/core-composer-scaffold",
+        "drupal/core-project-message",
+      ],
+      updateTypes: ["minor", "patch", "digest"],
     }
   ],
   rangeStrategy: "replace",
