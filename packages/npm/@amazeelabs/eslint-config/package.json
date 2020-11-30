@@ -7,13 +7,13 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^3.10.1",
-    "@typescript-eslint/parser": "^3.10.1",
+    "@typescript-eslint/eslint-plugin": "^4.0.0",
+    "@typescript-eslint/parser": "^4.0.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-deprecate": "^0.7.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-simple-import-sort": "^5.0.3"
+    "eslint-plugin-simple-import-sort": "^6.0.0"
   },
   "peerDependencies": {
     "eslint": ">= 6"
