@@ -12,8 +12,9 @@ describe('Test Gatsby Preview', () => {
     const title = 'Another unpublished article';
     const refreshDelay = 10_000;
 
-    cy.contains('a', title).should('not.exist');
     cy.visit(previewUrl);
+    cy.contains('a', title).should('not.exist');
+
     cy.request('POST', drupalNodeOpUrl, {
       op: 'create',
       node: {
