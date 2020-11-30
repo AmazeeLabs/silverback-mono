@@ -1,7 +1,7 @@
 {
   "name": "@amazeelabs/gatsby-theme-core",
   "description": "Gatsby parent theme for Amazee Labs projects.",
-  "version": "0.4.11",
+  "version": "0.4.12",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "main": "src/index.js",
   "types": "index.d.ts",
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@amazeelabs/jest-preset-react": "^1.1.1",
-    "@amazeelabs/react-di": "^1.0.3",
+    "@amazeelabs/react-di": "^1.0.4",
     "autoprefixer": "^9.8.6",
     "gatsby-plugin-postcss": "^2.3.11",
     "gatsby-plugin-react-helmet": "^3.3.10",
