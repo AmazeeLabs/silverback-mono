@@ -1,13 +1,13 @@
 {
   "name": "@amazeelabs/eslint-config-react",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "ESLint configuration for silverback react projects.",
   "main": "index.js",
   "author": "Philipp Melab",
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@amazeelabs/eslint-config": "^1.1.1",
+    "@amazeelabs/eslint-config": "^1.1.2",
     "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-react-hooks": "^4.1.0"
   },

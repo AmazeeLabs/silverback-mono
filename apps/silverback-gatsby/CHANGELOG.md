@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.6](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.7.5...silverback-gastby@0.7.6) (2020-11-30)
+
+
+### Bug Fixes
+
+* update postcss to 8 ([254d04c](https://github.com/AmazeeLabs/silverback-mono/commit/254d04c35bf935ef283a9e9245daacda901ee442))
+
+
+
+
+
 ## [0.7.5](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.7.4...silverback-gastby@0.7.5) (2020-11-30)
 
 

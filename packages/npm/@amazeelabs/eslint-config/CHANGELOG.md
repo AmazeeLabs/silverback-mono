@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/eslint-config@1.1.1...@amazeelabs/eslint-config@1.1.2) (2020-11-30)
+
+
+### Bug Fixes
+
+* update eslint rule name ([78f11a7](https://github.com/AmazeeLabs/silverback-mono/commit/78f11a7b0fcd762d0f6dabcbbd6e31dcae21edf5))
+
+
+
+
+
 ## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/eslint-config@1.1.0...@amazeelabs/eslint-config@1.1.1) (2020-09-16)
 
 **Note:** Version bump only for package @amazeelabs/eslint-config
