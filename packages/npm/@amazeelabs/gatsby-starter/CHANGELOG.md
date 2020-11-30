@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.12](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.6.11...@amazeelabs/gatsby-starter@0.6.12) (2020-11-30)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-starter
+
+
+
+
+
 ## [0.6.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.6.10...@amazeelabs/gatsby-starter@0.6.11) (2020-11-30)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-starter

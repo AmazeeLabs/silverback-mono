@@ -2,7 +2,7 @@
   "name": "@amazeelabs/ui",
   "private": true,
   "description": "Amazee Labs UI library.",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "main": "index.ts",
   "devDependencies": {
