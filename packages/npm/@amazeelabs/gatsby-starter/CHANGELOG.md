@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.15](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.6.14...@amazeelabs/gatsby-starter@0.6.15) (2020-12-01)
+
+
+### Bug Fixes
+
+* **gatsby-starter:** add tsconfig-paths-webpack-plugin ([95038b3](https://github.com/AmazeeLabs/silverback-mono/commit/95038b3d056ebc86b4170342d374ade909a98539))
+
+
+
+
+
 ## [0.6.14](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.6.13...@amazeelabs/gatsby-starter@0.6.14) (2020-11-30)
 
 
