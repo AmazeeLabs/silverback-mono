@@ -5,7 +5,20 @@ nav: Gatsby
 position: 0
 ---
 
-# Gatsby starter kit
+# Amazee Gatsby Starter
 
-- `gatsby-amazee-starter`
-- `gatsby-theme-core`
+The starter is developed in the [monorepo](https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/npm/%40amazeelabs/gatsby-starter) and is published to a [dedicated repository](https://github.com/AmazeeLabs/gatsby-starter).
+
+Requirements:
+- Git
+- Yarn
+- [Gatsby CLI](https://www.gatsbyjs.com/docs/quick-start/#install-the-gatsby-cli)
+- [direnv](https://direnv.net/docs/installation.html) (don't forget about the [hook installation](https://direnv.net/docs/hook.html)!)
+
+To create a new project:
+```sh
+gatsby new my-project https://github.com/AmazeeLabs/gatsby-starter
+cd my-project
+direnv allow
+yarn develop
+```
