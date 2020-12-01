@@ -103,7 +103,5 @@
             "if [ -d web/modules/custom ]; then phpunit web/modules/custom; fi",
             "yarn install && CYPRESS_TAGS=@COMPLETED cypress run"
         ]
-    },
-    "require-dev": {
     }
 }

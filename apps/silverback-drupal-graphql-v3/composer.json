@@ -10,12 +10,16 @@
     },
     "repositories": [
         {
+            "type": "path",
+            "url": "../../packages/composer/*/*"
+        },
+        {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         }
     ],
     "require": {
-        "amazeelabs/silverback-cli": "^1.0",
+        "amazeelabs/silverback-cli": "@dev",
         "composer/installers": "^1.2",
         "drupal/admin_toolbar": "^2.4",
         "drupal/content_sync": "2.x-dev",
@@ -71,7 +75,7 @@
             ],
             "post-create-project-cmd-message": [
                 "<bg=blue;fg=white>                                                         </>",
-                "<bg=blue;fg=white>  Congratulations, you\u2019ve installed the Drupal codebase  </>",
+                "<bg=blue;fg=white>  Congratulations, you’ve installed the Drupal codebase  </>",
                 "<bg=blue;fg=white>  from the drupal/recommended-project template!          </>",
                 "<bg=blue;fg=white>                                                         </>",
                 "",
