@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.7.6...silverback-gastby@0.8.0) (2020-12-01)
+
+
+### Features
+
+* make Drupal know Gatsby refresh status ([1a8d110](https://github.com/AmazeeLabs/silverback-mono/commit/1a8d1101f95ee84e282a4a14a2d6cfc24207f190))
+
+
+
+
+
 ## [0.7.6](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.7.5...silverback-gastby@0.7.6) (2020-11-30)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal-graphql-v3@1.2.3...@-amazeelabs/silverback-drupal-graphql-v3@1.3.0) (2020-12-01)
+
+
+### Features
+
+* make Drupal know Gatsby refresh status ([1a8d110](https://github.com/AmazeeLabs/silverback-mono/commit/1a8d1101f95ee84e282a4a14a2d6cfc24207f190))
+
+
+
+
+
 ## [1.2.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal-graphql-v3@1.2.2...@-amazeelabs/silverback-drupal-graphql-v3@1.2.3) (2020-11-30)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal-graphql-v3
