@@ -11,6 +11,7 @@
     "commit": "yarn git-cz",
     "test": "yarn lerna run prepublish --since --include-dependencies && yarn lerna run test --since --stream --concurrency=1",
     "git-registry": "yarn verdaccio -c config.yml",
+    "preinstall": "rm -f yarn.lock",
     "postinstall": "lerna bootstrap && lerna run prepare"
   },
   "devDependencies": {
