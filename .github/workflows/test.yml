@@ -19,11 +19,6 @@ jobs:
         with:
           node-version: 12
 
-      # wikimedia/composer-merge-plugin does not support Composer 2.0 yet
-      # https://github.com/wikimedia/composer-merge-plugin/issues/184
-      - name: Use Composer 1
-        run: sudo composer selfupdate --1
-
       - name: Checkout
         uses: actions/checkout@v2
         with:
