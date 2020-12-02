@@ -52,6 +52,9 @@ class ScriptController extends ControllerBase {
       return new Response('File "' . $path . '" not found.', 404);
     }
 
+    // Used by the included script.
+    $args = $content->args ?? new \stdClass();
+
     ob_start();
     try {
       include $path;
