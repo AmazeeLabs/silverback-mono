@@ -53,9 +53,6 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Bootstrap Lerna
-        run: yarn lerna bootstrap
-
       - name: Add drupal.org ssh key
         run: ssh-keyscan git.drupal.org >> ~/.ssh/known_hosts
 
