@@ -8,13 +8,13 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-rl.question(`Please make sure you ran this command from your project root!
-This command will add/adjust files in your project root. Please use VCS to track changes.
+rl.question(`Please make sure to run this command from your project root!
+It will add/adjust configuration files in your project. Please use VCS to track changes.
 Ready? (y/n): `, function (answer) {
   if (answer.trim() === 'y') {
     tasks.copyFiles();
     tasks.adjustFiles();
-    console.log('Done! Please check the changes.');
+    console.log('Done! Please review the changes.');
   } else {
     console.log('See you next time.');
   }
@@ -26,15 +26,11 @@ const data = {
     projectRoot: process.env.PWD,
     files: path.join(__dirname, 'files'),
   },
-  version: process.argv[2] || 'base', // e.g. "react"
 };
 
 const tasks = {
   copyFiles: () => {
-    utils.copyFiles(path.join(data.paths.files, 'base'));
-    if (data.version !== 'base') {
-      utils.copyFiles(path.join(data.paths.files, data.version));
-    }
+    utils.copyFiles(data.paths.files);
   },
 
   adjustFiles: () => {

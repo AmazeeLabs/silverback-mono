@@ -13,12 +13,13 @@
     "jest-preset-configure": "config/configure.js"
   },
   "dependencies": {
-    "@tsconfig/recommended": "^1.0.1",
-    "@types/jest": "^26.0.14",
-    "is-ci-cli": "^2.1.2",
-    "jest-runner-eslint": "^0.10.0",
-    "jest-watch-select-projects": "^2.0.0",
-    "jest-watch-typeahead": "^0.6.1",
-    "ts-jest": "^26.4.1"
+    "@tsconfig/recommended": "^1",
+    "jest-runner-eslint": "^0.10",
+    "jest-watch-select-projects": "^2",
+    "jest-watch-typeahead": "^0.6",
+    "ts-jest": "^26",
+    "@types/jest": "^26",
+    "is-ci-cli": "^2",
+    "@testing-library/react": "^11"
   }
 }
