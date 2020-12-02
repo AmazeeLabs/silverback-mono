@@ -3,7 +3,7 @@
   "version": "2.1.10",
   "description": "Cypress E2E testing for Drupal.",
   "scripts": {
-    "test": "cd ../../../../apps/silverback-drupal && composer install && bash vendor/bin/silverback-test cypress && vendor/bin/phpstan analyse --configuration=web/modules/contrib/cypress/phpstan.neon"
+    "test": "cd ../../../../apps/silverback-drupal && vendor/bin/phpstan analyse --configuration=web/modules/contrib/cypress/phpstan.neon"
   },
   "publishConfig": {
     "access": "public",
