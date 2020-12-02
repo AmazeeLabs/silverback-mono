@@ -7,7 +7,6 @@
     "prepare": "composer install"
   },
   "dependencies": {
-    "@-amazeelabs/silverback-cli": "^1.0.16",
-    "@-drupal/cypress": "^2.1.11"
+    "@-amazeelabs/silverback-cli": "^1.0.16"
   }
 }
