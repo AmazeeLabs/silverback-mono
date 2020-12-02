@@ -1,5 +1,7 @@
 const fs = require('fs');
-const moduleNameMapper = {};
+const moduleNameMapper = {
+  '\\.(css|less|scss|sss|styl)$': 'identity-obj-proxy',
+};
 
 if (fs.existsSync('./tsconfig.json')) {
   const tsconfig = JSON.parse(fs.readFileSync('./tsconfig.json').toString());
@@ -26,6 +28,16 @@ module.exports = {
       testEnvironment: 'jsdom',
       testMatch: [ "**/__tests__/**/*.tsx", "**/?(*.)+(spec|test).tsx" ],
       moduleNameMapper,
+    },
+    {
+      displayName: 'storybook',
+      preset: 'ts-jest',
+      testEnvironment: 'jsdom',
+      testMatch: [ "**/.storyshots.tsx" ],
+      moduleNameMapper,
+      transform: {
+        '^.+\\.stories\\.jsx?$': '@storybook/addon-storyshots/injectFileName',
+      },
     },
     {
       displayName: 'lint',

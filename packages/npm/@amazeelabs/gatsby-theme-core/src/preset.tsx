@@ -38,8 +38,4 @@ export const webpackFinal = (config: {
   return config;
 };
 
-export function config(entry: any[] = []) {
-  return [...entry, require.resolve('./decorators')];
-}
-
 export const addons = ['@storybook/addon-links'];
