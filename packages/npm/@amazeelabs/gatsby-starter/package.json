@@ -2,7 +2,7 @@
   "name": "@amazeelabs/gatsby-starter",
   "private": false,
   "description": "Gatsby starter for Amazee Labs projects",
-  "version": "0.6.15",
+  "version": "0.6.16",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
     "@tailwindcss/typography": "^0.3.0",
@@ -10,15 +10,15 @@
     "classnames": "^2.2.6",
     "dotenv": "^8.2.0",
     "gatsby": "^2.24.83",
-    "gatsby-plugin-schema-export": "^1.1.1",
+    "gatsby-plugin-schema-export": "^1.1.2",
     "postcss": "^8.1.10",
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config-react": "^1.0.8",
-    "@amazeelabs/gatsby-theme-core": "^0.4.13",
-    "@amazeelabs/jest-preset-react": "^1.1.1",
+    "@amazeelabs/gatsby-theme-core": "^0.4.14",
+    "@amazeelabs/jest-preset-react": "^1.1.2",
     "@amazeelabs/prettier-config": "^1.1.0",
     "@graphql-codegen/cli": "^1.19.4",
     "@graphql-codegen/typescript": "^1.19.0",

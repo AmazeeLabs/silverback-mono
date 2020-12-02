@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/gatsby-plugin-schema-export@1.1.1...gatsby-plugin-schema-export@1.1.2) (2020-12-02)
+
+
+### Bug Fixes
+
+* widened gatsby peer dependency range ([76f369e](https://github.com/AmazeeLabs/silverback-mono/commit/76f369e71cc6e02562c3a9f991b8769c9c3da4bc))
+
+
+
+
+
 ## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/gatsby-plugin-schema-export@1.1.0...gatsby-plugin-schema-export@1.1.1) (2020-10-09)
 
 

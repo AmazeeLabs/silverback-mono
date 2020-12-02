@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.27](https://github.com/AmazeeLabs/storage-git/compare/verdaccio-git@0.1.26...verdaccio-git@0.1.27) (2020-12-02)
+
+
+### Bug Fixes
+
+* fix TS errors ([e571294](https://github.com/AmazeeLabs/storage-git/commit/e571294eb48df0798d191adf202906021a99bd85))
+
+
+
+
+
 ## [0.1.26](https://github.com/AmazeeLabs/storage-git/compare/verdaccio-git@0.1.25...verdaccio-git@0.1.26) (2020-11-15)
 
 **Note:** Version bump only for package verdaccio-git
