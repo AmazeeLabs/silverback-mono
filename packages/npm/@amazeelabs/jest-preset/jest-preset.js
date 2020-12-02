@@ -5,7 +5,9 @@ const moduleNameMapper = {
 
 if (fs.existsSync('./tsconfig.json')) {
   const tsconfig = JSON.parse(fs.readFileSync('./tsconfig.json').toString());
-  Object.assign(moduleNameMapper, require("tsconfig-paths-jest")(tsconfig));
+  if (tsconfig && tsconfig.compilerOptions && tsconfig.compilerOptions.paths) {
+    Object.assign(moduleNameMapper, require("tsconfig-paths-jest")(tsconfig));
+  }
 }
 
 module.exports = {
