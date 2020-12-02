@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.11](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.1.10...@-drupal/cypress@2.1.11) (2020-12-02)
+
+
+### Bug Fixes
+
+* restore $args ([40c4d29](https://github.com/AmazeeLabs/silverback-mono/commit/40c4d2990f3f87f5184acbe105d5fd635e2a1fee))
+
+
+
+
+
 ## [2.1.10](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.1.9...@-drupal/cypress@2.1.10) (2020-12-01)
 
 **Note:** Version bump only for package @-drupal/cypress
