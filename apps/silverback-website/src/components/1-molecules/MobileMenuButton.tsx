@@ -6,6 +6,7 @@ const MobileMenuButton: React.FC<{
 }> = ({ open, toggle }) => (
   <button
     className="inline-flex items-center justify-center p-2 rounded-md text-amazee-dark"
+    aria-label={open ? 'Close' : 'Open'}
     onClick={toggle}
   >
     <svg
