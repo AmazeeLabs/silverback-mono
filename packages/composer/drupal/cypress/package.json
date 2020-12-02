@@ -18,6 +18,9 @@
     "cypress-file-upload": "^4.1.1",
     "cypress-screenplay": "^0.1.23"
   },
+  "devDependencies": {
+    "@-amazeelabs/silverback-drupal": "^1.0.22"
+  },
   "author": "",
   "license": "ISC"
 }
