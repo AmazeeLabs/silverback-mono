@@ -24,21 +24,27 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Get Yarn cache directory
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer global config cache-files-dir)"
+
       - name: Cache dependencies
         uses: actions/cache@v2
         env:
           cache-name: cache-dependencies
         with:
           path: |
-            node_modules
-            **/vendor
-          key: npm--${{ hashFiles('**/package.json', '**/composer.json') }}
+            ${{ steps.yarn-cache.outputs.dir }}
+            ${{ steps.composer-cache.outputs.dir }}
+          key: yarn-composer--${{ hashFiles('**/package.json', '**/yarn.lock', '**/composer.json', '**/composer.lock') }}
 
       - name: Install dependencies
         run: yarn install
-
-      - name: Bootstrap Lerna
-        run: yarn lerna bootstrap
 
       - name: Run tests
         run: yarn test
