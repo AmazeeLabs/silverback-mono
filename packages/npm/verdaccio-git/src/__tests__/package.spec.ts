@@ -136,6 +136,7 @@ describe('pushToGit', () => {
     expect(logger.warn).toHaveBeenCalledTimes(1);
     expect(logger.info).toHaveBeenCalledTimes(0);
     expect(composerSpy).toHaveBeenCalledTimes(0);
+    // @ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/47020#issuecomment-737165941
     expect(extractSpy).toHaveBeenCalledWith({
       sync: true,
       file: 'test/test-1.0.1.tar.gz',
@@ -191,6 +192,7 @@ describe('pushToGit', () => {
     expect(git.push).toHaveBeenCalledWith('origin', 'bar');
     expect(git.pushTags).toHaveBeenCalledWith('origin');
     expect(composerSpy).toHaveBeenCalledWith('test/package');
+    // @ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/47020#issuecomment-737165941
     expect(extractSpy).toHaveBeenCalledWith({
       sync: true,
       file: 'test/test-1.0.1.tar.gz',
