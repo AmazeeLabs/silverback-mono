@@ -17,8 +17,6 @@ function setup_drupal {
   cd ../silverback-drupal-graphql-v3
   source .envrc
 
-  rm -rf vendor # https://github.com/AmazeeLabs/silverback-mono/pull/488#issuecomment-733661756
-  composer install
   vendor/bin/silverback clear-cache
   vendor/bin/silverback setup
   vendor/bin/drush -y cim # Because it does not import everything for some reason.
