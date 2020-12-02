@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@amazeelabs/eslint-config-react": "^1.0.8",
-    "@amazeelabs/jest-preset-react": "^1.1.2",
+    "@amazeelabs/jest-preset": "^1.1.2",
     "@amazeelabs/prettier-config": "^1.1.0",
     "@graphql-codegen/cli": "^1.19.4",
     "@graphql-codegen/typescript": "^1.19.0",
