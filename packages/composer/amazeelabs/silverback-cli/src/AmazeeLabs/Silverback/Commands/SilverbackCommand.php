@@ -27,11 +27,12 @@ class SilverbackCommand extends Command {
 
   protected $cacheDir;
 
-  protected function executeProcess(array $command, $output) {
+  protected function executeProcess(array $command, OutputInterface $output) {
     $process = new Process($command, getcwd(), NULL, NULL, NULL);
     $process->start();
+    $output->writeln('<info>RUN: ' . $process->getCommandLine() . '</info>');
     foreach ($process as $type => $line) {
-      $output->writeln($line);
+      $output->write($line);
     }
     if (!$process->isSuccessful()) {
       throw new ProcessFailedException($process);
