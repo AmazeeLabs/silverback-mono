@@ -30,7 +30,7 @@ php -r "
   file_put_contents('composer.json', json_encode(\$json, JSON_PRETTY_PRINT));
 "
 
-composer require amazeelabs/silverback-cli drush/drush
+composer require amazeelabs/silverback-cli:@dev alchemy/zippy:@dev drush/drush
 
 ./vendor/bin/silverback init
 source .envrc
