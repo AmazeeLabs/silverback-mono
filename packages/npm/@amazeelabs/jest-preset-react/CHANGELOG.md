@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/jest-preset-react@1.1.2...@amazeelabs/jest-preset-react@1.2.0) (2020-12-03)
+
+
+### Features
+
+* **jest-preset:** merge react-specifics into @amazeelabs/jest-preset ([cfbd415](https://github.com/AmazeeLabs/silverback-mono/commit/cfbd4159c9354782fd4e45b0e27da8175a2fdcbf))
+
+
+
+
+
 ## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/jest-preset-react@1.1.1...@amazeelabs/jest-preset-react@1.1.2) (2020-12-02)
 
 **Note:** Version bump only for package @amazeelabs/jest-preset-react

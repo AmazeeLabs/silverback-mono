@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.6.16...@amazeelabs/gatsby-starter@0.7.0) (2020-12-03)
+
+
+### Bug Fixes
+
+* **gatsby-starter:** added missing storybook dependencies and a fake story to pass tests ([d88a4e6](https://github.com/AmazeeLabs/silverback-mono/commit/d88a4e661bd0a4382ce78e68dea04d07dc48ca56))
+* **silverback-website:** run codegen before attempting to run tests ([c444203](https://github.com/AmazeeLabs/silverback-mono/commit/c4442038afc3b4c97f1f2b15f3cb61dd4d24c0bb))
+
+
+### Features
+
+* **gatsby-starter:** applied new testing and storyshots ([3aab348](https://github.com/AmazeeLabs/silverback-mono/commit/3aab348dccc98eb5c8239733f2c219cddbd27a41))
+* **jest-preset:** added storybook snapshot integration ([f0544fe](https://github.com/AmazeeLabs/silverback-mono/commit/f0544fe648203aa97d31e8711864e20c7bedb9f6))
+
+
+
+
+
 ## [0.6.16](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.6.15...@amazeelabs/gatsby-starter@0.6.16) (2020-12-02)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-starter

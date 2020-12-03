@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.10.2...silverback-website@0.11.0) (2020-12-03)
+
+
+### Bug Fixes
+
+* **silverback-website:** run codegen before attempting to run tests ([c444203](https://github.com/AmazeeLabs/silverback-mono/commit/c4442038afc3b4c97f1f2b15f3cb61dd4d24c0bb))
+
+
+### Features
+
+* **jest-preset:** added storybook snapshot integration ([f0544fe](https://github.com/AmazeeLabs/silverback-mono/commit/f0544fe648203aa97d31e8711864e20c7bedb9f6))
+
+
+
+
+
 ## [0.10.2](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.10.1...silverback-website@0.10.2) (2020-12-02)
 
 **Note:** Version bump only for package silverback-website

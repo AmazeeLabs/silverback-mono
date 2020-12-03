@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.4.14...@amazeelabs/gatsby-theme-core@0.5.0) (2020-12-03)
+
+
+### Features
+
+* **jest-preset:** added storybook snapshot integration ([f0544fe](https://github.com/AmazeeLabs/silverback-mono/commit/f0544fe648203aa97d31e8711864e20c7bedb9f6))
+
+
+
+
+
 ## [0.4.14](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.4.13...@amazeelabs/gatsby-theme-core@0.4.14) (2020-12-02)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-theme-core

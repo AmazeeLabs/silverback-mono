@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.17](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@1.0.16...@-amazeelabs/silverback-cli@1.0.17) (2020-12-03)
+
+
+### Bug Fixes
+
+* avoid minimum-stability error ([a62a422](https://github.com/AmazeeLabs/silverback-mono/commit/a62a422cdd3b1c400bdfce39e337dbea3e8dcf19))
+* bring back --existing-config flag ([17d0849](https://github.com/AmazeeLabs/silverback-mono/commit/17d08492a2ab9c530a188603d3af2db474a912c1))
+
+
+
+
+
 ## [1.0.16](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@1.0.15...@-amazeelabs/silverback-cli@1.0.16) (2020-12-01)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-cli

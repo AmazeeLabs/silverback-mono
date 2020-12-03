@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/eslint-config@1.1.2...@amazeelabs/eslint-config@1.2.0) (2020-12-03)
+
+
+### Features
+
+* **eslint-config:** merge react specific config into @amazeelabs/eslint-config ([a1bd798](https://github.com/AmazeeLabs/silverback-mono/commit/a1bd7986775a4743334f0531b14af4e290fd5a67))
+
+
+
+
+
 ## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/eslint-config@1.1.1...@amazeelabs/eslint-config@1.1.2) (2020-11-30)
 
 
