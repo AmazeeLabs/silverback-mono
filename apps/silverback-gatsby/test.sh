@@ -17,6 +17,7 @@ function setup_drupal {
   cd ../silverback-drupal-graphql-v3
   source .envrc
 
+  vendor/bin/silverback teardown
   vendor/bin/silverback clear-cache
   vendor/bin/silverback setup
   vendor/bin/drush -y cim # Because it does not import everything for some reason.
