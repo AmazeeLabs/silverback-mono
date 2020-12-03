@@ -24,7 +24,11 @@ _cleanup
 composer create-project drupal/recommended-project "$TMP" --no-interaction
 cd "$TMP"
 
-php -r "\$json = json_decode(file_get_contents('composer.json'), TRUE); \$json['repositories'][] = ['type' => 'path', 'url' => '$BASEDIR/../../*/*' ]; file_put_contents('composer.json', json_encode(\$json, JSON_PRETTY_PRINT));"
+php -r "
+  \$json = json_decode(file_get_contents('composer.json'), TRUE);
+  \$json['repositories'][] = ['type' => 'path', 'url' => '$BASEDIR/../../*/*' ];
+  file_put_contents('composer.json', json_encode(\$json, JSON_PRETTY_PRINT));
+"
 
 composer require amazeelabs/silverback-cli drush/drush
 
