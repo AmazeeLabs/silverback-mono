@@ -31,12 +31,17 @@ jobs:
       - name: Get Yarn cache directory
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
-
+      - name: Get Yarn version hash
+        id: yarn-version
+        run: echo "::set-output name=hash::$(yarn --version | shasum)"
       - name: Get Composer cache directory
         id: composer-cache
         run: |
           echo "::set-output name=dir::$(composer global config cache-files-dir)"
-
+      - name: Get Composer version hash
+        id: composer-version
+        run: |
+          echo "::set-output name=hash::$(composer --version | shasum)"
       - name: Cache dependencies
         uses: actions/cache@v2
         env:
@@ -45,7 +50,7 @@ jobs:
           path: |
             ${{ steps.yarn-cache.outputs.dir }}
             ${{ steps.composer-cache.outputs.dir }}
-          key: yarn-composer--${{ hashFiles('**/package.json', '**/yarn.lock', '**/composer.json', '**/composer.lock') }}
+          key: ${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash }}-composer-${{ steps.composer-version.outputs.hash }}
 
       - name: Create .npmrc
         run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
