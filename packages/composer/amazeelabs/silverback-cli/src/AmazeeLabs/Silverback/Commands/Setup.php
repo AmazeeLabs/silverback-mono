@@ -44,7 +44,7 @@ class Setup extends SilverbackCommand {
       $this->fileSystem->remove('install-cache.zip');
     }
 
-    $configExists = $this->fileSystem->exists('config/sync/core.extension.yml') && !$input->getOption('force');
+    $configExists = $this->fileSystem->exists('config/sync/core.extension.yml');
 
     if (!$this->fileSystem->exists($this->cacheDir . '/' . $hash) || $input->getOption('force')) {
       $zippy = Zippy::load();
