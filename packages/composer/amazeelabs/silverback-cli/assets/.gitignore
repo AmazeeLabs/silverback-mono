@@ -30,14 +30,13 @@ node_modules
 
 cypress/videos
 cypress/screenshots
-cypress/integration/jira/**/*.feature
 
 docker-compose.override.yml
 
 # Ignore the development install log.
 .install.log
 
-# Ignore the silverback persistent snapshots directory
+# Ignore the silverback snapshots directory
 .silverback-snapshots
 
 # Ignore Drupal console

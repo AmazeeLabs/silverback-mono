@@ -4,8 +4,11 @@ namespace AmazeeLabs\Silverback\Commands;
 
 use Dotenv\Dotenv;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
@@ -25,12 +28,18 @@ class SilverbackCommand extends Command {
    */
   protected $rootDirectory;
 
-  protected $cacheDir;
+  /**
+   * {@inheritDoc}
+   */
+  protected function configure() {
+    parent::configure();
+    $this->addOption('yes', 'y', null, 'Reply "yes" to all questions.');
+  }
 
   protected function executeProcess(array $command, OutputInterface $output) {
     $process = new Process($command, getcwd(), NULL, NULL, NULL);
     $process->start();
-    $output->writeln('<info>RUN: ' . $process->getCommandLine() . '</info>');
+    $output->writeln('<comment>Executing command: ' . $process->getCommandLine() . '</>');
     foreach ($process as $type => $line) {
       $output->write($line);
     }
@@ -42,8 +51,6 @@ class SilverbackCommand extends Command {
   public function __construct(Filesystem $fileSystem) {
     parent::__construct();
     $this->fileSystem = $fileSystem;
-    $this->cacheDir = '/tmp/silverback/cache';
-    $fileSystem->mkdir($this->cacheDir);
     if ($fileSystem->exists('.env')) {
       $env = Dotenv::createImmutable(getcwd());
       $env->safeLoad();
@@ -55,7 +62,7 @@ class SilverbackCommand extends Command {
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
     if (!file_exists('composer.json')) {
-      $output->writeln('<error>composer.json not found. Please run this command from composer based Drupal installations root directory.</error>');
+      $output->writeln('<error>composer.json not found. Please run this command from composer based Drupal installations root directory.</>');
       exit(1);
     }
     // TODO: scan upwards and detect root directory?
@@ -107,6 +114,16 @@ class SilverbackCommand extends Command {
     }
 
     return md5(serialize($files));
+  }
+
+  protected function confirm(InputInterface $input, OutputInterface $output, string $question) {
+    if ($input->getOption('yes')) {
+      $output->writeln("<question>$question</question>yes");
+      return true;
+    }
+    /** @var \Symfony\Component\Console\Helper\QuestionHelper $helper */
+    $helper = $this->getHelper('question');
+    return $helper->ask($input, $output, new ConfirmationQuestion("<question>$question</question>", true));
   }
 
 }

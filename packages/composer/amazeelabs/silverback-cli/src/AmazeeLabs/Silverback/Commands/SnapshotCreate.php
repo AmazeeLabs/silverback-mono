@@ -2,20 +2,19 @@
 
 namespace AmazeeLabs\Silverback\Commands;
 
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Snapshot extends SnapshotCommandBase {
+class SnapshotCreate extends SnapshotBase {
 
   /**
    * {@inheritDoc}
    */
   protected function configure() {
     parent::configure();
-    $this->setName('snapshot');
-    $this->setDescription('Take a snapshot of the current state.');
+    $this->setName('snapshot-create');
+    $this->setAliases(['sc']);
+    $this->setDescription('Take a snapshot of the current site.');
   }
 
   /**
@@ -27,12 +26,14 @@ class Snapshot extends SnapshotCommandBase {
     $path = $this->getSnapshotStorageDirectory($input);
 
     if ($this->fileSystem->exists($path)) {
-      $output->writeln("Removing the existing snapshot.");
+      if (!$this->confirm($input, $output, 'The snapshot already exists. Override it?')) {
+        return 1;
+      }
       $this->fileSystem->remove($path);
     }
 
-    $this->copyDir('web/sites/' . $this->getSnapshotSiteDirectory($input) . '/files', $path);
-    $output->writeln("The snapshot has been saved to $path.");
+    $this->copyDir('web/sites/default/files', $path);
+    $output->writeln("</info>The snapshot has been saved to $path.</>");
   }
 
 }

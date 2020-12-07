@@ -10,91 +10,80 @@ use Symfony\Component\Console\Output\OutputInterface;
 class Setup extends SilverbackCommand {
 
   protected function configure() {
+    parent::configure();
     $this->setName('setup');
-    $this->setDescription('Install a new test site.');
-    $this->addOption('backup', 'b', InputOption::VALUE_NONE, 'Create a backup of the current site.');
-    $this->addOption('force', 'f', InputOption::VALUE_NONE, 'Force installation.');
-    $this->addOption('cypress', 'c', InputOption::VALUE_NONE, 'Use cypress subdir.');
-    $this->addOption('profile', 'p', InputOption::VALUE_REQUIRED, 'Use profile config directory.', 'minimal');
+    $this->setDescription('Install a new site.');
+    $this->setHelp(<<<EOD
+If install-cache.zip exist and --force flag is not provided:
+  - The cache will be used to restore the site.
+  - The following Drush commands will be fired: updatedb, config-import, cache-rebuild.
+Otherwise:
+  - A new installation will be made using Drush site-install command (with --existing-config flag if case if Drupal configuration already exists in config/sync dir).
+  - install-cache.zip will be created or updated.
+EOD
+    );
+    $this->addOption('force', 'f', InputOption::VALUE_NONE, 'Force installation, ignore install-cache.zip.');
+    $this->addOption('profile', 'p', InputOption::VALUE_REQUIRED, 'A profile to use. The option is ignored if installing from cache.', 'minimal');
   }
 
   protected function execute(InputInterface $input, OutputInterface $output) {
     parent::execute($input, $output);
 
-    $siteDir = $input->getOption('cypress') ? 'cypress' : 'default';
-    if ($input->getOption('cypress') && !$this->fileSystem->exists('web/sites/' . $siteDir))  {
-      $this->copyDir('web/sites/default', 'web/sites/' . $siteDir);
-      $this->cleanDir('web/sites/' . $siteDir . '/files');
-    }
+    $public = 'web/sites/default/files';
+    $private = 'web/sites/default/files/private';
+    $zipCache = 'install-cache.zip';
+    $drush = './vendor/bin/drush';
+    $zippy = Zippy::load();
 
-    $hash = $this->getConfigHash();
+    $this->cleanDir($public);
 
-    if ($input->getOption('force')) {
-      $this->fileSystem->remove($this->cacheDir . '/' . $hash);
-    }
+    $zipCacheExists = $this->fileSystem->exists($zipCache);
+    $installFromCache = $zipCacheExists && !$input->getOption('force');
+    $configExists = $this->fileSystem->exists('config/sync/core.extension.yml');
 
-    if ($input->getOption('backup') && $this->fileSystem->exists('web/sites/' . $siteDir . '/files')) {
-      $this->copyDir('web/sites/' . $siteDir . '/files', $this->cacheDir . '/backup');
-    }
-
-    $this->cleanDir('web/sites/' . $siteDir . '/files');
-
-    // Remove the installation cache if a forced reinstall is requested.
-    if ($this->fileSystem->exists('install-cache.zip') && $input->getOption('force')) {
-      $this->fileSystem->remove('install-cache.zip');
-    }
-
-    $configExists = $this->fileSystem->exists('config/sync/core.extension.yml') && !$input->getOption('force');
-
-    if (!$this->fileSystem->exists($this->cacheDir . '/' . $hash) || $input->getOption('force')) {
-      $zippy = Zippy::load();
-      if ($this->fileSystem->exists('install-cache.zip')) {
-        $cache = $zippy->open('install-cache.zip');
-        $cache->extract('web/sites/' . $siteDir);
-        $baseCommand = ['./vendor/bin/drush'];
-        if ($input->getOption('cypress')) {
-          $baseCommand[] = '--uri=http://localhost:8889';
-        }
-        $this->executeProcess(array_merge($baseCommand, ['updb', '-y', '--cache-clear=0']), $output);
-        if ($configExists) {
-          $this->executeProcess(['./vendor/bin/drush', 'cim', '-y'], $output);
-        }
-        else {
-          $this->executeProcess(['./vendor/bin/drush', 'cex', '-y'], $output);
-        }
-        $this->executeProcess(array_merge($baseCommand, ['cr']), $output);
-      }
-      else {
-        $this->executeProcess(array_filter([
-          './vendor/bin/drush', 'si', '-y', $input->getOption('profile'),
-          '--sites-subdir', $siteDir,
-          $configExists ? '--existing-config' : '',
-          '--account-name', getenv('SB_ADMIN_USER'),
-          '--account-pass', getenv('SB_ADMIN_PASS'),
-        ]), $output);
-
-        if ($configExists) {
-          $this->executeProcess(['./vendor/bin/drush', 'cim', '-y'], $output);
-        }
-        else {
-          $this->executeProcess(['./vendor/bin/drush', 'cex', '-y'], $output);
-        }
-
-        $zippy->create('install-cache.zip', [
-          'files' => 'web/sites/' . $siteDir . '/files',
-        ], TRUE);
-      }
-
-      $this->copyDir('web/sites/' . $siteDir . '/files', $this->cacheDir . '/' . $hash);
+    if ($installFromCache) {
+      $output->writeln("<info>Restoring from $zipCache...</>");
+      $cache = $zippy->open($zipCache);
+      $cache->extract('web/sites/default');
     }
     else {
-      $this->copyDir($this->cacheDir . '/' . $hash, 'web/sites/' . $siteDir . '/files');
+      $output->writeln('<info>Installing from scratch' . ($configExists ? ' using existing config' : '') . '.</>');
+      $this->executeProcess(array_filter([
+        $drush,
+        'si',
+        '-y',
+        $input->getOption('profile'),
+        $configExists ? '--existing-config' : '',
+        '--account-name',
+        getenv('SB_ADMIN_USER'),
+        '--account-pass',
+        getenv('SB_ADMIN_PASS'),
+      ]), $output);
     }
 
-    $private = 'web/sites/' . $siteDir . '/files/private';
     if (!$this->fileSystem->exists($private)) {
       $this->fileSystem->mkdir($private);
     }
+
+    if ($installFromCache) {
+      $this->executeProcess([$drush, 'updb', '-y', '--cache-clear=0'], $output);
+      if ($configExists) {
+        $this->executeProcess([$drush, 'cim', '-y'], $output);
+      }
+      $this->executeProcess([$drush, 'cr'], $output);
+    }
+    else {
+      if ($zipCacheExists) {
+        $output->writeln("<info>Updating $zipCache...</>");
+        $this->fileSystem->remove($zipCache);
+      }
+      else {
+        $output->writeln("<info>Creating $zipCache...</>");
+      }
+      $zippy->create($zipCache, ['files' => $public], TRUE);
+    }
+
+    $output->writeln("<info>Setup complete.</>");
   }
 
 }

@@ -32,9 +32,11 @@ php -r "
 
 composer require amazeelabs/silverback-cli:@dev alchemy/zippy:@dev drush/drush
 
-./vendor/bin/silverback init
+./vendor/bin/silverback init -y
 source .envrc
 ./vendor/bin/silverback setup
+./vendor/bin/silverback snapshot-create
+./vendor/bin/silverback snapshot-restore
 ./vendor/bin/drush status
 ./vendor/bin/drush serve &
 

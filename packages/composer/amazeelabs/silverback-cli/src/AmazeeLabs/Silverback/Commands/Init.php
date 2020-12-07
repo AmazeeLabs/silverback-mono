@@ -9,12 +9,18 @@ use Symfony\Component\Finder\Finder;
 class Init extends SilverbackCommand {
 
   protected function configure() {
+    parent::configure();
     $this->setName('init');
+    $this->setHelp('Creates/updates project configuration files in order to make the project usable with silverback-cli.');
     $this->setDescription('Initialise silverback project.');
   }
 
   protected function execute(InputInterface $input, OutputInterface $output) {
     parent::execute($input, $output);
+    if (!$this->confirm($input, $output, 'This will adjust your project files. Continue?')) {
+      return 1;
+    }
+
     $projectName = basename($this->rootDirectory);
 
     $environment = [
@@ -42,38 +48,9 @@ class Init extends SilverbackCommand {
         'value' => 'admin',
         'description' => 'Drupal admin password.',
       ],
-      'SB_JIRA_HOST' => [
-        'value' => '',
-        'description' => 'Jira host to download testfiles from.',
-        'commentOut' => TRUE,
-      ],
-      'SB_JIRA_USER' => [
-        'value' => '',
-        'description' => 'Jira username.',
-        'commentOut' => TRUE,
-      ],
-      'SB_JIRA_PASS' => [
-        'value' => '',
-        'description' => 'Jira password. This variable is commented out by default to not override the Travis value (passwords are usually added as a secured environment variables in Travis). Uncomment it in your .env file.',
-        'commentOut' => TRUE,
-      ],
-      'SB_JIRA_PROJECTS' => [
-        'value' => '',
-        'description' => 'Jira projects, as handle:id pairs. e.g. PRO:12345. May contain multiple space separated values.',
-        'commentOut' => TRUE,
-      ],
       'DRUSH_OPTIONS_URI' => [
         'value' => '$SB_BASE_URL',
         'description' => 'Drush base url.',
-      ],
-      'CYPRESS_BASE_URL' => [
-        'value' => 'http://localhost:8889',
-        'description' => 'Cypress base url.',
-      ],
-      'CYPRESS_TAGS' => [
-        'value' => '',
-        'description' => '`cypress run` will only execute tests based on tags. Examples: "@assignee:$SB_JIRA_USER and @WIP", "@COMPLETED".',
-        'commentOut' => TRUE,
       ],
       'DRUPAL_HASH_SALT' => [
         'value' => 'BANANA',
@@ -131,8 +108,7 @@ class Init extends SilverbackCommand {
 
     $composerJson = json_decode(file_get_contents($this->rootDirectory . '/composer.json'), TRUE);
     $composerJson['scripts']['run-tests'] = [
-      "if [ -d web/modules/custom ]; then phpunit web/modules/custom; fi",
-      "yarn install && CYPRESS_TAGS=@COMPLETED cypress run",
+      "./vendor/bin/silverback-test",
     ];
     $composerJson['extra']['enable-patching'] = TRUE;
     $composerJson['extra']['composer-exit-on-patch-failure'] = TRUE;
@@ -142,6 +118,8 @@ class Init extends SilverbackCommand {
     $composerJson['extra']['merge-plugin']['replace'] = TRUE;
 
     file_put_contents($this->rootDirectory . '/composer.json', json_encode(array_filter($composerJson), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+
+    $output->writeln("<info>Initialization is done. Please check the changes.</>");
   }
 
 }
