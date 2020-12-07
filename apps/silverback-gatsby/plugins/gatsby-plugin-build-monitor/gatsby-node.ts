@@ -2,9 +2,15 @@
 import axios from 'axios';
 import { GatsbyNode } from 'gatsby';
 
+let finishTimeoutId: NodeJS.Timer | null = null;
+
 export const sourceNodes = async () => {
   if (!process.env.ENABLE_GATSBY_REFRESH_ENDPOINT) {
     return;
+  }
+
+  if (finishTimeoutId) {
+    clearTimeout(finishTimeoutId);
   }
 
   axios.post(process.env.DRUPAL_BUILD_MONITOR_ENDPOINT! + 'rebuilding');
@@ -15,18 +21,15 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = (args) => {
     return;
   }
 
-  const timeout = 2_000;
-
-  let timeoutId: NodeJS.Timer | null = null;
   let lastActionType: string;
 
   const watchStore = async (): Promise<void> => {
     const state = await args.store.getState();
     lastActionType = state.lastAction.type;
-    if (timeoutId) {
-      clearTimeout(timeoutId);
+    if (finishTimeoutId) {
+      clearTimeout(finishTimeoutId);
     }
-    timeoutId = setTimeout(() => {
+    const checkIfFinished = () => {
       if (
         [
           // One of these two is the last ones in case if __refresh detected no
@@ -39,7 +42,8 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = (args) => {
       ) {
         axios.post(process.env.DRUPAL_BUILD_MONITOR_ENDPOINT! + 'idle');
       }
-    }, timeout);
+    };
+    finishTimeoutId = setTimeout(checkIfFinished, 2_000);
   };
 
   args.store.subscribe(watchStore);
