@@ -1,0 +1,47 @@
+<?php
+
+use Drupal\Core\Url;
+use Drupal\silverback_gatsby\Gatsby;
+
+/**
+ * Implements hook_toolbar().
+ */
+function gatsby_build_monitor_toolbar() {
+  return [
+    'gatsby_build_monitor_state' => [
+      '#type' => 'toolbar_item',
+      'tab' => [
+        '#type' => 'link',
+        '#title' => 'Gatsby Preview state: ' . _gatsby_build_monitor_state(),
+        // TODO: Remove reference to silverback_gatsby module.
+        '#url' => Url::fromUri(Gatsby::PREVIEW_URL),
+        '#attributes' => [
+          'class' => ['gatsby-build-monitor-state'],
+        ],
+        '#cache' => [
+          'max-age' => 0,
+        ],
+      ],
+      '#attached' => [
+        'library' => ['gatsby_build_monitor/state'],
+      ],
+      '#weight' => 1000,
+    ],
+  ];
+}
+
+/**
+ * Sets or returns Gatsby rebuild state.
+ *
+ * @param string|null $state
+ *   Values: "idle" or "rebuilding".
+ *
+ * @return string|void
+ *   Values: "idle", "rebuilding" or "unknown".
+ */
+function _gatsby_build_monitor_state($state = NULL) {
+  if ($state === NULL) {
+    return \Drupal::state()->get('gatsby_build_monitor.state') ?? 'unknown';
+  }
+  \Drupal::state()->set('gatsby_build_monitor.state', $state);
+}

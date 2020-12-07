@@ -1,4 +1,4 @@
-graphql.config_page:
+silverback_gatsby_test.node_op:
   path: '/node-op'
   defaults:
     _controller: '\Drupal\silverback_gatsby_test\Controller::nodeOp'

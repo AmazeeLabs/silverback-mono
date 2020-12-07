@@ -25,7 +25,7 @@ See [test.sh](./test.sh) and [cypress/integration](./cypress/integration).
 
 ## How Drupal is informed about the Preview Refresh status
 
-See [gatsby-plugin-is-refreshing](./plugins/gatsby-plugin-is-refreshing).
+See [gatsby-plugin-build-monitor](./plugins/gatsby-plugin-build-monitor) plugin.
 
 ## Drupal part
 

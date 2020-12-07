@@ -1,0 +1,19 @@
+gatsby_build_monitor.set_state:
+  path: '/gatsby-build-monitor/set-state/{state}'
+  defaults:
+    _controller: '\Drupal\gatsby_build_monitor\Controller::setState'
+  methods: ['POST']
+  requirements:
+    # TODO: Protect with a token or something.
+    _access: 'TRUE'
+    state: '^(rebuilding|idle)$'
+
+
+gatsby_build_monitor.get_state:
+  path: '/gatsby-build-monitor/get-state'
+  defaults:
+    _controller: '\Drupal\gatsby_build_monitor\Controller::getState'
+  methods: ['POST']
+  requirements:
+    # TODO: Protect with a permission.
+    _access: 'TRUE'

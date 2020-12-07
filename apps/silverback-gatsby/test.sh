@@ -19,7 +19,6 @@ function setup_drupal {
 
   vendor/bin/silverback teardown
   vendor/bin/silverback setup
-  vendor/bin/drush -y cim # Because it does not import everything for some reason.
   vendor/bin/drush -y content-sync:import
 
   drush serve -q :8888 &

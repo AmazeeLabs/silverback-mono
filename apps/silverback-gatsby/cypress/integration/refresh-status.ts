@@ -6,14 +6,14 @@ describe('Test Gatsby Preview Refresh status', () => {
     cy.get('#edit-name').type('admin');
     cy.get('#edit-pass').type('admin');
     cy.get('#edit-submit').click();
-    cy.contains('a', 'Gatsby Preview status: Idle');
+    cy.contains('a', 'Gatsby Preview state: idle');
 
     cy.visit(`${drupalUrl}/node/add/page`);
     cy.get('#edit-title-0-value').type('New page');
     cy.get('#edit-field-body-0-value').type('Body');
     cy.get('#edit-submit').click();
-    cy.contains('a', 'Gatsby Preview status: Rebuilding');
+    cy.contains('a', 'Gatsby Preview state: rebuilding');
     cy.wait(refreshDelay);
-    cy.contains('a', 'Gatsby Preview status: Idle');
+    cy.contains('a', 'Gatsby Preview state: idle');
   });
 });
