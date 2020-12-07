@@ -8,7 +8,8 @@
         "alchemy/zippy": "dev-master",
         "cweagans/composer-patches": "^1.7.0",
         "drush/drush": "^10.3.6",
-        "vlucas/phpdotenv": "^5.2"
+        "vlucas/phpdotenv": "^5.2",
+        "ext-json": "*"
     },
     "bin": [ "bin/silverback", "bin/silverback-dev", "bin/silverback-test" ],
     "autoload": {
