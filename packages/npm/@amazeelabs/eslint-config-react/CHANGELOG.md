@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/eslint-config-react@1.1.0...@amazeelabs/eslint-config-react@1.1.1) (2020-12-07)
+
+**Note:** Version bump only for package @amazeelabs/eslint-config-react
+
+
+
+
+
 # [1.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/eslint-config-react@1.0.8...@amazeelabs/eslint-config-react@1.1.0) (2020-12-03)
 
 
