@@ -1,8 +1,6 @@
 <?php
 
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Render\Markup;
-use Drupal\Core\Url;
 use Drupal\silverback_gatsby\Gatsby;
 
 /**
@@ -24,30 +22,4 @@ function silverback_gatsby_entity_update(EntityInterface $entity) {
  */
 function silverback_gatsby_entity_delete(EntityInterface $entity) {
   Gatsby::onEntityOperation($entity);
-}
-
-/**
- * Implements hook_toolbar().
- */
-function silverback_gatsby_toolbar() {
-  return [
-    'silverback_gatsby_preview_refresh_status' => [
-      '#type' => 'toolbar_item',
-      'tab' => [
-        '#type' => 'link',
-        '#title' => 'Gatsby Preview status: Unknown',
-        '#url' => Url::fromUri(Gatsby::PREVIEW_URL),
-        '#attributes' => [
-          'class' => ['silverback-gatsby-preview-refresh-status-link'],
-        ],
-      ],
-      '#attached' => [
-        'library' => ['silverback_gatsby/refresh_status'],
-        'drupalSettings' => [
-          'isGatsbyRefreshingUrl' => Gatsby::IS_REFRESHING_PREVIEW_URL,
-        ],
-      ],
-      '#weight' => 1000,
-    ],
-  ];
 }

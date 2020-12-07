@@ -1,28 +1,13 @@
-import express, { Express } from 'express';
+// TODO: Add axios to package.json in case if this plugin will be extracted.
+import axios from 'axios';
 import { GatsbyNode } from 'gatsby';
-
-let refreshing = true;
-
-export const onCreateDevServer: GatsbyNode['onCreateDevServer'] = (args) => {
-  if (!process.env.ENABLE_GATSBY_REFRESH_ENDPOINT) {
-    return;
-  }
-
-  const app = args.app as Express;
-
-  const path = '/__is_refreshing';
-  app.use(path, express.json());
-  app.post(path, (_, res) => {
-    res.send(refreshing);
-  });
-};
 
 export const sourceNodes = async () => {
   if (!process.env.ENABLE_GATSBY_REFRESH_ENDPOINT) {
     return;
   }
 
-  refreshing = true;
+  axios.post(process.env.DRUPAL_BUILD_MONITOR_ENDPOINT! + 'rebuilding');
 };
 
 export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = (args) => {
@@ -52,7 +37,7 @@ export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = (args) => {
           'CLEAR_PENDING_PAGE_DATA_WRITE',
         ].includes(lastActionType)
       ) {
-        refreshing = false;
+        axios.post(process.env.DRUPAL_BUILD_MONITOR_ENDPOINT! + 'idle');
       }
     }, timeout);
   };

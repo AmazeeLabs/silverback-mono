@@ -9,7 +9,6 @@ use Drupal\Core\Render\Markup;
 class Gatsby {
   const PREVIEW_URL = 'http://localhost:8000/';
   const REFRESH_PREVIEW_URL = 'http://localhost:8000/__refresh';
-  const IS_REFRESHING_PREVIEW_URL = 'http://localhost:8000/__is_refreshing';
   const SITE_URL = 'http://localhost:9000/';
   const REBUILD_SITE_URL = 'http://localhost:9001/__rebuild';
 
