@@ -37,4 +37,5 @@
   rangeStrategy: "replace",
   groupName: "all",
   schedule: ["before 5am on monday"],
+  lockFileMaintenance: { enabled: true },
 }
