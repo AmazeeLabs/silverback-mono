@@ -87,17 +87,11 @@ Options:
 
 ## How to run the example locally
 
-You'll need a usual set of command line tools: Git, Yarn, Composer. Plus one
-which is not that common: [direnv](https://direnv.net/docs/installation.html)
-(don't forget about the [hook installation](https://direnv.net/docs/hook.html)!)
+Setup the monorepo locally as described in the [readme](https://github.com/AmazeeLabs/silverback-mono#setup-locally).
 
-Prepare:
+Prepare (run from the silverback-mono root):
 
 ```shell
-git clone https://github.com/AmazeeLabs/silverback-mono
-cd silverback-mono
-yarn
-
 cd apps/silverback-drupal-graphql-v3
 direnv allow
 silverback setup
