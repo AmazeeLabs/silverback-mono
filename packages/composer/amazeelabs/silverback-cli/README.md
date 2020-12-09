@@ -1,11 +1,15 @@
 > This project is maintained in the [silverback monorepo](https://github.com/AmazeeLabs/silverback-mono)
-# Amazee Silverback
+# Silverback CLI
 
-`amazee/silverback-cli` is a composer package adding tooling and configuration scaffolding to Amazee Drupal projects. It aims to improve product quality and reduce maintenance costs by encouraging three simple principles:
+`amazee/silverback-cli` is a composer package adding tooling and configuration scaffolding to Amazee Drupal projects.
 
-1. **Maximize open source:** Lower initial costs, technical debt and maintenance costs by using and contributing to open source code as much as possible. For every feature required by a project that is not solvable by configuration or theming, try to find a generic solution that can be contributed.
-2. **Minimize requirements:** It has to be as easy as possible to work on a project. If you need the production database and a local elasticsearch cluster to edit CSS files, you are doing microservices terribly wrong. _Example:_ By default silverback development sites run on SQLite. MySQL is considered a performance optimization, and it's not in the projects scope to test Drupal's database abstraction layer.
-3. **Testability first:** A project has to be fully testable with only the git repository at any time. All required assets (test content, media, configuration) have to be set up during the installation process. It **must not** rely on production data. Every feature and bug fix has to bring a test case that can be reproduced. It might take more time initially, but it will pay off.
+Killer features:
+- 🚀 Super-fast Drupal installations. Very useful for automated testing.
+- 📸 Create/restore snapshots of Drupal state.
+
+Other features:
+- Basic configuration for Lagoon and Lando.
+- Some small improvements for the Drupal setup.
 
 ## Installation
 
@@ -18,6 +22,19 @@ direnv allow
 ## Usage
 
 ```sh
+# To quick-start Drupal:
+silverbavk setup
+drush serve
+
+# To see other use cases:
 silverback list
-silverback help [<command_name>]
+silverback help [command_name]
 ```
+
+## How it works.
+
+A Drupal project initialized with Silverback uses SQLite database in development environment. The database is localed in the Drupal files directory. This mean that the whole Drupal state is stored in a single directory.
+
+Silverback puts this directory into `install-cache.zip` and reuses it the next time `silverback setup` is fired.
+
+Snapshots work in the same way. They are just copies of the Drupal files directory.
