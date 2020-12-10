@@ -1,0 +1,51 @@
+---
+title: Project setup
+path: /gatsby/starter
+nav: Gatsby
+position: 1
+---
+
+# Development
+
+This project is primarily made with Gatsby. [Gatsby’s documentation](https://www.gatsbyjs.org/docs/) is excellent and should be consulted when trying to solve problems in your project.
+
+## Package commands overview
+
+- `yarn mocks`: Start the mocked GraphQL services for local development.
+- `yarn build`: Build the production web application package.
+- `yarn serve`: Locally serve the production web application package.
+- `yarn develop`: Run the live-refreshing development host.
+- `yarn test`: Run all mocha unit tests.
+- `yarn cypress:run:api`: Run all tests that target the API (requires `yarn mocks` and `yarn develop` to be already running).
+- `yarn cypress:test`: Run all Cypress tests (requires `yarn mocks` and `yarn develop` to be already running).
+- `yarn lint`: Run eslint checks.
+- `yarn typecheck`: Run TypeScript checks.
+- `yarn format:check`: Run code formatting checks.
+- `yarn storybook`: Run storybook development server to work on components.
+- `yarn tailwind`: (Re-)build a local version of the full tailwind stylesheet for development reference.
+- `yarn commit`: Guided commit process that makes sure conventional commit requirements are met.
+
+## Project structure
+
+This project follows the recommended Gatsby structure documented at https://www.gatsbyjs.org/docs/gatsby-project-structure/
+
+- `/src/pages`: Static Gatsby pages whose URLS are defined statically
+- `/src/templates`: Gatsby templates to build static pages whose URLs are defined with data from GraphQL queries
+- `/src/components`: Standard React components used to build your site. See [the `src/components/\_README.md](../src/components/_README.md) file to understand how to keep components organized.
+- `/src/graphql`: Code for GraphQL services, schema, and mocked data
+- `/src/utils`: Shared utility functions
+- `/src/utils/i18n`: Utility functions related to internationalization
+- `/src/utils/hocs`: Higher-order components
+- `/src/utils/hooks`: Custom React hooks
+- `/src/utils/decorators`: Storybook decorators
+- `/src/assets/icons`: SVG assets used by the `Icon` component
+- `/src/assets/styles`: Shared CSS files
+- `/static`: Assets that can't easily be included with components, such as the `favicon.ico`. See [Gatsby's docs on the static folder](https://www.gatsbyjs.org/docs/static-folder/).
+
+### Where do dynamic pages go?
+
+Gatsby creates static HTML files at build-time that directly map to URLs on your website. If a page gets all its content from run-time queries or form submissions, then Gatsby cannot build a static version of that page; those URL paths must be managed with Reach Router inside one or more of your Gatsby pages can be created at Gatsby build time.
+
+For example, a page at `/group/18/members` whose contents must be queried at run-time could be managed with Reach Router inside the `/group` page built by Gatsby.
+
+See Gatsby’s [Client-only Routes &amp; User Authentication](https://www.gatsbyjs.org/docs/client-only-routes-and-user-authentication/) docs for more information.
