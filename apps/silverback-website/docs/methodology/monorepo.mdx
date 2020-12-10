@@ -61,9 +61,28 @@ reflect the component that has been changed.
 fix(drupal/cypress): fixed some bug
 
 This was a very annoying bug!
+
+or
+
+feat(silverback-gatsby): add gatsby starter docs #97
+
+Add favicon to meta component
+
+```
+
+If you are not sure, run the following, and answer to the best of your knowledge.
+
+```
+yarn commit
 ```
 
 [conventional commits]: https://www.conventionalcommits.org/en/v1.0.0/
+
+*Commits follow conventional commits*
+- (feat = something new, fix = something was broken, refactor = changes without effect, perf = no effect but hopefully faster …).
+- use the package name as context (name in package.json).
+- try not to do too broad cross-package changes. If necessary, omit the parantheses.
+- use imperative, not past tense. "Add", "remove", "Update".
 
 Changes have to be submitted as pull requests against the `development` branch,
 which may be merged when tests pass, and the change has been reviewed by at
