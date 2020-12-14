@@ -33,9 +33,9 @@ silverback list
 silverback help [command_name]
 ```
 
-## How it works.
+## How it works
 
-A Drupal project initialized with Silverback uses SQLite database in development environment. The database is localed in the Drupal files directory. This mean that the whole Drupal state is stored in a single directory.
+A Drupal project initialized with Silverback uses a SQLite database in development environment. The database is located in the Drupal files directory. This means that the whole Drupal state is stored in a single directory.
 
 Silverback puts this directory into `install-cache.zip` and reuses it the next time `silverback setup` is fired.
 
