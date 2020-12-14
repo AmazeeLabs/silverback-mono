@@ -13,6 +13,8 @@ Other features:
 
 ## Installation
 
+Make sure you have [all dependencies](https://github.com/AmazeeLabs/silverback-mono#requirements) installed. `direnv` is an important one.
+
 ```sh
 composer require amazeelabs/silverback-cli
 ./vendor/bin/silverback init
@@ -23,7 +25,7 @@ direnv allow
 
 ```sh
 # To quick-start Drupal:
-silverbavk setup
+silverback setup
 drush serve
 
 # To see other use cases:
