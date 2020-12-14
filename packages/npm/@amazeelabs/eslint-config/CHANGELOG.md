@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/eslint-config@1.2.1...@amazeelabs/eslint-config@1.2.2) (2020-12-14)
+
+
+### Bug Fixes
+
+* **deps:** update dependency eslint-plugin-simple-import-sort to v7 ([73046c0](https://github.com/AmazeeLabs/silverback-mono/commit/73046c04e83fda4faf735cb03ff9f74d717fb33a))
+
+
+
+
+
 ## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/eslint-config@1.2.0...@amazeelabs/eslint-config@1.2.1) (2020-12-07)
 
 
