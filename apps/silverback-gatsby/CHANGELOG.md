@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.12](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.8.11...silverback-gastby@0.8.12) (2020-12-14)
+
+
+### Bug Fixes
+
+* remove clear-cache occurrence ([cae3aa6](https://github.com/AmazeeLabs/silverback-mono/commit/cae3aa68a3e44a4c6b639ca70a20f9aa6aff375e))
+
+
+
+
+
 ## [0.8.11](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.8.10...silverback-gastby@0.8.11) (2020-12-14)
 
 **Note:** Version bump only for package silverback-gastby

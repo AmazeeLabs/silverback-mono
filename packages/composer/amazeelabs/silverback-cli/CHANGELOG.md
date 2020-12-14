@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@1.0.17...@-amazeelabs/silverback-cli@2.0.0) (2020-12-14)
+
+
+### Bug Fixes
+
+* remove install-cache.zip ([19c96b9](https://github.com/AmazeeLabs/silverback-mono/commit/19c96b9ff50efcd1a76ebc8164b6f24152b9640a))
+
+
+### Features
+
+* simplify silverback-cli ([47e3c05](https://github.com/AmazeeLabs/silverback-mono/commit/47e3c05955d55492d1dfe39c4f2fa66ccb7d8eba))
+
+
+### BREAKING CHANGES
+
+* - some commands were changed, some were removed
+- scaffold files updated
+- old docs were removed
+- cypress helpers were removed
+
+
+
+
+
 ## [1.0.17](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@1.0.16...@-amazeelabs/silverback-cli@1.0.17) (2020-12-03)
 
 
