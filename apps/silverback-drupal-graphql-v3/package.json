@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "prepare": "composer install"
+    "prepare": "composer install -vvv"
   },
   "dependencies": {
     "@-amazeelabs/silverback-cli": "^2.0.1"
