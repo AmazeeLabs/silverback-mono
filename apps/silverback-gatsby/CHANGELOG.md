@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.15](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.8.14...silverback-gastby@0.8.15) (2020-12-15)
+
+
+### Bug Fixes
+
+* make silverback-gatsby private ([b008f54](https://github.com/AmazeeLabs/silverback-mono/commit/b008f544ebc2551e2badc85b89caffbe7434104c))
+
+
+
+
+
 ## [0.8.14](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.8.13...silverback-gastby@0.8.14) (2020-12-15)
 
 **Note:** Version bump only for package silverback-gastby
