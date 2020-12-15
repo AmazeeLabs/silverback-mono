@@ -1,6 +1,6 @@
 {
   "name": "@-drupal/gatsby_build_monitor",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Notifies about the Gatsby Build Status via the Toolbar.",
   "publishConfig": {
     "access": "public",
