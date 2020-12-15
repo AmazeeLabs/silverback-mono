@@ -43,9 +43,15 @@ export const onPostBuild = async () => {
 };
 
 const callEndpoint = async (payload: Payload) => {
+  if (
+    !process.env.GATSBY_PLUGIN_BUILD_MONITOR_ENDPOINT ||
+    !process.env.GATSBY_PLUGIN_BUILD_MONITOR_TOKEN
+  ) {
+    return;
+  }
   try {
     await axios.post(
-      process.env.GATSBY_PLUGIN_BUILD_MONITOR_ENDPOINT!,
+      process.env.GATSBY_PLUGIN_BUILD_MONITOR_ENDPOINT,
       payload,
       {
         headers: {
