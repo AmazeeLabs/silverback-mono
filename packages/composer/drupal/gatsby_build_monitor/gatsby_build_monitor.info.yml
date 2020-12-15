@@ -1,0 +1,4 @@
+name: Gatsby Build Monitor
+description: Receives build status from Gatsby and displays it in the toolbar.
+type: module
+core_version_requirement: ^8.8.0 || ^9.0

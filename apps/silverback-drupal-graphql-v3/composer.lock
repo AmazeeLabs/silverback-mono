@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "42918047a98337d754be1721d97bc0e7",
+    "content-hash": "b279d9a8574a15bb13d31b016f53c75c",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2397,6 +2397,23 @@
                 "source": "https://github.com/drupal/core-recommended/tree/8.9.8"
             },
             "time": "2020-11-05T16:34:55+00:00"
+        },
+        {
+            "name": "drupal/gatsby_build_monitor",
+            "version": "dev-reverse-build-status-check",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/composer/drupal/gatsby_build_monitor",
+                "reference": "c88d5445eadcda7a3691c81091b0c5c6d9c2d6d8"
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Gatsby build monitor for the Toolbar",
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "drupal/graphql",
@@ -6829,7 +6846,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "amazeelabs/silverback-cli": 20,
-        "drupal/content_sync": 20
+        "drupal/content_sync": 20,
+        "drupal/gatsby_build_monitor": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

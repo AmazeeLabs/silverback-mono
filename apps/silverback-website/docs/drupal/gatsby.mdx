@@ -34,7 +34,6 @@ Content fetched from Drupal:
   Builds.
 - 🔗 Gatsby knows Drupal's content references. E.g. if a tag label is updated,
   Gatsby will refetch it and update all pages where it is used.
-- 👋 Drupal editors are informed when Gatsby Preview is refreshed (via Toolbar).
 
 ## How it works
 
@@ -46,7 +45,6 @@ Follow the links to get more technical details.
   - Uses Drupal's GraphQL v3 module.
   - Uses a custom silverback_gatsby module to ping Gatsby Preview refresh and
     Gatsby Site rebuild.
-  - Checks Gatsby Preview Refresh status and reports it via the Toolbar.
 - [apps/silverback-gatsby](https://github.com/AmazeeLabs/silverback-mono/tree/development/apps/silverback-gatsby)
   - Uses gatsby-graphql-toolkit to
     - transform Drupal's GraphQL schema into Gatsby's GraphQL schema

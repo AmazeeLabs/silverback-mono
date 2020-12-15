@@ -4,3 +4,4 @@ export const previewUrl = 'http://localhost:8000';
 export const siteUrl = 'http://localhost:9000';
 
 export const refreshDelay = 10_000;
+export const rebuildDelay = 20_000;

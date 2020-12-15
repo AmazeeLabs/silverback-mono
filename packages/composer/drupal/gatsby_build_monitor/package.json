@@ -1,0 +1,13 @@
+{
+  "name": "@-drupal/gatsby_build_monitor",
+  "version": "1.0.0",
+  "description": "Notifies about the Gatsby Build Status via the Toolbar.",
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://localhost:4873",
+    "repository": "git@git.drupal.org:project/cypress.git",
+    "branch": "main"
+  },
+  "author": "",
+  "license": "ISC"
+}

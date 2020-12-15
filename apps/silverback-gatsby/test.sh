@@ -40,7 +40,6 @@ echo "👉 Gatsby Preview ready."
 
 echo "👇 Testing Gatsby Preview..."
 yarn cypress run --spec cypress/integration/gatsby-preview.ts
-yarn cypress run --spec cypress/integration/refresh-status.ts
 # Need to kill it before running `gatsby serve` because both `gatsby develop`
 # and `gatsby serve` use the same .cache directory.
 kill $( lsof -i:8000 -t )
@@ -55,6 +54,7 @@ until nc -z 127.0.0.1 9001 || ((YARN_SERVE_WAIT > 19)); do sleep 1; done
 echo "👉 Gatsby Site ready."
 
 echo "👇 Testing Gatsby Site..."
+yarn cypress run --spec cypress/integration/build-status.ts
 yarn cypress run --spec cypress/integration/gatsby-site.ts
 echo "👉 Tested Gatsby Site."
 

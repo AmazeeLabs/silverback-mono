@@ -7,14 +7,29 @@ use Drupal\silverback_gatsby\Gatsby;
  * Implements hook_toolbar().
  */
 function gatsby_build_monitor_toolbar() {
+  $siteUrl = \Drupal::config('gatsby_build_monitor.settings')->get('site_url');
+  $url = $siteUrl
+    ? Url::fromUri($siteUrl)
+    : Url::fromRouteMatch(\Drupal::routeMatch())->setOption('fragment', '#');
+
+  switch (_gatsby_build_monitor_state()) {
+    case 'idle':
+      $state = t('Gatsby is ready');
+      break;
+    case 'building':
+      $state = t('Gatsby is building');
+      break;
+    default:
+      $state = t('Gatsby status is unknown');
+  }
+
   return [
     'gatsby_build_monitor_state' => [
       '#type' => 'toolbar_item',
       'tab' => [
         '#type' => 'link',
-        '#title' => 'Gatsby Preview state: ' . _gatsby_build_monitor_state(),
-        // TODO: Remove reference to silverback_gatsby module.
-        '#url' => Url::fromUri(Gatsby::PREVIEW_URL),
+        '#title' => $state,
+        '#url' => $url,
         '#attributes' => [
           'class' => ['gatsby-build-monitor-state'],
         ],
@@ -34,10 +49,10 @@ function gatsby_build_monitor_toolbar() {
  * Sets or returns Gatsby rebuild state.
  *
  * @param string|null $state
- *   Values: "idle" or "rebuilding".
+ *   Values: "idle" or "building".
  *
- * @return string|void
- *   Values: "idle", "rebuilding" or "unknown".
+ * @return void|string
+ *   Values: "idle", "building" or "unknown".
  */
 function _gatsby_build_monitor_state($state = NULL) {
   if ($state === NULL) {
