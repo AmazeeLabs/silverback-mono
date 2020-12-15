@@ -1,19 +1,23 @@
-import { drupalUrl, refreshDelay } from './constants';
+import { drupalUrl, rebuildDelay } from './constants';
 
-describe('Test Gatsby Preview Refresh status', () => {
+describe('Test Gatsby Build Monitor integration', () => {
   it('tests it', () => {
     cy.visit(`${drupalUrl}/user/login`);
     cy.get('#edit-name').type('admin');
     cy.get('#edit-pass').type('admin');
     cy.get('#edit-submit').click();
-    cy.contains('a', 'Gatsby Preview state: idle');
+    cy.contains('a', 'Gatsby is ready');
 
     cy.visit(`${drupalUrl}/node/add/page`);
     cy.get('#edit-title-0-value').type('New page');
     cy.get('#edit-field-body-0-value').type('Body');
     cy.get('#edit-submit').click();
-    cy.contains('a', 'Gatsby Preview state: rebuilding');
-    cy.wait(refreshDelay);
-    cy.contains('a', 'Gatsby Preview state: idle');
+
+    // Give it few seconds to receive the status.
+    cy.wait(3_000);
+    cy.contains('a', 'Gatsby is building');
+
+    cy.wait(rebuildDelay);
+    cy.contains('a', 'Gatsby is ready');
   });
 });

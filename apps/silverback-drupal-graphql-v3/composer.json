@@ -27,6 +27,7 @@
         "drupal/core-composer-scaffold": "^8.8",
         "drupal/core-project-message": "^8.8",
         "drupal/core-recommended": "^8.8",
+        "drupal/gatsby_build_monitor": "dev-reverse-build-status-check",
         "drupal/graphql": "^3.1"
     },
     "conflict": {

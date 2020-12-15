@@ -1,4 +1,4 @@
-import { drupalNodeOpUrl, siteUrl } from './constants';
+import { drupalNodeOpUrl, rebuildDelay, siteUrl } from './constants';
 
 describe('Test Gatsby Site', () => {
   it('checks if pre-created content is there', () => {
@@ -10,7 +10,6 @@ describe('Test Gatsby Site', () => {
 
   it('creates unpublished content, then publishes it, then unpublishes it again', () => {
     const title = 'It will blink';
-    const rebuildDelay = 20_000;
 
     cy.request('POST', drupalNodeOpUrl, {
       op: 'create',
