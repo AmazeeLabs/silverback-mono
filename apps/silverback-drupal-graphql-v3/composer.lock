@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b279d9a8574a15bb13d31b016f53c75c",
+    "content-hash": "c3fffe3e40004ccf6838c39e1112e59f",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -77,16 +77,17 @@
         },
         {
             "name": "amazeelabs/silverback-cli",
-            "version": "dev-development",
+            "version": "dev-reverse-build-status-check",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback-cli",
-                "reference": "55400abd89ee47dbdd1fce8b1f5d837d5db41588"
+                "reference": "4b046926555e38c1e309941c900ebf6e0ad999de"
             },
             "require": {
                 "alchemy/zippy": "dev-master",
                 "cweagans/composer-patches": "^1.7.0",
                 "drush/drush": "^10.3.6",
+                "ext-json": "*",
                 "ext-zip": "*",
                 "vlucas/phpdotenv": "^5.2"
             },
