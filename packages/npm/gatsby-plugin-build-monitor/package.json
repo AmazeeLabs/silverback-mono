@@ -1,10 +1,10 @@
 {
   "name": "gatsby-plugin-build-monitor",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "homepage": "https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/npm/gatsby-plugin-build-monitor#readme",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/AmazeeLabs/silverback-mono.git",
+    "type": "git",
+    "url": "https://github.com/AmazeeLabs/silverback-mono.git",
     "directory": "packages/npm/gatsby-plugin-build-monitor"
   },
   "main": "index.js",
