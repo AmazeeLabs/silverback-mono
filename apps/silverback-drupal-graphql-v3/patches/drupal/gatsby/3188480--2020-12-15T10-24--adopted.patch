@@ -1,0 +1,34 @@
+diff --git a/src/GatsbyPreview.php b/src/GatsbyPreview.php
+index 8afc234..3521696 100644
+--- a/src/GatsbyPreview.php
++++ b/src/GatsbyPreview.php
+@@ -2,12 +2,12 @@
+ 
+ namespace Drupal\gatsby;
+ 
++use Drupal\Core\Entity\EntityPublishedInterface;
+ use GuzzleHttp\ClientInterface;
+ use GuzzleHttp\Exception\ConnectException;
+ use GuzzleHttp\Exception\ServerException;
+ use Drupal\Core\Config\ConfigFactoryInterface;
+ use Drupal\Core\Entity\ContentEntityInterface;
+-use Drupal\node\NodeInterface;
+ use Drupal\Core\Entity\EntityTypeManagerInterface;
+ use Drupal\Core\Logger\LoggerChannelFactoryInterface;
+ 
+@@ -88,7 +88,14 @@ class GatsbyPreview {
+     }
+ 
+     $build_published = $this->config->get('build_published');
+-    if (!$build_published || ($entity instanceof NodeInterface && $entity->isPublished())) {
++    $entity_is_published = $entity instanceof EntityPublishedInterface &&
++      $entity->isPublished();
++    $entity_will_be_unpublished = $entity instanceof EntityPublishedInterface &&
++      !$entity->isPublished() &&
++      isset($entity->original) &&
++      $entity->original instanceof EntityPublishedInterface &&
++      $entity->original->isPublished();
++    if (!$build_published || $entity_is_published || $entity_will_be_unpublished) {
+       self::$updateData['incrementalbuild'] = [
+         'url' => $incrementalbuild_url,
+         'json' => FALSE,

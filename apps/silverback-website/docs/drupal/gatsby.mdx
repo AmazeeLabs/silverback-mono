@@ -43,13 +43,12 @@ Follow the links to get more technical details.
 
 - [apps/silverback-drupal-graphql-v3](https://github.com/AmazeeLabs/silverback-mono/tree/development/apps/silverback-drupal-graphql-v3)
   - Uses Drupal's GraphQL v3 module.
-  - Uses a custom silverback_gatsby module to ping Gatsby Preview refresh and
+  - Uses Drupal's Gatsby module to ping Gatsby Preview refresh and
     Gatsby Site rebuild.
 - [apps/silverback-gatsby](https://github.com/AmazeeLabs/silverback-mono/tree/development/apps/silverback-gatsby)
   - Uses gatsby-graphql-toolkit to
     - transform Drupal's GraphQL schema into Gatsby's GraphQL schema
     - fetch content (and content changes) from Drupal
-  - Exposes `{gatsbyPreviewUrl}/__is_refreshing` endpoint for Drupal.
 
 ### Gatsby Preview
 
@@ -122,7 +121,7 @@ To run Gatsby (from `apps/silverback-gatsby`):
   - Visit [http://localhost:9000/](http://localhost:9000/)
 
 It is not possible to run Gatsby Preview and Gatsby Site in parallel from the
-same directory because they use the same `.cache`. Bur if you really want to
+same directory because they use the same `.cache`. But if you really want to
 make them work together:
 
 - Get a separate clone of silverback-mono.

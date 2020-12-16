@@ -27,6 +27,7 @@
         "drupal/core-composer-scaffold": "^8.8",
         "drupal/core-project-message": "^8.8",
         "drupal/core-recommended": "^8.8",
+        "drupal/gatsby": "^1.0@RC",
         "drupal/gatsby_build_monitor": "@dev",
         "drupal/graphql": "^3.1"
     },
@@ -96,6 +97,9 @@
         "patches": {
             "drupal/graphql": {
                 "https://github.com/drupal-graphql/graphql/pull/1125": "patches/drupal/graphql/fix-drush-site-install.diff"
+            },
+            "drupal/gatsby": {
+                "Build on unpublishing": "patches/drupal/gatsby/3188480--2020-12-15T10-24--adopted.patch"
             }
         },
         "merge-plugin": {
