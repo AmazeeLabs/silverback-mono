@@ -1,24 +1,27 @@
 # Gatsby Build Monitor
 
-Receives status from [gatsby-plugin-build-monitor](../../../npm/gatsby-plugin-build-monitor) and displays it in the Toolbar.
+Receives status from [gatsby-plugin-build-monitor](https://www.npmjs.com/package/gatsby-plugin-build-monitor) and displays it in the Toolbar.
 
 ## Setup
 
-Install the module as usual.
+Install the module.
 
-To generate a token:
+Generate a token:
+
 ```
 drush eval 'var_dump(\Drupal\Component\Utility\Crypt::randomBytesBase64());'
 ```
 
-To set the token:
+Set the token:
+
 ```
-drush cset gatsby_build_monitor.settings token {the-token}
+drush cset gatsby_build_monitor.settings token '{the-token}'
 ```
 
-To set the Gatsby site URL (to be used in the Toolbar):
+Set the Gatsby site URL (to be used in the Toolbar):
+
 ```
-drush cset gatsby_build_monitor.settings site_url {the-url}
+drush cset gatsby_build_monitor.settings site_url '{the-url}'
 ```
 
 ## Tests
