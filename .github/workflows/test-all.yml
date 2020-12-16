@@ -1,0 +1,57 @@
+name: Test All
+on:
+  pull_request:
+    branches:
+      - test-all/**
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Git mail
+        run: git config --global user.email "kitt@amazee.com"
+
+      - name: Git username
+        run: git config --global user.name "K.I.T.T."
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Get Yarn cache directory
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Get Yarn version hash
+        id: yarn-version
+        run: echo "::set-output name=hash::$(yarn --version | shasum | cut -d' ' -f1)"
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer global config cache-files-dir)"
+      - name: Get Composer version hash
+        id: composer-version
+        run: |
+          echo "::set-output name=hash::$(composer --version | shasum | cut -d' ' -f1)"
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-dependencies
+        with:
+          path: |
+            ${{ steps.yarn-cache.outputs.dir }}
+            ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash }}-composer-${{ steps.composer-version.outputs.hash }}-github_run_id-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash }}-composer-${{ steps.composer-version.outputs.hash }}-
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run all tests
+        run: yarn lerna run test
