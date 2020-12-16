@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b926adaf1521df2b1a2404047859c533",
+    "content-hash": "298b24c0e4e7245d26a296ff37f6fdbe",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -77,7 +77,7 @@
         },
         {
             "name": "amazeelabs/silverback-cli",
-            "version": "dev-reverse-build-status-check",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback-cli",
@@ -2400,8 +2400,68 @@
             "time": "2020-11-05T16:34:55+00:00"
         },
         {
+            "name": "drupal/gatsby",
+            "version": "1.0.0-rc3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/gatsby.git",
+                "reference": "8.x-1.0-rc3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/gatsby-8.x-1.0-rc3.zip",
+                "reference": "8.x-1.0-rc3",
+                "shasum": "dcb718f2a996861558103eee803609ed771f7aae"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "require-dev": {
+                "drupal/gatsby_instantpreview": "*",
+                "drupal/jsonapi_extras": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0-rc3",
+                    "datestamp": "1600111988",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "codekarate",
+                    "homepage": "https://www.drupal.org/user/506260"
+                },
+                {
+                    "name": "johnnybgoode",
+                    "homepage": "https://www.drupal.org/user/980926"
+                },
+                {
+                    "name": "mrjmd",
+                    "homepage": "https://www.drupal.org/user/1800446"
+                }
+            ],
+            "description": "Enables Live Preview for Gatsby",
+            "homepage": "https://www.drupal.org/project/gatsby",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/gatsby",
+                "issues": "https://www.drupal.org/project/issues/gatsby"
+            }
+        },
+        {
             "name": "drupal/gatsby_build_monitor",
-            "version": "dev-reverse-build-status-check",
+            "version": "dev-development",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/gatsby_build_monitor",
@@ -6848,6 +6908,7 @@
     "stability-flags": {
         "amazeelabs/silverback-cli": 20,
         "drupal/content_sync": 20,
+        "drupal/gatsby": 5,
         "drupal/gatsby_build_monitor": 20
     },
     "prefer-stable": true,
