@@ -3,9 +3,6 @@
   "version": "1.3.12",
   "private": true,
   "license": "MIT",
-  "scripts": {
-    "prepare": "composer install -vvv"
-  },
   "dependencies": {
     "@-amazeelabs/silverback-cli": "^2.0.1"
   }
