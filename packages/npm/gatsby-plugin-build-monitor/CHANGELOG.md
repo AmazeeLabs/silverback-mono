@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/AmazeeLabs/silverback-mono/compare/gatsby-plugin-build-monitor@1.0.5...gatsby-plugin-build-monitor@1.0.6) (2020-12-16)
+
+
+### Bug Fixes
+
+* do not crash if env vars are not set ([a68f9e1](https://github.com/AmazeeLabs/silverback-mono/commit/a68f9e1997e507909fa33d52353d75251ec92115))
+
+
+
+
+
 ## [1.0.5](https://github.com/AmazeeLabs/silverback-mono/compare/gatsby-plugin-build-monitor@1.0.4...gatsby-plugin-build-monitor@1.0.5) (2020-12-15)
 
 
