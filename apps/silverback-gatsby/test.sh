@@ -17,6 +17,7 @@ function setup_drupal {
   cd ../silverback-drupal-graphql-v3
   source .envrc
 
+  composer install
   vendor/bin/silverback teardown
   vendor/bin/silverback setup
   vendor/bin/drush -y content-sync:import
