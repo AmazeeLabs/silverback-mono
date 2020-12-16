@@ -19,6 +19,14 @@ jobs:
         with:
           node-version: 12
 
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          # We can upgrade to PHP 8 when
+          # - https://github.com/mglaman/phpstan-drupal supports it
+          # - apps/silverback-drupal-graphql-v3 is switched to Drupal 9
+          php-version: '7.4'
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
