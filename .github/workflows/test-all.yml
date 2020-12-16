@@ -1,6 +1,6 @@
 name: Test All
 on:
-  pull_request:
+  push:
     branches:
       - test-all/**
 jobs:
