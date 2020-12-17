@@ -3,6 +3,7 @@ COPY composer.json composer.lock /app/
 COPY patches /app/patches
 
 # Require published versions of locally developed packages.
+RUN apt-get install jq
 RUN jq 'del(.repositories[0])' composer.json > composer.tmp && mv composer.tmp composer.json
 RUN composer require drupal/gatsby_build_monitor
 
