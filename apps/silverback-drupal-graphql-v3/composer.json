@@ -19,6 +19,7 @@
         }
     ],
     "require": {
+        "amazeelabs/silverback-cli": "@dev",
         "composer/installers": "^1.2",
         "drupal/admin_toolbar": "^2.4",
         "drupal/content_sync": "2.x-dev",
@@ -113,8 +114,5 @@
             "if [ -d web/modules/custom ]; then phpunit web/modules/custom; fi",
             "yarn install && CYPRESS_TAGS=@COMPLETED cypress run"
         ]
-    },
-    "require-dev": {
-        "amazeelabs/silverback-cli": "@dev"
     }
 }

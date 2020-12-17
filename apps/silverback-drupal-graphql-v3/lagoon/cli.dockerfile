@@ -7,7 +7,7 @@ RUN composer selfupdate --2
 # Require published versions of locally developed packages.
 RUN apk add --no-cache jq
 RUN jq 'del(.repositories[0])' composer.json > composer.tmp && mv composer.tmp composer.json
-RUN composer require drupal/gatsby_build_monitor
+RUN composer require drupal/gatsby_build_monitor amazeelabs/silverback-cli
 
 RUN composer install --prefer-dist --no-dev --no-suggest --optimize-autoloader --apcu-autoloader
 COPY . /app
