@@ -170,6 +170,6 @@ if (file_exists($env_services)) {
 }
 
 // Gatsby overrides for Lagoon env.
-$config['gatsby.settings']['server_url'] = 'https://webhook.gatsbyjs.com/hooks/data_source/ac2dff6d-1e55-41dc-9c9b-4aa78d5f9cdc';
+$config['gatsby.settings']['server_url'] = 'https://preview-silverbackgatsby.gtsb.io';
 $config['gatsby.settings']['incrementalbuild_url'] = 'https://webhook.gatsbyjs.com/hooks/data_source/publish/ac2dff6d-1e55-41dc-9c9b-4aa78d5f9cdc';
 $config['gatsby_build_monitor.settings']['site_url'] = 'https://silverbackgatsby.gtsb.io/';
