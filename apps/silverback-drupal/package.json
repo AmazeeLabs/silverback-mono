@@ -1,13 +1,13 @@
 {
   "name": "silverback-drupal",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "license": "MIT",
   "private": true,
   "scripts": {
     "test": "composer install && bash vendor/bin/silverback-test"
   },
   "dependencies": {
-    "@-amazeelabs/silverback-cli": "^2.0.1",
+    "@-amazeelabs/silverback-cli": "^2.1.0",
     "@-drupal/cypress": "^2.1.15"
   }
 }
