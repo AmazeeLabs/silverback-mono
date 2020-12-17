@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.20](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal-graphql-v3@1.3.19...@-amazeelabs/silverback-drupal-graphql-v3@1.3.20) (2020-12-17)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal-graphql-v3
+
+
+
+
+
 ## [1.3.19](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal-graphql-v3@1.3.18...@-amazeelabs/silverback-drupal-graphql-v3@1.3.19) (2020-12-17)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal-graphql-v3
