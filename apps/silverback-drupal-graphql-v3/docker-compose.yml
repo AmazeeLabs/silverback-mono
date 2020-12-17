@@ -21,8 +21,8 @@ x-environment: &default-environment
 services:
   cli: # cli container, will be used for executing composer and any local commands (drush, drupal, etc.)
     build:
-      context: .
-      dockerfile: lagoon/cli.dockerfile
+      context: ../../
+      dockerfile: apps/silverback-drupal-graphql-v3/lagoon/cli.dockerfile
     image: *lagoon-project # this image will be reused as `CLI_IMAGE` in subsequent Docker builds
     labels:
       # Lagoon Labels
