@@ -28,6 +28,7 @@
         "drupal/core-recommended",
         "drupal/core-composer-scaffold",
         "drupal/core-project-message",
+        "drupal/core",
         // Also, we need GraphQL module at version 3.
         "drupal/graphql"
       ],
