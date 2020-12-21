@@ -27,7 +27,8 @@
         "drupal/core-project-message": "^9",
         "drupal/core-recommended": "^9",
         "drupal/cypress": "@dev",
-        "drupal/cypress-dev": "@dev"
+        "drupal/cypress-dev": "@dev",
+        "phpspec/prophecy-phpunit": "^2"
     },
     "conflict": {
         "drupal/drupal": "*"
