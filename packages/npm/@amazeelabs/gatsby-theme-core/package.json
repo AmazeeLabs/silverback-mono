@@ -16,7 +16,7 @@
     "gatsby-plugin-react-helmet": "^3.3.10",
     "postcss": "^8.1.10",
     "postcss-discard-comments": "^4.0.2",
-    "postcss-import": "^13.0.0",
+    "postcss-import": "^14.0.0",
     "postcss-preset-env": "^6.7.0",
     "react-helmet": "^6.1.0",
     "tailwindcss": "^2.0.0"
