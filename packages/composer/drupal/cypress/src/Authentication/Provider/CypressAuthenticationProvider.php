@@ -69,6 +69,7 @@ class CypressAuthenticationProvider implements AuthenticationProviderInterface, 
     if ($username) {
       // Do not use the entity query to prevent a tricky issue with workspaces.
       // See https://github.com/AmazeeLabs/silverback-mono/issues/545
+      // @phpstan-ignore-next-line
       $uid = \Drupal::database()
         ->select('users_field_data', 'u')
         ->fields('u', ['uid'])
