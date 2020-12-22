@@ -21,6 +21,7 @@
     "require": {
         "amazeelabs/silverback-cli": "@dev",
         "composer/installers": "^1.2",
+        "cweagans/composer-patches": "^1.7",
         "drupal/admin_toolbar": "^2.4",
         "drupal/content_sync": "2.x-dev",
         "drupal/core": "^8.0",
