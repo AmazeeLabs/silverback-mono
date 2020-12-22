@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@2.1.0...@-amazeelabs/silverback-cli@2.2.0) (2020-12-22)
+
+
+### Features
+
+* bring back composer-patches plugin ([32f3f83](https://github.com/AmazeeLabs/silverback-mono/commit/32f3f83f8e2e588adaf3e9ca06dcb403fc8983c2))
+
+
+
+
+
 # [2.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@2.0.1...@-amazeelabs/silverback-cli@2.1.0) (2020-12-17)
 
 
