@@ -30,11 +30,9 @@
         "drupal/core-project-message",
         "drupal/core",
         // Also, we need GraphQL module at version 3.
-        "drupal/graphql"
+        "drupal/graphql",
       ],
-      major: {
-        enabled: false,
-      },
+      updateTypes: ["minor", "patch", "digest"]
     }
   ],
   rangeStrategy: "replace",
