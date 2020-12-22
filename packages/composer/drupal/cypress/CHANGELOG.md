@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.16](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.1.15...@-drupal/cypress@2.1.16) (2020-12-22)
+
+
+### Bug Fixes
+
+* let browserify know node_modules location ([a7150b5](https://github.com/AmazeeLabs/silverback-mono/commit/a7150b58a3fbb0e26409bff671751ae46277f5c6)), closes [/github.com/cypress-io/code-coverage/issues/299#issuecomment-748933046](https://github.com//github.com/cypress-io/code-coverage/issues/299/issues/issuecomment-748933046)
+* make it work after SA-CORE-2020-008 ([d53511e](https://github.com/AmazeeLabs/silverback-mono/commit/d53511e97743d0a401947b165058a75fb83ce5be)), closes [#545](https://github.com/AmazeeLabs/silverback-mono/issues/545)
+* make phpstan happy ([1d50724](https://github.com/AmazeeLabs/silverback-mono/commit/1d507243d48717d8ca649954fb13b7dc64d9ded0))
+
+
+
+
+
 ## [2.1.15](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.1.14...@-drupal/cypress@2.1.15) (2020-12-16)
 
 **Note:** Version bump only for package @-drupal/cypress

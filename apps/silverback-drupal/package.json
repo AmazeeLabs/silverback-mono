@@ -1,6 +1,6 @@
 {
   "name": "silverback-drupal",
-  "version": "1.0.34",
+  "version": "1.0.35",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -8,6 +8,6 @@
   },
   "dependencies": {
     "@-amazeelabs/silverback-cli": "^2.2.0",
-    "@-drupal/cypress": "^2.1.15"
+    "@-drupal/cypress": "^2.1.16"
   }
 }

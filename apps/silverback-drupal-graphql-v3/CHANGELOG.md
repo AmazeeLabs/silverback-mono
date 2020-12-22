@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.26](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal-graphql-v3@1.3.25...@-amazeelabs/silverback-drupal-graphql-v3@1.3.26) (2020-12-22)
+
+
+### Bug Fixes
+
+* add composer-patches plugin ([a4a4fca](https://github.com/AmazeeLabs/silverback-mono/commit/a4a4fca3541f8a77922447055d24099830cb138f)), closes [#546](https://github.com/AmazeeLabs/silverback-mono/issues/546)
+
+
+
+
+
 ## [1.3.25](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal-graphql-v3@1.3.24...@-amazeelabs/silverback-drupal-graphql-v3@1.3.25) (2020-12-22)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal-graphql-v3
