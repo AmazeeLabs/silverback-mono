@@ -37,6 +37,19 @@
   ],
   rangeStrategy: "replace",
   groupName: "all",
-  schedule: ["before 5am on monday"],
-  lockFileMaintenance: { enabled: true },
+  // Regular updates go first.
+  schedule: ["before 3am on monday"],
+  // Lock File Maintenance goes next.
+  //   Note: We keep the Lock File Maintenance separate from the updates.
+  //   Because, if we merge them, the list of updated packages in the PR will be
+  //   incomplete. (Renovate only reports packages which are defined in
+  //   package.json/composer.json files. Dependencies of dependencies, which are
+  //   stored in the lock files, are not listed.)
+  lockFileMaintenance: {
+    enabled: true,
+    schedule: ["before 5am on monday"],
+    branchPrefix: "test-all/renovate/",
+    // TODO: if "test-all/" works well and all tests are executed in the
+    //  lock-file-maintenance PR, add "automerge: true" here.
+  },
 }
