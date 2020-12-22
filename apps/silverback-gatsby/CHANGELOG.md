@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.8.36...silverback-gastby@0.9.0) (2020-12-22)
+
+
+### Features
+
+* **apps/silverback-gatsby:** update favicon ([4910e92](https://github.com/AmazeeLabs/silverback-mono/commit/4910e9286cdfe60136ca9f545ba4fde7bc3295a9))
+
+
+
+
+
 ## [0.8.36](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.8.35...silverback-gastby@0.8.36) (2020-12-22)
 
 **Note:** Version bump only for package silverback-gastby
