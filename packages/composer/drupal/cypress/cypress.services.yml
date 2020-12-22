@@ -79,7 +79,7 @@ services:
       - { name: workspace_negotiator, priority: 9999 }
   cypress.authentication.development:
     class: Drupal\cypress\Authentication\Provider\CypressAuthenticationProvider
-    arguments: ['@entity_type.manager', '@session']
+    arguments: ['@entity_type.manager', '@session', '@event_dispatcher']
     tags:
       - { name: authentication_provider, provider_id: 'cypress', priority: 999 }
 
