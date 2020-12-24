@@ -20,8 +20,9 @@ sed -i 's|"dependencies":|"workspaces": { "nohoist": ["**"] }, "dependencies":|g
 # var.
 (CYPRESS_INSTALL_BINARY=0 yarn) && \
 # Find all linked node_modules and dereference them so that there are no broken
-# symlinks in the next container. (Don't use `cp -rL` because then it also
-# dereferences node_modules/.bin/* and thus breaks them.)
+# symlinks in the next container. (Don't use
+# `cp -rL /app/apps/silverback-gatsby /tmp/silverback-gatsby` because then it
+# also dereferences node_modules/.bin/* and thus breaks them.)
 cd /app/apps/silverback-gatsby/node_modules && \
 for f in $(find . -maxdepth 1 -type l); do l=$(readlink -f $f) && rm $f && cp -rf $l $f; done && \
 cd - && \
