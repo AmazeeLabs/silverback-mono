@@ -42,8 +42,5 @@ ENV GATSBY_PLUGIN_BUILD_MONITOR_ENDPOINT=https://nginx-silverback-gatsby-develop
 ENV GATSBY_PLUGIN_BUILD_MONITOR_TOKEN=zbryaiSF9xjfNrVEu9RSqxt5QqfeQp6FJB5TKTQg950
 ENV DRUPAL_PREVIEW_USER_CREDENTIALS=GatsbyPreview:GatsbyPreview
 
-EXPOSE 8000
-ENV LAGOON_LOCALDEV_HTTP_PORT=8000
-
 # The 0.0.0.0 host is the key thing to run Gatsby on Lagoon.
-CMD ["yarn", "develop", "--host", "0.0.0.0"]
+CMD ["yarn", "develop", "--host", "0.0.0.0", "--port", "3000"]
