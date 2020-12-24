@@ -29,6 +29,9 @@ cd - && \
 mv /app/apps/silverback-gatsby /tmp/silverback-gatsby && \
 rm -rf /app
 
+# Wake up the Drupal container in case if it sleeps.
+RUN wget https://nginx-silverback-gatsby-development.ch.amazee.io
+
 FROM amazeeio/node:14
 COPY --from=builder /tmp/silverback-gatsby /app
 
