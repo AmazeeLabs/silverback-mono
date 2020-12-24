@@ -10,7 +10,7 @@ RUN apk add --no-cache autoconf automake libtool nasm
 COPY lerna.json package.json yarn.lock /app/
 COPY apps /app/apps
 COPY packages /app/packages
-RUN set -e && \
+RUN set -x && \
 # Avoid the target workspace dependencies to land in the root node_modules.
 sed -i 's|"dependencies":|"workspaces": { "nohoist": ["**"] }, "dependencies":|g' apps/silverback-gatsby/package.json && \
 # Run `yarn install` twice to workaround https://github.com/yarnpkg/yarn/issues/6988
