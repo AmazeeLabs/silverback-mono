@@ -21,7 +21,8 @@
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "tsconfig-paths-webpack-plugin": "^3.3.0",
-    "typescript": "^4.0.5"
+    "typescript": "^4.0.5",
+    "zip-lib": "^0.7.2"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config-react": "^1.1.2",
@@ -51,7 +52,8 @@
     "develop": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "serve-with-fast-builds": "ts-node serve-with-fast-builds.ts",
+    "fast-builds:local": "ts-node fast-builds--local.ts",
+    "fast-builds:netlify": "ts-node fast-builds--netlify.ts",
     "update-schema": "GATSBY_UPDATE_SCHEMA_SNAPSHOT=true gatsby build",
     "codegen": "graphql-codegen --config codegen.yml",
     "test:ci": "./test.sh && jest",
