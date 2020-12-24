@@ -126,7 +126,26 @@ services:
       - amazeeio-network
       - default
     labels:
-      lagoon.type: node
+      # Preserve Gatsby data between deployments.
+      lagoon.type: node-persistent
+      lagoon.persistent: /app/.cache/
+      lagoon.persistent.class: bulk
+
+  gatsby-site:
+    build:
+      context: ../..
+      dockerfile: apps/silverback-gatsby/lagoon/gatsby-site.dockerfile
+    environment:
+      <<: *default-environment
+      LAGOON_LOCALDEV_URL: site.silverback-gatsby.docker.amazee.io
+    networks:
+      - amazeeio-network
+      - default
+    labels:
+      # Preserve Gatsby data between deployments.
+      lagoon.type: node-persistent
+      lagoon.persistent: /app/.cache/
+      lagoon.persistent.class: bulk
 
 networks:
   amazeeio-network:
