@@ -2,7 +2,7 @@ version: "2.3"
 
 x-lagoon-project:
   # Lagoon project name (leave `&lagoon-project` when you edit this)
-  &lagoon-project silverback-gatsby-drupal-backend
+  &lagoon-project silverback-gatsby
 
 x-volumes:
   &default-volumes # Define all volumes you would like to have real-time mounted into the docker containers
@@ -12,7 +12,7 @@ x-volumes:
 x-environment: &default-environment
   LAGOON_PROJECT: *lagoon-project
   # Route that should be used locally
-  LAGOON_ROUTE: http://silverback-gatsby-drupal-backend.docker.amazee.io
+  LAGOON_ROUTE: http://silverback-gatsby.docker.amazee.io
   # Uncomment if you like to have the system behave like in production
   #LAGOON_ENVIRONMENT_TYPE: production
   # Uncomment to enable xdebug and then restart via `docker-compose up -d`
@@ -37,7 +37,7 @@ services:
     ports:
       - "1234" # exposes the port 1234 with a random local port, find it with `docker-compose port cli 1234`
     extra_hosts:
-      - "silverback-gatsby-drupal-backend.docker.amazee.io:172.17.0.1"
+      - "silverback-gatsby.docker.amazee.io:172.17.0.1"
 
   nginx:
     build:
@@ -53,7 +53,7 @@ services:
       - cli # basically just tells docker-compose to build the cli first
     environment:
       <<: *default-environment # loads the defined environment variables from the top
-      LAGOON_LOCALDEV_URL: nginx.silverback-gatsby-drupal-backend.docker.amazee.io # generate another route for nginx, by default we go to varnish
+      LAGOON_LOCALDEV_URL: nginx.silverback-gatsby.docker.amazee.io # generate another route for nginx, by default we go to varnish
     networks:
       - amazeeio-network
       - default
@@ -110,9 +110,23 @@ services:
     environment:
       <<: *default-environment
       VARNISH_BYPASS: "true" # by default we bypass varnish, change to 'false' or remove in order to tell varnish to cache if possible
+      LAGOON_LOCALDEV_URL: varnish.silverback-gatsby.docker.amazee.io
     networks:
       - amazeeio-network
       - default
+
+  gatsby-preview:
+    build:
+      context: ../..
+      dockerfile: apps/silverback-gatsby/lagoon/gatsby-preview.dockerfile
+    environment:
+      << : *default-environment
+      LAGOON_LOCALDEV_URL: preview.silverback-gatsby.docker.amazee.io
+    networks:
+      - amazeeio-network
+      - default
+    labels:
+      lagoon.type: node
 
 networks:
   amazeeio-network:
