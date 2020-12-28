@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ff37c11e86498955ec648bd9123f495",
+    "content-hash": "c06572c3e7ae3822456a480d37d96da2",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -81,10 +81,11 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback-cli",
-                "reference": "b590b5e8fd72e59c24f7c8db4afdcc3afa9bc789"
+                "reference": "b139a094aa2d5c012102a88c582d5055498e45a3"
             },
             "require": {
                 "alchemy/zippy": "dev-master",
+                "cweagans/composer-patches": "^1.7.0",
                 "drush/drush": "^10.3.6",
                 "ext-json": "*",
                 "ext-zip": "*",
@@ -2506,6 +2507,10 @@
                 {
                     "name": "fubhy",
                     "homepage": "https://www.drupal.org/user/761344"
+                },
+                {
+                    "name": "hideaway",
+                    "homepage": "https://www.drupal.org/user/741876"
                 },
                 {
                     "name": "joaogarin",
