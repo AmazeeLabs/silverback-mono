@@ -32,7 +32,8 @@
         // Also, we need GraphQL module at version 3.
         "drupal/graphql",
       ],
-      updateTypes: ["minor", "patch", "digest"]
+      updateTypes: ["major"],
+      enabled: false,
     }
   ],
   rangeStrategy: "replace",
