@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - field.field.node.article.body
+    - field.field.node.article.field_image
     - field.field.node.article.field_tags
     - node.type.article
   module:
+    - media_library
     - text
 id: node.article.default
 targetEntityType: node
@@ -29,6 +31,13 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_image:
+    type: media_library_widget
+    weight: 123
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+    region: content
   field_tags:
     weight: 122
     settings:

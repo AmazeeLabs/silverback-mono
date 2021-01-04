@@ -13,3 +13,4 @@ permissions:
   - 'bypass graphql field security'
   - 'execute graphql requests'
   - 'execute persisted graphql requests'
+  - 'view media'
