@@ -50,7 +50,6 @@
     enabled: true,
     schedule: ["before 5am on monday"],
     branchPrefix: "test-all/renovate/",
-    // TODO: if "test-all/" works well and all tests are executed in the
-    //  lock-file-maintenance PR, add "automerge: true" here.
+    automerge: true,
   },
 }
