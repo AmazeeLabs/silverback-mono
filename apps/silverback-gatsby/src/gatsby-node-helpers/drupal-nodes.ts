@@ -43,4 +43,16 @@ export const drupalNodes: DrupalEntityType[] = [
     },
     bundles: [{ bundle: 'tags', graphQlType: 'TaxonomyTermTags' }],
   },
+  // Media images.
+  {
+    drupalFields: {
+      id: 'mid',
+      bundle: 'bundle',
+    },
+    graphQlFields: {
+      query: 'mediaQuery',
+      getById: 'mediaById',
+    },
+    bundles: [{ bundle: 'image', graphQlType: 'MediaImage' }],
+  },
 ];

@@ -52,6 +52,28 @@ export const createPages: GatsbyNode['createPages'] = async ({
               }
             }
           }
+          fieldImage {
+            entity {
+              ... on DrupalMediaImage {
+                fieldMediaImage {
+                  alt
+                }
+                localImage {
+                  childImageSharp {
+                    fluid(maxWidth: 1920, maxHeight: 1080) {
+                      base64
+                      aspectRatio
+                      src
+                      srcSet
+                      srcWebp
+                      srcSetWebp
+                      sizes
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

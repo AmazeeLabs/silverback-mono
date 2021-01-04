@@ -2,6 +2,7 @@ server_url: 'http://localhost:8000'
 incrementalbuild_url: 'http://localhost:9001/__rebuild'
 build_published: 1
 preview_entity_types:
+  media: media
   node: node
   taxonomy_term: taxonomy_term
   file: 0

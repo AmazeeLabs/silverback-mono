@@ -87,7 +87,6 @@ cd apps/silverback-drupal-graphql-v3
 direnv allow
 composer install
 silverback setup
-drush -y cim
 drush -y content-sync:import # Ignore the errors.
 
 cd ../..

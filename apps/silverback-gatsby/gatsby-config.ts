@@ -36,5 +36,14 @@ export const plugins = [
       update: process.env.GATSBY_UPDATE_SCHEMA_SNAPSHOT,
     },
   },
+  {
+    resolve: `gatsby-plugin-remote-images`,
+    options: {
+      nodeType: 'DrupalMediaImage',
+      imagePath: 'fieldMediaImage.url',
+    },
+  },
+  'gatsby-transformer-sharp',
+  'gatsby-plugin-sharp',
   'gatsby-plugin-build-monitor',
 ];

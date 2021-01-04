@@ -14,6 +14,9 @@ module:
   gatsby_build_monitor: 0
   graphql: 0
   graphql_core: 0
+  image: 0
+  media: 0
+  media_library: 0
   node: 0
   page_cache: 0
   path_alias: 0
@@ -24,6 +27,7 @@ module:
   text: 0
   toolbar: 0
   user: 0
+  views: 10
   gatsby: 100
   minimal: 1000
 theme:
