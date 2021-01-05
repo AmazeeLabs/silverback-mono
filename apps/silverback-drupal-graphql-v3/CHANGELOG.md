@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal-graphql-v3@1.3.29...@-amazeelabs/silverback-drupal-graphql-v3@1.4.0) (2021-01-05)
+
+
+### Features
+
+* media image support for the prototype ([e472840](https://github.com/AmazeeLabs/silverback-mono/commit/e472840d04a84e7031f56bb5657a7be4e8a5e142))
+
+
+
+
+
 ## [1.3.29](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal-graphql-v3@1.3.28...@-amazeelabs/silverback-drupal-graphql-v3@1.3.29) (2020-12-28)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal-graphql-v3

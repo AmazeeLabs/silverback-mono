@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.9.5...silverback-gastby@0.10.0) (2021-01-05)
+
+
+### Features
+
+* media image support for the prototype ([e472840](https://github.com/AmazeeLabs/silverback-mono/commit/e472840d04a84e7031f56bb5657a7be4e8a5e142))
+
+
+
+
+
 ## [0.9.5](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.9.4...silverback-gastby@0.9.5) (2020-12-28)
 
 **Note:** Version bump only for package silverback-gastby
