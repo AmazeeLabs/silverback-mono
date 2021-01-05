@@ -19,6 +19,10 @@ The app is set up with [Amazee Gatsby Starter](https://github.com/AmazeeLabs/gat
 
 - [createPaginationAdapter](./src/gatsby-node-helpers/create-pagination-adapter.ts) tells to the toolkit how to paginate Drupal's GraphQL queries.
 
+## Drupal media support
+
+[gatsby-plugin-remote-images](https://www.gatsbyjs.com/plugins/gatsby-plugin-remote-images/) downloads Drupal media image files and adds `DrupalMediaImage.localImage` field to the schema. See the plugin configuration in [gatsby-config.ts](./gatsby-config.ts).
+
 ## Tests
 
 See [test.sh](./test.sh) and [cypress/integration](./cypress/integration).
