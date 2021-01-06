@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.10.0...silverback-gastby@0.11.0) (2021-01-06)
+
+
+### Features
+
+* support for images coming from WYSIWYG ([b5a0b76](https://github.com/AmazeeLabs/silverback-mono/commit/b5a0b76adc065f9489dbb99bd8645fc739b1b002))
+
+
+
+
+
 # [0.10.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.9.5...silverback-gastby@0.10.0) (2021-01-05)
 
 

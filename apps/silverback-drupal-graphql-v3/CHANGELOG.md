@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal-graphql-v3@1.4.0...@-amazeelabs/silverback-drupal-graphql-v3@1.5.0) (2021-01-06)
+
+
+### Features
+
+* support for images coming from WYSIWYG ([b5a0b76](https://github.com/AmazeeLabs/silverback-mono/commit/b5a0b76adc065f9489dbb99bd8645fc739b1b002))
+
+
+
+
+
 # [1.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal-graphql-v3@1.3.29...@-amazeelabs/silverback-drupal-graphql-v3@1.4.0) (2021-01-05)
 
 
