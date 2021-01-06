@@ -30,7 +30,8 @@
         "drupal/core-recommended": "^8.8",
         "drupal/gatsby": "^1.0@RC",
         "drupal/gatsby_build_monitor": "@dev",
-        "drupal/graphql": "^3.1"
+        "drupal/graphql": "^3.1",
+        "drupal/rel_to_abs": "^1.2"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -101,6 +102,9 @@
             },
             "drupal/gatsby": {
                 "Build on unpublishing": "patches/drupal/gatsby/3188480--2020-12-15T10-24--adopted.patch"
+            },
+            "drupal/rel_to_abs": {
+                "Fix double slash": "patches/drupal/rel_to_abs/fix-double-slash.patch"
             }
         },
         "merge-plugin": {

@@ -1,3 +1,4 @@
+import { testImages } from './common';
 import { drupalNodeOpUrl, previewUrl, refreshDelay } from './constants';
 
 describe('Test Gatsby Preview', () => {
@@ -6,6 +7,8 @@ describe('Test Gatsby Preview', () => {
     cy.contains('a', 'With tags');
     cy.contains('a', 'With summary');
     cy.contains('a', 'Not published');
+    cy.contains('a', 'With images');
+    testImages();
   });
 
   it('creates unpublished content', () => {

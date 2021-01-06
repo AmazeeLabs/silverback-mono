@@ -4,9 +4,11 @@ module:
   basic_auth: 0
   block: 0
   breakpoint: 0
+  ckeditor: 0
   content_sync: 0
   dblog: 0
   dynamic_page_cache: 0
+  editor: 0
   field: 0
   field_ui: 0
   file: 0
@@ -20,6 +22,7 @@ module:
   node: 0
   page_cache: 0
   path_alias: 0
+  rel_to_abs: 0
   serialization: 0
   silverback_gatsby_test: 0
   system: 0

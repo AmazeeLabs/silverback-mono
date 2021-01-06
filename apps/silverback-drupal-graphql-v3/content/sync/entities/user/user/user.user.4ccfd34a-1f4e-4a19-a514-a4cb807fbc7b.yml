@@ -26,8 +26,7 @@ pass:
     value: $S$EO/8UCW39SUDpV1zXVyWE76Z0e6AtS7EW/vPE0hxai9xF7vsr4.i
     pre_hashed: true
 mail:
-  -
-    value: do-not-reply@amazee.com
+  value: do-not-reply@amazee.com
 status:
   value: '1'
 roles:

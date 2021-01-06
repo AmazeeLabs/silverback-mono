@@ -1,0 +1,39 @@
+uuid:
+  -
+    value: fd59789f-27d6-49d3-961f-8a48b5b086bd
+langcode:
+  -
+    value: en
+uid:
+  -
+    target_type: user
+    target_uuid: 0a86dac3-185c-4d10-9c2d-3a8dd8d0ac86
+filename:
+  -
+    value: image_jpg_kitten.jpg
+uri:
+  -
+    value: 'public://2021-01/image_jpg_kitten.jpg'
+    url: /sites/default/files/2021-01/image_jpg_kitten.jpg
+filemime:
+  -
+    value: image/jpeg
+filesize:
+  -
+    value: 884644
+status:
+  -
+    value: true
+created:
+  -
+    value: '2021-01-06T09:34:13+00:00'
+    format: 'Y-m-d\TH:i:sP'
+changed:
+  -
+    value: '2021-01-06T09:34:18+00:00'
+    format: 'Y-m-d\TH:i:sP'
+_content_sync:
+  entity_type: file
+  entity_dependencies:
+    user:
+      - user.user.0a86dac3-185c-4d10-9c2d-3a8dd8d0ac86

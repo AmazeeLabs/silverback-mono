@@ -3,7 +3,9 @@ langcode: en
 status: true
 dependencies:
   module:
+    - editor
     - media
+    - rel_to_abs
 name: Rich
 format: rich
 weight: 0
@@ -15,9 +17,9 @@ filters:
     weight: -50
     settings:
       default_view_mode: default
-      allowed_view_modes: {  }
       allowed_media_types:
         image: image
+      allowed_view_modes: {  }
   filter_html:
     id: filter_html
     provider: filter
@@ -31,42 +33,54 @@ filters:
     id: filter_html_image_secure
     provider: filter
     status: false
-    weight: -41
+    weight: -42
     settings: {  }
   filter_url:
     id: filter_url
     provider: filter
     status: false
-    weight: -42
+    weight: -43
     settings:
       filter_url_length: 72
   filter_autop:
     id: filter_autop
     provider: filter
     status: false
-    weight: -44
+    weight: -45
     settings: {  }
   filter_align:
     id: filter_align
     provider: filter
     status: false
-    weight: -45
+    weight: -46
     settings: {  }
   filter_caption:
     id: filter_caption
     provider: filter
     status: false
-    weight: -43
+    weight: -44
     settings: {  }
   filter_htmlcorrector:
     id: filter_htmlcorrector
     provider: filter
     status: false
-    weight: -40
+    weight: -41
     settings: {  }
   filter_html_escape:
     id: filter_html_escape
     provider: filter
     status: false
     weight: -47
+    settings: {  }
+  editor_file_reference:
+    id: editor_file_reference
+    provider: editor
+    status: false
+    weight: -40
+    settings: {  }
+  rel_to_abs:
+    id: rel_to_abs
+    provider: rel_to_abs
+    status: true
+    weight: -49
     settings: {  }
