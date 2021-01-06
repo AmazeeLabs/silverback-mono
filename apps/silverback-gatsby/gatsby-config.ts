@@ -36,6 +36,8 @@ export const plugins = [
       update: process.env.GATSBY_UPDATE_SCHEMA_SNAPSHOT,
     },
   },
+
+  // Transform Drupal media image fields into local images.
   {
     resolve: `gatsby-plugin-remote-images`,
     options: {
@@ -43,6 +45,31 @@ export const plugins = [
       imagePath: 'fieldMediaImage.url',
     },
   },
+
+  // Transform images from Drupal WYSIWYG fields into local images.
+  {
+    resolve: 'gatsby-plugin-images-from-html',
+    options: {
+      configs: [
+        {
+          nodeType: 'DrupalNodeArticle',
+          propertyPath: 'body.processed',
+        },
+        {
+          nodeType: 'DrupalNodePage',
+          propertyPath: 'fieldBody.processed',
+        },
+      ],
+    },
+  },
+  {
+    resolve: `gatsby-plugin-remote-images`,
+    options: {
+      nodeType: 'ImagesFromHtml',
+      imagePath: 'url',
+    },
+  },
+
   'gatsby-transformer-sharp',
   'gatsby-plugin-sharp',
   'gatsby-plugin-build-monitor',

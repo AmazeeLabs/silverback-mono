@@ -697,6 +697,7 @@ type DrupalNodeArticle implements DrupalNode & DrupalEntity & Node {
   body: DrupalFieldNodeArticleBody
   fieldTags: [DrupalFieldNodeArticleFieldTags]
   fieldImage: DrupalFieldNodeArticleFieldImage
+  childrenImagesFromHtml: [ImagesFromHtml]
   id: ID!
   parent: Node
   children: [Node!]!
@@ -732,6 +733,46 @@ enum DrupalNodeArticleFieldsEnum {
   fieldImage___remoteTypeName
   fieldImage___entity___remoteTypeName
   fieldImage___entity___entityId
+  childrenImagesFromHtml
+  childrenImagesFromHtml___url
+  childrenImagesFromHtml___id
+  childrenImagesFromHtml___parent___id
+  childrenImagesFromHtml___parent___parent___id
+  childrenImagesFromHtml___parent___parent___children
+  childrenImagesFromHtml___parent___children
+  childrenImagesFromHtml___parent___children___id
+  childrenImagesFromHtml___parent___children___children
+  childrenImagesFromHtml___parent___internal___content
+  childrenImagesFromHtml___parent___internal___contentDigest
+  childrenImagesFromHtml___parent___internal___description
+  childrenImagesFromHtml___parent___internal___fieldOwners
+  childrenImagesFromHtml___parent___internal___ignoreType
+  childrenImagesFromHtml___parent___internal___mediaType
+  childrenImagesFromHtml___parent___internal___owner
+  childrenImagesFromHtml___parent___internal___type
+  childrenImagesFromHtml___children
+  childrenImagesFromHtml___children___id
+  childrenImagesFromHtml___children___parent___id
+  childrenImagesFromHtml___children___parent___children
+  childrenImagesFromHtml___children___children
+  childrenImagesFromHtml___children___children___id
+  childrenImagesFromHtml___children___children___children
+  childrenImagesFromHtml___children___internal___content
+  childrenImagesFromHtml___children___internal___contentDigest
+  childrenImagesFromHtml___children___internal___description
+  childrenImagesFromHtml___children___internal___fieldOwners
+  childrenImagesFromHtml___children___internal___ignoreType
+  childrenImagesFromHtml___children___internal___mediaType
+  childrenImagesFromHtml___children___internal___owner
+  childrenImagesFromHtml___children___internal___type
+  childrenImagesFromHtml___internal___content
+  childrenImagesFromHtml___internal___contentDigest
+  childrenImagesFromHtml___internal___description
+  childrenImagesFromHtml___internal___fieldOwners
+  childrenImagesFromHtml___internal___ignoreType
+  childrenImagesFromHtml___internal___mediaType
+  childrenImagesFromHtml___internal___owner
+  childrenImagesFromHtml___internal___type
   id
   parent___id
   parent___parent___id
@@ -827,6 +868,7 @@ input DrupalNodeArticleFilterInput {
   body: DrupalFieldNodeArticleBodyFilterInput
   fieldTags: DrupalFieldNodeArticleFieldTagsFilterListInput
   fieldImage: DrupalFieldNodeArticleFieldImageFilterInput
+  childrenImagesFromHtml: ImagesFromHtmlFilterListInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
   children: NodeFilterListInput
@@ -852,6 +894,7 @@ type DrupalNodePage implements DrupalNode & DrupalEntity & Node {
   entityId: String
   entityLabel: String
   fieldBody: DrupalFieldNodePageFieldBody
+  childrenImagesFromHtml: [ImagesFromHtml]
   id: ID!
   parent: Node
   children: [Node!]!
@@ -879,6 +922,46 @@ enum DrupalNodePageFieldsEnum {
   entityLabel
   fieldBody___remoteTypeName
   fieldBody___processed
+  childrenImagesFromHtml
+  childrenImagesFromHtml___url
+  childrenImagesFromHtml___id
+  childrenImagesFromHtml___parent___id
+  childrenImagesFromHtml___parent___parent___id
+  childrenImagesFromHtml___parent___parent___children
+  childrenImagesFromHtml___parent___children
+  childrenImagesFromHtml___parent___children___id
+  childrenImagesFromHtml___parent___children___children
+  childrenImagesFromHtml___parent___internal___content
+  childrenImagesFromHtml___parent___internal___contentDigest
+  childrenImagesFromHtml___parent___internal___description
+  childrenImagesFromHtml___parent___internal___fieldOwners
+  childrenImagesFromHtml___parent___internal___ignoreType
+  childrenImagesFromHtml___parent___internal___mediaType
+  childrenImagesFromHtml___parent___internal___owner
+  childrenImagesFromHtml___parent___internal___type
+  childrenImagesFromHtml___children
+  childrenImagesFromHtml___children___id
+  childrenImagesFromHtml___children___parent___id
+  childrenImagesFromHtml___children___parent___children
+  childrenImagesFromHtml___children___children
+  childrenImagesFromHtml___children___children___id
+  childrenImagesFromHtml___children___children___children
+  childrenImagesFromHtml___children___internal___content
+  childrenImagesFromHtml___children___internal___contentDigest
+  childrenImagesFromHtml___children___internal___description
+  childrenImagesFromHtml___children___internal___fieldOwners
+  childrenImagesFromHtml___children___internal___ignoreType
+  childrenImagesFromHtml___children___internal___mediaType
+  childrenImagesFromHtml___children___internal___owner
+  childrenImagesFromHtml___children___internal___type
+  childrenImagesFromHtml___internal___content
+  childrenImagesFromHtml___internal___contentDigest
+  childrenImagesFromHtml___internal___description
+  childrenImagesFromHtml___internal___fieldOwners
+  childrenImagesFromHtml___internal___ignoreType
+  childrenImagesFromHtml___internal___mediaType
+  childrenImagesFromHtml___internal___owner
+  childrenImagesFromHtml___internal___type
   id
   parent___id
   parent___parent___id
@@ -972,6 +1055,7 @@ input DrupalNodePageFilterInput {
   entityId: StringQueryOperatorInput
   entityLabel: StringQueryOperatorInput
   fieldBody: DrupalFieldNodePageFieldBodyFilterInput
+  childrenImagesFromHtml: ImagesFromHtmlFilterListInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
   children: NodeFilterListInput
@@ -1673,6 +1757,146 @@ enum ImagePlaceholder {
   NONE
 }
 
+type ImagesFromHtml implements Node {
+  url: String!
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+  localImage: File
+}
+
+type ImagesFromHtmlConnection {
+  totalCount: Int!
+  edges: [ImagesFromHtmlEdge!]!
+  nodes: [ImagesFromHtml!]!
+  pageInfo: PageInfo!
+  distinct(field: ImagesFromHtmlFieldsEnum!): [String!]!
+  group(skip: Int, limit: Int, field: ImagesFromHtmlFieldsEnum!): [ImagesFromHtmlGroupConnection!]!
+}
+
+type ImagesFromHtmlEdge {
+  next: ImagesFromHtml
+  node: ImagesFromHtml!
+  previous: ImagesFromHtml
+}
+
+enum ImagesFromHtmlFieldsEnum {
+  url
+  id
+  parent___id
+  parent___parent___id
+  parent___parent___parent___id
+  parent___parent___parent___children
+  parent___parent___children
+  parent___parent___children___id
+  parent___parent___children___children
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___children
+  parent___children___id
+  parent___children___parent___id
+  parent___children___parent___children
+  parent___children___children
+  parent___children___children___id
+  parent___children___children___children
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  children
+  children___id
+  children___parent___id
+  children___parent___parent___id
+  children___parent___parent___children
+  children___parent___children
+  children___parent___children___id
+  children___parent___children___children
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___children
+  children___children___id
+  children___children___parent___id
+  children___children___parent___children
+  children___children___children
+  children___children___children___id
+  children___children___children___children
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+}
+
+input ImagesFromHtmlFilterInput {
+  url: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+input ImagesFromHtmlFilterListInput {
+  elemMatch: ImagesFromHtmlFilterInput
+}
+
+type ImagesFromHtmlGroupConnection {
+  totalCount: Int!
+  edges: [ImagesFromHtmlEdge!]!
+  nodes: [ImagesFromHtml!]!
+  pageInfo: PageInfo!
+  field: String!
+  fieldValue: String
+}
+
+input ImagesFromHtmlSortInput {
+  fields: [ImagesFromHtmlFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
 type ImageSharp implements Node {
   fixed(width: Int, height: Int, base64Width: Int, jpegProgressive: Boolean = true, pngCompressionSpeed: Int = 4, grayscale: Boolean = false, duotone: DuotoneGradient, traceSVG: Potrace, quality: Int, jpegQuality: Int, pngQuality: Int, webpQuality: Int, toFormat: ImageFormat = AUTO, toFormatBase64: ImageFormat = AUTO, cropFocus: ImageCropFocus = ATTENTION, fit: ImageFit = COVER, background: String = "rgba(0,0,0,1)", rotate: Int = 0, trim: Float = 0): ImageSharpFixed
   resolutions(width: Int, height: Int, base64Width: Int, jpegProgressive: Boolean = true, pngCompressionSpeed: Int = 4, grayscale: Boolean = false, duotone: DuotoneGradient, traceSVG: Potrace, quality: Int, jpegQuality: Int, pngQuality: Int, webpQuality: Int, toFormat: ImageFormat = AUTO, toFormatBase64: ImageFormat = AUTO, cropFocus: ImageCropFocus = ATTENTION, fit: ImageFit = COVER, background: String = "rgba(0,0,0,1)", rotate: Int = 0, trim: Float = 0): ImageSharpResolutions @deprecated(reason: "Resolutions was deprecated in Gatsby v2. It's been renamed to \"fixed\" https://example.com/write-docs-and-fix-this-example-link")
@@ -2290,11 +2514,13 @@ type Query {
   allSite(filter: SiteFilterInput, sort: SiteSortInput, skip: Int, limit: Int): SiteConnection!
   sitePage(path: StringQueryOperatorInput, component: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SitePage
   allSitePage(filter: SitePageFilterInput, sort: SitePageSortInput, skip: Int, limit: Int): SitePageConnection!
+  imagesFromHtml(url: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImagesFromHtml
+  allImagesFromHtml(filter: ImagesFromHtmlFilterInput, sort: ImagesFromHtmlSortInput, skip: Int, limit: Int): ImagesFromHtmlConnection!
   imageSharp(fixed: ImageSharpFixedFilterInput, resolutions: ImageSharpResolutionsFilterInput, fluid: ImageSharpFluidFilterInput, sizes: ImageSharpSizesFilterInput, gatsbyImageData: JSONQueryOperatorInput, original: ImageSharpOriginalFilterInput, resize: ImageSharpResizeFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImageSharp
   allImageSharp(filter: ImageSharpFilterInput, sort: ImageSharpSortInput, skip: Int, limit: Int): ImageSharpConnection!
-  drupalNodePage(remoteTypeName: StringQueryOperatorInput, entityId: StringQueryOperatorInput, entityLabel: StringQueryOperatorInput, fieldBody: DrupalFieldNodePageFieldBodyFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalNodePage
+  drupalNodePage(remoteTypeName: StringQueryOperatorInput, entityId: StringQueryOperatorInput, entityLabel: StringQueryOperatorInput, fieldBody: DrupalFieldNodePageFieldBodyFilterInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalNodePage
   allDrupalNodePage(filter: DrupalNodePageFilterInput, sort: DrupalNodePageSortInput, skip: Int, limit: Int): DrupalNodePageConnection!
-  drupalNodeArticle(remoteTypeName: StringQueryOperatorInput, entityId: StringQueryOperatorInput, entityLabel: StringQueryOperatorInput, body: DrupalFieldNodeArticleBodyFilterInput, fieldTags: DrupalFieldNodeArticleFieldTagsFilterListInput, fieldImage: DrupalFieldNodeArticleFieldImageFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalNodeArticle
+  drupalNodeArticle(remoteTypeName: StringQueryOperatorInput, entityId: StringQueryOperatorInput, entityLabel: StringQueryOperatorInput, body: DrupalFieldNodeArticleBodyFilterInput, fieldTags: DrupalFieldNodeArticleFieldTagsFilterListInput, fieldImage: DrupalFieldNodeArticleFieldImageFilterInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalNodeArticle
   allDrupalNodeArticle(filter: DrupalNodeArticleFilterInput, sort: DrupalNodeArticleSortInput, skip: Int, limit: Int): DrupalNodeArticleConnection!
   drupalTaxonomyTermTags(remoteTypeName: StringQueryOperatorInput, entityId: StringQueryOperatorInput, entityLabel: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalTaxonomyTermTags
   allDrupalTaxonomyTermTags(filter: DrupalTaxonomyTermTagsFilterInput, sort: DrupalTaxonomyTermTagsSortInput, skip: Int, limit: Int): DrupalTaxonomyTermTagsConnection!
@@ -2894,6 +3120,9 @@ enum SitePluginFieldsEnum {
   pluginOptions___exclude___plugins
   pluginOptions___nodeType
   pluginOptions___imagePath
+  pluginOptions___configs
+  pluginOptions___configs___nodeType
+  pluginOptions___configs___propertyPath
   pluginOptions___base64Width
   pluginOptions___stripMetadata
   pluginOptions___defaultQuality
@@ -3021,6 +3250,7 @@ type SitePluginPluginOptions {
   exclude: SitePluginPluginOptionsExclude
   nodeType: String
   imagePath: String
+  configs: [SitePluginPluginOptionsConfigs]
   base64Width: Int
   stripMetadata: Boolean
   defaultQuality: Int
@@ -3029,6 +3259,20 @@ type SitePluginPluginOptions {
   allExtensions: Boolean
   isTSX: Boolean
   jsxPragma: String
+}
+
+type SitePluginPluginOptionsConfigs {
+  nodeType: String
+  propertyPath: String
+}
+
+input SitePluginPluginOptionsConfigsFilterInput {
+  nodeType: StringQueryOperatorInput
+  propertyPath: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsConfigsFilterListInput {
+  elemMatch: SitePluginPluginOptionsConfigsFilterInput
 }
 
 type SitePluginPluginOptionsExclude {
@@ -3045,6 +3289,7 @@ input SitePluginPluginOptionsFilterInput {
   exclude: SitePluginPluginOptionsExcludeFilterInput
   nodeType: StringQueryOperatorInput
   imagePath: StringQueryOperatorInput
+  configs: SitePluginPluginOptionsConfigsFilterListInput
   base64Width: IntQueryOperatorInput
   stripMetadata: BooleanQueryOperatorInput
   defaultQuality: IntQueryOperatorInput

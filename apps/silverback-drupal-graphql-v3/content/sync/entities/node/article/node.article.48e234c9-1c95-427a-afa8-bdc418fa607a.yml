@@ -15,16 +15,18 @@ revision_timestamp:
     format: 'Y-m-d\TH:i:sP'
 revision_uid:
   -
+    target_id: 0
     target_type: user
-    target_uuid: 0e3db8d2-be37-466e-9949-f2499a38a3f5
+    target_uuid: 220393ae-df7e-4c27-81ee-f5cc0226e7a7
 revision_log: {  }
 status:
   -
     value: false
 uid:
   -
+    target_id: 0
     target_type: user
-    target_uuid: 0e3db8d2-be37-466e-9949-f2499a38a3f5
+    target_uuid: 220393ae-df7e-4c27-81ee-f5cc0226e7a7
 title:
   -
     value: 'Not published'
@@ -55,6 +57,7 @@ body:
     processed: "<p>An unpublished article</p>\n"
     summary: ''
     summary_processed: ''
+field_image: {  }
 field_tags:
   -
     target_type: taxonomy_term
@@ -63,6 +66,6 @@ _content_sync:
   entity_type: node
   entity_dependencies:
     user:
-      - user.user.0e3db8d2-be37-466e-9949-f2499a38a3f5
+      - user.user.220393ae-df7e-4c27-81ee-f5cc0226e7a7
     taxonomy_term:
       - taxonomy_term.tags.38d5735b-6e80-4a6b-bfa6-45e1aa3652c2

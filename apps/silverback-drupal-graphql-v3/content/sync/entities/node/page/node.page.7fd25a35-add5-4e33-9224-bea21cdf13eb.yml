@@ -17,15 +17,16 @@ revision_uid:
   -
     target_id: 0
     target_type: user
-    target_uuid: 219eae15-ed2b-4b81-9299-2f8e73eda98e
+    target_uuid: 220393ae-df7e-4c27-81ee-f5cc0226e7a7
 revision_log: {  }
 status:
   -
     value: true
 uid:
   -
+    target_id: 0
     target_type: user
-    target_uuid: 0e3db8d2-be37-466e-9949-f2499a38a3f5
+    target_uuid: 220393ae-df7e-4c27-81ee-f5cc0226e7a7
 title:
   -
     value: 'A page'
@@ -58,5 +59,4 @@ _content_sync:
   entity_type: node
   entity_dependencies:
     user:
-      - user.user.219eae15-ed2b-4b81-9299-2f8e73eda98e
-      - user.user.0e3db8d2-be37-466e-9949-f2499a38a3f5
+      - user.user.220393ae-df7e-4c27-81ee-f5cc0226e7a7

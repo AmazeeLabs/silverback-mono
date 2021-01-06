@@ -1,6 +1,11 @@
 import { graphql, PageProps, useStaticQuery } from 'gatsby';
 import React from 'react';
 
+import {
+  ImageSet,
+  renderHtml,
+} from '../../plugins/gatsby-plugin-images-from-html/render-html';
+
 const IndexPage: React.FC<PageProps> = () => {
   const {
     drupalNodePage: somePage,
@@ -11,6 +16,12 @@ const IndexPage: React.FC<PageProps> = () => {
         entityLabel
         fieldBody {
           processed
+        }
+        childrenImagesFromHtml {
+          url
+          localImage {
+            ...ImageSharpFixed
+          }
         }
       }
       allDrupalNodeArticle {
@@ -31,6 +42,19 @@ const IndexPage: React.FC<PageProps> = () => {
       }
     }
   `);
+
+  const imageSets: ImageSet[] = [];
+  for (const childImage of somePage?.childrenImagesFromHtml || []) {
+    if (childImage?.localImage?.childImageSharp?.fixed) {
+      imageSets.push({
+        url: childImage.url,
+        props: {
+          fixed: childImage.localImage.childImageSharp.fixed,
+        },
+      });
+    }
+  }
+
   return (
     <>
       <b>Some page:</b>
@@ -38,7 +62,11 @@ const IndexPage: React.FC<PageProps> = () => {
       <br />
       Title: {somePage?.entityLabel}
       <br />
-      Body: {somePage?.fieldBody?.processed}
+      Body:{' '}
+      <div className="html-from-drupal">
+        {somePage?.fieldBody?.processed &&
+          renderHtml(somePage.fieldBody.processed, imageSets)}
+      </div>
       <br />
       <br />
       <b>Now a list of articles with teasers:</b>

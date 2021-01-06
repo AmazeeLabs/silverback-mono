@@ -15,16 +15,18 @@ revision_timestamp:
     format: 'Y-m-d\TH:i:sP'
 revision_uid:
   -
+    target_id: 0
     target_type: user
-    target_uuid: 0e3db8d2-be37-466e-9949-f2499a38a3f5
+    target_uuid: 220393ae-df7e-4c27-81ee-f5cc0226e7a7
 revision_log: {  }
 status:
   -
     value: true
 uid:
   -
+    target_id: 0
     target_type: user
-    target_uuid: 0e3db8d2-be37-466e-9949-f2499a38a3f5
+    target_uuid: 220393ae-df7e-4c27-81ee-f5cc0226e7a7
 title:
   -
     value: 'With summary'
@@ -55,9 +57,10 @@ body:
     processed: "<p>Body</p>\n"
     summary: Summary
     summary_processed: "<p>Summary</p>\n"
+field_image: {  }
 field_tags: {  }
 _content_sync:
   entity_type: node
   entity_dependencies:
     user:
-      - user.user.0e3db8d2-be37-466e-9949-f2499a38a3f5
+      - user.user.220393ae-df7e-4c27-81ee-f5cc0226e7a7

@@ -59,21 +59,31 @@ export const createPages: GatsbyNode['createPages'] = async ({
                   alt
                 }
                 localImage {
-                  childImageSharp {
-                    fluid(maxWidth: 1920, maxHeight: 1080) {
-                      base64
-                      aspectRatio
-                      src
-                      srcSet
-                      srcWebp
-                      srcSetWebp
-                      sizes
-                    }
-                  }
+                  ...ImageSharpFixed
                 }
               }
             }
           }
+          childrenImagesFromHtml {
+            url
+            localImage {
+              ...ImageSharpFixed
+            }
+          }
+        }
+      }
+    }
+    fragment ImageSharpFixed on File {
+      childImageSharp {
+        fixed(width: 200, height: 150) {
+          width
+          height
+          base64
+          aspectRatio
+          src
+          srcSet
+          srcWebp
+          srcSetWebp
         }
       }
     }
