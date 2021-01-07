@@ -27,12 +27,13 @@ cd "$TMP"
 php -r "
   \$json = json_decode(file_get_contents('composer.json'), TRUE);
   \$json['repositories'][] = ['type' => 'path', 'url' => '$BASEDIR/../../*/*' ];
+  \$json['extra']['drupal-scaffold']['allowed-packages'][] = 'amazeelabs/silverback-cli';
   file_put_contents('composer.json', json_encode(\$json, JSON_PRETTY_PRINT));
 "
+cp "$TMP/web/sites/default/default.settings.php" "$TMP/web/sites/default/settings.php"
 
-composer require amazeelabs/silverback-cli:@dev alchemy/zippy:@dev drush/drush
+composer require amazeelabs/silverback-cli:@dev alchemy/zippy:@dev
 
-./vendor/bin/silverback init -y
 source .envrc
 ./vendor/bin/silverback setup
 ./vendor/bin/silverback snapshot-create
