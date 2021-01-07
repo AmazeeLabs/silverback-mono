@@ -3,7 +3,7 @@
 
 `amazeelabs/silverback-cli` is a composer package adding tooling and configuration scaffolding to Amazee Drupal projects.
 
-Killer features:
+Features:
 - 🚀 Install Drupal in seconds.
 - 📸 Create/restore Drupal state snapshots instantly.
 
