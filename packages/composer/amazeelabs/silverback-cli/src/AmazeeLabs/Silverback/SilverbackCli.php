@@ -2,7 +2,6 @@
 
 namespace AmazeeLabs\Silverback;
 
-use AmazeeLabs\Silverback\Commands\Init;
 use AmazeeLabs\Silverback\Commands\SnapshotRestore;
 use AmazeeLabs\Silverback\Commands\Setup;
 use AmazeeLabs\Silverback\Commands\SnapshotCreate;
@@ -17,7 +16,6 @@ class SilverbackCli extends Application {
     $fileSystem = new Filesystem();
     $this->add(new Setup($fileSystem));
     $this->add(new Teardown($fileSystem));
-    $this->add(new Init($fileSystem));
     $this->add(new SnapshotCreate($fileSystem));
     $this->add(new SnapshotRestore($fileSystem));
   }

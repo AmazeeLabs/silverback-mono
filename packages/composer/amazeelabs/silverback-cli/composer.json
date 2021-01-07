@@ -6,7 +6,6 @@
     "require": {
         "ext-zip": "*",
         "alchemy/zippy": "dev-master",
-        "cweagans/composer-patches": "^1.7.0",
         "drush/drush": "^10.3.6",
         "vlucas/phpdotenv": "^5.2",
         "ext-json": "*"
@@ -18,6 +17,19 @@
         }
     },
     "extra": {
-        "composer-exit-on-patch-failure": true
+        "drupal-scaffold": {
+            "file-mapping": {
+                "[project-root]/.env.local.example": "assets/.env.local.example",
+                "[project-root]/.envrc": "assets/.envrc",
+                "[project-root]/.gitignore": {
+                    "append": "assets/.gitignore.append.txt",
+                    "force-append": true
+                },
+                "[web-root]/sites/default/settings.php": {
+                    "append": "assets/settings.php.append.txt",
+                    "force-append": true
+                }
+            }
+        }
     }
 }
