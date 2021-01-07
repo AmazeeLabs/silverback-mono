@@ -2,7 +2,7 @@
 set -e
 
 BASEDIR="$( cd "$(dirname "$0")" > /dev/null 2>&1 ; pwd -P )"
-TMP=$(mktemp -d)
+
 function _cleanup {
   cd "$BASEDIR"
   set +e
@@ -12,34 +12,10 @@ function _cleanup {
     echo "Killing drush daemon $DRUSH_DAEMON_PID"
     kill "$DRUSH_DAEMON_PID" || true
   fi
-  if [ -d "$TMP" ]; then
-    rm -rf "$TMP"
+  if [ -d "$1" ]; then
+    rm -rf "$1"
   fi
 }
-
-cd "$BASEDIR"
-
-
-_cleanup
-composer create-project drupal/recommended-project "$TMP" --no-interaction
-cd "$TMP"
-
-php -r "
-  \$json = json_decode(file_get_contents('composer.json'), TRUE);
-  \$json['repositories'][] = ['type' => 'path', 'url' => '$BASEDIR/../../*/*' ];
-  \$json['extra']['drupal-scaffold']['allowed-packages'][] = 'amazeelabs/silverback-cli';
-  file_put_contents('composer.json', json_encode(\$json, JSON_PRETTY_PRINT));
-"
-cp "$TMP/web/sites/default/default.settings.php" "$TMP/web/sites/default/settings.php"
-
-composer require amazeelabs/silverback-cli:@dev alchemy/zippy:@dev
-
-source .envrc
-./vendor/bin/silverback setup
-./vendor/bin/silverback snapshot-create
-./vendor/bin/silverback snapshot-restore
-./vendor/bin/drush status
-./vendor/bin/drush serve &
 
 function retry {
   local n=1
@@ -59,5 +35,47 @@ function retry {
   done
 }
 
-retry curl --silent --head http://localhost:8888
-_cleanup
+# IMPORTANT: Run it in a subshell to avoid direnv clobber.
+function install_silverback_and_test {
+  _cleanup
+  cd "$1"
+
+  php -r "
+    \$json = json_decode(file_get_contents('composer.json'), TRUE);
+    \$json['repositories'][] = ['type' => 'path', 'url' => '$BASEDIR/../../*/*' ];
+    \$json['extra']['drupal-scaffold']['allowed-packages'][] = 'amazeelabs/silverback-cli';
+    file_put_contents('composer.json', json_encode(\$json, JSON_PRETTY_PRINT));
+  "
+  # Templates/starters may come with or without settings.php. Silverback CLI
+  # needs it in advance. Make sure it exists.
+  if [ -f "$1/web/sites/default/default.settings.php" ]; then
+    cp -n "$1/web/sites/default/default.settings.php" "$1/web/sites/default/settings.php" || true
+  fi
+
+  # alchemy/zippy is added here to avoid issues with minimum-stability.
+  composer require amazeelabs/silverback-cli:@dev alchemy/zippy:@dev
+
+  source .envrc
+  ./vendor/bin/silverback setup
+  ./vendor/bin/silverback snapshot-create
+  ./vendor/bin/silverback snapshot-restore
+  ./vendor/bin/drush status
+  ./vendor/bin/drush serve &
+
+  retry curl --silent --head http://localhost:8888
+  _cleanup "$1"
+}
+
+echo "👉 Testing drupal/recommended-project template..."
+TMP=$(mktemp -d)
+cd "$BASEDIR"
+composer create-project drupal/recommended-project "$TMP" --no-interaction
+(install_silverback_and_test "$TMP")
+
+echo "👉 Testing amazeeio/drupal-example-simple starter..."
+TMP=$(mktemp -d)
+cd "$BASEDIR"
+git clone https://github.com/amazeeio/drupal-example-simple "$TMP"
+cd "$TMP"
+composer install
+(install_silverback_and_test "$TMP")
