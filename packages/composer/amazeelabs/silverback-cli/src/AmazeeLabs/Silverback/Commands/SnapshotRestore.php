@@ -30,6 +30,7 @@ class SnapshotRestore extends SnapshotBase {
       return 1;
     }
 
+    $this->fileSystem->chmod('web/sites/default', 0755);
     $this->fileSystem->remove('web/sites/default/files');
     $this->copyDir($snapshotDirectory, 'web/sites/default/files');
     $output->writeln("<info>The snapshot has been restored from $snapshotDirectory.</>");
