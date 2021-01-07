@@ -1,5 +1,0 @@
-# Theming services configuration
-parameters:
-  twig.config:
-    debug: true
-    cache: false
