@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.11.0...silverback-gastby@0.11.1) (2021-01-13)
+
+
+### Bug Fixes
+
+* forgoten schema update ([d22e56f](https://github.com/AmazeeLabs/silverback-mono/commit/d22e56fc61ef94bedd3c2810830b8d1d73327acd))
+
+
+
+
+
 # [0.11.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.10.0...silverback-gastby@0.11.0) (2021-01-06)
 
 
