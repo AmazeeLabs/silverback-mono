@@ -32,7 +32,7 @@ directive @mimeTypes(
 ) on OBJECT
 
 """
-Define parent-child relations between types. This is used to add `child*` or
+Define parent-child relations between types. This is used to add `child*` and
 `children*` convenience fields like `childImageSharp`.
 """
 directive @childOf(
@@ -56,6 +56,12 @@ directive @childOf(
 Adds root query fields for an interface. All implementing types must also implement the Node interface.
 """
 directive @nodeInterface on INTERFACE
+
+input AVIFOptions {
+  quality: Int
+  lossless: Boolean
+  speed: Int
+}
 
 input BlurredOptions {
   """Width of the generated low-res preview. Default is 20px"""
@@ -697,7 +703,14 @@ type DrupalNodeArticle implements DrupalNode & DrupalEntity & Node {
   body: DrupalFieldNodeArticleBody
   fieldTags: [DrupalFieldNodeArticleFieldTags]
   fieldImage: DrupalFieldNodeArticleFieldImage
+
+  """Returns all children nodes filtered by type ImagesFromHtml"""
   childrenImagesFromHtml: [ImagesFromHtml]
+
+  """
+  Returns the first child node of type ImagesFromHtml or null if there are no children of given type on this node
+  """
+  childImagesFromHtml: ImagesFromHtml
   id: ID!
   parent: Node
   children: [Node!]!
@@ -773,6 +786,45 @@ enum DrupalNodeArticleFieldsEnum {
   childrenImagesFromHtml___internal___mediaType
   childrenImagesFromHtml___internal___owner
   childrenImagesFromHtml___internal___type
+  childImagesFromHtml___url
+  childImagesFromHtml___id
+  childImagesFromHtml___parent___id
+  childImagesFromHtml___parent___parent___id
+  childImagesFromHtml___parent___parent___children
+  childImagesFromHtml___parent___children
+  childImagesFromHtml___parent___children___id
+  childImagesFromHtml___parent___children___children
+  childImagesFromHtml___parent___internal___content
+  childImagesFromHtml___parent___internal___contentDigest
+  childImagesFromHtml___parent___internal___description
+  childImagesFromHtml___parent___internal___fieldOwners
+  childImagesFromHtml___parent___internal___ignoreType
+  childImagesFromHtml___parent___internal___mediaType
+  childImagesFromHtml___parent___internal___owner
+  childImagesFromHtml___parent___internal___type
+  childImagesFromHtml___children
+  childImagesFromHtml___children___id
+  childImagesFromHtml___children___parent___id
+  childImagesFromHtml___children___parent___children
+  childImagesFromHtml___children___children
+  childImagesFromHtml___children___children___id
+  childImagesFromHtml___children___children___children
+  childImagesFromHtml___children___internal___content
+  childImagesFromHtml___children___internal___contentDigest
+  childImagesFromHtml___children___internal___description
+  childImagesFromHtml___children___internal___fieldOwners
+  childImagesFromHtml___children___internal___ignoreType
+  childImagesFromHtml___children___internal___mediaType
+  childImagesFromHtml___children___internal___owner
+  childImagesFromHtml___children___internal___type
+  childImagesFromHtml___internal___content
+  childImagesFromHtml___internal___contentDigest
+  childImagesFromHtml___internal___description
+  childImagesFromHtml___internal___fieldOwners
+  childImagesFromHtml___internal___ignoreType
+  childImagesFromHtml___internal___mediaType
+  childImagesFromHtml___internal___owner
+  childImagesFromHtml___internal___type
   id
   parent___id
   parent___parent___id
@@ -869,6 +921,7 @@ input DrupalNodeArticleFilterInput {
   fieldTags: DrupalFieldNodeArticleFieldTagsFilterListInput
   fieldImage: DrupalFieldNodeArticleFieldImageFilterInput
   childrenImagesFromHtml: ImagesFromHtmlFilterListInput
+  childImagesFromHtml: ImagesFromHtmlFilterInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
   children: NodeFilterListInput
@@ -894,7 +947,14 @@ type DrupalNodePage implements DrupalNode & DrupalEntity & Node {
   entityId: String
   entityLabel: String
   fieldBody: DrupalFieldNodePageFieldBody
+
+  """Returns all children nodes filtered by type ImagesFromHtml"""
   childrenImagesFromHtml: [ImagesFromHtml]
+
+  """
+  Returns the first child node of type ImagesFromHtml or null if there are no children of given type on this node
+  """
+  childImagesFromHtml: ImagesFromHtml
   id: ID!
   parent: Node
   children: [Node!]!
@@ -962,6 +1022,45 @@ enum DrupalNodePageFieldsEnum {
   childrenImagesFromHtml___internal___mediaType
   childrenImagesFromHtml___internal___owner
   childrenImagesFromHtml___internal___type
+  childImagesFromHtml___url
+  childImagesFromHtml___id
+  childImagesFromHtml___parent___id
+  childImagesFromHtml___parent___parent___id
+  childImagesFromHtml___parent___parent___children
+  childImagesFromHtml___parent___children
+  childImagesFromHtml___parent___children___id
+  childImagesFromHtml___parent___children___children
+  childImagesFromHtml___parent___internal___content
+  childImagesFromHtml___parent___internal___contentDigest
+  childImagesFromHtml___parent___internal___description
+  childImagesFromHtml___parent___internal___fieldOwners
+  childImagesFromHtml___parent___internal___ignoreType
+  childImagesFromHtml___parent___internal___mediaType
+  childImagesFromHtml___parent___internal___owner
+  childImagesFromHtml___parent___internal___type
+  childImagesFromHtml___children
+  childImagesFromHtml___children___id
+  childImagesFromHtml___children___parent___id
+  childImagesFromHtml___children___parent___children
+  childImagesFromHtml___children___children
+  childImagesFromHtml___children___children___id
+  childImagesFromHtml___children___children___children
+  childImagesFromHtml___children___internal___content
+  childImagesFromHtml___children___internal___contentDigest
+  childImagesFromHtml___children___internal___description
+  childImagesFromHtml___children___internal___fieldOwners
+  childImagesFromHtml___children___internal___ignoreType
+  childImagesFromHtml___children___internal___mediaType
+  childImagesFromHtml___children___internal___owner
+  childImagesFromHtml___children___internal___type
+  childImagesFromHtml___internal___content
+  childImagesFromHtml___internal___contentDigest
+  childImagesFromHtml___internal___description
+  childImagesFromHtml___internal___fieldOwners
+  childImagesFromHtml___internal___ignoreType
+  childImagesFromHtml___internal___mediaType
+  childImagesFromHtml___internal___owner
+  childImagesFromHtml___internal___type
   id
   parent___id
   parent___parent___id
@@ -1056,6 +1155,7 @@ input DrupalNodePageFilterInput {
   entityLabel: StringQueryOperatorInput
   fieldBody: DrupalFieldNodePageFieldBodyFilterInput
   childrenImagesFromHtml: ImagesFromHtmlFilterListInput
+  childImagesFromHtml: ImagesFromHtmlFilterInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
   children: NodeFilterListInput
@@ -1410,6 +1510,13 @@ type File implements Node {
 
   """Copy file to static directory and return public url to it"""
   publicURL: String
+
+  """Returns all children nodes filtered by type ImageSharp"""
+  childrenImageSharp: [ImageSharp]
+
+  """
+  Returns the first child node of type ImageSharp or null if there are no children of given type on this node
+  """
   childImageSharp: ImageSharp
   id: ID!
   parent: Node
@@ -1467,6 +1574,99 @@ enum FileFieldsEnum {
   blksize
   blocks
   publicURL
+  childrenImageSharp
+  childrenImageSharp___fixed___base64 @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___fixed___tracedSVG @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___fixed___aspectRatio @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___fixed___width @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___fixed___height @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___fixed___src @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___fixed___srcSet @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___fixed___srcWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___fixed___srcSetWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___fixed___originalName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___resolutions___base64 @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___resolutions___tracedSVG @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___resolutions___aspectRatio @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___resolutions___width @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___resolutions___height @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___resolutions___src @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___resolutions___srcSet @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___resolutions___srcWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___resolutions___srcSetWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___resolutions___originalName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___fluid___base64 @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___fluid___tracedSVG @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___fluid___aspectRatio @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___fluid___src @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___fluid___srcSet @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___fluid___srcWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___fluid___srcSetWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___fluid___sizes @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___fluid___originalImg @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___fluid___originalName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___fluid___presentationWidth @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___fluid___presentationHeight @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___sizes___base64 @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___sizes___tracedSVG @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___sizes___aspectRatio @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___sizes___src @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___sizes___srcSet @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___sizes___srcWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___sizes___srcSetWebp @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___sizes___sizes @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___sizes___originalImg @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___sizes___originalName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___sizes___presentationWidth @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___sizes___presentationHeight @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___gatsbyImageData @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___original___width @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___original___height @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___original___src @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___resize___src @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___resize___tracedSVG @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___resize___width @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___resize___height @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___resize___aspectRatio @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___resize___originalName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImageSharp___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childImageSharp___fixed___base64 @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childImageSharp___fixed___tracedSVG @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childImageSharp___fixed___aspectRatio @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1682,6 +1882,7 @@ input FileFilterInput {
   blksize: IntQueryOperatorInput
   blocks: IntQueryOperatorInput
   publicURL: StringQueryOperatorInput
+  childrenImageSharp: ImageSharpFilterListInput
   childImageSharp: ImageSharpFilterInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
@@ -1742,6 +1943,7 @@ enum ImageFormat {
   JPG
   PNG
   WEBP
+  AVIF
 }
 
 enum ImageLayout {
@@ -1962,7 +2164,7 @@ type ImageSharp implements Node {
     isn't going to be the full width of the screen. 
     CONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size.
     """
-    layout: ImageLayout = FIXED
+    layout: ImageLayout = CONSTRAINED
 
     """
     Maximum display width of generated files. 
@@ -2050,6 +2252,9 @@ type ImageSharp implements Node {
 
     """Options to pass to sharp when generating WebP images."""
     webpOptions: WebPOptions
+
+    """Options to pass to sharp when generating AVIF images."""
+    avifOptions: AVIFOptions
 
     """
     Options to pass to sharp to control cropping and other image manipulations.
@@ -2240,6 +2445,10 @@ input ImageSharpFilterInput {
   parent: NodeFilterInput
   children: NodeFilterListInput
   internal: InternalFilterInput
+}
+
+input ImageSharpFilterListInput {
+  elemMatch: ImageSharpFilterInput
 }
 
 type ImageSharpFixed {
@@ -2506,7 +2715,7 @@ enum PotraceTurnPolicy {
 }
 
 type Query {
-  file(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, publicURL: StringQueryOperatorInput, childImageSharp: ImageSharpFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): File
+  file(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, publicURL: StringQueryOperatorInput, childrenImageSharp: ImageSharpFilterListInput, childImageSharp: ImageSharpFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): File
   allFile(filter: FileFilterInput, sort: FileSortInput, skip: Int, limit: Int): FileConnection!
   directory(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Directory
   allDirectory(filter: DirectoryFilterInput, sort: DirectorySortInput, skip: Int, limit: Int): DirectoryConnection!
@@ -2518,9 +2727,9 @@ type Query {
   allImagesFromHtml(filter: ImagesFromHtmlFilterInput, sort: ImagesFromHtmlSortInput, skip: Int, limit: Int): ImagesFromHtmlConnection!
   imageSharp(fixed: ImageSharpFixedFilterInput, resolutions: ImageSharpResolutionsFilterInput, fluid: ImageSharpFluidFilterInput, sizes: ImageSharpSizesFilterInput, gatsbyImageData: JSONQueryOperatorInput, original: ImageSharpOriginalFilterInput, resize: ImageSharpResizeFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImageSharp
   allImageSharp(filter: ImageSharpFilterInput, sort: ImageSharpSortInput, skip: Int, limit: Int): ImageSharpConnection!
-  drupalNodePage(remoteTypeName: StringQueryOperatorInput, entityId: StringQueryOperatorInput, entityLabel: StringQueryOperatorInput, fieldBody: DrupalFieldNodePageFieldBodyFilterInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalNodePage
+  drupalNodePage(remoteTypeName: StringQueryOperatorInput, entityId: StringQueryOperatorInput, entityLabel: StringQueryOperatorInput, fieldBody: DrupalFieldNodePageFieldBodyFilterInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalNodePage
   allDrupalNodePage(filter: DrupalNodePageFilterInput, sort: DrupalNodePageSortInput, skip: Int, limit: Int): DrupalNodePageConnection!
-  drupalNodeArticle(remoteTypeName: StringQueryOperatorInput, entityId: StringQueryOperatorInput, entityLabel: StringQueryOperatorInput, body: DrupalFieldNodeArticleBodyFilterInput, fieldTags: DrupalFieldNodeArticleFieldTagsFilterListInput, fieldImage: DrupalFieldNodeArticleFieldImageFilterInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalNodeArticle
+  drupalNodeArticle(remoteTypeName: StringQueryOperatorInput, entityId: StringQueryOperatorInput, entityLabel: StringQueryOperatorInput, body: DrupalFieldNodeArticleBodyFilterInput, fieldTags: DrupalFieldNodeArticleFieldTagsFilterListInput, fieldImage: DrupalFieldNodeArticleFieldImageFilterInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalNodeArticle
   allDrupalNodeArticle(filter: DrupalNodeArticleFilterInput, sort: DrupalNodeArticleSortInput, skip: Int, limit: Int): DrupalNodeArticleConnection!
   drupalTaxonomyTermTags(remoteTypeName: StringQueryOperatorInput, entityId: StringQueryOperatorInput, entityLabel: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalTaxonomyTermTags
   allDrupalTaxonomyTermTags(filter: DrupalTaxonomyTermTagsFilterInput, sort: DrupalTaxonomyTermTagsSortInput, skip: Int, limit: Int): DrupalTaxonomyTermTagsConnection!
