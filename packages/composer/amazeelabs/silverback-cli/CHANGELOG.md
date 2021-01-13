@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@2.2.0...@-amazeelabs/silverback-cli@2.3.0) (2021-01-13)
+
+
+### Bug Fixes
+
+* adopt test ([03fcf42](https://github.com/AmazeeLabs/silverback-mono/commit/03fcf425cf080589c16df619f21684a1470d85b6))
+* deal with sites/default dir permissions ([045f097](https://github.com/AmazeeLabs/silverback-mono/commit/045f097a57ddf8623ffc27aa13829c39a19206d7))
+* no need for a .gitignore now ([ad9327a](https://github.com/AmazeeLabs/silverback-mono/commit/ad9327a3959ea7b6bcd67f0f2d859b046cba20c8))
+
+
+### Features
+
+* make it use drupal-scaffold ([118408c](https://github.com/AmazeeLabs/silverback-mono/commit/118408cd41ff07c2fe02c84b6997625cdff4147c))
+
+
+
+
+
 # [2.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@2.1.0...@-amazeelabs/silverback-cli@2.2.0) (2020-12-22)
 
 
