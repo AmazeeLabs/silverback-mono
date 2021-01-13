@@ -63,3 +63,14 @@ jobs:
 
       - name: Run all tests
         run: yarn lerna run test --stream --concurrency=1
+
+      - name: Check for uncommitted changes
+        run: |
+          if [[ $(git status --porcelain) ]]
+          then
+            echo "Error: Found uncommitted changes. Lerna publish will fail."
+            git status --porcelain
+            false
+          else
+            echo "Success: Found no uncommitted changes"
+          fi
