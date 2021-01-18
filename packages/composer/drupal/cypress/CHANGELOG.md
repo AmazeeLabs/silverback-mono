@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.17](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.1.16...@-drupal/cypress@2.1.17) (2021-01-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency cypress-file-upload to v5 ([cbb02ee](https://github.com/AmazeeLabs/silverback-mono/commit/cbb02eedbfaf37c3612c697502ccd7fa29f561ed))
+
+
+
+
+
 ## [2.1.16](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.1.15...@-drupal/cypress@2.1.16) (2020-12-22)
 
 
