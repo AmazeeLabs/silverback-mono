@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.2](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.12.1...silverback-website@0.12.2) (2021-01-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @tailwindcss/typography to ^0.4.0 ([065ea99](https://github.com/AmazeeLabs/silverback-mono/commit/065ea995aed42cca48b23e8bb3cbfcb4c46e4444))
+
+
+
+
+
 ## [0.12.1](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.12.0...silverback-website@0.12.1) (2021-01-13)
 
 
