@@ -1,0 +1,99 @@
+# Formik
+
+[Formik](https://formik.org/) is the React form handling framework choice for
+Silverback. We chose Formik for how you can handle normal and complex form with a nice structure.
+
+## Quick intro
+
+### Declarative
+Formik takes care of the repetitive and annoying stuff—keeping track of values/errors/visited fields, orchestrating validation, and handling submission—so you don't have to. This means you spend less time wiring up state and change handlers and more time focusing on the project.
+
+### Intuitive
+No fancy subscriptions or observables under the hood, just plain React state and props. By staying within the core React framework and away from magic, Formik makes debugging, testing, and reasoning about your forms a breeze. If you know React, and you know a bit about forms, you know Formik!
+
+### Adoptable
+Since form state is inherently local and ephemeral, Formik does not use external state management libraries like Redux or MobX. This also makes Formik easy to adopt incrementally and keeps bundle size to a minimum.
+
+[Basic Formik form example](https://codesandbox.io/s/dazzling-swanson-wne32?from-embed)
+
+## Fields validation
+
+for fields validation we chose [Yup](https://github.com/jquense/yup), is a JavaScript schema builder for value parsing and validation. Define a schema, transform a value to match, validate the shape of an existing value, or both. Yup schema are extremely expressive and allow modeling complex, interdependent validations, or value transformations.
+
+[Basic Formik and Yup example](https://codesandbox.io/s/zkrk5yldz)
+
+## Custom fields
+To use your custom input field with formik you need to use the Field prop `component`.
+
+Custom field (that handles label, input type and errors) example:
+
+```jsx
+import React from "react"
+
+export function FormikText({
+  field, // { name, value, onChange, onBlur }
+  form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
+  ...props
+}) {
+  return (
+    <div>
+      <label htmlFor={field.name}>
+        {props.label}
+        <input
+          id={field.name}
+          type={props.type ? props.type : "text"}
+          {...field}
+          {...props}
+        />
+      </label>
+      {touched[field.name] && errors[field.name] && (
+        <div className="error">{errors[field.name]}</div>
+      )}
+    </div>
+  )
+}
+```
+
+Custom field usage in a formik form example:
+
+```jsx
+import React from "react";
+import ReactDOM from "react-dom";
+import { Formik, Field, Form } from "formik";
+import { FormikText } from "./FormikText"
+
+function App() {
+  return (
+    <div className="App">
+      <h1>Contact Us</h1>
+      <Formik
+        initialValues={{ name: "", email: "" }}
+        onSubmit={async values => {
+          await new Promise(resolve => setTimeout(resolve, 500));
+          alert(JSON.stringify(values, null, 2));
+        }}
+      >
+        <Form>
+			<Field
+			  name="name"
+			  label="name"
+			  type="text"
+			  component={FormikText} //<--- how to use your custom field
+			/>
+			<Field
+			  name="email"
+			  label="email"
+			  type="email"
+			  component={FormikText}
+			/>
+          <button type="submit">Submit</button>
+        </Form>
+      </Formik>
+    </div>
+  );
+}
+```
+
+## Handling complex form
+handling complex form can be very tricky, [here is an example](https://github.com/AmazeeLabs/react-form-decision/tree/main/src/components/formik) of a formik multistep form that handles cross field validation with Yup and use custom Inputs and Checkbox.
+
