@@ -57,35 +57,35 @@ export function FormikText({
 Custom field usage in a formik form example:
 
 ```jsx
-import React from "react";
-import ReactDOM from "react-dom";
-import { Formik, Field, Form } from "formik";
-import { FormikText } from "./FormikText"
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Formik, Field, Form } from 'formik';
+import { FormikText } from './FormikText';
 
 function App() {
   return (
     <div className="App">
       <h1>Contact Us</h1>
       <Formik
-        initialValues={{ name: "", email: "" }}
-        onSubmit={async values => {
-          await new Promise(resolve => setTimeout(resolve, 500));
+        initialValues={{ name: '', email: '' }}
+        onSubmit={async (values) => {
+          await new Promise((resolve) => setTimeout(resolve, 500));
           alert(JSON.stringify(values, null, 2));
         }}
       >
         <Form>
-	  <Field
-	    name="name"
-	    label="name"
-	    type="text"
-	    component={FormikText} //<--- how to use your custom field
-	  />
-	  <Field
-	    name="email"
-	    label="email"
-	    type="email"
-	    component={FormikText}
-	  />
+          <Field
+            name="name"
+            label="name"
+            type="text"
+            component={FormikText} //<--- how to use your custom field
+          />
+          <Field
+            name="email"
+            label="email"
+            type="email"
+            component={FormikText}
+          />
           <button type="submit">Submit</button>
         </Form>
       </Formik>
