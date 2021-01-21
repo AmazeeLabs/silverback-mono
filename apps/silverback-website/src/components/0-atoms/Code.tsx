@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import oceanicNext from 'prism-react-renderer/themes/oceanicNext';
 import React, { PropsWithChildren } from 'react';
@@ -41,7 +42,10 @@ const Code: React.FC = (preProps) => {
       language={props.language}
     >
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre className={className} style={style}>
+        <pre
+          className={classNames('whitespace-pre-wrap break-all', className)}
+          style={style}
+        >
           {tokens.map((line, i) => (
             <div key={i} {...getLineProps({ line, key: i })}>
               {line.map((token, key) => (
