@@ -62,4 +62,4 @@ See [test.sh](./test.sh) and [cypress/integration](./cypress/integration).
 
 ## Drupal part
 
-See [apps/silverback-drupal-graphql-v3](../silverback-drupal-graphql-v3).
+See [apps/silverback-drupal](../silverback-drupal).
