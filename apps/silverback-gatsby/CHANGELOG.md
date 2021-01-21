@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.4](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.12.3...silverback-gastby@0.12.4) (2021-01-21)
+
+
+### Bug Fixes
+
+* update graphql endpoint url ([8af25d4](https://github.com/AmazeeLabs/silverback-mono/commit/8af25d49b7eddea7d63fd07c778d8a634d208e09))
+
+
+
+
+
 ## [0.12.3](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.12.2...silverback-gastby@0.12.3) (2021-01-21)
 
 **Note:** Version bump only for package silverback-gastby
