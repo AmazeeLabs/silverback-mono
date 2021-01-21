@@ -1,4 +1,4 @@
-# Gatsby app connected to Drupal GraphQL v3 via gatsby-graphql-source-toolkit
+# Gatsby app connected to Drupal via gatsby-graphql-source-toolkit
 
 ☝️ Overview and local setup instructions:
 [silverback.netlify.app/drupal/gatsby](https://silverback.netlify.app/drupal/gatsby)
