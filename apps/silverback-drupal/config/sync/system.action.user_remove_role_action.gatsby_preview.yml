@@ -1,0 +1,14 @@
+uuid: 3f484ba2-a069-4af0-89c5-b433761b3ca8
+langcode: de
+status: true
+dependencies:
+  config:
+    - user.role.gatsby_preview
+  module:
+    - user
+id: user_remove_role_action.gatsby_preview
+label: 'Remove the Gatsby Preview role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: gatsby_preview

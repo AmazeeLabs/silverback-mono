@@ -14,8 +14,8 @@ The app is set up with
   mode.
 - [drupalNodes](./src/gatsby-node-helpers/drupal-nodes.ts) keeps the meta
   information about the content we want to fetch from Drupal.
-  - On Drupal side this should match to
-    [Gatsby::SUPPORTED_ENTITIES_BUNDLES](../silverback-drupal-graphql-v3/web/modules/custom/silverback_gatsby/src/Gatsby.php).
+  - On Drupal side this list should match with the "Entity types to send to
+    Gatsby Preview and Build Server" option in the Gatsby module config.
   - Important: While Tags taxonomy terms aren't used on they own in our Gatsby
     app, we still need to fetch them all in order to allow the toolkit to
     [discover and resolve relationships between the node types in the schema](https://github.com/gatsbyjs/gatsby-graphql-toolkit#2-configure-gatsby-node-types).

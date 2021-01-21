@@ -1,0 +1,8 @@
+name: Silverback Gatsby Schema
+type: module
+description: 'GraphQL schema for silverback-gatsby app.'
+package: Custom
+core: 8.x
+dependencies:
+  - graphql:graphql (>=8.x-4.0)
+core_version_requirement: ^8 || ^9

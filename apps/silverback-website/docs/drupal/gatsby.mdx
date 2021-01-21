@@ -12,7 +12,8 @@ An example how to connect Gatsby to Drupal via
 
 ## What's in the example
 
-- **Drupal:** Manages the content and exposes it via GraphQL v3 module.
+- **Drupal:** Manages the content (including content translations and URL
+  aliases) and exposes it via a custom GraphQL schema.
 - **Gatsby Preview:** A website used by editors to preview unpublished content.
 - **Gatsby Site:** A production website serving pre-built static content.
 
@@ -23,7 +24,7 @@ to produce static files.
 Content fetched from Drupal:
 
 - Page and Article content types.
-- Taxonomy tags and media images used on the Article content.
+- Taxonomy tags and media images used on the content.
 
 ## Features
 
@@ -41,10 +42,10 @@ Follow the links to get more technical details.
 
 ### Overview
 
-- [apps/silverback-drupal-graphql-v3](https://github.com/AmazeeLabs/silverback-mono/tree/development/apps/silverback-drupal-graphql-v3)
-  - Uses Drupal's GraphQL v3 module.
-  - Uses Drupal's Gatsby module to ping Gatsby Preview refresh and
-    Gatsby Site rebuild.
+- [apps/silverback-drupal](https://github.com/AmazeeLabs/silverback-mono/tree/development/apps/silverback-drupal)
+  - Provides a custom GraphQL schema via Drupal's GraphQL v4 module.
+  - Uses Drupal's Gatsby module to ping Gatsby Preview refresh and Gatsby Site
+    rebuild.
 - [apps/silverback-gatsby](https://github.com/AmazeeLabs/silverback-mono/tree/development/apps/silverback-gatsby)
   - Uses gatsby-graphql-toolkit to
     - transform Drupal's GraphQL schema into Gatsby's GraphQL schema
@@ -59,8 +60,11 @@ Follow the links to get more technical details.
 ### Gatsby Site
 
 - Locally the site is served with `gatsby build && gatsby serve`.
-- On Lagoon setup it is built in a Lagoon container and then is deployed to Netlify.
-- Both implementations expose `{customAppUrl}/__rebuild` endpoint to re-build the site. The Gatsby data is preserved between the re-runs, so the re-builds are fast.
+- On Lagoon setup it is built in a Lagoon container and then is deployed to
+  Netlify.
+- Both implementations expose `{customAppUrl}/__rebuild` endpoint to re-build
+  the site. The Gatsby data is preserved between the re-runs, so the re-builds
+  are fast.
 
 ### How the example setup is tested
 
@@ -73,12 +77,14 @@ Options:
 
 - Gatsby Cloud. The example works just fine there.
 - Lagoon + Netlify setup can be found in the example.
-  - Netlify could be replaced with any other static file server, including Lagoon itself.
+  - Netlify could be replaced with any other static file server, including
+    Lagoon itself.
 - Anything that can run Node.js.
 
 ## How to run the example locally
 
-Set up the monorepo locally as described in the [readme](https://github.com/AmazeeLabs/silverback-mono#setup-locally).
+Set up the monorepo locally as described in the
+[readme](https://github.com/AmazeeLabs/silverback-mono#setup-locally).
 
 Prepare (run from the silverback-mono root):
 
@@ -87,7 +93,7 @@ cd apps/silverback-drupal-graphql-v3
 direnv allow
 composer install
 silverback setup
-drush -y content-sync:import # Ignore the errors.
+drush -y content-sync:import
 
 cd ../..
 

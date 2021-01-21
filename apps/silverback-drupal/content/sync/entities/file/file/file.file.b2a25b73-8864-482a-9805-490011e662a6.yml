@@ -1,0 +1,39 @@
+uuid:
+  -
+    value: b2a25b73-8864-482a-9805-490011e662a6
+langcode:
+  -
+    value: en
+uid:
+  -
+    target_type: user
+    target_uuid: d29d1c93-6873-4b2c-8642-bc9a9e842bdb
+filename:
+  -
+    value: image_jpg_pug.jpg
+uri:
+  -
+    value: 'public://2021-01/image_jpg_pug.jpg'
+    url: /sites/default/files/2021-01/image_jpg_pug.jpg
+filemime:
+  -
+    value: image/jpeg
+filesize:
+  -
+    value: 354733
+status:
+  -
+    value: true
+created:
+  -
+    value: '2021-01-19T12:27:24+00:00'
+    format: 'Y-m-d\TH:i:sP'
+changed:
+  -
+    value: '2021-01-19T12:27:30+00:00'
+    format: 'Y-m-d\TH:i:sP'
+_content_sync:
+  entity_type: file
+  entity_dependencies:
+    user:
+      - user.user.d29d1c93-6873-4b2c-8642-bc9a9e842bdb

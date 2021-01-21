@@ -4,7 +4,13 @@ interface PluginOptions {
   configs: {
     nodeType: string;
     propertyPath: string;
+    baseUrl: string;
   }[];
+}
+
+interface Urls {
+  urlOriginal: string;
+  urlAbsolute: string;
 }
 
 export const createSchemaCustomization = async (
@@ -14,7 +20,8 @@ export const createSchemaCustomization = async (
   const types = `"${options.configs.map((it) => it.nodeType).join('", "')}"`;
   args.actions.createTypes(`
     type ImagesFromHtml implements Node @childOf(types: [${types}], many: true) {
-      url: String!
+      urlOriginal: String!
+      urlAbsolute: String!
     }
   `);
 };
@@ -27,13 +34,13 @@ export const onCreateNode = async (
     (it) => it.nodeType === args.node.internal.type,
   );
   if (config) {
-    const html = getHtml(args.node, config.propertyPath);
+    const html = getHtml(args.node, config.propertyPath.split('.'));
     if (html) {
-      for (const url of parseUrls(html)) {
-        const id = args.createNodeId(url);
+      for (const url of parseUrls(html, config.baseUrl)) {
+        const id = args.createNodeId(url.urlAbsolute);
         args.actions.createNode({
           id,
-          url,
+          ...url,
           internal: {
             type: 'ImagesFromHtml',
             contentDigest: args.createContentDigest(id),
@@ -48,29 +55,33 @@ export const onCreateNode = async (
   }
 };
 
-const parseUrls = (html: string): string[] => {
+const parseUrls = (html: string, baseUrl: string): Urls[] => {
   const matches = html.matchAll(/(src="([^"]+))|(src='([^']+))/gim);
-  const result: string[] = [];
+  const result: Urls[] = [];
   for (const match of matches) {
-    result.push(match[2] || match[4]);
+    const urlOriginal = match[2] || match[4];
+    // TODO: replace with real url parsing. Current version is too weak.
+    const urlAbsolute = urlOriginal.startsWith('/')
+      ? baseUrl + urlOriginal
+      : urlOriginal;
+    if (!result.find((it) => it.urlAbsolute === urlAbsolute)) {
+      result.push({ urlOriginal, urlAbsolute });
+    }
   }
   return result;
 };
 
-// TODO: if it's going to be a separate package: replace with lodash get or
-//  similar.
-const getHtml = (object: any, path: string): string | null => {
-  let current = object;
-  for (
-    let i = 0, pathParts = path.split('.'), len = pathParts.length;
-    i < len;
-    i++
-  ) {
-    if (current && pathParts[i] in current) {
-      current = current[pathParts[i]];
+const getHtml = (object: any, path: string[], str = ''): string => {
+  const [propName, ...rest] = path;
+  if (object && object[propName]) {
+    const prop = object[propName];
+    if (rest.length) {
+      return Array.isArray(prop)
+        ? prop.map((it) => getHtml(it, rest, str)).join()
+        : getHtml(prop, rest, str);
     } else {
-      return null;
+      return Array.isArray(prop) ? prop.join() : prop;
     }
   }
-  return current;
+  return str;
 };

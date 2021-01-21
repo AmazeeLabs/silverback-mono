@@ -1,0 +1,17 @@
+uuid:
+  -
+    value: abc04854-7297-4f16-9f6c-6f04fd5bf6b7
+langcode:
+  -
+    value: fr
+path:
+  -
+    value: /node/2
+alias:
+  -
+    value: /article/with-everything
+status:
+  -
+    value: true
+_content_sync:
+  entity_type: path_alias

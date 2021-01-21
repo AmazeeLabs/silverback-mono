@@ -1,0 +1,17 @@
+uuid:
+  -
+    value: 412286aa-bedb-4771-bbb7-a29c3dab8790
+langcode:
+  -
+    value: en
+path:
+  -
+    value: /node/2
+alias:
+  -
+    value: /article/with-everything
+status:
+  -
+    value: true
+_content_sync:
+  entity_type: path_alias

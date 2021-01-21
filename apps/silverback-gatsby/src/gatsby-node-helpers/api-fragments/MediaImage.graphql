@@ -1,8 +1,0 @@
-fragment MediaImage on MediaImage {
-  entityId
-  entityLabel
-  fieldMediaImage {
-    url
-    alt
-  }
-}

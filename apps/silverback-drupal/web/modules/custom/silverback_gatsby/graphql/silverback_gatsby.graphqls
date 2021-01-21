@@ -1,0 +1,80 @@
+schema {
+  query: Query
+}
+
+type Query {
+  page(id: Int!): Page
+  pages(
+    offset: Int!
+    limit: Int!
+  ): [Page!]!
+  pageChanges(since: Int!, ids: [Int!]!): [Change!]!
+
+  article(id: Int!): Article
+  articles(
+    offset: Int!
+    limit: Int!
+  ): [Article!]!
+  articleChanges(since: Int!, ids: [Int!]!): [Change!]!
+
+  image(id: Int!): Image
+  images(
+    offset: Int!
+    limit: Int!
+  ): [Image!]!
+  imageChanges(since: Int!, ids: [Int!]!): [Change!]!
+
+  tag(id: Int!): Tag
+  tags(
+    offset: Int!
+    limit: Int!
+  ): [Tag!]!
+  tagChanges(since: Int!, ids: [Int!]!): [Change!]!
+}
+
+type Page {
+  id: Int!
+  translations: [PageTranslation!]!
+}
+
+type PageTranslation {
+  langcode: String!
+  path: String!
+  title: String!
+  body: String
+}
+
+type Article {
+  id: Int!
+  translations: [ArticleTranslation!]!
+}
+
+type ArticleTranslation {
+  langcode: String!
+  path: String!
+  title: String!
+  body: String
+  tags: [Tag!]!
+  image: Image
+}
+
+type Image {
+  id: Int!
+  url: String!
+  alt: String!
+}
+
+type Tag {
+  id: Int!
+  title: String!
+}
+
+type Change {
+  type: ChangeType!
+  id: Int!
+}
+
+enum ChangeType {
+  Update
+  Delete
+}

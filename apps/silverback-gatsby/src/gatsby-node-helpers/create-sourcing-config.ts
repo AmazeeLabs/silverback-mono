@@ -2,15 +2,14 @@ import { SourceNodesArgs } from 'gatsby';
 import {
   buildNodeDefinitions,
   compileNodeQueries,
+  generateDefaultFragments,
   loadSchema,
-  readOrGenerateDefaultFragments,
 } from 'gatsby-graphql-source-toolkit';
 import {
   IGatsbyNodeConfig,
   ISourcingConfig,
 } from 'gatsby-graphql-source-toolkit/dist/types';
 
-import { createPaginationAdapter } from './create-pagination-adapter';
 import { createQueryExecutor } from './create-query-executor';
 import { drupalNodes } from './drupal-nodes';
 
@@ -25,89 +24,60 @@ export const createSourcingConfig = async (
   // NODE_ queries are used to fetch incremental updates.
   // More details in https://github.com/gatsbyjs/gatsby-graphql-toolkit#readme
   const gatsbyNodeTypes: IGatsbyNodeConfig[] = [];
-  for (const entityType of drupalNodes) {
-    for (const bundle of entityType.bundles) {
-      gatsbyNodeTypes.push({
-        remoteTypeName: bundle.graphQlType,
-        queries: `
-        query LIST_${bundle.graphQlType} {
-          ${entityType.graphQlFields.query}(
+  for (const drupalNode of drupalNodes) {
+    gatsbyNodeTypes.push({
+      remoteTypeName: drupalNode.type,
+      queries: `
+        query LIST_${drupalNode.type} {
+          ${drupalNode.multiple}(
             limit: $limit
             offset: $offset
-            filter: {
-              conditions: [
-                {
-                  field: "${entityType.drupalFields.bundle}"
-                  value: "${bundle.bundle}"
-                }
-              ]
-            }
           ) {
-            entities {
-              ..._${bundle.graphQlType}Id_
-            }
+            ..._${drupalNode.type}Id_
           }
         }
-        query NODE_${bundle.graphQlType} {
-          ${entityType.graphQlFields.getById}(id: $entityId) {
-            ..._${bundle.graphQlType}Id_
+        query NODE_${drupalNode.type} {
+          ${drupalNode.single}(id: $id) {
+            ..._${drupalNode.type}Id_
           }
         }
-        fragment _${bundle.graphQlType}Id_ on ${bundle.graphQlType} {
+        fragment _${drupalNode.type}Id_ on ${drupalNode.type} {
           __typename
-          entityId
+          id
         }
       `,
-      });
-      /*
-      While the above code is full of placeholders, here is an example of how it
-      looks for the Article content type:
-      {
-        remoteTypeName: 'NodeArticle',
-        queries: `
-          query LIST_NodeArticle {
-            nodeQuery(
-              limit: $limit
-              offset: $offset
-              filter: {
-                conditions: [
-                  {
-                    field: "type"
-                    value: "article"
-                  }
-                ]
-              }
-            ) {
-              entities {
-                ..._NodeArticleId_
-              }
-            }
+    });
+    /*
+    Example of how the above looks for the Article content type:
+    {
+      remoteTypeName: 'Article',
+      queries: `
+        query LIST_Article {
+          articles(
+            limit: $limit
+            offset: $offset
+          ) {
+            ..._ArticleId_
           }
-          query NODE_NodeArticle {
-            nodeById(id: $entityId) {
-              ..._NodeArticleId_
-            }
+        }
+        query NODE_Article {
+          article(id: $id) {
+            ..._ArticleId_
           }
-          fragment _NodeArticleId_ on NodeArticle {
-            __typename
-            entityId
-          }
-       `
-      }
-      */
+        }
+        fragment _ArticleId_ on Article {
+          __typename
+          id
+        }
+     `
     }
+    */
   }
 
-  // Use predefined fragments. Otherwise, if generateDefaultFragments() is used,
-  // gatsby-graphql-source-toolkit will prepare fragments of crazy size.
-  // Example: https://gist.github.com/Leksat/25720d90644974ae7ab628d2c93c57af
-  const fragments = await readOrGenerateDefaultFragments(
-    './src/gatsby-node-helpers/api-fragments',
-    {
-      schema,
-      gatsbyNodeTypes,
-    },
-  );
+  const fragments = await generateDefaultFragments({
+    schema,
+    gatsbyNodeTypes,
+  });
 
   const documents = compileNodeQueries({
     schema,
@@ -122,9 +92,7 @@ export const createSourcingConfig = async (
     // The default typename transformer adds a prefix to all remote types. It
     // can be set to empty string, but then make sure that type names do not
     // clash with Gatsby.
-    gatsbyTypePrefix: `Drupal`,
+    gatsbyTypePrefix: 'Drupal',
     gatsbyNodeDefs: buildNodeDefinitions({ gatsbyNodeTypes, documents }),
-    // Add our custom adapter.
-    paginationAdapters: [createPaginationAdapter()],
   };
 };

@@ -1,0 +1,13 @@
+uuid: c929c24f-cb75-4963-a47b-4fbc21ce15a7
+langcode: en
+status: true
+dependencies: {  }
+name: silverback_gatsby
+label: 'Silverback Gatsby'
+schema: silverback_gatsby
+schema_configuration: {  }
+persisted_queries_settings: {  }
+endpoint: /silverback-gatsby
+debug_flag: 15
+caching: true
+batching: true
