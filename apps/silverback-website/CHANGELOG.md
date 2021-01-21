@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.12.3...silverback-website@0.13.0) (2021-01-21)
+
+
+### Bug Fixes
+
+* silverback-drupal-graphql-v3 mentions ([d715866](https://github.com/AmazeeLabs/silverback-mono/commit/d71586627d74f0ca98c2818beb1e8336f6faccb3))
+
+
+### Features
+
+* move to GraphQL v4 and add translations support ([1729f5a](https://github.com/AmazeeLabs/silverback-mono/commit/1729f5a14e45ed7efe05af3adca85dd25247de7e))
+
+
+
+
+
 ## [0.12.3](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.12.2...silverback-website@0.12.3) (2021-01-19)
 
 **Note:** Version bump only for package silverback-website

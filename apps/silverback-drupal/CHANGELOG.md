@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2021-01-21)
+
+
+### Bug Fixes
+
+* **silverback-drupal:** run composer install on monorepo-setup ([38a6175](https://github.com/AmazeeLabs/silverback-mono/commit/38a61757bab01652d9537ec34ab3ca31520b51a6))
+
+
+### Features
+
+* move to GraphQL v4 and add translations support ([1729f5a](https://github.com/AmazeeLabs/silverback-mono/commit/1729f5a14e45ed7efe05af3adca85dd25247de7e))
+
+
+
+
+
 ## [1.0.39](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-drupal@1.0.38...silverback-drupal@1.0.39) (2021-01-18)
 
 **Note:** Version bump only for package silverback-drupal
