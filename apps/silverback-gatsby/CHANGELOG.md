@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.5](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.12.4...silverback-gastby@0.12.5) (2021-01-21)
+
+
+### Bug Fixes
+
+* add drupal base url ([bea174a](https://github.com/AmazeeLabs/silverback-mono/commit/bea174a2492e7f6f7a6e6d500329ef4bbd888c58))
+
+
+
+
+
 ## [0.12.4](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.12.3...silverback-gastby@0.12.4) (2021-01-21)
 
 
