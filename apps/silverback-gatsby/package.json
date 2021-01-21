@@ -1,7 +1,7 @@
 {
   "name": "silverback-gastby",
   "private": true,
-  "description": "gatsby-graphql-toolkit example for drupal/graphql:3",
+  "description": "gatsby-graphql-toolkit example for drupal",
   "version": "0.12.3",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {

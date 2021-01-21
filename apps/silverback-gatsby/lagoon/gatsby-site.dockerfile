@@ -20,7 +20,7 @@ COPY --from=builder /tmp/silverback-gatsby /app
 
 # App env vars.
 ENV ENABLE_GATSBY_REFRESH_ENDPOINT=true
-ENV DRUPAL_GRAHPQL_ENDPOINT=https://nginx-silverback-gatsby-development.ch.amazee.io/graphql
+ENV DRUPAL_GRAHPQL_ENDPOINT=https://nginx-silverback-gatsby-development.ch.amazee.io/silverback-gatsby
 ENV GATSBY_PLUGIN_BUILD_MONITOR_ENDPOINT=https://nginx-silverback-gatsby-development.ch.amazee.io/gatsby-build-monitor/set-state
 ENV GATSBY_PLUGIN_BUILD_MONITOR_TOKEN=zbryaiSF9xjfNrVEu9RSqxt5QqfeQp6FJB5TKTQg950
 ENV DRUPAL_PREVIEW_USER_CREDENTIALS=GatsbyPreview:GatsbyPreview
