@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.1.1...@-amazeelabs/silverback-drupal@1.1.2) (2021-01-21)
+
+
+### Bug Fixes
+
+* switch to PHP 7.4 ([a041df1](https://github.com/AmazeeLabs/silverback-mono/commit/a041df1fe8591fe7cddd68c0f18533164c069dfc))
+
+
+
+
+
 ## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.1.0...@-amazeelabs/silverback-drupal@1.1.1) (2021-01-21)
 
 
