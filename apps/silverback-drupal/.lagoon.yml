@@ -16,6 +16,7 @@ tasks:
             if ! drush status --fields=bootstrap | grep -q "Successful"; then
                 # no drupal installed, we install drupal from scratch
                 drush si -y minimal --sites-subdir=default --existing-config --account-name=admin --account-pass=admin
+                drush -y content-sync:import
             fi
         service: cli
         shell: bash
