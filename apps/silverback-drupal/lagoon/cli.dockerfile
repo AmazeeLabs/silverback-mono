@@ -1,4 +1,4 @@
-FROM amazeeio/php:7.3-cli-drupal
+FROM amazeeio/php:7.4-cli-drupal
 
 COPY apps/silverback-drupal/composer.json apps/silverback-drupal/composer.lock /app/
 COPY apps/silverback-drupal/patches /app/patches
