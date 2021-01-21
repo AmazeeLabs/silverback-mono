@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "21b7cdcd355af4bba3b19123cafbb28e",
+    "content-hash": "c8c26d512d8aaebd413836764c9a4427",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -81,11 +81,10 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback-cli",
-                "reference": "b139a094aa2d5c012102a88c582d5055498e45a3"
+                "reference": "933c48161c95f7dd8dd8fa69a4747c664ab30572"
             },
             "require": {
                 "alchemy/zippy": "dev-master",
-                "cweagans/composer-patches": "^1.7.0",
                 "drush/drush": "^10.3.6",
                 "ext-json": "*",
                 "ext-zip": "*",
@@ -98,7 +97,20 @@
             ],
             "type": "package",
             "extra": {
-                "composer-exit-on-patch-failure": true
+                "drupal-scaffold": {
+                    "file-mapping": {
+                        "[project-root]/.env.local.example": "assets/.env.local.example",
+                        "[project-root]/.envrc": "assets/.envrc",
+                        "[project-root]/.gitignore": {
+                            "append": "assets/.gitignore.append.txt",
+                            "force-append": true
+                        },
+                        "[web-root]/sites/default/settings.php": {
+                            "append": "assets/settings.php.append.txt",
+                            "force-append": true
+                        }
+                    }
+                }
             },
             "autoload": {
                 "psr-4": {
@@ -2195,6 +2207,84 @@
             "time": "2020-10-27T21:46:55+00:00"
         },
         {
+            "name": "drupal/admin_toolbar",
+            "version": "2.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/admin_toolbar.git",
+                "reference": "8.x-2.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/admin_toolbar-8.x-2.4.zip",
+                "reference": "8.x-2.4",
+                "shasum": "6240047b8d91ac78f98d861ba8282af971fa0b38"
+            },
+            "require": {
+                "drupal/core": "^8.8.0 || ^9.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-2.4",
+                    "datestamp": "1601999178",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Wilfrid Roze (eme)",
+                    "homepage": "https://www.drupal.org/u/eme",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Romain Jarraud (romainj)",
+                    "homepage": "https://www.drupal.org/u/romainj",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Adrian Cid Almaguer (adriancid)",
+                    "homepage": "https://www.drupal.org/u/adriancid",
+                    "email": "adriancid@gmail.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Mohamed Anis Taktak (matio89)",
+                    "homepage": "https://www.drupal.org/u/matio89",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "fethi.krout",
+                    "homepage": "https://www.drupal.org/user/3206765"
+                },
+                {
+                    "name": "matio89",
+                    "homepage": "https://www.drupal.org/user/2320090"
+                },
+                {
+                    "name": "romainj",
+                    "homepage": "https://www.drupal.org/user/370706"
+                }
+            ],
+            "description": "Provides a drop-down menu interface to the core Drupal Toolbar.",
+            "homepage": "http://drupal.org/project/admin_toolbar",
+            "keywords": [
+                "Drupal",
+                "Toolbar"
+            ],
+            "support": {
+                "source": "https://git.drupalcode.org/project/admin_toolbar",
+                "issues": "https://www.drupal.org/project/issues/admin_toolbar"
+            }
+        },
+        {
             "name": "drupal/coder",
             "version": "8.3.12",
             "source": {
@@ -2236,6 +2326,26 @@
                 "source": "https://www.drupal.org/project/coder"
             },
             "time": "2020-12-06T09:34:55+00:00"
+        },
+        {
+            "name": "drupal/content_sync",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/content_sync.git",
+                "reference": "5164f8a88149eea74e92808884dd9d04335d6d40"
+            },
+            "require": {
+                "drupal/core": "^8.8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9 || ^10"
+                    }
+                }
+            }
         },
         {
             "name": "drupal/core",
@@ -2772,6 +2882,198 @@
             "description": "Dev dependencies for drupal/cypress package. Created because automated tests for Drupal modules need to be executed from a Drupal environment, but modules' require-dev dependencies couldn't be loaded by Composer in this case. Similar approach as https://packagist.org/packages/drupal/core-dev",
             "transport-options": {
                 "relative": true
+            }
+        },
+        {
+            "name": "drupal/gatsby",
+            "version": "1.0.0-rc3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/gatsby.git",
+                "reference": "8.x-1.0-rc3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/gatsby-8.x-1.0-rc3.zip",
+                "reference": "8.x-1.0-rc3",
+                "shasum": "dcb718f2a996861558103eee803609ed771f7aae"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "require-dev": {
+                "drupal/gatsby_instantpreview": "*",
+                "drupal/jsonapi_extras": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0-rc3",
+                    "datestamp": "1600111988",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "codekarate",
+                    "homepage": "https://www.drupal.org/user/506260"
+                },
+                {
+                    "name": "johnnybgoode",
+                    "homepage": "https://www.drupal.org/user/980926"
+                },
+                {
+                    "name": "mrjmd",
+                    "homepage": "https://www.drupal.org/user/1800446"
+                }
+            ],
+            "description": "Enables Live Preview for Gatsby",
+            "homepage": "https://www.drupal.org/project/gatsby",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/gatsby",
+                "issues": "https://www.drupal.org/project/issues/gatsby"
+            }
+        },
+        {
+            "name": "drupal/gatsby_build_monitor",
+            "version": "dev-development",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/composer/drupal/gatsby_build_monitor",
+                "reference": "c88d5445eadcda7a3691c81091b0c5c6d9c2d6d8"
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Gatsby build monitor for the Toolbar",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "drupal/graphql",
+            "version": "4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/graphql.git",
+                "reference": "8.x-4.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/graphql-8.x-4.0.zip",
+                "reference": "8.x-4.0",
+                "shasum": "639dd29fb6005ba2b15a389f03a6596308c9f14e"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/typed_data": "*",
+                "php": ">=7.2",
+                "webonyx/graphql-php": "^14.3.0"
+            },
+            "require-dev": {
+                "drupal/node-node": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-4.0",
+                    "datestamp": "1607692423",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "fubhy",
+                    "homepage": "https://www.drupal.org/user/761344"
+                },
+                {
+                    "name": "hideaway",
+                    "homepage": "https://www.drupal.org/user/741876"
+                },
+                {
+                    "name": "joaogarin",
+                    "homepage": "https://www.drupal.org/user/612814"
+                },
+                {
+                    "name": "klausi",
+                    "homepage": "https://www.drupal.org/user/262198"
+                },
+                {
+                    "name": "pmelab",
+                    "homepage": "https://www.drupal.org/user/555322"
+                }
+            ],
+            "description": "Exposes your Drupal data model through a GraphQL schema.",
+            "homepage": "http://drupal.org/project/graphql",
+            "support": {
+                "source": "https://git.drupalcode.org/project/graphql"
+            }
+        },
+        {
+            "name": "drupal/typed_data",
+            "version": "1.0.0-alpha5",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/typed_data.git",
+                "reference": "8.x-1.0-alpha5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/typed_data-8.x-1.0-alpha5.zip",
+                "reference": "8.x-1.0-alpha5",
+                "shasum": "44cfaf8f6d6bc0b876e88a8b9d473799818d395f"
+            },
+            "require": {
+                "drupal/core": "^8.7.7 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0-alpha5",
+                    "datestamp": "1591397037",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "TR",
+                    "homepage": "https://www.drupal.org/user/202830"
+                },
+                {
+                    "name": "fago",
+                    "homepage": "https://www.drupal.org/user/16747"
+                }
+            ],
+            "description": "Extends the core Typed Data API with new APIs and features.",
+            "homepage": "https://www.drupal.org/project/typed_data",
+            "support": {
+                "source": "https://git.drupalcode.org/project/typed_data",
+                "issues": "https://www.drupal.org/project/issues/typed_data"
             }
         },
         {
@@ -10677,6 +10979,72 @@
                 "source": "https://github.com/webmozart/path-util/tree/2.3.0"
             },
             "time": "2015-12-17T08:42:14+00:00"
+        },
+        {
+            "name": "webonyx/graphql-php",
+            "version": "v14.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webonyx/graphql-php.git",
+                "reference": "aab3d49181467db064b41429cde117a7589625fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/aab3d49181467db064b41429cde117a7589625fc",
+                "reference": "aab3d49181467db064b41429cde117a7589625fc",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": "^7.1||^8.0"
+            },
+            "require-dev": {
+                "amphp/amp": "^2.3",
+                "doctrine/coding-standard": "^6.0",
+                "nyholm/psr7": "^1.2",
+                "phpbench/phpbench": "^0.16.10",
+                "phpstan/extension-installer": "^1.0",
+                "phpstan/phpstan": "0.12.32",
+                "phpstan/phpstan-phpunit": "0.12.11",
+                "phpstan/phpstan-strict-rules": "0.12.2",
+                "phpunit/phpunit": "^7.2|^8.5",
+                "psr/http-message": "^1.0",
+                "react/promise": "2.*",
+                "simpod/php-coveralls-mirror": "^3.0",
+                "squizlabs/php_codesniffer": "3.5.4"
+            },
+            "suggest": {
+                "psr/http-message": "To use standard GraphQL server",
+                "react/promise": "To leverage async resolving on React PHP platform"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "GraphQL\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A PHP port of GraphQL reference implementation",
+            "homepage": "https://github.com/webonyx/graphql-php",
+            "keywords": [
+                "api",
+                "graphql"
+            ],
+            "support": {
+                "issues": "https://github.com/webonyx/graphql-php/issues",
+                "source": "https://github.com/webonyx/graphql-php/tree/v14.4.0"
+            },
+            "funding": [
+                {
+                    "url": "https://opencollective.com/webonyx-graphql-php",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2020-12-03T16:05:21+00:00"
         }
     ],
     "packages-dev": [],
@@ -10684,8 +11052,11 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "amazeelabs/silverback-cli": 20,
+        "drupal/content_sync": 20,
         "drupal/cypress": 20,
-        "drupal/cypress-dev": 20
+        "drupal/cypress-dev": 20,
+        "drupal/gatsby": 5,
+        "drupal/gatsby_build_monitor": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

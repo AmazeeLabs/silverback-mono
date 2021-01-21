@@ -772,6 +772,10 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 # }
 
 $settings['config_sync_directory'] = '../config/sync';
+
+global $content_directories;
+$content_directories['sync'] = $app_root . '/../content/sync';
+
 if ($env = getenv('SB_ENVIRONMENT')) {
   $env_settings = $app_root . '/' . $site_path . '/settings.' . $env . '.php';
   if (file_exists($env_settings)) {

@@ -41,8 +41,8 @@ export const plugins = [
   {
     resolve: `gatsby-plugin-remote-images`,
     options: {
-      nodeType: 'DrupalMediaImage',
-      imagePath: 'fieldMediaImage.url',
+      nodeType: 'DrupalImage',
+      imagePath: 'url',
     },
   },
 
@@ -52,12 +52,14 @@ export const plugins = [
     options: {
       configs: [
         {
-          nodeType: 'DrupalNodeArticle',
-          propertyPath: 'body.processed',
+          nodeType: 'DrupalPage',
+          propertyPath: 'translations.body',
+          baseUrl: process.env.DRUPAL_BASE_URL,
         },
         {
-          nodeType: 'DrupalNodePage',
-          propertyPath: 'fieldBody.processed',
+          nodeType: 'DrupalArticle',
+          propertyPath: 'translations.body',
+          baseUrl: process.env.DRUPAL_BASE_URL,
         },
       ],
     },
@@ -66,7 +68,7 @@ export const plugins = [
     resolve: `gatsby-plugin-remote-images`,
     options: {
       nodeType: 'ImagesFromHtml',
-      imagePath: 'url',
+      imagePath: 'urlAbsolute',
     },
   },
 

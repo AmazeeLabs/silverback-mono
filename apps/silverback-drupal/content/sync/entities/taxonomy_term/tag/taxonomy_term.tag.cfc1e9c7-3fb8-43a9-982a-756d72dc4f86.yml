@@ -1,0 +1,52 @@
+uuid:
+  -
+    value: cfc1e9c7-3fb8-43a9-982a-756d72dc4f86
+langcode:
+  -
+    value: en
+vid:
+  -
+    target_id: tag
+    target_type: taxonomy_vocabulary
+    target_uuid: 3dd34eb1-be3b-4ab6-b594-28973df8a8df
+revision_created:
+  -
+    value: '2021-01-19T12:32:05+00:00'
+    format: 'Y-m-d\TH:i:sP'
+revision_user: {  }
+revision_log_message: {  }
+status:
+  -
+    value: true
+name:
+  -
+    value: 'Tag 1'
+description:
+  -
+    value: null
+    format: null
+    processed: ''
+weight:
+  -
+    value: 0
+parent:
+  -
+    target_id: 0
+changed:
+  -
+    value: '2021-01-19T12:32:05+00:00'
+    format: 'Y-m-d\TH:i:sP'
+default_langcode:
+  -
+    value: true
+revision_translation_affected:
+  -
+    value: true
+path:
+  -
+    alias: null
+    pid: null
+    langcode: en
+_content_sync:
+  entity_type: taxonomy_term
+  entity_dependencies: {  }

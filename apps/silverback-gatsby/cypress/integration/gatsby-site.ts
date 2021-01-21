@@ -4,10 +4,10 @@ import { drupalNodeOpUrl, rebuildDelay, siteUrl } from './constants';
 describe('Test Gatsby Site', () => {
   it('checks if pre-created content is there', () => {
     cy.visit(siteUrl);
-    cy.contains('a', 'With tags');
-    cy.contains('a', 'With summary');
+    cy.contains('a', 'With everything');
+    cy.contains('a', 'With everything DE');
+    cy.contains('a', 'With everything FR');
     cy.contains('a', 'Not published').should('not.exist');
-    cy.contains('a', 'With images');
     testImages();
   });
 

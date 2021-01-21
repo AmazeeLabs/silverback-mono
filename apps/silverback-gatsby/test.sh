@@ -14,7 +14,7 @@ trap finish EXIT
 
 function setup_drupal {
   echo "👇 Setting up Drupal..."
-  cd ../silverback-drupal-graphql-v3
+  cd ../silverback-drupal
   source .envrc
 
   composer install

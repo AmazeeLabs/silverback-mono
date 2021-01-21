@@ -4,10 +4,10 @@ import { drupalNodeOpUrl, previewUrl, refreshDelay } from './constants';
 describe('Test Gatsby Preview', () => {
   it('checks if pre-created content is there', () => {
     cy.visit(previewUrl);
-    cy.contains('a', 'With tags');
-    cy.contains('a', 'With summary');
+    cy.contains('a', 'With everything');
+    cy.contains('a', 'With everything DE');
+    cy.contains('a', 'With everything FR');
     cy.contains('a', 'Not published');
-    cy.contains('a', 'With images');
     testImages();
   });
 

@@ -21,8 +21,8 @@ x-environment: &default-environment
 services:
   cli: # cli container, will be used for executing composer and any local commands (drush, drupal, etc.)
     build:
-      context: .
-      dockerfile: lagoon/cli.dockerfile
+      context: ../../
+      dockerfile: apps/silverback-drupal/lagoon/cli.dockerfile
     image: *lagoon-project # this image will be reused as `CLI_IMAGE` in subsequent Docker builds
     labels:
       # Lagoon Labels
@@ -110,9 +110,42 @@ services:
     environment:
       <<: *default-environment
       VARNISH_BYPASS: "true" # by default we bypass varnish, change to 'false' or remove in order to tell varnish to cache if possible
+      LAGOON_LOCALDEV_URL: varnish.silverback-gatsby.docker.amazee.io
     networks:
       - amazeeio-network
       - default
+
+  gatsby-preview:
+    build:
+      context: ../..
+      dockerfile: apps/silverback-gatsby/lagoon/gatsby-preview.dockerfile
+    environment:
+      << : *default-environment
+      LAGOON_LOCALDEV_URL: preview.silverback-gatsby.docker.amazee.io
+    networks:
+      - amazeeio-network
+      - default
+    labels:
+      # Preserve Gatsby data between deployments.
+      lagoon.type: node-persistent
+      lagoon.persistent: /app/.cache/
+      lagoon.persistent.class: bulk
+
+  gatsby-site:
+    build:
+      context: ../..
+      dockerfile: apps/silverback-gatsby/lagoon/gatsby-site.dockerfile
+    environment:
+      <<: *default-environment
+      LAGOON_LOCALDEV_URL: site.silverback-gatsby.docker.amazee.io
+    networks:
+      - amazeeio-network
+      - default
+    labels:
+      # Preserve Gatsby data between deployments.
+      lagoon.type: node-persistent
+      lagoon.persistent: /app/.cache/
+      lagoon.persistent.class: bulk
 
 networks:
   amazeeio-network:

@@ -1,0 +1,69 @@
+uuid:
+  -
+    value: fd3a7238-807a-483d-a703-c9b1b6b4a8e8
+langcode:
+  -
+    value: en
+bundle:
+  -
+    target_id: image
+    target_type: media_type
+    target_uuid: 9b6249d1-9608-4b7c-958f-503afce71c7c
+revision_created:
+  -
+    value: '2021-01-19T12:27:10+00:00'
+    format: 'Y-m-d\TH:i:sP'
+revision_user: {  }
+revision_log_message: {  }
+status:
+  -
+    value: true
+uid:
+  -
+    target_type: user
+    target_uuid: d29d1c93-6873-4b2c-8642-bc9a9e842bdb
+name:
+  -
+    value: Kitten
+thumbnail:
+  -
+    alt: 'Kitten alt text'
+    title: null
+    width: 1311
+    height: 1353
+    target_type: file
+    target_uuid: c20a037c-a1f4-42e8-984b-09c9fd12398a
+created:
+  -
+    value: '2021-01-19T12:26:37+00:00'
+    format: 'Y-m-d\TH:i:sP'
+changed:
+  -
+    value: '2021-01-19T12:27:10+00:00'
+    format: 'Y-m-d\TH:i:sP'
+default_langcode:
+  -
+    value: true
+revision_translation_affected:
+  -
+    value: true
+path:
+  -
+    alias: null
+    pid: null
+    langcode: en
+field_media_image:
+  -
+    alt: 'Kitten alt text'
+    title: ''
+    width: 1311
+    height: 1353
+    target_type: file
+    target_uuid: c20a037c-a1f4-42e8-984b-09c9fd12398a
+_content_sync:
+  entity_type: media
+  entity_dependencies:
+    user:
+      - user.user.d29d1c93-6873-4b2c-8642-bc9a9e842bdb
+    file:
+      - file.file.c20a037c-a1f4-42e8-984b-09c9fd12398a

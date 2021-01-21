@@ -1,0 +1,34 @@
+uuid:
+  -
+    value: e6bbb44c-6dcf-44aa-8d41-67b920e233b9
+langcode:
+  -
+    value: en
+name:
+  -
+    value: GatsbyPreview
+created:
+  -
+    value: '2021-01-19T13:01:26+00:00'
+    format: 'Y-m-d\TH:i:sP'
+changed:
+  -
+    value: '2021-01-19T13:01:26+00:00'
+    format: 'Y-m-d\TH:i:sP'
+default_langcode:
+  -
+    value: true
+_content_sync:
+  entity_type: user
+  entity_dependencies: {  }
+pass:
+  -
+    value: $S$E5fFV6obyBQduzocf.BnIUzVN5N5dOdv/7CSBZCGAsNF7eTRAZP1
+    pre_hashed: true
+mail:
+  value: gatsby-preview@example.com
+status:
+  value: '1'
+roles:
+  - authenticated
+  - gatsby_preview

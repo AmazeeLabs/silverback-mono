@@ -5,8 +5,10 @@ import {
   sourceNodeChanges,
 } from 'gatsby-graphql-source-toolkit';
 
+import { languages } from './src/constants/languages';
 import { createSourcingConfig } from './src/gatsby-node-helpers/create-sourcing-config';
 import { fetchNodeChanges } from './src/gatsby-node-helpers/fetch-node-changes';
+import { ArticleContext } from './src/types/page-context';
 
 export const sourceNodes = async (gatsbyApi: SourceNodesArgs) => {
   const config = await createSourcingConfig(gatsbyApi);
@@ -37,35 +39,26 @@ export const createPages: GatsbyNode['createPages'] = async ({
   // Drupal.
   const { data, errors } = await graphql<AllArticlesQuery>(`
     query AllArticles {
-      allDrupalNodeArticle {
+      allDrupalArticle {
         nodes {
-          entityId
-          entityLabel
-          body {
-            processed
-          }
-          fieldTags {
-            entity {
-              ... on DrupalTaxonomyTermTags {
-                id
-                entityLabel
-              }
+          id
+          translations {
+            langcode
+            path
+            title
+            body
+            tags {
+              title
             }
-          }
-          fieldImage {
-            entity {
-              ... on DrupalMediaImage {
-                fieldMediaImage {
-                  alt
-                }
-                localImage {
-                  ...ImageSharpFixed
-                }
+            image {
+              alt
+              localImage {
+                ...ImageSharpFixed
               }
             }
           }
           childrenImagesFromHtml {
-            url
+            urlOriginal
             localImage {
               ...ImageSharpFixed
             }
@@ -92,11 +85,23 @@ export const createPages: GatsbyNode['createPages'] = async ({
     console.error('errors', errors);
     throw new Error('Cannot fetch articles from Gatsby.');
   }
-  data.allDrupalNodeArticle.nodes.forEach((article) => {
-    actions.createPage({
-      path: `/articles/${article.entityId}`,
-      component: require.resolve(`./src/components/article`),
-      context: { article },
-    });
-  });
+  data.allDrupalArticle.nodes.forEach((article) =>
+    article.translations.forEach((translation) => {
+      const context: ArticleContext = {
+        article: translation,
+        childrenImagesFromHtml: article.childrenImagesFromHtml,
+        otherLanguages: article.translations
+          .filter((it) => it.langcode !== translation.langcode)
+          .map((other) => ({
+            path: other.path,
+            language: languages.find((it) => it.id === other.langcode)!,
+          })),
+      };
+      return actions.createPage({
+        path: translation.path,
+        component: require.resolve(`./src/components/article`),
+        context,
+      });
+    }),
+  );
 };

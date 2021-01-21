@@ -1,4 +1,0 @@
-name: silverback-gatsby-drupal-backend
-recipe: drupal8
-config:
-  webroot: web

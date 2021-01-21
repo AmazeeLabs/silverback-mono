@@ -1,13 +1,12 @@
 export const testImages = () => {
-  cy.contains('a', 'With images').click();
-  cy.get('.html-from-drupal').then(($item) => {
-    const item = cy.wrap($item);
-    // There should be kitten and pug images in the Drupal HTML.
-    item.get('img[alt=kitten]').should('exist');
-    item.get('img[alt=pug]').should('exist');
-  });
-  // The kitten image should exist in the Drupal HTML and in the media field.
-  cy.get('img[alt=kitten]').should('have.length', 2);
-  // The pug image should exist only in the Drupal HTML.
-  cy.get('img[alt=pug]').should('have.length', 1);
+  // Workaround for "Element is detached from the DOM" on .click() 🤦
+  // The .click({ force: true }) workaround also works, but it triggers a page
+  // reload and kills the Gatsby navigation.
+  // See https://github.com/cypress-io/cypress/issues/7306 for more details.
+  cy.wait(100);
+
+  cy.contains('a', 'With everything').click();
+  // There should be kitten and pug images in the article.
+  cy.get('img[alt="Kitten alt text"]').should('exist');
+  cy.get('img[alt="Pug alt text"]').should('exist');
 };

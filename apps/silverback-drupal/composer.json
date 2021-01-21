@@ -14,6 +14,30 @@
             "url": "../../packages/composer/*/*"
         },
         {
+            "type": "package",
+            "package": {
+                "name": "drupal/content_sync",
+                "version": "dev-main",
+                "type": "drupal-module",
+                "minimum-stability": "dev",
+                "require": {
+                    "drupal/core": "^8.8 || ^9"
+                },
+                "extra": {
+                    "drush": {
+                        "services": {
+                            "drush.services.yml": "^9 || ^10"
+                        }
+                    }
+                },
+                "source": {
+                    "type": "git",
+                    "url": "https://git.drupalcode.org/project/content_sync.git",
+                    "reference": "8.x-2.x"
+                }
+            }
+        },
+        {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         }
@@ -21,6 +45,9 @@
     "require": {
         "amazeelabs/silverback-cli": "@dev",
         "composer/installers": "^1.9",
+        "cweagans/composer-patches": "^1.7",
+        "drupal/admin_toolbar": "^2.4",
+        "drupal/content_sync": "dev-main#5164f8a88149eea74e92808884dd9d04335d6d40",
         "drupal/core": "^9.0",
         "drupal/core-composer-scaffold": "^9",
         "drupal/core-dev": "^9.0",
@@ -28,6 +55,9 @@
         "drupal/core-recommended": "^9",
         "drupal/cypress": "@dev",
         "drupal/cypress-dev": "@dev",
+        "drupal/gatsby": "^1.0@RC",
+        "drupal/gatsby_build_monitor": "dev-development",
+        "drupal/graphql": "^4",
         "phpspec/prophecy-phpunit": "^2"
     },
     "conflict": {
@@ -93,6 +123,14 @@
         },
         "enable-patching": true,
         "composer-exit-on-patch-failure": true,
+        "patches": {
+            "drupal/content_sync": {
+                "D9 support": "https://www.drupal.org/files/issues/2020-12-22/3114499-34.patch"
+            },
+            "drupal/gatsby": {
+                "Build on unpublishing": "patches/drupal/gatsby/3188480--2020-12-15T10-24--adopted.patch"
+            }
+        },
         "merge-plugin": {
             "include": [
                 "packages/composer.json"

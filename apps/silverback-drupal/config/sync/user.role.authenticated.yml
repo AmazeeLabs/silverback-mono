@@ -10,3 +10,6 @@ weight: 1
 is_admin: false
 permissions:
   - 'access content'
+  - 'execute silverback_gatsby arbitrary graphql requests'
+  - 'use silverback_gatsby graphql explorer'
+  - 'view media'
