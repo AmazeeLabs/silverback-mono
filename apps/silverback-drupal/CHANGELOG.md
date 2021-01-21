@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.1.0...@-amazeelabs/silverback-drupal@1.1.1) (2021-01-21)
+
+
+### Bug Fixes
+
+* add missing packages ([c27a25c](https://github.com/AmazeeLabs/silverback-mono/commit/c27a25c3a5de701960d0e3ae6a9c268b12bb46d5))
+* import content on site install ([97cfed8](https://github.com/AmazeeLabs/silverback-mono/commit/97cfed86c4246a1266cc02ab5b2bc8a3b78c44b2))
+
+
+
+
+
 # 1.1.0 (2021-01-21)
 
 
