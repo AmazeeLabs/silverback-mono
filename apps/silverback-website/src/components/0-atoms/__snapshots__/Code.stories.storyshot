@@ -5,7 +5,7 @@ exports[`Storyshots Atoms/Code Javascript 1`] = `
   className="prose-xl"
 >
   <pre
-    className="prism-code language-javascript"
+    className="whitespace-pre-wrap break-all prism-code language-javascript"
     style={
       Object {
         "backgroundColor": "#282c34",
@@ -317,7 +317,7 @@ exports[`Storyshots Atoms/Code Markup 1`] = `
   className="prose-xl"
 >
   <pre
-    className="prism-code language-markup"
+    className="whitespace-pre-wrap break-all prism-code language-markup"
     style={
       Object {
         "backgroundColor": "#282c34",
@@ -799,7 +799,7 @@ exports[`Storyshots Atoms/Code Typescript 1`] = `
   className="prose-xl"
 >
   <pre
-    className="prism-code language-typescript"
+    className="whitespace-pre-wrap break-all prism-code language-typescript"
     style={
       Object {
         "backgroundColor": "#282c34",
