@@ -9,7 +9,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@amazeelabs/jest-preset-react": "^1.2.0",
+    "@amazeelabs/jest-preset": "^1.2.0",
     "typescript": "^4.0.5"
   },
   "scripts": {

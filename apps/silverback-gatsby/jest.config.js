@@ -1,3 +1,3 @@
 module.exports = {
-  preset: '@amazeelabs/jest-preset-react',
+  preset: '@amazeelabs/jest-preset',
 };

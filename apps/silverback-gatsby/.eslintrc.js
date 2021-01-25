@@ -1,3 +1,3 @@
 module.exports = {
-  extends: '@amazeelabs/eslint-config-react',
+  extends: '@amazeelabs/eslint-config',
 };
