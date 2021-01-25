@@ -41,9 +41,21 @@ accordingly. If you want to dig into the details, follow the
 
 ### What about Gatsby?
 
-Gatsby already do a great job by
+Gatsby already does a great job by
 [splitting pages](https://www.gatsbyjs.com/docs/how-code-splitting-works/) into
 separate chunks and prefetching them, but you can go further!
+
+### Use cases
+
+Besides really large components that should not block the initial page render,
+the most common use case for lazy loading components are pages in content management
+systems. Most of them provide some kind of "Page builder" experience that allows
+to assemble pages from predefined elements. Each of these elements requires a React
+component, and since we don't know about the pages we build upfront, all components
+for all elements would be bundled. This can be a huge waste, because very often 90%
+of the pages created only use 30% of the elements available (e.g. "News", "Events"
+or "Blog"). Loadable components can make sure that only code that is really needed
+for a given page is also included in the bundle.
 
 ## React.lazy
 
