@@ -46,7 +46,7 @@
         "amazeelabs/silverback-cli": "@dev",
         "composer/installers": "^1.9",
         "cweagans/composer-patches": "^1.7",
-        "drupal/admin_toolbar": "^2.4",
+        "drupal/admin_toolbar": "^3.0",
         "drupal/content_sync": "dev-main#5164f8a88149eea74e92808884dd9d04335d6d40",
         "drupal/core": "^9.0",
         "drupal/core-composer-scaffold": "^9",
