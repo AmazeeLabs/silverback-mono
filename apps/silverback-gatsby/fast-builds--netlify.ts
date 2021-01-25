@@ -9,7 +9,11 @@ const queue = new PQueue({ concurrency: 1 });
 
 const buildAndDeployToNetlify = async () => {
   console.log('Building...');
-  execSync('yarn build', { stdio: 'inherit' });
+  try {
+    execSync('yarn build', { stdio: 'inherit' });
+  } catch (e) {
+    console.error('Failed to build.', e);
+  }
   console.log('Deploying...');
   try {
     const client = new NetlifyAPI(process.env.NETLIFY_TOKEN);
