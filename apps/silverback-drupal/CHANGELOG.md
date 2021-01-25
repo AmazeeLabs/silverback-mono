@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.1.4...@-amazeelabs/silverback-drupal@1.1.5) (2021-01-25)
+
+
+### Bug Fixes
+
+* restore gatsby setting for lagoon env ([df4fa98](https://github.com/AmazeeLabs/silverback-mono/commit/df4fa98f5aeb49d5192c9bfd404769dd16caddac))
+
+
+
+
+
 ## [1.1.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.1.3...@-amazeelabs/silverback-drupal@1.1.4) (2021-01-25)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
