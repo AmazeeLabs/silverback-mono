@@ -28,13 +28,13 @@ To use your custom input field with formik you need to use the Field prop `compo
 Custom field (that handles label, input type and errors) example:
 
 ```jsx
-import React from "react"
+import React from "react";
 
-export function FormikText({
+export const FormikText = ({
   field, // { name, value, onChange, onBlur }
   form: { touched, errors }, // also values, setXXXX, handleXXXX, dirty, isValid, status, etc.
   ...props
-}) {
+}) => {
   return (
     <div>
       <label htmlFor={field.name}>
@@ -50,8 +50,8 @@ export function FormikText({
         <div className="error">{errors[field.name]}</div>
       )}
     </div>
-  )
-}
+  );
+};
 ```
 
 Custom field usage in a formik form example:
@@ -62,7 +62,7 @@ import ReactDOM from 'react-dom';
 import { Formik, Field, Form } from 'formik';
 import { FormikText } from './FormikText';
 
-function App() {
+export const App = () => {
   return (
     <div className="App">
       <h1>Contact Us</h1>
