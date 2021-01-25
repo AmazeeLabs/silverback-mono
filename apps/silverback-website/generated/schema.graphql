@@ -1888,6 +1888,7 @@ enum SitePluginFieldsEnum {
   pluginOptions___extensions
   pluginOptions___lessBabel
   pluginOptions___mediaTypes
+  pluginOptions___root
   pluginOptions___path
   pluginOptions___exclude___plugins
   pluginOptions___name
@@ -2030,6 +2031,7 @@ type SitePluginPluginOptions {
   extensions: [String]
   lessBabel: Boolean
   mediaTypes: [String]
+  root: String
   path: String
   exclude: SitePluginPluginOptionsExclude
   name: String
@@ -2067,6 +2069,7 @@ input SitePluginPluginOptionsFilterInput {
   extensions: StringQueryOperatorInput
   lessBabel: BooleanQueryOperatorInput
   mediaTypes: StringQueryOperatorInput
+  root: StringQueryOperatorInput
   path: StringQueryOperatorInput
   exclude: SitePluginPluginOptionsExcludeFilterInput
   name: StringQueryOperatorInput
