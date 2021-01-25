@@ -28,7 +28,7 @@ To use your custom input field with formik you need to use the Field prop `compo
 Custom field (that handles label, input type and errors) example:
 
 ```jsx
-import React from "react";
+import React from 'react';
 
 export const FormikText = ({
   field, // { name, value, onChange, onBlur }
@@ -41,7 +41,7 @@ export const FormikText = ({
         {props.label}
         <input
           id={field.name}
-          type={props.type ? props.type : "text"}
+          type={props.type ? props.type : 'text'}
           {...field}
           {...props}
         />
@@ -91,8 +91,7 @@ export const App = () => {
       </Formik>
     </div>
   );
-}
-```
+};```
 
 ## Handling complex form
 handling complex form can be very tricky, [here is an example](https://github.com/AmazeeLabs/react-form-decision/tree/main/src/components/formik) of a formik multistep form that handles cross field validation with Yup and use custom Inputs and Checkbox.
