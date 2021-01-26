@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.13.2...silverback-website@0.14.0) (2021-01-26)
+
+
+### Bug Fixes
+
+* typos and added a "use cases" section ([66f9b98](https://github.com/AmazeeLabs/silverback-mono/commit/66f9b98cf2cf266adc7725c77b97e26e8754b05e))
+
+
+### Features
+
+* **silverback-website:** wrap code blocks ([cbc068f](https://github.com/AmazeeLabs/silverback-mono/commit/cbc068fcbd318685d41d23613ffe971eba7a8469))
+
+
+
+
+
 ## [0.13.2](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.13.1...silverback-website@0.13.2) (2021-01-25)
 
 **Note:** Version bump only for package silverback-website
