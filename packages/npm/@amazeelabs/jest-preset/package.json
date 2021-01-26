@@ -9,9 +9,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "bin": {
-    "jest-preset-configure": "config/configure.js"
-  },
   "dependencies": {
     "@storybook/addon-storyshots": "^6.1.9",
     "@testing-library/react": "^11",
