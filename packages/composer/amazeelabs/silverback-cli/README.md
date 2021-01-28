@@ -34,9 +34,11 @@ Features:
 ## Usage
 
 ```sh
-# To quick-start Drupal:
+# To setup a fresh Drupal installation:
+silverback setup --profile=minimal
+
+# To restore a cached installation:
 silverback setup
-drush serve
 
 # To see other use cases:
 silverback list
