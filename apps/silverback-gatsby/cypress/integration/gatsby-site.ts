@@ -1,4 +1,4 @@
-import { testImages } from './common';
+import { testImages, testUpdates } from './common';
 import { drupalNodeOpUrl, rebuildDelay, siteUrl } from './constants';
 
 describe('Test Gatsby Site', () => {
@@ -9,6 +9,10 @@ describe('Test Gatsby Site', () => {
     cy.contains('a', 'With everything FR');
     cy.contains('a', 'Not published').should('not.exist');
     testImages();
+  });
+
+  it('tests updates', () => {
+    testUpdates('site');
   });
 
   it('creates unpublished content, then publishes it, then unpublishes it again', () => {

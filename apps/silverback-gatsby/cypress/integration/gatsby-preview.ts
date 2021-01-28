@@ -1,4 +1,4 @@
-import { testImages } from './common';
+import { testImages, testUpdates } from './common';
 import { drupalNodeOpUrl, previewUrl, refreshDelay } from './constants';
 
 describe('Test Gatsby Preview', () => {
@@ -9,6 +9,10 @@ describe('Test Gatsby Preview', () => {
     cy.contains('a', 'With everything FR');
     cy.contains('a', 'Not published');
     testImages();
+  });
+
+  it('tests updates', () => {
+    testUpdates('preview');
   });
 
   it('creates unpublished content', () => {
