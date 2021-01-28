@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@2.3.0...@-amazeelabs/silverback-cli@2.4.0) (2021-01-28)
+
+
+### Features
+
+* make --profile indicate a fresh installation ([37893a3](https://github.com/AmazeeLabs/silverback-mono/commit/37893a317e060646a4c653365289706b2b17eec9))
+
+
+
+
+
 # [2.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@2.2.0...@-amazeelabs/silverback-cli@2.3.0) (2021-01-13)
 
 
