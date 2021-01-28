@@ -97,11 +97,17 @@ export const createPages: GatsbyNode['createPages'] = async ({
             language: languages.find((it) => it.id === other.langcode)!,
           })),
       };
-      return actions.createPage({
-        path: translation.path,
-        component: require.resolve(`./src/components/article`),
-        context,
-      });
+
+      const path = translation.path;
+      const component = require.resolve(`./src/components/article`);
+
+      // TODO: remove once the stale page data issue is fixed.
+      //  https://github.com/gatsbyjs/gatsby/issues/26520
+      // Temporary fix: Call createPage twice with different contexts. This
+      // helps Gatsby to refresh the page data.
+      actions.createPage({ path, component, context: 'fake context' });
+
+      return actions.createPage({ path, component, context });
     }),
   );
 };
