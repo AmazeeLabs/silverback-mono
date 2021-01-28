@@ -9,36 +9,43 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class Setup extends SilverbackCommand {
 
-  protected function configure() {
+  protected function configure(): void {
     parent::configure();
+    $zipCache = self::zipCache();
     $this->setName('setup');
-    $this->setDescription('Install a new site.');
+    $this->setDescription('Install a site.');
     $this->setHelp(<<<EOD
-If install-cache.zip exist and --force flag is not provided:
-  - The cache will be used to restore the site.
-  - The following Drush commands will be fired: updatedb, config-import, cache-rebuild.
-Otherwise:
+If --profile option is passed:
   - A new installation will be made using Drush site-install command (with --existing-config flag if case if Drupal configuration already exists in config/sync dir).
-  - install-cache.zip will be created or updated.
+  - $zipCache will be created or updated.
+Otherwise:
+  - $zipCache will be used to restore the site.
+  - The following Drush commands will be fired: updatedb, config-import, cache-rebuild.
 EOD
     );
-    $this->addOption('force', 'f', InputOption::VALUE_NONE, 'Force installation, ignore install-cache.zip.');
-    $this->addOption('profile', 'p', InputOption::VALUE_REQUIRED, 'A profile to use. The option is ignored if installing from cache.', 'minimal');
+    $this->addOption('profile', 'p', InputOption::VALUE_OPTIONAL, 'A Drupal profile to use for a new installation.');
   }
 
-  protected function execute(InputInterface $input, OutputInterface $output) {
+  protected function execute(InputInterface $input, OutputInterface $output): int {
     parent::execute($input, $output);
+    $profile = $input->getOption('profile');
 
     $public = 'web/sites/default/files';
     $private = 'web/sites/default/files/private';
-    $zipCache = 'install-cache.zip';
+    $zipCache = self::zipCache();
     $drush = './vendor/bin/drush';
     $zippy = Zippy::load();
 
     $this->cleanDir($public);
 
     $zipCacheExists = $this->fileSystem->exists($zipCache);
-    $installFromCache = $zipCacheExists && !$input->getOption('force');
+
+    if (!$zipCacheExists && !$profile) {
+      $output->writeln("<error>No $zipCache found. Please pass --profile to make a new Drupal installation.</>");
+      return 1;
+    }
+
+    $installFromCache = $zipCacheExists && !$profile;
     $configExists = $this->fileSystem->exists('config/sync/core.extension.yml');
 
     if ($installFromCache) {
@@ -52,7 +59,7 @@ EOD
         $drush,
         'si',
         '-y',
-        $input->getOption('profile'),
+        $profile,
         $configExists ? '--existing-config' : '',
         '--account-name',
         getenv('SB_ADMIN_USER'),
@@ -84,6 +91,11 @@ EOD
     }
 
     $output->writeln("<info>Setup complete.</>");
+    return 0;
+  }
+
+  public static function zipCache(): string {
+    return 'install-cache.zip';
   }
 
 }

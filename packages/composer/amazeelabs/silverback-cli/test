@@ -56,6 +56,12 @@ function install_silverback_and_test {
   composer require amazeelabs/silverback-cli:@dev alchemy/zippy:@dev
 
   source .envrc
+  if ./vendor/bin/silverback setup; then
+    echo 'Error: `silverback setup` should fail if there is no install cache.';
+    exit 1;
+  fi
+  ./vendor/bin/silverback setup --profile=minimal
+  ./vendor/bin/silverback teardown
   ./vendor/bin/silverback setup
   ./vendor/bin/silverback snapshot-create
   ./vendor/bin/silverback snapshot-restore
