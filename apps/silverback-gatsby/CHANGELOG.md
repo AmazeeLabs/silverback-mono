@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.11](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.12.10...silverback-gastby@0.12.11) (2021-01-28)
+
+
+### Bug Fixes
+
+* temporary fix for https://github.com/gatsbyjs/gatsby/issues/26520 ([5aa8768](https://github.com/AmazeeLabs/silverback-mono/commit/5aa876801746a966f7b26f86c5ca2aa0643af9da))
+
+
+
+
+
 ## [0.12.10](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.12.9...silverback-gastby@0.12.10) (2021-01-25)
 
 **Note:** Version bump only for package silverback-gastby
