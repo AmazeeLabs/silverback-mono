@@ -31,6 +31,8 @@
   //   incomplete. (Renovate only reports packages which are defined in
   //   package.json/composer.json files. Dependencies of dependencies, which are
   //   stored in the lock files, are not listed.)
+  // TODO: merge lockFileMaintenance with other updates once
+  //  https://github.com/renovatebot/renovate/issues/7536 is implemented.
   lockFileMaintenance: {
     enabled: true,
     schedule: ["before 5am on monday"],
