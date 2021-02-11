@@ -1,6 +1,6 @@
 {
   "name": "cypress-screenplay",
-  "version": "0.1.26",
+  "version": "0.2.0",
   "description": "Screenplay pattern implementation for cypress.",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
