@@ -10,7 +10,7 @@
     "lint": "eslint '*/**.ts'",
     "formatting": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "formatting:fix": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "prepublish": "tsc",
+    "prepare": "tsc",
     "pretest": "tsc && yarn lint && yarn formatting ",
     "test": "mocha -r ts-node/register __tests__/*.spec.ts && cypress run",
     "cypress": "cypress open"
