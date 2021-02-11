@@ -6,7 +6,8 @@
  * @return bool
  */
 function cypress_enabled() {
-  return \Drupal::getContainer()->getParameter('cypress.enabled');
+  return \Drupal::getContainer()->getParameter('cypress.enabled')
+    || getenv('ENABLE_INSECURE_CYPRESS_TESTING_FEATURES');
 }
 
 /**
