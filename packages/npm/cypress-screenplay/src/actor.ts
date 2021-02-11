@@ -1,9 +1,10 @@
-import { Question, Task, UseCypress } from '../index';
 import {
   AbilityRequestError,
   MissingAbilityError,
   UnsupportedTaskError,
 } from './errors';
+import { Question } from './question';
+import { Task } from './task';
 
 /**
  * The Actor class.
@@ -59,8 +60,8 @@ export class Actor {
    * @param abilities
    *   The set of abilities.
    */
-  constructor(abilities?: object[]) {
-    this.abilities = abilities || [new UseCypress()];
+  constructor(abilities: object[]) {
+    this.abilities = abilities;
   }
 
   /**

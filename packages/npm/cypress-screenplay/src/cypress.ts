@@ -1,6 +1,5 @@
-import { QuestionInteraction } from '../index';
-import { Actor } from './actor';
-import { TaskInteraction } from './task';
+import { createQuestion, QuestionProcedure } from './question';
+import { createTask, TaskProcedure } from './task';
 
 /**
  * Cypress ability base class.
@@ -23,84 +22,12 @@ export class UseCypress {
   }
 }
 
-/**
- * Private base class for cypress interactions.
- *
- * Injects `cy` from the Cypress ability.
- */
-class CypressInteraction {
-  /**
-   * A cypress instance to invoke commands on.
-   */
-  public cy: Cypress.Chainable;
-
-  /**
-   * An actor to perform sub-tasks.
-   */
-  public actor: Actor;
-
-  /**
-   * Create an interaction.
-   *
-   * @param actor
-   *   The actor to retrieve abilities from.
-   */
-  constructor(actor: Actor) {
-    this.actor = actor;
-    this.cy = actor.ability(UseCypress).cy;
-  }
+export function createCypressTask<P>(procedure: TaskProcedure<UseCypress, P>) {
+  return createTask<UseCypress, P>(UseCypress, procedure);
 }
 
-/**
- * Base class for cypress tasks.
- */
-export abstract class CypressTask<P>
-  extends CypressInteraction
-  implements TaskInteraction<P> {
-  abstract invoke(param: P): void;
-}
-
-/**
- * Base class for cypress questions.
- */
-export abstract class CypressQuestion<P, R>
-  extends CypressInteraction
-  implements QuestionInteraction<P, R> {
-  abstract invoke(param: P, assert: (answer: R) => void): void;
-}
-
-/**
- * Shorthand for creating simple cypress tasks.
- *
- * @param procedure
- *   The procedure to fulfill this task.
- */
-export function createTask<P>(
-  procedure: (cy: Cypress.Chainable, param: P) => void,
+export function createCypressQuestion<P, R>(
+  procedure: QuestionProcedure<UseCypress, P, R>,
 ) {
-  return class extends CypressTask<P> {
-    invoke(param: P): void {
-      procedure(this.cy, param);
-    }
-  };
-}
-
-/**
- * Shorthand for creating simple cypress questions.
- *
- * @param procedure
- *   The procedure to answer this question.
- */
-export function createQuestion<P, R>(
-  procedure: (
-    cy: Cypress.Chainable,
-    param: P,
-    assert: (answer: R) => void,
-  ) => void,
-) {
-  return class extends CypressQuestion<P, R> {
-    invoke(param: P, assert: (answer: R) => void): void {
-      procedure(cy, param, assert);
-    }
-  };
+  return createQuestion<UseCypress, P, R>(UseCypress, procedure);
 }
