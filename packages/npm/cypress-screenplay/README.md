@@ -33,13 +33,13 @@ them. The following example is implemented in Typescript, but the library is
 usable in plain javascript as well.
 
 ```typescript
-import {Actor, Task, Question, createTask, createQuestion} from 'cypress-screenplay';
+import {Actor, Task, Question, createCypressTask, createCypressQuestion} from 'cypress-screenplay';
 
-const visitTestPage = createTask<string>((cy, page) => {
+const visitTestPage = createCypressTask<string>((cy, page) => {
   cy.visit(`./cypress/integration/${page}`);
 });
 
-const readListItems = createQuestion<undefined, string[]>((cy, param, assert) => {
+const readListItems = createCypressQuestion<undefined, string[]>((cy, param, assert) => {
   cy.get('li')
     .should(items =>
       assert(

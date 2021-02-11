@@ -4,7 +4,8 @@
     "outDir": "./dist",
     "declaration": true,
     "declarationDir": "types",
-    "types": ["cypress"]
+    "types": ["cypress"],
+    "typeRoots": ["types"]
   },
-  "exclude": ["node_modules", "__tests__", "types"]
+  "include": ["src", "index.ts"]
 }
