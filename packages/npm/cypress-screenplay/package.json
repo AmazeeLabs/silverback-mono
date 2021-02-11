@@ -3,7 +3,7 @@
   "version": "0.1.26",
   "description": "Screenplay pattern implementation for cypress.",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "types/index.d.ts",
   "author": "Philipp Melab",
   "license": "MIT",
   "scripts": {

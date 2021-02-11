@@ -2,7 +2,7 @@ import { Actor, Question, Task } from './index';
 
 let _actor = new Actor();
 
-declare namespace Cypress {
+export declare namespace Cypress {
   interface Chainable<Subject> {
     /**
      * Initiate with a different actor.
