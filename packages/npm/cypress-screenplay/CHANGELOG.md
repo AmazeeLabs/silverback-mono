@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/cypress-screenplay@0.2.0...cypress-screenplay@0.2.1) (2021-02-11)
+
+
+### Bug Fixes
+
+* custom .npmignore so `types` is part of the package ([bd1542d](https://github.com/AmazeeLabs/silverback-mono/commit/bd1542da6570f6acc929e09f82e567555461bbd9))
+
+
+
+
+
 # [0.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/cypress-screenplay@0.1.26...cypress-screenplay@0.2.0) (2021-02-11)
 
 
