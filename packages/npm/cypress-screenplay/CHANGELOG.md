@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/cypress-screenplay@0.2.1...cypress-screenplay@0.2.2) (2021-02-11)
+
+
+### Bug Fixes
+
+* make Cypress namespace declaration global ([eaf3359](https://github.com/AmazeeLabs/silverback-mono/commit/eaf335966957dc7737372e7b18f531396ac99ac4))
+
+
+
+
+
 ## [0.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/cypress-screenplay@0.2.0...cypress-screenplay@0.2.1) (2021-02-11)
 
 
