@@ -1,26 +1,11 @@
-import { Actor } from './src/actor';
-import { TaskInteraction, Task } from './src/task';
-import { QuestionInteraction, Question } from './src/question';
-import { AbilityRequestError, UnsupportedTaskError } from './src/errors';
-import {
+export { Actor } from './src/actor';
+export { TaskInteraction, Task } from './src/task';
+export { QuestionInteraction, Question } from './src/question';
+export { AbilityRequestError, UnsupportedTaskError } from './src/errors';
+export {
   UseCypress,
   CypressQuestion,
   CypressTask,
   createQuestion,
   createTask,
 } from './src/cypress';
-
-export {
-  Actor,
-  AbilityRequestError,
-  UnsupportedTaskError,
-  TaskInteraction,
-  Task,
-  QuestionInteraction,
-  Question,
-  UseCypress,
-  CypressQuestion,
-  CypressTask,
-  createQuestion,
-  createTask,
-};
