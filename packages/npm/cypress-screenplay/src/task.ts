@@ -43,7 +43,6 @@ export function createTask<A extends object, P>(
     constructor(actor: Actor) {
       this.actor = actor;
       this.ability = actor.ability(ability);
-      console.log(this.ability);
     }
     invoke(param: P): void {
       if (this.ability) {
