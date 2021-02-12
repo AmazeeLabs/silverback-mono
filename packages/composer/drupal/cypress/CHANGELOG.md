@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.1.20...@-drupal/cypress@2.2.0) (2021-02-12)
+
+
+### Features
+
+* **drupal/cypress:** enable testing callbacks via environment variable ([f6474be](https://github.com/AmazeeLabs/silverback-mono/commit/f6474beda17dcf919f37e8f081ee39274359191c))
+
+
+
+
+
 ## [2.1.20](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.1.19...@-drupal/cypress@2.1.20) (2021-02-11)
 
 **Note:** Version bump only for package @-drupal/cypress

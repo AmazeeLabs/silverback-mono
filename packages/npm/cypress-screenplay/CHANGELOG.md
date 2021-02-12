@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/cypress-screenplay@0.2.2...cypress-screenplay@0.3.0) (2021-02-12)
+
+
+### Bug Fixes
+
+* make Cypress namespace declaration global ([ee2ede3](https://github.com/AmazeeLabs/silverback-mono/commit/ee2ede32429a6695102ff70d40c192bf8c861bba))
+
+
+### Code Refactoring
+
+* **cypress-screenplay:** simplifiy interactions api ([2ed02ad](https://github.com/AmazeeLabs/silverback-mono/commit/2ed02adacd9b44c2d84d052036366cc1d19672cc))
+
+
+### BREAKING CHANGES
+
+* **cypress-screenplay:** Use `createTask` and `createQuestion` to create custom interactions instead of
+subclassing. Cypress specific implementations moved to `createCypressTask` and
+`createCypressInteraction`.
+
+
+
+
+
 ## [0.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/cypress-screenplay@0.2.1...cypress-screenplay@0.2.2) (2021-02-11)
 
 
