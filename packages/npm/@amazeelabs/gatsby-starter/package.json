@@ -32,7 +32,7 @@
     "gatsby-plugin-postcss": "^3.1.0",
     "gatsby-plugin-schema-snapshot": "^1.0.0",
     "gatsby-source-filesystem": "^2.3.28",
-    "husky": "^4.3.0",
+    "husky": "^5.0.0",
     "lint-staged": "^10.4.0",
     "prettier": "^2.2.1",
     "ts-node": "^9.0.0",
