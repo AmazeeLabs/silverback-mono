@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/eslint-config@1.2.2...@amazeelabs/eslint-config@1.2.3) (2021-02-22)
+
+
+### Bug Fixes
+
+* **deps:** update dependency eslint-config-prettier to v8 ([61ff5de](https://github.com/AmazeeLabs/silverback-mono/commit/61ff5de2c2a6c3f01f4d045f7d23191754a559b6))
+
+
+
+
+
 ## [1.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/eslint-config@1.2.1...@amazeelabs/eslint-config@1.2.2) (2020-12-14)
 
 
