@@ -1,0 +1,72 @@
+---
+title: Contributed modules
+path: /drupal/modules
+nav: Drupal
+position: 0
+---
+
+# Contributed Drupal modules
+
+This document is a comprehensive list of Drupal extensions that we support to be
+used in projects. Other modules _must not_ be installed on a per-project basis.
+If Drupal Core in combination with extensions on this list is not enough to meet
+specific requirements, there are three possible paths:
+
+1. Implement a custom, in-project module with fully automated test coverage.
+2. Add a pull request to this document, adding the desired module.
+3. Contribute to any module on this list to add the required features.
+
+Adding arbitrary modules with varying quality to projects whenever a requirement
+arises should be avoided. As well as patching modules and thereby creating
+unstable dependencies.
+
+
+## Confirmed modules
+
+### GraphQL version 4
+
+GraphQL is the default solution for exposing data and operations to the
+frontend. Every project should have its own custom GraphQL schema that documents
+the domain model and acts as a contract been Drupal and all consumers.
+For in-depth on how to create custom GraphQL schemas, please refer to the
+[module documentation](https://drupal-graphql.gitbook.io/graphql/).
+
+### Admin Toolbar
+
+### Pathauto
+
+### Redirect
+
+### Webform
+
+### Gatsby
+
+### Token
+
+### Field group
+
+### Linkit
+
+### Search API
+
+### Field permissions
+
+### Address field
+
+### Focal Point
+
+## Prohibited modules
+Don't even bother to start a discussion.
+
+### Paragraphs
+Paragraphs generate immense load on the database and lead to lacking (up to non-
+existent) content modeling. Compared to other page building solutions, the
+editing experience is abysmal, it produces a high level of confusion and
+complexity in multilingual setups and should be avoided at all cost.
+
+### JSON:API
+Drupal Core's API solution lacks typing and polymorphism features that GraphQL
+brings to the table and therefore hurts developer experience and long term
+maintainability. If there is the need to expose a public API endpoint, the
+recommended way is to set up a dedicated service that consumes the GraphQL API
+instead.
