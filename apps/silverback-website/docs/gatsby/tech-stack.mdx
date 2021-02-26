@@ -15,11 +15,11 @@ to take into account a lot of different aspect, like:
 - is it actively maintained?
 - is it well documented?
 
-Here you'll find a list of battle-tested libraries that have already been used on our
-projects. But remember, no package is universal, and you might end up using a
-new one. Just ask yourself the questions above, and if the answer is yes, open a
-pull request to add the new library to this documentation, so we can have a
-discussion about integrating it in our stack.
+Here you'll find a list of battle-tested libraries that have already been used
+on our projects. But remember, no package is universal, and you might end up
+using a new one. Just ask yourself the questions above, and if the answer is
+yes, open a pull request to add the new library to this documentation, so we can
+have a discussion about integrating it in our stack.
 
 You can use these websites to get different indicators, like popularity,
 quality, stars or download count. Is then up to you to pick the right one for
@@ -28,6 +28,75 @@ your purpose.
 - [npm](https://www.npmjs.com/)
 - [Openbase](https://openbase.com/)
 
+## Defaults
+
+Packages under this section should be considered default packages, as we've used
+them in pretty much every project. Those are installed by default when you kick
+off a project with Silverback. Remember to remove the packages you don't use
+before going live.
+
+### [`classnames`](https://github.com/JedWatson/classnames)
+
+**Description**: A simple JavaScript utility for conditionally joining
+classNames together.
+
+**Features**: Express the conditional classes more simply as an object, array or
+a mix of the two.
+
+### [`react-body-classname`](https://github.com/iest/react-body-classname)
+
+**Description**: Declarative, nested, stateful, isomorphic `body.className` for
+React.
+
+**Features**: Provides a declarative way to specify `document.body.className` in
+your react app. Supports server-side usage too.
+
+### [`react-helmet`](https://github.com/nfl/react-helmet)
+
+**Description**: A document head manager for React.
+
+**Features**:
+
+- Supports all valid head tags: title, base, meta, link, script, noscript, and
+  style tags.
+- Supports attributes for body, html and title tags.
+- Supports server-side rendering.
+- Nested components override duplicate head changes.
+- Duplicate head changes are preserved when specified in the same component
+  (support for tags like "apple-touch-icon").
+- Callback for tracking DOM changes.
+
+### [`query-string`](https://github.com/sindresorhus/query-string)
+
+**Description**: Parse and stringify URL query strings
+
+### [`date-fns`](https://github.com/date-fns/date-fns)
+
+**Description**: Provides the most comprehensive, yet simple and consistent
+toolset for manipulating JavaScript dates in a browser & Node.js.
+
+**Features**:
+
+- It has 180+ functions for all occasions.
+- Modular: Pick what you need. Works with webpack, Browserify, or Rollup and
+  also supports tree-shaking.
+- Native dates: Uses existing native type. It doesn't extend core objects for
+  safety's sake.
+- Immutable & Pure: Built using pure functions and always returns a new date
+  instance.
+- TypeScript & Flow: Supports both Flow and TypeScript
+- I18n: Dozens of locales. Include only what you need.
+
+### [`he`](https://github.com/mathiasbynens/he)
+
+**Description**: A robust HTML entity encoder/decoder written in JavaScript.
+
+**Features**: Robust HTML entity encoder/decoder written in JavaScript. It
+supports all standardized named character references as per HTML, handles
+ambiguous ampersands and other edge cases just like a browser would, has an
+extensive test suite, and — contrary to many other JavaScript solutions — `he`
+handles astral Unicode symbols just fine.
+
 ## Fetching data
 
 ### [`axios`](https://github.com/axios/axios)
@@ -35,6 +104,7 @@ your purpose.
 **Description**: Promise based HTTP client for the browser and node.js.
 
 **Features**:
+
 - Make XMLHttpRequests from the browser
 - Make http requests from node.js
 - Supports the Promise API
@@ -90,6 +160,7 @@ defined by the standards bodies WHATWG and W3C.
 **Description**: Build forms in React, without the tears.
 
 **Features**:
+
 - Form-level Validation
 - Error Messages
 - Wizards and multi-step forms
@@ -168,76 +239,20 @@ dependencies) that allows you to react to the user's scroll.
 **Description**: The official React interface for Iframe-Resizer
 
 **Features**:
+
 - Height and width resizing of the iFrame to content size.
 - Works with multiple and nested iFrames.
 - Domain authentication for cross domain iFrames.
-- Provides a range of page size calculation methods to support complex CSS layouts.
-- Detects changes to the DOM that can cause the page to resize using MutationObserver.
-- Detects events that can cause the page to resize (Window Resize, CSS Animation and Transition, Orientation Change and Mouse events).
+- Provides a range of page size calculation methods to support complex CSS
+  layouts.
+- Detects changes to the DOM that can cause the page to resize using
+  MutationObserver.
+- Detects events that can cause the page to resize (Window Resize, CSS Animation
+  and Transition, Orientation Change and Mouse events).
 - Simplified messaging between iFrame and host page via postMessage.
-- Fixes in page links in iFrame and supports links between the iFrame and parent page.
+- Fixes in page links in iFrame and supports links between the iFrame and parent
+  page.
 - Provides custom sizing and scrolling methods.
 - Exposes parent position and viewport size to the iFrame.
 - Works with ViewerJS to support PDF and ODF documents.
 - Supports IE 11
-
-## Misc
-
-### [`classnames`](https://github.com/JedWatson/classnames)
-
-**Description**: A simple JavaScript utility for conditionally joining
-classNames together.
-
-**Features**: Express the conditional classes more simply as an object, array or
-a mix of the two.
-
-### [`react-body-classname`](https://github.com/iest/react-body-classname)
-
-**Description**: Declarative, nested, stateful, isomorphic body.className for
-React.
-
-**Features**: Provides a declarative way to specify `document.body.className` in
-your react app. Supports server-side usage too.
-
-### [`react-helmet`](https://github.com/nfl/react-helmet)
-
-**Description**: A document head manager for React.
-
-**Features**:
-- Supports all valid head tags: title, base, meta, link, script, noscript, and style tags.
-- Supports attributes for body, html and title tags.
-- Supports server-side rendering.
-- Nested components override duplicate head changes.
-- Duplicate head changes are preserved when specified in the same component (support for tags like "apple-touch-icon").
-- Callback for tracking DOM changes.
-
-### [`query-string`](https://github.com/sindresorhus/query-string)
-
-**Description**: Parse and stringify URL query strings
-
-### [`date-fns`](https://github.com/date-fns/date-fns)
-
-**Description**: Provides the most comprehensive, yet simple and consistent
-toolset for manipulating JavaScript dates in a browser & Node.js.
-
-**Features**:
-
-- It has 180+ functions for all occasions.
-- Modular: Pick what you need. Works with webpack, Browserify, or Rollup and
-  also supports tree-shaking.
-- Native dates: Uses existing native type. It doesn't extend core objects for
-  safety's sake.
-- Immutable & Pure: Built using pure functions and always returns a new date
-  instance.
-- TypeScript & Flow: Supports both Flow and TypeScript
-- I18n: Dozens of locales. Include only what you need.
-
-### [`he`](https://github.com/mathiasbynens/he)
-
-**Description**: A robust HTML entity encoder/decoder written in JavaScript.
-
-**Features**: Robust HTML entity encoder/decoder written in JavaScript. It
-supports all standardized named character references as per HTML, handles
-ambiguous ampersands and other edge cases just like a browser would, has an
-extensive test suite, and — contrary to many other JavaScript solutions — `he`
-handles astral Unicode symbols just fine.
