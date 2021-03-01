@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.28](https://github.com/AmazeeLabs/storage-git/compare/verdaccio-git@0.1.27...verdaccio-git@0.1.28) (2021-03-01)
+
+
+### Bug Fixes
+
+* try to fix "413 request entity too large" ([b1ef6cd](https://github.com/AmazeeLabs/storage-git/commit/b1ef6cd89deaa0660e81e1cd1cf17e3ced2a9a9e))
+
+
+
+
+
 ## [0.1.27](https://github.com/AmazeeLabs/storage-git/compare/verdaccio-git@0.1.26...verdaccio-git@0.1.27) (2020-12-02)
 
 

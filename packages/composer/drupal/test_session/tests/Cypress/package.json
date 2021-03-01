@@ -1,6 +1,6 @@
 {
   "name": "@-test_session/cypress-tests",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "scripts": {
     "test:ci": "yarn jest && yarn cypress:run",
@@ -11,7 +11,7 @@
     "cypress:open": "yarn cypress:prepare && yarn cypress open"
   },
   "devDependencies": {
-    "@-drupal/test_session": "^1.0.0",
+    "@-drupal/test_session": "^1.1.1",
     "@amazeelabs/jest-preset": "^1.2.0",
     "@types/node": "^14.14.31",
     "cypress": "^6.5.0",
