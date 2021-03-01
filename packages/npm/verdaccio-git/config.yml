@@ -10,3 +10,5 @@ packages:
 
 logs:
   - { type: stdout, format: pretty, level: debug }
+
+max_body_size: 1000mb
