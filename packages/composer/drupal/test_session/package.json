@@ -1,6 +1,6 @@
 {
   "name": "@-drupal/test_session",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Helpers for Drupal E2E testing.",
   "publishConfig": {
     "access": "public",
@@ -11,6 +11,6 @@
   "author": "Amazee Labs",
   "license": "GPL-2.0-or-later",
   "devDependencies": {
-    "drupal-test-session-cypress": "^1.1.0"
+    "drupal-test-session-cypress": "^1.1.1"
   }
 }
