@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.1.16...@-amazeelabs/silverback-drupal@1.2.0) (2021-03-01)
+
+
+### Features
+
+* extract test_session from cypress module ([20798f6](https://github.com/AmazeeLabs/silverback-mono/commit/20798f605b1a1ff1dd8651d8123c5cbfc490105f))
+
+
+
+
+
 ## [1.1.16](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.1.15...@-amazeelabs/silverback-drupal@1.1.16) (2021-02-22)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.2.2...@-drupal/cypress@2.3.0) (2021-03-01)
+
+
+### Features
+
+* extract test_session from cypress module ([20798f6](https://github.com/AmazeeLabs/silverback-mono/commit/20798f605b1a1ff1dd8651d8123c5cbfc490105f))
+
+
+
+
+
 ## [2.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.2.1...@-drupal/cypress@2.2.2) (2021-02-22)
 
 **Note:** Version bump only for package @-drupal/cypress
