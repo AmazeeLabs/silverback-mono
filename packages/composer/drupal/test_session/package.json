@@ -1,0 +1,16 @@
+{
+  "name": "@-drupal/test_session",
+  "version": "1.0.0",
+  "description": "Helpers for Drupal E2E testing.",
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://localhost:4873",
+    "repository": "git@git.drupal.org:project/test_session.git",
+    "branch": "1.x"
+  },
+  "author": "Amazee Labs",
+  "license": "GPL-2.0-or-later",
+  "devDependencies": {
+    "drupal-test-session-cypress": "^1.0.0"
+  }
+}

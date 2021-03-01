@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * Check if module helpers are enabled.
+ *
+ * @return bool
+ */
+function test_session_enabled() {
+  return getenv('TEST_SESSION_ENABLED') === 'true' ||
+    // Fallback for Cypress module.
+    (function_exists('cypress_enabled') && cypress_enabled());
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ *
+ * @param array $implementations
+ * @param string $hook
+ *
+ * @return void
+ */
+function test_session_module_implements_alter(&$implementations, $hook) {
+  // Make sure our hooks run last.
+  if (in_array($hook, ['page_top'])) {
+    $group = $implementations['test_session'];
+    unset($implementations['test_session']);
+    $implementations['test_session'] = $group;
+  }
+}
+
+/**
+ *
+ *
+ * @param array $page_top
+ *
+ * @return void
+ */
+function test_session_page_top(array &$page_top) {
+  /** @var \Symfony\Component\HttpFoundation\Session\SessionInterface $session */
+  $session = \Drupal::service('session');
+  if (test_session_enabled()) {
+    $page_top['#cache']['tags'][] = 'test_session';
+    if (
+      // Disable the admin toolbar by default, since it often interferes with
+      // Cypress click handling.
+      !$session->has('TEST_SESSION_TOOLBAR') ||
+      $session->get('TEST_SESSION_TOOLBAR') === 'off'
+    ) {
+      unset($page_top['toolbar']);
+    }
+  }
+}

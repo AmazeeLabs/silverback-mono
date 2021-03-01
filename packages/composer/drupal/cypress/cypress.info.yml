@@ -2,3 +2,6 @@ name: "Cypress"
 type: module
 description: "Helpers for E2E testing with Cypress."
 core_version_requirement: ^8 || ^9
+
+dependencies:
+  - test_session:test_session

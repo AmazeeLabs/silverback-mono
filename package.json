@@ -5,7 +5,8 @@
     "packages/composer/*/*",
     "packages/npm/*",
     "packages/npm/*/*",
-    "apps/*"
+    "apps/*",
+    "packages/composer/drupal/test_session/tests/Cypress"
   ],
   "scripts": {
     "commit": "yarn git-cz",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dbc3bb5102a308f2d22faaeeb045bf66",
+    "content-hash": "5e161e9002a264f7e416d908e39a4aea",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3036,6 +3036,23 @@
             "homepage": "http://drupal.org/project/graphql",
             "support": {
                 "source": "https://git.drupalcode.org/project/graphql"
+            }
+        },
+        {
+            "name": "drupal/test_session",
+            "version": "dev-development",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/composer/drupal/test_session",
+                "reference": "2a02e94b4409b8c9cca1d23e310fe4c576177927"
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Helpers for E2E testing.",
+            "transport-options": {
+                "relative": true
             }
         },
         {
@@ -11077,7 +11094,8 @@
         "drupal/cypress": 20,
         "drupal/cypress-dev": 20,
         "drupal/gatsby": 5,
-        "drupal/gatsby_build_monitor": 20
+        "drupal/gatsby_build_monitor": 20,
+        "drupal/test_session": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

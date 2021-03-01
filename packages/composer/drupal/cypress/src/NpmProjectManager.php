@@ -81,6 +81,12 @@ class NpmProjectManager implements NpmProjectManagerInterface {
     $merge = json_decode($contents, TRUE);
     if (array_key_exists('dependencies', $merge)) {
       foreach ($merge['dependencies'] as $package => $version) {
+
+        // A hack to use local packages from the silverback-mono repository.
+        if (is_dir(__DIR__ . '/../../../../npm/' . $package)) {
+          $package = realpath(__DIR__ . '/../../../../npm/' . $package);
+        }
+
         if (isset($dependencies[$package])) {
           $currentConstraint = (new VersionParser())->parseConstraints($dependencies[$package]);
           $newConstraint = (new VersionParser())->parseConstraints($version);
@@ -152,7 +158,10 @@ class NpmProjectManager implements NpmProjectManagerInterface {
     }
 
     $this->processManager->run([
-      $this->npmExecutable, 'install', $package . '@' . $version
+      $this->npmExecutable,
+      'install',
+      // NPM fails to install a local package if version is provided.
+      substr($package, 0, 1) === '/' ? $package : $package . '@' . $version,
     ], $this->packageDirectory);
   }
 }

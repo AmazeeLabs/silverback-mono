@@ -92,7 +92,10 @@ class CypressTestDirectoriesFactory {
     return array_filter(array_map(function ($dir) {
       return $this->fileSystem->isAbsolutePath($dir) ? $dir : $this->appRoot . '/' . $dir;
     }, $directories), function ($dir) {
-      return $this->fileSystem->exists($dir);
+      return $this->fileSystem->exists($dir) &&
+        // Presence of cypress.json means a standalone Cypress installation
+        // which should not be processed with this module.
+        !$this->fileSystem->exists($dir . '/cypress.json');
     });
   }
 

@@ -1,0 +1,16 @@
+test_session.set:
+  path: /test-session/set
+  defaults:
+    _controller: \Drupal\test_session\Controller\Controller::set
+  requirements:
+    # Access is checked in controller.
+    _access: "TRUE"
+
+test_session.clear:
+  path: /test-session/clear
+  methods: [POST]
+  defaults:
+    _controller: \Drupal\test_session\Controller\Controller::clear
+  requirements:
+    # Access is checked in controller.
+    _access: "TRUE"

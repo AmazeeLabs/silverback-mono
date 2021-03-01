@@ -19,6 +19,7 @@
   "require": {
     "ext-json": "*",
     "alchemy/zippy": "dev-master",
+    "drupal/test_session": "^1.0.0",
     "drush/drush": "^10.3.5"
   },
   "require-dev": {
