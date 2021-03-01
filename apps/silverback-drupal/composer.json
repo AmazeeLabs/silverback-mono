@@ -58,7 +58,7 @@
         "drupal/gatsby": "^1.0@RC",
         "drupal/gatsby_build_monitor": "dev-development",
         "drupal/graphql": "^4",
-        "drupal/test_session": "dev-development",
+        "drupal/test_session": "dev-development as 1.0.0",
         "phpspec/prophecy-phpunit": "^2"
     },
     "conflict": {
