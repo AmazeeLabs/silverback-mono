@@ -16,7 +16,8 @@
     "cypress": "^6.0.0",
     "cypress-cucumber-preprocessor": "^4.0.0",
     "cypress-file-upload": "^5.0.0",
-    "cypress-screenplay": "^0.3.2"
+    "cypress-screenplay": "^0.3.2",
+    "drupal-test-session-cypress": "^1.0.0"
   },
   "author": "",
   "license": "ISC"

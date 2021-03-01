@@ -37,31 +37,6 @@ declare namespace Cypress {
   }
 
   /**
-   * Possible options for cy.drupalSession.
-   */
-  interface SessionOptions {
-    /**
-     * The user name to authenticate with.
-     */
-    user?: string
-
-    /**
-     * The system language code to initiate.
-     */
-    language?: string
-
-    /**
-     * The workspace machine name to initiate.
-     */
-    workspace?: string
-
-    /**
-     * Flag to indicate if the toolbar should be displayed.
-     */
-    toolbar?: boolean
-  }
-
-  /**
    * Dictionary of arbitrary property values for filtering entities.
    */
   interface SearchProperties {
@@ -115,13 +90,6 @@ declare namespace Cypress {
      * @param arguments
      */
     drupalScript(script: string, args: ScriptArguments): Chainable<Subject>
-
-    /**
-     * Initiate a Drupal session.
-     *
-     * @param options
-     */
-    drupalSession(options: SessionOptions): Chainable<Subject>
 
     /**
      * Visit an entity link.

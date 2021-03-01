@@ -1,0 +1,23 @@
+services:
+  test_session.workspace_negotiator:
+    class: Drupal\test_session\Negotiator\WorkspaceNegotiator
+    arguments: ["@entity_type.manager", "@session"]
+    tags:
+      - name: workspace_negotiator
+        priority: 9999
+
+  test_session.authentication_provider:
+    class: Drupal\test_session\Authentication\Provider\AuthenticationProvider
+    arguments: ["@entity_type.manager", "@session", "@event_dispatcher"]
+    tags:
+      - name: authentication_provider
+        provider_id: "test_session"
+        priority: 999
+
+  test_session.config_factory_override:
+    class: Drupal\test_session\ConfigOverrides
+    arguments:
+      ["@config.storage", "@?plugin.manager.language_negotiation_method"]
+    tags:
+      - name: config.factory.override
+        priority: -253

@@ -1,0 +1,4 @@
+name: "Test Session"
+type: module
+description: "Helpers for E2E testing."
+core_version_requirement: ^8 || ^9

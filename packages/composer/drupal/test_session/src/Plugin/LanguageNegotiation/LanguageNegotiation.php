@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\cypress\Plugin\LanguageNegotiation;
+namespace Drupal\test_session\Plugin\LanguageNegotiation;
 
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\language\LanguageNegotiationMethodBase;
@@ -9,27 +9,20 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
- * Language negotiator for easy E2E testing.
- *
  * @LanguageNegotiation(
- *   id = "language-cypress",
+ *   id = "language-test-session",
  *   weight = -9999,
- *   name = @Translation("Cypress headers"),
- *   description = @Translation("Use the language defined by the X-CYPRESS-LANGUAGE header.")
+ *   name = @Translation("Test Session"),
+ *   description = @Translation("Use the language defined by the Test Session module.")
  * )
  */
-class CypressLanguageNegotiation extends LanguageNegotiationMethodBase implements ContainerFactoryPluginInterface {
+class LanguageNegotiation extends LanguageNegotiationMethodBase implements ContainerFactoryPluginInterface {
 
   /**
    * @var \Symfony\Component\HttpFoundation\Session\SessionInterface
    */
   protected $session;
 
-  /**
-   * CypressLanguageNegotiation constructor.
-   *
-   * @param \Symfony\Component\HttpFoundation\Session\SessionInterface $session
-   */
   public function __construct(SessionInterface $session) {
     $this->session = $session;
   }
@@ -45,7 +38,9 @@ class CypressLanguageNegotiation extends LanguageNegotiationMethodBase implement
    * {@inheritDoc}
    */
   public function getLangcode(Request $request = NULL) {
-    return (cypress_enabled() && $request) ? ($this->session->get('CYPRESS_LANGUAGE', FALSE) ?: $request->headers->get('X-CYPRESS-LANGUAGE')) : FALSE;
+    return (test_session_enabled() && $request)
+      ? $this->session->get('TEST_SESSION_LANGUAGE', FALSE)
+      : FALSE;
   }
 
 }

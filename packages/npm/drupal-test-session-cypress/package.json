@@ -1,0 +1,27 @@
+{
+  "name": "drupal-test-session-cypress",
+  "version": "1.0.0",
+  "description": "Cypress commands for Drupal's Test Session module.",
+  "main": "commands.js",
+  "types": "commands.d.ts",
+  "homepage": "https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/npm/drupal-test-session-cypress#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AmazeeLabs/silverback-mono.git",
+    "directory": "packages/npm/drupal-test-session-cypress"
+  },
+  "author": "Amazee Labs",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "prepare": "tsc --outDir . --declaration",
+    "test:ci": "jest",
+    "test:watch": "jest --watch",
+    "test": "is-ci test:ci test:watch"
+  },
+  "devDependencies": {
+    "@amazeelabs/jest-preset": "^1.2.0",
+    "cypress": "^6.5.0",
+    "typescript": "^4.2.2"
+  }
+}
