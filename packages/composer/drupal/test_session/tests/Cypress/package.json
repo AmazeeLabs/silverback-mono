@@ -11,6 +11,7 @@
     "cypress:open": "yarn cypress:prepare && yarn cypress open"
   },
   "devDependencies": {
+    "@-drupal/test_session": "^1.0.0",
     "@amazeelabs/jest-preset": "^1.2.0",
     "@types/node": "^14.14.31",
     "cypress": "^6.5.0",
