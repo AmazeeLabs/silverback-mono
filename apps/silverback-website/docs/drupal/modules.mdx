@@ -23,7 +23,7 @@ unstable dependencies.
 
 ## Confirmed modules
 
-### GraphQL version 4
+### [GraphQL version 4](https://www.drupal.org/project/graphql)
 
 GraphQL is the default solution for exposing data and operations to the
 frontend. Every project should have its own custom GraphQL schema that documents
@@ -31,29 +31,60 @@ the domain model and acts as a contract between Drupal and all consumers.
 For an in-depth overview on how to create custom GraphQL schemas, please refer to the
 [module documentation](https://drupal-graphql.gitbook.io/graphql/).
 
-### Admin Toolbar
+### [Admin Toolbar](https://www.drupal.org/project/admin_toolbar)
+An enhanced administration toolbar with dropdown menus and quick access to
+frequently used features.
 
-### Pathauto
+### [Token](https://www.drupal.org/project/token)
+Token replacement in Drupal. Used by various other modules. Also allows to add
+project specific tokens that can be reused across the application.
 
-### Redirect
+### [Pathauto](https://www.drupal.org/project/pathauto)
+Automatically generate path aliases for content, based on patterns. Integrates
+with token and redirect.
 
-### Webform
+### [Redirect](https://www.drupal.org/project/redirect)
+Manage HTTP redirects for paths in Drupal. Integrates with pathauto to
+automatically add redirects when a pages path changes.
 
-### Gatsby
+> *TODO:* There are multiple ways to use redirects in a decoupled setup. We
+> need some canonical examples.
 
-### Token
+### [Webform](https://www.drupal.org/project/webform)
+Create and manage end user form and form submissions. Supports multiple
+backends.
 
-### Field group
+> *Note:* No integration for decoupling. Current approach is to embed the Drupal
+> form page as an iframe.
 
-### Linkit
+### [Gatsby](https://www.drupal.org/project/gatsby)
+Trigger Gatsby builds and preview refreshes for changing content.
 
-### Search API
+### [Field group](https://www.drupal.org/project/field_group)
+Organise complex entity forms with tabs, accordions etc.
 
-### Field permissions
+### [Linkit](https://www.drupal.org/project/linkit)
+Improved linking experience, that allows fine-grained control over possible link
+targets. Can be extended with suggestion plugins that aid the editor in finding
+targets and linking them correctly.
 
-### Address field
+### [Search API](https://www.drupal.org/project/search_api)
+Populate and query search indices. The go-to solution for advanced search and
+facets.
 
-### Focal Point
+### [Field permissions](https://www.drupal.org/project/field_permissions)
+Per-field permissions to protect certain fields being displayed to or edited by
+certain roles. Mainly a user interface for Drupal Core's field permission API.
+
+### [Address field](https://www.drupal.org/project/address)
+Standardised solution for storing international addresses in Drupal.
+
+### [Focal Point](https://www.drupal.org/project/focal_point)
+Allow editors to set the focal point in uploaded images to make sure the area is
+not affected by destructive cropping.
+
+### [Cypress & Test session](https://www.drupal.org/project/cypress)
+Write end2end Cypress tests and easily run integration tests against Drupal.
 
 ## Prohibited modules
 Don't even bother to start a discussion.
