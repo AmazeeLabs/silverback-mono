@@ -375,7 +375,7 @@ exports[`Storyshots Atoms/Code Markup 1`] = `
         class
       </span>
       <span
-        className="token tag attr-value punctuation attr-equals"
+        className="token tag attr-value punctuation"
         style={
           Object {
             "color": "#8dc891",
@@ -655,7 +655,7 @@ exports[`Storyshots Atoms/Code Markup 1`] = `
         href
       </span>
       <span
-        className="token tag attr-value punctuation attr-equals"
+        className="token tag attr-value punctuation"
         style={
           Object {
             "color": "#8dc891",
@@ -872,34 +872,24 @@ exports[`Storyshots Atoms/Code Typescript 1`] = `
         (
       </span>
       <span
-        className="token plain"
+        className="token parameter"
       >
         who
       </span>
       <span
-        className="token operator"
+        className="token parameter punctuation"
         style={
           Object {
-            "color": "#d7deea",
+            "color": "#8dc891",
           }
         }
       >
         :
       </span>
       <span
-        className="token plain"
+        className="token parameter"
       >
-         
-      </span>
-      <span
-        className="token builtin"
-        style={
-          Object {
-            "color": "#D8DEE9",
-          }
-        }
-      >
-        string
+         string
       </span>
       <span
         className="token punctuation"
