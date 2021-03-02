@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.6](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.14.5...silverback-website@0.14.6) (2021-03-02)
+
+
+### Bug Fixes
+
+* **docs:** better wording ([31ddbe8](https://github.com/AmazeeLabs/silverback-mono/commit/31ddbe8a48d5a55dbd9c91bbffa90b7545c04556))
+* typo ([3d98f58](https://github.com/AmazeeLabs/silverback-mono/commit/3d98f58cefc34169c8cef6ec167dfb958b7a8de6))
+
+
+
+
+
 ## [0.14.5](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.14.4...silverback-website@0.14.5) (2021-03-01)
 
 
