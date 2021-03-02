@@ -9,23 +9,6 @@ module.exports = {
       './src/**/*.tsx',
       './src/**/*.mdx',
     ],
-
-    // These options are passed through directly to PurgeCSS
-    options: {
-      whitelist: [
-        'scale-75',
-        'lg:scale-100',
-        '-mx-1',
-        'xl:-mx-1.5',
-        '-translate-x-full',
-        'absolute',
-        'transform',
-        'top-1/2',
-        '-translate-y-1/2',
-        'opacity-25',
-        'hover:opacity-100',
-      ],
-    },
   },
   theme: {
     // By default, you get Tailwind's pre-packaged design values.
