@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.7](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.14.6...silverback-website@0.14.7) (2021-03-02)
+
+
+### Bug Fixes
+
+* **silverback-website:** add anchor as a component to avoid the classes being purged. ([4e018d8](https://github.com/AmazeeLabs/silverback-mono/commit/4e018d87cfbd334e4d8970ed24e4e22aa18eb65c))
+
+
+
+
+
 ## [0.14.6](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.14.5...silverback-website@0.14.6) (2021-03-02)
 
 
