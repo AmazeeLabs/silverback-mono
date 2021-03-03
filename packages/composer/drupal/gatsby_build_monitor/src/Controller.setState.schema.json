@@ -1,0 +1,67 @@
+{
+  "oneOf": [
+    {
+      "type": "object",
+      "required": [
+        "process",
+        "status"
+      ],
+      "properties": {
+        "process": {
+          "type": "string",
+          "enum": [
+            "build"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "building"
+          ]
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "process",
+        "status"
+      ],
+      "properties": {
+        "process": {
+          "type": "string",
+          "enum": [
+            "build"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "idle"
+          ]
+        },
+        "buildStats": {
+          "type": "object",
+          "required": [
+            "started",
+            "finished",
+            "output"
+          ],
+          "properties": {
+            "started": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "finished": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "output": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  ]
+}
