@@ -26,8 +26,7 @@
     "gatsby-config.ts",
     "gatsby-browser.ts",
     "gatsby-ssr.ts",
-    "fast-builds--local.ts",
-    "fast-builds--netlify.ts"
+    "fast-builds"
   ],
   "exclude": ["node_modules"],
   "ts-node": {

@@ -20,5 +20,11 @@ describe('Test Gatsby Build Monitor integration', () => {
 
     cy.wait(rebuildDelay);
     cy.contains('a', 'Gatsby is ready');
+
+    cy.visit(`${drupalUrl}/admin/reports/gatsby-build-logs`);
+    cy.get('.view-gatsby-build-monitor-logs table td').should(
+      'have.length.gt',
+      1,
+    );
   });
 });

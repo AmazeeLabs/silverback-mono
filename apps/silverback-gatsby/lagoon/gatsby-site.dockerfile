@@ -26,4 +26,4 @@ ENV GATSBY_PLUGIN_BUILD_MONITOR_ENDPOINT=https://nginx-silverback-gatsby-develop
 ENV GATSBY_PLUGIN_BUILD_MONITOR_TOKEN=zbryaiSF9xjfNrVEu9RSqxt5QqfeQp6FJB5TKTQg950
 ENV DRUPAL_PREVIEW_USER_CREDENTIALS=GatsbyPreview:GatsbyPreview
 
-CMD ["yarn", "fast-builds:netlify"]
+CMD ["yarn", "fast-builds:serve:netlify"]
