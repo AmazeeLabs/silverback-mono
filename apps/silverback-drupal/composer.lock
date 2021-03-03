@@ -2939,7 +2939,10 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/gatsby_build_monitor",
-                "reference": "c88d5445eadcda7a3691c81091b0c5c6d9c2d6d8"
+                "reference": "9694a31d7d72606eb2cfb69ad56fc82b01f6ec1b"
+            },
+            "require": {
+                "justinrainbow/json-schema": "^5.2.10"
             },
             "type": "drupal-module",
             "license": [
