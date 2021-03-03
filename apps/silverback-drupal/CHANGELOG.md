@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.2.4...@-amazeelabs/silverback-drupal@1.2.5) (2021-03-03)
+
+
+### Bug Fixes
+
+* add new module to dockerfile ([0d6f135](https://github.com/AmazeeLabs/silverback-mono/commit/0d6f135cd4fb91450337196a968145625e56f15a))
+
+
+
+
+
 ## [1.2.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.2.3...@-amazeelabs/silverback-drupal@1.2.4) (2021-03-03)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
