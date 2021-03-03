@@ -8,6 +8,7 @@ COPY packages/composer/amazeelabs/silverback-cli /app/packages/composer/amazeela
 COPY packages/composer/drupal/gatsby_build_monitor /app/packages/composer/drupal/gatsby_build_monitor
 COPY packages/composer/drupal/cypress /app/packages/composer/drupal/cypress
 COPY packages/composer/drupal/cypress-dev /app/packages/composer/drupal/cypress-dev
+COPY packages/composer/drupal/test_session /app/packages/composer/drupal/test_session
 # And fix paths to them in composer files.
 RUN sed -i 's|"\.\./\.\.|"/app|g' composer.json composer.lock
 
