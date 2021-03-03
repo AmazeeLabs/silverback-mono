@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.12.27...silverback-gastby@0.13.0) (2021-03-03)
+
+
+### Bug Fixes
+
+* do not exit if cannot kill yarn serve ([4160507](https://github.com/AmazeeLabs/silverback-mono/commit/41605075ebfedb90d240bff3e257f5f68e1c8de6))
+
+
+### Features
+
+* fast-build scripts report to drupal ([c66d6b1](https://github.com/AmazeeLabs/silverback-mono/commit/c66d6b1058e4d89e5b3bfd3ff258d58ce26a1a8c))
+
+
+
+
+
 ## [0.12.27](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.12.26...silverback-gastby@0.12.27) (2021-03-01)
 
 **Note:** Version bump only for package silverback-gastby

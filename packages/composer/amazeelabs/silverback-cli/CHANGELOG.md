@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@2.4.0...@-amazeelabs/silverback-cli@2.5.0) (2021-03-03)
+
+
+### Features
+
+* option to avoid config import ([d7394df](https://github.com/AmazeeLabs/silverback-mono/commit/d7394df07a97e37554dca40925353f2fbb73770d))
+
+
+
+
+
 # [2.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@2.3.0...@-amazeelabs/silverback-cli@2.4.0) (2021-01-28)
 
 
