@@ -24,11 +24,18 @@ Otherwise:
 EOD
     );
     $this->addOption('profile', 'p', InputOption::VALUE_OPTIONAL, 'A Drupal profile to use for a new installation.');
+    $this->addOption('no-config-import', NULL, InputOption::VALUE_NONE, 'Disable configuration import during a cached installation. Useful for testing module updates.');
   }
 
   protected function execute(InputInterface $input, OutputInterface $output): int {
     parent::execute($input, $output);
     $profile = $input->getOption('profile');
+    $noConfigImport = $input->getOption('no-config-import');
+
+    if ($profile && $noConfigImport) {
+      $output->writeln("<error>Options --profile and --no-config-import cannot be used together.</>");
+      return 1;
+    }
 
     $public = 'web/sites/default/files';
     $private = 'web/sites/default/files/private';
@@ -74,7 +81,7 @@ EOD
 
     if ($installFromCache) {
       $this->executeProcess([$drush, 'updb', '-y', '--cache-clear=0'], $output);
-      if ($configExists) {
+      if ($configExists && !$noConfigImport) {
         $this->executeProcess([$drush, 'cim', '-y'], $output);
       }
       $this->executeProcess([$drush, 'cr'], $output);
