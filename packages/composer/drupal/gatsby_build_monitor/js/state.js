@@ -24,5 +24,7 @@
       },
     });
   }
-  setInterval(getState, 2000);
+  if (!window.localStorage.getItem("gatsby_build_monitor_disable")) {
+    setInterval(getState, 2000);
+  }
 })(jQuery);
