@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.2.5...@-amazeelabs/silverback-drupal@1.2.6) (2021-03-03)
+
+
+### Bug Fixes
+
+* set correct timezone for Spent field ([f760690](https://github.com/AmazeeLabs/silverback-mono/commit/f76069023468ed5f7a239ea9724791aed6ec99de))
+
+
+
+
+
 ## [1.2.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.2.4...@-amazeelabs/silverback-drupal@1.2.5) (2021-03-03)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/gatsby_build_monitor@1.1.0...@-drupal/gatsby_build_monitor@1.1.1) (2021-03-03)
+
+
+### Bug Fixes
+
+* set correct timezone for Spent field ([f760690](https://github.com/AmazeeLabs/silverback-mono/commit/f76069023468ed5f7a239ea9724791aed6ec99de))
+
+
+
+
+
 # [1.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/gatsby_build_monitor@1.0.4...@-drupal/gatsby_build_monitor@1.1.0) (2021-03-03)
 
 
