@@ -1,11 +1,11 @@
 import { createCypressQuestion, createCypressTask } from '../../dist';
 
 export const visitTestPage = createCypressTask((cy, page) => {
-  cy.cy.visit(`./cypress/fixtures/${page}`);
+  cy.visit(`./cypress/fixtures/${page}`);
 });
 
 export const readListItems = createCypressQuestion((cy, _, assert) => {
-  cy.cy.get('li').should((items) =>
+  cy.get('li').should((items) =>
     assert(
       items
         .toArray()

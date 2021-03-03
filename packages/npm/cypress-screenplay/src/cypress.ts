@@ -1,24 +1,13 @@
+import { AbilityFactory } from './actor';
 import { createQuestion, QuestionProcedure } from './question';
 import { createTask, TaskProcedure } from './task';
 
 /**
  * Cypress ability base class.
  */
-export class UseCypress {
-  /**
-   * A cypress instance.
-   */
-  protected cypress: Cypress.Chainable;
-
-  constructor() {
-    this.cypress = cy;
-  }
-
-  /**
-   * Retrieve the cypress instance.
-   */
-  get cy() {
-    return this.cypress;
+export class UseCypress implements AbilityFactory<Cypress.Chainable<any>> {
+  create() {
+    return cy;
   }
 }
 

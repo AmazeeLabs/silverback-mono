@@ -1,4 +1,4 @@
-import { Actor } from './actor';
+import { AbilityType, Actor, isAbilityFactory } from './actor';
 
 /**
  * Type definition for question interactions.
@@ -16,7 +16,7 @@ export interface QuestionInteraction<P, R> {
 type QuestionType<P, R> = { new (actor: Actor): QuestionInteraction<P, R> };
 export type Question<P, R> = QuestionType<P, R> | QuestionType<P, R>[];
 export type QuestionProcedure<A extends object, P, R> = (
-  ability: A,
+  ability: AbilityType<A>,
   param: P,
   assert: (answer: R) => void,
 ) => void;
@@ -50,7 +50,11 @@ export function createQuestion<A extends object, P, R>(
     }
     invoke(param: P, assert: (answer: R) => void): void {
       if (this.ability) {
-        procedure(this.ability, param, assert);
+        procedure(
+          isAbilityFactory(this.ability) ? this.ability.create() : this.ability,
+          param,
+          assert,
+        );
       }
     }
   };

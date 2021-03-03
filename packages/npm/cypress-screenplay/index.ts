@@ -3,7 +3,7 @@ import { UseCypress } from './src/cypress';
 import { Question } from './src/question';
 import { Task as ScreenPlayTask } from './src/task';
 
-export { Actor } from './src/actor';
+export { Actor, AbilityFactory } from './src/actor';
 export * from './src/task';
 export * from './src/question';
 export { AbilityRequestError, UnsupportedTaskError } from './src/errors';

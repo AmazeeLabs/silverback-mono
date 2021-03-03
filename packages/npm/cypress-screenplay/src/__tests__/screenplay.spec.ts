@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { stub } from 'sinon';
 
-import { Actor } from '../actor';
+import { AbilityFactory, Actor } from '../actor';
 import { UnsupportedTaskError } from '../errors';
 import { createQuestion } from '../question';
 import { createTask, Task } from '../task';
@@ -23,9 +23,9 @@ describe('Task', () => {
     }
   }
 
-  class UseB {
-    public b() {
-      b();
+  class UseB implements AbilityFactory<() => {}> {
+    public create() {
+      return b;
     }
   }
 
@@ -34,7 +34,7 @@ describe('Task', () => {
       a.a();
     }),
     createTask(UseB, (b) => {
-      b.b();
+      b();
     }),
   ];
 
