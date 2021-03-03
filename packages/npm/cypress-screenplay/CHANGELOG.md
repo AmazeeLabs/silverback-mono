@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/cypress-screenplay@0.3.2...cypress-screenplay@0.4.0) (2021-03-03)
+
+
+### Features
+
+* **cypress-screenplay:** ability factories ([542a603](https://github.com/AmazeeLabs/silverback-mono/commit/542a603765b7fb31f016d2c21d8472e7abc46cdf))
+* **cypress-screenplay:** tense-sensitive (tensitive? 😝) actors ([68bc83e](https://github.com/AmazeeLabs/silverback-mono/commit/68bc83e135eafcd00bfeb7faab632b5ce82ad058))
+
+
+
+
+
 ## [0.3.2](https://github.com/AmazeeLabs/silverback-mono/compare/cypress-screenplay@0.3.1...cypress-screenplay@0.3.2) (2021-02-22)
 
 **Note:** Version bump only for package cypress-screenplay
