@@ -11,6 +11,6 @@
     "source": "http://cgit.drupalcode.org/webform_jsonschema"
   },
   "require": {
-    "drupal/webform": "^5"
+    "drupal/webform": "^5 || ^6"
   }
 }
