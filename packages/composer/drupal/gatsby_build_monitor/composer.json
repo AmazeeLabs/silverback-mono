@@ -2,5 +2,8 @@
   "name": "drupal/gatsby_build_monitor",
   "type": "drupal-module",
   "description": "Gatsby build monitor for the Toolbar",
-  "license": "GPL-2.0-or-later"
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "justinrainbow/json-schema": "^5.2.10"
+  }
 }
