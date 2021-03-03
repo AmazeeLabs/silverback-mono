@@ -1,4 +1,4 @@
-import { Actor } from './actor';
+import { AbilityType, Actor, isAbilityFactory } from './actor';
 
 /**
  * Type definition for task interactions.
@@ -15,7 +15,10 @@ export interface TaskInteraction<P> {
  */
 type TaskType<P> = { new (actor: Actor): TaskInteraction<P> };
 export type Task<P> = TaskType<P> | TaskType<P>[];
-export type TaskProcedure<A extends object, P> = (ability: A, param: P) => void;
+export type TaskProcedure<A extends object, P> = (
+  ability: AbilityType<A>,
+  param: P,
+) => void;
 
 /**
  * Shorthand for creating tasks using a specific ability.
@@ -45,9 +48,10 @@ export function createTask<A extends object, P>(
       this.ability = actor.ability(ability);
     }
     invoke(param: P): void {
-      if (this.ability) {
-        procedure(this.ability, param);
-      }
+      procedure(
+        isAbilityFactory(this.ability) ? this.ability.create() : this.ability,
+        param,
+      );
     }
   };
 }

@@ -6,6 +6,17 @@ import {
 import { Question } from './question';
 import { Task } from './task';
 
+export interface AbilityFactory<T> {
+  create(): T;
+}
+
+export type AbilityType<T> = T extends AbilityFactory<infer FA> ? FA : T;
+
+export const isAbilityFactory = (
+  ability: any,
+): ability is AbilityFactory<any> =>
+  typeof ability === 'object' && typeof ability.create === 'function';
+
 /**
  * The Actor class.
  *
