@@ -86,3 +86,13 @@ function gatsby_build_monitor_update_8001() {
   $active_storage = \Drupal::service('config.storage');
   $active_storage->write($name, $source->read($name));
 }
+
+/**
+ * Fix Spent field.
+ */
+function gatsby_build_monitor_update_8002() {
+  $config = \Drupal::configFactory()->getEditable('views.view.gatsby_build_monitor_logs');
+  $config->set('display.default.display_options.fields.spent.timezone', 'UTC');
+  $config->set('display.log_record.display_options.fields.spent.timezone', 'UTC');
+  $config->save();
+}
