@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { execSync } from 'child_process';
 import express from 'express';
+import { readFileSync } from 'fs';
 import PQueue from 'p-queue';
+import tmp from 'tmp';
 
 const stripAnsi = require('strip-ansi');
 
@@ -24,15 +26,22 @@ const buildAndDeploy = async () => {
 
   await setState({ process: 'build', status: 'building' });
 
-  let output: string;
+  let errorOutput: string = '';
+  const outputFile = tmp.tmpNameSync();
   try {
-    output = execSync(`yarn fast-builds:run:${script} 2>&1`).toString();
+    execSync(`yarn fast-builds:run:${script} 2>&1 | tee ${outputFile}`, {
+      stdio: 'inherit',
+    });
   } catch (e) {
-    output = e.stdout.toString();
+    errorOutput = e.stdout.toString();
   }
-  output = stripAnsi(output);
 
   const finished = new Date().toISOString();
+
+  const output = stripAnsi(
+    errorOutput || readFileSync(outputFile, { encoding: 'utf8' }),
+  );
+
   await setState({
     process: 'build',
     status: 'idle',
@@ -43,7 +52,7 @@ const buildAndDeploy = async () => {
     },
   });
 
-  console.log('Fast-Build: Finished!', finished, output);
+  console.log('Fast-Build: Finished!', finished);
 };
 
 app.post('/__rebuild', (_, res) => {
