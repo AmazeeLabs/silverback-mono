@@ -26,21 +26,18 @@ const buildAndDeploy = async () => {
 
   await setState({ process: 'build', status: 'building' });
 
-  let errorOutput: string = '';
   const outputFile = tmp.tmpNameSync();
   try {
     execSync(`yarn fast-builds:run:${script} 2>&1 | tee ${outputFile}`, {
       stdio: 'inherit',
     });
   } catch (e) {
-    errorOutput = e.stdout.toString();
+    // In case of error, tee will still save everything to the file.
   }
 
   const finished = new Date().toISOString();
 
-  const output = stripAnsi(
-    errorOutput || readFileSync(outputFile, { encoding: 'utf8' }),
-  );
+  const output = stripAnsi(readFileSync(outputFile, { encoding: 'utf8' }));
 
   await setState({
     process: 'build',
