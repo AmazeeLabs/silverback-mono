@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed8734d713a6d7671275344b7f54ace9",
+    "content-hash": "f0775707d19fce28a43e2ace116c0415",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2302,26 +2302,6 @@
                 "source": "https://www.drupal.org/project/coder"
             },
             "time": "2020-12-06T09:34:55+00:00"
-        },
-        {
-            "name": "drupal/content_sync",
-            "version": "dev-main",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupalcode.org/project/content_sync.git",
-                "reference": "5164f8a88149eea74e92808884dd9d04335d6d40"
-            },
-            "require": {
-                "drupal/core": "^8.8 || ^9"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "drush": {
-                    "services": {
-                        "drush.services.yml": "^9 || ^10"
-                    }
-                }
-            }
         },
         {
             "name": "drupal/core",
@@ -11233,7 +11213,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "amazeelabs/silverback-cli": 20,
-        "drupal/content_sync": 20,
         "drupal/cypress": 20,
         "drupal/cypress-dev": 20,
         "drupal/default_content": 15,
