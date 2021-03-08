@@ -14,7 +14,7 @@ default:
     -
       value: $S$E5fFV6obyBQduzocf.BnIUzVN5N5dOdv/7CSBZCGAsNF7eTRAZP1
       existing: ''
-      pre_hashed: false
+      pre_hashed: true
   mail:
     -
       value: gatsby-preview@example.com
