@@ -20,7 +20,6 @@ function setup_drupal {
   composer install
   vendor/bin/silverback teardown
   vendor/bin/silverback setup
-  vendor/bin/drush -y content-sync:import
 
   drush serve -q :8888 &
   DRUSH_SERVE_WAIT=0
