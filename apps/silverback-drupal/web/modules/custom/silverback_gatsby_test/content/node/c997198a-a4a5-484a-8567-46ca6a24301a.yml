@@ -1,0 +1,130 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: c997198a-a4a5-484a-8567-46ca6a24301a
+  bundle: article
+  default_langcode: en
+  depends:
+    fd3a7238-807a-483d-a703-c9b1b6b4a8e8: media
+    cfc1e9c7-3fb8-43a9-982a-756d72dc4f86: taxonomy_term
+    5abb8be2-d3ab-44ea-8dc1-dfdbaf02c08f: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'With everything'
+  created:
+    -
+      value: 1611059425
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: /article/with-everything
+      langcode: en
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  field_body:
+    -
+      value: "<p><strong>Article</strong> <em>body</em>.</p>\r\n\r\n<p>Pug is embedded 👇&nbsp;</p>\r\n\r\n<drupal-media data-align=\"center\" data-entity-type=\"media\" data-entity-uuid=\"378fdfc0-05fa-4d50-aaed-3342cd5f844c\"></drupal-media>\r\n\r\n<p>Kitten goes&nbsp;in a separate field 👉</p>\r\n"
+      format: rich
+  field_image:
+    -
+      entity: fd3a7238-807a-483d-a703-c9b1b6b4a8e8
+  field_tags:
+    -
+      entity: cfc1e9c7-3fb8-43a9-982a-756d72dc4f86
+    -
+      entity: 5abb8be2-d3ab-44ea-8dc1-dfdbaf02c08f
+translations:
+  de:
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    title:
+      -
+        value: 'With everything DE'
+    created:
+      -
+        value: 1611059764
+    promote:
+      -
+        value: false
+    sticky:
+      -
+        value: false
+    revision_translation_affected:
+      -
+        value: true
+    path:
+      -
+        alias: /article/with-everything-de-path
+        langcode: de
+    content_translation_source:
+      -
+        value: en
+    content_translation_outdated:
+      -
+        value: false
+    field_body:
+      -
+        value: "<p>Article body DE.</p>\r\n\r\n<p>Pug is embedded:&nbsp;</p>\r\n\r\n<drupal-media data-align=\"center\" data-entity-type=\"media\" data-entity-uuid=\"378fdfc0-05fa-4d50-aaed-3342cd5f844c\"></drupal-media>\r\n\r\n<p>Kitten goes&nbsp;in a separate field.</p>\r\n"
+        format: rich
+  fr:
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    title:
+      -
+        value: 'With everything FR'
+    created:
+      -
+        value: 1611210867
+    promote:
+      -
+        value: false
+    sticky:
+      -
+        value: false
+    revision_translation_affected:
+      -
+        value: true
+    path:
+      -
+        alias: /article/with-everything
+        langcode: fr
+    content_translation_source:
+      -
+        value: en
+    content_translation_outdated:
+      -
+        value: false
+    field_body:
+      -
+        value: "<p><strong>Article</strong> <em>body </em><a href=\"http://example.com\">FR</a>.</p>\r\n\r\n<p>Pug is embedded 👇&nbsp;</p>\r\n\r\n<drupal-media data-align=\"center\" data-entity-type=\"media\" data-entity-uuid=\"378fdfc0-05fa-4d50-aaed-3342cd5f844c\"></drupal-media>\r\n\r\n<p>Kitten goes&nbsp;in a separate field 👉</p>\r\n"
+        format: rich

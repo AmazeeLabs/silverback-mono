@@ -5,8 +5,8 @@ module:
   block: 0
   breakpoint: 0
   ckeditor: 0
-  content_sync: 0
   dblog: 0
+  default_content: 0
   dynamic_page_cache: 0
   editor: 0
   field: 0
@@ -15,6 +15,7 @@ module:
   filter: 0
   gatsby_build_monitor: 0
   graphql: 0
+  hal: 0
   image: 0
   language: 0
   media: 0

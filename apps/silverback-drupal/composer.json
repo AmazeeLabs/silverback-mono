@@ -55,6 +55,7 @@
         "drupal/core-recommended": "^9",
         "drupal/cypress": "@dev",
         "drupal/cypress-dev": "@dev",
+        "drupal/default_content": "^2.0@alpha",
         "drupal/gatsby": "^1.0@RC",
         "drupal/gatsby_build_monitor": "dev-development",
         "drupal/graphql": "^4",

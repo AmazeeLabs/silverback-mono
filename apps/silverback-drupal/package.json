@@ -4,7 +4,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "test": "composer install && bash vendor/bin/silverback-test"
+    "test": "composer install && bash vendor/bin/silverback-test",
+    "export-content": "web/modules/custom/silverback_gatsby_test/export_content.sh"
   },
   "dependencies": {
     "@-amazeelabs/silverback-cli": "^2.5.0",
