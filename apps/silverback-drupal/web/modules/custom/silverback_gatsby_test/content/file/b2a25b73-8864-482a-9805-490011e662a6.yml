@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: b2a25b73-8864-482a-9805-490011e662a6
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: image_jpg_pug.jpg
+  uri:
+    -
+      value: 'public://2021-01/image_jpg_pug.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 354733
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1611059244

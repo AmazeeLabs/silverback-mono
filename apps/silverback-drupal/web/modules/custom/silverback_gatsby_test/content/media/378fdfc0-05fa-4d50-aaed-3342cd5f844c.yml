@@ -1,0 +1,35 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 378fdfc0-05fa-4d50-aaed-3342cd5f844c
+  bundle: image
+  default_langcode: en
+  depends:
+    b2a25b73-8864-482a-9805-490011e662a6: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: Pug
+  created:
+    -
+      value: 1611059234
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+  field_media_image:
+    -
+      entity: b2a25b73-8864-482a-9805-490011e662a6
+      alt: 'Pug alt text'
+      title: ''
+      width: 1920
+      height: 1080

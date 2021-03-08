@@ -1,0 +1,38 @@
+_meta:
+  version: '1.0'
+  entity_type: user
+  uuid: e6bbb44c-6dcf-44aa-8d41-67b920e233b9
+  default_langcode: en
+default:
+  preferred_langcode:
+    -
+      value: en
+  name:
+    -
+      value: GatsbyPreview
+  pass:
+    -
+      value: $S$E5fFV6obyBQduzocf.BnIUzVN5N5dOdv/7CSBZCGAsNF7eTRAZP1
+      existing: ''
+      pre_hashed: false
+  mail:
+    -
+      value: gatsby-preview@example.com
+  timezone:
+    -
+      value: UTC
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1611061286
+  access:
+    -
+      value: 0
+  login:
+    -
+      value: 0
+  roles:
+    -
+      target_id: gatsby_preview

@@ -1,0 +1,35 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: fd3a7238-807a-483d-a703-c9b1b6b4a8e8
+  bundle: image
+  default_langcode: en
+  depends:
+    c20a037c-a1f4-42e8-984b-09c9fd12398a: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: Kitten
+  created:
+    -
+      value: 1611059197
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+  field_media_image:
+    -
+      entity: c20a037c-a1f4-42e8-984b-09c9fd12398a
+      alt: 'Kitten alt text'
+      title: ''
+      width: 1311
+      height: 1353

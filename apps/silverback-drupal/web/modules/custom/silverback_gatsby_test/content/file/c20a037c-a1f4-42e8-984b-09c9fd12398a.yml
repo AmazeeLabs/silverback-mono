@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: c20a037c-a1f4-42e8-984b-09c9fd12398a
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: image_jpg_kitten.jpg
+  uri:
+    -
+      value: 'public://2021-01/image_jpg_kitten.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 884644
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1611059212
