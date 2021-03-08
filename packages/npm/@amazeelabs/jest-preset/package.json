@@ -9,8 +9,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "peerDependencies": {
+    "@storybook/addon-storyshots": "^6.1.9"
+  },
   "dependencies": {
-    "@storybook/addon-storyshots": "^6.1.9",
     "@testing-library/react": "^11",
     "@tsconfig/recommended": "^1",
     "@types/jest": "^26",
