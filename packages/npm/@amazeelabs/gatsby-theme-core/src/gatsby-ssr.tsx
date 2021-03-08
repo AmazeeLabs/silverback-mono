@@ -1,7 +1,13 @@
-import { PreRenderHTMLArgs } from 'gatsby';
-import { isValidElement } from 'react';
+import {Link, navigate, PreRenderHTMLArgs, WrapPageElementNodeArgs} from 'gatsby';
+import React, { isValidElement } from 'react';
 
-export { wrapPageElement } from './gatsby-browser';
+import {DependencyProvider} from "./dependencies";
+
+export const wrapPageElement = ({element}: WrapPageElementNodeArgs) => (
+  <DependencyProvider dependencies={{Link: Link, navigate,}}>
+    {element}
+  </DependencyProvider>
+);
 
 export const onPreRenderHTML = ({ getHeadComponents }: PreRenderHTMLArgs) => {
   if (process.env.NODE_ENV !== 'production') return;
