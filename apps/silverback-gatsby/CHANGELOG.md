@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.7](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.13.6...silverback-gastby@0.13.7) (2021-03-08)
+
+
+### Bug Fixes
+
+* **gatsby-plugin-schema-export:** use  instead of ([c6d68d6](https://github.com/AmazeeLabs/silverback-mono/commit/c6d68d659b82f4feb741ddfa8f85a08a667255ea))
+* **silverback-gatsby:** increase test delays ([e172046](https://github.com/AmazeeLabs/silverback-mono/commit/e172046fc684fb1545a8209ff27c8aec8daa6b4f))
+
+
+
+
+
 ## [0.13.6](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.13.5...silverback-gastby@0.13.6) (2021-03-08)
 
 **Note:** Version bump only for package silverback-gastby

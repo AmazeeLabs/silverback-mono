@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.5.5...@amazeelabs/gatsby-theme-core@0.5.6) (2021-03-08)
+
+
+### Bug Fixes
+
+* **silverback-website:** add a dedicated `wrapPageElement` for SSR ([ce2c038](https://github.com/AmazeeLabs/silverback-mono/commit/ce2c038d595ed6eacce18a5fd22fddbb89c34dad))
+
+
+
+
+
 ## [0.5.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.5.4...@amazeelabs/gatsby-theme-core@0.5.5) (2021-02-22)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-theme-core

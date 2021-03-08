@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/AmazeeLabs/silverback-mono/compare/gatsby-plugin-schema-export@1.1.2...gatsby-plugin-schema-export@1.1.3) (2021-03-08)
+
+
+### Bug Fixes
+
+* **gatsby-plugin-schema-export:** use  instead of ([c6d68d6](https://github.com/AmazeeLabs/silverback-mono/commit/c6d68d659b82f4feb741ddfa8f85a08a667255ea))
+
+
+
+
+
 ## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/gatsby-plugin-schema-export@1.1.1...gatsby-plugin-schema-export@1.1.2) (2020-12-02)
 
 
