@@ -1,11 +1,12 @@
-name: Release
+name: Renovate Checks
 on:
   push:
     branches:
-      - development
+      - renovate/**
+      - test-all/renovate/**
 jobs:
-  release:
-    name: Release
+  test:
+    name: Test
     runs-on: ubuntu-20.04
     steps:
       - name: Git mail
@@ -25,10 +26,6 @@ jobs:
           # We can upgrade to PHP 8 when
           # - https://github.com/mglaman/phpstan-drupal supports it
           php-version: '7.4'
-
-      - uses: webfactory/ssh-agent@v0.5.0
-        with:
-          ssh-private-key: ${{ secrets.SSL_PRIVATE }}
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -61,64 +58,23 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash }}-composer-${{ steps.composer-version.outputs.hash }}-
 
-      - name: Create .npmrc
-        run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
-
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install
 
-      - name: Add drupal.org ssh key
-        run: ssh-keyscan git.drupal.org >> ~/.ssh/known_hosts
-
-      - name: Run tests
-        run: yarn test
-
-      - name: Update Drupal install cache
+      - name: Check if there are config changes after Drupal updates
         run: |
           set -e
           cd apps/silverback-drupal
           source .envrc
-          set -x
           composer i
-          silverback setup > setup-log.txt
-
-          UPDATES=$(cat setup-log.txt | grep -o 'Finished performing updates.' || true)
-          NO_UPDATES=$(cat setup-log.txt | grep -o 'No pending updates.' || true)
-          if [[ -z $UPDATES && -z $NO_UPDATES ]]
+          silverback setup --no-config-import
+          drush cex -y
+          cd -
+          if [[ $(git status --porcelain -- apps/silverback-drupal/config) ]]
           then
-            >&2 echo "Cannot get if there are pending Drupal updates."
-            exit 1
+            >&2 echo 'Error: Found uncommitted Drupal config. Please checkout this branch locally, run `silverback setup --no-config-import && drush cex -y` and commit the config changes.'
+            git status --porcelain -- apps/silverback-drupal/config
+            false
+          else
+            echo 'Success: Found no new config changes.'
           fi
-
-          CHANGES=$(cat setup-log.txt | grep -o 'The configuration was imported successfully.' || true)
-          NO_CHANGES=$(cat setup-log.txt | grep -o 'There are no changes to import.' || true)
-          if [[ -z $CHANGES && -z $NO_CHANGES ]]
-          then
-            >&2 echo "Cannot get if there are Drupal config changes."
-            exit 1
-          fi
-
-          if [[ -z $NO_UPDATES && -z $NO_CHANGES ]]
-          then
-            silverback setup --profile=minimal
-            drush cex -y
-            cd -
-            git add apps/silverback-drupal/.
-            git commit -m 'ci: update drupal install cache'
-          fi
-
-      - name: Build verdaccio-git
-        run: yarn prepublishOnly
-        working-directory: packages/npm/verdaccio-git
-
-      - name: Start verdaccio
-        run: yarn git-registry &
-
-      - name: Wait a moment
-        run: sleep 5
-
-      - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: yarn lerna publish -y
