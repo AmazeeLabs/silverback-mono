@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const {
-  introspectionQuery,
+  getIntrospectionQuery,
   graphql,
   buildClientSchema,
   printSchema,
@@ -13,7 +13,7 @@ module.exports.onPostBootstrap = ({ store, reporter }, options) => {
   const dest = options.dest || defaultLocation;
   new Promise((resolve, reject) => {
     const { schema } = store.getState();
-    graphql(schema, introspectionQuery)
+    graphql(schema, getIntrospectionQuery())
       .then((res) => {
         fs.writeFileSync(dest, printSchema(buildClientSchema(res.data)));
         return undefined;
