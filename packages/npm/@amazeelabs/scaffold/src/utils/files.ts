@@ -8,6 +8,7 @@ export function updateDotFiles(
 ) {
   const files = fs
     .readdirSync(sourcePath)
+    .filter(file => file !== 'package.json')
     .filter(
       (file) =>
         !(

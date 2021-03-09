@@ -11,6 +11,7 @@ export function manageIgnoredFiles(
 ) {
   const files = fs
     .readdirSync(sourcePath)
+    .filter(file => file !== 'package.json')
     .filter(
       (file) => !fs.lstatSync(path.resolve(sourcePath, file)).isDirectory(),
     );
