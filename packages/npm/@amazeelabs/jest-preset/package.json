@@ -17,7 +17,6 @@
     "@tsconfig/recommended": "^1",
     "@types/jest": "^26",
     "identity-obj-proxy": "^3.0.0",
-    "is-ci-cli": "^2",
     "jest-runner-eslint": "^0.10",
     "jest-watch-select-projects": "^2",
     "jest-watch-typeahead": "^0.6",

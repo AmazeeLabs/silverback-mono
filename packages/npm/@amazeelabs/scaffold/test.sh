@@ -31,7 +31,7 @@ if [[ -n "$(git status --porcelain)" ]]; then
 fi
 
 # Run the (empty) test suite. This is a proof that the tools are there.
-yarn test:ci
+yarn test
 
 # Clean the git repository to simulate a fresh checkout.
 git clean -xdf
@@ -50,4 +50,4 @@ if [[ ! -f "jest.config.js" ]]; then
 fi
 
 # Run the (empty) test suite. This is a proof that the tools are there.
-yarn test:ci
+yarn test
