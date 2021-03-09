@@ -26,6 +26,11 @@ function installDependencies(source: Map, target: Map, ignore: string[]) {
     execSync(`yarn add -D ${dependenciesToInstall.join(' ')}`, {
       stdio: 'inherit',
     });
+    if (dependenciesToInstall.includes('husky')) {
+      execSync(`yarn husky install && rm -rf .husky`, {
+        stdio: 'inherit',
+      });
+    }
   }
 }
 

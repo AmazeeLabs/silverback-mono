@@ -82,4 +82,25 @@ describe('installPackages', () => {
       stdio: 'inherit',
     });
   });
+
+  test('runs husky install if husky is among the dependencies', () => {
+    mock({
+      './foo': {
+        'package.json': JSON.stringify({
+          dependencies: { husky: '1.0' },
+        }),
+      },
+      './bar': {
+        'package.json': JSON.stringify({}),
+      },
+    });
+    installPackages('./foo', './bar', ignoredPackages);
+    expect(execSync).toHaveBeenCalledTimes(2);
+    expect(execSync).toHaveBeenCalledWith(`yarn add -D husky`, {
+      stdio: 'inherit',
+    });
+    expect(execSync).toHaveBeenCalledWith(`yarn husky install && rm -rf .husky`, {
+      stdio: 'inherit',
+    });
+  });
 });
