@@ -74,7 +74,7 @@ jobs:
           cd -
           if [[ $(git status --porcelain -- apps/silverback-drupal/config) ]]
           then
-            >&2 echo 'Error: Found uncommitted Drupal config. Please checkout this branch locally, run `silverback setup --no-config-import && drush cex -y` and commit the config changes.'
+            >&2 echo 'Error: Found uncommitted Drupal config. Please checkout this branch locally, from apps/silverback-drupal run `composer i && silverback setup --no-config-import && drush cex -y`, commit and push.'
             git status --porcelain -- apps/silverback-drupal/config
             false
           else
