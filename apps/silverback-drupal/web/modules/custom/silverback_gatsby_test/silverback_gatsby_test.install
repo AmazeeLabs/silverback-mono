@@ -1,0 +1,10 @@
+<?php
+
+/**
+ * Test https://github.com/AmazeeLabs/silverback-mono/pull/610
+ */
+function silverback_gatsby_test_update_8001() {
+  // Do nothing.
+  // "Check if there are config changes after Drupal updates" should not fire.
+  // "Update Drupal install cache" job should update the cache.
+}
