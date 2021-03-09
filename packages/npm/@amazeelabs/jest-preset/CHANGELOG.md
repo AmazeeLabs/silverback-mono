@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/jest-preset@1.2.0...@amazeelabs/jest-preset@1.3.0) (2021-03-09)
+
+
+### Bug Fixes
+
+* **jest-preset:** conditionally enable jest features ([445cadd](https://github.com/AmazeeLabs/silverback-mono/commit/445cadd03acf3e5b88f1c7a934b5f652e40908d5))
+
+
+### Features
+
+* add dedicated package for scaffolding npm packages ([f2e302e](https://github.com/AmazeeLabs/silverback-mono/commit/f2e302e30cc8b8e27a2da291a21fb1a8ea1f9e8b))
+
+
+
+
+
 # [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/jest-preset@1.1.2...@amazeelabs/jest-preset@1.2.0) (2020-12-03)
 
 
