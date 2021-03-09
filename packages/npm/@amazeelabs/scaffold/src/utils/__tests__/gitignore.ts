@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import mock from 'mock-fs';
 
-import { ignoredFiles } from '../../index';
 import { manageIgnoredFiles } from '../gitignore';
 
 describe('manageGitIgnore', () => {
@@ -12,7 +11,7 @@ describe('manageGitIgnore', () => {
       },
       '/bar': {},
     });
-    manageIgnoredFiles('/foo', '/bar', ignoredFiles);
+    manageIgnoredFiles('/foo', '/bar');
     expect(fs.existsSync('/bar/.gitignore')).toBeTruthy();
     expect(fs.readFileSync('/bar/.gitignore').toString()).toEqual(
       [
@@ -31,7 +30,7 @@ describe('manageGitIgnore', () => {
         '.gitignore': `node_modules`,
       },
     });
-    manageIgnoredFiles('/foo', '/bar', ignoredFiles);
+    manageIgnoredFiles('/foo', '/bar');
     expect(fs.existsSync('/bar/.gitignore')).toBeTruthy();
     expect(fs.readFileSync('/bar/.gitignore').toString()).toEqual(
       [
@@ -57,7 +56,7 @@ describe('manageGitIgnore', () => {
         ].join('\n'),
       },
     });
-    manageIgnoredFiles('/foo', '/bar', ignoredFiles);
+    manageIgnoredFiles('/foo', '/bar');
     expect(fs.existsSync('/bar/.gitignore')).toBeTruthy();
     expect(fs.readFileSync('/bar/.gitignore').toString()).toEqual(
       [
@@ -65,28 +64,6 @@ describe('manageGitIgnore', () => {
         '### MANAGED BY @amazeelabs/scaffold - START',
         '.eslintrc.js',
         '.prettierrc',
-        '### MANAGED BY @amazeelabs/scaffold - END',
-      ].join('\n'),
-    );
-  });
-
-  it('it skips ignored files', () => {
-    mock({
-      '/foo': {
-        '.eslintrc.js': 'a',
-        'package.json': 'a',
-      },
-      '/bar': {
-        '.gitignore': ['node_modules'].join('\n'),
-      },
-    });
-    manageIgnoredFiles('/foo', '/bar', ignoredFiles);
-    expect(fs.existsSync('/bar/.gitignore')).toBeTruthy();
-    expect(fs.readFileSync('/bar/.gitignore').toString()).toEqual(
-      [
-        'node_modules',
-        '### MANAGED BY @amazeelabs/scaffold - START',
-        '.eslintrc.js',
         '### MANAGED BY @amazeelabs/scaffold - END',
       ].join('\n'),
     );

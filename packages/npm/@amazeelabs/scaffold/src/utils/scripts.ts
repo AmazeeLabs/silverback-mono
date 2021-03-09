@@ -10,7 +10,6 @@ type Map = {
 export function adjustScripts(
   sourcePath: string,
   targetPath: string,
-  ignoredScripts: string[],
 ) {
   const sourceInfo: { scripts: Map } = getPackageInfo(sourcePath);
   const targetInfo: { scripts?: Map } = getPackageInfo(targetPath);
@@ -28,9 +27,6 @@ export function adjustScripts(
     )} Adjusting scripts (${Object.keys(sourceScripts).join(', ')})`,
   );
   Object.keys(sourceScripts).forEach((key) => {
-    if (ignoredScripts.includes(key)) {
-      return;
-    }
     targetInfo.scripts = targetInfo.scripts || {};
     if (targetInfo.scripts[key]) {
       if (
