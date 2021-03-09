@@ -12,7 +12,7 @@ yarn amazee-scaffold
 
 This will alter the packages `.gitignore` file, add a `postinstall` hook and
 make sure that configurations for code quality tools like `eslint`, `prettier`
-or `jest` are in place. The scaffolded configuration files should are added to
+or `jest` are in place. The scaffolded configuration files are added to
 `.gitignore` and should not be committed. They will be auto-added and updated
 with every `yarn install`.
 
