@@ -98,7 +98,7 @@ jobs:
             exit 1
           fi
 
-          if [[ -z $NO_UPDATES && -z $NO_CHANGES ]]
+          if [[ -z $NO_UPDATES || -z $NO_CHANGES ]]
           then
             silverback setup --profile=minimal
             drush cex -y
