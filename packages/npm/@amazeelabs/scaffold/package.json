@@ -14,10 +14,10 @@
     "esm": "^3.2.25"
   },
   "scripts": {
-    "prepare": "tsc --project ./tsconfig.local.json --outDir dist && node cli.js",
+    "prepare": "tsc --project ./tsconfig.local.json --outDir dist",
     "test": "tsc --noEmit && jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi",
     "watch": "jest --watch",
-    "postinstall": "amazee-scaffold"
+    "postinstall": "yarn prepare && node cli.js"
   },
   "devDependencies": {
     "@amazeelabs/jest-preset": "^1.2.0",
