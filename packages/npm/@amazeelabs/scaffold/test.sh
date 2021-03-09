@@ -19,7 +19,6 @@ yarn add ../
 
 # Run the initial scaffold to install dotfiles and scripts.
 yarn amazee-scaffold
-yarn husky install && rm -rf .husky
 
 # Commit the initial package
 git add package.json yarn.lock .gitignore
