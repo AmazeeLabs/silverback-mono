@@ -4,6 +4,8 @@ on:
     branches:
       - renovate/**
       - test-all/renovate/**
+      - renovate-test/**
+      - test-all/renovate-test/**
 jobs:
   test:
     name: Test
