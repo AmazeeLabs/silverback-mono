@@ -12,7 +12,7 @@ export function adjustScripts(
   targetPath: string,
 ) {
   const sourceInfo: { scripts: Map } = getPackageInfo(sourcePath);
-  const targetInfo: { scripts?: Map } = getPackageInfo(targetPath);
+  const targetInfo: { name: string, scripts?: Map } = getPackageInfo(targetPath);
   const sourceScripts = Object.assign(
     {},
     {
@@ -29,6 +29,10 @@ export function adjustScripts(
   Object.keys(sourceScripts).forEach((key) => {
     targetInfo.scripts = targetInfo.scripts || {};
     if (targetInfo.scripts[key]) {
+      if (key === 'postinstall' && targetInfo.name === '@amazeelabs/scaffold') {
+        // Don't install a post-install hook in our own package.
+        return;
+      }
       if (
         !(targetInfo.scripts[key] as string).includes(
           sourceScripts[key] as string,
