@@ -25,7 +25,7 @@ git add package.json yarn.lock .gitignore
 git commit -m "initial commit"
 
 if [[ -n "$(git status --porcelain)" ]]; then
-  echo "Git repository not clean."
+  >&2 echo "Git repository not clean."
   exit 1
 fi
 
@@ -36,7 +36,7 @@ yarn test
 git clean -xdf
 
 if [ -f jest.config.js ]; then
-  echo "Git repository not properly cleaned up."
+  >&2 echo "Git repository not properly cleaned up."
   exit 1
 fi
 
@@ -44,7 +44,7 @@ fi
 yarn
 
 if [[ ! -f "jest.config.js" ]]; then
-  echo "jest.config.js was not scaffolded"
+  >&2 echo "jest.config.js was not scaffolded"
   exit 1
 fi
 
