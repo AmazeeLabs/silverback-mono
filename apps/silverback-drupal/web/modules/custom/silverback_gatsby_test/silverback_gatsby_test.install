@@ -8,3 +8,17 @@ function silverback_gatsby_test_update_8001() {
   // "Check if there are config changes after Drupal updates" should not fire.
   // "Update Drupal install cache" job should update the cache.
 }
+
+/**
+ * Test https://github.com/AmazeeLabs/silverback-mono/pull/610
+ */
+function silverback_gatsby_test_update_8002() {
+  // Update a config.
+  \Drupal::service('config.factory')
+    ->getEditable('admin_toolbar_tools.settings')
+    ->set('max_bundle_number', 21)
+    ->save(TRUE);
+  // "Check if there are config changes after Drupal updates" should fail.
+  // Next, I will update the config following the instructions, and...
+  // "Update Drupal install cache" job should update the cache.
+}
