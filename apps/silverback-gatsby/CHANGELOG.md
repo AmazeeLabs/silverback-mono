@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.8](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.13.7...silverback-gastby@0.13.8) (2021-03-09)
+
+
+### Bug Fixes
+
+* remove content-sync commands ([6fc1c92](https://github.com/AmazeeLabs/silverback-mono/commit/6fc1c92ada81682f84430804322e3efaf89386f8))
+
+
+
+
+
 ## [0.13.7](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.13.6...silverback-gastby@0.13.7) (2021-03-08)
 
 

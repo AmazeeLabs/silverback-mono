@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.2](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.15.1...silverback-website@0.15.2) (2021-03-09)
+
+
+### Bug Fixes
+
+* remove content-sync commands ([6fc1c92](https://github.com/AmazeeLabs/silverback-mono/commit/6fc1c92ada81682f84430804322e3efaf89386f8))
+
+
+
+
+
 ## [0.15.1](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.15.0...silverback-website@0.15.1) (2021-03-08)
 
 **Note:** Version bump only for package silverback-website

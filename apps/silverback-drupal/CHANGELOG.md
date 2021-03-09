@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.9](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.2.8...@-amazeelabs/silverback-drupal@1.2.9) (2021-03-09)
+
+
+### Bug Fixes
+
+* passwords in exported uses ([52ac492](https://github.com/AmazeeLabs/silverback-mono/commit/52ac492b81eac1439e6096f192de703a12fc5398))
+* remove content-sync commands ([6fc1c92](https://github.com/AmazeeLabs/silverback-mono/commit/6fc1c92ada81682f84430804322e3efaf89386f8))
+
+
+
+
+
 ## [1.2.8](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.2.7...@-amazeelabs/silverback-drupal@1.2.8) (2021-03-08)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
