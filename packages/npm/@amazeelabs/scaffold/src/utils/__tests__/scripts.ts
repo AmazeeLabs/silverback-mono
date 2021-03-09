@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import mock from 'mock-fs';
 
-import { ignoredScripts } from '../../index';
 import { adjustScripts } from '../scripts';
 
 afterEach(mock.restore);
@@ -20,32 +19,7 @@ describe('adjustScripts', () => {
         'package.json': JSON.stringify({}),
       },
     });
-    adjustScripts('./foo', './bar', ignoredScripts);
-    expect(
-      JSON.parse(fs.readFileSync('./bar/package.json').toString()),
-    ).toEqual({
-      scripts: {
-        postinstall: 'amazee-scaffold',
-        test: 'jest',
-      },
-    });
-  });
-
-  it('skips ignored scripts', () => {
-    mock({
-      './foo': {
-        'package.json': JSON.stringify({
-          scripts: {
-            test: 'jest',
-            prepare: 'tsc',
-          },
-        }),
-      },
-      './bar': {
-        'package.json': JSON.stringify({}),
-      },
-    });
-    adjustScripts('./foo', './bar', ignoredScripts);
+    adjustScripts('./foo', './bar');
     expect(
       JSON.parse(fs.readFileSync('./bar/package.json').toString()),
     ).toEqual({
@@ -73,7 +47,7 @@ describe('adjustScripts', () => {
         }),
       },
     });
-    adjustScripts('./foo', './bar', ignoredScripts);
+    adjustScripts('./foo', './bar');
     expect(
       JSON.parse(fs.readFileSync('./bar/package.json').toString()),
     ).toEqual({
@@ -101,7 +75,7 @@ describe('adjustScripts', () => {
         }),
       },
     });
-    adjustScripts('./foo', './bar', ignoredScripts);
+    adjustScripts('./foo', './bar');
     expect(
       JSON.parse(fs.readFileSync('./bar/package.json').toString()),
     ).toEqual({

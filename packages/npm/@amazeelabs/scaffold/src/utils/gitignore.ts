@@ -8,11 +8,9 @@ export const END = '### MANAGED BY @amazeelabs/scaffold - END';
 export function manageIgnoredFiles(
   sourcePath: string,
   targetPath: string,
-  ignoredFiles: string[],
 ) {
   const files = fs
     .readdirSync(sourcePath)
-    .filter((file) => !ignoredFiles.includes(file))
     .filter(
       (file) => !fs.lstatSync(path.resolve(sourcePath, file)).isDirectory(),
     );

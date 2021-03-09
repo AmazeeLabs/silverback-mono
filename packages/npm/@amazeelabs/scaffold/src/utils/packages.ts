@@ -12,9 +12,9 @@ type PackageJson = {
   devDependencies?: Map;
 };
 
-function installDependencies(source: Map, target: Map, ignore: string[]) {
+function installDependencies(source: Map, target: Map) {
   const dependenciesToInstall = Object.keys(source).filter(
-    (dep) => !ignore.includes(dep) && !Object.keys(target).includes(dep),
+    (dep) => !Object.keys(target).includes(dep),
   );
 
   if (dependenciesToInstall.length > 0) {
@@ -37,7 +37,6 @@ function installDependencies(source: Map, target: Map, ignore: string[]) {
 export function installPackages(
   sourcePath: string,
   targetPath: string,
-  ignoredPackages: string[],
 ) {
   const sourceInfo: PackageJson = getPackageInfo(sourcePath);
   const targetInfo: PackageJson = getPackageInfo(targetPath);
@@ -45,6 +44,5 @@ export function installPackages(
   installDependencies(
     sourceInfo.dependencies || {},
     targetInfo.devDependencies || {},
-    ignoredPackages,
   );
 }

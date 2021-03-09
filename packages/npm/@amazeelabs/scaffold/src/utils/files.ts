@@ -5,15 +5,13 @@ import * as path from 'path';
 export function updateDotFiles(
   sourcePath: string,
   targetPath: string,
-  ignoredFiles: string[],
 ) {
   const files = fs
     .readdirSync(sourcePath)
     .filter(
       (file) =>
         !(
-          fs.lstatSync(path.resolve(sourcePath, file)).isDirectory() ||
-          ignoredFiles.includes(file)
+          fs.lstatSync(path.resolve(sourcePath, file)).isDirectory()
         ),
     );
 

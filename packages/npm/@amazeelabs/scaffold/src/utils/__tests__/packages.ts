@@ -1,7 +1,6 @@
 import { execSync } from 'child_process';
 import mock from 'mock-fs';
 
-import { ignoredPackages } from '../../index';
 import { installPackages } from '../packages';
 
 afterEach(() => {
@@ -23,7 +22,7 @@ describe('installPackages', () => {
         'package.json': JSON.stringify({}),
       },
     });
-    installPackages('./foo', './bar', ignoredPackages);
+    installPackages('./foo', './bar');
     expect(execSync).toHaveBeenCalledTimes(0);
   });
 
@@ -38,7 +37,7 @@ describe('installPackages', () => {
         'package.json': JSON.stringify({}),
       },
     });
-    installPackages('./foo', './bar', ignoredPackages);
+    installPackages('./foo', './bar');
     expect(execSync).toHaveBeenCalledTimes(1);
     expect(execSync).toHaveBeenCalledWith(`yarn add -D a b`, {
       stdio: 'inherit',
@@ -58,25 +57,7 @@ describe('installPackages', () => {
         }),
       },
     });
-    installPackages('./foo', './bar', ignoredPackages);
-    expect(execSync).toHaveBeenCalledTimes(1);
-    expect(execSync).toHaveBeenCalledWith(`yarn add -D a`, {
-      stdio: 'inherit',
-    });
-  });
-
-  test('ignores dependencies on the ignore list', () => {
-    mock({
-      './foo': {
-        'package.json': JSON.stringify({
-          dependencies: { a: '1.0', chalk: '1.0' },
-        }),
-      },
-      './bar': {
-        'package.json': JSON.stringify({}),
-      },
-    });
-    installPackages('./foo', './bar', ignoredPackages);
+    installPackages('./foo', './bar');
     expect(execSync).toHaveBeenCalledTimes(1);
     expect(execSync).toHaveBeenCalledWith(`yarn add -D a`, {
       stdio: 'inherit',
@@ -94,7 +75,7 @@ describe('installPackages', () => {
         'package.json': JSON.stringify({}),
       },
     });
-    installPackages('./foo', './bar', ignoredPackages);
+    installPackages('./foo', './bar');
     expect(execSync).toHaveBeenCalledTimes(2);
     expect(execSync).toHaveBeenCalledWith(`yarn add -D husky`, {
       stdio: 'inherit',
