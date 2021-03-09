@@ -1,6 +1,6 @@
 name: Renovate Checks
 on:
-  pull_request:
+  push:
     branches:
       - renovate/**
       - test-all/renovate/**
