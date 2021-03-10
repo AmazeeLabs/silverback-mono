@@ -1,0 +1,29 @@
+uuid: 8e91c2eb-6216-4814-b2b4-fbc2a9f75a6d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.gutenberg_page.body
+    - node.type.gutenberg_page
+  module:
+    - text
+    - user
+id: node.gutenberg_page.default
+targetEntityType: node
+bundle: gutenberg_page
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  langcode: true

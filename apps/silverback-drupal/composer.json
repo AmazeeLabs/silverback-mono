@@ -34,6 +34,7 @@
         "drupal/gatsby": "^1.0@RC",
         "drupal/gatsby_build_monitor": "dev-development",
         "drupal/graphql": "^4",
+        "drupal/gutenberg": ">2.0-beta2",
         "drupal/test_session": "dev-development as 1.0.0",
         "phpspec/prophecy-phpunit": "^2"
     },
@@ -103,6 +104,9 @@
         "patches": {
             "drupal/gatsby": {
                 "Build on unpublishing": "patches/drupal/gatsby/3188480--2020-12-15T10-24--adopted.patch"
+            },
+            "drupal/gutenberg": {
+                "Mising core/buttons definition": "patches/drupal/gutenberg/3202756.diff"
             }
         },
         "merge-plugin": {
