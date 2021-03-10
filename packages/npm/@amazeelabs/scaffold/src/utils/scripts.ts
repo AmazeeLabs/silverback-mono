@@ -48,6 +48,6 @@ export function adjustScripts(
   });
   fs.writeFileSync(
     `${targetPath}/package.json`,
-    JSON.stringify(targetInfo, null, 2),
+    JSON.stringify(targetInfo, null, 2) + "\n",
   );
 }
