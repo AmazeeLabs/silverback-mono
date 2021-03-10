@@ -1,0 +1,16 @@
+uuid: 889b6f08-236f-44ea-b4ef-e9aca5662ea5
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.gutenberg_page
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+id: node.gutenberg_page
+target_entity_type_id: node
+target_bundle: gutenberg_page
+default_langcode: site_default
+language_alterable: false

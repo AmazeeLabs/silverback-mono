@@ -3,6 +3,7 @@ module:
   admin_toolbar_tools: 0
   basic_auth: 0
   block: 0
+  block_content: 0
   breakpoint: 0
   ckeditor: 0
   dblog: 0
@@ -15,6 +16,8 @@ module:
   filter: 0
   gatsby_build_monitor: 0
   graphql: 0
+  gutenberg: 0
+  gutenberg_custom: 0
   hal: 0
   image: 0
   language: 0

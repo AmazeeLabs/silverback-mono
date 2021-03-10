@@ -1,0 +1,11 @@
+fix-columns-image:
+  js:
+    js/fix-columns-image.js: {  }
+  dependencies:
+    - core/drupalSettings
+
+disable-custom-css-classes:
+  js:
+    js/disable-custom-css-classes.js: {  }
+  dependencies:
+    - core/drupalSettings

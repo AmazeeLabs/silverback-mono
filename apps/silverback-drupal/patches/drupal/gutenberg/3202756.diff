@@ -1,0 +1,14 @@
+diff --git a/gutenberg.blocks.yml b/gutenberg.blocks.yml
+index 590aae35287e550e77ae1532c4bed0fa98cb5d79..a2f01ce913a2efa272e2eb12f4b91577130c71f3 100644
+--- a/gutenberg.blocks.yml
++++ b/gutenberg.blocks.yml
+@@ -33,6 +33,9 @@ categories:
+       - id: "core/button"
+         name: "Button"
+         default: true
++      - id: "core/buttons"
++        name: "Buttons"
++        default: true
+       - id: "core/categories"
+         name: "Categories"
+         default: false
