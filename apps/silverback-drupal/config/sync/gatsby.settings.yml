@@ -9,9 +9,3 @@ preview_entity_types:
   path_alias: 0
   user: 0
 path_mapping: ''
-preview:
-  gutenberg_page: 0
-iframe:
-  gutenberg_page: 0
-target:
-  gutenberg_page: window
