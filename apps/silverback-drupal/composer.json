@@ -106,7 +106,7 @@
                 "Build on unpublishing": "patches/drupal/gatsby/3188480--2020-12-15T10-24--adopted.patch"
             },
             "drupal/gutenberg": {
-                "Mising core/buttons definition": "patches/drupal/gutenberg/3202756.diff"
+                "Missing core block definitions": "patches/drupal/gutenberg/3202756.diff"
             }
         },
         "merge-plugin": {
