@@ -26,7 +26,6 @@ function gutenberg_custom_js_settings_alter(array &$settings, AttachedAssetsInte
  */
 function gutenberg_custom_library_info_alter(&$libraries, $extension) {
   if ($extension === 'gutenberg') {
-    $libraries['edit-node']['dependencies'][] = 'gutenberg_custom/fix-columns-image';
-    $libraries['edit-node']['dependencies'][] = 'gutenberg_custom/disable-custom-css-classes';
+    $libraries['edit-node']['dependencies'][] = 'gutenberg_custom/tweaks';
   }
 }

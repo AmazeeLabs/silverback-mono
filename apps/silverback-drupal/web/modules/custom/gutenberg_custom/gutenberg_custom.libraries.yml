@@ -1,11 +1,5 @@
-fix-columns-image:
+tweaks:
   js:
-    js/fix-columns-image.js: {  }
-  dependencies:
-    - core/drupalSettings
-
-disable-custom-css-classes:
-  js:
-    js/disable-custom-css-classes.js: {  }
+    js/gutenberg-tweaks.js: {  }
   dependencies:
     - core/drupalSettings
