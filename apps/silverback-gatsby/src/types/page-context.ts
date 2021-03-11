@@ -8,3 +8,11 @@ export type ArticleContext = {
     language: Language;
   }[];
 };
+
+export type GutenbergPageContext = {
+  page: AllGutenbergPagesQuery['allDrupalGutenbergPage']['nodes'][number]['translations'][number];
+  otherLanguages: {
+    path: string;
+    language: Language;
+  }[];
+};

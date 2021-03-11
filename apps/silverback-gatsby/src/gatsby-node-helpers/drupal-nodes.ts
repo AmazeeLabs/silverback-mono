@@ -13,6 +13,12 @@ export const drupalNodes: DrupalNode[] = [
     type: 'Page',
   },
   {
+    multiple: 'gutenbergPages',
+    single: 'gutenbergPage',
+    changes: 'gutenbergPageChanges',
+    type: 'GutenbergPage',
+  },
+  {
     multiple: 'articles',
     single: 'article',
     changes: 'articleChanges',
