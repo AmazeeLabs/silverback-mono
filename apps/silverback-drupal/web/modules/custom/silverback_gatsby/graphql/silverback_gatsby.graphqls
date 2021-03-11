@@ -10,6 +10,13 @@ type Query {
   ): [Page!]!
   pageChanges(since: Int!, ids: [Int!]!): [Change!]!
 
+  gutenbergPage(id: Int!): GutenbergPage
+  gutenbergPages(
+    offset: Int!
+    limit: Int!
+  ): [GutenbergPage!]!
+  gutenbergPageChanges(since: Int!, ids: [Int!]!): [Change!]!
+
   article(id: Int!): Article
   articles(
     offset: Int!
@@ -42,6 +49,18 @@ type PageTranslation {
   path: String!
   title: String!
   body: String
+}
+
+type GutenbergPage {
+  id: Int!
+  translations: [GutenbergPageTranslation!]!
+}
+
+type GutenbergPageTranslation {
+  langcode: String!
+  path: String!
+  title: String!
+  body: String!
 }
 
 type Article {
