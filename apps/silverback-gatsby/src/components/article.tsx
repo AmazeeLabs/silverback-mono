@@ -7,6 +7,7 @@ import {
   renderHtml,
 } from '../../plugins/gatsby-plugin-images-from-html/render-html';
 import { ArticleContext } from '../types/page-context';
+import { Row } from '../util/Row';
 
 const Article: React.FC<PageProps> = ({ pageContext }) => {
   const {
@@ -32,22 +33,20 @@ const Article: React.FC<PageProps> = ({ pageContext }) => {
       <Link to="/">To frontpage</Link>
       <table>
         <tr>
-          <td className="border-solid border-4">Title</td>
-          <td className="border-solid border-4">Tags</td>
-          <td className="border-solid border-4">Body</td>
-          <td className="border-solid border-4">Image</td>
-          <td className="border-solid border-4">Other languages</td>
+          <Row>Title</Row>
+          <Row>Tags</Row>
+          <Row>Body</Row>
+          <Row>Image</Row>
+          <Row>Other languages</Row>
         </tr>
         <tr>
-          <td className="border-solid border-4">{article.title}</td>
-          <td className="border-solid border-4">
-            {article.tags.map((tag) => tag.title).join(', ')}
-          </td>
-          <td className="border-solid border-4">
+          <Row>{article.title}</Row>
+          <Row>{article.tags.map((tag) => tag.title).join(', ')}</Row>
+          <Row>
             <div className="html-from-drupal">
               {article.body && renderHtml(article.body, imageSets)}
             </div>
-          </td>
+          </Row>
           <td className="border-solid border-4">
             {article.image?.localImage?.childImageSharp?.fixed && (
               <Image
@@ -56,7 +55,7 @@ const Article: React.FC<PageProps> = ({ pageContext }) => {
               />
             )}
           </td>
-          <td className="border-solid border-4">
+          <Row>
             <ul>
               {otherLanguages.map((other) => (
                 <li key={`language-link-${other.language.id}`}>
@@ -64,7 +63,7 @@ const Article: React.FC<PageProps> = ({ pageContext }) => {
                 </li>
               ))}
             </ul>
-          </td>
+          </Row>
         </tr>
       </table>
     </>
