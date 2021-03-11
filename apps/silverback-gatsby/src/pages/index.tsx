@@ -11,6 +11,7 @@ const IndexPage: React.FC<PageProps> = () => {
   const {
     drupalPage: somePage,
     allDrupalArticle: { nodes: articles },
+    allDrupalGutenbergPage: { nodes: gutenbergPages },
   } = useStaticQuery<IndexPageQuery>(graphql`
     query IndexPage {
       drupalPage {
@@ -38,6 +39,16 @@ const IndexPage: React.FC<PageProps> = () => {
             tags {
               title
             }
+          }
+        }
+      }
+      allDrupalGutenbergPage {
+        nodes {
+          id
+          translations {
+            langcode
+            path
+            title
           }
         }
       }
@@ -100,6 +111,29 @@ const IndexPage: React.FC<PageProps> = () => {
               <Row>{translation.langcode}</Row>
               <Row>{translation.path}</Row>
               <Row>{translation.tags.map((tag) => tag.title).join(', ')}</Row>
+            </tr>
+          )),
+        )}
+      </table>
+      <b>All Gutenberg pages. Linked to dedicated site pages.</b>
+      <table>
+        <tr>
+          <Row>ID</Row>
+          <Row>Title/Link</Row>
+          <Row>Language</Row>
+          <Row>Path</Row>
+        </tr>
+        {gutenbergPages.map((gutenbergPage) =>
+          gutenbergPage.translations.map((translation) => (
+            <tr
+              key={`gutenberg-page-row-${gutenbergPage.id}-${translation.langcode}`}
+            >
+              <Row>{gutenbergPage.id}</Row>
+              <Row>
+                <Link to={translation.path}>{translation.title}</Link>
+              </Row>
+              <Row>{translation.langcode}</Row>
+              <Row>{translation.path}</Row>
             </tr>
           )),
         )}

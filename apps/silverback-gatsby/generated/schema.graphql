@@ -761,6 +761,24 @@ type DrupalPageTranslation {
   body: String
 }
 
+type DrupalGutenbergPage implements Node {
+  remoteTypeName: String!
+  remoteId: Int!
+  translations: [DrupalGutenbergPageTranslation!]!
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+}
+
+type DrupalGutenbergPageTranslation {
+  remoteTypeName: String!
+  langcode: String!
+  path: String!
+  title: String!
+  body: String!
+}
+
 type DrupalArticle implements Node {
   remoteTypeName: String!
   remoteId: Int!
@@ -921,6 +939,8 @@ type Query {
   allImageSharp(filter: ImageSharpFilterInput, sort: ImageSharpSortInput, skip: Int, limit: Int): ImageSharpConnection!
   drupalPage(remoteTypeName: StringQueryOperatorInput, remoteId: IntQueryOperatorInput, translations: DrupalPageTranslationFilterListInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalPage
   allDrupalPage(filter: DrupalPageFilterInput, sort: DrupalPageSortInput, skip: Int, limit: Int): DrupalPageConnection!
+  drupalGutenbergPage(remoteTypeName: StringQueryOperatorInput, remoteId: IntQueryOperatorInput, translations: DrupalGutenbergPageTranslationFilterListInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalGutenbergPage
+  allDrupalGutenbergPage(filter: DrupalGutenbergPageFilterInput, sort: DrupalGutenbergPageSortInput, skip: Int, limit: Int): DrupalGutenbergPageConnection!
   drupalArticle(remoteTypeName: StringQueryOperatorInput, remoteId: IntQueryOperatorInput, translations: DrupalArticleTranslationFilterListInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalArticle
   allDrupalArticle(filter: DrupalArticleFilterInput, sort: DrupalArticleSortInput, skip: Int, limit: Int): DrupalArticleConnection!
   drupalTag(remoteTypeName: StringQueryOperatorInput, remoteId: IntQueryOperatorInput, title: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalTag
@@ -2401,6 +2421,154 @@ input DrupalPageFilterInput {
 
 input DrupalPageSortInput {
   fields: [DrupalPageFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
+input DrupalGutenbergPageTranslationFilterListInput {
+  elemMatch: DrupalGutenbergPageTranslationFilterInput
+}
+
+input DrupalGutenbergPageTranslationFilterInput {
+  remoteTypeName: StringQueryOperatorInput
+  langcode: StringQueryOperatorInput
+  path: StringQueryOperatorInput
+  title: StringQueryOperatorInput
+  body: StringQueryOperatorInput
+}
+
+type DrupalGutenbergPageConnection {
+  totalCount: Int!
+  edges: [DrupalGutenbergPageEdge!]!
+  nodes: [DrupalGutenbergPage!]!
+  pageInfo: PageInfo!
+  distinct(field: DrupalGutenbergPageFieldsEnum!): [String!]!
+  group(skip: Int, limit: Int, field: DrupalGutenbergPageFieldsEnum!): [DrupalGutenbergPageGroupConnection!]!
+}
+
+type DrupalGutenbergPageEdge {
+  next: DrupalGutenbergPage
+  node: DrupalGutenbergPage!
+  previous: DrupalGutenbergPage
+}
+
+enum DrupalGutenbergPageFieldsEnum {
+  remoteTypeName
+  remoteId
+  translations
+  translations___remoteTypeName
+  translations___langcode
+  translations___path
+  translations___title
+  translations___body
+  id
+  parent___id
+  parent___parent___id
+  parent___parent___parent___id
+  parent___parent___parent___children
+  parent___parent___children
+  parent___parent___children___id
+  parent___parent___children___children
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___children
+  parent___children___id
+  parent___children___parent___id
+  parent___children___parent___children
+  parent___children___children
+  parent___children___children___id
+  parent___children___children___children
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  children
+  children___id
+  children___parent___id
+  children___parent___parent___id
+  children___parent___parent___children
+  children___parent___children
+  children___parent___children___id
+  children___parent___children___children
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___children
+  children___children___id
+  children___children___parent___id
+  children___children___parent___children
+  children___children___children
+  children___children___children___id
+  children___children___children___children
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+}
+
+type DrupalGutenbergPageGroupConnection {
+  totalCount: Int!
+  edges: [DrupalGutenbergPageEdge!]!
+  nodes: [DrupalGutenbergPage!]!
+  pageInfo: PageInfo!
+  field: String!
+  fieldValue: String
+}
+
+input DrupalGutenbergPageFilterInput {
+  remoteTypeName: StringQueryOperatorInput
+  remoteId: IntQueryOperatorInput
+  translations: DrupalGutenbergPageTranslationFilterListInput
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+input DrupalGutenbergPageSortInput {
+  fields: [DrupalGutenbergPageFieldsEnum]
   order: [SortOrderEnum] = [ASC]
 }
 
