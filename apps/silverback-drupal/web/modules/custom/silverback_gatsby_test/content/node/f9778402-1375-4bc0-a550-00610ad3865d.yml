@@ -1,0 +1,46 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: f9778402-1375-4bc0-a550-00610ad3865d
+  bundle: gutenberg_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Gutenberg page'
+  created:
+    -
+      value: 1615456286
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  body:
+    -
+      value: "<!-- wp:paragraph -->\r\n<p>A paragraph.</p>\r\n<!-- /wp:paragraph -->\r\n\r\n<!-- wp:list -->\r\n<ul><li>unordered</li><li>list</li></ul>\r\n<!-- /wp:list -->\r\n\r\n<!-- wp:list {\"ordered\":true} -->\r\n<ol><li>ordered</li><li>list</li></ol>\r\n<!-- /wp:list -->\r\n\r\n<!-- wp:quote -->\r\n<blockquote class=\"wp-block-quote\"><p>A quote</p><cite>With a citation.</cite></blockquote>\r\n<!-- /wp:quote -->\r\n\r\n<!-- wp:drupalmedia/drupal-media-entity {\"mediaEntityIds\":[\"1\"],\"caption\":\"A media\"} /-->\r\n\r\n<!-- wp:group -->\r\n<div class=\"wp-block-group\"><div class=\"wp-block-group__inner-container\"><!-- wp:paragraph -->\r\n<p>Grouped paragraph 1.</p>\r\n<!-- /wp:paragraph -->\r\n\r\n<!-- wp:paragraph -->\r\n<p>Grouped paragraph 2.</p>\r\n<!-- /wp:paragraph --></div></div>\r\n<!-- /wp:group -->"
+      format: gutenberg
+      summary: ''
