@@ -105,6 +105,10 @@ class SilverbackGatsbySchema extends SdlSchemaPluginBase {
     $addResolver('Query.pages', $listEntities('node', 'page'));
     $addResolver('Query.pageChanges', $entityChanges('node', 'page'));
 
+    $addResolver('Query.gutenbergPage', $loadEntity('node', 'gutenberg_page'));
+    $addResolver('Query.gutenbergPages', $listEntities('node', 'gutenberg_page'));
+    $addResolver('Query.gutenbergPageChanges', $entityChanges('node', 'gutenberg_page'));
+
     $addResolver('Query.article', $loadEntity('node', 'article'));
     $addResolver('Query.articles', $listEntities('node', 'article'));
     $addResolver('Query.articleChanges', $entityChanges('node', 'article'));
@@ -123,6 +127,13 @@ class SilverbackGatsbySchema extends SdlSchemaPluginBase {
     $addResolver('PageTranslation.path', $nodePath);
     $addResolver('PageTranslation.title', $entityLabel);
     $addResolver('PageTranslation.body', $fromPath('entity:node:page', 'field_body.0.processed'));
+
+    $addResolver('GutenbergPage.id', $entityId);
+    $addResolver('GutenbergPage.translations', $entityTranslations);
+    $addResolver('GutenbergPageTranslation.langcode', $entityLangcode);
+    $addResolver('GutenbergPageTranslation.path', $nodePath);
+    $addResolver('GutenbergPageTranslation.title', $entityLabel);
+    $addResolver('GutenbergPageTranslation.body', $fromPath('entity:node:gutenberg_page', 'body.0.value'));
 
     $addResolver('Article.id', $entityId);
     $addResolver('Article.translations', $entityTranslations);
