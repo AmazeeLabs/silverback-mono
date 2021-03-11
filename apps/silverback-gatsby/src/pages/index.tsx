@@ -5,6 +5,7 @@ import {
   ImageSet,
   renderHtml,
 } from '../../plugins/gatsby-plugin-images-from-html/render-html';
+import { Row } from '../util/Row';
 
 const IndexPage: React.FC<PageProps> = () => {
   const {
@@ -60,47 +61,45 @@ const IndexPage: React.FC<PageProps> = () => {
       <b>Some page. Just one Page node. Without a dedicated site page.</b>
       <table>
         <tr>
-          <td className="border-solid border-4">ID</td>
-          <td className="border-solid border-4">Title</td>
-          <td className="border-solid border-4">Language</td>
-          <td className="border-solid border-4">Path</td>
-          <td className="border-solid border-4">Body</td>
+          <Row>ID</Row>
+          <Row>Title</Row>
+          <Row>Language</Row>
+          <Row>Path</Row>
+          <Row>Body</Row>
         </tr>
         {somePage?.translations.map((page) => (
           <tr key={`page-row-${somePage.id}-${page.langcode}`}>
-            <td className="border-solid border-4">{somePage.id}</td>
-            <td className="border-solid border-4">{page.title}</td>
-            <td className="border-solid border-4">{page.langcode}</td>
-            <td className="border-solid border-4">{page.path}</td>
-            <td className="border-solid border-4">
+            <Row>{somePage.id}</Row>
+            <Row>{page.title}</Row>
+            <Row>{page.langcode}</Row>
+            <Row>{page.path}</Row>
+            <Row>
               <div className="html-from-drupal">
                 {page.body && renderHtml(page.body, imageSets)}
               </div>
-            </td>
+            </Row>
           </tr>
         ))}
       </table>
       <b>All articles. Linked to dedicated site pages.</b>
       <table>
         <tr>
-          <td className="border-solid border-4">ID</td>
-          <td className="border-solid border-4">Title/Link</td>
-          <td className="border-solid border-4">Language</td>
-          <td className="border-solid border-4">Path</td>
-          <td className="border-solid border-4">Tags</td>
+          <Row>ID</Row>
+          <Row>Title/Link</Row>
+          <Row>Language</Row>
+          <Row>Path</Row>
+          <Row>Tags</Row>
         </tr>
         {articles.map((article) =>
           article.translations.map((translation) => (
             <tr key={`article-row-${article.id}-${translation.langcode}`}>
-              <td className="border-solid border-4">{article.id}</td>
-              <td className="border-solid border-4">
+              <Row>{article.id}</Row>
+              <Row>
                 <Link to={translation.path}>{translation.title}</Link>
-              </td>
-              <td className="border-solid border-4">{translation.langcode}</td>
-              <td className="border-solid border-4">{translation.path}</td>
-              <td className="border-solid border-4">
-                {translation.tags.map((tag) => tag.title).join(', ')}
-              </td>
+              </Row>
+              <Row>{translation.langcode}</Row>
+              <Row>{translation.path}</Row>
+              <Row>{translation.tags.map((tag) => tag.title).join(', ')}</Row>
             </tr>
           )),
         )}
