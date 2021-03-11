@@ -5,16 +5,18 @@ gutenberg_page_allowed_blocks:
   core/paragraph: core/paragraph
   core/list: core/list
   core/quote: core/quote
-  core/columns: core/columns
-  core/column: core/column
   core/all: 0
   core/image: 0
   core/heading: 0
   core/gallery: 0
+  core/legacy-widget: 0
   core/audio: 0
   core/button: 0
   core/buttons: 0
+  core/calendar: 0
   core/code: 0
+  core/columns: 0
+  core/column: 0
   core/cover: 0
   core/embed: 0
   core/file: 0
@@ -24,24 +26,28 @@ gutenberg_page_allowed_blocks:
   core/navigation: 0
   core/preformatted: 0
   core/pullquote: 0
+  core/rss: 0
+  core/search: 0
   core/separator: 0
   core/block: 0
+  core/social-links: 0
   core/spacer: 0
   core/subhead: 0
+  core/tag-cloud: 0
   core/table: 0
   core/text-columns: 0
   core/verse: 0
   core/video: 0
-  core-embed/youtube: core-embed/youtube
-  core-embed/vimeo: core-embed/vimeo
   core-embed/all: 0
   core-embed/twitter: 0
+  core-embed/youtube: 0
   core-embed/facebook: 0
   core-embed/instagram: 0
   core-embed/wordpress: 0
   core-embed/soundcloud: 0
   core-embed/spotify: 0
   core-embed/flickr: 0
+  core-embed/vimeo: 0
   core-embed/amazon-kindle: 0
   core-embed/animoto: 0
   core-embed/cloudup: 0
