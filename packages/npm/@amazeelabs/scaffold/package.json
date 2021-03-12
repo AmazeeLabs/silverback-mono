@@ -9,6 +9,9 @@
   "bin": {
     "amazee-scaffold": "./cli.js"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "chalk": "^4.1.0",
     "esm": "^3.2.25"
