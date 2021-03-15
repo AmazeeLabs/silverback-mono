@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.9](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.5.8...@amazeelabs/gatsby-theme-core@0.5.9) (2021-03-15)
+
+
+### Bug Fixes
+
+* **tooling:** local tsconfig for gatsby-theme-core ([3f5f5e5](https://github.com/AmazeeLabs/silverback-mono/commit/3f5f5e587a74b96befcbbe73dcdd041a6b84918f))
+
+
+
+
+
 ## [0.5.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.5.7...@amazeelabs/gatsby-theme-core@0.5.8) (2021-03-15)
 
 

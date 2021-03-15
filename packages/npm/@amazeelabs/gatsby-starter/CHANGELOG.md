@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.7.10...@amazeelabs/gatsby-starter@0.7.11) (2021-03-15)
+
+
+### Bug Fixes
+
+* **tooling:** disable gatsby starter codegen for now ([76b8e2d](https://github.com/AmazeeLabs/silverback-mono/commit/76b8e2d37c3b0a387b2dec4f13b567b5e274c606))
+* **tooling:** run codegen in gatsby starter prepare ([0319e87](https://github.com/AmazeeLabs/silverback-mono/commit/0319e872f89ad56a6ea86485ab89998d5f8e4d32))
+
+
+
+
+
 ## [0.7.10](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.7.9...@amazeelabs/gatsby-starter@0.7.10) (2021-03-15)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-starter

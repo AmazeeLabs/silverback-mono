@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.9](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-di@1.0.8...@amazeelabs/react-di@1.0.9) (2021-03-15)
+
+
+### Bug Fixes
+
+* **tooling:** emit declarations in react-di ([cce2a42](https://github.com/AmazeeLabs/silverback-mono/commit/cce2a42d658e9fc26564fbc1e3c549eb7b131104))
+
+
+
+
+
 ## [1.0.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-di@1.0.7...@amazeelabs/react-di@1.0.8) (2021-03-15)
 
 
