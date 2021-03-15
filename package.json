@@ -12,7 +12,7 @@
     "commit": "yarn git-cz",
     "test": "yarn lerna run prepublish --since --include-dependencies && yarn lerna run test --since --stream --concurrency=1",
     "git-registry": "yarn verdaccio -c config.yml",
-    "postinstall": "lerna run prepare"
+    "postinstall": "lerna run prepare && husky install"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.0.0",
@@ -35,7 +35,8 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lerna run --concurrency 1 --stream precommit --since HEAD --exclude-dependents"
     }
   },
   "dependencies": {
