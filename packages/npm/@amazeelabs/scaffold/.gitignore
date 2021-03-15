@@ -5,7 +5,6 @@ test
 
 ### MANAGED BY @amazeelabs/scaffold - START
 .eslintrc.js
-.huskyrc
 .jest-runner-eslintrc
 .lintstagedrc
 .prettierrc

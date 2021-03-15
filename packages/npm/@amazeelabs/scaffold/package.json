@@ -17,6 +17,7 @@
     "esm": "^3.2.25"
   },
   "scripts": {
+    "precommit": "lint-staged",
     "prepare": "tsc --project ./tsconfig.local.json --outDir dist && node cli.js",
     "test": "tsc --noEmit && jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi",
     "watch": "jest --watch"
