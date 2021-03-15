@@ -16,7 +16,7 @@ export function adjustScripts(
   const sourceScripts = Object.assign(
     {},
     {
-      postinstall: 'amazee-scaffold',
+      prepare: 'amazee-scaffold',
     },
     sourceInfo.scripts || {},
   );
@@ -29,10 +29,6 @@ export function adjustScripts(
   Object.keys(sourceScripts).forEach((key) => {
     targetInfo.scripts = targetInfo.scripts || {};
     if (targetInfo.scripts[key]) {
-      if (key === 'postinstall' && targetInfo.name === '@amazeelabs/scaffold') {
-        // Don't install a post-install hook in our own package.
-        return;
-      }
       if (
         !(targetInfo.scripts[key] as string).includes(
           sourceScripts[key] as string,

@@ -24,7 +24,7 @@ describe('adjustScripts', () => {
       JSON.parse(fs.readFileSync('./bar/package.json').toString()),
     ).toEqual({
       scripts: {
-        postinstall: 'amazee-scaffold',
+        prepare: 'amazee-scaffold',
         test: 'jest',
       },
     });
@@ -52,40 +52,11 @@ describe('adjustScripts', () => {
       JSON.parse(fs.readFileSync('./bar/package.json').toString()),
     ).toEqual({
       scripts: {
-        postinstall: 'amazee-scaffold',
+        prepare: 'amazee-scaffold',
         test: 'jest && cypress',
       },
     });
   });
-
-  it('ignores the postinstall script in @amazeelabs/scaffold', () => {
-    mock({
-      './foo': {
-        'package.json': JSON.stringify({
-          scripts: {
-            postinstall: 'amazee-scaffold',
-          },
-        }),
-      },
-      './bar': {
-        'package.json': JSON.stringify({
-          name: '@amazeelabs/scaffold',
-          scripts: {
-            postinstall: 'node cli.js',
-          },
-        }),
-      },
-    });
-    adjustScripts('./foo', './bar');
-    expect(
-        JSON.parse(fs.readFileSync('./bar/package.json').toString()),
-    ).toEqual({
-      name: '@amazeelabs/scaffold',
-      scripts: {
-        postinstall: 'node cli.js',
-      },
-    });
-  })
 
   it('does not double-extend existing scripts', () => {
     mock({
@@ -109,7 +80,7 @@ describe('adjustScripts', () => {
       JSON.parse(fs.readFileSync('./bar/package.json').toString()),
     ).toEqual({
       scripts: {
-        postinstall: 'amazee-scaffold',
+        prepare: 'amazee-scaffold',
         test: 'jest && cypress',
       },
     });
