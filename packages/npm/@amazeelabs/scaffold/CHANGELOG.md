@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.1.2...@amazeelabs/scaffold@1.1.3) (2021-03-15)
+
+
+### Bug Fixes
+
+* **tooling:** infer scaffolding source path from inside ([c0e6a3f](https://github.com/AmazeeLabs/silverback-mono/commit/c0e6a3f94f8d947c818bd6696678ce6efe9e8706))
+* **tooling:** preinstall in the scaffold package itself ([b3d3b9f](https://github.com/AmazeeLabs/silverback-mono/commit/b3d3b9f91dcb920851099ee6042259d04ec27e41))
+* **tooling:** run scaffolding on prepare instead of postinstall ([2ff6a2a](https://github.com/AmazeeLabs/silverback-mono/commit/2ff6a2a756b93f3e451402ef02e125278c3dae01))
+
+
+
+
+
 ## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.1.1...@amazeelabs/scaffold@1.1.2) (2021-03-12)
 
 **Note:** Version bump only for package @amazeelabs/scaffold
