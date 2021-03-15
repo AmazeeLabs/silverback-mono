@@ -45,7 +45,7 @@
     "gatsby": "^3.0.0"
   },
   "scripts": {
-    "prepare": "amazee-scaffold && tsc --rootDir ./src --outDir ./",
+    "prepare": "amazee-scaffold && tsc -p tsconfig.local.json",
     "precommit": "lint-staged",
     "test": "jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi",
     "watch": "jest --watch"
