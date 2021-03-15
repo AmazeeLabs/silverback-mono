@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.1.4...@amazeelabs/scaffold@1.1.5) (2021-03-15)
+
+
+### Bug Fixes
+
+* **deps:** update dependency husky to v5 ([011a539](https://github.com/AmazeeLabs/silverback-mono/commit/011a539e4d322e1fceb0bcef64baeaa4703a47d5))
+
+
+
+
+
 ## [1.1.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.1.3...@amazeelabs/scaffold@1.1.4) (2021-03-15)
 
 **Note:** Version bump only for package @amazeelabs/scaffold
