@@ -55,9 +55,9 @@
     "codegen": "graphql-codegen --config codegen.yml",
     "storybook": "start-storybook -p 6006",
     "storybook:build": "build-storybook",
-    "prepare": "amazee-scaffold && yarn codegen",
+    "prepare": "amazee-scaffold",
     "precommit": "lint-staged",
-    "test": "tsc --noEmit && jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi",
+    "test": "jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi",
     "watch": "jest --watch"
   },
   "publishConfig": {
