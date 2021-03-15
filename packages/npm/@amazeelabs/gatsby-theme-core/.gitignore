@@ -70,3 +70,12 @@ yarn-error.log
 
 *.js
 *.d.ts
+
+### MANAGED BY @amazeelabs/scaffold - START
+.eslintrc.js
+.jest-runner-eslintrc
+.lintstagedrc
+.prettierrc
+jest.config.js
+tsconfig.json
+### MANAGED BY @amazeelabs/scaffold - END
