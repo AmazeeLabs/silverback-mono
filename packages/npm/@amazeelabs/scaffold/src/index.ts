@@ -1,3 +1,5 @@
+import path from 'path';
+
 import {
   adjustScripts,
   installPackages,
@@ -5,7 +7,8 @@ import {
   updateDotFiles,
 } from './utils';
 
-export function scaffold(sourcePath: string, targetPath: string) {
+export function scaffold(targetPath: string) {
+  const sourcePath = path.resolve(__dirname, '../files');
   installPackages(sourcePath, targetPath);
   adjustScripts(sourcePath, targetPath);
   updateDotFiles(sourcePath, targetPath);
