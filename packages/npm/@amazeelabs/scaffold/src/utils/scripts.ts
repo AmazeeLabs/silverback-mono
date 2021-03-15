@@ -29,6 +29,10 @@ export function adjustScripts(
   Object.keys(sourceScripts).forEach((key) => {
     targetInfo.scripts = targetInfo.scripts || {};
     if (targetInfo.scripts[key]) {
+      if (key === 'prepare' && targetInfo.name === '@amazeelabs/scaffold') {
+        // Don't install a prepare hook in our own package.
+        return;
+      }
       if (
         !(targetInfo.scripts[key] as string).includes(
           sourceScripts[key] as string,
