@@ -51,6 +51,8 @@ export const createGutenbergPages: Required<GatsbyNode>['createPages'] = async (
       }
     }
   `);
+  // TODO (gutenberg): find a way to move the above Block* fragments closer to
+  //  their components components.
   if (!data) {
     console.error('errors', errors);
     throw new Error('Cannot fetch Gutenberg pages from Gatsby.');
