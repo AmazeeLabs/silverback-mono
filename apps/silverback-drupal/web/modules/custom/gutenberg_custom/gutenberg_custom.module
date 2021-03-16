@@ -2,6 +2,10 @@
 
 use Drupal\Core\Asset\AttachedAssetsInterface;
 
+// TODO (gutenberg): deal with media form not appearing after a new upload.
+//  Maybe remove the upload button? There still will be an upload option in the
+//  media dialog.
+
 /**
  * Implements hook_js_settings_alter().
  */
