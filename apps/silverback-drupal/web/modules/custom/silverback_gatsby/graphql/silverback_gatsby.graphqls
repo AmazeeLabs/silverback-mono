@@ -60,7 +60,7 @@ type GutenbergPageTranslation {
   langcode: String!
   path: String!
   title: String!
-  body: String!
+  body: [ContentBlock!]!
 }
 
 type Article {
@@ -96,4 +96,15 @@ type Change {
 enum ChangeType {
   Update
   Delete
+}
+
+union ContentBlock = BlockHtml | BlockImage
+
+type BlockHtml {
+  html: String!
+}
+
+type BlockImage {
+  caption: String
+  image: Image!
 }
