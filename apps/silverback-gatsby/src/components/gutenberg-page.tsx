@@ -3,6 +3,9 @@ import React from 'react';
 
 import { GutenbergPageContext } from '../types/page-context';
 import { Row } from '../util/Row';
+import { UnreachableCaseError } from '../util/types';
+import { BlockHtml } from './content-blocks/html';
+import { BlockImage } from './content-blocks/image';
 
 const GutenbergPage: React.FC<PageProps> = ({ pageContext }) => {
   const { page, otherLanguages } = pageContext as GutenbergPageContext;
@@ -19,7 +22,16 @@ const GutenbergPage: React.FC<PageProps> = ({ pageContext }) => {
         <tr>
           <Row>{page.title}</Row>
           <Row>
-            <div>{page.body}</div>
+            {page.body.map((block) => {
+              switch (block.__typename) {
+                case 'DrupalBlockHtml':
+                  return <BlockHtml {...block} />;
+                case 'DrupalBlockImage':
+                  return <BlockImage {...block} />;
+                default:
+                  throw new UnreachableCaseError(block);
+              }
+            })}
           </Row>
           <Row>
             <ul>

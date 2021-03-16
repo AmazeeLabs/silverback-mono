@@ -63,6 +63,7 @@ module.exports = {
     // Add custom plugins to implement dynamic utilities or components.
     // https://tailwindcss.com/docs/extracting-components#writing-a-component-plugin
     // https://tailwindcss.com/docs/adding-new-utilities#using-a-plugin
+    require('@tailwindcss/typography'),
   ],
   future: {
     // Opt-in for future upcoming changes.

@@ -16,8 +16,37 @@ export const createGutenbergPages: Required<GatsbyNode>['createPages'] = async (
             langcode
             path
             title
-            body
+            body {
+              __typename
+              ...BlockHtml
+              ...BlockImage
+            }
           }
+        }
+      }
+    }
+    fragment ImageSharpFixed on File {
+      childImageSharp {
+        fixed(width: 200, height: 150) {
+          width
+          height
+          base64
+          aspectRatio
+          src
+          srcSet
+          srcWebp
+          srcSetWebp
+        }
+      }
+    }
+    fragment BlockHtml on DrupalBlockHtml {
+      html
+    }
+    fragment BlockImage on DrupalBlockImage {
+      caption
+      image {
+        localImage {
+          ...ImageSharpFixed
         }
       }
     }

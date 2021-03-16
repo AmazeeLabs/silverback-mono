@@ -24,11 +24,12 @@ class SilverbackGatsbySchema extends SdlSchemaPluginBase {
   public function getResolverRegistry(): ResolverRegistryInterface {
     $builder = new ResolverBuilder();
     $registry = new ResolverRegistry();
-    $this->addResolvers($registry, $builder);
+    $this->addFieldResolvers($registry, $builder);
+    $this->addTypeResolvers($registry);
     return $registry;
   }
 
-  protected function addResolvers(ResolverRegistry $registry, ResolverBuilder $builder) {
+  protected function addFieldResolvers(ResolverRegistry $registry, ResolverBuilder $builder) {
 
     // Helpers.
 
@@ -99,6 +100,9 @@ class SilverbackGatsbySchema extends SdlSchemaPluginBase {
       ->getGeneratedUrl()
     );
 
+    $gutenberg = $builder->produce('gutenberg')
+      ->map('entity', $builder->fromParent());
+
     // Resolvers.
 
     $addResolver('Query.page', $loadEntity('node', 'page'));
@@ -133,7 +137,7 @@ class SilverbackGatsbySchema extends SdlSchemaPluginBase {
     $addResolver('GutenbergPageTranslation.langcode', $entityLangcode);
     $addResolver('GutenbergPageTranslation.path', $nodePath);
     $addResolver('GutenbergPageTranslation.title', $entityLabel);
-    $addResolver('GutenbergPageTranslation.body', $fromPath('entity:node:gutenberg_page', 'body.0.value'));
+    $addResolver('GutenbergPageTranslation.body', $gutenberg);
 
     $addResolver('Article.id', $entityId);
     $addResolver('Article.translations', $entityTranslations);
@@ -150,6 +154,10 @@ class SilverbackGatsbySchema extends SdlSchemaPluginBase {
 
     $addResolver('Tag.id', $entityId);
     $addResolver('Tag.title', $entityLabel);
+  }
+
+  protected function addTypeResolvers(ResolverRegistry $registry) {
+    $registry->addTypeResolver('ContentBlock', fn($value) => $value['__type']);
   }
 
 }
