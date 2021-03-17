@@ -18,6 +18,7 @@ export const createGutenbergPages: Required<GatsbyNode>['createPages'] = async (
             title
             body {
               __typename
+              ...BlockTwoColumns
               ...BlockHtml
               ...BlockImage
             }
@@ -47,6 +48,16 @@ export const createGutenbergPages: Required<GatsbyNode>['createPages'] = async (
       image {
         localImage {
           ...ImageSharpFixed
+        }
+      }
+    }
+    fragment BlockTwoColumns on DrupalBlockTwoColumns {
+      children {
+        __typename
+        children {
+          __typename
+          ...BlockHtml
+          ...BlockImage
         }
       }
     }

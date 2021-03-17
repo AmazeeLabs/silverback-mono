@@ -2,8 +2,9 @@ FROM amazeeio/php:7.4-cli-drupal
 
 COPY apps/silverback-drupal/composer.json apps/silverback-drupal/composer.lock /app/
 COPY apps/silverback-drupal/patches /app/patches
-# This one needs to be copied because post-install-cmd script uses it.
+# These ones need to be copied because post-install-cmd script uses them.
 COPY apps/silverback-drupal/web/modules/custom/silverback_gatsby /app/web/modules/custom/silverback_gatsby
+COPY apps/silverback-drupal/web/modules/custom/gutenberg_custom_blocks /app/web/modules/custom/gutenberg_custom_blocks
 
 # Copy local packages.
 COPY packages/composer/amazeelabs/silverback-cli /app/packages/composer/amazeelabs/silverback-cli

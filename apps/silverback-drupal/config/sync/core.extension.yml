@@ -18,6 +18,7 @@ module:
   graphql: 0
   gutenberg: 0
   gutenberg_custom: 0
+  gutenberg_custom_blocks: 0
   hal: 0
   image: 0
   language: 0

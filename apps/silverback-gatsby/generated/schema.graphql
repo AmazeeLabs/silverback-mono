@@ -776,10 +776,14 @@ type DrupalGutenbergPageTranslation {
   langcode: String!
   path: String!
   title: String!
-  body: [DrupalContentBlock!]!
+  body: [DrupalRootBlock!]!
 }
 
-union DrupalContentBlock = DrupalBlockHtml | DrupalBlockImage
+union DrupalRootBlock = DrupalBlockTwoColumns | DrupalBlockHtml | DrupalBlockImage
+
+type DrupalBlockTwoColumns {
+  children: [DrupalBlockColumn!]!
+}
 
 type DrupalBlockHtml {
   html: String!
@@ -789,6 +793,13 @@ type DrupalBlockImage {
   caption: String
   image: DrupalImage!
 }
+
+type DrupalBlockColumn {
+  remoteTypeName: String!
+  children: [DrupalContentBlock!]!
+}
+
+union DrupalContentBlock = DrupalBlockHtml | DrupalBlockImage
 
 type DrupalImage implements Node {
   remoteTypeName: String!

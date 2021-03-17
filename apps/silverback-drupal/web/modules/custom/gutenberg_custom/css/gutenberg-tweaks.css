@@ -1,0 +1,4 @@
+/* Cannot find other way to disable the columns amount slider. */
+.components-range-control {
+  display: none;
+}
