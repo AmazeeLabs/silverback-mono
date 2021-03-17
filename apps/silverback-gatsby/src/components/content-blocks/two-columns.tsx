@@ -8,8 +8,8 @@ export const BlockTwoColumns: React.FC<BlockTwoColumnsFragment> = ({
   children,
 }) => (
   <div className="columns flex">
-    {children.map((column) => (
-      <div className="column w-1/2">
+    {children.map((column, index) => (
+      <div className="column w-1/2" key={index}>
         {column.children.map((block) => {
           switch (block.__typename) {
             case 'DrupalBlockHtml':
