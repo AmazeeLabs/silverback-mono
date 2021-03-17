@@ -28,6 +28,16 @@ your purpose.
 - [npm](https://www.npmjs.com/)
 - [Openbase](https://openbase.com/)
 
+## Forbidden
+
+These packages have been tried and we decided not to use them.
+
+* `tsconfig-paths`: Typescript allows defining path aliases in `tsconfig.json`
+  that helps to load typings with aliases. With plugins for webpack and jest
+  its even possible to have full package aliases to avoid ugly imports like
+  `../../../hooks` or similar. Imports are managed by the IDE anyway and
+  integrations for all build systems are a heavy burden.
+
 ## Defaults
 
 Packages under this section should be considered default packages, as we've used

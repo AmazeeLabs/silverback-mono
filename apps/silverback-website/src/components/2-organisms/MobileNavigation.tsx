@@ -1,6 +1,6 @@
 import { useGatsbyDependencies } from '@amazeelabs/gatsby-theme-core';
-import { useDataDependencies } from '@dependencies';
 import React from 'react';
+import { useDataDependencies } from '../dependencies';
 
 const MobileNavigation = () => {
   const { Link } = useGatsbyDependencies();

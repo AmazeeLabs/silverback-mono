@@ -1,8 +1,8 @@
 import { useGatsbyDependencies } from '@amazeelabs/gatsby-theme-core';
-import { useDataDependencies } from '@dependencies';
-import { useSubPageMenu } from '@hooks';
 import classnames from 'classnames';
 import React from 'react';
+import { useSubPageMenu } from '../../hooks';
+import { useDataDependencies } from '../dependencies';
 
 const DesktopNavigation = () => {
   const { Link } = useGatsbyDependencies();
