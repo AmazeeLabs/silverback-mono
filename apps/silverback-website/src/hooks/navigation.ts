@@ -1,6 +1,6 @@
-import { NavigationNode } from '@dependencies';
 import _ from 'lodash';
 import { useState } from 'react';
+import { NavigationNode } from 'src/components/dependencies';
 
 export const processNavigationItems = ({
   allMdx: { distinct: navigation, group: navigationGroups },

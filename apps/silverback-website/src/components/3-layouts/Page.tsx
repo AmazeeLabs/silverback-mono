@@ -1,12 +1,12 @@
 import { useGatsbyDependencies } from '@amazeelabs/gatsby-theme-core';
-import Logo from '@atoms/Logo';
-import { useMobileMenu } from '@hooks';
-import MobileMenuButton from '@molecules/MobileMenuButton';
-import DesktopNavigation from '@organisms/DesktopNavigation';
-import FooterNavigation from '@organisms/FooterNavigation';
-import MobileNavigation from '@organisms/MobileNavigation';
 import classnames from 'classnames';
 import React from 'react';
+import {useMobileMenu} from "../../hooks";
+import Logo from "../0-atoms/Logo";
+import DesktopNavigation from "../2-organisms/DesktopNavigation";
+import MobileMenuButton from "../1-molecules/MobileMenuButton";
+import MobileNavigation from "../2-organisms/MobileNavigation";
+import FooterNavigation from "../2-organisms/FooterNavigation";
 
 const Page: React.FC = ({ children }) => {
   const { Link } = useGatsbyDependencies();

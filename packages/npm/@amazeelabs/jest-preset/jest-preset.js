@@ -3,13 +3,6 @@ const moduleNameMapper = {
   '\\.(css|less|scss|sss|styl)$': 'identity-obj-proxy',
 };
 
-if (fs.existsSync('./tsconfig.json')) {
-  const tsconfig = JSON.parse(fs.readFileSync('./tsconfig.json').toString());
-  if (tsconfig && tsconfig.compilerOptions && tsconfig.compilerOptions.paths) {
-    Object.assign(moduleNameMapper, require("tsconfig-paths-jest")(tsconfig));
-  }
-}
-
 const projects = [
   {
     displayName: 'unit',

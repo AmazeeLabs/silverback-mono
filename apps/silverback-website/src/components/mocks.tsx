@@ -1,4 +1,4 @@
-import { DataDependencies } from '@dependencies';
+import { DataDependencies } from "./dependencies";
 
 export const dataMocks: DataDependencies = {
   useNavigation: () => [

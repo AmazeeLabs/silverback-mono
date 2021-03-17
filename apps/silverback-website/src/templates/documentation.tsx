@@ -1,6 +1,6 @@
-import Code from '@atoms/Code';
+import Code from '../components/0-atoms/Code';
 import { MDXProvider } from '@mdx-js/react';
-import Documentation from '@pages/Documentation';
+import Documentation from '../components/4-pages/Documentation';
 import { graphql, PageProps } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import _ from 'lodash';

@@ -1,5 +1,3 @@
-import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
-
 export const webpackFinal = (config: {
   module: {
     rules: {
@@ -12,7 +10,6 @@ export const webpackFinal = (config: {
     plugins: object[];
   };
 }) => {
-  config.resolve.plugins = [new TsconfigPathsPlugin()];
   // Transpile Gatsby module because Gatsby includes un-transpiled ES6 code.
   // https://www.gatsbyjs.org/docs/visual-testing-with-storybook/
   config.module.rules.push({

@@ -1,5 +1,5 @@
-import { DataDependencyProvider } from '@dependencies';
 import React from 'react';
+import { DataDependencyProvider } from './components/dependencies';
 
 import { processNavigationItems } from './hooks/navigation';
 import { useNavigationQuery } from './hooks/queries/useNavigationQuery';
