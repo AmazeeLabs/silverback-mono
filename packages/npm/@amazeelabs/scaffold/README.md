@@ -18,5 +18,6 @@ with every `yarn install`.
 
 ## Usage
 
-After install there is a `test` that should run all testsin a package. It will also look for an
-optional `test.sh` in the package root that will also be executed. The `watch` command should be used for live-feedback features (like `jest --watch`).
+After install there is a `test` that should run all testsin a package. It will
+also look for an optional `test.sh` in the package root that will also be executed.
+The `watch` command should be used for live-feedback features (like `jest --watch`).
