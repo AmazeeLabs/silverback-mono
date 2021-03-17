@@ -60,7 +60,7 @@ type GutenbergPageTranslation {
   langcode: String!
   path: String!
   title: String!
-  body: [ContentBlock!]!
+  body: [RootBlock!]!
 }
 
 type Article {
@@ -98,7 +98,17 @@ enum ChangeType {
   Delete
 }
 
+union RootBlock = BlockTwoColumns |  BlockHtml | BlockImage
+
 union ContentBlock = BlockHtml | BlockImage
+
+type BlockTwoColumns {
+  children: [BlockColumn!]!
+}
+
+type BlockColumn {
+  children: [ContentBlock!]!
+}
 
 type BlockHtml {
   html: String!

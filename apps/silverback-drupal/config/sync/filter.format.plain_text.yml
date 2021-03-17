@@ -27,3 +27,10 @@ filters:
     status: true
     weight: 0
     settings: {  }
+  gutenberg:
+    id: gutenberg
+    provider: gutenberg
+    status: false
+    weight: 0
+    settings:
+      processor_settings: {  }

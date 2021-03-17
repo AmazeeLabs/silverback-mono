@@ -1,10 +1,12 @@
 gutenberg_page_enable_full: 1
-gutenberg_page_template: ''
-gutenberg_page_template_lock: none
+gutenberg_page_template: "[\r\n  [\"custom/root\", {}]\r\n]"
+gutenberg_page_template_lock: all
 gutenberg_page_allowed_blocks:
   core/paragraph: core/paragraph
   core/list: core/list
   core/quote: core/quote
+  core/columns: core/columns
+  core/column: core/column
   core/all: 0
   core/image: 0
   core/heading: 0
@@ -15,8 +17,6 @@ gutenberg_page_allowed_blocks:
   core/buttons: 0
   core/calendar: 0
   core/code: 0
-  core/columns: 0
-  core/column: 0
   core/cover: 0
   core/embed: 0
   core/file: 0

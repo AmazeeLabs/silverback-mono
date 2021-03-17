@@ -6,6 +6,7 @@ import { Row } from '../util/Row';
 import { UnreachableCaseError } from '../util/types';
 import { BlockHtml } from './content-blocks/html';
 import { BlockImage } from './content-blocks/image';
+import { BlockTwoColumns } from './content-blocks/two-columns';
 
 const GutenbergPage: React.FC<PageProps> = ({ pageContext }) => {
   const { page, otherLanguages } = pageContext as GutenbergPageContext;
@@ -28,6 +29,8 @@ const GutenbergPage: React.FC<PageProps> = ({ pageContext }) => {
                   return <BlockHtml {...block} />;
                 case 'DrupalBlockImage':
                   return <BlockImage {...block} />;
+                case 'DrupalBlockTwoColumns':
+                  return <BlockTwoColumns {...block} />;
                 default:
                   throw new UnreachableCaseError(block);
               }

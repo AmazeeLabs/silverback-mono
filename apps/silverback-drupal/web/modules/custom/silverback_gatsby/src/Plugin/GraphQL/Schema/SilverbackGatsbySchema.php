@@ -157,6 +157,7 @@ class SilverbackGatsbySchema extends SdlSchemaPluginBase {
   }
 
   protected function addTypeResolvers(ResolverRegistry $registry) {
+    $registry->addTypeResolver('RootBlock', fn($value) => $value['__type']);
     $registry->addTypeResolver('ContentBlock', fn($value) => $value['__type']);
   }
 

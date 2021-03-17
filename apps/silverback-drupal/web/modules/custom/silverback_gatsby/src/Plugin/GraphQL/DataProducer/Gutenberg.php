@@ -72,8 +72,26 @@ class Gutenberg extends DataProducerPluginBase
           break;
 
         case 'core/group':
-          // Groups add nothing to the layout.
+        case 'custom/root':
+          // Groups and Root add nothing to the layout.
           $result = array_merge($result, $this->transform($block['innerBlocks']));
+          break;
+
+        case 'custom/two-columns':
+          $result[] = [
+            '__type' => 'BlockTwoColumns',
+            'children' => $this->transform(
+              // Skip core/columns block.
+              $block['innerBlocks'][0]['innerBlocks']
+            ),
+          ];
+          break;
+
+        case 'core/column':
+          $result[] = [
+            '__type' => 'BlockColumn',
+            'children' => $this->transform($block['innerBlocks']),
+          ];
           break;
 
         default:

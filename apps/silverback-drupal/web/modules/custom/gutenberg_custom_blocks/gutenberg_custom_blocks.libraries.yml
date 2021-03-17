@@ -1,0 +1,16 @@
+edit:
+  version: VERSION
+  js:
+    js/root.js: { }
+    js/two-columns.js: { }
+  css:
+    theme:
+      css/edit.css: { }
+  dependencies:
+    - gutenberg/edit-node
+
+view:
+  version: VERSION
+  css:
+    theme:
+      css/view.css: { }

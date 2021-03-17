@@ -1,0 +1,24 @@
+{
+  "name": "gutenberg_custom_blocks",
+  "private": true,
+  "scripts": {
+    "start": "yarn drupal-js-build --css && yarn drupal-js-build watch --css",
+    "build": "yarn drupal-js-build --css && yarn drupal-gutenberg-translations",
+    "prepare": "amazee-scaffold",
+    "precommit": "lint-staged",
+    "test": "jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi",
+    "watch": "jest --watch"
+  },
+  "dependencies": {
+    "@amazeelabs/scaffold": "^1.1.5",
+    "drupal-gutenberg-translations": "^1.1.0",
+    "drupal-js-build": "^1.2.0"
+  },
+  "devDependencies": {
+    "@amazeelabs/jest-preset": "^1.3.0",
+    "@types/jest": "^26.0.20",
+    "jest": "^26.6.3",
+    "lint-staged": "^10.5.4",
+    "typescript": "^4.2.3"
+  }
+}

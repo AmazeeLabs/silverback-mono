@@ -1,0 +1,5 @@
+libraries-edit:
+  - gutenberg_custom_blocks/edit
+
+libraries-view:
+  - gutenberg_custom_blocks/view

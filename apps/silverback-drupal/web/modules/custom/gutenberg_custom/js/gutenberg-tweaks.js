@@ -1,5 +1,4 @@
 drupalSettings.gutenberg._listeners.init.push(
-
   // Disable "Additional CSS class(es)" section for all block types.
   function () {
     var blockTypes = wp.blocks.getBlockTypes();
@@ -10,12 +9,26 @@ drupalSettings.gutenberg._listeners.init.push(
 
   // Workaround for https://github.com/WordPress/gutenberg/issues/19815
   function () {
-    var coreColumnsAllowed = drupalSettings.editor.formats.gutenberg.editorSettings.allowedBlocks['core/columns'];
-    var coreImageAllowed = drupalSettings.editor.formats.gutenberg.editorSettings.allowedBlocks['core/image'];
+    var coreColumnsAllowed =
+      drupalSettings.editor.formats.gutenberg.editorSettings.allowedBlocks[
+        "core/columns"
+      ];
+    var coreImageAllowed =
+      drupalSettings.editor.formats.gutenberg.editorSettings.allowedBlocks[
+        "core/image"
+      ];
     if (coreColumnsAllowed && !coreImageAllowed) {
-      var coreColumnsBlock = wp.blocks.getBlockType('core/columns');
+      var coreColumnsBlock = wp.blocks.getBlockType("core/columns");
       // Remove core/image from the example.
       coreColumnsBlock.example.innerBlocks[0].innerBlocks.splice(1, 1);
     }
   },
+
+  // Remove most of the columns options.
+  function () {
+    var coreColumnsBlock = wp.blocks.getBlockType("core/columns");
+    coreColumnsBlock.supports.inserter = false;
+    coreColumnsBlock.supports.align = false;
+    coreColumnsBlock.supports.__experimentalColor = false;
+  }
 );
