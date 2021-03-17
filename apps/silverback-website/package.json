@@ -1,11 +1,11 @@
 {
   "name": "silverback-website",
   "description": "Silverback website",
-  "version": "0.15.6",
+  "version": "0.15.7",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
-    "@amazeelabs/gatsby-theme-core": "^0.5.10",
-    "@amazeelabs/react-di": "^1.0.10",
+    "@amazeelabs/gatsby-theme-core": "^0.5.11",
+    "@amazeelabs/react-di": "^1.0.11",
     "@mdx-js/mdx": "^1.6.21",
     "@mdx-js/react": "^1.6.21",
     "@tailwindcss/typography": "^0.4.0",

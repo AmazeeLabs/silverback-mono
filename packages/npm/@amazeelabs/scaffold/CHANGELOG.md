@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.1.6...@amazeelabs/scaffold@1.1.7) (2021-03-17)
+
+
+### Bug Fixes
+
+* **tooling:** readme fix and trigger new release for @amazeelabs/scaffold ([83fcd8e](https://github.com/AmazeeLabs/silverback-mono/commit/83fcd8e62cb4b7d8b2e629077d922896a212509f))
+
+
+
+
+
 ## [1.1.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.1.5...@amazeelabs/scaffold@1.1.6) (2021-03-15)
 
 **Note:** Version bump only for package @amazeelabs/scaffold
