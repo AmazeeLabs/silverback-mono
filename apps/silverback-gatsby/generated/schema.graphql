@@ -779,7 +779,7 @@ type DrupalGutenbergPageTranslation {
   body: [DrupalRootBlock!]!
 }
 
-union DrupalRootBlock = DrupalBlockTwoColumns | DrupalBlockHtml | DrupalBlockImage
+union DrupalRootBlock = DrupalBlockTwoColumns | DrupalBlockHtml | DrupalBlockImage | DrupalBlockTeaser
 
 type DrupalBlockTwoColumns {
   children: [DrupalBlockColumn!]!
@@ -790,8 +790,15 @@ type DrupalBlockHtml {
 }
 
 type DrupalBlockImage {
-  caption: String
+  caption: String!
   image: DrupalImage!
+}
+
+type DrupalBlockTeaser {
+  image: DrupalImage!
+  title: String!
+  subtitle: String!
+  url: String!
 }
 
 type DrupalBlockColumn {
@@ -799,7 +806,7 @@ type DrupalBlockColumn {
   children: [DrupalContentBlock!]!
 }
 
-union DrupalContentBlock = DrupalBlockHtml | DrupalBlockImage
+union DrupalContentBlock = DrupalBlockHtml | DrupalBlockImage | DrupalBlockTeaser
 
 type DrupalImage implements Node {
   remoteTypeName: String!

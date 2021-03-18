@@ -21,6 +21,7 @@ export const createGutenbergPages: Required<GatsbyNode>['createPages'] = async (
               ...BlockTwoColumns
               ...BlockHtml
               ...BlockImage
+              ...BlockTeaser
             }
           }
         }
@@ -51,6 +52,16 @@ export const createGutenbergPages: Required<GatsbyNode>['createPages'] = async (
         }
       }
     }
+    fragment BlockTeaser on DrupalBlockTeaser {
+      image {
+        localImage {
+          ...ImageSharpFixed
+        }
+      }
+      title
+      subtitle
+      url
+    }
     fragment BlockTwoColumns on DrupalBlockTwoColumns {
       children {
         __typename
@@ -58,6 +69,7 @@ export const createGutenbergPages: Required<GatsbyNode>['createPages'] = async (
           __typename
           ...BlockHtml
           ...BlockImage
+          ...BlockTeaser
         }
       }
     }

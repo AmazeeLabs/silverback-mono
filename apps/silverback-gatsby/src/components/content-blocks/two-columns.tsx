@@ -3,6 +3,7 @@ import React from 'react';
 import { UnreachableCaseError } from '../../util/types';
 import { BlockHtml } from './html';
 import { BlockImage } from './image';
+import { BlockTeaser } from './teaser';
 
 export const BlockTwoColumns: React.FC<BlockTwoColumnsFragment> = ({
   children,
@@ -16,6 +17,8 @@ export const BlockTwoColumns: React.FC<BlockTwoColumnsFragment> = ({
               return <BlockHtml {...block} />;
             case 'DrupalBlockImage':
               return <BlockImage {...block} />;
+            case 'DrupalBlockTeaser':
+              return <BlockTeaser {...block} />;
             default:
               throw new UnreachableCaseError(block);
           }

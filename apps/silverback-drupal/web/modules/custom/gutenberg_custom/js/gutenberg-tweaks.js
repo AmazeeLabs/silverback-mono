@@ -30,5 +30,10 @@ drupalSettings.gutenberg._listeners.init.push(
     coreColumnsBlock.supports.inserter = false;
     coreColumnsBlock.supports.align = false;
     coreColumnsBlock.supports.__experimentalColor = false;
+  },
+
+  // We never want inline images.
+  function () {
+    wp.richText.unregisterFormatType("core/image");
   }
 );
