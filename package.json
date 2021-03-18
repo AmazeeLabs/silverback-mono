@@ -1,19 +1,13 @@
 {
   "name": "silverback",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/composer/*/*",
-      "packages/npm/*",
-      "packages/npm/*/*",
-      "apps/*",
-      "packages/composer/drupal/test_session/tests/Cypress"
-    ],
-    "nohoist": [
-      "**/tailwindcss",
-      "**/@tailwindcss/**"
-    ]
-  },
+  "workspaces": [
+    "packages/composer/*/*",
+    "packages/npm/*",
+    "packages/npm/*/*",
+    "apps/*",
+    "packages/composer/drupal/test_session/tests/Cypress"
+  ],
   "scripts": {
     "commit": "yarn git-cz",
     "test": "yarn lerna run prepublish --since --include-dependencies && yarn lerna run test --since --stream --concurrency=1",
