@@ -24,7 +24,6 @@ export const plugins = [
     },
   },
   '@amazeelabs/gatsby-theme-core',
-  'gatsby-plugin-postcss',
   'gatsby-plugin-schema-export',
   {
     resolve: `gatsby-plugin-schema-snapshot`,
