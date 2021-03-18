@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.16](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.13.15...silverback-gastby@0.13.16) (2021-03-18)
+
+
+### Bug Fixes
+
+* codegen before tsc ([020424c](https://github.com/AmazeeLabs/silverback-mono/commit/020424c2bf29b17b321c6917107a2e93c08917b7))
+* lint ([2efb9bd](https://github.com/AmazeeLabs/silverback-mono/commit/2efb9bdf8c5a7d536cf9ef00c3a09bf0ac22e00a))
+
+
+
+
+
 ## [0.13.15](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.13.14...silverback-gastby@0.13.15) (2021-03-17)
 
 **Note:** Version bump only for package silverback-gastby
