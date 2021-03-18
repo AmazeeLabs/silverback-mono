@@ -98,9 +98,9 @@ enum ChangeType {
   Delete
 }
 
-union RootBlock = BlockTwoColumns |  BlockHtml | BlockImage
+union RootBlock = BlockTwoColumns |  BlockHtml | BlockImage | BlockTeaser
 
-union ContentBlock = BlockHtml | BlockImage
+union ContentBlock = BlockHtml | BlockImage | BlockTeaser
 
 type BlockTwoColumns {
   children: [BlockColumn!]!
@@ -115,6 +115,13 @@ type BlockHtml {
 }
 
 type BlockImage {
-  caption: String
+  caption: String!
   image: Image!
+}
+
+type BlockTeaser {
+  image: Image!
+  title: String!
+  subtitle: String!
+  url: String!
 }

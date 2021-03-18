@@ -59,9 +59,7 @@ class Gutenberg extends DataProducerPluginBase
             case 'image':
               $result[] = [
                 '__type' => 'BlockImage',
-                'caption' => trim($block['attrs']['caption']) === ''
-                  ? NULL
-                  : $block['attrs']['caption'],
+                'caption' => trim($block['attrs']['caption']),
                 'image' => $media,
               ];
               break;
@@ -91,6 +89,22 @@ class Gutenberg extends DataProducerPluginBase
           $result[] = [
             '__type' => 'BlockColumn',
             'children' => $this->transform($block['innerBlocks']),
+          ];
+          break;
+
+        case 'custom/teaser':
+          $media = Media::load($block['attrs']['mediaEntityIds'][0]);
+          $bundle = $media->bundle();
+          if ($bundle !== 'image') {
+            throw new \Exception("Teaser only supports image media. Given media type: '{$bundle}'");
+          }
+          $result[] = [
+            '__type' => 'BlockTeaser',
+            'image' => $media,
+            'title' => trim($block['attrs']['title']),
+            'subtitle' => trim($block['attrs']['subtitle']),
+            // TODO (gutenberg): process URL.
+            'url' => trim($block['attrs']['url']),
           ];
           break;
 

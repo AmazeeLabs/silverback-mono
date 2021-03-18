@@ -3,6 +3,7 @@ edit:
   js:
     js/root.js: { }
     js/two-columns.js: { }
+    js/teaser.js: { }
   css:
     theme:
       css/edit.css: { }
