@@ -121,6 +121,6 @@
             "if [ -d web/modules/custom ]; then phpunit web/modules/custom; fi",
             "yarn install && CYPRESS_TAGS=@COMPLETED cypress run"
         ],
-        "post-install-cmd": "set -x && cd web/modules/custom/silverback_gatsby && npm ci && cd - && cd web/modules/custom/gutenberg_custom_blocks && yarn"
+        "post-install-cmd": "set -x && cd web/modules/custom/silverback_gatsby && npm ci && cd - && cd web/modules/custom/gutenberg_custom_blocks && yarn && yarn build"
     }
 }
