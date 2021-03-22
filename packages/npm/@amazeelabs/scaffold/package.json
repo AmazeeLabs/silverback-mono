@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/scaffold",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Scaffold dotfiles and packages for JS projects.",
   "main": "index.js",
   "author": "Philipp Melab",
