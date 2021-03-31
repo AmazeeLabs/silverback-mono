@@ -9,22 +9,15 @@
     "access": "public"
   },
   "dependencies": {
-    "@amazeelabs/jest-preset": "^1.3.1",
     "@amazeelabs/react-di": "^1.0.13",
-    "@amazeelabs/scaffold": "^1.1.9",
-    "autoprefixer": "^10.0.0",
-    "gatsby-plugin-postcss": "^4.0.0",
-    "gatsby-plugin-react-helmet": "^4.0.0",
-    "postcss-import": "^14.0.0",
-    "react-helmet": "^6.1.0"
+    "@amazeelabs/scaffold": "^1.1.9"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "^1.2.3",
-    "@amazeelabs/jest-preset": "^1.3.0",
+    "@amazeelabs/jest-preset": "^1.3.1",
     "@amazeelabs/prettier-config": "^1.1.0",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.10.1",
-    "@types/react-helmet": "^6.1.0",
     "eslint": "^7.9.0",
     "jest": "^26.6.3",
     "lint-staged": "^10.5.4",
