@@ -19,7 +19,12 @@ describe('Task', () => {
 
   class UseA {
     public a() {
-      a();
+      return new Promise<void>((resolve) =>
+        setTimeout(() => {
+          a();
+          resolve(undefined);
+        }, 100),
+      );
     }
   }
 
@@ -31,25 +36,27 @@ describe('Task', () => {
 
   const MyTask: Task<undefined> = [
     createTask(UseA, (a) => {
-      a.a();
+      return a.a();
     }),
     createTask(UseB, (b) => {
       b();
     }),
   ];
 
-  it('executes an interaction to fulfill a task', () => {
+  it('executes an interaction to fulfill a task', async () => {
     const actor = new Actor([new UseA()]);
-    actor.perform(MyTask, undefined);
+    await actor.perform(MyTask, undefined);
     expect(a.callCount).to.equal(1);
     expect(b.callCount).to.equal(0);
   });
 
-  it('raises an exception if there is no supported interaction', () => {
+  it('raises an exception if there is no supported interaction', (done) => {
     const actor = new Actor([new WorthlessAbility()]);
-    expect(() => {
-      actor.perform(MyTask, undefined);
-    }).to.throw(UnsupportedTaskError);
+    actor.perform(MyTask, undefined).catch((err) => {
+      expect(err).instanceof(UnsupportedTaskError);
+      // eslint-disable-next-line promise/no-callback-in-promise
+      done();
+    });
   });
 
   it('uses the first supported interaction', () => {

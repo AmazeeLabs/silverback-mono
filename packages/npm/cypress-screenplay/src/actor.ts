@@ -12,6 +12,24 @@ export interface AbilityFactory<T> {
 
 export type AbilityType<T> = T extends AbilityFactory<infer FA> ? FA : T;
 
+function hasOwnProperty<X extends any, Y extends PropertyKey>(
+  obj: X,
+  prop: Y,
+): obj is X & Record<Y, unknown> {
+  // @ts-ignore
+  return !!obj.then;
+}
+
+function isPromise<T extends any>(
+  value: T | Promise<T>,
+): value is Promise<any> {
+  return (
+    typeof value === 'object' &&
+    hasOwnProperty(value, 'then') &&
+    typeof value.then === 'function'
+  );
+}
+
 export const isAbilityFactory = (
   ability: any,
 ): ability is AbilityFactory<any> =>
@@ -129,9 +147,17 @@ export class Actor {
    * @param task
    * @param param
    */
-  public perform<P>(task: Task<P>, param: P): Actor {
-    this.prepare(task).invoke(param);
-    return this;
+  public async perform<P>(task: Task<P>, param: P): Promise<Actor> {
+    const result = this.prepare(task).invoke(param);
+    if (isPromise(result)) {
+      return new Promise((resolve) => {
+        return result.then(() => resolve(this));
+      });
+    } else {
+      return new Promise((resolve) => {
+        resolve(this);
+      });
+    }
   }
 
   /**

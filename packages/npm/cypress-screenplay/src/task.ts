@@ -4,7 +4,7 @@ import { AbilityType, Actor, isAbilityFactory } from './actor';
  * Type definition for task interactions.
  */
 export interface TaskInteraction<P> {
-  invoke(param: P): void;
+  invoke(param: P): void | Promise<void>;
 }
 
 /**
@@ -18,7 +18,7 @@ export type Task<P> = TaskType<P> | TaskType<P>[];
 export type TaskProcedure<A extends object, P> = (
   ability: AbilityType<A>,
   param: P,
-) => void;
+) => void | Promise<void>;
 
 /**
  * Shorthand for creating tasks using a specific ability.
@@ -47,8 +47,8 @@ export function createTask<A extends object, P>(
       this.actor = actor;
       this.ability = actor.ability(ability);
     }
-    invoke(param: P): void {
-      procedure(
+    invoke(param: P): void | Promise<void> {
+      return procedure(
         isAbilityFactory(this.ability) ? this.ability.create() : this.ability,
         param,
       );

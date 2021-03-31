@@ -1,4 +1,8 @@
-import { readListItems, visitTestPage } from '../support/interactions';
+import {
+  readListItems,
+  visitTestPage,
+  appendToList,
+} from '../support/interactions';
 
 describe('Screenplay', () => {
   it('executes tasks and questions', () => {
@@ -7,5 +11,12 @@ describe('Screenplay', () => {
       .should('contain', 'A')
       .should('contain', 'B')
       .should('contain', 'C');
+    cy.window().then((win) => {
+      cy.perform(appendToList, {
+        text: 'D',
+        list: win.document.getElementsByTagName('ul').item(0),
+      });
+      cy.ask(readListItems).should('contain', 'D');
+    });
   });
 });

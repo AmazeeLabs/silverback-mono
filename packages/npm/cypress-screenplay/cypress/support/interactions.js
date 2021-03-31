@@ -14,3 +14,14 @@ export const readListItems = createCypressQuestion((cy, _, assert) => {
     ),
   );
 });
+
+export const appendToList = createCypressTask((cy, { text, list }) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const item = document.createElement('li');
+      item.textContent = text;
+      list.appendChild(item);
+      resolve(undefined);
+    }, 3000);
+  });
+});
