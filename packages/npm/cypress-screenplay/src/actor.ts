@@ -150,8 +150,8 @@ export class Actor {
   public async perform<P>(task: Task<P>, param: P): Promise<Actor> {
     const result = this.prepare(task).invoke(param);
     if (isPromise(result)) {
-      return new Promise((resolve) => {
-        return result.then(() => resolve(this));
+      return new Promise((resolve, reject) => {
+        result.then(() => resolve(this)).catch(reject);
       });
     } else {
       return new Promise((resolve) => {
