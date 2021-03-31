@@ -1,10 +1,18 @@
-import {Link, navigate, PreRenderHTMLArgs, WrapPageElementNodeArgs} from 'gatsby';
+import {
+  Link,
+  navigate,
+  PreRenderHTMLArgs,
+  WrapPageElementNodeArgs,
+} from 'gatsby';
+import { GatsbyImage, StaticImage } from 'gatsby-plugin-image';
 import React, { isValidElement } from 'react';
 
-import {DependencyProvider} from "./dependencies";
+import { DependencyProvider } from './dependencies';
 
-export const wrapPageElement = ({element}: WrapPageElementNodeArgs) => (
-  <DependencyProvider dependencies={{Link: Link, navigate,}}>
+export const wrapPageElement = ({ element }: WrapPageElementNodeArgs) => (
+  <DependencyProvider
+    dependencies={{ Link: Link, navigate, GatsbyImage, StaticImage }}
+  >
     {element}
   </DependencyProvider>
 );
