@@ -1,5 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import { GatsbyLinkProps, navigate } from 'gatsby';
+import { GatsbyImage, getSrc, StaticImage } from 'gatsby-plugin-image';
 import React, { Component } from 'react';
 
 import { DependencyProvider } from './dependencies';
@@ -35,10 +36,21 @@ class MockLink extends Component<GatsbyLinkProps<any>> {
   }
 }
 
+const MockStaticImage: typeof StaticImage = (props) => <img {...props} />;
+
+const MockGatsbyImage: typeof GatsbyImage = ({ image, ...props }) => (
+  <img src={getSrc(image)} {...props} />
+);
+
 export const decorators = [
   (story: Function, context: any) => (
     <DependencyProvider
-      dependencies={{ Link: MockLink, navigate: mockNavigate }}
+      dependencies={{
+        Link: MockLink,
+        navigate: mockNavigate,
+        StaticImage: MockStaticImage,
+        GatsbyImage: MockGatsbyImage,
+      }}
     >
       {story(context)}
     </DependencyProvider>
