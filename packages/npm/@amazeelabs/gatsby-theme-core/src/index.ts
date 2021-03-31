@@ -1,1 +1,1 @@
-export { useGatsbyDependencies } from './dependencies';
+export { useGatsbyDependencies, DependencyOverride } from './dependencies';
