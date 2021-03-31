@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/cypress-screenplay@0.4.0...cypress-screenplay@0.5.0) (2021-03-31)
+
+
+### Bug Fixes
+
+* **cypress-screenplay:** linting issues ([8a12ca5](https://github.com/AmazeeLabs/silverback-mono/commit/8a12ca527443822f74c5af66418bb489c96a764c))
+* **cypress-screenplay:** pass task errors through promise chain ([9000634](https://github.com/AmazeeLabs/silverback-mono/commit/900063465d38073cfe338dcdf580eac55eb5960f))
+
+
+### Features
+
+* **cypress-screenplay:** allow tasks to return promises ([8326e4e](https://github.com/AmazeeLabs/silverback-mono/commit/8326e4e60f8b4fc1c3f339a78344c3f8686ee1a6))
+
+
+
+
+
 # [0.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/cypress-screenplay@0.3.2...cypress-screenplay@0.4.0) (2021-03-03)
 
 
