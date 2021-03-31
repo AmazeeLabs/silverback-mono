@@ -130,7 +130,7 @@ export const Then: StepDefinition = (expression, implementation) => {
 Cypress.Commands.add(
   'perform',
   (task: ScreenPlayTask<any>, param: any = undefined) => {
-    _actor.perform(task, param);
+    return cy.wrap(_actor.perform(task, param), { log: false });
   },
 );
 
@@ -141,6 +141,7 @@ Cypress.Commands.add(
       new Cypress.Promise((resolve) => {
         _actor.ask(question, param, resolve);
       }),
+      { log: false },
     );
   },
 );
