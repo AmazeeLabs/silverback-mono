@@ -12,10 +12,9 @@ export interface AbilityFactory<T> {
 
 export type AbilityType<T> = T extends AbilityFactory<infer FA> ? FA : T;
 
-function hasOwnProperty<X extends any, Y extends PropertyKey>(
+function hasThenProperty<X extends any>(
   obj: X,
-  prop: Y,
-): obj is X & Record<Y, unknown> {
+): obj is X & Record<'then', unknown> {
   // @ts-ignore
   return !!obj.then;
 }
@@ -25,7 +24,7 @@ function isPromise<T extends any>(
 ): value is Promise<any> {
   return (
     typeof value === 'object' &&
-    hasOwnProperty(value, 'then') &&
+    hasThenProperty(value) &&
     typeof value.then === 'function'
   );
 }
