@@ -29,6 +29,7 @@
     "typescript": "^4.0.2"
   },
   "peerDependencies": {
+    "@storybook/addon-actions": "^6.0.21",
     "gatsby": "^3.0.0"
   },
   "scripts": {
