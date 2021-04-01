@@ -901,7 +901,6 @@ type SitePlugin implements Node {
 type SitePluginPluginOptions {
   name: String
   path: String
-  exclude: SitePluginPluginOptionsExclude
   nodeType: String
   imagePath: String
   configs: [SitePluginPluginOptionsConfigs]
@@ -913,16 +912,18 @@ type SitePluginPluginOptions {
   allExtensions: Boolean
   isTSX: Boolean
   jsxPragma: String
-}
-
-type SitePluginPluginOptionsExclude {
-  plugins: [String]
+  exclude: SitePluginPluginOptionsExclude
+  update: String
 }
 
 type SitePluginPluginOptionsConfigs {
   nodeType: String
   propertyPath: String
   baseUrl: String
+}
+
+type SitePluginPluginOptionsExclude {
+  plugins: [String]
 }
 
 type SitePluginPackageJson {
@@ -3266,7 +3267,6 @@ input SiteBuildMetadataSortInput {
 input SitePluginPluginOptionsFilterInput {
   name: StringQueryOperatorInput
   path: StringQueryOperatorInput
-  exclude: SitePluginPluginOptionsExcludeFilterInput
   nodeType: StringQueryOperatorInput
   imagePath: StringQueryOperatorInput
   configs: SitePluginPluginOptionsConfigsFilterListInput
@@ -3278,10 +3278,8 @@ input SitePluginPluginOptionsFilterInput {
   allExtensions: BooleanQueryOperatorInput
   isTSX: BooleanQueryOperatorInput
   jsxPragma: StringQueryOperatorInput
-}
-
-input SitePluginPluginOptionsExcludeFilterInput {
-  plugins: StringQueryOperatorInput
+  exclude: SitePluginPluginOptionsExcludeFilterInput
+  update: StringQueryOperatorInput
 }
 
 input SitePluginPluginOptionsConfigsFilterListInput {
@@ -3292,6 +3290,10 @@ input SitePluginPluginOptionsConfigsFilterInput {
   nodeType: StringQueryOperatorInput
   propertyPath: StringQueryOperatorInput
   baseUrl: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsExcludeFilterInput {
+  plugins: StringQueryOperatorInput
 }
 
 input SitePluginPackageJsonFilterInput {
@@ -3441,7 +3443,6 @@ enum SitePluginFieldsEnum {
   version
   pluginOptions___name
   pluginOptions___path
-  pluginOptions___exclude___plugins
   pluginOptions___nodeType
   pluginOptions___imagePath
   pluginOptions___configs
@@ -3456,6 +3457,8 @@ enum SitePluginFieldsEnum {
   pluginOptions___allExtensions
   pluginOptions___isTSX
   pluginOptions___jsxPragma
+  pluginOptions___exclude___plugins
+  pluginOptions___update
   nodeAPIs
   browserAPIs
   ssrAPIs
