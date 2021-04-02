@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.5.14...@amazeelabs/gatsby-theme-core@0.6.0) (2021-04-02)
+
+
+### Features
+
+* **gatsby-theme-core:** export DependencyOverride component ([67f54eb](https://github.com/AmazeeLabs/silverback-mono/commit/67f54eb86365b1de30b638c02757720574f2f0f3))
+* **gatsby-theme-core:** export storybook built-in decorators ([a00987a](https://github.com/AmazeeLabs/silverback-mono/commit/a00987a221ffe545fa616ab3453297ffaf6ee1f0))
+* **gatsby-theme-core:** mock GatsbyImage and StaticImage ([912e6d1](https://github.com/AmazeeLabs/silverback-mono/commit/912e6d1f2de2ae6e5cff91d275c6f7a0e341fc87))
+
+
+
+
+
 ## [0.5.14](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.5.13...@amazeelabs/gatsby-theme-core@0.5.14) (2021-03-22)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-theme-core
