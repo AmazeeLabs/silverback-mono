@@ -23,18 +23,9 @@ export const plugins = [
     },
   },
   '@amazeelabs/gatsby-theme-core',
-  'gatsby-plugin-schema-export',
-  {
-    resolve: `gatsby-plugin-schema-snapshot`,
-    options: {
-      path: `generated/schema.snapshot`,
-      exclude: {
-        plugins: [`gatsby-source-npm-package-search`],
-      },
-      update: process.env.GATSBY_UPDATE_SCHEMA_SNAPSHOT,
-    },
-  },
-
+  ...(process.env.SCHEMA_UPDATE === 'true'
+    ? ['gatsby-plugin-schema-export']
+    : []),
   // Transform Drupal media image fields into local images.
   {
     resolve: `gatsby-plugin-remote-images`,
