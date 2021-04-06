@@ -32,7 +32,7 @@ your purpose.
 
 These packages have been tried and we decided not to use them.
 
-* `tsconfig-paths`: Typescript allows defining path aliases in `tsconfig.json`
+- `tsconfig-paths`: Typescript allows defining path aliases in `tsconfig.json`
   that helps to load typings with aliases. With plugins for webpack and jest
   its even possible to have full package aliases to avoid ugly imports like
   `../../../hooks` or similar. Imports are managed by the IDE anyway and
@@ -50,12 +50,28 @@ before going live.
 **Description**: A utility-first CSS framework for rapid UI development.
 
 **Features**:
+
 - Utility first
 - Responsive Design
 - Hover, focus and states
 - Highly configurable
 - Plugginable
 - Themable
+
+### [`react-intl`](https://formatjs.io/docs/getting-started/installation/)
+
+**Description**: react-intl has a set of [React components](https://formatjs.io/docs/react-intl/components) that provide a declarative way to setup an i18n context and format dates, numbers, and strings for display in a web UI.
+
+**Features**:
+
+- Use [`format.js`](https://formatjs.io/) under the hood
+- Backed by Yahoo
+- Supports more than 150 languages globally
+- Uses the React context and higher-order components
+- Easy to use react components
+- Use arguments in your translated text
+- Localize date, time, numbers and currencies to different locales
+- Pluralization
 
 ### [`classnames`](https://github.com/JedWatson/classnames)
 
@@ -131,7 +147,6 @@ handles astral Unicode symbols just fine.
 - Menu/Dropdown
 - Listbox/Select
 - Switch/Toggle
-
 
 ## Fetching data
 
@@ -299,20 +314,3 @@ dependencies) that allows you to react to the user's scroll.
 - Exposes parent position and viewport size to the iFrame.
 - Works with ViewerJS to support PDF and ODF documents.
 - Supports IE 11
-
-## internationalization
-
-### [`react-intl`](https://formatjs.io/docs/getting-started/installation/)
-
-**Description**: react-intl has a set of [React components](https://formatjs.io/docs/react-intl/components) that provide a declarative way to setup an i18n context and format dates, numbers, and strings for display in a web UI.
-
-**Features**:
-
-- use[`format.js`](https://formatjs.io/) under the hood
-- backed by Yahoo
-- supports more than 150 languages globally
-- uses the React context and higher-order components
-- easy to use react components
-- use arguments in your translated text
-- localize date, time, numbers and currencies to different locales
-- Pluralization
