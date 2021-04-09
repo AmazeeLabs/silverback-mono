@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.1.9...@amazeelabs/scaffold@1.2.0) (2021-04-09)
+
+
+### Bug Fixes
+
+* adjust packages using scaffolding to commit tsconfig.json ([ad5487c](https://github.com/AmazeeLabs/silverback-mono/commit/ad5487cd8d1e622be67a4e0440564a7f74d12ed5))
+* **scaffolding:** don't scaffold tsconfig.json ([0830c20](https://github.com/AmazeeLabs/silverback-mono/commit/0830c202783a7dd0f6e20c6b17c5cb6ac2bcf746))
+
+
+### Features
+
+* scaffold tsconfig.json only once ([cca5495](https://github.com/AmazeeLabs/silverback-mono/commit/cca549540c7e7fec7a844d786e3e5460c54fea7e))
+
+
+
+
+
 ## [1.1.9](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.1.8...@amazeelabs/scaffold@1.1.9) (2021-03-22)
 
 **Note:** Version bump only for package @amazeelabs/scaffold

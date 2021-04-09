@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.18](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.7.17...@amazeelabs/gatsby-starter@0.7.18) (2021-04-09)
+
+
+### Bug Fixes
+
+* adjust packages using scaffolding to commit tsconfig.json ([ad5487c](https://github.com/AmazeeLabs/silverback-mono/commit/ad5487cd8d1e622be67a4e0440564a7f74d12ed5))
+
+
+
+
+
 ## [0.7.17](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.7.16...@amazeelabs/gatsby-starter@0.7.17) (2021-04-02)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-starter

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.14](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-di@1.0.13...@amazeelabs/react-di@1.0.14) (2021-04-09)
+
+
+### Bug Fixes
+
+* adjust packages using scaffolding to commit tsconfig.json ([ad5487c](https://github.com/AmazeeLabs/silverback-mono/commit/ad5487cd8d1e622be67a4e0440564a7f74d12ed5))
+
+
+
+
+
 ## [1.0.13](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-di@1.0.12...@amazeelabs/react-di@1.0.13) (2021-03-22)
 
 **Note:** Version bump only for package @amazeelabs/react-di
