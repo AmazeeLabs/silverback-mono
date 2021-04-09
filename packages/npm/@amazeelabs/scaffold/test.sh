@@ -21,7 +21,7 @@ yarn add ../
 yarn amazee-scaffold
 
 # Commit the initial package
-git add package.json yarn.lock .gitignore
+git add package.json yarn.lock .gitignore tsconfig.json
 git commit -m "initial commit"
 
 if [[ -n "$(git status --porcelain)" ]]; then
