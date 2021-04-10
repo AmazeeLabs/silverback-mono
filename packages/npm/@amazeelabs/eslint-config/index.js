@@ -67,4 +67,17 @@ module.exports = {
       "react/prefer-stateless-function": ["error"],
     } : {})
   },
+  overrides: [
+    {
+      // Override rules for files that contain cypress tests.
+      // ESLint confuses Cypress commands with promises, and sometimes promise
+      // rules don't make sense in tests.
+      files: ["**/interactions/*.ts", "**/steps/*.ts", "**/*.cypress.ts"],
+      rules: {
+        'promise/catch-or-return': 'off',
+        'promise/always-return': 'off',
+        'promise/no-nesting': 'off',
+      }
+    }
+  ]
 };
