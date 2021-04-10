@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/eslint-config@1.2.3...@amazeelabs/eslint-config@1.3.0) (2021-04-10)
+
+
+### Features
+
+* **tooling:** eslint overrides for files that contain cypress code ([72ee811](https://github.com/AmazeeLabs/silverback-mono/commit/72ee811a8ce25698741767394ca44332b518aa08))
+
+
+
+
+
 ## [1.2.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/eslint-config@1.2.2...@amazeelabs/eslint-config@1.2.3) (2021-02-22)
 
 
