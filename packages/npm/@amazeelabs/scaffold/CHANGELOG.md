@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.2.0...@amazeelabs/scaffold@1.2.1) (2021-04-11)
+
+
+### Bug Fixes
+
+* **tooling:** add missing dependencies to scaffolded packages ([a36c6cf](https://github.com/AmazeeLabs/silverback-mono/commit/a36c6cf9038c0116f2b3ff56899fcba887d297a1))
+
+
+
+
+
 # [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.1.9...@amazeelabs/scaffold@1.2.0) (2021-04-09)
 
 

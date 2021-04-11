@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.15](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-di@1.0.14...@amazeelabs/react-di@1.0.15) (2021-04-11)
+
+
+### Bug Fixes
+
+* **tooling:** add missing dependencies to scaffolded packages ([a36c6cf](https://github.com/AmazeeLabs/silverback-mono/commit/a36c6cf9038c0116f2b3ff56899fcba887d297a1))
+
+
+
+
+
 ## [1.0.14](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-di@1.0.13...@amazeelabs/react-di@1.0.14) (2021-04-09)
 
 
