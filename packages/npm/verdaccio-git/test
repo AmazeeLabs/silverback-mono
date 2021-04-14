@@ -56,6 +56,8 @@ git clone git://127.0.0.1:9418/test.git .test/packages/test
 cd "$BASEDIR/.test/packages/test"
 echo "{\"name\": \"test\", \"version\": \"1.0.0\", \"publishConfig\": {\"repository\": \"git://localhost:9418/test.git\", \"branch\": \"master\"}}" >> package.json
 git add package.json
+echo "//127.0.0.1:4873/:_authToken=\"foo\"" >> .npmrc
+git add .npmrc
 echo "{}" >> composer.json
 git add composer.json
 echo "README" >> README.md
