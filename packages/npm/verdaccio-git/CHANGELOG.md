@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.30](https://github.com/AmazeeLabs/storage-git/compare/verdaccio-git@0.1.29...verdaccio-git@0.1.30) (2021-04-14)
+
+
+### Bug Fixes
+
+* **tooling:** fake auth tokens for verdaccio ([559b0b6](https://github.com/AmazeeLabs/storage-git/commit/559b0b621c21d5ec0da95f40861f7cc46b6ef9f2))
+
+
+
+
+
 ## [0.1.29](https://github.com/AmazeeLabs/storage-git/compare/verdaccio-git@0.1.28...verdaccio-git@0.1.29) (2021-03-01)
 
 **Note:** Version bump only for package verdaccio-git
