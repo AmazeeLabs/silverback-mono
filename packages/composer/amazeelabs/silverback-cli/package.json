@@ -11,5 +11,11 @@
     "registry": "http://localhost:4873",
     "repository": "git@github.com:AmazeeLabs/silverback-cli.git",
     "branch": "master"
+  },
+  "devDependencies": {
+    "@amazeelabs/prettier-config": "^1.1.0"
+  },
+  "dependencies": {
+    "prettier": "^2.2.1"
   }
 }
