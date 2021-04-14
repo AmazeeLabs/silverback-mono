@@ -6,7 +6,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class SnapshotCreate extends SnapshotBase {
-
   /**
    * {@inheritDoc}
    */
@@ -26,7 +25,13 @@ class SnapshotCreate extends SnapshotBase {
     $path = $this->getSnapshotStorageDirectory($input);
 
     if ($this->fileSystem->exists($path)) {
-      if (!$this->confirm($input, $output, 'The snapshot already exists. Override it?')) {
+      if (
+        !$this->confirm(
+          $input,
+          $output,
+          'The snapshot already exists. Override it?',
+        )
+      ) {
         return 1;
       }
       $this->fileSystem->remove($path);
@@ -35,5 +40,4 @@ class SnapshotCreate extends SnapshotBase {
     $this->copyDir('web/sites/default/files', $path);
     $output->writeln("</info>The snapshot has been saved to $path.</>");
   }
-
 }

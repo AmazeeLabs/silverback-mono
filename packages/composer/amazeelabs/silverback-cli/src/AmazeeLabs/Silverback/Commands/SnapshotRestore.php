@@ -6,7 +6,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class SnapshotRestore extends SnapshotBase {
-
   /**
    * {@inheritDoc}
    */
@@ -33,7 +32,8 @@ class SnapshotRestore extends SnapshotBase {
     $this->fileSystem->chmod('web/sites/default', 0755);
     $this->fileSystem->remove('web/sites/default/files');
     $this->copyDir($snapshotDirectory, 'web/sites/default/files');
-    $output->writeln("<info>The snapshot has been restored from $snapshotDirectory.</>");
+    $output->writeln(
+      "<info>The snapshot has been restored from $snapshotDirectory.</>",
+    );
   }
-
 }

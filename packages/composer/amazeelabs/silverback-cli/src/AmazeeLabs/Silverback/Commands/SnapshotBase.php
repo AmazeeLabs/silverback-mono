@@ -6,13 +6,17 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 
 class SnapshotBase extends SilverbackCommand {
-
   /**
    * {@inheritDoc}
    */
   protected function configure() {
     parent::configure();
-    $this->addArgument('name', InputArgument::OPTIONAL, 'The snapshot name.', 'default');
+    $this->addArgument(
+      'name',
+      InputArgument::OPTIONAL,
+      'The snapshot name.',
+      'default',
+    );
   }
 
   /**
@@ -26,5 +30,4 @@ class SnapshotBase extends SilverbackCommand {
     $name = $input->getArgument('name');
     return "$this->rootDirectory/.silverback-snapshots/$name";
   }
-
 }

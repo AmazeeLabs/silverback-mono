@@ -13,7 +13,6 @@ use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class SilverbackCommand extends Command {
-
   /**
    * @var \Symfony\Component\Filesystem\Filesystem
    */
@@ -35,9 +34,11 @@ class SilverbackCommand extends Command {
   }
 
   protected function executeProcess(array $command, OutputInterface $output) {
-    $process = new Process($command, getcwd(), NULL, NULL, NULL);
+    $process = new Process($command, getcwd(), null, null, null);
     $process->start();
-    $output->writeln('<comment>Executing command: ' . $process->getCommandLine() . '</>');
+    $output->writeln(
+      '<comment>Executing command: ' . $process->getCommandLine() . '</>',
+    );
     foreach ($process as $type => $line) {
       $output->write($line);
     }
@@ -60,7 +61,9 @@ class SilverbackCommand extends Command {
    */
   protected function execute(InputInterface $input, OutputInterface $output) {
     if (!file_exists('composer.json')) {
-      $output->writeln('<error>composer.json not found. Please run this command from composer based Drupal installations root directory.</>');
+      $output->writeln(
+        '<error>composer.json not found. Please run this command from composer based Drupal installations root directory.</>',
+      );
       exit(1);
     }
     // TODO: scan upwards and detect root directory?
@@ -73,11 +76,19 @@ class SilverbackCommand extends Command {
     }
     $finder = new Finder();
     $finder->files()->in($source);
-    $finder->ignoreDotFiles(FALSE);
+    $finder->ignoreDotFiles(false);
     foreach ($finder as $file) {
       $this->fileSystem->copy(
-        rtrim($source, '/') . '/' . $file->getRelativePath() . '/' . $file->getFilename(),
-        rtrim($destination) . '/' . $file->getRelativePath() . '/' . $file->getFilename()
+        rtrim($source, '/') .
+          '/' .
+          $file->getRelativePath() .
+          '/' .
+          $file->getFilename(),
+        rtrim($destination) .
+          '/' .
+          $file->getRelativePath() .
+          '/' .
+          $file->getFilename(),
       );
     }
   }
@@ -86,7 +97,7 @@ class SilverbackCommand extends Command {
     if ($this->fileSystem->exists($source)) {
       $finder = new Finder();
       $finder->files()->in($source);
-      $finder->ignoreDotFiles(FALSE);
+      $finder->ignoreDotFiles(false);
       foreach ($finder as $file) {
         $this->fileSystem->remove($file->getPathname());
       }
@@ -114,14 +125,21 @@ class SilverbackCommand extends Command {
     return md5(serialize($files));
   }
 
-  protected function confirm(InputInterface $input, OutputInterface $output, string $question) {
+  protected function confirm(
+    InputInterface $input,
+    OutputInterface $output,
+    string $question
+  ) {
     if ($input->getOption('yes')) {
       $output->writeln("<question>$question</question>yes");
       return true;
     }
     /** @var \Symfony\Component\Console\Helper\QuestionHelper $helper */
     $helper = $this->getHelper('question');
-    return $helper->ask($input, $output, new ConfirmationQuestion("<question>$question</question>", true));
+    return $helper->ask(
+      $input,
+      $output,
+      new ConfirmationQuestion("<question>$question</question>", true),
+    );
   }
-
 }

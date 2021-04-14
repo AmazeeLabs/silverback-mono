@@ -6,7 +6,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class Teardown extends SilverbackCommand {
-
   protected function configure() {
     parent::configure();
     $this->setName('teardown');
@@ -18,7 +17,6 @@ class Teardown extends SilverbackCommand {
     if ($this->fileSystem->exists('web/sites/default/files')) {
       $this->cleanDir('web/sites/default/files');
     }
-    $output->writeln("<info>Deleted the current site.</>");
+    $output->writeln('<info>Deleted the current site.</>');
   }
-
 }
