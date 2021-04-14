@@ -4,7 +4,6 @@
 .lintstagedrc
 .prettierrc
 jest.config.js
-tsconfig.json
 ### MANAGED BY @amazeelabs/scaffold - END
 
 node_modules
