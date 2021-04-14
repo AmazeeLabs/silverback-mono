@@ -26,7 +26,7 @@ jobs:
           # - https://github.com/mglaman/phpstan-drupal supports it
           php-version: '7.4'
 
-      - uses: webfactory/ssh-agent@v0.5.2
+      - uses: webfactory/ssh-agent@v0.5.1
         with:
           ssh-private-key: ${{ secrets.SSL_PRIVATE }}
 
@@ -62,7 +62,19 @@ jobs:
             ${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash }}-composer-${{ steps.composer-version.outputs.hash }}-
 
       - name: Create .npmrc
-        run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}\n//localhost:4873/:_authToken=\"foo\"\n//127.0.0.1:4873/:_authToken=\"foo\"" >> .npmrc
+        run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
+
+      - name: Add auth token for 127.0.0.1
+        run: echo "//127.0.0.1:4873/:_authToken=foo" >> .npmrc
+
+      - name: Add auth token for localhost
+        run: echo "//localhost:4873/:_authToken=foo" >> .npmrc
+
+      - name: Debug npmrc
+        run: cat .npmrc
+
+      - name: Npm version
+        run: npm -v
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
