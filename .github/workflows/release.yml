@@ -62,7 +62,7 @@ jobs:
             ${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash }}-composer-${{ steps.composer-version.outputs.hash }}-
 
       - name: Create .npmrc
-        run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
+        run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}\n//localhost:4873/:_authToken=\"foo\"\n//127.0.0.1:4873/:_authToken=\"foo\"" >> .npmrc
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
