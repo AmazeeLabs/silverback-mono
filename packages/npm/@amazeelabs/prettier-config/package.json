@@ -11,5 +11,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@prettier/plugin-php": "^0.16.2"
   }
 }
