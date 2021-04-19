@@ -3,6 +3,8 @@ import path from 'path';
 import prompts from 'prompts';
 import updateNotifier from 'update-notifier';
 
+import $ from './helpers';
+
 // Check if a newer version of recipes is available.
 const pkg = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, '../package.json')).toString(),
@@ -33,5 +35,9 @@ const arg = process.argv[2];
           },
         ])
       ).Recipe;
-  require(path.resolve(__dirname, 'recipes', recipe));
+  try {
+    require(path.resolve(__dirname, 'recipes', recipe));
+  } catch (err) {
+    $.log.prettyError(err, true, true, true, 1);
+  }
 })();
