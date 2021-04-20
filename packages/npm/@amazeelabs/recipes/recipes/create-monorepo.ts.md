@@ -6,7 +6,6 @@ Yarn workspaces and lerna require `git` _2_, `node` _v12_ and `yarn` _1.0_ at
 the least. Make sure you installed them on your machine.
 
 ```typescript
-import fs from 'fs';
 import $ from '../helpers';
 ```
 
@@ -48,7 +47,7 @@ const { name } = $.prompts({
 });
 
 // Create the directory.
-fs.mkdirSync(name);
+$(`mkdir ${name}`);
 
 // Change into that directory.
 process.chdir(name);
@@ -145,7 +144,7 @@ are installed initially.
 
 ```typescript
 $('git init');
-fs.mkdirSync('.husky');
+$('mkdir .husky');
 $(`yarn husky add .husky/commit-msg 'yarn commitlint --edit "$1"'`);
 $(`yarn postinstall`);
 $.log.info(`initiated git repository and commit-msg hook`);
@@ -155,7 +154,7 @@ We do not want the `node_modules` directory in the git repository, so we create
 a `.gitignore` file to ignore it.
 
 ```typescript
-fs.writeFileSync('.gitignore', 'node_modules');
+$('echo "node_modules" >> .gitignore');
 $.log.info(`added .gitignore`);
 ```
 
