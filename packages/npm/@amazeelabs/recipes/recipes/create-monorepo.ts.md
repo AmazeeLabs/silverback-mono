@@ -11,19 +11,19 @@ import $ from '../helpers';
 ```
 
 ```typescript
-$.run('git --version', {
+$('git --version', {
   stdout: $.minimalVersion('2'),
 });
 $.log.info('verified git version');
 
 // Check node version.
-$.run('node -v', {
+$('node -v', {
   stdout: $.minimalVersion('12'),
 });
 $.log.info('verified node version');
 
 // Check yarn version.
-$.run('yarn -v', {
+$('yarn -v', {
   stdout: $.minimalVersion('1.0'),
 });
 $.log.info('verified yarn version');
@@ -59,7 +59,7 @@ Initiate a new yarn workspace project and set the author field.
 
 ```typescript
 // Initiate the yarn project.
-$.run('yarn init -w -y');
+$('yarn init -w -y');
 
 // Add the author to package.json.
 $.updateJsonFile('package.json', (json) => ({
@@ -97,9 +97,9 @@ able to find out who took decisions and follow up on them.
 First, install the suite of [commitizen] packages:
 
 ```typescript
-$.run('yarn add -D commitizen');
-$.run('yarn add -D @commitlint/cli');
-$.run('yarn add -D @commitlint/config-conventional');
+$('yarn add -D commitizen');
+$('yarn add -D @commitlint/cli');
+$('yarn add -D @commitlint/config-conventional');
 $.log.info(`installed commitizen packages`);
 ```
 
@@ -127,7 +127,7 @@ dependency a `postinstall` to that will take care of installing the git hooks
 whenever the project is cloned and installed for the first time.
 
 ```typescript
-$.run('yarn add husky');
+$('yarn add husky');
 $.updateJsonFile('package.json', (json) => ({
   ...json,
   scripts: {
@@ -144,10 +144,10 @@ the project root, as well as `postinstall` to be run afterwards, so the hooks
 are installed initially.
 
 ```typescript
-$.run('git init');
+$('git init');
 fs.mkdirSync('.husky');
-$.run(`yarn husky add .husky/commit-msg 'yarn commitlint --edit "$1"'`);
-$.run(`yarn postinstall`);
+$(`yarn husky add .husky/commit-msg 'yarn commitlint --edit "$1"'`);
+$(`yarn postinstall`);
 $.log.info(`initiated git repository and commit-msg hook`);
 ```
 
@@ -162,14 +162,14 @@ $.log.info(`added .gitignore`);
 Now initiate the git repository and stage all the changes for our first commit:
 
 ```typescript
-$.run(`git add .gitignore package.json yarn.lock .husky`);
+$(`git add .gitignore package.json yarn.lock .husky`);
 $.log.info(`staged changes to git`);
 ```
 
 Committing with an invalid message should fail now:
 
 ```typescript
-$.run(`git commit -m "fixes!!!"`, {
+$(`git commit -m "fixes!!!"`, {
   code: 1,
 });
 ```
@@ -178,7 +178,7 @@ A proper commit message should work though, and that concludes our first commit
 in the new monorepo:
 
 ```typescript
-$.run(`git commit -m "chore: setup monorepo and commit conventions"`);
+$(`git commit -m "chore: setup monorepo and commit conventions"`);
 $.log.info(`commited monorepo setup`);
 ```
 
@@ -187,7 +187,7 @@ convention, the main development branch in silverback projects should be named
 `dev`:
 
 ```typescript
-$.run(`git branch -m master dev`);
+$(`git branch -m master dev`);
 $.log.info(`renamed "master" branch to "dev"`);
 ```
 
@@ -195,10 +195,10 @@ At this point we should be on the `dev` branch, and the working directory should
 be clean.
 
 ```typescript
-$.run('git branch', {
+$('git branch', {
   stdout: /^\* dev$/m,
 });
-$.run('git status --porcelain', {
+$('git status --porcelain', {
   stdout: (output) =>
     output.trim().length !== 0
       ? `uncommitted changes:\n${output}\n`
