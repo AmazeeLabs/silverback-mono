@@ -13,19 +13,16 @@ import $ from '../helpers';
 $('git --version', {
   stdout: $.minimalVersion('2'),
 });
-$.log.info('verified git version');
 
 // Check node version.
 $('node -v', {
   stdout: $.minimalVersion('12'),
 });
-$.log.info('verified node version');
 
 // Check yarn version.
 $('yarn -v', {
   stdout: $.minimalVersion('1.0'),
 });
-$.log.info('verified yarn version');
 ```
 
 ## Basic project setup
@@ -50,8 +47,7 @@ const { name } = $.prompts({
 $(`mkdir ${name}`);
 
 // Change into that directory.
-process.chdir(name);
-$.log.info(`created project directory "${name}"`);
+$.chdir(name);
 ```
 
 Initiate a new yarn workspace project and set the author field.
@@ -65,7 +61,6 @@ $.updateJsonFile('package.json', (json) => ({
   ...json,
   author: 'Amazee Labs <development@amazeelabs.com>',
 }));
-$.log.info(`initiated yarn project`);
 ```
 
 ## Commit conventions
@@ -99,7 +94,6 @@ First, install the suite of [commitizen] packages:
 $('yarn add -D commitizen');
 $('yarn add -D @commitlint/cli');
 $('yarn add -D @commitlint/config-conventional');
-$.log.info(`installed commitizen packages`);
 ```
 
 Add `commitlint` configuration to `package.json`. [commitizen] will pick it up
@@ -117,7 +111,6 @@ $.updateJsonFile('package.json', (json) => ({
     extends: ['@commitlint/config-conventional'],
   },
 }));
-$.log.info(`updated package.json with commitizen configuration`);
 ```
 
 This allows us to use the [commitizen] CLI to write proper commit messages, but
@@ -134,7 +127,6 @@ $.updateJsonFile('package.json', (json) => ({
     postinstall: 'husky install',
   },
 }));
-$.log.info(`installed husky and the husky postinstall hook`);
 ```
 
 Initiate the git repository and tell husky to check every commit message against
@@ -147,7 +139,6 @@ $('git init');
 $('mkdir .husky');
 $(`yarn husky add .husky/commit-msg 'yarn commitlint --edit "$1"'`);
 $(`yarn postinstall`);
-$.log.info(`initiated git repository and commit-msg hook`);
 ```
 
 We do not want the `node_modules` directory in the git repository, so we create
@@ -155,14 +146,12 @@ a `.gitignore` file to ignore it.
 
 ```typescript
 $('echo "node_modules" >> .gitignore');
-$.log.info(`added .gitignore`);
 ```
 
 Now initiate the git repository and stage all the changes for our first commit:
 
 ```typescript
 $(`git add .gitignore package.json yarn.lock .husky`);
-$.log.info(`staged changes to git`);
 ```
 
 Committing with an invalid message should fail now:
@@ -178,7 +167,6 @@ in the new monorepo:
 
 ```typescript
 $(`git commit -m "chore: setup monorepo and commit conventions"`);
-$.log.info(`commited monorepo setup`);
 ```
 
 Now that we have a git branch, we can already make sure it is named properly. By
@@ -187,7 +175,6 @@ convention, the main development branch in silverback projects should be named
 
 ```typescript
 $(`git branch -m master dev`);
-$.log.info(`renamed "master" branch to "dev"`);
 ```
 
 At this point we should be on the `dev` branch, and the working directory should

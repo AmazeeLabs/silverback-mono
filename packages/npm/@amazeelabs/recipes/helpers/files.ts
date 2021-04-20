@@ -2,6 +2,7 @@ import chalk from 'chalk';
 import fs from 'fs';
 
 import { RecipeError } from './errors';
+import { log } from './logger';
 
 export const readJsonFile = (path: string) => {
   if (!fs.existsSync(path)) {
@@ -21,6 +22,7 @@ export const readJsonFile = (path: string) => {
 
 export const writeJsonFile = (path: string, contents: any) => {
   fs.writeFileSync(path, JSON.stringify(contents, null, 2));
+  log.debug(`updated ${chalk.blue(path)}`);
 };
 
 export const updateJsonFile = (
@@ -29,7 +31,10 @@ export const updateJsonFile = (
 ) => {
   try {
     const data = readJsonFile(path);
-    writeJsonFile(path, updater(data));
+    log.silly(`current content of ${chalk.blue(path)}:`, data);
+    const updated = updater(data);
+    writeJsonFile(path, updated);
+    log.silly(`new content of ${chalk.blue(path)}:`, updated);
   } catch (err) {
     if (err instanceof RecipeError) {
       // Generate a new recipe error and re-throw it.

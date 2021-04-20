@@ -2,6 +2,7 @@ import { loopWhile } from 'deasync';
 import originalPrompts from 'prompts';
 
 import { RecipeError } from './errors';
+import { log } from './logger';
 
 export function prompts<T extends string = string>(
   questions:
@@ -21,6 +22,7 @@ export function prompts<T extends string = string>(
       done = true;
     });
   loopWhile(() => !done);
+  log.debug(`received input:`, value);
   if (value) {
     return value;
   }
