@@ -4,6 +4,10 @@ import originalPrompts from 'prompts';
 import { RecipeError } from './errors';
 import { log } from './logger';
 
+const inputs: { [key: string]: any } = {};
+
+export const promptInputs = () => inputs;
+
 export function prompts<T extends string = string>(
   questions:
     | originalPrompts.PromptObject<T>
@@ -23,6 +27,7 @@ export function prompts<T extends string = string>(
     });
   loopWhile(() => !done);
   log.debug(`received input:`, value);
+  Object.assign(inputs, value);
   if (value) {
     return value;
   }
