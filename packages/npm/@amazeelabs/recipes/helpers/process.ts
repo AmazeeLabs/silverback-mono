@@ -18,6 +18,11 @@ const isAssert = (val?: Assert | string): val is Assert =>
 const isCwd = (val?: Assert | string): val is string =>
   typeof val === 'string' && typeof val !== 'undefined';
 
+export function chdir(path: string) {
+  process.chdir(path);
+  log.info(`switched into ${chalk.cyan(path)}`);
+}
+
 export function run(cmd: string): void;
 export function run(cmd: string, cwd: string): void;
 export function run(cmd: string, assert: Assert): void;
@@ -40,25 +45,36 @@ export function run(
     ? arg2
     : { code: 0 };
 
-  log.debug(`Running bash command:`, {
-    cmd,
-    cwd,
-  });
-
+  log.info(`running ${chalk.blue(cmd)}${cwd ? ` in ${chalk.cyan(cwd)}` : ''}`);
   const response = spawnSync(cmd, {
     shell: 'bash',
     cwd,
   });
+  log.debug(
+    `${chalk.blue(cmd)} returned with exit code ${
+      response.status === 0
+        ? chalk.green(response.status)
+        : chalk.red(response.status)
+    }`,
+  );
+  const stdout = response.stdout.toString();
+  const stderr = response.stderr.toString();
+  if (stdout) {
+    log.silly(
+      `${chalk.green('stdout')} of ${chalk.blue(cmd)}:\n${chalk.green(stdout)}`,
+    );
+  }
+  if (stderr && stderr !== stdout) {
+    log.silly(
+      `${chalk.red('stderr')} of ${chalk.blue(cmd)}:\n${chalk.red(stdout)}`,
+    );
+  }
 
   if (typeof assert.code !== 'undefined' && response.status !== assert.code) {
     throw new RecipeError(
       `Expected exit code ${chalk.green(assert.code)} for command ${chalk.blue(
         cmd,
-      )} but received ${chalk.red(response.status)}:\n\n${chalk.blue(
-        '--- stdout --- ',
-      )}\n${response.stdout}${chalk.blue('--- \\stdout --- ')}\n${chalk.red(
-        '--- stderr ---',
-      )}\n${response.stderr}${chalk.red('--- \\stderr ---')}\n`,
+      )} but received ${chalk.red(response.status)}`,
     );
   }
 

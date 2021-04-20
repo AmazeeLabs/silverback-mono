@@ -1,7 +1,7 @@
-import { Logger } from 'tslog';
+import { Logger, TLogLevelName } from 'tslog';
 
 export const log = new Logger({
   displayFilePath: 'hidden',
   displayFunctionName: false,
-  minLevel: process.env.DEBUG ? 'silly' : 'info',
+  minLevel: (process.env.LOG as TLogLevelName) || 'info',
 });
