@@ -45,7 +45,9 @@ export function run(
     ? arg2
     : { code: 0 };
 
-  log.info(`running ${chalk.blue(cmd)}${cwd ? ` in ${chalk.cyan(cwd)}` : ''}`);
+  log.info(
+    `running ${chalk.yellow(cmd)}${cwd ? ` in ${chalk.cyan(cwd)}` : ''}`,
+  );
   const response = spawnSync(cmd, {
     shell: 'bash',
     cwd,
