@@ -6,10 +6,6 @@ Yarn workspaces and lerna require `git` _2_, `node` _v12_ and `yarn` _1.0_ at
 the least. Make sure you installed them on your machine.
 
 ```typescript
-import $ from '../helpers';
-```
-
-```typescript
 $('git --version', {
   stdout: $.minimalVersion('2'),
 });

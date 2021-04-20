@@ -35,7 +35,7 @@
     "typescript": "^4.2.4"
   },
   "scripts": {
-    "prepare": "amazee-scaffold && cd recipes && ../lit.sh && cd .. && tsc",
+    "prepare": "amazee-scaffold && ./prepare.sh",
     "precommit": "lint-staged",
     "test": "jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi",
     "watch": "jest --watch"
