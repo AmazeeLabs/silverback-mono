@@ -87,9 +87,9 @@ able to find out who took decisions and follow up on them.
 First, install the suite of [commitizen] packages:
 
 ```typescript
-$('yarn add -D commitizen');
-$('yarn add -D @commitlint/cli');
-$('yarn add -D @commitlint/config-conventional');
+$('yarn add commitizen');
+$('yarn add @commitlint/cli');
+$('yarn add @commitlint/config-conventional');
 ```
 
 Add `commitlint` configuration to `package.json`. [commitizen] will pick it up
