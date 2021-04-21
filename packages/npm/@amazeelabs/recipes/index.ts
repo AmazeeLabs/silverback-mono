@@ -51,15 +51,21 @@ try {
     gitDir = path.resolve(gitDir, '..');
   }
 
-  const recipeLogFile = path.resolve(gitDir, 'RECIPES.md');
+  const recipeLogFile = path.resolve(gitDir, 'README.md');
 
-  const recipeLog = fs.existsSync(recipeLogFile)
-    ? fs.readFileSync(recipeLogFile).toString()
-    : '# Recipe log\n';
+  const recipeLogHeading = `## Recipe log\nThese recipes have been executed on the project.\n`;
+  const injectHeading = (log: string) =>
+    log.includes(recipeLogHeading) ? log : `${log}\n${recipeLogHeading}`;
+
+  const recipeLog = injectHeading(
+    fs.existsSync(recipeLogFile)
+      ? fs.readFileSync(recipeLogFile).toString()
+      : '',
+  );
 
   fs.writeFileSync(
     recipeLogFile,
-    `${recipeLog}## Executed \`${recipe}\` on ${new Date().toLocaleString()}\n\`\`\`\n${JSON.stringify(
+    `${recipeLog}### Executed \`${recipe}\` on ${new Date().toLocaleString()}\n\`\`\`\n${JSON.stringify(
       $.promptInputs(),
       null,
       2,
