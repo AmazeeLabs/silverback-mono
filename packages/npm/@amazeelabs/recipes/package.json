@@ -5,6 +5,9 @@
   "main": "dist/index.js",
   "license": "MIT",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "bin": {
     "amazee-recipes": "./dist/index.js"
   },
