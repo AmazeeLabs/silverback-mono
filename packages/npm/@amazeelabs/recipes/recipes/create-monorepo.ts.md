@@ -141,8 +141,9 @@ $(`yarn postinstall`);
 We do not want the `node_modules` directory in the git repository, so we create
 a `.gitignore` file to ignore it.
 
-```typescript
-$('echo "node_modules" >> .gitignore');
+```ignore
+# |-> .gitignore
+node_modules
 ```
 
 Now initiate the git repository and stage all the changes for our first commit:
