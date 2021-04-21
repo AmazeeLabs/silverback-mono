@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.1.0...@amazeelabs/recipes@1.1.1) (2021-04-21)
+
+
+### Bug Fixes
+
+* **recipes:** add missing shebang ([bbd2a71](https://github.com/AmazeeLabs/silverback-mono/commit/bbd2a71cd0186f9fc1efae6f2d80fb7c26ea320f))
+
+
+
+
+
 # 1.1.0 (2021-04-21)
 
 
