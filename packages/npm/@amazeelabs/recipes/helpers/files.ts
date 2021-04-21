@@ -1,8 +1,23 @@
 import chalk from 'chalk';
 import fs from 'fs';
+import path from 'path';
 
 import { RecipeError } from './errors';
 import { log } from './logger';
+
+export const __writeFile = (source: string, target: string) => {
+  const targetPath = path.resolve(process.cwd(), target);
+  const sourcePath = path.resolve(__dirname, '../files', source);
+  log.debug(`copying ${chalk.cyan(sourcePath)} to ${chalk.cyan(targetPath)}`);
+  if (fs.existsSync(target)) {
+    fs.rmSync(targetPath);
+  }
+  fs.copyFileSync(sourcePath, targetPath);
+  log.info(`updated ${chalk.cyan(target)}`);
+  log.silly(
+    `contents of ${chalk.cyan(target)}:\n${fs.readFileSync(targetPath)}\n`,
+  );
+};
 
 export const readJsonFile = (path: string) => {
   if (!fs.existsSync(path)) {
