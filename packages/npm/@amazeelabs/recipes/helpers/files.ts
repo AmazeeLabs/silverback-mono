@@ -1,22 +1,24 @@
 import chalk from 'chalk';
 import fs from 'fs';
+import { renderString } from 'nunjucks';
 import path from 'path';
 
 import { RecipeError } from './errors';
 import { log } from './logger';
 
+const _vars = {};
+export const vars = (vars: any) => Object.assign(_vars, vars);
+
 export const __writeFile = (source: string, target: string) => {
   const targetPath = path.resolve(process.cwd(), target);
   const sourcePath = path.resolve(__dirname, '../files', source);
-  log.debug(`copying ${chalk.cyan(sourcePath)} to ${chalk.cyan(targetPath)}`);
   if (fs.existsSync(target)) {
     fs.rmSync(targetPath);
   }
-  fs.copyFileSync(sourcePath, targetPath);
+  const content = renderString(fs.readFileSync(sourcePath).toString(), _vars);
+  fs.writeFileSync(targetPath, content);
   log.info(`updated ${chalk.cyan(target)}`);
-  log.silly(
-    `contents of ${chalk.cyan(target)}:\n${fs.readFileSync(targetPath)}\n`,
-  );
+  log.silly(`contents of ${chalk.cyan(target)}:\n${content}\n`);
 };
 
 export const readJsonFile = (path: string) => {

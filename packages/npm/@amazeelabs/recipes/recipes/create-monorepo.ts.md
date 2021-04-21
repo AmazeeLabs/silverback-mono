@@ -193,11 +193,18 @@ $('git status --porcelain', {
 Let's add a readme file, so whenever somebody stumbles on our new project, they
 are directed to this documentation right away.
 
+```typescript
+$.vars({
+  projectName: name.toUpperCase(),
+});
+```
+
 ```markdown
 <!-- |-> README.md -->
 
-# Project name
+# {{projectName}}
 
-This project was created with
-[amazee-recipes](https://www.npmjs.com/package/@amazeelabs/recipes).
+This project was created with [amazee-recipes].
+
+[amazee-recipes]: https://www.npmjs.com/package/@amazeelabs/recipes
 ```
