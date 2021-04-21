@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.1.1...@amazeelabs/recipes@1.2.0) (2021-04-21)
+
+
+### Features
+
+* **recipes:** extract codeblocks to files ([3a37e3f](https://github.com/AmazeeLabs/silverback-mono/commit/3a37e3ff30b5c21b52364832b18a101bf913497d))
+* **recipes:** templating for extracted codeblocks ([c63e79a](https://github.com/AmazeeLabs/silverback-mono/commit/c63e79a11a49a544bbe1f7ccca98d4be6e35e0e2))
+
+
+
+
+
 ## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.1.0...@amazeelabs/recipes@1.1.1) (2021-04-21)
 
 
