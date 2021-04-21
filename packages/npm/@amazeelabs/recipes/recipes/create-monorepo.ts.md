@@ -160,27 +160,13 @@ $(`git commit -m "fixes!!!"`, {
 });
 ```
 
-A proper commit message should work though, and that concludes our first commit
-in the new monorepo:
+## Lerna
 
-```typescript
-$(`git commit -m "chore: setup monorepo and commit conventions"`);
-```
+    TODO
 
-At this point we should be on the `dev` branch, and the working directory should
-be clean.
+## Prettier
 
-```typescript
-$('git branch', {
-  stdout: /^\* dev$/m,
-});
-$('git status --porcelain', {
-  stdout: (output) =>
-    output.trim().length !== 0
-      ? `uncommitted changes:\n${output}\n`
-      : undefined,
-});
-```
+    TODO
 
 ## Readme file
 
@@ -201,4 +187,34 @@ $.vars({
 This project was created with [amazee-recipes].
 
 [amazee-recipes]: https://www.npmjs.com/package/@amazeelabs/recipes
+```
+
+Don't forget to add the new `README.md` to the repository.
+
+```typescript
+$(`git add README.md`);
+```
+
+## Commit everything
+
+Husky should allow us to use a proper commit message, so we can conclude our
+first commit in the new monorepo:
+
+```typescript
+$(`git commit -m "chore: setup monorepo and commit conventions"`);
+```
+
+At this point we should be on the `dev` branch, and the working directory should
+be clean.
+
+```typescript
+$('git branch', {
+  stdout: /^\* dev$/m,
+});
+$('git status --porcelain', {
+  stdout: (output) =>
+    output.trim().length !== 0
+      ? `uncommitted changes:\n${output}\n`
+      : undefined,
+});
 ```
