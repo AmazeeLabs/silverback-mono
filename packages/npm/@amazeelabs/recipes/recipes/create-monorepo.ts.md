@@ -128,10 +128,11 @@ $.updateJsonFile('package.json', (json) => ({
 Initiate the git repository and tell husky to check every commit message against
 the [conventional commit] standards. This also requires a `.husky` directory at
 the project root, as well as `postinstall` to be run afterwards, so the hooks
-are installed initially.
+are installed initially. By convention, the main development branch in
+silverback projects should be named `dev`:
 
 ```typescript
-$('git init');
+$('git init -b dev');
 $('mkdir .husky');
 $(`yarn husky add .husky/commit-msg 'yarn commitlint --edit "$1"'`);
 $(`yarn postinstall`);
@@ -163,14 +164,6 @@ in the new monorepo:
 
 ```typescript
 $(`git commit -m "chore: setup monorepo and commit conventions"`);
-```
-
-Now that we have a git branch, we can already make sure it is named properly. By
-convention, the main development branch in silverback projects should be named
-`dev`:
-
-```typescript
-$(`git branch -m master dev`);
 ```
 
 At this point we should be on the `dev` branch, and the working directory should
