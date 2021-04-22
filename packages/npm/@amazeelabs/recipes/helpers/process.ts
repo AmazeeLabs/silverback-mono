@@ -68,7 +68,7 @@ export function run(
   }
   if (stderr && stderr !== stdout) {
     log.silly(
-      `${chalk.red('stderr')} of ${chalk.blue(cmd)}:\n${chalk.red(stdout)}`,
+      `${chalk.red('stderr')} of ${chalk.blue(cmd)}:\n${chalk.red(stderr)}`,
     );
   }
 
@@ -105,7 +105,7 @@ export function run(
         throw new RecipeError(
           `Expected error output of command ${chalk.blue(cmd)} to match ${
             assert.stderr
-          }, but received:\n${chalk.red(response.stdout.toString().trim())}`,
+          }, but received:\n${chalk.red(response.stderr.toString().trim())}`,
         );
       }
     } else {

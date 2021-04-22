@@ -46,21 +46,23 @@ describe('run', () => {
 
   it('does not fail if error output matches regex', () => {
     expect(() =>
-      run(`echo "foo" >> /dev/stderr`, { stderr: /^foo$/ }),
+      run(`foobar`, { stderr: /foobar: command not found/i }),
     ).not.toThrow();
   });
 
   it('fails if error output does not match regex', () => {
-    expect(() => run(`echo "foo" >> /dev/stderr`, { stderr: /^bar$/ })).toThrow(
-      /expected error output/i,
-    );
+    expect(() =>
+      run(`foobar`, { stderr: /foobar command not found/i }),
+    ).toThrow(/expected error output/i);
   });
 
   it('does not fail if the error output matches assertion function', () => {
     expect(() =>
-      run(`echo "foo" >> /dev/stderr`, {
+      run(`foobar`, {
         stderr: (input) =>
-          input === 'foo' ? undefined : `expected "foo" got "${input}"`,
+          input.match(/foobar: command not found/i)
+            ? undefined
+            : `expected "foobar: command not found" got "${input}"`,
       }),
     ).not.toThrow();
   });
@@ -69,7 +71,9 @@ describe('run', () => {
     expect(() =>
       run(`echo "bar" >> /dev/stderr`, {
         stderr: (input) =>
-          input === 'foo' ? undefined : `expected "foo" got "${input}"`,
+          input.match(/foobar command not found/i)
+            ? undefined
+            : `expected "foobar command not found" got "${input}"`,
       }),
     ).toThrow(/expected error output/i);
   });
