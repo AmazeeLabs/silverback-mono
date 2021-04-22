@@ -1,5 +1,6 @@
 recipes/*.ts
 dist
+tmp
 test
 yarn-error.log
 

@@ -25,7 +25,7 @@ describe('process file output', () => {
     expect(writer).toHaveBeenCalledTimes(1);
     expect(writer).toHaveBeenCalledWith(
       '0.txt',
-      readMock('ts-file/foo/bar.ts'),
+      readMock('ts-file/foo/bar.js'),
     );
   });
 
@@ -37,7 +37,7 @@ describe('process file output', () => {
     expect(writer).toHaveBeenCalledTimes(3);
     expect(writer).toHaveBeenCalledWith(
       '1.txt',
-      readMock('multi-file/foo/bar.ts'),
+      readMock('multi-file/foo/bar.js'),
     );
     expect(writer).toHaveBeenCalledWith(
       '2.txt',

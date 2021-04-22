@@ -18,7 +18,7 @@ export const processFileBlocks = (
     const srcFile = fileWriter(sourceFile, content);
     result = result.replace(
       match[1],
-      `typescript\n$.__writeFile('${srcFile}', '${targetFile}');\n`,
+      `typescript\n$$$$.__writeFile('${srcFile}', '${targetFile}');\n`,
     );
   });
   return result;

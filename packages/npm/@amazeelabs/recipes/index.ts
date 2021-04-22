@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import updateNotifier from 'update-notifier';
 
-import $ from './helpers';
+import $$ from './helpers';
 
 // Check if a newer version of recipes is available.
 const pkg = JSON.parse(
@@ -24,7 +24,7 @@ const arg = process.argv[2];
 // Else, prompt the user to choose one.
 const recipe = recipes.includes(arg)
   ? arg
-  : $.prompts([
+  : $$.prompts([
       {
         type: 'select',
         name: 'Recipe',
@@ -37,7 +37,7 @@ const recipe = recipes.includes(arg)
     ]).Recipe;
 
 if (!recipe) {
-  $.log.warn('No recipe selected.');
+  $$.log.warn('No recipe selected.');
   process.exit(1);
 }
 
@@ -67,11 +67,11 @@ try {
   fs.writeFileSync(
     recipeLogFile,
     `${recipeLog}### Executed \`${recipe}\` on ${new Date().toLocaleString()}\n\`\`\`\n${JSON.stringify(
-      $.promptInputs(),
+      $$.promptInputs(),
       null,
       2,
     )}\n\`\`\`\n\n`,
   );
 } catch (err) {
-  $.log.prettyError(err, true, true, true, 1);
+  $$.log.prettyError(err, true, true, true, 1);
 }

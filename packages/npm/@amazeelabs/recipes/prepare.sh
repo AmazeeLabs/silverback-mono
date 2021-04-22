@@ -1,27 +1,39 @@
 #!/usr/bin/env bash
 
-# Make a copy of "recipes" since we are going to edit them in place.
-cp -r recipes tmp
+echo "Clearing dist directory"
+rm -rf dist
 
-# Compile the helpers
-tsc
+echo "Clearing tmp directory"
+rm -rf tmp
 
-# Switch into the recipes directory and preprocess all *.ts.md files.
-cd recipes || exit
+echo "Removing transpiled recipes"
+rm -rf recipes/*.ts
 
+echo "Compiling helpers"
+tsc -p tsconfig.pre.json
+
+cp -R recipes tmp
+
+cd tmp || exit
+
+echo "Preprocessing recipes"
 for file in *.ts.md; do
-  # Prepend the helpers import and extract scaffolded file blocks.
   node ../dist/preprocess.js "$file"
 done
 
-# Strip markdown.
+echo "Stripping docs from recipes"
 ../lit.sh
+
+echo "Prepending $ import"
+for file in *.ts; do
+  cat ../prepend.txt "$file" >> "$file.tmp"
+  rm "$file"
+  cp "$file.tmp" "$file"
+done
+
+cp -R *.ts ../recipes/
 
 cd .. || exit
 
-# Compile again to compile the recipes
+echo "Compiling recipes"
 tsc
-
-# Remove the modified recipes and restore the backup.
-rm -rf recipes
-mv tmp recipes
