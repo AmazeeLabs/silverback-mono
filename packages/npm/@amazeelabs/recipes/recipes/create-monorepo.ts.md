@@ -6,18 +6,18 @@ Yarn workspaces and lerna require `git` _2_, `node` _v12_ and `yarn` _1.0_ at
 the least. Make sure you installed them on your machine.
 
 ```typescript
-$('git --version', {
-  stdout: $.minimalVersion('2'),
+$$('git --version', {
+  stdout: $$.minimalVersion('2'),
 });
 
 // Check node version.
-$('node -v', {
-  stdout: $.minimalVersion('12'),
+$$('node -v', {
+  stdout: $$.minimalVersion('12'),
 });
 
 // Check yarn version.
-$('yarn -v', {
-  stdout: $.minimalVersion('1.0'),
+$$('yarn -v', {
+  stdout: $$.minimalVersion('1.0'),
 });
 ```
 
@@ -29,9 +29,9 @@ into it for all further steps.
 
 ```typescript
 // Choose a project name.
-const { name } = $.prompts({
+const { projectName } = $$.prompts({
   type: 'text',
-  name: 'name',
+  name: 'projectName',
   message: 'Choose a project name:',
   validate: (name) =>
     !/^[a-z][a-z\d_]+$/.test(name)
@@ -40,20 +40,20 @@ const { name } = $.prompts({
 });
 
 // Create the directory.
-$(`mkdir ${name}`);
+$$(`mkdir ${projectName}`);
 
 // Change into that directory.
-$.chdir(name);
+$$.chdir(projectName);
 ```
 
 Initiate a new yarn workspace project and set the author field.
 
 ```typescript
 // Initiate the yarn project.
-$('yarn init -w -y');
+$$('yarn init -w -y');
 
 // Add the author to package.json.
-$.updateJsonFile('package.json', (json) => ({
+$$.updateJsonFile('package.json', (json) => ({
   ...json,
   author: 'Amazee Labs <development@amazeelabs.com>',
 }));
@@ -87,9 +87,9 @@ able to find out who took decisions and follow up on them.
 First, install the suite of [commitizen] packages:
 
 ```typescript
-$('yarn add commitizen');
-$('yarn add @commitlint/cli');
-$('yarn add @commitlint/config-conventional');
+$$('yarn add commitizen');
+$$('yarn add @commitlint/cli');
+$$('yarn add @commitlint/config-conventional');
 ```
 
 Add `commitlint` configuration to `package.json`. [commitizen] will pick it up
@@ -97,7 +97,7 @@ from there. You can also add a `yarn commit` script which will trigger the
 [commitizen] cli that can guide you through the commit process.
 
 ```typescript
-$.updateJsonFile('package.json', (json) => ({
+$$.updateJsonFile('package.json', (json) => ({
   ...json,
   scripts: {
     ...json.scripts,
@@ -115,8 +115,8 @@ dependency a `postinstall` to that will take care of installing the git hooks
 whenever the project is cloned and installed for the first time.
 
 ```typescript
-$('yarn add husky');
-$.updateJsonFile('package.json', (json) => ({
+$$('yarn add husky');
+$$.updateJsonFile('package.json', (json) => ({
   ...json,
   scripts: {
     ...json.scripts,
@@ -132,10 +132,10 @@ are installed initially. By convention, the main development branch in
 silverback projects should be named `dev`:
 
 ```typescript
-$('git init -b dev');
-$('mkdir .husky');
-$(`yarn husky add .husky/commit-msg 'yarn commitlint --edit "$1"'`);
-$(`yarn postinstall`);
+$$('git init -b dev');
+$$('mkdir .husky');
+$$(`yarn husky add .husky/commit-msg 'yarn commitlint --edit "$1"'`);
+$$(`yarn postinstall`);
 ```
 
 We do not want the `node_modules` directory in the git repository, so we create
@@ -149,13 +149,13 @@ node_modules
 Now initiate the git repository and stage all the changes for our first commit:
 
 ```typescript
-$(`git add .gitignore package.json yarn.lock .husky`);
+$$(`git add .gitignore package.json yarn.lock .husky`);
 ```
 
 Committing with an invalid message should fail now:
 
 ```typescript
-$(`git commit -m "fixes!!!"`, {
+$$(`git commit -m "fixes!!!"`, {
   code: 1,
 });
 ```
@@ -174,8 +174,8 @@ Let's add a readme file, so whenever somebody stumbles on our new project, they
 are directed to this documentation right away.
 
 ```typescript
-$.vars({
-  projectName: name.toUpperCase(),
+$$.vars({
+  projectName: projectName.toUpperCase(),
 });
 ```
 
@@ -192,7 +192,7 @@ This project was created with [amazee-recipes].
 Don't forget to add the new `README.md` to the repository.
 
 ```typescript
-$(`git add README.md`);
+$$(`git add README.md`);
 ```
 
 ## Commit everything
@@ -201,17 +201,18 @@ Husky should allow us to use a proper commit message, so we can conclude our
 first commit in the new monorepo:
 
 ```typescript
-$(`git commit -m "chore: setup monorepo and commit conventions"`);
+$$(`git commit -m "chore: setup monorepo and commit conventions"`);
 ```
 
 At this point we should be on the `dev` branch, and the working directory should
 be clean.
 
 ```typescript
-$('git branch', {
+$$('git branch', {
   stdout: /^\* dev$/m,
 });
-$('git status --porcelain', {
+
+$$('git status --porcelain', {
   stdout: (output) =>
     output.trim().length !== 0
       ? `uncommitted changes:\n${output}\n`

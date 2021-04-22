@@ -9,7 +9,7 @@ console.log('foo');
 A typescript example.
 
 ```typescript
-// |-> foo/bar.ts
+// |-> foo/bar.js
 console.log('foo');
 ```
 

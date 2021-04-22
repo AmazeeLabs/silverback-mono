@@ -1,6 +1,6 @@
 # Test
 
 ```typescript
-// |-> foo/bar.ts
+// |-> foo/bar.js
 console.log('foo');
 ```

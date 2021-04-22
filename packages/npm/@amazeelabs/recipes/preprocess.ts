@@ -19,7 +19,4 @@ const processed = processFileBlocks(
   },
 );
 
-fs.writeFileSync(
-  recipe,
-  `\`\`\`typescript\nimport $ from '../helpers';\n\`\`\`\n${processed}`,
-);
+fs.writeFileSync(recipe, processed);
