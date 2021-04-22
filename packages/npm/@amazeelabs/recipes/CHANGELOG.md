@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.2.0...@amazeelabs/recipes@1.3.0) (2021-04-22)
+
+
+### Bug Fixes
+
+* **recipes:** proper stderr output and better bash error example ([523f53a](https://github.com/AmazeeLabs/silverback-mono/commit/523f53a52792259f6e0a02e3d9f08a0873f7fd31))
+
+
+### Features
+
+* **recipes:** added initial recipes for drupal and gatsby ([9ef3b61](https://github.com/AmazeeLabs/silverback-mono/commit/9ef3b61abef0d576bd5e22f79f5444dc9acc89e0))
+
+
+
+
+
 # [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.1.1...@amazeelabs/recipes@1.2.0) (2021-04-21)
 
 
