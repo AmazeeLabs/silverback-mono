@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.3.0...@amazeelabs/recipes@1.3.1) (2021-04-22)
+
+
+### Bug Fixes
+
+* **recipes:** clean up after build and testing ([3acda48](https://github.com/AmazeeLabs/silverback-mono/commit/3acda4895863dfe4eddc71c63e01e98389de75b1))
+
+
+
+
+
 # [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.2.0...@amazeelabs/recipes@1.3.0) (2021-04-22)
 
 
