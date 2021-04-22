@@ -53,7 +53,7 @@ Initiate a new yarn workspace project and set the author field.
 $$('yarn init -w -y');
 
 // Add the author to package.json.
-$$.updateJsonFile('package.json', (json) => ({
+$$.file('package.json', (json) => ({
   ...json,
   author: 'Amazee Labs <development@amazeelabs.com>',
 }));
@@ -97,7 +97,7 @@ from there. You can also add a `yarn commit` script which will trigger the
 [commitizen] cli that can guide you through the commit process.
 
 ```typescript
-$$.updateJsonFile('package.json', (json) => ({
+$$.file('package.json', (json) => ({
   ...json,
   scripts: {
     ...json.scripts,
@@ -116,7 +116,7 @@ whenever the project is cloned and installed for the first time.
 
 ```typescript
 $$('yarn add husky');
-$$.updateJsonFile('package.json', (json) => ({
+$$.file('package.json', (json) => ({
   ...json,
   scripts: {
     ...json.scripts,
