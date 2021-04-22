@@ -4,3 +4,6 @@ echo "test" | node ./dist/index.js create-monorepo
 cd test || exit 1
 node ../dist/index.js add-drupal
 node ../dist/index.js add-gatsby
+
+
+rm -rf test

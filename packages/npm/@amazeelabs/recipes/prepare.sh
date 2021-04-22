@@ -35,5 +35,7 @@ cp -R *.ts ../recipes/
 
 cd .. || exit
 
+rm -rf tmp
+
 echo "Compiling recipes"
 tsc
