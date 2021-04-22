@@ -6,4 +6,5 @@ node ../dist/index.js add-drupal
 node ../dist/index.js add-gatsby
 
 
+cd .. || exit
 rm -rf test
