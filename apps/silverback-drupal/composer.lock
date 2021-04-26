@@ -2269,16 +2269,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "9.1.6",
+            "version": "9.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "775b801f12bbcfb0634b2ae442c5ed4529b3150d"
+                "reference": "0cbed9e7b0243ccc89a3735853eedb40becf8095"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/775b801f12bbcfb0634b2ae442c5ed4529b3150d",
-                "reference": "775b801f12bbcfb0634b2ae442c5ed4529b3150d",
+                "url": "https://api.github.com/repos/drupal/core/zipball/0cbed9e7b0243ccc89a3735853eedb40becf8095",
+                "reference": "0cbed9e7b0243ccc89a3735853eedb40becf8095",
                 "shasum": ""
             },
             "require": {
@@ -2515,13 +2515,13 @@
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
             "support": {
-                "source": "https://github.com/drupal/core/tree/9.1.6"
+                "source": "https://github.com/drupal/core/tree/9.1.7"
             },
-            "time": "2021-04-07T11:18:45+00:00"
+            "time": "2021-04-20T23:05:22+00:00"
         },
         {
             "name": "drupal/core-composer-scaffold",
-            "version": "9.1.6",
+            "version": "9.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-composer-scaffold.git",
@@ -2565,13 +2565,13 @@
                 "drupal"
             ],
             "support": {
-                "source": "https://github.com/drupal/core-composer-scaffold/tree/9.1.6"
+                "source": "https://github.com/drupal/core-composer-scaffold/tree/9.1.7"
             },
             "time": "2020-08-07T22:30:13+00:00"
         },
         {
             "name": "drupal/core-dev",
-            "version": "9.1.6",
+            "version": "9.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-dev.git",
@@ -2614,13 +2614,13 @@
             ],
             "description": "require-dev dependencies from drupal/drupal; use in addition to drupal/core-recommended to run tests from drupal/core.",
             "support": {
-                "source": "https://github.com/drupal/core-dev/tree/9.1.6"
+                "source": "https://github.com/drupal/core-dev/tree/9.1.7"
             },
             "time": "2020-10-28T08:13:15+00:00"
         },
         {
             "name": "drupal/core-project-message",
-            "version": "9.1.6",
+            "version": "9.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-project-message.git",
@@ -2655,22 +2655,22 @@
                 "drupal"
             ],
             "support": {
-                "source": "https://github.com/drupal/core-project-message/tree/9.1.6"
+                "source": "https://github.com/drupal/core-project-message/tree/9.1.7"
             },
             "time": "2020-09-14T13:40:36+00:00"
         },
         {
             "name": "drupal/core-recommended",
-            "version": "9.1.6",
+            "version": "9.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-recommended.git",
-                "reference": "03a5765123d9c76e0ca2ab3de26059356193d35c"
+                "reference": "ced38da112867c8fff15d5079926c95e5bcdca5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/03a5765123d9c76e0ca2ab3de26059356193d35c",
-                "reference": "03a5765123d9c76e0ca2ab3de26059356193d35c",
+                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/ced38da112867c8fff15d5079926c95e5bcdca5b",
+                "reference": "ced38da112867c8fff15d5079926c95e5bcdca5b",
                 "shasum": ""
             },
             "require": {
@@ -2679,7 +2679,7 @@
                 "doctrine/annotations": "1.11.1",
                 "doctrine/lexer": "1.2.1",
                 "doctrine/reflection": "1.2.2",
-                "drupal/core": "9.1.6",
+                "drupal/core": "9.1.7",
                 "egulias/email-validator": "2.1.22",
                 "guzzlehttp/guzzle": "6.5.5",
                 "guzzlehttp/promises": "1.4.0",
@@ -2740,9 +2740,9 @@
             ],
             "description": "Locked core dependencies; require this project INSTEAD OF drupal/core.",
             "support": {
-                "source": "https://github.com/drupal/core-recommended/tree/9.1.6"
+                "source": "https://github.com/drupal/core-recommended/tree/9.1.7"
             },
-            "time": "2021-04-07T11:18:45+00:00"
+            "time": "2021-04-20T23:05:22+00:00"
         },
         {
             "name": "drupal/cypress",
@@ -3045,7 +3045,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/gutenberg.git",
-                "reference": "1a5e78b67c21b4e94f9d1804e112c4e6cde45f04"
+                "reference": "2edb8a17cb95caa1d6c3704cd44797bfd289bdbe"
             },
             "require": {
                 "drupal/core": "^8 || ^9",
@@ -3058,8 +3058,8 @@
                     "dev-2.x": "2.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.0-beta2+57-dev",
-                    "datestamp": "1618306147",
+                    "version": "8.x-2.0-beta2+60-dev",
+                    "datestamp": "1619195672",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -3469,28 +3469,29 @@
         },
         {
             "name": "enlightn/security-checker",
-            "version": "v1.7.0",
+            "version": "v1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/enlightn/security-checker.git",
-                "reference": "1ac108ba278ba0c2e71d2ce2ac4fac07ed6e8a29"
+                "reference": "2054fbce2f8df681c8f71b36656222bcd241b77f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/enlightn/security-checker/zipball/1ac108ba278ba0c2e71d2ce2ac4fac07ed6e8a29",
-                "reference": "1ac108ba278ba0c2e71d2ce2ac4fac07ed6e8a29",
+                "url": "https://api.github.com/repos/enlightn/security-checker/zipball/2054fbce2f8df681c8f71b36656222bcd241b77f",
+                "reference": "2054fbce2f8df681c8f71b36656222bcd241b77f",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
-                "ext-zip": "*",
                 "guzzlehttp/guzzle": "^6.3|^7.0",
                 "php": ">=5.6",
                 "symfony/console": "^3.4|^4|^5",
                 "symfony/finder": "^3|^4|^5",
+                "symfony/process": "^3.4|^4|^5",
                 "symfony/yaml": "^3.4|^4|^5"
             },
             "require-dev": {
+                "ext-zip": "*",
                 "friendsofphp/php-cs-fixer": "^2.18",
                 "phpunit/phpunit": "^5.5|^6|^7|^8|^9"
             },
@@ -3528,9 +3529,9 @@
             ],
             "support": {
                 "issues": "https://github.com/enlightn/security-checker/issues",
-                "source": "https://github.com/enlightn/security-checker/tree/v1.7.0"
+                "source": "https://github.com/enlightn/security-checker/tree/v1.8.0"
             },
-            "time": "2021-03-03T11:56:26+00:00"
+            "time": "2021-04-19T07:13:16+00:00"
         },
         {
             "name": "fabpot/goutte",
@@ -5836,16 +5837,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.83",
+            "version": "0.12.84",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "4a967cec6efb46b500dd6d768657336a3ffe699f"
+                "reference": "9c43f15da8798c8f30a4b099e6a94530a558cfd5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/4a967cec6efb46b500dd6d768657336a3ffe699f",
-                "reference": "4a967cec6efb46b500dd6d768657336a3ffe699f",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/9c43f15da8798c8f30a4b099e6a94530a558cfd5",
+                "reference": "9c43f15da8798c8f30a4b099e6a94530a558cfd5",
                 "shasum": ""
             },
             "require": {
@@ -5876,7 +5877,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/0.12.83"
+                "source": "https://github.com/phpstan/phpstan/tree/0.12.84"
             },
             "funding": [
                 {
@@ -5892,7 +5893,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-04-03T15:35:45+00:00"
+            "time": "2021-04-19T17:10:54+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -11187,16 +11188,16 @@
         },
         {
             "name": "webonyx/graphql-php",
-            "version": "v14.6.1",
+            "version": "v14.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webonyx/graphql-php.git",
-                "reference": "cb54f64b972f8071835721848ddd74415aba31d9"
+                "reference": "bcbb6926bbf2d0cf466c63d0b9edc90e44d5dd3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/cb54f64b972f8071835721848ddd74415aba31d9",
-                "reference": "cb54f64b972f8071835721848ddd74415aba31d9",
+                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/bcbb6926bbf2d0cf466c63d0b9edc90e44d5dd3f",
+                "reference": "bcbb6926bbf2d0cf466c63d0b9edc90e44d5dd3f",
                 "shasum": ""
             },
             "require": {
@@ -11241,7 +11242,7 @@
             ],
             "support": {
                 "issues": "https://github.com/webonyx/graphql-php/issues",
-                "source": "https://github.com/webonyx/graphql-php/tree/v14.6.1"
+                "source": "https://github.com/webonyx/graphql-php/tree/v14.6.2"
             },
             "funding": [
                 {
@@ -11249,7 +11250,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2021-03-29T15:04:45+00:00"
+            "time": "2021-04-23T09:26:03+00:00"
         }
     ],
     "packages-dev": [],
