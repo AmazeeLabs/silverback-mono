@@ -1,0 +1,6 @@
+[
+  {
+    "path": "apps/silverback-drupal/web/modules/contrib/gutenberg",
+    "repository": "https://github.com/AmazeeLabs/fork-gutenberg"
+  }
+]
