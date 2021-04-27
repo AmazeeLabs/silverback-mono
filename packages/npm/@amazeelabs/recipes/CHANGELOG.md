@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.3.3...@amazeelabs/recipes@1.4.0) (2021-04-27)
+
+
+### Features
+
+* **recipes:** allow dynamic file names for file blocks ([5142acf](https://github.com/AmazeeLabs/silverback-mono/commit/5142acf2d1ef9c8642dab98e58dcbacce279007e))
+
+
+
+
+
 ## [1.3.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.3.2...@amazeelabs/recipes@1.3.3) (2021-04-27)
 
 **Note:** Version bump only for package @amazeelabs/recipes
