@@ -18,11 +18,19 @@ process.chdir(tmpDir);
 const forks = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'forks.json')).toString());
 
 forks.map(fork => {
-  const dir = new URL(fork.repository).pathname.substr(1);
-  execSync(`mkdir -p AmazeeLabs`);
-  execSync(`mkdir -p tmp/AmazeeLabs`);
+  const repoUrl = new URL(fork.repository);
+  // If this runs in a github action, we have to add credentials to the remote
+  // url.
+  if (process.env.GITHUB_ACTOR && process.env.GITHUB_TOKEN) {
+    repoUrl.username = process.env.GITHUB_ACTOR;
+    repoUrl.password = process.env.GITHUB_TOKEN;
+  }
+  const [namespace, name] = repoUrl.pathname.substr(1).split('/');
+  const dir = `${namespace}/${name}`
+  execSync(`mkdir -p ${namespace}`);
+  execSync(`mkdir -p tmp/${namespace}`);
   // Clone the fork to get it's .git directory.
-  execSync(`git clone ${fork.repository} tmp/${dir}`);
+  execSync(`git clone ${repoUrl.toString()} tmp/${dir}`);
   // Copy the patched version of the target package.
   execSync(`cp -R ../${fork.path} ${dir}`);
   // Remove the original .git directory and replace it with the one from the
@@ -34,6 +42,8 @@ forks.map(fork => {
   process.chdir(path.resolve(tmpDir, dir));
   // Bail out if the directory does not contain a composer package.
   if (!fs.existsSync('composer.json')) {
+    // TODO: Right now only composer packages are supported. We might also need
+    //       this for npm packages.
     console.warn(`${fork.path} is not a composer package`);
     return;
   }
