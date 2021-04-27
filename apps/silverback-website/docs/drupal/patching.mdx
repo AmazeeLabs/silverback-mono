@@ -1,0 +1,74 @@
+# Patching modules
+
+Patching or forking contributed modules is discouraged, but sometimes it can not
+be avoided. To mitigate the negative effects, we at least try to keep all
+patches in a central place instead of scattering them across projects, so we can
+test them once to roll them out everywhere.
+
+## Should I patch?
+
+General rule:
+
+> A patch is only valid, when it is contributed to the origin package and has a
+realistic chance to be merged into upstream.
+
+## Consider all alternatives
+
+Drupal has a lot of levers to adjust contributed code aside from patching or
+forking it.
+
+1. *Replace service classes:* Since most of the business logic has been moved
+into services by now, the Drupal dependency injection container makes it easy to
+replace parts of it by inserting a [custom service provider].
+2. *Alter hook execution:* [`hook_module_implements_alter`][hook_module_implements_alter]
+allows to us to adjust execution of hook implementations. This way we can
+remove, replace and reorder hooks provided by core and contributed modules.
+3. *Theme overrides:* Kind of obvious, but a derived admin theme helps with
+polishing some rough patches.
+4. *Library overrides:* Drupal's library system allows themes to selectively
+remove or replace [Javascript or CSS assets][libraries-override].
+
+[hook_module_implements_alter]: https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Extension%21module.api.php/function/hook_module_implements_alter/9.1.x
+[custom service provider]: https://www.drupal.org/docs/drupal-apis/services-and-dependency-injection/altering-existing-services-providing-dynamic
+[libraries-override]: https://www.drupal.org/docs/theming-drupal/adding-stylesheets-css-and-javascript-js-to-a-drupal-theme#override-extend
+
+## I really need to patch
+
+1. If it's your own patch, make sure it's uploaded to the issue and has the
+maintainers' attention.
+2. Add the module and the patch to [`silverback-drupal`][silverback-drupal]
+3. Add Cypress integration tests for what the patch is supposed to fix.
+4. Create a new GitHub repository in the `AmazeeLabs` namespace with the modules
+name, but prefixed with `fork-`. E.g.: `https://github.com/AmazeeLabs/fork-gutenberg`
+5. Add the path to the module patched by composer and the repository url to
+[`forks.json`][forks].
+6. Open a pull request that contains the reasoning why we need this patch, and
+a link to the drupal.org issue.
+7. When the pull request is merged, the patched version of the module will be
+pushed to the repository you provided. Add a new packagist project for that
+repository.
+8. Add the patched module to your project using `composer require AmazeeLabs/fork-[module]`.
+
+[silverback-drupal]: https://github.com/AmazeeLabs/silverback-mono/tree/development/apps/silverback-drupal
+[forks]: https://github.com/AmazeeLabs/silverback-mono/blob/managed-forks/forks.json
+
+
+## What happens then?
+
+The silverback repository as well as all client projects use [renovate] to
+update dependencies automatically. Whenever the upstream version of the module
+changes, the release process will automatically attempt to re-apply the patch
+and run your test against it.
+
+If the re-application is successful, silverback will automatically push and
+update to the `fork-*` repository, and the client projects will receive it on
+their next [renovate]-run.
+
+If it fails, the patch needs to be re-rolled and committed to
+`silverback-drupal`. From there the automatic process kicks in again and
+distributes it to all projects that depend on the patched module.
+
+[renovate]: https://github.com/renovatebot/renovate
+
+> A patch is still a liability, and it is high priority to keep the amount
+> of patches to a minimum and actively try to merge them into upstream.
