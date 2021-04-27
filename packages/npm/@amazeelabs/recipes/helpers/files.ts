@@ -48,13 +48,14 @@ export const file = (
 };
 
 export const __writeFile = (source: string, target: string) => {
-  const targetPath = path.resolve(process.cwd(), target);
+  const targetName = renderString(target, _vars);
+  const targetPath = path.resolve(process.cwd(), targetName);
   const sourcePath = path.resolve(__dirname, '../files', source);
   if (fs.existsSync(target)) {
     fs.rmSync(targetPath);
   }
   const content = renderString(fs.readFileSync(sourcePath).toString(), _vars);
   fs.writeFileSync(targetPath, content);
-  log.info(`updated ${chalk.cyan(target)}`);
-  log.silly(`contents of ${chalk.cyan(target)}:\n${content}\n`);
+  log.info(`updated ${chalk.cyan(targetName)}`);
+  log.silly(`contents of ${chalk.cyan(targetName)}:\n${content}\n`);
 };

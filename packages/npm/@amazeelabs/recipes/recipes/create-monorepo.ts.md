@@ -180,7 +180,7 @@ $$.vars({
 ```
 
 ```markdown
-<!-- |-> README.md -->
+|-> README.md
 
 # {{projectName}}
 
