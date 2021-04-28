@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.17](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.15.16...silverback-website@0.15.17) (2021-04-28)
+
+
+### Bug Fixes
+
+* **silverback-website:** require postcss@8 to be compatible with tailwind@2 ([75d265f](https://github.com/AmazeeLabs/silverback-mono/commit/75d265f3fd8a29dfacb3af8db46153e5dc76775b))
+
+
+
+
+
 ## [0.15.16](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.15.15...silverback-website@0.15.16) (2021-04-26)
 
 **Note:** Version bump only for package silverback-website
