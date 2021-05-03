@@ -6,6 +6,7 @@ import path from 'path';
 
 import { RecipeError } from './errors';
 import { log } from './logger';
+import { run } from './process';
 
 const _vars = {};
 export const vars = (vars: any) => Object.assign(_vars, vars);
@@ -52,7 +53,7 @@ export const __writeFile = (source: string, target: string) => {
   const targetPath = path.resolve(process.cwd(), targetName);
   const sourcePath = path.resolve(__dirname, '../files', source);
   if (fs.existsSync(target)) {
-    fs.rmSync(targetPath);
+    run(`rm -rf ${targetPath}`);
   }
   const content = renderString(fs.readFileSync(sourcePath).toString(), _vars);
   fs.writeFileSync(targetPath, content);

@@ -4,7 +4,7 @@ export const processFileBlocks = (
   input: string,
   fileWriter: FileWriter,
 ): string => {
-  const matches = [...input.matchAll(/```([a-z]+\n(.*?))```/gs)];
+  const matches = [...input.matchAll(/```([a-z\d]+\n(.*?))```/gs)];
   let result = input;
   matches.forEach((match, index) => {
     const unprocessed = match[2] as string;
