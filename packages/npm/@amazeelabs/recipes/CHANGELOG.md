@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.4.1...@amazeelabs/recipes@1.5.0) (2021-05-03)
+
+
+### Features
+
+* **recipes:** finished monorepo recipe ([1a23ed9](https://github.com/AmazeeLabs/silverback-mono/commit/1a23ed96fac1a97c6302a7c7762b0659f1e3742d))
+
+
+
+
+
 ## [1.4.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.4.0...@amazeelabs/recipes@1.4.1) (2021-05-03)
 
 **Note:** Version bump only for package @amazeelabs/recipes
