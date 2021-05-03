@@ -14,6 +14,7 @@
     "@amazeelabs/prettier-config": "^1.1.0",
     "@amazeelabs/scaffold": "^1.2.1",
     "@types/jest": "^26.0.20",
+    "eslint": "^7.25.0",
     "jest": "^26.6.3",
     "lint-staged": "^10.5.4",
     "typescript": "^4.0.5"
