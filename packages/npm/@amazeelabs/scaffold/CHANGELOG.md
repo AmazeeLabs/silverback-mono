@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.2.1...@amazeelabs/scaffold@1.2.2) (2021-05-03)
+
+
+### Bug Fixes
+
+* **scaffold:** add eslint as a dependency to scaffolded projects ([c34458d](https://github.com/AmazeeLabs/silverback-mono/commit/c34458d0f6c717d59c32a51d973ff4f085d69535))
+
+
+
+
+
 ## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.2.0...@amazeelabs/scaffold@1.2.1) (2021-04-11)
 
 

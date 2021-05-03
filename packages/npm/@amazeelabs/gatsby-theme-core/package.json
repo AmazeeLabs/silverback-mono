@@ -1,7 +1,7 @@
 {
   "name": "@amazeelabs/gatsby-theme-core",
   "description": "Gatsby parent theme for Amazee Labs projects.",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "main": "src/index.js",
   "types": "index.d.ts",
@@ -9,8 +9,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@amazeelabs/react-di": "^1.0.15",
-    "@amazeelabs/scaffold": "^1.2.1"
+    "@amazeelabs/react-di": "^1.0.16",
+    "@amazeelabs/scaffold": "^1.2.2"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "^1.3.0",
