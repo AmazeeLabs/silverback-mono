@@ -28,8 +28,8 @@ const { projectName } = $$.prompts({
       : true,
 });
 
-$$(`mkdir -p packages/${projectName}/ui`);
-$$.chdir(`packages/${projectName}/ui`);
+$$(`mkdir -p packages/@${projectName}/ui`);
+$$.chdir(`packages/@${projectName}/ui`);
 ```
 
 Initialize the Ui project folder with yarn
