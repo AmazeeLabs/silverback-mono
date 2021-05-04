@@ -15,7 +15,6 @@ export const siteMetadata = {
 };
 
 export const plugins = [
-  'gatsby-plugin-react-helmet',
   {
     resolve: 'gatsby-source-filesystem',
     options: {
@@ -23,16 +22,7 @@ export const plugins = [
       path: './src/images',
     },
   },
-  '@amazeelabs/gatsby-theme-core',
-  'gatsby-plugin-schema-export',
-  {
-    resolve: `gatsby-plugin-schema-snapshot`,
-    options: {
-      path: `generated/schema.snapshot`,
-      exclude: {
-        plugins: [`gatsby-source-npm-package-search`],
-      },
-      update: process.env.GATSBY_UPDATE_SCHEMA_SNAPSHOT,
-    },
-  },
+  ...(process.env.GATSBY_UPDATE_SCHEMA_SNAPSHOT === 'true'
+    ? ['gatsby-plugin-schema-export']
+    : []),
 ];
