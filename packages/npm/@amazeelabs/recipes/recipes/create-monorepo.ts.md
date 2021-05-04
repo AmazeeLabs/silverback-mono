@@ -878,4 +878,4 @@ Executing this recipe should have appended some information to the projects
 `README.md` that you should also commit. You are good to push the `dev` branch
 or proceed with the next steps:
 
-- Setup Drupal & Gatsby
+- `amazee-recipes add-gatsby`
