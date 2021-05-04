@@ -47,3 +47,13 @@ done we need to run **yarn amazee-scaffold** to install **Jest** and **esLint**
 $$('yarn add @amazeelabs/scaffold');
 $$('yarn amazee-scaffold');
 ```
+
+### React
+
+Add **React** and **React dom**, a JavaScript library for building user
+interfaces
+
+```typescript
+// add react & react-dom
+$$('yarn add react react-dom');
+```
