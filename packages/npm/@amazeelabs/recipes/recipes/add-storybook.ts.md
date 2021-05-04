@@ -69,3 +69,94 @@ $$('yarn add npx');
 // install & initialize Storybook
 $$('npx sb init');
 ```
+
+### Headless UI
+
+Add **Headless UI**, Completely unstyled, fully accessible UI components,
+designed to integrate beautifully with Tailwind CSS.
+
+```typescript
+// add headlessui/react
+$$('yarn add @headlessui/react');
+```
+
+### Tailwind
+
+Add **Tailwind**, a utility-first CSS framework packed with classes like flex,
+pt-4, text-center and rotate-90 that can be composed to build any design,
+directly in your markup.
+
+```typescript
+// install Tailwind
+$$(
+  'yarn add tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9',
+);
+```
+
+Create postcss.config.js
+
+```typescript
+# |-> postcss.config.js
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  }
+}
+```
+
+Create **Tailwind** configuration file
+
+```typescript
+// install Tailwind
+$$('npx tailwindcss init');
+```
+
+Create tailwind.css
+
+```css
+# |-> tailwind.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+Update tailwind.config.js
+
+```typescript
+# |-> tailwind.config.js
+module.exports = {
+  purge: ['./src/**/*.tsx'],
+  darkMode: false,
+  theme: {
+    extend: {},
+  },
+  variants: {},
+  plugins: [],
+};
+```
+
+swith to .storybook folder
+
+```typescript
+$$.chdir(`.storybook`);
+```
+
+Update preview.js
+
+```typescript
+# |-> preview.js
+import '../tailwind.css';
+export const parameters = {
+  actions: { argTypesRegex: '^on[A-Z].*' },
+  options: {
+    storySort: {
+      order: [
+        'Pages',
+        'Components',
+        ['Atoms', 'Molecules', 'Organisms', 'Layouts'],
+      ],
+    },
+  },
+};
+```
