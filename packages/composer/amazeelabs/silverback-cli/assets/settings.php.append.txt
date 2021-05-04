@@ -1,4 +1,6 @@
 // Silverback settings.
+$settings['skip_permissions_hardening'] = getenv('SB_ENVIRONMENT') === '1';
+
 if (getenv('SB_ENVIRONMENT')) {
   $databases['default']['default'] = [
     'database' => dirname(__FILE__) . '/files/.sqlite',
