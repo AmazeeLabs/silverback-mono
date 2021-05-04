@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@2.5.0...@-amazeelabs/silverback-cli@2.6.0) (2021-05-04)
+
+
+### Features
+
+* **silverback-cli:** dont harden directory permissions when working locally ([bf35802](https://github.com/AmazeeLabs/silverback-mono/commit/bf358024dc132a39bd1dab87cd6377419044bdf8))
+
+
+
+
+
 # [2.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@2.4.0...@-amazeelabs/silverback-cli@2.5.0) (2021-03-03)
 
 
