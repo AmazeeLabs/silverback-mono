@@ -160,3 +160,56 @@ export const parameters = {
   },
 };
 ```
+
+## Stories creation
+
+Delete default storybook stories
+
+```typescript
+$$.chdir(`../`);
+$$('rm -fr stories/');
+$$(`mkdir -p stories/assets`);
+$$.chdir(`stories`);
+```
+
+Create layout sample
+
+```typescript
+$$(`mkdir -p layouts`);
+$$.chdir(`layouts`);
+```
+
+```typescript
+# |-> StandardLayout.tsx
+import React from 'react';
+
+export const StandardLayout: React.FC = ({ children }) => (
+  <div className="max-w-7xl mx-auto">
+    <header className="text-4xl p-4 bg-blue-50">Header</header>
+    <main className="p-4 prose">{children}</main>
+    <footer className="p-4 text-xs bg-blue-900 text-white">Footer</footer>
+  </div>
+);
+```
+
+```typescript
+# |-> StandardLayout.stories.tsx
+import { Meta, Story } from '@storybook/react';
+import React from 'react';
+
+import { StandardLayout } from './StandardLayout';
+
+export default {
+  title: 'Components/Layouts/Standard',
+  component: StandardLayout,
+  parameters: {
+    layout: 'fullscreen',
+  },
+} as Meta;
+
+export const Standard: Story = () => (
+  <StandardLayout>
+    <div className="border-2 border-gray-300 border-solid h-24" />
+  </StandardLayout>
+);
+```
