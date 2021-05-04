@@ -57,3 +57,15 @@ interfaces
 // add react & react-dom
 $$('yarn add react react-dom');
 ```
+
+### Storybook
+
+Add **Storybook**, an open source tool for developing UI components and pages in
+isolation. It simplifies building, documenting, and testing UIs.
+
+```typescript
+// add npx
+$$('yarn add npx');
+// install & initialize Storybook
+$$('npx sb init');
+```
