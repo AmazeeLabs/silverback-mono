@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.5.0...@amazeelabs/recipes@1.6.0) (2021-05-04)
+
+
+### Bug Fixes
+
+* **recipes:** don't interpolate variables in github workflows ([76ccd24](https://github.com/AmazeeLabs/silverback-mono/commit/76ccd24e982f1a79477a29db5eee8b24d7963437))
+
+
+### Features
+
+* **recipes:** basic drupal & lagoon recipe ([31b9f11](https://github.com/AmazeeLabs/silverback-mono/commit/31b9f119e6da0ddbb1a176d10edaac1ea3184250))
+* **recipes:** basic gatsby recipe ([1d14f44](https://github.com/AmazeeLabs/silverback-mono/commit/1d14f4437d90e063bb844302fa94f283a7f0cb8e))
+
+
+
+
+
 # [1.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.4.1...@amazeelabs/recipes@1.5.0) (2021-05-03)
 
 
