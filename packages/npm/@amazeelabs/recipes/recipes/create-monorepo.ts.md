@@ -547,14 +547,13 @@ jobs:
           cache-name: cache-dependencies
         with:
           path: |
-            ${{ steps.yarn-cache.outputs.dir }}
-            ${{ steps.composer-cache.outputs.dir }}
-          key:
-            ${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash
-            }}-composer-${{ steps.composer-version.outputs.hash
-            }}-github_run_id-${{ github.run_id }}
+            {{'${{steps.yarn-cache.outputs.dir}}'}}
+            {{'${{steps.composer-cache.outputs.dir}}'}}
+          key: |
+            {{'${{steps.yarn-version.outputs.hash}}-${{steps.composer-version.outputs.hash}}-${{github.run_id}}'}}
           restore-keys: |
-            ${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash }}-composer-${{ steps.composer-version.outputs.hash }}-
+            {{'${{steps.yarn-version.outputs.hash}}-${{steps.composer-version.outputs.hash}}-'}}
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
@@ -671,14 +670,12 @@ jobs:
           cache-name: cache-dependencies
         with:
           path: |
-            ${{ steps.yarn-cache.outputs.dir }}
-            ${{ steps.composer-cache.outputs.dir }}
-          key:
-            ${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash
-            }}-composer-${{ steps.composer-version.outputs.hash
-            }}-github_run_id-${{ github.run_id }}
+            {{'${{steps.yarn-cache.outputs.dir}}'}}
+            {{'${{steps.composer-cache.outputs.dir}}'}}
+          key: |
+            {{'${{steps.yarn-version.outputs.hash}}-${{steps.composer-version.outputs.hash}}-${{github.run_id}}'}}
           restore-keys: |
-            ${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash }}-composer-${{ steps.composer-version.outputs.hash }}-
+            {{'${{steps.yarn-version.outputs.hash}}-${{steps.composer-version.outputs.hash}}-'}}
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -698,7 +695,8 @@ jobs:
           fi
       - name: Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: |
+            {{'${{secrets.GITHUB_TOKEN}}'}}
         run: yarn lerna version -y
 
       - name: Merge dev -> prod
@@ -706,7 +704,8 @@ jobs:
         with:
           type: now
           target_branch: prod
-          github_token: ${{ github.token }}
+          github_token: |
+            {{'${{github.token}}'}}
 ```
 
 ```typescript
