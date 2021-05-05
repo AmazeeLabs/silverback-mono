@@ -17,7 +17,7 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "test": "jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi",
+    "test": "tsc --noEmit && jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi",
     "watch": "jest --watch"
   }
 }
