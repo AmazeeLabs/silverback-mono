@@ -10,7 +10,7 @@ use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
-use Drupal\graphql\Plugin\GraphQL\Schema\SdlSchemaPluginBase;
+use Drupal\graphql\Plugin\GraphQL\Schema\ComposableSchema;
 use Drupal\node\NodeInterface;
 
 /**
@@ -19,7 +19,7 @@ use Drupal\node\NodeInterface;
  *   name = "Silverback Gatsby Schema",
  * )
  */
-class SilverbackGatsbySchema extends SdlSchemaPluginBase {
+class SilverbackGatsbySchema extends ComposableSchema {
 
   public function getResolverRegistry(): ResolverRegistryInterface {
     $builder = new ResolverBuilder();
