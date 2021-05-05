@@ -1,0 +1,28 @@
+extend type Image {
+  url: String!
+  alt: String!
+}
+
+extend type Tag {
+  title: String!
+}
+
+extend type PageTranslation {
+  path: String!
+  title: String!
+  body: String
+}
+
+extend type GutenbergPageTranslation {
+  path: String!
+  title: String!
+  body: [RootBlock!]!
+}
+
+extend type ArticleTranslation {
+  path: String!
+  title: String!
+  body: String
+  tags: [Tag!]!
+  image: Image
+}

@@ -1,0 +1,27 @@
+union RootBlock = BlockTwoColumns |  BlockHtml | BlockImage | BlockTeaser
+
+union ContentBlock = BlockHtml | BlockImage | BlockTeaser
+
+type BlockTwoColumns {
+  children: [BlockColumn!]!
+}
+
+type BlockColumn {
+  children: [ContentBlock!]!
+}
+
+type BlockHtml {
+  html: String!
+}
+
+type BlockImage {
+  caption: String!
+  image: Image!
+}
+
+type BlockTeaser {
+  image: Image!
+  title: String!
+  subtitle: String!
+  url: String!
+}

@@ -2,16 +2,11 @@
 
 namespace Drupal\silverback_gatsby\Plugin\GraphQL\Schema;
 
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\FieldableEntityInterface;
-use Drupal\Core\Entity\TranslatableInterface;
-use Drupal\Core\Url;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
 use Drupal\graphql\Plugin\GraphQL\Schema\ComposableSchema;
-use Drupal\node\NodeInterface;
 
 /**
  * @Schema(
@@ -27,6 +22,11 @@ class SilverbackGatsbySchema extends ComposableSchema {
     $this->addFieldResolvers($registry, $builder);
     $this->addTypeResolvers($registry);
     return $registry;
+  }
+
+  protected function getSchemaDefinition() {
+    $path = $this->moduleHandler->getModule('silverback_gatsby')->getPath();
+    return file_get_contents($path . '/graphql/silverback_gatsby.graphqls');
   }
 
   protected function addFieldResolvers(ResolverRegistry $registry, ResolverBuilder $builder) {
@@ -61,48 +61,6 @@ class SilverbackGatsbySchema extends ComposableSchema {
     $entityTranslations = $builder->produce('entity_translations')
       ->map('entity', $builder->fromParent());
 
-    $entityLangcode = $builder->callback(
-      fn(TranslatableInterface $value) => $value->language()->getId()
-    );
-
-    $entityLabel = $builder->callback(fn(EntityInterface $value) => $value->label());
-
-    $fromPath = fn(string $type, string $path, $value = NULL) => $builder->produce('property_path', [
-      'path' => $builder->fromValue($path),
-      'value' => $value ?: $builder->fromParent(),
-      'type' => $builder->fromValue($type),
-    ]);
-
-    $entityReferences = fn(string $field) => $builder->defaultValue(
-      $builder->produce('entity_reference')
-        ->map('entity', $builder->fromParent())
-        ->map('field', $builder->fromValue($field)),
-      $builder->fromValue([])
-    );
-
-    $firstEntityReference = fn(string $field) => $builder->callback(
-      fn(FieldableEntityInterface $value) => $value->get($field)->entity
-    );
-
-    $imageUrl = $builder->compose(
-      $fromPath('entity:media:image', 'field_media_image.0.entity'),
-      $builder->produce('image_url')
-        ->map('entity', $builder->fromParent())
-    );
-
-    $nodePath = $builder->callback(fn(NodeInterface $value) => Url::fromRoute(
-      'entity.node.canonical',
-      ['node' => $value->id()],
-      ['language' => $value->language()]
-    )
-      ->setAbsolute(FALSE)
-      ->toString(TRUE)
-      ->getGeneratedUrl()
-    );
-
-    $gutenberg = $builder->produce('gutenberg')
-      ->map('entity', $builder->fromParent());
-
     // Resolvers.
 
     $addResolver('Query.page', $loadEntity('node', 'page'));
@@ -117,43 +75,14 @@ class SilverbackGatsbySchema extends ComposableSchema {
     $addResolver('Query.articles', $listEntities('node', 'article'));
     $addResolver('Query.articleChanges', $entityChanges('node', 'article'));
 
-    $addResolver('Query.image', $loadEntity('media', 'image'));
-    $addResolver('Query.images', $listEntities('media', 'image'));
-    $addResolver('Query.imageChanges', $entityChanges('media', 'image'));
-
-    $addResolver('Query.tag', $loadEntity('taxonomy_term', 'tag'));
-    $addResolver('Query.tags', $listEntities('taxonomy_term', 'tag'));
-    $addResolver('Query.tagChanges', $entityChanges('taxonomy_term', 'tag'));
-
     $addResolver('Page.id', $entityId);
     $addResolver('Page.translations', $entityTranslations);
-    $addResolver('PageTranslation.langcode', $entityLangcode);
-    $addResolver('PageTranslation.path', $nodePath);
-    $addResolver('PageTranslation.title', $entityLabel);
-    $addResolver('PageTranslation.body', $fromPath('entity:node:page', 'field_body.0.processed'));
 
     $addResolver('GutenbergPage.id', $entityId);
     $addResolver('GutenbergPage.translations', $entityTranslations);
-    $addResolver('GutenbergPageTranslation.langcode', $entityLangcode);
-    $addResolver('GutenbergPageTranslation.path', $nodePath);
-    $addResolver('GutenbergPageTranslation.title', $entityLabel);
-    $addResolver('GutenbergPageTranslation.body', $gutenberg);
 
     $addResolver('Article.id', $entityId);
     $addResolver('Article.translations', $entityTranslations);
-    $addResolver('ArticleTranslation.langcode', $entityLangcode);
-    $addResolver('ArticleTranslation.path', $nodePath);
-    $addResolver('ArticleTranslation.title', $entityLabel);
-    $addResolver('ArticleTranslation.body', $fromPath('entity:node:article', 'field_body.0.processed'));
-    $addResolver('ArticleTranslation.tags', $entityReferences('field_tags'));
-    $addResolver('ArticleTranslation.image', $firstEntityReference('field_image'));
-
-    $addResolver('Image.id', $entityId);
-    $addResolver('Image.alt', $fromPath('entity:media:image', 'field_media_image.0.alt'));
-    $addResolver('Image.url', $imageUrl);
-
-    $addResolver('Tag.id', $entityId);
-    $addResolver('Tag.title', $entityLabel);
   }
 
   protected function addTypeResolvers(ResolverRegistry $registry) {
