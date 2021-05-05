@@ -47,31 +47,6 @@ export const createSourcingConfig = async (
         }
       `,
     });
-    /*
-    Example of how the above looks for the Article content type:
-    {
-      remoteTypeName: 'Article',
-      queries: `
-        query LIST_Article {
-          articles(
-            limit: $limit
-            offset: $offset
-          ) {
-            ..._ArticleId_
-          }
-        }
-        query NODE_Article {
-          article(id: $id) {
-            ..._ArticleId_
-          }
-        }
-        fragment _ArticleId_ on Article {
-          __typename
-          id
-        }
-     `
-    }
-    */
   }
 
   const fragments = await generateDefaultFragments({

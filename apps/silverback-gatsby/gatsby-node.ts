@@ -6,7 +6,7 @@ import {
 } from 'gatsby-graphql-source-toolkit';
 
 import { createArticlePages } from './src/gatsby-node-helpers/create-pages/articles';
-import {createGutenbergPages} from "./src/gatsby-node-helpers/create-pages/gutenberg-pages";
+import { createGutenbergPages } from './src/gatsby-node-helpers/create-pages/gutenberg-pages';
 import { createSourcingConfig } from './src/gatsby-node-helpers/create-sourcing-config';
 import { fetchNodeChanges } from './src/gatsby-node-helpers/fetch-node-changes';
 
@@ -22,6 +22,7 @@ export const sourceNodes = async (gatsbyApi: SourceNodesArgs) => {
     const nodeEvents = await fetchNodeChanges(
       lastBuildTime,
       gatsbyApi.getNodes(),
+      gatsbyApi.reporter,
     );
     await sourceNodeChanges(config, { nodeEvents });
   } else {
