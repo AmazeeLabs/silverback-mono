@@ -2,6 +2,25 @@ schema {
   query: Query
 }
 
+type Change {
+  type: ChangeType!
+  id: Int!
+}
+
+enum ChangeType {
+  Update
+  Delete
+}
+
+interface Translatable {
+  id: Int!
+  translations: [Translation!]!
+}
+
+interface Translation {
+  langcode: String!
+}
+
 type Query {
   page(id: Int!): Page
   pages(
@@ -38,90 +57,37 @@ type Query {
   ): [Tag!]!
   tagChanges(since: Int!, ids: [Int!]!): [Change!]!
 }
-
-type Page {
-  id: Int!
-  translations: [PageTranslation!]!
-}
-
-type PageTranslation {
-  langcode: String!
-  path: String!
-  title: String!
-  body: String
-}
-
-type GutenbergPage {
-  id: Int!
-  translations: [GutenbergPageTranslation!]!
-}
-
-type GutenbergPageTranslation {
-  langcode: String!
-  path: String!
-  title: String!
-  body: [RootBlock!]!
-}
-
-type Article {
-  id: Int!
-  translations: [ArticleTranslation!]!
-}
-
-type ArticleTranslation {
-  langcode: String!
-  path: String!
-  title: String!
-  body: String
-  tags: [Tag!]!
-  image: Image
-}
-
 type Image {
   id: Int!
-  url: String!
-  alt: String!
 }
 
 type Tag {
   id: Int!
-  title: String!
 }
 
-type Change {
-  type: ChangeType!
+type Page implements Translatable {
   id: Int!
+  translations: [PageTranslation!]!
 }
 
-enum ChangeType {
-  Update
-  Delete
+type PageTranslation implements Translation {
+  langcode: String!
 }
 
-union RootBlock = BlockTwoColumns |  BlockHtml | BlockImage | BlockTeaser
-
-union ContentBlock = BlockHtml | BlockImage | BlockTeaser
-
-type BlockTwoColumns {
-  children: [BlockColumn!]!
+type GutenbergPage implements Translatable {
+  id: Int!
+  translations: [GutenbergPageTranslation!]!
 }
 
-type BlockColumn {
-  children: [ContentBlock!]!
+type GutenbergPageTranslation implements Translation {
+  langcode: String!
 }
 
-type BlockHtml {
-  html: String!
+type Article implements Translatable {
+  id: Int!
+  translations: [ArticleTranslation!]!
 }
 
-type BlockImage {
-  caption: String!
-  image: Image!
-}
-
-type BlockTeaser {
-  image: Image!
-  title: String!
-  subtitle: String!
-  url: String!
+type ArticleTranslation implements Translation {
+  langcode: String!
 }
