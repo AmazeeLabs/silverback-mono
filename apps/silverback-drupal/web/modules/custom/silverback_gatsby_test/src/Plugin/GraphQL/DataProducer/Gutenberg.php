@@ -1,9 +1,10 @@
 <?php
 
-namespace Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer;
+namespace Drupal\silverback_gatsby_test\Plugin\GraphQL\DataProducer;
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
+use Drupal\gutenberg\Parser\BlockParser;
 use Drupal\media\Entity\Media;
 
 /**
@@ -26,8 +27,7 @@ class Gutenberg extends DataProducerPluginBase
 
   public function resolve(ContentEntityInterface $entity): array
   {
-    require_once __DIR__ . '/../../../../node_modules/@wordpress/block-serialization-default-parser/parser.php';
-    $parser = new \WP_Block_Parser();
+    $parser = new BlockParser();
     $blocks = $parser->parse($entity->get('body')->value);
     return $this->transform($blocks);
   }
