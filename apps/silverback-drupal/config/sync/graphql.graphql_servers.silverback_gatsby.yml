@@ -5,7 +5,10 @@ dependencies: {  }
 name: silverback_gatsby
 label: 'Silverback Gatsby'
 schema: silverback_gatsby
-schema_configuration: {  }
+schema_configuration:
+  silverback_gatsby:
+    extensions:
+      silverback_gatsby_test: silverback_gatsby_test
 persisted_queries_settings: {  }
 endpoint: /silverback-gatsby
 debug_flag: 15
