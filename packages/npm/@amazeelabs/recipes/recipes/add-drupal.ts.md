@@ -400,7 +400,7 @@ $$.file('package.json', (json) => ({
   scripts: {
     ...json.scripts,
     prepare:
-      'if php -v && [[ -z $LAGOON ]]; then composer install && yarn setup fi',
+      'if php -v && [[ -z $LAGOON ]]; then composer install && yarn setup; fi',
     'drupal-install': 'source .envrc && silverback setup --profile standard',
     setup: 'source .envrc && silverback setup',
     start: 'source .envrc && cd web && php -S 127.0.0.1:8888 .ht.router.php',
