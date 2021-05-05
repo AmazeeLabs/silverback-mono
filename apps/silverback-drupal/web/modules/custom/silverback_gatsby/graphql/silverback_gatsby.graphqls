@@ -4,7 +4,7 @@ schema {
 
 type Change {
   type: ChangeType!
-  id: Int!
+  id: String!
 }
 
 enum ChangeType {
@@ -13,7 +13,7 @@ enum ChangeType {
 }
 
 interface Translatable {
-  id: Int!
+  id: String!
   translations: [Translation!]!
 }
 
@@ -22,51 +22,51 @@ interface Translation {
 }
 
 type Query {
-  page(id: Int!): Page
+  page(id: String!): Page
   pages(
     offset: Int!
     limit: Int!
   ): [Page!]!
-  pageChanges(since: Int!, ids: [Int!]!): [Change!]!
+  pageChanges(since: Int!, ids: [String!]!): [Change!]!
 
-  gutenbergPage(id: Int!): GutenbergPage
+  gutenbergPage(id: String!): GutenbergPage
   gutenbergPages(
     offset: Int!
     limit: Int!
   ): [GutenbergPage!]!
-  gutenbergPageChanges(since: Int!, ids: [Int!]!): [Change!]!
+  gutenbergPageChanges(since: Int!, ids: [String!]!): [Change!]!
 
-  article(id: Int!): Article
+  article(id: String!): Article
   articles(
     offset: Int!
     limit: Int!
   ): [Article!]!
-  articleChanges(since: Int!, ids: [Int!]!): [Change!]!
+  articleChanges(since: Int!, ids: [String!]!): [Change!]!
 
-  image(id: Int!): Image
+  image(id: String!): Image
   images(
     offset: Int!
     limit: Int!
   ): [Image!]!
-  imageChanges(since: Int!, ids: [Int!]!): [Change!]!
+  imageChanges(since: Int!, ids: [String!]!): [Change!]!
 
-  tag(id: Int!): Tag
+  tag(id: String!): Tag
   tags(
     offset: Int!
     limit: Int!
   ): [Tag!]!
-  tagChanges(since: Int!, ids: [Int!]!): [Change!]!
+  tagChanges(since: Int!, ids: [String!]!): [Change!]!
 }
 type Image {
-  id: Int!
+  id: String!
 }
 
 type Tag {
-  id: Int!
+  id: String!
 }
 
 type Page implements Translatable {
-  id: Int!
+  id: String!
   translations: [PageTranslation!]!
 }
 
@@ -75,7 +75,7 @@ type PageTranslation implements Translation {
 }
 
 type GutenbergPage implements Translatable {
-  id: Int!
+  id: String!
   translations: [GutenbergPageTranslation!]!
 }
 
@@ -84,7 +84,7 @@ type GutenbergPageTranslation implements Translation {
 }
 
 type Article implements Translatable {
-  id: Int!
+  id: String!
   translations: [ArticleTranslation!]!
 }
 
