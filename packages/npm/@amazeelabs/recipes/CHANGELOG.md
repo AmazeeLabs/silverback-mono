@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.6.0...@amazeelabs/recipes@1.6.1) (2021-05-05)
+
+
+### Bug Fixes
+
+* **recipes:** missing semicolon in drupal prepare script ([92b41a1](https://github.com/AmazeeLabs/silverback-mono/commit/92b41a1567071a46ad226513ac20d09a1ff182f9))
+
+
+
+
+
 # [1.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.5.0...@amazeelabs/recipes@1.6.0) (2021-05-04)
 
 
