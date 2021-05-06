@@ -68,6 +68,8 @@ isolation. It simplifies building, documenting, and testing UIs.
 $$('yarn add npx');
 // install & initialize Storybook
 $$('npx sb init');
+// install @storybook/addon-postcss and @storybook/builder-webpack5
+$$('yarn add @storybook/addon-postcss @storybook/builder-webpack5');
 ```
 
 ### Headless UI
@@ -88,9 +90,7 @@ directly in your markup.
 
 ```typescript
 // install Tailwind
-$$(
-  'yarn add tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9',
-);
+$$('yarn add tailwindcss@latest postcss@latest autoprefixer@latest');
 ```
 
 Create postcss.config.js
@@ -140,6 +140,33 @@ swith to .storybook folder
 
 ```typescript
 $$.chdir(`.storybook`);
+```
+
+Update main.js
+
+```typescript
+# |-> main.js
+module.exports = {
+  stories: [
+    '../stories/**/*.stories.mdx',
+    '../stories/**/*.stories.@(js|jsx|ts|tsx)',
+  ],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    {
+      name: '@storybook/addon-postcss',
+      options: {
+        postcssLoaderOptions: {
+          implementation: require('postcss'),
+        },
+      },
+    },
+  ],
+  core: {
+    builder: 'webpack5',
+  },
+};
 ```
 
 Update preview.js
