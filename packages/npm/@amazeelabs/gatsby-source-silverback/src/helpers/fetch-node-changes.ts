@@ -3,7 +3,7 @@ import { Reporter } from 'gatsby/reporter';
 import { NodeEvent } from 'gatsby-graphql-source-toolkit/dist/types';
 
 import { createQueryExecutor } from './create-query-executor';
-import { drupalNodes, drupalNodes as drupalNodesFetcher } from './drupal-nodes';
+import { drupalNodes as drupalNodesFetcher } from './drupal-nodes';
 
 type ToolkitNode = Node & {
   remoteTypeName: string;

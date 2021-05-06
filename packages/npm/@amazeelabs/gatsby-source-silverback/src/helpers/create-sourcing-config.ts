@@ -8,6 +8,7 @@ import {
 import {
   IGatsbyNodeConfig,
   ISourcingConfig,
+  RemoteTypeName,
 } from 'gatsby-graphql-source-toolkit/dist/types';
 
 import { createQueryExecutor } from './create-query-executor';
@@ -15,6 +16,7 @@ import { drupalNodes as drupalNodesFetcher } from './drupal-nodes';
 
 export const createSourcingConfig = async (
   gatsbyApi: SourceNodesArgs,
+  customFragments?: Map<RemoteTypeName, string>,
 ): Promise<ISourcingConfig> => {
   const execute = createQueryExecutor();
   const schema = await loadSchema(execute);
