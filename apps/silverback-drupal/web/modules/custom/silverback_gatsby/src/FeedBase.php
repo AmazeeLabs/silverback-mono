@@ -64,14 +64,14 @@ abstract class FeedBase implements FeedInterface {
     $schema =  [];
 
     if ($translationTypeName = $this->getTranslationTypeName()) {
-      $schema[] = "type $typeName implements Translatable {";
+      $schema[] = "extend type $typeName implements Translatable {";
       $schema[] = "  id: String!";
       $schema[] = "  translations: [$translationTypeName!]!";
       $schema[] = "}";
-      $schema[] = "type $translationTypeName implements Translation { langcode: String! }";
+      $schema[] = "extend type $translationTypeName implements Translation { langcode: String! }";
     }
     else {
-      $schema[] = "type $typeName { id: String! }";
+      $schema[] = "extend type $typeName { id: String! }";
     }
 
     return implode("\n", $schema);

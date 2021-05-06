@@ -1,5 +1,6 @@
 <?php
-namespace Drupal\silverback_gatsby_test\Plugin\GraphQL\SchemaExtension;
+namespace Drupal\silverback_gatsby_test\Plugin\GraphQL\Schema;
+use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Entity\TranslatableInterface;
@@ -8,21 +9,52 @@ use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
-use Drupal\graphql\Plugin\GraphQL\SchemaExtension\SdlSchemaExtensionPluginBase;
+use Drupal\graphql\Plugin\GraphQL\Schema\ComposableSchema;
 use Drupal\node\NodeInterface;
 
 /**
- * @SchemaExtension(
+ * @Schema(
  *   id = "silverback_gatsby_test",
- *   name = "Silverback example schema",
- *   description = "Example schema based on silverback_gatsby.",
- *   schema = "silverback_gatsby"
+ *   name = "Silverback Gatsby Test Schema",
  * )
  */
-class SilverbackGatsbyTestSchema extends SdlSchemaExtensionPluginBase {
+class SilverbackGatsbyTestSchema extends ComposableSchema {
 
-  public function registerResolvers(ResolverRegistryInterface $registry) {
+  public function getResolverRegistry(): ResolverRegistryInterface {
     $builder = new ResolverBuilder();
+    $registry = new ResolverRegistry();
+    $this->registerResolvers($registry, $builder);
+    return $registry;
+  }
+
+  /**
+   * Retrieves the raw schema definition string.
+   *
+   * @return string
+   *   The schema definition.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   */
+  protected function getSchemaDefinition() {
+    $id = $this->getPluginId();
+    $definition = $this->getPluginDefinition();
+    $module = $this->moduleHandler->getModule($definition['provider']);
+    $path = 'graphql/' . $id . '.graphqls';
+    $file = $module->getPath() . '/' . $path;
+
+    if (!file_exists($file)) {
+      throw new InvalidPluginDefinitionException(
+        $id,
+        sprintf(
+          'The module "%s" needs to have a schema definition "%s" in its folder for "%s" to be valid.',
+          $module->getName(), $path, $definition['class']));
+    }
+
+    return file_get_contents($file) ?: NULL;
+  }
+
+
+  public function registerResolvers(ResolverRegistryInterface $registry, ResolverBuilder $builder) {
     // TODO: Implement registerResolvers() method.
     $addResolver = function(string $path, ResolverInterface $resolver) use ($registry) {
       [$type, $field] = explode('.', $path);
@@ -71,9 +103,6 @@ class SilverbackGatsbyTestSchema extends SdlSchemaExtensionPluginBase {
       ->getGeneratedUrl()
     );
 
-    $entityId = $builder->produce('entity_id')
-      ->map('entity', $builder->fromParent());
-
     $gutenberg = $builder->produce('gutenberg')
       ->map('entity', $builder->fromParent());
 
@@ -94,11 +123,9 @@ class SilverbackGatsbyTestSchema extends SdlSchemaExtensionPluginBase {
     $addResolver('ArticleTranslation.tags', $entityReferences('field_tags'));
     $addResolver('ArticleTranslation.image', $firstEntityReference('field_image'));
 
-    $addResolver('Image.id', $entityId);
     $addResolver('Image.alt', $fromPath('entity:media:image', 'field_media_image.0.alt'));
     $addResolver('Image.url', $imageUrl);
 
-    $addResolver('Tag.id', $entityId);
     $addResolver('Tag.title', $entityLabel);
   }
 

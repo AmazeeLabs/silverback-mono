@@ -1,0 +1,26 @@
+type Change {
+  type: ChangeType!
+  id: String!
+}
+
+enum ChangeType {
+  Update
+  Delete
+}
+
+interface Translatable {
+  id: String!
+  translations: [Translation!]!
+}
+
+interface Translation {
+  langcode: String!
+}
+
+type Feed {
+  typeName: String!
+  translationTypeName: String
+  singleFieldName: String!
+  listFieldName: String!
+  changesFieldName: String
+}
