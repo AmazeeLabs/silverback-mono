@@ -11,13 +11,14 @@ import {
 } from 'gatsby-graphql-source-toolkit/dist/types';
 
 import { createQueryExecutor } from './create-query-executor';
-import { drupalNodes } from './drupal-nodes';
+import { drupalNodes as drupalNodesFetcher } from './drupal-nodes';
 
 export const createSourcingConfig = async (
   gatsbyApi: SourceNodesArgs,
 ): Promise<ISourcingConfig> => {
   const execute = createQueryExecutor();
   const schema = await loadSchema(execute);
+  const drupalNodes = await drupalNodesFetcher();
 
   // Instruct gatsby-graphql-source-toolkit how to fetch content from Drupal.
   // The LIST_ queries are used to fetch the content when there is no cache. The
