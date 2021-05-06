@@ -1,12 +1,9 @@
 services:
   silverback_gatsby.feed_manager:
-    class: Drupal\silverback_gatsby\FeedManager
-    tags:
-    - { name: service_collector, tag: silverback_gatsby_feed, call: addFeed }
-
-parameters:
-  silverback_gatsby.entity_feeds:
-# Provide entity feed definitions in your custom module like this:
-#    - type: node,
-#      bundle: page
-#      typeName: Page
+    class: Drupal\silverback_gatsby\Plugin\FeedPluginManager
+    arguments:
+      - 'Plugin/Gatsby/Feed'
+      - '@container.namespaces'
+      - '@module_handler'
+      - '\Drupal\silverback_gatsby\Plugin\FeedInterface'
+      - '\Drupal\silverback_gatsby\Annotation\GatsbyFeed'
