@@ -1,0 +1,17 @@
+parameters:
+  silverback_gatsby.entity_feeds:
+    - type: node
+      bundle: page
+      typeName: Page
+    - type: node
+      bundle: gutenberg_page
+      typeName: GutenbergPage
+    - type: node
+      bundle: article
+      typeName: Article
+    - type: media
+      bundle: image
+      typeName: Image
+    - type: taxonomy_term
+      bundle: tag
+      typeName: Tag

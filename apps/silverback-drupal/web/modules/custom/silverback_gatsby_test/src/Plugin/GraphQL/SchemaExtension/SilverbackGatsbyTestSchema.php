@@ -6,6 +6,7 @@ use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\Url;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
+use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
 use Drupal\graphql\Plugin\GraphQL\SchemaExtension\SdlSchemaExtensionPluginBase;
 use Drupal\node\NodeInterface;
@@ -28,22 +29,8 @@ class SilverbackGatsbyTestSchema extends SdlSchemaExtensionPluginBase {
       $registry->addFieldResolver($type, $field, $resolver);
     };
 
-    $loadEntity = fn(string $type, string $bundle) => $builder->produce('entity_load')
-      ->map('type', $builder->fromValue($type))
-      ->map('bundles', $builder->fromValue([$bundle]))
-      ->map('id', $builder->fromArgument('id'));
-
-    $listEntities = fn(string $type, string $bundle) => $builder->produce('list_entities')
-      ->map('type', $builder->fromValue($type))
-      ->map('bundle', $builder->fromValue($bundle))
-      ->map('offset', $builder->fromArgument('offset'))
-      ->map('limit', $builder->fromArgument('limit'));
-
-    $entityChanges = fn(string $type, string $bundle) => $builder->produce('entity_changes')
-      ->map('type', $builder->fromValue($type))
-      ->map('bundle', $builder->fromValue($bundle))
-      ->map('since', $builder->fromArgument('since'))
-      ->map('ids', $builder->fromArgument('ids'));
+    $registry->addTypeResolver('RootBlock', fn($value) => $value['__type']);
+    $registry->addTypeResolver('ContentBlock', fn($value) => $value['__type']);
 
     $entityLangcode = $builder->callback(
       fn(TranslatableInterface $value) => $value->language()->getId()
@@ -89,14 +76,6 @@ class SilverbackGatsbyTestSchema extends SdlSchemaExtensionPluginBase {
 
     $gutenberg = $builder->produce('gutenberg')
       ->map('entity', $builder->fromParent());
-
-    $addResolver('Query.image', $loadEntity('media', 'image'));
-    $addResolver('Query.images', $listEntities('media', 'image'));
-    $addResolver('Query.imageChanges', $entityChanges('media', 'image'));
-
-    $addResolver('Query.tag', $loadEntity('taxonomy_term', 'tag'));
-    $addResolver('Query.tags', $listEntities('taxonomy_term', 'tag'));
-    $addResolver('Query.tagChanges', $entityChanges('taxonomy_term', 'tag'));
 
     $addResolver('PageTranslation.langcode', $entityLangcode);
     $addResolver('PageTranslation.path', $nodePath);

@@ -3,7 +3,7 @@ import { Reporter } from 'gatsby/reporter';
 import { NodeEvent } from 'gatsby-graphql-source-toolkit/dist/types';
 
 import { createQueryExecutor } from './create-query-executor';
-import { drupalNodes } from './drupal-nodes';
+import { drupalNodes, drupalNodes as drupalNodesFetcher } from './drupal-nodes';
 
 type ToolkitNode = Node & {
   remoteTypeName: string;
@@ -22,6 +22,7 @@ export const fetchNodeChanges = async (
 ): Promise<NodeEvent[]> => {
   const result: NodeEvent[] = [];
   const execute = createQueryExecutor();
+  const drupalNodes = await drupalNodesFetcher();
 
   const getCachedIds = (type: string) =>
     (cachedNodes as ToolkitNode[])

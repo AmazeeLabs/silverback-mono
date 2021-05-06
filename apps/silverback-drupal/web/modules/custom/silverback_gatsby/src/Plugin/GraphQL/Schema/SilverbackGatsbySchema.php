@@ -2,11 +2,15 @@
 
 namespace Drupal\silverback_gatsby\Plugin\GraphQL\Schema;
 
+use Drupal\Core\Cache\CacheBackendInterface;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
 use Drupal\graphql\Plugin\GraphQL\Schema\ComposableSchema;
+use Drupal\graphql\Plugin\SchemaExtensionPluginManager;
+use Drupal\silverback_gatsby\FeedInterface;
 
 /**
  * @Schema(
@@ -16,17 +20,79 @@ use Drupal\graphql\Plugin\GraphQL\Schema\ComposableSchema;
  */
 class SilverbackGatsbySchema extends ComposableSchema {
 
+  protected array $feeds;
+
+  public function __construct(
+    array $configuration,
+    $pluginId,
+    array $pluginDefinition,
+    CacheBackendInterface $astCache,
+    ModuleHandlerInterface $moduleHandler,
+    SchemaExtensionPluginManager $extensionManager,
+    array $config
+  ) {
+    parent::__construct(
+      $configuration,
+      $pluginId,
+      $pluginDefinition,
+      $astCache,
+      $moduleHandler,
+      $extensionManager,
+      $config
+    );
+    $this->feeds = \Drupal::getContainer()
+      ->get('silverback_gatsby.feed_manager')->getFeeds();
+  }
+
   public function getResolverRegistry(): ResolverRegistryInterface {
     $builder = new ResolverBuilder();
     $registry = new ResolverRegistry();
     $this->addFieldResolvers($registry, $builder);
-    $this->addTypeResolvers($registry);
     return $registry;
   }
 
   protected function getSchemaDefinition() {
-    $path = $this->moduleHandler->getModule('silverback_gatsby')->getPath();
-    return file_get_contents($path . '/graphql/silverback_gatsby.graphqls');
+    $fields = implode("\n", array_map(fn (FeedInterface $feed) => $feed->queryFieldDefinitions(), $this->feeds));
+    $types = implode("\n", array_map(fn (FeedInterface $feed) => $feed->typeDefinitions(), $this->feeds));
+    return <<<GQL
+schema {
+  query: Query
+}
+
+type Change {
+  type: ChangeType!
+  id: String!
+}
+
+enum ChangeType {
+  Update
+  Delete
+}
+
+interface Translatable {
+  id: String!
+  translations: [Translation!]!
+}
+
+interface Translation {
+  langcode: String!
+}
+
+type Feed {
+  typeName: String!
+  translationTypeName: String
+  singleFieldName: String!
+  listFieldName: String!
+  changesFieldName: String
+}
+
+type Query {
+  drupalFeedInfo: [Feed!]!
+$fields
+}
+
+$types
+GQL;
   }
 
   protected function addFieldResolvers(ResolverRegistry $registry, ResolverBuilder $builder) {
@@ -38,56 +104,23 @@ class SilverbackGatsbySchema extends ComposableSchema {
       $registry->addFieldResolver($type, $field, $resolver);
     };
 
-    $loadEntity = fn(string $type, string $bundle) => $builder->produce('entity_load')
-      ->map('type', $builder->fromValue($type))
-      ->map('bundles', $builder->fromValue([$bundle]))
-      ->map('id', $builder->fromArgument('id'));
+    $addResolver('Query.drupalFeedInfo',
+      $builder->fromValue(array_map(fn (FeedInterface $feed) => $feed->info(), $this->feeds))
+    );
 
-    $listEntities = fn(string $type, string $bundle) => $builder->produce('list_entities')
-      ->map('type', $builder->fromValue($type))
-      ->map('bundle', $builder->fromValue($bundle))
-      ->map('offset', $builder->fromArgument('offset'))
-      ->map('limit', $builder->fromArgument('limit'));
+    foreach($this->feeds as $feed) {
+      $info = $feed->info();
+      $registry->addFieldResolver('Query', $info['singleFieldName'], $feed->resolveItem());
+      $registry->addFieldResolver('Query', $info['listFieldName'], $feed->resolveItems());
+      if ($info['changesFieldName'] && $feed->resolveChanges()) {
+        $registry->addFieldResolver('Query', $info['changesFieldName'], $feed->resolveChanges());
+      }
 
-    $entityChanges = fn(string $type, string $bundle) => $builder->produce('entity_changes')
-      ->map('type', $builder->fromValue($type))
-      ->map('bundle', $builder->fromValue($bundle))
-      ->map('since', $builder->fromArgument('since'))
-      ->map('ids', $builder->fromArgument('ids'));
-
-    $entityId = $builder->produce('entity_id')
-      ->map('entity', $builder->fromParent());
-
-    $entityTranslations = $builder->produce('entity_translations')
-      ->map('entity', $builder->fromParent());
-
-    // Resolvers.
-
-    $addResolver('Query.page', $loadEntity('node', 'page'));
-    $addResolver('Query.pages', $listEntities('node', 'page'));
-    $addResolver('Query.pageChanges', $entityChanges('node', 'page'));
-
-    $addResolver('Query.gutenbergPage', $loadEntity('node', 'gutenberg_page'));
-    $addResolver('Query.gutenbergPages', $listEntities('node', 'gutenberg_page'));
-    $addResolver('Query.gutenbergPageChanges', $entityChanges('node', 'gutenberg_page'));
-
-    $addResolver('Query.article', $loadEntity('node', 'article'));
-    $addResolver('Query.articles', $listEntities('node', 'article'));
-    $addResolver('Query.articleChanges', $entityChanges('node', 'article'));
-
-    $addResolver('Page.id', $entityId);
-    $addResolver('Page.translations', $entityTranslations);
-
-    $addResolver('GutenbergPage.id', $entityId);
-    $addResolver('GutenbergPage.translations', $entityTranslations);
-
-    $addResolver('Article.id', $entityId);
-    $addResolver('Article.translations', $entityTranslations);
-  }
-
-  protected function addTypeResolvers(ResolverRegistry $registry) {
-    $registry->addTypeResolver('RootBlock', fn($value) => $value['__type']);
-    $registry->addTypeResolver('ContentBlock', fn($value) => $value['__type']);
+      $registry->addFieldResolver($info['typeName'], 'id', $feed->resolveId());
+      if ($info['translationTypeName'] && $feed->resolveTranslations()) {
+        $registry->addFieldResolver($info['typeName'], 'translations', $feed->resolveTranslations());
+      }
+    }
   }
 
 }
