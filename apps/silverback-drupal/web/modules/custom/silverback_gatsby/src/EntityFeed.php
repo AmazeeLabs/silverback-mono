@@ -3,6 +3,8 @@
 namespace Drupal\silverback_gatsby;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Entity\TranslatableInterface;
+use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerProxy;
 
@@ -63,6 +65,12 @@ class EntityFeed extends FeedBase {
   public function resolveId(): DataProducerProxy {
     return $this->builder->produce('entity_id')
       ->map('entity', $this->builder->fromParent());
+  }
+
+  public function resolveLangcode(): ResolverInterface {
+    return $this->builder->callback(
+      fn(TranslatableInterface $value) => $value->language()->getId()
+    );
   }
 
   public function resolveTranslations(): DataProducerProxy {

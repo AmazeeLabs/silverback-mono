@@ -106,22 +106,19 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
     $gutenberg = $builder->produce('gutenberg')
       ->map('entity', $builder->fromParent());
 
-    $addResolver('PageTranslation.langcode', $entityLangcode);
-    $addResolver('PageTranslation.path', $nodePath);
-    $addResolver('PageTranslation.title', $entityLabel);
-    $addResolver('PageTranslation.body', $fromPath('entity:node:page', 'field_body.0.processed'));
+    $addResolver('Page.path', $nodePath);
+    $addResolver('Page.title', $entityLabel);
+    $addResolver('Page.body', $fromPath('entity:node:page', 'field_body.0.processed'));
 
-    $addResolver('GutenbergPageTranslation.langcode', $entityLangcode);
-    $addResolver('GutenbergPageTranslation.path', $nodePath);
-    $addResolver('GutenbergPageTranslation.title', $entityLabel);
-    $addResolver('GutenbergPageTranslation.body', $gutenberg);
+    $addResolver('GutenbergPage.path', $nodePath);
+    $addResolver('GutenbergPage.title', $entityLabel);
+    $addResolver('GutenbergPage.body', $gutenberg);
 
-    $addResolver('ArticleTranslation.langcode', $entityLangcode);
-    $addResolver('ArticleTranslation.path', $nodePath);
-    $addResolver('ArticleTranslation.title', $entityLabel);
-    $addResolver('ArticleTranslation.body', $fromPath('entity:node:article', 'field_body.0.processed'));
-    $addResolver('ArticleTranslation.tags', $entityReferences('field_tags'));
-    $addResolver('ArticleTranslation.image', $firstEntityReference('field_image'));
+    $addResolver('Article.path', $nodePath);
+    $addResolver('Article.title', $entityLabel);
+    $addResolver('Article.body', $fromPath('entity:node:article', 'field_body.0.processed'));
+    $addResolver('Article.tags', $entityReferences('field_tags'));
+    $addResolver('Article.image', $firstEntityReference('field_image'));
 
     $addResolver('Image.alt', $fromPath('entity:media:image', 'field_media_image.0.alt'));
     $addResolver('Image.url', $imageUrl);

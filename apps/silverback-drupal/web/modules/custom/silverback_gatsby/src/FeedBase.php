@@ -17,8 +17,8 @@ abstract class FeedBase implements FeedInterface {
     return $this->typeName;
   }
 
-  protected function getTranslationTypeName() {
-    return $this->translatable ? $this->getTypeName() . 'Translation' : null;
+  protected function getTranslationsTypeName() {
+    return $this->translatable ? $this->getTypeName() . 'Translations' : null;
   }
 
   protected function getSingleFieldName() {
@@ -36,7 +36,7 @@ abstract class FeedBase implements FeedInterface {
   public function info(): array {
     return [
       'typeName' => $this->typeName,
-      'translationTypeName' => $this->getTranslationTypeName(),
+      'translationsTypeName' => $this->getTranslationsTypeName(),
       'singleFieldName' => $this->getSingleFieldName(),
       'listFieldName' => $this->getListFieldName(),
       'changesFieldName' => $this->getChangesFieldName(),
@@ -44,7 +44,7 @@ abstract class FeedBase implements FeedInterface {
   }
 
   public function queryFieldDefinitions(): string {
-    $typeName = $this->getTypeName();
+    $typeName = $this->getTranslationsTypeName() ?: $this->getTypeName();
     $singleFieldName = $this->getSingleFieldName();
     $listFieldName = $this->getListFieldName();
     $schema = [
@@ -63,12 +63,12 @@ abstract class FeedBase implements FeedInterface {
 
     $schema =  [];
 
-    if ($translationTypeName = $this->getTranslationTypeName()) {
-      $schema[] = "extend type $typeName implements Translatable {";
+    if ($translationsTypeName = $this->getTranslationsTypeName()) {
+      $schema[] = "type $translationsTypeName implements Translatable {";
       $schema[] = "  id: String!";
-      $schema[] = "  translations: [$translationTypeName!]!";
+      $schema[] = "  translations: [$typeName!]!";
       $schema[] = "}";
-      $schema[] = "extend type $translationTypeName implements Translation { langcode: String! }";
+      $schema[] = "extend type $typeName implements Translation { langcode: String! }";
     }
     else {
       $schema[] = "extend type $typeName { id: String! }";

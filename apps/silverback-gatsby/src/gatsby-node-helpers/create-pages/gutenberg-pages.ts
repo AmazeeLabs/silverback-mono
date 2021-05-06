@@ -9,7 +9,7 @@ export const createGutenbergPages: Required<GatsbyNode>['createPages'] = async (
 }) => {
   const { data, errors } = await graphql<AllGutenbergPagesQuery>(`
     query AllGutenbergPages {
-      allDrupalGutenbergPage {
+      allDrupalGutenbergPageTranslations {
         nodes {
           id
           translations {
@@ -80,7 +80,7 @@ export const createGutenbergPages: Required<GatsbyNode>['createPages'] = async (
     console.error('errors', errors);
     throw new Error('Cannot fetch Gutenberg pages from Gatsby.');
   }
-  data.allDrupalGutenbergPage.nodes.forEach((page) =>
+  data.allDrupalGutenbergPageTranslations.nodes.forEach((page) =>
     page.translations.forEach((translation) => {
       const context: GutenbergPageContext = {
         page: translation,

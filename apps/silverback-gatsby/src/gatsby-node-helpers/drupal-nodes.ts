@@ -15,7 +15,7 @@ export const drupalNodes = async (): Promise<Array<DrupalNode>> => {
     query DrupalFeedInfo {
       drupalFeedInfo {
         typeName
-        translationTypeName
+        translationsTypeName
         singleFieldName
         listFieldName
         changesFieldName
@@ -30,7 +30,7 @@ export const drupalNodes = async (): Promise<Array<DrupalNode>> => {
         multiple: info.listFieldName,
         changes: info.changesFieldName,
         single: info.singleFieldName,
-        type: info.typeName,
+        type: info.translationsTypeName || info.typeName,
       } as DrupalNode),
   );
 };

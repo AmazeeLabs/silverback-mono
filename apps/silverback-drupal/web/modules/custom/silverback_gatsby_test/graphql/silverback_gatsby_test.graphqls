@@ -12,25 +12,19 @@ type Tag {
   title: String!
 }
 
-type Page
-
-type PageTranslation {
+type Page {
   path: String!
   title: String!
   body: String
 }
 
-type GutenbergPage
-
-type GutenbergPageTranslation {
+type GutenbergPage {
   path: String!
   title: String!
   body: [RootBlock!]!
 }
 
-type Article
-
-type ArticleTranslation {
+type Article {
   path: String!
   title: String!
   body: String

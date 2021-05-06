@@ -9,12 +9,12 @@ import { Row } from '../util/Row';
 
 const IndexPage: React.FC<PageProps> = () => {
   const {
-    drupalPage: somePage,
-    allDrupalArticle: { nodes: articles },
-    allDrupalGutenbergPage: { nodes: gutenbergPages },
+    drupalPageTranslations: somePage,
+    allDrupalArticleTranslations: { nodes: articles },
+    allDrupalGutenbergPageTranslations: { nodes: gutenbergPages },
   } = useStaticQuery<IndexPageQuery>(graphql`
     query IndexPage {
-      drupalPage {
+      drupalPageTranslations {
         id
         translations {
           langcode
@@ -29,7 +29,7 @@ const IndexPage: React.FC<PageProps> = () => {
           }
         }
       }
-      allDrupalArticle {
+      allDrupalArticleTranslations {
         nodes {
           id
           translations {
@@ -42,7 +42,7 @@ const IndexPage: React.FC<PageProps> = () => {
           }
         }
       }
-      allDrupalGutenbergPage {
+      allDrupalGutenbergPageTranslations {
         nodes {
           id
           translations {
