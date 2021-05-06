@@ -22,15 +22,15 @@ abstract class FeedBase implements FeedInterface {
   }
 
   protected function getSingleFieldName() {
-    return implode('__', array_filter([$this->id()]));
+    return 'load' . $this->typeName;
   }
 
   protected function getListFieldName() {
-    return implode('__', array_filter([$this->id(), 'list']));
+    return 'query' . $this->typeName . 's';
   }
 
   protected function getChangesFieldName() {
-    return $this->diffable ? implode('__', array_filter([$this->id(), 'changes'])) : null;
+    return 'diff' . $this->typeName . 's';
   }
 
   public function info(): array {
