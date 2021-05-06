@@ -73,9 +73,10 @@ GQL;
         $registry->addFieldResolver('Query', $info['changesFieldName'], $feed->resolveChanges());
       }
 
-      $registry->addFieldResolver($info['typeName'], 'id', $feed->resolveId());
-      if ($info['translationTypeName'] && $feed->resolveTranslations()) {
-        $registry->addFieldResolver($info['typeName'], 'translations', $feed->resolveTranslations());
+      $registry->addFieldResolver($info['translationsTypeName'] ?: $info['typeName'], 'id', $feed->resolveId());
+      if ($info['translationsTypeName'] && $feed->resolveTranslations()) {
+        $registry->addFieldResolver($info['typeName'], 'langcode', $feed->resolveLangcode());
+        $registry->addFieldResolver($info['translationsTypeName'], 'translations', $feed->resolveTranslations());
       }
     }
   }

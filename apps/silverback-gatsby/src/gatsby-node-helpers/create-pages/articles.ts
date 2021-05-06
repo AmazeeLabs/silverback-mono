@@ -11,7 +11,7 @@ export const createArticlePages: Required<GatsbyNode>['createPages'] = async ({
   // Drupal.
   const { data, errors } = await graphql<AllArticlesQuery>(`
     query AllArticles {
-      allDrupalArticle {
+      allDrupalArticleTranslations {
         nodes {
           id
           translations {
@@ -57,7 +57,7 @@ export const createArticlePages: Required<GatsbyNode>['createPages'] = async ({
     console.error('errors', errors);
     throw new Error('Cannot fetch articles from Gatsby.');
   }
-  data.allDrupalArticle.nodes.forEach((article) =>
+  data.allDrupalArticleTranslations.nodes.forEach((article) =>
     article.translations.forEach((translation) => {
       const context: ArticleContext = {
         article: translation,

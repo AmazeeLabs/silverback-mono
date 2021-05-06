@@ -41,12 +41,12 @@ export const plugins = [
     options: {
       configs: [
         {
-          nodeType: 'DrupalPage',
+          nodeType: 'DrupalPageTranslations',
           propertyPath: 'translations.body',
           baseUrl: process.env.DRUPAL_BASE_URL,
         },
         {
-          nodeType: 'DrupalArticle',
+          nodeType: 'DrupalArticleTranslations',
           propertyPath: 'translations.body',
           baseUrl: process.env.DRUPAL_BASE_URL,
         },

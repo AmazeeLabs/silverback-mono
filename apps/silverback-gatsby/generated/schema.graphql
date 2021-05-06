@@ -871,10 +871,10 @@ type ImageSharpResize {
   originalName: String
 }
 
-type DrupalPage implements Node {
+type DrupalPageTranslations implements Node {
   remoteTypeName: String!
   remoteId: String!
-  translations: [DrupalPageTranslation!]!
+  translations: [DrupalPage!]!
 
   """Returns all children nodes filtered by type ImagesFromHtml"""
   childrenImagesFromHtml: [ImagesFromHtml]
@@ -889,30 +889,30 @@ type DrupalPage implements Node {
   internal: Internal!
 }
 
-type DrupalPageTranslation {
+type DrupalPage {
   remoteTypeName: String!
-  langcode: String!
   path: String!
   title: String!
   body: String
+  langcode: String!
 }
 
-type DrupalGutenbergPage implements Node {
+type DrupalGutenbergPageTranslations implements Node {
   remoteTypeName: String!
   remoteId: String!
-  translations: [DrupalGutenbergPageTranslation!]!
+  translations: [DrupalGutenbergPage!]!
   id: ID!
   parent: Node
   children: [Node!]!
   internal: Internal!
 }
 
-type DrupalGutenbergPageTranslation {
+type DrupalGutenbergPage {
   remoteTypeName: String!
-  langcode: String!
   path: String!
   title: String!
   body: [DrupalRootBlock!]!
+  langcode: String!
 }
 
 union DrupalRootBlock = DrupalBlockTwoColumns | DrupalBlockHtml | DrupalBlockImage | DrupalBlockTeaser
@@ -956,10 +956,10 @@ type DrupalImage implements Node {
   localImage: File
 }
 
-type DrupalArticle implements Node {
+type DrupalArticleTranslations implements Node {
   remoteTypeName: String!
   remoteId: String!
-  translations: [DrupalArticleTranslation!]!
+  translations: [DrupalArticle!]!
 
   """Returns all children nodes filtered by type ImagesFromHtml"""
   childrenImagesFromHtml: [ImagesFromHtml]
@@ -974,14 +974,14 @@ type DrupalArticle implements Node {
   internal: Internal!
 }
 
-type DrupalArticleTranslation {
+type DrupalArticle {
   remoteTypeName: String!
-  langcode: String!
   path: String!
   title: String!
   body: String
   tags: [DrupalTag!]!
   image: DrupalImage
+  langcode: String!
 }
 
 type DrupalTag implements Node {
@@ -1097,14 +1097,14 @@ type Query {
   allImagesFromHtml(filter: ImagesFromHtmlFilterInput, sort: ImagesFromHtmlSortInput, skip: Int, limit: Int): ImagesFromHtmlConnection!
   imageSharp(fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: JSONQueryOperatorInput, original: ImageSharpOriginalFilterInput, resize: ImageSharpResizeFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImageSharp
   allImageSharp(filter: ImageSharpFilterInput, sort: ImageSharpSortInput, skip: Int, limit: Int): ImageSharpConnection!
-  drupalPage(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalPageTranslationFilterListInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalPage
-  allDrupalPage(filter: DrupalPageFilterInput, sort: DrupalPageSortInput, skip: Int, limit: Int): DrupalPageConnection!
-  drupalGutenbergPage(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalGutenbergPageTranslationFilterListInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalGutenbergPage
-  allDrupalGutenbergPage(filter: DrupalGutenbergPageFilterInput, sort: DrupalGutenbergPageSortInput, skip: Int, limit: Int): DrupalGutenbergPageConnection!
+  drupalPageTranslations(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalPageFilterListInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalPageTranslations
+  allDrupalPageTranslations(filter: DrupalPageTranslationsFilterInput, sort: DrupalPageTranslationsSortInput, skip: Int, limit: Int): DrupalPageTranslationsConnection!
+  drupalGutenbergPageTranslations(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalGutenbergPageFilterListInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalGutenbergPageTranslations
+  allDrupalGutenbergPageTranslations(filter: DrupalGutenbergPageTranslationsFilterInput, sort: DrupalGutenbergPageTranslationsSortInput, skip: Int, limit: Int): DrupalGutenbergPageTranslationsConnection!
   drupalImage(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, url: StringQueryOperatorInput, alt: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalImage
   allDrupalImage(filter: DrupalImageFilterInput, sort: DrupalImageSortInput, skip: Int, limit: Int): DrupalImageConnection!
-  drupalArticle(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalArticleTranslationFilterListInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalArticle
-  allDrupalArticle(filter: DrupalArticleFilterInput, sort: DrupalArticleSortInput, skip: Int, limit: Int): DrupalArticleConnection!
+  drupalArticleTranslations(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalArticleFilterListInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalArticleTranslations
+  allDrupalArticleTranslations(filter: DrupalArticleTranslationsFilterInput, sort: DrupalArticleTranslationsSortInput, skip: Int, limit: Int): DrupalArticleTranslationsConnection!
   drupalTag(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, title: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalTag
   allDrupalTag(filter: DrupalTagFilterInput, sort: DrupalTagSortInput, skip: Int, limit: Int): DrupalTagConnection!
   siteBuildMetadata(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, buildTime: DateQueryOperatorInput): SiteBuildMetadata
@@ -2693,46 +2693,46 @@ input ImageSharpSortInput {
   order: [SortOrderEnum] = [ASC]
 }
 
-input DrupalPageTranslationFilterListInput {
-  elemMatch: DrupalPageTranslationFilterInput
+input DrupalPageFilterListInput {
+  elemMatch: DrupalPageFilterInput
 }
 
-input DrupalPageTranslationFilterInput {
+input DrupalPageFilterInput {
   remoteTypeName: StringQueryOperatorInput
-  langcode: StringQueryOperatorInput
   path: StringQueryOperatorInput
   title: StringQueryOperatorInput
   body: StringQueryOperatorInput
+  langcode: StringQueryOperatorInput
 }
 
 input ImagesFromHtmlFilterListInput {
   elemMatch: ImagesFromHtmlFilterInput
 }
 
-type DrupalPageConnection {
+type DrupalPageTranslationsConnection {
   totalCount: Int!
-  edges: [DrupalPageEdge!]!
-  nodes: [DrupalPage!]!
+  edges: [DrupalPageTranslationsEdge!]!
+  nodes: [DrupalPageTranslations!]!
   pageInfo: PageInfo!
-  distinct(field: DrupalPageFieldsEnum!): [String!]!
-  group(skip: Int, limit: Int, field: DrupalPageFieldsEnum!): [DrupalPageGroupConnection!]!
+  distinct(field: DrupalPageTranslationsFieldsEnum!): [String!]!
+  group(skip: Int, limit: Int, field: DrupalPageTranslationsFieldsEnum!): [DrupalPageTranslationsGroupConnection!]!
 }
 
-type DrupalPageEdge {
-  next: DrupalPage
-  node: DrupalPage!
-  previous: DrupalPage
+type DrupalPageTranslationsEdge {
+  next: DrupalPageTranslations
+  node: DrupalPageTranslations!
+  previous: DrupalPageTranslations
 }
 
-enum DrupalPageFieldsEnum {
+enum DrupalPageTranslationsFieldsEnum {
   remoteTypeName
   remoteId
   translations
   translations___remoteTypeName
-  translations___langcode
   translations___path
   translations___title
   translations___body
+  translations___langcode
   childrenImagesFromHtml
   childrenImagesFromHtml___urlOriginal
   childrenImagesFromHtml___urlAbsolute
@@ -2902,19 +2902,19 @@ enum DrupalPageFieldsEnum {
   internal___type
 }
 
-type DrupalPageGroupConnection {
+type DrupalPageTranslationsGroupConnection {
   totalCount: Int!
-  edges: [DrupalPageEdge!]!
-  nodes: [DrupalPage!]!
+  edges: [DrupalPageTranslationsEdge!]!
+  nodes: [DrupalPageTranslations!]!
   pageInfo: PageInfo!
   field: String!
   fieldValue: String
 }
 
-input DrupalPageFilterInput {
+input DrupalPageTranslationsFilterInput {
   remoteTypeName: StringQueryOperatorInput
   remoteId: StringQueryOperatorInput
-  translations: DrupalPageTranslationFilterListInput
+  translations: DrupalPageFilterListInput
   childrenImagesFromHtml: ImagesFromHtmlFilterListInput
   childImagesFromHtml: ImagesFromHtmlFilterInput
   id: StringQueryOperatorInput
@@ -2923,45 +2923,45 @@ input DrupalPageFilterInput {
   internal: InternalFilterInput
 }
 
-input DrupalPageSortInput {
-  fields: [DrupalPageFieldsEnum]
+input DrupalPageTranslationsSortInput {
+  fields: [DrupalPageTranslationsFieldsEnum]
   order: [SortOrderEnum] = [ASC]
 }
 
-input DrupalGutenbergPageTranslationFilterListInput {
-  elemMatch: DrupalGutenbergPageTranslationFilterInput
+input DrupalGutenbergPageFilterListInput {
+  elemMatch: DrupalGutenbergPageFilterInput
 }
 
-input DrupalGutenbergPageTranslationFilterInput {
+input DrupalGutenbergPageFilterInput {
   remoteTypeName: StringQueryOperatorInput
-  langcode: StringQueryOperatorInput
   path: StringQueryOperatorInput
   title: StringQueryOperatorInput
+  langcode: StringQueryOperatorInput
 }
 
-type DrupalGutenbergPageConnection {
+type DrupalGutenbergPageTranslationsConnection {
   totalCount: Int!
-  edges: [DrupalGutenbergPageEdge!]!
-  nodes: [DrupalGutenbergPage!]!
+  edges: [DrupalGutenbergPageTranslationsEdge!]!
+  nodes: [DrupalGutenbergPageTranslations!]!
   pageInfo: PageInfo!
-  distinct(field: DrupalGutenbergPageFieldsEnum!): [String!]!
-  group(skip: Int, limit: Int, field: DrupalGutenbergPageFieldsEnum!): [DrupalGutenbergPageGroupConnection!]!
+  distinct(field: DrupalGutenbergPageTranslationsFieldsEnum!): [String!]!
+  group(skip: Int, limit: Int, field: DrupalGutenbergPageTranslationsFieldsEnum!): [DrupalGutenbergPageTranslationsGroupConnection!]!
 }
 
-type DrupalGutenbergPageEdge {
-  next: DrupalGutenbergPage
-  node: DrupalGutenbergPage!
-  previous: DrupalGutenbergPage
+type DrupalGutenbergPageTranslationsEdge {
+  next: DrupalGutenbergPageTranslations
+  node: DrupalGutenbergPageTranslations!
+  previous: DrupalGutenbergPageTranslations
 }
 
-enum DrupalGutenbergPageFieldsEnum {
+enum DrupalGutenbergPageTranslationsFieldsEnum {
   remoteTypeName
   remoteId
   translations
   translations___remoteTypeName
-  translations___langcode
   translations___path
   translations___title
+  translations___langcode
   id
   parent___id
   parent___parent___id
@@ -3050,27 +3050,27 @@ enum DrupalGutenbergPageFieldsEnum {
   internal___type
 }
 
-type DrupalGutenbergPageGroupConnection {
+type DrupalGutenbergPageTranslationsGroupConnection {
   totalCount: Int!
-  edges: [DrupalGutenbergPageEdge!]!
-  nodes: [DrupalGutenbergPage!]!
+  edges: [DrupalGutenbergPageTranslationsEdge!]!
+  nodes: [DrupalGutenbergPageTranslations!]!
   pageInfo: PageInfo!
   field: String!
   fieldValue: String
 }
 
-input DrupalGutenbergPageFilterInput {
+input DrupalGutenbergPageTranslationsFilterInput {
   remoteTypeName: StringQueryOperatorInput
   remoteId: StringQueryOperatorInput
-  translations: DrupalGutenbergPageTranslationFilterListInput
+  translations: DrupalGutenbergPageFilterListInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
   children: NodeFilterListInput
   internal: InternalFilterInput
 }
 
-input DrupalGutenbergPageSortInput {
-  fields: [DrupalGutenbergPageFieldsEnum]
+input DrupalGutenbergPageTranslationsSortInput {
+  fields: [DrupalGutenbergPageTranslationsFieldsEnum]
   order: [SortOrderEnum] = [ASC]
 }
 
@@ -3207,18 +3207,18 @@ input DrupalImageSortInput {
   order: [SortOrderEnum] = [ASC]
 }
 
-input DrupalArticleTranslationFilterListInput {
-  elemMatch: DrupalArticleTranslationFilterInput
+input DrupalArticleFilterListInput {
+  elemMatch: DrupalArticleFilterInput
 }
 
-input DrupalArticleTranslationFilterInput {
+input DrupalArticleFilterInput {
   remoteTypeName: StringQueryOperatorInput
-  langcode: StringQueryOperatorInput
   path: StringQueryOperatorInput
   title: StringQueryOperatorInput
   body: StringQueryOperatorInput
   tags: DrupalTagFilterListInput
   image: DrupalImageFilterInput
+  langcode: StringQueryOperatorInput
 }
 
 input DrupalTagFilterListInput {
@@ -3235,27 +3235,26 @@ input DrupalTagFilterInput {
   internal: InternalFilterInput
 }
 
-type DrupalArticleConnection {
+type DrupalArticleTranslationsConnection {
   totalCount: Int!
-  edges: [DrupalArticleEdge!]!
-  nodes: [DrupalArticle!]!
+  edges: [DrupalArticleTranslationsEdge!]!
+  nodes: [DrupalArticleTranslations!]!
   pageInfo: PageInfo!
-  distinct(field: DrupalArticleFieldsEnum!): [String!]!
-  group(skip: Int, limit: Int, field: DrupalArticleFieldsEnum!): [DrupalArticleGroupConnection!]!
+  distinct(field: DrupalArticleTranslationsFieldsEnum!): [String!]!
+  group(skip: Int, limit: Int, field: DrupalArticleTranslationsFieldsEnum!): [DrupalArticleTranslationsGroupConnection!]!
 }
 
-type DrupalArticleEdge {
-  next: DrupalArticle
-  node: DrupalArticle!
-  previous: DrupalArticle
+type DrupalArticleTranslationsEdge {
+  next: DrupalArticleTranslations
+  node: DrupalArticleTranslations!
+  previous: DrupalArticleTranslations
 }
 
-enum DrupalArticleFieldsEnum {
+enum DrupalArticleTranslationsFieldsEnum {
   remoteTypeName
   remoteId
   translations
   translations___remoteTypeName
-  translations___langcode
   translations___path
   translations___title
   translations___body
@@ -3295,6 +3294,7 @@ enum DrupalArticleFieldsEnum {
   translations___image___internal___mediaType
   translations___image___internal___owner
   translations___image___internal___type
+  translations___langcode
   childrenImagesFromHtml
   childrenImagesFromHtml___urlOriginal
   childrenImagesFromHtml___urlAbsolute
@@ -3464,19 +3464,19 @@ enum DrupalArticleFieldsEnum {
   internal___type
 }
 
-type DrupalArticleGroupConnection {
+type DrupalArticleTranslationsGroupConnection {
   totalCount: Int!
-  edges: [DrupalArticleEdge!]!
-  nodes: [DrupalArticle!]!
+  edges: [DrupalArticleTranslationsEdge!]!
+  nodes: [DrupalArticleTranslations!]!
   pageInfo: PageInfo!
   field: String!
   fieldValue: String
 }
 
-input DrupalArticleFilterInput {
+input DrupalArticleTranslationsFilterInput {
   remoteTypeName: StringQueryOperatorInput
   remoteId: StringQueryOperatorInput
-  translations: DrupalArticleTranslationFilterListInput
+  translations: DrupalArticleFilterListInput
   childrenImagesFromHtml: ImagesFromHtmlFilterListInput
   childImagesFromHtml: ImagesFromHtmlFilterInput
   id: StringQueryOperatorInput
@@ -3485,8 +3485,8 @@ input DrupalArticleFilterInput {
   internal: InternalFilterInput
 }
 
-input DrupalArticleSortInput {
-  fields: [DrupalArticleFieldsEnum]
+input DrupalArticleTranslationsSortInput {
+  fields: [DrupalArticleTranslationsFieldsEnum]
   order: [SortOrderEnum] = [ASC]
 }
 

@@ -19,7 +19,7 @@ interface Translation {
 
 type Feed {
   typeName: String!
-  translationTypeName: String
+  translationsTypeName: String
   singleFieldName: String!
   listFieldName: String!
   changesFieldName: String

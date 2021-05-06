@@ -2,6 +2,7 @@
 
 namespace Drupal\silverback_gatsby;
 
+use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerProxy;
 
 /**
@@ -19,6 +20,7 @@ interface FeedInterface {
   public function typeDefinitions() : string;
 
   public function resolveId() : DataProducerProxy;
+  public function resolveLangcode() : ResolverInterface;
   public function resolveTranslations() : DataProducerProxy;
   public function resolveItems() : DataProducerProxy;
   public function resolveItem() : DataProducerProxy;
