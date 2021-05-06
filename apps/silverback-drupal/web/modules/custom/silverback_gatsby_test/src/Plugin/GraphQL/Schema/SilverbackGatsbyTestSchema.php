@@ -1,16 +1,14 @@
 <?php
 namespace Drupal\silverback_gatsby_test\Plugin\GraphQL\Schema;
-use Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
-use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\Url;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
-use Drupal\graphql\Plugin\GraphQL\Schema\ComposableSchema;
 use Drupal\node\NodeInterface;
+use Drupal\silverback_gatsby\GraphQL\ComposableSchema;
 
 /**
  * @Schema(
@@ -23,39 +21,7 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
   public function getResolverRegistry(): ResolverRegistryInterface {
     $builder = new ResolverBuilder();
     $registry = new ResolverRegistry();
-    $this->registerResolvers($registry, $builder);
-    return $registry;
-  }
 
-  /**
-   * Retrieves the raw schema definition string.
-   *
-   * @return string
-   *   The schema definition.
-   *
-   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
-   */
-  protected function getSchemaDefinition() {
-    $id = $this->getPluginId();
-    $definition = $this->getPluginDefinition();
-    $module = $this->moduleHandler->getModule($definition['provider']);
-    $path = 'graphql/' . $id . '.graphqls';
-    $file = $module->getPath() . '/' . $path;
-
-    if (!file_exists($file)) {
-      throw new InvalidPluginDefinitionException(
-        $id,
-        sprintf(
-          'The module "%s" needs to have a schema definition "%s" in its folder for "%s" to be valid.',
-          $module->getName(), $path, $definition['class']));
-    }
-
-    return file_get_contents($file) ?: NULL;
-  }
-
-
-  public function registerResolvers(ResolverRegistryInterface $registry, ResolverBuilder $builder) {
-    // TODO: Implement registerResolvers() method.
     $addResolver = function(string $path, ResolverInterface $resolver) use ($registry) {
       [$type, $field] = explode('.', $path);
       $registry->addFieldResolver($type, $field, $resolver);
@@ -63,10 +29,6 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
 
     $registry->addTypeResolver('RootBlock', fn($value) => $value['__type']);
     $registry->addTypeResolver('ContentBlock', fn($value) => $value['__type']);
-
-    $entityLangcode = $builder->callback(
-      fn(TranslatableInterface $value) => $value->language()->getId()
-    );
 
     $entityLabel = $builder->callback(fn(EntityInterface $value) => $value->label());
 
@@ -124,6 +86,7 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
     $addResolver('Image.url', $imageUrl);
 
     $addResolver('Tag.title', $entityLabel);
-  }
 
+    return $registry;
+  }
 }

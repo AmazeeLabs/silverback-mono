@@ -1,14 +1,56 @@
 <?php
 
-namespace Drupal\silverback_gatsby;
+namespace Drupal\silverback_gatsby\Plugin;
 
-abstract class FeedBase implements FeedInterface {
+use Drupal\Component\Plugin\PluginBase;
+use Drupal\graphql\GraphQL\ResolverBuilder;
+
+/**
+ * Base class for Gatsby Data feeds.
+ */
+abstract class FeedBase extends PluginBase implements FeedInterface {
+
+  /**
+   * The GraphQL type this feed generates.
+   *
+   * @var string|mixed
+   */
   protected string $typeName;
+
+  /**
+   * Indicates if this feed is translatable.
+   *
+   * @var bool
+   */
   protected bool $translatable;
+
+  /**
+   * Indicates if this feed is diffable.
+   *
+   * @var bool
+   */
   protected bool $diffable;
 
-  public function __construct($typeName, $translatable, $diffable) {
-    $this->typeName = $typeName;
+  /**
+   * Instance of a ResolverBuilder.
+   *
+   * @var \Drupal\graphql\GraphQL\ResolverBuilder
+   */
+  protected ResolverBuilder $builder;
+
+  /**
+   * FeedBase constructor.
+   *
+   * @param $config
+   * @param $plugin_id
+   * @param $plugin_definition
+   * @param $diffable
+   * @param $translatable
+   */
+  public function __construct($config, $plugin_id, $plugin_definition, $diffable, $translatable) {
+    parent::__construct($config, $plugin_id, $plugin_definition);
+    $this->builder = new ResolverBuilder();
+    $this->typeName = $config['typeName'];
     $this->diffable = $diffable;
     $this->translatable = $translatable;
   }
@@ -43,25 +85,25 @@ abstract class FeedBase implements FeedInterface {
     ];
   }
 
-  public function queryFieldDefinitions(): string {
-    $typeName = $this->getTranslationsTypeName() ?: $this->getTypeName();
+  /**
+   * {@inheritDoc}
+   */
+  public function getSchemaDefinitions() : string{
+    $typeName = $this->typeName;
     $singleFieldName = $this->getSingleFieldName();
     $listFieldName = $this->getListFieldName();
+    $returnTypeName = $this->getTranslationsTypeName() ?: $typeName;
     $schema = [
-      "  $singleFieldName(id: String!): $typeName",
-      "  $listFieldName(offset: Int!, limit: Int!): [$typeName!]!",
+      "extend type Query {",
+      "  $singleFieldName(id: String!): $returnTypeName",
+      "  $listFieldName(offset: Int!, limit: Int!): [$returnTypeName!]!",
     ];
 
     if ($changesFieldName = $this->getChangesFieldName()) {
-      $schema[] = " $changesFieldName(since: Int!, ids: [String!]!): [Change!]!";
+      $schema[] = "  $changesFieldName(since: Int!, ids: [String!]!): [Change!]!";
     }
-    return implode("\n", $schema);
-  }
 
-  public function typeDefinitions(): string {
-    $typeName = $this->typeName;
-
-    $schema =  [];
+    $schema [] = "}";
 
     if ($translationsTypeName = $this->getTranslationsTypeName()) {
       $schema[] = "type $translationsTypeName implements Translatable {";
@@ -73,7 +115,6 @@ abstract class FeedBase implements FeedInterface {
     else {
       $schema[] = "extend type $typeName { id: String! }";
     }
-
     return implode("\n", $schema);
   }
 }
