@@ -1,14 +1,14 @@
-uuid: c929c24f-cb75-4963-a47b-4fbc21ce15a7
+uuid: 1f021eaf-405b-4e82-b80b-add6481a6c15
 langcode: en
 status: true
 dependencies: {  }
 name: silverback_gatsby
 label: 'Silverback Gatsby'
-schema: silverback_gatsby
+schema: silverback_gatsby_test
 schema_configuration:
-  silverback_gatsby:
+  silverback_gatsby_test:
     extensions:
-      silverback_gatsby_test: silverback_gatsby_test
+      silverback_gatsby: silverback_gatsby
 persisted_queries_settings: {  }
 endpoint: /silverback-gatsby
 debug_flag: 15
