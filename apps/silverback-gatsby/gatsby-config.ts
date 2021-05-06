@@ -22,6 +22,7 @@ export const plugins = [
       path: './src/images',
     },
   },
+  '@amazeelabs/gatsby-source-silverback',
   '@amazeelabs/gatsby-theme-core',
   ...(process.env.SCHEMA_UPDATE === 'true'
     ? ['gatsby-plugin-schema-export']
