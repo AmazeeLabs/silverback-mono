@@ -1,13 +1,21 @@
 # Add storybook UI and Tailwind
 
+This recipe will create the necessary structure and configuration to be able to
+use storybook with the latest tailwind version.
+
 ## Project setup
 
-Create a folders structure to contain the UI
+This recipe has to be run from the root folder of a mono-repository created with
+`amazee-recipes create-monorepo`.
 
 ```typescript
 // Pick project name from package.json.
 const { name: projectName } = $$.file('package.json');
+```
 
+Create a folders structure to contain the UI
+
+```typescript
 $$(`mkdir -p packages/${projectName}/ui`);
 $$.chdir(`packages/${projectName}/ui`);
 ```
