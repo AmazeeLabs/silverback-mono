@@ -16,8 +16,8 @@ const { name: projectName } = $$.file('package.json');
 Create a folders structure to contain the UI
 
 ```typescript
-$$(`mkdir -p packages/${projectName}/ui`);
-$$.chdir(`packages/${projectName}/ui`);
+$$(`mkdir -p packages/@${projectName}/ui`);
+$$.chdir(`packages/@${projectName}/ui`);
 ```
 
 Initialize the Ui project folder with yarn
