@@ -33,7 +33,7 @@ Add the project namespace
 // add the project namespace
 $$.file('package.json', (json) => ({
   ...json,
-  name: `${projectName}-ui`,
+  name: `@${projectName}/ui`,
   description: `Design system for ${projectName.toUpperCase()}`,
 }));
 ```
