@@ -20,8 +20,12 @@ yarn add ../
 # Run the initial scaffold to install dotfiles and scripts.
 yarn amazee-scaffold
 
+# Create one typescript file so tsc has something to check.
+mkdir src
+echo "console.log('test');" > src/index.ts;
+
 # Commit the initial package
-git add package.json yarn.lock .gitignore tsconfig.json
+git add package.json yarn.lock .gitignore tsconfig.json src
 git commit -m "initial commit"
 
 if [[ -n "$(git status --porcelain)" ]]; then
