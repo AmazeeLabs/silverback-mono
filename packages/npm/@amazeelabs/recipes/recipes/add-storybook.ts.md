@@ -125,6 +125,7 @@ Update tailwind.config.js
 ```typescript
 # |-> tailwind.config.js
 module.exports = {
+  mode: 'jit',
   purge: ['./src/**/*.tsx'],
   darkMode: false,
   theme: {
