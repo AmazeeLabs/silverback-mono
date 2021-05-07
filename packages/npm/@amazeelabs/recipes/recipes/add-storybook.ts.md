@@ -207,7 +207,7 @@ $$.chdir(`layouts`);
 
 ```typescript
 # |-> StandardLayout.tsx
-import React, {PropsWithChildren} from 'react';
+import React, { PropsWithChildren } from 'react';
 
 type Props = PropsWithChildren<{}>;
 
