@@ -3,6 +3,8 @@ import mock from 'mock-fs';
 
 import { manageIgnoredFiles } from '../gitignore';
 
+afterEach(mock.restore);
+
 describe('manageGitIgnore', () => {
   it('creates a .gitignore file if it does not exist', () => {
     mock({
