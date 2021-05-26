@@ -62,7 +62,7 @@ jobs:
         run: yarn install
 
       - name: Run all tests
-        run: yarn lerna run test --stream --concurrency=1
+        run: yarn test-all
 
       - name: Check for uncommitted changes
         run: |
