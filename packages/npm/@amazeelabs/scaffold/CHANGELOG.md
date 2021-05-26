@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.2.2...@amazeelabs/scaffold@1.2.3) (2021-05-26)
+
+
+### Bug Fixes
+
+* add forgotten mock.restore ([cb96459](https://github.com/AmazeeLabs/silverback-mono/commit/cb964591e92afd6ae35da7a820f89377841c9cc3))
+
+
+
+
+
 ## [1.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.2.1...@amazeelabs/scaffold@1.2.2) (2021-05-03)
 
 
