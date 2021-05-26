@@ -1,6 +1,6 @@
 {
   "private": true,
   "dependencies": {
-    "@wordpress/block-serialization-default-parser": "^3.9.0"
+    "@wordpress/block-serialization-default-parser": "^4.0.0"
   }
 }
