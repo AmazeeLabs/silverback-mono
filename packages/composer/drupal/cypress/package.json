@@ -1,6 +1,6 @@
 {
   "name": "@-drupal/cypress",
-  "version": "2.3.7",
+  "version": "2.3.8",
   "description": "Cypress E2E testing for Drupal.",
   "scripts": {
     "test": "cd ../../../../apps/silverback-drupal && composer install && vendor/bin/phpstan analyse --configuration=web/modules/contrib/cypress/phpstan.neon"
@@ -16,8 +16,8 @@
     "cypress": "^7.0.0",
     "cypress-cucumber-preprocessor": "^4.0.0",
     "cypress-file-upload": "^5.0.0",
-    "cypress-screenplay": "^0.5.1",
-    "drupal-test-session-cypress": "^1.1.4"
+    "cypress-screenplay": "^0.5.2",
+    "drupal-test-session-cypress": "^1.1.5"
   },
   "author": "",
   "license": "ISC"
