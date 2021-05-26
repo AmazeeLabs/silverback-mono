@@ -20,6 +20,17 @@
       updateTypes: ["major", "minor", "patch", "digest"],
       automerge: true,
     },
+    {
+      paths: ["apps/silverback-gatsby/package.json"],
+      // These modules were converted to pure ESM modules recently.
+      // TODO: Find a good way to load ESM modules.
+      packageNames: [
+        "p-queue",
+        "strip-ansi",
+      ],
+      updateTypes: ["major"],
+      enabled: false,
+    }
   ],
   rangeStrategy: "replace",
   groupName: "all",
