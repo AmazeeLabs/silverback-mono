@@ -30,6 +30,11 @@
       ],
       updateTypes: ["major"],
       enabled: false,
+    },
+    {
+      // We want to manage the node version manually.
+      paths: [".nvmrc"],
+      enabled: false,
     }
   ],
   rangeStrategy: "replace",
