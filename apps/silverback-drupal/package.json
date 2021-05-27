@@ -1,6 +1,6 @@
 {
   "name": "@-amazeelabs/silverback-drupal",
-  "version": "1.2.26",
+  "version": "1.2.27",
   "license": "MIT",
   "private": true,
   "scripts": {

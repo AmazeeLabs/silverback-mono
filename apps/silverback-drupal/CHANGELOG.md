@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.27](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.2.26...@-amazeelabs/silverback-drupal@1.2.27) (2021-05-27)
+
+
+### Bug Fixes
+
+* **silverback-drupal:** don't try to install wordpress deps ([bdf1e62](https://github.com/AmazeeLabs/silverback-mono/commit/bdf1e623afc06bcc296e2fe2fd23479c4b74eeff))
+* **silverback-drupal:** update schema config ([95970dc](https://github.com/AmazeeLabs/silverback-mono/commit/95970dc99d8298a22de7dcca533d918560f39600))
+
+
+
+
+
 ## [1.2.26](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.2.25...@-amazeelabs/silverback-drupal@1.2.26) (2021-05-26)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
