@@ -4,6 +4,7 @@ namespace Drupal\silverback_gatsby\Plugin\Gatsby\Feed;
 
 use Drupal\content_translation\ContentTranslationManagerInterface;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\TranslatableInterface;
@@ -13,6 +14,7 @@ use Drupal\Core\TypedData\TypedData;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerProxy;
 use Drupal\silverback_gatsby\Annotation\GatsbyFeed;
+use Drupal\silverback_gatsby\GatsbyUpdate;
 use Drupal\silverback_gatsby\Plugin\FeedBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -39,6 +41,11 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
    */
   protected string $bundle;
 
+  /**
+   * @var \Drupal\content_translation\ContentTranslationManagerInterface
+   */
+  protected ContentTranslationManagerInterface $contentTranslationManager;
+
 
   /**
    * {@inheritDoc}
@@ -53,8 +60,7 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('content_translation.manager'),
-      $container->get('entity_field.manager')
+      $container->get('content_translation.manager')
     );
   }
 
@@ -65,31 +71,39 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
     $config,
     $plugin_id,
     $plugin_definition,
-    ContentTranslationManagerInterface $contentTranslationManager,
-    EntityFieldManagerInterface $entityFieldManager
+    ContentTranslationManagerInterface $contentTranslationManager
   ) {
     $type = $config['type'];
     $bundle = $config['bundle'];
     $this->type = $type;
     $this->bundle = $bundle;
+    $this->contentTranslationManager = $contentTranslationManager;
 
-    // Only entities with a "changed" field are diffable.
-    // TODO: Auto-extend entities to have a changed field?
-    $diffable = count(array_filter(
-      $entityFieldManager->getBaseFieldDefinitions($type),
-      function (FieldDefinitionInterface $definition) {
-        return $definition->getName() === 'changed';
-      })) > 0;
-
-    // Check if translation is enabled for this type.
-    $translatable = $contentTranslationManager->isEnabled($type, $bundle);
     parent::__construct(
       $config,
       $plugin_id,
-      $plugin_definition,
-      $diffable,
-      $translatable
+      $plugin_definition
     );
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function isTranslatable(): bool {
+    return $this->contentTranslationManager->isEnabled($this->type, $this->bundle);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function getUpdateId($context) {
+    if (
+      $context instanceof EntityInterface
+      && $context->getEntityTypeId() === $this->type
+      && $context->bundle() === $this->bundle
+    ) {
+      return $context->id();
+    }
   }
 
   /**
@@ -100,17 +114,6 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
       ->map('type', $this->builder->fromValue($this->type))
       ->map('bundles', $this->builder->fromValue([$this->bundle]))
       ->map('id', $this->builder->fromArgument('id'));
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  public function resolveChanges(): DataProducerProxy {
-    return $this->builder->produce('entity_changes')
-      ->map('type', $this->builder->fromValue($this->type))
-      ->map('bundle', $this->builder->fromValue($this->bundle))
-      ->map('since', $this->builder->fromArgument('since'))
-      ->map('ids', $this->builder->fromArgument('ids'));
   }
 
   /**

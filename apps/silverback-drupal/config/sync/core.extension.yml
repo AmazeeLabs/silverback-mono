@@ -41,7 +41,6 @@ module:
   user: 0
   content_translation: 10
   views: 10
-  gatsby: 100
   minimal: 1000
 theme:
   claro: 0

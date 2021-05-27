@@ -1,7 +1,7 @@
-name: Silverback Gatsby Schema
+name: Silverback Gatsby
 type: module
-description: 'GraphQL schema for silverback-gatsby app.'
-package: Custom
+description: 'GraphQL extension to integrate with Gatsby.'
+package: Silverback
 core: 8.x
 dependencies:
   - graphql:graphql (>=8.x-4.0)

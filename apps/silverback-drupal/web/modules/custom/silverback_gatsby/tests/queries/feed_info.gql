@@ -1,0 +1,9 @@
+query FeedInfo($lastBuild: Int, $currentBuild: Int) {
+  drupalBuildId
+  drupalFeedInfo {
+    typeName
+    singleFieldName
+    listFieldName
+    changes(lastBuild: $lastBuild, currentBuild: $currentBuild)
+  }
+}

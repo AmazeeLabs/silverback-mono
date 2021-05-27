@@ -3,7 +3,6 @@ import { createQueryExecutor } from './create-query-executor';
 interface DrupalNode {
   multiple: string;
   single: string;
-  changes: string;
   type: string;
 }
 
@@ -15,10 +14,8 @@ export const drupalNodes = async (): Promise<Array<DrupalNode>> => {
     query DrupalFeedInfo {
       drupalFeedInfo {
         typeName
-        translationsTypeName
         singleFieldName
         listFieldName
-        changesFieldName
       }
     }
     `,
@@ -28,9 +25,8 @@ export const drupalNodes = async (): Promise<Array<DrupalNode>> => {
     (info: any) =>
       ({
         multiple: info.listFieldName,
-        changes: info.changesFieldName,
         single: info.singleFieldName,
-        type: info.translationsTypeName || info.typeName,
+        type: info.typeName,
       } as DrupalNode),
   );
 };

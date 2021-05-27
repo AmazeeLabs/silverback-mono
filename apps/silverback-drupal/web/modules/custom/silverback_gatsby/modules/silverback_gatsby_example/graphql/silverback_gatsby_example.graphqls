@@ -1,0 +1,15 @@
+schema {
+  query: Query
+}
+
+type Query
+
+type Page @entity(type: "node", bundle: "page") {
+  path: String!
+  title: String!
+}
+
+type Post @entity(type: "node", bundle: "blog") {
+  path: String!
+  title: String!
+}

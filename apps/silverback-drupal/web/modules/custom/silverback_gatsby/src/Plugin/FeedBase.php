@@ -3,7 +3,9 @@
 namespace Drupal\silverback_gatsby\Plugin;
 
 use Drupal\Component\Plugin\PluginBase;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
+use Drupal\silverback_gatsby\GatsbyUpdate;
 
 /**
  * Base class for Gatsby Data feeds.
@@ -18,20 +20,6 @@ abstract class FeedBase extends PluginBase implements FeedInterface {
   protected string $typeName;
 
   /**
-   * Indicates if this feed is translatable.
-   *
-   * @var bool
-   */
-  protected bool $translatable;
-
-  /**
-   * Indicates if this feed is diffable.
-   *
-   * @var bool
-   */
-  protected bool $diffable;
-
-  /**
    * Instance of a ResolverBuilder.
    *
    * @var \Drupal\graphql\GraphQL\ResolverBuilder
@@ -44,45 +32,59 @@ abstract class FeedBase extends PluginBase implements FeedInterface {
    * @param $config
    * @param $plugin_id
    * @param $plugin_definition
-   * @param $diffable
-   * @param $translatable
    */
-  public function __construct($config, $plugin_id, $plugin_definition, $diffable, $translatable) {
+  public function __construct($config, $plugin_id, $plugin_definition) {
     parent::__construct($config, $plugin_id, $plugin_definition);
     $this->builder = new ResolverBuilder();
     $this->typeName = $config['typeName'];
-    $this->diffable = $diffable;
-    $this->translatable = $translatable;
   }
 
-  protected function getTypeName() {
+  public function getTypeName() : string {
     return $this->typeName;
   }
 
-  protected function getTranslationsTypeName() {
-    return $this->translatable ? $this->getTypeName() . 'Translations' : null;
+  public function getTranslationsTypeName() : string {
+    return $this->getTypeName() . 'Translations';
   }
 
-  protected function getSingleFieldName() {
+  public function getSingleFieldName() : string{
     return 'load' . $this->typeName;
   }
 
-  protected function getListFieldName() {
+  public function getListFieldName() : string {
     return 'query' . $this->typeName . 's';
-  }
-
-  protected function getChangesFieldName() {
-    return 'diff' . $this->typeName . 's';
   }
 
   public function info(): array {
     return [
-      'typeName' => $this->typeName,
-      'translationsTypeName' => $this->getTranslationsTypeName(),
+      'typeName' => $this->isTranslatable()
+        ? $this->getTranslationsTypeName()
+        : $this->getTypeName(),
       'singleFieldName' => $this->getSingleFieldName(),
       'listFieldName' => $this->getListFieldName(),
-      'changesFieldName' => $this->getChangesFieldName(),
     ];
+  }
+
+  /**
+   * Investigate the context of an update event and return it's id if
+   * applicable.
+   *
+   * @param mixed $context
+   *
+   * @return mixed
+   *   The id string of the feed item or null.
+   */
+  abstract function getUpdateId($context);
+
+  /**
+   * {@inheritDoc}
+   */
+  public function investigateUpdate($context) {
+    if ($id = $this->getUpdateId($context)) {
+      return new GatsbyUpdate($this->isTranslatable()
+        ? $this->getTranslationsTypeName()
+        : $this->getTypeName(), $id);
+    }
   }
 
   /**
@@ -92,20 +94,17 @@ abstract class FeedBase extends PluginBase implements FeedInterface {
     $typeName = $this->typeName;
     $singleFieldName = $this->getSingleFieldName();
     $listFieldName = $this->getListFieldName();
-    $returnTypeName = $this->getTranslationsTypeName() ?: $typeName;
+    $returnTypeName = $this->isTranslatable() ? $this->getTranslationsTypeName() : $typeName;
     $schema = [
       "extend type Query {",
       "  $singleFieldName(id: String!): $returnTypeName",
       "  $listFieldName(offset: Int!, limit: Int!): [$returnTypeName!]!",
     ];
 
-    if ($changesFieldName = $this->getChangesFieldName()) {
-      $schema[] = "  $changesFieldName(since: Int!, ids: [String!]!): [Change!]!";
-    }
-
     $schema [] = "}";
 
-    if ($translationsTypeName = $this->getTranslationsTypeName()) {
+    if ($this->isTranslatable()) {
+      $translationsTypeName = $this->getTranslationsTypeName();
       $schema[] = "type $translationsTypeName implements Translatable {";
       $schema[] = "  id: String!";
       $schema[] = "  translations: [$typeName!]!";

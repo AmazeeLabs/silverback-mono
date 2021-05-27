@@ -4,6 +4,7 @@ namespace Drupal\silverback_gatsby\Plugin\GraphQL\SchemaExtension;
 
 use Drupal\Component\Plugin\PluginManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
@@ -104,7 +105,7 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
    * @throws \Drupal\Component\Plugin\Exception\PluginException
    * @throws \GraphQL\Error\SyntaxError
    */
-  protected function getFeeds() {
+  public function getFeeds(): array {
     if (count($this->feeds) === 0) {
       $ast = Parser::parse($this->parentSchema);
       // Search for object type definitions ...
@@ -161,19 +162,40 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
       'drupalFeedInfo',
       $builder->fromValue(array_map(fn (FeedInterface $feed) => $feed->info(), $this->getFeeds()))
     );
+    $registry->addFieldResolver(
+      'Query',
+      'drupalBuildId',
+      $builder->callback(function ($value, $args, ResolveContext $context) {
+        // Make sure this is never cached.
+        $context->mergeCacheMaxAge(0);
+        /** @var \Drupal\silverback_gatsby\GatsbyUpdateTrackerInterface $tracker */
+        $tracker = \Drupal::service('silverback_gatsby.update_tracker');
+        return $tracker->latestBuild($context->getServer()->id());
+      })
+    );
+
+    $registry->addFieldResolver('Feed', 'changes', $builder->callback(function ($value, $args, ResolveContext $context) {
+      // Make sure this is never cached.
+      $context->mergeCacheMaxAge(0);
+      /** @var \Drupal\silverback_gatsby\GatsbyUpdateTrackerInterface $tracker */
+      $tracker = \Drupal::service('silverback_gatsby.update_tracker');
+      return array_map(fn ($change) => $change->id, array_filter(
+        isset($args['lastBuild']) && isset($args['currentBuild'])
+          ? $tracker->diff($args['lastBuild'], $args['currentBuild'], $context->getServer()->id())
+          : [],
+        fn ($change) => $change->type === $value['typeName']
+      ));
+    }));
 
     foreach($this->getFeeds() as $feed) {
-      $info = $feed->info();
-      $registry->addFieldResolver('Query', $info['singleFieldName'], $feed->resolveItem());
-      $registry->addFieldResolver('Query', $info['listFieldName'], $feed->resolveItems());
-      if ($info['changesFieldName'] && $feed->resolveChanges()) {
-        $registry->addFieldResolver('Query', $info['changesFieldName'], $feed->resolveChanges());
-      }
+      $registry->addFieldResolver('Query', $feed->getSingleFieldName(), $feed->resolveItem());
+      $registry->addFieldResolver('Query', $feed->getListFieldName(), $feed->resolveItems());
+      $typeName = $feed->isTranslatable() ? $feed->getTranslationsTypeName() : $feed->getTypeName();
 
-      $registry->addFieldResolver($info['translationsTypeName'] ?: $info['typeName'], 'id', $feed->resolveId());
-      if ($info['translationsTypeName'] && $feed->resolveTranslations()) {
-        $registry->addFieldResolver($info['typeName'], 'langcode', $feed->resolveLangcode());
-        $registry->addFieldResolver($info['translationsTypeName'], 'translations', $feed->resolveTranslations());
+      $registry->addFieldResolver($typeName, 'id', $feed->resolveId());
+      if ($feed->isTranslatable()) {
+        $registry->addFieldResolver($feed->getTypeName(), 'langcode', $feed->resolveLangcode());
+        $registry->addFieldResolver($feed->getTranslationsTypeName(), 'translations', $feed->resolveTranslations());
       }
     }
   }

@@ -1,0 +1,30 @@
+<?php
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\silverback_gatsby\Plugin\Gatsby\Feed\EntityFeed;
+
+
+function _silverback_gatsby_entity_event(EntityInterface $entity) {
+  \Drupal::service('silverback_gatsby.update_handler')->handle(EntityFeed::class, $entity);
+}
+
+/**
+ * Implements hook_entity_create().
+ */
+function silverback_gatsby_entity_insert(EntityInterface $entity) {
+  _silverback_gatsby_entity_event($entity);
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function silverback_gatsby_entity_update(EntityInterface $entity) {
+  _silverback_gatsby_entity_event($entity);
+}
+
+/**
+ * Implements hook_entity_delete().
+ */
+function silverback_gatsby_entity_delete(EntityInterface $entity) {
+  _silverback_gatsby_entity_event($entity);
+}
