@@ -1,0 +1,9 @@
+query {
+  queryPages(limit: 10, offset: 0) {
+    id
+    translations {
+      langcode
+      title
+    }
+  }
+}

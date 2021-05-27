@@ -1,76 +1,69 @@
-import { Node } from 'gatsby';
 import { Reporter } from 'gatsby/reporter';
-import { NodeEvent } from 'gatsby-graphql-source-toolkit/dist/types';
+import { fetchNodesById } from 'gatsby-graphql-source-toolkit';
+import {
+  ISourcingContext,
+  NodeEvent,
+} from 'gatsby-graphql-source-toolkit/dist/types';
 
 import { createQueryExecutor } from './create-query-executor';
-import { drupalNodes as drupalNodesFetcher } from './drupal-nodes';
 
-type ToolkitNode = Node & {
-  remoteTypeName: string;
-  remoteId: string;
+type FeedInfoResult = {
+  data?: {
+    drupalFeedInfo: Array<{
+      typeName: string;
+      changes: Array<string>;
+    }>;
+  };
 };
 
-interface Change {
-  type: 'Update' | 'Delete';
-  id: number;
-}
-
 export const fetchNodeChanges = async (
-  lastBuildTimeMs: number,
-  cachedNodes: Node[],
+  lastBuildId: number,
+  currentBuildId: number,
   reporter: Reporter,
+  context: ISourcingContext,
 ): Promise<NodeEvent[]> => {
   const result: NodeEvent[] = [];
   const execute = createQueryExecutor();
-  const drupalNodes = await drupalNodesFetcher();
 
-  const getCachedIds = (type: string) =>
-    (cachedNodes as ToolkitNode[])
-      .filter((cachedNode) => cachedNode.remoteTypeName === type)
-      .map((cachedNode) => cachedNode.remoteId);
-
-  const changedContent = await execute({
+  const changedContent = (await execute({
     operationName: 'ContentChanges',
-    variables: {
-      since: Math.ceil(lastBuildTimeMs / 1000),
-      ...drupalNodes.reduce(
-        (acc, definition) => ({
-          ...acc,
-          [`${definition.single}Ids`]: getCachedIds(definition.type),
-        }),
-        {},
-      ),
-    },
+    variables: { lastBuildId, currentBuildId },
     query: `
-      query ContentChanges(
-        $since: Int!
-        ${drupalNodes
-          .map((definition) => `$${definition.single}Ids: [String!]!`)
-          .join('\n')}
-      ) {
-        ${drupalNodes
-          .map(
-            (definition) => `
-              ${definition.changes}(since: $since, ids: $${definition.single}Ids) {
-                type
-                id
-              }
-        `,
-          )
-          .join('')}
+      query ContentChanges($lastBuildId: Int!, $currentBuildId: Int!) {
+        drupalFeedInfo {
+          typeName
+          changes(lastBuild: $lastBuildId, currentBuild: $currentBuildId)
+        }
       }
     `,
-  });
+  })) as FeedInfoResult;
+
   if (!changedContent.data) {
     reporter.warn(
       `Cannot fetch content updates.\n ${JSON.stringify(changedContent)}`,
     );
     throw new Error('Cannot fetch content updates.');
   }
-  for (const definition of drupalNodes) {
-    result.push(
-      ...toNodeEvents(definition.type, changedContent.data[definition.changes]),
+
+  for (let i = 0; i < changedContent.data.drupalFeedInfo.length; i++) {
+    const feed = changedContent.data.drupalFeedInfo[i];
+    const nodes = fetchNodesById(
+      context,
+      feed.typeName,
+      feed.changes.map((id) => ({ id })),
     );
+    let index = 0;
+    for await (const node of nodes) {
+      result.push({
+        eventName: node ? 'UPDATE' : 'DELETE',
+        remoteTypeName: feed.typeName,
+        remoteId: {
+          __typename: feed.typeName,
+          id: feed.changes[index],
+        },
+      });
+      index++;
+    }
   }
 
   // Report results.
@@ -81,13 +74,3 @@ export const fetchNodeChanges = async (
 
   return result;
 };
-
-const toNodeEvents = (type: string, changes: Change[]): NodeEvent[] =>
-  changes.map((it) => ({
-    eventName: it.type === 'Update' ? 'UPDATE' : 'DELETE',
-    remoteId: {
-      __typename: type,
-      id: it.id,
-    },
-    remoteTypeName: type,
-  }));

@@ -12,6 +12,8 @@ use Drupal\graphql\Plugin\GraphQL\Schema\ComposableSchema as OriginalComposableS
  * Allows extensions to access the host schema AST and define directives
  * that can be used by the host schema.
  *
+ * Grants public access to extensions so other services can interact with them.
+ *
  * @package Drupal\silverback_gatsby\GraphQL
  */
 class ComposableSchema extends OriginalComposableSchema {
@@ -19,7 +21,7 @@ class ComposableSchema extends OriginalComposableSchema {
   /**
    * {@inheritDoc}
    */
-  protected function getExtensions() {
+  public function getExtensions() {
     $extensions = parent::getExtensions();
 
     $schema = $this->getSchemaDefinition();
@@ -32,10 +34,6 @@ class ComposableSchema extends OriginalComposableSchema {
     }
 
     return $extensions;
-  }
-
-  protected function loadSchemaDefinition() {
-
   }
 
   /**

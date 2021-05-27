@@ -3,6 +3,7 @@
 namespace Drupal\silverback_gatsby\Plugin;
 
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
+use Drupal\silverback_gatsby\GatsbyUpdate;
 
 /**
  * Interface FeedInterface
@@ -19,6 +20,23 @@ interface FeedInterface {
    * @return array
    */
   public function info() : array;
+
+  /**
+   * Decide if a type is translatable or not.
+   *
+   * @return bool
+   */
+  public function isTranslatable() : bool;
+
+  /**
+   * Investigate an arbitrary context value and produce a GatsbyUpdate if
+   * applicable.
+   *
+   * @param $context
+   *
+   * @return \Drupal\silverback_gatsby\GatsbyUpdate | null
+   */
+  public function investigateUpdate($context);
 
   /**
    * Retrieve schema extension definitions provided by this feed.
@@ -62,10 +80,10 @@ interface FeedInterface {
    */
   public function resolveItem() : ResolverInterface;
 
-  /**
-   * Generate a list of changes that happened after a given timestamp.
-   *
-   * @return \Drupal\graphql\GraphQL\Resolver\ResolverInterface
-   */
-  public function resolveChanges() : ResolverInterface;
+
+  public function getTypeName() : string;
+  public function getTranslationsTypeName() : string;
+  public function getSingleFieldName() : string;
+  public function getListFieldName() : string;
+
 }
