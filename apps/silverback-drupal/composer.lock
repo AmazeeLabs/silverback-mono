@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "74bb51f37198752166423cb8b381b8ff",
+    "content-hash": "31c9a32c8aab215c0c8b70158587d336",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -121,6 +121,24 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Scaffolder for Amazee Silverback projects.",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "amazeelabs/silverback_gatsby",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/composer/amazeelabs/silverback_gatsby",
+                "reference": "b1d8543c87c7b1e756840405de0fc46956952f72"
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Bridge module between Gatsby and Drupal.",
+            "homepage": "https://silverback.netlify.app",
             "transport-options": {
                 "relative": true
             }
