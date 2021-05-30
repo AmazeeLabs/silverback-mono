@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@-amazeelabs/silverback-cli": "^2.6.0",
+    "@-amazeelabs/silverback_gatsby": "^1",
     "@-drupal/cypress": "^2.3.8"
   }
 }

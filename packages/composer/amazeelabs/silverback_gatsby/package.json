@@ -1,0 +1,15 @@
+{
+  "name": "@-amazeelabs/silverback_gatsby",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "./test.sh"
+  },
+  "author": "Amazee Labs <development@amazeelabs.com>",
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://localhost:4873",
+    "repository": "git@github.com:AmazeeLabs/silverback_gatsby.git",
+    "branch": "main"
+  }
+}
