@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.2.27...@-amazeelabs/silverback-drupal@1.3.0) (2021-05-31)
+
+
+### Bug Fixes
+
+* **gatsby:** add the local build server as gatsby build hook ([c1ff518](https://github.com/AmazeeLabs/silverback-mono/commit/c1ff518e75c5801731f8d0680bb42913dce5b5f2))
+
+
+### Features
+
+* **gatsby:** move silverback_gatsby into shared module space ([5fd1e78](https://github.com/AmazeeLabs/silverback-mono/commit/5fd1e787741ce57ff2818e9885a08b94bd39f961))
+
+
+
+
+
 ## [1.2.27](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.2.26...@-amazeelabs/silverback-drupal@1.2.27) (2021-05-27)
 
 
