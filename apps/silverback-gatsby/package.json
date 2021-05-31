@@ -20,7 +20,7 @@
     "gatsby-plugin-sharp": "^3.0.0",
     "gatsby-transformer-sharp": "^3.0.0",
     "html-react-parser": "^1.1.1",
-    "netlify": "^6.1.1",
+    "netlify": "^7.0.0",
     "p-queue": "^6.6.2",
     "postcss-import": "^14.0.0",
     "react": "^17.0.0",
