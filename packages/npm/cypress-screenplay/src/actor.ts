@@ -106,9 +106,8 @@ export class Actor {
   ): T {
     // Try to create an instance of all interactions.
     this.preparing = true;
-    const executor = (interactions instanceof Array
-      ? interactions
-      : [interactions]
+    const executor = (
+      interactions instanceof Array ? interactions : [interactions]
     )
       .map((interaction) => {
         try {
