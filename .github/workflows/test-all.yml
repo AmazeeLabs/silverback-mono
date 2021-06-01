@@ -15,10 +15,14 @@ jobs:
       - name: Git username
         run: git config --global user.name "K.I.T.T."
 
+      - name: Read .nvmrc
+        run: echo "##[set-output name=NODE_VERSION;]$(cat .nvmrc| grep -oE '[0-9]+(\.[0-9]+)?(\.[0-9]+)?' | head -1)"
+        id: node_version
+
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 12
+          node-version: "${{ steps.node_version.outputs.NODE_VERSION }}"
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
