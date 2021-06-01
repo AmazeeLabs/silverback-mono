@@ -6,6 +6,7 @@
     "packages/npm/*",
     "packages/npm/*/*",
     "apps/*",
+    "apps/silverback-drupal/web/modules/custom/gutenberg_custom_blocks",
     "packages/composer/drupal/test_session/tests/Cypress"
   ],
   "scripts": {

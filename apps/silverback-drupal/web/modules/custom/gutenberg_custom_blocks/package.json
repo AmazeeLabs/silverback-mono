@@ -1,5 +1,6 @@
 {
   "name": "gutenberg_custom_blocks",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "yarn drupal-js-build --css && yarn drupal-js-build watch --css",
