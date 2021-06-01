@@ -11,6 +11,7 @@ dependencies:
   module:
     - block_content
     - text
+    - user
 _core:
   default_config_hash: dQAgt7cy1g5VF_mxTRuJt3_dWOuYpjqEl6EBArSs9jo
 id: reusable_blocks
@@ -28,8 +29,9 @@ display:
     position: 0
     display_options:
       access:
-        type: none
-        options: {  }
+        type: perm
+        options:
+          perm: 'use gutenberg'
       cache:
         type: tag
         options: {  }
@@ -396,6 +398,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user.permissions
       tags:
         - 'config:field.storage.block_content.body'
   page_1:
@@ -422,5 +425,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user.permissions
       tags:
         - 'config:field.storage.block_content.body'
