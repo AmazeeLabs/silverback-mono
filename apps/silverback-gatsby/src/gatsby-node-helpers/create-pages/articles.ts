@@ -1,12 +1,11 @@
-import { GatsbyNode } from 'gatsby';
-
+import { CreatePagesArgs } from '../../../gatsby-node';
 import { languages } from '../../constants/languages';
 import { ArticleContext } from '../../types/page-context';
 
-export const createArticlePages: Required<GatsbyNode>['createPages'] = async ({
+export const createArticlePages = async ({
   graphql,
   actions,
-}) => {
+}: CreatePagesArgs): Promise<void> => {
   // Create article pages. Notice that we fetch from Gatsby GraphQL, not from
   // Drupal.
   const { data, errors } = await graphql<AllArticlesQuery>(`
