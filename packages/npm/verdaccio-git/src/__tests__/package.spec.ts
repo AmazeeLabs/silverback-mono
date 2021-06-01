@@ -59,9 +59,9 @@ describe('proxyTarball', () => {
     process.mockResolvedValue(undefined);
     handler.mockReturnValue(undefined);
     const proxy = proxyTarball(
-      (tarball as unknown) as IUploadTarball,
+      tarball as unknown as IUploadTarball,
       process,
-      (logger as unknown) as Logger,
+      logger as unknown as Logger,
     );
     proxy.on('start', handler);
     proxy.on('success', () => {
@@ -74,9 +74,9 @@ describe('proxyTarball', () => {
     process.mockResolvedValue(undefined);
     handler.mockReturnValue(undefined);
     const proxy = proxyTarball(
-      (tarball as unknown) as IUploadTarball,
+      tarball as unknown as IUploadTarball,
       process,
-      (logger as unknown) as Logger,
+      logger as unknown as Logger,
     );
     proxy.on('success', handler);
     proxy.on('success', () => {
@@ -94,9 +94,9 @@ describe('proxyTarball', () => {
     );
     handler.mockReturnValue(undefined);
     const proxy = proxyTarball(
-      (tarball as unknown) as IUploadTarball,
+      tarball as unknown as IUploadTarball,
       process,
-      (logger as unknown) as Logger,
+      logger as unknown as Logger,
     );
     proxy.on('success', handler);
     proxy.on('success', () => {
@@ -131,7 +131,7 @@ describe('pushToGit', () => {
       'test-1.0.1.tar.gz',
       'test',
       git as SimpleGit,
-      (logger as unknown) as Logger,
+      logger as unknown as Logger,
     );
     expect(logger.warn).toHaveBeenCalledTimes(1);
     expect(logger.info).toHaveBeenCalledTimes(0);
@@ -176,8 +176,8 @@ describe('pushToGit', () => {
     await pushToGit(
       'test-1.0.1.tar.gz',
       'test',
-      (git as unknown) as SimpleGit,
-      (logger as unknown) as Logger,
+      git as unknown as SimpleGit,
+      logger as unknown as Logger,
     );
     expect(logger.warn).toHaveBeenCalledTimes(0);
     expect(logger.info).toHaveBeenCalledTimes(1);
