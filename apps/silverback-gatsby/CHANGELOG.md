@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.36](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.13.35...silverback-gastby@0.13.36) (2021-06-01)
+
+
+### Bug Fixes
+
+* add missing arguments ([2f35865](https://github.com/AmazeeLabs/silverback-mono/commit/2f3586559cba77ae8b068bea22f79a26c4ca9e5c))
+* suppress missing arguments error in other way ([7129885](https://github.com/AmazeeLabs/silverback-mono/commit/712988504314b3878904687ded2e509a26609579))
+
+
+
+
+
 ## [0.13.35](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.13.34...silverback-gastby@0.13.35) (2021-05-31)
 
 **Note:** Version bump only for package silverback-gastby
