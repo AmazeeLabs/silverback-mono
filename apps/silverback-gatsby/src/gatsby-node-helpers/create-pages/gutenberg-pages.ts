@@ -1,12 +1,11 @@
-import { GatsbyNode } from 'gatsby';
-
+import { CreatePagesArgs } from '../../../gatsby-node';
 import { languages } from '../../constants/languages';
 import { GutenbergPageContext } from '../../types/page-context';
 
-export const createGutenbergPages: Required<GatsbyNode>['createPages'] = async ({
+export const createGutenbergPages = async ({
   graphql,
   actions,
-}) => {
+}: CreatePagesArgs): Promise<void> => {
   const { data, errors } = await graphql<AllGutenbergPagesQuery>(`
     query AllGutenbergPages {
       allDrupalGutenbergPageTranslations {
