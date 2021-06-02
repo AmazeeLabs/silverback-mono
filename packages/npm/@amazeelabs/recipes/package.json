@@ -4,7 +4,6 @@
   "description": "Executable recipes to setup and extend Amazee Labs projects.",
   "main": "dist/index.js",
   "license": "MIT",
-  "private": false,
   "publishConfig": {
     "access": "public"
   },

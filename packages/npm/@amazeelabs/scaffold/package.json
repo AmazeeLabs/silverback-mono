@@ -5,7 +5,6 @@
   "main": "index.js",
   "author": "Philipp Melab",
   "license": "MIT",
-  "private": false,
   "bin": {
     "amazee-scaffold": "./cli.js"
   },
