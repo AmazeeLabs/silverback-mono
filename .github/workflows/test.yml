@@ -77,3 +77,21 @@ jobs:
           else
             echo "Success: Found no uncommitted changes"
           fi
+
+      - name: Check if there are config changes after Drupal updates
+        run: |
+          set -e
+          cd apps/silverback-drupal
+          source .envrc
+          composer i
+          silverback setup --no-config-import
+          drush cex -y
+          cd -
+          if [[ $(git status --porcelain -- apps/silverback-drupal/config) ]]
+          then
+            >&2 echo 'Error: Found uncommitted Drupal config. Please checkout this branch locally, switch to `apps/silverback-drupal` dir, run `composer i && silverback setup --no-config-import && drush cex -y`, commit and push.'
+            git status --porcelain -- apps/silverback-drupal/config
+            false
+          else
+            echo 'Success: Found no new config changes.'
+          fi
