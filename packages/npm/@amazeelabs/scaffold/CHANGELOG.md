@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.2.4...@amazeelabs/scaffold@1.3.0) (2021-06-08)
+
+
+### Bug Fixes
+
+* **scaffold:** add a typescript files to tests so tsc does not break ([9291d07](https://github.com/AmazeeLabs/silverback-mono/commit/9291d07ca1272640b9301829d148b389ba21c64a))
+
+
+### Features
+
+* **scaffold:** add typescript check to the standard test procedure ([641f905](https://github.com/AmazeeLabs/silverback-mono/commit/641f90539133e2e2f00606a0cc0bd7ff4533010e))
+
+
+
+
+
 ## [1.2.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.2.3...@amazeelabs/scaffold@1.2.4) (2021-05-26)
 
 **Note:** Version bump only for package @amazeelabs/scaffold
