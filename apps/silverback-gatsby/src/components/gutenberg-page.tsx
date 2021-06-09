@@ -1,4 +1,4 @@
-import { Link, PageProps } from 'gatsby';
+import { graphql, Link, PageProps } from 'gatsby';
 import React from 'react';
 
 import { GutenbergPageContext } from '../types/page-context';
@@ -9,8 +9,62 @@ import { BlockImage } from './content-blocks/image';
 import { BlockTeaser } from './content-blocks/teaser';
 import { BlockTwoColumns } from './content-blocks/two-columns';
 
-const GutenbergPage: React.FC<PageProps> = ({ pageContext }) => {
-  const { page, otherLanguages } = pageContext as GutenbergPageContext;
+export const query = graphql`
+  query GutenbergPage($remoteId: String!, $langcode: String!) {
+    drupalGutenbergPageTranslations(remoteId: { eq: $remoteId }) {
+      id
+      translation(langcode: $langcode) {
+        title
+        body {
+          __typename
+          ...BlockTwoColumns
+          ...BlockHtml
+          ...BlockImage
+          ...BlockTeaser
+        }
+      }
+    }
+  }
+  fragment BlockHtml on DrupalBlockHtml {
+    html
+  }
+  fragment BlockImage on DrupalBlockImage {
+    caption
+    image {
+      localImage {
+        ...ImageSharpFixed
+      }
+    }
+  }
+  fragment BlockTeaser on DrupalBlockTeaser {
+    image {
+      localImage {
+        ...ImageSharpFixed
+      }
+    }
+    title
+    subtitle
+    url
+  }
+  fragment BlockTwoColumns on DrupalBlockTwoColumns {
+    children {
+      __typename
+      children {
+        __typename
+        ...BlockHtml
+        ...BlockImage
+        ...BlockTeaser
+      }
+    }
+  }
+`;
+
+const GutenbergPage: React.FC<
+  PageProps<GutenbergPageQuery, GutenbergPageContext>
+> = ({ pageContext, data }) => {
+  const { otherLanguages } = pageContext as GutenbergPageContext;
+
+  const page = data.drupalGutenbergPageTranslations?.translation!;
 
   return (
     <>

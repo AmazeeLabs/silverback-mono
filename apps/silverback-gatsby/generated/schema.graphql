@@ -417,6 +417,20 @@ type SiteSiteMetadata {
   author: String
 }
 
+type SiteFunction implements Node {
+  functionRoute: String!
+  pluginName: String!
+  originalAbsoluteFilePath: String!
+  originalRelativeFilePath: String!
+  relativeCompiledFilePath: String!
+  absoluteCompiledFilePath: String!
+  matchPath: String
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+}
+
 type SitePage implements Node {
   path: String!
   component: String!
@@ -431,75 +445,13 @@ type SitePage implements Node {
   context: SitePageContext
   pluginCreator: SitePlugin
   pluginCreatorId: String
-  componentPath: String
 }
 
 type SitePageContext {
-  article: SitePageContextArticle
-  childrenImagesFromHtml: [SitePageContextChildrenImagesFromHtml]
+  remoteId: String
+  langcode: String
   otherLanguages: [SitePageContextOtherLanguages]
   page: SitePageContextPage
-}
-
-type SitePageContextArticle {
-  langcode: String
-  path: String
-  title: String
-  body: String
-  tags: [SitePageContextArticleTags]
-  image: SitePageContextArticleImage
-}
-
-type SitePageContextArticleTags {
-  title: String
-}
-
-type SitePageContextArticleImage {
-  alt: String
-  localImage: SitePageContextArticleImageLocalImage
-}
-
-type SitePageContextArticleImageLocalImage {
-  childImageSharp: SitePageContextArticleImageLocalImageChildImageSharp
-}
-
-type SitePageContextArticleImageLocalImageChildImageSharp {
-  fixed: SitePageContextArticleImageLocalImageChildImageSharpFixed
-}
-
-type SitePageContextArticleImageLocalImageChildImageSharpFixed {
-  width: Int
-  height: Int
-  base64: String
-  aspectRatio: Float
-  src: String
-  srcSet: String
-  srcWebp: String
-  srcSetWebp: String
-}
-
-type SitePageContextChildrenImagesFromHtml {
-  urlOriginal: String
-  localImage: SitePageContextChildrenImagesFromHtmlLocalImage
-}
-
-type SitePageContextChildrenImagesFromHtmlLocalImage {
-  childImageSharp: SitePageContextChildrenImagesFromHtmlLocalImageChildImageSharp
-}
-
-type SitePageContextChildrenImagesFromHtmlLocalImageChildImageSharp {
-  fixed: SitePageContextChildrenImagesFromHtmlLocalImageChildImageSharpFixed
-}
-
-type SitePageContextChildrenImagesFromHtmlLocalImageChildImageSharpFixed {
-  width: Int
-  height: Int
-  base64: String
-  aspectRatio: Float
-  src: String
-  srcSet: String
-  srcWebp: String
-  srcSetWebp: String
 }
 
 type SitePageContextOtherLanguages {
@@ -564,336 +516,8 @@ type SitePageContextPageBodyChildrenChildrenImageLocalImageChildImageSharpFixed 
   srcSetWebp: String
 }
 
-type ImagesFromHtml implements Node {
-  urlOriginal: String!
-  urlAbsolute: String!
-  id: ID!
-  parent: Node
-  children: [Node!]!
-  internal: Internal!
-  localImage: File
-}
-
-enum ImageFormat {
-  NO_CHANGE
-  AUTO
-  JPG
-  PNG
-  WEBP
-  AVIF
-}
-
-enum ImageFit {
-  COVER
-  CONTAIN
-  FILL
-  INSIDE
-  OUTSIDE
-}
-
-enum ImageLayout {
-  FIXED
-  FULL_WIDTH
-  CONSTRAINED
-}
-
-enum ImageCropFocus {
-  CENTER
-  NORTH
-  NORTHEAST
-  EAST
-  SOUTHEAST
-  SOUTH
-  SOUTHWEST
-  WEST
-  NORTHWEST
-  ENTROPY
-  ATTENTION
-}
-
-input DuotoneGradient {
-  highlight: String!
-  shadow: String!
-  opacity: Int
-}
-
-enum PotraceTurnPolicy {
-  TURNPOLICY_BLACK
-  TURNPOLICY_WHITE
-  TURNPOLICY_LEFT
-  TURNPOLICY_RIGHT
-  TURNPOLICY_MINORITY
-  TURNPOLICY_MAJORITY
-}
-
-input Potrace {
-  turnPolicy: PotraceTurnPolicy
-  turdSize: Float
-  alphaMax: Float
-  optCurve: Boolean
-  optTolerance: Float
-  threshold: Int
-  blackOnWhite: Boolean
-  color: String
-  background: String
-}
-
-type ImageSharp implements Node {
-  fixed(width: Int, height: Int, base64Width: Int, jpegProgressive: Boolean = true, pngCompressionSpeed: Int = 4, grayscale: Boolean = false, duotone: DuotoneGradient, traceSVG: Potrace, quality: Int, jpegQuality: Int, pngQuality: Int, webpQuality: Int, toFormat: ImageFormat = AUTO, toFormatBase64: ImageFormat = AUTO, cropFocus: ImageCropFocus = ATTENTION, fit: ImageFit = COVER, background: String = "rgba(0,0,0,1)", rotate: Int = 0, trim: Float = 0): ImageSharpFixed
-  fluid(
-    maxWidth: Int
-    maxHeight: Int
-    base64Width: Int
-    grayscale: Boolean = false
-    jpegProgressive: Boolean = true
-    pngCompressionSpeed: Int = 4
-    duotone: DuotoneGradient
-    traceSVG: Potrace
-    quality: Int
-    jpegQuality: Int
-    pngQuality: Int
-    webpQuality: Int
-    toFormat: ImageFormat = AUTO
-    toFormatBase64: ImageFormat = AUTO
-    cropFocus: ImageCropFocus = ATTENTION
-    fit: ImageFit = COVER
-    background: String = "rgba(0,0,0,1)"
-    rotate: Int = 0
-    trim: Float = 0
-    sizes: String = ""
-
-    """
-    A list of image widths to be generated. Example: [ 200, 340, 520, 890 ]
-    """
-    srcSetBreakpoints: [Int] = []
-  ): ImageSharpFluid
-  gatsbyImageData(
-    """
-    The layout for the image.
-    FIXED: A static image sized, that does not resize according to the screen width
-    FULL_WIDTH: The image resizes to fit its container. Pass a "sizes" option if it isn't going to be the full width of the screen.
-    CONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size.
-    """
-    layout: ImageLayout = CONSTRAINED
-
-    """
-    The display width of the generated image for layout = FIXED, and the maximum display width of the largest image for layout = CONSTRAINED.
-    Ignored if layout = FLUID.
-    """
-    width: Int
-
-    """
-    The display height of the generated image for layout = FIXED, and the maximum display height of the largest image for layout = CONSTRAINED.
-    The image will be cropped if the aspect ratio does not match the source image. If omitted, it is calculated from the supplied width,
-    matching the aspect ratio of the source image.
-    """
-    height: Int
-
-    """
-    If set along with width or height, this will set the value of the other dimension to match the provided aspect ratio, cropping the image if needed.
-    If neither width or height is provided, height will be set based on the intrinsic width of the source image.
-    """
-    aspectRatio: Float
-
-    """
-    Format of generated placeholder image, displayed while the main image loads.
-    BLURRED: a blurred, low resolution image, encoded as a base64 data URI (default)
-    DOMINANT_COLOR: a solid color, calculated from the dominant color of the image.
-    TRACED_SVG: a low-resolution traced SVG of the image.
-    NONE: no placeholder. Set "background" to use a fixed background color.
-    """
-    placeholder: ImagePlaceholder
-
-    """
-    Options for the low-resolution placeholder image. Set placeholder to "BLURRED" to use this
-    """
-    blurredOptions: BlurredOptions
-
-    """
-    Options for traced placeholder SVGs. You also should set placeholder to "TRACED_SVG".
-    """
-    tracedSVGOptions: Potrace
-
-    """
-    The image formats to generate. Valid values are "AUTO" (meaning the same format as the source image), "JPG", "PNG", "WEBP" and "AVIF".
-    The default value is [AUTO, WEBP], and you should rarely need to change this. Take care if you specify JPG or PNG when you do
-    not know the formats of the source images, as this could lead to unwanted results such as converting JPEGs to PNGs. Specifying
-    both PNG and JPG is not supported and will be ignored.
-    """
-    formats: [ImageFormat]
-
-    """
-    A list of image pixel densities to generate. It will never generate images larger than the source, and will always include a 1x image.
-    Default is [ 1, 2 ] for FIXED images, meaning 1x and 2x and [0.25, 0.5, 1, 2] for CONSTRAINED. In this case, an image with a constrained layout
-    and width = 400 would generate images at 100, 200, 400 and 800px wide. Ignored for FULL_WIDTH images, which use breakpoints instead
-    """
-    outputPixelDensities: [Float]
-
-    """
-    Specifies the image widths to generate. For FIXED and CONSTRAINED images it is better to allow these to be determined automatically,
-    based on the image size. For FULL_WIDTH images this can be used to override the default, which is [750, 1080, 1366, 1920].
-    It will never generate any images larger than the source.
-    """
-    breakpoints: [Int]
-
-    """
-    The "sizes" property, passed to the img tag. This describes the display size of the image.
-    This does not affect the generated images, but is used by the browser to decide which images to download.
-    You should usually leave this blank, and a suitable value will be calculated. The exception is if a FULL_WIDTH image
-    does not actually span the full width of the screen, in which case you should pass the correct size here.
-    """
-    sizes: String
-
-    """The default quality. This is overridden by any format-specific options"""
-    quality: Int
-
-    """Options to pass to sharp when generating JPG images."""
-    jpgOptions: JPGOptions
-
-    """Options to pass to sharp when generating PNG images."""
-    pngOptions: PNGOptions
-
-    """Options to pass to sharp when generating WebP images."""
-    webpOptions: WebPOptions
-
-    """Options to pass to sharp when generating AVIF images."""
-    avifOptions: AVIFOptions
-
-    """
-    Options to pass to sharp to control cropping and other image manipulations.
-    """
-    transformOptions: TransformOptions
-
-    """
-    Background color applied to the wrapper. Also passed to sharp to use as a background when "letterboxing" an image to another aspect ratio.
-    """
-    backgroundColor: String
-  ): JSON!
-  original: ImageSharpOriginal
-  resize(width: Int, height: Int, quality: Int, jpegQuality: Int, pngQuality: Int, webpQuality: Int, jpegProgressive: Boolean = true, pngCompressionLevel: Int = 9, pngCompressionSpeed: Int = 4, grayscale: Boolean = false, duotone: DuotoneGradient, base64: Boolean = false, traceSVG: Potrace, toFormat: ImageFormat = AUTO, cropFocus: ImageCropFocus = ATTENTION, fit: ImageFit = COVER, background: String = "rgba(0,0,0,1)", rotate: Int = 0, trim: Float = 0): ImageSharpResize
-  id: ID!
-  parent: Node
-  children: [Node!]!
-  internal: Internal!
-}
-
-type ImageSharpFixed {
-  base64: String
-  tracedSVG: String
-  aspectRatio: Float
-  width: Float!
-  height: Float!
-  src: String!
-  srcSet: String!
-  srcWebp: String
-  srcSetWebp: String
-  originalName: String
-}
-
-type ImageSharpFluid {
-  base64: String
-  tracedSVG: String
-  aspectRatio: Float!
-  src: String!
-  srcSet: String!
-  srcWebp: String
-  srcSetWebp: String
-  sizes: String!
-  originalImg: String
-  originalName: String
-  presentationWidth: Int!
-  presentationHeight: Int!
-}
-
-"""
-The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-"""
-scalar JSON
-
-enum ImagePlaceholder {
-  DOMINANT_COLOR
-  TRACED_SVG
-  BLURRED
-  NONE
-}
-
-input BlurredOptions {
-  """Width of the generated low-res preview. Default is 20px"""
-  width: Int
-
-  """
-  Force the output format for the low-res preview. Default is to use the same format as the input. You should rarely need to change this
-  """
-  toFormat: ImageFormat
-}
-
-input JPGOptions {
-  quality: Int
-  progressive: Boolean = true
-}
-
-input PNGOptions {
-  quality: Int
-  compressionSpeed: Int = 4
-}
-
-input WebPOptions {
-  quality: Int
-}
-
-input AVIFOptions {
-  quality: Int
-  lossless: Boolean
-  speed: Int
-}
-
-input TransformOptions {
-  grayscale: Boolean = false
-  duotone: DuotoneGradient
-  rotate: Int = 0
-  trim: Float = 0
-  cropFocus: ImageCropFocus = ATTENTION
-  fit: ImageFit = COVER
-}
-
-type ImageSharpOriginal {
-  width: Float
-  height: Float
-  src: String
-}
-
-type ImageSharpResize {
-  src: String
-  tracedSVG: String
-  width: Int
-  height: Int
-  aspectRatio: Float
-  originalName: String
-}
-
-type DrupalImage implements Node {
-  remoteTypeName: String!
-  remoteId: String!
-  url: String!
-  alt: String!
-  id: ID!
-  parent: Node
-  children: [Node!]!
-  internal: Internal!
-  localImage: File
-}
-
-type DrupalTag implements Node {
-  remoteTypeName: String!
-  remoteId: String!
-  title: String!
-  id: ID!
-  parent: Node
-  children: [Node!]!
-  internal: Internal!
-}
-
 type DrupalPageTranslations implements Node {
+  translation(langcode: String!): DrupalPage!
   remoteTypeName: String!
   remoteId: String!
   translations: [DrupalPage!]!
@@ -911,15 +535,8 @@ type DrupalPageTranslations implements Node {
   internal: Internal!
 }
 
-type DrupalPage {
-  remoteTypeName: String!
-  path: String!
-  title: String!
-  body: String
-  langcode: String!
-}
-
 type DrupalGutenbergPageTranslations implements Node {
+  translation(langcode: String!): DrupalGutenbergPage!
   remoteTypeName: String!
   remoteId: String!
   translations: [DrupalGutenbergPage!]!
@@ -929,44 +546,8 @@ type DrupalGutenbergPageTranslations implements Node {
   internal: Internal!
 }
 
-type DrupalGutenbergPage {
-  remoteTypeName: String!
-  path: String!
-  title: String!
-  body: [DrupalRootBlock!]!
-  langcode: String!
-}
-
-union DrupalRootBlock = DrupalBlockTwoColumns | DrupalBlockHtml | DrupalBlockImage | DrupalBlockTeaser
-
-type DrupalBlockTwoColumns {
-  children: [DrupalBlockColumn!]!
-}
-
-type DrupalBlockHtml {
-  html: String!
-}
-
-type DrupalBlockImage {
-  caption: String!
-  image: DrupalImage!
-}
-
-type DrupalBlockTeaser {
-  image: DrupalImage!
-  title: String!
-  subtitle: String!
-  url: String!
-}
-
-type DrupalBlockColumn {
-  remoteTypeName: String!
-  children: [DrupalContentBlock!]!
-}
-
-union DrupalContentBlock = DrupalBlockHtml | DrupalBlockImage | DrupalBlockTeaser
-
 type DrupalArticleTranslations implements Node {
+  translation(langcode: String!): DrupalArticle!
   remoteTypeName: String!
   remoteId: String!
   translations: [DrupalArticle!]!
@@ -984,115 +565,24 @@ type DrupalArticleTranslations implements Node {
   internal: Internal!
 }
 
-type DrupalArticle {
-  remoteTypeName: String!
-  path: String!
-  title: String!
-  body: String
-  tags: [DrupalTag!]!
-  image: DrupalImage
-  langcode: String!
-}
-
-type SiteBuildMetadata implements Node {
-  id: ID!
-  parent: Node
-  children: [Node!]!
-  internal: Internal!
-  buildTime(
-    """
-    Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
-    """
-    formatString: String
-
-    """Returns a string generated with Moment.js' `fromNow` function"""
-    fromNow: Boolean
-
-    """
-    Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
-    """
-    difference: String
-
-    """Configures the locale Moment.js will use to format the date."""
-    locale: String
-  ): Date
-}
-
-type SitePlugin implements Node {
-  id: ID!
-  parent: Node
-  children: [Node!]!
-  internal: Internal!
-  resolve: String
-  name: String
-  version: String
-  pluginOptions: SitePluginPluginOptions
-  nodeAPIs: [String]
-  browserAPIs: [String]
-  ssrAPIs: [String]
-  pluginFilepath: String
-  packageJson: SitePluginPackageJson
-}
-
-type SitePluginPluginOptions {
-  name: String
-  path: String
-  nodeType: String
-  imagePath: String
-  configs: [SitePluginPluginOptionsConfigs]
-  base64Width: Int
-  stripMetadata: Boolean
-  defaultQuality: Int
-  failOnError: Boolean
-  pathCheck: Boolean
-  allExtensions: Boolean
-  isTSX: Boolean
-  jsxPragma: String
-}
-
-type SitePluginPluginOptionsConfigs {
-  nodeType: String
-  propertyPath: String
-  baseUrl: String
-}
-
-type SitePluginPackageJson {
-  name: String
-  description: String
-  version: String
-  main: String
-  author: String
-  license: String
-  dependencies: [SitePluginPackageJsonDependencies]
-  devDependencies: [SitePluginPackageJsonDevDependencies]
-  peerDependencies: [SitePluginPackageJsonPeerDependencies]
-  keywords: [String]
-}
-
-type SitePluginPackageJsonDependencies {
-  name: String
-  version: String
-}
-
-type SitePluginPackageJsonDevDependencies {
-  name: String
-  version: String
-}
-
-type SitePluginPackageJsonPeerDependencies {
-  name: String
-  version: String
-}
-
 type Query {
+  drupalBuildId: Int!
   file(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, url: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, childrenImageSharp: ImageSharpFilterListInput, childImageSharp: ImageSharpFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): File
   allFile(filter: FileFilterInput, sort: FileSortInput, skip: Int, limit: Int): FileConnection!
   directory(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Directory
   allDirectory(filter: DirectoryFilterInput, sort: DirectorySortInput, skip: Int, limit: Int): DirectoryConnection!
   site(buildTime: DateQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
   allSite(filter: SiteFilterInput, sort: SiteSortInput, skip: Int, limit: Int): SiteConnection!
-  sitePage(path: StringQueryOperatorInput, component: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, context: SitePageContextFilterInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput, componentPath: StringQueryOperatorInput): SitePage
+  siteFunction(functionRoute: StringQueryOperatorInput, pluginName: StringQueryOperatorInput, originalAbsoluteFilePath: StringQueryOperatorInput, originalRelativeFilePath: StringQueryOperatorInput, relativeCompiledFilePath: StringQueryOperatorInput, absoluteCompiledFilePath: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SiteFunction
+  allSiteFunction(filter: SiteFunctionFilterInput, sort: SiteFunctionSortInput, skip: Int, limit: Int): SiteFunctionConnection!
+  sitePage(path: StringQueryOperatorInput, component: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, context: SitePageContextFilterInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
   allSitePage(filter: SitePageFilterInput, sort: SitePageSortInput, skip: Int, limit: Int): SitePageConnection!
+  drupalPageTranslations(translation: DrupalPageFilterInput, remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalPageFilterListInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalPageTranslations
+  allDrupalPageTranslations(filter: DrupalPageTranslationsFilterInput, sort: DrupalPageTranslationsSortInput, skip: Int, limit: Int): DrupalPageTranslationsConnection!
+  drupalGutenbergPageTranslations(translation: DrupalGutenbergPageFilterInput, remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalGutenbergPageFilterListInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalGutenbergPageTranslations
+  allDrupalGutenbergPageTranslations(filter: DrupalGutenbergPageTranslationsFilterInput, sort: DrupalGutenbergPageTranslationsSortInput, skip: Int, limit: Int): DrupalGutenbergPageTranslationsConnection!
+  drupalArticleTranslations(translation: DrupalArticleFilterInput, remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalArticleFilterListInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalArticleTranslations
+  allDrupalArticleTranslations(filter: DrupalArticleTranslationsFilterInput, sort: DrupalArticleTranslationsSortInput, skip: Int, limit: Int): DrupalArticleTranslationsConnection!
   imagesFromHtml(urlOriginal: StringQueryOperatorInput, urlAbsolute: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImagesFromHtml
   allImagesFromHtml(filter: ImagesFromHtmlFilterInput, sort: ImagesFromHtmlSortInput, skip: Int, limit: Int): ImagesFromHtmlConnection!
   imageSharp(fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: JSONQueryOperatorInput, original: ImageSharpOriginalFilterInput, resize: ImageSharpResizeFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImageSharp
@@ -1101,12 +591,6 @@ type Query {
   allDrupalImage(filter: DrupalImageFilterInput, sort: DrupalImageSortInput, skip: Int, limit: Int): DrupalImageConnection!
   drupalTag(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, title: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalTag
   allDrupalTag(filter: DrupalTagFilterInput, sort: DrupalTagSortInput, skip: Int, limit: Int): DrupalTagConnection!
-  drupalPageTranslations(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalPageFilterListInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalPageTranslations
-  allDrupalPageTranslations(filter: DrupalPageTranslationsFilterInput, sort: DrupalPageTranslationsSortInput, skip: Int, limit: Int): DrupalPageTranslationsConnection!
-  drupalGutenbergPageTranslations(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalGutenbergPageFilterListInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalGutenbergPageTranslations
-  allDrupalGutenbergPageTranslations(filter: DrupalGutenbergPageTranslationsFilterInput, sort: DrupalGutenbergPageTranslationsSortInput, skip: Int, limit: Int): DrupalGutenbergPageTranslationsConnection!
-  drupalArticleTranslations(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalArticleFilterListInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalArticleTranslations
-  allDrupalArticleTranslations(filter: DrupalArticleTranslationsFilterInput, sort: DrupalArticleTranslationsSortInput, skip: Int, limit: Int): DrupalArticleTranslationsConnection!
   siteBuildMetadata(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, buildTime: DateQueryOperatorInput): SiteBuildMetadata
   allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, sort: SiteBuildMetadataSortInput, skip: Int, limit: Int): SiteBuildMetadataConnection!
   sitePlugin(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, resolve: StringQueryOperatorInput, name: StringQueryOperatorInput, version: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, nodeAPIs: StringQueryOperatorInput, browserAPIs: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, pluginFilepath: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput): SitePlugin
@@ -1208,6 +692,11 @@ input JSONQueryOperatorInput {
   glob: JSON
 }
 
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
 input ImageSharpOriginalFilterInput {
   width: FloatQueryOperatorInput
   height: FloatQueryOperatorInput
@@ -1258,6 +747,9 @@ type FileConnection {
   nodes: [File!]!
   pageInfo: PageInfo!
   distinct(field: FileFieldsEnum!): [String!]!
+  max(field: FileFieldsEnum!): Float
+  min(field: FileFieldsEnum!): Float
+  sum(field: FileFieldsEnum!): Float
   group(skip: Int, limit: Int, field: FileFieldsEnum!): [FileGroupConnection!]!
 }
 
@@ -1611,6 +1103,9 @@ type DirectoryConnection {
   nodes: [Directory!]!
   pageInfo: PageInfo!
   distinct(field: DirectoryFieldsEnum!): [String!]!
+  max(field: DirectoryFieldsEnum!): Float
+  min(field: DirectoryFieldsEnum!): Float
+  sum(field: DirectoryFieldsEnum!): Float
   group(skip: Int, limit: Int, field: DirectoryFieldsEnum!): [DirectoryGroupConnection!]!
 }
 
@@ -1808,6 +1303,9 @@ type SiteConnection {
   nodes: [Site!]!
   pageInfo: PageInfo!
   distinct(field: SiteFieldsEnum!): [String!]!
+  max(field: SiteFieldsEnum!): Float
+  min(field: SiteFieldsEnum!): Float
+  sum(field: SiteFieldsEnum!): Float
   group(skip: Int, limit: Int, field: SiteFieldsEnum!): [SiteGroupConnection!]!
 }
 
@@ -1937,80 +1435,153 @@ input SiteSortInput {
   order: [SortOrderEnum] = [ASC]
 }
 
+type SiteFunctionConnection {
+  totalCount: Int!
+  edges: [SiteFunctionEdge!]!
+  nodes: [SiteFunction!]!
+  pageInfo: PageInfo!
+  distinct(field: SiteFunctionFieldsEnum!): [String!]!
+  max(field: SiteFunctionFieldsEnum!): Float
+  min(field: SiteFunctionFieldsEnum!): Float
+  sum(field: SiteFunctionFieldsEnum!): Float
+  group(skip: Int, limit: Int, field: SiteFunctionFieldsEnum!): [SiteFunctionGroupConnection!]!
+}
+
+type SiteFunctionEdge {
+  next: SiteFunction
+  node: SiteFunction!
+  previous: SiteFunction
+}
+
+enum SiteFunctionFieldsEnum {
+  functionRoute
+  pluginName
+  originalAbsoluteFilePath
+  originalRelativeFilePath
+  relativeCompiledFilePath
+  absoluteCompiledFilePath
+  matchPath
+  id
+  parent___id
+  parent___parent___id
+  parent___parent___parent___id
+  parent___parent___parent___children
+  parent___parent___children
+  parent___parent___children___id
+  parent___parent___children___children
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___children
+  parent___children___id
+  parent___children___parent___id
+  parent___children___parent___children
+  parent___children___children
+  parent___children___children___id
+  parent___children___children___children
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  children
+  children___id
+  children___parent___id
+  children___parent___parent___id
+  children___parent___parent___children
+  children___parent___children
+  children___parent___children___id
+  children___parent___children___children
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___children
+  children___children___id
+  children___children___parent___id
+  children___children___parent___children
+  children___children___children
+  children___children___children___id
+  children___children___children___children
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+}
+
+type SiteFunctionGroupConnection {
+  totalCount: Int!
+  edges: [SiteFunctionEdge!]!
+  nodes: [SiteFunction!]!
+  pageInfo: PageInfo!
+  field: String!
+  fieldValue: String
+}
+
+input SiteFunctionFilterInput {
+  functionRoute: StringQueryOperatorInput
+  pluginName: StringQueryOperatorInput
+  originalAbsoluteFilePath: StringQueryOperatorInput
+  originalRelativeFilePath: StringQueryOperatorInput
+  relativeCompiledFilePath: StringQueryOperatorInput
+  absoluteCompiledFilePath: StringQueryOperatorInput
+  matchPath: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+input SiteFunctionSortInput {
+  fields: [SiteFunctionFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
 input SitePageContextFilterInput {
-  article: SitePageContextArticleFilterInput
-  childrenImagesFromHtml: SitePageContextChildrenImagesFromHtmlFilterListInput
+  remoteId: StringQueryOperatorInput
+  langcode: StringQueryOperatorInput
   otherLanguages: SitePageContextOtherLanguagesFilterListInput
   page: SitePageContextPageFilterInput
-}
-
-input SitePageContextArticleFilterInput {
-  langcode: StringQueryOperatorInput
-  path: StringQueryOperatorInput
-  title: StringQueryOperatorInput
-  body: StringQueryOperatorInput
-  tags: SitePageContextArticleTagsFilterListInput
-  image: SitePageContextArticleImageFilterInput
-}
-
-input SitePageContextArticleTagsFilterListInput {
-  elemMatch: SitePageContextArticleTagsFilterInput
-}
-
-input SitePageContextArticleTagsFilterInput {
-  title: StringQueryOperatorInput
-}
-
-input SitePageContextArticleImageFilterInput {
-  alt: StringQueryOperatorInput
-  localImage: SitePageContextArticleImageLocalImageFilterInput
-}
-
-input SitePageContextArticleImageLocalImageFilterInput {
-  childImageSharp: SitePageContextArticleImageLocalImageChildImageSharpFilterInput
-}
-
-input SitePageContextArticleImageLocalImageChildImageSharpFilterInput {
-  fixed: SitePageContextArticleImageLocalImageChildImageSharpFixedFilterInput
-}
-
-input SitePageContextArticleImageLocalImageChildImageSharpFixedFilterInput {
-  width: IntQueryOperatorInput
-  height: IntQueryOperatorInput
-  base64: StringQueryOperatorInput
-  aspectRatio: FloatQueryOperatorInput
-  src: StringQueryOperatorInput
-  srcSet: StringQueryOperatorInput
-  srcWebp: StringQueryOperatorInput
-  srcSetWebp: StringQueryOperatorInput
-}
-
-input SitePageContextChildrenImagesFromHtmlFilterListInput {
-  elemMatch: SitePageContextChildrenImagesFromHtmlFilterInput
-}
-
-input SitePageContextChildrenImagesFromHtmlFilterInput {
-  urlOriginal: StringQueryOperatorInput
-  localImage: SitePageContextChildrenImagesFromHtmlLocalImageFilterInput
-}
-
-input SitePageContextChildrenImagesFromHtmlLocalImageFilterInput {
-  childImageSharp: SitePageContextChildrenImagesFromHtmlLocalImageChildImageSharpFilterInput
-}
-
-input SitePageContextChildrenImagesFromHtmlLocalImageChildImageSharpFilterInput {
-  fixed: SitePageContextChildrenImagesFromHtmlLocalImageChildImageSharpFixedFilterInput
-}
-
-input SitePageContextChildrenImagesFromHtmlLocalImageChildImageSharpFixedFilterInput {
-  width: IntQueryOperatorInput
-  height: IntQueryOperatorInput
-  base64: StringQueryOperatorInput
-  aspectRatio: FloatQueryOperatorInput
-  src: StringQueryOperatorInput
-  srcSet: StringQueryOperatorInput
-  srcWebp: StringQueryOperatorInput
-  srcSetWebp: StringQueryOperatorInput
 }
 
 input SitePageContextOtherLanguagesFilterListInput {
@@ -2179,6 +1750,9 @@ type SitePageConnection {
   nodes: [SitePage!]!
   pageInfo: PageInfo!
   distinct(field: SitePageFieldsEnum!): [String!]!
+  max(field: SitePageFieldsEnum!): Float
+  min(field: SitePageFieldsEnum!): Float
+  sum(field: SitePageFieldsEnum!): Float
   group(skip: Int, limit: Int, field: SitePageFieldsEnum!): [SitePageGroupConnection!]!
 }
 
@@ -2281,15 +1855,8 @@ enum SitePageFieldsEnum {
   internal___owner
   internal___type
   isCreatedByStatefulCreatePages
-  context___article___langcode
-  context___article___path
-  context___article___title
-  context___article___body
-  context___article___tags
-  context___article___tags___title
-  context___article___image___alt
-  context___childrenImagesFromHtml
-  context___childrenImagesFromHtml___urlOriginal
+  context___remoteId
+  context___langcode
   context___otherLanguages
   context___otherLanguages___path
   context___otherLanguages___language___id
@@ -2380,7 +1947,6 @@ enum SitePageFieldsEnum {
   pluginCreator___packageJson___peerDependencies___version
   pluginCreator___packageJson___keywords
   pluginCreatorId
-  componentPath
 }
 
 type SitePageGroupConnection {
@@ -2406,11 +1972,756 @@ input SitePageFilterInput {
   context: SitePageContextFilterInput
   pluginCreator: SitePluginFilterInput
   pluginCreatorId: StringQueryOperatorInput
-  componentPath: StringQueryOperatorInput
 }
 
 input SitePageSortInput {
   fields: [SitePageFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
+input DrupalPageFilterInput {
+  remoteTypeName: StringQueryOperatorInput
+  path: StringQueryOperatorInput
+  title: StringQueryOperatorInput
+  body: StringQueryOperatorInput
+  langcode: StringQueryOperatorInput
+}
+
+input DrupalPageFilterListInput {
+  elemMatch: DrupalPageFilterInput
+}
+
+input ImagesFromHtmlFilterListInput {
+  elemMatch: ImagesFromHtmlFilterInput
+}
+
+input ImagesFromHtmlFilterInput {
+  urlOriginal: StringQueryOperatorInput
+  urlAbsolute: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+type DrupalPageTranslationsConnection {
+  totalCount: Int!
+  edges: [DrupalPageTranslationsEdge!]!
+  nodes: [DrupalPageTranslations!]!
+  pageInfo: PageInfo!
+  distinct(field: DrupalPageTranslationsFieldsEnum!): [String!]!
+  max(field: DrupalPageTranslationsFieldsEnum!): Float
+  min(field: DrupalPageTranslationsFieldsEnum!): Float
+  sum(field: DrupalPageTranslationsFieldsEnum!): Float
+  group(skip: Int, limit: Int, field: DrupalPageTranslationsFieldsEnum!): [DrupalPageTranslationsGroupConnection!]!
+}
+
+type DrupalPageTranslationsEdge {
+  next: DrupalPageTranslations
+  node: DrupalPageTranslations!
+  previous: DrupalPageTranslations
+}
+
+enum DrupalPageTranslationsFieldsEnum {
+  translation___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___path @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___body @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___path @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___body @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___urlOriginal @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___urlAbsolute @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___urlOriginal @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___urlAbsolute @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+}
+
+type DrupalPageTranslationsGroupConnection {
+  totalCount: Int!
+  edges: [DrupalPageTranslationsEdge!]!
+  nodes: [DrupalPageTranslations!]!
+  pageInfo: PageInfo!
+  field: String!
+  fieldValue: String
+}
+
+input DrupalPageTranslationsFilterInput {
+  translation: DrupalPageFilterInput
+  remoteTypeName: StringQueryOperatorInput
+  remoteId: StringQueryOperatorInput
+  translations: DrupalPageFilterListInput
+  childrenImagesFromHtml: ImagesFromHtmlFilterListInput
+  childImagesFromHtml: ImagesFromHtmlFilterInput
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+input DrupalPageTranslationsSortInput {
+  fields: [DrupalPageTranslationsFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
+input DrupalGutenbergPageFilterInput {
+  remoteTypeName: StringQueryOperatorInput
+  path: StringQueryOperatorInput
+  title: StringQueryOperatorInput
+  langcode: StringQueryOperatorInput
+}
+
+input DrupalGutenbergPageFilterListInput {
+  elemMatch: DrupalGutenbergPageFilterInput
+}
+
+type DrupalGutenbergPageTranslationsConnection {
+  totalCount: Int!
+  edges: [DrupalGutenbergPageTranslationsEdge!]!
+  nodes: [DrupalGutenbergPageTranslations!]!
+  pageInfo: PageInfo!
+  distinct(field: DrupalGutenbergPageTranslationsFieldsEnum!): [String!]!
+  max(field: DrupalGutenbergPageTranslationsFieldsEnum!): Float
+  min(field: DrupalGutenbergPageTranslationsFieldsEnum!): Float
+  sum(field: DrupalGutenbergPageTranslationsFieldsEnum!): Float
+  group(skip: Int, limit: Int, field: DrupalGutenbergPageTranslationsFieldsEnum!): [DrupalGutenbergPageTranslationsGroupConnection!]!
+}
+
+type DrupalGutenbergPageTranslationsEdge {
+  next: DrupalGutenbergPageTranslations
+  node: DrupalGutenbergPageTranslations!
+  previous: DrupalGutenbergPageTranslations
+}
+
+enum DrupalGutenbergPageTranslationsFieldsEnum {
+  translation___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___path @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___path @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+}
+
+type DrupalGutenbergPageTranslationsGroupConnection {
+  totalCount: Int!
+  edges: [DrupalGutenbergPageTranslationsEdge!]!
+  nodes: [DrupalGutenbergPageTranslations!]!
+  pageInfo: PageInfo!
+  field: String!
+  fieldValue: String
+}
+
+input DrupalGutenbergPageTranslationsFilterInput {
+  translation: DrupalGutenbergPageFilterInput
+  remoteTypeName: StringQueryOperatorInput
+  remoteId: StringQueryOperatorInput
+  translations: DrupalGutenbergPageFilterListInput
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+input DrupalGutenbergPageTranslationsSortInput {
+  fields: [DrupalGutenbergPageTranslationsFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
+input DrupalArticleFilterInput {
+  remoteTypeName: StringQueryOperatorInput
+  path: StringQueryOperatorInput
+  title: StringQueryOperatorInput
+  body: StringQueryOperatorInput
+  tags: DrupalTagFilterListInput
+  image: DrupalImageFilterInput
+  langcode: StringQueryOperatorInput
+}
+
+input DrupalTagFilterListInput {
+  elemMatch: DrupalTagFilterInput
+}
+
+input DrupalTagFilterInput {
+  remoteTypeName: StringQueryOperatorInput
+  remoteId: StringQueryOperatorInput
+  title: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+input DrupalImageFilterInput {
+  remoteTypeName: StringQueryOperatorInput
+  remoteId: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  alt: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+input DrupalArticleFilterListInput {
+  elemMatch: DrupalArticleFilterInput
+}
+
+type DrupalArticleTranslationsConnection {
+  totalCount: Int!
+  edges: [DrupalArticleTranslationsEdge!]!
+  nodes: [DrupalArticleTranslations!]!
+  pageInfo: PageInfo!
+  distinct(field: DrupalArticleTranslationsFieldsEnum!): [String!]!
+  max(field: DrupalArticleTranslationsFieldsEnum!): Float
+  min(field: DrupalArticleTranslationsFieldsEnum!): Float
+  sum(field: DrupalArticleTranslationsFieldsEnum!): Float
+  group(skip: Int, limit: Int, field: DrupalArticleTranslationsFieldsEnum!): [DrupalArticleTranslationsGroupConnection!]!
+}
+
+type DrupalArticleTranslationsEdge {
+  next: DrupalArticleTranslations
+  node: DrupalArticleTranslations!
+  previous: DrupalArticleTranslations
+}
+
+enum DrupalArticleTranslationsFieldsEnum {
+  translation___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___path @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___body @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___tags @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___tags___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___tags___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___tags___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___tags___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___tags___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___tags___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___tags___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___tags___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___tags___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___tags___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___tags___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___tags___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___tags___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___tags___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___tags___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___tags___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___tags___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___image___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___image___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___image___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___image___alt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___image___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___image___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___image___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___image___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___image___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___image___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___image___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___image___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___image___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___image___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___image___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___image___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___image___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___image___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___path @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___body @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___tags @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___tags___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___tags___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___tags___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___tags___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___tags___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___tags___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___tags___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___tags___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___tags___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___tags___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___tags___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___tags___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___tags___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___tags___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___tags___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___tags___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___tags___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___image___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___image___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___image___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___image___alt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___image___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___image___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___image___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___image___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___image___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___image___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___image___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___image___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___image___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___image___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___image___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___image___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___image___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___image___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___urlOriginal @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___urlAbsolute @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childrenImagesFromHtml___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___urlOriginal @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___urlAbsolute @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childImagesFromHtml___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+}
+
+type DrupalArticleTranslationsGroupConnection {
+  totalCount: Int!
+  edges: [DrupalArticleTranslationsEdge!]!
+  nodes: [DrupalArticleTranslations!]!
+  pageInfo: PageInfo!
+  field: String!
+  fieldValue: String
+}
+
+input DrupalArticleTranslationsFilterInput {
+  translation: DrupalArticleFilterInput
+  remoteTypeName: StringQueryOperatorInput
+  remoteId: StringQueryOperatorInput
+  translations: DrupalArticleFilterListInput
+  childrenImagesFromHtml: ImagesFromHtmlFilterListInput
+  childImagesFromHtml: ImagesFromHtmlFilterInput
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+input DrupalArticleTranslationsSortInput {
+  fields: [DrupalArticleTranslationsFieldsEnum]
   order: [SortOrderEnum] = [ASC]
 }
 
@@ -2420,6 +2731,9 @@ type ImagesFromHtmlConnection {
   nodes: [ImagesFromHtml!]!
   pageInfo: PageInfo!
   distinct(field: ImagesFromHtmlFieldsEnum!): [String!]!
+  max(field: ImagesFromHtmlFieldsEnum!): Float
+  min(field: ImagesFromHtmlFieldsEnum!): Float
+  sum(field: ImagesFromHtmlFieldsEnum!): Float
   group(skip: Int, limit: Int, field: ImagesFromHtmlFieldsEnum!): [ImagesFromHtmlGroupConnection!]!
 }
 
@@ -2529,15 +2843,6 @@ type ImagesFromHtmlGroupConnection {
   fieldValue: String
 }
 
-input ImagesFromHtmlFilterInput {
-  urlOriginal: StringQueryOperatorInput
-  urlAbsolute: StringQueryOperatorInput
-  id: StringQueryOperatorInput
-  parent: NodeFilterInput
-  children: NodeFilterListInput
-  internal: InternalFilterInput
-}
-
 input ImagesFromHtmlSortInput {
   fields: [ImagesFromHtmlFieldsEnum]
   order: [SortOrderEnum] = [ASC]
@@ -2549,6 +2854,9 @@ type ImageSharpConnection {
   nodes: [ImageSharp!]!
   pageInfo: PageInfo!
   distinct(field: ImageSharpFieldsEnum!): [String!]!
+  max(field: ImageSharpFieldsEnum!): Float
+  min(field: ImageSharpFieldsEnum!): Float
+  sum(field: ImageSharpFieldsEnum!): Float
   group(skip: Int, limit: Int, field: ImageSharpFieldsEnum!): [ImageSharpGroupConnection!]!
 }
 
@@ -2699,6 +3007,9 @@ type DrupalImageConnection {
   nodes: [DrupalImage!]!
   pageInfo: PageInfo!
   distinct(field: DrupalImageFieldsEnum!): [String!]!
+  max(field: DrupalImageFieldsEnum!): Float
+  min(field: DrupalImageFieldsEnum!): Float
+  sum(field: DrupalImageFieldsEnum!): Float
   group(skip: Int, limit: Int, field: DrupalImageFieldsEnum!): [DrupalImageGroupConnection!]!
 }
 
@@ -2810,17 +3121,6 @@ type DrupalImageGroupConnection {
   fieldValue: String
 }
 
-input DrupalImageFilterInput {
-  remoteTypeName: StringQueryOperatorInput
-  remoteId: StringQueryOperatorInput
-  url: StringQueryOperatorInput
-  alt: StringQueryOperatorInput
-  id: StringQueryOperatorInput
-  parent: NodeFilterInput
-  children: NodeFilterListInput
-  internal: InternalFilterInput
-}
-
 input DrupalImageSortInput {
   fields: [DrupalImageFieldsEnum]
   order: [SortOrderEnum] = [ASC]
@@ -2832,6 +3132,9 @@ type DrupalTagConnection {
   nodes: [DrupalTag!]!
   pageInfo: PageInfo!
   distinct(field: DrupalTagFieldsEnum!): [String!]!
+  max(field: DrupalTagFieldsEnum!): Float
+  min(field: DrupalTagFieldsEnum!): Float
+  sum(field: DrupalTagFieldsEnum!): Float
   group(skip: Int, limit: Int, field: DrupalTagFieldsEnum!): [DrupalTagGroupConnection!]!
 }
 
@@ -2942,672 +3245,8 @@ type DrupalTagGroupConnection {
   fieldValue: String
 }
 
-input DrupalTagFilterInput {
-  remoteTypeName: StringQueryOperatorInput
-  remoteId: StringQueryOperatorInput
-  title: StringQueryOperatorInput
-  id: StringQueryOperatorInput
-  parent: NodeFilterInput
-  children: NodeFilterListInput
-  internal: InternalFilterInput
-}
-
 input DrupalTagSortInput {
   fields: [DrupalTagFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
-}
-
-input DrupalPageFilterListInput {
-  elemMatch: DrupalPageFilterInput
-}
-
-input DrupalPageFilterInput {
-  remoteTypeName: StringQueryOperatorInput
-  path: StringQueryOperatorInput
-  title: StringQueryOperatorInput
-  body: StringQueryOperatorInput
-  langcode: StringQueryOperatorInput
-}
-
-input ImagesFromHtmlFilterListInput {
-  elemMatch: ImagesFromHtmlFilterInput
-}
-
-type DrupalPageTranslationsConnection {
-  totalCount: Int!
-  edges: [DrupalPageTranslationsEdge!]!
-  nodes: [DrupalPageTranslations!]!
-  pageInfo: PageInfo!
-  distinct(field: DrupalPageTranslationsFieldsEnum!): [String!]!
-  group(skip: Int, limit: Int, field: DrupalPageTranslationsFieldsEnum!): [DrupalPageTranslationsGroupConnection!]!
-}
-
-type DrupalPageTranslationsEdge {
-  next: DrupalPageTranslations
-  node: DrupalPageTranslations!
-  previous: DrupalPageTranslations
-}
-
-enum DrupalPageTranslationsFieldsEnum {
-  remoteTypeName
-  remoteId
-  translations
-  translations___remoteTypeName
-  translations___path
-  translations___title
-  translations___body
-  translations___langcode
-  childrenImagesFromHtml
-  childrenImagesFromHtml___urlOriginal
-  childrenImagesFromHtml___urlAbsolute
-  childrenImagesFromHtml___id
-  childrenImagesFromHtml___parent___id
-  childrenImagesFromHtml___parent___parent___id
-  childrenImagesFromHtml___parent___parent___children
-  childrenImagesFromHtml___parent___children
-  childrenImagesFromHtml___parent___children___id
-  childrenImagesFromHtml___parent___children___children
-  childrenImagesFromHtml___parent___internal___content
-  childrenImagesFromHtml___parent___internal___contentDigest
-  childrenImagesFromHtml___parent___internal___description
-  childrenImagesFromHtml___parent___internal___fieldOwners
-  childrenImagesFromHtml___parent___internal___ignoreType
-  childrenImagesFromHtml___parent___internal___mediaType
-  childrenImagesFromHtml___parent___internal___owner
-  childrenImagesFromHtml___parent___internal___type
-  childrenImagesFromHtml___children
-  childrenImagesFromHtml___children___id
-  childrenImagesFromHtml___children___parent___id
-  childrenImagesFromHtml___children___parent___children
-  childrenImagesFromHtml___children___children
-  childrenImagesFromHtml___children___children___id
-  childrenImagesFromHtml___children___children___children
-  childrenImagesFromHtml___children___internal___content
-  childrenImagesFromHtml___children___internal___contentDigest
-  childrenImagesFromHtml___children___internal___description
-  childrenImagesFromHtml___children___internal___fieldOwners
-  childrenImagesFromHtml___children___internal___ignoreType
-  childrenImagesFromHtml___children___internal___mediaType
-  childrenImagesFromHtml___children___internal___owner
-  childrenImagesFromHtml___children___internal___type
-  childrenImagesFromHtml___internal___content
-  childrenImagesFromHtml___internal___contentDigest
-  childrenImagesFromHtml___internal___description
-  childrenImagesFromHtml___internal___fieldOwners
-  childrenImagesFromHtml___internal___ignoreType
-  childrenImagesFromHtml___internal___mediaType
-  childrenImagesFromHtml___internal___owner
-  childrenImagesFromHtml___internal___type
-  childImagesFromHtml___urlOriginal
-  childImagesFromHtml___urlAbsolute
-  childImagesFromHtml___id
-  childImagesFromHtml___parent___id
-  childImagesFromHtml___parent___parent___id
-  childImagesFromHtml___parent___parent___children
-  childImagesFromHtml___parent___children
-  childImagesFromHtml___parent___children___id
-  childImagesFromHtml___parent___children___children
-  childImagesFromHtml___parent___internal___content
-  childImagesFromHtml___parent___internal___contentDigest
-  childImagesFromHtml___parent___internal___description
-  childImagesFromHtml___parent___internal___fieldOwners
-  childImagesFromHtml___parent___internal___ignoreType
-  childImagesFromHtml___parent___internal___mediaType
-  childImagesFromHtml___parent___internal___owner
-  childImagesFromHtml___parent___internal___type
-  childImagesFromHtml___children
-  childImagesFromHtml___children___id
-  childImagesFromHtml___children___parent___id
-  childImagesFromHtml___children___parent___children
-  childImagesFromHtml___children___children
-  childImagesFromHtml___children___children___id
-  childImagesFromHtml___children___children___children
-  childImagesFromHtml___children___internal___content
-  childImagesFromHtml___children___internal___contentDigest
-  childImagesFromHtml___children___internal___description
-  childImagesFromHtml___children___internal___fieldOwners
-  childImagesFromHtml___children___internal___ignoreType
-  childImagesFromHtml___children___internal___mediaType
-  childImagesFromHtml___children___internal___owner
-  childImagesFromHtml___children___internal___type
-  childImagesFromHtml___internal___content
-  childImagesFromHtml___internal___contentDigest
-  childImagesFromHtml___internal___description
-  childImagesFromHtml___internal___fieldOwners
-  childImagesFromHtml___internal___ignoreType
-  childImagesFromHtml___internal___mediaType
-  childImagesFromHtml___internal___owner
-  childImagesFromHtml___internal___type
-  id
-  parent___id
-  parent___parent___id
-  parent___parent___parent___id
-  parent___parent___parent___children
-  parent___parent___children
-  parent___parent___children___id
-  parent___parent___children___children
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___children
-  parent___children___id
-  parent___children___parent___id
-  parent___children___parent___children
-  parent___children___children
-  parent___children___children___id
-  parent___children___children___children
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  children
-  children___id
-  children___parent___id
-  children___parent___parent___id
-  children___parent___parent___children
-  children___parent___children
-  children___parent___children___id
-  children___parent___children___children
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___children
-  children___children___id
-  children___children___parent___id
-  children___children___parent___children
-  children___children___children
-  children___children___children___id
-  children___children___children___children
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-}
-
-type DrupalPageTranslationsGroupConnection {
-  totalCount: Int!
-  edges: [DrupalPageTranslationsEdge!]!
-  nodes: [DrupalPageTranslations!]!
-  pageInfo: PageInfo!
-  field: String!
-  fieldValue: String
-}
-
-input DrupalPageTranslationsFilterInput {
-  remoteTypeName: StringQueryOperatorInput
-  remoteId: StringQueryOperatorInput
-  translations: DrupalPageFilterListInput
-  childrenImagesFromHtml: ImagesFromHtmlFilterListInput
-  childImagesFromHtml: ImagesFromHtmlFilterInput
-  id: StringQueryOperatorInput
-  parent: NodeFilterInput
-  children: NodeFilterListInput
-  internal: InternalFilterInput
-}
-
-input DrupalPageTranslationsSortInput {
-  fields: [DrupalPageTranslationsFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
-}
-
-input DrupalGutenbergPageFilterListInput {
-  elemMatch: DrupalGutenbergPageFilterInput
-}
-
-input DrupalGutenbergPageFilterInput {
-  remoteTypeName: StringQueryOperatorInput
-  path: StringQueryOperatorInput
-  title: StringQueryOperatorInput
-  langcode: StringQueryOperatorInput
-}
-
-type DrupalGutenbergPageTranslationsConnection {
-  totalCount: Int!
-  edges: [DrupalGutenbergPageTranslationsEdge!]!
-  nodes: [DrupalGutenbergPageTranslations!]!
-  pageInfo: PageInfo!
-  distinct(field: DrupalGutenbergPageTranslationsFieldsEnum!): [String!]!
-  group(skip: Int, limit: Int, field: DrupalGutenbergPageTranslationsFieldsEnum!): [DrupalGutenbergPageTranslationsGroupConnection!]!
-}
-
-type DrupalGutenbergPageTranslationsEdge {
-  next: DrupalGutenbergPageTranslations
-  node: DrupalGutenbergPageTranslations!
-  previous: DrupalGutenbergPageTranslations
-}
-
-enum DrupalGutenbergPageTranslationsFieldsEnum {
-  remoteTypeName
-  remoteId
-  translations
-  translations___remoteTypeName
-  translations___path
-  translations___title
-  translations___langcode
-  id
-  parent___id
-  parent___parent___id
-  parent___parent___parent___id
-  parent___parent___parent___children
-  parent___parent___children
-  parent___parent___children___id
-  parent___parent___children___children
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___children
-  parent___children___id
-  parent___children___parent___id
-  parent___children___parent___children
-  parent___children___children
-  parent___children___children___id
-  parent___children___children___children
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  children
-  children___id
-  children___parent___id
-  children___parent___parent___id
-  children___parent___parent___children
-  children___parent___children
-  children___parent___children___id
-  children___parent___children___children
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___children
-  children___children___id
-  children___children___parent___id
-  children___children___parent___children
-  children___children___children
-  children___children___children___id
-  children___children___children___children
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-}
-
-type DrupalGutenbergPageTranslationsGroupConnection {
-  totalCount: Int!
-  edges: [DrupalGutenbergPageTranslationsEdge!]!
-  nodes: [DrupalGutenbergPageTranslations!]!
-  pageInfo: PageInfo!
-  field: String!
-  fieldValue: String
-}
-
-input DrupalGutenbergPageTranslationsFilterInput {
-  remoteTypeName: StringQueryOperatorInput
-  remoteId: StringQueryOperatorInput
-  translations: DrupalGutenbergPageFilterListInput
-  id: StringQueryOperatorInput
-  parent: NodeFilterInput
-  children: NodeFilterListInput
-  internal: InternalFilterInput
-}
-
-input DrupalGutenbergPageTranslationsSortInput {
-  fields: [DrupalGutenbergPageTranslationsFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
-}
-
-input DrupalArticleFilterListInput {
-  elemMatch: DrupalArticleFilterInput
-}
-
-input DrupalArticleFilterInput {
-  remoteTypeName: StringQueryOperatorInput
-  path: StringQueryOperatorInput
-  title: StringQueryOperatorInput
-  body: StringQueryOperatorInput
-  tags: DrupalTagFilterListInput
-  image: DrupalImageFilterInput
-  langcode: StringQueryOperatorInput
-}
-
-input DrupalTagFilterListInput {
-  elemMatch: DrupalTagFilterInput
-}
-
-type DrupalArticleTranslationsConnection {
-  totalCount: Int!
-  edges: [DrupalArticleTranslationsEdge!]!
-  nodes: [DrupalArticleTranslations!]!
-  pageInfo: PageInfo!
-  distinct(field: DrupalArticleTranslationsFieldsEnum!): [String!]!
-  group(skip: Int, limit: Int, field: DrupalArticleTranslationsFieldsEnum!): [DrupalArticleTranslationsGroupConnection!]!
-}
-
-type DrupalArticleTranslationsEdge {
-  next: DrupalArticleTranslations
-  node: DrupalArticleTranslations!
-  previous: DrupalArticleTranslations
-}
-
-enum DrupalArticleTranslationsFieldsEnum {
-  remoteTypeName
-  remoteId
-  translations
-  translations___remoteTypeName
-  translations___path
-  translations___title
-  translations___body
-  translations___tags
-  translations___tags___remoteTypeName
-  translations___tags___remoteId
-  translations___tags___title
-  translations___tags___id
-  translations___tags___parent___id
-  translations___tags___parent___children
-  translations___tags___children
-  translations___tags___children___id
-  translations___tags___children___children
-  translations___tags___internal___content
-  translations___tags___internal___contentDigest
-  translations___tags___internal___description
-  translations___tags___internal___fieldOwners
-  translations___tags___internal___ignoreType
-  translations___tags___internal___mediaType
-  translations___tags___internal___owner
-  translations___tags___internal___type
-  translations___image___remoteTypeName
-  translations___image___remoteId
-  translations___image___url
-  translations___image___alt
-  translations___image___id
-  translations___image___parent___id
-  translations___image___parent___children
-  translations___image___children
-  translations___image___children___id
-  translations___image___children___children
-  translations___image___internal___content
-  translations___image___internal___contentDigest
-  translations___image___internal___description
-  translations___image___internal___fieldOwners
-  translations___image___internal___ignoreType
-  translations___image___internal___mediaType
-  translations___image___internal___owner
-  translations___image___internal___type
-  translations___langcode
-  childrenImagesFromHtml
-  childrenImagesFromHtml___urlOriginal
-  childrenImagesFromHtml___urlAbsolute
-  childrenImagesFromHtml___id
-  childrenImagesFromHtml___parent___id
-  childrenImagesFromHtml___parent___parent___id
-  childrenImagesFromHtml___parent___parent___children
-  childrenImagesFromHtml___parent___children
-  childrenImagesFromHtml___parent___children___id
-  childrenImagesFromHtml___parent___children___children
-  childrenImagesFromHtml___parent___internal___content
-  childrenImagesFromHtml___parent___internal___contentDigest
-  childrenImagesFromHtml___parent___internal___description
-  childrenImagesFromHtml___parent___internal___fieldOwners
-  childrenImagesFromHtml___parent___internal___ignoreType
-  childrenImagesFromHtml___parent___internal___mediaType
-  childrenImagesFromHtml___parent___internal___owner
-  childrenImagesFromHtml___parent___internal___type
-  childrenImagesFromHtml___children
-  childrenImagesFromHtml___children___id
-  childrenImagesFromHtml___children___parent___id
-  childrenImagesFromHtml___children___parent___children
-  childrenImagesFromHtml___children___children
-  childrenImagesFromHtml___children___children___id
-  childrenImagesFromHtml___children___children___children
-  childrenImagesFromHtml___children___internal___content
-  childrenImagesFromHtml___children___internal___contentDigest
-  childrenImagesFromHtml___children___internal___description
-  childrenImagesFromHtml___children___internal___fieldOwners
-  childrenImagesFromHtml___children___internal___ignoreType
-  childrenImagesFromHtml___children___internal___mediaType
-  childrenImagesFromHtml___children___internal___owner
-  childrenImagesFromHtml___children___internal___type
-  childrenImagesFromHtml___internal___content
-  childrenImagesFromHtml___internal___contentDigest
-  childrenImagesFromHtml___internal___description
-  childrenImagesFromHtml___internal___fieldOwners
-  childrenImagesFromHtml___internal___ignoreType
-  childrenImagesFromHtml___internal___mediaType
-  childrenImagesFromHtml___internal___owner
-  childrenImagesFromHtml___internal___type
-  childImagesFromHtml___urlOriginal
-  childImagesFromHtml___urlAbsolute
-  childImagesFromHtml___id
-  childImagesFromHtml___parent___id
-  childImagesFromHtml___parent___parent___id
-  childImagesFromHtml___parent___parent___children
-  childImagesFromHtml___parent___children
-  childImagesFromHtml___parent___children___id
-  childImagesFromHtml___parent___children___children
-  childImagesFromHtml___parent___internal___content
-  childImagesFromHtml___parent___internal___contentDigest
-  childImagesFromHtml___parent___internal___description
-  childImagesFromHtml___parent___internal___fieldOwners
-  childImagesFromHtml___parent___internal___ignoreType
-  childImagesFromHtml___parent___internal___mediaType
-  childImagesFromHtml___parent___internal___owner
-  childImagesFromHtml___parent___internal___type
-  childImagesFromHtml___children
-  childImagesFromHtml___children___id
-  childImagesFromHtml___children___parent___id
-  childImagesFromHtml___children___parent___children
-  childImagesFromHtml___children___children
-  childImagesFromHtml___children___children___id
-  childImagesFromHtml___children___children___children
-  childImagesFromHtml___children___internal___content
-  childImagesFromHtml___children___internal___contentDigest
-  childImagesFromHtml___children___internal___description
-  childImagesFromHtml___children___internal___fieldOwners
-  childImagesFromHtml___children___internal___ignoreType
-  childImagesFromHtml___children___internal___mediaType
-  childImagesFromHtml___children___internal___owner
-  childImagesFromHtml___children___internal___type
-  childImagesFromHtml___internal___content
-  childImagesFromHtml___internal___contentDigest
-  childImagesFromHtml___internal___description
-  childImagesFromHtml___internal___fieldOwners
-  childImagesFromHtml___internal___ignoreType
-  childImagesFromHtml___internal___mediaType
-  childImagesFromHtml___internal___owner
-  childImagesFromHtml___internal___type
-  id
-  parent___id
-  parent___parent___id
-  parent___parent___parent___id
-  parent___parent___parent___children
-  parent___parent___children
-  parent___parent___children___id
-  parent___parent___children___children
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___children
-  parent___children___id
-  parent___children___parent___id
-  parent___children___parent___children
-  parent___children___children
-  parent___children___children___id
-  parent___children___children___children
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  children
-  children___id
-  children___parent___id
-  children___parent___parent___id
-  children___parent___parent___children
-  children___parent___children
-  children___parent___children___id
-  children___parent___children___children
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___children
-  children___children___id
-  children___children___parent___id
-  children___children___parent___children
-  children___children___children
-  children___children___children___id
-  children___children___children___children
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-}
-
-type DrupalArticleTranslationsGroupConnection {
-  totalCount: Int!
-  edges: [DrupalArticleTranslationsEdge!]!
-  nodes: [DrupalArticleTranslations!]!
-  pageInfo: PageInfo!
-  field: String!
-  fieldValue: String
-}
-
-input DrupalArticleTranslationsFilterInput {
-  remoteTypeName: StringQueryOperatorInput
-  remoteId: StringQueryOperatorInput
-  translations: DrupalArticleFilterListInput
-  childrenImagesFromHtml: ImagesFromHtmlFilterListInput
-  childImagesFromHtml: ImagesFromHtmlFilterInput
-  id: StringQueryOperatorInput
-  parent: NodeFilterInput
-  children: NodeFilterListInput
-  internal: InternalFilterInput
-}
-
-input DrupalArticleTranslationsSortInput {
-  fields: [DrupalArticleTranslationsFieldsEnum]
   order: [SortOrderEnum] = [ASC]
 }
 
@@ -3617,6 +3256,9 @@ type SiteBuildMetadataConnection {
   nodes: [SiteBuildMetadata!]!
   pageInfo: PageInfo!
   distinct(field: SiteBuildMetadataFieldsEnum!): [String!]!
+  max(field: SiteBuildMetadataFieldsEnum!): Float
+  min(field: SiteBuildMetadataFieldsEnum!): Float
+  sum(field: SiteBuildMetadataFieldsEnum!): Float
   group(skip: Int, limit: Int, field: SiteBuildMetadataFieldsEnum!): [SiteBuildMetadataGroupConnection!]!
 }
 
@@ -3744,6 +3386,9 @@ type SitePluginConnection {
   nodes: [SitePlugin!]!
   pageInfo: PageInfo!
   distinct(field: SitePluginFieldsEnum!): [String!]!
+  max(field: SitePluginFieldsEnum!): Float
+  min(field: SitePluginFieldsEnum!): Float
+  sum(field: SitePluginFieldsEnum!): Float
   group(skip: Int, limit: Int, field: SitePluginFieldsEnum!): [SitePluginGroupConnection!]!
 }
 
@@ -3893,4 +3538,473 @@ type SitePluginGroupConnection {
 input SitePluginSortInput {
   fields: [SitePluginFieldsEnum]
   order: [SortOrderEnum] = [ASC]
+}
+
+type ImagesFromHtml implements Node {
+  urlOriginal: String!
+  urlAbsolute: String!
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+  localImage: File
+}
+
+enum ImageFormat {
+  NO_CHANGE
+  AUTO
+  JPG
+  PNG
+  WEBP
+  AVIF
+}
+
+enum ImageFit {
+  COVER
+  CONTAIN
+  FILL
+  INSIDE
+  OUTSIDE
+}
+
+enum ImageLayout {
+  FIXED
+  FULL_WIDTH
+  CONSTRAINED
+}
+
+enum ImageCropFocus {
+  CENTER
+  NORTH
+  NORTHEAST
+  EAST
+  SOUTHEAST
+  SOUTH
+  SOUTHWEST
+  WEST
+  NORTHWEST
+  ENTROPY
+  ATTENTION
+}
+
+input DuotoneGradient {
+  highlight: String!
+  shadow: String!
+  opacity: Int
+}
+
+enum PotraceTurnPolicy {
+  TURNPOLICY_BLACK
+  TURNPOLICY_WHITE
+  TURNPOLICY_LEFT
+  TURNPOLICY_RIGHT
+  TURNPOLICY_MINORITY
+  TURNPOLICY_MAJORITY
+}
+
+input Potrace {
+  turnPolicy: PotraceTurnPolicy
+  turdSize: Float
+  alphaMax: Float
+  optCurve: Boolean
+  optTolerance: Float
+  threshold: Int
+  blackOnWhite: Boolean
+  color: String
+  background: String
+}
+
+type ImageSharp implements Node {
+  fixed(width: Int, height: Int, base64Width: Int, jpegProgressive: Boolean = true, pngCompressionSpeed: Int = 4, grayscale: Boolean = false, duotone: DuotoneGradient, traceSVG: Potrace, quality: Int, jpegQuality: Int, pngQuality: Int, webpQuality: Int, toFormat: ImageFormat = AUTO, toFormatBase64: ImageFormat = AUTO, cropFocus: ImageCropFocus = ATTENTION, fit: ImageFit = COVER, background: String = "rgba(0,0,0,1)", rotate: Int = 0, trim: Float = 0): ImageSharpFixed
+  fluid(
+    maxWidth: Int
+    maxHeight: Int
+    base64Width: Int
+    grayscale: Boolean = false
+    jpegProgressive: Boolean = true
+    pngCompressionSpeed: Int = 4
+    duotone: DuotoneGradient
+    traceSVG: Potrace
+    quality: Int
+    jpegQuality: Int
+    pngQuality: Int
+    webpQuality: Int
+    toFormat: ImageFormat = AUTO
+    toFormatBase64: ImageFormat = AUTO
+    cropFocus: ImageCropFocus = ATTENTION
+    fit: ImageFit = COVER
+    background: String = "rgba(0,0,0,1)"
+    rotate: Int = 0
+    trim: Float = 0
+    sizes: String = ""
+
+    """
+    A list of image widths to be generated. Example: [ 200, 340, 520, 890 ]
+    """
+    srcSetBreakpoints: [Int] = []
+  ): ImageSharpFluid
+  gatsbyImageData(
+    """
+    The layout for the image.
+    FIXED: A static image sized, that does not resize according to the screen width
+    FULL_WIDTH: The image resizes to fit its container. Pass a "sizes" option if it isn't going to be the full width of the screen.
+    CONSTRAINED: Resizes to fit its container, up to a maximum width, at which point it will remain fixed in size.
+    """
+    layout: ImageLayout = CONSTRAINED
+
+    """
+    The display width of the generated image for layout = FIXED, and the maximum display width of the largest image for layout = CONSTRAINED.
+    Ignored if layout = FLUID.
+    """
+    width: Int
+
+    """
+    The display height of the generated image for layout = FIXED, and the maximum display height of the largest image for layout = CONSTRAINED.
+    The image will be cropped if the aspect ratio does not match the source image. If omitted, it is calculated from the supplied width,
+    matching the aspect ratio of the source image.
+    """
+    height: Int
+
+    """
+    If set along with width or height, this will set the value of the other dimension to match the provided aspect ratio, cropping the image if needed.
+    If neither width or height is provided, height will be set based on the intrinsic width of the source image.
+    """
+    aspectRatio: Float
+
+    """
+    Format of generated placeholder image, displayed while the main image loads.
+    BLURRED: a blurred, low resolution image, encoded as a base64 data URI (default)
+    DOMINANT_COLOR: a solid color, calculated from the dominant color of the image.
+    TRACED_SVG: a low-resolution traced SVG of the image.
+    NONE: no placeholder. Set "background" to use a fixed background color.
+    """
+    placeholder: ImagePlaceholder
+
+    """
+    Options for the low-resolution placeholder image. Set placeholder to "BLURRED" to use this
+    """
+    blurredOptions: BlurredOptions
+
+    """
+    Options for traced placeholder SVGs. You also should set placeholder to "TRACED_SVG".
+    """
+    tracedSVGOptions: Potrace
+
+    """
+    The image formats to generate. Valid values are "AUTO" (meaning the same format as the source image), "JPG", "PNG", "WEBP" and "AVIF".
+    The default value is [AUTO, WEBP], and you should rarely need to change this. Take care if you specify JPG or PNG when you do
+    not know the formats of the source images, as this could lead to unwanted results such as converting JPEGs to PNGs. Specifying
+    both PNG and JPG is not supported and will be ignored.
+    """
+    formats: [ImageFormat]
+
+    """
+    A list of image pixel densities to generate. It will never generate images larger than the source, and will always include a 1x image.
+    Default is [ 1, 2 ] for FIXED images, meaning 1x and 2x and [0.25, 0.5, 1, 2] for CONSTRAINED. In this case, an image with a constrained layout
+    and width = 400 would generate images at 100, 200, 400 and 800px wide. Ignored for FULL_WIDTH images, which use breakpoints instead
+    """
+    outputPixelDensities: [Float]
+
+    """
+    Specifies the image widths to generate. For FIXED and CONSTRAINED images it is better to allow these to be determined automatically,
+    based on the image size. For FULL_WIDTH images this can be used to override the default, which is [750, 1080, 1366, 1920].
+    It will never generate any images larger than the source.
+    """
+    breakpoints: [Int]
+
+    """
+    The "sizes" property, passed to the img tag. This describes the display size of the image.
+    This does not affect the generated images, but is used by the browser to decide which images to download.
+    You should usually leave this blank, and a suitable value will be calculated. The exception is if a FULL_WIDTH image
+    does not actually span the full width of the screen, in which case you should pass the correct size here.
+    """
+    sizes: String
+
+    """The default quality. This is overridden by any format-specific options"""
+    quality: Int
+
+    """Options to pass to sharp when generating JPG images."""
+    jpgOptions: JPGOptions
+
+    """Options to pass to sharp when generating PNG images."""
+    pngOptions: PNGOptions
+
+    """Options to pass to sharp when generating WebP images."""
+    webpOptions: WebPOptions
+
+    """Options to pass to sharp when generating AVIF images."""
+    avifOptions: AVIFOptions
+
+    """
+    Options to pass to sharp to control cropping and other image manipulations.
+    """
+    transformOptions: TransformOptions
+
+    """
+    Background color applied to the wrapper. Also passed to sharp to use as a background when "letterboxing" an image to another aspect ratio.
+    """
+    backgroundColor: String
+  ): JSON!
+  original: ImageSharpOriginal
+  resize(width: Int, height: Int, quality: Int, jpegQuality: Int, pngQuality: Int, webpQuality: Int, jpegProgressive: Boolean = true, pngCompressionLevel: Int = 9, pngCompressionSpeed: Int = 4, grayscale: Boolean = false, duotone: DuotoneGradient, base64: Boolean = false, traceSVG: Potrace, toFormat: ImageFormat = AUTO, cropFocus: ImageCropFocus = ATTENTION, fit: ImageFit = COVER, background: String = "rgba(0,0,0,1)", rotate: Int = 0, trim: Float = 0): ImageSharpResize
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+}
+
+type ImageSharpFixed {
+  base64: String
+  tracedSVG: String
+  aspectRatio: Float
+  width: Float!
+  height: Float!
+  src: String!
+  srcSet: String!
+  srcWebp: String
+  srcSetWebp: String
+  originalName: String
+}
+
+type ImageSharpFluid {
+  base64: String
+  tracedSVG: String
+  aspectRatio: Float!
+  src: String!
+  srcSet: String!
+  srcWebp: String
+  srcSetWebp: String
+  sizes: String!
+  originalImg: String
+  originalName: String
+  presentationWidth: Int!
+  presentationHeight: Int!
+}
+
+enum ImagePlaceholder {
+  DOMINANT_COLOR
+  TRACED_SVG
+  BLURRED
+  NONE
+}
+
+input BlurredOptions {
+  """Width of the generated low-res preview. Default is 20px"""
+  width: Int
+
+  """
+  Force the output format for the low-res preview. Default is to use the same format as the input. You should rarely need to change this
+  """
+  toFormat: ImageFormat
+}
+
+input JPGOptions {
+  quality: Int
+  progressive: Boolean = true
+}
+
+input PNGOptions {
+  quality: Int
+  compressionSpeed: Int = 4
+}
+
+input WebPOptions {
+  quality: Int
+}
+
+input AVIFOptions {
+  quality: Int
+  lossless: Boolean
+  speed: Int
+}
+
+input TransformOptions {
+  grayscale: Boolean = false
+  duotone: DuotoneGradient
+  rotate: Int = 0
+  trim: Float = 0
+  cropFocus: ImageCropFocus = ATTENTION
+  fit: ImageFit = COVER
+}
+
+type ImageSharpOriginal {
+  width: Float
+  height: Float
+  src: String
+}
+
+type ImageSharpResize {
+  src: String
+  tracedSVG: String
+  width: Int
+  height: Int
+  aspectRatio: Float
+  originalName: String
+}
+
+type DrupalImage implements Node {
+  remoteTypeName: String!
+  remoteId: String!
+  url: String!
+  alt: String!
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+  localImage: File
+}
+
+type DrupalTag implements Node {
+  remoteTypeName: String!
+  remoteId: String!
+  title: String!
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+}
+
+type DrupalPage {
+  remoteTypeName: String!
+  path: String!
+  title: String!
+  body: String
+  langcode: String!
+}
+
+type DrupalGutenbergPage {
+  remoteTypeName: String!
+  path: String!
+  title: String!
+  body: [DrupalRootBlock!]!
+  langcode: String!
+}
+
+union DrupalRootBlock = DrupalBlockTwoColumns | DrupalBlockHtml | DrupalBlockImage | DrupalBlockTeaser
+
+type DrupalBlockTwoColumns {
+  children: [DrupalBlockColumn!]!
+}
+
+type DrupalBlockHtml {
+  html: String!
+}
+
+type DrupalBlockImage {
+  caption: String!
+  image: DrupalImage!
+}
+
+type DrupalBlockTeaser {
+  image: DrupalImage!
+  title: String!
+  subtitle: String!
+  url: String!
+}
+
+type DrupalBlockColumn {
+  remoteTypeName: String!
+  children: [DrupalContentBlock!]!
+}
+
+union DrupalContentBlock = DrupalBlockHtml | DrupalBlockImage | DrupalBlockTeaser
+
+type DrupalArticle {
+  remoteTypeName: String!
+  path: String!
+  title: String!
+  body: String
+  tags: [DrupalTag!]!
+  image: DrupalImage
+  langcode: String!
+}
+
+type SiteBuildMetadata implements Node {
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+  buildTime(
+    """
+    Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    """
+    formatString: String
+
+    """Returns a string generated with Moment.js' `fromNow` function"""
+    fromNow: Boolean
+
+    """
+    Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    """
+    difference: String
+
+    """Configures the locale Moment.js will use to format the date."""
+    locale: String
+  ): Date
+}
+
+type SitePlugin implements Node {
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+  resolve: String
+  name: String
+  version: String
+  pluginOptions: SitePluginPluginOptions
+  nodeAPIs: [String]
+  browserAPIs: [String]
+  ssrAPIs: [String]
+  pluginFilepath: String
+  packageJson: SitePluginPackageJson
+}
+
+type SitePluginPluginOptions {
+  name: String
+  path: String
+  nodeType: String
+  imagePath: String
+  configs: [SitePluginPluginOptionsConfigs]
+  base64Width: Int
+  stripMetadata: Boolean
+  defaultQuality: Int
+  failOnError: Boolean
+  pathCheck: Boolean
+  allExtensions: Boolean
+  isTSX: Boolean
+  jsxPragma: String
+}
+
+type SitePluginPluginOptionsConfigs {
+  nodeType: String
+  propertyPath: String
+  baseUrl: String
+}
+
+type SitePluginPackageJson {
+  name: String
+  description: String
+  version: String
+  main: String
+  author: String
+  license: String
+  dependencies: [SitePluginPackageJsonDependencies]
+  devDependencies: [SitePluginPackageJsonDevDependencies]
+  peerDependencies: [SitePluginPackageJsonPeerDependencies]
+  keywords: [String]
+}
+
+type SitePluginPackageJsonDependencies {
+  name: String
+  version: String
+}
+
+type SitePluginPackageJsonDevDependencies {
+  name: String
+  version: String
+}
+
+type SitePluginPackageJsonPeerDependencies {
+  name: String
+  version: String
 }

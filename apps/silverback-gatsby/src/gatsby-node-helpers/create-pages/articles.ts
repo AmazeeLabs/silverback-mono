@@ -12,42 +12,11 @@ export const createArticlePages = async ({
     query AllArticles {
       allDrupalArticleTranslations {
         nodes {
-          id
+          remoteId
           translations {
             langcode
             path
-            title
-            body
-            tags {
-              title
-            }
-            image {
-              alt
-              localImage {
-                ...ImageSharpFixed
-              }
-            }
           }
-          childrenImagesFromHtml {
-            urlOriginal
-            localImage {
-              ...ImageSharpFixed
-            }
-          }
-        }
-      }
-    }
-    fragment ImageSharpFixed on File {
-      childImageSharp {
-        fixed(width: 200, height: 150) {
-          width
-          height
-          base64
-          aspectRatio
-          src
-          srcSet
-          srcWebp
-          srcSetWebp
         }
       }
     }
@@ -59,8 +28,8 @@ export const createArticlePages = async ({
   data.allDrupalArticleTranslations.nodes.forEach((article) =>
     article.translations.forEach((translation) => {
       const context: ArticleContext = {
-        article: translation,
-        childrenImagesFromHtml: article.childrenImagesFromHtml,
+        remoteId: article.remoteId,
+        langcode: translation.langcode,
         otherLanguages: article.translations
           .filter((it) => it.langcode !== translation.langcode)
           .map((other) => ({
@@ -71,12 +40,6 @@ export const createArticlePages = async ({
 
       const path = translation.path;
       const component = require.resolve(`../../components/article`);
-
-      // TODO: remove once the stale page data issue is fixed.
-      //  https://github.com/gatsbyjs/gatsby/issues/26520
-      // Temporary fix: Call createPage twice with different contexts. This
-      // helps Gatsby to refresh the page data.
-      actions.createPage({ path, component, context: 'fake context' });
 
       return actions.createPage({ path, component, context });
     }),
