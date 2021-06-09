@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.41](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.13.40...silverback-gastby@0.13.41) (2021-06-09)
+
+
+### Bug Fixes
+
+* **gatsby:** fix variable name typo ([a72422d](https://github.com/AmazeeLabs/silverback-mono/commit/a72422d8d8b340476efe3827b9759660dbd8cf51))
+
+
+
+
+
 ## [0.13.40](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.13.39...silverback-gastby@0.13.40) (2021-06-09)
 
 **Note:** Version bump only for package silverback-gastby
