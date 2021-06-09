@@ -14,8 +14,8 @@ import {
 
 import { createQueryExecutor } from './helpers/create-query-executor';
 import { createSourcingConfig } from './helpers/create-sourcing-config';
-import { fetchNodeChanges } from './helpers/fetch-node-changes';
 import { createTranslationQueryField } from './helpers/create-translation-query-field';
+import { fetchNodeChanges } from './helpers/fetch-node-changes';
 
 export const sourceNodes = async (
   gatsbyApi: SourceNodesArgs & { webhookBody?: { buildId?: number } },
