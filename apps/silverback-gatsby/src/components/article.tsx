@@ -1,4 +1,4 @@
-import { Link, PageProps } from 'gatsby';
+import { graphql, Link, PageProps } from 'gatsby';
 import Image from 'gatsby-image';
 import React from 'react';
 
@@ -9,12 +9,43 @@ import {
 import { ArticleContext } from '../types/page-context';
 import { Row } from '../util/Row';
 
-const Article: React.FC<PageProps> = ({ pageContext }) => {
-  const {
-    article,
-    childrenImagesFromHtml,
-    otherLanguages,
-  } = pageContext as ArticleContext;
+export const query = graphql`
+  query Article($remoteId: String!, $langcode: String!) {
+    drupalArticleTranslations(remoteId: { eq: $remoteId }) {
+      id
+      translation(langcode: $langcode) {
+        langcode
+        path
+        title
+        body
+        tags {
+          title
+        }
+        image {
+          alt
+          localImage {
+            ...ImageSharpFixed
+          }
+        }
+      }
+      childrenImagesFromHtml {
+        urlOriginal
+        localImage {
+          ...ImageSharpFixed
+        }
+      }
+    }
+  }
+`;
+
+const Article: React.FC<PageProps<ArticleQuery, ArticleContext>> = ({
+  pageContext,
+  data,
+}) => {
+  const { otherLanguages } = pageContext;
+  const childrenImagesFromHtml =
+    data.drupalArticleTranslations?.childrenImagesFromHtml;
+  const article = data.drupalArticleTranslations?.translation!;
 
   const imageSets: ImageSet[] = [];
   for (const childImage of childrenImagesFromHtml || []) {

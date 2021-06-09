@@ -10,65 +10,11 @@ export const createGutenbergPages = async ({
     query AllGutenbergPages {
       allDrupalGutenbergPageTranslations {
         nodes {
-          id
+          remoteId
           translations {
             langcode
             path
-            title
-            body {
-              __typename
-              ...BlockTwoColumns
-              ...BlockHtml
-              ...BlockImage
-              ...BlockTeaser
-            }
           }
-        }
-      }
-    }
-    fragment ImageSharpFixed on File {
-      childImageSharp {
-        fixed(width: 200, height: 150) {
-          width
-          height
-          base64
-          aspectRatio
-          src
-          srcSet
-          srcWebp
-          srcSetWebp
-        }
-      }
-    }
-    fragment BlockHtml on DrupalBlockHtml {
-      html
-    }
-    fragment BlockImage on DrupalBlockImage {
-      caption
-      image {
-        localImage {
-          ...ImageSharpFixed
-        }
-      }
-    }
-    fragment BlockTeaser on DrupalBlockTeaser {
-      image {
-        localImage {
-          ...ImageSharpFixed
-        }
-      }
-      title
-      subtitle
-      url
-    }
-    fragment BlockTwoColumns on DrupalBlockTwoColumns {
-      children {
-        __typename
-        children {
-          __typename
-          ...BlockHtml
-          ...BlockImage
-          ...BlockTeaser
         }
       }
     }
@@ -82,7 +28,8 @@ export const createGutenbergPages = async ({
   data.allDrupalGutenbergPageTranslations.nodes.forEach((page) =>
     page.translations.forEach((translation) => {
       const context: GutenbergPageContext = {
-        page: translation,
+        remoteId: page.remoteId,
+        langcode: translation.langcode,
         otherLanguages: page.translations
           .filter((it) => it.langcode !== translation.langcode)
           .map((other) => ({

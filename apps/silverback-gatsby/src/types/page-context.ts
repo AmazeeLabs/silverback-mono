@@ -1,8 +1,8 @@
 import { Language } from '../constants/languages';
 
 export type ArticleContext = {
-  article: AllArticlesQuery['allDrupalArticleTranslations']['nodes'][number]['translations'][number];
-  childrenImagesFromHtml: AllArticlesQuery['allDrupalArticleTranslations']['nodes'][number]['childrenImagesFromHtml'];
+  remoteId: string;
+  langcode: string;
   otherLanguages: {
     path: string;
     language: Language;
@@ -10,7 +10,8 @@ export type ArticleContext = {
 };
 
 export type GutenbergPageContext = {
-  page: AllGutenbergPagesQuery['allDrupalGutenbergPageTranslations']['nodes'][number]['translations'][number];
+  remoteId: string;
+  langcode: string;
   otherLanguages: {
     path: string;
     language: Language;
