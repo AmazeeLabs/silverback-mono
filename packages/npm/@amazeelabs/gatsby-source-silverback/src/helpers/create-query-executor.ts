@@ -15,7 +15,7 @@ export const createQueryExecutor = () => {
           },
         };
   return createDefaultQueryExecutor(
-    process.env.DRUPAL_GRAHPQL_ENDPOINT!,
+    process.env.DRUPAL_GRAPHQL_ENDPOINT!,
     fetchOptions,
   );
 };
