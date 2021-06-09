@@ -16,6 +16,7 @@ import { drupalNodes as drupalNodesFetcher } from './drupal-nodes';
 
 export const createSourcingConfig = async (
   gatsbyApi: SourceNodesArgs,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
   customFragments?: Map<RemoteTypeName, string>,
 ): Promise<ISourcingConfig> => {
   const execute = createQueryExecutor();
