@@ -2,6 +2,7 @@ query FeedInfo($lastBuild: Int, $currentBuild: Int) {
   drupalBuildId
   drupalFeedInfo {
     typeName
+    translationTypeName
     singleFieldName
     listFieldName
     changes(lastBuild: $lastBuild, currentBuild: $currentBuild)

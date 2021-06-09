@@ -15,6 +15,7 @@ import {
 import { createQueryExecutor } from './helpers/create-query-executor';
 import { createSourcingConfig } from './helpers/create-sourcing-config';
 import { fetchNodeChanges } from './helpers/fetch-node-changes';
+import { createTranslationQueryField } from './helpers/create-translation-query-field';
 
 export const sourceNodes = async (
   gatsbyApi: SourceNodesArgs & { webhookBody?: { buildId?: number } },
@@ -70,15 +71,15 @@ export const sourceNodes = async (
   }
 };
 
-export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = async (
-  args: CreateSchemaCustomizationArgs,
-) => {
-  args.actions.createTypes(`
+export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] =
+  async (args: CreateSchemaCustomizationArgs) => {
+    await createTranslationQueryField(args);
+    args.actions.createTypes(`
     type Query {
       drupalBuildId: Int!
     }
   `);
-};
+  };
 
 export const createPages: GatsbyNode['createPages'] = async (args) => {
   const buildId = await args.cache.get(`LAST_BUILD_ID_TMP`);

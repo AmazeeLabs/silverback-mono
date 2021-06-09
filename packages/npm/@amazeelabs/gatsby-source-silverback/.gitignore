@@ -1,5 +1,5 @@
 gatsby-node.js
-helpers
+*.js
 ### MANAGED BY @amazeelabs/scaffold - START
 .eslintrc.js
 .jest-runner-eslintrc
