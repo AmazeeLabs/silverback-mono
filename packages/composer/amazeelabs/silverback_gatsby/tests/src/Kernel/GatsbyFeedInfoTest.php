@@ -14,12 +14,14 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       'drupalFeedInfo' => [
         [
           'typeName' => 'PageTranslations',
+          'translationTypeName' => 'Page',
           'singleFieldName' => 'loadPage',
           'listFieldName' => 'queryPages',
           'changes' =>  [],
         ],
         [
           'typeName' => 'Post',
+          'translationTypeName' => null,
           'singleFieldName' => 'loadPost',
           'listFieldName' => 'queryPosts',
           'changes' =>  [],
@@ -42,12 +44,14 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       'drupalFeedInfo' => [
         [
           'typeName' => 'PageTranslations',
+          'translationTypeName' => 'Page',
           'singleFieldName' => 'loadPage',
           'listFieldName' => 'queryPages',
           'changes' =>  [],
         ],
         [
           'typeName' => 'Post',
+          'translationTypeName' => null,
           'singleFieldName' => 'loadPost',
           'listFieldName' => 'queryPosts',
           'changes' =>  [],
@@ -71,12 +75,14 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       'drupalFeedInfo' => [
         [
           'typeName' => 'PageTranslations',
+          'translationTypeName' => 'Page',
           'singleFieldName' => 'loadPage',
           'listFieldName' => 'queryPages',
           'changes' =>  [],
         ],
         [
           'typeName' => 'Post',
+          'translationTypeName' => null,
           'singleFieldName' => 'loadPost',
           'listFieldName' => 'queryPosts',
           'changes' =>  [],
@@ -109,12 +115,14 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       'drupalFeedInfo' => [
         [
           'typeName' => 'PageTranslations',
+          'translationTypeName' => 'Page',
           'singleFieldName' => 'loadPage',
           'listFieldName' => 'queryPages',
           'changes' =>  ['1'],
         ],
         [
           'typeName' => 'Post',
+          'translationTypeName' => null,
           'singleFieldName' => 'loadPost',
           'listFieldName' => 'queryPosts',
           'changes' =>  ['2'],
@@ -131,12 +139,14 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       'drupalFeedInfo' => [
         [
           'typeName' => 'PageTranslations',
+          'translationTypeName' => 'Page',
           'singleFieldName' => 'loadPage',
           'listFieldName' => 'queryPages',
           'changes' =>  ['1'],
         ],
         [
           'typeName' => 'Post',
+          'translationTypeName' => null,
           'singleFieldName' => 'loadPost',
           'listFieldName' => 'queryPosts',
           'changes' =>  [],
@@ -153,12 +163,14 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       'drupalFeedInfo' => [
         [
           'typeName' => 'PageTranslations',
+          'translationTypeName' => 'Page',
           'singleFieldName' => 'loadPage',
           'listFieldName' => 'queryPages',
           'changes' =>  [],
         ],
         [
           'typeName' => 'Post',
+          'translationTypeName' => null,
           'singleFieldName' => 'loadPost',
           'listFieldName' => 'queryPosts',
           'changes' =>  ['2'],

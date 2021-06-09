@@ -9,6 +9,7 @@ interface Translation {
 
 type Feed {
   typeName: String!
+  translationTypeName: String
   singleFieldName: String!
   listFieldName: String!
   changes(lastBuild: Int, currentBuild: Int): [String!]!

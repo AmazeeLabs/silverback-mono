@@ -60,6 +60,9 @@ abstract class FeedBase extends PluginBase implements FeedInterface {
       'typeName' => $this->isTranslatable()
         ? $this->getTranslationsTypeName()
         : $this->getTypeName(),
+      'translationTypeName' => $this->isTranslatable()
+        ? $this->getTypeName()
+        : null,
       'singleFieldName' => $this->getSingleFieldName(),
       'listFieldName' => $this->getListFieldName(),
     ];
