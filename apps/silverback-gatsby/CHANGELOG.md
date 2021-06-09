@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.13.41...silverback-gastby@0.14.0) (2021-06-09)
+
+
+### Features
+
+* **gatsby:** use template queries instead of passing all data into context ([95bc446](https://github.com/AmazeeLabs/silverback-mono/commit/95bc446adc939defb92a192dd3ab64839354df8b))
+
+
+
+
+
 ## [0.13.41](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.13.40...silverback-gastby@0.13.41) (2021-06-09)
 
 

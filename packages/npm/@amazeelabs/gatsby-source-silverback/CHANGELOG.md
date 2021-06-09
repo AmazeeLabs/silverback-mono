@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.0.7...@amazeelabs/gatsby-source-silverback@1.1.0) (2021-06-09)
+
+
+### Features
+
+* **gatsby:** provide a gatsby-level field for fetching a specific translation ([2745afc](https://github.com/AmazeeLabs/silverback-mono/commit/2745afc8412ba98750f6019b99e71498447d2903))
+
+
+
+
+
 ## [1.0.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.0.6...@amazeelabs/gatsby-source-silverback@1.0.7) (2021-06-09)
 
 
