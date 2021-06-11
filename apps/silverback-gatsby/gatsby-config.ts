@@ -30,8 +30,8 @@ export const plugins = [
       ...(process.env.NODE_ENV === 'production'
         ? {}
         : {
-            drupal_user: process.env.DRUPAL_USER_NAME,
-            drupal_pass: process.env.DRUPAL_USER_PASS,
+            auth_user: process.env.DRUPAL_USER_NAME,
+            auth_pass: process.env.DRUPAL_USER_PASS,
           }),
     },
   },
