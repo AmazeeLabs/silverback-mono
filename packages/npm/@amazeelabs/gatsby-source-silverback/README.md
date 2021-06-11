@@ -26,8 +26,8 @@ export const plugins = {
   options: {
     drupal_url: 'https://my.drupal.website',
     graphql_path: '/path to my schema',
-    drupal_user: 'admin',
-    drupal_pass: 'admin',
+    auth_user: 'admin',
+    auth_pass: 'admin',
   },
 };
 ```
@@ -38,11 +38,11 @@ The following configuration options are supported:
   connect to.
 - `graphql_path` **(required)**: The configured path of the configured Drupal
   GraphQL server instance.
-- `drupal_user` **(optional)**: A Drupal username to use for sending requests.
-- `drupal_pass` **(optional)**: A Drupal password to use for sending requests.
+- `auth_user` **(optional)**: A Drupal username to use for sending requests.
+- `auth_pass` **(optional)**: A Drupal password to use for sending requests.
 
-The optional credential parameters (`drupal_user` and `drupal_pass`) can be used
-to enable different workflows. On production, they can be omitted to make sure
+The optional credential parameters (`auth_user` and `auth_pass`) can be used to
+enable different workflows. On production, they can be omitted to make sure
 Drupal handles these requests anonymously and won't expose any unpublished
 content. Alternatively one can also configure a dedicated role and user for this
 task and block anonymous users entirely from accessing Drupal. In a preview

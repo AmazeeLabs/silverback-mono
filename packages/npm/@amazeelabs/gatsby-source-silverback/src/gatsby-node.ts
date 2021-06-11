@@ -51,6 +51,7 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
   if (!validOptions(options)) {
     return;
   }
+
   const executor = createQueryExecutor(
     apiUrl(options),
     options.auth_user,

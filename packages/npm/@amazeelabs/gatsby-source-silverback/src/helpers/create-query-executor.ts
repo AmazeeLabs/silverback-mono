@@ -7,7 +7,7 @@ export const createQueryExecutor = (
 ) => {
   return createDefaultQueryExecutor(
     url,
-    user && pass
+    !!user && !!pass
       ? {
           headers: {
             Authorization: `Basic ${Buffer.from(`${user}:${pass}`).toString(
