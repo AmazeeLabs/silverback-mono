@@ -1,15 +1,16 @@
 import { CreateSchemaCustomizationArgs } from 'gatsby';
+import { IQueryExecutor } from 'gatsby-graphql-source-toolkit/dist/types';
 
 import { drupalNodes } from './drupal-nodes';
 
-export const createTranslationQueryField = async ({
-  actions,
-  schema,
-}: CreateSchemaCustomizationArgs) => {
+export const createTranslationQueryField = async (
+  { actions, schema }: CreateSchemaCustomizationArgs,
+  execute: IQueryExecutor,
+) => {
   // Attach new fields to all translatable Drupal types.
   // - translation: retrieve a specific translation
   actions.createTypes(
-    (await drupalNodes())
+    (await drupalNodes(execute))
       .filter((drupalNode) => !!drupalNode.translationType)
       .map((drupalNode) =>
         schema.buildObjectType({

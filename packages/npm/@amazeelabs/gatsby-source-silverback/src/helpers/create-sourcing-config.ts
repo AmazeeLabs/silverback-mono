@@ -7,21 +7,21 @@ import {
 } from 'gatsby-graphql-source-toolkit';
 import {
   IGatsbyNodeConfig,
+  IQueryExecutor,
   ISourcingConfig,
   RemoteTypeName,
 } from 'gatsby-graphql-source-toolkit/dist/types';
 
-import { createQueryExecutor } from './create-query-executor';
 import { drupalNodes as drupalNodesFetcher } from './drupal-nodes';
 
 export const createSourcingConfig = async (
   gatsbyApi: SourceNodesArgs,
+  execute: IQueryExecutor,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
   customFragments?: Map<RemoteTypeName, string>,
 ): Promise<ISourcingConfig> => {
-  const execute = createQueryExecutor();
   const schema = await loadSchema(execute);
-  const drupalNodes = await drupalNodesFetcher();
+  const drupalNodes = await drupalNodesFetcher(execute);
 
   // Instruct gatsby-graphql-source-toolkit how to fetch content from Drupal.
   // The LIST_ queries are used to fetch the content when there is no cache. The

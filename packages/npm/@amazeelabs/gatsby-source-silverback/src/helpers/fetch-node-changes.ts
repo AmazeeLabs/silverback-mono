@@ -1,11 +1,10 @@
 import { Reporter } from 'gatsby/reporter';
 import { fetchNodesById } from 'gatsby-graphql-source-toolkit';
 import {
+  IQueryExecutor,
   ISourcingContext,
   NodeEvent,
 } from 'gatsby-graphql-source-toolkit/dist/types';
-
-import { createQueryExecutor } from './create-query-executor';
 
 type FeedInfoResult = {
   data?: {
@@ -21,9 +20,9 @@ export const fetchNodeChanges = async (
   currentBuildId: number,
   reporter: Reporter,
   context: ISourcingContext,
+  execute: IQueryExecutor,
 ): Promise<NodeEvent[]> => {
   const result: NodeEvent[] = [];
-  const execute = createQueryExecutor();
 
   const changedContent = (await execute({
     operationName: 'ContentChanges',
