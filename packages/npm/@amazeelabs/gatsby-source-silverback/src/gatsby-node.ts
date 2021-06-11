@@ -17,11 +17,47 @@ import { createSourcingConfig } from './helpers/create-sourcing-config';
 import { createTranslationQueryField } from './helpers/create-translation-query-field';
 import { fetchNodeChanges } from './helpers/fetch-node-changes';
 
-export const sourceNodes = async (
+type Options = {
+  // The url of the Drupal installation.
+  drupal_url: string;
+  // The Drupal GraphQL server path.
+  graphql_path: string;
+  // Optional Basic Auth Drupal user.
+  auth_user?: string;
+  // Optional Basic Auth Drupal password.
+  auth_pass?: string;
+};
+
+export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
+  Joi,
+}) =>
+  Joi.object<Options>({
+    drupal_url: Joi.string().uri({ allowRelative: false }).required(),
+    graphql_path: Joi.string().uri({ relativeOnly: true }).required(),
+    auth_user: Joi.string().optional(),
+    auth_pass: Joi.string().optional(),
+  });
+
+const validOptions = (options: { [key: string]: any }): options is Options =>
+  options.drupal_url && options.graphql_path;
+
+const apiUrl = (options: Options) =>
+  `${new URL(options.drupal_url).origin}${options.graphql_path}`;
+
+export const sourceNodes: GatsbyNode['sourceNodes'] = async (
   gatsbyApi: SourceNodesArgs & { webhookBody?: { buildId?: number } },
+  options,
 ) => {
+  if (!validOptions(options)) {
+    return;
+  }
+  const executor = createQueryExecutor(
+    apiUrl(options),
+    options.auth_user,
+    options.auth_pass,
+  );
   // TODO: Accept configuration and fragment overrides from plugin settings.
-  const config = await createSourcingConfig(gatsbyApi);
+  const config = await createSourcingConfig(gatsbyApi, executor);
   const context = createSourcingContext(config);
   await createToolkitSchemaCustomization(config);
 
@@ -30,7 +66,6 @@ export const sourceNodes = async (
   let currentBuildId = gatsbyApi.webhookBody?.buildId || -1;
 
   if (currentBuildId === -1) {
-    const executor = createQueryExecutor();
     const info = await executor({
       operationName: 'LatestBuildId',
       variables: {},
@@ -63,6 +98,7 @@ export const sourceNodes = async (
             currentBuildId,
             gatsbyApi.reporter,
             context,
+            executor,
           )
         : [];
 
@@ -72,8 +108,15 @@ export const sourceNodes = async (
 };
 
 export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] =
-  async (args: CreateSchemaCustomizationArgs) => {
-    await createTranslationQueryField(args);
+  async (args: CreateSchemaCustomizationArgs, options) => {
+    if (!validOptions(options)) {
+      return;
+    }
+
+    await createTranslationQueryField(
+      args,
+      createQueryExecutor(apiUrl(options as Options)),
+    );
     args.actions.createTypes(`
     type Query {
       drupalBuildId: Int!

@@ -22,7 +22,19 @@ export const plugins = [
       path: './src/images',
     },
   },
-  '@amazeelabs/gatsby-source-silverback',
+  {
+    resolve: '@amazeelabs/gatsby-source-silverback',
+    options: {
+      drupal_url: process.env.DRUPAL_BASE_URL,
+      graphql_path: process.env.DRUPAL_GRAPHQL_PATH,
+      ...(process.env.NODE_ENV === 'production'
+        ? {}
+        : {
+            drupal_user: process.env.DRUPAL_USER_NAME,
+            drupal_pass: process.env.DRUPAL_USER_PASS,
+          }),
+    },
+  },
   '@amazeelabs/gatsby-theme-core',
   ...(process.env.SCHEMA_UPDATE === 'true'
     ? ['gatsby-plugin-schema-export']

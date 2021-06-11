@@ -1,4 +1,4 @@
-import { createQueryExecutor } from './create-query-executor';
+import { IQueryExecutor } from 'gatsby-graphql-source-toolkit/dist/types';
 
 interface DrupalNode {
   multiple: string;
@@ -7,8 +7,9 @@ interface DrupalNode {
   translationType?: string;
 }
 
-export const drupalNodes = async (): Promise<Array<DrupalNode>> => {
-  const execute = createQueryExecutor();
+export const drupalNodes = async (
+  execute: IQueryExecutor,
+): Promise<Array<DrupalNode>> => {
   const results = await execute({
     operationName: 'DrupalFeedInfo',
     query: `
