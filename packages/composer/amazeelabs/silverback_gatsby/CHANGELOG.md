@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.2.1...@-amazeelabs/silverback_gatsby@1.3.0) (2021-06-15)
+
+
+### Features
+
+* **gatsby:** integrate silverback_gatsby with gatsby_build_monitor ([861df53](https://github.com/AmazeeLabs/silverback-mono/commit/861df534f8191051a2e9fa0a581056393fc4562b))
+
+
+
+
+
 ## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.2.0...@-amazeelabs/silverback_gatsby@1.2.1) (2021-06-11)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gatsby
