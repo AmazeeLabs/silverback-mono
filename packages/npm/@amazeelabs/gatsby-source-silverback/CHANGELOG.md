@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.1.1...@amazeelabs/gatsby-source-silverback@1.1.2) (2021-06-15)
+
+
+### Bug Fixes
+
+* **gatsby:** use drupal credentials for feed info too ([9429930](https://github.com/AmazeeLabs/silverback-mono/commit/9429930180f4b49a0db9d46b49bcb4911aa5729d))
+
+
+
+
+
 ## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.1.0...@amazeelabs/gatsby-source-silverback@1.1.1) (2021-06-11)
 
 
