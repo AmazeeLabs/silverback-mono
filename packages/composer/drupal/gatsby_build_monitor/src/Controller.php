@@ -15,11 +15,6 @@ class BuildStats {
 class Controller {
 
   public function setState(Request $request) {
-    $mode = \Drupal::config('gatsby_build_monitor.settings')->get('build_end_mode');
-    if ($mode && $mode !== 'gatsby-plugin-build-monitor') {
-      return Response::create('The module is not configured to receive notifications from gatsby-plugin-build-monitor.', 503);
-    }
-
     $token = \Drupal::config('gatsby_build_monitor.settings')->get('token');
     if (!$token) {
       return Response::create('Token is not configured', 503);
@@ -33,6 +28,13 @@ class Controller {
     $validator = new \JsonSchema\Validator();
     $validator->validate($payload, json_decode($jsonSchema));
     if ($validator->isValid()) {
+      $mode = \Drupal::config('gatsby_build_monitor.settings')->get('build_end_mode');
+      if ($mode && $mode !== 'gatsby-plugin-build-monitor' && $payload->status !== 'building') {
+        // The module is not configured to receive statuses other than
+        // "building" from gatsby-plugin-build-monitor.
+        return Response::create();
+      }
+
       _gatsby_build_monitor_state($payload->status);
       if ($payload->status === 'idle' && $payload->buildStats) {
         $this->saveBuildStats($payload->buildStats);
