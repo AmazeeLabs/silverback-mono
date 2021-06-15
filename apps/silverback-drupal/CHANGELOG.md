@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.3.5...@-amazeelabs/silverback-drupal@1.4.0) (2021-06-15)
+
+
+### Features
+
+* **gatsby:** receive build notifications from gatsby cloud ([d664fed](https://github.com/AmazeeLabs/silverback-mono/commit/d664fed2fad158f693798f6a4c19a297267b9f40))
+
+
+
+
+
 ## [1.3.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.3.4...@-amazeelabs/silverback-drupal@1.3.5) (2021-06-14)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal

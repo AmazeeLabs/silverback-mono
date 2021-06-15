@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.14.3...silverback-gastby@0.15.0) (2021-06-15)
+
+
+### Features
+
+* **gatsby:** receive build notifications from gatsby cloud ([d664fed](https://github.com/AmazeeLabs/silverback-mono/commit/d664fed2fad158f693798f6a4c19a297267b9f40))
+
+
+
+
+
 ## [0.14.3](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.14.2...silverback-gastby@0.14.3) (2021-06-15)
 
 **Note:** Version bump only for package silverback-gastby
