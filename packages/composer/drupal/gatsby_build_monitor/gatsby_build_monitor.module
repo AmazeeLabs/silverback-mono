@@ -68,5 +68,5 @@ function _gatsby_build_monitor_state($state = NULL) {
     return \Drupal::state()->get('gatsby_build_monitor.state') ?? 'unknown';
   }
   \Drupal::state()->set('gatsby_build_monitor.state', $state);
-  \Drupal::state()->set('gatsby_build_monitor.state_updated', \Drupal::time()->getRequestTime());
+  \Drupal::state()->set('gatsby_build_monitor.state_updated', \Drupal::time()->getCurrentTime());
 }
