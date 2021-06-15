@@ -52,6 +52,13 @@ class GatsbyUpdateTrigger implements GatsbyUpdateTriggerInterface {
             ],
             'json' => ['buildId' => $id],
           ]);
+          if (
+            \Drupal::moduleHandler()->moduleExists('gatsby_build_monitor') &&
+            // This detects the "build" webhook.
+            strpos($url, '/data_source/publish/') !== FALSE
+          ) {
+            _gatsby_build_monitor_state('building');
+          }
         } catch (RequestException $exc) {
           $this->messenger->addError('Could not send build notification to server "' . $server . '".');
           $this->messenger->addError($exc->getMessage());
