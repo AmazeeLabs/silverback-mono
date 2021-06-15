@@ -116,7 +116,11 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
 
     await createTranslationQueryField(
       args,
-      createQueryExecutor(apiUrl(options as Options)),
+      createQueryExecutor(
+        apiUrl(options),
+        options.auth_user,
+        options.auth_pass,
+      ),
     );
     args.actions.createTypes(`
     type Query {
