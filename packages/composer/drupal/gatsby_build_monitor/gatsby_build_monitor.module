@@ -14,13 +14,24 @@ function gatsby_build_monitor_toolbar() {
 
   switch (_gatsby_build_monitor_state()) {
     case 'idle':
-      $state = t('Gatsby is ready');
+      $state = t('Website is ready');
       break;
     case 'building':
-      $state = t('Gatsby is building');
+      $state = t('Website is building');
+      break;
+    case 'failure':
+      $state = t('Website build failed');
       break;
     default:
-      $state = t('Gatsby status is unknown');
+      $state = t('Website status is unknown');
+  }
+
+  $attributes = [
+    'class' => ['gatsby-build-monitor-state'],
+  ];
+  $timestamp = \Drupal::state()->get('gatsby_build_monitor.state_updated');
+  if ($timestamp) {
+    $attributes['title'] = \Drupal::service('date.formatter')->format($timestamp, 'custom', 'Y-m-d H:i:s');
   }
 
   return [
@@ -30,9 +41,7 @@ function gatsby_build_monitor_toolbar() {
         '#type' => 'link',
         '#title' => $state,
         '#url' => $url,
-        '#attributes' => [
-          'class' => ['gatsby-build-monitor-state'],
-        ],
+        '#attributes' => $attributes,
         '#cache' => [
           'max-age' => 0,
         ],
@@ -49,14 +58,15 @@ function gatsby_build_monitor_toolbar() {
  * Sets or returns Gatsby rebuild state.
  *
  * @param string|null $state
- *   Values: "idle" or "building".
+ *   Values: "idle" (means success), "building" or "failure".
  *
  * @return void|string
- *   Values: "idle", "building" or "unknown".
+ *   Values: "idle" (means success), "building", "failure" or "unknown".
  */
 function _gatsby_build_monitor_state($state = NULL) {
   if ($state === NULL) {
     return \Drupal::state()->get('gatsby_build_monitor.state') ?? 'unknown';
   }
   \Drupal::state()->set('gatsby_build_monitor.state', $state);
+  \Drupal::state()->set('gatsby_build_monitor.state_updated', \Drupal::time()->getRequestTime());
 }

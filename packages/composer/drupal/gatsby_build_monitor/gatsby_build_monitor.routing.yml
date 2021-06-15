@@ -15,3 +15,13 @@ gatsby_build_monitor.get_state:
   methods: ['POST']
   requirements:
     _permission: 'access gatsby build status'
+
+gatsby_build_monitor.gatsby_notifications:
+  path: '/gatsby-build-monitor/gatsby-cloud-notifications/{token}/{state}'
+  defaults:
+    _controller: '\Drupal\gatsby_build_monitor\Controller::gatsbyCloudNotifications'
+  methods: ['POST']
+  requirements:
+    # The token is checked in the controller.
+    _access: 'TRUE'
+    state: '^(build-success|build-failure|deploy-success|deploy-failure)$'

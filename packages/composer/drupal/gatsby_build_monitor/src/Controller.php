@@ -2,6 +2,7 @@
 
 namespace Drupal\gatsby_build_monitor;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -14,6 +15,11 @@ class BuildStats {
 class Controller {
 
   public function setState(Request $request) {
+    $mode = \Drupal::config('gatsby_build_monitor.settings')->get('build_end_mode');
+    if ($mode && $mode !== 'gatsby-plugin-build-monitor') {
+      return Response::create('The module is not configured to receive notifications from gatsby-plugin-build-monitor.', 503);
+    }
+
     $token = \Drupal::config('gatsby_build_monitor.settings')->get('token');
     if (!$token) {
       return Response::create('Token is not configured', 503);
@@ -45,8 +51,46 @@ class Controller {
     }
   }
 
+  /**
+   * @param string $token
+   * @param string $state
+   *   Values: "build-success", "build-failure", "deploy-success" or
+   *   "deploy-failure".
+   */
+  public function gatsbyCloudNotifications($token, $state) {
+    if (\Drupal::config('gatsby_build_monitor.settings')->get('build_end_mode') !== 'gatsby-cloud-notifications') {
+      return Response::create('The module is not configured to receive notifications from Gatsby Cloud.', 503);
+    }
+
+    $savedToken = \Drupal::config('gatsby_build_monitor.settings')->get('token');
+    if (!$savedToken) {
+      return Response::create('Token is not configured', 503);
+    }
+    if ($token !== $savedToken) {
+      return Response::create('Token is not valid', 401);
+    }
+
+    switch ($state) {
+      case 'build-success':
+      case 'deploy-success':
+        _gatsby_build_monitor_state('idle');
+        break;
+      case 'build-failure':
+      case 'deploy-failure':
+        _gatsby_build_monitor_state('failure');
+        break;
+      default:
+        throw new \Exception('Unknown state.');
+    }
+
+    return Response::create();
+  }
+
   public function getState() {
-    return Response::create(_gatsby_build_monitor_state());
+    return JsonResponse::create([
+      'state' => _gatsby_build_monitor_state(),
+      'timestamp' => \Drupal::state()->get('gatsby_build_monitor.state_updated'),
+    ]);
   }
 
   /**

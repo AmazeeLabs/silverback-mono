@@ -6,7 +6,7 @@ describe('Test Gatsby Build Monitor integration', () => {
     cy.get('#edit-name').type('admin');
     cy.get('#edit-pass').type('admin');
     cy.get('#edit-submit').click();
-    cy.contains('a', 'Gatsby is ready');
+    cy.contains('a', 'Website is ready');
 
     cy.visit(`${drupalUrl}/node/add/page`);
     cy.get('#edit-title-0-value').type('New page');
@@ -16,10 +16,10 @@ describe('Test Gatsby Build Monitor integration', () => {
 
     // Give it few seconds to receive the status.
     cy.wait(3_000);
-    cy.contains('a', 'Gatsby is building');
+    cy.contains('a', 'Website is building');
 
     cy.wait(rebuildDelay);
-    cy.contains('a', 'Gatsby is ready');
+    cy.contains('a', 'Website is ready');
 
     cy.visit(`${drupalUrl}/admin/reports/gatsby-build-logs`);
     cy.get('.view-gatsby-build-monitor-logs table td').should(

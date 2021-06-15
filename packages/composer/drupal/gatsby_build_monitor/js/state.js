@@ -3,24 +3,36 @@
     $.ajax({
       type: "post",
       url: Drupal.url("gatsby-build-monitor/get-state"),
-      success: function (state) {
+      success: function (data) {
         var text;
-        switch (state) {
+        switch (data.state) {
           case "idle":
-            text = Drupal.t("Gatsby is ready");
+            text = Drupal.t("Website is ready");
             break;
           case "building":
-            text = Drupal.t("Gatsby is building");
+            text = Drupal.t("Website is building");
+            break;
+          case "failure":
+            text = Drupal.t("Website build failed");
             break;
           default:
-            text = Drupal.t("Gatsby status is unknown");
+            text = Drupal.t("Website status is unknown");
         }
-        $(".gatsby-build-monitor-state").text(text);
+        var $state = $(".gatsby-build-monitor-state");
+        $state.text(text);
+        if (data.timestamp) {
+          $state.attr(
+            "title",
+            new Date(data.timestamp * 1000).toLocaleString()
+          );
+        } else {
+          $state.removeAttr("title");
+        }
       },
       error: function () {
-        $(".gatsby-build-monitor-state").text(
-          Drupal.t("Gatsby status is unknown")
-        );
+        var $state = $(".gatsby-build-monitor-state");
+        $state.text(Drupal.t("Website status is unknown"));
+        $state.removeAttr("title");
       },
     });
   }
