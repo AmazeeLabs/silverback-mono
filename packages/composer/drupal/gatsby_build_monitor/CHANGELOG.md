@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/gatsby_build_monitor@1.2.0...@-drupal/gatsby_build_monitor@1.2.1) (2021-06-16)
+
+
+### Bug Fixes
+
+* **gatsby:** receive "building" status in any case ([90ed671](https://github.com/AmazeeLabs/silverback-mono/commit/90ed6712f5b08ff3f77a9e974dd7aa1df51cf1c0))
+* **gatsby:** set more accurate time ([04d2109](https://github.com/AmazeeLabs/silverback-mono/commit/04d21092ae5c03acb20bc9dd1629fd2fcf1fe98d))
+
+
+
+
+
 # [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/gatsby_build_monitor@1.1.1...@-drupal/gatsby_build_monitor@1.2.0) (2021-06-15)
 
 
