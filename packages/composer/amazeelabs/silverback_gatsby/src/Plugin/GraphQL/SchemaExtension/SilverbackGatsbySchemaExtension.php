@@ -5,7 +5,6 @@ namespace Drupal\silverback_gatsby\Plugin\GraphQL\SchemaExtension;
 use Drupal\Component\Plugin\PluginManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
-use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
@@ -13,6 +12,7 @@ use Drupal\graphql\Plugin\GraphQL\SchemaExtension\SdlSchemaExtensionPluginBase;
 use Drupal\silverback_gatsby\GraphQL\DirectiveProviderExtensionInterface;
 use Drupal\silverback_gatsby\GraphQL\ParentAwareSchemaExtensionInterface;
 use Drupal\silverback_gatsby\Plugin\FeedInterface;
+use GraphQL\Language\AST\DocumentNode;
 use GraphQL\Language\AST\ObjectTypeDefinitionNode;
 use GraphQL\Language\Parser;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -30,11 +30,11 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
   implements ParentAwareSchemaExtensionInterface, DirectiveProviderExtensionInterface {
 
   /**
-   * The parent schema definition this extension is attached to.
+   * The parent schema's AST.
    *
-   * @var string
+   * @var \GraphQL\Language\AST\DocumentNode
    */
-  protected string $parentSchema;
+  protected DocumentNode $parentAst;
 
   /**
    * The list of feeds that are used by the parent schema.
@@ -85,9 +85,11 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
 
   /**
    * {@inheritDoc}
+   *
+   * @throws \GraphQL\Error\SyntaxError
    */
   public function setParentSchemaDefinition(string $definition) {
-    $this->parentSchema = $definition;
+    $this->parentAst = Parser::parse($definition);
   }
 
   /**
@@ -103,13 +105,11 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
    *
    * @return \Drupal\silverback_gatsby\Plugin\FeedInterface[]
    * @throws \Drupal\Component\Plugin\Exception\PluginException
-   * @throws \GraphQL\Error\SyntaxError
    */
   public function getFeeds(): array {
     if (count($this->feeds) === 0) {
-      $ast = Parser::parse($this->parentSchema);
       // Search for object type definitions ...
-      foreach ($ast->definitions->getIterator() as $definition) {
+      foreach ($this->parentAst->definitions->getIterator() as $definition) {
         // ... that have directives.
         if ($definition instanceof ObjectTypeDefinitionNode && $definition->directives) {
           // Create feed instances for all directives that are know to the
@@ -136,11 +136,46 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
   }
 
   /**
+   * Build the automatic schema definition for a given Feed.
+   */
+  protected function getSchemaDefinitions(FeedInterface $feed) : string {
+    $typeName = $feed->getTypeName();
+    $singleFieldName = $feed->getSingleFieldName();
+    $listFieldName = $feed->getListFieldName();
+    $returnTypeName = $feed->isTranslatable() ? $feed->getTranslationsTypeName() : $typeName;
+    $schema = [
+      "extend type Query {",
+      "  $singleFieldName(id: String!): $returnTypeName",
+      "  $listFieldName(offset: Int!, limit: Int!): [$returnTypeName!]!",
+    ];
+
+    $schema [] = "}";
+
+    if ($feed->isTranslatable()) {
+      $translationsTypeName = $feed->getTranslationsTypeName();
+      if ($this->parentHasType($translationsTypeName)) {
+        $schema[] = "extend type $translationsTypeName implements Translatable {";
+      }
+      else {
+        $schema[] = "type $translationsTypeName implements Translatable {";
+      }
+      $schema[] = "  id: String!";
+      $schema[] = "  translations: [$typeName!]!";
+      $schema[] = "}";
+      $schema[] = "extend type $typeName implements Translation { langcode: String! }";
+    }
+    else {
+      $schema[] = "extend type $typeName { id: String! }";
+    }
+    return implode("\n", $schema);
+  }
+
+  /**
    * {@inheritDoc}
    */
   public function getExtensionDefinition() {
     // Collect all active feeds and prepend their definitions to the schema.
-    $schema = array_map(fn (FeedInterface $feed) => $feed->getSchemaDefinitions(), $this->getFeeds());
+    $schema = array_map(fn (FeedInterface $feed) => $this->getSchemaDefinitions($feed), $this->getFeeds());
     array_unshift($schema, parent::getExtensionDefinition());
     return implode("\n", $schema);
   }

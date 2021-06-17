@@ -39,13 +39,6 @@ interface FeedInterface {
   public function investigateUpdate($context);
 
   /**
-   * Retrieve schema extension definitions provided by this feed.
-   *
-   * @return string
-   */
-  public function getSchemaDefinitions() : string;
-
-  /**
    * Resolve the parent value's "id" attribute.
    *
    * @return \Drupal\graphql\GraphQL\Resolver\ResolverInterface

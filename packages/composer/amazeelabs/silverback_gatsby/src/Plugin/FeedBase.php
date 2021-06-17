@@ -90,33 +90,4 @@ abstract class FeedBase extends PluginBase implements FeedInterface {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  public function getSchemaDefinitions() : string{
-    $typeName = $this->typeName;
-    $singleFieldName = $this->getSingleFieldName();
-    $listFieldName = $this->getListFieldName();
-    $returnTypeName = $this->isTranslatable() ? $this->getTranslationsTypeName() : $typeName;
-    $schema = [
-      "extend type Query {",
-      "  $singleFieldName(id: String!): $returnTypeName",
-      "  $listFieldName(offset: Int!, limit: Int!): [$returnTypeName!]!",
-    ];
-
-    $schema [] = "}";
-
-    if ($this->isTranslatable()) {
-      $translationsTypeName = $this->getTranslationsTypeName();
-      $schema[] = "type $translationsTypeName implements Translatable {";
-      $schema[] = "  id: String!";
-      $schema[] = "  translations: [$typeName!]!";
-      $schema[] = "}";
-      $schema[] = "extend type $typeName implements Translation { langcode: String! }";
-    }
-    else {
-      $schema[] = "extend type $typeName { id: String! }";
-    }
-    return implode("\n", $schema);
-  }
 }
