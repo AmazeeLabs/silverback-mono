@@ -59,9 +59,11 @@ class GatsbyUpdateHandler {
             foreach ($extension->getFeeds() as $feed) {
               if (
                 $feed instanceof $feedClassName
-                && $update = $feed->investigateUpdate($context)
+                && $updates = $feed->investigateUpdate($context)
               ) {
-                $this->gatsbyUpdateTracker->track($server->id(), $update->type, $update->id);
+                foreach ($updates as $update) {
+                  $this->gatsbyUpdateTracker->track($server->id(), $update->type, $update->id);
+                }
               }
             }
           }

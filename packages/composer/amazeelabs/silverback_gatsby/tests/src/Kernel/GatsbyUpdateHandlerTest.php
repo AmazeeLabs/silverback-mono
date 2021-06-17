@@ -25,12 +25,18 @@ class GatsbyUpdateHandlerTest extends EntityFeedTestBase {
       'title' => 'Test'
     ]);
     $node->save();
+
+    $node->addTranslation('de', [
+      'title' => 'Test DE'
+    ])->save();
+
     $node->title = 'Test 2';
     $node->save();
 
-    $diff = $this->tracker->diff(1, 2, $this->server->id());
+    $diff = $this->tracker->diff(1, 3, $this->server->id());
     $this->assertEquals([
-      new GatsbyUpdate('PageTranslations', '1')
+      new GatsbyUpdate('Page', '1:en'),
+      new GatsbyUpdate('Page', '1:de'),
     ], $diff);
   }
 

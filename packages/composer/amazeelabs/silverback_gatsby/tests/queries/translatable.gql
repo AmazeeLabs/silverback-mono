@@ -1,7 +1,12 @@
 query {
+  loadPage(id: "1:en") {
+    title
+  }
   queryPages(limit: 10, offset: 0) {
     id
+    drupalId
     translations {
+      defaultTranslation
       langcode
       title
     }

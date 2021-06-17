@@ -9,6 +9,7 @@ use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\TypedData\TypedData;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
@@ -16,6 +17,7 @@ use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerProxy;
 use Drupal\silverback_gatsby\Annotation\GatsbyFeed;
 use Drupal\silverback_gatsby\GatsbyUpdate;
 use Drupal\silverback_gatsby\Plugin\FeedBase;
+use Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer\GatsbyBuildId;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -96,30 +98,41 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
   /**
    * {@inheritDoc}
    */
-  public function getUpdateId($context) {
+  public function getUpdateIds($context) : array {
     if (
       $context instanceof EntityInterface
       && $context->getEntityTypeId() === $this->type
       && $context->bundle() === $this->bundle
     ) {
-      return $context->id();
+      if ($this->isTranslatable() && $context instanceof TranslatableInterface) {
+        return array_map(function (LanguageInterface $lang) use ($context) {
+          $translation = $context->getTranslation($lang->getId());
+          return GatsbyBuildId::build($translation->id(), $translation->language()->getId());
+        }, $context->getTranslationLanguages());
+      }
+      return [$context->id()];
     }
+    return [];
   }
 
   /**
    * {@inheritDoc}
    */
-  public function resolveItem(): DataProducerProxy {
-    return $this->builder->produce('entity_load')
+  public function resolveItem(ResolverInterface $id, ?ResolverInterface $langcode = null): ResolverInterface {
+    $resolver = $this->builder->produce('entity_load')
       ->map('type', $this->builder->fromValue($this->type))
       ->map('bundles', $this->builder->fromValue([$this->bundle]))
-      ->map('id', $this->builder->fromArgument('id'));
+      ->map('id', $id);
+    if ($this->isTranslatable() && $langcode) {
+      $resolver->map('language', $langcode);
+    }
+    return $resolver;
   }
 
   /**
    * {@inheritDoc}
    */
-  public function resolveItems(): DataProducerProxy {
+  public function resolveItems(ResolverInterface $limit, ResolverInterface $offset): ResolverInterface {
     return $this->builder->produce('list_entities')
       ->map('type', $this->builder->fromValue($this->type))
       ->map('bundle', $this->builder->fromValue($this->bundle))
@@ -130,7 +143,7 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
   /**
    * {@inheritDoc}
    */
-  public function resolveId(): DataProducerProxy {
+  public function resolveId(): ResolverInterface {
     return $this->builder->produce('entity_id')
       ->map('entity', $this->builder->fromParent());
   }
@@ -147,7 +160,16 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
   /**
    * {@inheritDoc}
    */
-  public function resolveTranslations(): DataProducerProxy {
+  public function resolveDefaultTranslation(): ResolverInterface {
+    return $this->builder->callback(
+      fn(TranslatableInterface $value) => $value->isDefaultTranslation()
+    );
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function resolveTranslations(): ResolverInterface {
     return $this->builder->produce('entity_translations')
       ->map('entity', $this->builder->fromParent());
   }
