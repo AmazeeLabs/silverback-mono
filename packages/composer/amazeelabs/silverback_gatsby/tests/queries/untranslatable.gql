@@ -1,6 +1,10 @@
 query {
+  loadPost(id: "1") {
+    title
+  }
   queryPosts(limit: 10, offset: 0) {
     id
+    drupalId
     title
   }
 }

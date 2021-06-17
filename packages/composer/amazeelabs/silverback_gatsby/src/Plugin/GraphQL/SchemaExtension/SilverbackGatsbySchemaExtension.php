@@ -142,30 +142,28 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
     $typeName = $feed->getTypeName();
     $singleFieldName = $feed->getSingleFieldName();
     $listFieldName = $feed->getListFieldName();
-    $returnTypeName = $feed->isTranslatable() ? $feed->getTranslationsTypeName() : $typeName;
     $schema = [
       "extend type Query {",
-      "  $singleFieldName(id: String!): $returnTypeName",
-      "  $listFieldName(offset: Int!, limit: Int!): [$returnTypeName!]!",
+      "  $singleFieldName(id: String!): $typeName",
+      "  $listFieldName(offset: Int!, limit: Int!): [$typeName!]!",
     ];
 
     $schema [] = "}";
 
     if ($feed->isTranslatable()) {
-      $translationsTypeName = $feed->getTranslationsTypeName();
-      if ($this->parentHasType($translationsTypeName)) {
-        $schema[] = "extend type $translationsTypeName implements Translatable {";
-      }
-      else {
-        $schema[] = "type $translationsTypeName implements Translatable {";
-      }
+      $schema[] = "extend type $typeName implements TranslatableFeedItem {";
       $schema[] = "  id: String!";
+      $schema[] = "  drupalId: String!";
+      $schema[] = "  defaultTranslation: Boolean!";
+      $schema[] = "  langcode: String!";
       $schema[] = "  translations: [$typeName!]!";
       $schema[] = "}";
-      $schema[] = "extend type $typeName implements Translation { langcode: String! }";
     }
     else {
-      $schema[] = "extend type $typeName { id: String! }";
+      $schema[] = "extend type $typeName implements FeedItem {";
+      $schema[] = "  id: String!";
+      $schema[] = "  drupalId: String!";
+      $schema[] = "}";
     }
     return implode("\n", $schema);
   }
@@ -223,14 +221,42 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
     }));
 
     foreach($this->getFeeds() as $feed) {
-      $registry->addFieldResolver('Query', $feed->getSingleFieldName(), $feed->resolveItem());
-      $registry->addFieldResolver('Query', $feed->getListFieldName(), $feed->resolveItems());
-      $typeName = $feed->isTranslatable() ? $feed->getTranslationsTypeName() : $feed->getTypeName();
 
-      $registry->addFieldResolver($typeName, 'id', $feed->resolveId());
+      $idResolver = $feed->resolveId();
+      $langcodeResolver = $feed->resolveLangcode();
+
+      $registry->addFieldResolver('Query', $feed->getListFieldName(), $feed->resolveItems(
+        $builder->fromArgument('limit'),
+        $builder->fromArgument('offset'),
+      ));
+
+      $typeName = $feed->getTypeName();
+      $registry->addFieldResolver($typeName, 'drupalId', $idResolver);
+
       if ($feed->isTranslatable()) {
-        $registry->addFieldResolver($feed->getTypeName(), 'langcode', $feed->resolveLangcode());
-        $registry->addFieldResolver($feed->getTranslationsTypeName(), 'translations', $feed->resolveTranslations());
+        $registry->addFieldResolver('Query', $feed->getSingleFieldName(), $feed->resolveItem(
+          $builder->produce('gatsby_extract_id')
+            ->map('id', $builder->fromArgument('id')),
+          $builder->produce('gatsby_extract_langcode')
+            ->map('id', $builder->fromArgument('id')),
+        ));
+
+        $registry->addFieldResolver($typeName, 'id',
+          $builder->produce('gatsby_build_id')
+            ->map('id', $idResolver)
+            ->map('langcode', $langcodeResolver)
+        );
+
+        $registry->addFieldResolver($typeName, 'langcode', $langcodeResolver);
+        $registry->addFieldResolver($typeName, 'defaultTranslation', $feed->resolveDefaultTranslation());
+        $registry->addFieldResolver($typeName, 'translations', $feed->resolveTranslations());
+      }
+      else {
+        $registry->addFieldResolver('Query', $feed->getSingleFieldName(), $feed->resolveItem(
+          $builder->fromArgument('id'))
+        );
+
+        $registry->addFieldResolver($typeName, 'id', $idResolver);
       }
     }
   }

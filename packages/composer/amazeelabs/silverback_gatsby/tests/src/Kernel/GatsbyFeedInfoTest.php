@@ -13,15 +13,15 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       'drupalBuildId' =>  -1,
       'drupalFeedInfo' => [
         [
-          'typeName' => 'PageTranslations',
-          'translationTypeName' => 'Page',
+          'typeName' => 'Page',
+          'translatable' => true,
           'singleFieldName' => 'loadPage',
           'listFieldName' => 'queryPages',
           'changes' =>  [],
         ],
         [
           'typeName' => 'Post',
-          'translationTypeName' => null,
+          'translatable' => false,
           'singleFieldName' => 'loadPost',
           'listFieldName' => 'queryPosts',
           'changes' =>  [],
@@ -43,15 +43,15 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       'drupalBuildId' =>  1,
       'drupalFeedInfo' => [
         [
-          'typeName' => 'PageTranslations',
-          'translationTypeName' => 'Page',
+          'typeName' => 'Page',
+          'translatable' => true,
           'singleFieldName' => 'loadPage',
           'listFieldName' => 'queryPages',
           'changes' =>  [],
         ],
         [
           'typeName' => 'Post',
-          'translationTypeName' => null,
+          'translatable' => null,
           'singleFieldName' => 'loadPost',
           'listFieldName' => 'queryPosts',
           'changes' =>  [],
@@ -74,15 +74,15 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       'drupalBuildId' =>  2,
       'drupalFeedInfo' => [
         [
-          'typeName' => 'PageTranslations',
-          'translationTypeName' => 'Page',
+          'typeName' => 'Page',
+          'translatable' => true,
           'singleFieldName' => 'loadPage',
           'listFieldName' => 'queryPages',
           'changes' =>  [],
         ],
         [
           'typeName' => 'Post',
-          'translationTypeName' => null,
+          'translatable' => false,
           'singleFieldName' => 'loadPost',
           'listFieldName' => 'queryPosts',
           'changes' =>  [],
@@ -114,15 +114,15 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       'drupalBuildId' =>  3,
       'drupalFeedInfo' => [
         [
-          'typeName' => 'PageTranslations',
-          'translationTypeName' => 'Page',
+          'typeName' => 'Page',
+          'translatable' => true,
           'singleFieldName' => 'loadPage',
           'listFieldName' => 'queryPages',
-          'changes' =>  ['1'],
+          'changes' =>  ['1:en'],
         ],
         [
           'typeName' => 'Post',
-          'translationTypeName' => null,
+          'translatable' => false,
           'singleFieldName' => 'loadPost',
           'listFieldName' => 'queryPosts',
           'changes' =>  ['2'],
@@ -138,15 +138,15 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       'drupalBuildId' =>  3,
       'drupalFeedInfo' => [
         [
-          'typeName' => 'PageTranslations',
-          'translationTypeName' => 'Page',
+          'typeName' => 'Page',
+          'translatable' => true,
           'singleFieldName' => 'loadPage',
           'listFieldName' => 'queryPages',
-          'changes' =>  ['1'],
+          'changes' =>  ['1:en'],
         ],
         [
           'typeName' => 'Post',
-          'translationTypeName' => null,
+          'translatable' => false,
           'singleFieldName' => 'loadPost',
           'listFieldName' => 'queryPosts',
           'changes' =>  [],
@@ -162,15 +162,15 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       'drupalBuildId' =>  3,
       'drupalFeedInfo' => [
         [
-          'typeName' => 'PageTranslations',
-          'translationTypeName' => 'Page',
+          'typeName' => 'Page',
+          'translatable' => true,
           'singleFieldName' => 'loadPage',
           'listFieldName' => 'queryPages',
           'changes' =>  [],
         ],
         [
           'typeName' => 'Post',
-          'translationTypeName' => null,
+          'translatable' => false,
           'singleFieldName' => 'loadPost',
           'listFieldName' => 'queryPosts',
           'changes' =>  ['2'],

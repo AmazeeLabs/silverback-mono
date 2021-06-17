@@ -3,7 +3,6 @@
 namespace Drupal\silverback_gatsby\Plugin;
 
 use Drupal\Component\Plugin\PluginBase;
-use Drupal\Core\Entity\EntityInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\silverback_gatsby\GatsbyUpdate;
 
@@ -43,10 +42,6 @@ abstract class FeedBase extends PluginBase implements FeedInterface {
     return $this->typeName;
   }
 
-  public function getTranslationsTypeName() : string {
-    return $this->getTypeName() . 'Translations';
-  }
-
   public function getSingleFieldName() : string{
     return 'load' . $this->typeName;
   }
@@ -57,12 +52,8 @@ abstract class FeedBase extends PluginBase implements FeedInterface {
 
   public function info(): array {
     return [
-      'typeName' => $this->isTranslatable()
-        ? $this->getTranslationsTypeName()
-        : $this->getTypeName(),
-      'translationTypeName' => $this->isTranslatable()
-        ? $this->getTypeName()
-        : null,
+      'typeName' => $this->getTypeName(),
+      'translatable' => $this->isTranslatable(),
       'singleFieldName' => $this->getSingleFieldName(),
       'listFieldName' => $this->getListFieldName(),
     ];
@@ -74,20 +65,19 @@ abstract class FeedBase extends PluginBase implements FeedInterface {
    *
    * @param mixed $context
    *
-   * @return mixed
-   *   The id string of the feed item or null.
+   * @return string[]
+   *   A list of string id's to update.
    */
-  abstract function getUpdateId($context);
+  abstract function getUpdateIds($context): array;
 
   /**
    * {@inheritDoc}
    */
-  public function investigateUpdate($context) {
-    if ($id = $this->getUpdateId($context)) {
-      return new GatsbyUpdate($this->isTranslatable()
-        ? $this->getTranslationsTypeName()
-        : $this->getTypeName(), $id);
-    }
+  public function investigateUpdate($context) : array {
+    return array_map(
+      fn ($id) => new GatsbyUpdate($this->getTypeName(), $id),
+      $this->getUpdateIds($context)
+    );
   }
 
 }

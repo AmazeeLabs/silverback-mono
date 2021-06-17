@@ -18,9 +18,13 @@ class EntityFeedTest extends EntityFeedTestBase {
     $metadata->addCacheContexts(['user.node_grants:view']);
     $metadata->addCacheTags(['node:1', 'node_list']);
     $this->assertResults($query, [], [
+      'loadPost' => [
+        'title' => 'Test',
+      ],
       'queryPosts' => [
         [
           'id' => '1',
+          'drupalId' => '1',
           'title' => 'Test',
         ],
       ],
@@ -39,11 +43,16 @@ class EntityFeedTest extends EntityFeedTestBase {
     $metadata->addCacheContexts(['user.node_grants:view', 'static:language:en']);
     $metadata->addCacheTags(['node:1', 'node_list']);
     $this->assertResults($query, [], [
+      'loadPage' => [
+        'title' => 'Test',
+      ],
       'queryPages' => [
         [
-          'id' => '1',
+          'id' => '1:en',
+          'drupalId' => '1',
           'translations' => [
             [
+              'defaultTranslation' => true,
               'langcode' => 'en',
               'title' => 'Test',
             ],
