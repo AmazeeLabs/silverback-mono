@@ -11,17 +11,18 @@ import { BlockTwoColumns } from './content-blocks/two-columns';
 
 export const query = graphql`
   query GutenbergPage($remoteId: String!, $langcode: String!) {
-    drupalGutenbergPageTranslations(remoteId: { eq: $remoteId }) {
+    drupalGutenbergPage(
+      remoteId: { eq: $remoteId }
+      langcode: { eq: $langcode }
+    ) {
       id
-      translation(langcode: $langcode) {
-        title
-        body {
-          __typename
-          ...BlockTwoColumns
-          ...BlockHtml
-          ...BlockImage
-          ...BlockTeaser
-        }
+      title
+      body {
+        __typename
+        ...BlockTwoColumns
+        ...BlockHtml
+        ...BlockImage
+        ...BlockTeaser
       }
     }
   }
@@ -31,15 +32,19 @@ export const query = graphql`
   fragment BlockImage on DrupalBlockImage {
     caption
     image {
-      localImage {
-        ...ImageSharpFixed
+      translation(langcode: $langcode) {
+        localImage {
+          ...ImageSharpFixed
+        }
       }
     }
   }
   fragment BlockTeaser on DrupalBlockTeaser {
     image {
-      localImage {
-        ...ImageSharpFixed
+      translation(langcode: $langcode) {
+        localImage {
+          ...ImageSharpFixed
+        }
       }
     }
     title
@@ -64,7 +69,7 @@ const GutenbergPage: React.FC<
 > = ({ pageContext, data }) => {
   const { otherLanguages } = pageContext as GutenbergPageContext;
 
-  const page = data.drupalGutenbergPageTranslations?.translation!;
+  const page = data.drupalGutenbergPage!;
 
   return (
     <>

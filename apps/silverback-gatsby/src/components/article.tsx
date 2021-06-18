@@ -11,17 +11,17 @@ import { Row } from '../util/Row';
 
 export const query = graphql`
   query Article($remoteId: String!, $langcode: String!) {
-    drupalArticleTranslations(remoteId: { eq: $remoteId }) {
+    drupalArticle(remoteId: { eq: $remoteId }, langcode: { eq: $langcode }) {
       id
-      translation(langcode: $langcode) {
-        langcode
-        path
+      langcode
+      path
+      title
+      body
+      tags {
         title
-        body
-        tags {
-          title
-        }
-        image {
+      }
+      image {
+        translation(langcode: $langcode) {
           alt
           localImage {
             ...ImageSharpFixed
@@ -43,9 +43,8 @@ const Article: React.FC<PageProps<ArticleQuery, ArticleContext>> = ({
   data,
 }) => {
   const { otherLanguages } = pageContext;
-  const childrenImagesFromHtml =
-    data.drupalArticleTranslations?.childrenImagesFromHtml;
-  const article = data.drupalArticleTranslations?.translation!;
+  const childrenImagesFromHtml = data.drupalArticle?.childrenImagesFromHtml;
+  const article = data.drupalArticle!;
 
   const imageSets: ImageSet[] = [];
   for (const childImage of childrenImagesFromHtml || []) {
@@ -79,10 +78,12 @@ const Article: React.FC<PageProps<ArticleQuery, ArticleContext>> = ({
             </div>
           </Row>
           <td className="border-solid border-4">
-            {article.image?.localImage?.childImageSharp?.fixed && (
+            {article.image?.translation?.localImage?.childImageSharp?.fixed && (
               <Image
-                alt={article.image.alt}
-                fixed={article.image.localImage.childImageSharp.fixed}
+                alt={article.image.translation?.alt}
+                fixed={
+                  article.image.translation?.localImage.childImageSharp.fixed
+                }
               />
             )}
           </td>

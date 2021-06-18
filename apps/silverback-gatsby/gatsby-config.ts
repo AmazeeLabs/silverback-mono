@@ -54,13 +54,13 @@ export const plugins = [
     options: {
       configs: [
         {
-          nodeType: 'DrupalPageTranslations',
-          propertyPath: 'translations.body',
+          nodeType: 'DrupalPage',
+          propertyPath: 'body',
           baseUrl: process.env.DRUPAL_BASE_URL,
         },
         {
-          nodeType: 'DrupalArticleTranslations',
-          propertyPath: 'translations.body',
+          nodeType: 'DrupalArticle',
+          propertyPath: 'body',
           baseUrl: process.env.DRUPAL_BASE_URL,
         },
       ],
