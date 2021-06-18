@@ -3,6 +3,8 @@ import {
   buildNodeDefinitions,
   compileNodeQueries,
   generateDefaultFragments,
+  IPaginationAdapter,
+  LimitOffset,
   loadSchema,
 } from 'gatsby-graphql-source-toolkit';
 import {
@@ -14,6 +16,21 @@ import {
 
 import { drupalNodes as drupalNodesFetcher } from './drupal-nodes';
 
+type UntranslatableListResultItem = {
+  remoteTypeName: string;
+};
+
+type TranslatableListResultItem = UntranslatableListResultItem & {
+  translations: Array<ListResultItem>;
+};
+
+type ListResultItem = UntranslatableListResultItem | TranslatableListResultItem;
+
+type ITranslatablePaginationAdapter = IPaginationAdapter<
+  ListResultItem[],
+  ListResultItem
+>;
+
 export const createSourcingConfig = async (
   gatsbyApi: SourceNodesArgs,
   execute: IQueryExecutor,
@@ -23,6 +40,12 @@ export const createSourcingConfig = async (
   const schema = await loadSchema(execute);
   const drupalNodes = await drupalNodesFetcher(execute);
 
+  const isTranslatable = (
+    item: ListResultItem,
+  ): item is TranslatableListResultItem =>
+    drupalNodes.filter(
+      (def) => def.type === item.remoteTypeName && def.translatable,
+    ).length > 0;
   // Instruct gatsby-graphql-source-toolkit how to fetch content from Drupal.
   // The LIST_ queries are used to fetch the content when there is no cache. The
   // NODE_ queries are used to fetch incremental updates.
@@ -37,7 +60,14 @@ export const createSourcingConfig = async (
             limit: $limit
             offset: $offset
           ) {
-            ..._${drupalNode.type}Id_
+            __typename
+            ${
+              drupalNode.translatable
+                ? `translations {
+                     ..._${drupalNode.type}Id_
+                   }`
+                : `..._${drupalNode.type}Id_`
+            }
           }
         }
         query NODE_${drupalNode.type} {
@@ -64,10 +94,20 @@ export const createSourcingConfig = async (
     customFragments: fragments,
   });
 
+  const LimitOffsetTranslatable: ITranslatablePaginationAdapter = {
+    ...(LimitOffset as ITranslatablePaginationAdapter),
+    getItems: (pageOrResult) => {
+      return pageOrResult
+        .map((node) => (isTranslatable(node) ? node.translations : [node]))
+        .reduce((acc, val) => acc.concat(val), []);
+    },
+  };
+
   return {
     gatsbyApi,
     schema,
     execute,
+    paginationAdapters: [LimitOffsetTranslatable],
     // The default typename transformer adds a prefix to all remote types. It
     // can be set to empty string, but then make sure that type names do not
     // clash with Gatsby.
