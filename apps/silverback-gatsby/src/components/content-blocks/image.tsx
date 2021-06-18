@@ -6,8 +6,8 @@ export const BlockImage: React.FC<BlockImageFragment> = ({
   image,
 }) => (
   <div className="border-solid border-4">
-    {image.localImage?.childImageSharp?.fixed && (
-      <Image fixed={image.localImage.childImageSharp.fixed} />
+    {image.translation?.localImage?.childImageSharp?.fixed && (
+      <Image fixed={image.translation?.localImage.childImageSharp.fixed} />
     )}
     <div>{caption}</div>
   </div>

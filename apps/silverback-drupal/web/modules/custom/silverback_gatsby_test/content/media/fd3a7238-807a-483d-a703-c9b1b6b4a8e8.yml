@@ -26,6 +26,12 @@ default:
     -
       alias: ''
       langcode: en
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
   field_media_image:
     -
       entity: c20a037c-a1f4-42e8-984b-09c9fd12398a
@@ -33,3 +39,37 @@ default:
       title: ''
       width: 1311
       height: 1353
+translations:
+  de:
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    name:
+      -
+        value: Kätzchen
+    created:
+      -
+        value: 1623854023
+    revision_translation_affected:
+      -
+        value: true
+    path:
+      -
+        alias: ''
+        langcode: de
+    content_translation_source:
+      -
+        value: en
+    content_translation_outdated:
+      -
+        value: false
+    field_media_image:
+      -
+        entity: c20a037c-a1f4-42e8-984b-09c9fd12398a
+        alt: 'Kätzchen Alternativtext'
+        title: ''
+        width: 1311
+        height: 1353

@@ -10,12 +10,14 @@ export const createArticlePages = async ({
   // Drupal.
   const { data, errors } = await graphql<AllArticlesQuery>(`
     query AllArticles {
-      allDrupalArticleTranslations {
+      allDrupalArticle {
         nodes {
           remoteId
+          langcode
+          path
           translations {
-            langcode
             path
+            langcode
           }
         }
       }
@@ -25,23 +27,20 @@ export const createArticlePages = async ({
     console.error('errors', errors);
     throw new Error('Cannot fetch articles from Gatsby.');
   }
-  data.allDrupalArticleTranslations.nodes.forEach((article) =>
-    article.translations.forEach((translation) => {
-      const context: ArticleContext = {
-        remoteId: article.remoteId,
-        langcode: translation.langcode,
-        otherLanguages: article.translations
-          .filter((it) => it.langcode !== translation.langcode)
-          .map((other) => ({
-            path: other.path,
-            language: languages.find((it) => it.id === other.langcode)!,
-          })),
-      };
+  data.allDrupalArticle.nodes.forEach((article) => {
+    const context: ArticleContext = {
+      remoteId: article.remoteId,
+      langcode: article.langcode,
+      otherLanguages: article.translations.map((other) => ({
+        path: other.path,
+        language:
+          languages.find((lang) => lang.id === other.langcode) || languages[0],
+      })),
+    };
 
-      const path = translation.path;
-      const component = require.resolve(`../../components/article`);
+    const path = article.path;
+    const component = require.resolve(`../../components/article`);
 
-      return actions.createPage({ path, component, context });
-    }),
-  );
+    return actions.createPage({ path, component, context });
+  });
 };
