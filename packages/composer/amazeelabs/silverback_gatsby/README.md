@@ -87,6 +87,92 @@ The _Explorer_ or _Voyager_ screens should show root level fields for loading
 and querying our type (`loadPage`, `queryPages`) that you should be able to test
 now.
 
+## Menus
+
+To expose Drupal menus to Gatsby, one can use the `@menu` directive. It takes
+a menu id, and a menu item type name as arguments. The latter is used to declare
+a GraphQL type in the schema that will be emitted from the menu's `items` field.
+
+```graphql
+type MainMenu @menu(menu_id: "main", item_type: "MenuItem")
+
+type MenuItem {
+  label: String!
+  url: String!
+}
+```
+
+The resolvers for custom field of menu items (in this case `label` and `url`)
+still need to be provided by the schema implementation.
+
+```php
+$registry->addFieldResolver('MenuItem', 'label', $builder->compose(
+  $builder->produce('menu_tree_link')->map('element', $builder->fromParent()),
+  $builder->produce('menu_link_label')->map('link', $builder->fromParent()),
+));
+
+$registry->addFieldResolver('MenuItem', 'url', $builder->compose(
+  $builder->produce('menu_tree_link')->map('element', $builder->fromParent()),
+  $builder->produce('menu_link_url')->map('link', $builder->fromParent()),
+  $builder->produce('url_path')->map('url', $builder->fromParent()),
+));
+```
+
+GraphQL does not allow recursive fragments, so something like this would not be
+possible:
+
+```graphql
+query Menu {
+  drupalMainMenu {
+    items {
+      ... MenuItem
+    }
+  }
+  
+  fragment MenuItem on MenuItem {
+    label
+    url
+    children {
+      # Fragment recursion, not allowed in GraphQL!
+      ...MenuItem
+    }
+  }
+}
+```
+
+That's why the menu tree is automatically flattened, and `id` and `parent`
+properties are added to each item, so the tree can easily be reconstructed in
+the consuming application.
+
+```graphql
+query MainMenu {
+  drupalMainMenu(langcode: { eq: "en" }) {
+    items {
+      id
+      parent
+      label
+      url
+    }
+  }
+}
+```
+
+The `@menu` directive also takes an optional `max_level` argument. It can be
+used to restrict the number of levels a type will include, which in turn can
+optimize caching and Gatsby build times.  
+In many cases, the main page layout only displays the first level of menu items.
+When a new page is created and attached to the third level, Gatsby will still
+re-render all pages, because the menu that is used in the header changed. By
+separating this into two levels, we can make sure the outer layout really only
+changes when menu levels are changed that are displayed.
+
+```graphql
+type MainMenu @menu(menu_id: "main", item_type: "MenuItem")
+# Will only include the first level and trigger updates when a first level item
+# changes.
+type LayoutMainMenu @menu(menu_id: "main", item_type: "MenuItem", max_level: 1)
+```
+
 ## Configuring update notifications
 
 The last thing to do is to tell Gatsby whenever something noteworthy changes. By

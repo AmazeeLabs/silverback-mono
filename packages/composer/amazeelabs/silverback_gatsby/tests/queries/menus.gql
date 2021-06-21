@@ -1,0 +1,31 @@
+query Menus {
+  queryMainMenus(limit: 10, offset: 0) {
+    __typename
+    id
+    drupalId
+  }
+
+  queryVisibleMainMenus(limit: 10, offset: 0) {
+    __typename
+    id
+    drupalId
+  }
+
+  loadMainMenu(id: "main") {
+    items {
+      id
+      parent
+      label
+      url
+    }
+  }
+
+  loadVisibleMainMenu(id: "main") {
+    items {
+      id
+      parent
+      label
+      url
+    }
+  }
+}

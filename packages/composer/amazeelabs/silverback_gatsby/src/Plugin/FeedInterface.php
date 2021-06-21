@@ -3,7 +3,9 @@
 namespace Drupal\silverback_gatsby\Plugin;
 
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
-use Drupal\silverback_gatsby\GatsbyUpdate;
+use Drupal\graphql\GraphQL\ResolverBuilder;
+use Drupal\graphql\GraphQL\ResolverRegistryInterface;
+use GraphQL\Language\AST\DocumentNode;
 
 /**
  * Interface FeedInterface
@@ -20,6 +22,23 @@ interface FeedInterface {
    * @return array
    */
   public function info() : array;
+
+  /**
+   * Define extension schema definitions this Feed provides.
+   *
+   * @param \GraphQL\Language\AST\DocumentNode $parentAst
+   *
+   * @return string
+   */
+  public function getExtensionDefinition(DocumentNode $parentAst) : string;
+
+  /**
+   * Build resolvers for the defined schema definitions.
+   *
+   * @param \Drupal\graphql\GraphQL\ResolverRegistryInterface $registry
+   * @param \Drupal\graphql\GraphQL\ResolverBuilder $builder
+   */
+  public function addExtensionResolvers(ResolverRegistryInterface $registry, ResolverBuilder $builder) : void;
 
   /**
    * Decide if a type is translatable or not.

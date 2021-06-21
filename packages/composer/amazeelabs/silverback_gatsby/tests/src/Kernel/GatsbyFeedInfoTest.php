@@ -26,7 +26,21 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'listFieldName' => 'queryPosts',
           'changes' =>  [],
         ],
-      ]
+        [
+          'typeName' => 'MainMenu',
+          'translatable' => false,
+          'singleFieldName' => 'loadMainMenu',
+          'listFieldName' => 'queryMainMenus',
+          'changes' =>  [],
+        ],
+        [
+          'typeName' => 'VisibleMainMenu',
+          'translatable' => false,
+          'singleFieldName' => 'loadVisibleMainMenu',
+          'listFieldName' => 'queryVisibleMainMenus',
+          'changes' =>  [],
+        ],
+      ],
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
 
@@ -56,18 +70,35 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'listFieldName' => 'queryPosts',
           'changes' =>  [],
         ],
-      ]
+        [
+          'typeName' => 'MainMenu',
+          'translatable' => false,
+          'singleFieldName' => 'loadMainMenu',
+          'listFieldName' => 'queryMainMenus',
+          'changes' =>  [],
+        ],
+        [
+          'typeName' => 'VisibleMainMenu',
+          'translatable' => false,
+          'singleFieldName' => 'loadVisibleMainMenu',
+          'listFieldName' => 'queryVisibleMainMenus',
+          'changes' =>  [],
+        ],
+      ],
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
 
   public function testMultipleBuilds() {
+    $tracker = $this->container->get('silverback_gatsby.update_tracker');
     $node = Node::create([
       'type' => 'page',
       'title' => 'Test'
     ]);
     $node->save();
+    $tracker->clear();
     $node->title = 'Changed';
     $node->save();
+    $tracker->clear();
 
     $query = $this->getQueryFromFile('feed_info.gql');
     $this->assertResults($query, [], [
@@ -87,18 +118,35 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'listFieldName' => 'queryPosts',
           'changes' =>  [],
         ],
-      ]
+        [
+          'typeName' => 'MainMenu',
+          'translatable' => false,
+          'singleFieldName' => 'loadMainMenu',
+          'listFieldName' => 'queryMainMenus',
+          'changes' =>  [],
+        ],
+        [
+          'typeName' => 'VisibleMainMenu',
+          'translatable' => false,
+          'singleFieldName' => 'loadVisibleMainMenu',
+          'listFieldName' => 'queryVisibleMainMenus',
+          'changes' =>  [],
+        ],
+      ],
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
 
   public function testChanges() {
+    $tracker = $this->container->get('silverback_gatsby.update_tracker');
     $node = Node::create([
       'type' => 'page',
       'title' => 'Test'
     ]);
     $node->save();
+    $tracker->clear();
     $node->title = 'Changed';
     $node->save();
+    $tracker->clear();
 
     Node::create([
       'type' => 'blog',
@@ -127,7 +175,21 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'listFieldName' => 'queryPosts',
           'changes' =>  ['2'],
         ],
-      ]
+        [
+          'typeName' => 'MainMenu',
+          'translatable' => false,
+          'singleFieldName' => 'loadMainMenu',
+          'listFieldName' => 'queryMainMenus',
+          'changes' =>  [],
+        ],
+        [
+          'typeName' => 'VisibleMainMenu',
+          'translatable' => false,
+          'singleFieldName' => 'loadVisibleMainMenu',
+          'listFieldName' => 'queryVisibleMainMenus',
+          'changes' =>  [],
+        ],
+      ],
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
 
     // Only the first change that edited the page.
@@ -151,7 +213,21 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'listFieldName' => 'queryPosts',
           'changes' =>  [],
         ],
-      ]
+        [
+          'typeName' => 'MainMenu',
+          'translatable' => false,
+          'singleFieldName' => 'loadMainMenu',
+          'listFieldName' => 'queryMainMenus',
+          'changes' =>  [],
+        ],
+        [
+          'typeName' => 'VisibleMainMenu',
+          'translatable' => false,
+          'singleFieldName' => 'loadVisibleMainMenu',
+          'listFieldName' => 'queryVisibleMainMenus',
+          'changes' =>  [],
+        ],
+      ],
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
 
     // Only the last change that created a blog post.
@@ -175,7 +251,21 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'listFieldName' => 'queryPosts',
           'changes' =>  ['2'],
         ],
-      ]
+        [
+          'typeName' => 'MainMenu',
+          'translatable' => false,
+          'singleFieldName' => 'loadMainMenu',
+          'listFieldName' => 'queryMainMenus',
+          'changes' =>  [],
+        ],
+        [
+          'typeName' => 'VisibleMainMenu',
+          'translatable' => false,
+          'singleFieldName' => 'loadVisibleMainMenu',
+          'listFieldName' => 'queryVisibleMainMenus',
+          'changes' =>  [],
+        ],
+      ],
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
 }

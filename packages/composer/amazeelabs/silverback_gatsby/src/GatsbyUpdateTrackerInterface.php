@@ -3,6 +3,14 @@
 namespace Drupal\silverback_gatsby;
 
 interface GatsbyUpdateTrackerInterface {
+
+  /**
+   * Clear the in-memory de-duplication cache.
+   *
+   * Mainly used for unit testing.
+   */
+  public function clear() : void;
+
   /**
    * Track an update for a given GraphQL object.
    *

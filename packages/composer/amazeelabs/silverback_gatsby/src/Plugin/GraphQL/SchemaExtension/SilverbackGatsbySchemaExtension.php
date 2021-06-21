@@ -165,6 +165,9 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
       $schema[] = "  drupalId: String!";
       $schema[] = "}";
     }
+
+    $schema[] = $feed->getExtensionDefinition($this->parentAst);
+
     return implode("\n", $schema);
   }
 
@@ -232,6 +235,7 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
 
       $typeName = $feed->getTypeName();
       $registry->addFieldResolver($typeName, 'drupalId', $idResolver);
+      $feed->addExtensionResolvers($registry, $builder);
 
       if ($feed->isTranslatable()) {
         $registry->addFieldResolver('Query', $feed->getSingleFieldName(), $feed->resolveItem(

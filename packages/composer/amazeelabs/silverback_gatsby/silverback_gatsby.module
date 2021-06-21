@@ -2,10 +2,22 @@
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\silverback_gatsby\Plugin\Gatsby\Feed\EntityFeed;
+use Drupal\silverback_gatsby\Plugin\Gatsby\Feed\MenuFeed;
 
 
 function _silverback_gatsby_entity_event(EntityInterface $entity) {
   \Drupal::service('silverback_gatsby.update_handler')->handle(EntityFeed::class, $entity);
+}
+
+function _silverback_gatsby_menu_event(EntityInterface $entity) {
+  \Drupal::service('silverback_gatsby.update_handler')->handle(MenuFeed::class, $entity);
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function silverback_gatsby_entity_presave(EntityInterface $entity) {
+  _silverback_gatsby_menu_event($entity);
 }
 
 /**
@@ -13,6 +25,7 @@ function _silverback_gatsby_entity_event(EntityInterface $entity) {
  */
 function silverback_gatsby_entity_insert(EntityInterface $entity) {
   _silverback_gatsby_entity_event($entity);
+  _silverback_gatsby_menu_event($entity);
 }
 
 /**
@@ -20,6 +33,7 @@ function silverback_gatsby_entity_insert(EntityInterface $entity) {
  */
 function silverback_gatsby_entity_update(EntityInterface $entity) {
   _silverback_gatsby_entity_event($entity);
+  _silverback_gatsby_menu_event($entity);
 }
 
 /**
@@ -27,4 +41,5 @@ function silverback_gatsby_entity_update(EntityInterface $entity) {
  */
 function silverback_gatsby_entity_delete(EntityInterface $entity) {
   _silverback_gatsby_entity_event($entity);
+  _silverback_gatsby_menu_event($entity);
 }
