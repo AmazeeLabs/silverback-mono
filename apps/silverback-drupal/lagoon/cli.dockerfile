@@ -1,5 +1,7 @@
 FROM amazeeio/php:7.4-cli-drupal
 
+RUN apk add --no-cache python2 make g++
+
 COPY apps/silverback-drupal/composer.json apps/silverback-drupal/composer.lock /app/
 COPY apps/silverback-drupal/patches /app/patches
 # These ones need to be copied because post-install-cmd script uses them.
