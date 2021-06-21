@@ -25,6 +25,7 @@ class GatsbyUpdateHandlerTest extends EntityFeedTestBase {
       'title' => 'Test'
     ]);
     $node->save();
+    $this->tracker->clear();
 
     $node->addTranslation('de', [
       'title' => 'Test DE'

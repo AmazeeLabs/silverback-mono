@@ -1,0 +1,21 @@
+# Directive for the "MenuFeed" plugin.
+directive @menu(
+  """
+  The internal menu id.
+  """
+  menu_id: String!
+
+  """
+  GraphQL type for menu items.
+  """
+  item_type: String!
+
+  """
+  The maximum level to be fetched.
+  This can be used to optimizing caching. Most of the time only one or two
+  levels of menus are immediately visible on the page. By declaring multiple
+  types, we can generate different cache buckets, so a new menu item on a low
+  level does not require a full rebuild of every page.
+  """
+  max_level: Int
+) on OBJECT

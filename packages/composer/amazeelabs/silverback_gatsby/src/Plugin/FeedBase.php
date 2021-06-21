@@ -4,7 +4,9 @@ namespace Drupal\silverback_gatsby\Plugin;
 
 use Drupal\Component\Plugin\PluginBase;
 use Drupal\graphql\GraphQL\ResolverBuilder;
+use Drupal\graphql\GraphQL\ResolverRegistryInterface;
 use Drupal\silverback_gatsby\GatsbyUpdate;
+use GraphQL\Language\AST\DocumentNode;
 
 /**
  * Base class for Gatsby Data feeds.
@@ -37,6 +39,22 @@ abstract class FeedBase extends PluginBase implements FeedInterface {
     $this->builder = new ResolverBuilder();
     $this->typeName = $config['typeName'];
   }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function getExtensionDefinition(DocumentNode $parentAst): string {
+    return '';
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function addExtensionResolvers(
+    ResolverRegistryInterface $registry,
+    ResolverBuilder $builder
+  ): void {}
+
 
   public function getTypeName() : string {
     return $this->typeName;

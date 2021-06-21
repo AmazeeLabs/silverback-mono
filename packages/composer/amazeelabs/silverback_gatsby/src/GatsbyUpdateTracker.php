@@ -16,12 +16,14 @@ class GatsbyUpdateTracker implements GatsbyUpdateTrackerInterface {
   protected Connection $database;
   protected AccountInterface $currentUser;
   protected GatsbyUpdateTriggerInterface $trigger;
+  protected array $tracked;
 
   public function __construct(
     Connection $database,
     AccountInterface $currentUser,
     GatsbyUpdateTriggerInterface $trigger
   ) {
+    $this->tracked = [];
     $this->database = $database;
     $this->currentUser = $currentUser;
     $this->trigger = $trigger;
@@ -30,7 +32,18 @@ class GatsbyUpdateTracker implements GatsbyUpdateTrackerInterface {
   /**
    * {@inheritDoc}
    */
+  public function clear() : void {
+    $this->tracked = [];
+  }
+
+  /**
+   * {@inheritDoc}
+   */
   public function track(string $server, string $type, string $id) : int {
+    if (isset($this->tracked[$server]) && isset($this->tracked[$server][$type]) && in_array($id,$this->tracked[$server][$type])) {
+      return $this->latestBuild($server);
+    }
+    $this->tracked[$server][$type][] = $id;
     $buildId = $this->database->insert('gatsby_update_log')->fields([
       'server' => $server,
       'type' => $type,

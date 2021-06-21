@@ -13,3 +13,18 @@ type Post @entity(type: "node", bundle: "blog") {
   path: String!
   title: String!
 }
+
+type MenuItem {
+  label: String!
+  url: String!
+}
+
+"""
+All menu items, for the sitemap or being post-loaded.
+"""
+type MainMenu @menu(menu_id: "main", item_type: "MenuItem")
+
+"""
+Menu items up to level 2, to be rendered directly into the page layout.
+"""
+type VisibleMainMenu @menu(menu_id: "main", max_level: 2, item_type: "MenuItem")
