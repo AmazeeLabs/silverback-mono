@@ -17,7 +17,7 @@ COPY packages/composer/amazeelabs/silverback_gatsby /app/packages/composer/amaze
 # And fix paths to them in composer files.
 RUN sed -i 's|"\.\./\.\.|"/app|g' composer.json composer.lock
 
-RUN composer install --prefer-dist --no-dev --no-suggest --optimize-autoloader --apcu-autoloader
+RUN COMPOSER_PROCESS_TIMEOUT=600 composer install --prefer-dist --no-dev --no-suggest --optimize-autoloader --apcu-autoloader
 
 COPY apps/silverback-drupal/ /app
 
