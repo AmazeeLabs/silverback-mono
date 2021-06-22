@@ -9,9 +9,9 @@ describe('Test Gatsby Build Monitor integration', () => {
     cy.contains('a', 'Website is ready');
 
     cy.visit(`${drupalUrl}/node/add/page`);
-    cy.get('#edit-title-0-value').type('New page', { force: true });
-    cy.get('.cke_button__source').click({ force: true });
-    cy.get('textarea.cke_source').type('Body', { force: true });
+    cy.get('#edit-title-0-value').type('New page');
+    cy.get('.cke_button__source').click();
+    cy.get('textarea.cke_source').type('Body');
     cy.get('#edit-submit').click();
 
     // Give it few seconds to receive the status.
