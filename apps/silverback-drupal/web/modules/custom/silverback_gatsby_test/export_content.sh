@@ -14,6 +14,7 @@ drush dcer node --folder="$DIR"
 drush dcer taxonomy_term --folder="$DIR"
 drush dcer media --folder="$DIR"
 drush dcer user --folder="$DIR"
+drush dcer menu_link_content --folder="$DIR"
 
 # Only leave the GatsbyPreview user.
 grep -L GatsbyPreview $DIR/user/*.* | xargs rm
