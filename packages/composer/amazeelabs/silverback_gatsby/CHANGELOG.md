@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.3.0...@-amazeelabs/silverback_gatsby@1.3.1) (2021-06-22)
+
+
+### Bug Fixes
+
+* **gatsby:** re-add build monitor state in update trigger ([8958dc5](https://github.com/AmazeeLabs/silverback-mono/commit/8958dc58580b566bb26edc70513b4aeb455d6108))
+
+
+
+
+
 # [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.2.1...@-amazeelabs/silverback_gatsby@1.3.0) (2021-06-15)
 
 
