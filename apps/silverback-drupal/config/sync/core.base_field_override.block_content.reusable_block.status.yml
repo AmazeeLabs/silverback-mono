@@ -1,0 +1,22 @@
+uuid: 7b9e6a42-c8c6-42b6-9645-ee89a1b300a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.reusable_block
+id: block_content.reusable_block.status
+field_name: status
+entity_type: block_content
+bundle: reusable_block
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
