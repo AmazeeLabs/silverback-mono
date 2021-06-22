@@ -1,0 +1,18 @@
+uuid: 19ff30ff-f6a5-4423-afa0-9af4c6fd608a
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.reusable_block
+id: block_content.reusable_block.info
+field_name: info
+entity_type: block_content
+bundle: reusable_block
+label: 'Block description'
+description: 'A brief description of your block.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
