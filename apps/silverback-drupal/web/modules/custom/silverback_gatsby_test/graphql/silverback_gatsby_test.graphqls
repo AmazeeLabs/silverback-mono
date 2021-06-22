@@ -60,3 +60,13 @@ type BlockTeaser {
   subtitle: String!
   url: String!
 }
+
+
+type MenuItem {
+  label: String!
+  url: String!
+}
+
+type MainMenu @menu(menu_id: "main", item_type: "MenuItem")
+
+type FirstLevelMainMenu @menu(menu_id: "main", item_type: "MenuItem", max_level: 1)
