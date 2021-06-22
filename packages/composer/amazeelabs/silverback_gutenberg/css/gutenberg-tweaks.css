@@ -1,0 +1,17 @@
+/* There is no other way to disable the columns amount slider. */
+.components-range-control {
+  display: none;
+}
+
+/* Hide the Upload button as it skips the media edit form (which may cause
+required fields to be left blank). Users still can upload new files via the
+media dialog. */
+.block-editor-media-placeholder .components-form-file-upload {
+  display: none;
+}
+
+/* Hide the "Welcome to Gutenberg" overlay, since it is annoying and messes
+with cypress tests.*/
+.components-modal__screen-overlay {
+  display: none !important;
+}

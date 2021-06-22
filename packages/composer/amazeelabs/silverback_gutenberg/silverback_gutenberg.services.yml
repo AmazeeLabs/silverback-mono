@@ -1,0 +1,4 @@
+services:
+  Drupal\silverback_gutenberg\LinkProcessor:
+    class: Drupal\silverback_gutenberg\LinkProcessor
+    arguments: ['@path_alias.manager', '@config.factory', '@request_stack', '@module_handler']
