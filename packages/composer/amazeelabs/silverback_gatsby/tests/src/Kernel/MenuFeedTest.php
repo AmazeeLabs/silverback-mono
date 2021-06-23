@@ -224,42 +224,52 @@ class MenuFeedTest extends GraphQLTestBase {
     $metadata->addCacheContexts(['languages:language_interface']);
     $metadata->addCacheTags(['config:system.menu.main']);
     $this->assertResults($query, [], [
-      'loadMainMenu' => ['translations' => [
-        [
-          'langcode' => 'en',
-          'items' => [
-            [
-              'id' => $untranslated->getPluginId(),
-              'parent' => '',
-              'label' => $untranslated->label(),
-              'url' => '/untranslated'
+      'loadMainMenu' => [
+        'items' => [
+          [
+            'id' => $translation->getPluginId(),
+            'parent' => '',
+            'label' => $translation->label(),
+            'url' => '/translated'
+          ],
+        ],
+        'translations' => [
+          [
+            'langcode' => 'en',
+            'items' => [
+              [
+                'id' => $untranslated->getPluginId(),
+                'parent' => '',
+                'label' => $untranslated->label(),
+                'url' => '/untranslated'
+              ],
+              [
+                'id' => $translated->getPluginId(),
+                'parent' => '',
+                'label' => $translated->label(),
+                'url' => '/translated'
+              ],
             ],
-            [
-              'id' => $translated->getPluginId(),
-              'parent' => '',
-              'label' => $translated->label(),
-              'url' => '/translated'
+          ],
+          [
+            'langcode' => 'fr',
+            'items' => [
+              // French has not translations at all. The menu is empty there.
+            ],
+          ],
+          [
+            'langcode' => 'de',
+              'items' => [
+              [
+                'id' => $translation->getPluginId(),
+                'parent' => '',
+                'label' => $translation->label(),
+                'url' => '/translated'
+              ],
             ],
           ],
         ],
-        [
-          'langcode' => 'fr',
-          'items' => [
-            // French has not translations at all. The menu is empty there.
-          ]
-        ],
-        [
-          'langcode' => 'de',
-            'items' => [
-            [
-              'id' => $translation->getPluginId(),
-              'parent' => '',
-              'label' => $translation->label(),
-              'url' => '/translated'
-            ],
-          ]
-        ],
-      ]],
+      ],
     ], $metadata);
   }
 

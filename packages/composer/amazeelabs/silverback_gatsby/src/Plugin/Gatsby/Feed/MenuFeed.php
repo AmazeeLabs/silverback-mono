@@ -3,9 +3,6 @@
 namespace Drupal\silverback_gatsby\Plugin\Gatsby\Feed;
 
 use Drupal\content_translation\ContentTranslationManagerInterface;
-use Drupal\Core\Config\Entity\ConfigEntityTypeInterface;
-use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Menu\MenuLinkTreeElement;
@@ -17,12 +14,9 @@ use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
-use Drupal\language\ConfigurableLanguageManager;
 use Drupal\menu_link_content\MenuLinkContentInterface;
-use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
 use Drupal\silverback_gatsby\Annotation\GatsbyFeed;
 use Drupal\silverback_gatsby\Plugin\FeedBase;
-use Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer\GatsbyBuildId;
 use Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer\GatsbyMenuLinks;
 use Drupal\system\Entity\Menu;
 use GraphQL\Language\AST\DocumentNode;
@@ -156,6 +150,13 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
       ->map('access', $this->builder->fromValue(false));
     if ($this->isTranslatable() && $langcode) {
       $resolver->map('language', $langcode);
+      $resolver = $this->builder->compose(
+        $this->builder->context('current_menu_language', $langcode),
+        $resolver,
+        $this->builder->callback(function ($value, $args, ResolveContext $context, ResolveInfo $info, FieldContext $fieldContext) {
+        $value->__language = $fieldContext->getContextValue('current_menu_language');
+        return $value;
+      }));
     }
     return $resolver;
   }
