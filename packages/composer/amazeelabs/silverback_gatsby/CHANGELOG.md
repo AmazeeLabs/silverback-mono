@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.3.1...@-amazeelabs/silverback_gatsby@1.4.0) (2021-06-23)
+
+
+### Bug Fixes
+
+* **gatsby:** respect language when loading a single menu ([96e1d37](https://github.com/AmazeeLabs/silverback-mono/commit/96e1d37cc6cfbb088c7ed0b7844d73699e880f45))
+
+
+### Features
+
+* **gatsby:** menu handling for silverback_gatsby ([5b190f7](https://github.com/AmazeeLabs/silverback-mono/commit/5b190f7e4ecaacb693d6c81ab29081fa85e72257))
+
+
+
+
+
 ## [1.3.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.3.0...@-amazeelabs/silverback_gatsby@1.3.1) (2021-06-22)
 
 
