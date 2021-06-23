@@ -37,7 +37,7 @@ class ListEntities extends EntityQueryBase {
   public function resolve(string $type, ?string $bundle, ?int $offset, ?int $limit, RefinableCacheableDependencyInterface $metadata) {
     $storage = \Drupal::entityTypeManager()->getStorage($type);
     $entityType = $storage->getEntityType();
-    $query = $this->getQuery($type);
+    $query = $this->getQuery($type, $metadata);
 
     if ($bundle) {
       $query->condition($entityType->getKey('bundle'), $bundle);
