@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.4.1...@-amazeelabs/silverback_gatsby@1.5.0) (2021-06-24)
+
+
+### Features
+
+* **gatsby:** drush command to export full definition of composable schema ([63644f2](https://github.com/AmazeeLabs/silverback-mono/commit/63644f26376e5890054c91c41dc7464614009584))
+
+
+
+
+
 ## [1.4.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.4.0...@-amazeelabs/silverback_gatsby@1.4.1) (2021-06-23)
 
 

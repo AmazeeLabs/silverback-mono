@@ -2,10 +2,10 @@
   "name": "silverback-gastby",
   "private": true,
   "description": "gatsby-graphql-toolkit example for drupal",
-  "version": "0.15.11",
+  "version": "0.15.12",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
-    "@-amazeelabs/silverback-drupal": "^1.4.10",
+    "@-amazeelabs/silverback-drupal": "^1.5.0",
     "@amazeelabs/gatsby-source-silverback": "^1.1.4",
     "@amazeelabs/gatsby-theme-core": "^0.6.7",
     "axios": "^0.21.1",
