@@ -5,7 +5,7 @@ import Code from '../Code';
 
 export default {
   title: 'Atoms/Code',
-  componend: Code,
+  component: Code,
 } as Meta;
 
 const MDXCode: React.FC<{
