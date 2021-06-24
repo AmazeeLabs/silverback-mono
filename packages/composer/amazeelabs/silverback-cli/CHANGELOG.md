@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@2.6.0...@-amazeelabs/silverback-cli@2.7.0) (2021-06-24)
+
+
+### Features
+
+* **silverback-cli:** follow drush deploy behavior ([f51777c](https://github.com/AmazeeLabs/silverback-mono/commit/f51777c5b0db2b6c8799140a3ad8a2915246366c))
+
+
+
+
+
 # [2.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@2.5.0...@-amazeelabs/silverback-cli@2.6.0) (2021-05-04)
 
 
