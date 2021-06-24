@@ -1,5 +1,8 @@
 (function ($) {
   function getState() {
+    if (document.hidden) {
+      return;
+    }
     $.ajax({
       type: "post",
       url: Drupal.url("gatsby-build-monitor/get-state"),
