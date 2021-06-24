@@ -81,10 +81,12 @@ EOD
 
     if ($installFromCache) {
       $this->executeProcess([$drush, 'updb', '-y', '--cache-clear=0'], $output);
+      $this->executeProcess([$drush, 'cr'], $output);
       if ($configExists && !$noConfigImport) {
         $this->executeProcess([$drush, 'cim', '-y'], $output);
+        $this->executeProcess([$drush, 'cr'], $output);
       }
-      $this->executeProcess([$drush, 'cr'], $output);
+      $this->executeProcess([$drush, 'deploy:hook', '-y'], $output);
     }
     else {
       if ($zipCacheExists) {
