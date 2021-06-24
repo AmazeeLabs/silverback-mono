@@ -4,5 +4,12 @@
   "version": "1.0.0",
   "description": "Bridge module between Gatsby and Drupal.",
   "homepage": "https://silverback.netlify.app",
-  "license": "GPL-2.0+"
+  "license": "GPL-2.0+",
+  "extra": {
+    "drush": {
+      "services": {
+        "drush.services.yml": "^10"
+      }
+    }
+  }
 }

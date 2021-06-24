@@ -39,7 +39,7 @@ class ComposableSchema extends OriginalComposableSchema {
   /**
    * {@inheritDoc}
    */
-  protected function getSchemaDefinition() {
+  public function getSchemaDefinition() {
     $extensions = parent::getExtensions();
 
     // Get all extensions and prepend any defined directives to the schema.
@@ -63,6 +63,7 @@ class ComposableSchema extends OriginalComposableSchema {
     }
 
     $schema[] = file_get_contents($file);
+
     return implode("\n", $schema);
   }
 }
