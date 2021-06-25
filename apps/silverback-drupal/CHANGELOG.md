@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.5.0...@-amazeelabs/silverback-drupal@1.5.1) (2021-06-25)
+
+
+### Bug Fixes
+
+* **gatsby:** composed schema definition should also include extensions ([cf8566d](https://github.com/AmazeeLabs/silverback-mono/commit/cf8566d5c838bf31b02ec3cbdb1a3ae9e436ba35))
+
+
+
+
+
 # [1.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.4.10...@-amazeelabs/silverback-drupal@1.5.0) (2021-06-24)
 
 

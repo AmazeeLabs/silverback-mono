@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.5.0...@-amazeelabs/silverback_gatsby@1.6.0) (2021-06-25)
+
+
+### Bug Fixes
+
+* **gatsby:** composed schema definition should also include extensions ([cf8566d](https://github.com/AmazeeLabs/silverback-mono/commit/cf8566d5c838bf31b02ec3cbdb1a3ae9e436ba35))
+
+
+### Features
+
+* **gatsby:** write drupal schema definition to a specific path ([b768a24](https://github.com/AmazeeLabs/silverback-mono/commit/b768a24a63e2ee5151ade6917656d0b38e99b62c))
+
+
+
+
+
 # [1.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.4.1...@-amazeelabs/silverback_gatsby@1.5.0) (2021-06-24)
 
 
