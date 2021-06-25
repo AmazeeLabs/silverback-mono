@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.6.0...@-amazeelabs/silverback_gatsby@1.6.1) (2021-06-25)
+
+
+### Bug Fixes
+
+* **gatsby:** simplify base extension schema and add it to the composed definition ([94c7ec8](https://github.com/AmazeeLabs/silverback-mono/commit/94c7ec82c19975b867e46ccc41e084f0f1912d54))
+
+
+
+
+
 # [1.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.5.0...@-amazeelabs/silverback_gatsby@1.6.0) (2021-06-25)
 
 
