@@ -1,16 +1,3 @@
-interface FeedItem {
-  id: String!
-  drupalId: String!
-}
-
-interface TranslatableFeedItem implements FeedItem {
-  id: String!
-  drupalId: String!
-  langcode: String!
-  defaultTranslation: Boolean!
-  translations: [TranslatableFeedItem!]!
-}
-
 type Feed {
   typeName: String!
   translatable: Boolean!

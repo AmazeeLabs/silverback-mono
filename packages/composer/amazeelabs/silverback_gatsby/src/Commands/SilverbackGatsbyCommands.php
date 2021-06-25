@@ -58,6 +58,7 @@ class SilverbackGatsbyCommands extends DrushCommands {
       ]));
       $definition[] = $schema->getSchemaDefinition();
       foreach ($schema->getExtensions() as $extension) {
+        $definition[] = $extension->getBaseDefinition();
         $definition[] = $extension->getExtensionDefinition();
       }
       file_put_contents($path, implode("\n", $definition));

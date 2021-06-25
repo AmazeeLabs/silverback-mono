@@ -151,7 +151,7 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
     $schema [] = "}";
 
     if ($feed->isTranslatable()) {
-      $schema[] = "extend type $typeName implements TranslatableFeedItem {";
+      $schema[] = "extend type $typeName {";
       $schema[] = "  id: String!";
       $schema[] = "  drupalId: String!";
       $schema[] = "  defaultTranslation: Boolean!";
@@ -160,7 +160,7 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
       $schema[] = "}";
     }
     else {
-      $schema[] = "extend type $typeName implements FeedItem {";
+      $schema[] = "extend type $typeName {";
       $schema[] = "  id: String!";
       $schema[] = "  drupalId: String!";
       $schema[] = "}";
