@@ -56,7 +56,11 @@ class SilverbackGatsbyCommands extends DrushCommands {
         '%id' => $server->id(),
         '%path' => $path,
       ]));
-      file_put_contents($path, $schema->getSchemaDefinition());
+      $definition[] = $schema->getSchemaDefinition();
+      foreach ($schema->getExtensions() as $extension) {
+        $definition[] = $extension->getExtensionDefinition();
+      }
+      file_put_contents($path, implode("\n", $definition));
     }
   }
 }
