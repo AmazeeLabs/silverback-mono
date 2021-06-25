@@ -32,10 +32,16 @@ class SilverbackGatsbyCommands extends DrushCommands {
   /**
    * Export composable schema definitions.
    *
+   * @param string $folder
+   *   Folder path to store the exported schema in.
+   *
    * @command silverback-gatsby:schema-export
    * @aliases sgse
    */
-  public function schemaExport() {
+  public function schemaExport($folder = '../generated') {
+    if (!is_dir($folder)) {
+      mkdir($folder, 0777, true);
+    }
     $servers = $this->entityTypeManager->getStorage('graphql_server')->loadMultiple();
     foreach ($servers as $server) {
       /** @var $server \Drupal\graphql\Entity\Server */
@@ -45,8 +51,7 @@ class SilverbackGatsbyCommands extends DrushCommands {
       if (!$schema instanceof ComposableSchema) {
         continue;
       }
-      $definition = $schema->getPluginDefinition();
-      $path = drupal_get_path('module', $definition['provider']) . '/graphql/' . $server->id() . '.composed.graphqls';
+      $path = $folder . '/' . $server->id() . '.composed.graphqls';
       $this->logger->success(dt('Writing definition of %id to %path', [
         '%id' => $server->id(),
         '%path' => $path,
