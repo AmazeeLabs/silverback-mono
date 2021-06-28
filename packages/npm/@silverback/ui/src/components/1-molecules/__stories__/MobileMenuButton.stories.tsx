@@ -2,8 +2,7 @@ import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
 
 import { useMobileMenu } from "../../../utils";
-
-import { MobileMenuButton, MobileMenuButtonProps } from '../MobileMenuButton';
+import MobileMenuButton,{ MobileMenuButtonProps } from '../MobileMenuButton';
 
 
 export default {

@@ -5,7 +5,7 @@ export type MobileMenuButtonProps = {
   toggle?: () => void;
 };
 
-export const MobileMenuButton: React.FC<MobileMenuButtonProps> = ({
+const MobileMenuButton: React.FC<MobileMenuButtonProps> = ({
   open,
   toggle,
   }) => (
@@ -38,3 +38,5 @@ export const MobileMenuButton: React.FC<MobileMenuButtonProps> = ({
       </svg>
     </button>
 );
+
+export default MobileMenuButton;
