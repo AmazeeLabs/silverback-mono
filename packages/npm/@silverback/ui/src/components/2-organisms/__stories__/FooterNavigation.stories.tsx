@@ -1,15 +1,15 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
 
-import DesktopNavigation from '../DesktopNavigation';
+import FooterNavigation from '../FooterNavigation';
 
 export default {
-  title: 'Components/Organisms/DesktopNavigation',
-  component: DesktopNavigation,
+  title: 'Components/Organisms/FooterNavigation',
+  component: FooterNavigation,
 } as Meta;
 
 const Template: Story = (args) => (
-  <DesktopNavigation {...args} />
+  <FooterNavigation {...args} />
 );
 
 export const Default = Template.bind({});
