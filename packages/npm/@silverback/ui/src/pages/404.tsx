@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Page from '../3-layout/Page';
+import Page from '../components/3-layout/Page';
 
 const NotFound: React.FC = () => {
   return (
