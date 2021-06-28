@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.7.0...@-amazeelabs/silverback_gatsby@1.8.0) (2021-06-28)
+
+
+### Features
+
+* **gatsby:** accept access flag in entity list producer ([2d36f46](https://github.com/AmazeeLabs/silverback-mono/commit/2d36f467f2494d8fd3e801418046d845cd4cc3fa))
+
+
+
+
+
 # [1.7.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.6.1...@-amazeelabs/silverback_gatsby@1.7.0) (2021-06-28)
 
 
