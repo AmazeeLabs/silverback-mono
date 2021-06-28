@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.1.5...@amazeelabs/gatsby-source-silverback@1.2.0) (2021-06-28)
+
+
+### Features
+
+* **gatsby:** automatically clear fetched nodes if drupal is out of sync ([73c5093](https://github.com/AmazeeLabs/silverback-mono/commit/73c5093e7521b27fc70c45eeeca159bcae5e16a9))
+
+
+
+
+
 ## [1.1.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.1.4...@amazeelabs/gatsby-source-silverback@1.1.5) (2021-06-28)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-source-silverback
