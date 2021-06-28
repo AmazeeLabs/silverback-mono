@@ -8,13 +8,17 @@ import {
 import {
   createSchemaCustomization as createToolkitSchemaCustomization,
   createSourcingContext,
+  deleteNodes,
+  fetchAllNodes,
   sourceAllNodes,
   sourceNodeChanges,
 } from 'gatsby-graphql-source-toolkit';
+import { INodeDeleteEvent } from 'gatsby-graphql-source-toolkit/dist/types';
 
 import { createQueryExecutor } from './helpers/create-query-executor';
 import { createSourcingConfig } from './helpers/create-sourcing-config';
 import { createTranslationQueryField } from './helpers/create-translation-query-field';
+import { drupalNodes } from './helpers/drupal-nodes';
 import { fetchNodeChanges } from './helpers/fetch-node-changes';
 
 type Options = {
@@ -79,7 +83,25 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
     currentBuildId = info?.data?.drupalBuildId || -1;
   }
 
-  if (!lastBuildId || currentBuildId === -1) {
+  if (currentBuildId < lastBuildId) {
+    gatsbyApi.reporter.info(`ℹ️ clearing all nodes.`);
+    const feeds = await drupalNodes(executor);
+    for (const feed of feeds) {
+      const nodes = fetchAllNodes(context, feed.type);
+      const events: Array<INodeDeleteEvent> = [];
+      for await (const node of nodes) {
+        events.push({
+          remoteTypeName: feed.type,
+          eventName: 'DELETE',
+          remoteId: { id: node.id },
+        });
+        deleteNodes(context, events);
+      }
+    }
+    currentBuildId = -1;
+  }
+
+  if (!lastBuildId || lastBuildId === -1 || currentBuildId === -1) {
     // If we don't have a last build or the CMS has not information about the
     // latest build, there is no way to detect changes. We have to run a full
     // rebuild.
