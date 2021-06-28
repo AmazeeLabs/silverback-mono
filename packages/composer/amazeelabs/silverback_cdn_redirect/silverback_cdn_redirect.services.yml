@@ -1,0 +1,5 @@
+services:
+  silverback_cdn_redirect.route_subscriber:
+    class: Drupal\silverback_cdn_redirect\EventSubscriber\CdnRedirectRouteSubscriber
+    tags:
+      - { name: event_subscriber }
