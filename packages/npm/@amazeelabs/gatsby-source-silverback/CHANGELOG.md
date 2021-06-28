@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.2.0...@amazeelabs/gatsby-source-silverback@1.2.1) (2021-06-28)
+
+
+### Bug Fixes
+
+* **gatsby:** use the correct api and also clear nodes if the build id's are identical ([bc5c7d0](https://github.com/AmazeeLabs/silverback-mono/commit/bc5c7d0b621a778de1d3401aec2008758a5a8a60))
+
+
+
+
+
 # [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.1.5...@amazeelabs/gatsby-source-silverback@1.2.0) (2021-06-28)
 
 
