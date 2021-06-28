@@ -5,3 +5,4 @@
 .prettierrc
 jest.config.js
 ### MANAGED BY @amazeelabs/scaffold - END
+storybook-static
