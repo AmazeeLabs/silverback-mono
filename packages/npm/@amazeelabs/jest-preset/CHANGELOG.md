@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/jest-preset@1.3.2...@amazeelabs/jest-preset@1.3.3) (2021-06-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @testing-library/react to v12 ([9c3f272](https://github.com/AmazeeLabs/silverback-mono/commit/9c3f272bd47b5d1c08a67f003f69145a1553e5ca))
+
+
+
+
+
 ## [1.3.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/jest-preset@1.3.1...@amazeelabs/jest-preset@1.3.2) (2021-05-26)
 
 **Note:** Version bump only for package @amazeelabs/jest-preset
