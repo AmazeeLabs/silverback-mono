@@ -9,7 +9,6 @@ import {
   createSchemaCustomization as createToolkitSchemaCustomization,
   createSourcingContext,
   deleteNodes,
-  fetchAllNodes,
   sourceAllNodes,
   sourceNodeChanges,
 } from 'gatsby-graphql-source-toolkit';
@@ -83,20 +82,20 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
     currentBuildId = info?.data?.drupalBuildId || -1;
   }
 
+  // If the current build is lower than the last one, the CMS has been reset and we
+  // need to re-fetch everything. If the two are equal, this is a manual request, in which
+  // case we also re-fetch all data.
   if (currentBuildId < lastBuildId) {
     gatsbyApi.reporter.info(`ℹ️ clearing all nodes.`);
     const feeds = await drupalNodes(executor);
     for (const feed of feeds) {
-      const nodes = fetchAllNodes(context, feed.type);
-      const events: Array<INodeDeleteEvent> = [];
-      for await (const node of nodes) {
-        events.push({
-          remoteTypeName: feed.type,
-          eventName: 'DELETE',
-          remoteId: { id: node.id },
-        });
-        deleteNodes(context, events);
-      }
+      const nodes = gatsbyApi.getNodesByType(`Drupal${feed.type}`);
+      const events: Array<INodeDeleteEvent> = nodes.map((node) => ({
+        remoteTypeName: feed.type,
+        eventName: 'DELETE',
+        remoteId: { id: node.id },
+      }));
+      deleteNodes(context, events);
     }
     currentBuildId = -1;
   }
