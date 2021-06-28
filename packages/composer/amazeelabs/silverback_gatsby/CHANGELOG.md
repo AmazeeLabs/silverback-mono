@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.6.1...@-amazeelabs/silverback_gatsby@1.7.0) (2021-06-28)
+
+
+### Features
+
+* **gatsby:** allow to bypass access checks with entity directive ([3f5d23d](https://github.com/AmazeeLabs/silverback-mono/commit/3f5d23d11ead14d0c1c10a43d094f5660ac36c8c))
+
+
+
+
+
 ## [1.6.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.6.0...@-amazeelabs/silverback_gatsby@1.6.1) (2021-06-25)
 
 
