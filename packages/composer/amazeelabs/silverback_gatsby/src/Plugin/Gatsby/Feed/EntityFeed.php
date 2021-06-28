@@ -44,6 +44,15 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
   protected string $bundle;
 
   /**
+   * Indicates if Drupal access restrictions should be respected.
+   *
+   * Defaults to true.
+   *
+   * @var bool
+   */
+  protected bool $access;
+
+  /**
    * @var \Drupal\content_translation\ContentTranslationManagerInterface
    */
   protected ContentTranslationManagerInterface $contentTranslationManager;
@@ -75,10 +84,9 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
     $plugin_definition,
     ContentTranslationManagerInterface $contentTranslationManager
   ) {
-    $type = $config['type'];
-    $bundle = $config['bundle'];
-    $this->type = $type;
-    $this->bundle = $bundle;
+    $this->type = $config['type'];
+    $this->bundle = $config['bundle'];
+    $this->access = $config['access'] ?? true;
     $this->contentTranslationManager = $contentTranslationManager;
 
     parent::__construct(
@@ -122,6 +130,7 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
     $resolver = $this->builder->produce('entity_load')
       ->map('type', $this->builder->fromValue($this->type))
       ->map('bundles', $this->builder->fromValue([$this->bundle]))
+      ->map('access', $this->builder->fromValue($this->access))
       ->map('id', $id);
     if ($this->isTranslatable() && $langcode) {
       $resolver->map('language', $langcode);
@@ -136,6 +145,7 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
     return $this->builder->produce('list_entities')
       ->map('type', $this->builder->fromValue($this->type))
       ->map('bundle', $this->builder->fromValue($this->bundle))
+      ->map('access', $this->builder->fromValue($this->access))
       ->map('offset', $this->builder->fromArgument('offset'))
       ->map('limit', $this->builder->fromArgument('limit'));
   }
