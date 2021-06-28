@@ -1,1 +1,1 @@
-export * from './layouts'
+export * from './3-layout'
