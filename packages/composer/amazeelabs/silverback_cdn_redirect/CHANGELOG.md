@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.1.2...@-amazeelabs/silverback_cdn_redirect@1.2.0) (2021-06-29)
+
+
+### Features
+
+* introduce prefix_fallback_path option ([a1e60f7](https://github.com/AmazeeLabs/silverback-mono/commit/a1e60f7f7f0bd1bdfd2e569d729e418b54a58720))
+
+
+
+
+
 ## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.1.1...@-amazeelabs/silverback_cdn_redirect@1.1.2) (2021-06-29)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_cdn_redirect
