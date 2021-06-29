@@ -66,9 +66,11 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
   await createToolkitSchemaCustomization(config);
 
   // Source only what was changed. If there is something in cache.
-  const lastBuildId = await gatsbyApi.cache.get(`LAST_BUILD_ID`);
+  const lastBuildId = (await gatsbyApi.cache.get(`LAST_BUILD_ID`)) || -1;
   let currentBuildId = gatsbyApi.webhookBody?.buildId || -1;
 
+  // If the webhook did not contain a build, we attempt to fetch the
+  // latest one from drupal.
   if (currentBuildId === -1) {
     const info = await executor({
       operationName: 'LatestBuildId',
@@ -84,8 +86,16 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
 
   // If the current build is lower than the last one, the CMS has been reset and we
   // need to re-fetch everything. If the two are equal, this is a manual request, in which
-  // case we also re-fetch all data.
-  if (currentBuildId <= lastBuildId || !lastBuildId) {
+  // case we also re-fetch all data. If we don't have a last build id, we can't trust any
+  // data that is stored in Gatsby and we have to re-fetch everything anyway.
+  if (
+    // Current build id is lower than the last one -> out of sync with CMS, re-fetch everything
+    currentBuildId <= lastBuildId ||
+    // No information about a current build in the CMS -> re-fetch everything
+    currentBuildId === -1 ||
+    // No information about the latest build in Gatsby -> re-fetch everything
+    lastBuildId === -1
+  ) {
     gatsbyApi.reporter.info(`ℹ️ clearing all nodes.`);
     const feeds = await drupalNodes(executor);
     for (const feed of feeds) {
@@ -97,17 +107,12 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
       }));
       deleteNodes(context, events);
     }
-    currentBuildId = -1;
-  }
 
-  if (!lastBuildId || lastBuildId === -1 || currentBuildId === -1) {
     // If we don't have a last build or the CMS has not information about the
     // latest build, there is no way to detect changes. We have to run a full
     // rebuild.
     gatsbyApi.reporter.info(`ℹ️ sourceNodes will fetch all nodes.`);
     await sourceAllNodes(config);
-    gatsbyApi.reporter.info(`sourced data for build ${currentBuildId}`);
-    await gatsbyApi.cache.set(`LAST_BUILD_ID_TMP`, currentBuildId);
   } else {
     gatsbyApi.reporter.info(
       `Fetching changes between builds ${lastBuildId} and ${currentBuildId}.`,
@@ -125,8 +130,10 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
         : [];
 
     await sourceNodeChanges(config, { nodeEvents });
-    await gatsbyApi.cache.set(`LAST_BUILD_ID_TMP`, currentBuildId);
   }
+
+  gatsbyApi.reporter.info(`sourced data for build ${currentBuildId}`);
+  await gatsbyApi.cache.set(`LAST_BUILD_ID_TMP`, currentBuildId);
 };
 
 export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] =
