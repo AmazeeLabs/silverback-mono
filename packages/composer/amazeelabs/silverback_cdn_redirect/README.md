@@ -20,5 +20,7 @@ To be used with Gatsby hosted on Netlify.
   createRedirect({
     fromPath: "/*",
     toPath: `https://my-drupal.site/cdn-redirect/:splat`,
+    statusCode: 200,
   });
   ```
+  Note: `statusCode: 200` is required to "hide" the request to backend from the browser.
