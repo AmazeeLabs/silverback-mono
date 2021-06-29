@@ -85,7 +85,7 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
   // If the current build is lower than the last one, the CMS has been reset and we
   // need to re-fetch everything. If the two are equal, this is a manual request, in which
   // case we also re-fetch all data.
-  if (currentBuildId < lastBuildId) {
+  if (currentBuildId <= lastBuildId || !lastBuildId) {
     gatsbyApi.reporter.info(`ℹ️ clearing all nodes.`);
     const feeds = await drupalNodes(executor);
     for (const feed of feeds) {
@@ -100,14 +100,14 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
     currentBuildId = -1;
   }
 
-  if (!lastBuildId || lastBuildId === -1 || currentBuildId === -1) {
+  if (!lastBuildId || currentBuildId === -1) {
     // If we don't have a last build or the CMS has not information about the
     // latest build, there is no way to detect changes. We have to run a full
     // rebuild.
     gatsbyApi.reporter.info(`ℹ️ sourceNodes will fetch all nodes.`);
-    await gatsbyApi.cache.set(`LAST_BUILD_ID_TMP`, currentBuildId);
     await sourceAllNodes(config);
     gatsbyApi.reporter.info(`sourced data for build ${currentBuildId}`);
+    await gatsbyApi.cache.set(`LAST_BUILD_ID_TMP`, currentBuildId);
   } else {
     gatsbyApi.reporter.info(
       `Fetching changes between builds ${lastBuildId} and ${currentBuildId}.`,
