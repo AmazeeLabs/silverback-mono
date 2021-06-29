@@ -4,6 +4,7 @@ namespace Drupal\silverback_cdn_redirect\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Routing\TrustedRedirectResponse;
+use Drupal\silverback_cdn_redirect\EventSubscriber\CdnRedirectRouteSubscriber;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -17,11 +18,11 @@ class CdnRedirectController extends ControllerBase {
       return new Response('The module is not configured', 500);
     }
 
+    $location = NULL;
+    $responseCode = NULL;
+
     $queryString = $request->getQueryString();
     $uri = '/' . $path . ($queryString === NULL ? '' : '?' . $queryString);
-
-    $location = $baseUrl . $fallback;
-    $responseCode = 302;
 
     $request = Request::create($uri, 'GET', [], [], [], $request->server->all());
     $request->attributes->set('_silverback_cdn_redirect', TRUE);
@@ -38,8 +39,17 @@ class CdnRedirectController extends ControllerBase {
       $responseCode = $response->getStatusCode();
     }
 
-    if (!$location) {
-      $location = $baseUrl . $fallback;
+    if (!$location || !$responseCode) {
+      $prefix = (
+        \Drupal::config('silverback_cdn_redirect.settings')->get('prefix_fallback_path') &&
+        CdnRedirectRouteSubscriber::$currentLangcode &&
+        ($prefixes = \Drupal::config('language.negotiation')->get('url.prefixes')) &&
+        ($prefix = $prefixes[CdnRedirectRouteSubscriber::$currentLangcode])
+      )
+        ? '/' . $prefix
+        : '';
+      $location = $baseUrl . $prefix . $fallback;
+      $responseCode = 302;
     }
 
     if ($location === $baseUrl . $uri) {

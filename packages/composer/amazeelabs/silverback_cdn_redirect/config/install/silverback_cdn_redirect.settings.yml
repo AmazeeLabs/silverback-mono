@@ -1,2 +1,3 @@
 base_url: ''
 fallback_path: ''
+prefix_fallback_path: false
