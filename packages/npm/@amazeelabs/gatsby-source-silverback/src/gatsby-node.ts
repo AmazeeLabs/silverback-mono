@@ -100,7 +100,7 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
     currentBuildId = -1;
   }
 
-  if (!lastBuildId || currentBuildId === -1) {
+  if (!lastBuildId || lastBuildId === -1 || currentBuildId === -1) {
     // If we don't have a last build or the CMS has not information about the
     // latest build, there is no way to detect changes. We have to run a full
     // rebuild.

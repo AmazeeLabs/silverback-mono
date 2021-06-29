@@ -48,7 +48,6 @@ echo "👉 Gatsby Preview ready."
 
 echo "👇 Testing Gatsby Preview..."
 yarn cypress run --spec cypress/integration/gatsby-preview.ts
-sleep 10
 # Reinstall Drupal to reset the build ID.
 ( reinstall_drupal )
 # Run a test that creates a new node. Gatsby should properly clear out all nodes
