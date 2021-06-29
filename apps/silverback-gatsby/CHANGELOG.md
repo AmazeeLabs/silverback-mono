@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.4](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.3...silverback-gastby@0.16.4) (2021-06-29)
+
+
+### Bug Fixes
+
+* **gatsy:** adjust broken refresh condition ([bdd2887](https://github.com/AmazeeLabs/silverback-mono/commit/bdd2887cd69c3f9684b28915ab2d6162dc12a47a))
+
+
+
+
+
 ## [0.16.3](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.2...silverback-gastby@0.16.3) (2021-06-28)
 
 **Note:** Version bump only for package silverback-gastby

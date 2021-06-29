@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.1.0...@-amazeelabs/silverback_cdn_redirect@1.1.1) (2021-06-29)
+
+
+### Bug Fixes
+
+* remove "core" key from info file ([f10ba8d](https://github.com/AmazeeLabs/silverback-mono/commit/f10ba8d36db61b6c706d0ca7571a04c2a833bffb))
+
+
+
+
+
 # 1.1.0 (2021-06-29)
 
 

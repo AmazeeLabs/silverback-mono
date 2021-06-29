@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.2.1...@amazeelabs/gatsby-source-silverback@1.2.2) (2021-06-29)
+
+
+### Bug Fixes
+
+* **gatsby:** fine tune refresh logic ([840c77c](https://github.com/AmazeeLabs/silverback-mono/commit/840c77c97c26e85593a6539362f1793ad22ee1ce))
+* **gatsy:** adjust broken refresh condition ([bdd2887](https://github.com/AmazeeLabs/silverback-mono/commit/bdd2887cd69c3f9684b28915ab2d6162dc12a47a))
+
+
+
+
+
 ## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.2.0...@amazeelabs/gatsby-source-silverback@1.2.1) (2021-06-28)
 
 
