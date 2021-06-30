@@ -3,6 +3,8 @@
 namespace Drupal\silverback_gatsby\Plugin\GraphQL\SchemaExtension;
 
 use Drupal\Component\Plugin\PluginManagerInterface;
+use Drupal\Component\Utility\NestedArray;
+use Drupal\Component\Utility\SortArray;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\GraphQL\ResolverBuilder;
@@ -97,6 +99,7 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
    */
   public function getDirectiveDefinitions(): string {
     $feeds = $this->feedManager->getDefinitions();
+    uasort($feeds, fn ($a, $b) => strnatcasecmp($a['id'], $b['id']));
     return implode("\n", array_map(fn ($def) => $def['directive'], $feeds));
   }
 
