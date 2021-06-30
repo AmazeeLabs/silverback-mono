@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.5.6...@-amazeelabs/silverback-drupal@1.5.7) (2021-06-30)
+
+
+### Bug Fixes
+
+* **gatsby:** return translation list for untranslated entities ([668673b](https://github.com/AmazeeLabs/silverback-mono/commit/668673bcc16301ae69b6fec8c44c710d5d31c8cf))
+
+
+
+
+
 ## [1.5.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.5.5...@-amazeelabs/silverback-drupal@1.5.6) (2021-06-30)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
