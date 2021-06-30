@@ -42,7 +42,7 @@ class EntityFeedTest extends EntityFeedTestBase {
     $metadata = $this->defaultCacheMetaData();
     $metadata->addCacheContexts(['user.node_grants:view', 'static:language:en']);
     $metadata->addCacheTags(['node:1', 'node_list']);
-    $this->assertResults($query, [], [
+    $this->assertResults($query, ['id' => '1:en'], [
       'loadPage' => [
         'title' => 'Test',
       ],
@@ -61,4 +61,69 @@ class EntityFeedTest extends EntityFeedTestBase {
       ],
     ], $metadata);
   }
+
+  public function testLanguageNotApplicable() {
+    $node = Node::create([
+      'type' => 'page',
+      'title' => 'Test',
+      'langcode' => 'zxx',
+    ]);
+    $node->save();
+
+    $query = $this->getQueryFromFile('translatable.gql');
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheContexts(['user.node_grants:view']);
+    $metadata->addCacheTags(['node:1', 'node_list']);
+    $this->assertResults($query, ['id' => '1:zxx'], [
+      'loadPage' => [
+        'title' => 'Test',
+      ],
+      'queryPages' => [
+        [
+          'id' => '1:zxx',
+          'drupalId' => '1',
+          'translations' => [
+            [
+              'defaultTranslation' => true,
+              'langcode' => 'zxx',
+              'title' => 'Test',
+            ],
+          ],
+        ],
+      ],
+    ], $metadata);
+  }
+
+  public function testLanguageNotSpecified() {
+    $node = Node::create([
+      'type' => 'page',
+      'title' => 'Test',
+      'langcode' => 'und',
+    ]);
+    $node->save();
+
+    $query = $this->getQueryFromFile('translatable.gql');
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheContexts(['user.node_grants:view']);
+    $metadata->addCacheTags(['node:1', 'node_list']);
+    $this->assertResults($query, ['id' => '1:und'], [
+      'loadPage' => [
+        'title' => 'Test',
+      ],
+      'queryPages' => [
+        [
+          'id' => '1:und',
+          'drupalId' => '1',
+          'translations' => [
+            [
+              'defaultTranslation' => true,
+              'langcode' => 'und',
+              'title' => 'Test',
+            ],
+          ],
+        ],
+      ],
+    ], $metadata);
+  }
+
 }

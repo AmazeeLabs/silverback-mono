@@ -180,7 +180,9 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
    * {@inheritDoc}
    */
   public function resolveTranslations(): ResolverInterface {
-    return $this->builder->produce('entity_translations')
-      ->map('entity', $this->builder->fromParent());
+    return $this->builder->defaultValue(
+      $this->builder->produce('entity_translations')->map('entity', $this->builder->fromParent()),
+      $this->builder->callback(fn ($value) => [$value])
+    );
   }
 }
