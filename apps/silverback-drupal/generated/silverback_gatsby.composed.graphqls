@@ -1,3 +1,10 @@
+# Directive for the "EntityFeed" plugin.
+directive @entity(
+  type: String!
+  bundle: String
+  access: Boolean
+) on OBJECT
+
 # Directive for the "MenuFeed" plugin.
 directive @menu(
   """
@@ -18,12 +25,6 @@ directive @menu(
   level does not require a full rebuild of every page.
   """
   max_level: Int
-) on OBJECT
-
-# Directive for the "EntityFeed" plugin.
-directive @entity(
-  type: String!
-  bundle: String
 ) on OBJECT
 
 schema {
@@ -99,6 +100,14 @@ type MainMenu @menu(menu_id: "main", item_type: "MenuItem")
 
 type FirstLevelMainMenu @menu(menu_id: "main", item_type: "MenuItem", max_level: 1)
 
+type Feed {
+  typeName: String!
+  translatable: Boolean!
+  singleFieldName: String!
+  listFieldName: String!
+  changes(lastBuild: Int, currentBuild: Int): [String!]!
+}
+
 extend type Query {
   drupalBuildId: Int!
   drupalFeedInfo: [Feed!]!
@@ -108,7 +117,7 @@ extend type Query {
   loadImage(id: String!): Image
   queryImages(offset: Int!, limit: Int!): [Image!]!
 }
-extend type Image implements TranslatableFeedItem {
+extend type Image {
   id: String!
   drupalId: String!
   defaultTranslation: Boolean!
@@ -120,7 +129,7 @@ extend type Query {
   loadTag(id: String!): Tag
   queryTags(offset: Int!, limit: Int!): [Tag!]!
 }
-extend type Tag implements FeedItem {
+extend type Tag {
   id: String!
   drupalId: String!
 }
@@ -129,7 +138,7 @@ extend type Query {
   loadPage(id: String!): Page
   queryPages(offset: Int!, limit: Int!): [Page!]!
 }
-extend type Page implements TranslatableFeedItem {
+extend type Page {
   id: String!
   drupalId: String!
   defaultTranslation: Boolean!
@@ -141,7 +150,7 @@ extend type Query {
   loadGutenbergPage(id: String!): GutenbergPage
   queryGutenbergPages(offset: Int!, limit: Int!): [GutenbergPage!]!
 }
-extend type GutenbergPage implements TranslatableFeedItem {
+extend type GutenbergPage {
   id: String!
   drupalId: String!
   defaultTranslation: Boolean!
@@ -153,7 +162,7 @@ extend type Query {
   loadArticle(id: String!): Article
   queryArticles(offset: Int!, limit: Int!): [Article!]!
 }
-extend type Article implements TranslatableFeedItem {
+extend type Article {
   id: String!
   drupalId: String!
   defaultTranslation: Boolean!
@@ -165,7 +174,7 @@ extend type Query {
   loadMainMenu(id: String!): MainMenu
   queryMainMenus(offset: Int!, limit: Int!): [MainMenu!]!
 }
-extend type MainMenu implements TranslatableFeedItem {
+extend type MainMenu {
   id: String!
   drupalId: String!
   defaultTranslation: Boolean!
@@ -183,7 +192,7 @@ extend type Query {
   loadFirstLevelMainMenu(id: String!): FirstLevelMainMenu
   queryFirstLevelMainMenus(offset: Int!, limit: Int!): [FirstLevelMainMenu!]!
 }
-extend type FirstLevelMainMenu implements TranslatableFeedItem {
+extend type FirstLevelMainMenu {
   id: String!
   drupalId: String!
   defaultTranslation: Boolean!
