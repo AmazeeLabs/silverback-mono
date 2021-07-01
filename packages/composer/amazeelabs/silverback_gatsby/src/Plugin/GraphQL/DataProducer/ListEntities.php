@@ -3,6 +3,7 @@
 namespace Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer;
 
 use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
+use Drupal\Core\Entity\EntityInterface;
 
 /**
  * @DataProducer(
@@ -58,11 +59,12 @@ class ListEntities extends EntityQueryBase {
       $metadata->addCacheableDependency($entity);
     }
 
-    if ($access) {
-      $this->checkAccess($entities);
-    }
-
-    return $entities;
+    return $access
+      ? array_map(
+        fn (EntityInterface $entity) => $entity->access('view') ? $entity : null,
+        $entities
+      )
+      : $entities;
   }
 
 }

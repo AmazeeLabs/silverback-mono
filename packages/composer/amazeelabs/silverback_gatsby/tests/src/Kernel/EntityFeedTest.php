@@ -126,4 +126,25 @@ class EntityFeedTest extends EntityFeedTestBase {
     ], $metadata);
   }
 
+  public function testAccessDenied() {
+    $node = Node::create([
+      'type' => 'page',
+      // A custom entity access hook in silverback_gatsby_example will make
+      // entities with this label inaccessible.
+      'title' => 'Access denied',
+    ]);
+    $node->save();
+
+    $query = $this->getQueryFromFile('translatable.gql');
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheContexts(['user.node_grants:view']);
+    $metadata->addCacheTags(['node:1', 'node_list']);
+    $this->assertResults($query, ['id' => '1:en'], [
+      'loadPage' => null,
+      'queryPages' => [
+        null
+      ],
+    ], $metadata);
+  }
+
 }
