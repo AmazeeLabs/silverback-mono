@@ -2,6 +2,8 @@
 
 namespace Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer;
 
+use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
+
 /**
  * @DataProducer(
  *   id = "gatsby_extract_langcode",
@@ -18,7 +20,7 @@ namespace Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer;
  *   },
  * )
  */
-class GatsbyExtractLangcode extends EntityQueryBase {
+class GatsbyExtractLangcode extends DataProducerPluginBase {
 
   public function resolve(string $id) {
     return explode(':', $id)[1];

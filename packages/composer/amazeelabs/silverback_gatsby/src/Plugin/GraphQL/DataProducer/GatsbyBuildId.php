@@ -2,6 +2,8 @@
 
 namespace Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer;
 
+use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
+
 /**
  * @DataProducer(
  *   id = "gatsby_build_id",
@@ -22,7 +24,7 @@ namespace Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer;
  *   },
  * )
  */
-class GatsbyBuildId extends EntityQueryBase {
+class GatsbyBuildId extends DataProducerPluginBase {
 
   public static function build(string $id, string $langcode) {
     return $id . ':' . $langcode;
