@@ -35,6 +35,15 @@ export const drupalNodes = async (
     `,
     variables: {},
   })) as FeedInfoResult;
+
+  if (!results.data) {
+    throw new Error(
+      `Cannot fetch Drupal feed information: ${
+        (JSON.stringify(results), null, 2)
+      }`,
+    );
+  }
+
   return (
     results.data?.drupalFeedInfo.map(
       (info) =>
