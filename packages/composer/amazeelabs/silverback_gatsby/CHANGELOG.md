@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.8.2...@-amazeelabs/silverback_gatsby@1.9.0) (2021-07-01)
+
+
+### Features
+
+* **gatsby:** nullify inaccessible entities instead of failing ([cf171d5](https://github.com/AmazeeLabs/silverback-mono/commit/cf171d5bb351cecdff6fd28a895ec8c9b3a227a0))
+
+
+
+
+
 ## [1.8.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.8.1...@-amazeelabs/silverback_gatsby@1.8.2) (2021-06-30)
 
 
