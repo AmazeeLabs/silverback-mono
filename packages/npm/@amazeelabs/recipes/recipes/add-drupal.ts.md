@@ -25,7 +25,7 @@ Create a `.gitignore` file that ignores composer dependencies in `vendor`,
 Drupal core in `web/core` and contributed modules and themes in
 `web/modules/contrib` and `web/themes/contrib`.
 
-````ignore
+```ignore
 # |-> .gitignore
 # Composer
 /vendor
@@ -50,7 +50,8 @@ Drupal core in `web/core` and contributed modules and themes in
 /.env.local.example
 /.envrc
 /.silverback-snapshots
-.phpunit.result.cache```
+.phpunit.result.cache
+```
 
 ## Lagoon
 
@@ -75,7 +76,7 @@ $$.file('composer.json', (json) => ({
     },
   },
 }));
-````
+```
 
 Drush 9 or higher does not work with [Lagoon] out of the box. We have to place a
 `lagoon.aliases.drushrc.php` in the drush folder. This folder is managed by
