@@ -1,0 +1,20 @@
+{
+  "name": "amazeelabs/proxy-gutenberg",
+  "type": "library",
+  "version": "1.0.0",
+  "description": "Proxy package for drupal/gutenberg.",
+  "homepage": "https://silverback.netlify.app",
+  "license": "GPL-2.0+",
+  "extra": {
+    "enable-patching": true,
+    "composer-exit-on-patch-failure": true,
+    "patches": {
+      "drupal/gutenberg": {
+        "Missing core block definitions": "./vendor/amazeelabs/proxy-gutenberg/patches/3202756.diff"
+      }
+    }
+  },
+  "require": {
+    "drupal/gutenberg": "^2.0"
+  }
+}
