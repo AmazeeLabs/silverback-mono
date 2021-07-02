@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "31c9a32c8aab215c0c8b70158587d336",
+    "content-hash": "06537de04d3c98d749609fa01d79b1f7",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -74,6 +74,36 @@
                 "source": "https://github.com/alchemy-fr/Zippy/tree/1.0.0"
             },
             "time": "2021-04-13T14:13:44+00:00"
+        },
+        {
+            "name": "amazeelabs/proxy-gutenberg",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/composer/amazeelabs/proxy-gutenberg",
+                "reference": "3de6506b5cfbeede920dc894568ec416eb7ae8cf"
+            },
+            "require": {
+                "drupal/gutenberg": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "enable-patching": true,
+                "composer-exit-on-patch-failure": true,
+                "patches": {
+                    "drupal/gutenberg": {
+                        "Missing core block definitions": "./vendor/amazeelabs/proxy-gutenberg/patches/3202756.diff"
+                    }
+                }
+            },
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Proxy module for Gutenberg with patches.",
+            "homepage": "https://silverback.netlify.app",
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "amazeelabs/silverback-cli",
@@ -3131,6 +3161,10 @@
                 {
                     "name": "thorandre",
                     "homepage": "https://www.drupal.org/user/223878"
+                },
+                {
+                    "name": "truls1502",
+                    "homepage": "https://www.drupal.org/user/325866"
                 }
             ],
             "description": "Drupal Gutenberg brings the powerful admin features of Gutenberg Editor to Drupal.",
