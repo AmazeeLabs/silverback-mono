@@ -74,4 +74,5 @@ try {
   );
 } catch (err) {
   $$.log.prettyError(err, true, true, true, 1);
+  process.exitCode = 1;
 }
