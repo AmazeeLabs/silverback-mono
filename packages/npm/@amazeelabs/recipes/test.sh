@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+set -e
+
 rm -rf test
 echo "test" | node ./dist/index.js create-monorepo
 cd test || exit 1
