@@ -1,16 +1,19 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
 
-import DesktopNavigation from '../DesktopNavigation';
+import { DesktopNavigation, NavigationItems } from '../DesktopNavigation';
 
 export default {
   title: 'Components/Organisms/DesktopNavigation',
   component: DesktopNavigation,
 } as Meta;
 
-const Template: Story = (args) => (
+const Template: Story<NavigationItems> = (args) => (
   <DesktopNavigation {...args} />
 );
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  items: [],
+  children: [],
+};

@@ -1,21 +1,19 @@
-import { useGatsbyDependencies } from '@amazeelabs/gatsby-theme-core';
 import classnames from 'classnames';
 import React from 'react';
 
-import { useSubPageMenu } from '../../utils';
-import { useDataDependencies } from '../dependencies';
+import { NavItem } from '../../types';
 
-const DesktopNavigation = () => {
-  const { Link } = useGatsbyDependencies();
-  const { useNavigation } = useDataDependencies();
+//TODO - finish up iterating though the items, then call this component from story with people data or empty array first
+export type NavigationItems = {
+  items: Array<NavItem>;
+  children?: Array<NavigationItems>;
+}
 
-  const navigation = useNavigation();
-  const [activeItems, setActiveItem, close] = useSubPageMenu(
-    navigation.map((item) => item.path),
-  );
+export const DesktopNavigation = ({ items }: NavigationItems) => {
+  console.log(items);
   return (
     <div className="flex items-baseline ml-10 space-x-4">
-      {navigation.map(({ path, title, children }, index) => (
+      {items.map(({ path, title, children }, index) => (
         <div key={index} className="relative">
           {children && children.length > 0 ? (
             <>
@@ -92,5 +90,3 @@ const DesktopNavigation = () => {
     </div>
   );
 };
-
-export default DesktopNavigation;
