@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/recipes",
-  "version": "1.6.5",
+  "version": "1.6.6",
   "description": "Executable recipes to setup and extend Amazee Labs projects.",
   "main": "dist/index.js",
   "license": "MIT",
@@ -15,7 +15,7 @@
     "@amazeelabs/eslint-config": "^1.3.1",
     "@amazeelabs/jest-preset": "^1.3.3",
     "@amazeelabs/prettier-config": "^1.1.0",
-    "@amazeelabs/scaffold": "^1.3.1",
+    "@amazeelabs/scaffold": "^1.3.2",
     "chalk": "^4.1.0",
     "deasync": "^0.1.21",
     "js-yaml": "^4.1.0",
