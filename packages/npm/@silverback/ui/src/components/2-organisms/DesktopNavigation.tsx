@@ -1,41 +1,41 @@
 import classnames from 'classnames';
 import React from 'react';
 
-import { NavItem } from '../../types';
+import { NavigationItems } from '../../types';
+import { useSubPageMenu } from '../../utils';
 
-//TODO - finish up iterating though the items, then call this component from story with people data or empty array first
-export type NavigationItems = {
-  items: Array<NavItem>;
-  children?: Array<NavigationItems>;
-}
+export const DesktopNavigation = ({ items }: {items: NavigationItems}) => {
+  const [activeItems, setActiveItem, close] = useSubPageMenu(
+    items.length,
+  );
 
-export const DesktopNavigation = ({ items }: NavigationItems) => {
-  console.log(items);
+  // Fix this undefined return
+  console.log(activeItems[1]);
+
   return (
     <div className="flex items-baseline ml-10 space-x-4">
-      {items.map(({ path, title, children }, index) => (
+      {items.map(({ name, Link, children }, index) => (
         <div key={index} className="relative">
           {children && children.length > 0 ? (
             <>
               <Link
-                to="#"
                 className={
                   'px-3 py-2 text-lg font-medium leading-6 rounded-md hover:text-white hover:bg-amazee-dark focus:outline-none focus:text-white focus:bg-amazee-dark lg:text-xl lg:px-4 lg:py-3'
                 }
                 activeClassName={'text-white bg-amazee-dark'}
                 onClick={(event) => {
-                  setActiveItem(path);
+                  setActiveItem(index);
                   event.preventDefault();
                 }}
               >
-                {title}
+                {name}
               </Link>
               <div
                 className={classnames(
                   'absolute z-40 px-2 mt-2 whitespace-no-wrap transform -translate-x-1/2 left-1/2 sm:px-0',
                   {
-                    block: activeItems[path],
-                    hidden: !activeItems[path],
+                    block: activeItems[index],
+                    hidden: !activeItems[index],
                   },
                 )}
               >
@@ -55,17 +55,16 @@ export const DesktopNavigation = ({ items }: NavigationItems) => {
                   <div className="overflow-hidden rounded-lg shadow-xs">
                     <div className="relative z-20 p-1 bg-white">
                       {children.map(
-                        ({ path: childPath, title }, childIndex) => (
+                        ({ Link, name }, index) => (
                           <Link
-                            key={childIndex}
-                            to={childPath}
+                            key={index}
                             className={
                               'block py-2 px-4 space-y-1 text-base font-medium transition duration-150 ease-in-out rounded-md hover:bg-amazee-dark hover:text-white'
                             }
                             activeClassName={'text-white bg-amazee-dark'}
                             onClick={close}
                           >
-                            {title}
+                            {name}
                           </Link>
                         ),
                       )}
@@ -76,13 +75,12 @@ export const DesktopNavigation = ({ items }: NavigationItems) => {
             </>
           ) : (
             <Link
-              to={path}
               className={
                 'px-3 py-2 text-lg font-medium leading-6 rounded-md hover:text-white hover:bg-amazee-dark focus:outline-none focus:text-white focus:bg-amazee-dark lg:text-xl lg:px-4 lg:py-3'
               }
               activeClassName={'text-white bg-amazee-dark'}
             >
-              {title}
+              {name}
             </Link>
           )}
         </div>

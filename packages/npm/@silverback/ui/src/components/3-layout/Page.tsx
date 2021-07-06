@@ -5,7 +5,7 @@ import React from 'react';
 import {useMobileMenu} from "../../utils";
 import Logo from "../0-atoms/Logo";
 import MobileMenuButton from "../1-molecules/MobileMenuButton";
-import DesktopNavigation from "../2-organisms/DesktopNavigation";
+import { DesktopNavigation } from "../2-organisms/DesktopNavigation";
 import FooterNavigation from "../2-organisms/FooterNavigation";
 import MobileNavigation from "../2-organisms/MobileNavigation";
 

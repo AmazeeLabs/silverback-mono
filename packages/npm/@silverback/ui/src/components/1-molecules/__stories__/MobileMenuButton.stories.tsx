@@ -11,10 +11,10 @@ export default {
 } as Meta;
 
 const Template: Story<MobileMenuButtonProps> = (args) => (
-  <MobileMenuButton toggle={useMobileMenu} {...args} />
+  <MobileMenuButton {...args} />
 );
 
 export const Default = Template.bind({});
 Default.args = {
-  open: false
+  toggle: useMobileMenu,
 };

@@ -39,19 +39,19 @@ export const useMobileMenu = (): [boolean, () => void] => {
 };
 
 export const useSubPageMenu = (
-  paths: string[],
-): [Record<string, boolean>, (path: string) => void, () => void] => {
+  size: number,
+): [Record<number, boolean>, (index: number) => void, () => void] => {
   const initial = _.reduce(
-    paths,
-    (acc, path) => _.merge(acc, { [path]: false }),
+    new Array(size),
+    (acc, index) => _.merge(acc, { [index]: false }),
     {},
   );
-  const [state, set] = useState<Record<string, boolean>>(initial);
-  const setPath = (path: string) => {
-    set(_.merge({}, initial, { [path]: true }));
+  const [state, setState] = useState<Record<number, boolean>>(initial);
+  const setActiveItem = (index: number) => {
+    setState(_.merge({}, initial, { [index]: true }));
   };
   const close = () => {
-    set(_.merge({}, initial));
+    setState(_.merge({}, initial));
   };
-  return [state, setPath, close];
+  return [state, setActiveItem, close];
 };
