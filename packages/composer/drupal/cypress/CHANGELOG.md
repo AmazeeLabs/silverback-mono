@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.12](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.3.11...@-drupal/cypress@2.3.12) (2021-07-07)
+
+
+### Bug Fixes
+
+* **cypress:** always use logger through the function interface ([535fdcf](https://github.com/AmazeeLabs/silverback-mono/commit/535fdcfb6934c1434c5a009ea40a54b29c0b9115))
+
+
+
+
+
 ## [2.3.11](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.3.10...@-drupal/cypress@2.3.11) (2021-06-28)
 
 **Note:** Version bump only for package @-drupal/cypress

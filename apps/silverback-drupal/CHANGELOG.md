@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.6.1...@-amazeelabs/silverback-drupal@1.6.2) (2021-07-07)
+
+
+### Bug Fixes
+
+* scaffolded test command ([ffc22bd](https://github.com/AmazeeLabs/silverback-mono/commit/ffc22bda16b7a101488dde81555145db15066d63))
+
+
+
+
+
 ## [1.6.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.6.0...@-amazeelabs/silverback-drupal@1.6.1) (2021-07-07)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal

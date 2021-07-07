@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.13](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.12...silverback-gastby@0.16.13) (2021-07-07)
+
+
+### Bug Fixes
+
+* **gatsby:** increase timeouts in build tests ([fb4d15a](https://github.com/AmazeeLabs/silverback-mono/commit/fb4d15a8e53e5ffd0872b37d53ebc43c33e90b05))
+
+
+
+
+
 ## [0.16.12](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.11...silverback-gastby@0.16.12) (2021-07-07)
 
 **Note:** Version bump only for package silverback-gastby
