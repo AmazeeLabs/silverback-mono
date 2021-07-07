@@ -61,9 +61,9 @@ echo "👉 Tested Gatsby Preview."
 echo "👇 Setting up Gatsby Site..."
 yarn clean
 yarn fast-builds:serve:local &
-sleep 20
+sleep 50 
 YARN_SERVE_WAIT=0
-until nc -z 127.0.0.1 9001 || ((YARN_SERVE_WAIT > 19)); do sleep 1; done
+until nc -z 127.0.0.1 9001 || ((YARN_SERVE_WAIT > 49)); do sleep 1; done
 echo "👉 Gatsby Site ready."
 
 echo "👇 Testing Gatsby Site..."
