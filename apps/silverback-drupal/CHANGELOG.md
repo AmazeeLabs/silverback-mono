@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.5.9...@-amazeelabs/silverback-drupal@1.6.0) (2021-07-07)
+
+
+### Features
+
+* **ci:** introduce proxy package for drupal/gutenberg ([9ab8edc](https://github.com/AmazeeLabs/silverback-mono/commit/9ab8edc238e677e5abe021b43639c3ca2882a408))
+
+
+
+
+
 ## [1.5.9](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.5.8...@-amazeelabs/silverback-drupal@1.5.9) (2021-07-05)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
