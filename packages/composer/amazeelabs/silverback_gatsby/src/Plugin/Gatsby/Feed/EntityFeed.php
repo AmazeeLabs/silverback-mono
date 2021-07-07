@@ -127,7 +127,7 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
    * {@inheritDoc}
    */
   public function resolveItem(ResolverInterface $id, ?ResolverInterface $langcode = null): ResolverInterface {
-    $resolver = $this->builder->produce('entity_load')
+    $resolver = $this->builder->produce('fetch_entity')
       ->map('type', $this->builder->fromValue($this->type))
       ->map('bundles', $this->builder->fromValue([$this->bundle]))
       ->map('access', $this->builder->fromValue($this->access))
