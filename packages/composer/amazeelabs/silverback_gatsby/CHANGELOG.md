@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.9.0...@-amazeelabs/silverback_gatsby@1.9.1) (2021-07-08)
+
+
+### Bug Fixes
+
+* **gatsby:** return null for missing translations ([0ec1cee](https://github.com/AmazeeLabs/silverback-mono/commit/0ec1cee738ee26dcbeba549879b6d5be33f92ccd))
+
+
+
+
+
 # [1.9.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.8.2...@-amazeelabs/silverback_gatsby@1.9.0) (2021-07-01)
 
 
