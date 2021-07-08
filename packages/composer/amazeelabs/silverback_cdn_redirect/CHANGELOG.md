@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.2.0...@-amazeelabs/silverback_cdn_redirect@1.2.1) (2021-07-08)
+
+
+### Bug Fixes
+
+* bad redirect cache ([5acd6e5](https://github.com/AmazeeLabs/silverback-mono/commit/5acd6e5128effffc15deceb1dff0d37c8fc426b2))
+
+
+
+
+
 # [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.1.2...@-amazeelabs/silverback_cdn_redirect@1.2.0) (2021-06-29)
 
 
