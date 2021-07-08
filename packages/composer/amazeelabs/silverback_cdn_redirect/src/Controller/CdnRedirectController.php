@@ -56,6 +56,12 @@ class CdnRedirectController extends ControllerBase {
       return new Response('Circular redirect', 500);
     }
 
-    return new TrustedRedirectResponse($location, $responseCode);
+    $response = new TrustedRedirectResponse($location, $responseCode);
+    // Vary the cache by the full URL. Otherwise it can happen that real backend
+    // request /node/123 leads to frontend https://frontend.site/alias
+    // because the redirect was already cached for /cdn-redirect/node/123
+    // request.
+    $response->getCacheableMetadata()->addCacheContexts(['url']);
+    return $response;
   }
 }
