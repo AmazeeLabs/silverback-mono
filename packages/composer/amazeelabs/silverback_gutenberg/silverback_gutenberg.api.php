@@ -6,7 +6,9 @@ function hook_silverback_gutenberg_link_processor_block_attributes_alter(
   callable $processUrlCallback
 ) {
   if ($blockName === 'custom/my-block' && isset($attributes['urls'])) {
+    $attributes['urlsUnprocessed'] = [];
     foreach ($attributes['urls'] as $key => $url) {
+      $attributes['urlsUnprocessed'][$key] = $url;
       $attributes['urls'][$key] = $processUrlCallback($url);
     }
   }
