@@ -33,9 +33,9 @@
         "drupal/cypress": "@dev",
         "drupal/cypress-dev": "@dev",
         "drupal/default_content": "^2.0@alpha",
-        "drupal/gatsby_build_monitor": "dev-development",
+        "drupal/gatsby_build_monitor": "@dev",
         "drupal/graphql": "^4",
-        "drupal/test_session": "dev-development as 1.0.0",
+        "drupal/test_session": "@dev",
         "phpspec/prophecy-phpunit": "^2"
     },
     "conflict": {
