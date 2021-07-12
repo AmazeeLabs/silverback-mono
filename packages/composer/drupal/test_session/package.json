@@ -1,6 +1,6 @@
 {
   "name": "@-drupal/test_session",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "Helpers for Drupal E2E testing.",
   "publishConfig": {
     "access": "public",
