@@ -1,0 +1,9 @@
+silverback_external_preview.preview:
+  path: /external_preview/{node}
+  defaults:
+    _controller: \Drupal\silverback_external_preview\Controller::preview
+  options:
+    _node_operation_route: TRUE
+  requirements:
+    _permission: "preview decoupled link"
+    _csrf_token: 'TRUE'
