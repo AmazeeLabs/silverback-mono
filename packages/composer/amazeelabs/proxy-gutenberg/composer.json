@@ -10,7 +10,8 @@
     "composer-exit-on-patch-failure": true,
     "patches": {
       "drupal/gutenberg": {
-        "Missing core block definitions": "./vendor/amazeelabs/proxy-gutenberg/patches/3202756.diff"
+        "Missing core block definitions (#3202756)": "./vendor/amazeelabs/proxy-gutenberg/patches/missing-core-block-definitions.diff",
+        "Stuck in Loading in Drupal 9.2 (#3219569)": "./vendor/amazeelabs/proxy-gutenberg/patches/stuck-in-loading-drupal-9-2.diff"
       }
     }
   },

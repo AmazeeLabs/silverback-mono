@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0a1ca2b229c0acad201ff8861002f285",
+    "content-hash": "93a60009cba3bf5d58ef4818b2f98328",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -112,7 +112,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-gutenberg",
-                "reference": "53240ce590d0db4338e178be311b7765bbb16d44"
+                "reference": "ce2df5de309fe43c0c4569c64ead27e2130ed4e0"
             },
             "require": {
                 "drupal/gutenberg": "^2.0"
@@ -123,7 +123,8 @@
                 "composer-exit-on-patch-failure": true,
                 "patches": {
                     "drupal/gutenberg": {
-                        "Missing core block definitions": "./vendor/amazeelabs/proxy-gutenberg/patches/3202756.diff"
+                        "Missing core block definitions (#3202756)": "./vendor/amazeelabs/proxy-gutenberg/patches/missing-core-block-definitions.diff",
+                        "Stuck in Loading in Drupal 9.2 (#3219569)": "./vendor/amazeelabs/proxy-gutenberg/patches/stuck-in-loading-drupal-9-2.diff"
                     }
                 }
             },
