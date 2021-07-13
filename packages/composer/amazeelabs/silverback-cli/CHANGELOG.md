@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@2.7.1...@-amazeelabs/silverback-cli@2.7.2) (2021-07-13)
+
+
+### Bug Fixes
+
+* **ci:** clean up composer versioning ([78ede23](https://github.com/AmazeeLabs/silverback-mono/commit/78ede2332f74143b2f5b819f662629cf39ad3102))
+
+
+
+
+
 ## [2.7.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@2.7.0...@-amazeelabs/silverback-cli@2.7.1) (2021-07-05)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-cli

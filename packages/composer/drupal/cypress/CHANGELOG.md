@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.14](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.3.13...@-drupal/cypress@2.3.14) (2021-07-13)
+
+
+### Bug Fixes
+
+* **ci:** clean up composer versioning ([78ede23](https://github.com/AmazeeLabs/silverback-mono/commit/78ede2332f74143b2f5b819f662629cf39ad3102))
+
+
+
+
+
 ## [2.3.13](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.3.12...@-drupal/cypress@2.3.13) (2021-07-12)
 
 **Note:** Version bump only for package @-drupal/cypress
