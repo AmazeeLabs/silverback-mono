@@ -19,6 +19,7 @@
         }
     ],
     "require": {
+        "amazeelabs/proxy-drupal-core": "^1.0",
         "amazeelabs/proxy-gutenberg": "^1.0",
         "amazeelabs/silverback-cli": "^1.0",
         "amazeelabs/silverback_gatsby": "^1.0",
@@ -102,9 +103,6 @@
         "enable-patching": true,
         "composer-exit-on-patch-failure": true,
         "patches": {
-            "drupal/gatsby": {
-                "Build on unpublishing": "patches/drupal/gatsby/3188480--2020-12-15T10-24--adopted.patch"
-            },
             "drupal/gutenberg": {
                 "Missing core block definitions": "patches/drupal/gutenberg/3202756.diff",
                 "Stuck in loading in Drupal 9.2": "https://www.drupal.org/files/issues/2021-06-27/3219569-13-8.x-2.x.patch"
