@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b6b9f83b252e8be7ffbf201d9f1084c0",
+    "content-hash": "d2e59259e5c229067f1219a0b896af74",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -107,11 +107,11 @@
         },
         {
             "name": "amazeelabs/silverback-cli",
-            "version": "dev-test-all/renovate/lock-file-maintenance",
+            "version": "1.0.0",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback-cli",
-                "reference": "933c48161c95f7dd8dd8fa69a4747c664ab30572"
+                "reference": "f56505a45044756926f5b236429779e2e215bb48"
             },
             "require": {
                 "alchemy/zippy": "dev-master",
@@ -2816,11 +2816,11 @@
         },
         {
             "name": "drupal/cypress",
-            "version": "dev-test-all/renovate/lock-file-maintenance",
+            "version": "1.0.0",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/cypress",
-                "reference": "aefbcdc272079a2fc3987f2bf0a09f69cb08eadd"
+                "reference": "7e4c2d0b7bdc31ffd5aa5169bd4339afd03b534b"
             },
             "require": {
                 "alchemy/zippy": "dev-master",
@@ -2854,11 +2854,11 @@
         },
         {
             "name": "drupal/cypress-dev",
-            "version": "dev-test-all/renovate/lock-file-maintenance",
+            "version": "1.0.0",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/cypress-dev",
-                "reference": "4597eca59f6a4de06866c5995859ec9570d6633d"
+                "reference": "a30feb5d75f5fc689ff5c50656594b60e65b0011"
             },
             "require": {
                 "jangregor/phpstan-prophecy": "^0.8.0",
@@ -11456,9 +11456,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "amazeelabs/silverback-cli": 20,
-        "drupal/cypress": 20,
-        "drupal/cypress-dev": 20,
         "drupal/default_content": 15,
         "drupal/gatsby_build_monitor": 20,
         "drupal/test_session": 20
