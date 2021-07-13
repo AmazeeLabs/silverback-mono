@@ -2,6 +2,8 @@
 
 set -e
 
+export LOG="silly"
+
 rm -rf test
 echo "test" | node ./dist/index.js create-monorepo
 cd test || exit 1
