@@ -315,7 +315,11 @@ $$('mkdir .lagoon');
 # |-> .lagoon/cli.Dockerfile
 FROM amazeeio/php:7.4-cli-drupal as builder
 
-RUN apk add --no-cache git
+RUN apk add --no-cache git && \
+  docker-php-ext-install intl && \
+  docker-php-ext-enable intl
+  docker-php-ext-enable intl && \
+  composer selfupdate --2
 
 WORKDIR /app/apps/cms
 RUN composer install
