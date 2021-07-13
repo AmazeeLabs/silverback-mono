@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.6.6...@amazeelabs/recipes@1.6.7) (2021-07-13)
+
+
+### Bug Fixes
+
+* **recipes:** fix formatting in drupal recipe ([3012060](https://github.com/AmazeeLabs/silverback-mono/commit/301206063ad5a961888997736c5112f5bd7be3c3))
+* **recipes:** recipe yarn commands should run in bash ([50e406a](https://github.com/AmazeeLabs/silverback-mono/commit/50e406ae01b328b4d3988453779c795b7c95c8f4))
+* **recipes:** recipes should fail properly on error ([4ad2037](https://github.com/AmazeeLabs/silverback-mono/commit/4ad20375734ca805bedc99d27c1388ec7841d531))
+
+
+
+
+
 ## [1.6.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.6.5...@amazeelabs/recipes@1.6.6) (2021-07-05)
 
 **Note:** Version bump only for package @amazeelabs/recipes
