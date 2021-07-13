@@ -8,9 +8,6 @@ jobs:
     name: Release
     runs-on: ubuntu-20.04
     steps:
-      - name: Tell yarn to use bash
-        run: yarn config set script-shell /bin/bash
-
       - name: Git mail
         run: git config --global user.email "kitt@amazee.com"
 
