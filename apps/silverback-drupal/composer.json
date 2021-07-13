@@ -101,19 +101,7 @@
             ]
         },
         "enable-patching": true,
-        "composer-exit-on-patch-failure": true,
-        "patches": {
-            "drupal/gutenberg": {
-                "Missing core block definitions": "patches/drupal/gutenberg/3202756.diff",
-                "Stuck in loading in Drupal 9.2": "https://www.drupal.org/files/issues/2021-06-27/3219569-13-8.x-2.x.patch"
-            }
-        },
-        "merge-plugin": {
-            "include": [
-                "packages/composer.json"
-            ],
-            "replace": true
-        }
+        "composer-exit-on-patch-failure": true
     },
     "scripts": {
         "run-tests": [
