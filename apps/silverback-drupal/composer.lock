@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d2e59259e5c229067f1219a0b896af74",
+    "content-hash": "0a1ca2b229c0acad201ff8861002f285",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -74,6 +74,37 @@
                 "source": "https://github.com/alchemy-fr/Zippy/tree/1.0.0"
             },
             "time": "2021-04-13T14:13:44+00:00"
+        },
+        {
+            "name": "amazeelabs/proxy-drupal-core",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/composer/amazeelabs/proxy-drupal-core",
+                "reference": "2090e10e199f71a1f92d2a6da890d2d5599128c5"
+            },
+            "require": {
+                "drupal/core-recommended": "^9"
+            },
+            "type": "library",
+            "extra": {
+                "enable-patching": true,
+                "composer-exit-on-patch-failure": true,
+                "patches": {
+                    "drupal/core": {
+                        "Catch-All routes (#2741939)": "./vendor/amazeelabs/proxy-drupal-core/patches/catchall-routes.diff",
+                        "SameSite cookie (#3150614)": "./vendor/amazeelabs/proxy-drupal-core/patches/samesite-cookie.diff"
+                    }
+                }
+            },
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Proxy package for drupal/core.",
+            "homepage": "https://silverback.netlify.app",
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "amazeelabs/proxy-gutenberg",

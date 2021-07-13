@@ -1,0 +1,11 @@
+{
+  "name": "@-amazeelabs/proxy-drupal-core",
+  "version": "1.0.0",
+  "author": "Amazee Labs <development@amazeelabs.com>",
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://localhost:4873",
+    "repository": "git@github.com:AmazeeLabs/proxy-drupal-core.git",
+    "branch": "main"
+  }
+}
