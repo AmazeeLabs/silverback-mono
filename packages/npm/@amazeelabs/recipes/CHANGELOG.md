@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.9](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.6.8...@amazeelabs/recipes@1.6.9) (2021-07-13)
+
+
+### Bug Fixes
+
+* **ci:** upgrade lagoon composer to v2 ([de4820e](https://github.com/AmazeeLabs/silverback-mono/commit/de4820ea43621d14402e6ff9d463ffa37406aee2))
+
+
+
+
+
 ## [1.6.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.6.7...@amazeelabs/recipes@1.6.8) (2021-07-13)
 
 **Note:** Version bump only for package @amazeelabs/recipes
