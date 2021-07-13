@@ -4,6 +4,8 @@ set -e
 
 export LOG="silly"
 
+yarn config set script-shell /bin/bash
+
 rm -rf test
 echo "test" | node ./dist/index.js create-monorepo
 cd test || exit 1
