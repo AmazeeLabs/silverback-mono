@@ -53,6 +53,23 @@ Drupal core in `web/core` and contributed modules and themes in
 .phpunit.result.cache
 ```
 
+We maintain a package for common Drupal core patches that should be added upfront.
+This will make sure that you won't have to maintain patches in this project on your
+own. We also need to make sure patching is enabled and that broken patches will fail
+any deployments.
+
+```typescript
+$$('composer require amazeelabs/proxy-drupal-core');
+$$.file('composer.json', (json) => ({
+  ...json,
+  extra: {
+    ...json.extra,
+    "enable-patching": true,
+    "composer-exit-on-patch-failure": true,
+  }
+}))
+```
+
 ## Lagoon
 
 Most or our Drupal projects are hosted on [Lagoon], so we should prepare this
