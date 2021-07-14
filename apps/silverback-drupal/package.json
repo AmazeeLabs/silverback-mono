@@ -4,7 +4,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "prepare": "if php -v && [[ -z $LAGOON ]]; then composer install && yarn setup && source .envrc && drush sgse; fi",
+    "prepare": "if php -v && [[ -z $LAGOON ]]; then composer install && yarn setup && source .envrc && drush silverback-gatsby:schema-export; fi",
     "start": "source .envrc && cd web && php -S 127.0.0.1:8888 .ht.router.php",
     "setup": "source .envrc && silverback setup",
     "clear": "source .envrc && drush cr",
