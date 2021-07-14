@@ -4,6 +4,12 @@
 }
 .external-preview-dialog #drupal-off-canvas {
     padding: 0;
+    color:white;
+    background-color:#545560;
+}
+.external-preview-dialog.ui-dialog.ui-dialog-off-canvas .ui-dialog-titlebar{
+    color:white;
+    background-color:#222330;
 }
 .external-preview-dialog.ui-dialog.ui-dialog-off-canvas .ui-dialog-title {
     background-image: none;
@@ -21,8 +27,22 @@
     display:flex;
     justify-content: center;
     width:100%;
+    border-bottom: none;
+    position:relative;
 
 }
+#drupal-off-canvas .external-preview-links .sizing-item-divider {
+   height:1px;
+    width:100%;
+    background-color:#40414C;
+    position: absolute;
+    bottom:0;
+    -moz-transition: height 0.2s ease-in-out;
+    -webkit-transition: height 0.2s ease-in-out;
+    -o-transition: height 0.2s ease-in-out;
+    transition: height 0.2s ease-in-out;
+}
+
 #drupal-off-canvas .external-preview-links .sizing {
     background: none;
     border: none;
@@ -36,13 +56,21 @@
     cursor:pointer;
     width:100%;
     margin:0;
+    width: 100%;
+    text-align: center;
 }
 #drupal-off-canvas .external-preview-links .sizing-item:first-child .sizing{
     padding-top:2em;
 }
-#drupal-off-canvas .external-preview-links .sizing:hover {
-    background-color:#e6ecf8;
-    color:#0036b1;}
+#drupal-off-canvas .external-preview-links .sizing-item:hover .sizing-item-divider {
+    height:3px;
+    }
+#drupal-off-canvas .external-preview-links .sizing-item:hover .sizing img {
+    -webkit-transform: scale(1.075);
+    -ms-transform: scale(1.075);
+    transform: scale(1.075);
+}
+
 .external-preview-links .open {
     fill: white;
     stroke: white;
@@ -55,11 +83,16 @@
 #drupal-off-canvas .external-preview-links .sizing img {
     display: block;
     cursor:pointer;
-    max-width:52px;
+    max-width:48px;
     pointer-events: none;
+    -moz-transition: transform 0.2s ease-in-out;
+    -webkit-transition: transform 0.2s ease-in-out;
+    -o-transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out;
 }
 #drupal-off-canvas .external-preview-links .sizing span {
-    margin-top:.5em;
+    margin-top:1em;
     cursor:pointer;
     pointer-events: none;
+    font-size:0.889em;
 }

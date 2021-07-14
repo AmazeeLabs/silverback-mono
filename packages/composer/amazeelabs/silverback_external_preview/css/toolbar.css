@@ -5,8 +5,8 @@
 
 /* Tab appearance. */
 .toolbar .toolbar-bar .external-preview-toolbar-tab {
-    color: #000;
-    background-color: #e3e3e3;
+    color: #222330;
+    background-color: #FFD23F;
 }
 
 .toolbar .external-preview-toolbar-tab .toolbar-icon-external-preview-live {
