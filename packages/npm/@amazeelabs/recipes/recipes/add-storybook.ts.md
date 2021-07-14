@@ -67,8 +67,8 @@ isolation. It simplifies building, documenting, and testing UIs.
 $$('yarn add npx');
 // install & initialize Storybook
 $$('npx sb init');
-// install @storybook/addon-postcss and @storybook/builder-webpack5
-$$('yarn add @storybook/addon-postcss @storybook/builder-webpack5');
+// install @storybook/addon-postcss
+$$('yarn add @storybook/addon-postcss');
 ```
 
 ### Headless UI
@@ -89,7 +89,7 @@ directly in your markup.
 
 ```typescript
 // install Tailwind
-$$('yarn add tailwindcss@latest postcss@latest autoprefixer@latest');
+$$('yarn add tailwindcss postcss postcss-cli autoprefixer');
 ```
 
 Create postcss.config.js
@@ -114,7 +114,7 @@ $$('npx tailwindcss init');
 Create tailwind.css
 
 ```css
-# |-> tailwind.css
+/* |-> tailwind.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -136,20 +136,22 @@ module.exports = {
 };
 ```
 
-swith to .storybook folder
+Remove `config.js` and `addons.js` files created by `sb init`. We maintain both
+in `main.js`.
 
 ```typescript
-$$.chdir(`.storybook`);
+$$('rm .storybook/config.js');
+$$('rm .storybook/addons.js');
 ```
 
 Update main.js
 
 ```typescript
-# |-> main.js
+# |-> .storybook/main.js
 module.exports = {
   stories: [
-    '../stories/**/*.stories.mdx',
-    '../stories/**/*.stories.@(js|jsx|ts|tsx)',
+    '../src/components/**/*.stories.mdx',
+    '../src/components/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: [
     '@storybook/addon-links',
@@ -163,16 +165,13 @@ module.exports = {
       },
     },
   ],
-  core: {
-    builder: 'webpack5',
-  },
 };
 ```
 
 Update preview.js
 
 ```typescript
-# |-> preview.js
+# |-> .storybook/preview.js
 import '../tailwind.css';
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -193,21 +192,17 @@ export const parameters = {
 Delete default storybook stories
 
 ```typescript
-$$.chdir(`../`);
-$$('rm -fr stories/');
-$$(`mkdir -p stories/assets`);
-$$.chdir(`stories`);
+$$('rm -fr stories');
 ```
 
 Create layout sample
 
 ```typescript
-$$(`mkdir -p layouts`);
-$$.chdir(`layouts`);
+$$('mkdir -p src/components/layouts/__stories__');
 ```
 
-```typescript
-# |-> StandardLayout.tsx
+```tsx
+# |-> src/components/layouts/StandardLayout.tsx
 import React, { PropsWithChildren } from 'react';
 
 type Props = PropsWithChildren<{}>;
@@ -221,12 +216,12 @@ export const StandardLayout = ({ children }: Props) => (
 );
 ```
 
-```typescript
-# |-> StandardLayout.stories.tsx
+```tsx
+# |-> src/components/layouts/__stories__/StandardLayout.stories.tsx
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
 
-import { StandardLayout } from './StandardLayout';
+import { StandardLayout } from '../StandardLayout';
 
 export default {
   title: 'Components/Layouts/Standard',
@@ -241,4 +236,86 @@ export const Standard: Story = () => (
     <div className="border-2 border-gray-300 border-solid h-24" />
   </StandardLayout>
 );
+```
+
+We add an `index.ts` file to the `layouts` directory that just exports our
+component.
+
+```typescript
+# |-> src/components/layouts/index.ts
+export { StandardLayout } from './StandardLayout';
+```
+
+And another one in the top level `src` directory that just re-exports everything
+within the `components` folder. The library consumer will then be able to simply
+import components by just using the package name
+(`import { StandardLayout } from '@${projectName}/ui';`).
+
+```typescript
+# |-> src/index.ts
+export * from './components/layouts';
+```
+
+## Build and export
+
+Build Storybook to verify everything works as expected.
+
+```typescript
+$$('yarn build-storybook');
+```
+
+To use our UI library in another package, we have to use the `prepare` hook to
+create importable sources. We keep the `amazee-scaffold` command and add `tsc`
+to transpile our components to pure javascript and generate type definitions
+while also running `postcss` to produce a production version of the tailwind
+classes used by our components.
+
+```typescript
+$$.file('package.json', (json) => ({
+  ...json,
+  scripts: {
+    ...json.scripts,
+    prepare:
+      'amazee-scaffold && yarn tsc && NODE_ENV=production yarn postcss tailwind.css -o styles.css',
+  },
+}));
+```
+
+We also have to declare our `main` and `types` entry-points so consumers
+automatically import the built assets.
+
+```typescript
+$$.file('package.json', (json) => ({
+  ...json,
+  main: './dist/index.js',
+  types: './dist/index.d.ts',
+}));
+```
+
+Tell Typescript to transpile the source files in `src` to the `dist` folder and
+put the latter onto `git`'s ignore list.
+
+```typescript
+$$.file('tsconfig.json', (json) => ({
+  ...json,
+  compilerOptions: {
+    ...json.compilerOptions,
+    outDir: 'dist',
+    rootDir: 'src',
+    declaration: true,
+  },
+}));
+$$.file('.gitignore', (lines) => ['dist', ...lines]);
+```
+
+Should generate an importable stylesheet with all tailwind classes used in our
+components and also the transpiled javascript sources.
+
+```typescript
+$$('yarn prepare');
+$$('cat styles.css', {
+  stdout: /border-gray-300/,
+});
+$$('test -f dist/index.js');
+$$('test -f dist/index.d.ts');
 ```
