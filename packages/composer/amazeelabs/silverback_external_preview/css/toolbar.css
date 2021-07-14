@@ -1,23 +1,26 @@
 /**
  * @file
- * Styling based iff Workspaces module's toolbar.
+ * Styling based off Workspaces module's toolbar.
  */
-
 
 /* Tab appearance. */
 .toolbar .toolbar-bar .external-preview-toolbar-tab {
     color: #000;
-    background-color:#e3e3e3;
+    background-color: #e3e3e3;
 }
+
 .toolbar .external-preview-toolbar-tab .toolbar-icon-external-preview-live {
     background-color: #81c071;
 }
+
 .toolbar .toolbar-bar .workspaces-toolbar-tab--is-default {
     background-color: #81c071;
 }
+
 .toolbar-oriented .toolbar-bar .external-preview-toolbar-tab {
     float: right; /* LTR */
 }
+
 [dir="rtl"] .toolbar-oriented .toolbar-bar .external-preview-toolbar-tab {
     float: left;
 }
@@ -26,6 +29,7 @@
     .toolbar:not(.toolbar-oriented) .toolbar-bar .external-preview-toolbar-tab {
         float: right;
     }
+
     [dir="rtl"] .toolbar:not(.toolbar-oriented) .toolbar-bar .external-preview-toolbar-tab {
         float: left;
     }
@@ -37,9 +41,11 @@
     text-align: left;
     color: inherit;
 }
+
 [dir="rtl"] .toolbar .toolbar-bar .external-preview-toolbar-tab .toolbar-item {
     text-align: right;
 }
+
 .toolbar-oriented .toolbar-bar .external-preview-toolbar-tab .toolbar-item {
     width: auto;
     text-align: initial;
@@ -48,6 +54,7 @@
 .toolbar .toolbar-icon-external-preview:before {
     background-image: url("../icons/preview.svg");
 }
+
 .toolbar .toolbar-icon-external-preview-live:before {
     background-image: url("../icons/live.svg");
 }
@@ -67,6 +74,7 @@
         text-indent: 0;
         text-overflow: ellipsis;
     }
+
     [dir=rtl] .toolbar .toolbar-bar .external-preview-toolbar-tab .toolbar-icon-external-preview {
         padding-right: 2.75em;
         padding-left: 1.3333em;
@@ -77,6 +85,7 @@
         width: 20px;
         background-size: 100% auto;
     }
+
     [dir=rtl] .toolbar .toolbar-bar .external-preview-toolbar-tab .toolbar-icon-external-preview:before {
         right: 0.6667em;
         left: auto;
@@ -86,13 +95,15 @@
 
 /** Throbber **/
 .external-preview-toolbar-tab {
-    position:relative;
+    position: relative;
 }
+
 .external-preview-toolbar-tab .ajax-progress--throbber {
-position:absolute;
-    top:14px;
-    left:-2px;
+    position: absolute;
+    top: 14px;
+    left: -2px;
 }
+
 /** Dialog **/
 .external-preview-dialog .ui-helper-clearfix:before, .ui-helper-clearfix:after {
     content: "";

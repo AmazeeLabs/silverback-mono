@@ -1,0 +1,33 @@
+<?php
+
+use Drupal\file\Entity\File;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\silverback_external_preview\ExternalPreviewLink;
+
+// Example to add a query parameter
+function silverback_external_preview_example_silverback_external_preview_url_alter(RouteMatchInterface $routeMatch, &$url) {
+  $params = $routeMatch->getParameters()->all();
+
+  // For example, if it's a node, add the nid as a query parameter
+  if (isset($params['node'])) {
+    $url->setOption('query', ['nid' => $params['node']->id()]);
+  }
+
+  // For example, turn media images into a direct link
+  if (isset($params['media'])) {
+    $media = $params['media'];
+    $fid = $media->getSource()->getSourceFieldValue($media);
+    $file = File::load($fid);
+    $url = $file->createFileUrl();
+  }
+
+  // Add preview link for homepage on content overview
+  // note: by default, if available, the entity alias will be used to create a URL object,
+  // this is an example where there is no entity available.
+  if($routeMatch->getRouteName() === 'system.admin_content') {
+    /* @var $externalPreviewUrl ExternalPreviewLink */
+    $externalPreviewUrl = Drupal::service('silverback_external_preview.external_preview_link');
+    $url = $externalPreviewUrl->createPreviewlUrlFromPath('/');
+  }
+
+}
