@@ -155,8 +155,8 @@ Remove `config.js` and `addons.js` files created by `sb init`. We maintain both
 in `main.js`.
 
 ```typescript
-$$('rm .storybook/config.js');
-$$('rm .storybook/addons.js');
+$$('rm -f .storybook/config.js');
+$$('rm -f .storybook/addons.js');
 ```
 
 Create a `.storybook/main.js` file that will tell storybook where to look for
