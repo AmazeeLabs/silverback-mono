@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.6.9...@amazeelabs/recipes@1.7.0) (2021-07-14)
+
+
+### Bug Fixes
+
+* **recipes:** don't fail if scaffolded storybook files are not there ([0c17e7b](https://github.com/AmazeeLabs/silverback-mono/commit/0c17e7baeecb2abde8492302ddedc0c6cd9fb19a))
+* **recipes:** get storybook recipe operational and automatically test it ([06062d4](https://github.com/AmazeeLabs/silverback-mono/commit/06062d49d20ca0cab2b5d708caa0a14fe622e776))
+
+
+### Features
+
+* **recipes:** streamline storybook scenario ([4e7da70](https://github.com/AmazeeLabs/silverback-mono/commit/4e7da7022b6ea79ca425708ddbcc20c6a996d411))
+
+
+
+
+
 ## [1.6.9](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.6.8...@amazeelabs/recipes@1.6.9) (2021-07-13)
 
 
