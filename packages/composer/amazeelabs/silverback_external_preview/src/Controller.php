@@ -72,10 +72,10 @@ class Controller extends ControllerBase {
   public function getBrowserSizes() {
 
     return [
-      new BrowserSize(375, 500, 'Mobile', 'Mobile'),
-      new BrowserSize(640, 500, 'Tablet', 'Tablet'),
-      new BrowserSize(768, 800, 'Laptop', 'Laptop'),
-      new BrowserSize(1024, 768, 'Desktop', 'Desktop'),
+      new BrowserSize(375, 725, 'Mobile', 'Mobile'),
+      new BrowserSize(1024, 824, 'Tablet', 'Tablet'),
+      new BrowserSize(1366, 786, 'Laptop', 'Laptop'),
+      new BrowserSize(1920, 1080, 'Desktop', 'Desktop'),
       new BrowserSize(-1, -1, 'Full', 'Full'),
     ];
 
