@@ -2,17 +2,16 @@ import React from 'react';
 
 export type MobileMenuButtonProps = {
   open: boolean;
-  toggle?: () => void;
+  toggle: () => void;
 };
 
-const MobileMenuButton: React.FC<MobileMenuButtonProps> = ({
-  open,
-  toggle,
-  }) => (
+export const MobileMenuButton = ({ open, toggle }: MobileMenuButtonProps) => (
     <button
       className="inline-flex items-center justify-center p-2 rounded-md text-amazee-dark"
       aria-label={open ? 'Close' : 'Open'}
-      onClick={toggle}
+      onClick={() => {
+        toggle();
+      }}
     >
       <svg
         className="w-6 h-6"
@@ -38,5 +37,3 @@ const MobileMenuButton: React.FC<MobileMenuButtonProps> = ({
       </svg>
     </button>
 );
-
-export default MobileMenuButton;
