@@ -145,7 +145,7 @@ class LinkProcessor {
 
   }
 
-  protected function processUrl(string $url, string $direction, LanguageInterface $language = NULL): string {
+  public function processUrl(string $url, string $direction, LanguageInterface $language = NULL): string {
     if ($direction === 'outbound' && !$language) {
       throw new \Exception('$language is required for "outbound" direction.');
     }

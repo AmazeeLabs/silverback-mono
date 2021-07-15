@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1169ebf4d52292f5ffd32a6395af3ce5",
+    "content-hash": "8910d445b6f607413155a4e7c4677f81",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -226,6 +226,24 @@
             ],
             "description": "Bridge module between Gatsby and Drupal.",
             "homepage": "https://silverback.netlify.app",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "amazeelabs/silverback_gutenberg",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
+                "reference": "696fc9606e8828fbac748e0a9bfc2766f9ce9f23"
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Adjusts Gutenberg for Amazee Labs needs.",
+            "homepage": "https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/composer/amazeelabs/silverback_gutenberg#readme",
             "transport-options": {
                 "relative": true
             }
@@ -11517,5 +11535,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
