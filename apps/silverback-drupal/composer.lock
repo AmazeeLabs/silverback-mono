@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "93a60009cba3bf5d58ef4818b2f98328",
+    "content-hash": "1169ebf4d52292f5ffd32a6395af3ce5",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -183,6 +183,24 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Scaffolder for Amazee Silverback projects.",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "amazeelabs/silverback_external_preview",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/composer/amazeelabs/silverback_external_preview",
+                "reference": "e867e351a70cf5d33cfe54abab2198002e87089e"
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Provides a UI to preview pages (published and draft) on external websites - usually a Gatsby or NextJS frontend.",
+            "homepage": "https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/composer/amazeelabs/silverback_external_preview#readme",
             "transport-options": {
                 "relative": true
             }
@@ -11488,6 +11506,9 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "amazeelabs/silverback-cli": 20,
+        "drupal/cypress": 20,
+        "drupal/cypress-dev": 20,
         "drupal/default_content": 15,
         "drupal/gatsby_build_monitor": 20,
         "drupal/test_session": 20

@@ -1,0 +1,21 @@
+<div class="external-preview-links">
+    <div class="bar">
+        <ul class="bar--sizing">
+            {% for size in sizes %}
+                <li class="sizing-item">
+                    <button class="sizing"
+                            aria-label="Make the preview {{ size.label }} sized" {% if size.shortlabel == default_size %} data-preview-id="{{ size.shortlabel }}" {% endif %}
+                            data-preview-url="{{ url }}" data-preview-width="{{ size.width }}"
+                            data-preview-height="{{ size.height }}"
+                            data-preview-shortlabel="{{ size.shortlabel }}" title="{{ 'Open preview in a new window' | trans }}">
+
+                        <img src="/modules/contrib/silverback_external_preview/icons/{{ size.shortlabel | lower }}.svg"
+                             width="52" height="52"/>
+                        <span>{{ size.shortlabel }}</span>
+                    </button>
+                    <div class="sizing-item-divider"></div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

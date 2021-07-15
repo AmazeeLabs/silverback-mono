@@ -1,0 +1,6 @@
+silverback_external_preview.preview:
+  path: '/external_preview'
+  defaults:
+    _controller: \Drupal\silverback_external_preview\Controller::preview
+  requirements:
+    _access: 'TRUE'

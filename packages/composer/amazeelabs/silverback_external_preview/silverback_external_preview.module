@@ -1,0 +1,91 @@
+<?php
+
+use Drupal\Core\Url;
+use Drupal\silverback_external_preview\ExternalPreviewLink;
+use Drupal\Component\Serialization\Json;
+
+/**
+ * Implements hook_toolbar().
+ */
+function silverback_external_preview_toolbar() {
+
+  $toolbar_items = [];
+  /* @var ExternalPreviewLink */
+  $externalPreviewLink = Drupal::service('silverback_external_preview.external_preview_link');
+  if (getenv('EXTERNAL_PREVIEW_BASE_URL')) {
+    $routeMatch = Drupal::routeMatch();
+    /* @var $url Url */
+    $url = $externalPreviewLink->getPreviewUrl($routeMatch);
+    // Only add the toolbar item if we have a preview URL returned
+    if ($url) {
+      $toolbar_items['silverback_external_preview'] = _silverback_external_preview_get_toolbar_item($routeMatch);
+    }
+
+  }
+
+  return $toolbar_items;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function silverback_external_preview_theme() {
+  $theme = [];
+  $theme['silverback_external_preview'] = [
+    'variables' => [
+      'url' => '',
+      'open_external_label' => '',
+      'entity_url' => '',
+      'sizes' => [],
+    ],
+  ];
+  return $theme;
+}
+
+function _silverback_external_preview_get_toolbar_item($routeMatch) {
+  return [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'link',
+      '#title' => t('Preview website'),
+      '#url' => Url::fromRoute('silverback_external_preview.preview', [], [
+        'query' => [
+          'preview-path' => Url::fromRouteMatch($routeMatch)
+            ->toString(),
+        ],
+      ]),
+      '#cache' => [
+        'max-age' => 0,
+      ],
+      '#attributes' => [
+        'class' => [
+          'use-ajax',
+          'toolbar-icon',
+          'toolbar-icon-external-preview',
+        ],
+        'data-dialog-type' => 'dialog',
+        'data-dialog-renderer' => 'off_canvas',
+        'data-dialog-options' => Json::encode([
+          'width' => 170,
+          'classes' => [
+            'ui-dialog' => 'external-preview-dialog',
+          ],
+        ]),
+        // We could open the preview with a default resolution and open the off canvas tray at the same time
+        // 'onclick' => "window.open('$url_string','preview','resizable,width=1024,height=768');",
+      ],
+    ],
+    '#wrapper_attributes' => [
+      'class' => ['external-preview-toolbar-tab'],
+    ],
+    '#attached' => [
+      'library' => [
+        'silverback_external_preview/toolbar',
+        'core/drupal.dialog.ajax',
+      ],
+
+    ],
+
+    '#weight' => 1002,
+  ];
+}

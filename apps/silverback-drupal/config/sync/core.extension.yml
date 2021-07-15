@@ -32,6 +32,7 @@ module:
   path: 0
   path_alias: 0
   serialization: 0
+  silverback_external_preview: 0
   silverback_gatsby: 0
   silverback_gatsby_test: 0
   system: 0
