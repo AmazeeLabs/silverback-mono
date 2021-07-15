@@ -1,0 +1,8 @@
+{
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://localhost:4873",
+    "repository": "git@github.com:AmazeeLabs/silverback_external_preview.git",
+    "branch": "main"
+  }
+}
