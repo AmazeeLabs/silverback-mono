@@ -90,7 +90,9 @@ class ExternalPreviewLink {
    * @return array|false|string|null
    */
   public function getPreviewBaseUrl() {
-    return getenv(self::PREVIEW_ENV_VARNAME) ?? NULL;
+    return getenv(self::PREVIEW_ENV_VARNAME)
+      ? rtrim(getenv(self::PREVIEW_ENV_VARNAME), '/')
+      : NULL;
   }
 
   /**
@@ -99,7 +101,9 @@ class ExternalPreviewLink {
    * @return array|false|string|null
    */
   public function getLiveBaseUrl() {
-    return getenv(self::LIVE_ENV_VARNAME) ?? NULL;
+    return getenv(self::LIVE_ENV_VARNAME)
+      ? rtrim(getenv(self::LIVE_ENV_VARNAME), '/')
+      : NULL;
   }
 
   /**
@@ -111,7 +115,7 @@ class ExternalPreviewLink {
    * @return \Drupal\Core\Url
    */
   public function createPreviewlUrlFromPath(string $path, $external_url_type = 'preview') {
-    $base_url = $external_url_type === 'preview' ? getenv(self::PREVIEW_ENV_VARNAME) : getenv(self::LIVE_ENV_VARNAME);
+    $base_url = $external_url_type === 'preview' ? $this->getPreviewBaseUrl() : $this->getLiveBaseUrl();
     return Url::fromUri($base_url . $path, [
       'language' => $this->languageManager->getCurrentLanguage(),
       'external_url_type' => $external_url_type,
