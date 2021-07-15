@@ -7,5 +7,8 @@
     "registry": "http://localhost:4873",
     "repository": "git@github.com:AmazeeLabs/silverback_gutenberg.git",
     "branch": "main"
+  },
+  "scripts": {
+    "test": "./test.sh"
   }
 }
