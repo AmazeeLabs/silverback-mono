@@ -150,6 +150,10 @@ class LinkProcessor {
       throw new \Exception('$language is required for "outbound" direction.');
     }
 
+    if ($this->isExternal($url)) {
+      return $url;
+    }
+
     $parts = parse_url($url);
 
     if (empty($parts['path'])) {
