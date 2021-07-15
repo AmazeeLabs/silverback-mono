@@ -9,6 +9,11 @@
     background-color: #FFD23F;
 }
 
+/* Set a fixed color on the inner span, or environment indicator turns it white */
+.toolbar .toolbar-bar .external-preview-toolbar-tab span {
+    color: #1a1a1a;
+}
+
 .toolbar .external-preview-toolbar-tab .toolbar-icon-external-preview-live {
     background-color: #81c071;
 }
