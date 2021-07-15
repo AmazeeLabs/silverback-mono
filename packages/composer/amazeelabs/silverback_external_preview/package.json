@@ -1,4 +1,7 @@
 {
+  "name": "@-amazeelabs/silverback_external_preview",
+  "version": "1.0.0",
+  "author": "Amazee Labs <development@amazeelabs.com>",
   "publishConfig": {
     "access": "public",
     "registry": "http://localhost:4873",
