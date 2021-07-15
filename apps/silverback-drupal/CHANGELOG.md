@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.7.1...@-amazeelabs/silverback-drupal@1.8.0) (2021-07-15)
+
+
+### Features
+
+* **slb-144:** initial work on toolbar external preview button ([b6bc050](https://github.com/AmazeeLabs/silverback-mono/commit/b6bc05057eaeaa41bdff3683fceb762262d7dcdc))
+
+
+
+
+
 ## [1.7.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.7.0...@-amazeelabs/silverback-drupal@1.7.1) (2021-07-14)
 
 
