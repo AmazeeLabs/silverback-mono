@@ -47,7 +47,7 @@ function _silverback_external_preview_get_toolbar_item($routeMatch) {
     '#type' => 'toolbar_item',
     'tab' => [
       '#type' => 'link',
-      '#title' => t('Preview website'),
+      '#title' => t('<span>Preview website</span>'),
       '#url' => Url::fromRoute('silverback_external_preview.preview', [], [
         'query' => [
           'preview-path' => Url::fromRouteMatch($routeMatch)
