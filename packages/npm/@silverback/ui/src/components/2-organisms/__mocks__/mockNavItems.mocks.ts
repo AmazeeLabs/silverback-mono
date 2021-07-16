@@ -10,8 +10,8 @@ export const mockNavItems = (length: number, randomChildren: boolean): Array<Nav
     children: randomChildren == true ?
       Array.from({ length }).map((_, index) => ({
         id: `${index}`,
-        name: `Link #${index + 1}`,
-        Link: buildLink(`/go-to-link-${index + 1}`),
+        name: `Sub Link`,
+        Link: buildLink(`/go-to-link-sub-link`),
         children: [],
       }))
       : [],

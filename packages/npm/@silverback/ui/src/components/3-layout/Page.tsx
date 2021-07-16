@@ -4,10 +4,13 @@ import React from 'react';
 
 import {useMobileMenu} from "../../utils";
 import Logo from "../0-atoms/Logo";
-import MobileMenuButton from "../1-molecules/MobileMenuButton";
+import { MobileMenuButton } from "../1-molecules/MobileMenuButton";
+import { mockNavItems } from '../2-organisms/__mocks__/mockNavItems.mocks';
 import { DesktopNavigation } from "../2-organisms/DesktopNavigation";
 import FooterNavigation from "../2-organisms/FooterNavigation";
 import MobileNavigation from "../2-organisms/MobileNavigation";
+
+// const pageContext = React.createContext();
 
 const Page: React.FC = ({ children }) => {
   const { Link } = useGatsbyDependencies();
@@ -22,7 +25,7 @@ const Page: React.FC = ({ children }) => {
                 <Logo />
               </Link>
               <div className="hidden md:flex">
-                <DesktopNavigation />
+                <DesktopNavigation items={ mockNavItems(6, false) }/>
               </div>
               <div className="flex md:hidden">
                 <MobileMenuButton open={open} toggle={toggle} />
@@ -36,7 +39,7 @@ const Page: React.FC = ({ children }) => {
             hidden: !open,
           })}
         >
-          <MobileNavigation />
+          <MobileNavigation items={ mockNavItems(4, false) } />
         </div>
       </nav>
 
@@ -55,7 +58,7 @@ const Page: React.FC = ({ children }) => {
               </Link>
             </div>
             <div className="mt-12 xl:mt-0 xl:col-span-3">
-              <FooterNavigation />
+              <FooterNavigation items={ mockNavItems(3, false) } />
             </div>
           </div>
         </div>

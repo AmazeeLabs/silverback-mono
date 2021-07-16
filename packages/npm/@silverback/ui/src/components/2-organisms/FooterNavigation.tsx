@@ -1,26 +1,28 @@
-import { useGatsbyDependencies } from '@amazeelabs/gatsby-theme-core';
 import React from 'react';
 
-import { useDataDependencies } from '../dependencies';
+import { NavigationItems } from '../../types';
+import { useSubPageMenu } from '../../utils';
 
-const FooterNavigation = () => {
-  const { Link } = useGatsbyDependencies();
-  const navigation = useDataDependencies().useNavigation();
+const FooterNavigation = ({ items }: {items: NavigationItems}) => {
+  const [activeItems, setActiveItem, close] = useSubPageMenu(
+    items.length,
+  );
+
   return (
     <div className="md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8">
-      {navigation.slice(1).map(({ path, title, children }, index) => (
+    {items.map(({ name, Link, children }, index) => (
         <div className={index ? 'mt-12 md:mt-0' : ''} key={index}>
           {children ? (
             <>
               <h4 className="m-0 font-semibold leading-5 tracking-wider uppercase">
-                {title}
+                {name}
               </h4>
 
               <ul className="mt-4 text-sm list-none lg:text-base">
-                {children.map(({ path, title }, index) => (
+                {children.map(({ Link, name }, index) => (
                   <li key={index}>
-                    <Link to={path} className="leading-6">
-                      {title}
+                    <Link className="leading-6">
+                      {name}
                     </Link>
                   </li>
                 ))}
@@ -28,7 +30,7 @@ const FooterNavigation = () => {
             </>
           ) : (
             <h4 className="m-0 font-semibold leading-5 tracking-wider uppercase">
-              <Link to={path}>{title}</Link>
+              <Link to={Link}>{name}</Link>
             </h4>
           )}
         </div>

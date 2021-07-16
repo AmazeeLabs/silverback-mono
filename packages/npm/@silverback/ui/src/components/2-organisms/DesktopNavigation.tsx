@@ -9,9 +9,6 @@ export const DesktopNavigation = ({ items }: {items: NavigationItems}) => {
     items.length,
   );
 
-  // Fix this undefined return
-  console.log(activeItems[1]);
-
   return (
     <div className="flex items-baseline ml-10 space-x-4">
       {items.map(({ name, Link, children }, index) => (
@@ -35,7 +32,6 @@ export const DesktopNavigation = ({ items }: {items: NavigationItems}) => {
                   'absolute z-40 px-2 mt-2 whitespace-no-wrap transform -translate-x-1/2 left-1/2 sm:px-0',
                   {
                     block: activeItems[index],
-                    hidden: !activeItems[index],
                   },
                 )}
               >
