@@ -2,6 +2,7 @@ import { useGatsbyDependencies } from '@amazeelabs/gatsby-theme-core';
 import classnames from 'classnames';
 import React from 'react';
 
+// import { buildLink } from '../../../utils';
 import {useMobileMenu} from "../../utils";
 import Logo from "../0-atoms/Logo";
 import { MobileMenuButton } from "../1-molecules/MobileMenuButton";
@@ -10,10 +11,8 @@ import { DesktopNavigation } from "../2-organisms/DesktopNavigation";
 import FooterNavigation from "../2-organisms/FooterNavigation";
 import MobileNavigation from "../2-organisms/MobileNavigation";
 
-// const pageContext = React.createContext();
-
 const Page: React.FC = ({ children }) => {
-  const { Link } = useGatsbyDependencies();
+  // const { Link } = useGatsbyDependencies();
   const [open, toggle] = useMobileMenu();
   return (
     <div className="flex flex-col min-h-screen">
@@ -21,11 +20,12 @@ const Page: React.FC = ({ children }) => {
         <div className="mx-auto my-4 max-w-7xl sm:px-6 lg:px-8">
           <div className="flex items-center h-16 px-4 sm:px-0">
             <div className="flex items-center justify-between text-amazee-dark w-full">
-              <Link to="/" className="flex">
+              {/* <Link to="/" className="flex"> */}
+              {/* TODO: Remove gatsby link dependency - get alternative  */}
                 <Logo />
-              </Link>
+              {/* </Link> */}
               <div className="hidden md:flex">
-                <DesktopNavigation items={ mockNavItems(6, false) }/>
+                <DesktopNavigation items={ mockNavItems(6, true) }/>
               </div>
               <div className="flex md:hidden">
                 <MobileMenuButton open={open} toggle={toggle} />
@@ -39,7 +39,7 @@ const Page: React.FC = ({ children }) => {
             hidden: !open,
           })}
         >
-          <MobileNavigation items={ mockNavItems(4, false) } />
+          <MobileNavigation items={ mockNavItems(4, true) } />
         </div>
       </nav>
 
@@ -53,12 +53,12 @@ const Page: React.FC = ({ children }) => {
         <div className="max-w-screen-xl px-4 py-10 mx-auto sm:px-6 lg:px-8">
           <div className="lg:grid xl:grid-cols-4 xl:gap-8">
             <div className="xl:col-span-1">
-              <Link to="/" className="flex">
+              {/* <Link to="/" className="flex"> */}
                 <Logo />
-              </Link>
+              {/* </Link> */}
             </div>
             <div className="mt-12 xl:mt-0 xl:col-span-3">
-              <FooterNavigation items={ mockNavItems(3, false) } />
+              <FooterNavigation items={ mockNavItems(3, true) } />
             </div>
           </div>
         </div>

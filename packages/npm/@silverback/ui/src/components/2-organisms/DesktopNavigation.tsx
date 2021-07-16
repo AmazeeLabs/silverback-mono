@@ -6,7 +6,7 @@ import { useSubPageMenu } from '../../utils';
 
 export const DesktopNavigation = ({ items }: {items: NavigationItems}) => {
   const [activeItems, setActiveItem, close] = useSubPageMenu(
-    items.length,
+    items.map((item) => item.id),
   );
 
   return (
@@ -15,7 +15,8 @@ export const DesktopNavigation = ({ items }: {items: NavigationItems}) => {
         <div key={index} className="relative">
           {children && children.length > 0 ? (
             <>
-              <Link
+              <a
+                href="#"
                 className={
                   'px-3 py-2 text-lg font-medium leading-6 rounded-md hover:text-white hover:bg-amazee-dark focus:outline-none focus:text-white focus:bg-amazee-dark lg:text-xl lg:px-4 lg:py-3'
                 }
@@ -26,12 +27,13 @@ export const DesktopNavigation = ({ items }: {items: NavigationItems}) => {
                 }}
               >
                 {name}
-              </Link>
+              </a>
               <div
                 className={classnames(
                   'absolute z-40 px-2 mt-2 whitespace-no-wrap transform -translate-x-1/2 left-1/2 sm:px-0',
                   {
                     block: activeItems[index],
+                    hidden: !activeItems[index],
                   },
                 )}
               >
