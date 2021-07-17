@@ -170,9 +170,5 @@ if (file_exists($env_services)) {
 }
 
 // Gatsby overrides for Lagoon env.
-$config['gatsby.settings']['server_url'] =
-  'https://gatsby-preview-silverback-gatsby-development.ch.amazee.io';
-$config['gatsby.settings']['incrementalbuild_url'] =
-  'https://gatsby-site-silverback-gatsby-development.ch.amazee.io/__rebuild';
 $config['gatsby_build_monitor.settings']['site_url'] =
   'https://silverback-gatsby.netlify.app/';
