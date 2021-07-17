@@ -1,10 +1,5 @@
-import {
-  drupalNodeOpUrl,
-  previewUrl,
-  rebuildDelay,
-  refreshDelay,
-  siteUrl,
-} from './constants';
+import { drupalNodeOpUrl, previewUrl, siteUrl } from './constants';
+import { waitForGatsby } from './wait-for-gatsby';
 
 export const testImages = () => {
   // Workaround for "Element is detached from the DOM" on .click() 🤦
@@ -36,11 +31,10 @@ export const testUpdates = (mode: 'preview' | 'site') => {
       return response.body.nid[0].value;
     })
     .then((nid) => {
-      const delay = mode === 'preview' ? refreshDelay : rebuildDelay;
       const url =
         (mode === 'preview' ? previewUrl : siteUrl) + '/en/node/' + nid;
 
-      cy.wait(delay);
+      waitForGatsby(mode);
       cy.visit(url);
       cy.contains(initialBodyText);
 
@@ -52,8 +46,7 @@ export const testUpdates = (mode: 'preview' | 'site') => {
         },
       });
 
-      cy.wait(delay);
-
+      waitForGatsby(mode);
       cy.visit(url);
       cy.contains(updatedBodyText);
     });

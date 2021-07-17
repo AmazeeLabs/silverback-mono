@@ -1,5 +1,6 @@
 import { testImages, testUpdates } from './common';
-import { drupalNodeOpUrl, previewUrl, refreshDelay } from './constants';
+import { drupalNodeOpUrl, previewUrl } from './constants';
+import { waitForGatsby } from './wait-for-gatsby';
 
 describe('Test Gatsby Preview', () => {
   it('checks if pre-created content is there', () => {
@@ -29,7 +30,7 @@ describe('Test Gatsby Preview', () => {
         status: 0,
       },
     });
-    cy.wait(refreshDelay);
+    waitForGatsby('preview');
     cy.contains('a', title);
   });
 });
