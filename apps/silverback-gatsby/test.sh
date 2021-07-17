@@ -31,7 +31,7 @@ function setup_drupal {
 
   drush serve -q :8888 &
   DRUSH_SERVE_WAIT=0
-  until nc -z 127.0.0.1 8888 || ((DRUSH_SERVE_WAIT > 19)); do sleep 1; done
+  until nc -z 127.0.0.1 8888 || [ $DRUSH_SERVE_WAIT -gt 20 ]; do sleep 1 && ((DRUSH_SERVE_WAIT+=1)); done
   echo "👉 Drupal is ready."
 }
 # Run in a subshell to not spoil a lot with Drupal env vars.
@@ -61,9 +61,8 @@ echo "👉 Tested Gatsby Preview."
 echo "👇 Setting up Gatsby Site..."
 yarn clean
 yarn fast-builds:serve:local &
-sleep 50 
 YARN_SERVE_WAIT=0
-until nc -z 127.0.0.1 9001 || ((YARN_SERVE_WAIT > 49)); do sleep 1; done
+until nc -z 127.0.0.1 9000 || [ $YARN_SERVE_WAIT -gt 50 ]; do sleep 1 && ((YARN_SERVE_WAIT+=1)); done
 echo "👉 Gatsby Site ready."
 
 echo "👇 Testing Gatsby Site..."
