@@ -1,4 +1,5 @@
-import { drupalUrl, rebuildDelay } from './constants';
+import { drupalUrl } from './constants';
+import { waitForGatsby } from './wait-for-gatsby';
 
 describe('Test Gatsby Build Monitor integration', () => {
   it('tests it', () => {
@@ -18,7 +19,10 @@ describe('Test Gatsby Build Monitor integration', () => {
     cy.wait(3_000);
     cy.contains('a', 'Website is building');
 
-    cy.wait(rebuildDelay);
+    waitForGatsby('site');
+
+    // Give it few seconds to receive the status.
+    cy.wait(3_000);
     cy.contains('a', 'Website is ready');
 
     cy.visit(`${drupalUrl}/admin/reports/gatsby-build-logs`);
