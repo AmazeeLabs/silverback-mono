@@ -17,3 +17,5 @@
 import './commands';
 import 'cypress-wait-until';
 import '@amazeelabs/gatsby-source-silverback-cypress/commands';
+
+require('cypress-terminal-report/src/installLogsCollector')();
