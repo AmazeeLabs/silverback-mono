@@ -1,4 +1,5 @@
-import {drupalNodeOpUrl, previewUrl, refreshDelay} from "./constants";
+import { drupalNodeOpUrl, previewUrl } from './constants';
+import { waitForGatsby } from './wait-for-gatsby';
 
 describe('Test gatsby-source-silverback', () => {
   it.only('clears stored nodes when necessary', () => {
@@ -10,7 +11,7 @@ describe('Test gatsby-source-silverback', () => {
         status: 1,
       },
     });
-    cy.wait(refreshDelay);
+    waitForGatsby('preview');
     cy.visit(previewUrl);
     cy.contains('Post-reinstall');
   });

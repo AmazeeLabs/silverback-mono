@@ -1,5 +1,6 @@
 import { testImages, testUpdates } from './common';
-import { drupalNodeOpUrl, rebuildDelay, siteUrl } from './constants';
+import { drupalNodeOpUrl, siteUrl } from './constants';
+import { waitForGatsby } from './wait-for-gatsby';
 
 describe('Test Gatsby Site', () => {
   it('checks if pre-created content is there', () => {
@@ -30,7 +31,7 @@ describe('Test Gatsby Site', () => {
         return response.body.nid[0].value;
       })
       .then((nid) => {
-        cy.wait(rebuildDelay);
+        waitForGatsby('site');
 
         cy.visit(siteUrl);
         cy.contains('a', title).should('not.exist');
@@ -42,7 +43,7 @@ describe('Test Gatsby Site', () => {
             status: 1,
           },
         });
-        cy.wait(rebuildDelay);
+        waitForGatsby('site');
         cy.visit(siteUrl);
         cy.contains('a', title);
 
@@ -53,7 +54,7 @@ describe('Test Gatsby Site', () => {
             status: 0,
           },
         });
-        cy.wait(rebuildDelay);
+        waitForGatsby('site');
         cy.visit(siteUrl);
         cy.contains('a', title).should('not.exist');
       });
