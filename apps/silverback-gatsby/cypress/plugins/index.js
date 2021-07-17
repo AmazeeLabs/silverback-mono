@@ -16,7 +16,6 @@
  * @type {Cypress.PluginConfig}
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
-module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+module.exports = (on) => {
+  require('cypress-terminal-report/src/installLogsPrinter')(on);
 };
