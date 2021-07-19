@@ -86,6 +86,7 @@ Cypress.Commands.add(
             );
         }
       }, waitOptions);
+      cy.wait(1000);
     });
   },
 );
