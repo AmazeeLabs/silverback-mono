@@ -15,6 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands';
+import 'cypress-wait-until';
+import '@amazeelabs/gatsby-source-silverback-cypress/commands';
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+require('cypress-terminal-report/src/installLogsCollector')();
