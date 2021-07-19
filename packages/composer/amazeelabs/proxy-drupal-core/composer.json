@@ -10,8 +10,8 @@
     "composer-exit-on-patch-failure": true,
     "patches": {
       "drupal/core": {
-        "Catch-All routes (#2741939)": "./vendor/amazeelabs/proxy-drupal-core/patches/catchall-routes.diff",
-        "SameSite cookie (#3150614)": "./vendor/amazeelabs/proxy-drupal-core/patches/samesite-cookie.diff"
+        "Catch-All routes (#2741939)": "https://git.drupalcode.org/project/drupal/-/merge_requests/443/diffs.patch",
+        "SameSite cookie (#3150614)": "https://www.drupal.org/files/issues/2021-04-13/3150614-16.patch"
       }
     }
   },
