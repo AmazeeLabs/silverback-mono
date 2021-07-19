@@ -86,6 +86,8 @@ Cypress.Commands.add(
             );
         }
       }, waitOptions);
+      // Give Gatsby additional time.
+      cy.wait(1000);
     });
   },
 );
