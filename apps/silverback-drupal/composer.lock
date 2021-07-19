@@ -81,7 +81,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-drupal-core",
-                "reference": "2090e10e199f71a1f92d2a6da890d2d5599128c5"
+                "reference": "f34895f748c87156a59fe52235eded20cbf66064"
             },
             "require": {
                 "drupal/core-recommended": "^9"
@@ -92,8 +92,8 @@
                 "composer-exit-on-patch-failure": true,
                 "patches": {
                     "drupal/core": {
-                        "Catch-All routes (#2741939)": "./vendor/amazeelabs/proxy-drupal-core/patches/catchall-routes.diff",
-                        "SameSite cookie (#3150614)": "./vendor/amazeelabs/proxy-drupal-core/patches/samesite-cookie.diff"
+                        "Catch-All routes (#2741939)": "https://git.drupalcode.org/project/drupal/-/merge_requests/443/diffs.patch",
+                        "SameSite cookie (#3150614)": "https://www.drupal.org/files/issues/2021-04-13/3150614-16.patch"
                     }
                 }
             },
@@ -112,7 +112,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-gutenberg",
-                "reference": "ce2df5de309fe43c0c4569c64ead27e2130ed4e0"
+                "reference": "e7ef6cebe38081a54e2013dd22379f12a4e85921"
             },
             "require": {
                 "drupal/gutenberg": "^2.0"
@@ -123,8 +123,8 @@
                 "composer-exit-on-patch-failure": true,
                 "patches": {
                     "drupal/gutenberg": {
-                        "Missing core block definitions (#3202756)": "./vendor/amazeelabs/proxy-gutenberg/patches/missing-core-block-definitions.diff",
-                        "Stuck in Loading in Drupal 9.2 (#3219569)": "./vendor/amazeelabs/proxy-gutenberg/patches/stuck-in-loading-drupal-9-2.diff"
+                        "Missing core block definitions (#3202756)": "https://git.drupalcode.org/project/gutenberg/-/merge_requests/3/diffs.patch",
+                        "Stuck in Loading in Drupal 9.2 (#3219569)": "https://www.drupal.org/files/issues/2021-06-27/3219569-13-8.x-2.x.patch"
                     }
                 }
             },
@@ -11535,5 +11535,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.0.0"
 }
