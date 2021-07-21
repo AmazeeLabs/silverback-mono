@@ -24,7 +24,10 @@ type TranslatableListResultItem = UntranslatableListResultItem & {
   translations: Array<ListResultItem>;
 };
 
-type ListResultItem = UntranslatableListResultItem | TranslatableListResultItem;
+type ListResultItem =
+  | UntranslatableListResultItem
+  | TranslatableListResultItem
+  | null;
 
 type ITranslatablePaginationAdapter = IPaginationAdapter<
   ListResultItem[],
@@ -44,7 +47,7 @@ export const createSourcingConfig = async (
     item: ListResultItem,
   ): item is TranslatableListResultItem =>
     drupalNodes.filter(
-      (def) => def.type === item.remoteTypeName && def.translatable,
+      (def) => def.type === item?.remoteTypeName && def.translatable,
     ).length > 0;
   // Instruct gatsby-graphql-source-toolkit how to fetch content from Drupal.
   // The LIST_ queries are used to fetch the content when there is no cache. The
