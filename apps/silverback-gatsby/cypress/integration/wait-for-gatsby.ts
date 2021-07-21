@@ -28,7 +28,7 @@ export const waitForGatsby = (mode: 'preview' | 'site') => {
       },
       {
         interval: 1_000,
-        timeout: 30_000,
+        timeout: 60_000,
       },
     );
   }
