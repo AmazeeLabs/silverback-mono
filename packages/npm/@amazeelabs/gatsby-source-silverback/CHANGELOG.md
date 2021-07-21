@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.2.5...@amazeelabs/gatsby-source-silverback@1.2.6) (2021-07-21)
+
+
+### Bug Fixes
+
+* **gatsby:** properly handle null in gatsby result lists ([5358b11](https://github.com/AmazeeLabs/silverback-mono/commit/5358b11f03fb227668e471d3c5e3cd3bab8ef66c))
+
+
+
+
+
 ## [1.2.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.2.4...@amazeelabs/gatsby-source-silverback@1.2.5) (2021-07-05)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-source-silverback
