@@ -51,6 +51,11 @@ class GutenbergContentEntityNormalizer extends ContentEntityNormalizer {
    * {@inheritDoc}
    */
   public function denormalize(array $data) {
+    // Abort early if the current entity is not a node.
+    if (!isset($data['_meta']['entity_type']) || $data['_meta']['entity_type'] !== 'node') {
+      return parent::denormalize($data);
+    }
+
     $uuidToIdMutator = new MediaUuidToIdBlockMutator($this->entityRepository);
     $processor = new BlockProcessor($uuidToIdMutator);
 
