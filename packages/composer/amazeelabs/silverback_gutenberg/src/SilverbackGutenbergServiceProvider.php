@@ -4,6 +4,7 @@ namespace Drupal\silverback_gutenberg;
 
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\DependencyInjection\ServiceProviderBase;
+use Drupal\silverback_gutenberg\Normalizer\GutenbergContentEntityNormalizer;
 use Drupal\silverback_gutenberg\Service\MediaService;
 
 class SilverbackGutenbergServiceProvider extends ServiceProviderBase {
@@ -14,7 +15,12 @@ class SilverbackGutenbergServiceProvider extends ServiceProviderBase {
     }
     if ($container->has('webform.message_manager')) {
       $definition = $container->getDefinition('webform.message_manager');
-      $definition->setClass('Drupal\silverback_gutenberg\WebformMessageManager');
+      $definition->setClass(WebformMessageManager::class);
+    }
+
+    if ($container->has('default_content.content_entity_normalizer')) {
+      $definition = $container->getDefinition('default_content.content_entity_normalizer');
+      $definition->setClass(GutenbergContentEntityNormalizer::class);
     }
   }
 }
