@@ -25,7 +25,7 @@
         "amazeelabs/silverback_external_preview": "^1.0",
         "amazeelabs/silverback_gatsby": "^1.0",
         "amazeelabs/silverback_gutenberg": "^1.0",
-        "composer/composer": "2.0.8",
+        "composer/composer": "2.0.12",
         "composer/installers": "^1.9",
         "cweagans/composer-patches": "^1.7",
         "drupal/admin_toolbar": "^3.0",
