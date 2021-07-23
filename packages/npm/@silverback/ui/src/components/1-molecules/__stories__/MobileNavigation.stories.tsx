@@ -1,17 +1,18 @@
+
 import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
 
 import type { NavigationItems } from '../../../types';
 import { mockNavItems } from '../__mocks__/mockNavItems.mocks';
-import { DesktopNavigation } from '../DesktopNavigation';
+import { MobileNavigation } from '../MobileNavigation';
 
 export default {
-  title: 'Components/Organisms/DesktopNavigation',
-  component: DesktopNavigation,
+  title: 'Components/Molecules/MobileNavigation',
+  component: MobileNavigation,
 } as Meta;
 
 const Template: Story<NavigationItems> = (args) => (
-  <DesktopNavigation {...args} />
+  <MobileNavigation {...args} />
 );
 
 export const Default = Template.bind({});
@@ -21,5 +22,5 @@ Default.args = {
 
 export const WithChildren = Template.bind({});
 WithChildren.args = {
-  items: mockNavItems(6, true),
+  items: mockNavItems(3, true),
 };

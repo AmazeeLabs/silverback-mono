@@ -2,7 +2,7 @@ import React from 'react';
 
 import { NavigationItems } from '../../types';
 
-const MobileNavigation = ({ items }: {items: NavigationItems}) => {
+export const MobileNavigation = ({ items }: {items: NavigationItems}) => {
   return (
     <div className="px-4 py-3 space-y-1">
       {items.map(({ name, Link, children }, index) => {
@@ -32,5 +32,3 @@ const MobileNavigation = ({ items }: {items: NavigationItems}) => {
     </div>
   );
 };
-
-export default MobileNavigation;
