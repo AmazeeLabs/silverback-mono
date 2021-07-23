@@ -5,4 +5,5 @@ type: module
 core_version_requirement: ^8.8.0 || ^9.0
 
 dependencies:
+  - silverback_gutenberg
   - default_content:default_content
