@@ -32,6 +32,18 @@
       enabled: false,
     },
     {
+      // Disable major updates for composer/composer.
+      // It needs to be locked to 2.1.1 until ...
+      // https://github.com/renovatebot/renovate/issues/10934
+      // ... is resolved.
+      paths: ["apps/silverback-drupal/composer.json"],
+      packageNames: [
+        "composer/composer",
+      ],
+      updateTypes: ["major"],
+      enabled: false,
+    },
+    {
       // We want to manage the node version manually.
       paths: [".nvmrc"],
       enabled: false,
