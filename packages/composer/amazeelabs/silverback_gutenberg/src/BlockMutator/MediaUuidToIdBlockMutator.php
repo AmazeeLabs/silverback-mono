@@ -43,8 +43,16 @@ class MediaUuidToIdBlockMutator implements BlockMutatorInterface {
   public function mutate(array &$block) : void {
     $block['attrs']['mediaEntityIds'] = array_map(
       function (string $uuid) {
-        $entity = $this->repository->loadEntityByUuid('media', $uuid);
-        return $entity->id();
+        try {
+          $entity = $this->repository->loadEntityByUuid('media', $uuid);
+          return $entity->id();
+        }
+        catch (\Throwable $e) {
+          \Drupal::logger('silverback_gutenberg')->warning(
+            "MediaUuidToIdBlockMutator: Could not load media by uuid '{$uuid}'."
+          );
+          return $uuid;
+        }
       },
       $block['attrs']['mediaEntityIds']
     );
