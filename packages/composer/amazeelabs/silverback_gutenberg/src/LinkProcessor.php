@@ -78,6 +78,9 @@ class LinkProcessor {
 
   public function isExternal(string $url): bool {
     $parts = parse_url($url);
+    if (isset($parts['scheme'])) {
+      return TRUE;
+    }
     if (!isset($parts['host'])) {
       return FALSE;
     }
