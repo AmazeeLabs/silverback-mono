@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.9](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.8.8...@-amazeelabs/silverback-drupal@1.8.9) (2021-07-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency composer/composer to v2.1.5 ([85ff867](https://github.com/AmazeeLabs/silverback-mono/commit/85ff8672db1bb95b9b13731c94d4dee8d50750cf))
+
+
+
+
+
 ## [1.8.8](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.8.7...@-amazeelabs/silverback-drupal@1.8.8) (2021-07-26)
 
 
