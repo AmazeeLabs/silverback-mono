@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.26...silverback-gastby@0.17.0) (2021-07-26)
+
+
+### Features
+
+* introduce cy.waitForGatsby ([d70b777](https://github.com/AmazeeLabs/silverback-mono/commit/d70b7772409fcd783d1c3601caca81c78490aa3d))
+
+
+
+
+
 ## [0.16.26](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.25...silverback-gastby@0.16.26) (2021-07-23)
 
 **Note:** Version bump only for package silverback-gastby

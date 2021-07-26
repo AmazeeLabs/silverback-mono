@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.8.6...@-amazeelabs/silverback-drupal@1.8.7) (2021-07-26)
+
+
+### Bug Fixes
+
+* remove gatsby module lefovers ([8948080](https://github.com/AmazeeLabs/silverback-mono/commit/89480800cc2c78ff728bf60a9705951c412651e9))
+
+
+
+
+
 ## [1.8.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.8.5...@-amazeelabs/silverback-drupal@1.8.6) (2021-07-23)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
