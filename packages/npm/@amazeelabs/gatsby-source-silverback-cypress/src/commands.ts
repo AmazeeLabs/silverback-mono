@@ -4,7 +4,7 @@ declare global {
       waitForGatsby(
         drupalParams: DrupalParams,
         gatsbyParams: GatsbyParams,
-        waitOptions: WaitUntilOptions<Subject>,
+        waitOptions: WaitOptions,
       ): Chainable<void>;
     }
   }
@@ -21,13 +21,20 @@ export type GatsbyParams = {
   gatsbyUrl: string;
 };
 
+export type WaitOptions = {
+  timeout: number;
+  interval: number;
+};
+
 Cypress.Commands.add(
   'waitForGatsby',
   function (
     drupalParams: DrupalParams,
     gatsbyParams: GatsbyParams,
-    waitOptions: WaitUntilOptions,
+    waitOptions: WaitOptions,
   ) {
+    const start = Date.now();
+
     cy.request({
       method: 'POST',
       url: drupalParams.graphqlEndpoint,
@@ -51,43 +58,58 @@ Cypress.Commands.add(
           : {}),
       },
     }).then((drupalResponse) => {
-      cy.waitUntil(() => {
-        if (gatsbyParams.mode === 'build') {
-          return cy
-            .request(gatsbyParams.gatsbyUrl + '/build.json')
-            .then((gatsbyResponse) => {
-              return (
-                drupalResponse.body.data.drupalBuildId ===
-                gatsbyResponse.body.drupalBuildId
-              );
-            });
-        } else {
-          return cy
-            .request({
-              method: 'POST',
-              url: gatsbyParams.gatsbyUrl + '/___graphql',
-              body: {
-                operationName: 'GatsbyBuildId',
-                variables: {},
-                query: `
+      const drupalBuildId = drupalResponse.body.data.drupalBuildId;
+
+      const checkBuildId = (gatsbyBuildId: number) => {
+        if (gatsbyBuildId === drupalBuildId) {
+          // Give Gatsby additional time.
+          cy.wait(1000);
+          return;
+        }
+        if (Date.now() > start + waitOptions.timeout) {
+          cy.log(
+            `⚠️ Warning: Waited ${waitOptions.timeout}ms, but drupalBuildId did not get updated.`,
+          );
+          return;
+        }
+        cy.wait(waitOptions.interval, { log: false }).then(() => {
+          callGatsby();
+        });
+      };
+
+      const callGatsby = () => {
+        cy.request(
+          gatsbyParams.mode === 'build'
+            ? {
+                method: 'GET',
+                url: gatsbyParams.gatsbyUrl + '/build.json',
+              }
+            : {
+                method: 'POST',
+                url: gatsbyParams.gatsbyUrl + '/___graphql',
+                body: {
+                  operationName: 'GatsbyBuildId',
+                  variables: {},
+                  query: `
                 query GatsbyBuildId {
                   drupalBuildId
                 }
               `,
+                },
+                headers: {
+                  'Content-Type': 'application/json',
+                },
               },
-              headers: {
-                'Content-Type': 'application/json',
-              },
-            })
-            .then(
-              (gatsbyResponse) =>
-                drupalResponse.body.data.drupalBuildId ===
-                gatsbyResponse.body.data.drupalBuildId,
-            );
-        }
-      }, waitOptions);
-      // Give Gatsby additional time.
-      cy.wait(1000);
+        ).then((gatsbyResponse) => {
+          checkBuildId(
+            gatsbyParams.mode === 'build'
+              ? gatsbyResponse.body.drupalBuildId
+              : gatsbyResponse.body.data.drupalBuildId,
+          );
+        });
+      };
+
+      callGatsby();
     });
   },
 );

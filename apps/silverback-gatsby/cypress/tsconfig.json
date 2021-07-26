@@ -4,7 +4,6 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "types": [
       "cypress",
-      "cypress-wait-until",
       "@amazeelabs/gatsby-source-silverback-cypress"
     ],
     "moduleResolution": "node"

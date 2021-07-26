@@ -2,8 +2,7 @@
   "extends": "@tsconfig/recommended/tsconfig.json",
   "compilerOptions": {
     "types": [
-      "cypress",
-      "cypress-wait-until"
+      "cypress"
     ]
   },
   "include": [
