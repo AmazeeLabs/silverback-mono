@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.1](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.17.0...silverback-gastby@0.17.1) (2021-07-26)
+
+
+### Bug Fixes
+
+* do not fail if timeout is reached ([436caba](https://github.com/AmazeeLabs/silverback-mono/commit/436caba8f3ce7811bc602d8c0fd25b7303784413))
+* queue all `/__rebuild` calls ([8dd6545](https://github.com/AmazeeLabs/silverback-mono/commit/8dd654585e60660a736c69dd4b054e21982570d9))
+
+
+
+
+
 # [0.17.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.26...silverback-gastby@0.17.0) (2021-07-26)
 
 
