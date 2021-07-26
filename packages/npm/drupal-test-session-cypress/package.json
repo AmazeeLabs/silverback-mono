@@ -1,6 +1,6 @@
 {
   "name": "drupal-test-session-cypress",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Cypress commands for Drupal's Test Session module.",
   "main": "commands.js",
   "types": "commands.d.ts",
