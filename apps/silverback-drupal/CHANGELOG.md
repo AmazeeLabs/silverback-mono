@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.8](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.8.7...@-amazeelabs/silverback-drupal@1.8.8) (2021-07-26)
+
+
+### Bug Fixes
+
+* **gutenberg:** test content module has to depend on silverback gutenberg ([af08c23](https://github.com/AmazeeLabs/silverback-mono/commit/af08c2331932f54ef4359c119cdeb5b56d541932))
+
+
+
+
+
 ## [1.8.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.8.6...@-amazeelabs/silverback-drupal@1.8.7) (2021-07-26)
 
 
