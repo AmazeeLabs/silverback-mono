@@ -54,10 +54,7 @@ const buildAndDeploy = async () => {
 
 app.post('/__rebuild', (_, res) => {
   res.send('Will rebuild now!');
-  // Only add to to queue if we have no pending build requests.
-  if (!queue.pending) {
-    queue.add(buildAndDeploy);
-  }
+  queue.add(buildAndDeploy);
 });
 
 app.listen(port, () => {
