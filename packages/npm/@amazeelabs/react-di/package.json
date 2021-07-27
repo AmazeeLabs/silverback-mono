@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/react-di",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "@amazeelabs/eslint-config": "^1.3.0",
     "@amazeelabs/jest-preset": "^1.3.3",
     "@amazeelabs/prettier-config": "^1.1.0",
-    "@amazeelabs/scaffold": "^1.3.2",
+    "@amazeelabs/scaffold": "^1.3.3",
     "@types/jest": "^26.0.20",
     "eslint": "^7.25.0",
     "jest": "^27.0.0",
