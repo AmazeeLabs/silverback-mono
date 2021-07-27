@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.2.1...@-amazeelabs/silverback_gutenberg@1.2.2) (2021-07-27)
+
+
+### Bug Fixes
+
+* do not mutate entities ([0226e8c](https://github.com/AmazeeLabs/silverback-mono/commit/0226e8c6e618bb2769cef9afd38ae63d981d2fc3))
+
+
+
+
+
 ## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.2.0...@-amazeelabs/silverback_gutenberg@1.2.1) (2021-07-26)
 
 
