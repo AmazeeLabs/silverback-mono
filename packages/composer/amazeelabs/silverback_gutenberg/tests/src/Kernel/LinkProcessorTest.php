@@ -150,6 +150,19 @@ class LinkProcessorTest extends KernelTestBase {
           ],
         ],
       ],
+      'mailto' => [
+        'inbound' => [
+          ['mailto:someone@example.site' => 'mailto:someone@example.site'],
+        ],
+        'outbound' => [
+          [
+            'mailto:someone@example.site' => [
+              'en' => 'mailto:someone@example.site',
+              'de' => 'mailto:someone@example.site',
+            ]
+          ]
+        ],
+      ],
     ];
 
     foreach ($cases as $name => $directions) {

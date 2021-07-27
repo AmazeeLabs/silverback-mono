@@ -27,24 +27,24 @@ class GutenbergContentEntityNormalizer extends ContentEntityNormalizer {
    * {@inheritDoc}
    */
   protected function normalizeTranslation(ContentEntityInterface $entity, array $field_names) {
+    $normalized = parent::normalizeTranslation($entity, $field_names);
+
     $idToUuidMutator = new MediaIdToUuidBlockMutator($this->entityRepository);
     $processor = new BlockProcessor($idToUuidMutator);
 
     foreach (Utils::getGutenbergFields($entity) as $field) {
-      $field = $entity->get($field);
-      if (is_string($field->value)) {
+      if (isset($normalized[$field][0]['value'])) {
         // Parse the document, mutate it and re-assign it as the field value.
-        $blocks = (new BlockParser())->parse($field->value);
+        $blocks = (new BlockParser())->parse($normalized[$field][0]['value']);
         $processor->mutate($blocks);
-        $field->value = (new BlockSerializer())->serialize_blocks($blocks);
-        foreach ((new MediaScanner())->extract($field->value) as $uuid) {
+        $normalized[$field][0]['value'] = (new BlockSerializer())->serialize_blocks($blocks);
+        foreach ((new MediaScanner())->extract($normalized[$field][0]['value']) as $uuid) {
           $this->dependencies[$uuid] = 'media';
         }
       }
     }
 
-    // Pass the modified entity to the actual normalization.
-    return parent::normalizeTranslation($entity, $field_names);
+    return $normalized;
   }
 
   /**
