@@ -381,11 +381,9 @@ Updates the scaffold .eslintrc file and adds ESLint for TailWindCSS in Storybook
 
 
 ```typescript
-$$.file('.eslintrc.js', (json) => ({
-  plugins: ['tailwindcss'],
-  ...json,
-  },
-}));
+$$('cat .eslintrc.js');
+$$('rm -f .eslintrc.js');
+$$.__writeFile('add-storybook.ts-23.txt', '.eslintrc.js');
 ```
 
 Should generate an importable stylesheet with all tailwind classes used in our
