@@ -62,6 +62,8 @@ Cypress.Commands.add(
 
       const checkBuildId = (gatsbyBuildId: number) => {
         if (gatsbyBuildId === drupalBuildId) {
+          // Give Gatsby additional time.
+          cy.wait(1000);
           return;
         }
         if (Date.now() > start + waitOptions.timeout) {
