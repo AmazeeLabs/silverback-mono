@@ -1,0 +1,16 @@
+<?php
+
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Session\AccountInterface;
+
+/**
+ * Implements hook_entity_access().
+ */
+function silverback_gatsby_example_entity_access(EntityInterface $entity, $operation, AccountInterface $account) {
+  // If the entity is labeled "Access denied", we block access. This way we
+  // simulate unpredictable access scenarios in tests.
+  if ($entity->label() === 'Access denied') {
+    return AccessResult::forbidden();
+  }
+}

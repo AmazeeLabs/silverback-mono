@@ -73,6 +73,7 @@ EOD
         '--account-pass',
         getenv('SB_ADMIN_PASS'),
       ]), $output);
+      $this->executeProcess([$drush, 'deploy:hook', '-y'], $output);
     }
 
     if (!$this->fileSystem->exists($private)) {

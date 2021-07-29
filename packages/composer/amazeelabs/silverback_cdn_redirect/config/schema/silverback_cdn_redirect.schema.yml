@@ -1,0 +1,13 @@
+silverback_cdn_redirect.settings:
+  type: config_object
+  label: 'CDN Redirect settings'
+  mapping:
+    base_url:
+      type: string
+      label: 'Base URL of the frontend. Must have no trailing slash.'
+    fallback_path:
+      type: string
+      label: 'A path to fallback to in case if no redirect is found. Must start from a slash.'
+    prefix_fallback_path:
+      type: boolean
+      label: 'Whether to add the language prefix to the fallback path.'

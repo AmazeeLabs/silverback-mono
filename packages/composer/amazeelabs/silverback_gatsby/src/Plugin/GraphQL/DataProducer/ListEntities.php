@@ -3,6 +3,7 @@
 namespace Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer;
 
 use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
+use Drupal\Core\Entity\EntityInterface;
 
 /**
  * @DataProducer(
@@ -29,12 +30,17 @@ use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
  *       label = @Translation("Limit"),
  *       required = FALSE,
  *     ),
+ *     "access" = @ContextDefinition("boolean",
+ *       label = @Translation("Whether to do additional access check"),
+ *       required = FALSE,
+ *       default_value = TRUE,
+ *     ),
  *   },
  * )
  */
 class ListEntities extends EntityQueryBase {
 
-  public function resolve(string $type, ?string $bundle, ?int $offset, ?int $limit, RefinableCacheableDependencyInterface $metadata) {
+  public function resolve(string $type, ?string $bundle, ?int $offset, ?int $limit, $access, RefinableCacheableDependencyInterface $metadata) {
     $storage = \Drupal::entityTypeManager()->getStorage($type);
     $entityType = $storage->getEntityType();
     $query = $this->getQuery($type, $metadata);
@@ -53,9 +59,12 @@ class ListEntities extends EntityQueryBase {
       $metadata->addCacheableDependency($entity);
     }
 
-    $this->checkAccess($entities);
-
-    return $entities;
+    return $access
+      ? array_map(
+        fn (EntityInterface $entity) => $entity->access('view') ? $entity : null,
+        $entities
+      )
+      : $entities;
   }
 
 }

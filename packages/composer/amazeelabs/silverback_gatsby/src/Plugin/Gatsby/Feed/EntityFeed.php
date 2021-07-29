@@ -3,19 +3,11 @@
 namespace Drupal\silverback_gatsby\Plugin\Gatsby\Feed;
 
 use Drupal\content_translation\ContentTranslationManagerInterface;
-use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\EntityTypeManager;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\TranslatableInterface;
-use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\TypedData\TypedData;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
-use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerProxy;
-use Drupal\silverback_gatsby\Annotation\GatsbyFeed;
-use Drupal\silverback_gatsby\GatsbyUpdate;
 use Drupal\silverback_gatsby\Plugin\FeedBase;
 use Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer\GatsbyBuildId;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -42,6 +34,15 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
    * @var string
    */
   protected string $bundle;
+
+  /**
+   * Indicates if Drupal access restrictions should be respected.
+   *
+   * Defaults to true.
+   *
+   * @var bool
+   */
+  protected bool $access;
 
   /**
    * @var \Drupal\content_translation\ContentTranslationManagerInterface
@@ -75,10 +76,9 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
     $plugin_definition,
     ContentTranslationManagerInterface $contentTranslationManager
   ) {
-    $type = $config['type'];
-    $bundle = $config['bundle'];
-    $this->type = $type;
-    $this->bundle = $bundle;
+    $this->type = $config['type'];
+    $this->bundle = $config['bundle'];
+    $this->access = $config['access'] ?? true;
     $this->contentTranslationManager = $contentTranslationManager;
 
     parent::__construct(
@@ -119,9 +119,10 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
    * {@inheritDoc}
    */
   public function resolveItem(ResolverInterface $id, ?ResolverInterface $langcode = null): ResolverInterface {
-    $resolver = $this->builder->produce('entity_load')
+    $resolver = $this->builder->produce('fetch_entity')
       ->map('type', $this->builder->fromValue($this->type))
       ->map('bundles', $this->builder->fromValue([$this->bundle]))
+      ->map('access', $this->builder->fromValue($this->access))
       ->map('id', $id);
     if ($this->isTranslatable() && $langcode) {
       $resolver->map('language', $langcode);
@@ -136,6 +137,7 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
     return $this->builder->produce('list_entities')
       ->map('type', $this->builder->fromValue($this->type))
       ->map('bundle', $this->builder->fromValue($this->bundle))
+      ->map('access', $this->builder->fromValue($this->access))
       ->map('offset', $this->builder->fromArgument('offset'))
       ->map('limit', $this->builder->fromArgument('limit'));
   }
@@ -170,7 +172,9 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
    * {@inheritDoc}
    */
   public function resolveTranslations(): ResolverInterface {
-    return $this->builder->produce('entity_translations')
-      ->map('entity', $this->builder->fromParent());
+    return $this->builder->defaultValue(
+      $this->builder->produce('entity_translations')->map('entity', $this->builder->fromParent()),
+      $this->builder->callback(fn ($value) => [$value])
+    );
   }
 }

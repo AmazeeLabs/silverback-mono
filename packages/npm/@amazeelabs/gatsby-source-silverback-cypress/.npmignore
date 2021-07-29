@@ -1,0 +1,8 @@
+node_modules
+.eslintrc.js
+.gitignore
+.huskyrc
+.jest-runner-eslintrc
+.lintstagedrc
+.prettierrc
+jest.config.js

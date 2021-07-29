@@ -3,6 +3,87 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.7.1...@amazeelabs/recipes@1.7.2) (2021-07-29)
+
+**Note:** Version bump only for package @amazeelabs/recipes
+
+
+
+
+
+## [1.7.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.7.0...@amazeelabs/recipes@1.7.1) (2021-07-27)
+
+**Note:** Version bump only for package @amazeelabs/recipes
+
+
+
+
+
+# [1.7.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.6.9...@amazeelabs/recipes@1.7.0) (2021-07-14)
+
+
+### Bug Fixes
+
+* **recipes:** don't fail if scaffolded storybook files are not there ([0c17e7b](https://github.com/AmazeeLabs/silverback-mono/commit/0c17e7baeecb2abde8492302ddedc0c6cd9fb19a))
+* **recipes:** get storybook recipe operational and automatically test it ([06062d4](https://github.com/AmazeeLabs/silverback-mono/commit/06062d49d20ca0cab2b5d708caa0a14fe622e776))
+
+
+### Features
+
+* **recipes:** streamline storybook scenario ([4e7da70](https://github.com/AmazeeLabs/silverback-mono/commit/4e7da7022b6ea79ca425708ddbcc20c6a996d411))
+
+
+
+
+
+## [1.6.9](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.6.8...@amazeelabs/recipes@1.6.9) (2021-07-13)
+
+
+### Bug Fixes
+
+* **ci:** upgrade lagoon composer to v2 ([de4820e](https://github.com/AmazeeLabs/silverback-mono/commit/de4820ea43621d14402e6ff9d463ffa37406aee2))
+
+
+
+
+
+## [1.6.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.6.7...@amazeelabs/recipes@1.6.8) (2021-07-13)
+
+**Note:** Version bump only for package @amazeelabs/recipes
+
+
+
+
+
+## [1.6.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.6.6...@amazeelabs/recipes@1.6.7) (2021-07-13)
+
+
+### Bug Fixes
+
+* **recipes:** fix formatting in drupal recipe ([3012060](https://github.com/AmazeeLabs/silverback-mono/commit/301206063ad5a961888997736c5112f5bd7be3c3))
+* **recipes:** recipe yarn commands should run in bash ([50e406a](https://github.com/AmazeeLabs/silverback-mono/commit/50e406ae01b328b4d3988453779c795b7c95c8f4))
+* **recipes:** recipes should fail properly on error ([4ad2037](https://github.com/AmazeeLabs/silverback-mono/commit/4ad20375734ca805bedc99d27c1388ec7841d531))
+
+
+
+
+
+## [1.6.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.6.5...@amazeelabs/recipes@1.6.6) (2021-07-05)
+
+**Note:** Version bump only for package @amazeelabs/recipes
+
+
+
+
+
+## [1.6.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.6.4...@amazeelabs/recipes@1.6.5) (2021-06-28)
+
+**Note:** Version bump only for package @amazeelabs/recipes
+
+
+
+
+
 ## [1.6.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.6.3...@amazeelabs/recipes@1.6.4) (2021-06-08)
 
 **Note:** Version bump only for package @amazeelabs/recipes

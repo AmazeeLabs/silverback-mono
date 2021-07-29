@@ -4,10 +4,11 @@
   "description": "Cypress E2E testing helpers",
   "license": "GPL-2.0-or-later",
   "minimum-stability": "dev",
+  "version": "1.0.0",
   "extra": {
     "patches": {
       "drupal/core": {
-        "Language negotiation weight": "https://www.drupal.org/files/issues/2018-10-17/3007386-language-negotiator-weight-2.patch"
+        "Language negotiation weight": "https://www.drupal.org/files/issues/2021-03-05/3007386-language-negotiator-weight-12.patch"
       }
     },
     "drush": {

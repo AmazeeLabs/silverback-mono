@@ -32,8 +32,10 @@ module:
   path: 0
   path_alias: 0
   serialization: 0
+  silverback_external_preview: 0
   silverback_gatsby: 0
   silverback_gatsby_test: 0
+  silverback_gutenberg: 0
   system: 0
   taxonomy: 0
   test_session: 0

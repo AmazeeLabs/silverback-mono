@@ -1,0 +1,11 @@
+{
+  "name": "@-amazeelabs/silverback_cdn_redirect",
+  "version": "1.2.1",
+  "author": "Amazee Labs <development@amazeelabs.com>",
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://localhost:4873",
+    "repository": "git@github.com:AmazeeLabs/silverback_cdn_redirect.git",
+    "branch": "main"
+  }
+}

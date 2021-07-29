@@ -25,7 +25,7 @@ Create a `.gitignore` file that ignores composer dependencies in `vendor`,
 Drupal core in `web/core` and contributed modules and themes in
 `web/modules/contrib` and `web/themes/contrib`.
 
-````ignore
+```ignore
 # |-> .gitignore
 # Composer
 /vendor
@@ -50,7 +50,25 @@ Drupal core in `web/core` and contributed modules and themes in
 /.env.local.example
 /.envrc
 /.silverback-snapshots
-.phpunit.result.cache```
+.phpunit.result.cache
+```
+
+We maintain a package for common Drupal core patches that should be added upfront.
+This will make sure that you won't have to maintain patches in this project on your
+own. We also need to make sure patching is enabled and that broken patches will fail
+any deployments.
+
+```typescript
+$$('composer require amazeelabs/proxy-drupal-core');
+$$.file('composer.json', (json) => ({
+  ...json,
+  extra: {
+    ...json.extra,
+    "enable-patching": true,
+    "composer-exit-on-patch-failure": true,
+  }
+}))
+```
 
 ## Lagoon
 
@@ -75,7 +93,7 @@ $$.file('composer.json', (json) => ({
     },
   },
 }));
-````
+```
 
 Drush 9 or higher does not work with [Lagoon] out of the box. We have to place a
 `lagoon.aliases.drushrc.php` in the drush folder. This folder is managed by
@@ -297,7 +315,11 @@ $$('mkdir .lagoon');
 # |-> .lagoon/cli.Dockerfile
 FROM amazeeio/php:7.4-cli-drupal as builder
 
-RUN apk add --no-cache git
+RUN apk add --no-cache git && \
+  docker-php-ext-install intl && \
+  docker-php-ext-enable intl
+  docker-php-ext-enable intl && \
+  composer selfupdate --2
 
 WORKDIR /app/apps/cms
 RUN composer install

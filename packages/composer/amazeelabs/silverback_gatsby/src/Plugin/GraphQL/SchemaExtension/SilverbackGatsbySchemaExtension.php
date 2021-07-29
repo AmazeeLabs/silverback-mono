@@ -97,6 +97,7 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
    */
   public function getDirectiveDefinitions(): string {
     $feeds = $this->feedManager->getDefinitions();
+    uasort($feeds, fn ($a, $b) => strnatcasecmp($a['id'], $b['id']));
     return implode("\n", array_map(fn ($def) => $def['directive'], $feeds));
   }
 
@@ -120,13 +121,28 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
             if (!$this->feedManager->hasDefinition($id)) {
               continue;
             }
+
+            // Collect the type name.
             $config = [
               'typeName' => $definition->name->value,
             ];
+
+            // Collect the directive arguments.
             foreach ($directive->arguments->getIterator() as $arg) {
               /** @var \GraphQL\Language\AST\ArgumentNode $arg */
               $config[$arg->name->value] = $arg->value->value;
             }
+
+            // Collect the fields used for automatic page creation.
+            /** @var \GraphQL\Language\AST\FieldDefinitionNode $field */
+            foreach ($definition->fields as $field) {
+              foreach ($field->directives as $fieldDirective) {
+                if (in_array($fieldDirective->name->value, ['path', 'template'], TRUE)) {
+                  $config['createPageFields'][$fieldDirective->name->value] = $field->name->value;
+                }
+              }
+            }
+
             $this->feeds[] = $this->feedManager->createInstance($id, $config);
           }
         }
@@ -145,13 +161,13 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
     $schema = [
       "extend type Query {",
       "  $singleFieldName(id: String!): $typeName",
-      "  $listFieldName(offset: Int!, limit: Int!): [$typeName!]!",
+      "  $listFieldName(offset: Int!, limit: Int!): [$typeName]!",
     ];
 
     $schema [] = "}";
 
     if ($feed->isTranslatable()) {
-      $schema[] = "extend type $typeName implements TranslatableFeedItem {";
+      $schema[] = "extend type $typeName {";
       $schema[] = "  id: String!";
       $schema[] = "  drupalId: String!";
       $schema[] = "  defaultTranslation: Boolean!";
@@ -160,7 +176,7 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
       $schema[] = "}";
     }
     else {
-      $schema[] = "extend type $typeName implements FeedItem {";
+      $schema[] = "extend type $typeName {";
       $schema[] = "  id: String!";
       $schema[] = "  drupalId: String!";
       $schema[] = "}";

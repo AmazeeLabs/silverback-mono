@@ -68,7 +68,7 @@ class CypressCommands extends DrushCommands {
     $modulePath = drupal_get_path('module', 'cypress');
     if (!$this->fileSystem->exists($sitePath . '/testing.services.yml')) {
       if (!$this->confirm("No 'testing.services.yml' found in '$sitePath'. Create one?", TRUE)) {
-        $this->logger->warning("Aborted.");
+        $this->logger()->warning("Aborted.");
         return FALSE;
       }
       try {
@@ -77,15 +77,15 @@ class CypressCommands extends DrushCommands {
           $sitePath . '/testing.services.yml'
         );
       } catch (\Exception $exc) {
-        $this->logger->warning("Could not create '$sitePath/testing.services.yml'.");
-        $this->logger->warning("Please copy '$modulePath/example.testing.services.yml' to '$sitePath/testing.services.yml'.");
+        $this->logger()->warning("Could not create '$sitePath/testing.services.yml'.");
+        $this->logger()->warning("Please copy '$modulePath/example.testing.services.yml' to '$sitePath/testing.services.yml'.");
         return FALSE;
       }
     }
     $services = Yaml::parseFile($sitePath . '/testing.services.yml');
     if (!NestedArray::getValue($services, ['parameters', 'cypress.enabled'])) {
-      $this->logger->warning("Cypress is not enabled in '$sitePath/testing.services.yml'.");
-      $this->logger->warning("Please set the 'cypress.enabled' parameter to true.");
+      $this->logger()->warning("Cypress is not enabled in '$sitePath/testing.services.yml'.");
+      $this->logger()->warning("Please set the 'cypress.enabled' parameter to true.");
       return FALSE;
     }
     return TRUE;
@@ -160,9 +160,9 @@ class CypressCommands extends DrushCommands {
         'cache',
       ]
     ));
-    $this->logger->notice('Cypress caches cleared.');
+    $this->logger()->notice('Cypress caches cleared.');
     $this->fileSystem->remove($this->appRoot . '/sites/simpletest');
-    $this->logger->notice('Simpletest sites removed.');
+    $this->logger()->notice('Simpletest sites removed.');
   }
 }
 

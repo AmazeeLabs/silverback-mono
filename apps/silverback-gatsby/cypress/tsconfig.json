@@ -2,7 +2,10 @@
   "compilerOptions": {
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "types": ["cypress"],
+    "types": [
+      "cypress",
+      "@amazeelabs/gatsby-source-silverback-cypress"
+    ],
     "moduleResolution": "node"
   },
   "include": [

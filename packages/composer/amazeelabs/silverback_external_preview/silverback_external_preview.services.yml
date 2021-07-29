@@ -1,0 +1,4 @@
+services:
+  silverback_external_preview.external_preview_link:
+    class: \Drupal\silverback_external_preview\ExternalPreviewLink
+    arguments: ['@path_alias.manager', '@entity_type.manager', '@tempstore.private','@module_handler', '@language_manager']

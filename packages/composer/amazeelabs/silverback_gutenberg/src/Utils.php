@@ -9,7 +9,7 @@ use Drupal\gutenberg\Controller\UtilsController;
 class Utils {
 
   public static function getGutenbergFields(EntityInterface $entity): array {
-    if (!_gutenberg_is_gutenberg_enabled($entity)) {
+    if (!function_exists('_gutenberg_is_gutenberg_enabled') || !_gutenberg_is_gutenberg_enabled($entity)) {
       return [];
     }
     if ($entity instanceof FieldableEntityInterface) {

@@ -1,20 +1,13 @@
-interface FeedItem {
-  id: String!
-  drupalId: String!
-}
-
-interface TranslatableFeedItem implements FeedItem {
-  id: String!
-  drupalId: String!
-  langcode: String!
-  defaultTranslation: Boolean!
-  translations: [TranslatableFeedItem!]!
-}
-
 type Feed {
   typeName: String!
   translatable: Boolean!
   singleFieldName: String!
   listFieldName: String!
   changes(lastBuild: Int, currentBuild: Int): [String!]!
+  pathFieldName: String
+  templateFieldName: String
 }
+
+# Directives for the automatic Gatsby pages creation.
+directive @path on FIELD_DEFINITION
+directive @template on FIELD_DEFINITION

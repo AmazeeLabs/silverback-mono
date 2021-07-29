@@ -1,0 +1,8 @@
+name: Silverback External Preview Example
+type: module
+description: 'Example External Preview url alter implementation.'
+package: Silverback
+core: 8.x
+dependencies:
+  - silverback_external_preview
+core_version_requirement: ^8 || ^9

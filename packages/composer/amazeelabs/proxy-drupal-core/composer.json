@@ -1,0 +1,21 @@
+{
+  "name": "amazeelabs/proxy-drupal-core",
+  "type": "library",
+  "version": "1.0.0",
+  "description": "Proxy package for drupal/core.",
+  "homepage": "https://silverback.netlify.app",
+  "license": "GPL-2.0+",
+  "extra": {
+    "enable-patching": true,
+    "composer-exit-on-patch-failure": true,
+    "patches": {
+      "drupal/core": {
+        "Catch-All routes (#2741939)": "https://git.drupalcode.org/project/drupal/-/merge_requests/443/diffs.patch",
+        "SameSite cookie (#3150614)": "https://www.drupal.org/files/issues/2021-04-13/3150614-16.patch"
+      }
+    }
+  },
+  "require": {
+    "drupal/core-recommended": "^9"
+  }
+}

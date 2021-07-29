@@ -8,25 +8,19 @@ import {
 import {
   createSchemaCustomization as createToolkitSchemaCustomization,
   createSourcingContext,
+  deleteNodes,
   sourceAllNodes,
   sourceNodeChanges,
 } from 'gatsby-graphql-source-toolkit';
+import { INodeDeleteEvent } from 'gatsby-graphql-source-toolkit/dist/types';
 
+import { createPages as createGatsbyPages } from './helpers/create-pages';
 import { createQueryExecutor } from './helpers/create-query-executor';
 import { createSourcingConfig } from './helpers/create-sourcing-config';
 import { createTranslationQueryField } from './helpers/create-translation-query-field';
+import { drupalFeeds } from './helpers/drupal-feeds';
 import { fetchNodeChanges } from './helpers/fetch-node-changes';
-
-type Options = {
-  // The url of the Drupal installation.
-  drupal_url: string;
-  // The Drupal GraphQL server path.
-  graphql_path: string;
-  // Optional Basic Auth Drupal user.
-  auth_user?: string;
-  // Optional Basic Auth Drupal password.
-  auth_pass?: string;
-};
+import { apiUrl, Options, validOptions } from './utils';
 
 export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   Joi,
@@ -37,12 +31,6 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
     auth_user: Joi.string().optional(),
     auth_pass: Joi.string().optional(),
   });
-
-const validOptions = (options: { [key: string]: any }): options is Options =>
-  options.drupal_url && options.graphql_path;
-
-const apiUrl = (options: Options) =>
-  `${new URL(options.drupal_url).origin}${options.graphql_path}`;
 
 export const sourceNodes: GatsbyNode['sourceNodes'] = async (
   gatsbyApi: SourceNodesArgs & { webhookBody?: { buildId?: number } },
@@ -63,9 +51,11 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
   await createToolkitSchemaCustomization(config);
 
   // Source only what was changed. If there is something in cache.
-  const lastBuildId = await gatsbyApi.cache.get(`LAST_BUILD_ID`);
+  const lastBuildId = (await gatsbyApi.cache.get(`LAST_BUILD_ID`)) || -1;
   let currentBuildId = gatsbyApi.webhookBody?.buildId || -1;
 
+  // If the webhook did not contain a build, we attempt to fetch the
+  // latest one from drupal.
   if (currentBuildId === -1) {
     const info = await executor({
       operationName: 'LatestBuildId',
@@ -79,14 +69,35 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
     currentBuildId = info?.data?.drupalBuildId || -1;
   }
 
-  if (!lastBuildId || currentBuildId === -1) {
+  // If the current build is lower than the last one, the CMS has been reset and we
+  // need to re-fetch everything. If the two are equal, this is a manual request, in which
+  // case we also re-fetch all data. If we don't have a last build id, we can't trust any
+  // data that is stored in Gatsby and we have to re-fetch everything anyway.
+  if (
+    // Current build id is lower than the last one -> out of sync with CMS, re-fetch everything
+    currentBuildId <= lastBuildId ||
+    // No information about a current build in the CMS -> re-fetch everything
+    currentBuildId === -1 ||
+    // No information about the latest build in Gatsby -> re-fetch everything
+    lastBuildId === -1
+  ) {
+    gatsbyApi.reporter.info(`ℹ️ clearing all nodes.`);
+    const feeds = await drupalFeeds(executor);
+    for (const feed of feeds) {
+      const nodes = gatsbyApi.getNodesByType(`Drupal${feed.typeName}`);
+      const events: Array<INodeDeleteEvent> = nodes.map((node) => ({
+        remoteTypeName: feed.typeName,
+        eventName: 'DELETE',
+        remoteId: { id: node.id },
+      }));
+      deleteNodes(context, events);
+    }
+
     // If we don't have a last build or the CMS has not information about the
     // latest build, there is no way to detect changes. We have to run a full
     // rebuild.
     gatsbyApi.reporter.info(`ℹ️ sourceNodes will fetch all nodes.`);
-    await gatsbyApi.cache.set(`LAST_BUILD_ID_TMP`, currentBuildId);
     await sourceAllNodes(config);
-    gatsbyApi.reporter.info(`sourced data for build ${currentBuildId}`);
   } else {
     gatsbyApi.reporter.info(
       `Fetching changes between builds ${lastBuildId} and ${currentBuildId}.`,
@@ -104,8 +115,10 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
         : [];
 
     await sourceNodeChanges(config, { nodeEvents });
-    await gatsbyApi.cache.set(`LAST_BUILD_ID_TMP`, currentBuildId);
   }
+
+  gatsbyApi.reporter.info(`sourced data for build ${currentBuildId}`);
+  await gatsbyApi.cache.set(`LAST_BUILD_ID_TMP`, currentBuildId);
 };
 
 export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] =
@@ -129,7 +142,9 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
   `);
   };
 
-export const createPages: GatsbyNode['createPages'] = async (args) => {
+export const createPages: GatsbyNode['createPages'] = async (args, options) => {
+  await createGatsbyPages(args, options);
+
   const buildId = await args.cache.get(`LAST_BUILD_ID_TMP`);
   await args.cache.set('LAST_BUILD_ID', buildId);
 };

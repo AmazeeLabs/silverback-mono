@@ -3,6 +3,318 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.8.12...@-amazeelabs/silverback-drupal@1.9.0) (2021-07-29)
+
+
+### Features
+
+* **gatsby:** create gatsby pages automatically ([2155aa7](https://github.com/AmazeeLabs/silverback-mono/commit/2155aa71b6b2a058030440e3ee71badf634fc9a8))
+
+
+
+
+
+## [1.8.12](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.8.11...@-amazeelabs/silverback-drupal@1.8.12) (2021-07-29)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.8.11](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.8.10...@-amazeelabs/silverback-drupal@1.8.11) (2021-07-28)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.8.10](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.8.9...@-amazeelabs/silverback-drupal@1.8.10) (2021-07-26)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.8.9](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.8.8...@-amazeelabs/silverback-drupal@1.8.9) (2021-07-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency composer/composer to v2.1.5 ([85ff867](https://github.com/AmazeeLabs/silverback-mono/commit/85ff8672db1bb95b9b13731c94d4dee8d50750cf))
+
+
+
+
+
+## [1.8.8](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.8.7...@-amazeelabs/silverback-drupal@1.8.8) (2021-07-26)
+
+
+### Bug Fixes
+
+* **gutenberg:** test content module has to depend on silverback gutenberg ([af08c23](https://github.com/AmazeeLabs/silverback-mono/commit/af08c2331932f54ef4359c119cdeb5b56d541932))
+
+
+
+
+
+## [1.8.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.8.6...@-amazeelabs/silverback-drupal@1.8.7) (2021-07-26)
+
+
+### Bug Fixes
+
+* remove gatsby module lefovers ([8948080](https://github.com/AmazeeLabs/silverback-mono/commit/89480800cc2c78ff728bf60a9705951c412651e9))
+
+
+
+
+
+## [1.8.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.8.5...@-amazeelabs/silverback-drupal@1.8.6) (2021-07-23)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.8.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.8.4...@-amazeelabs/silverback-drupal@1.8.5) (2021-07-22)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.8.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.8.3...@-amazeelabs/silverback-drupal@1.8.4) (2021-07-22)
+
+
+### Bug Fixes
+
+* lock composer to 2.0.12 ([d4fcda4](https://github.com/AmazeeLabs/silverback-mono/commit/d4fcda4ce764b503f53523a4c7d08390fd3f652e))
+
+
+
+
+
+## [1.8.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.8.2...@-amazeelabs/silverback-drupal@1.8.3) (2021-07-22)
+
+
+### Bug Fixes
+
+* lock composer to 2.0.8 to see if this has an effect on renovate ([f5597cc](https://github.com/AmazeeLabs/silverback-mono/commit/f5597cce0a4936f1cda8cdfc74211224cc4a71f2))
+
+
+
+
+
+## [1.8.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.8.1...@-amazeelabs/silverback-drupal@1.8.2) (2021-07-19)
+
+
+### Bug Fixes
+
+* apply composer patches via http ([7c86a5c](https://github.com/AmazeeLabs/silverback-mono/commit/7c86a5c31648e8348c7b21b9d0af4784e4040302))
+
+
+
+
+
+## [1.8.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.8.0...@-amazeelabs/silverback-drupal@1.8.1) (2021-07-15)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+# [1.8.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.7.1...@-amazeelabs/silverback-drupal@1.8.0) (2021-07-15)
+
+
+### Features
+
+* **slb-144:** initial work on toolbar external preview button ([b6bc050](https://github.com/AmazeeLabs/silverback-mono/commit/b6bc05057eaeaa41bdff3683fceb762262d7dcdc))
+
+
+
+
+
+## [1.7.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.7.0...@-amazeelabs/silverback-drupal@1.7.1) (2021-07-14)
+
+
+### Bug Fixes
+
+* `drush: command not found` at `yarn install` ([6519a23](https://github.com/AmazeeLabs/silverback-mono/commit/6519a23810253d28a4a1b631954fcd6d148c99f0))
+
+
+
+
+
+# [1.7.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.6.5...@-amazeelabs/silverback-drupal@1.7.0) (2021-07-13)
+
+
+### Features
+
+* proxy package for drupal core packages ([d2036a5](https://github.com/AmazeeLabs/silverback-mono/commit/d2036a5a34c134969727a5fae12eda8993fc8fe4))
+
+
+
+
+
+## [1.6.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.6.4...@-amazeelabs/silverback-drupal@1.6.5) (2021-07-13)
+
+
+### Bug Fixes
+
+* **ci:** clean up composer versioning ([78ede23](https://github.com/AmazeeLabs/silverback-mono/commit/78ede2332f74143b2f5b819f662629cf39ad3102))
+
+
+
+
+
+## [1.6.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.6.3...@-amazeelabs/silverback-drupal@1.6.4) (2021-07-12)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.6.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.6.2...@-amazeelabs/silverback-drupal@1.6.3) (2021-07-08)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.6.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.6.1...@-amazeelabs/silverback-drupal@1.6.2) (2021-07-07)
+
+
+### Bug Fixes
+
+* scaffolded test command ([ffc22bd](https://github.com/AmazeeLabs/silverback-mono/commit/ffc22bda16b7a101488dde81555145db15066d63))
+
+
+
+
+
+## [1.6.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.6.0...@-amazeelabs/silverback-drupal@1.6.1) (2021-07-07)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+# [1.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.5.9...@-amazeelabs/silverback-drupal@1.6.0) (2021-07-07)
+
+
+### Features
+
+* **ci:** introduce proxy package for drupal/gutenberg ([9ab8edc](https://github.com/AmazeeLabs/silverback-mono/commit/9ab8edc238e677e5abe021b43639c3ca2882a408))
+
+
+
+
+
+## [1.5.9](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.5.8...@-amazeelabs/silverback-drupal@1.5.9) (2021-07-05)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.5.8](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.5.7...@-amazeelabs/silverback-drupal@1.5.8) (2021-07-01)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.5.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.5.6...@-amazeelabs/silverback-drupal@1.5.7) (2021-06-30)
+
+
+### Bug Fixes
+
+* **gatsby:** return translation list for untranslated entities ([668673b](https://github.com/AmazeeLabs/silverback-mono/commit/668673bcc16301ae69b6fec8c44c710d5d31c8cf))
+
+
+
+
+
+## [1.5.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.5.5...@-amazeelabs/silverback-drupal@1.5.6) (2021-06-30)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.5.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.5.4...@-amazeelabs/silverback-drupal@1.5.5) (2021-06-28)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.5.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.5.3...@-amazeelabs/silverback-drupal@1.5.4) (2021-06-28)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.5.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.5.2...@-amazeelabs/silverback-drupal@1.5.3) (2021-06-28)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.5.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.5.1...@-amazeelabs/silverback-drupal@1.5.2) (2021-06-25)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.5.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.5.0...@-amazeelabs/silverback-drupal@1.5.1) (2021-06-25)
+
+
+### Bug Fixes
+
+* **gatsby:** composed schema definition should also include extensions ([cf8566d](https://github.com/AmazeeLabs/silverback-mono/commit/cf8566d5c838bf31b02ec3cbdb1a3ae9e436ba35))
+
+
+
+
+
+# [1.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.4.10...@-amazeelabs/silverback-drupal@1.5.0) (2021-06-24)
+
+
+### Features
+
+* **gatsby:** drush command to export full definition of composable schema ([63644f2](https://github.com/AmazeeLabs/silverback-mono/commit/63644f26376e5890054c91c41dc7464614009584))
+
+
+
+
+
+## [1.4.10](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.4.9...@-amazeelabs/silverback-drupal@1.4.10) (2021-06-24)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
 ## [1.4.9](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.4.8...@-amazeelabs/silverback-drupal@1.4.9) (2021-06-24)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal

@@ -16,10 +16,10 @@
     "postinstall": "lerna run prepare && husky install"
   },
   "devDependencies": {
-    "@commitlint/cli": "^12.0.0",
-    "@commitlint/config-conventional": "^12.0.0",
+    "@commitlint/cli": "^13.0.0",
+    "@commitlint/config-conventional": "^13.0.0",
     "commitizen": "^4.2.2",
-    "husky": "^6.0.0",
+    "husky": "^7.0.0",
     "lerna": "^4.0.0",
     "verdaccio": "^5.0.0",
     "verdaccio-git": ">= 0.0.1"

@@ -1,5 +1,6 @@
-import { testImages, testUpdates } from './common';
-import { drupalNodeOpUrl, previewUrl, refreshDelay } from './constants';
+import { testImages, testTemplates, testUpdates } from './common';
+import { drupalNodeOpUrl, previewUrl } from './constants';
+import { waitForGatsby } from './wait-for-gatsby';
 
 describe('Test Gatsby Preview', () => {
   it('checks if pre-created content is there', () => {
@@ -8,11 +9,16 @@ describe('Test Gatsby Preview', () => {
     cy.contains('a', 'With everything DE');
     cy.contains('a', 'With everything FR');
     cy.contains('a', 'Not published');
+    cy.contains('a', 'Article promoted');
     testImages();
   });
 
   it('tests updates', () => {
     testUpdates('preview');
+  });
+
+  it('tests templates', () => {
+    testTemplates('preview');
   });
 
   it('creates unpublished content', () => {
@@ -29,7 +35,7 @@ describe('Test Gatsby Preview', () => {
         status: 0,
       },
     });
-    cy.wait(refreshDelay);
+    waitForGatsby('preview');
     cy.contains('a', title);
   });
 });

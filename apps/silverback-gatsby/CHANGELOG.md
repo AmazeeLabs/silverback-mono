@@ -3,6 +3,361 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.17.8...silverback-gastby@0.18.0) (2021-07-29)
+
+
+### Features
+
+* **gatsby:** create gatsby pages automatically ([2155aa7](https://github.com/AmazeeLabs/silverback-mono/commit/2155aa71b6b2a058030440e3ee71badf634fc9a8))
+
+
+
+
+
+## [0.17.8](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.17.7...silverback-gastby@0.17.8) (2021-07-29)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.17.7](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.17.6...silverback-gastby@0.17.7) (2021-07-28)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.17.6](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.17.5...silverback-gastby@0.17.6) (2021-07-28)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.17.5](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.17.4...silverback-gastby@0.17.5) (2021-07-27)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.17.4](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.17.3...silverback-gastby@0.17.4) (2021-07-26)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.17.3](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.17.2...silverback-gastby@0.17.3) (2021-07-26)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.17.2](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.17.1...silverback-gastby@0.17.2) (2021-07-26)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.17.1](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.17.0...silverback-gastby@0.17.1) (2021-07-26)
+
+
+### Bug Fixes
+
+* do not fail if timeout is reached ([436caba](https://github.com/AmazeeLabs/silverback-mono/commit/436caba8f3ce7811bc602d8c0fd25b7303784413))
+* queue all `/__rebuild` calls ([8dd6545](https://github.com/AmazeeLabs/silverback-mono/commit/8dd654585e60660a736c69dd4b054e21982570d9))
+
+
+
+
+
+# [0.17.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.26...silverback-gastby@0.17.0) (2021-07-26)
+
+
+### Features
+
+* introduce cy.waitForGatsby ([d70b777](https://github.com/AmazeeLabs/silverback-mono/commit/d70b7772409fcd783d1c3601caca81c78490aa3d))
+
+
+
+
+
+## [0.16.26](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.25...silverback-gastby@0.16.26) (2021-07-23)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.25](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.24...silverback-gastby@0.16.25) (2021-07-22)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.24](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.23...silverback-gastby@0.16.24) (2021-07-22)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.23](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.22...silverback-gastby@0.16.23) (2021-07-22)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.22](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.21...silverback-gastby@0.16.22) (2021-07-21)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.21](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.20...silverback-gastby@0.16.21) (2021-07-19)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.20](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.19...silverback-gastby@0.16.20) (2021-07-15)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.19](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.18...silverback-gastby@0.16.19) (2021-07-15)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.18](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.17...silverback-gastby@0.16.18) (2021-07-14)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.17](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.16...silverback-gastby@0.16.17) (2021-07-13)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.16](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.15...silverback-gastby@0.16.16) (2021-07-13)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.15](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.14...silverback-gastby@0.16.15) (2021-07-12)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.14](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.13...silverback-gastby@0.16.14) (2021-07-08)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.13](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.12...silverback-gastby@0.16.13) (2021-07-07)
+
+
+### Bug Fixes
+
+* **gatsby:** increase timeouts in build tests ([fb4d15a](https://github.com/AmazeeLabs/silverback-mono/commit/fb4d15a8e53e5ffd0872b37d53ebc43c33e90b05))
+
+
+
+
+
+## [0.16.12](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.11...silverback-gastby@0.16.12) (2021-07-07)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.11](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.10...silverback-gastby@0.16.11) (2021-07-07)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.10](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.9...silverback-gastby@0.16.10) (2021-07-05)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.9](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.8...silverback-gastby@0.16.9) (2021-07-05)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.8](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.7...silverback-gastby@0.16.8) (2021-07-01)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.7](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.6...silverback-gastby@0.16.7) (2021-06-30)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.6](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.5...silverback-gastby@0.16.6) (2021-06-30)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.5](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.4...silverback-gastby@0.16.5) (2021-06-29)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.4](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.3...silverback-gastby@0.16.4) (2021-06-29)
+
+
+### Bug Fixes
+
+* **gatsy:** adjust broken refresh condition ([bdd2887](https://github.com/AmazeeLabs/silverback-mono/commit/bdd2887cd69c3f9684b28915ab2d6162dc12a47a))
+
+
+
+
+
+## [0.16.3](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.2...silverback-gastby@0.16.3) (2021-06-28)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.2](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.1...silverback-gastby@0.16.2) (2021-06-28)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.16.1](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.16.0...silverback-gastby@0.16.1) (2021-06-28)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+# [0.16.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.15.15...silverback-gastby@0.16.0) (2021-06-28)
+
+
+### Features
+
+* **gatsby:** automatically clear fetched nodes if drupal is out of sync ([73c5093](https://github.com/AmazeeLabs/silverback-mono/commit/73c5093e7521b27fc70c45eeeca159bcae5e16a9))
+
+
+
+
+
+## [0.15.15](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.15.14...silverback-gastby@0.15.15) (2021-06-28)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.15.14](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.15.13...silverback-gastby@0.15.14) (2021-06-25)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.15.13](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.15.12...silverback-gastby@0.15.13) (2021-06-25)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.15.12](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.15.11...silverback-gastby@0.15.12) (2021-06-24)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
+## [0.15.11](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.15.10...silverback-gastby@0.15.11) (2021-06-24)
+
+**Note:** Version bump only for package silverback-gastby
+
+
+
+
+
 ## [0.15.10](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.15.9...silverback-gastby@0.15.10) (2021-06-24)
 
 **Note:** Version bump only for package silverback-gastby

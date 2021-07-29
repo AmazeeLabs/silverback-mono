@@ -78,6 +78,9 @@ class LinkProcessor {
 
   public function isExternal(string $url): bool {
     $parts = parse_url($url);
+    if (isset($parts['scheme'])) {
+      return TRUE;
+    }
     if (!isset($parts['host'])) {
       return FALSE;
     }
@@ -145,9 +148,13 @@ class LinkProcessor {
 
   }
 
-  protected function processUrl(string $url, string $direction, LanguageInterface $language = NULL): string {
+  public function processUrl(string $url, string $direction, LanguageInterface $language = NULL): string {
     if ($direction === 'outbound' && !$language) {
       throw new \Exception('$language is required for "outbound" direction.');
+    }
+
+    if ($this->isExternal($url)) {
+      return $url;
     }
 
     $parts = parse_url($url);
@@ -160,7 +167,10 @@ class LinkProcessor {
 
     if ($direction === 'inbound') {
       $path = $this->pathAliasManager->getPathByAlias($parts['path']);
-      if ($path === $parts['path']) {
+      if ($path !== $parts['path']) {
+        $parts['path'] = $path;
+      }
+      else {
         // Try to strip the language prefix.
         $prefixes = $this->configFactory
           ->get('language.negotiation')
@@ -179,10 +189,19 @@ class LinkProcessor {
         }
         if (!empty($withoutPrefix)) {
           $path = $this->pathAliasManager->getPathByAlias($withoutPrefix, $pathLangcode);
+          if ($path !== $withoutPrefix) {
+            $parts['path'] = $path;
+          } else {
+            /** @var \Drupal\Core\Routing\Router $router */
+            $router = \Drupal::service('router.no_access_checks');
+            try {
+              $router->match($withoutPrefix);
+              // This is a Drupal path, so we strip the prefix.
+              $parts['path'] = $withoutPrefix;
+            }
+            catch (\Throwable $e) { }
+          }
         }
-      }
-      if ($path !== $parts['path']) {
-        $parts['path'] = $path;
       }
     }
 

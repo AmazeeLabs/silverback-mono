@@ -1,0 +1,42 @@
+diff --git a/core/core.services.yml b/core/core.services.yml
+index c1f36142b3..262b287813 100644
+--- a/core/core.services.yml
++++ b/core/core.services.yml
+@@ -9,6 +9,7 @@ parameters:
+     gc_divisor: 100
+     gc_maxlifetime: 200000
+     cookie_lifetime: 2000000
++    samesite: Lax
+     sid_length: 48
+     sid_bits_per_character: 6
+   twig.config:
+diff --git a/core/lib/Drupal/Core/Session/SessionConfiguration.php b/core/lib/Drupal/Core/Session/SessionConfiguration.php
+index cecc0a350f..3634d165c0 100644
+--- a/core/lib/Drupal/Core/Session/SessionConfiguration.php
++++ b/core/lib/Drupal/Core/Session/SessionConfiguration.php
+@@ -50,6 +50,13 @@ public function getOptions(Request $request) {
+     // issued with the secure flag.
+     $options['cookie_secure'] = $request->isSecure();
+ 
++    if ($request->isSecure() && $options['samesite'] == 'None') {
++      $options['cookie_samesite'] = 'None';
++    }
++    elseif (in_array($options['samesite'], ['Lax', 'Strict'])) {
++      $options['cookie_samesite'] = $options['samesite'];
++    }
++
+     // Set the session cookie name.
+     $options['name'] = $this->getName($request);
+ 
+diff --git a/core/misc/cspell/dictionary.txt b/core/misc/cspell/dictionary.txt
+index a8fa87d2c2..ab2783bbf9 100644
+--- a/core/misc/cspell/dictionary.txt
++++ b/core/misc/cspell/dictionary.txt
+@@ -1382,6 +1382,7 @@ safed
+ sameline
+ samename
+ sameorigin
++samesite
+ sapere
+ sata
+ savepoints

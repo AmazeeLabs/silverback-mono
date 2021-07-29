@@ -1,33 +1,37 @@
 # Add storybook UI and Tailwind
 
 This recipe will create the necessary structure and configuration to be able to
-use storybook with the latest tailwind version.
+use Storybook with the latest Tailwind version.
 
-## Project setup
-
-This recipe has to be run from the root folder of a mono-repository created with
-`amazee-recipes create-monorepo`.
+> This recipe has to be run from the root folder of a mono-repository created
+> with `amazee-recipes create-monorepo`.
 
 ```typescript
-// Pick project name from package.json.
+$$('cat README.md', {
+  stdout: /Executed `create-monorepo`/,
+});
+
 const { name: projectName } = $$.file('package.json');
 ```
 
-Create a folders structure to contain the UI
+## Package setup
+
+Create a new package called `ui` within our projects namespace and make it the
+active directory for now.
 
 ```typescript
 $$(`mkdir -p packages/@${projectName}/ui`);
 $$.chdir(`packages/@${projectName}/ui`);
 ```
 
-Initialize the Ui project folder with yarn
+Run `yarn init -y -p` to create a new `package.json` file.
 
 ```typescript
 // yarn init
 $$('yarn init -y -p');
 ```
 
-Add the project namespace
+Set the correct name and description.
 
 ```typescript
 // add the project namespace
@@ -38,8 +42,10 @@ $$.file('package.json', (json) => ({
 }));
 ```
 
-Add **amazee scaffolding** in the package.json file, when the installation is
-done we need to run **yarn amazee-scaffold** to install **Jest** and **esLint**
+Add `@amazeelabs/scaffold` to inject common development tooling like `jest`,
+`eslint` or `prettier`. After installation, we have to run
+`yarn amazee-scaffold` to install the `prepare` hook that will keep these tools
+automatically up-to-date.
 
 ```typescript
 // add & run @amazeelabs/scaffold
@@ -49,50 +55,26 @@ $$('yarn amazee-scaffold');
 
 ### React
 
-Add **React** and **React dom**, a JavaScript library for building user
-interfaces
+We build user interfaces with `React`, so we add `react` and `react-dom` as our
+first dependencies.
 
 ```typescript
 // add react & react-dom
 $$('yarn add react react-dom');
 ```
 
-### Storybook
+### Tailwind & Headless UI
 
-Add **Storybook**, an open source tool for developing UI components and pages in
-isolation. It simplifies building, documenting, and testing UIs.
-
-```typescript
-// add npx
-$$('yarn add npx');
-// install & initialize Storybook
-$$('npx sb init');
-// install @storybook/addon-postcss and @storybook/builder-webpack5
-$$('yarn add @storybook/addon-postcss @storybook/builder-webpack5');
-```
-
-### Headless UI
-
-Add **Headless UI**, Completely unstyled, fully accessible UI components,
-designed to integrate beautifully with Tailwind CSS.
-
-```typescript
-// add headlessui/react
-$$('yarn add @headlessui/react');
-```
-
-### Tailwind
-
-Add **Tailwind**, a utility-first CSS framework packed with classes like flex,
-pt-4, text-center and rotate-90 that can be composed to build any design,
-directly in your markup.
-
+For styling we rely on the utility-first CSS framework
+[Tailwind](https://tailwindcss.com/), which is run within
+[PostCSS](https://postcss.org/). First we add the necessary packages.
 ```typescript
 // install Tailwind
-$$('yarn add tailwindcss@latest postcss@latest autoprefixer@latest');
+$$('yarn add -D tailwindcss postcss postcss-cli autoprefixer');
 ```
 
-Create postcss.config.js
+And we create a simple `PostCSS` configuration that actives `Tailwind` and
+`Autoprefixer` for cross-browser compatibility.
 
 ```typescript
 # |-> postcss.config.js
@@ -104,23 +86,28 @@ module.exports = {
 }
 ```
 
-Create **Tailwind** configuration file
+We also use a couple of Tailwind plugins. `@tailwindcss/typography` for styling
+prose text content, `@tailwindcss/forms` for form elements and
+`@tailwindcss/aspect-ratio` to enable video embeds and iframes that adapt to the
+screen size.
 
 ```typescript
-// install Tailwind
-$$('npx tailwindcss init');
+$$('yarn add -D @tailwindcss/{typography,forms,aspect-ratio}');
 ```
 
-Create tailwind.css
+Now we can create a `tailwind.css` which will just import everything thats
+necessary.
 
 ```css
-# |-> tailwind.css
+/* |-> tailwind.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 ```
 
-Update tailwind.config.js
+In the Tailwind configuration file `tailwind.config.js` we declare the plugins
+we use and configure the just-in-time compiler to look for classes used in
+components within `src`.
 
 ```typescript
 # |-> tailwind.config.js
@@ -132,24 +119,54 @@ module.exports = {
     extend: {},
   },
   variants: {},
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/typography'),
+  ],
 };
 ```
 
-swith to .storybook folder
+The [Headless UI](https://headlessui.dev/) library provides accessible
+interactive elements that can be fully styled using Tailwind classes. We also
+add the to our toolbox for later.
 
 ```typescript
-$$.chdir(`.storybook`);
+$$('yarn add @headlessui/react');
 ```
 
-Update main.js
+### Storybook
+
+Storybook is used to develop and showcase user interface components in
+isolation. We also employ [Chromatic](https://www.chromatic.com) to run visual
+regression tests against Storybook. We can simply install it in our project by
+running `npx sb init` which will automatically detect `React` and setup
+everything correctly.
 
 ```typescript
-# |-> main.js
+// Install & initialize Storybook
+$$('npx sb init');
+// Install @storybook/addon-postcss to include Tailwind styles.
+$$('yarn add -D @storybook/addon-postcss');
+```
+
+Remove `config.js` and `addons.js` files created by `sb init`. We maintain both
+in `main.js`.
+
+```typescript
+$$('rm -f .storybook/config.js');
+$$('rm -f .storybook/addons.js');
+```
+
+Create a `.storybook/main.js` file that will tell storybook where to look for
+stories and also which addons to load.
+
+```javascript
+# |-> .storybook/main.js
 module.exports = {
   stories: [
-    '../stories/**/*.stories.mdx',
-    '../stories/**/*.stories.@(js|jsx|ts|tsx)',
+    '../src/components/**/*.stories.mdx',
+    '../src/components/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: [
     '@storybook/addon-links',
@@ -163,16 +180,16 @@ module.exports = {
       },
     },
   ],
-  core: {
-    builder: 'webpack5',
-  },
 };
 ```
 
-Update preview.js
+`.storybook/preview.js` is used by Storybook to take control over stories
+themselves. Here we include our Tailwind stylesheet and also some configuration
+for automatically sorting stories based on
+[Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) principles.
 
-```typescript
-# |-> preview.js
+```javascript
+# |-> .storybook/preview.js
 import '../tailwind.css';
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -188,57 +205,184 @@ export const parameters = {
 };
 ```
 
-## Stories creation
-
-Delete default storybook stories
+Storybook setup has created some example stories that we won't need, so we
+delete them.
 
 ```typescript
-$$.chdir(`../`);
-$$('rm -fr stories/');
-$$(`mkdir -p stories/assets`);
-$$.chdir(`stories`);
+$$('rm -fr stories');
 ```
 
-Create layout sample
+## A first component with a story
+
+As the first and most common component, we will create a simple `Prose`
+component that uses the
+[typography](https://github.com/tailwindlabs/tailwindcss-typography) plugin for
+Tailwind to nicely format arbitrary HTML content as we would receive it from a
+WYSIWYG editor input field.
+
+It will be a simple `div` element that wraps the content in the necessary
+Tailwind classes. It does not use any other components, and it does not consume
+data directly, which classifies it as an "Atom". So we create a `components`
+folder within `source` and add an `atoms` folder in there.
 
 ```typescript
-$$(`mkdir -p layouts`);
-$$.chdir(`layouts`);
+$$('mkdir -p src/components/atoms');
 ```
 
-```typescript
-# |-> StandardLayout.tsx
+Now we can add the very simple `React` component. It applies the Tailwind
+classes along with some margin based on the current screen size.
+
+```tsx
+# |-> src/components/atoms/Prose.tsx
 import React, { PropsWithChildren } from 'react';
 
-type Props = PropsWithChildren<{}>;
-
-export const StandardLayout = ({ children }: Props) => (
-  <div className="max-w-7xl mx-auto">
-    <header className="text-4xl p-4 bg-blue-50">Header</header>
-    <main className="p-4 prose">{children}</main>
-    <footer className="p-4 text-xs bg-blue-900 text-white">Footer</footer>
+export const Prose = ({ children }: PropsWithChildren<{}>) => (
+  <div className="prose sm:prose-lg md:prose-xl my-5 sm:my-10">
+    {children}
   </div>
 );
 ```
 
+Now we want to test and showcase our component under different circumstances.
+That's what we create our story for. Each component can have multiple stories,
+and we should use that to illustrate all edge cases.
+
+To not pollute the `atoms` directory, we create a `__stories__` folder within it
+that will contain our story.
+
 ```typescript
-# |-> StandardLayout.stories.tsx
+$$('mkdir -p src/components/atoms/__stories__');
+```
+
+```tsx
+# |-> src/components/atoms/__stories__/Prose.stories.tsx
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
 
-import { StandardLayout } from './StandardLayout';
+import { Prose } from '../Prose';
 
 export default {
-  title: 'Components/Layouts/Standard',
-  component: StandardLayout,
-  parameters: {
-    layout: 'fullscreen',
-  },
+  title: 'Components/Atoms/Prose',
+  component: Prose,
 } as Meta;
 
-export const Standard: Story = () => (
-  <StandardLayout>
-    <div className="border-2 border-gray-300 border-solid h-24" />
-  </StandardLayout>
+export const Text: Story = () => (
+  <Prose>
+    <p>
+      A simple text paragraph that is hopefully long enough,
+      so it wraps the line at some point.
+      It also contains <em>emphasized</em>,
+      <strong>strongly emphasized</strong>
+      and <a href="#">linked</a> words.
+    </p>
+  </Prose>
 );
+
+export const Headlines: Story = () => (
+    <Prose>
+      <h1>Headline level 1</h1>
+      <h2>Headline level 2</h2>
+      <h3>Headline level 3</h3>
+      <h4>Headline level 4</h4>
+      <h5>Headline level 5</h5>
+      <h6>Headline level 6</h6>
+    </Prose>
+);
+
+export const Lists: Story = () => (
+    <Prose>
+      <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+      </ul>
+      <ol>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+      </ol>
+    </Prose>
+);
+```
+
+We add an `index.ts` file to the `atoms` directory that just exports our
+component.
+
+```typescript
+# |-> src/components/atoms/index.ts
+export { Prose } from './Prose';
+```
+
+Another one in the top level `src` directory that just re-exports everything
+within the `components` folder. The library consumer will then be able to simply
+import components by just using the package name
+(`import { Prose } from '@${projectName}/ui';`).
+
+```typescript
+# |-> src/index.ts
+export * from './components/atoms';
+```
+
+## Build and export
+
+Build Storybook to verify everything works as expected.
+
+```typescript
+$$('yarn build-storybook');
+```
+
+To use our UI library in another package, we have to use the `prepare` hook to
+create importable sources. We keep the `amazee-scaffold` command and add `tsc`
+to transpile our components to pure javascript and generate type definitions
+while also running `postcss` to produce a production version of the tailwind
+classes used by our components.
+
+```typescript
+$$.file('package.json', (json) => ({
+  ...json,
+  scripts: {
+    ...json.scripts,
+    prepare:
+      'amazee-scaffold && yarn tsc && NODE_ENV=production yarn postcss tailwind.css -o styles.css',
+  },
+}));
+```
+
+We also have to declare our `main` and `types` entry-points so consumers
+automatically import the built assets.
+
+```typescript
+$$.file('package.json', (json) => ({
+  ...json,
+  main: './dist/index.js',
+  types: './dist/index.d.ts',
+}));
+```
+
+Tell Typescript to transpile the source files in `src` to the `dist` folder and
+put the latter onto `git`'s ignore list.
+
+```typescript
+$$.file('tsconfig.json', (json) => ({
+  ...json,
+  compilerOptions: {
+    ...json.compilerOptions,
+    outDir: 'dist',
+    rootDir: 'src',
+    declaration: true,
+  },
+}));
+$$.file('.gitignore', (lines) => ['dist', ...lines]);
+```
+
+Should generate an importable stylesheet with all tailwind classes used in our
+components and also the transpiled javascript sources.
+
+```typescript
+$$('yarn prepare');
+$$('cat styles.css', {
+  stdout: /prose/,
+});
+$$('test -f dist/index.js');
+$$('test -f dist/index.d.ts');
 ```

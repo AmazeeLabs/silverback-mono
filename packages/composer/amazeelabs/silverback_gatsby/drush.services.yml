@@ -1,0 +1,8 @@
+services:
+  silverback_gatsby.commands:
+    class: \Drupal\silverback_gatsby\Commands\SilverbackGatsbyCommands
+    arguments:
+      - '@entity_type.manager'
+      - '@plugin.manager.graphql.schema'
+    tags:
+      - { name: drush.command }
