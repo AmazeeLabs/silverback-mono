@@ -3,6 +3,7 @@
 namespace Drupal\Tests\silverback_gatsby\Kernel;
 
 use Drupal\node\Entity\Node;
+use GraphQL\Server\OperationParams;
 
 class EntityFeedTest extends EntityFeedTestBase {
 
@@ -176,6 +177,37 @@ class EntityFeedTest extends EntityFeedTestBase {
             ],
           ],
         ],
+      ],
+    ], $metadata);
+  }
+
+  public function testCreatePageFields() {
+    $regular = Node::create([
+      'type' => 'blog',
+      'title' => 'Regular',
+      'promote' => 0,
+    ]);
+    $regular->save();
+    $promoted = Node::create([
+      'type' => 'blog',
+      'title' => 'Promoted',
+      'promote' => 1,
+    ]);
+    $promoted->save();
+
+    $query = $this->getQueryFromFile('create-page-fields.gql');
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheTags(['node:1', 'node:2']);
+    $this->assertResults($query, [], [
+      'regular' => [
+        'title' => 'Regular',
+        'path' => '/node/1',
+        'template' => null,
+      ],
+      'promoted' => [
+        'title' => 'Promoted',
+        'path' => '/node/2',
+        'template' => 'blog-promoted',
       ],
     ], $metadata);
   }

@@ -5,13 +5,14 @@ schema {
 type Query
 
 type Page @entity(type: "node", bundle: "page") {
-  path: String!
+  path: String! @path
   title: String!
 }
 
 type Post @entity(type: "node", bundle: "blog") {
-  path: String!
+  path: String! @path
   title: String!
+  template: String @template
 }
 
 type MenuItem {

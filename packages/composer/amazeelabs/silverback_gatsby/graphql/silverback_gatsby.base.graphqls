@@ -4,4 +4,10 @@ type Feed {
   singleFieldName: String!
   listFieldName: String!
   changes(lastBuild: Int, currentBuild: Int): [String!]!
+  pathFieldName: String
+  templateFieldName: String
 }
+
+# Directives for the automatic Gatsby pages creation.
+directive @path on FIELD_DEFINITION
+directive @template on FIELD_DEFINITION

@@ -18,13 +18,18 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadPage',
           'listFieldName' => 'queryPages',
           'changes' =>  [],
-        ],
+          'pathFieldName' => 'path',
+          'templateFieldName' => null,
+
+      ],
         [
           'typeName' => 'Post',
           'translatable' => false,
           'singleFieldName' => 'loadPost',
           'listFieldName' => 'queryPosts',
           'changes' =>  [],
+          'pathFieldName' => 'path',
+          'templateFieldName' => 'template',
         ],
         [
           'typeName' => 'MainMenu',
@@ -32,6 +37,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadMainMenu',
           'listFieldName' => 'queryMainMenus',
           'changes' =>  [],
+          'pathFieldName' => null,
+          'templateFieldName' => null,
         ],
         [
           'typeName' => 'VisibleMainMenu',
@@ -39,6 +46,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadVisibleMainMenu',
           'listFieldName' => 'queryVisibleMainMenus',
           'changes' =>  [],
+          'pathFieldName' => null,
+          'templateFieldName' => null,
         ],
       ],
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
@@ -62,6 +71,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadPage',
           'listFieldName' => 'queryPages',
           'changes' =>  [],
+          'pathFieldName' => 'path',
+          'templateFieldName' => null,
         ],
         [
           'typeName' => 'Post',
@@ -69,6 +80,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadPost',
           'listFieldName' => 'queryPosts',
           'changes' =>  [],
+          'pathFieldName' => 'path',
+          'templateFieldName' => 'template',
         ],
         [
           'typeName' => 'MainMenu',
@@ -76,6 +89,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadMainMenu',
           'listFieldName' => 'queryMainMenus',
           'changes' =>  [],
+          'pathFieldName' => null,
+          'templateFieldName' => null,
         ],
         [
           'typeName' => 'VisibleMainMenu',
@@ -83,6 +98,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadVisibleMainMenu',
           'listFieldName' => 'queryVisibleMainMenus',
           'changes' =>  [],
+          'pathFieldName' => null,
+          'templateFieldName' => null,
         ],
       ],
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
@@ -110,6 +127,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadPage',
           'listFieldName' => 'queryPages',
           'changes' =>  [],
+          'pathFieldName' => 'path',
+          'templateFieldName' => null,
         ],
         [
           'typeName' => 'Post',
@@ -117,6 +136,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadPost',
           'listFieldName' => 'queryPosts',
           'changes' =>  [],
+          'pathFieldName' => 'path',
+          'templateFieldName' => 'template',
         ],
         [
           'typeName' => 'MainMenu',
@@ -124,6 +145,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadMainMenu',
           'listFieldName' => 'queryMainMenus',
           'changes' =>  [],
+          'pathFieldName' => null,
+          'templateFieldName' => null,
         ],
         [
           'typeName' => 'VisibleMainMenu',
@@ -131,6 +154,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadVisibleMainMenu',
           'listFieldName' => 'queryVisibleMainMenus',
           'changes' =>  [],
+          'pathFieldName' => null,
+          'templateFieldName' => null,
         ],
       ],
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
@@ -167,6 +192,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadPage',
           'listFieldName' => 'queryPages',
           'changes' =>  ['1:en'],
+          'pathFieldName' => 'path',
+          'templateFieldName' => null,
         ],
         [
           'typeName' => 'Post',
@@ -174,6 +201,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadPost',
           'listFieldName' => 'queryPosts',
           'changes' =>  ['2'],
+          'pathFieldName' => 'path',
+          'templateFieldName' => 'template',
         ],
         [
           'typeName' => 'MainMenu',
@@ -181,6 +210,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadMainMenu',
           'listFieldName' => 'queryMainMenus',
           'changes' =>  [],
+          'pathFieldName' => null,
+          'templateFieldName' => null,
         ],
         [
           'typeName' => 'VisibleMainMenu',
@@ -188,6 +219,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadVisibleMainMenu',
           'listFieldName' => 'queryVisibleMainMenus',
           'changes' =>  [],
+          'pathFieldName' => null,
+          'templateFieldName' => null,
         ],
       ],
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
@@ -205,6 +238,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadPage',
           'listFieldName' => 'queryPages',
           'changes' =>  ['1:en'],
+          'pathFieldName' => 'path',
+          'templateFieldName' => null,
         ],
         [
           'typeName' => 'Post',
@@ -212,6 +247,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadPost',
           'listFieldName' => 'queryPosts',
           'changes' =>  [],
+          'pathFieldName' => 'path',
+          'templateFieldName' => 'template',
         ],
         [
           'typeName' => 'MainMenu',
@@ -219,6 +256,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadMainMenu',
           'listFieldName' => 'queryMainMenus',
           'changes' =>  [],
+          'pathFieldName' => null,
+          'templateFieldName' => null,
         ],
         [
           'typeName' => 'VisibleMainMenu',
@@ -226,6 +265,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadVisibleMainMenu',
           'listFieldName' => 'queryVisibleMainMenus',
           'changes' =>  [],
+          'pathFieldName' => null,
+          'templateFieldName' => null,
         ],
       ],
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
@@ -243,6 +284,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadPage',
           'listFieldName' => 'queryPages',
           'changes' =>  [],
+          'pathFieldName' => 'path',
+          'templateFieldName' => null,
         ],
         [
           'typeName' => 'Post',
@@ -250,6 +293,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadPost',
           'listFieldName' => 'queryPosts',
           'changes' =>  ['2'],
+          'pathFieldName' => 'path',
+          'templateFieldName' => 'template',
         ],
         [
           'typeName' => 'MainMenu',
@@ -257,6 +302,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadMainMenu',
           'listFieldName' => 'queryMainMenus',
           'changes' =>  [],
+          'pathFieldName' => null,
+          'templateFieldName' => null,
         ],
         [
           'typeName' => 'VisibleMainMenu',
@@ -264,6 +311,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
           'singleFieldName' => 'loadVisibleMainMenu',
           'listFieldName' => 'queryVisibleMainMenus',
           'changes' =>  [],
+          'pathFieldName' => null,
+          'templateFieldName' => null,
         ],
       ],
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));

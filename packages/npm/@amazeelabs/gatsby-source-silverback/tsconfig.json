@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": ".",
     "rootDir": "src",
+    "jsx": "react",
   },
   "exclude": ["node_modules"]
 }

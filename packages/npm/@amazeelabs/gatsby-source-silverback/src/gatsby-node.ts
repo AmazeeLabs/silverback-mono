@@ -14,22 +14,13 @@ import {
 } from 'gatsby-graphql-source-toolkit';
 import { INodeDeleteEvent } from 'gatsby-graphql-source-toolkit/dist/types';
 
+import { createPages as createGatsbyPages } from './helpers/create-pages';
 import { createQueryExecutor } from './helpers/create-query-executor';
 import { createSourcingConfig } from './helpers/create-sourcing-config';
 import { createTranslationQueryField } from './helpers/create-translation-query-field';
-import { drupalNodes } from './helpers/drupal-nodes';
+import { drupalFeeds } from './helpers/drupal-feeds';
 import { fetchNodeChanges } from './helpers/fetch-node-changes';
-
-type Options = {
-  // The url of the Drupal installation.
-  drupal_url: string;
-  // The Drupal GraphQL server path.
-  graphql_path: string;
-  // Optional Basic Auth Drupal user.
-  auth_user?: string;
-  // Optional Basic Auth Drupal password.
-  auth_pass?: string;
-};
+import { apiUrl, Options, validOptions } from './utils';
 
 export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   Joi,
@@ -40,12 +31,6 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
     auth_user: Joi.string().optional(),
     auth_pass: Joi.string().optional(),
   });
-
-const validOptions = (options: { [key: string]: any }): options is Options =>
-  options.drupal_url && options.graphql_path;
-
-const apiUrl = (options: Options) =>
-  `${new URL(options.drupal_url).origin}${options.graphql_path}`;
 
 export const sourceNodes: GatsbyNode['sourceNodes'] = async (
   gatsbyApi: SourceNodesArgs & { webhookBody?: { buildId?: number } },
@@ -97,11 +82,11 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
     lastBuildId === -1
   ) {
     gatsbyApi.reporter.info(`ℹ️ clearing all nodes.`);
-    const feeds = await drupalNodes(executor);
+    const feeds = await drupalFeeds(executor);
     for (const feed of feeds) {
-      const nodes = gatsbyApi.getNodesByType(`Drupal${feed.type}`);
+      const nodes = gatsbyApi.getNodesByType(`Drupal${feed.typeName}`);
       const events: Array<INodeDeleteEvent> = nodes.map((node) => ({
-        remoteTypeName: feed.type,
+        remoteTypeName: feed.typeName,
         eventName: 'DELETE',
         remoteId: { id: node.id },
       }));
@@ -157,7 +142,9 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
   `);
   };
 
-export const createPages: GatsbyNode['createPages'] = async (args) => {
+export const createPages: GatsbyNode['createPages'] = async (args, options) => {
+  await createGatsbyPages(args, options);
+
   const buildId = await args.cache.get(`LAST_BUILD_ID_TMP`);
   await args.cache.set('LAST_BUILD_ID', buildId);
 };

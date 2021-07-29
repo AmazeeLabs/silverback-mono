@@ -1,3 +1,4 @@
+import { SilverbackPageContext } from '@amazeelabs/gatsby-source-silverback';
 import { graphql, Link, PageProps } from 'gatsby';
 import Image from 'gatsby-image';
 import React from 'react';
@@ -6,12 +7,12 @@ import {
   ImageSet,
   renderHtml,
 } from '../../plugins/gatsby-plugin-images-from-html/render-html';
-import { ArticleContext } from '../types/page-context';
+import { otherLanguages } from '../util/other-languages';
 import { Row } from '../util/Row';
 
 export const query = graphql`
-  query Article($remoteId: String!, $langcode: String!) {
-    drupalArticle(remoteId: { eq: $remoteId }, langcode: { eq: $langcode }) {
+  query Article($remoteId: String!) {
+    drupalArticle(remoteId: { eq: $remoteId }) {
       id
       langcode
       path
@@ -21,11 +22,9 @@ export const query = graphql`
         title
       }
       image {
-        translation(langcode: $langcode) {
-          alt
-          localImage {
-            ...ImageSharpFixed
-          }
+        alt
+        localImage {
+          ...ImageSharpFixed
         }
       }
       childrenImagesFromHtml {
@@ -34,15 +33,18 @@ export const query = graphql`
           ...ImageSharpFixed
         }
       }
+      translations {
+        langcode
+        path
+      }
     }
   }
 `;
 
-const Article: React.FC<PageProps<ArticleQuery, ArticleContext>> = ({
-  pageContext,
+const Article: React.FC<PageProps<ArticleQuery, SilverbackPageContext>> = ({
+  pageContext: { locale },
   data,
 }) => {
-  const { otherLanguages } = pageContext;
   const childrenImagesFromHtml = data.drupalArticle?.childrenImagesFromHtml;
   const article = data.drupalArticle!;
 
@@ -78,18 +80,16 @@ const Article: React.FC<PageProps<ArticleQuery, ArticleContext>> = ({
             </div>
           </Row>
           <td className="border-solid border-4">
-            {article.image?.translation?.localImage?.childImageSharp?.fixed && (
+            {article.image?.localImage?.childImageSharp?.fixed && (
               <Image
-                alt={article.image.translation?.alt}
-                fixed={
-                  article.image.translation?.localImage.childImageSharp.fixed
-                }
+                alt={article.image.alt}
+                fixed={article.image.localImage.childImageSharp.fixed}
               />
             )}
           </td>
           <Row>
             <ul>
-              {otherLanguages.map((other) => (
+              {otherLanguages(locale!, article.translations).map((other) => (
                 <li key={`language-link-${other.language.id}`}>
                   <Link to={other.path}>{other.language.name}</Link>
                 </li>

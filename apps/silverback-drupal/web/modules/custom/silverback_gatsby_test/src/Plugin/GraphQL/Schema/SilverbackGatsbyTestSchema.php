@@ -68,6 +68,12 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
     $gutenberg = $builder->produce('gutenberg')
       ->map('entity', $builder->fromParent());
 
+    $articleTemplate = $builder->callback(
+      fn(NodeInterface $node) => $node->get('promote')->value
+        ? 'article-promoted'
+        : NULL
+    );
+
     $addResolver('Page.path', $nodePath);
     $addResolver('Page.title', $entityLabel);
     $addResolver('Page.body', $fromPath('entity:node:page', 'field_body.0.processed'));
@@ -81,6 +87,7 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
     $addResolver('Article.body', $fromPath('entity:node:article', 'field_body.0.processed'));
     $addResolver('Article.tags', $entityReferences('field_tags'));
     $addResolver('Article.image', $firstEntityReference('field_image'));
+    $addResolver('Article.template', $articleTemplate);
 
     $addResolver('Image.alt', $fromPath('entity:media:image', 'field_media_image.0.alt'));
     $addResolver('Image.url', $imageUrl);

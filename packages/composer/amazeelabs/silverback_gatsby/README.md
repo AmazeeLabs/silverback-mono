@@ -87,11 +87,16 @@ The _Explorer_ or _Voyager_ screens should show root level fields for loading
 and querying our type (`loadPage`, `queryPages`) that you should be able to test
 now.
 
+There is also an option for automatic creation of Gatsby pages using `@path` and
+`@template` field directives. See
+[`@amazeelabs/gatsby-source-silverback`](../../../npm/@amazeelabs/gatsby-source-silverback)
+plugin README for details.
+
 ## Menus
 
-To expose Drupal menus to Gatsby, one can use the `@menu` directive. It takes
-a menu id, and a menu item type name as arguments. The latter is used to declare
-a GraphQL type in the schema that will be emitted from the menu's `items` field.
+To expose Drupal menus to Gatsby, one can use the `@menu` directive. It takes a
+menu id, and a menu item type name as arguments. The latter is used to declare a
+GraphQL type in the schema that will be emitted from the menu's `items` field.
 
 ```graphql
 type MainMenu @menu(menu_id: "main", item_type: "MenuItem")
@@ -125,17 +130,16 @@ possible:
 query Menu {
   drupalMainMenu {
     items {
-      ... MenuItem
-    }
-  }
-  
-  fragment MenuItem on MenuItem {
-    label
-    url
-    children {
-      # Fragment recursion, not allowed in GraphQL!
       ...MenuItem
     }
+  }
+}
+fragment MenuItem on MenuItem {
+  label
+  url
+  children {
+    # Fragment recursion, not allowed in GraphQL!
+    ...MenuItem
   }
 }
 ```

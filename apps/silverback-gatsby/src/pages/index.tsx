@@ -81,7 +81,9 @@ const IndexPage: React.FC<PageProps> = () => {
         {somePage?.translations.map((page) => (
           <tr key={`page-row-${somePage.id}-${page.langcode}`}>
             <Row>{somePage.id}</Row>
-            <Row>{page.title}</Row>
+            <Row>
+              <Link to={page.path}>{page.title}</Link>
+            </Row>
             <Row>{page.langcode}</Row>
             <Row>{page.path}</Row>
             <Row>

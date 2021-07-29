@@ -21,6 +21,20 @@ abstract class FeedBase extends PluginBase implements FeedInterface {
   protected string $typeName;
 
   /**
+   * The name of a GraphQL field containing the URL path of a node.
+   *
+   * @var string|null
+   */
+  protected ?string $pathFieldName;
+
+  /**
+   * The name of a GraphQL field containing the template name for a node.
+   *
+   * @var string|null
+   */
+  protected ?string $templateFieldName;
+
+  /**
    * Instance of a ResolverBuilder.
    *
    * @var \Drupal\graphql\GraphQL\ResolverBuilder
@@ -38,6 +52,8 @@ abstract class FeedBase extends PluginBase implements FeedInterface {
     parent::__construct($config, $plugin_id, $plugin_definition);
     $this->builder = new ResolverBuilder();
     $this->typeName = $config['typeName'];
+    $this->pathFieldName = $config['createPageFields']['path'] ?? NULL;
+    $this->templateFieldName = $config['createPageFields']['template'] ?? NULL;
   }
 
   /**
@@ -74,6 +90,8 @@ abstract class FeedBase extends PluginBase implements FeedInterface {
       'translatable' => $this->isTranslatable(),
       'singleFieldName' => $this->getSingleFieldName(),
       'listFieldName' => $this->getListFieldName(),
+      'pathFieldName' => $this->pathFieldName,
+      'templateFieldName' => $this->templateFieldName,
     ];
   }
 

@@ -1,20 +1,18 @@
+import { SilverbackPageContext } from '@amazeelabs/gatsby-source-silverback';
 import { graphql, Link, PageProps } from 'gatsby';
 import React from 'react';
 
-import { GutenbergPageContext } from '../types/page-context';
+import { BlockHtml } from '../components/content-blocks/html';
+import { BlockImage } from '../components/content-blocks/image';
+import { BlockTeaser } from '../components/content-blocks/teaser';
+import { BlockTwoColumns } from '../components/content-blocks/two-columns';
+import { otherLanguages } from '../util/other-languages';
 import { Row } from '../util/Row';
 import { UnreachableCaseError } from '../util/types';
-import { BlockHtml } from './content-blocks/html';
-import { BlockImage } from './content-blocks/image';
-import { BlockTeaser } from './content-blocks/teaser';
-import { BlockTwoColumns } from './content-blocks/two-columns';
 
 export const query = graphql`
-  query GutenbergPage($remoteId: String!, $langcode: String!) {
-    drupalGutenbergPage(
-      remoteId: { eq: $remoteId }
-      langcode: { eq: $langcode }
-    ) {
+  query GutenbergPage($remoteId: String!) {
+    drupalGutenbergPage(remoteId: { eq: $remoteId }) {
       id
       title
       body {
@@ -24,6 +22,10 @@ export const query = graphql`
         ...BlockImage
         ...BlockTeaser
       }
+      translations {
+        langcode
+        path
+      }
     }
   }
   fragment BlockHtml on DrupalBlockHtml {
@@ -32,19 +34,15 @@ export const query = graphql`
   fragment BlockImage on DrupalBlockImage {
     caption
     image {
-      translation(langcode: $langcode) {
-        localImage {
-          ...ImageSharpFixed
-        }
+      localImage {
+        ...ImageSharpFixed
       }
     }
   }
   fragment BlockTeaser on DrupalBlockTeaser {
     image {
-      translation(langcode: $langcode) {
-        localImage {
-          ...ImageSharpFixed
-        }
+      localImage {
+        ...ImageSharpFixed
       }
     }
     title
@@ -65,10 +63,8 @@ export const query = graphql`
 `;
 
 const GutenbergPage: React.FC<
-  PageProps<GutenbergPageQuery, GutenbergPageContext>
-> = ({ pageContext, data }) => {
-  const { otherLanguages } = pageContext as GutenbergPageContext;
-
+  PageProps<GutenbergPageQuery, SilverbackPageContext>
+> = ({ pageContext: { locale }, data }) => {
   const page = data.drupalGutenbergPage!;
 
   return (
@@ -100,7 +96,7 @@ const GutenbergPage: React.FC<
           </Row>
           <Row>
             <ul>
-              {otherLanguages.map((other) => (
+              {otherLanguages(locale!, page.translations).map((other) => (
                 <li key={`language-link-${other.language.id}`}>
                   <Link to={other.path}>{other.language.name}</Link>
                 </li>
