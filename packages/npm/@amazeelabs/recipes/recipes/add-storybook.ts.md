@@ -68,10 +68,9 @@ $$('yarn add react react-dom');
 For styling we rely on the utility-first CSS framework
 [Tailwind](https://tailwindcss.com/), which is run within
 [PostCSS](https://postcss.org/). First we add the necessary packages.
-[ESLintTailwind](https://www.npmjs.com/package/eslint-plugin-tailwindcss). ESLint for Tailwind
 ```typescript
 // install Tailwind
-$$('yarn add -D tailwindcss postcss postcss-cli autoprefixer eslint-plugin-tailwindcss');
+$$('yarn add -D tailwindcss postcss postcss-cli autoprefixer');
 ```
 
 And we create a simple `PostCSS` configuration that actives `Tailwind` and
@@ -374,18 +373,6 @@ $$.file('tsconfig.json', (json) => ({
   },
 }));
 $$.file('.gitignore', (lines) => ['dist', ...lines]);
-```
-
-
-Updates the scaffold .eslintrc file and adds ESLint for TailWindCSS in Storybook.
-
-```typescript
-# |-> .eslintrc.js
-module.exports = {
-  plugins: ['tailwindcss'],
-  extends: ['@amazeelabs/eslint-config'],
-  root: true,
-};
 ```
 
 Should generate an importable stylesheet with all tailwind classes used in our
