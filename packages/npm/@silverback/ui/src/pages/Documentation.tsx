@@ -1,7 +1,5 @@
 import React from 'react';
 
-import PageLayout from '../components/3-layout/PageLayout';
-
 const Documentation: React.FC<{
   title: string;
   toc: {

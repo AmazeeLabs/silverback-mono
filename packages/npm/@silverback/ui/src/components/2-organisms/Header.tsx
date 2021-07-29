@@ -1,6 +1,7 @@
 import classNames from 'classnames';
+import React from 'react';
 
-import { NavItem } from '../../types';
+import { Link, NavItem  } from '../../types';
 import {useMobileMenu} from "../../utils";
 import {
   Logo
@@ -12,7 +13,7 @@ import {
 } from '../1-molecules';
 
 export type HeaderProps = {
-  LogoLink: String;
+  LogoLink: Link;
   navItems: Array<NavItem>;
 };
 

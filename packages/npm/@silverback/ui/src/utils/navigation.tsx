@@ -1,38 +1,6 @@
 import _ from 'lodash';
 import { useState } from 'react';
 
-import { NavigationNode } from '../components/dependencies';
-
-export const processNavigationItems = ({
-  allMdx: { distinct: navigation, group: navigationGroups },
-}: NavigationQuery): NavigationNode[] =>
-  navigation.map((title, navIndex) => ({
-    title,
-    path: `/${_.trim(
-      navigationGroups[navIndex].nodes[0].frontmatter?.path || '',
-      '/',
-    )
-      .split('/')
-      .shift()}`,
-    children:
-      navigationGroups[navIndex].nodes.length > 1
-        ? navigationGroups[navIndex].nodes.reduce(
-            (children, { frontmatter, fileAbsolutePath }) => {
-              if (frontmatter?.title && frontmatter?.path) {
-                children.push({
-                  title: frontmatter.title,
-                  path: frontmatter.path,
-                });
-              } else {
-                console.warn(`Missing title or path in ${fileAbsolutePath}`);
-              }
-              return children;
-            },
-            [] as NavigationNode[],
-          )
-        : undefined,
-  }));
-
 export const useMobileMenu = (): [boolean, () => void] => {
   const [status, set] = useState<boolean>(false);
   return [status, () => set(!status)];

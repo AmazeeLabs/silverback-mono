@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import React from 'react';
 
 import { NavItem } from '../../types';
 import {

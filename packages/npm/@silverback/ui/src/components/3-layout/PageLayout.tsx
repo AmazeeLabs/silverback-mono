@@ -1,4 +1,3 @@
-import classnames from 'classnames';
 import React, { PropsWithChildren } from 'react';
 
 import { ComponentProps } from '../../types';
