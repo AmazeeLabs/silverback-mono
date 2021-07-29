@@ -5,18 +5,18 @@ import { Footer, Header } from "../2-organisms";
 
 
 type Props = PropsWithChildren<{
-  header: ComponentProps<typeof Header>;
-  footer: ComponentProps<typeof Footer>;
+  headerProps: ComponentProps<typeof Header>;
+  footerProps: ComponentProps<typeof Footer>;
 }>;
 
 
 export const PageLayout = ({
-  header,
-  footer,
+  headerProps,
+  footerProps,
   children
 }: Props) => (
   <div className="flex flex-col min-h-screen">
-    <Header {...header}/>
+    <Header {...headerProps}/>
 
     <main className="flex-1 -mt-32">
       <div className="px-4 pb-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -24,6 +24,6 @@ export const PageLayout = ({
       </div>
     </main>
 
-    <Footer {...footer}/>
+    <Footer {...footerProps}/>
   </div>
 );

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { NavItem } from '../../types';
+import { NavItem, Link } from '../../types';
 import {
   Logo
 } from '../0-atoms';
@@ -9,7 +9,7 @@ import {
 } from '../1-molecules';
 
 export type FooterProps = {
-  LogoLink: String;
+  LogoLink: Link;
   navItems: Array<NavItem>;
 };
 
