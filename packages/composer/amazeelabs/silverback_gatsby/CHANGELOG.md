@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.9.1...@-amazeelabs/silverback_gatsby@1.10.0) (2021-07-29)
+
+
+### Features
+
+* **gatsby:** create gatsby pages automatically ([2155aa7](https://github.com/AmazeeLabs/silverback-mono/commit/2155aa71b6b2a058030440e3ee71badf634fc9a8))
+
+
+
+
+
 ## [1.9.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.9.0...@-amazeelabs/silverback_gatsby@1.9.1) (2021-07-08)
 
 
