@@ -8,10 +8,6 @@ import { Footer, Header } from "../2-organisms";
 type Props = PropsWithChildren<{
   header: ComponentProps<typeof Header>;
   footer: ComponentProps<typeof Footer>;
-  // footerMenu: Array<MenuItem>;
-  // preFooterMenu: Array<MenuItem>;
-  // messages?: Array<string>;
-  // Link: Link;
 }>;
 
 
