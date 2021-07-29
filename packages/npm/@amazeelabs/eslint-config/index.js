@@ -22,7 +22,7 @@ module.exports = {
     "plugin:promise/recommended",
     ...(isReactProject ? ['plugin:react/recommended'] : []),
     // Prettier always goes last.
-    "prettier",
+    "prettier"
   ],
   globals: {
     Atomics: "readonly",
@@ -43,6 +43,7 @@ module.exports = {
   } : {},
   plugins: [
     "@typescript-eslint",
+    "tailwindcss",
     "promise",
     "deprecate",
     "simple-import-sort",
