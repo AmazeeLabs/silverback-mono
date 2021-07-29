@@ -7,6 +7,7 @@ import { PageLayout } from '../PageLayout';
 
 export const PageLayoutMocks: ComponentProps<typeof PageLayout> = {
   header: HeaderMocks,
+  footer: HeaderMocks,
   // footerMenu: mockFooterMenu(4),
   // preFooterMenu: mockPreFooterMenu(3),
   // seo: {

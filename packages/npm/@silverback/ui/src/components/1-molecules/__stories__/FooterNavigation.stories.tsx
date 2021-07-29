@@ -3,7 +3,7 @@ import React from 'react';
 
 import type { NavigationItems } from '../../../types';
 import { mockNavItems } from '../__mocks__/mockNavItems.mocks';
-import FooterNavigation from '../FooterNavigation';
+import { FooterNavigation } from '../FooterNavigation';
 
 export default {
   title: 'Components/Molecules/FooterNavigation',

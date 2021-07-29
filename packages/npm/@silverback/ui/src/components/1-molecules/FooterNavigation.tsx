@@ -3,7 +3,7 @@ import React from 'react';
 import { NavigationItems } from '../../types';
 import { useSubPageMenu } from '../../utils';
 
-const FooterNavigation = ({ items }: {items: NavigationItems}) => {
+export const FooterNavigation = ({ items }: {items: NavigationItems}) => {
   const [activeItems, setActiveItem, close] = useSubPageMenu(
     items.length,
   );
@@ -39,4 +39,3 @@ const FooterNavigation = ({ items }: {items: NavigationItems}) => {
   );
 };
 
-export default FooterNavigation;
