@@ -1,12 +1,12 @@
 import classnames from 'classnames';
 import React from 'react';
 
-import { NavigationItems } from '../../types';
+import { NavItem } from '../../types';
 import { useSubPageMenu } from '../../utils';
 
-export const DesktopNavigation = ({ items }: {items: NavigationItems}) => {
+export const DesktopNavigation = ({ items }: {items: Array<NavItem>}) => {
   const [activeItems, setActiveItem, close] = useSubPageMenu(
-    items.map((item) => item.id),
+    items.length
   );
 
   return (

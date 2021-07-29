@@ -1,13 +1,8 @@
 import React from 'react';
 
-import { NavigationItems } from '../../types';
-import { useSubPageMenu } from '../../utils';
+import { NavItem } from '../../types';
 
-export const FooterNavigation = ({ items }: {items: NavigationItems}) => {
-  const [activeItems, setActiveItem, close] = useSubPageMenu(
-    items.length,
-  );
-
+export const FooterNavigation = ({ items }: {items: Array<NavItem>}) => {
   return (
     <div className="md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-8">
     {items.map(({ name, Link, children }, index) => (
@@ -30,7 +25,7 @@ export const FooterNavigation = ({ items }: {items: NavigationItems}) => {
             </>
           ) : (
             <h4 className="m-0 font-semibold leading-5 tracking-wider uppercase">
-              <Link to={Link}>{name}</Link>
+              <Link>{name}</Link>
             </h4>
           )}
         </div>

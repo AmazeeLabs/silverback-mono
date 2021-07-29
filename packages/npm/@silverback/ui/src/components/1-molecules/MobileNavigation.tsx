@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { NavigationItems } from '../../types';
+import { NavItem } from '../../types';
 
-export const MobileNavigation = ({ items }: {items: NavigationItems}) => {
+export const MobileNavigation = ({ items }: {items: Array<NavItem>}) => {
   return (
     <div className="px-4 py-3 space-y-1">
       {items.map(({ name, Link, children }, index) => {
