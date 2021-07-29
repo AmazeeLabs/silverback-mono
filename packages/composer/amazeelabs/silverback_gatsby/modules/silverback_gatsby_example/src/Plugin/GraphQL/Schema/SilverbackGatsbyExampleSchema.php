@@ -3,6 +3,7 @@ namespace Drupal\silverback_gatsby_example\Plugin\GraphQL\Schema;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
+use Drupal\node\NodeInterface;
 use Drupal\silverback_gatsby\GraphQL\ComposableSchema;
 
 /**
@@ -28,6 +29,13 @@ class SilverbackGatsbyExampleSchema extends ComposableSchema {
         $builder->produce('entity_label')->map('entity', $builder->fromParent())
       );
     }
+    $registry->addFieldResolver('Post', 'template',
+      $builder->callback(
+        fn(NodeInterface $node) => $node->get('promote')->value
+          ? 'blog-promoted'
+          : NULL
+      )
+    );
 
     $registry->addFieldResolver('MenuItem', 'label', $builder->compose(
       $builder->produce('menu_tree_link')->map('element', $builder->fromParent()),

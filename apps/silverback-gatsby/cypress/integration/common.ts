@@ -1,13 +1,13 @@
 import { drupalNodeOpUrl, previewUrl, siteUrl } from './constants';
 import { waitForGatsby } from './wait-for-gatsby';
 
-export const testImages = () => {
-  // Workaround for "Element is detached from the DOM" on .click() 🤦
-  // The .click({ force: true }) workaround also works, but it triggers a page
-  // reload and kills the Gatsby navigation.
-  // See https://github.com/cypress-io/cypress/issues/7306 for more details.
-  cy.wait(100);
+// Workaround for "Element is detached from the DOM" 🤦
+// It mostly happens after a cy.visit in gatsby-build mode.
+// See https://github.com/cypress-io/cypress/issues/7306 for more details.
+const fixCypress = () => cy.wait(100);
 
+export const testImages = () => {
+  fixCypress();
   cy.contains('a', 'With everything').click();
   // There should be kitten and pug images in the article.
   cy.get('img[alt="Kitten alt text"]').should('exist');
@@ -50,4 +50,20 @@ export const testUpdates = (mode: 'preview' | 'site') => {
       cy.visit(url);
       cy.contains(updatedBodyText);
     });
+};
+
+export const testTemplates = (mode: 'preview' | 'site') => {
+  cy.visit(mode === 'preview' ? previewUrl : siteUrl);
+  fixCypress();
+
+  cy.contains('a', 'With everything').click();
+  cy.contains('This article is promoted').should('not.exist');
+
+  cy.contains('a', 'To frontpage').click();
+  cy.contains('a', 'Article promoted').click();
+  cy.contains('This article is promoted');
+
+  cy.contains('a', 'To frontpage').click();
+  cy.contains('a', 'A page').click();
+  cy.contains('This is a stub page');
 };

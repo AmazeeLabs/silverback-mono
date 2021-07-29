@@ -14,7 +14,7 @@ import {
   RemoteTypeName,
 } from 'gatsby-graphql-source-toolkit/dist/types';
 
-import { drupalNodes as drupalNodesFetcher } from './drupal-nodes';
+import { drupalFeeds as drupalFeedsFetcher } from './drupal-feeds';
 
 type UntranslatableListResultItem = {
   remoteTypeName: string;
@@ -41,44 +41,44 @@ export const createSourcingConfig = async (
   customFragments?: Map<RemoteTypeName, string>,
 ): Promise<ISourcingConfig> => {
   const schema = await loadSchema(execute);
-  const drupalNodes = await drupalNodesFetcher(execute);
+  const drupalFeeds = await drupalFeedsFetcher(execute);
 
   const isTranslatable = (
     item: ListResultItem,
   ): item is TranslatableListResultItem =>
-    drupalNodes.filter(
-      (def) => def.type === item?.remoteTypeName && def.translatable,
+    drupalFeeds.filter(
+      (feed) => feed.typeName === item?.remoteTypeName && feed.translatable,
     ).length > 0;
   // Instruct gatsby-graphql-source-toolkit how to fetch content from Drupal.
   // The LIST_ queries are used to fetch the content when there is no cache. The
   // NODE_ queries are used to fetch incremental updates.
   // More details in https://github.com/gatsbyjs/gatsby-graphql-toolkit#readme
   const gatsbyNodeTypes: IGatsbyNodeConfig[] = [];
-  for (const drupalNode of drupalNodes) {
+  for (const feed of drupalFeeds) {
     gatsbyNodeTypes.push({
-      remoteTypeName: drupalNode.type,
+      remoteTypeName: feed.typeName,
       queries: `
-        query LIST_${drupalNode.type} {
-          ${drupalNode.multiple}(
+        query LIST_${feed.typeName} {
+          ${feed.listFieldName}(
             limit: $limit
             offset: $offset
           ) {
             __typename
             ${
-              drupalNode.translatable
+              feed.translatable
                 ? `translations {
-                     ..._${drupalNode.type}Id_
+                     ..._${feed.typeName}Id_
                    }`
-                : `..._${drupalNode.type}Id_`
+                : `..._${feed.typeName}Id_`
             }
           }
         }
-        query NODE_${drupalNode.type} {
-          ${drupalNode.single}(id: $id) {
-            ..._${drupalNode.type}Id_
+        query NODE_${feed.typeName} {
+          ${feed.singleFieldName}(id: $id) {
+            ..._${feed.typeName}Id_
           }
         }
-        fragment _${drupalNode.type}Id_ on ${drupalNode.type} {
+        fragment _${feed.typeName}Id_ on ${feed.typeName} {
           __typename
           id
         }
@@ -111,9 +111,6 @@ export const createSourcingConfig = async (
     schema,
     execute,
     paginationAdapters: [LimitOffsetTranslatable],
-    // The default typename transformer adds a prefix to all remote types. It
-    // can be set to empty string, but then make sure that type names do not
-    // clash with Gatsby.
     gatsbyTypePrefix: 'Drupal',
     gatsbyNodeDefs: buildNodeDefinitions({ gatsbyNodeTypes, documents }),
   };

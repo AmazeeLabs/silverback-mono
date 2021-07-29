@@ -3,19 +3,11 @@
 namespace Drupal\silverback_gatsby\Plugin\Gatsby\Feed;
 
 use Drupal\content_translation\ContentTranslationManagerInterface;
-use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\EntityTypeManager;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\TranslatableInterface;
-use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\TypedData\TypedData;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
-use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerProxy;
-use Drupal\silverback_gatsby\Annotation\GatsbyFeed;
-use Drupal\silverback_gatsby\GatsbyUpdate;
 use Drupal\silverback_gatsby\Plugin\FeedBase;
 use Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer\GatsbyBuildId;
 use Symfony\Component\DependencyInjection\ContainerInterface;

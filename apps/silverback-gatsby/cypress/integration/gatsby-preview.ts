@@ -1,4 +1,4 @@
-import { testImages, testUpdates } from './common';
+import { testImages, testTemplates, testUpdates } from './common';
 import { drupalNodeOpUrl, previewUrl } from './constants';
 import { waitForGatsby } from './wait-for-gatsby';
 
@@ -9,11 +9,16 @@ describe('Test Gatsby Preview', () => {
     cy.contains('a', 'With everything DE');
     cy.contains('a', 'With everything FR');
     cy.contains('a', 'Not published');
+    cy.contains('a', 'Article promoted');
     testImages();
   });
 
   it('tests updates', () => {
     testUpdates('preview');
+  });
+
+  it('tests templates', () => {
+    testTemplates('preview');
   });
 
   it('creates unpublished content', () => {

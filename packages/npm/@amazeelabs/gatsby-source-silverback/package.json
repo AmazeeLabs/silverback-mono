@@ -3,6 +3,7 @@
   "version": "1.2.8",
   "description": "Source data from a Silverback GraphQL schema.",
   "main": "index.js",
+  "types": "types.d.ts",
   "author": "Amazee Labs <development@amazeelabs.com>",
   "license": "MIT",
   "private": false,
@@ -25,6 +26,7 @@
     "gatsby-graphql-source-toolkit": "^2.0.1",
     "jest": "^27.0.0",
     "lint-staged": "^11.0.0",
+    "react": "^17.0.0",
     "typescript": "^4.2.4"
   },
   "scripts": {

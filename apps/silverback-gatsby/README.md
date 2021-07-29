@@ -7,31 +7,9 @@
 The app is set up with
 [Amazee Gatsby Starter](https://github.com/AmazeeLabs/gatsby-starter).
 
-## Entry points
-
-- [createQueryExecutor](./src/gatsby-node-helpers/create-query-executor.ts)
-  prepares the GraphQL query executor for either Gatsby Site or Gatsby Preview
-  mode.
-- [drupalNodes](./src/gatsby-node-helpers/drupal-nodes.ts) keeps the meta
-  information about the content we want to fetch from Drupal.
-  - On Drupal side this list should match with the "Entity types to send to
-    Gatsby Preview and Build Server" option in the Gatsby module config.
-  - Important: While Tags taxonomy terms aren't used on they own in our Gatsby
-    app, we still need to fetch them all in order to allow the toolkit to
-    [discover and resolve relationships between the node types in the schema](https://github.com/gatsbyjs/gatsby-graphql-toolkit#2-configure-gatsby-node-types).
-- [createSourcingConfig](./src/gatsby-node-helpers/create-sourcing-config.ts)
-  tells to the toolkit how to work with Drupal's GraphQL.
-- [api-fragments](./src/gatsby-node-helpers/api-fragments) tells to the toolkit
-  which content fields to fetch from Drupal's GraphQL.
-- [fetchNodeChanges](./src/gatsby-node-helpers/fetch-node-changes.ts) fetches
-  the content updates from Drupal and tells to the toolkit what to (re)fetch or
-  delete.
-- `sourceNodes` from [gatsby-node.ts](./gatsby-node.ts) combines all the above.
-
-## Less important
-
-- [createPaginationAdapter](./src/gatsby-node-helpers/create-pagination-adapter.ts)
-  tells to the toolkit how to paginate Drupal's GraphQL queries.
+The connection to Drupal is done via
+[`@amazeelabs/gatsby-source-silverback`](../../packages/npm/@amazeelabs/gatsby-source-silverback)
+plugin.
 
 ## Drupal media support
 

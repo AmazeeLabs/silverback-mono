@@ -9,28 +9,29 @@ type Image @entity(type: "media", bundle: "image") {
   alt: String!
 }
 
-type Tag  @entity(type: "taxonomy_term", bundle: "tag") {
+type Tag @entity(type: "taxonomy_term", bundle: "tag") {
   title: String!
 }
 
 type Page @entity(type: "node", bundle: "page") {
-  path: String!
+  path: String! @path
   title: String!
   body: String
 }
 
 type GutenbergPage @entity(type: "node", bundle: "gutenberg_page") {
-  path: String!
+  path: String! @path
   title: String!
   body: [RootBlock!]!
 }
 
 type Article @entity(type: "node", bundle: "article") {
-  path: String!
+  path: String! @path
   title: String!
   body: String
   tags: [Tag!]!
   image: Image
+  template: String @template
 }
 
 union RootBlock = BlockTwoColumns |  BlockHtml | BlockImage | BlockTeaser

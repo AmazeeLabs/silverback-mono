@@ -6,5 +6,7 @@ query FeedInfo($lastBuild: Int, $currentBuild: Int) {
     singleFieldName
     listFieldName
     changes(lastBuild: $lastBuild, currentBuild: $currentBuild)
+    pathFieldName
+    templateFieldName
   }
 }
