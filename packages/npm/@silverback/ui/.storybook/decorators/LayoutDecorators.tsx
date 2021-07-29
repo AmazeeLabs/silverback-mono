@@ -1,10 +1,12 @@
 import React from 'react';
 import { DecoratorFn } from '@storybook/react';
-import { StandardLayout } from '../../src';
+import { PageLayout } from '../../src';
+import { PageLayoutMocks } from '../../src/components/3-layout/__mocks__/PageLayout.mocks';
+
 export const LayoutDecorator: DecoratorFn = (Story, context) => {
     return (
-        <StandardLayout>
+        <PageLayout {...PageLayoutMocks}>
             <Story {...context} />
-        </StandardLayout>
+        </PageLayout>
     );
 };

@@ -1,11 +1,13 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
 
+import { LayoutDecorator } from '../../../.storybook/decorators';
 import Documentation from '../Documentation';
 
 export default {
   title: 'Pages/Documentation',
   component: Documentation,
+  decorators: [LayoutDecorator],
 } as Meta;
 
 export const WithTOC: Story = () => (

@@ -2,6 +2,7 @@
 import classnames from 'classnames';
 import React, { PropsWithChildren } from 'react';
 
+import { ComponentProps } from '../../types';
 // import { useMobileMenu } from "../../utils";
 // import { Logo } from "../0-atoms/Logo";
 // import { mockNavItems } from '../1-molecules/__mocks__/mockNavItems.mocks';
@@ -11,11 +12,21 @@ import React, { PropsWithChildren } from 'react';
 // import FooterNavigation from "../1-molecules/FooterNavigation";
 import { Header } from "../2-organisms";
 
-type Props = PropsWithChildren<{}>;
+type Props = PropsWithChildren<{
+  header: ComponentProps<typeof Header>;
+  // footerMenu: Array<MenuItem>;
+  // preFooterMenu: Array<MenuItem>;
+  // messages?: Array<string>;
+  // Link: Link;
+}>;
 
-export const Page = ({ children }: Props) => (
+
+export const PageLayout = ({
+  header,
+  children
+}: Props) => (
   <div className="flex flex-col min-h-screen">
-    <Header />
+    <Header {...header}/>
 
     <main className="flex-1 -mt-32">
       <div className="px-4 pb-12 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -28,16 +39,14 @@ export const Page = ({ children }: Props) => (
         <div className="lg:grid xl:grid-cols-4 xl:gap-8">
           <div className="xl:col-span-1">
             {/* <Link to="/" className="flex"> */}
-              <Logo />
+              {/* <Logo /> */}
             {/* </Link> */}
           </div>
           <div className="mt-12 xl:mt-0 xl:col-span-3">
-            <FooterNavigation items={ mockNavItems(3, true) } />
+            {/* <FooterNavigation items={ mockNavItems(3, true) } /> */}
           </div>
         </div>
       </div>
     </footer>
   </div>
-  );
-
-export default Page;
+);
