@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.19.0](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.18.1...silverback-gastby@0.19.0) (2021-08-02)
+
+
+### Features
+
+* **gatsby:** add localizations to page context ([8370c2b](https://github.com/AmazeeLabs/silverback-mono/commit/8370c2bcb4ddf1c210a40535268c65f0cfc094bd))
+
+
+
+
+
 ## [0.18.1](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.18.0...silverback-gastby@0.18.1) (2021-08-02)
 
 **Note:** Version bump only for package silverback-gastby
