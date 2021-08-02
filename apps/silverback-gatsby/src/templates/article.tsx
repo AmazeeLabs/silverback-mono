@@ -7,7 +7,7 @@ import {
   ImageSet,
   renderHtml,
 } from '../../plugins/gatsby-plugin-images-from-html/render-html';
-import { otherLanguages } from '../util/other-languages';
+import { languages } from '../constants/languages';
 import { Row } from '../util/Row';
 
 export const query = graphql`
@@ -33,16 +33,12 @@ export const query = graphql`
           ...ImageSharpFixed
         }
       }
-      translations {
-        langcode
-        path
-      }
     }
   }
 `;
 
 const Article: React.FC<PageProps<ArticleQuery, SilverbackPageContext>> = ({
-  pageContext: { locale },
+  pageContext: { locale, localizations },
   data,
 }) => {
   const childrenImagesFromHtml = data.drupalArticle?.childrenImagesFromHtml;
@@ -89,11 +85,15 @@ const Article: React.FC<PageProps<ArticleQuery, SilverbackPageContext>> = ({
           </td>
           <Row>
             <ul>
-              {otherLanguages(locale!, article.translations).map((other) => (
-                <li key={`language-link-${other.language.id}`}>
-                  <Link to={other.path}>{other.language.name}</Link>
-                </li>
-              ))}
+              {localizations
+                ?.filter((it) => it.locale !== locale)
+                .map((other) => (
+                  <li key={`language-link-${other.locale}`}>
+                    <Link to={other.path}>
+                      {languages.find((it) => it.id === other.locale)!.name}
+                    </Link>
+                  </li>
+                ))}
             </ul>
           </Row>
         </tr>

@@ -67,3 +67,20 @@ export const testTemplates = (mode: 'preview' | 'site') => {
   cy.contains('a', 'A page').click();
   cy.contains('This is a stub page');
 };
+
+export const testLocalizations = (mode: 'preview' | 'site') => {
+  cy.visit(mode === 'preview' ? previewUrl : siteUrl);
+  fixCypress();
+
+  // This article should be translated to all languages.
+  cy.contains('a', 'With everything').click();
+  cy.contains('a', 'German');
+  cy.contains('a', 'French');
+
+  cy.contains('a', 'To frontpage').click();
+
+  // This page should have no translations.
+  cy.contains('a', 'Gutenberg page').click();
+  cy.contains('a', 'German').should('not.exist');
+  cy.contains('a', 'French').should('not.exist');
+};
