@@ -6,7 +6,7 @@ import { BlockHtml } from '../components/content-blocks/html';
 import { BlockImage } from '../components/content-blocks/image';
 import { BlockTeaser } from '../components/content-blocks/teaser';
 import { BlockTwoColumns } from '../components/content-blocks/two-columns';
-import { otherLanguages } from '../util/other-languages';
+import { languages } from '../constants/languages';
 import { Row } from '../util/Row';
 import { UnreachableCaseError } from '../util/types';
 
@@ -21,10 +21,6 @@ export const query = graphql`
         ...BlockHtml
         ...BlockImage
         ...BlockTeaser
-      }
-      translations {
-        langcode
-        path
       }
     }
   }
@@ -64,7 +60,7 @@ export const query = graphql`
 
 const GutenbergPage: React.FC<
   PageProps<GutenbergPageQuery, SilverbackPageContext>
-> = ({ pageContext: { locale }, data }) => {
+> = ({ pageContext: { locale, localizations }, data }) => {
   const page = data.drupalGutenbergPage!;
 
   return (
@@ -96,11 +92,15 @@ const GutenbergPage: React.FC<
           </Row>
           <Row>
             <ul>
-              {otherLanguages(locale!, page.translations).map((other) => (
-                <li key={`language-link-${other.language.id}`}>
-                  <Link to={other.path}>{other.language.name}</Link>
-                </li>
-              ))}
+              {localizations
+                ?.filter((it) => it.locale !== locale)
+                .map((other) => (
+                  <li key={`language-link-${other.locale}`}>
+                    <Link to={other.path}>
+                      {languages.find((it) => it.id === other.locale)!.name}
+                    </Link>
+                  </li>
+                ))}
             </ul>
           </Row>
         </tr>

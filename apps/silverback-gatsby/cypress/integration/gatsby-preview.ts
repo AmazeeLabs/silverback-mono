@@ -1,4 +1,9 @@
-import { testImages, testTemplates, testUpdates } from './common';
+import {
+  testImages,
+  testLocalizations,
+  testTemplates,
+  testUpdates,
+} from './common';
 import { drupalNodeOpUrl, previewUrl } from './constants';
 import { waitForGatsby } from './wait-for-gatsby';
 
@@ -11,6 +16,7 @@ describe('Test Gatsby Preview', () => {
     cy.contains('a', 'Not published');
     cy.contains('a', 'Article promoted');
     testImages();
+    testLocalizations('preview');
   });
 
   it('tests updates', () => {

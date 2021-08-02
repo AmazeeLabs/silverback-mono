@@ -31,6 +31,10 @@ export const createPages = async (
           remoteId: string;
           path: string | null;
           template?: string | null;
+          localizations?: Array<{
+            path: string | null;
+            locale: string;
+          }>;
         }>;
       };
     }>(`
@@ -44,6 +48,14 @@ export const createPages = async (
                 ${
                   feed.templateFieldName
                     ? `template: ${feed.templateFieldName}`
+                    : ''
+                }
+                ${
+                  feed.translatable
+                    ? `localizations: translations {
+                         path: ${feed.pathFieldName}
+                         locale: langcode
+                       }`
                     : ''
                 }
               }
@@ -73,6 +85,9 @@ export const createPages = async (
         id,
         remoteId,
         locale,
+        localizations: node.localizations?.filter(
+          (it): it is { path: string; locale: string } => !!it.path,
+        ),
       };
 
       const templatesPath = `${
