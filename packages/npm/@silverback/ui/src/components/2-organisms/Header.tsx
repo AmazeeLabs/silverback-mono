@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import React from 'react';
 
-import { Link, NavItem  } from '../../types';
-import {useMobileMenu} from "../../utils";
+import { Link } from '../../types';
+import { useMobileMenu } from "../../utils";
 import {
   Logo
 } from '../0-atoms';
@@ -14,7 +14,7 @@ import {
 
 export type HeaderProps = {
   LogoLink: Link;
-  navItems: Array<NavItem>;
+  navItems: React.ComponentProps<typeof DesktopNavigation>['items'];
 };
 
 export const Header = ({

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link,NavItem } from '../../types';
+import { Link } from '../../types';
 import {
   Logo
 } from '../0-atoms';
@@ -10,7 +10,7 @@ import {
 
 export type FooterProps = {
   LogoLink: Link;
-  navItems: Array<NavItem>;
+  navItems: React.ComponentProps<typeof FooterNavigation>['items'];
 };
 
 export const Footer = ({

@@ -1,12 +1,11 @@
 import React, { PropsWithChildren } from 'react';
 
-import { ComponentProps } from '../../types';
 import { Footer, Header } from "../2-organisms";
 
 
 type Props = PropsWithChildren<{
-  headerProps: ComponentProps<typeof Header>;
-  footerProps: ComponentProps<typeof Footer>;
+  headerProps: React.ComponentProps<typeof Header>;
+  footerProps: React.ComponentProps<typeof Footer>;
 }>;
 
 
