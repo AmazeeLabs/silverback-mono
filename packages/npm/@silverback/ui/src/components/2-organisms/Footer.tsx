@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { NavItem, Link } from '../../types';
+import { Link,NavItem } from '../../types';
 import {
   Logo
 } from '../0-atoms';
