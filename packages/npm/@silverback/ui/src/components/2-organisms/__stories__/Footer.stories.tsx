@@ -1,8 +1,8 @@
-import { Meta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import React from 'react';
 
 import { HeaderMocks } from '../__mocks__/Header.mocks';
-import { Footer, FooterProps } from '../Footer';
+import { Footer } from '../Footer';
 
 export default {
   title: 'Components/Organisms/Footer',
@@ -12,9 +12,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story<FooterProps> = (args) => (
-  <Footer {...HeaderMocks} {...args} />
-);
-
-export const Default = Template.bind({});
-Default.args = {};
+export const Default = {
+  render: (args: React.ComponentProps<typeof Footer>) => <Footer {...HeaderMocks} {...args} />,
+  args: {},
+};

@@ -9,7 +9,4 @@ export default {
   component: PageLayout,
 } as Meta;
 
-export const Page: Story = () => (
-  <PageLayout {...PageLayoutMocks}>
-  </PageLayout>
-);
+export const Page: Story = () => <PageLayout {...PageLayoutMocks}></PageLayout>;

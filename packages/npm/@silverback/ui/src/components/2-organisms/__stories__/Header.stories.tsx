@@ -1,8 +1,8 @@
-import { Meta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import React from 'react';
 
 import { HeaderMocks } from '../__mocks__/Header.mocks';
-import { Header, HeaderProps } from '../Header';
+import { Header } from '../Header';
 
 export default {
   title: 'Components/Organisms/Header',
@@ -12,9 +12,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story<HeaderProps> = (args) => (
-  <Header {...HeaderMocks} {...args} />
-);
-
-export const Default = Template.bind({});
-Default.args = {};
+export const Default = {
+  render: (args: React.ComponentProps<typeof Header>) => <Header {...HeaderMocks} {...args} />,
+  args: {},
+};
