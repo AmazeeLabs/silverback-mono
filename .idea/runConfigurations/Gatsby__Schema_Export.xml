@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Gatsby: Schema Export" type="js.build_tools.npm">
+    <package-json value="$PROJECT_DIR$/apps/silverback-gatsby/package.json" />
+    <command value="run" />
+    <scripts>
+      <script value="update-schema" />
+    </scripts>
+    <node-interpreter value="project" />
+    <envs>
+      <env name="DRUPAL_BASE_URL" value="http://localhost:8888" />
+      <env name="DRUPAL_GRAPHQL_PATH" value="/graphql/website" />
+    </envs>
+    <method v="2" />
+  </configuration>
+</component>

@@ -1,0 +1,18 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Gatsby: Develop" type="js.build_tools.npm">
+    <package-json value="$PROJECT_DIR$/apps/silverback-gatsby/package.json" />
+    <command value="run" />
+    <scripts>
+      <script value="develop" />
+    </scripts>
+    <node-interpreter value="project" />
+    <envs>
+      <env name="DRUPAL_BASE_URL" value="http://localhost:8888" />
+      <env name="DRUPAL_GRAPHQL_PATH" value="/silverback-gatsby" />
+      <env name="DRUPAL_USER_NAME" value="GatsbyPreview" />
+      <env name="DRUPAL_USER_PASS" value="GatsbyPreview" />
+      <env name="ENABLE_GATSBY_REFRESH_ENDPOINT" value="true" />
+    </envs>
+    <method v="2" />
+  </configuration>
+</component>

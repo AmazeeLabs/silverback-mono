@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Drupal: Config Export" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/apps/silverback-drupal/vendor/drush/drush/drush.php" scriptParameters="cex -y">
+    <CommandLine workingDirectory="$PROJECT_DIR$/apps/silverback-drupal">
+      <envs>
+        <env name="SB_ENVIRONMENT" value="development" />
+      </envs>
+    </CommandLine>
+    <method v="2" />
+  </configuration>
+</component>
