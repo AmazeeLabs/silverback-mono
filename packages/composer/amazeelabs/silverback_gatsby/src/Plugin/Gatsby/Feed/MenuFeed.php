@@ -123,21 +123,18 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
    * {@inheritDoc}
    */
   public function getUpdateIds($context) : array {
-    if ($context instanceof MenuLinkContentInterface) {
-      $params = new MenuTreeParameters();
-      if ($this->max_level > 0) {
-        $params->maxDepth = $this->max_level;
-      }
-      $tree = $this->menuLinkTree->load($this->menu_id, $params);
-      $items = GatsbyMenuLinks::flatten($tree, -1);
-
-      $ids = [$context->getPluginId()];
-      $match = count(array_filter($items, function (MenuLinkTreeElement $item) use ($ids) {
-        return in_array($item->link->getPluginId(), $ids);
-      })) > 0;
-      return $match ? [$context->getMenuName()] : [];
+    $params = new MenuTreeParameters();
+    if ($this->max_level > 0) {
+      $params->maxDepth = $this->max_level;
     }
-    return [];
+    $tree = $this->menuLinkTree->load($this->menu_id, $params);
+    $items = GatsbyMenuLinks::flatten($tree, -1);
+
+    $ids = [$context];
+    $match = count(array_filter($items, function (MenuLinkTreeElement $item) use ($ids) {
+      return in_array($item->link->getPluginId(), $ids);
+    })) > 0;
+    return $match ? [$this->menu_id] : [];
   }
 
   /**
