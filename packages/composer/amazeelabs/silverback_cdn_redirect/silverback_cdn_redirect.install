@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * Rename config properties.
+ */
+function silverback_cdn_redirect_update_8001() {
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('silverback_cdn_redirect.settings');
+
+  $config->set('404_path', $config->get('fallback_path'));
+  $config->clear('fallback_path');
+
+  $config->set('should_prefix_404_path', $config->get('prefix_fallback_path'));
+  $config->clear('prefix_fallback_path');
+
+  $config->set('netlify_password', '');
+
+  $config->save(TRUE);
+}
