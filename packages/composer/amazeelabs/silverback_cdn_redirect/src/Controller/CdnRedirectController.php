@@ -5,6 +5,7 @@ namespace Drupal\silverback_cdn_redirect\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\silverback_cdn_redirect\EventSubscriber\CdnRedirectRouteSubscriber;
+use GuzzleHttp\Client;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -12,9 +13,10 @@ use Symfony\Component\HttpFoundation\Response;
 class CdnRedirectController extends ControllerBase {
 
   public function handle(string $path, Request $request) {
-    $baseUrl = \Drupal::config('silverback_cdn_redirect.settings')->get('base_url');
-    $fallback = \Drupal::config('silverback_cdn_redirect.settings')->get('fallback_path');
-    if (!$baseUrl || !$fallback) {
+    $settings = \Drupal::config('silverback_cdn_redirect.settings');
+    $baseUrl = $settings->get('base_url');
+    $notFoundPath = $settings->get('404_path');
+    if (!$baseUrl || !$notFoundPath) {
       return new Response('The module is not configured', 500);
     }
 
@@ -41,15 +43,41 @@ class CdnRedirectController extends ControllerBase {
 
     if (!$location || !$responseCode) {
       $prefix = (
-        \Drupal::config('silverback_cdn_redirect.settings')->get('prefix_fallback_path') &&
+        $settings->get('should_prefix_404_path') &&
         CdnRedirectRouteSubscriber::$currentLangcode &&
         ($prefixes = \Drupal::config('language.negotiation')->get('url.prefixes')) &&
         ($prefix = $prefixes[CdnRedirectRouteSubscriber::$currentLangcode])
       )
         ? '/' . $prefix
         : '';
-      $location = $baseUrl . $prefix . $fallback;
+
+      // Fallback behavior: redirect to 404 page.
+      $location = $baseUrl . $prefix . $notFoundPath;
       $responseCode = 302;
+
+      // Desired behavior: fetch the 404 page and return its contents.
+      $http = new Client([
+        'http_errors' => FALSE,
+        // We might need cookies if Netlify site is password protected.
+        'cookies' => TRUE,
+      ]);
+      $response = $http->get($location);
+      if ($response->getStatusCode() === 200) {
+        return new Response($response->getBody(), 404);
+      }
+      elseif (
+        $response->getStatusCode() === 401 &&
+        ($password = $settings->get('netlify_password'))
+      ) {
+        $response = $http->post($location, [
+          'form_params' => [
+            'password' => $password,
+          ],
+        ]);
+        if ($response->getStatusCode() === 200) {
+          return new Response($response->getBody(), 404);
+        }
+      }
     }
 
     if ($location === $baseUrl . $uri) {
