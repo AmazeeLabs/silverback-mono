@@ -3,6 +3,7 @@
 namespace Drupal\silverback_gatsby\Plugin\GraphQL\SchemaExtension;
 
 use Drupal\Component\Plugin\PluginManagerInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\GraphQL\ResolverBuilder;
@@ -42,6 +43,15 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
    * @var array
    */
   protected array $feeds = [];
+
+  /**
+   * The list of fields marked with "property" directive.
+   *
+   * @var array
+   *   Keys are GraphQL paths, values are directive arguments.
+   *   Example: ['Page.title' => ['path' => 'title.value']]
+   */
+  protected array $properties = [];
 
   /**
    * @var \Drupal\Core\Plugin\DefaultPluginManager|object|null
@@ -133,12 +143,23 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
               $config[$arg->name->value] = $arg->value->value;
             }
 
-            // Collect the fields used for automatic page creation.
+            // Collect the field directives.
             /** @var \GraphQL\Language\AST\FieldDefinitionNode $field */
             foreach ($definition->fields as $field) {
               foreach ($field->directives as $fieldDirective) {
+
+                // Directives used for automatic page creation.
                 if (in_array($fieldDirective->name->value, ['path', 'template'], TRUE)) {
                   $config['createPageFields'][$fieldDirective->name->value] = $field->name->value;
+                }
+
+                // The @property directive.
+                if ($fieldDirective->name->value === 'property') {
+                  $graphQlPath = $definition->name->value . '.' . $field->name->value;
+                  foreach ($fieldDirective->arguments->getIterator() as $arg) {
+                    /** @var \GraphQL\Language\AST\ArgumentNode $arg */
+                    $this->properties[$graphQlPath][$arg->name->value] = $arg->value->value;
+                  }
                 }
               }
             }
@@ -278,6 +299,17 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
 
         $registry->addFieldResolver($typeName, 'id', $idResolver);
       }
+    }
+
+    foreach ($this->properties as $path => $args) {
+      [$typeName, $fieldName] = explode('.', $path);
+      $registry->addFieldResolver($typeName, $fieldName, $builder->produce('property_path', [
+        'path' => $builder->fromValue($args['path']),
+        'value' => $builder->fromParent(),
+        'type' => $builder->callback(
+          fn(EntityInterface $entity) => $entity->getTypedData()->getDataDefinition()->getDataType()
+        ),
+      ]));
     }
   }
 

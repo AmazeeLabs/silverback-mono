@@ -30,14 +30,6 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
     $registry->addTypeResolver('RootBlock', fn($value) => $value['__type']);
     $registry->addTypeResolver('ContentBlock', fn($value) => $value['__type']);
 
-    $entityLabel = $builder->callback(fn(EntityInterface $value) => $value->label());
-
-    $fromPath = fn(string $type, string $path, $value = NULL) => $builder->produce('property_path', [
-      'path' => $builder->fromValue($path),
-      'value' => $value ?: $builder->fromParent(),
-      'type' => $builder->fromValue($type),
-    ]);
-
     $entityReferences = fn(string $field) => $builder->defaultValue(
       $builder->produce('entity_reference')
         ->map('entity', $builder->fromParent())
@@ -50,7 +42,11 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
     );
 
     $imageUrl = $builder->compose(
-      $fromPath('entity:media:image', 'field_media_image.0.entity'),
+      $builder->produce('property_path', [
+        'path' => $builder->fromValue('field_media_image.0.entity'),
+        'value' => $builder->fromParent(),
+        'type' => $builder->fromValue('entity:media:image'),
+      ]),
       $builder->produce('image_url')
         ->map('entity', $builder->fromParent())
     );
@@ -75,24 +71,16 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
     );
 
     $addResolver('Page.path', $nodePath);
-    $addResolver('Page.title', $entityLabel);
-    $addResolver('Page.body', $fromPath('entity:node:page', 'field_body.0.processed'));
 
     $addResolver('GutenbergPage.path', $nodePath);
-    $addResolver('GutenbergPage.title', $entityLabel);
     $addResolver('GutenbergPage.body', $gutenberg);
 
     $addResolver('Article.path', $nodePath);
-    $addResolver('Article.title', $entityLabel);
-    $addResolver('Article.body', $fromPath('entity:node:article', 'field_body.0.processed'));
     $addResolver('Article.tags', $entityReferences('field_tags'));
     $addResolver('Article.image', $firstEntityReference('field_image'));
     $addResolver('Article.template', $articleTemplate);
 
-    $addResolver('Image.alt', $fromPath('entity:media:image', 'field_media_image.0.alt'));
     $addResolver('Image.url', $imageUrl);
-
-    $addResolver('Tag.title', $entityLabel);
 
     $addResolver('MenuItem.label', $builder->compose(
       $builder->produce('menu_tree_link')->map('element', $builder->fromParent()),

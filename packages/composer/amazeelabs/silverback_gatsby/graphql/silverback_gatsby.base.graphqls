@@ -11,3 +11,8 @@ type Feed {
 # Directives for the automatic Gatsby pages creation.
 directive @path on FIELD_DEFINITION
 directive @template on FIELD_DEFINITION
+
+# Directives for automatic resolvers.
+directive @property(
+  path: String!
+) on FIELD_DEFINITION

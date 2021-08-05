@@ -87,10 +87,37 @@ The _Explorer_ or _Voyager_ screens should show root level fields for loading
 and querying our type (`loadPage`, `queryPages`) that you should be able to test
 now.
 
-There is also an option for automatic creation of Gatsby pages using `@path` and
-`@template` field directives. See
+## Automatic creation of Gatsby pages
+
+Available using `@path` and `@template` field directives. See
 [`@amazeelabs/gatsby-source-silverback`](../../../npm/@amazeelabs/gatsby-source-silverback)
 plugin README for details.
+
+## Automatic resolvers
+
+There are directives which create GraphQL resolvers automatically.
+
+### @property
+
+This field directive is a shortcut for `property_path` data producer.
+
+For example, this schema
+
+```graphql
+type Page @entity(type: "node", bundle: "page") {
+  body: String @property(path: "field_body.0.processed")
+}
+```
+
+Will create the following resolver for `Page.body` field
+
+```php
+$builder->produce('property_path', [
+  'path' => $builder->fromValue('field_body.0.processed'),
+  'value' => $builder->fromParent(),
+  'type' => $builder->fromValue('entity:node:page'),
+])
+```
 
 ## Menus
 
