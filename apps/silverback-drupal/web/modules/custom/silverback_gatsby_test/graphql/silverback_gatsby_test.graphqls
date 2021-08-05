@@ -6,29 +6,29 @@ type Query
 
 type Image @entity(type: "media", bundle: "image") {
   url: String!
-  alt: String!
+  alt: String! @property(path: "field_media_image.0.alt")
 }
 
 type Tag @entity(type: "taxonomy_term", bundle: "tag") {
-  title: String!
+  title: String! @property(path: "name.value")
 }
 
 type Page @entity(type: "node", bundle: "page") {
   path: String! @path
-  title: String!
-  body: String
+  title: String! @property(path: "title.value")
+  body: String @property(path: "field_body.0.processed")
 }
 
 type GutenbergPage @entity(type: "node", bundle: "gutenberg_page") {
   path: String! @path
-  title: String!
+  title: String! @property(path: "title.value")
   body: [RootBlock!]!
 }
 
 type Article @entity(type: "node", bundle: "article") {
   path: String! @path
-  title: String!
-  body: String
+  title: String! @property(path: "title.value")
+  body: String @property(path: "field_body.0.processed")
   tags: [Tag!]!
   image: Image
   template: String @template
