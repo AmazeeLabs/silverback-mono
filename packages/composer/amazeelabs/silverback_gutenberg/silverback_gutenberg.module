@@ -2,8 +2,8 @@
 
 use Drupal\Core\Asset\AttachedAssetsInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Render\Element;
 use Drupal\node\NodeInterface;
+use Drupal\silverback_gutenberg\GutenbergTextWithSummaryItem;
 use Drupal\silverback_gutenberg\Utils;
 
 /**
@@ -72,4 +72,12 @@ function silverback_gutenberg_node_presave(NodeInterface $node) {
       );
     }
   }
+}
+
+
+/**
+ * Implements hook_field_info_alter().
+ */
+function silverback_gutenberg_field_info_alter(&$info) {
+  $info['text_with_summary']['class'] = GutenbergTextWithSummaryItem::class;
 }
