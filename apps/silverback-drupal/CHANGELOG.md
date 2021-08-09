@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.9.2...@-amazeelabs/silverback-drupal@1.10.0) (2021-08-09)
+
+
+### Features
+
+* **gatsby:** add [@property](https://github.com/property) directive for GraphQL ([f5df6b9](https://github.com/AmazeeLabs/silverback-mono/commit/f5df6b90f7bec9a8d5df8edd13433e0175d43632))
+
+
+
+
+
 ## [1.9.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.9.1...@-amazeelabs/silverback-drupal@1.9.2) (2021-08-09)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
