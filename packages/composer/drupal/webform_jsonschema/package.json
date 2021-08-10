@@ -1,6 +1,6 @@
 {
   "name": "@-drupal/webform_jsonschema",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Makes it possible to use webforms with react-jsonschema-form NPM package.",
   "publishConfig": {
     "access": "public",
