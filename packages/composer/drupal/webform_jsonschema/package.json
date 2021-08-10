@@ -1,12 +1,12 @@
 {
   "name": "@-drupal/webform_jsonschema",
-  "version": "1.0.6",
+  "version": "2.0.0",
   "description": "Makes it possible to use webforms with react-jsonschema-form NPM package.",
   "publishConfig": {
     "access": "public",
     "registry": "http://localhost:4873",
     "repository": "git@git.drupal.org:project/webform_jsonschema.git",
-    "branch": "8.x-1.x"
+    "branch": "2.x"
   },
   "author": "Collective Mind of Amazee Labs",
   "license": "ISC"
