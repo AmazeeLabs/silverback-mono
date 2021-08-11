@@ -1,0 +1,15 @@
+gatsby.js
+gatsby.d.ts
+storybook.js
+storybook.d.ts
+index.js
+index.d.ts
+src/**/*.js
+src/**/*.d.ts
+### MANAGED BY @amazeelabs/scaffold - START
+.eslintrc.js
+.jest-runner-eslintrc
+.lintstagedrc
+.prettierrc
+jest.config.js
+### MANAGED BY @amazeelabs/scaffold - END
