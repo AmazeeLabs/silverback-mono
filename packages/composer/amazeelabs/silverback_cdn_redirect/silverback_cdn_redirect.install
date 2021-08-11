@@ -17,3 +17,13 @@ function silverback_cdn_redirect_update_8001() {
 
   $config->save(TRUE);
 }
+
+/**
+ * Add missing_translation_redirect_entity_types config option.
+ */
+function silverback_cdn_redirect_update_8002() {
+  \Drupal::configFactory()
+    ->getEditable('silverback_cdn_redirect.settings')
+    ->set('missing_translation_redirect_entity_types', [])
+    ->save(TRUE);
+}
