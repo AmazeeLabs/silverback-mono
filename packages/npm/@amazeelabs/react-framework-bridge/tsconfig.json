@@ -1,0 +1,14 @@
+{
+  "extends":"@tsconfig/recommended/tsconfig.json",
+  "exclude": ["./dist", "./src/__tests__"],
+  "compilerOptions":{
+    "esModuleInterop": true,
+    "jsx": "react",
+    "module": "ES6",
+    "target": "ES6",
+    "moduleResolution": "node",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "declaration": true
+  }
+}
