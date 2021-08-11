@@ -2,3 +2,4 @@ base_url: ''
 404_path: ''
 should_prefix_404_path: false
 netlify_password: ''
+missing_translation_redirect_entity_types: []

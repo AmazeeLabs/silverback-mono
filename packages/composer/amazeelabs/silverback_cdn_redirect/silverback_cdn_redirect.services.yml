@@ -3,3 +3,8 @@ services:
     class: Drupal\silverback_cdn_redirect\EventSubscriber\CdnRedirectRouteSubscriber
     tags:
       - { name: event_subscriber }
+  silverback_cdn_redirect.missing_translation_redirect_subscriber:
+    class: Drupal\silverback_cdn_redirect\EventSubscriber\MissingTranslationRedirectSubscriber
+    arguments: [ '@language_manager', '@current_route_match', '@config.factory']
+    tags:
+      - { name: event_subscriber }

@@ -14,3 +14,9 @@ silverback_cdn_redirect.settings:
     netlify_password:
       type: string
       label: 'The global password for Netlify.'
+    missing_translation_redirect_entity_types:
+      type: sequence
+      label: 'Entity type IDs for which the missing translation redirect should be performed.'
+      sequence:
+        type: string
+        label: 'Entity type ID'
