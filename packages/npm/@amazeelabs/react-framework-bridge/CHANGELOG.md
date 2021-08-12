@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.0.1...@amazeelabs/react-framework-bridge@1.0.2) (2021-08-12)
+
+
+### Bug Fixes
+
+* **gatsby:** add .npmignore to react-framework-bridge ([c414e28](https://github.com/AmazeeLabs/silverback-mono/commit/c414e2879d691bcb70b13a2979254e6d7941c59e))
+
+
+
+
+
 ## [1.0.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.1.0...@amazeelabs/react-framework-bridge@1.0.1) (2021-08-12)
 
 
