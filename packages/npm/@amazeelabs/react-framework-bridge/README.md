@@ -80,9 +80,9 @@ import React from 'react';
 import { Meta } from '@storybook/react/types-6-0';
 import { Teaser as TeaserComponent } from '../teaser';
 import {
-  buildStorybookHtml,
-  buildStorybookLink,
-} from '@amazeelabs/react-framework-bridge';
+  buildHtml,
+  buildLink,
+} from '@amazeelabs/react-framework-bridge/storybook';
 
 export default {
   title: 'Components/Molecules/Teaser',
@@ -92,10 +92,10 @@ export default {
 export const Teaser = () => (
   <TeaserComponent
     title={'This is the title'}
-    Description={buildStorybookHtml(
+    Description={buildHtml(
       '<p>This is a text with a <a href="https://www.amazeelabs.com">Link</a>.<p>',
     )}
-    Link={buildStorybookLink('/about-us')}
+    Link={buildLink('/about-us')}
   />
 );
 ```
@@ -107,9 +107,9 @@ to this framework:
 import React from 'react';
 import { Teaser } from 'my-ui-library';
 import {
-  buildGatsbyHtml,
-  buildGatsbyLink,
-} from '@amazeelabs/react-framework-bridge';
+  buildHtml,
+  buildLink,
+} from '@amazeelabs/react-framework-bridge/gatsby';
 
 export const query = graphql`...`;
 
@@ -119,8 +119,8 @@ const Homepage = (data) => (
     {data.teasers.map((teaser) => (
       <Teaser
         title={teaser.title}
-        Description={buildGatsbyHtml(teaser.description)}
-        Link={buildGatsbyLink(teaser.url)}
+        Description={buildHtml(teaser.description)}
+        Link={buildLink(teaser.url)}
       />
     ))}
   </div>
@@ -149,7 +149,7 @@ In Storybook, the `activeClassName` will be applied if the `href` attribute
 contains `active`. In Gatsby it will use the built-in active-link functionality.
 
 ```tsx
-const Link = buildStorybookLink({ href: '/active' });
+const Link = buildLink({ href: '/active' });
 
 ...
 
@@ -166,7 +166,7 @@ object provided by `gatsby-plugin-image`. In both cases it's possible to pass
 `className` to the resulting component to control the design.
 
 ```tsx
-const Image = buildStorybookImage({ src: './cat.jpg', alt: 'A cat!' });
+const Image = buildImage({ src: './cat.jpg', alt: 'A cat!' });
 
 ...
 
@@ -182,7 +182,7 @@ component then allows to control the visual appearance by either passing a class
 string per element name or a function that results in a class.
 
 ```tsx
-const Html = buildStorybookHtml(
+const Html = buildHtml(
   `<p>This is a test with a <a href="https://www.amazeelabs.com">link</a>.</p>`,
 );
 
