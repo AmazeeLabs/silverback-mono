@@ -24,6 +24,20 @@ jest.mock(
 );
 
 describe('buildLink', () => {
+  it('can build a link from segments and query parameters', () => {
+    const Link = buildLink({
+      segments: ['/foo', 'bar'],
+      query: {
+        a: 'b',
+      },
+    });
+    render(<Link>Test</Link>);
+    expect(screen.getByRole('link').getAttribute('data-gatsby')).toBeTruthy();
+    expect(screen.getByRole('link').getAttribute('href')).toEqual(
+      '/foo/bar?a=b',
+    );
+  });
+
   it('renders a Gatsby link for an internal path', () => {
     const Link = buildLink({ href: '/test' });
     render(<Link>Test</Link>);

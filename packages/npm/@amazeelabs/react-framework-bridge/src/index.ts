@@ -10,4 +10,5 @@ export {
   buildLink as buildStorybookLink,
 } from './storybook';
 
-export {} from './types';
+export * from './types';
+export * from './utils';

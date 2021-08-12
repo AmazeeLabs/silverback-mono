@@ -2,25 +2,34 @@ import { GatsbyLinkProps, Link as GatsbyLink, navigate } from 'gatsby';
 import { GatsbyImage, GatsbyImageProps } from 'gatsby-plugin-image';
 import React from 'react';
 
-import type { Image, Link } from './types';
-import { buildHtmlBuilder, isInternalTarget, isRelative } from './utils';
+import type { Image, Link, LinkProps } from './types';
+import {
+  buildHtmlBuilder,
+  buildUrl,
+  isInternalTarget,
+  isRelative,
+} from './utils';
 
 export const buildLink = ({
   href,
+  segments,
+  query,
+  queryOptions,
   target,
   ...props
 }: Omit<GatsbyLinkProps<any>, 'className' | 'activeClassName' | 'to'> & {
   href?: string;
-}): Link => {
+} & Pick<LinkProps, 'segments' | 'query' | 'queryOptions'>): Link => {
+  const uri = segments ? buildUrl(segments, query, queryOptions) : href;
   const Element: Link = function LinkBuilder({
     className,
     activeClassName,
     children,
   }) {
-    return href && isInternalTarget(target) && isRelative(href) ? (
+    return uri && isInternalTarget(target) && isRelative(uri) ? (
       // @ts-ignore GatsbyLink comply with type
       <GatsbyLink
-        to={href}
+        to={uri}
         target={target}
         className={className}
         activeClassName={activeClassName}
@@ -29,7 +38,7 @@ export const buildLink = ({
         {children}
       </GatsbyLink>
     ) : (
-      <a className={className} target={target} href={href} {...props}>
+      <a className={className} target={target} href={uri} {...props}>
         {children}
       </a>
     );

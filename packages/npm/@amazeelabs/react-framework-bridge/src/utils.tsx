@@ -5,9 +5,10 @@ import parse, {
   Element,
   HTMLReactParserOptions,
 } from 'html-react-parser';
+import { stringify } from 'qs';
 import React, { ComponentProps } from 'react';
 
-import { Html, LinkBuilder } from './types';
+import { Html, LinkBuilder, LinkProps } from './types';
 
 export const isInternalTarget = (target?: string) =>
   typeof target === 'undefined' || target === '' || target === '_self';
@@ -112,3 +113,28 @@ export const buildHtmlBuilder =
       return <>{parse(input, htmlParserOptions(buildLink, classNames))}</>;
     };
   };
+
+const isTruthy = (i: string | null | undefined): i is string => Boolean(i);
+
+const stripSlashes = (segment: string, index: number) => {
+  if (index === 0) {
+    return segment.replace(/^\/{2,}/g, '/').replace(/\/+$/g, '');
+  }
+
+  return segment.replace(/^\/+|\/+$/g, '');
+};
+
+export const buildUrl = (
+  segments: NonNullable<LinkProps['segments']>,
+  query?: LinkProps['query'],
+  queryOptions?: LinkProps['queryOptions'],
+) => {
+  const url = segments.filter(isTruthy).map(stripSlashes).join('/');
+
+  const queryString = stringify(query, {
+    skipNulls: true,
+    ...queryOptions,
+  });
+
+  return [url, queryString].filter(isTruthy).join('?');
+};

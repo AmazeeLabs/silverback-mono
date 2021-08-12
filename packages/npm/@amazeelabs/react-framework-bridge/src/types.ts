@@ -1,4 +1,5 @@
 import { Element } from 'html-react-parser';
+import { stringify } from 'qs';
 import React from 'react';
 
 export type ClassFunction = (domNode: Element) => string | null;
@@ -36,5 +37,10 @@ export type LinkProps = Omit<
     HTMLAnchorElement
   >,
   'className'
->;
+> & {
+  segments?: Array<string | null | undefined>;
+  query?: Parameters<typeof stringify>[0];
+  queryOptions?: Parameters<typeof stringify>[1];
+};
+
 export type LinkBuilder = (props: LinkProps) => Link;
