@@ -12,6 +12,19 @@ jest.mock('@storybook/addon-actions', () => ({
 describe('buildLink', () => {
   beforeEach(jest.resetAllMocks);
 
+  it('can build a link from segments and query parameters', () => {
+    const Link = buildLink({
+      segments: ['/foo', 'bar'],
+      query: {
+        a: 'b',
+      },
+    });
+    render(<Link>Test</Link>);
+    expect(screen.getByRole('link').getAttribute('href')).toEqual(
+      '/foo/bar?a=b',
+    );
+  });
+
   it('renders a simple link', () => {
     const Link = buildLink({ href: '#test' });
     render(<Link>test</Link>);

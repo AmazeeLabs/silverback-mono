@@ -2,9 +2,16 @@ import { action } from '@storybook/addon-actions';
 import React from 'react';
 
 import { Image, ImageProps, Link, LinkProps } from './types';
-import { buildHtmlBuilder } from './utils';
+import { buildHtmlBuilder, buildUrl } from './utils';
 
-export const buildLink = ({ href, ...props }: LinkProps): Link => {
+export const buildLink = ({
+  href,
+  segments,
+  query,
+  queryOptions,
+  ...props
+}: LinkProps): Link => {
+  const target = segments ? buildUrl(segments, query, queryOptions) : href;
   const Element: Link = function MockLink({
     className,
     activeClassName,
@@ -12,13 +19,13 @@ export const buildLink = ({ href, ...props }: LinkProps): Link => {
   }) {
     return (
       <a
-        href={href}
+        href={target}
         onClick={(ev) => {
           ev.preventDefault();
-          action('navigate to')(href);
+          action('navigate to')(target);
         }}
         className={
-          href?.includes('active')
+          target?.includes('active')
             ? [className, activeClassName].filter((c) => !!c).join(' ')
             : className
         }
@@ -28,7 +35,7 @@ export const buildLink = ({ href, ...props }: LinkProps): Link => {
       </a>
     );
   };
-  Element.navigate = () => action('navigate to')(href);
+  Element.navigate = () => action('navigate to')(target);
   return Element;
 };
 

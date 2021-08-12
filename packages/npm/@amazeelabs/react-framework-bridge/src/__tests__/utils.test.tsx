@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 
 import { Link, LinkProps } from '../types';
-import { buildHtmlBuilder, isElement, isRelative } from '../utils';
+import { buildHtmlBuilder, buildUrl, isElement, isRelative } from '../utils';
 
 describe('isRelative', () => {
   it('returns true for a relative url', () => {
@@ -160,5 +160,53 @@ describe('buildHtmlBuilder', () => {
   </a>
 </main>
 `);
+  });
+});
+
+describe('buildUrl', () => {
+  it('concatenates segments', () => {
+    expect(buildUrl(['https://fake.url/', 'a', 'b'])).toStrictEqual(
+      `https://fake.url/a/b`,
+    );
+  });
+  it('filters out falsy segments', () => {
+    expect(
+      buildUrl(['https://fake.url/', 'a', null, 'b', undefined, 'c']),
+    ).toStrictEqual(`https://fake.url/a/b/c`);
+  });
+  it('sanitizes segments', () => {
+    expect(
+      buildUrl(['https://fake.url///', '/a', 'b//', '///c']),
+    ).toStrictEqual(`https://fake.url/a/b/c`);
+  });
+  it('can handle query string parameters', () => {
+    expect(
+      buildUrl(['https://fake.url/', 'a', 'b'], {
+        first: 'value',
+        second: true,
+        third: 32,
+        fourth: ['a', 2, null],
+        fifth: {
+          a: 'value',
+          2: true,
+        },
+        sixth: undefined,
+        seventh: null,
+      }),
+    ).toStrictEqual(
+      `https://fake.url/a/b?${encodeURI(
+        'first=value&second=true&third=32&fourth[0]=a&fourth[1]=2&fifth[2]=true&fifth[a]=value',
+      )}`,
+    );
+  });
+  it('builds relative urls', () => {
+    expect(buildUrl(['/first//', '//second/', 'third'])).toStrictEqual(
+      '/first/second/third',
+    );
+  });
+  it('sanitizes leading/trailing slashes', () => {
+    expect(buildUrl(['/first//', '//second/', 'third//'])).toStrictEqual(
+      '/first/second/third',
+    );
   });
 });
