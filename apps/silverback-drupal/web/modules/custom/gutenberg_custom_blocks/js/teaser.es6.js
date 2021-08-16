@@ -37,7 +37,10 @@ const settings = {
     return (
       <div className={props.className}>
         <DrupalMediaEntity
-          attributes={props.attributes}
+          attributes={{
+            ...props.attributes,
+            allowedTypes: ['image'],
+          }}
           setAttributes={props.setAttributes}
           isMediaLibraryEnabled={true}
           onError={(error) => {
