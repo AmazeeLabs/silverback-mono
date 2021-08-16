@@ -110,7 +110,6 @@
         "run-tests": [
             "if [ -d web/modules/custom ]; then phpunit web/modules/custom; fi",
             "yarn install && CYPRESS_TAGS=@COMPLETED cypress run"
-        ],
-        "post-install-cmd": "set -x && cd web/modules/custom/gutenberg_custom_blocks && yarn && yarn build"
+        ]
     }
 }
