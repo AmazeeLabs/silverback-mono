@@ -1,27 +1,10 @@
-const { blocks, data, element, components, editor } = wp;
-const { registerBlockType } = blocks;
-const { dispatch, select } = data;
-const { Fragment } = element;
+/* global wp, Drupal */
 const {
-  PanelBody,
-  BaseControl,
-  Icon,
-  RangeControl,
-  IconButton,
-  Toolbar,
-  SelectControl,
-  SVG,
-  Path,
-} = components;
-const {
-  InnerBlocks,
-  RichText,
-  InspectorControls,
-  PanelColorSettings,
-  MediaUpload,
-  BlockControls,
-} = editor;
-const __ = Drupal.t;
+  blocks: { registerBlockType },
+  components: { SVG, Path },
+  editor: { InnerBlocks },
+} = wp;
+const { t: __ } = Drupal;
 
 const settings = {
   title: __('Two columns'),

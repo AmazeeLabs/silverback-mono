@@ -1,10 +1,11 @@
 {
-  "name": "gutenberg_custom_blocks",
+  "name": "@-silverback-drupal/gutenberg_custom_blocks",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "yarn drupal-js-build --css && yarn drupal-js-build watch --css",
     "build": "yarn drupal-js-build --css && yarn drupal-gutenberg-translations",
-    "prepare": "amazee-scaffold",
+    "prepare": "yarn amazee-scaffold && yarn build",
     "precommit": "lint-staged",
     "test": "tsc --noEmit && jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi",
     "watch": "jest --watch"
