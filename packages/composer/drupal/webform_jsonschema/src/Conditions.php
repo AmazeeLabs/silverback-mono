@@ -117,7 +117,7 @@ class Conditions {
     $value = reset($triggerArray);
     $trigger = key($triggerArray);
 
-    if ($schema['properties'][$dependencyKey]['type'] ?? NULL === 'boolean' && $trigger === 'filled') {
+    if (($schema['properties'][$dependencyKey]['type'] ?? NULL) === 'boolean' && $trigger === 'filled') {
       // The issue with the checkboxes is:
       // - JSON Schema dependencies react to the presence of the field value.
       // - When a checkbox appears on a form, it's value is undefined.
@@ -154,7 +154,7 @@ class Conditions {
           return $definition['enum'][0];
         }, $schema['properties'][$dependencyKey]['anyOf']);
       }
-      if ($schema['properties'][$dependencyKey]['type'] ?? NULL === 'boolean') {
+      if (($schema['properties'][$dependencyKey]['type'] ?? NULL) === 'boolean') {
         // Boolean field.
         $possibleValues = [TRUE, FALSE];
       }
