@@ -1,0 +1,50 @@
+diff --git a/autosave_form.libraries.yml b/autosave_form.libraries.yml
+index a3df61f28b62..ee90118b608d 100644
+--- a/autosave_form.libraries.yml
++++ b/autosave_form.libraries.yml
+@@ -12,3 +12,4 @@ drupal.autosave_form:
+     - core/drupal.dialog
+     - core/drupal.dialog.ajax
+     - core/drupal.ajax
++    - gutenberg/edit-node
+diff --git a/js/autosave_form.js b/js/autosave_form.js
+index d34ac811ef4a..505217a74e36 100644
+--- a/js/autosave_form.js
++++ b/js/autosave_form.js
+@@ -3,7 +3,7 @@
+  * Defines Javascript behaviors for the autosave_form module.
+  */
+
+-(function ($, Drupal, drupalSettings) {
++(function ($, Drupal, drupalSettings, wp) {
+
+   'use strict';
+
+@@ -192,6 +192,21 @@
+         if (Drupal.autosaveForm.autosaveSubmit.is(':disabled') || Drupal.autosaveForm.autosaveSubmit.hasClass('is-disabled')) {
+           return;
+         }
++        // If there are gutenberg fields, we need to make sure the textarea value
++        // is updated before autosaving.
++        const $gutenbergFields = $('.field--gutenberg textarea');
++        if($gutenbergFields.length) {
++          const { data } = wp;
++          $gutenbergFields.each(function(i, element) {
++            // Update editor textarea with gutenberg content.
++            $(element).val(data.select('core/editor').getEditedPostContent());
++            // We need to update the 'editor-value-is-changed' flag otherwise
++            // the content won't be updated.
++            $(element).data({ 'editor-value-is-changed': true });
++            $(element).attr('data-editor-value-is-changed', true);
++          });
++        }
++
+         var ajax = findAjaxInstance(ajax_class);
+         if (ajax) {
+           if (Drupal.autosaveForm.notification.active) {
+@@ -305,4 +320,4 @@
+     Drupal.AjaxCommands.prototype.openDialog(ajax, response, status);
+   };
+ 
+-})(jQuery, Drupal, drupalSettings);
++})(jQuery, Drupal, drupalSettings, window.wp);

@@ -19,6 +19,7 @@
         }
     ],
     "require": {
+        "amazeelabs/proxy-autosave-form": "^1.0",
         "amazeelabs/proxy-drupal-core": "^1.0",
         "amazeelabs/proxy-gutenberg": "^1.0",
         "amazeelabs/silverback-cli": "@dev",

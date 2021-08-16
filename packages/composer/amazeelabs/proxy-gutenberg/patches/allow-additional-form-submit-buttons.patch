@@ -1,0 +1,87 @@
+diff --git a/js/gutenberg.es6.js b/js/gutenberg.es6.js
+index f807a8dc18e9..329c4bf3f892 100644
+--- a/js/gutenberg.es6.js
++++ b/js/gutenberg.es6.js
+@@ -316,10 +316,11 @@
+       }, 0);
+
+       let isFormValid = false;
++      const $formSubmitButtons = $(element.form).find('.form-submit');
+
+       // Calling openGeneralSidebar() is not working properly when sidebar
+       // is hidden. To overcome this we need to call it twice.
+-      $('#edit-submit, #edit-preview').on('mousedown', e => {
++      $formSubmitButtons.on('mousedown', e => {
+         const { openGeneralSidebar } = data.dispatch('core/edit-post');
+
+         isFormValid = element.form.reportValidity();
+@@ -334,7 +335,7 @@
+         }
+       });
+
+-      $('#edit-submit, #edit-preview').on('click', e => {
++      $formSubmitButtons.on('click', e => {
+         $(e.currentTarget).attr('active', true);
+
+         // Expand "More Settings" set.
+@@ -385,8 +386,7 @@
+
+         // If none of those buttons were clicked...
+         if (
+-          $source.attr('id') !== 'edit-submit' &&
+-          $source.attr('id') !== 'edit-preview' &&
++          !$source.hasClass('form-submit') &&
+           $source.attr('id') !== 'edit-delete'
+         ) {
+           // Just stop everything.
+diff --git a/js/gutenberg.js b/js/gutenberg.js
+index bef6e664ac4d..d75f54635306 100644
+--- a/js/gutenberg.js
++++ b/js/gutenberg.js
+@@ -87,7 +87,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
+       var _this2 = this;
+
+       return _asyncToGenerator(regeneratorRuntime.mark(function _callee3() {
+-        var _format$editorSetting, contentType, allowedBlocks, blackList, data, blocks, hooks, dispatch, addFilter, unregisterBlockType, registerDrupalStore, registerDrupalBlocks, registerDrupalMedia, key, value, categories, isWelcomeGuide, metaboxesContainer, metaboxForm, isFormValid, formSubmitted;
++        var _format$editorSetting, contentType, allowedBlocks, blackList, data, blocks, hooks, dispatch, addFilter, unregisterBlockType, registerDrupalStore, registerDrupalBlocks, registerDrupalMedia, key, value, categories, isWelcomeGuide, metaboxesContainer, metaboxForm, isFormValid, $formSubmitButtons, formSubmitted;
+
+         return regeneratorRuntime.wrap(function _callee3$(_context3) {
+           while (1) {
+@@ -268,8 +268,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
+                 }, 0);
+
+                 isFormValid = false;
++                $formSubmitButtons = $(element.form).find('.form-submit');
+
+-                $('#edit-submit, #edit-preview').on('mousedown', function (e) {
++                $formSubmitButtons.on('mousedown', function (e) {
+                   var _data$dispatch = data.dispatch('core/edit-post'),
+                       openGeneralSidebar = _data$dispatch.openGeneralSidebar;
+
+@@ -285,7 +286,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
+                   }
+                 });
+
+-                $('#edit-submit, #edit-preview').on('click', function (e) {
++                $formSubmitButtons.on('click', function (e) {
+                   $(e.currentTarget).attr('active', true);
+
+                   $('#edit-additional-fields').attr('open', '');
+@@ -318,7 +319,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
+
+                   $source.removeAttr('active');
+
+-                  if ($source.attr('id') !== 'edit-submit' && $source.attr('id') !== 'edit-preview' && $source.attr('id') !== 'edit-delete') {
++                  if (!$source.hasClass('form-submit') && $source.attr('id') !== 'edit-delete') {
+                     e.preventDefault();
+                     e.stopPropagation();
+                     return false;
+@@ -359,7 +360,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
+
+                 return _context3.abrupt('return', true);
+
+-              case 48:
++              case 49:
+               case 'end':
+                 return _context3.stop();
+             }
