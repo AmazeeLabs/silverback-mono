@@ -29,7 +29,7 @@
     "@amazeelabs/prettier-config": "^1.1.0",
     "@types/chalk": "^2.2.0",
     "@types/deasync": "^0.1.1",
-    "@types/jest": "^26.0.22",
+    "@types/jest": "^27.0.0",
     "@types/js-yaml": "^4.0.0",
     "@types/nunjucks": "^3.1.4",
     "@types/prompts": "^2.0.10",
