@@ -1,0 +1,20 @@
+{
+  "name": "amazeelabs/proxy-autosave-form",
+  "type": "library",
+  "version": "1.0.0",
+  "description": "Proxy package for drupal/autosave_form.",
+  "homepage": "https://silverback.netlify.app",
+  "license": "GPL-2.0+",
+  "extra": {
+    "enable-patching": true,
+    "composer-exit-on-patch-failure": true,
+    "patches": {
+      "drupal/autosave_form": {
+        "Gutenberg support": "./vendor/amazeelabs/proxy-autosave-form/patches/gutenberg-support.patch"
+      }
+    }
+  },
+  "require": {
+    "drupal/autosave_form": "^1.2"
+  }
+}

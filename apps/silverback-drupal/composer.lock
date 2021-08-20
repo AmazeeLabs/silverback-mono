@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7264e1bf4ea87c1331759630566fdf38",
+    "content-hash": "012fe877cbc2c9b639d7ba5c36cb7ef6",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -76,6 +76,36 @@
             "time": "2021-04-13T14:13:44+00:00"
         },
         {
+            "name": "amazeelabs/proxy-autosave-form",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/composer/amazeelabs/proxy-autosave-form",
+                "reference": "23649adeab3e049a745c38ff7af351d25d1bfd1c"
+            },
+            "require": {
+                "drupal/autosave_form": "^1.2"
+            },
+            "type": "library",
+            "extra": {
+                "enable-patching": true,
+                "composer-exit-on-patch-failure": true,
+                "patches": {
+                    "drupal/autosave_form": {
+                        "Gutenberg support": "./vendor/amazeelabs/proxy-autosave-form/patches/gutenberg-support.patch"
+                    }
+                }
+            },
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Proxy package for drupal/autosave_form.",
+            "homepage": "https://silverback.netlify.app",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
             "name": "amazeelabs/proxy-drupal-core",
             "version": "1.0.0",
             "dist": {
@@ -112,7 +142,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-gutenberg",
-                "reference": "e7ef6cebe38081a54e2013dd22379f12a4e85921"
+                "reference": "979d42d406306a2afcef01dab94515e80c2d2dd6"
             },
             "require": {
                 "drupal/gutenberg": "^2.0"
@@ -124,7 +154,8 @@
                 "patches": {
                     "drupal/gutenberg": {
                         "Missing core block definitions (#3202756)": "https://git.drupalcode.org/project/gutenberg/-/merge_requests/3/diffs.patch",
-                        "Stuck in Loading in Drupal 9.2 (#3219569)": "https://www.drupal.org/files/issues/2021-06-27/3219569-13-8.x-2.x.patch"
+                        "Stuck in Loading in Drupal 9.2 (#3219569)": "https://www.drupal.org/files/issues/2021-06-27/3219569-13-8.x-2.x.patch",
+                        "Allow additional form submit buttons": "./vendor/amazeelabs/proxy-gutenberg/patches/allow-additional-form-submit-buttons.patch"
                     }
                 }
             },
@@ -2346,6 +2377,50 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/admin_toolbar",
                 "issues": "https://www.drupal.org/project/issues/admin_toolbar"
+            }
+        },
+        {
+            "name": "drupal/autosave_form",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/autosave_form.git",
+                "reference": "8.x-1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/autosave_form-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "e7a893dfdba574b74cd77e16be2140d82bb353a6"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.2",
+                    "datestamp": "1591627224",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "hchonov",
+                    "homepage": "https://www.drupal.org/user/2901211"
+                }
+            ],
+            "description": "Adds autosave feature on forms.",
+            "homepage": "https://www.drupal.org/project/autosave_form",
+            "support": {
+                "source": "https://git.drupalcode.org/project/autosave_form"
             }
         },
         {
