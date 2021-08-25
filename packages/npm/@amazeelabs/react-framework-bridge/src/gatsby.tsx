@@ -38,7 +38,12 @@ export const buildLink = ({
         {children}
       </GatsbyLink>
     ) : (
-      <a className={className} target={target} href={uri} {...props}>
+      <a
+        className={className}
+        target={target || '_blank'}
+        href={uri}
+        {...props}
+      >
         {children}
       </a>
     );
