@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.0.4...@amazeelabs/react-framework-bridge@1.2.0) (2021-08-26)
+
+
+### Bug Fixes
+
+* **react:** bump version ([0ac7e24](https://github.com/AmazeeLabs/silverback-mono/commit/0ac7e24df2a7fb333e37942d9c5578dc9fb7aa7e))
+* version fix ([4d97b97](https://github.com/AmazeeLabs/silverback-mono/commit/4d97b97bb34adb281fae9354648859f165cc6e25))
+
+
+### Features
+
+* **gatsby:** automatically open external link in "_blank" ([251d97a](https://github.com/AmazeeLabs/silverback-mono/commit/251d97a469e96bb3f83140f18f22c23cb244945a))
+
+
+
+
+
 ## [1.0.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.0.3...@amazeelabs/react-framework-bridge@1.0.4) (2021-08-19)
 
 
