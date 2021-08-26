@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.8](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.7...@-amazeelabs/silverback-drupal@1.10.8) (2021-08-26)
+
+
+### Bug Fixes
+
+* set allowed media types ([4274752](https://github.com/AmazeeLabs/silverback-mono/commit/42747523ce7ed03170adba02a412cd81ff0fc698))
+
+
+
+
+
 ## [1.10.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.6...@-amazeelabs/silverback-drupal@1.10.7) (2021-08-24)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
