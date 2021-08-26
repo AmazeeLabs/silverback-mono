@@ -168,8 +168,6 @@ object provided by `gatsby-plugin-image`. In both cases it's possible to pass
 ```tsx
 const Image = buildImage({ src: './cat.jpg', alt: 'A cat!' });
 
-...
-
 <Image className={'border-red'} />;
 ```
 
