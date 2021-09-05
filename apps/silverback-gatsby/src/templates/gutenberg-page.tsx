@@ -7,6 +7,8 @@ import { BlockImage } from '../components/content-blocks/image';
 import { BlockTeaser } from '../components/content-blocks/teaser';
 import { BlockTwoColumns } from '../components/content-blocks/two-columns';
 import { languages } from '../constants/languages';
+import { StandardLayout } from '../layouts/StandardLayout';
+import { LocationState } from '../types/LocationState';
 import { Row } from '../util/Row';
 import { UnreachableCaseError } from '../util/types';
 
@@ -59,12 +61,12 @@ export const query = graphql`
 `;
 
 const GutenbergPage: React.FC<
-  PageProps<GutenbergPageQuery, SilverbackPageContext>
-> = ({ pageContext: { locale, localizations }, data }) => {
+  PageProps<GutenbergPageQuery, SilverbackPageContext, LocationState>
+> = ({ pageContext: { locale, localizations }, data, location }) => {
   const page = data.drupalGutenbergPage!;
 
   return (
-    <>
+    <StandardLayout locationState={location.state}>
       <Link to="/">To frontpage</Link>
       <table>
         <tr>
@@ -105,7 +107,7 @@ const GutenbergPage: React.FC<
           </Row>
         </tr>
       </table>
-    </>
+    </StandardLayout>
   );
 };
 

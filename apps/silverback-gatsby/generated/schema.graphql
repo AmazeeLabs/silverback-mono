@@ -448,20 +448,17 @@ type SitePage implements Node {
 }
 
 type SitePageContext {
-  remoteId: String
-  langcode: String
-  otherLanguages: [SitePageContextOtherLanguages]
-}
-
-type SitePageContextOtherLanguages {
-  path: String
-  language: SitePageContextOtherLanguagesLanguage
-}
-
-type SitePageContextOtherLanguagesLanguage {
+  typeName: String
   id: String
-  pathPrefix: String
-  name: String
+  remoteId: String
+  locale: String
+  localizations: [SitePageContextLocalizations]
+  expectedTemplatePath: String
+}
+
+type SitePageContextLocalizations {
+  path: String
+  locale: String
 }
 
 type DrupalImage implements Node {
@@ -533,6 +530,7 @@ type DrupalArticle implements Node {
   body: String
   tags: [DrupalTag!]!
   image: DrupalImage
+  template: String
   drupalId: String!
   defaultTranslation: Boolean!
   langcode: String!
@@ -598,7 +596,7 @@ type Query {
   allDrupalPage(filter: DrupalPageFilterInput, sort: DrupalPageSortInput, skip: Int, limit: Int): DrupalPageConnection!
   drupalGutenbergPage(translation: DrupalGutenbergPageFilterInput, remoteTypeName: StringQueryOperatorInput, translations: DrupalGutenbergPageFilterListInput, remoteId: StringQueryOperatorInput, path: StringQueryOperatorInput, title: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalGutenbergPage
   allDrupalGutenbergPage(filter: DrupalGutenbergPageFilterInput, sort: DrupalGutenbergPageSortInput, skip: Int, limit: Int): DrupalGutenbergPageConnection!
-  drupalArticle(translation: DrupalArticleFilterInput, remoteTypeName: StringQueryOperatorInput, translations: DrupalArticleFilterListInput, remoteId: StringQueryOperatorInput, path: StringQueryOperatorInput, title: StringQueryOperatorInput, body: StringQueryOperatorInput, tags: DrupalTagFilterListInput, image: DrupalImageFilterInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalArticle
+  drupalArticle(translation: DrupalArticleFilterInput, remoteTypeName: StringQueryOperatorInput, translations: DrupalArticleFilterListInput, remoteId: StringQueryOperatorInput, path: StringQueryOperatorInput, title: StringQueryOperatorInput, body: StringQueryOperatorInput, tags: DrupalTagFilterListInput, image: DrupalImageFilterInput, template: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalArticle
   allDrupalArticle(filter: DrupalArticleFilterInput, sort: DrupalArticleSortInput, skip: Int, limit: Int): DrupalArticleConnection!
   drupalMainMenu(translation: DrupalMainMenuFilterInput, remoteTypeName: StringQueryOperatorInput, translations: DrupalMainMenuFilterListInput, remoteId: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, items: DrupalMenuItemFilterListInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalMainMenu
   allDrupalMainMenu(filter: DrupalMainMenuFilterInput, sort: DrupalMainMenuSortInput, skip: Int, limit: Int): DrupalMainMenuConnection!
@@ -610,10 +608,12 @@ type Query {
   allImageSharp(filter: ImageSharpFilterInput, sort: ImageSharpSortInput, skip: Int, limit: Int): ImageSharpConnection!
   drupalTag(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, title: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalTag
   allDrupalTag(filter: DrupalTagFilterInput, sort: DrupalTagSortInput, skip: Int, limit: Int): DrupalTagConnection!
-  siteBuildMetadata(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, buildTime: DateQueryOperatorInput): SiteBuildMetadata
-  allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, sort: SiteBuildMetadataSortInput, skip: Int, limit: Int): SiteBuildMetadataConnection!
+  drupalWebform(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, path: StringQueryOperatorInput, url: StringQueryOperatorInput, title: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalWebform
+  allDrupalWebform(filter: DrupalWebformFilterInput, sort: DrupalWebformSortInput, skip: Int, limit: Int): DrupalWebformConnection!
   sitePlugin(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, resolve: StringQueryOperatorInput, name: StringQueryOperatorInput, version: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, nodeAPIs: StringQueryOperatorInput, browserAPIs: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, pluginFilepath: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput): SitePlugin
   allSitePlugin(filter: SitePluginFilterInput, sort: SitePluginSortInput, skip: Int, limit: Int): SitePluginConnection!
+  siteBuildMetadata(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, buildTime: DateQueryOperatorInput): SiteBuildMetadata
+  allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, sort: SiteBuildMetadataSortInput, skip: Int, limit: Int): SiteBuildMetadataConnection!
 }
 
 input StringQueryOperatorInput {
@@ -1597,24 +1597,21 @@ input SiteFunctionSortInput {
 }
 
 input SitePageContextFilterInput {
-  remoteId: StringQueryOperatorInput
-  langcode: StringQueryOperatorInput
-  otherLanguages: SitePageContextOtherLanguagesFilterListInput
-}
-
-input SitePageContextOtherLanguagesFilterListInput {
-  elemMatch: SitePageContextOtherLanguagesFilterInput
-}
-
-input SitePageContextOtherLanguagesFilterInput {
-  path: StringQueryOperatorInput
-  language: SitePageContextOtherLanguagesLanguageFilterInput
-}
-
-input SitePageContextOtherLanguagesLanguageFilterInput {
+  typeName: StringQueryOperatorInput
   id: StringQueryOperatorInput
-  pathPrefix: StringQueryOperatorInput
-  name: StringQueryOperatorInput
+  remoteId: StringQueryOperatorInput
+  locale: StringQueryOperatorInput
+  localizations: SitePageContextLocalizationsFilterListInput
+  expectedTemplatePath: StringQueryOperatorInput
+}
+
+input SitePageContextLocalizationsFilterListInput {
+  elemMatch: SitePageContextLocalizationsFilterInput
+}
+
+input SitePageContextLocalizationsFilterInput {
+  path: StringQueryOperatorInput
+  locale: StringQueryOperatorInput
 }
 
 input SitePluginFilterInput {
@@ -1812,13 +1809,14 @@ enum SitePageFieldsEnum {
   internal___owner
   internal___type
   isCreatedByStatefulCreatePages
+  context___typeName
+  context___id
   context___remoteId
-  context___langcode
-  context___otherLanguages
-  context___otherLanguages___path
-  context___otherLanguages___language___id
-  context___otherLanguages___language___pathPrefix
-  context___otherLanguages___language___name
+  context___locale
+  context___localizations
+  context___localizations___path
+  context___localizations___locale
+  context___expectedTemplatePath
   pluginCreator___id
   pluginCreator___parent___id
   pluginCreator___parent___parent___id
@@ -3390,6 +3388,7 @@ input DrupalArticleFilterInput {
   body: StringQueryOperatorInput
   tags: DrupalTagFilterListInput
   image: DrupalImageFilterInput
+  template: StringQueryOperatorInput
   drupalId: StringQueryOperatorInput
   defaultTranslation: BooleanQueryOperatorInput
   langcode: StringQueryOperatorInput
@@ -3446,6 +3445,7 @@ enum DrupalArticleFieldsEnum {
   translation___translation___translation___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation___body @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation___tags @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___translation___template @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -3461,6 +3461,7 @@ enum DrupalArticleFieldsEnum {
   translation___translation___translations___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations___body @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations___tags @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___translations___template @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -3488,6 +3489,7 @@ enum DrupalArticleFieldsEnum {
   translation___translation___image___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___image___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___image___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___template @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -3523,6 +3525,7 @@ enum DrupalArticleFieldsEnum {
   translation___translations___translation___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation___body @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation___tags @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___translation___template @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -3538,6 +3541,7 @@ enum DrupalArticleFieldsEnum {
   translation___translations___translations___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translations___body @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translations___tags @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___translations___template @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translations___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translations___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translations___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -3565,6 +3569,7 @@ enum DrupalArticleFieldsEnum {
   translation___translations___image___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___image___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___image___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___template @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -3656,6 +3661,7 @@ enum DrupalArticleFieldsEnum {
   translation___image___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___image___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___image___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___template @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -3739,6 +3745,7 @@ enum DrupalArticleFieldsEnum {
   translations___translation___translation___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation___body @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation___tags @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___translation___template @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -3754,6 +3761,7 @@ enum DrupalArticleFieldsEnum {
   translations___translation___translations___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations___body @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations___tags @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___translations___template @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -3781,6 +3789,7 @@ enum DrupalArticleFieldsEnum {
   translations___translation___image___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___image___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___image___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___template @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -3816,6 +3825,7 @@ enum DrupalArticleFieldsEnum {
   translations___translations___translation___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translation___body @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translation___tags @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translations___translation___template @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translation___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -3831,6 +3841,7 @@ enum DrupalArticleFieldsEnum {
   translations___translations___translations___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translations___body @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translations___tags @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translations___translations___template @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translations___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translations___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translations___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -3858,6 +3869,7 @@ enum DrupalArticleFieldsEnum {
   translations___translations___image___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___image___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___image___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translations___template @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -3949,6 +3961,7 @@ enum DrupalArticleFieldsEnum {
   translations___image___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___image___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___image___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___template @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -4200,6 +4213,7 @@ enum DrupalArticleFieldsEnum {
   image___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   image___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   image___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  template @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -5655,25 +5669,31 @@ input DrupalTagSortInput {
   order: [SortOrderEnum] = [ASC]
 }
 
-type SiteBuildMetadataConnection {
+type DrupalWebformConnection {
   totalCount: Int!
-  edges: [SiteBuildMetadataEdge!]!
-  nodes: [SiteBuildMetadata!]!
+  edges: [DrupalWebformEdge!]!
+  nodes: [DrupalWebform!]!
   pageInfo: PageInfo!
-  distinct(field: SiteBuildMetadataFieldsEnum!): [String!]!
-  max(field: SiteBuildMetadataFieldsEnum!): Float
-  min(field: SiteBuildMetadataFieldsEnum!): Float
-  sum(field: SiteBuildMetadataFieldsEnum!): Float
-  group(skip: Int, limit: Int, field: SiteBuildMetadataFieldsEnum!): [SiteBuildMetadataGroupConnection!]!
+  distinct(field: DrupalWebformFieldsEnum!): [String!]!
+  max(field: DrupalWebformFieldsEnum!): Float
+  min(field: DrupalWebformFieldsEnum!): Float
+  sum(field: DrupalWebformFieldsEnum!): Float
+  group(skip: Int, limit: Int, field: DrupalWebformFieldsEnum!): [DrupalWebformGroupConnection!]!
 }
 
-type SiteBuildMetadataEdge {
-  next: SiteBuildMetadata
-  node: SiteBuildMetadata!
-  previous: SiteBuildMetadata
+type DrupalWebformEdge {
+  next: DrupalWebform
+  node: DrupalWebform!
+  previous: DrupalWebform
 }
 
-enum SiteBuildMetadataFieldsEnum {
+enum DrupalWebformFieldsEnum {
+  remoteTypeName
+  remoteId
+  path
+  url
+  title
+  drupalId
   id
   parent___id
   parent___parent___id
@@ -5760,28 +5780,32 @@ enum SiteBuildMetadataFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
-  buildTime
 }
 
-type SiteBuildMetadataGroupConnection {
+type DrupalWebformGroupConnection {
   totalCount: Int!
-  edges: [SiteBuildMetadataEdge!]!
-  nodes: [SiteBuildMetadata!]!
+  edges: [DrupalWebformEdge!]!
+  nodes: [DrupalWebform!]!
   pageInfo: PageInfo!
   field: String!
   fieldValue: String
 }
 
-input SiteBuildMetadataFilterInput {
+input DrupalWebformFilterInput {
+  remoteTypeName: StringQueryOperatorInput
+  remoteId: StringQueryOperatorInput
+  path: StringQueryOperatorInput
+  url: StringQueryOperatorInput
+  title: StringQueryOperatorInput
+  drupalId: StringQueryOperatorInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
   children: NodeFilterListInput
   internal: InternalFilterInput
-  buildTime: DateQueryOperatorInput
 }
 
-input SiteBuildMetadataSortInput {
-  fields: [SiteBuildMetadataFieldsEnum]
+input DrupalWebformSortInput {
+  fields: [DrupalWebformFieldsEnum]
   order: [SortOrderEnum] = [ASC]
 }
 
@@ -5944,6 +5968,136 @@ type SitePluginGroupConnection {
 
 input SitePluginSortInput {
   fields: [SitePluginFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
+type SiteBuildMetadataConnection {
+  totalCount: Int!
+  edges: [SiteBuildMetadataEdge!]!
+  nodes: [SiteBuildMetadata!]!
+  pageInfo: PageInfo!
+  distinct(field: SiteBuildMetadataFieldsEnum!): [String!]!
+  max(field: SiteBuildMetadataFieldsEnum!): Float
+  min(field: SiteBuildMetadataFieldsEnum!): Float
+  sum(field: SiteBuildMetadataFieldsEnum!): Float
+  group(skip: Int, limit: Int, field: SiteBuildMetadataFieldsEnum!): [SiteBuildMetadataGroupConnection!]!
+}
+
+type SiteBuildMetadataEdge {
+  next: SiteBuildMetadata
+  node: SiteBuildMetadata!
+  previous: SiteBuildMetadata
+}
+
+enum SiteBuildMetadataFieldsEnum {
+  id
+  parent___id
+  parent___parent___id
+  parent___parent___parent___id
+  parent___parent___parent___children
+  parent___parent___children
+  parent___parent___children___id
+  parent___parent___children___children
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___children
+  parent___children___id
+  parent___children___parent___id
+  parent___children___parent___children
+  parent___children___children
+  parent___children___children___id
+  parent___children___children___children
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  children
+  children___id
+  children___parent___id
+  children___parent___parent___id
+  children___parent___parent___children
+  children___parent___children
+  children___parent___children___id
+  children___parent___children___children
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___children
+  children___children___id
+  children___children___parent___id
+  children___children___parent___children
+  children___children___children
+  children___children___children___id
+  children___children___children___children
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  buildTime
+}
+
+type SiteBuildMetadataGroupConnection {
+  totalCount: Int!
+  edges: [SiteBuildMetadataEdge!]!
+  nodes: [SiteBuildMetadata!]!
+  pageInfo: PageInfo!
+  field: String!
+  fieldValue: String
+}
+
+input SiteBuildMetadataFilterInput {
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+  buildTime: DateQueryOperatorInput
+}
+
+input SiteBuildMetadataSortInput {
+  fields: [SiteBuildMetadataFieldsEnum]
   order: [SortOrderEnum] = [ASC]
 }
 
@@ -6289,36 +6443,25 @@ type DrupalBlockColumn {
 
 union DrupalContentBlock = DrupalBlockHtml | DrupalBlockImage | DrupalBlockTeaser
 
+type DrupalWebform implements Node {
+  remoteTypeName: String!
+  remoteId: String!
+  path: String!
+  url: String!
+  title: String!
+  drupalId: String!
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+}
+
 type DrupalMenuItem {
   remoteTypeName: String!
   label: String!
   url: String!
   id: String!
   parent: String!
-}
-
-type SiteBuildMetadata implements Node {
-  id: ID!
-  parent: Node
-  children: [Node!]!
-  internal: Internal!
-  buildTime(
-    """
-    Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
-    """
-    formatString: String
-
-    """Returns a string generated with Moment.js' `fromNow` function"""
-    fromNow: Boolean
-
-    """
-    Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
-    """
-    difference: String
-
-    """Configures the locale Moment.js will use to format the date."""
-    locale: String
-  ): Date
 }
 
 type SitePlugin implements Node {
@@ -6387,4 +6530,28 @@ type SitePluginPackageJsonDevDependencies {
 type SitePluginPackageJsonPeerDependencies {
   name: String
   version: String
+}
+
+type SiteBuildMetadata implements Node {
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+  buildTime(
+    """
+    Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    """
+    formatString: String
+
+    """Returns a string generated with Moment.js' `fromNow` function"""
+    fromNow: Boolean
+
+    """
+    Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    """
+    difference: String
+
+    """Configures the locale Moment.js will use to format the date."""
+    locale: String
+  ): Date
 }

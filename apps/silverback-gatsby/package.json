@@ -1,14 +1,15 @@
 {
-  "name": "silverback-gastby",
+  "name": "@-amazeelabs/silverback-gastby",
   "private": true,
   "description": "gatsby-graphql-toolkit example for drupal",
-  "version": "0.19.12",
+  "version": "1.0.0",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
     "@-amazeelabs/silverback-drupal": "^1.10.9",
     "@amazeelabs/gatsby-source-silverback": "^1.4.2",
     "@amazeelabs/gatsby-source-silverback-cypress": "^1.1.5",
     "@amazeelabs/gatsby-theme-core": "^0.6.13",
+    "@amazeelabs/silverback-iframe": "^1.0.0",
     "axios": "^0.21.1",
     "cypress": "^8.0.0",
     "cypress-terminal-report": "^3.2.2",
@@ -53,6 +54,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "prepare": "yarn codegen",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "serve": "gatsby serve",

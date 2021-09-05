@@ -1,0 +1,15 @@
+{
+  "name": "Untitled GraphQL Schema",
+  "schemaPath": "website.composed.graphqls",
+  "extensions": {
+    "endpoints": {
+      "Default GraphQL Endpoint": {
+        "url": "http://localhost:8888/silverback-gatsby",
+        "headers": {
+          "user-agent": "JS GraphQL"
+        },
+        "introspect": false
+      }
+    }
+  }
+}
