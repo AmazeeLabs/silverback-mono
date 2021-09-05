@@ -5,6 +5,7 @@
     "packages/composer/*/*",
     "packages/npm/*",
     "packages/npm/*/*",
+    "packages/tests/*",
     "apps/*",
     "apps/silverback-drupal/web/modules/custom/*",
     "packages/composer/drupal/test_session/tests/Cypress"
