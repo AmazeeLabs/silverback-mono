@@ -62,7 +62,7 @@ const callEndpoint = async (payload: Payload) => {
   } catch (e) {
     console.warn(
       'Cannot call gatsby plugin build monitor endpoint',
-      e.toString(),
+      (e as any).toString(),
     );
     console.debug(e);
   }

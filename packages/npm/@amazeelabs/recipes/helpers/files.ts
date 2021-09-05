@@ -44,7 +44,7 @@ export const file = (
     // Generate a new recipe error and re-throw it.
     // This will make sure the code frame shows the call to `file`
     // in the recipe rather than this file.
-    throw new RecipeError(err.message);
+    throw new RecipeError((err as any).message);
   }
 };
 
