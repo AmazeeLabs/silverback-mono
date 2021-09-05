@@ -8,6 +8,8 @@ import {
   renderHtml,
 } from '../../plugins/gatsby-plugin-images-from-html/render-html';
 import { languages } from '../constants/languages';
+import { StandardLayout } from '../layouts/StandardLayout';
+import { LocationState } from '../types/LocationState';
 import { Row } from '../util/Row';
 
 export const query = graphql`
@@ -37,10 +39,9 @@ export const query = graphql`
   }
 `;
 
-const Article: React.FC<PageProps<ArticleQuery, SilverbackPageContext>> = ({
-  pageContext: { locale, localizations },
-  data,
-}) => {
+const Article: React.FC<
+  PageProps<ArticleQuery, SilverbackPageContext, LocationState>
+> = ({ pageContext: { locale, localizations }, data, location }) => {
   const childrenImagesFromHtml = data.drupalArticle?.childrenImagesFromHtml;
   const article = data.drupalArticle!;
 
@@ -57,7 +58,7 @@ const Article: React.FC<PageProps<ArticleQuery, SilverbackPageContext>> = ({
   }
 
   return (
-    <>
+    <StandardLayout locationState={location.state}>
       <Link to="/">To frontpage</Link>
       <table>
         <tr>
@@ -98,7 +99,7 @@ const Article: React.FC<PageProps<ArticleQuery, SilverbackPageContext>> = ({
           </Row>
         </tr>
       </table>
-    </>
+    </StandardLayout>
   );
 };
 

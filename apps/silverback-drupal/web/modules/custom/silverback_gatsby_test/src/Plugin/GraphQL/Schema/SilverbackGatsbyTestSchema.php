@@ -93,6 +93,19 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
       $builder->produce('url_path')->map('url', $builder->fromParent()),
     ));
 
+    $addResolver('Webform.path',
+      $builder->compose(
+        $builder->produce('entity_url')->map('entity', $builder->fromParent()),
+        $builder->produce('url_path')->map('url', $builder->fromParent())
+      )
+    );
+    $addResolver('Webform.url',
+      $builder->compose(
+        $builder->produce('entity_url')->map('entity', $builder->fromParent()),
+        $builder->callback(fn (Url $url) => $url->setAbsolute()->toString(TRUE)->getGeneratedUrl())
+      )
+    );
+
     return $registry;
   }
 }

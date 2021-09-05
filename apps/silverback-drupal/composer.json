@@ -25,6 +25,8 @@
         "amazeelabs/silverback_external_preview": "^1.0",
         "amazeelabs/silverback_gatsby": "^1.0",
         "amazeelabs/silverback_gutenberg": "^1.0",
+        "amazeelabs/silverback_iframe": "^1.0",
+        "amazeelabs/silverback_iframe_theme": "^1.0",
         "composer/composer": "2.1.6",
         "composer/installers": "^2.0",
         "cweagans/composer-patches": "^1.7",
@@ -40,6 +42,7 @@
         "drupal/gatsby_build_monitor": "@dev",
         "drupal/graphql": "^4",
         "drupal/test_session": "@dev",
+        "drupal/webform": "^6.0",
         "phpspec/prophecy-phpunit": "^2"
     },
     "conflict": {

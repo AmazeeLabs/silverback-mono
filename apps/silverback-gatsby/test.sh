@@ -2,15 +2,14 @@
 
 set -e
 
-function finish {
-  echo "👇 Cleaning up..."
+function cleanup {
   kill $( lsof -i:8888 -t ) || true
   kill $( lsof -i:8000 -t ) || true
   kill $( lsof -i:9000 -t ) || true
   kill $( lsof -i:9001 -t ) || true
-  echo "👉 Cleanup done."
 }
-trap finish EXIT
+cleanup
+trap cleanup EXIT
 
 function reinstall_drupal {
   echo "👇 Re-installing Drupal..."
