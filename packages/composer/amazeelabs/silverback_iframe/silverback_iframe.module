@@ -1,0 +1,61 @@
+<?php
+
+use Drupal\silverback_iframe\WebformSubmissionForm;
+use Drupal\webform\WebformInterface;
+
+function silverback_iframe_theme_enabled() {
+  return \Drupal::request()->get('iframe') === 'true';
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function silverback_iframe_module_implements_alter(&$implementations, $hook) {
+  if ($hook === 'page_top') {
+    $group = $implementations['silverback_iframe'];
+    unset($implementations['silverback_iframe']);
+    $implementations['silverback_iframe'] = $group;
+  }
+}
+
+/**
+ * Implements hook_page_top().
+ */
+function silverback_iframe_page_top(array &$page_top) {
+  if (silverback_iframe_theme_enabled()) {
+    unset($page_top['toolbar']);
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function silverback_iframe_form_webform_settings_confirmation_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  $allowed = [
+    WebformInterface::CONFIRMATION_URL,
+    WebformInterface::CONFIRMATION_URL_MESSAGE,
+    WebformInterface::CONFIRMATION_MESSAGE,
+    WebformInterface::CONFIRMATION_INLINE,
+    WebformInterface::CONFIRMATION_NONE,
+  ];
+  $default = WebformInterface::CONFIRMATION_INLINE;
+
+  foreach (array_keys($form['confirmation_type']['confirmation_type']['#options']) as $key) {
+    if (!in_array($key, $allowed, TRUE)) {
+      unset($form['confirmation_type']['confirmation_type']['#options'][$key]);
+    }
+  }
+
+  if (!in_array($form['confirmation_type']['confirmation_type']['#default_value'], $allowed, TRUE)) {
+    $form['confirmation_type']['confirmation_type']['#default_value'] = $default;
+  }
+}
+
+/**
+ * Implements hook_entity_type_build().
+ */
+function silverback_iframe_entity_type_build(array &$entity_types) {
+  if (isset($entity_types['webform_submission'])) {
+    $entity_types['webform_submission']->setFormClass('add', WebformSubmissionForm::class);
+  }
+}
