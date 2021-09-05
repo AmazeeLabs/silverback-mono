@@ -6,3 +6,9 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+# Other
+/codeStyles/
+/codestream.xml
+/compiler.xml
+/dataSources.xml
+/dictionaries
