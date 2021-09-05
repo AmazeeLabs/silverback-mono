@@ -8,14 +8,24 @@ const projects = [
     displayName: 'unit',
     preset: 'ts-jest',
     testEnvironment: 'node',
-    testMatch: [ "**/__tests__/**/*.ts", "**/?(*.)+(spec|test).ts" ],
+    testMatch: [
+      "**/__tests__/**/*.ts",
+      "**/?(*.)+(spec|test).ts",
+      "!**/playwright-tests/**",
+      "!**/dist/**",
+    ],
     moduleNameMapper,
   },
   {
     displayName: 'dom',
     preset: 'ts-jest',
     testEnvironment: 'jsdom',
-    testMatch: [ "**/__tests__/**/*.tsx", "**/?(*.)+(spec|test).tsx" ],
+    testMatch: [
+      "**/__tests__/**/*.tsx",
+      "**/?(*.)+(spec|test).tsx",
+      "!**/playwright-tests/**",
+      "!**/dist/**",
+    ],
     moduleNameMapper,
   },
 ];
