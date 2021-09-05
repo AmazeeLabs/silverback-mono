@@ -15,7 +15,7 @@
     "test": "yarn lerna run prepublish --since --include-dependencies && yarn lerna run test --since --stream --concurrency=1",
     "test-all": "yarn lerna run prepublish --include-dependencies && yarn lerna run test --stream --concurrency=1",
     "git-registry": "yarn verdaccio -c config.yml",
-    "postinstall": "lerna run prepare && husky install"
+    "postinstall": "lerna run prepare && husky install && rm -rf node_modules/@-*"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.0.0",
