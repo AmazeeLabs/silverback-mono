@@ -1,0 +1,12 @@
+<?php
+
+use Drupal\silverback_gatsby_test\Entity\Server;
+
+/**
+ * Implements hook_entity_type_build().
+ */
+function silverback_gatsby_test_entity_type_build(&$entity_types) {
+  if (isset($entity_types['graphql_server'])) {
+    $entity_types['graphql_server']->setClass(Server::class);
+  }
+}
