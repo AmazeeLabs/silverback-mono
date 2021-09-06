@@ -1,0 +1,12 @@
+name: Silverback Iframe Test
+type: theme
+base theme: silverback_iframe_theme
+description: 'A sub-theme for silverback_iframe_theme.'
+package: Silverback Tests
+core_version_requirement: 9.x
+
+libraries:
+  - silverback_iframe_test/global
+
+regions:
+  content: Content
