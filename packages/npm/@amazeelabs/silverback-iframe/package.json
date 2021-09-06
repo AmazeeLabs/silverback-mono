@@ -3,6 +3,8 @@
   "version": "1.1.0",
   "description": "Frontend part of amazeelabs/silverback_iframe Drupal module.",
   "author": "Amazee Labs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "license": "MIT",
   "private": false,
   "sideEffects": false,

@@ -1,6 +1,9 @@
 {
   "extends": "@tsconfig/recommended/tsconfig.json",
-  "exclude": ["./dist"],
+  "exclude": [
+    "./dist",
+    "src/**/__tests__/**"
+  ],
   "compilerOptions": {
     "jsx": "react",
     "rootDir": "./src",
