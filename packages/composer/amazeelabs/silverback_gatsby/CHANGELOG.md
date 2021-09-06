@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.11.0...@-amazeelabs/silverback_gatsby@1.11.1) (2021-09-06)
+
+
+### Bug Fixes
+
+* adjust bundle type so that it meets [@entity](https://github.com/entity) directive definition ([6dd8a2b](https://github.com/AmazeeLabs/silverback-mono/commit/6dd8a2bbb516248dfb6d59a6631540da29132a8c))
+
+
+
+
+
 # [1.11.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.10.0...@-amazeelabs/silverback_gatsby@1.11.0) (2021-08-09)
 
 

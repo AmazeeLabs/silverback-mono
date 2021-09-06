@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.7.5...@amazeelabs/recipes@1.7.6) (2021-09-06)
+
+
+### Bug Fixes
+
+* TS now treats catched errors as unknown type ([25d8e06](https://github.com/AmazeeLabs/silverback-mono/commit/25d8e06d469792191e691d7507407009c41475d1))
+
+
+
+
+
 ## [1.7.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.7.4...@amazeelabs/recipes@1.7.5) (2021-08-26)
 
 **Note:** Version bump only for package @amazeelabs/recipes

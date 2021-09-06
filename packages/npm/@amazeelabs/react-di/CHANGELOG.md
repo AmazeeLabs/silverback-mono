@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.26](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-di@1.0.25...@amazeelabs/react-di@1.0.26) (2021-09-06)
+
+**Note:** Version bump only for package @amazeelabs/react-di
+
+
+
+
+
 ## [1.0.25](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-di@1.0.24...@amazeelabs/react-di@1.0.25) (2021-08-19)
 
 

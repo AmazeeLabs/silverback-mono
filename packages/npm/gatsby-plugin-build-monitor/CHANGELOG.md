@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.14](https://github.com/AmazeeLabs/silverback-mono/compare/gatsby-plugin-build-monitor@1.0.13...gatsby-plugin-build-monitor@1.0.14) (2021-09-06)
+
+
+### Bug Fixes
+
+* TS now treats catched errors as unknown type ([25d8e06](https://github.com/AmazeeLabs/silverback-mono/commit/25d8e06d469792191e691d7507407009c41475d1))
+
+
+
+
+
 ## [1.0.13](https://github.com/AmazeeLabs/silverback-mono/compare/gatsby-plugin-build-monitor@1.0.12...gatsby-plugin-build-monitor@1.0.13) (2021-08-17)
 
 **Note:** Version bump only for package gatsby-plugin-build-monitor

@@ -3,6 +3,64 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.1.0 (2021-09-06)
+
+
+### Bug Fixes
+
+* add drupal base url ([bea174a](https://github.com/AmazeeLabs/silverback-mono/commit/bea174a2492e7f6f7a6e6d500329ef4bbd888c58))
+* add missing arguments ([2f35865](https://github.com/AmazeeLabs/silverback-mono/commit/2f3586559cba77ae8b068bea22f79a26c4ca9e5c))
+* bring tests back! ([7d04fd1](https://github.com/AmazeeLabs/silverback-mono/commit/7d04fd1de8f544a6c10ccf642df5acf04acf4d6d))
+* codegen before tsc ([020424c](https://github.com/AmazeeLabs/silverback-mono/commit/020424c2bf29b17b321c6917107a2e93c08917b7))
+* **deps:** update dependency @tailwindcss/typography to ^0.4.0 ([065ea99](https://github.com/AmazeeLabs/silverback-mono/commit/065ea995aed42cca48b23e8bb3cbfcb4c46e4444))
+* do not exit if cannot kill yarn serve ([4160507](https://github.com/AmazeeLabs/silverback-mono/commit/41605075ebfedb90d240bff3e257f5f68e1c8de6))
+* do not fail if timeout is reached ([436caba](https://github.com/AmazeeLabs/silverback-mono/commit/436caba8f3ce7811bc602d8c0fd25b7303784413))
+* forgoten schema update ([d22e56f](https://github.com/AmazeeLabs/silverback-mono/commit/d22e56fc61ef94bedd3c2810830b8d1d73327acd))
+* **gatsby-plugin-schema-export:** use  instead of ([c6d68d6](https://github.com/AmazeeLabs/silverback-mono/commit/c6d68d659b82f4feb741ddfa8f85a08a667255ea))
+* **gatsby:** fix variable name typo ([a72422d](https://github.com/AmazeeLabs/silverback-mono/commit/a72422d8d8b340476efe3827b9759660dbd8cf51))
+* **gatsby:** increase timeouts in build tests ([fb4d15a](https://github.com/AmazeeLabs/silverback-mono/commit/fb4d15a8e53e5ffd0872b37d53ebc43c33e90b05))
+* **gatsby:** wrong names of `gatsby-source-silverback` config options ([bd94b02](https://github.com/AmazeeLabs/silverback-mono/commit/bd94b0279ea16d57740659d77cd161a1f994ba75))
+* **gatsy:** adjust broken refresh condition ([bdd2887](https://github.com/AmazeeLabs/silverback-mono/commit/bdd2887cd69c3f9684b28915ab2d6162dc12a47a))
+* improve gatsby schema handling ([dc7f6cf](https://github.com/AmazeeLabs/silverback-mono/commit/dc7f6cf169df2291b6e1463dc18beb86cba76d62))
+* lint ([2efb9bd](https://github.com/AmazeeLabs/silverback-mono/commit/2efb9bdf8c5a7d536cf9ef00c3a09bf0ac22e00a))
+* lint ([4692351](https://github.com/AmazeeLabs/silverback-mono/commit/46923516cde10cab400dfe16c1568e09881d9150))
+* make silverback-gatsby private ([b008f54](https://github.com/AmazeeLabs/silverback-mono/commit/b008f544ebc2551e2badc85b89caffbe7434104c))
+* queue all `/__rebuild` calls ([8dd6545](https://github.com/AmazeeLabs/silverback-mono/commit/8dd654585e60660a736c69dd4b054e21982570d9))
+* remove clear-cache occurrence ([cae3aa6](https://github.com/AmazeeLabs/silverback-mono/commit/cae3aa68a3e44a4c6b639ca70a20f9aa6aff375e))
+* remove content-sync commands ([6fc1c92](https://github.com/AmazeeLabs/silverback-mono/commit/6fc1c92ada81682f84430804322e3efaf89386f8))
+* silverback-drupal-graphql-v3 mentions ([d715866](https://github.com/AmazeeLabs/silverback-mono/commit/d71586627d74f0ca98c2818beb1e8336f6faccb3))
+* **silverback-gatsby:** another forgotten schema.graphql ([f2c0664](https://github.com/AmazeeLabs/silverback-mono/commit/f2c06646bc432661a5951e179d2590776e667724))
+* **silverback-gatsby:** fix test ([afefdf7](https://github.com/AmazeeLabs/silverback-mono/commit/afefdf7f622e3bdbd3ebe3163c93c01752984e54))
+* **silverback-gatsby:** forgotten schema.graphql ([d23111f](https://github.com/AmazeeLabs/silverback-mono/commit/d23111f5331cfe6bd8a2318c616f9a83715e6230))
+* **silverback-gatsby:** increase test delays ([e172046](https://github.com/AmazeeLabs/silverback-mono/commit/e172046fc684fb1545a8209ff27c8aec8daa6b4f))
+* suppress missing arguments error in other way ([7129885](https://github.com/AmazeeLabs/silverback-mono/commit/712988504314b3878904687ded2e509a26609579))
+* temporary fix for https://github.com/gatsbyjs/gatsby/issues/26520 ([5aa8768](https://github.com/AmazeeLabs/silverback-mono/commit/5aa876801746a966f7b26f86c5ca2aa0643af9da))
+* update commands ([9d3857a](https://github.com/AmazeeLabs/silverback-mono/commit/9d3857af7d382ea6b86c5927464c6b5d2232d4ff))
+* update graphql endpoint url ([8af25d4](https://github.com/AmazeeLabs/silverback-mono/commit/8af25d49b7eddea7d63fd07c778d8a634d208e09))
+* update postcss to 8 ([254d04c](https://github.com/AmazeeLabs/silverback-mono/commit/254d04c35bf935ef283a9e9245daacda901ee442))
+
+
+### Features
+
+* **apps/silverback-gatsby:** update favicon ([4910e92](https://github.com/AmazeeLabs/silverback-mono/commit/4910e9286cdfe60136ca9f545ba4fde7bc3295a9))
+* fast-build scripts report to drupal ([c66d6b1](https://github.com/AmazeeLabs/silverback-mono/commit/c66d6b1058e4d89e5b3bfd3ff258d58ce26a1a8c))
+* **gatsby:** add localizations to page context ([8370c2b](https://github.com/AmazeeLabs/silverback-mono/commit/8370c2bcb4ddf1c210a40535268c65f0cfc094bd))
+* **gatsby:** automatically clear fetched nodes if drupal is out of sync ([73c5093](https://github.com/AmazeeLabs/silverback-mono/commit/73c5093e7521b27fc70c45eeeca159bcae5e16a9))
+* **gatsby:** create gatsby pages automatically ([2155aa7](https://github.com/AmazeeLabs/silverback-mono/commit/2155aa71b6b2a058030440e3ee71badf634fc9a8))
+* **gatsby:** receive build notifications from gatsby cloud ([d664fed](https://github.com/AmazeeLabs/silverback-mono/commit/d664fed2fad158f693798f6a4c19a297267b9f40))
+* **gatsby:** use template queries instead of passing all data into context ([95bc446](https://github.com/AmazeeLabs/silverback-mono/commit/95bc446adc939defb92a192dd3ab64839354df8b))
+* introduce cy.waitForGatsby ([d70b777](https://github.com/AmazeeLabs/silverback-mono/commit/d70b7772409fcd783d1c3601caca81c78490aa3d))
+* make Drupal know Gatsby refresh status ([1a8d110](https://github.com/AmazeeLabs/silverback-mono/commit/1a8d1101f95ee84e282a4a14a2d6cfc24207f190))
+* media image support for the prototype ([e472840](https://github.com/AmazeeLabs/silverback-mono/commit/e472840d04a84e7031f56bb5657a7be4e8a5e142))
+* move to GraphQL v4 and add translations support ([1729f5a](https://github.com/AmazeeLabs/silverback-mono/commit/1729f5a14e45ed7efe05af3adca85dd25247de7e))
+* **silverback-gatsby:** example app using gatsby-graphql-toolkit ([64e354d](https://github.com/AmazeeLabs/silverback-mono/commit/64e354dfbc1ea6923de681bd2fd83bb4817f529d))
+* **silverback-gatsby:** resolve content relations for Tags ([59a2cf1](https://github.com/AmazeeLabs/silverback-mono/commit/59a2cf110380519384c10a182950d2651702f31f))
+* support for images coming from WYSIWYG ([b5a0b76](https://github.com/AmazeeLabs/silverback-mono/commit/b5a0b76adc065f9489dbb99bd8645fc739b1b002))
+
+
+
+
+
 ## [0.19.12](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-gastby@0.19.11...silverback-gastby@0.19.12) (2021-08-26)
 
 **Note:** Version bump only for package silverback-gastby
