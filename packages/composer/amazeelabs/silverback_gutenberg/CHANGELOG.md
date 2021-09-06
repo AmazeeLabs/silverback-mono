@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.2.2...@-amazeelabs/silverback_gutenberg@1.2.3) (2021-09-06)
+
+
+### Bug Fixes
+
+* do not disable the anchor feature ([641324a](https://github.com/AmazeeLabs/silverback-mono/commit/641324a74e6bc4c7d8fdb62de064583919470865))
+
+
+
+
+
 ## [1.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.2.1...@-amazeelabs/silverback_gutenberg@1.2.2) (2021-07-27)
 
 

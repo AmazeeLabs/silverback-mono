@@ -3,6 +3,130 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.11](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.10...@-amazeelabs/silverback-drupal@1.10.11) (2021-09-06)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.10.10](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.9...@-amazeelabs/silverback-drupal@1.10.10) (2021-09-06)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.10.9](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.8...@-amazeelabs/silverback-drupal@1.10.9) (2021-08-26)
+
+
+### Bug Fixes
+
+* **gutenberg:** use PR version of drupal-js-build ([819133e](https://github.com/AmazeeLabs/silverback-mono/commit/819133e1b2739fef179679b9ce2934bc9732b30a))
+
+
+
+
+
+## [1.10.8](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.7...@-amazeelabs/silverback-drupal@1.10.8) (2021-08-26)
+
+
+### Bug Fixes
+
+* set allowed media types ([4274752](https://github.com/AmazeeLabs/silverback-mono/commit/42747523ce7ed03170adba02a412cd81ff0fc698))
+
+
+
+
+
+## [1.10.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.6...@-amazeelabs/silverback-drupal@1.10.7) (2021-08-24)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.10.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.5...@-amazeelabs/silverback-drupal@1.10.6) (2021-08-23)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.10.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.4...@-amazeelabs/silverback-drupal@1.10.5) (2021-08-23)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.10.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.3...@-amazeelabs/silverback-drupal@1.10.4) (2021-08-23)
+
+
+### Bug Fixes
+
+* **deps:** update dependency composer/composer to v2.1.6 ([ff14c0e](https://github.com/AmazeeLabs/silverback-mono/commit/ff14c0edd041591fcf1c57a370bf020479c9ec16))
+
+
+
+
+
+## [1.10.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.2...@-amazeelabs/silverback-drupal@1.10.3) (2021-08-17)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.10.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.1...@-amazeelabs/silverback-drupal@1.10.2) (2021-08-17)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.10.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.0...@-amazeelabs/silverback-drupal@1.10.1) (2021-08-10)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+# [1.10.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.9.2...@-amazeelabs/silverback-drupal@1.10.0) (2021-08-09)
+
+
+### Features
+
+* **gatsby:** add [@property](https://github.com/property) directive for GraphQL ([f5df6b9](https://github.com/AmazeeLabs/silverback-mono/commit/f5df6b90f7bec9a8d5df8edd13433e0175d43632))
+
+
+
+
+
+## [1.9.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.9.1...@-amazeelabs/silverback-drupal@1.9.2) (2021-08-09)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.9.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.9.0...@-amazeelabs/silverback-drupal@1.9.1) (2021-08-02)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
 # [1.9.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.8.12...@-amazeelabs/silverback-drupal@1.9.0) (2021-07-29)
 
 

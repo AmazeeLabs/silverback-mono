@@ -1,0 +1,8 @@
+global:
+  js:
+    iframeResizer.contentWindow.min.js: { preprocess: false }
+    iframeCommand.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings

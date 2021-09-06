@@ -1,8 +1,10 @@
-const { blocks, blockEditor, data } = wp;
-const { compose } = wp.compose;
-const { withSelect } = data;
-const { registerBlockType } = blocks;
-const { InnerBlocks } = blockEditor;
+/* global wp, Drupal */
+const {
+  blocks: { registerBlockType },
+  blockEditor: { InnerBlocks },
+  data,
+} = wp;
+const { t: __ } = Drupal;
 
 const style = {
   minHeight: '40px',
@@ -11,7 +13,7 @@ const style = {
 };
 
 const settings = {
-  title: Drupal.t('Root'),
+  title: __('Root'),
   icon: 'media-document',
   attributes: {},
   supports: {

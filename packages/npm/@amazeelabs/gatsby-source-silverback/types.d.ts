@@ -3,4 +3,8 @@ export type SilverbackPageContext = {
   id: string;
   remoteId: string;
   locale?: string;
+  localizations?: Array<{
+    path: string;
+    locale: string;
+  }>;
 };

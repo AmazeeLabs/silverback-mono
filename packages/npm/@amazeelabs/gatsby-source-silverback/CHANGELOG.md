@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.4.2...@amazeelabs/gatsby-source-silverback@1.4.3) (2021-09-06)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-source-silverback
+
+
+
+
+
+## [1.4.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.4.1...@amazeelabs/gatsby-source-silverback@1.4.2) (2021-08-19)
+
+
+### Bug Fixes
+
+* **scaffolding:** add ts-jest as an explicit dependency to scaffolded projects ([3b98d91](https://github.com/AmazeeLabs/silverback-mono/commit/3b98d91f5ea8130fc33c8abd4c0a1c6ee7511bef))
+
+
+
+
+
+## [1.4.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.4.0...@amazeelabs/gatsby-source-silverback@1.4.1) (2021-08-17)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-source-silverback
+
+
+
+
+
+# [1.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.3.0...@amazeelabs/gatsby-source-silverback@1.4.0) (2021-08-02)
+
+
+### Features
+
+* **gatsby:** add localizations to page context ([8370c2b](https://github.com/AmazeeLabs/silverback-mono/commit/8370c2bcb4ddf1c210a40535268c65f0cfc094bd))
+
+
+
+
+
 # [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.2.8...@amazeelabs/gatsby-source-silverback@1.3.0) (2021-07-29)
 
 

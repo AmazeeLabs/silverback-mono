@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.11.0...@-amazeelabs/silverback_gatsby@1.11.1) (2021-09-06)
+
+
+### Bug Fixes
+
+* adjust bundle type so that it meets [@entity](https://github.com/entity) directive definition ([6dd8a2b](https://github.com/AmazeeLabs/silverback-mono/commit/6dd8a2bbb516248dfb6d59a6631540da29132a8c))
+
+
+
+
+
+# [1.11.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.10.0...@-amazeelabs/silverback_gatsby@1.11.0) (2021-08-09)
+
+
+### Bug Fixes
+
+* **gatsby:** properly update gatsby on menu item deletion ([0d954f1](https://github.com/AmazeeLabs/silverback-mono/commit/0d954f13fb75bf7a2a1ae6c67f6e0af85017087d))
+
+
+### Features
+
+* **gatsby:** add [@property](https://github.com/property) directive for GraphQL ([f5df6b9](https://github.com/AmazeeLabs/silverback-mono/commit/f5df6b90f7bec9a8d5df8edd13433e0175d43632))
+
+
+
+
+
 # [1.10.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.9.1...@-amazeelabs/silverback_gatsby@1.10.0) (2021-07-29)
 
 

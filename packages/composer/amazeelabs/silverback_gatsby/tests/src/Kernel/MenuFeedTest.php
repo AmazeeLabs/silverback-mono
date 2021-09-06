@@ -320,4 +320,22 @@ class MenuFeedTest extends GraphQLTestBase {
       new GatsbyUpdate('VisibleMainMenu', 'main'),
     ], $diff);
   }
+
+  public function testDeletedMenuItem() {
+    $foo = $this->createMenuItem('Foo', 'internal:/foo');
+
+    $tracker = $this->container->get('silverback_gatsby.update_tracker');
+
+    // Change
+    $tracker->clear();
+    $latest = $tracker->latestBuild($this->server->id());
+    $foo->delete();
+    $current = $tracker->latestBuild($this->server->id());
+
+    $diff = $tracker->diff($latest, $current, $this->server->id());
+    $this->assertEquals([
+      new GatsbyUpdate('MainMenu', 'main'),
+      new GatsbyUpdate('VisibleMainMenu', 'main'),
+    ], $diff);
+  }
 }

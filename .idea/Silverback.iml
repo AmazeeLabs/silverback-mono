@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-gatsby/public" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/cypress" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/gatsby_build_monitor" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/silverback_external_preview" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/silverback_gatsby" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/silverback_gutenberg" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/test_session" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/silverback_iframe" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/themes/contrib/silverback_iframe_theme" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/silverback-iframe/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/composer/amazeelabs/silverback_iframe/test-results" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/.silverback-snapshots" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-gatsby/.cache" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/sites/default/files" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/recipes/test" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/recipes/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/react-di/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/scaffold/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/scaffold/test" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/cypress-screenplay/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/verdaccio-git/lib" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

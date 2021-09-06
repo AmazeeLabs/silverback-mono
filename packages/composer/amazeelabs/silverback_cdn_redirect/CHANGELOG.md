@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.2.2...@-amazeelabs/silverback_cdn_redirect@1.3.0) (2021-08-12)
+
+
+### Features
+
+* **cdn-redirect:** add missing translation redirect ([b67e05b](https://github.com/AmazeeLabs/silverback-mono/commit/b67e05b746adb91a8068b4c10316c02689859e22))
+
+
+
+
+
+## [1.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.2.1...@-amazeelabs/silverback_cdn_redirect@1.2.2) (2021-08-05)
+
+
+### Bug Fixes
+
+* **gatsby:** display 404 page instead of redirecting to it ([48410bb](https://github.com/AmazeeLabs/silverback-mono/commit/48410bb84a68646a428d2d5c80155f19b8127438))
+
+
+
+
+
 ## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.2.0...@-amazeelabs/silverback_cdn_redirect@1.2.1) (2021-07-08)
 
 

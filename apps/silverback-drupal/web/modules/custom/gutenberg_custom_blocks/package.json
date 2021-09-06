@@ -1,27 +1,29 @@
 {
-  "name": "gutenberg_custom_blocks",
+  "name": "@-silverback-drupal/gutenberg_custom_blocks",
+  "version": "1.0.3",
   "private": true,
   "scripts": {
     "start": "yarn drupal-js-build --css && yarn drupal-js-build watch --css",
     "build": "yarn drupal-js-build --css && yarn drupal-gutenberg-translations",
-    "prepare": "amazee-scaffold",
+    "prepare": "yarn amazee-scaffold && yarn build",
     "precommit": "lint-staged",
     "test": "tsc --noEmit && jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi",
     "watch": "jest --watch"
   },
   "dependencies": {
-    "@amazeelabs/scaffold": "^1.1.5",
+    "@amazeelabs/scaffold": "^1.3.7",
     "drupal-gutenberg-translations": "^1.1.0",
-    "drupal-js-build": "^1.2.0"
+    "drupal-js-build": "https://github.com/AmazeeLabs/drupal-js-build"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "^1.3.0",
-    "@amazeelabs/jest-preset": "^1.3.0",
+    "@amazeelabs/jest-preset": "^1.3.5",
     "@amazeelabs/prettier-config": "^1.1.0",
-    "@types/jest": "^26.0.20",
+    "@types/jest": "^27.0.0",
     "eslint": "^7.27.0",
     "jest": "^27.0.0",
     "lint-staged": "^11.0.0",
+    "ts-jest": "^27.0.5",
     "typescript": "^4.2.3"
   }
 }

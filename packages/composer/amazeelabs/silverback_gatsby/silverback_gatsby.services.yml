@@ -19,3 +19,9 @@ services:
   silverback_gatsby.update_handler:
     class: Drupal\silverback_gatsby\GatsbyUpdateHandler
     arguments: ['@entity_type.manager', '@silverback_gatsby.update_tracker']
+
+  silverback_gatsby.menu_tree_storage:
+    class: Drupal\silverback_gatsby\MenuTreeStorageDecorator
+    decorates: menu.tree_storage
+    public: false
+    arguments: ['@silverback_gatsby.menu_tree_storage.inner', '@silverback_gatsby.update_handler']

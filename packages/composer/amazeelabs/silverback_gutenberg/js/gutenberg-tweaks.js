@@ -48,19 +48,5 @@ drupalSettings.gutenberg._listeners.init.push(
   function () {
     wp.blocks.unregisterBlockStyle("core/table", "regular");
     wp.blocks.unregisterBlockStyle("core/table", "stripes");
-  },
-
-  // Disable "HTML anchor" for all blocks except for the custom heading.
-  function () {
-    var blockTypes = wp.blocks.getBlockTypes();
-    for (var i = 0; i < blockTypes.length; i++) {
-      if (!blockTypes[i].supports) {
-        blockTypes[i].supports = {};
-      }
-
-      if (blockTypes[i].name !== "custom/heading") {
-        blockTypes[i].supports.anchor = false;
-      }
-    }
   }
 );

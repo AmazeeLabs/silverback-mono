@@ -5,9 +5,18 @@ silverback_cdn_redirect.settings:
     base_url:
       type: string
       label: 'Base URL of the frontend. Must have no trailing slash.'
-    fallback_path:
+    404_path:
       type: string
-      label: 'A path to fallback to in case if no redirect is found. Must start from a slash.'
-    prefix_fallback_path:
+      label: 'A path to 404 page in case if no redirect is found. Must start from a slash.'
+    should_prefix_404_path:
       type: boolean
-      label: 'Whether to add the language prefix to the fallback path.'
+      label: 'Whether to add the language prefix to the 404 path.'
+    netlify_password:
+      type: string
+      label: 'The global password for Netlify.'
+    missing_translation_redirect_entity_types:
+      type: sequence
+      label: 'Entity type IDs for which the missing translation redirect should be performed.'
+      sequence:
+        type: string
+        label: 'Entity type ID'

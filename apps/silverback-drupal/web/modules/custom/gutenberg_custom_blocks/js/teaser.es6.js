@@ -1,13 +1,16 @@
-const { blocks, blockEditor, data } = wp;
-const { compose } = wp.compose;
-const { withSelect } = data;
-const { registerBlockType } = blocks;
-const { InnerBlocks, __experimentalLinkControl } = blockEditor;
-const LinkControl = __experimentalLinkControl;
-const { DrupalMediaEntity } = DrupalGutenberg.Components;
+/* global wp, Drupal, DrupalGutenberg */
+const {
+  blocks: { registerBlockType },
+  blockEditor: { RichText, __experimentalLinkControl: LinkControl },
+  data: { dispatch },
+} = wp;
+const {
+  Components: { DrupalMediaEntity },
+} = DrupalGutenberg;
+const { t: __ } = Drupal;
 
 const settings = {
-  title: Drupal.t('Teaser'),
+  title: __('Teaser'),
   icon: 'media-document',
   attributes: {
     mediaEntityIds: {
@@ -34,7 +37,10 @@ const settings = {
     return (
       <div className={props.className}>
         <DrupalMediaEntity
-          attributes={props.attributes}
+          attributes={{
+            ...props.attributes,
+            allowedTypes: ['image'],
+          }}
           setAttributes={props.setAttributes}
           isMediaLibraryEnabled={true}
           onError={(error) => {

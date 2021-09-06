@@ -566,6 +566,7 @@ jobs:
           then
             echo "Error: Found uncommitted changes. Lerna publish will fail."
             git status --porcelain
+            git diff
             false
           else
             echo "Success: Found no uncommitted changes"
@@ -689,6 +690,7 @@ jobs:
           then
             echo "Error: Found uncommitted changes. Lerna publish will fail."
             git status --porcelain
+            git diff
             false
           else
             echo "Success: Found no uncommitted changes"

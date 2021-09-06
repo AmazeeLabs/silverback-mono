@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.33](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.7.32...@amazeelabs/gatsby-starter@0.7.33) (2021-09-06)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-starter
+
+
+
+
+
+## [0.7.32](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.7.31...@amazeelabs/gatsby-starter@0.7.32) (2021-08-19)
+
+
+### Bug Fixes
+
+* **scaffolding:** add ts-jest as an explicit dependency to scaffolded projects ([3b98d91](https://github.com/AmazeeLabs/silverback-mono/commit/3b98d91f5ea8130fc33c8abd4c0a1c6ee7511bef))
+
+
+
+
+
+## [0.7.31](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.7.30...@amazeelabs/gatsby-starter@0.7.31) (2021-08-17)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-starter
+
+
+
+
+
+## [0.7.30](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.7.29...@amazeelabs/gatsby-starter@0.7.30) (2021-08-09)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-starter
+
+
+
+
+
 ## [0.7.29](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.7.28...@amazeelabs/gatsby-starter@0.7.29) (2021-07-29)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-starter

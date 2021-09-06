@@ -31,9 +31,9 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
   /**
    * The target entity bundle.
    *
-   * @var string
+   * @var string|null
    */
-  protected string $bundle;
+  protected ?string $bundle;
 
   /**
    * Indicates if Drupal access restrictions should be respected.
@@ -77,7 +77,7 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
     ContentTranslationManagerInterface $contentTranslationManager
   ) {
     $this->type = $config['type'];
-    $this->bundle = $config['bundle'];
+    $this->bundle = $config['bundle'] ?? NULL;
     $this->access = $config['access'] ?? true;
     $this->contentTranslationManager = $contentTranslationManager;
 
@@ -102,7 +102,7 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
     if (
       $context instanceof EntityInterface
       && $context->getEntityTypeId() === $this->type
-      && $context->bundle() === $this->bundle
+      && ($this->bundle !== NULL && $context->bundle() === $this->bundle)
     ) {
       if ($this->isTranslatable() && $context instanceof TranslatableInterface) {
         return array_map(function (LanguageInterface $lang) use ($context) {
@@ -121,7 +121,7 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
   public function resolveItem(ResolverInterface $id, ?ResolverInterface $langcode = null): ResolverInterface {
     $resolver = $this->builder->produce('fetch_entity')
       ->map('type', $this->builder->fromValue($this->type))
-      ->map('bundles', $this->builder->fromValue([$this->bundle]))
+      ->map('bundles', $this->builder->fromValue($this->bundle === NULL ? NULL : [$this->bundle]))
       ->map('access', $this->builder->fromValue($this->access))
       ->map('id', $id);
     if ($this->isTranslatable() && $langcode) {

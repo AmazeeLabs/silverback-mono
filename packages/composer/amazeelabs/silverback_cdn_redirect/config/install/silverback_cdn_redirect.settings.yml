@@ -1,3 +1,5 @@
 base_url: ''
-fallback_path: ''
-prefix_fallback_path: false
+404_path: ''
+should_prefix_404_path: false
+netlify_password: ''
+missing_translation_redirect_entity_types: []

@@ -12,6 +12,7 @@ const IndexPage: React.FC<PageProps> = () => {
     drupalPage: somePage,
     allDrupalArticle: { nodes: articles },
     allDrupalGutenbergPage: { nodes: gutenbergPages },
+    allDrupalWebform: { nodes: webforms },
   } = useStaticQuery<IndexPageQuery>(graphql`
     query IndexPage {
       drupalPage {
@@ -50,6 +51,13 @@ const IndexPage: React.FC<PageProps> = () => {
             path
             title
           }
+        }
+      }
+      allDrupalWebform {
+        nodes {
+          path
+          url
+          title
         }
       }
     }
@@ -139,6 +147,19 @@ const IndexPage: React.FC<PageProps> = () => {
             </tr>
           )),
         )}
+      </table>
+      <b>All Webforms. Linked to dedicated site pages.</b>
+      <table>
+        <tr>
+          <Row>Title/Link</Row>
+        </tr>
+        {webforms.map((webform) => (
+          <tr key={`gutenberg-page-row-${webform.path}`}>
+            <Row>
+              <Link to={webform.path}>{webform.title}</Link>
+            </Row>
+          </tr>
+        ))}
       </table>
     </>
   );

@@ -1,0 +1,8 @@
+!gatsby.js
+!gatsby.d.ts
+!storybook.js
+!storybook.d.ts
+!index.js
+!index.d.ts
+!src/**/*.js
+!src/**/*.d.ts

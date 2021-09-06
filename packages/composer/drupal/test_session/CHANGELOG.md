@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/test_session@1.1.10...@-drupal/test_session@1.2.0) (2021-09-06)
+
+
+### Features
+
+* allow setting session params with GET requests ([5272f35](https://github.com/AmazeeLabs/silverback-mono/commit/5272f355889daa9af28135ed4f53d3b9efccbe94))
+
+
+
+
+
+## [1.1.10](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/test_session@1.1.9...@-drupal/test_session@1.1.10) (2021-08-17)
+
+**Note:** Version bump only for package @-drupal/test_session
+
+
+
+
+
 ## [1.1.9](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/test_session@1.1.8...@-drupal/test_session@1.1.9) (2021-07-26)
 
 **Note:** Version bump only for package @-drupal/test_session

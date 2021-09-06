@@ -39,6 +39,9 @@ jobs:
         with:
           node-version: "${{ steps.node_version.outputs.NODE_VERSION }}"
 
+      - name: Tell yarn to use bash
+        run: yarn config set script-shell /bin/bash
+
       - name: Get Yarn cache directory
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
