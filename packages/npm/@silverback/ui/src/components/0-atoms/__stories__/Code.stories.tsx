@@ -1,11 +1,11 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
 
-import Code from './Code';
+import Code from '../Code';
 
 export default {
   title: 'Atoms/Code',
-  componend: Code,
+  component: Code,
 } as Meta;
 
 const MDXCode: React.FC<{
