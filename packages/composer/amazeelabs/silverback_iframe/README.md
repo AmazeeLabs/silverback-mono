@@ -16,3 +16,18 @@ If there is `iframe=true` param in the URL, the module does:
 - Enables `silverback_iframe_theme`.
 - Removes `X-Frame-Options` header.
 - Adds `iframe=true` param to all outbound URLs.
+
+## Installation
+
+Drupal:
+
+- `composer require amazeelabs/silverback_iframe amazeelabs/silverback_iframe_theme`
+- `drush en silverback_iframe`
+- `drush then silverback_iframe_theme`
+- if needed: create a custom theme based on `silverback_iframe_theme` and enable it
+- configure which blocks to display with `silverback_iframe_theme` (or your sub-theme) at `/admin/structure/block`
+
+React frontend:
+
+- `yarn add @amazeelabs/silverback-iframe`
+- use `SilverbackIframe` component
