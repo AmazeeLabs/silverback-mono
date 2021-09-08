@@ -8,6 +8,9 @@ describe('isRelative', () => {
   it('returns true for a relative url', () => {
     expect(isRelative('/test')).toBeTruthy();
   });
+  it('returns true for a hash url', () => {
+    expect(isRelative('#hash')).toBeTruthy();
+  });
   it('returns false for a full url', () => {
     expect(isRelative('http://www.amazeelabs.com')).toBeFalsy();
   });
