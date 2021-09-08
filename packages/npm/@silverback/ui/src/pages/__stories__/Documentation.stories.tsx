@@ -78,3 +78,9 @@ export const WithTOC: Story = () => (
     </p>
   </Documentation>
 );
+
+WithTOC.parameters = {
+  axe: {
+    skip: false,
+  },
+};
