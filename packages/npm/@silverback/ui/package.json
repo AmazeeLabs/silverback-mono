@@ -35,7 +35,7 @@
   "scripts": {
     "prepare": "amazee-scaffold",
     "precommit": "lint-staged",
-    "test": "tsc --noEmit && jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi && build-storybook && axe-storybook",
+    "test": "build-storybook && axe-storybook && tsc --noEmit && jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi",
     "watch": "jest --watch",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
