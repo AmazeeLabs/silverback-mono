@@ -25,6 +25,45 @@ describe('buildLink', () => {
     );
   });
 
+  it('allows the consumer to set query parameters', () => {
+    const Link = buildLink({
+      href: '/foo',
+    });
+    render(<Link query={{ a: 'b' }}>Test</Link>);
+    expect(screen.getByRole('link').getAttribute('href')).toEqual('/foo?a=b');
+  });
+
+  it('allows the consumer to override query parameters', () => {
+    const Link = buildLink({
+      href: '/foo',
+      query: { a: 'b' },
+    });
+    render(<Link query={{ a: 'c' }}>Test</Link>);
+    expect(screen.getByRole('link').getAttribute('href')).toEqual('/foo?a=c');
+  });
+
+  it('allows the consumer to set a query fragment', () => {
+    const Link = buildLink({
+      href: '/foo',
+    });
+    render(<Link fragment="bar">Test</Link>);
+    expect(screen.getByRole('link').getAttribute('href')).toEqual('/foo#bar');
+  });
+
+  it('allows the consumer to set query parameters and fragments', () => {
+    const Link = buildLink({
+      href: '/foo',
+    });
+    render(
+      <Link query={{ a: 'b' }} fragment="bar">
+        Test
+      </Link>,
+    );
+    expect(screen.getByRole('link').getAttribute('href')).toEqual(
+      '/foo?a=b#bar',
+    );
+  });
+
   it('renders a simple link', () => {
     const Link = buildLink({ href: '#test' });
     render(<Link>test</Link>);
@@ -70,6 +109,13 @@ describe('buildLink', () => {
     Link.navigate();
     expect(action).toHaveBeenCalledTimes(1);
     expect(action).toHaveBeenCalledWith('#test');
+  });
+
+  it('exposes a navigate function that logs a storybook action and allows to override queries and fragments', () => {
+    const Link = buildLink({ href: '/foo', query: { a: 'b' } });
+    Link.navigate({ query: { a: 'c' }, fragment: 'bar' });
+    expect(action).toHaveBeenCalledTimes(1);
+    expect(action).toHaveBeenCalledWith('/foo?a=c#bar');
   });
 });
 

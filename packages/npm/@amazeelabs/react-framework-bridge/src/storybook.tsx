@@ -2,7 +2,7 @@ import { action } from '@storybook/addon-actions';
 import React from 'react';
 
 import { Image, ImageProps, Link, LinkProps } from './types';
-import { buildHtmlBuilder, buildUrl } from './utils';
+import { buildHtmlBuilder, buildUrlBuilder } from './utils';
 
 export const buildLink = ({
   href,
@@ -11,12 +11,16 @@ export const buildLink = ({
   queryOptions,
   ...props
 }: LinkProps): Link => {
-  const target = segments ? buildUrl(segments, query, queryOptions) : href;
+  const buildUrl = buildUrlBuilder(segments || [href], query, queryOptions);
+
   const Element: Link = function MockLink({
     className,
     activeClassName,
+    query: queryOverride,
+    fragment,
     children,
   }) {
+    const target = buildUrl(queryOverride, fragment);
     return (
       <a
         href={target}
@@ -35,7 +39,10 @@ export const buildLink = ({
       </a>
     );
   };
-  Element.navigate = () => action('navigate to')(target);
+  Element.navigate = (opts) => {
+    const target = buildUrl(opts?.query, opts?.fragment);
+    action('navigate to')(target);
+  };
   return Element;
 };
 

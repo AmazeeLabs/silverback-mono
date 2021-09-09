@@ -29,7 +29,14 @@ export type ImageBuilder = (props: ImageProps) => Image;
 export type Link = React.FC<{
   className?: string;
   activeClassName?: string;
-}> & { navigate: () => void };
+  query?: { [key: string]: string };
+  fragment?: string;
+}> & {
+  navigate: (opts?: {
+    query?: { [key: string]: string };
+    fragment?: string;
+  }) => void;
+};
 
 export type LinkProps = Omit<
   React.DetailedHTMLProps<

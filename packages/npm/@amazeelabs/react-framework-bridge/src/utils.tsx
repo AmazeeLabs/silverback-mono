@@ -129,6 +129,7 @@ export const buildUrl = (
   segments: NonNullable<LinkProps['segments']>,
   query?: LinkProps['query'],
   queryOptions?: LinkProps['queryOptions'],
+  fragment?: string,
 ) => {
   const url = segments.filter(isTruthy).map(stripSlashes).join('/');
 
@@ -137,5 +138,22 @@ export const buildUrl = (
     ...queryOptions,
   });
 
-  return [url, queryString].filter(isTruthy).join('?');
+  return [[url, queryString].filter(isTruthy).join('?'), fragment]
+    .filter(isTruthy)
+    .join('#');
 };
+
+export const buildUrlBuilder =
+  (
+    segments: NonNullable<LinkProps['segments']>,
+    query?: LinkProps['query'],
+    queryOptions?: LinkProps['queryOptions'],
+    fragment?: string,
+  ) =>
+  (queryOverride?: { [key: string]: string }, fragmentOverride?: string) =>
+    buildUrl(
+      segments,
+      { ...(query || {}), ...(queryOverride || {}) },
+      queryOptions,
+      fragmentOverride || fragment,
+    );

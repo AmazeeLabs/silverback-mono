@@ -212,4 +212,9 @@ describe('buildUrl', () => {
       '/first/second/third',
     );
   });
+  it('attaches a fragment', () => {
+    expect(
+      buildUrl(['https://fake.url/', 'a', 'b'], undefined, undefined, 'foo'),
+    ).toStrictEqual(`https://fake.url/a/b#foo`);
+  });
 });
