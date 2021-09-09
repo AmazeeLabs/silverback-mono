@@ -22,6 +22,7 @@ jest.mock(
     navigate: (to: string) => gatsbyNav(to),
   }),
 );
+beforeEach(jest.resetAllMocks);
 
 describe('buildLink', () => {
   it('can build a link from segments and query parameters', () => {
@@ -35,6 +36,36 @@ describe('buildLink', () => {
     expect(screen.getByRole('link').getAttribute('data-gatsby')).toBeTruthy();
     expect(screen.getByRole('link').getAttribute('href')).toEqual(
       '/foo/bar?a=b',
+    );
+  });
+
+  it('allows the consumer to set query parameters', () => {
+    const Link = buildLink({
+      href: '/foo',
+    });
+    render(<Link query={{ a: 'b' }}>Test</Link>);
+    expect(screen.getByRole('link').getAttribute('href')).toEqual('/foo?a=b');
+  });
+
+  it('allows the consumer to set a query fragment', () => {
+    const Link = buildLink({
+      href: '/foo',
+    });
+    render(<Link fragment="bar">Test</Link>);
+    expect(screen.getByRole('link').getAttribute('href')).toEqual('/foo#bar');
+  });
+
+  it('allows the consumer to set query parameters and fragments', () => {
+    const Link = buildLink({
+      href: '/foo',
+    });
+    render(
+      <Link query={{ a: 'b' }} fragment="bar">
+        Test
+      </Link>,
+    );
+    expect(screen.getByRole('link').getAttribute('href')).toEqual(
+      '/foo?a=b#bar',
     );
   });
 
@@ -72,5 +103,12 @@ describe('buildLink', () => {
     Link.navigate();
     expect(gatsbyNav).toHaveBeenCalledTimes(1);
     expect(gatsbyNav).toHaveBeenCalledWith('#test');
+  });
+
+  it('exposes Gatsby navigate that allows to override query and fragments', () => {
+    const Link = buildLink({ href: '/foo', query: { a: 'b' } });
+    Link.navigate({ query: { a: 'c' }, fragment: 'bar' });
+    expect(gatsbyNav).toHaveBeenCalledTimes(1);
+    expect(gatsbyNav).toHaveBeenCalledWith('/foo?a=c#bar');
   });
 });

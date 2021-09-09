@@ -5,7 +5,7 @@ import React from 'react';
 import type { Image, Link, LinkProps } from './types';
 import {
   buildHtmlBuilder,
-  buildUrl,
+  buildUrlBuilder,
   isInternalTarget,
   isRelative,
 } from './utils';
@@ -20,12 +20,15 @@ export const buildLink = ({
 }: Omit<GatsbyLinkProps<any>, 'className' | 'activeClassName' | 'to'> & {
   href?: string;
 } & Pick<LinkProps, 'segments' | 'query' | 'queryOptions'>): Link => {
-  const uri = segments ? buildUrl(segments, query, queryOptions) : href;
+  const buildUrl = buildUrlBuilder(segments || [href], query, queryOptions);
   const Element: Link = function LinkBuilder({
     className,
     activeClassName,
     children,
+    query: queryOverride,
+    fragment,
   }) {
+    const uri = buildUrl(queryOverride, fragment);
     return uri && isInternalTarget(target) && isRelative(uri) ? (
       // @ts-ignore GatsbyLink comply with type
       <GatsbyLink
@@ -49,7 +52,10 @@ export const buildLink = ({
     );
   };
 
-  Element.navigate = () => href && navigate(href, props);
+  Element.navigate = (opts) => {
+    const uri = buildUrl(opts?.query, opts?.fragment);
+    navigate(uri, props);
+  };
 
   return Element;
 };
