@@ -1,7 +1,7 @@
 {
   "name": "@amazeelabs/silverback-playwright",
   "main": "index.ts",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Helps running Playwright tests on Silverback setups.",
   "author": "Amazee Labs",
   "license": "MIT",
