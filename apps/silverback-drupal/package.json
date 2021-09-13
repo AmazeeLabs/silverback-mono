@@ -18,6 +18,8 @@
     "@-amazeelabs/silverback-cli": "^2.7.3",
     "@-amazeelabs/silverback_gatsby": "^1.11.1",
     "@-drupal/cypress": "^2.3.19",
-    "@-drupal/gatsby_build_monitor": "^1.3.1"
+    "@-drupal/gatsby_build_monitor": "^1.3.1",
+    "@-silverback-drupal-config/webform": "^1.0.0",
+    "@-silverback-drupal/gutenberg_custom_blocks": "^1.0.0"
   }
 }
