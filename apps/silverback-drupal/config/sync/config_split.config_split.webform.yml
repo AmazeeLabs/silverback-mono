@@ -1,0 +1,17 @@
+uuid: 8599e30e-c590-4c03-bcb1-bb1ad5dc1e6a
+langcode: en
+status: true
+dependencies: {  }
+id: webform
+label: Webform
+description: ''
+folder: ../config/webform/sync
+module:
+  webform: 0
+  webform_ui: 0
+theme: {  }
+blacklist: {  }
+graylist: {  }
+graylist_dependents: false
+graylist_skip_equal: false
+weight: 0
