@@ -12,7 +12,7 @@ import {
 } from './types';
 import { buildHtmlBuilder, buildUrlBuilder } from './utils';
 
-export function buildLink<Query>({
+export function buildLink<Query = {}>({
   href,
   segments,
   query,
