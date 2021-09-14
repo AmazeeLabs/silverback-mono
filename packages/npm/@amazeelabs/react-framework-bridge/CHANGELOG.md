@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.3.0...@amazeelabs/react-framework-bridge@1.3.1) (2021-09-14)
+
+
+### Bug Fixes
+
+* **gatsby:** added missing buildForm exports ([f258879](https://github.com/AmazeeLabs/silverback-mono/commit/f258879439e5cd43c9b07b5ab9624b298d64b26e))
+
+
+
+
+
 # [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.2.3...@amazeelabs/react-framework-bridge@1.3.0) (2021-09-14)
 
 
