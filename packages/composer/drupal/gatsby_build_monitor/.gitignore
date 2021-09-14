@@ -1,5 +1,3 @@
-gatsby-node.js
-*.js
 ### MANAGED BY @amazeelabs/scaffold - START
 .eslintrc.js
 .jest-runner-eslintrc
@@ -9,4 +7,3 @@ jest.config.js
 ### MANAGED BY @amazeelabs/scaffold - END
 
 test-results
-yarn-error.log
