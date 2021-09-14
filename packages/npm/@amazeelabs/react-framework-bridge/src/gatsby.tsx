@@ -1,8 +1,10 @@
+import { Form as FormComponent, Formik } from 'formik';
 import { GatsbyLinkProps, Link as GatsbyLink, navigate } from 'gatsby';
 import { GatsbyImage, GatsbyImageProps } from 'gatsby-plugin-image';
 import React from 'react';
 
 import type { Image, Link, LinkProps } from './types';
+import { Form, FormBuilderProps } from './types';
 import {
   buildHtmlBuilder,
   buildUrlBuilder,
@@ -69,3 +71,20 @@ export const buildImage = (
 };
 
 export const buildHtml = buildHtmlBuilder(buildLink);
+
+export function buildForm<Values>(
+  formikProps: FormBuilderProps<Values>,
+): Form<Values> {
+  return function MockForm(formProps) {
+    return (
+      <Formik
+        onSubmit={(values) => {
+          console.log('form submission:', values);
+        }}
+        {...formikProps}
+      >
+        <FormComponent {...formProps} />
+      </Formik>
+    );
+  };
+}

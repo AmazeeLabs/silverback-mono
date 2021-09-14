@@ -1,8 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { Field } from 'formik';
 import { GatsbyLinkProps } from 'gatsby';
 import React from 'react';
 
-import { buildLink } from '../gatsby';
+import { buildForm, buildLink } from '../gatsby';
 
 const gatsbyNav = jest.fn();
 
@@ -110,5 +112,27 @@ describe('buildLink', () => {
     Link.navigate({ query: { a: 'c' }, fragment: 'bar' });
     expect(gatsbyNav).toHaveBeenCalledTimes(1);
     expect(gatsbyNav).toHaveBeenCalledWith('/foo?a=c#bar');
+  });
+});
+
+describe('buildForm', () => {
+  it('hands form values to the submit callback', async () => {
+    const callback = jest.fn();
+    const Form = buildForm({
+      initialValues: { foo: '' },
+      onSubmit: (values) => callback(values),
+    });
+    render(
+      <Form>
+        <Field type="text" name="foo" />
+        <button type="submit" />
+      </Form>,
+    );
+    userEvent.type(screen.getByRole('textbox'), 'bar');
+    userEvent.click(screen.getByRole('button'));
+    await waitFor(() => {
+      expect(callback).toHaveBeenCalledTimes(1);
+      expect(callback).toHaveBeenCalledWith({ foo: 'bar' });
+    });
   });
 });

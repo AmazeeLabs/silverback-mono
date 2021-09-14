@@ -1,7 +1,10 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { wait } from '@testing-library/user-event/dist/utils';
+import { Field } from 'formik';
 import React from 'react';
 
-import { buildImage, buildLink } from '../storybook';
+import { buildForm, buildImage, buildLink } from '../storybook';
 
 const action = jest.fn();
 
@@ -135,11 +138,19 @@ describe('buildImage', () => {
 });
 
 describe('buildForm', () => {
-  it('logs a storybook action on submit', () => {
-    const Link = buildLink({ href: '#test' });
-    render(<Link>test</Link>);
-    fireEvent.click(screen.getByRole('link'));
-    expect(action).toHaveBeenCalledTimes(1);
-    expect(action).toHaveBeenCalledWith('#test');
+  it('logs a storybook action on submit', async () => {
+    const Form = buildForm({ initialValues: { foo: '' } });
+    render(
+      <Form>
+        <Field type="text" name="foo" />
+        <button type="submit" />
+      </Form>,
+    );
+    userEvent.type(screen.getByRole('textbox'), 'bar');
+    userEvent.click(screen.getByRole('button'));
+    await waitFor(() => {
+      expect(action).toHaveBeenCalledTimes(1);
+      expect(action).toHaveBeenCalledWith({ foo: 'bar' });
+    });
   });
 });

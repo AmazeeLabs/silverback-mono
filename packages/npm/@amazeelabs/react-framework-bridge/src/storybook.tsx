@@ -1,7 +1,15 @@
 import { action } from '@storybook/addon-actions';
+import { Form as FormComponent, Formik } from 'formik';
 import React from 'react';
 
-import { Image, ImageProps, Link, LinkProps } from './types';
+import {
+  Form,
+  FormBuilderProps,
+  Image,
+  ImageProps,
+  Link,
+  LinkProps,
+} from './types';
 import { buildHtmlBuilder, buildUrlBuilder } from './utils';
 
 export function buildLink<Query>({
@@ -53,3 +61,20 @@ export const buildImage = (props: ImageProps): Image => {
 };
 
 export const buildHtml = buildHtmlBuilder(buildLink);
+
+export function buildForm<Values>(
+  formikProps: FormBuilderProps<Values>,
+): Form<Values> {
+  return function MockForm(formProps) {
+    return (
+      <Formik
+        onSubmit={(values) => {
+          action('form submission')(values);
+        }}
+        {...formikProps}
+      >
+        <FormComponent {...formProps} />
+      </Formik>
+    );
+  };
+}
