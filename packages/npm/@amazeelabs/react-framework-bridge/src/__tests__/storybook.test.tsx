@@ -26,7 +26,7 @@ describe('buildLink', () => {
   });
 
   it('allows the consumer to set query parameters', () => {
-    const Link = buildLink({
+    const Link = buildLink<{ a: string }>({
       href: '/foo',
     });
     render(<Link query={{ a: 'b' }}>Test</Link>);
@@ -34,7 +34,7 @@ describe('buildLink', () => {
   });
 
   it('allows the consumer to override query parameters', () => {
-    const Link = buildLink({
+    const Link = buildLink<{ a: string }>({
       href: '/foo',
       query: { a: 'b' },
     });
@@ -51,7 +51,7 @@ describe('buildLink', () => {
   });
 
   it('allows the consumer to set query parameters and fragments', () => {
-    const Link = buildLink({
+    const Link = buildLink<{ a: string }>({
       href: '/foo',
     });
     render(
@@ -131,5 +131,15 @@ describe('buildImage', () => {
     const Image = buildImage({ src: 'test.png', alt: 'Test' });
     render(<Image className={'border-red'} />);
     expect(screen.getByRole('img').getAttribute('class')).toEqual('border-red');
+  });
+});
+
+describe('buildForm', () => {
+  it('logs a storybook action on submit', () => {
+    const Link = buildLink({ href: '#test' });
+    render(<Link>test</Link>);
+    fireEvent.click(screen.getByRole('link'));
+    expect(action).toHaveBeenCalledTimes(1);
+    expect(action).toHaveBeenCalledWith('#test');
   });
 });
