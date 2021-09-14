@@ -27,7 +27,7 @@ export type ImageProps = Omit<
 
 export type ImageBuilder = (props: ImageProps) => Image;
 
-export type Link<Query extends Parameters<typeof stringify>[1] = {}> =
+export type Link<Query extends Parameters<typeof stringify>[0] = {}> =
   React.FC<{
     className?: string;
     activeClassName?: string;
@@ -37,7 +37,7 @@ export type Link<Query extends Parameters<typeof stringify>[1] = {}> =
     navigate: (opts?: { query?: Query; fragment?: string }) => void;
   };
 
-export type LinkProps<Query extends Parameters<typeof stringify>[1] = {}> =
+export type LinkProps<Query extends Parameters<typeof stringify>[0] = {}> =
   Omit<
     React.DetailedHTMLProps<
       React.AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -56,7 +56,7 @@ export type LinkProps<Query extends Parameters<typeof stringify>[1] = {}> =
     > & {
       segments?: Array<string | null | undefined>;
       query?: Query;
-      queryOptions?: Query;
+      queryOptions?: Parameters<typeof stringify>[1];
     };
 
 export type LinkBuilder<T = {}> = (props: LinkProps<T>) => Link;
