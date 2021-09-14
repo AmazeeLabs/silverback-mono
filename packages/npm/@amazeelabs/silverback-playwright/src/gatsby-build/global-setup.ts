@@ -10,8 +10,7 @@ export default async function globalSetup() {
   await drupalGlobalSetup();
 
   cd(gatsby.path);
-  await port.killIfUsed(gatsby.fastBuilds.port);
-  await port.killIfUsed(gatsby.port);
+  await port.killIfUsed(gatsby.allPorts);
   await $`yarn clean`;
   // Load env vars right before starting Gatsby so that it sees them.
   $`source .envrc && yarn fast-builds:serve:local`;

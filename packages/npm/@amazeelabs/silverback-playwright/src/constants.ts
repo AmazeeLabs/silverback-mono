@@ -15,12 +15,16 @@ export const drupal = {
   },
 };
 
-const gatsbyPort = testType === 'gatsby-develop' ? 8000 : 9000;
+const gatsbyDevelopPort = 8000;
+const gatsbyBuildPort = 9000;
 const gatsbyRebuildPort = 9001;
+const gatsbyPort =
+  testType === 'gatsby-develop' ? gatsbyDevelopPort : gatsbyBuildPort;
 export const gatsby = {
   path: path.resolve(`${__dirname}/../../../../../apps/silverback-gatsby`),
   port: gatsbyPort,
   baseUrl: `http://localhost:${gatsbyPort}`,
+  allPorts: [gatsbyRebuildPort, gatsbyBuildPort, gatsbyDevelopPort],
   fastBuilds: {
     port: gatsbyRebuildPort,
     rebuildUrl: `http://localhost:${gatsbyRebuildPort}/__rebuild`,
