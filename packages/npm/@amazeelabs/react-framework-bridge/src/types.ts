@@ -1,3 +1,9 @@
+import {
+  FormikConfig,
+  FormikFormProps,
+  FormikProps,
+  FormikValues,
+} from 'formik';
 import { Element } from 'html-react-parser';
 import { stringify } from 'qs';
 import React from 'react';
@@ -50,3 +56,14 @@ export type LinkProps<Query extends Parameters<typeof stringify>[1] = {}> =
   };
 
 export type LinkBuilder<T> = (props: LinkProps<T>) => Link;
+
+export type Form<Values extends FormikValues> = React.FC<
+  Omit<FormikFormProps, 'target' | 'action'> &
+    Pick<FormikConfig<Values>, 'children'>
+>;
+
+export type FormBuilderProps<Values extends FormikValues> = Omit<
+  FormikConfig<Values>,
+  'onSubmit'
+> &
+  Partial<Pick<FormikConfig<Values>, 'onSubmit'>>;
