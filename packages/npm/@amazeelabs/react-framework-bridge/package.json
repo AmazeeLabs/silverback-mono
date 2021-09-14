@@ -26,7 +26,10 @@
     "jest": "^27.0.6",
     "lint-staged": "^11.1.2",
     "ts-jest": "^27.0.5",
-    "typescript": "^4.3.5"
+    "typescript": "^4.3.5",
+    "gatsby": "^3",
+    "gatsby-plugin-image": "^1",
+    "formik": "^2"
   },
   "scripts": {
     "prepare": "amazee-scaffold && tsc",
