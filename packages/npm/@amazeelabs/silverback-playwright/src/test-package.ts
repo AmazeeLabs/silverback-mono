@@ -10,13 +10,15 @@ if (process.argv.includes('help') || process.argv.includes('--help')) {
   console.log(`Usage: yarn sp-test [flags]
   Flags:
     -v, --verbose    Spam a lot
-    -h, --headed     Run tests in headed browser (default: headless)`);
+    -h, --headed     Run tests in headed browser (default: headless)
+    -t, --trace      Record traces`);
   process.exit();
 }
 
 const headed = process.argv.includes('--headed') || process.argv.includes('-h');
 const verbose =
   process.argv.includes('--verbose') || process.argv.includes('-v');
+const trace = process.argv.includes('--trace') || process.argv.includes('-t');
 
 $.verbose = verbose;
 // We escape args ourselves.
@@ -27,6 +29,7 @@ const runTests = async (type: TestType) => {
     `SP_TEST_DIR='${process.cwd()}/playwright-tests'`,
     `SP_TEST_TYPE=${type}`,
     `SP_VERBOSE=${verbose ? 'true' : "''"}`,
+    `SP_TRACE=${trace ? 'true' : "''"}`,
   ].join(' ');
 
   console.log(`⏩ Running ${type} tests...`);

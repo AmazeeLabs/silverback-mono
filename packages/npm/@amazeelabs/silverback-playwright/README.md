@@ -6,14 +6,16 @@ At the moment it can be used only with Silverback monorepo packages.
 
 # Usage
 
-Add `@amazeelabs/silverback-playwright` to your package dev dependencies.
+In your package:
+
+- Add this package with `yarn add @amazeelabs/silverback-playwright --dev`
+- Add `test-results` to `.gitignore`
+- Create `playwright-tests` directory
+- Create some test files following `*.spec.ts` name pattern
+- Run `yarn sp-test`
 
 (Consider making tests a separate package. In this case you can depend it on
 several other packages without ruining their dependencies.)
-
-In your package, create `playwright-tests` directory with test files.
-
-Run `yarn sp-test`.
 
 ## Example test
 
@@ -107,8 +109,11 @@ Start tests with `--verbose` (`-v`) flag.
 
 ### Traces
 
-Our Playwright config records
-[traces](https://playwright.dev/docs/trace-viewer/) on the first retry.
+Sometimes it can happen that a test works in the headed mode, but fails in the
+headless one. [Traces](https://playwright.dev/docs/trace-viewer/) help a lot
+here.
+
+To record traces, run the tests with `--trace` (`-t`) flag.
 
 To see the traces, go to your package dir and run
 
