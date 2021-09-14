@@ -1,9 +1,4 @@
-import {
-  FormikConfig,
-  FormikFormProps,
-  FormikProps,
-  FormikValues,
-} from 'formik';
+import { FormikConfig, FormikFormProps, FormikValues } from 'formik';
 import { Element } from 'html-react-parser';
 import { stringify } from 'qs';
 import React from 'react';
@@ -48,12 +43,21 @@ export type LinkProps<Query extends Parameters<typeof stringify>[1] = {}> =
       React.AnchorHTMLAttributes<HTMLAnchorElement>,
       HTMLAnchorElement
     >,
-    'className'
-  > & {
-    segments?: Array<string | null | undefined>;
-    query?: Query;
-    queryOptions?: Query;
-  };
+    'className' | 'href'
+  > &
+    Partial<
+      Pick<
+        React.DetailedHTMLProps<
+          React.AnchorHTMLAttributes<HTMLAnchorElement>,
+          HTMLAnchorElement
+        >,
+        'href'
+      >
+    > & {
+      segments?: Array<string | null | undefined>;
+      query?: Query;
+      queryOptions?: Query;
+    };
 
 export type LinkBuilder<T = {}> = (props: LinkProps<T>) => Link;
 
