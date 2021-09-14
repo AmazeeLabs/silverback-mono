@@ -51,6 +51,8 @@ class GatsbyUpdateTrigger implements GatsbyUpdateTriggerInterface {
               'User-Agent' => 'CMS',
             ],
             'json' => ['buildId' => $id],
+            // It can happen that a request hangs for too long time.
+            'timeout' => 2,
           ]);
           if (
             function_exists('_gatsby_build_monitor_state') &&
