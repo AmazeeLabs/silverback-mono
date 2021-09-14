@@ -4,7 +4,7 @@ import { drupal } from './constants';
 
 export const drupalLogin = async (page: PlaywrightTestArgs['page']) => {
   await page.goto(
-    `${drupal.baseUrl}/test-session/set?X-TEST-SESSION-USER=${drupal.adminUser.login}`,
+    `${drupal.baseUrl}/test-session/set?X-TEST-SESSION-USER=${drupal.adminUser.login}&X-TEST-SESSION-TOOLBAR=on`,
   );
 };
 
