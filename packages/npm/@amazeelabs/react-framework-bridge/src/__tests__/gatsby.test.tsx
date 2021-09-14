@@ -41,6 +41,17 @@ describe('buildLink', () => {
     );
   });
 
+  it('can build a link from only query parameters', () => {
+    const Link = buildLink({
+      query: {
+        a: 'b',
+      },
+    });
+    render(<Link>Test</Link>);
+    expect(screen.getByRole('link').getAttribute('data-gatsby')).toBeTruthy();
+    expect(screen.getByRole('link').getAttribute('href')).toEqual('?a=b');
+  });
+
   it('allows the consumer to set query parameters', () => {
     const Link = buildLink({
       href: '/foo',

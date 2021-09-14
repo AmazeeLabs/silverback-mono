@@ -202,6 +202,26 @@ describe('buildUrl', () => {
       )}`,
     );
   });
+  it('can create query urls without paths', () => {
+    expect(
+      buildUrl(undefined, {
+        first: 'value',
+        second: true,
+        third: 32,
+        fourth: ['a', 2, null],
+        fifth: {
+          a: 'value',
+          2: true,
+        },
+        sixth: undefined,
+        seventh: null,
+      }),
+    ).toStrictEqual(
+      `?${encodeURI(
+        'first=value&second=true&third=32&fourth[0]=a&fourth[1]=2&fifth[2]=true&fifth[a]=value',
+      )}`,
+    );
+  });
   it('builds relative urls', () => {
     expect(buildUrl(['/first//', '//second/', 'third'])).toStrictEqual(
       '/first/second/third',

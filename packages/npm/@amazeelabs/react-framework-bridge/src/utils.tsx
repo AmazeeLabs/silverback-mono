@@ -14,7 +14,9 @@ export const isInternalTarget = (target?: string) =>
   typeof target === 'undefined' || target === '' || target === '_self';
 
 export const isRelative = (url?: string) =>
-  url?.startsWith('#') || Boolean(url?.match(/^\/(?!\/)/));
+  url?.startsWith('#') ||
+  url?.startsWith('?') ||
+  Boolean(url?.match(/^\/(?!\/)/));
 
 // https://gist.github.com/max10rogerio/c67c5d2d7a3ce714c4bc0c114a3ddc6e
 export const slugify = (...args: (string | number)[]): string => {
@@ -126,26 +128,33 @@ const stripSlashes = (segment: string, index: number) => {
 };
 
 export const buildUrl = (
-  segments: NonNullable<LinkProps['segments']>,
+  segments: LinkProps['segments'],
   query?: LinkProps['query'],
   queryOptions?: LinkProps['queryOptions'],
   fragment?: string,
 ) => {
-  const url = segments.filter(isTruthy).map(stripSlashes).join('/');
+  const url = segments
+    ? segments.filter(isTruthy).map(stripSlashes).join('/')
+    : '';
 
   const queryString = stringify(query, {
     skipNulls: true,
     ...queryOptions,
   });
 
-  return [[url, queryString].filter(isTruthy).join('?'), fragment]
+  return [
+    [url || '', queryString === '' ? null : queryString]
+      .filter((i) => typeof i === 'string')
+      .join('?'),
+    fragment,
+  ]
     .filter(isTruthy)
     .join('#');
 };
 
 export const buildUrlBuilder =
   (
-    segments: NonNullable<LinkProps['segments']>,
+    segments: LinkProps['segments'],
     query?: LinkProps['query'],
     queryOptions?: LinkProps['queryOptions'],
     fragment?: string,
