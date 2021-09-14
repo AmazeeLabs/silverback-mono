@@ -26,28 +26,27 @@ export type ImageProps = Omit<
 
 export type ImageBuilder = (props: ImageProps) => Image;
 
-export type Link = React.FC<{
-  className?: string;
-  activeClassName?: string;
-  query?: { [key: string]: string };
-  fragment?: string;
-}> & {
-  navigate: (opts?: {
-    query?: { [key: string]: string };
+export type Link<Query extends Parameters<typeof stringify>[1] = {}> =
+  React.FC<{
+    className?: string;
+    activeClassName?: string;
+    query?: Query;
     fragment?: string;
-  }) => void;
-};
+  }> & {
+    navigate: (opts?: { query?: Query; fragment?: string }) => void;
+  };
 
-export type LinkProps = Omit<
-  React.DetailedHTMLProps<
-    React.AnchorHTMLAttributes<HTMLAnchorElement>,
-    HTMLAnchorElement
-  >,
-  'className'
-> & {
-  segments?: Array<string | null | undefined>;
-  query?: Parameters<typeof stringify>[0];
-  queryOptions?: Parameters<typeof stringify>[1];
-};
+export type LinkProps<Query extends Parameters<typeof stringify>[1] = {}> =
+  Omit<
+    React.DetailedHTMLProps<
+      React.AnchorHTMLAttributes<HTMLAnchorElement>,
+      HTMLAnchorElement
+    >,
+    'className'
+  > & {
+    segments?: Array<string | null | undefined>;
+    query?: Query;
+    queryOptions?: Query;
+  };
 
-export type LinkBuilder = (props: LinkProps) => Link;
+export type LinkBuilder<T> = (props: LinkProps<T>) => Link;

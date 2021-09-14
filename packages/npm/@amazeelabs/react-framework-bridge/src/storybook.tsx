@@ -4,13 +4,13 @@ import React from 'react';
 import { Image, ImageProps, Link, LinkProps } from './types';
 import { buildHtmlBuilder, buildUrlBuilder } from './utils';
 
-export const buildLink = ({
+export function buildLink<Query>({
   href,
   segments,
   query,
   queryOptions,
   ...props
-}: LinkProps): Link => {
+}: LinkProps<Query>): Link<Query> {
   const buildUrl = buildUrlBuilder(segments || [href], query, queryOptions);
 
   const Element: Link = function MockLink({
@@ -43,8 +43,8 @@ export const buildLink = ({
     const target = buildUrl(opts?.query, opts?.fragment);
     action('navigate to')(target);
   };
-  return Element;
-};
+  return Element as Link<Query>;
+}
 
 export const buildImage = (props: ImageProps): Image => {
   return function MockImage({ className }) {

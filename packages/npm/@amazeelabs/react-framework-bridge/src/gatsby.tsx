@@ -10,7 +10,7 @@ import {
   isRelative,
 } from './utils';
 
-export const buildLink = ({
+export function buildLink<Query = {}>({
   href,
   segments,
   query,
@@ -19,7 +19,7 @@ export const buildLink = ({
   ...props
 }: Omit<GatsbyLinkProps<any>, 'className' | 'activeClassName' | 'to'> & {
   href?: string;
-} & Pick<LinkProps, 'segments' | 'query' | 'queryOptions'>): Link => {
+} & Pick<LinkProps, 'segments' | 'query' | 'queryOptions'>): Link<Query> {
   const buildUrl = buildUrlBuilder(segments || [href], query, queryOptions);
   const Element: Link = function LinkBuilder({
     className,
@@ -57,8 +57,8 @@ export const buildLink = ({
     navigate(uri, props);
   };
 
-  return Element;
-};
+  return Element as Link<Query>;
+}
 
 export const buildImage = (
   props: Omit<GatsbyImageProps, 'className'>,
