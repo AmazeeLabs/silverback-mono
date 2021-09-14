@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.2.3...@amazeelabs/react-framework-bridge@1.3.0) (2021-09-14)
+
+
+### Bug Fixes
+
+* **gatsby:** storybook builder unit tests ([9e0fdee](https://github.com/AmazeeLabs/silverback-mono/commit/9e0fdeeafcae8da2474d943926b1298a6eb04c16))
+
+
+### Features
+
+* **gatsby:** add optional query type hints to framework bridge links ([0d7ad9c](https://github.com/AmazeeLabs/silverback-mono/commit/0d7ad9cb83f0c92e90012499ce60284cc6b7c420))
+* **gatsby:** allow to create query-only links (?foo=bar) ([e1505b5](https://github.com/AmazeeLabs/silverback-mono/commit/e1505b52fa379eb621666330976e5a8e5b41a22b))
+* **gatsby:** integrated formik builders for gatsby and storybook ([ae34f11](https://github.com/AmazeeLabs/silverback-mono/commit/ae34f11e1729c0e411bc3f711675c5423e1d06bd))
+
+
+
+
+
 ## [1.2.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.2.2...@amazeelabs/react-framework-bridge@1.2.3) (2021-09-09)
 
 **Note:** Version bump only for package @amazeelabs/react-framework-bridge
