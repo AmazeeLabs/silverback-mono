@@ -1,6 +1,5 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { wait } from '@testing-library/user-event/dist/utils';
 import { Field } from 'formik';
 import React from 'react';
 
@@ -12,9 +11,9 @@ jest.mock('@storybook/addon-actions', () => ({
   action: () => action,
 }));
 
-describe('buildLink', () => {
-  beforeEach(jest.resetAllMocks);
+beforeEach(jest.resetAllMocks);
 
+describe('buildLink', () => {
   it('can build a link from segments and query parameters', () => {
     const Link = buildLink({
       segments: ['/foo', 'bar'],

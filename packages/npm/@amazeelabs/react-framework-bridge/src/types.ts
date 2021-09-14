@@ -55,7 +55,7 @@ export type LinkProps<Query extends Parameters<typeof stringify>[1] = {}> =
     queryOptions?: Query;
   };
 
-export type LinkBuilder<T> = (props: LinkProps<T>) => Link;
+export type LinkBuilder<T = {}> = (props: LinkProps<T>) => Link;
 
 export type Form<Values extends FormikValues> = React.FC<
   Omit<FormikFormProps, 'target' | 'action'> &
