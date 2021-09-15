@@ -48,6 +48,7 @@ module.exports = {
     "deprecate",
     "simple-import-sort",
     "import",
+    "no-only-tests",
     ...(isReactProject ? [
       "react",
       "react-hooks",
@@ -61,6 +62,7 @@ module.exports = {
     "import/first": "error",
     "import/newline-after-import": "error",
     "import/no-duplicates": "error",
+    "no-only-tests/no-only-tests": "error",
     ...(isReactProject ? {
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
