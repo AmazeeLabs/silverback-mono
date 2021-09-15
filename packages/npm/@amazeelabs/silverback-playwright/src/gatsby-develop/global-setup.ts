@@ -2,11 +2,13 @@ import { $, cd } from 'zx';
 
 import { gatsby } from '../constants';
 import drupalGlobalSetup from '../drupal-only/global-setup';
-import { port } from '../utils';
+import { log, port } from '../utils';
 
 $.verbose = !!process.env.SP_VERBOSE;
 
 export default async function globalSetup() {
+  log('gatsby-develop globalSetup start');
+
   await drupalGlobalSetup();
 
   cd(gatsby.path);
@@ -24,4 +26,6 @@ export default async function globalSetup() {
   // - test will call resetState which does it anyways
   // - if we do it, Gatsby will crash with crazy error 🤷
   //   (yoga-layout/build/Release/nbind.js address already in use)
+
+  log('gatsby-develop globalSetup end');
 }
