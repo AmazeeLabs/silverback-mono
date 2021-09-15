@@ -38,7 +38,7 @@ const runTests = async (type: TestType) => {
     $.verbose = true;
     const run = $`${envVars} yarn playwright test --grep '${
       tags[type]
-    }' --config '${__dirname}/${type}/playwright.config.ts' ${
+    }' --config '${__dirname}/${type}/playwright.config.ts' --max-failures 1 ${
       headed ? '--headed --timeout 600000' : ''
     }`;
     $.verbose = verbose;
