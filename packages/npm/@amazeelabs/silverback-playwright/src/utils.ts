@@ -19,3 +19,9 @@ export const port = {
   },
   waitUntilUsed,
 };
+
+export const log = (message: string) => {
+  if (process.env.SP_VERBOSE) {
+    console.log(`SP_DEBUG: ${message}`);
+  }
+};
