@@ -1,5 +1,5 @@
-/* global jQuery, Drupal */
-(function ($) {
+/* global jQuery, Drupal, drupalSettings */
+(function ($, Drupal, drupalSettings) {
   function getState() {
     if (document.hidden) {
       return;
@@ -40,7 +40,10 @@
       },
     });
   }
-  if (!window.localStorage.getItem('gatsby_build_monitor_disable')) {
+  if (
+    !window.localStorage.getItem('gatsby_build_monitor_disable') &&
+    drupalSettings.gatsbyBuildMonitor.autoRefresh
+  ) {
     setInterval(getState, 2000);
   }
-})(jQuery);
+})(jQuery, Drupal, drupalSettings);
