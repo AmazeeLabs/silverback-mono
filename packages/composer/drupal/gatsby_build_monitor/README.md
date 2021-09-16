@@ -1,6 +1,8 @@
 # Gatsby Build Monitor
 
-Receives status from [gatsby-plugin-build-monitor](https://www.npmjs.com/package/gatsby-plugin-build-monitor) and displays it in the Toolbar.
+Receives status from
+[gatsby-plugin-build-monitor](https://www.npmjs.com/package/gatsby-plugin-build-monitor)
+and displays it in the Toolbar.
 
 ## Setup
 
@@ -27,15 +29,15 @@ drush cset gatsby_build_monitor.settings site_url '{the-url}'
 ## To disable Toolbar auto-refresh
 
 ```js
-window.localStorage.setItem("gatsby_build_monitor_disable", "1");
+window.localStorage.setItem('gatsby_build_monitor_disable', '1');
 ```
 
 To enable it back
 
 ```js
-window.localStorage.removeItem("gatsby_build_monitor_disable");
+window.localStorage.removeItem('gatsby_build_monitor_disable');
 ```
 
-## Tests
-
-For now there is just an [integration test](https://github.com/AmazeeLabs/silverback-mono/tree/development/apps/silverback-gatsby/cypress/integration/build-status.ts) in `silverback-gatsby` project.
+Also, the auto-refresh is disabled on non-Lagoon environments by default. If you
+want it enabled, set `GATSBY_BUILD_MONITOR_AUTO_REFRESH` environment variable to
+`true`.
