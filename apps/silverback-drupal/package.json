@@ -1,6 +1,6 @@
 {
   "name": "@-amazeelabs/silverback-drupal",
-  "version": "1.10.16",
+  "version": "1.10.17",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -18,7 +18,7 @@
     "@-amazeelabs/silverback-cli": "^2.7.3",
     "@-amazeelabs/silverback_gatsby": "^1.11.2",
     "@-drupal/cypress": "^2.3.20",
-    "@-drupal/gatsby_build_monitor": "^1.3.2",
+    "@-drupal/gatsby_build_monitor": "^1.3.3",
     "@-silverback-drupal-config/webform": "^1.0.1",
     "@-silverback-drupal/gutenberg_custom_blocks": "^1.0.4"
   }
