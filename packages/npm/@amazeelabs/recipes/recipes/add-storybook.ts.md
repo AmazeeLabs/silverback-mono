@@ -68,6 +68,7 @@ $$('yarn add react react-dom');
 For styling we rely on the utility-first CSS framework
 [Tailwind](https://tailwindcss.com/), which is run within
 [PostCSS](https://postcss.org/). First we add the necessary packages.
+
 ```typescript
 // install Tailwind
 $$('yarn add -D tailwindcss postcss postcss-cli autoprefixer');
@@ -135,6 +136,17 @@ add the to our toolbox for later.
 $$('yarn add @headlessui/react');
 ```
 
+### React Framework Bridge
+
+We use `@amazeelabs/react-framework-bridge` to simulate framework dependencies
+within our component library. We have to install it along with its peer
+dependency `formik`.
+
+```typescript
+$$('yarn add @amazeelabs/react-framework-bridge');
+$$('yarn add -D formik');
+```
+
 ### Storybook
 
 Storybook is used to develop and showcase user interface components in
@@ -162,7 +174,7 @@ Create a `.storybook/main.js` file that will tell storybook where to look for
 stories and also which addons to load.
 
 ```javascript
-# |-> .storybook/main.js
+// |-> .storybook/main.js
 module.exports = {
   stories: [
     '../src/components/**/*.stories.mdx',
@@ -189,7 +201,7 @@ for automatically sorting stories based on
 [Atomic Design](https://bradfrost.com/blog/post/atomic-web-design/) principles.
 
 ```javascript
-# |-> .storybook/preview.js
+// |-> .storybook/preview.js
 import '../tailwind.css';
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -198,7 +210,7 @@ export const parameters = {
       order: [
         'Pages',
         'Components',
-        ['Atoms', 'Molecules', 'Organisms', 'Layouts'],
+        ['Layouts', 'Organisms', 'Molecules', 'Atoms'],
       ],
     },
   },
@@ -212,7 +224,7 @@ delete them.
 $$('rm -fr stories');
 ```
 
-## A first component with a story
+## A first Organism
 
 As the first and most common component, we will create a simple `Prose`
 component that uses the
@@ -221,24 +233,24 @@ Tailwind to nicely format arbitrary HTML content as we would receive it from a
 WYSIWYG editor input field.
 
 It will be a simple `div` element that wraps the content in the necessary
-Tailwind classes. It does not use any other components, and it does not consume
-data directly, which classifies it as an "Atom". So we create a `components`
-folder within `source` and add an `atoms` folder in there.
+Tailwind classes. By default, we assume everything is an organism. So we create
+a `components` folder within `src` and add an `organisms` folder in there.
 
 ```typescript
-$$('mkdir -p src/components/atoms');
+$$('mkdir -p src/components/organisms');
 ```
 
 Now we can add the very simple `React` component. It applies the Tailwind
 classes along with some margin based on the current screen size.
 
 ```tsx
-# |-> src/components/atoms/Prose.tsx
-import React, { PropsWithChildren } from 'react';
+// |-> src/components/organisms/Prose.tsx
+import React from 'react';
+import { Html } from '@amazeelabs/react-framework-bridge';
 
-export const Prose = ({ children }: PropsWithChildren<{}>) => (
+export const Prose = ({ Content }: { Content: Html }) => (
   <div className="prose sm:prose-lg md:prose-xl my-5 sm:my-10">
-    {children}
+    <Content />
   </div>
 );
 ```
@@ -247,19 +259,13 @@ Now we want to test and showcase our component under different circumstances.
 That's what we create our story for. Each component can have multiple stories,
 and we should use that to illustrate all edge cases.
 
-To not pollute the `atoms` directory, we create a `__stories__` folder within it
-that will contain our story.
-
-```typescript
-$$('mkdir -p src/components/atoms/__stories__');
-```
-
 ```tsx
-# |-> src/components/atoms/__stories__/Prose.stories.tsx
+// |-> src/components/organisms/Prose.stories.tsx
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
+import { buildHtml } from '@amazeelabs/react-framework-bridge/storybook';
 
-import { Prose } from '../Prose';
+import { Prose } from './Prose';
 
 export default {
   title: 'Components/Atoms/Prose',
@@ -267,60 +273,17 @@ export default {
 } as Meta;
 
 export const Text: Story = () => (
-  <Prose>
+  <Prose
+    Content={buildHtml(`
     <p>
-      A simple text paragraph that is hopefully long enough,
-      so it wraps the line at some point.
-      It also contains <em>emphasized</em>,
+      A simple text paragraph that is hopefully long enough, so it wraps the
+      line at some point. It also contains <em>emphasized</em>,
       <strong>strongly emphasized</strong>
       and <a href="#">linked</a> words.
     </p>
-  </Prose>
+  `)}
+  />
 );
-
-export const Headlines: Story = () => (
-    <Prose>
-      <h1>Headline level 1</h1>
-      <h2>Headline level 2</h2>
-      <h3>Headline level 3</h3>
-      <h4>Headline level 4</h4>
-      <h5>Headline level 5</h5>
-      <h6>Headline level 6</h6>
-    </Prose>
-);
-
-export const Lists: Story = () => (
-    <Prose>
-      <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-      </ul>
-      <ol>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-      </ol>
-    </Prose>
-);
-```
-
-We add an `index.ts` file to the `atoms` directory that just exports our
-component.
-
-```typescript
-# |-> src/components/atoms/index.ts
-export { Prose } from './Prose';
-```
-
-Another one in the top level `src` directory that just re-exports everything
-within the `components` folder. The library consumer will then be able to simply
-import components by just using the package name
-(`import { Prose } from '@${projectName}/ui';`).
-
-```typescript
-# |-> src/index.ts
-export * from './components/atoms';
 ```
 
 ## Build and export
@@ -343,46 +306,39 @@ $$.file('package.json', (json) => ({
   scripts: {
     ...json.scripts,
     prepare:
-      'amazee-scaffold && yarn tsc && NODE_ENV=production yarn postcss tailwind.css -o styles.css',
+      'amazee-scaffold && NODE_ENV=production yarn postcss tailwind.css -o styles.css',
   },
 }));
 ```
 
-We also have to declare our `main` and `types` entry-points so consumers
-automatically import the built assets.
+We also have to declare our `main` and entry-points so consumers automatically
+import the right files.
 
 ```typescript
 $$.file('package.json', (json) => ({
   ...json,
-  main: './dist/index.js',
-  types: './dist/index.d.ts',
+  main: './src/index.ts',
 }));
 ```
 
-Tell Typescript to transpile the source files in `src` to the `dist` folder and
-put the latter onto `git`'s ignore list.
+Tell Typescript not to transpile anything.
 
 ```typescript
 $$.file('tsconfig.json', (json) => ({
   ...json,
   compilerOptions: {
     ...json.compilerOptions,
-    outDir: 'dist',
-    rootDir: 'src',
-    declaration: true,
+    noEmit: true,
   },
 }));
-$$.file('.gitignore', (lines) => ['dist', ...lines]);
 ```
 
 Should generate an importable stylesheet with all tailwind classes used in our
-components and also the transpiled javascript sources.
+components.
 
 ```typescript
 $$('yarn prepare');
 $$('cat styles.css', {
   stdout: /prose/,
 });
-$$('test -f dist/index.js');
-$$('test -f dist/index.d.ts');
 ```
