@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/gatsby-source-silverback-cypress",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Cypress commands for @amazeelabs/gatsby-source-silverback.",
   "main": "commands.js",
   "types": "commands.d.ts",
@@ -19,7 +19,7 @@
     "watch": "jest --watch"
   },
   "devDependencies": {
-    "@amazeelabs/jest-preset": "^1.3.5",
+    "@amazeelabs/jest-preset": "^1.3.6",
     "cypress": "^8.0.0",
     "typescript": "^4.2.2"
   }
