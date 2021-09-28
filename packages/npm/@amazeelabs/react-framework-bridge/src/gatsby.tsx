@@ -46,6 +46,7 @@ export function buildLink<Query = {}>({
       <a
         className={className}
         target={target || '_blank'}
+        rel={props.rel || (isRelative(uri) ? undefined : 'noreferrer')}
         href={uri}
         {...props}
       >
