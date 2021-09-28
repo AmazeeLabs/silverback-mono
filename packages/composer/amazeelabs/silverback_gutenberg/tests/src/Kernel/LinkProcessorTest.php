@@ -3,6 +3,7 @@
 namespace Drupal\Tests\silverback_gutenberg\Kernel;
 
 use Drupal\Core\DependencyInjection\ContainerBuilder;
+use Drupal\Core\StreamWrapper\PublicStream;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\node\Entity\Node;
@@ -184,6 +185,38 @@ class LinkProcessorTest extends KernelTestBase {
         }
       }
     }
+  }
+
+  /**
+   * @dataProvider urlFlagsProvider
+   */
+  public function testUrlFlags(string $url, bool $hasSchemeOrHost, bool $linksToCurrentHost, bool $isAsset) {
+    /** @var \Drupal\silverback_gutenberg\LinkProcessor $linkProcessor */
+    $linkProcessor = \Drupal::service(LinkProcessor::class);
+    $url = str_replace('**BASE**', \Drupal::request()->getSchemeAndHttpHost(), $url);
+    $url = str_replace('**HOST**', \Drupal::request()->getHttpHost(), $url);
+    $url = str_replace('**FILES**', PublicStream::basePath(), $url);
+
+    $this->assertEquals($hasSchemeOrHost, $linkProcessor->hasSchemeOrHost($url), "$url hasSchemeOrHost");
+    $this->assertEquals($linksToCurrentHost, $linkProcessor->linksToCurrentHost($url), "$url linksToCurrentHost");
+    $this->assertEquals($isAsset, $linkProcessor->isAsset($url), "$url isAsset");
+  }
+
+  public function urlFlagsProvider(): array {
+    return [
+      ['/foo', false, true, false],
+      ['https://foo.bar/baz', true, false, false],
+      ['//foo/bar', true, false, false],
+      ['//**HOST**/bar', true, true, false],
+      ['**BASE**', true, true, false],
+      ['**BASE**/foo', true, true, false],
+      ['**BASE**/**FILES**/foo.bar', true, true, true],
+      ['/**FILES**/foo.bar', false, true, true],
+      ['/system/files/foo.bar', false, true, true],
+      ['**BASE**/system/files/foo.bar', true, true, true],
+      ['**BASE**/fr/system/files/foo.bar', true, true, true],
+      ['//**HOST**/system/files/foo.bar', true, true, true],
+    ];
   }
 
 }

@@ -17,7 +17,7 @@ class LinkProcessor {
   protected ConfigFactoryInterface $configFactory;
   protected ModuleHandlerInterface $moduleHandler;
   protected string $currentHost;
-  protected string $currentPort;
+  protected int $currentPort;
 
   public function __construct(
     AliasManagerInterface $pathAliasManager,
@@ -29,7 +29,7 @@ class LinkProcessor {
     $this->configFactory = $configFactory;
     $this->moduleHandler = $moduleHandler;
     $this->currentHost = $requestStack->getCurrentRequest()->getHost();
-    $this->currentPort = $requestStack->getCurrentRequest()->getPort();
+    $this->currentPort = (int) $requestStack->getCurrentRequest()->getPort();
   }
 
   public function processLinks(string $html, string $direction, LanguageInterface $language = NULL) {
@@ -76,26 +76,40 @@ class LinkProcessor {
     return $processed;
   }
 
+  /**
+   * @deprecated Use hasSchemeOrHost
+   */
   public function isExternal(string $url): bool {
+    return $this->hasSchemeOrHost($url);
+  }
+
+  public function hasSchemeOrHost(string $url): bool {
     $parts = parse_url($url);
-    if (isset($parts['scheme'])) {
+    return isset($parts['scheme']) || isset($parts['host']);
+  }
+
+  public function linksToCurrentHost(string $url): bool {
+    if (!$this->hasSchemeOrHost($url)) {
       return TRUE;
     }
-    if (!isset($parts['host'])) {
-      return FALSE;
-    }
-    if (
-      $parts['host'] !== $this->currentHost &&
+    $parts = parse_url($url);
+    return (
       (
-        !isset($parts['port']) ||
-        ($parts['port'] != $this->currentPort)
+        !isset($parts['scheme']) ||
+        (
+          isset($parts['scheme']) &&
+          ($parts['scheme'] === 'http' || $parts['scheme'] === 'https')
+        )
+      ) &&
+      isset($parts['host']) &&
+      $parts['host'] === $this->currentHost &&
+      (
+        (
+          isset($parts['port']) && $parts['port'] == $this->currentPort
+        ) ||
+        !isset($parts['port'])
       )
-    ) {
-      return TRUE;
-    }
-    else {
-      return FALSE;
-    }
+    );
   }
 
   public function isAsset(string $url): bool {
@@ -103,7 +117,7 @@ class LinkProcessor {
     if (empty($parts['path'])) {
       return FALSE;
     }
-    if ($this->isExternal($url)) {
+    if ($this->hasSchemeOrHost($url) && !$this->linksToCurrentHost($url)) {
       // We have no reliable way to check if an external URL is an asset.
       return FALSE;
     }
@@ -117,7 +131,7 @@ class LinkProcessor {
   }
 
   protected function cleanUrl(string $url): string {
-    if ($this->isExternal($url)) {
+    if ($this->hasSchemeOrHost($url)) {
       return $url;
     }
     $parts = parse_url($url);
@@ -132,7 +146,7 @@ class LinkProcessor {
 
     $href = $link->getAttribute('href');
     if ($href) {
-      if (!$this->isExternal($href)) {
+      if (!$this->hasSchemeOrHost($href)) {
         $href = $this->cleanUrl($href);
       }
 
@@ -153,7 +167,7 @@ class LinkProcessor {
       throw new \Exception('$language is required for "outbound" direction.');
     }
 
-    if ($this->isExternal($url)) {
+    if ($this->hasSchemeOrHost($url)) {
       return $url;
     }
 
