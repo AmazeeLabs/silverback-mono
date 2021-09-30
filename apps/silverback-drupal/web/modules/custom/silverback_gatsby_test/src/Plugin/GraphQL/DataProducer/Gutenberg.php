@@ -3,9 +3,11 @@
 namespace Drupal\silverback_gatsby_test\Plugin\GraphQL\DataProducer;
 
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Language\LanguageInterface;
 use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
 use Drupal\gutenberg\Parser\BlockParser;
 use Drupal\media\Entity\Media;
+use Drupal\silverback_gutenberg\LinkProcessor;
 
 /**
  * @DataProducer(
@@ -28,7 +30,14 @@ class Gutenberg extends DataProducerPluginBase
   public function resolve(ContentEntityInterface $entity): array
   {
     $parser = new BlockParser();
-    $blocks = $parser->parse($entity->get('body')->value);
+    /** @var \Drupal\silverback_gutenberg\LinkProcessor $linkProcessor */
+    $linkProcessor = \Drupal::service(LinkProcessor::class);
+    $currentLanguage = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
+
+    $html = $entity->get('body')->value ?: '';
+    $html = $linkProcessor->processLinks($html, 'outbound', $currentLanguage);
+
+    $blocks = $parser->parse($html);
     return $this->transform($blocks);
   }
 
