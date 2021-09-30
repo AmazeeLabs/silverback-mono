@@ -27,7 +27,7 @@ function hook_silverback_gutenberg_link_processor_outbound_link_alter(
   \Drupal\silverback_gutenberg\LinkProcessor $linkProcessor
 ) {
   $url = $link->getAttribute('href');
-  if ($url && !$linkProcessor->linksToCurrentHost()) {
+  if ($url && !$linkProcessor->linksToCurrentHost($url)) {
     $link->setAttribute('target', '_blank');
     $link->setAttribute('rel', 'noreferrer');
   }
