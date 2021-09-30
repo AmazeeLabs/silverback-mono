@@ -5,10 +5,10 @@ var silverbackGutenbergUtils = {
         // When copying text from Word, HTML comments are escaped. So we get this:
         // ...<br>&lt;!-- /* Font Definitions */ @font-face {...} --&gt;<br>...
         // Unescape them back.
-        .replace("&lt;!--", "<!--")
-        .replace("--&gt;", "-->")
+        .replace('&lt;!--', '<!--')
+        .replace('--&gt;', '-->')
         // Now clean all HTML tags.
-        .replace(/(<([^>]+)>)/gi, "")
+        .replace(/(<([^>]+)>)/gi, '')
     );
   },
 
