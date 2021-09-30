@@ -1,16 +1,35 @@
 <?php
 
+/**
+ * @deprecated Use hook_silverback_gutenberg_link_processor_block_attrs_alter
+ */
 function hook_silverback_gutenberg_link_processor_block_attributes_alter(
   array &$attributes,
   string $blockName,
   callable $processUrlCallback
 ) {
-  if ($blockName === 'custom/my-block' && isset($attributes['urls'])) {
+  // Use hook_silverback_gutenberg_link_processor_block_attrs_alter() instead.
+}
+
+/**
+ * @param array $attributes
+ * @param array $context
+ *   Has the following keys:
+ *   - blockName: a string containing the block name
+ *   - processUrlCallback: a callback to process a single URL string
+ *   - processLinksCallback: a callback to process links in an HTML string
+ */
+function hook_silverback_gutenberg_link_processor_block_attrs_alter(array &$attributes, array $context) {
+  if ($context['blockName'] === 'custom/my-links-block' && isset($attributes['urls'])) {
     $attributes['urlsUnprocessed'] = [];
     foreach ($attributes['urls'] as $key => $url) {
       $attributes['urlsUnprocessed'][$key] = $url;
-      $attributes['urls'][$key] = $processUrlCallback($url);
+      $attributes['urls'][$key] = $context['processUrlCallback']($url);
     }
+  }
+  if ($context['blockName'] === 'custom/my-media-block' && isset($attributes['caption'])) {
+    $html = $attributes['caption'];
+    $attributes['caption'] = $context['processLinksCallback']($html);
   }
 }
 

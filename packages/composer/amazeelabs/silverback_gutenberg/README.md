@@ -22,6 +22,6 @@ This helps to
 
 The module does most of the things automatically. Yet there are few things developers should take care of.
 
-First, custom Gutenberg blocks which store links in block attributes should implement `hook_silverback_gutenberg_link_processor_block_attributes_alter`. See [`silverback_gutenberg.api.php`](./silverback_gutenberg.api.php) for an example.
+First, custom Gutenberg blocks which store links in block attributes should implement `hook_silverback_gutenberg_link_processor_block_attrs_alter`. See [`silverback_gutenberg.api.php`](./silverback_gutenberg.api.php) for an example.
 
 Next, GraphQL resolvers which parse Gutenberg code should call `LinkProcessor::processLinks` before parsing the blocks. See [`DataProducer/Gutenberg.php`](../../../../apps/silverback-drupal/web/modules/custom/silverback_gatsby_test/src/Plugin/GraphQL/DataProducer/Gutenberg.php) for an example.
