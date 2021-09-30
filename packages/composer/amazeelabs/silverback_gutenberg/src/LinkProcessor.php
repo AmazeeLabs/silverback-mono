@@ -54,13 +54,28 @@ class LinkProcessor {
         $blockName = $matches[2];
         $json = $matches[4];
         $attributes = json_decode($json, TRUE);
-        $callback = fn(string $url) => $this->processUrl($url, $direction, $language);
+        $processUrlCallback = fn(string $url) => $this->processUrl($url, $direction, $language);
+        $processLinksCallback = fn(string $html) => $this->processLinks($html, $direction, $language);
+
+        // Note: this hook is deprecated.
         $this->moduleHandler->alter(
           'silverback_gutenberg_link_processor_block_attributes',
           $attributes,
           $blockName,
-          $callback
+          $processUrlCallback
         );
+
+        $context = [
+          'blockName' => $blockName,
+          'processUrlCallback' => $processUrlCallback,
+          'processLinksCallback' => $processLinksCallback,
+        ];
+        $this->moduleHandler->alter(
+          'silverback_gutenberg_link_processor_block_attrs',
+          $attributes,
+          $context
+        );
+
         $jsonNew = json_encode($attributes);
         if ($jsonNew !== $json) {
           $comment->textContent = $matches[1] . $blockName . $matches[3] . $jsonNew . $matches[5];
