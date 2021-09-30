@@ -4,6 +4,16 @@
   "description": "Bridge code to implement framework independent react components.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    "./gatsby": "./dist/gatsby.js",
+    "./storybook": "./dist/gatsby.js"
+  },
+  "typesVersions": {
+    "*": {
+      "./gatsby": [ "./dist/gatsby.d.ts" ],
+      "./storybook": [ "./dist/storybook.d.ts" ]
+    }
+  },
   "author": "Amazee Labs",
   "license": "MIT",
   "private": false,
