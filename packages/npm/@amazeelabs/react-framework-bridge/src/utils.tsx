@@ -112,9 +112,11 @@ export const htmlParserOptions = (
 export const buildHtmlBuilder =
   (buildLink: LinkBuilder) =>
   (input: string): Html => {
-    return function MockHtml({ classNames }) {
+    const Element: Html = function MockHtml({ classNames }) {
       return <>{parse(input, htmlParserOptions(buildLink, classNames))}</>;
     };
+    Element.initialHtmlString = input;
+    return Element;
   };
 
 const isTruthy = (i: string | null | undefined): i is string => Boolean(i);
