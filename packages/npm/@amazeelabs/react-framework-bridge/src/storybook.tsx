@@ -51,13 +51,16 @@ export function buildLink<Query = {}>({
     const target = buildUrl(opts?.query, opts?.fragment);
     action('navigate to')(target);
   };
+  Element.href = buildUrl();
   return Element as Link<Query>;
 }
 
 export const buildImage = (props: ImageProps): Image => {
-  return function MockImage({ className }) {
+  const Element: Image = function MockImage({ className }) {
     return <img {...props} className={className} />;
   };
+  Element.src = props.src;
+  return Element;
 };
 
 export const buildHtml = buildHtmlBuilder(buildLink);

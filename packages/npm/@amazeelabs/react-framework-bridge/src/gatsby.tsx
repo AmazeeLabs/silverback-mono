@@ -60,15 +60,19 @@ export function buildLink<Query = {}>({
     navigate(uri, props);
   };
 
+  Element.href = buildUrl();
+
   return Element as Link<Query>;
 }
 
 export const buildImage = (
   props: Omit<GatsbyImageProps, 'className'>,
 ): Image => {
-  return function GatsbyImageBuilder({ className }) {
+  const Element: Image = function GatsbyImageBuilder({ className }) {
     return <GatsbyImage {...props} className={className} />;
   };
+  Element.src = props.image.images.fallback?.src;
+  return Element;
 };
 
 export const buildHtml = buildHtmlBuilder(buildLink);

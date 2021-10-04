@@ -17,7 +17,9 @@ export type HtmlBuilder = (input: string) => Html;
 
 export type Image = React.VFC<{
   className?: string;
-}>;
+}> & {
+  src: string | undefined;
+};
 
 export type ImageProps = Omit<
   React.DetailedHTMLProps<
@@ -37,6 +39,7 @@ export type Link<Query extends Parameters<typeof stringify>[0] = {}> =
     fragment?: string;
   }> & {
     navigate: (opts?: { query?: Query; fragment?: string }) => void;
+    href: string;
   };
 
 export type LinkProps<Query extends Parameters<typeof stringify>[0] = {}> =

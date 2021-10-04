@@ -34,6 +34,7 @@ describe('buildLink', () => {
         a: 'b',
       },
     });
+    expect(Link.href).toEqual('/foo/bar?a=b');
     render(<Link>Test</Link>);
     expect(screen.getByRole('link').getAttribute('data-gatsby')).toBeTruthy();
     expect(screen.getByRole('link').getAttribute('href')).toEqual(
@@ -47,6 +48,7 @@ describe('buildLink', () => {
         a: 'b',
       },
     });
+    expect(Link.href).toEqual('?a=b');
     render(<Link>Test</Link>);
     expect(screen.getByRole('link').getAttribute('data-gatsby')).toBeTruthy();
     expect(screen.getByRole('link').getAttribute('href')).toEqual('?a=b');
@@ -56,6 +58,7 @@ describe('buildLink', () => {
     const Link = buildLink({
       href: '/foo',
     });
+    expect(Link.href).toEqual('/foo');
     render(<Link query={{ a: 'b' }}>Test</Link>);
     expect(screen.getByRole('link').getAttribute('href')).toEqual('/foo?a=b');
   });
@@ -64,6 +67,7 @@ describe('buildLink', () => {
     const Link = buildLink({
       href: '/foo',
     });
+    expect(Link.href).toEqual('/foo');
     render(<Link fragment="bar">Test</Link>);
     expect(screen.getByRole('link').getAttribute('href')).toEqual('/foo#bar');
   });
@@ -72,6 +76,7 @@ describe('buildLink', () => {
     const Link = buildLink({
       href: '/foo',
     });
+    expect(Link.href).toEqual('/foo');
     render(
       <Link query={{ a: 'b' }} fragment="bar">
         Test
@@ -84,12 +89,14 @@ describe('buildLink', () => {
 
   it('renders a Gatsby link for an internal path', () => {
     const Link = buildLink({ href: '/test' });
+    expect(Link.href).toEqual('/test');
     render(<Link>Test</Link>);
     expect(screen.getByRole('link').getAttribute('data-gatsby')).toBeTruthy();
   });
 
   it('renders normal link for an external path', () => {
     const Link = buildLink({ href: 'http://www.amazeelabs.com' });
+    expect(Link.href).toEqual('http://www.amazeelabs.com');
     render(<Link>Test</Link>);
     expect(screen.getByRole('link').getAttribute('data-gatsby')).toBeFalsy();
   });
@@ -99,6 +106,7 @@ describe('buildLink', () => {
       href: 'http://www.amazeelabs.com',
       target: '_blank',
     });
+    expect(Link.href).toEqual('http://www.amazeelabs.com');
     render(<Link>Test</Link>);
     expect(screen.getByRole('link').getAttribute('data-gatsby')).toBeFalsy();
   });
@@ -107,12 +115,14 @@ describe('buildLink', () => {
     const Link = buildLink({
       href: 'mailto:development@amazeelabs.com',
     });
+    expect(Link.href).toEqual('mailto:development@amazeelabs.com');
     render(<Link>Test</Link>);
     expect(screen.getByRole('link').getAttribute('data-gatsby')).toBeFalsy();
   });
 
   it('exposes Gatsby navigate', () => {
     const Link = buildLink({ href: '#test' });
+    expect(Link.href).toEqual('#test');
     Link.navigate();
     expect(gatsbyNav).toHaveBeenCalledTimes(1);
     expect(gatsbyNav).toHaveBeenCalledWith('#test');
@@ -120,6 +130,7 @@ describe('buildLink', () => {
 
   it('exposes Gatsby navigate that allows to override query and fragments', () => {
     const Link = buildLink({ href: '/foo', query: { a: 'b' } });
+    expect(Link.href).toEqual('/foo?a=b');
     Link.navigate({ query: { a: 'c' }, fragment: 'bar' });
     expect(gatsbyNav).toHaveBeenCalledTimes(1);
     expect(gatsbyNav).toHaveBeenCalledWith('/foo?a=c#bar');
