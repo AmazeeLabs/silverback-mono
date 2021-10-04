@@ -40,6 +40,7 @@ const buildLink = ({ href, ...props }: LinkProps): Link => {
     );
   };
   Element.navigate = () => nav(href);
+  Element.href = href || '';
   return Element;
 };
 
