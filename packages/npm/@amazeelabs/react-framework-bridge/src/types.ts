@@ -9,7 +9,9 @@ export type Html = React.VFC<{
   classNames?: {
     [key: string]: string | ClassFunction;
   };
-}>;
+}> & {
+  initialHtmlString: string;
+};
 
 export type HtmlBuilder = (input: string) => Html;
 
