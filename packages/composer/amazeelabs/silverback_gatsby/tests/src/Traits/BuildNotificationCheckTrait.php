@@ -27,6 +27,7 @@ trait BuildNotificationCheckTrait {
         'User-Agent' => 'CMS',
       ],
       'json' => ['buildId' => $buildId],
+      'timeout' => 2,
     ]))->shouldHaveBeenCalledTimes(1);
   }
 }

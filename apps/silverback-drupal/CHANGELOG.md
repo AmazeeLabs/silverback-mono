@@ -3,6 +3,89 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.21](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.20...@-amazeelabs/silverback-drupal@1.10.21) (2021-10-04)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.10.20](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.19...@-amazeelabs/silverback-drupal@1.10.20) (2021-09-28)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.10.19](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.18...@-amazeelabs/silverback-drupal@1.10.19) (2021-09-28)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.10.18](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.17...@-amazeelabs/silverback-drupal@1.10.18) (2021-09-28)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.10.17](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.16...@-amazeelabs/silverback-drupal@1.10.17) (2021-09-20)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.10.16](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.15...@-amazeelabs/silverback-drupal@1.10.16) (2021-09-20)
+
+
+### Bug Fixes
+
+* **deps:** update dependency composer/composer to v2.1.8 ([5dd356f](https://github.com/AmazeeLabs/silverback-mono/commit/5dd356fe1b0c8ec6f38c4ff3a09c175baae01eea))
+
+
+
+
+
+## [1.10.15](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.14...@-amazeelabs/silverback-drupal@1.10.15) (2021-09-15)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.10.14](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.13...@-amazeelabs/silverback-drupal@1.10.14) (2021-09-15)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.10.13](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.12...@-amazeelabs/silverback-drupal@1.10.13) (2021-09-13)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
+## [1.10.12](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.11...@-amazeelabs/silverback-drupal@1.10.12) (2021-09-13)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+
+
+
+
 ## [1.10.11](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.10...@-amazeelabs/silverback-drupal@1.10.11) (2021-09-06)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal

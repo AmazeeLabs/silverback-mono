@@ -8,6 +8,9 @@ describe('isRelative', () => {
   it('returns true for a relative url', () => {
     expect(isRelative('/test')).toBeTruthy();
   });
+  it('returns true for a hash url', () => {
+    expect(isRelative('#hash')).toBeTruthy();
+  });
   it('returns false for a full url', () => {
     expect(isRelative('http://www.amazeelabs.com')).toBeFalsy();
   });
@@ -37,6 +40,7 @@ const buildLink = ({ href, ...props }: LinkProps): Link => {
     );
   };
   Element.navigate = () => nav(href);
+  Element.href = href || '';
   return Element;
 };
 
@@ -46,7 +50,9 @@ describe('buildHtmlBuilder', () => {
   beforeEach(jest.resetAllMocks);
 
   it('renders a simple paragraph', () => {
-    const Html = buildHtml('<main><p>Test</p></main>');
+    const htmlString = '<main><p>Test</p></main>';
+    const Html = buildHtml(htmlString);
+    expect(Html.initialHtmlString).toEqual(htmlString);
     render(<Html />);
     expect(screen.getByRole('main')).toMatchInlineSnapshot(`
 <main>
@@ -199,6 +205,26 @@ describe('buildUrl', () => {
       )}`,
     );
   });
+  it('can create query urls without paths', () => {
+    expect(
+      buildUrl(undefined, {
+        first: 'value',
+        second: true,
+        third: 32,
+        fourth: ['a', 2, null],
+        fifth: {
+          a: 'value',
+          2: true,
+        },
+        sixth: undefined,
+        seventh: null,
+      }),
+    ).toStrictEqual(
+      `?${encodeURI(
+        'first=value&second=true&third=32&fourth[0]=a&fourth[1]=2&fifth[2]=true&fifth[a]=value',
+      )}`,
+    );
+  });
   it('builds relative urls', () => {
     expect(buildUrl(['/first//', '//second/', 'third'])).toStrictEqual(
       '/first/second/third',
@@ -208,5 +234,10 @@ describe('buildUrl', () => {
     expect(buildUrl(['/first//', '//second/', 'third//'])).toStrictEqual(
       '/first/second/third',
     );
+  });
+  it('attaches a fragment', () => {
+    expect(
+      buildUrl(['https://fake.url/', 'a', 'b'], undefined, undefined, 'foo'),
+    ).toStrictEqual(`https://fake.url/a/b#foo`);
   });
 });

@@ -1,16 +1,18 @@
+import { Form as FormComponent, Formik } from 'formik';
 import { GatsbyLinkProps, Link as GatsbyLink, navigate } from 'gatsby';
 import { GatsbyImage, GatsbyImageProps } from 'gatsby-plugin-image';
 import React from 'react';
 
 import type { Image, Link, LinkProps } from './types';
+import { Form, FormBuilderProps } from './types';
 import {
   buildHtmlBuilder,
-  buildUrl,
+  buildUrlBuilder,
   isInternalTarget,
   isRelative,
 } from './utils';
 
-export const buildLink = ({
+export function buildLink<Query = {}>({
   href,
   segments,
   query,
@@ -19,13 +21,16 @@ export const buildLink = ({
   ...props
 }: Omit<GatsbyLinkProps<any>, 'className' | 'activeClassName' | 'to'> & {
   href?: string;
-} & Pick<LinkProps, 'segments' | 'query' | 'queryOptions'>): Link => {
-  const uri = segments ? buildUrl(segments, query, queryOptions) : href;
+} & Pick<LinkProps, 'segments' | 'query' | 'queryOptions'>): Link<Query> {
+  const buildUrl = buildUrlBuilder(segments || [href], query, queryOptions);
   const Element: Link = function LinkBuilder({
     className,
     activeClassName,
     children,
+    query: queryOverride,
+    fragment,
   }) {
+    const uri = buildUrl(queryOverride, fragment);
     return uri && isInternalTarget(target) && isRelative(uri) ? (
       // @ts-ignore GatsbyLink comply with type
       <GatsbyLink
@@ -41,6 +46,7 @@ export const buildLink = ({
       <a
         className={className}
         target={target || '_blank'}
+        rel={props.rel || (isRelative(uri) ? undefined : 'noreferrer')}
         href={uri}
         {...props}
       >
@@ -49,17 +55,41 @@ export const buildLink = ({
     );
   };
 
-  Element.navigate = () => href && navigate(href, props);
+  Element.navigate = (opts) => {
+    const uri = buildUrl(opts?.query, opts?.fragment);
+    navigate(uri, props);
+  };
 
-  return Element;
-};
+  Element.href = buildUrl();
+
+  return Element as Link<Query>;
+}
 
 export const buildImage = (
   props: Omit<GatsbyImageProps, 'className'>,
 ): Image => {
-  return function GatsbyImageBuilder({ className }) {
+  const Element: Image = function GatsbyImageBuilder({ className }) {
     return <GatsbyImage {...props} className={className} />;
   };
+  Element.src = props.image.images.fallback?.src;
+  return Element;
 };
 
 export const buildHtml = buildHtmlBuilder(buildLink);
+
+export function buildForm<Values>(
+  formikProps: FormBuilderProps<Values>,
+): Form<Values> {
+  return function MockForm(formProps) {
+    return (
+      <Formik
+        onSubmit={(values) => {
+          console.log('form submission:', values);
+        }}
+        {...formikProps}
+      >
+        <FormComponent {...formProps} />
+      </Formik>
+    );
+  };
+}

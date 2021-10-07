@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.7.10...@amazeelabs/recipes@1.7.11) (2021-10-04)
+
+**Note:** Version bump only for package @amazeelabs/recipes
+
+
+
+
+
+## [1.7.10](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.7.9...@amazeelabs/recipes@1.7.10) (2021-09-28)
+
+**Note:** Version bump only for package @amazeelabs/recipes
+
+
+
+
+
+## [1.7.9](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.7.8...@amazeelabs/recipes@1.7.9) (2021-09-28)
+
+**Note:** Version bump only for package @amazeelabs/recipes
+
+
+
+
+
+## [1.7.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.7.7...@amazeelabs/recipes@1.7.8) (2021-09-21)
+
+
+### Bug Fixes
+
+* **recipe:** streamlined storybook recipe ([d490235](https://github.com/AmazeeLabs/silverback-mono/commit/d49023532de8f0660812a818aebb13bd9b87d516))
+
+
+
+
+
+## [1.7.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.7.6...@amazeelabs/recipes@1.7.7) (2021-09-15)
+
+**Note:** Version bump only for package @amazeelabs/recipes
+
+
+
+
+
 ## [1.7.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.7.5...@amazeelabs/recipes@1.7.6) (2021-09-06)
 
 

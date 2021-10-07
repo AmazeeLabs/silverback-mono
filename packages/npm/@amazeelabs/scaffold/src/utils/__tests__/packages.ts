@@ -39,7 +39,7 @@ describe('installPackages', () => {
     });
     installPackages('./foo', './bar');
     expect(execSync).toHaveBeenCalledTimes(1);
-    expect(execSync).toHaveBeenCalledWith(`yarn add -D a b`, {
+    expect(execSync).toHaveBeenCalledWith(`yarn add -D --ignore-engines a b`, {
       stdio: 'inherit',
     });
   });
@@ -59,7 +59,7 @@ describe('installPackages', () => {
     });
     installPackages('./foo', './bar');
     expect(execSync).toHaveBeenCalledTimes(1);
-    expect(execSync).toHaveBeenCalledWith(`yarn add -D a`, {
+    expect(execSync).toHaveBeenCalledWith(`yarn add -D --ignore-engines a`, {
       stdio: 'inherit',
     });
   });

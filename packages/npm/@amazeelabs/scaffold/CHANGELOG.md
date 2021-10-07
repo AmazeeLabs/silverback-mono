@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.3.10...@amazeelabs/scaffold@1.3.11) (2021-10-04)
+
+**Note:** Version bump only for package @amazeelabs/scaffold
+
+
+
+
+
+## [1.3.10](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.3.9...@amazeelabs/scaffold@1.3.10) (2021-09-28)
+
+**Note:** Version bump only for package @amazeelabs/scaffold
+
+
+
+
+
+## [1.3.9](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.3.8...@amazeelabs/scaffold@1.3.9) (2021-09-28)
+
+
+### Bug Fixes
+
+* **scaffold:** also adjust tests ([d2dcd7f](https://github.com/AmazeeLabs/silverback-mono/commit/d2dcd7fabd1b7e8e680884514237dbcc40c7f012))
+* **scaffold:** ignore engines on tooling installs ([e204083](https://github.com/AmazeeLabs/silverback-mono/commit/e2040835dbae18fc16d0b432bc4fe71f25ebc04f))
+
+
+
+
+
+## [1.3.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.3.7...@amazeelabs/scaffold@1.3.8) (2021-09-15)
+
+**Note:** Version bump only for package @amazeelabs/scaffold
+
+
+
+
+
 ## [1.3.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.3.6...@amazeelabs/scaffold@1.3.7) (2021-09-06)
 
 **Note:** Version bump only for package @amazeelabs/scaffold

@@ -48,6 +48,12 @@ function gatsby_build_monitor_toolbar() {
       ],
       '#attached' => [
         'library' => ['gatsby_build_monitor/state'],
+        'drupalSettings' => [
+          'gatsbyBuildMonitor' => [
+            'autoRefresh' => getenv('LAGOON') ||
+              getenv('GATSBY_BUILD_MONITOR_AUTO_REFRESH') === 'true',
+          ],
+        ],
       ],
       '#weight' => 1000,
     ],

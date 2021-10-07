@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.2.3...@-amazeelabs/silverback_gutenberg@1.3.0) (2021-09-28)
+
+
+### Features
+
+* better url flags ([170a3fa](https://github.com/AmazeeLabs/silverback-mono/commit/170a3fa6b43720d24910b1455656b21d758d65e5))
+
+
+
+
+
 ## [1.2.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.2.2...@-amazeelabs/silverback_gutenberg@1.2.3) (2021-09-06)
 
 

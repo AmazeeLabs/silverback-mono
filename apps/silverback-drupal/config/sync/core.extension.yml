@@ -6,6 +6,8 @@ module:
   block_content: 0
   breakpoint: 0
   ckeditor: 0
+  config_filter: 0
+  config_split: 0
   dblog: 0
   default_content: 0
   dynamic_page_cache: 0
@@ -45,8 +47,6 @@ module:
   typed_data: 0
   update: 0
   user: 0
-  webform: 0
-  webform_ui: 0
   content_translation: 10
   views: 10
   minimal: 1000

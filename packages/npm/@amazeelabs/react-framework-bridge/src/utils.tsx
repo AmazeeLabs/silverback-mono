@@ -13,7 +13,10 @@ import { Html, LinkBuilder, LinkProps } from './types';
 export const isInternalTarget = (target?: string) =>
   typeof target === 'undefined' || target === '' || target === '_self';
 
-export const isRelative = (url?: string) => Boolean(url?.match(/^\/(?!\/)/));
+export const isRelative = (url?: string) =>
+  url?.startsWith('#') ||
+  url?.startsWith('?') ||
+  Boolean(url?.match(/^\/(?!\/)/));
 
 // https://gist.github.com/max10rogerio/c67c5d2d7a3ce714c4bc0c114a3ddc6e
 export const slugify = (...args: (string | number)[]): string => {
@@ -109,9 +112,11 @@ export const htmlParserOptions = (
 export const buildHtmlBuilder =
   (buildLink: LinkBuilder) =>
   (input: string): Html => {
-    return function MockHtml({ classNames }) {
+    const Element: Html = function MockHtml({ classNames }) {
       return <>{parse(input, htmlParserOptions(buildLink, classNames))}</>;
     };
+    Element.initialHtmlString = input;
+    return Element;
   };
 
 const isTruthy = (i: string | null | undefined): i is string => Boolean(i);
@@ -125,16 +130,41 @@ const stripSlashes = (segment: string, index: number) => {
 };
 
 export const buildUrl = (
-  segments: NonNullable<LinkProps['segments']>,
+  segments: LinkProps['segments'],
   query?: LinkProps['query'],
   queryOptions?: LinkProps['queryOptions'],
+  fragment?: string,
 ) => {
-  const url = segments.filter(isTruthy).map(stripSlashes).join('/');
+  const url = segments
+    ? segments.filter(isTruthy).map(stripSlashes).join('/')
+    : '';
 
   const queryString = stringify(query, {
     skipNulls: true,
     ...queryOptions,
   });
 
-  return [url, queryString].filter(isTruthy).join('?');
+  return [
+    [url || '', queryString === '' ? null : queryString]
+      .filter((i) => typeof i === 'string')
+      .join('?'),
+    fragment,
+  ]
+    .filter(isTruthy)
+    .join('#');
 };
+
+export const buildUrlBuilder =
+  (
+    segments: LinkProps['segments'],
+    query?: LinkProps['query'],
+    queryOptions?: LinkProps['queryOptions'],
+    fragment?: string,
+  ) =>
+  (queryOverride?: { [key: string]: string }, fragmentOverride?: string) =>
+    buildUrl(
+      segments,
+      { ...(query || {}), ...(queryOverride || {}) },
+      queryOptions,
+      fragmentOverride || fragment,
+    );

@@ -23,7 +23,7 @@ function installDependencies(source: Map, target: Map) {
         '[@amazeelabs/scaffold]:',
       )} Installing devDependencies (${dependenciesToInstall.join(', ')})`,
     );
-    execSync(`yarn add -D ${dependenciesToInstall.join(' ')}`, {
+    execSync(`yarn add -D --ignore-engines ${dependenciesToInstall.join(' ')}`, {
       stdio: 'inherit',
     });
   }
