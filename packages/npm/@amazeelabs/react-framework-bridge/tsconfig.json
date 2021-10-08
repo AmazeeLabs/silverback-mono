@@ -1,9 +1,15 @@
 {
-  "extends":"@tsconfig/recommended/tsconfig.json",
-  "exclude": ["./src/__tests__"],
-  "compilerOptions":{
-    "outDir": "./dist",
+  "compilerOptions": {
+    "declaration": true,
+    "outDir": ".",
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
     "jsx": "react",
-    "declaration": true
-  }
+    "resolveJsonModule": true,
+    "strict": true,
+    "target": "ES2015",
+    "skipLibCheck": true
+  },
+  "include": ["src"],
+  "exclude": ["src/**/*.test.tsx", "dist"]
 }

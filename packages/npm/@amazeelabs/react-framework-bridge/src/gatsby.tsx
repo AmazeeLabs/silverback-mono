@@ -23,7 +23,7 @@ export function buildLink<Query = {}>({
   href?: string;
 } & Pick<LinkProps, 'segments' | 'query' | 'queryOptions'>): Link<Query> {
   const buildUrl = buildUrlBuilder(segments || [href], query, queryOptions);
-  const Element: Link = function LinkBuilder({
+  const Element: Link = function GatsbyLinkBuilder({
     className,
     activeClassName,
     children,
@@ -80,7 +80,7 @@ export const buildHtml = buildHtmlBuilder(buildLink);
 export function buildForm<Values>(
   formikProps: FormBuilderProps<Values>,
 ): Form<Values> {
-  return function MockForm(formProps) {
+  return function GatsbyFormBuilder(formProps) {
     return (
       <Formik
         onSubmit={(values) => {
