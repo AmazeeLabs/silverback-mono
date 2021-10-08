@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
+export LOG=silly
 
 yarn config set script-shell /bin/bash
 
