@@ -21,6 +21,7 @@ describe('buildLink', () => {
         a: 'b',
       },
     });
+    expect(Link.href).toEqual('/foo/bar?a=b');
     render(<Link>Test</Link>);
     expect(screen.getByRole('link').getAttribute('href')).toEqual(
       '/foo/bar?a=b',
@@ -33,6 +34,7 @@ describe('buildLink', () => {
         a: 'b',
       },
     });
+    expect(Link.href).toEqual('?a=b');
     render(<Link>Test</Link>);
     expect(screen.getByRole('link').getAttribute('href')).toEqual('?a=b');
   });
@@ -41,6 +43,7 @@ describe('buildLink', () => {
     const Link = buildLink<{ a: string }>({
       href: '/foo',
     });
+    expect(Link.href).toEqual('/foo');
     render(<Link query={{ a: 'b' }}>Test</Link>);
     expect(screen.getByRole('link').getAttribute('href')).toEqual('/foo?a=b');
   });
@@ -50,6 +53,7 @@ describe('buildLink', () => {
       href: '/foo',
       query: { a: 'b' },
     });
+    expect(Link.href).toEqual('/foo?a=b');
     render(<Link query={{ a: 'c' }}>Test</Link>);
     expect(screen.getByRole('link').getAttribute('href')).toEqual('/foo?a=c');
   });
@@ -58,6 +62,7 @@ describe('buildLink', () => {
     const Link = buildLink({
       href: '/foo',
     });
+    expect(Link.href).toEqual('/foo');
     render(<Link fragment="bar">Test</Link>);
     expect(screen.getByRole('link').getAttribute('href')).toEqual('/foo#bar');
   });
@@ -66,6 +71,7 @@ describe('buildLink', () => {
     const Link = buildLink<{ a: string }>({
       href: '/foo',
     });
+    expect(Link.href).toEqual('/foo');
     render(
       <Link query={{ a: 'b' }} fragment="bar">
         Test
@@ -78,6 +84,7 @@ describe('buildLink', () => {
 
   it('renders a simple link', () => {
     const Link = buildLink({ href: '#test' });
+    expect(Link.href).toEqual('#test');
     render(<Link>test</Link>);
     expect(screen.getByRole('link').textContent).toEqual('test');
     expect(screen.getByRole('link').getAttribute('href')).toEqual('#test');
@@ -85,12 +92,14 @@ describe('buildLink', () => {
 
   it('allows to pass a class', () => {
     const Link = buildLink({ href: '#test' });
+    expect(Link.href).toEqual('#test');
     render(<Link className={'text-red'}>test</Link>);
     expect(screen.getByRole('link').getAttribute('class')).toEqual('text-red');
   });
 
   it('applies active class if the path contains "active"', () => {
     const Link = buildLink({ href: '/imsoactive' });
+    expect(Link.href).toEqual('/imsoactive');
     render(
       <Link className={'text-red'} activeClassName={'text-green'}>
         test
@@ -104,12 +113,14 @@ describe('buildLink', () => {
 
   it('does not break if path contains "active" and no active class is defined', () => {
     const Link = buildLink({ href: '/imsoactive' });
+    expect(Link.href).toEqual('/imsoactive');
     render(<Link className={'text-red'}>test</Link>);
     expect(screen.getByRole('link').getAttribute('class')).toEqual('text-red');
   });
 
   it('logs a storybook action on click', () => {
     const Link = buildLink({ href: '#test' });
+    expect(Link.href).toEqual('#test');
     render(<Link>test</Link>);
     fireEvent.click(screen.getByRole('link'));
     expect(action).toHaveBeenCalledTimes(1);
@@ -118,6 +129,7 @@ describe('buildLink', () => {
 
   it('exposes a navigate function that logs a storybook action', () => {
     const Link = buildLink({ href: '#test' });
+    expect(Link.href).toEqual('#test');
     Link.navigate();
     expect(action).toHaveBeenCalledTimes(1);
     expect(action).toHaveBeenCalledWith('#test');
@@ -125,6 +137,7 @@ describe('buildLink', () => {
 
   it('exposes a navigate function that logs a storybook action and allows to override queries and fragments', () => {
     const Link = buildLink({ href: '/foo', query: { a: 'b' } });
+    expect(Link.href).toEqual('/foo?a=b');
     Link.navigate({ query: { a: 'c' }, fragment: 'bar' });
     expect(action).toHaveBeenCalledTimes(1);
     expect(action).toHaveBeenCalledWith('/foo?a=c#bar');
@@ -134,6 +147,7 @@ describe('buildLink', () => {
 describe('buildImage', () => {
   it('renders an image with all attributes', () => {
     const Image = buildImage({ src: 'test.png', alt: 'Test' });
+    expect(Image.src).toEqual('test.png');
     render(<Image />);
     expect(screen.getByRole('img').getAttribute('src')).toEqual('test.png');
     expect(screen.getByRole('img').getAttribute('alt')).toEqual('Test');
@@ -141,6 +155,7 @@ describe('buildImage', () => {
 
   it('allows to specify a classname', () => {
     const Image = buildImage({ src: 'test.png', alt: 'Test' });
+    expect(Image.src).toEqual('test.png');
     render(<Image className={'border-red'} />);
     expect(screen.getByRole('img').getAttribute('class')).toEqual('border-red');
   });

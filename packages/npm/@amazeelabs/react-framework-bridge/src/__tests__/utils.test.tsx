@@ -40,6 +40,7 @@ const buildLink = ({ href, ...props }: LinkProps): Link => {
     );
   };
   Element.navigate = () => nav(href);
+  Element.href = href || '';
   return Element;
 };
 
@@ -49,7 +50,9 @@ describe('buildHtmlBuilder', () => {
   beforeEach(jest.resetAllMocks);
 
   it('renders a simple paragraph', () => {
-    const Html = buildHtml('<main><p>Test</p></main>');
+    const htmlString = '<main><p>Test</p></main>';
+    const Html = buildHtml(htmlString);
+    expect(Html.initialHtmlString).toEqual(htmlString);
     render(<Html />);
     expect(screen.getByRole('main')).toMatchInlineSnapshot(`
 <main>

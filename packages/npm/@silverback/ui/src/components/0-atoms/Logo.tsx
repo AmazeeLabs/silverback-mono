@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Logo: React.FC = () => (
+export const Logo: React.FC = () => (
   <svg className="h-10 fill-current lg:h-14" viewBox="0 0 600 316">
     <g>
       <path
@@ -121,5 +121,3 @@ const Logo: React.FC = () => (
     </g>
   </svg>
 );
-
-export default Logo;

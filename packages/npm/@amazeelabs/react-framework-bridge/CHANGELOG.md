@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.4.1...@amazeelabs/react-framework-bridge@1.5.0) (2021-10-05)
+
+
+### Features
+
+* added Image.src and Link.href ([dac3cd3](https://github.com/AmazeeLabs/silverback-mono/commit/dac3cd37939b9311f1906adb9c895187582c8d5f))
+
+
+
+
+
+## [1.4.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.4.0...@amazeelabs/react-framework-bridge@1.4.1) (2021-10-04)
+
+**Note:** Version bump only for package @amazeelabs/react-framework-bridge
+
+
+
+
+
+# [1.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.3.7...@amazeelabs/react-framework-bridge@1.4.0) (2021-10-04)
+
+
+### Features
+
+* a way to get initial html string from Html component ([17bd9dd](https://github.com/AmazeeLabs/silverback-mono/commit/17bd9dd119bb4f21313426152c62066b9f17fa7f))
+
+
+
+
+
+## [1.3.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.3.6...@amazeelabs/react-framework-bridge@1.3.7) (2021-09-28)
+
+**Note:** Version bump only for package @amazeelabs/react-framework-bridge
+
+
+
+
+
+## [1.3.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.3.5...@amazeelabs/react-framework-bridge@1.3.6) (2021-09-28)
+
+**Note:** Version bump only for package @amazeelabs/react-framework-bridge
+
+
+
+
+
+## [1.3.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.3.4...@amazeelabs/react-framework-bridge@1.3.5) (2021-09-28)
+
+**Note:** Version bump only for package @amazeelabs/react-framework-bridge
+
+
+
+
+
 ## [1.3.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.3.3...@amazeelabs/react-framework-bridge@1.3.4) (2021-09-15)
 
 **Note:** Version bump only for package @amazeelabs/react-framework-bridge
