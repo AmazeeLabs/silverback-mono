@@ -21,7 +21,7 @@ export function buildLink<Query = {}>({
 }: LinkProps<Query>): Link<Query> {
   const buildUrl = buildUrlBuilder(segments || [href], query, queryOptions);
 
-  const Element: Link = function MockLink({
+  const Element: Link = function StorybookLinkBuilder({
     className,
     activeClassName,
     query: queryOverride,
@@ -56,7 +56,7 @@ export function buildLink<Query = {}>({
 }
 
 export const buildImage = (props: ImageProps): Image => {
-  const Element: Image = function MockImage({ className }) {
+  const Element: Image = function StorybookImageBuilder({ className }) {
     return <img {...props} className={className} />;
   };
   Element.src = props.src;
@@ -68,7 +68,7 @@ export const buildHtml = buildHtmlBuilder(buildLink);
 export function buildForm<Values>(
   formikProps: FormBuilderProps<Values>,
 ): Form<Values> {
-  return function MockForm(formProps) {
+  return function StorybookFormBuilder(formProps) {
     return (
       <Formik
         onSubmit={(values) => {
