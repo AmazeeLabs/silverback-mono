@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
+export LOG=silly
 
 yarn config set script-shell /bin/bash
 
@@ -16,7 +17,7 @@ git commit -m "chore: executed 'add-gatsby' recipe"
 node ../dist/index.js add-drupal
 git add README.md
 git commit -m "chore: executed 'add-drupal' recipe"
-node ../dist/index.js add-storybook
+LOG=silly node ../dist/index.js add-storybook
 git add README.md
 git commit -m "chore: executed 'add-storybook' recipe"
 
