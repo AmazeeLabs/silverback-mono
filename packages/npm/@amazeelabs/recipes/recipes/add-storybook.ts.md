@@ -146,7 +146,8 @@ everything correctly.
 
 ```typescript
 // Install & initialize Storybook
-$$('npx sb init');
+$$('yarn add -D @storybook/cli');
+$$('yarn sb init');
 // Install @storybook/addon-postcss to include Tailwind styles.
 $$('yarn add -D @storybook/addon-postcss');
 ```
