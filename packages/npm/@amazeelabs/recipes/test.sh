@@ -17,6 +17,7 @@ git commit -m "chore: executed 'add-gatsby' recipe"
 node ../dist/index.js add-drupal
 git add README.md
 git commit -m "chore: executed 'add-drupal' recipe"
+npm cache clean --force
 LOG=silly node ../dist/index.js add-storybook
 git add README.md
 git commit -m "chore: executed 'add-storybook' recipe"
