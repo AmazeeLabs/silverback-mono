@@ -78,13 +78,13 @@ And we create a simple `PostCSS` configuration that actives `Tailwind` and
 `Autoprefixer` for cross-browser compatibility.
 
 ```typescript
-# |-> postcss.config.js
+// |-> postcss.config.js
 module.exports = {
   plugins: {
     tailwindcss: {},
     autoprefixer: {},
-  }
-}
+  },
+};
 ```
 
 We also use a couple of Tailwind plugins. `@tailwindcss/typography` for styling
@@ -111,7 +111,7 @@ we use and configure the just-in-time compiler to look for classes used in
 components within `src`.
 
 ```typescript
-# |-> tailwind.config.js
+// |-> tailwind.config.js
 module.exports = {
   mode: 'jit',
   purge: ['./src/**/*.tsx'],
@@ -134,17 +134,6 @@ add the to our toolbox for later.
 
 ```typescript
 $$('yarn add @headlessui/react');
-```
-
-### React Framework Bridge
-
-We use `@amazeelabs/react-framework-bridge` to simulate framework dependencies
-within our component library. We have to install it along with its peer
-dependency `formik`.
-
-```typescript
-$$('yarn add @amazeelabs/react-framework-bridge');
-$$('yarn add -D formik');
 ```
 
 ### Storybook
@@ -222,6 +211,17 @@ delete them.
 
 ```typescript
 $$('rm -fr stories');
+```
+
+### React Framework Bridge
+
+We use `@amazeelabs/react-framework-bridge` to simulate framework dependencies
+within our component library. We have to install it along with its peer
+dependency `formik`.
+
+```typescript
+$$('yarn add @amazeelabs/react-framework-bridge');
+$$('yarn add -D formik');
 ```
 
 ## A first Organism
