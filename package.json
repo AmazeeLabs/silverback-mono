@@ -1,16 +1,19 @@
 {
   "name": "silverback",
   "private": true,
-  "workspaces": [
-    "packages/composer/*/*",
-    "packages/npm/*",
-    "packages/npm/*/*",
-    "packages/tests/*",
-    "apps/*",
-    "apps/silverback-drupal/config/*",
-    "apps/silverback-drupal/web/modules/custom/*",
-    "packages/composer/drupal/test_session/tests/Cypress"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/composer/*/*",
+      "packages/npm/*",
+      "packages/npm/*/*",
+      "packages/tests/*",
+      "apps/*",
+      "apps/silverback-drupal/config/*",
+      "apps/silverback-drupal/web/modules/custom/*",
+      "packages/composer/drupal/test_session/tests/Cypress"
+    ],
+    "nohoist": ["**/webpack", "**/react-refresh-webpack-plugin"]
+  },
   "scripts": {
     "commit": "yarn git-cz",
     "test": "yarn lerna run prepublish --since --include-dependencies && yarn lerna run test --since --stream --concurrency=1",
