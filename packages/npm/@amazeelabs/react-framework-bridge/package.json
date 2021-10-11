@@ -10,8 +10,12 @@
   },
   "typesVersions": {
     "*": {
-      "./gatsby": [ "./dist/gatsby.d.ts" ],
-      "./storybook": [ "./dist/storybook.d.ts" ]
+      "./gatsby": [
+        "./dist/gatsby.d.ts"
+      ],
+      "./storybook": [
+        "./dist/storybook.d.ts"
+      ]
     }
   },
   "author": "Amazee Labs",
