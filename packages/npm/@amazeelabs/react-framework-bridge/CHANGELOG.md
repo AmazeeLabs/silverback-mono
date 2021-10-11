@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.5.2...@amazeelabs/react-framework-bridge@1.5.3) (2021-10-11)
+
+
+### Performance Improvements
+
+* **gatsby:** make framework bridge properly tree-shakeable ([76956be](https://github.com/AmazeeLabs/silverback-mono/commit/76956be303a53a62c56ac437e827ba3b77f029e6))
+
+
+
+
+
 ## [1.5.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.5.1...@amazeelabs/react-framework-bridge@1.5.2) (2021-10-11)
 
 
