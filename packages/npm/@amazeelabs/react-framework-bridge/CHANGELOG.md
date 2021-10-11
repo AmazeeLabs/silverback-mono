@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.5.1...@amazeelabs/react-framework-bridge@1.5.2) (2021-10-11)
+
+
+### Bug Fixes
+
+* exclude dist to not break tsc ([4c073ab](https://github.com/AmazeeLabs/silverback-mono/commit/4c073ab8bad8911228d61363afb5ca2fe56bdafc))
+
+
+
+
+
 ## [1.5.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.5.0...@amazeelabs/react-framework-bridge@1.5.1) (2021-10-11)
 
 
