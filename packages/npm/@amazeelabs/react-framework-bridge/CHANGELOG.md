@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.5.0...@amazeelabs/react-framework-bridge@1.5.1) (2021-10-11)
+
+
+### Bug Fixes
+
+* prettier formatting ([6a563b2](https://github.com/AmazeeLabs/silverback-mono/commit/6a563b2f30790e2f45dc066717a5d1f70db48b39))
+
+
+
+
+
 # [1.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.4.1...@amazeelabs/react-framework-bridge@1.5.0) (2021-10-05)
 
 
