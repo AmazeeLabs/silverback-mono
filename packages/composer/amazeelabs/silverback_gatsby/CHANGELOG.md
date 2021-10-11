@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.11.3...@-amazeelabs/silverback_gatsby@1.11.4) (2021-10-11)
+
+
+### Bug Fixes
+
+* unpublished translation bug ([f4a9ca4](https://github.com/AmazeeLabs/silverback-mono/commit/f4a9ca489ac495cae38cb4763165182cad8616df))
+
+
+
+
+
 ## [1.11.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.11.2...@-amazeelabs/silverback_gatsby@1.11.3) (2021-10-11)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gatsby
