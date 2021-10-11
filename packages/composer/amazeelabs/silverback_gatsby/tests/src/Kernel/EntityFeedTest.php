@@ -166,7 +166,36 @@ class EntityFeedTest extends EntityFeedTestBase {
       'loadPage' => null,
       'queryPages' => [
         [
+          'id' => '1:en',
+          'drupalId' => '1',
+          'translations' => [
+            [
+              'defaultTranslation' => true,
+              'langcode' => 'en',
+              'title' => 'English',
+            ],
+          ],
+        ],
+      ],
+    ], $metadata);
+  }
 
+  public function testUnpublishedTranslation() {
+    $node = Node::create([
+      'type' => 'page',
+      'title' => 'English',
+    ]);
+    $node->save();
+    $node->addTranslation('de', ['title' => 'German', 'status' => 0])->save();
+
+    $query = $this->getQueryFromFile('translatable.gql');
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheContexts(['user.node_grants:view', 'static:language:en', 'static:language:de']);
+    $metadata->addCacheTags(['node:1', 'node_list']);
+    $this->assertResults($query, ['id' => '1:de'], [
+      'loadPage' => null,
+      'queryPages' => [
+        [
           'id' => '1:en',
           'drupalId' => '1',
           'translations' => [
