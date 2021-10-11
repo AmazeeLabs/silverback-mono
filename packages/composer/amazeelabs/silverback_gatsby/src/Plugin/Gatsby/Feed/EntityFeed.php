@@ -173,7 +173,12 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
    */
   public function resolveTranslations(): ResolverInterface {
     return $this->builder->defaultValue(
-      $this->builder->produce('entity_translations')->map('entity', $this->builder->fromParent()),
+      $this->builder->compose(
+        $this->builder->produce('entity_translations')->map('entity', $this->builder->fromParent()),
+        // entity_translations returns nulls for inaccessible translations. This
+        // does not match our schema. Filter nulls out.
+        $this->builder->callback(fn ($entities) => $entities ? array_filter($entities) : NULL)
+      ),
       $this->builder->callback(fn ($value) => [$value])
     );
   }
