@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.12](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.4.11...@amazeelabs/gatsby-source-silverback@1.4.12) (2021-10-12)
+
+
+### Bug Fixes
+
+* **scaffold:** move unintentional dependencies back to devDependencies ([c2fca34](https://github.com/AmazeeLabs/silverback-mono/commit/c2fca34d98a816dfa61383cec80c6986f9836443))
+
+
+
+
+
 ## [1.4.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.4.10...@amazeelabs/gatsby-source-silverback@1.4.11) (2021-10-11)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-source-silverback

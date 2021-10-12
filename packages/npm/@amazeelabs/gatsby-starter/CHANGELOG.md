@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.39](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.7.38...@amazeelabs/gatsby-starter@0.7.39) (2021-10-12)
+
+
+### Bug Fixes
+
+* **scaffold:** move unintentional dependencies back to devDependencies ([c2fca34](https://github.com/AmazeeLabs/silverback-mono/commit/c2fca34d98a816dfa61383cec80c6986f9836443))
+
+
+
+
+
 ## [0.7.38](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.7.37...@amazeelabs/gatsby-starter@0.7.38) (2021-10-11)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-starter
