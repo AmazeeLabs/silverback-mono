@@ -30,28 +30,6 @@ const projects = [
   },
 ];
 
-if (fs.existsSync("./package.json")) {
-  const packageJson = JSON.parse(fs.readFileSync("./package.json"));
-  const dependencies = Object.keys(
-    Object.assign(
-      packageJson.dependencies || {},
-      packageJson.devDependencies || {}
-    )
-  );
-  if (dependencies.includes("@storybook/addon-storyshots")) {
-    projects.push({
-      displayName: "storybook",
-      preset: "ts-jest",
-      testEnvironment: "jsdom",
-      testMatch: ["**/.storyshots.tsx"],
-      moduleNameMapper,
-      transform: {
-        "^.+\\.stories\\.jsx?$": "@storybook/addon-storyshots/injectFileName",
-      },
-    });
-  }
-}
-
 module.exports = {
   watchPlugins: [
     "jest-watch-select-projects",
