@@ -14,8 +14,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class LinkProcessor {
 
-  protected static bool $processBlocks = TRUE;
-
   protected AliasManagerInterface $pathAliasManager;
   protected ConfigFactoryInterface $configFactory;
   protected ModuleHandlerInterface $moduleHandler;
@@ -54,14 +52,10 @@ class LinkProcessor {
     // This entity kills Gutenberg.
     $processed = str_replace('&#13;', "\r", $processed);
 
-    if (self::$processBlocks) {
-      self::$processBlocks = FALSE;
-
+    if (strpos($processed, '<!-- wp:') !== FALSE) {
       $blocks = (new BlockParser())->parse($processed);
       $this->processBlocks($blocks, $direction, $language);
       $processed = (new BlockSerializer())->serialize_blocks($blocks);
-
-      self::$processBlocks = TRUE;
     }
 
     return $processed;
