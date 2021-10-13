@@ -61,7 +61,7 @@
     "fast-builds:run:netlify": "ts-node fast-builds/netlify.ts",
     "update-schema": "SCHEMA_UPDATE=true gatsby build",
     "codegen": "graphql-codegen --config codegen.yml",
-    "test": "yarn codegen && jest --passWithNotTests && tsc --noEmit",
+    "test": "yarn codegen && jest --passWithNoTests && tsc --noEmit",
     "watch": "jest --watch",
     "storybook": "start-storybook -p 6006",
     "storybook:build": "build-storybook"
