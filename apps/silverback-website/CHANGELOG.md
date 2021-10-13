@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.39](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.15.38...silverback-website@0.15.39) (2021-10-13)
+
+
+### Bug Fixes
+
+* another occurence of empty jest tests ([8a00871](https://github.com/AmazeeLabs/silverback-mono/commit/8a0087153340fbb6a736819a19e0cf15bb417621))
+
+
+
+
+
 ## [0.15.38](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.15.37...silverback-website@0.15.38) (2021-10-13)
 
 **Note:** Version bump only for package silverback-website

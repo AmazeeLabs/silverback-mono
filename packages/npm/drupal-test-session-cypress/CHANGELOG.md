@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.15](https://github.com/AmazeeLabs/silverback-mono/compare/drupal-test-session-cypress@1.1.14...drupal-test-session-cypress@1.1.15) (2021-10-13)
+
+
+### Bug Fixes
+
+* allow jest to pass without tests ([6c16f3f](https://github.com/AmazeeLabs/silverback-mono/commit/6c16f3fec8f03b2565983bbbe74f9f181dad284f))
+
+
+
+
+
 ## [1.1.14](https://github.com/AmazeeLabs/silverback-mono/compare/drupal-test-session-cypress@1.1.13...drupal-test-session-cypress@1.1.14) (2021-10-13)
 
 

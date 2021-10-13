@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.14](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.2.13...@-amazeelabs/silverback-gastby@1.2.14) (2021-10-13)
+
+
+### Bug Fixes
+
+* another occurence of empty jest tests ([d88c00f](https://github.com/AmazeeLabs/silverback-mono/commit/d88c00f9deaafeca7598a35010e7a4eb553d4040))
+* another occurence of empty jest tests ([ed4cd6a](https://github.com/AmazeeLabs/silverback-mono/commit/ed4cd6a96f14fb0c8cc9b669f1f5db80e78c1db6))
+
+
+
+
+
 ## [1.2.13](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.2.12...@-amazeelabs/silverback-gastby@1.2.13) (2021-10-13)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-gastby

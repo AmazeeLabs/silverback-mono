@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/test_session@1.2.5...@-drupal/test_session@1.2.6) (2021-10-13)
+
+
+### Bug Fixes
+
+* allow jest to pass without tests ([ebac315](https://github.com/AmazeeLabs/silverback-mono/commit/ebac3151b0bf7b530c480b213f8538ceec221fe4))
+
+
+
+
+
 ## [1.2.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/test_session@1.2.4...@-drupal/test_session@1.2.5) (2021-10-13)
 
 **Note:** Version bump only for package @-drupal/test_session

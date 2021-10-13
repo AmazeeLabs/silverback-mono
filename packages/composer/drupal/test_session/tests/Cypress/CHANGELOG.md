@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.17](https://github.com/AmazeeLabs/silverback-mono/compare/@-test_session/cypress-tests@1.1.16...@-test_session/cypress-tests@1.1.17) (2021-10-13)
+
+
+### Bug Fixes
+
+* allow jest to pass without tests ([ebac315](https://github.com/AmazeeLabs/silverback-mono/commit/ebac3151b0bf7b530c480b213f8538ceec221fe4))
+
+
+
+
+
 ## [1.1.16](https://github.com/AmazeeLabs/silverback-mono/compare/@-test_session/cypress-tests@1.1.15...@-test_session/cypress-tests@1.1.16) (2021-10-13)
 
 **Note:** Version bump only for package @-test_session/cypress-tests
