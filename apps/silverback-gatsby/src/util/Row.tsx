@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
-export const Row: React.FC = ({ children }) => (
-  <td className="border-solid border-4">{children}</td>
+type Props = PropsWithChildren<{
+  className?: string;
+}>;
+
+export const Row = ({ children, className }: Props) => (
+  <td className={`border-solid border-4 ${className}`}>{children}</td>
 );

@@ -1,0 +1,10 @@
+<?php
+
+/**
+ * Implements hook_silverback_gutenberg_link_processor_block_attrs_alter().
+ */
+function gutenberg_custom_blocks_silverback_gutenberg_link_processor_block_attrs_alter(array &$attributes, array $context) {
+  if ($context['blockName'] === 'custom/teaser' && isset($attributes['url'])) {
+    $attributes['url'] = $context['processUrlCallback']($attributes['url']);
+  }
+}

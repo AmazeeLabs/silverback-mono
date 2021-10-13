@@ -6426,11 +6426,11 @@ type DrupalBlockHtml {
 
 type DrupalBlockImage {
   caption: String!
-  image: DrupalImage!
+  image: DrupalImage
 }
 
 type DrupalBlockTeaser {
-  image: DrupalImage!
+  image: DrupalImage
   title: String!
   subtitle: String!
   url: String!

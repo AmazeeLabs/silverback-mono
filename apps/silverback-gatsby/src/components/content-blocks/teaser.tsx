@@ -9,7 +9,7 @@ export const BlockTeaser: React.FC<BlockTeaserFragment> = ({
 }) => (
   <div className="border-solid border-4">
     <a href={url}>
-      {image.localImage?.childImageSharp?.fixed && (
+      {image?.localImage?.childImageSharp?.fixed && (
         <Image fixed={image.localImage.childImageSharp.fixed} />
       )}
       <h2>{title}</h2>
