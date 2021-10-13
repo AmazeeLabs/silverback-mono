@@ -37,7 +37,7 @@ type ITranslatablePaginationAdapter = IPaginationAdapter<
 export const createSourcingConfig = async (
   gatsbyApi: SourceNodesArgs,
   execute: IQueryExecutor,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars-experimental
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   customFragments?: Map<RemoteTypeName, string>,
 ): Promise<ISourcingConfig> => {
   const schema = await loadSchema(execute);
