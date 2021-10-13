@@ -6,6 +6,7 @@ import {
   waitForGatsby,
 } from '@amazeelabs/silverback-playwright';
 import { expect, test } from '@playwright/test';
+import os from 'os';
 import { $, cd } from 'zx';
 
 test.beforeAll(async () => {
@@ -52,7 +53,10 @@ test('@gatsby-develop test LinkProcessor', async ({ page }) => {
 
   await page.click(':text-is("Paragraph")');
   await page.type('[data-type="core/paragraph"]', 'link');
-  await page.press('[data-type="core/paragraph"]', 'Meta+a');
+  await page.press(
+    '[data-type="core/paragraph"]',
+    os.platform() === 'darwin' ? 'Meta+a' : 'Control+a',
+  );
   await page.click('[aria-label="Link"]');
   await page.fill('[placeholder="Search or type url"]', 'target page');
   await selectFirstAutocompleteResult();
@@ -68,7 +72,10 @@ test('@gatsby-develop test LinkProcessor', async ({ page }) => {
   await page.check('input[name="media_library_select_form[0]"]');
   await page.click('button:text-is("Insert")');
   await page.fill('[aria-label="Write caption…"]', 'link');
-  await page.press('[aria-label="Write caption…"]', 'Meta+a');
+  await page.press(
+    '[aria-label="Write caption…"]',
+    os.platform() === 'darwin' ? 'Meta+a' : 'Control+a',
+  );
   await page.click('[aria-label="Link"]');
   await page.fill('[placeholder="Search or type url"]', 'target page');
   await selectFirstAutocompleteResult();
