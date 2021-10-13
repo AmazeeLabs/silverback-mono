@@ -30,7 +30,7 @@
   "scripts": {
     "prepare": "exit 0",
     "precommit": "lint-staged",
-    "test": "tsc --noEmit && jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi && sp-test",
+    "test": "tsc --noEmit && jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi && sp-test -v",
     "watch": "jest --watch"
   }
 }
