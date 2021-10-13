@@ -36,7 +36,7 @@
     "gatsby-plugin-image": "^1.2.0"
   },
   "scripts": {
-    "prepare": "amazee-scaffold && tsc",
+    "prepare": "tsc",
     "precommit": "lint-staged",
     "test": "tsc --noEmit && jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi",
     "watch": "jest --watch"

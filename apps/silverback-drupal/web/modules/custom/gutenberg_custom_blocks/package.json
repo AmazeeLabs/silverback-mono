@@ -5,7 +5,7 @@
   "scripts": {
     "start": "yarn drupal-js-build --css && yarn drupal-js-build watch --css",
     "build": "yarn drupal-js-build --css && yarn drupal-gutenberg-translations",
-    "prepare": "yarn amazee-scaffold && yarn build",
+    "prepare": "yarn build",
     "precommit": "lint-staged",
     "test": "tsc --noEmit && jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi",
     "watch": "jest --watch"
