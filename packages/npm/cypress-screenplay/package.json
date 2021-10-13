@@ -1,6 +1,6 @@
 {
   "name": "cypress-screenplay",
-  "version": "0.5.9",
+  "version": "0.5.10",
   "description": "Screenplay pattern implementation for cypress.",
   "main": "dist/index.js",
   "types": "types/index.d.ts",
@@ -18,8 +18,8 @@
     "cypress-cucumber-preprocessor": "^4"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.1",
-    "@amazeelabs/prettier-config": "^1.1.0",
+    "@amazeelabs/eslint-config": "^1.4.2",
+    "@amazeelabs/prettier-config": "^1.1.1",
     "@tsconfig/recommended": "^1.0.1",
     "@types/mocha": "^9.0.0",
     "@types/sinon": "^10.0.0",

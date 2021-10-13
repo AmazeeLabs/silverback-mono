@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.9](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/jest-preset@1.3.8...@amazeelabs/jest-preset@1.3.9) (2021-10-13)
+
+
+### Bug Fixes
+
+* **tooling:** clean up peer dependencies and set eslint to v8 ([f230a87](https://github.com/AmazeeLabs/silverback-mono/commit/f230a8761ef5980cd202d5da514aeeced2defe3f))
+
+
+
+
+
 ## [1.3.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/jest-preset@1.3.7...@amazeelabs/jest-preset@1.3.8) (2021-10-11)
 
 **Note:** Version bump only for package @amazeelabs/jest-preset
