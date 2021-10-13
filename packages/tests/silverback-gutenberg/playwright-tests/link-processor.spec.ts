@@ -138,31 +138,14 @@ test('@gatsby-develop test LinkProcessor', async ({ page }) => {
     expect(await link.getAttribute('href')).toEqual('/en/target-page');
   }
 
-  // Translate the Gutenberg page leaving the contents as is.
+  // Ensure that URLs are correct when translating to German.
 
   await page.goto(`${drupal.baseUrl}/en/node/${nodeId}/translations`);
   await page.click(':text-is("Add"):right-of(:text-is("German"))');
-
-  // Ensure that URLs already lead to German.
-
   await assertLinkHref('[data-type="core/paragraph"] a', `/de/target-page-de`);
   await assertLinkHref('[data-type="custom/teaser"] a', '/de/target-page-de');
   await assertLinkHref(
     '[data-type="drupalmedia/drupal-media-entity"] a',
     '/de/target-page-de',
   );
-
-  await page.click('input:text-is("Save (this translation)")');
-
-  await waitForGatsby();
-
-  // Ensure that URLs lead to German on the frontend.
-
-  await page.goto(`${gatsby.baseUrl}/de/node/${nodeId}`);
-  await page.waitForSelector('.gutenberg-body a');
-  const deLinks = await page.$$('.gutenberg-body a');
-  expect(deLinks).toHaveLength(3);
-  for (const link of deLinks) {
-    expect(await link.getAttribute('href')).toEqual('/de/target-page-de');
-  }
 });
