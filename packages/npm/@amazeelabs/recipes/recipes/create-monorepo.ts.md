@@ -342,7 +342,7 @@ $$.file('package.json', (json) => ({
 }));
 ```
 
-We can add the `@amazeelabs/scaffold` package to inject common tooling like
+We can run the `@amazeelabs/scaffold` package to inject common tooling like
 [jest] , [eslint] and [typescript].
 
 [jest]: https://jestjs.io/
@@ -350,8 +350,7 @@ We can add the `@amazeelabs/scaffold` package to inject common tooling like
 [typescript]: https://www.typescriptlang.org/
 
 ```typescript
-$$('yarn add -D @amazeelabs/scaffold');
-$$('yarn amazee-scaffold');
+$$('npx @amazeelabs/scaffold');
 ```
 
 Among some others, this registered bespoken `precommit` script to the package

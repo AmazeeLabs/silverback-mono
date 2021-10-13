@@ -6,23 +6,18 @@ testing tools.
 ## Installation
 
 ```shell
-yarn add -D @amazeelabs/scaffold
-yarn amazee-scaffold
+npx @amazeelabs/scaffold
 ```
 
 This will alter the packages `.gitignore` file, add a `prepare` hook and make
 sure that configurations for code quality tools like `eslint`, `prettier` or
-`jest` are in place. The scaffolded configuration files are added to
-`.gitignore` and should not be committed. They will be auto-added and updated
-with every `yarn install`.
-
-> **Alert:** When using this within the Silverback monorepo, yarn will falsely
-> add the dependencies to `dependencies` instead of `devDependencies`. This has
-> to be fixed manually until we are able to switch to a newer version of `yarn`.
+`jest` are in place.
 
 ## Usage
 
-After install there is a `test` that should run all testsin a package. It will
-also look for an optional `test.sh` in the package root that will also be
-executed. The `watch` command should be used for live-feedback features (like
-`jest --watch`).
+After install there is a `test` that should run all tests in a package. Tests
+are split into three categories (scripts):
+
+1. `test:static` will do static code analysis like `eslint` or `typescript`
+2. `test:unit` executes fast running unit tests
+3. `test:integration` is supposed to be used for long-running integration tests
