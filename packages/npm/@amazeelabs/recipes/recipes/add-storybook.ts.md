@@ -42,15 +42,12 @@ $$.file('package.json', (json) => ({
 }));
 ```
 
-Add `@amazeelabs/scaffold` to inject common development tooling like `jest`,
-`eslint` or `prettier`. After installation, we have to run
-`yarn amazee-scaffold` to install the `prepare` hook that will keep these tools
-automatically up-to-date.
+Use `@amazeelabs/scaffold` to inject common development tooling like `jest`,
+`eslint` or `prettier`.
 
 ```typescript
 // add & run @amazeelabs/scaffold
-$$('yarn add @amazeelabs/scaffold');
-$$('yarn amazee-scaffold');
+$$('npx @amazeelabs/scaffold');
 ```
 
 ### React
@@ -305,8 +302,7 @@ $$.file('package.json', (json) => ({
   ...json,
   scripts: {
     ...json.scripts,
-    prepare:
-      'amazee-scaffold && NODE_ENV=production yarn postcss tailwind.css -o styles.css',
+    prepare: 'NODE_ENV=production yarn postcss tailwind.css -o styles.css',
   },
 }));
 ```
