@@ -32,7 +32,7 @@ class Gutenberg extends DataProducerPluginBase
     $parser = new BlockParser();
     /** @var \Drupal\silverback_gutenberg\LinkProcessor $linkProcessor */
     $linkProcessor = \Drupal::service(LinkProcessor::class);
-    $currentLanguage = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
+    $currentLanguage = $entity->language();
 
     $html = $entity->get('body')->value ?: '';
     $html = $linkProcessor->processLinks($html, 'outbound', $currentLanguage);
@@ -62,6 +62,9 @@ class Gutenberg extends DataProducerPluginBase
 
         case 'drupalmedia/drupal-media-entity':
           // In real project: would be nice to catch potential exceptions here.
+          if (!$block['attrs']['mediaEntityIds'][0]) {
+            break;
+          }
           $media = Media::load($block['attrs']['mediaEntityIds'][0]);
           $bundle = $media->bundle();
           switch ($bundle) {
@@ -102,14 +105,16 @@ class Gutenberg extends DataProducerPluginBase
           break;
 
         case 'custom/teaser':
-          $media = Media::load($block['attrs']['mediaEntityIds'][0]);
-          $bundle = $media->bundle();
-          if ($bundle !== 'image') {
-            throw new \Exception("Teaser only supports image media. Given media type: '{$bundle}'");
+          if ($block['attrs']['mediaEntityIds'][0]) {
+            $media = Media::load($block['attrs']['mediaEntityIds'][0]);
+            $bundle = $media->bundle();
+            if ($bundle !== 'image') {
+              throw new \Exception("Teaser only supports image media. Given media type: '{$bundle}'");
+            }
           }
           $result[] = [
             '__type' => 'BlockTeaser',
-            'image' => $media,
+            'image' => $media ?? NULL,
             'title' => trim($block['attrs']['title']),
             'subtitle' => trim($block['attrs']['subtitle']),
             // TODO (gutenberg): process URL.

@@ -87,11 +87,11 @@ type BlockHtml {
 
 type BlockImage {
   caption: String!
-  image: Image!
+  image: Image
 }
 
 type BlockTeaser {
-  image: Image!
+  image: Image
   title: String!
   subtitle: String!
   url: String!
