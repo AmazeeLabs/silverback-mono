@@ -1,16 +1,16 @@
 import path from 'path';
 
 import {
-  adjustScripts,
-  installPackages,
-  manageIgnoredFiles,
-  updateDotFiles,
+  installConfigFiles,
+  installDependencies,
+  installScripts,
 } from './utils';
 
 export function scaffold(targetPath: string) {
-  const sourcePath = path.resolve(__dirname, '../files');
-  installPackages(sourcePath, targetPath);
-  adjustScripts(sourcePath, targetPath);
-  updateDotFiles(sourcePath, targetPath);
-  manageIgnoredFiles(sourcePath, targetPath);
+  const sourcePath = path.resolve(__dirname, './files');
+  installDependencies(targetPath);
+  installScripts(targetPath);
+  installConfigFiles(sourcePath, targetPath);
 }
+
+scaffold(process.cwd());

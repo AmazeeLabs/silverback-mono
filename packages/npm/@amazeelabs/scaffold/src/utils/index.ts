@@ -1,4 +1,3 @@
-export { adjustScripts } from './scripts';
-export { updateDotFiles } from './files';
-export { manageIgnoredFiles } from './gitignore';
-export { installPackages } from './packages';
+export { installScripts } from './scripts';
+export { installConfigFiles } from './files';
+export { installDependencies } from './dependencies';

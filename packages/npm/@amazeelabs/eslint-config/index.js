@@ -1,13 +1,14 @@
-const fs = require('fs');
-let isReactProject = false
+const fs = require("fs");
+let isReactProject = false;
 
-if (fs.existsSync('./package.json')) {
-  const contents = JSON.parse(fs.readFileSync('./package.json').toString());
-  isReactProject = !!(contents && (
-    (contents.dependencies && contents.dependencies.react) ||
-    (contents.devDependencies && contents.devDependencies.react) ||
-    (contents.peerDependencies && contents.peerDependencies.react)
-  ));
+if (fs.existsSync("./package.json")) {
+  const contents = JSON.parse(fs.readFileSync("./package.json").toString());
+  isReactProject = !!(
+    contents &&
+    ((contents.dependencies && contents.dependencies.react) ||
+      (contents.devDependencies && contents.devDependencies.react) ||
+      (contents.peerDependencies && contents.peerDependencies.react))
+  );
 }
 
 module.exports = {
@@ -20,9 +21,9 @@ module.exports = {
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:promise/recommended",
-    ...(isReactProject ? ['plugin:react/recommended'] : []),
+    ...(isReactProject ? ["plugin:react/recommended"] : []),
     // Prettier always goes last.
-    "prettier"
+    "prettier",
   ],
   globals: {
     Atomics: "readonly",
@@ -34,13 +35,15 @@ module.exports = {
     sourceType: "module",
     ecmaFeatures: {
       jsx: isReactProject,
-    }
-  },
-  settings: isReactProject ? {
-    react: {
-      version: "detect",
     },
-  } : {},
+  },
+  settings: isReactProject
+    ? {
+        react: {
+          version: "detect",
+        },
+      }
+    : {},
   plugins: [
     "@typescript-eslint",
     "tailwindcss",
@@ -49,10 +52,8 @@ module.exports = {
     "simple-import-sort",
     "import",
     "no-only-tests",
-    ...(isReactProject ? [
-      "react",
-      "react-hooks",
-    ] : [])],
+    ...(isReactProject ? ["react", "react-hooks"] : []),
+  ],
   rules: {
     "no-unused-vars": ["off"],
     "@typescript-eslint/no-unused-vars": ["error"],
@@ -63,12 +64,14 @@ module.exports = {
     "import/newline-after-import": "error",
     "import/no-duplicates": "error",
     "no-only-tests/no-only-tests": "error",
-    ...(isReactProject ? {
-      "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "warn",
-      "react/prop-types": ["off"],
-      "react/prefer-stateless-function": ["error"],
-    } : {})
+    ...(isReactProject
+      ? {
+          "react-hooks/rules-of-hooks": "error",
+          "react-hooks/exhaustive-deps": "warn",
+          "react/prop-types": ["off"],
+          "react/prefer-stateless-function": ["error"],
+        }
+      : {}),
   },
   overrides: [
     {
@@ -77,10 +80,10 @@ module.exports = {
       // rules don't make sense in tests.
       files: ["**/interactions/*.ts", "**/steps/*.ts", "**/*.cypress.ts"],
       rules: {
-        'promise/catch-or-return': 'off',
-        'promise/always-return': 'off',
-        'promise/no-nesting': 'off',
-      }
-    }
-  ]
+        "promise/catch-or-return": "off",
+        "promise/always-return": "off",
+        "promise/no-nesting": "off",
+      },
+    },
+  ],
 };

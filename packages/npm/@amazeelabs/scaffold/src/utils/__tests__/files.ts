@@ -1,11 +1,11 @@
 import * as fs from 'fs';
 import mock from 'mock-fs';
 
-import { updateDotFiles } from '../files';
+import { installConfigFiles } from '../files';
 
 afterEach(mock.restore);
 
-describe('updateDotFiles', () => {
+describe('installConfigFiles', () => {
   it('adds missing files', () => {
     mock({
       '/foo': {
@@ -13,7 +13,7 @@ describe('updateDotFiles', () => {
       },
       '/bar': {},
     });
-    updateDotFiles('/foo', '/bar');
+    installConfigFiles('/foo', '/bar');
     expect(fs.existsSync('/bar/.eslintrc.js')).toBeTruthy();
     expect(fs.readFileSync('/bar/.eslintrc.js').toString()).toEqual('a');
   });
@@ -27,7 +27,7 @@ describe('updateDotFiles', () => {
         '.eslintrc.js': 'a',
       },
     });
-    updateDotFiles('/foo', '/bar');
+    installConfigFiles('/foo', '/bar');
     expect(fs.existsSync('/bar/.eslintrc.js')).toBeTruthy();
     expect(fs.readFileSync('/bar/.eslintrc.js').toString()).toEqual('b');
   });
