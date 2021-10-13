@@ -1,53 +1,32 @@
 import chalk from 'chalk';
-import * as fs from 'fs';
 
-import { getPackageInfo } from './helpers';
+import { readPackageInfo, writePackageInfo } from './helpers';
 
-type Map = {
-  [key: string]: string;
-};
+export function installScripts(targetPath: string) {
+  const targetInfo = readPackageInfo(targetPath);
 
-export function adjustScripts(
-  sourcePath: string,
-  targetPath: string,
-) {
-  const sourceInfo: { scripts: Map } = getPackageInfo(sourcePath);
-  const targetInfo: { name: string, scripts?: Map } = getPackageInfo(targetPath);
-  const sourceScripts = Object.assign(
-    {},
-    {
-      prepare: 'amazee-scaffold',
-    },
-    sourceInfo.scripts || {},
-  );
+  const sourceScripts: { [key: string]: string } = {
+    prepare: 'exit 0',
+    precommit: 'lint-staged',
+    'test:static':
+      'tsc --noEmit && eslint "**/*.{ts,tsx,js,jsx}" --ignore-path="./.gitignore" --fix',
+    'test:unit': 'jest --passWithNoTests',
+    'test:integration': 'exit 0',
+    'test:watch': 'jest --watch',
+    test: 'yarn test:static && yarn test:unit && yarn test:integration',
+  };
 
   console.log(
     `${chalk.yellow(
       '[@amazeelabs/scaffold]:',
     )} Adjusting scripts (${Object.keys(sourceScripts).join(', ')})`,
   );
-  Object.keys(sourceScripts).forEach((key) => {
-    targetInfo.scripts = targetInfo.scripts || {};
-    if (targetInfo.scripts[key]) {
-      if (key === 'prepare' && targetInfo.name === '@amazeelabs/scaffold') {
-        // Don't install a prepare hook in our own package.
-        return;
-      }
-      if (
-        !(targetInfo.scripts[key] as string).includes(
-          sourceScripts[key] as string,
-        )
-      ) {
-        targetInfo.scripts[
-          key
-        ] = `${sourceScripts[key]} && ${targetInfo.scripts[key]}`;
-      }
-    } else {
-      targetInfo.scripts[key] = sourceScripts[key] as string;
-    }
+
+  writePackageInfo(targetPath, {
+    ...targetInfo,
+    scripts: {
+      ...targetInfo.scripts,
+      ...sourceScripts,
+    },
   });
-  fs.writeFileSync(
-    `${targetPath}/package.json`,
-    JSON.stringify(targetInfo, null, 2) + "\n",
-  );
 }

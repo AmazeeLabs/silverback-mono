@@ -6,36 +6,39 @@
   "author": "Philipp Melab",
   "license": "MIT",
   "private": false,
-  "bin": {
-    "amazee-scaffold": "./cli.js"
-  },
+  "bin": "./cli.js",
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "@amazeelabs/prettier-config": "^1.1.1",
-    "chalk": "^4.1.0",
-    "esm": "^3.2.25"
-  },
   "scripts": {
     "precommit": "lint-staged",
-    "prepare": "tsc && node cli.js",
-    "test": "tsc --noEmit && jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi",
-    "watch": "jest --watch"
+    "prepare": "rollup -c rollup.config.ts",
+    "watch": "jest --watch",
+    "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
+    "test:unit": "jest --passWithNoTests",
+    "test:integration": "yarn prepare &&  ./test.sh",
+    "test:watch": "jest --watch",
+    "test": "yarn test:static && yarn test:unit && yarn test:integration"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "^1.4.3",
     "@amazeelabs/jest-preset": "^1.3.9",
-    "@amazeelabs/prettier-config": "^1.1.0",
+    "@amazeelabs/prettier-config": "^1.1.1",
+    "@rollup/plugin-commonjs": "^21.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.0.5",
+    "@rollup/plugin-typescript": "^8.2.5",
     "@types/chalk": "^2.2.0",
     "@types/jest": "^27.0.0",
     "@types/mock-fs": "^4.13.0",
     "@types/node": "^14.14.22",
+    "chalk": "^4.1.0",
     "eslint": "^7.25.0",
     "husky": "^7.0.0",
     "jest": "^27.0.0",
     "lint-staged": "^11.0.0",
     "mock-fs": "^5.0.0",
+    "rollup": "^2.58.0",
     "ts-jest": "^27.0.5",
     "typescript": "^4.2.3"
   }

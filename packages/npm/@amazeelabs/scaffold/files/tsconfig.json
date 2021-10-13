@@ -2,13 +2,13 @@
   "compilerOptions": {
     "noEmit": true,
     "target": "ES2015",
-    "moduleResolution": "Node",
-    "module": "ESNext",
+    "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": false,
+    "jsx": "react"
   },
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Recommended"

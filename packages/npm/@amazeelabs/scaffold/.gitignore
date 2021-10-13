@@ -1,12 +1,4 @@
-dist
+cli.js
 node_modules
 yarn-error.log
 test
-
-### MANAGED BY @amazeelabs/scaffold - START
-.eslintrc.js
-.jest-runner-eslintrc
-.lintstagedrc
-.prettierrc
-jest.config.js
-### MANAGED BY @amazeelabs/scaffold - END

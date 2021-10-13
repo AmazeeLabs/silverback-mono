@@ -2,18 +2,11 @@ import chalk from 'chalk';
 import * as fs from 'fs';
 import * as path from 'path';
 
-export function updateDotFiles(
-  sourcePath: string,
-  targetPath: string,
-) {
+export function installConfigFiles(sourcePath: string, targetPath: string) {
   const files = fs
     .readdirSync(sourcePath)
-    .filter(file => file !== 'package.json')
     .filter(
-      (file) =>
-        !(
-          fs.lstatSync(path.resolve(sourcePath, file)).isDirectory()
-        ),
+      (file) => !fs.lstatSync(path.resolve(sourcePath, file)).isDirectory(),
     );
 
   console.log(
@@ -30,13 +23,4 @@ export function updateDotFiles(
     }
     fs.copyFileSync(sourceFile, targetFile);
   });
-  const tsconfigPath = path.resolve(targetPath, 'tsconfig.json');
-  if (!fs.existsSync(tsconfigPath)) {
-    fs.writeFileSync(tsconfigPath, JSON.stringify({
-      extends: '@tsconfig/recommended/tsconfig.json',
-      compilerOptions: {
-        jsx: "react"
-      }
-    }))
-  }
 }

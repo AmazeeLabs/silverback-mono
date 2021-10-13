@@ -1,4 +1,3 @@
-const fs = require("fs");
 const moduleNameMapper = {
   "\\.(css|less|scss|sss|styl)$": "identity-obj-proxy",
 };
