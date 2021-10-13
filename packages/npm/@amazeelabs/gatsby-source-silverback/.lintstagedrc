@@ -1,0 +1,8 @@
+{
+  "*.+(js|ts|tsx)": [
+    "jest --findRelatedTests"
+  ],
+  "*.+(js|ts|tsx|md|mdx|yml)": [
+    "prettier --write --ignore-path .gitignore"
+  ]
+}
