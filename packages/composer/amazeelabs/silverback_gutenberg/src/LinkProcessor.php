@@ -8,10 +8,13 @@ use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\StreamWrapper\PublicStream;
 use Drupal\Core\Url;
+use Drupal\gutenberg\Parser\BlockParser;
 use Drupal\path_alias\AliasManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class LinkProcessor {
+
+  protected static bool $processBlocks = TRUE;
 
   protected AliasManagerInterface $pathAliasManager;
   protected ConfigFactoryInterface $configFactory;
@@ -46,49 +49,52 @@ class LinkProcessor {
       $this->processLink($link, $direction, $language);
     }
 
-    $xpath = new \DOMXpath($document);
-    $comments = $xpath->query('//comment()');
-    /** @var \DOMComment $comment */
-    foreach ($comments as $comment) {
-      if (preg_match('/^(\s*wp:)(\S+)(\s*)({.*})(\s*\/\s*)$/s', $comment->textContent, $matches)) {
-        $blockName = $matches[2];
-        $json = $matches[4];
-        $attributes = json_decode($json, TRUE);
-        $processUrlCallback = fn(string $url) => $this->processUrl($url, $direction, $language);
-        $processLinksCallback = fn(string $html) => $this->processLinks($html, $direction, $language);
-
-        // Note: this hook is deprecated.
-        $this->moduleHandler->alter(
-          'silverback_gutenberg_link_processor_block_attributes',
-          $attributes,
-          $blockName,
-          $processUrlCallback
-        );
-
-        $context = [
-          'blockName' => $blockName,
-          'processUrlCallback' => $processUrlCallback,
-          'processLinksCallback' => $processLinksCallback,
-        ];
-        $this->moduleHandler->alter(
-          'silverback_gutenberg_link_processor_block_attrs',
-          $attributes,
-          $context
-        );
-
-        $jsonNew = json_encode($attributes);
-        if ($jsonNew !== $json) {
-          $comment->textContent = $matches[1] . $blockName . $matches[3] . $jsonNew . $matches[5];
-        }
-      }
-    }
-
     $processed = Html::serialize($document);
 
     // This entity kills Gutenberg.
     $processed = str_replace('&#13;', "\r", $processed);
 
+    if (self::$processBlocks) {
+      self::$processBlocks = FALSE;
+
+      $blocks = (new BlockParser())->parse($processed);
+      $this->processBlocks($blocks, $direction, $language);
+      $processed = (new BlockSerializer())->serialize_blocks($blocks);
+
+      self::$processBlocks = TRUE;
+    }
+
     return $processed;
+  }
+
+  protected function processBlocks(&$blocks, string $direction, LanguageInterface $language = NULL): void {
+    $processUrlCallback = fn(string $url) => $this->processUrl($url, $direction, $language);
+    $processLinksCallback = fn(string $html) => $this->processLinks($html, $direction, $language);
+    foreach ($blocks as &$block) {
+
+      // First call the deprecated hook.
+      $this->moduleHandler->alter(
+        'silverback_gutenberg_link_processor_block_attributes',
+        $block['attrs'],
+        $block['blockName'],
+        $processUrlCallback
+      );
+      // Then call the new hook.
+      $context = [
+        'blockName' => $block['blockName'],
+        'processUrlCallback' => $processUrlCallback,
+        'processLinksCallback' => $processLinksCallback,
+      ];
+      $this->moduleHandler->alter(
+        'silverback_gutenberg_link_processor_block_attrs',
+        $block['attrs'],
+        $context
+      );
+
+      if (!empty($block['innerBlocks'])) {
+        $this->processBlocks($block['innerBlocks'], $direction, $language);
+      }
+    }
   }
 
   /**
