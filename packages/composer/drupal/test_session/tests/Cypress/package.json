@@ -3,7 +3,7 @@
   "version": "1.1.16",
   "private": true,
   "scripts": {
-    "test": "yarn jest && yarn cypress:run",
+    "test": "jest --passWithNoTests && yarn cypress:run",
     "watch": "jest --watch",
     "cypress:prepare": "./scripts/setup.sh && ./scripts/start.sh 'true'",
     "cypress:run": "yarn cypress:prepare && yarn cypress run",
