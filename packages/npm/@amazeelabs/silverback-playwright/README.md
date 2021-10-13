@@ -85,6 +85,12 @@ Tests marked with `@gatsby-both` will be executed in both `gatsby-develop` and
 - `drupal` and `gatsby` provide various constants (ports, URLs, credentials,
   etc.)
 
+## Writing tests
+
+(move "To debug a particular test" here)
+
+- force kill browser
+
 ## Debugging tests
 
 There are few options.
@@ -103,9 +109,15 @@ test.only('my test', async ({ page }) => {
 
 Run the tests with `--headed` (`-h`) flag.
 
-### If you suspect that something is wrong with the test runner
+### To see all logs
 
 Start tests with `--verbose` (`-v`) flag.
+
+This will print
+
+- executed commands
+- Gatsby and Drupal logs
+- debug messages from the test runner
 
 ### Traces
 
@@ -121,7 +133,20 @@ To see the traces, go to your package dir and run
 yarn playwright show-trace ./test-results/path/to/trace.zip
 ```
 
-# Tips
+## Re-running tests
+
+Unlike Cypress, Playwright UI does not have an option to restart a test. But
+there is a workaround:
+
+- put `page.pause()` to the end of your test
+- start tests with `yarn sp-test -h -r`
+- in case if you need to re-run the test, force-kill the browser
+
+One downside of this method is that you won't see error messages if there is a
+runtime error or if an assertion fails. Track
+[#9462](https://github.com/microsoft/playwright/issues/9462) for news.
+
+## Tips
 
 To speedup tests, Drupal state is restored from the `test` snapshot. If you did
 some Drupal changes, remove `apps/silverback-drupal/.silverback-snapshots/test`.

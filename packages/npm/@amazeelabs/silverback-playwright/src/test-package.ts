@@ -11,11 +11,13 @@ if (process.argv.includes('help') || process.argv.includes('--help')) {
   Flags:
     -v, --verbose    Spam a lot
     -h, --headed     Run tests in headed browser (default: headless)
+    -r, --repeat     Repeat the tests 100 times
     -t, --trace      Record traces`);
   process.exit();
 }
 
 const headed = process.argv.includes('--headed') || process.argv.includes('-h');
+const repeat = process.argv.includes('--repeat') || process.argv.includes('-r');
 const verbose =
   process.argv.includes('--verbose') || process.argv.includes('-v');
 const trace = process.argv.includes('--trace') || process.argv.includes('-t');
@@ -35,12 +37,16 @@ const runTests = async (type: TestType) => {
   console.log(`⏩ Running ${type} tests...`);
   const list = $`${envVars} yarn playwright test --grep '${tags[type]}' --list --config '${__dirname}/list.playwright.config.ts'`;
   if ((await list.exitCode) === 0) {
+    const flags = [
+      `--config '${__dirname}/${type}/playwright.config.ts'`,
+      '--workers 1', // Otherwise it can things in parallel.
+      headed ? '--headed --timeout 6000000' : null,
+      repeat ? '--repeat-each 100 --max-failures 100' : '--max-failures 1',
+    ]
+      .filter(Boolean)
+      .join(' ');
     $.verbose = true;
-    const run = $`${envVars} yarn playwright test --grep '${
-      tags[type]
-    }' --config '${__dirname}/${type}/playwright.config.ts' --workers 1 --max-failures 1 ${
-      headed ? '--headed --timeout 600000' : ''
-    }`;
+    const run = $`${envVars} yarn playwright test --grep '${tags[type]}' ${flags}`;
     $.verbose = verbose;
     if ((await run.exitCode) !== 0) {
       console.error(`❌ ${type} tests failed.`);
