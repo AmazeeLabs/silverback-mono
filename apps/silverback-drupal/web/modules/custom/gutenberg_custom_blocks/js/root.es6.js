@@ -2,7 +2,6 @@
 const {
   blocks: { registerBlockType },
   blockEditor: { InnerBlocks },
-  data,
 } = wp;
 const { t: __ } = Drupal;
 
