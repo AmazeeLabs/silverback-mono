@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/eslint-config@1.4.2...@amazeelabs/eslint-config@1.4.3) (2021-10-13)
+
+
+### Bug Fixes
+
+* **eslint:** adjust to breaking change in [@typescript-eslint](https://github.com/typescript-eslint) ([e7105ad](https://github.com/AmazeeLabs/silverback-mono/commit/e7105ad02d878e0a6ec2fb61193f94a7f1a13af9))
+
+
+
+
+
 ## [1.4.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/eslint-config@1.4.1...@amazeelabs/eslint-config@1.4.2) (2021-10-13)
 
 

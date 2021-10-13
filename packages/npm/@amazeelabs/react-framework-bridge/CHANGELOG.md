@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.5.5...@amazeelabs/react-framework-bridge@1.5.6) (2021-10-13)
+
+
+### Bug Fixes
+
+* eslint violation ([976136b](https://github.com/AmazeeLabs/silverback-mono/commit/976136baab50a0f1f9c47465c45830140d53fda8))
+
+
+
+
+
 ## [1.5.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.5.4...@amazeelabs/react-framework-bridge@1.5.5) (2021-10-13)
 
 **Note:** Version bump only for package @amazeelabs/react-framework-bridge

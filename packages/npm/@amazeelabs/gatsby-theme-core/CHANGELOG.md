@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.22](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.6.21...@amazeelabs/gatsby-theme-core@0.6.22) (2021-10-13)
+
+
+### Bug Fixes
+
+* eslint violation ([605e016](https://github.com/AmazeeLabs/silverback-mono/commit/605e0162d77eb6dfa5363f472994954f7f1de3d1))
+
+
+
+
+
 ## [0.6.21](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.6.20...@amazeelabs/gatsby-theme-core@0.6.21) (2021-10-13)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-theme-core

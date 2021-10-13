@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.11](https://github.com/AmazeeLabs/silverback-mono/compare/@-silverback-drupal/gutenberg_custom_blocks@1.0.10...@-silverback-drupal/gutenberg_custom_blocks@1.0.11) (2021-10-13)
+
+
+### Bug Fixes
+
+* **drupal:** eslint violation ([aa6df91](https://github.com/AmazeeLabs/silverback-mono/commit/aa6df915a86222eae7a20a45b3c2f1e5f5e72c0c))
+
+
+
+
+
 ## [1.0.10](https://github.com/AmazeeLabs/silverback-mono/compare/@-silverback-drupal/gutenberg_custom_blocks@1.0.9...@-silverback-drupal/gutenberg_custom_blocks@1.0.10) (2021-10-13)
 
 **Note:** Version bump only for package @-silverback-drupal/gutenberg_custom_blocks
