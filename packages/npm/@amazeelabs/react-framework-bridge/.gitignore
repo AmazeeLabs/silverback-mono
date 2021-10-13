@@ -1,4 +1,12 @@
 dist
 node_modules
-*.js
-*.d.ts
+gatsby.js
+gatsby.d.ts
+index.js
+index.esm.js
+index.d.ts
+storybook.js
+storybook.d.ts
+utils.js
+utils.d.ts
+types.d.ts
