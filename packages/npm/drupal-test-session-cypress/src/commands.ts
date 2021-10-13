@@ -1,8 +1,8 @@
 declare global {
   namespace Cypress {
     export interface Chainable<Subject = any> {
-      drupalSession(options: Options): Chainable<void>;
-      drupalSessionClear(): Chainable<void>;
+      drupalSession(options: Options): Chainable<Subject>;
+      drupalSessionClear(): Chainable<Subject>;
     }
   }
 }
