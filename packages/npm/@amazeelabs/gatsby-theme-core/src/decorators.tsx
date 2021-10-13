@@ -13,7 +13,7 @@ const mockNavigate = ((to: string) => {
 // eslint-disable-next-line react/prefer-stateless-function
 class MockLink extends Component<GatsbyLinkProps<any>> {
   render() {
-    const { activeClassName, to, ...props } = this.props;
+    const { ...props } = this.props;
     return (
       <a
         {...props}
