@@ -72,9 +72,11 @@ test('@gatsby-develop test LinkProcessor', async ({ page }) => {
   await page.check('input[name="media_library_select_form[0]"]');
   await page.click('button:text-is("Insert")');
   await page.fill('[aria-label="Write caption…"]', 'link');
-  await page.press(
-    '[aria-label="Write caption…"]',
-    os.platform() === 'darwin' ? 'Meta+a' : 'Control+a',
+  await page.keyboard.press(
+    os.platform() === 'darwin'
+      ? 'Meta+a'
+      : // On Ubuntu, "Control+a" selects all Gutenberg blocks 🤯
+        'Shift+Control+ArrowLeft',
   );
   await page.click('[aria-label="Link"]');
   await page.fill('[placeholder="Search or type url"]', 'target page');
