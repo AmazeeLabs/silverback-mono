@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.22](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.3.21...@amazeelabs/scaffold@1.3.22) (2021-10-14)
+
+
+### Bug Fixes
+
+* **scaffold:** add .gitignore to the integration test ([526e8f4](https://github.com/AmazeeLabs/silverback-mono/commit/526e8f4f4f6fa30b76e85b61ef041c0a26b70445))
+* **scaffold:** add node_modules to default .gitignore ([dcac43c](https://github.com/AmazeeLabs/silverback-mono/commit/dcac43cf99f7b46a08387d98f51b41f6b063e146))
+* **scaffold:** add typescript as a basic dependency ([9c0a0da](https://github.com/AmazeeLabs/silverback-mono/commit/9c0a0daaff521f8744f7b2bf28b324ea6fcdcf4e))
+* **scaffold:** broken typescript dependency ([3d64896](https://github.com/AmazeeLabs/silverback-mono/commit/3d6489627ffeb99f50f007a57bac870a3527c988))
+* **scaffold:** create an initial .gitignore ([b865f02](https://github.com/AmazeeLabs/silverback-mono/commit/b865f0275a3699d452ee17a533c0690ff1f68dbc))
+
+
+
+
+
 ## [1.3.21](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.3.20...@amazeelabs/scaffold@1.3.21) (2021-10-14)
 
 
