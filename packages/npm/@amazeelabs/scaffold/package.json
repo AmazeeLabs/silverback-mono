@@ -6,7 +6,7 @@
   "author": "Philipp Melab",
   "license": "MIT",
   "private": false,
-  "bin": "node ./cli.js",
+  "bin": "./cli.js",
   "publishConfig": {
     "access": "public"
   },
