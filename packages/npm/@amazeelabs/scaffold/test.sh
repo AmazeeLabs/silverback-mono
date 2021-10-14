@@ -27,7 +27,7 @@ mkdir src
 echo "console.log('test');" > src/index.ts;
 
 # Commit the initial package
-git add package.json yarn.lock .gitignore tsconfig.json src .eslintrc.js .lintstagedrc .prettierrc jest.config.js
+git add package.json yarn.lock .gitignore tsconfig.json src .eslintrc.js .lintstagedrc .prettierrc jest.config.js .gitignore
 git commit -m "initial commit"
 
 if [[ -n "$(git status --porcelain)" ]]; then
