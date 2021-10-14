@@ -67,8 +67,14 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Run tests
-        run: yarn test
+      - name: Run static tests
+        run: yarn test:static
+
+      - name: Run unit tests
+        run: yarn test:unit
+
+      - name: Run integration tests
+        run: yarn test:integration
 
       - name: Check for uncommitted changes
         run: |
