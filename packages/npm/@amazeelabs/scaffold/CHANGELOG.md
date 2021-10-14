@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.18](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.3.17...@amazeelabs/scaffold@1.3.18) (2021-10-14)
+
+
+### Bug Fixes
+
+* **scaffold:** really dumbly broken package config ([49660f2](https://github.com/AmazeeLabs/silverback-mono/commit/49660f2fdfe705f60f139b4b57830e4ec0b80b64))
+
+
+
+
+
 ## [1.3.17](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.3.16...@amazeelabs/scaffold@1.3.17) (2021-10-14)
 
 
