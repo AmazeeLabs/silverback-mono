@@ -7,6 +7,13 @@
   "license": "MIT",
   "private": false,
   "bin": "./cli.js",
+  "files": [
+    "files/.eslintrc.js",
+    "files/.lintstagedrc",
+    "files/.prettierrc",
+    "files/jest.config.js",
+    "files/tsconfig.json"
+  ],
   "publishConfig": {
     "access": "public"
   },
