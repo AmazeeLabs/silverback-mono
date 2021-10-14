@@ -17,7 +17,7 @@ echo "node_modules" >> .gitignore
 yarn init -y
 
 # Run the initial scaffold to install dotfiles and scripts.
-node ../cli.js
+../cli.js
 
 # Execute a first install.
 yarn
