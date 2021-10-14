@@ -1,1 +1,12 @@
 !cli.js
+!index.js
+.eslintrc.js
+.lintstagedrc
+.prettierrc
+CHANGELOG.md
+files
+jest.config.js
+rollup.config.ts
+src
+test.sh
+tsconfig.json
