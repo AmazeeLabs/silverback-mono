@@ -89,8 +89,14 @@ jobs:
       - name: Add drupal.org ssh key
         run: ssh-keyscan git.drupal.org >> ~/.ssh/known_hosts
 
-      - name: Run tests
-        run: yarn test
+      - name: Run static tests
+        run: yarn test:static
+
+      - name: Run unit tests
+        run: yarn test:unit
+
+      - name: Run integration tests
+        run: yarn test:integration
 
       - name: Update Drupal install cache
         run: |
