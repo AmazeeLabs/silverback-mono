@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/react-framework-bridge",
-  "version": "1.5.7",
+  "version": "1.5.8",
   "description": "Bridge code to implement framework independent react components.",
   "types": "index.d.ts",
   "main": "index.js",
@@ -23,7 +23,7 @@
     "yup": ">=0.32"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.4",
+    "@amazeelabs/eslint-config": "^1.4.5",
     "@amazeelabs/jest-preset": "^1.3.10",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@rollup/plugin-commonjs": "^21.0.0",
@@ -41,11 +41,11 @@
     "gatsby-plugin-image": "^1",
     "jest": "^27",
     "lint-staged": "^11.1.2",
+    "prettier": "^2",
     "rollup": "^2.58.0",
     "rollup-plugin-multi-input": "^1.3.1",
     "ts-jest": "^27",
-    "typescript": "^4.4.4",
-    "prettier": "^2"
+    "typescript": "^4.4.4"
   },
   "scripts": {
     "prepare": "yarn build",

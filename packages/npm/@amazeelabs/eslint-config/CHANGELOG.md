@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/eslint-config@1.4.4...@amazeelabs/eslint-config@1.4.5) (2021-10-14)
+
+
+### Bug Fixes
+
+* **tooling:** upgrade eslint plugin import to be compatible with eslint v8 ([e8f77e7](https://github.com/AmazeeLabs/silverback-mono/commit/e8f77e74fa1b88efc8fcfe6cd980aabf9ed100cd))
+
+
+
+
+
 ## [1.4.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/eslint-config@1.4.3...@amazeelabs/eslint-config@1.4.4) (2021-10-13)
 
 **Note:** Version bump only for package @amazeelabs/eslint-config
