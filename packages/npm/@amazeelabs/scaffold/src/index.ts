@@ -12,5 +12,3 @@ export function scaffold(targetPath: string) {
   installScripts(targetPath);
   installConfigFiles(sourcePath, targetPath);
 }
-
-scaffold(process.cwd());
