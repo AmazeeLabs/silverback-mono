@@ -10,7 +10,7 @@ export function installDependencies(targetPath: string) {
   const targetInfo = readPackageInfo(targetPath);
 
   const dependenciesToInstall = {
-    typescript: `^${localPackages.devDependencies.typescript}`,
+    typescript: `${localPackages.devDependencies.typescript}`,
     [jestPreset.name]: `^${jestPreset.version}`,
     ...jestPreset.peerDependencies,
     [eslintConfig.name]: `^${eslintConfig.version}`,
