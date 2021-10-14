@@ -10,12 +10,11 @@
     "composer-exit-on-patch-failure": true,
     "patches": {
       "drupal/gutenberg": {
-        "Missing core block definitions (#3202756)": "https://git.drupalcode.org/project/gutenberg/-/merge_requests/3/diffs.patch",
-        "Stuck in Loading in Drupal 9.2 (#3219569)": "https://www.drupal.org/files/issues/2021-06-27/3219569-13-8.x-2.x.patch"
+        "Missing core block definitions (#3202756)": "https://git.drupalcode.org/project/gutenberg/-/merge_requests/3/diffs.patch"
       }
     }
   },
   "require": {
-    "drupal/gutenberg": "^2.0"
+    "drupal/gutenberg": "^2.1"
   }
 }
