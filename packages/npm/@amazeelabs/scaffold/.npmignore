@@ -1,5 +1,6 @@
 !cli.js
 !index.js
+!files
 .eslintrc.js
 .lintstagedrc
 .prettierrc
