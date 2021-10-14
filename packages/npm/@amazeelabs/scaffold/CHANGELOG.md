@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.20](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.3.19...@amazeelabs/scaffold@1.3.20) (2021-10-14)
+
+
+### Bug Fixes
+
+* **scaffold:** do not npm-ignore files ([0a995b9](https://github.com/AmazeeLabs/silverback-mono/commit/0a995b96bb3940e7ca547fed6f386e38d3faa52e))
+
+
+
+
+
 ## [1.3.19](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.3.18...@amazeelabs/scaffold@1.3.19) (2021-10-14)
 
 
