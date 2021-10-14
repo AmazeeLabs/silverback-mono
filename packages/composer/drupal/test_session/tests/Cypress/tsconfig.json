@@ -1,11 +1,20 @@
 {
-  "extends": "@tsconfig/recommended/tsconfig.json",
   "compilerOptions": {
+    "noEmit": true,
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": false,
+    "jsx": "react",
     "target": "es5",
     "lib": ["es5", "dom"],
     "types": ["cypress", "node", "drupal-test-session-cypress"]
   },
   "include": [
     "**/*.ts"
-  ]
+  ],
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Recommended"
 }

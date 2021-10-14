@@ -16,8 +16,10 @@
   },
   "scripts": {
     "commit": "yarn git-cz",
-    "test": "yarn lerna run prepublish --since --include-dependencies && yarn lerna run test --since --stream --concurrency=1",
-    "test-all": "yarn lerna run prepublish --include-dependencies && yarn lerna run test --stream --concurrency=1",
+    "test:static": "yarn lerna run test:static --since",
+    "test:unit": "yarn lerna run test:unit --since",
+    "test:integration": "yarn lerna run test:integration --since --stream --concurrency=1",
+    "test-all": "yarn lerna run test --stream --concurrency=1",
     "git-registry": "yarn verdaccio -c config.yml",
     "postinstall": "lerna run prepare && husky install && rm -rf node_modules/@-*"
   },

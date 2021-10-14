@@ -1,11 +1,21 @@
 {
-  "extends": "@tsconfig/recommended/tsconfig.json",
   "compilerOptions": {
+    "noEmit": false,
+    "target": "ES2015",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": false,
+    "jsx": "react",
     "types": [
       "cypress"
     ]
   },
   "include": [
     "./src/**/*.ts"
-  ]
+  ],
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Recommended"
 }
