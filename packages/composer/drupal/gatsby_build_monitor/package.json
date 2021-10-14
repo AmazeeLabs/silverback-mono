@@ -11,16 +11,17 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.3.2",
-    "@amazeelabs/jest-preset": "^1.3.5",
-    "@amazeelabs/prettier-config": "^1.1.0",
+    "@amazeelabs/eslint-config": "^1.4.4",
+    "@amazeelabs/jest-preset": "^1.3.10",
+    "@amazeelabs/prettier-config": "^1.1.1",
     "@amazeelabs/silverback-playwright": "^1.3.8",
-    "@types/jest": "^27.0.1",
-    "eslint": "^7.32.0",
-    "jest": "^27.2.0",
+    "@types/jest": "^27",
+    "eslint": "^8",
+    "jest": "^27",
     "lint-staged": "^11.1.2",
-    "ts-jest": "^27.0.5",
-    "typescript": "^4.4.3"
+    "ts-jest": "^27",
+    "typescript": "^4.4.4",
+    "prettier": "^2"
   },
   "dependencies": {
     "@amazeelabs/eslint-config": "^1.4.4",
@@ -30,7 +31,11 @@
   "scripts": {
     "prepare": "exit 0",
     "precommit": "lint-staged",
-    "test": "tsc --noEmit && jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi && sp-test",
-    "watch": "jest --watch"
+    "test": "yarn test:static && yarn test:unit && yarn test:integration",
+    "watch": "jest --watch",
+    "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
+    "test:unit": "jest --passWithNoTests",
+    "test:integration": "if [ -f test.sh ]; then ./test.sh; fi && sp-test",
+    "test:watch": "jest --watch"
   }
 }

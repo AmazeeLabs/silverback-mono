@@ -19,17 +19,17 @@
     "@graphql-codegen/typescript": "^2.0.0",
     "@graphql-codegen/typescript-operations": "^2.0.0",
     "@types/classnames": "^2.2.10",
-    "@types/jest": "^27.0.0",
+    "@types/jest": "^27",
     "@types/node": "^14.10.1",
-    "eslint": "^7.9.0",
+    "eslint": "^8",
     "gatsby-source-filesystem": "^3.0.0",
     "husky": "^7.0.0",
-    "jest": "^27.0.0",
+    "jest": "^27",
     "lint-staged": "^11.0.0",
-    "prettier": "^2.2.1",
-    "ts-jest": "^27.0.5",
+    "prettier": "^2",
+    "ts-jest": "^27",
     "ts-node": "^10.0.0",
-    "typescript": "^4.0.2"
+    "typescript": "^4.4.4"
   },
   "keywords": [
     "gatsby"
@@ -44,8 +44,12 @@
     "codegen": "graphql-codegen --config codegen.yml",
     "prepare": "yarn codegen",
     "precommit": "lint-staged",
-    "test": "tsc --noEmit && jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi",
-    "watch": "jest --watch"
+    "test": "yarn test:static && yarn test:unit && yarn test:integration",
+    "watch": "jest --watch",
+    "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
+    "test:unit": "jest --passWithNoTests",
+    "test:integration": "if [ -f test.sh ]; then ./test.sh; fi",
+    "test:watch": "jest --watch"
   },
   "publishConfig": {
     "access": "public",

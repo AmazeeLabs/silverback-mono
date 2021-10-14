@@ -10,11 +10,26 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@amazeelabs/jest-preset": "^1.3.10",
-    "axios": "^0.21.0",
-    "typescript": "^4.1.3"
+    "axios": "^0.21.0"
   },
   "scripts": {
-    "prepare": "tsc"
+    "prepare": "tsc",
+    "precommit": "lint-staged",
+    "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
+    "test:unit": "jest --passWithNoTests",
+    "test:integration": "exit 0",
+    "test:watch": "jest --watch",
+    "test": "yarn test:static && yarn test:unit && yarn test:integration"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.4",
+    "@amazeelabs/jest-preset": "^1.3.10",
+    "@types/jest": "^27",
+    "jest": "^27",
+    "ts-jest": "^27",
+    "@amazeelabs/eslint-config": "^1.4.4",
+    "eslint": "^8",
+    "@amazeelabs/prettier-config": "^1.1.1",
+    "prettier": "^2"
   }
 }

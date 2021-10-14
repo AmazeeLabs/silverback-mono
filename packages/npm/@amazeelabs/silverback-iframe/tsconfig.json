@@ -1,13 +1,22 @@
 {
-  "extends": "@tsconfig/recommended/tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "declaration": true,
+    "noEmit": true,
+    "target": "ES2015",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": false,
+    "jsx": "react"
+  },
   "exclude": [
     "./dist",
     "src/**/__tests__/**"
   ],
-  "compilerOptions": {
-    "jsx": "react",
-    "rootDir": "./src",
-    "outDir": "./dist",
-    "declaration": true
-  }
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Recommended"
 }

@@ -7,8 +7,12 @@
     "build": "yarn drupal-js-build --css && yarn drupal-gutenberg-translations",
     "prepare": "yarn build",
     "precommit": "lint-staged",
-    "test": "tsc --noEmit && jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi",
-    "watch": "jest --watch"
+    "test": "yarn test:static && yarn test:unit && yarn test:integration",
+    "watch": "jest --watch",
+    "test:static": "exit 0",
+    "test:unit": "jest --passWithNoTests",
+    "test:integration": "if [ -f test.sh ]; then ./test.sh; fi",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "drupal-gutenberg-translations": "^1.1.0",
@@ -18,11 +22,12 @@
     "@amazeelabs/eslint-config": "^1.4.4",
     "@amazeelabs/jest-preset": "^1.3.10",
     "@amazeelabs/prettier-config": "^1.1.1",
-    "@types/jest": "^27.0.0",
-    "eslint": "^7.27.0",
-    "jest": "^27.0.0",
+    "@types/jest": "^27",
+    "eslint": "^8",
+    "jest": "^27",
     "lint-staged": "^11.0.0",
-    "ts-jest": "^27.0.5",
-    "typescript": "^4.2.3"
+    "ts-jest": "^27",
+    "typescript": "^4.4.4",
+    "prettier": "^2"
   }
 }
