@@ -4,9 +4,9 @@
 .lintstagedrc
 .prettierrc
 CHANGELOG.md
-files
 jest.config.js
 rollup.config.ts
 src
+test
 test.sh
 tsconfig.json
