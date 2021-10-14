@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.19](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.3.18...@amazeelabs/scaffold@1.3.19) (2021-10-14)
+
+
+### Bug Fixes
+
+* **scaffold:** wrongly ignored assets ([ae8e0e6](https://github.com/AmazeeLabs/silverback-mono/commit/ae8e0e67de728030298eed65dfed4a2990310582))
+
+
+
+
+
 ## [1.3.18](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.3.17...@amazeelabs/scaffold@1.3.18) (2021-10-14)
 
 
