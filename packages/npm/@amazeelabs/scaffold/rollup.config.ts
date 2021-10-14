@@ -6,7 +6,7 @@ import typescript from '@rollup/plugin-typescript';
 export default {
   input: 'src/index.ts',
   output: {
-    file: 'cli.js',
+    file: 'index.js',
     format: 'cjs',
   },
   plugins: [nodeResolve(), typescript(), commonjs(), json()],
