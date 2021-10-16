@@ -7223,7 +7223,7 @@
   resolved "https://registry.yarnpkg.com/@types/yoga-layout/-/yoga-layout-1.9.2.tgz#efaf9e991a7390dc081a0b679185979a83a9639a"
   integrity sha512-S9q47ByT2pPvD65IvrWp7qppVMpk9WGMbVq9wbWZOHg6tnXSD4vyhao6nOSBwwfDdV2p3Kx9evA9vI+XWTfDvw==
 
-"@typescript-eslint/eslint-plugin@^4.29.3", "@typescript-eslint/eslint-plugin@^4.7.0":
+"@typescript-eslint/eslint-plugin@^4.29.3":
   version "4.31.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-4.31.0.tgz#9c3fa6f44bad789a962426ad951b54695bd3af6b"
   integrity sha512-iPKZTZNavAlOhfF4gymiSuUkgLne/nh5Oz2/mdiUmuZVD42m9PapnCnzjxuDsnpnbH3wT5s2D8bw6S39TC6GNw==
@@ -14228,7 +14228,7 @@ eslint@^4.19.1:
     table "4.0.2"
     text-table "~0.2.0"
 
-eslint@^7.13.0, eslint@^7.25.0, eslint@^7.32.0, eslint@^7.9.0:
+eslint@^7.32.0:
   version "7.32.0"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.32.0.tgz#c6d328a14be3fb08c8d1d21e12c02fdb7a2a812d"
   integrity sha512-VHZ8gX+EDfz+97jGcgyGCyRia/dPOd6Xh9yPv8Bl1+SoaIwD+a/vlrOmGRUyOYu7MwUhc7CxqeaDZU13S4+EpA==
@@ -14274,7 +14274,7 @@ eslint@^7.13.0, eslint@^7.25.0, eslint@^7.32.0, eslint@^7.9.0:
     text-table "^0.2.0"
     v8-compile-cache "^2.0.3"
 
-eslint@^8:
+eslint@^8, eslint@^8.0.0:
   version "8.0.1"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.0.1.tgz#3610e7fe4a05c2154669515ca60835a76a19f700"
   integrity sha512-LsgcwZgQ72vZ+SMp4K6pAnk2yFDWL7Ti4pJaRvsZ0Hsw2h8ZjUIW38a9AFn2cZXdBMlScMFYYgsSp4ttFI/0bA==
@@ -19331,10 +19331,10 @@ jest-resolve@^27.2.5:
     resolve "^1.20.0"
     slash "^3.0.0"
 
-jest-runner-eslint@^0.11.0:
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/jest-runner-eslint/-/jest-runner-eslint-0.11.1.tgz#390de1e96e700b70d94971ca6ef905160047715d"
-  integrity sha512-317QEVLQw/NuuNVcR7LN/7pIbA3GbFUPKencJt31BdC/A2pVWBT+8d8PBBrQpsMHENbPV8nkNgLdPYBp2hLVZw==
+jest-runner-eslint@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/jest-runner-eslint/-/jest-runner-eslint-1.0.0.tgz#5cede321ed5ed57233462c5204a0fa8d90f993bd"
+  integrity sha512-LMlAaIQqIIySEThv651bfvzwX6J4nOu91RaEUYmXJgn4XXbM40rSMlBaC8ZrrFcFemu88MFlnrCLuYf7ZHE2sQ==
   dependencies:
     chalk "^3.0.0"
     cosmiconfig "^6.0.0"
@@ -28429,10 +28429,10 @@ symbol.prototype.description@^1.0.0:
     has-symbols "^1.0.2"
     object.getownpropertydescriptors "^2.1.2"
 
-sync-directory@^2.2.10:
-  version "2.2.22"
-  resolved "https://registry.yarnpkg.com/sync-directory/-/sync-directory-2.2.22.tgz#7e1caf9efec3627d8c7b32515c0c4d0abcb2d3b7"
-  integrity sha512-mGMkxjAGXFsqOYrVfv2pU3EtL39N6Vg7Yp75HIgryM1MFRi3MY6WRFLI4z66toBy5QL4gKmVkCfxTh0RRucpSA==
+sync-directory@^4.0.0:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/sync-directory/-/sync-directory-4.0.3.tgz#28b10419454470d0fe5ab5f7c385e25904030ece"
+  integrity sha512-8BXOwsx71/PSM2qh5uB/mLai5uIclemgrSdj55m0Gtc9Ap27MdYmr1bn1891DkXIzbgCGk2h/R/MfMMXNxqUrw==
   dependencies:
     chokidar "^3.3.1"
     commander "^6.2.0"
@@ -29403,11 +29403,6 @@ typescript@^4.0.2, typescript@^4.2.2:
   version "4.4.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.4.3.tgz#bdc5407caa2b109efd4f82fe130656f977a29324"
   integrity sha512-4xfscpisVgqqDfPaJo5vkd+Qd/ItkoagnHpufr+i2QCHBsNYp+G7UAoyFl8aPtx879u38wPV65rZ8qbGZijalA==
-
-typescript@^4.4.4:
-  version "4.4.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.4.4.tgz#2cd01a1a1f160704d3101fd5a58ff0f9fcb8030c"
-  integrity sha512-DqGhF5IKoBl8WNf8C1gu8q0xZSInh9j1kJJMqT3a94w1JzVaBU4EXOSMrz9yDqMT0xt3selp83fuFMQ0uzv6qA==
 
 typescript@^4.4.4:
   version "4.4.4"
