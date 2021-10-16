@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/scaffold",
-  "version": "1.3.24",
+  "version": "1.3.25",
   "description": "Scaffold dotfiles and packages for JS projects.",
   "main": "index.js",
   "author": "Philipp Melab",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "^1.4.5",
-    "@amazeelabs/jest-preset": "^1.3.10",
+    "@amazeelabs/jest-preset": "^1.3.11",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@rollup/plugin-commonjs": "^21.0.0",
     "@rollup/plugin-json": "^4.1.0",

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.10](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/silverback-playwright@1.3.9...@amazeelabs/silverback-playwright@1.3.10) (2021-10-16)
+
+**Note:** Version bump only for package @amazeelabs/silverback-playwright
+
+
+
+
+
 ## [1.3.9](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/silverback-playwright@1.3.8...@amazeelabs/silverback-playwright@1.3.9) (2021-10-14)
 
 **Note:** Version bump only for package @amazeelabs/silverback-playwright
