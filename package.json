@@ -12,7 +12,13 @@
       "apps/silverback-drupal/web/modules/custom/*",
       "packages/composer/drupal/test_session/tests/Cypress"
     ],
-    "nohoist": ["**/webpack", "**/react-refresh-webpack-plugin", "**/eslint", "**/prettier", "**/jest"]
+    "nohoist": [
+      "**/webpack",
+      "**/react-refresh-webpack-plugin",
+      "**/eslint",
+      "**/prettier",
+      "**/jest"
+    ]
   },
   "scripts": {
     "commit": "yarn git-cz",
@@ -50,5 +56,6 @@
   },
   "dependencies": {
     "prettier": "^2.1.2"
-  }
+  },
+  "packageManager": "yarn@3.0.2"
 }
