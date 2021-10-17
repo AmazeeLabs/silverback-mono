@@ -2,6 +2,18 @@
 # yarn lockfile v1
 
 
+"@amazeelabs/jest-preset@^1.3.11":
+  version "1.3.11"
+  resolved "https://registry.yarnpkg.com/@amazeelabs/jest-preset/-/jest-preset-1.3.11.tgz#7a984e099afbcd4b2b080dd8ec630cf6be507c73"
+  integrity sha512-h3qs8r9bNqApvW6yNWz1X3nhGE9lZ3rViLsl5PcgMQvRvwCGw2ISCdQox1ffV2KXWCwuIqSkwQHJxrZCaPKdog==
+  dependencies:
+    "@testing-library/react" "^12.0.0"
+    "@tsconfig/recommended" "^1"
+    identity-obj-proxy "^3.0.0"
+    jest-runner-eslint "^1.0.0"
+    jest-watch-select-projects "^2"
+    jest-watch-typeahead "^1.0.0"
+
 "@ardatan/aggregate-error@0.0.6":
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/@ardatan/aggregate-error/-/aggregate-error-0.0.6.tgz#fe6924771ea40fc98dc7a7045c2e872dc8527609"
@@ -19330,6 +19342,16 @@ jest-resolve@^27.2.5:
     jest-validate "^27.2.5"
     resolve "^1.20.0"
     slash "^3.0.0"
+
+jest-runner-eslint@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/jest-runner-eslint/-/jest-runner-eslint-1.0.0.tgz#5cede321ed5ed57233462c5204a0fa8d90f993bd"
+  integrity sha512-LMlAaIQqIIySEThv651bfvzwX6J4nOu91RaEUYmXJgn4XXbM40rSMlBaC8ZrrFcFemu88MFlnrCLuYf7ZHE2sQ==
+  dependencies:
+    chalk "^3.0.0"
+    cosmiconfig "^6.0.0"
+    create-jest-runner "^0.6.0"
+    dot-prop "^5.3.0"
 
 jest-runner-eslint@^1.0.0:
   version "1.0.0"

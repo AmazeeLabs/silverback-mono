@@ -12,7 +12,7 @@
       "apps/silverback-drupal/web/modules/custom/*",
       "packages/composer/drupal/test_session/tests/Cypress"
     ],
-    "nohoist": ["**/webpack", "**/react-refresh-webpack-plugin"]
+    "nohoist": ["**/webpack", "**/react-refresh-webpack-plugin", "**/eslint", "**/prettier", "**/jest"]
   },
   "scripts": {
     "commit": "yarn git-cz",
