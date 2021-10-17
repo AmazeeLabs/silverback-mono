@@ -12,7 +12,6 @@
   },
   "author": "Amazee Labs",
   "license": "MIT",
-  "private": false,
   "scripts": {
     "prepare": "tsc --outDir . --declaration",
     "test": "yarn test:static && yarn test:unit && yarn test:integration",

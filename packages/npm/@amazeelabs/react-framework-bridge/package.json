@@ -7,7 +7,6 @@
   "module": "index.esm.js",
   "author": "Amazee Labs",
   "license": "MIT",
-  "private": false,
   "sideEffects": false,
   "dependencies": {
     "html-react-parser": "^1.2.7",

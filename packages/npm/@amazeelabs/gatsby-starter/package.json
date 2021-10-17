@@ -1,6 +1,5 @@
 {
   "name": "@amazeelabs/gatsby-starter",
-  "private": false,
   "description": "Gatsby starter for Amazee Labs projects",
   "version": "0.7.44",
   "author": "Amazee Labs <developers@amazeelabs.com>",

@@ -6,7 +6,6 @@
   "types": "types.d.ts",
   "author": "Amazee Labs <development@amazeelabs.com>",
   "license": "MIT",
-  "private": false,
   "publishConfig": {
     "access": "public"
   },
