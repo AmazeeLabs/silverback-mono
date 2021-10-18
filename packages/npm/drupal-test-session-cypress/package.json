@@ -29,7 +29,7 @@
     "@amazeelabs/prettier-config": "^1.1.1",
     "@types/jest": "^27",
     "cypress": "^8.0.0",
-    "eslint": "^8",
+    "eslint": "^7",
     "jest": "^27",
     "prettier": "^2",
     "ts-jest": "^27",

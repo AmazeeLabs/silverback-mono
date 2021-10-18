@@ -20,7 +20,7 @@
     "eslint-plugin-tailwindcss": "^1.14.1"
   },
   "peerDependencies": {
-    "eslint": "^8"
+    "eslint": "^7"
   },
   "publishConfig": {
     "access": "public"

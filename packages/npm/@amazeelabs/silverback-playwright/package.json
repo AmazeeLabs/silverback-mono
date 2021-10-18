@@ -24,7 +24,7 @@
     "@amazeelabs/prettier-config": "^1.1.1",
     "@types/jest": "^27",
     "@types/tcp-port-used": "^1.0.0",
-    "eslint": "^8",
+    "eslint": "^7",
     "jest": "^27",
     "lint-staged": "^11.1.2",
     "prettier": "^2",
