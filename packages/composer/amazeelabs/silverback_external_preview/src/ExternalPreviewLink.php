@@ -2,7 +2,7 @@
 
 namespace Drupal\silverback_external_preview;
 
-use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
@@ -139,7 +139,11 @@ class ExternalPreviewLink {
         return $url_object;
       }
       $entity = $this->getPageEntity($route);
-      if ($entity instanceof EntityInterface) {
+      // At the moment we support only content entity types. Because there was
+      // an error on the field edit routes (e.g. on
+      // "/admin/structure/types/manage/foo/fields/node.foo.field_bar"):
+      // No link template 'edit-form' found for the 'field_config' entity type
+      if ($entity instanceof ContentEntityInterface) {
         $alias = $this->pathAliasManager->getAliasByPath($entity->toUrl()
           ->toString());
 
