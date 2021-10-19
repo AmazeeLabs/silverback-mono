@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.18](https://github.com/AmazeeLabs/silverback-mono/compare/drupal-test-session-cypress@1.1.17...drupal-test-session-cypress@1.1.18) (2021-10-19)
+
+
+### Bug Fixes
+
+* downgrade eslint to v7 to avoid problems with plugins that don't support it ([3d70eae](https://github.com/AmazeeLabs/silverback-mono/commit/3d70eae96f6129a5c68c705c4cc0f801cd0d472d))
+
+
+
+
+
 ## [1.1.17](https://github.com/AmazeeLabs/silverback-mono/compare/drupal-test-session-cypress@1.1.16...drupal-test-session-cypress@1.1.17) (2021-10-16)
 
 **Note:** Version bump only for package drupal-test-session-cypress

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.22](https://github.com/AmazeeLabs/silverback-mono/compare/gatsby-plugin-build-monitor@1.0.21...gatsby-plugin-build-monitor@1.0.22) (2021-10-19)
+
+
+### Bug Fixes
+
+* downgrade eslint to v7 to avoid problems with plugins that don't support it ([3d70eae](https://github.com/AmazeeLabs/silverback-mono/commit/3d70eae96f6129a5c68c705c4cc0f801cd0d472d))
+
+
+
+
+
 ## [1.0.21](https://github.com/AmazeeLabs/silverback-mono/compare/gatsby-plugin-build-monitor@1.0.20...gatsby-plugin-build-monitor@1.0.21) (2021-10-16)
 
 **Note:** Version bump only for package gatsby-plugin-build-monitor

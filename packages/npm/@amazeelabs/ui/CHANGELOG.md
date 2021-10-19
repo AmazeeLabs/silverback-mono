@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.21](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/ui@0.2.20...@amazeelabs/ui@0.2.21) (2021-10-19)
+
+
+### Bug Fixes
+
+* downgrade eslint to v7 to avoid problems with plugins that don't support it ([3d70eae](https://github.com/AmazeeLabs/silverback-mono/commit/3d70eae96f6129a5c68c705c4cc0f801cd0d472d))
+
+
+
+
+
 ## [0.2.20](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/ui@0.2.19...@amazeelabs/ui@0.2.20) (2021-10-16)
 
 **Note:** Version bump only for package @amazeelabs/ui
