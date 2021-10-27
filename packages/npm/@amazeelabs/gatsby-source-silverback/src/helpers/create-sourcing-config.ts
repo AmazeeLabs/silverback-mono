@@ -1,4 +1,4 @@
-import { SourceNodesArgs } from 'gatsby';
+import { NodePluginArgs } from 'gatsby';
 import {
   buildNodeDefinitions,
   compileNodeQueries,
@@ -35,7 +35,7 @@ type ITranslatablePaginationAdapter = IPaginationAdapter<
 >;
 
 export const createSourcingConfig = async (
-  gatsbyApi: SourceNodesArgs,
+  gatsbyApi: NodePluginArgs,
   execute: IQueryExecutor,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   customFragments?: Map<RemoteTypeName, string>,
