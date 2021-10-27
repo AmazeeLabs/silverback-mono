@@ -48,7 +48,6 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
   // TODO: Accept configuration and fragment overrides from plugin settings.
   const config = await createSourcingConfig(gatsbyApi, executor);
   const context = createSourcingContext(config);
-  await createToolkitSchemaCustomization(config);
 
   // Source only what was changed. If there is something in cache.
   const lastBuildId = (await gatsbyApi.cache.get(`LAST_BUILD_ID`)) || -1;
@@ -126,6 +125,15 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
     if (!validOptions(options)) {
       return;
     }
+
+    const executor = createQueryExecutor(
+      apiUrl(options),
+      options.auth_user,
+      options.auth_pass,
+    );
+    // TODO: Accept configuration and fragment overrides from plugin settings.
+    const config = await createSourcingConfig(args, executor);
+    await createToolkitSchemaCustomization(config);
 
     await createTranslationQueryField(
       args,
