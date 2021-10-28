@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.19](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.4.18...@amazeelabs/gatsby-source-silverback@1.4.19) (2021-10-28)
+
+
+### Bug Fixes
+
+* **gatsby:** do not re-fetch everything if gatsby and drupal are on equal builds ([adc57b9](https://github.com/AmazeeLabs/silverback-mono/commit/adc57b9f9dccbb0e40e4ca11e36f95fde045e51d))
+* move schema customization to `createSchemaCustomization` to be compatible to Gatsby 4 ([2b4065e](https://github.com/AmazeeLabs/silverback-mono/commit/2b4065e3ade24a623e8389bc49e9b163bca38b66))
+
+
+
+
+
 ## [1.4.18](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.4.17...@amazeelabs/gatsby-source-silverback@1.4.18) (2021-10-19)
 
 
