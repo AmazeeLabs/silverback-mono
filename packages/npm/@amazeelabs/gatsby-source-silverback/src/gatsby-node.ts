@@ -74,7 +74,7 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
   // data that is stored in Gatsby and we have to re-fetch everything anyway.
   if (
     // Current build id is lower than the last one -> out of sync with CMS, re-fetch everything
-    currentBuildId <= lastBuildId ||
+    currentBuildId < lastBuildId ||
     // No information about a current build in the CMS -> re-fetch everything
     currentBuildId === -1 ||
     // No information about the latest build in Gatsby -> re-fetch everything
