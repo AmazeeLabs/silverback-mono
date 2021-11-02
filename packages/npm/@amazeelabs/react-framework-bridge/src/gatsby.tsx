@@ -1,7 +1,7 @@
 import { Form as FormComponent, Formik } from 'formik';
 import { GatsbyLinkProps, Link as GatsbyLink, navigate } from 'gatsby';
 import { GatsbyImage, GatsbyImageProps } from 'gatsby-plugin-image';
-import React from 'react';
+import React, { ImgHTMLAttributes } from 'react';
 
 import type { Image, Link, LinkProps } from './types';
 import { Form, FormBuilderProps } from './types';
@@ -65,13 +65,51 @@ export function buildLink<Query = {}>({
   return Element as Link<Query>;
 }
 
-export const buildImage = (
-  props: Omit<GatsbyImageProps, 'className'>,
-): Image => {
+type ImageProps =
+  | Omit<GatsbyImageProps, 'className'>
+  | (Omit<ImgHTMLAttributes<HTMLImageElement>, 'className'> & {
+      width: number;
+      height: number;
+    });
+
+const isGatsbyImageProps = (
+  props: ImageProps & { src?: string },
+): props is Omit<GatsbyImageProps, 'className'> => {
+  return !props.src;
+};
+
+export const buildImage = (props: ImageProps): Image => {
   const Element: Image = function GatsbyImageBuilder({ className }) {
-    return <GatsbyImage {...props} className={className} />;
+    if (isGatsbyImageProps(props)) {
+      return <GatsbyImage {...props} className={className} />;
+    } else {
+      const { width, height, ...rest } = props;
+      return (
+        <div
+          style={{
+            width: '100%',
+            position: 'relative',
+            paddingBottom: `${(height / width) * 100}%`,
+          }}
+        >
+          <img
+            {...rest}
+            style={{
+              display: 'block',
+              width: '100%',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+            }}
+            className={className}
+          />
+        </div>
+      );
+    }
   };
-  Element.src = props.image.images.fallback?.src;
+  Element.src = isGatsbyImageProps(props)
+    ? props.image.images.fallback?.src
+    : props.src;
   return Element;
 };
 

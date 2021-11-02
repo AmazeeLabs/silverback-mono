@@ -2,9 +2,10 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Field } from 'formik';
 import { GatsbyLinkProps } from 'gatsby';
+import { GatsbyImageProps } from 'gatsby-plugin-image';
 import React from 'react';
 
-import { buildForm, buildLink } from '../gatsby';
+import { buildForm, buildImage, buildLink } from '../gatsby';
 
 const gatsbyNav = jest.fn();
 
@@ -25,7 +26,76 @@ jest.mock(
     navigate: (to: string) => gatsbyNav(to),
   }),
 );
+
+type gatsbyPluginImage = {
+  GatsbyImage: (props: GatsbyImageProps) => JSX.Element;
+};
+
+jest.mock(
+  'gatsby-plugin-image',
+  (): gatsbyPluginImage => ({
+    // eslint-disable-next-line react/display-name
+    GatsbyImage: (props) => {
+      const { image, ...rest } = props;
+      return <div data-gatsby-image={JSON.stringify(image)} {...rest} />;
+    },
+  }),
+);
 beforeEach(jest.resetAllMocks);
+
+describe('buildImage', () => {
+  it('builds a GatsbyImage if there is Gatsby image data', () => {
+    const Image = buildImage({
+      alt: 'Foo!',
+      image: {
+        width: 10,
+        height: 10,
+        layout: 'constrained',
+        images: {
+          sources: [{ srcSet: 'foo.png', media: 'image' }],
+        },
+      },
+    });
+    render(
+      <div data-testid={'image'}>
+        <Image className={'bar'} />
+      </div>,
+    );
+    expect(screen.getByTestId('image').children[0]).toMatchInlineSnapshot(`
+      <div
+        alt="Foo!"
+        class="bar"
+        data-gatsby-image="{\\"width\\":10,\\"height\\":10,\\"layout\\":\\"constrained\\",\\"images\\":{\\"sources\\":[{\\"srcSet\\":\\"foo.png\\",\\"media\\":\\"image\\"}]}}"
+      />
+    `);
+  });
+
+  it('builds a regular responsive image if there is a src with width and height', () => {
+    const Image = buildImage({
+      alt: 'Foo!',
+      src: 'foo.png',
+      width: 400,
+      height: 300,
+    });
+    render(
+      <div data-testid={'image'}>
+        <Image className={'bar'} />
+      </div>,
+    );
+    expect(screen.getByTestId('image').children[0]).toMatchInlineSnapshot(`
+      <div
+        style="width: 100%; position: relative; padding-bottom: 75%;"
+      >
+        <img
+          alt="Foo!"
+          class="bar"
+          src="foo.png"
+          style="display: block; width: 100%; position: absolute; top: 0px; left: 0px;"
+        />
+      </div>
+    `);
+  });
+});
 
 describe('buildLink', () => {
   it('can build a link from segments and query parameters', () => {
