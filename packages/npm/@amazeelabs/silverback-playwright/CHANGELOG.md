@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/silverback-playwright@1.3.11...@amazeelabs/silverback-playwright@1.4.0) (2021-11-09)
+
+
+### Features
+
+* a way to quick re-run tests ([fa1e57f](https://github.com/AmazeeLabs/silverback-mono/commit/fa1e57f887219a0a9899a29ed618d1c0a1036333))
+
+
+
+
+
 ## [1.3.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/silverback-playwright@1.3.10...@amazeelabs/silverback-playwright@1.3.11) (2021-10-19)
 
 

@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.3.1...@-amazeelabs/silverback_gutenberg@1.3.2) (2021-11-09)
+
+
+### Bug Fixes
+
+* guess when we need to process blocks based on given markup ([ec84370](https://github.com/AmazeeLabs/silverback-mono/commit/ec8437063733a3d7b6e74b65782088fb46ab0660))
+* process html inside attributes ([48b0e30](https://github.com/AmazeeLabs/silverback-mono/commit/48b0e30b9f997065c97eabd6481dc3e568da0ade))
+* process links in image captions ([d0de288](https://github.com/AmazeeLabs/silverback-mono/commit/d0de2880299fa2434f1b42fbcb6e92ea39a0e06e))
+* typo in api docs ([e13c587](https://github.com/AmazeeLabs/silverback-mono/commit/e13c587e7c03700749a8baa4e0e3641994191435))
+* use BlockParser and BlockSerializer to process blocks ([630b358](https://github.com/AmazeeLabs/silverback-mono/commit/630b358af757df3860a30d2976b67d70b7cf69f7))
+
+
+
+
+
 ## [1.3.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.3.0...@-amazeelabs/silverback_gutenberg@1.3.1) (2021-10-11)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gutenberg

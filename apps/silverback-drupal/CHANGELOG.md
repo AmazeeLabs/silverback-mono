@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.31](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.30...@-amazeelabs/silverback-drupal@1.10.31) (2021-11-09)
+
+
+### Bug Fixes
+
+* process links in gutenberg data producer ([f2aaba8](https://github.com/AmazeeLabs/silverback-mono/commit/f2aaba8a3b9543b16ff770dca5053c510076777c))
+
+
+
+
+
 ## [1.10.30](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.29...@-amazeelabs/silverback-drupal@1.10.30) (2021-10-19)
 
 
