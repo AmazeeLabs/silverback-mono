@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.12](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/jest-preset@1.3.11...@amazeelabs/jest-preset@1.3.12) (2021-11-16)
+
+
+### Performance Improvements
+
+* use @swc/jest instead of ts-jest to improve performance ([c809f6e](https://github.com/AmazeeLabs/silverback-mono/commit/c809f6ee84daf91fcd641b244bae538f2a70aaf8))
+
+
+
+
+
 ## [1.3.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/jest-preset@1.3.10...@amazeelabs/jest-preset@1.3.11) (2021-10-16)
 
 **Note:** Version bump only for package @amazeelabs/jest-preset

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.5.10...@amazeelabs/react-framework-bridge@1.6.0) (2021-11-16)
+
+
+### Features
+
+* **gatsby:** remote images in gatsby ([5ab5122](https://github.com/AmazeeLabs/silverback-mono/commit/5ab5122ab071a66eaff1d7e44e6b2643a499af4c))
+
+
+
+
+
 ## [1.5.10](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.5.9...@amazeelabs/react-framework-bridge@1.5.10) (2021-10-19)
 
 
