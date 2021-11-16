@@ -5,7 +5,9 @@ const moduleNameMapper = {
 const projects = [
   {
     displayName: "unit",
-    preset: "ts-jest",
+    transform: {
+      '^.+\\.(t|j)sx?$': '@swc/jest',
+    },
     testEnvironment: "node",
     testMatch: [
       "**/__tests__/**/*.ts",
@@ -17,7 +19,9 @@ const projects = [
   },
   {
     displayName: "dom",
-    preset: "ts-jest",
+    transform: {
+      '^.+\\.(t|j)sx?$': '@swc/jest',
+    },
     testEnvironment: "jsdom",
     testMatch: [
       "**/__tests__/**/*.tsx",
