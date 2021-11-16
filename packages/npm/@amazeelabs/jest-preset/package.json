@@ -11,10 +11,11 @@
   },
   "peerDependencies": {
     "@types/jest": "^27",
-    "jest": "^27",
-    "ts-jest": "^27"
+    "jest": "^27"
   },
   "dependencies": {
+    "@swc/core": "^1.2.108",
+    "@swc/jest": "^0.2.5",
     "@testing-library/react": "^12.0.0",
     "@tsconfig/recommended": "^1",
     "identity-obj-proxy": "^3.0.0",
