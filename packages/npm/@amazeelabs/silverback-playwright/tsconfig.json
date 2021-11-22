@@ -12,5 +12,8 @@
   },
   "exclude": ["node_modules"],
   "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Recommended"
+  "display": "Recommended",
+  "ts-node": {
+    "transpileOnly": true
+  }
 }

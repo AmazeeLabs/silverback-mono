@@ -3,11 +3,14 @@ import {
   drupalLogin,
   gatsby,
   resetState,
+  verbose,
   waitForGatsby,
 } from '@amazeelabs/silverback-playwright';
 import { expect, test } from '@playwright/test';
 import os from 'os';
 import { $, cd } from 'zx';
+
+$.verbose = verbose;
 
 test.beforeAll(async () => {
   await resetState();

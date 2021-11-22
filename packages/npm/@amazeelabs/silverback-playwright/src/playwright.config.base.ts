@@ -1,9 +1,8 @@
 import { PlaywrightTestConfig } from '@playwright/test';
 
-import base from '../base.playwright.config';
+import { getEnvVars } from './utils';
 
 const config: PlaywrightTestConfig = {
-  ...base,
-  globalSetup: 'global-setup.ts',
+  testDir: getEnvVars().SP_TEST_DIR,
 };
 export default config;

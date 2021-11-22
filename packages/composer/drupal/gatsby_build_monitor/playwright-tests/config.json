@@ -1,0 +1,8 @@
+{
+  "drupal": {
+    "path": "../../../../apps/silverback-drupal"
+  },
+  "gatsby": {
+    "path": "../../../../apps/silverback-gatsby"
+  }
+}

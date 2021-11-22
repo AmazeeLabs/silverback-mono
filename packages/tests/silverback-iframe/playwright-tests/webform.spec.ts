@@ -4,12 +4,15 @@ import {
   drupalLogout,
   gatsby,
   resetState,
+  verbose,
   waitForGatsby,
 } from '@amazeelabs/silverback-playwright';
 import { expect, PlaywrightTestArgs, test } from '@playwright/test';
 import { $, cd } from 'zx';
 
 import { getIframe } from './common';
+
+$.verbose = verbose;
 
 test.beforeAll(async () => {
   await resetState();

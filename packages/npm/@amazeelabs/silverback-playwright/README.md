@@ -2,8 +2,6 @@
 
 Playwright tests runner for Silverback setups.
 
-At the moment it can be used only with Silverback monorepo packages.
-
 # Usage
 
 In your package:
@@ -11,13 +9,24 @@ In your package:
 - Add this package with `yarn add @amazeelabs/silverback-playwright --dev`
 - Add `test-results` to `.gitignore`
 - Create `playwright-tests` directory
-- Create some test files following `*.spec.ts` name pattern
+  - Create `config.json`
+  - Create some test files following `*.spec.ts` name pattern
 - Run `yarn sp-test`
 
-(Consider making tests a separate package. In this case you can depend it on
-several other packages without ruining their dependencies.)
-
 ## Example test
+
+`playwright-tests/config.json`
+
+```json
+{
+  "drupal": {
+    "path": "../apps/cms"
+  },
+  "gatsby": {
+    "path": "."
+  }
+}
+```
 
 `playwright-tests/my-tests.spec.ts`
 
@@ -84,12 +93,7 @@ Tests marked with `@gatsby-both` will be executed in both `gatsby-develop` and
   [test_session](../../../composer/drupal/test_session) to set the auth state.
 - `drupal` and `gatsby` provide various constants (ports, URLs, credentials,
   etc.)
-
-## Writing tests
-
-(move "To debug a particular test" here)
-
-- force kill browser
+- `verbose` indicates that tests are executed with `-v` flag.
 
 ## Debugging tests
 
@@ -115,9 +119,11 @@ Start tests with `--verbose` (`-v`) flag.
 
 This will print
 
-- executed commands
-- Gatsby and Drupal logs
+- executed shell commands and their output
 - debug messages from the test runner
+
+Gatsby and Drupal logs can be found in `/tmp/sp-serve-drupal.log` and
+`/tmp/sp-serve-gatsby.log`.
 
 ### Traces
 
@@ -133,20 +139,7 @@ To see the traces, go to your package dir and run
 yarn playwright show-trace ./test-results/path/to/trace.zip
 ```
 
-## Re-running tests
-
-Unlike Cypress, Playwright UI does not have an option to restart a test. But
-there is a workaround:
-
-- put `page.pause()` to the end of your test
-- start tests with `yarn sp-test -h -r`
-- in case if you need to re-run the test, force-kill the browser
-
-One downside of this method is that you won't see error messages if there is a
-runtime error or if an assertion fails. Track
-[#9462](https://github.com/microsoft/playwright/issues/9462) for news.
-
 ## Tips
 
 To speedup tests, Drupal state is restored from the `test` snapshot. If you did
-some Drupal changes, remove `apps/silverback-drupal/.silverback-snapshots/test`.
+some Drupal changes, remove `.silverback-snapshots/test` from Drupal dir.

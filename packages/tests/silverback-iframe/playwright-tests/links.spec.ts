@@ -7,7 +7,7 @@ test.beforeAll(async () => {
   await resetState();
 });
 
-test('@gatsby-both links open in parent frame, using parent frame base url, without iframe=true param in the url', async ({
+test.only('@gatsby-both links open in parent frame, using parent frame base url, without iframe=true param in the url', async ({
   page,
 }) => {
   await page.goto(`${gatsby.baseUrl}/en/form/for-testing-confirmation-options`);

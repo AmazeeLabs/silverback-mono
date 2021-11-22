@@ -1,30 +1,32 @@
 import axios from 'axios';
 
-import { drupal, gatsby } from './constants';
-import { log } from './utils';
-
-const develop = process.env.SP_TEST_TYPE === 'gatsby-develop';
+import { getConfig } from './config';
+import { getEnvVars, log } from './utils';
 
 export const waitForGatsby = async (): Promise<void> => {
-  const deadline = Date.now() + gatsby.timings.startTimeout;
+  const testType = getEnvVars().SP_TEST_TYPE;
+  const develop = testType === 'gatsby-develop';
+  const config = getConfig();
+
+  const deadline = Date.now() + config.gatsby.timings.startTimeout;
 
   log(`waitForGatsby[${deadline}] before call drupal`);
   const drupalResponse = await axios.post(
-    `${drupal.baseUrl}/silverback-gatsby`,
+    `${config.drupal.baseUrl}/silverback-gatsby`,
     {
       operationName: 'GatsbyBuildId',
       variables: {},
       query: `
-          query GatsbyBuildId {
-            drupalBuildId
-          }
-        `,
+        query GatsbyBuildId {
+          drupalBuildId
+        }
+      `,
     },
     {
       headers: develop
         ? {
             Authorization: `Basic ${Buffer.from(
-              `${drupal.adminUser.login}:${drupal.adminUser.password}`,
+              `${config.drupal.adminUser.login}:${config.drupal.adminUser.password}`,
             ).toString('base64')}`,
           }
         : {},
@@ -39,23 +41,23 @@ export const waitForGatsby = async (): Promise<void> => {
   while (Date.now() < deadline) {
     // It makes sense to wait first because Gatsby is never instant.
     await new Promise((resolve) =>
-      setTimeout(() => resolve(null), gatsby.timings.retryInterval),
+      setTimeout(() => resolve(null), config.gatsby.timings.retryInterval),
     );
 
-    const timeout = gatsby.timings.httpCallTimeout;
+    const timeout = config.gatsby.timings.httpCallTimeout;
     try {
       if (develop) {
         log(`waitForGatsby[${deadline}] before call gatsby (develop)`);
         const gatsbyResponse = await axios.post(
-          `${gatsby.baseUrl}/___graphql`,
+          `${config.gatsby.baseUrl}/___graphql`,
           {
             operationName: 'GatsbyBuildId',
             variables: {},
             query: `
-                query GatsbyBuildId {
-                  drupalBuildId
-                }
-              `,
+              query GatsbyBuildId {
+                drupalBuildId
+              }
+            `,
           },
           {
             timeout,
@@ -67,9 +69,12 @@ export const waitForGatsby = async (): Promise<void> => {
         );
       } else {
         log(`waitForGatsby[${deadline}] before call gatsby (build)`);
-        const gatsbyResponse = await axios.get(`${gatsby.baseUrl}/build.json`, {
-          timeout,
-        });
+        const gatsbyResponse = await axios.get(
+          `${config.gatsby.baseUrl}/build.json`,
+          {
+            timeout,
+          },
+        );
         gatsbyBuildId = gatsbyResponse.data.drupalBuildId;
         log(
           `waitForGatsby[${deadline}] call gatsby (develop) result: ${gatsbyBuildId}`,
@@ -83,14 +88,14 @@ export const waitForGatsby = async (): Promise<void> => {
     if (gatsbyBuildId === drupalBuildId) {
       log(`waitForGatsby[${deadline}] success`);
       await new Promise((resolve) =>
-        setTimeout(() => resolve(null), gatsby.timings.finishDelay),
+        setTimeout(() => resolve(null), config.gatsby.timings.finishDelay),
       );
       return;
     }
   }
 
   console.error(
-    `⚠️ Warning: Waited ${gatsby.timings.startTimeout}ms, but Build ID did not get updated.`,
+    `⚠️ Warning: Waited ${config.gatsby.timings.startTimeout}ms, but Build ID did not get updated.`,
     { drupalBuildId, gatsbyBuildId },
   );
 };
