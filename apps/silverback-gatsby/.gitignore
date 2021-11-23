@@ -75,3 +75,4 @@ generated/types
 /cypress/screenshots
 
 _local
+/test-results

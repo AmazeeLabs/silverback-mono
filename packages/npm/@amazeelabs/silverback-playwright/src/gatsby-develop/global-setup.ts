@@ -1,4 +1,4 @@
-import { $, cd } from 'zx';
+import { $, cd, nothrow } from 'zx';
 
 import { getConfig } from '../config';
 import drupalGlobalSetup from '../drupal-only/global-setup';
@@ -16,7 +16,7 @@ export default async function globalSetup() {
   await port.killIfUsed(gatsby.allPorts);
   await $`yarn clean`;
   // Load env vars right before starting Gatsby so that it sees them.
-  const process = $`source .envrc && yarn develop`;
+  const process = nothrow($`source .envrc && yarn develop`);
 
   // Wait until Gatsby outputs
   //   You can now view {your app} in the browser.

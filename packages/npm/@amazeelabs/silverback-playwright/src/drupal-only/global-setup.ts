@@ -1,4 +1,4 @@
-import { $, cd, fs } from 'zx';
+import { $, cd, fs, nothrow } from 'zx';
 
 import { getConfig } from '../config';
 import { log, port } from '../utils';
@@ -19,7 +19,7 @@ export default async function globalSetup() {
   }
 
   await port.killIfUsed(drupal.port);
-  $`TEST_SESSION_ENABLED=true yarn start`;
+  nothrow($`TEST_SESSION_ENABLED=true yarn start`);
   await port.waitUntilUsed(drupal.port);
 
   log('drupal-only globalSetup end');
