@@ -101,7 +101,7 @@ test.only('my test', async ({ page }) => {
 });
 ```
 
-Run the tests with `--headed` (`-h`) flag.
+Run the tests with `--headed` (`-h`) and `--re-run` (`-r`) flags.
 
 ### To see all logs
 
@@ -126,18 +126,6 @@ To see the traces, go to your package dir and run
 ```
 yarn playwright show-trace ./test-results/path/to/trace.zip
 ```
-
-## Re-running tests
-
-Unlike Cypress, Playwright UI does not have an option to restart a test. But
-there is a workaround:
-
-- put `page.pause()` to the end of your test
-- start tests with `yarn sp-test -h -r`
-- in case if you need to re-run the test, force-kill the browser
-
-One downside of this method is that you won't see error messages if there is a
-runtime error or if an assertion fails.
 
 ## Tips
 
