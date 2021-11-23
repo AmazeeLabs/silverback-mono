@@ -43,14 +43,18 @@ const runTests = async (type: TestType) => {
   console.log(`⏩ Running ${type} tests...`);
   const listFlags = [
     `--grep '${tags[type]}'`,
+    `--config '${__dirname}/playwright.config.ts'`,
     '--list',
-    `--config '${__dirname}/list.playwright.config.ts'`,
   ].join(' ');
   const listProcess = $`${envVarsString} yarn playwright test ${listFlags}`;
   if ((await listProcess.exitCode) === 0) {
+    const globalSetup = (await import(`./${type}/global-setup`)).default;
+    console.log('Preparing environment...');
+    await globalSetup();
+
     const runFlags = [
       `--grep '${tags[type]}'`,
-      `--config '${__dirname}/${type}/playwright.config.ts'`,
+      `--config '${__dirname}/playwright.config.ts'`,
       '--workers 1', // Otherwise it can things in parallel.
       headed ? '--headed --timeout 6000000' : null,
       repeat ? '--repeat-each 100 --max-failures 100' : '--max-failures 1',
@@ -65,7 +69,7 @@ const runTests = async (type: TestType) => {
     }
     console.log(`✅ ${type} tests passed.`);
   } else {
-    console.log(`☑️ No ${type} tests found.`);
+    console.log(`☑️  No ${type} tests found.`);
   }
 };
 
@@ -77,14 +81,11 @@ void (async function () {
     await runTests(type);
   }
 
-  // It would be better if relevant test types do it in their globalTeardown,
-  // but somehow this makes zx to output error messages. E.g. it prints all
-  // drush output following by "drush serve was killed with signal 9".
-  // If we do the cleanup here, there is no output. 🤷
   console.log('ℹ️  Cleaning up...');
   const { drupal, gatsby } = getConfig();
   await port.killIfUsed(drupal.port);
   await port.killIfUsed(gatsby.allPorts);
+  process.exit();
 })().catch((e) => {
   console.error(e);
   process.exit(1);
