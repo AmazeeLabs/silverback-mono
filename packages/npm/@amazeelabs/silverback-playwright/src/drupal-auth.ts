@@ -2,10 +2,15 @@ import { PlaywrightTestArgs } from '@playwright/test';
 
 import { getConfig } from './config';
 
-export const drupalLogin = async (page: PlaywrightTestArgs['page']) => {
+export const drupalLogin = async (
+  page: PlaywrightTestArgs['page'],
+  user?: string,
+) => {
   const { drupal } = getConfig();
   await page.goto(
-    `${drupal.baseUrl}/test-session/set?X-TEST-SESSION-USER=${drupal.adminUser.login}&X-TEST-SESSION-TOOLBAR=on`,
+    `${drupal.baseUrl}/test-session/set?X-TEST-SESSION-USER=${
+      user || drupal.adminUser.login
+    }&X-TEST-SESSION-TOOLBAR=on`,
   );
 };
 
