@@ -85,12 +85,6 @@ Tests marked with `@gatsby-both` will be executed in both `gatsby-develop` and
 - `drupal` and `gatsby` provide various constants (ports, URLs, credentials,
   etc.)
 
-## Writing tests
-
-(move "To debug a particular test" here)
-
-- force kill browser
-
 ## Debugging tests
 
 There are few options.
@@ -143,8 +137,7 @@ there is a workaround:
 - in case if you need to re-run the test, force-kill the browser
 
 One downside of this method is that you won't see error messages if there is a
-runtime error or if an assertion fails. Track
-[#9462](https://github.com/microsoft/playwright/issues/9462) for news.
+runtime error or if an assertion fails.
 
 ## Tips
 
