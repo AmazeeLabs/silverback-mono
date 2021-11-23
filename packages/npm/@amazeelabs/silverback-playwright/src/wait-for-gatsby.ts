@@ -1,11 +1,12 @@
 import axios from 'axios';
 
-import { drupal, gatsby } from './constants';
+import { getConfig } from './config';
 import { log } from './utils';
 
 const develop = process.env.SP_TEST_TYPE === 'gatsby-develop';
 
 export const waitForGatsby = async (): Promise<void> => {
+  const { drupal, gatsby } = getConfig();
   const deadline = Date.now() + gatsby.timings.startTimeout;
 
   log(`waitForGatsby[${deadline}] before call drupal`);

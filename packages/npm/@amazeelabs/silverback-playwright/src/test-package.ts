@@ -2,7 +2,7 @@
 
 import { $ } from 'zx';
 
-import { drupal, gatsby } from './constants';
+import { getConfig } from './config';
 import { tags, TestType, testTypes } from './test-types';
 import { port } from './utils';
 
@@ -33,6 +33,9 @@ const runTests = async (type: TestType) => {
     SP_VERBOSE: verbose ? 'true' : '',
     SP_TRACE: trace ? 'true' : '',
   };
+  for (const k in envVars) {
+    process.env[k] = envVars[k];
+  }
   const envVarsString = Object.entries(envVars)
     .map(([k, v]) => `${k}='${v}'`)
     .join(' ');
@@ -79,7 +82,10 @@ void (async function () {
   // drush output following by "drush serve was killed with signal 9".
   // If we do the cleanup here, there is no output. 🤷
   console.log('ℹ️  Cleaning up...');
+  const { drupal, gatsby } = getConfig();
   await port.killIfUsed(drupal.port);
-  await port.killIfUsed(gatsby.port);
-  await port.killIfUsed(gatsby.fastBuilds.port);
-})();
+  await port.killIfUsed(gatsby.allPorts);
+})().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});

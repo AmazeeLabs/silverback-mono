@@ -1,6 +1,6 @@
 import { $, cd, fs } from 'zx';
 
-import { drupal } from '../constants';
+import { getConfig } from '../config';
 import { log, port } from '../utils';
 
 $.verbose = !!process.env.SP_VERBOSE;
@@ -8,6 +8,7 @@ $.verbose = !!process.env.SP_VERBOSE;
 export default async function globalSetup() {
   log('drupal-only globalSetup start');
 
+  const { drupal } = getConfig();
   cd(drupal.path);
 
   if (fs.existsSync(`${drupal.path}/.silverback-snapshots/test`)) {
