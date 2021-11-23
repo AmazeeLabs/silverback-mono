@@ -30,7 +30,7 @@ export const gatsby = {
     rebuildUrl: `http://localhost:${gatsbyRebuildPort}/__rebuild`,
   },
   timings: {
-    startTimeout: testType === 'gatsby-develop' ? 30_000 : 60_000,
+    startTimeout: testType === 'gatsby-develop' ? 30_000 : 90_000,
     refreshTimeout: testType === 'gatsby-develop' ? 15_000 : 30_000,
     retryInterval: testType === 'gatsby-develop' ? 500 : 1_000,
     // When we get the fresh drupalBuildId from Gatsby, Gatsby still needs
