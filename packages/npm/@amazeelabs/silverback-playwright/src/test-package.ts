@@ -1,6 +1,7 @@
 #!/usr/bin/env ts-node-script
 
-import { $ } from 'zx';
+import prompts from 'prompts';
+import { $, cd } from 'zx';
 
 import { getConfig } from './config';
 import { tags, TestType, testTypes } from './test-types';
@@ -11,13 +12,13 @@ if (process.argv.includes('help') || process.argv.includes('--help')) {
   Flags:
     -v, --verbose    Spam a lot
     -h, --headed     Run tests in headed browser (default: headless)
-    -r, --repeat     Repeat the tests 100 times
+    -r, --re-run     Allow quick re-run of failing tests
     -t, --trace      Record traces`);
   process.exit();
 }
 
 const headed = process.argv.includes('--headed') || process.argv.includes('-h');
-const repeat = process.argv.includes('--repeat') || process.argv.includes('-r');
+const reRun = process.argv.includes('--re-run') || process.argv.includes('-r');
 const verbose =
   process.argv.includes('--verbose') || process.argv.includes('-v');
 const trace = process.argv.includes('--trace') || process.argv.includes('-t');
@@ -52,18 +53,36 @@ const runTests = async (type: TestType) => {
     console.log('Preparing environment...');
     await globalSetup();
 
+    cd(process.cwd());
     const runFlags = [
       `--grep '${tags[type]}'`,
       `--config '${__dirname}/playwright.config.ts'`,
       '--workers 1', // Otherwise it can things in parallel.
       headed ? '--headed --timeout 6000000' : null,
-      repeat ? '--repeat-each 100 --max-failures 100' : '--max-failures 1',
+      '--max-failures 1',
     ]
       .filter(Boolean)
       .join(' ');
-    const runProcess =
-      $`${envVarsString} yarn playwright test ${runFlags}`.pipe(process.stdout);
-    if ((await runProcess.exitCode) !== 0) {
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+      const runProcess =
+        $`${envVarsString} yarn playwright test ${runFlags}`.pipe(
+          process.stdout,
+        );
+      if ((await runProcess.exitCode) === 0) {
+        break;
+      }
+      if (reRun) {
+        const response = await prompts({
+          type: 'confirm',
+          name: 'confirm',
+          message: 'Re-run?',
+          initial: true,
+        });
+        if (response.confirm) {
+          continue;
+        }
+      }
       console.error(`❌ ${type} tests failed.`);
       process.exit(1);
     }
