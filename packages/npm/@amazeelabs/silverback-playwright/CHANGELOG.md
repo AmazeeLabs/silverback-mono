@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/silverback-playwright@1.5.1...@amazeelabs/silverback-playwright@1.6.0) (2021-11-23)
+
+
+### Features
+
+* allow choosing a user for login ([a618596](https://github.com/AmazeeLabs/silverback-mono/commit/a6185962a985c7b3363a70f7540f339a4c3a0f90))
+
+
+
+
+
 ## [1.5.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/silverback-playwright@1.5.0...@amazeelabs/silverback-playwright@1.5.1) (2021-11-23)
 
 **Note:** Version bump only for package @amazeelabs/silverback-playwright
