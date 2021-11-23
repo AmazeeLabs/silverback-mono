@@ -45,9 +45,10 @@ const runTests = async (type: TestType) => {
     ]
       .filter(Boolean)
       .join(' ');
-    $.verbose = true;
-    const run = $`${envVars} yarn playwright test --grep '${tags[type]}' ${flags}`;
-    $.verbose = verbose;
+    const run =
+      $`${envVars} yarn playwright test --grep '${tags[type]}' ${flags}`.pipe(
+        process.stdout,
+      );
     if ((await run.exitCode) !== 0) {
       console.error(`❌ ${type} tests failed.`);
       process.exit(1);
