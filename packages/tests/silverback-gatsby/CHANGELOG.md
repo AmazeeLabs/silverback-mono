@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gatsby-tests@1.0.24...@-amazeelabs/silverback-gatsby-tests@1.1.0) (2021-11-23)
+
+
+### Features
+
+* allow packages to provide config ([b371992](https://github.com/AmazeeLabs/silverback-mono/commit/b371992d2c216b30664310c7cc3569b6b90b69fd))
+
+
+
+
+
 ## [1.0.24](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gatsby-tests@1.0.23...@-amazeelabs/silverback-gatsby-tests@1.0.24) (2021-11-23)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-gatsby-tests
