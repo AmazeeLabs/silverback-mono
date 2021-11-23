@@ -5,7 +5,7 @@
   "description": "Helps running Playwright tests on Silverback setups.",
   "author": "Amazee Labs",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "sideEffects": false,
   "dependencies": {
     "@playwright/test": "^1.14.1",
