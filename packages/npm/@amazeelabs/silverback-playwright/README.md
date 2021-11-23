@@ -11,7 +11,8 @@ In your package:
 - Add this package with `yarn add @amazeelabs/silverback-playwright --dev`
 - Add `test-results` to `.gitignore`
 - Create `playwright-tests` directory
-- Create some test files following `*.spec.ts` name pattern
+  - Create `config.json` (see `Config` type in [`src/types/ts`](./src/types.ts))
+  - Create some test files following `*.spec.ts` name pattern
 - Run `yarn sp-test`
 
 (Consider making tests a separate package. In this case you can depend it on
