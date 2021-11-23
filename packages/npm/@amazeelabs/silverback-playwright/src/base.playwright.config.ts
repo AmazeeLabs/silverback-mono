@@ -8,6 +8,6 @@ const config: PlaywrightTestConfig = {
   testDir: process.env.SP_TEST_DIR,
   // Since a single test may waitForGatsby multiple times, the default 30s
   // timeout is likely to be exceeded in the gatsby-build mode.
-  timeout: 60_000,
+  timeout: 90_000,
 };
 export default config;
