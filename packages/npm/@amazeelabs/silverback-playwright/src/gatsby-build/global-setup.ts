@@ -1,6 +1,6 @@
 import { $, cd } from 'zx';
 
-import { gatsby } from '../constants';
+import { getConfig } from '../config';
 import drupalGlobalSetup from '../drupal-only/global-setup';
 import { log, port } from '../utils';
 
@@ -9,6 +9,7 @@ $.verbose = !!process.env.SP_VERBOSE;
 export default async function globalSetup() {
   log('gatsby-build globalSetup start');
 
+  const { gatsby } = getConfig();
   await drupalGlobalSetup();
 
   cd(gatsby.path);

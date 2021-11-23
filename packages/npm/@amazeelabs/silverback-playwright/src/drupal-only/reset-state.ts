@@ -1,6 +1,6 @@
 import { $, cd } from 'zx';
 
-import { drupal } from '../constants';
+import { getConfig } from '../config';
 import { log } from '../utils';
 
 $.verbose = !!process.env.SP_VERBOSE;
@@ -8,6 +8,7 @@ $.verbose = !!process.env.SP_VERBOSE;
 export default async function resetState() {
   log('drupal-only resetState start');
 
+  const { drupal } = getConfig();
   cd(drupal.path);
   await $`yarn snapshot-restore`;
 
