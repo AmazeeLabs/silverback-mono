@@ -27,17 +27,26 @@ $.verbose = verbose;
 $.quote = (arg) => arg;
 
 const runTests = async (type: TestType) => {
-  const envVars = [
-    `SP_TEST_DIR='${process.cwd()}/playwright-tests'`,
-    `SP_TEST_TYPE=${type}`,
-    `SP_VERBOSE=${verbose ? 'true' : "''"}`,
-    `SP_TRACE=${trace ? 'true' : "''"}`,
-  ].join(' ');
+  const envVars: Record<string, string> = {
+    SP_TEST_DIR: `${process.cwd()}/playwright-tests`,
+    SP_TEST_TYPE: type,
+    SP_VERBOSE: verbose ? 'true' : '',
+    SP_TRACE: trace ? 'true' : '',
+  };
+  const envVarsString = Object.entries(envVars)
+    .map(([k, v]) => `${k}='${v}'`)
+    .join(' ');
 
   console.log(`⏩ Running ${type} tests...`);
-  const list = $`${envVars} yarn playwright test --grep '${tags[type]}' --list --config '${__dirname}/list.playwright.config.ts'`;
-  if ((await list.exitCode) === 0) {
-    const flags = [
+  const listFlags = [
+    `--grep '${tags[type]}'`,
+    '--list',
+    `--config '${__dirname}/list.playwright.config.ts'`,
+  ].join(' ');
+  const listProcess = $`${envVarsString} yarn playwright test ${listFlags}`;
+  if ((await listProcess.exitCode) === 0) {
+    const runFlags = [
+      `--grep '${tags[type]}'`,
       `--config '${__dirname}/${type}/playwright.config.ts'`,
       '--workers 1', // Otherwise it can things in parallel.
       headed ? '--headed --timeout 6000000' : null,
@@ -45,11 +54,9 @@ const runTests = async (type: TestType) => {
     ]
       .filter(Boolean)
       .join(' ');
-    const run =
-      $`${envVars} yarn playwright test --grep '${tags[type]}' ${flags}`.pipe(
-        process.stdout,
-      );
-    if ((await run.exitCode) !== 0) {
+    const runProcess =
+      $`${envVarsString} yarn playwright test ${runFlags}`.pipe(process.stdout);
+    if ((await runProcess.exitCode) !== 0) {
       console.error(`❌ ${type} tests failed.`);
       process.exit(1);
     }
