@@ -1,6 +1,7 @@
 {
   "drupal": {
-    "path": "../../../../apps/silverback-drupal"
+    "path": "../../../../apps/silverback-drupal",
+    "graphQlEndpoint": "/silverback-gatsby"
   },
   "gatsby": {
     "path": "../../../../apps/silverback-gatsby"

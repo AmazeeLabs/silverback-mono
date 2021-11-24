@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { getConfig } from './config';
-import { log } from './utils';
+import { axiosErrorHandler, log } from './utils';
 
 const develop = process.env.SP_TEST_TYPE === 'gatsby-develop';
 
@@ -10,27 +10,27 @@ export const waitForGatsby = async (): Promise<void> => {
   const deadline = Date.now() + gatsby.timings.startTimeout;
 
   log(`waitForGatsby[${deadline}] before call drupal`);
-  const drupalResponse = await axios.post(
-    `${drupal.baseUrl}/silverback-gatsby`,
-    {
-      operationName: 'GatsbyBuildId',
-      variables: {},
-      query: `
+  const drupalResponse = await axios
+    .post(
+      `${drupal.baseUrl}${drupal.graphQlEndpoint}`,
+      {
+        operationName: 'GatsbyBuildId',
+        variables: {},
+        query: `
           query GatsbyBuildId {
             drupalBuildId
           }
         `,
-    },
-    {
-      headers: develop
-        ? {
-            Authorization: `Basic ${Buffer.from(
-              `${drupal.adminUser.login}:${drupal.adminUser.password}`,
-            ).toString('base64')}`,
-          }
-        : {},
-    },
-  );
+      },
+      {
+        headers: {
+          Authorization: `Basic ${Buffer.from(
+            `${drupal.adminUser.login}:${drupal.adminUser.password}`,
+          ).toString('base64')}`,
+        },
+      },
+    )
+    .catch(axiosErrorHandler);
 
   const drupalBuildId = drupalResponse.data.data.drupalBuildId;
   log(`waitForGatsby[${deadline}] call drupal result: ${drupalBuildId}`);
@@ -47,30 +47,34 @@ export const waitForGatsby = async (): Promise<void> => {
     try {
       if (develop) {
         log(`waitForGatsby[${deadline}] before call gatsby (develop)`);
-        const gatsbyResponse = await axios.post(
-          `${gatsby.baseUrl}/___graphql`,
-          {
-            operationName: 'GatsbyBuildId',
-            variables: {},
-            query: `
+        const gatsbyResponse = await axios
+          .post(
+            `${gatsby.baseUrl}/___graphql`,
+            {
+              operationName: 'GatsbyBuildId',
+              variables: {},
+              query: `
                 query GatsbyBuildId {
                   drupalBuildId
                 }
               `,
-          },
-          {
-            timeout,
-          },
-        );
+            },
+            {
+              timeout,
+            },
+          )
+          .catch(axiosErrorHandler);
         gatsbyBuildId = gatsbyResponse.data.data.drupalBuildId;
         log(
           `waitForGatsby[${deadline}] call gatsby (develop) result: ${gatsbyBuildId}`,
         );
       } else {
         log(`waitForGatsby[${deadline}] before call gatsby (build)`);
-        const gatsbyResponse = await axios.get(`${gatsby.baseUrl}/build.json`, {
-          timeout,
-        });
+        const gatsbyResponse = await axios
+          .get(`${gatsby.baseUrl}/build.json`, {
+            timeout,
+          })
+          .catch(axiosErrorHandler);
         gatsbyBuildId = gatsbyResponse.data.drupalBuildId;
         log(
           `waitForGatsby[${deadline}] call gatsby (develop) result: ${gatsbyBuildId}`,

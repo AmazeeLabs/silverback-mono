@@ -23,6 +23,7 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/scaffold/test" />
       <excludeFolder url="file://$MODULE_DIR$/packages/npm/cypress-screenplay/dist" />
       <excludeFolder url="file://$MODULE_DIR$/packages/npm/verdaccio-git/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/silverback-playwright/dist" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -24,6 +24,8 @@ export type Config = {
   drupal: {
     // Path to Drupal root relative to the tested package.
     path: string;
+    // Used in Gatsby tests to fetch drupalBuildId.
+    graphQlEndpoint?: string;
   };
   gatsby?: {
     // Path to Gatsby root relative to the tested package.
