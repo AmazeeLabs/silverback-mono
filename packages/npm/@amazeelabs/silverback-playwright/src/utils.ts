@@ -1,3 +1,4 @@
+import { format } from '@redtea/format-axios-error';
 import { kill } from 'cross-port-killer';
 import { check, waitUntilUsed } from 'tcp-port-used';
 import { sleep } from 'zx';
@@ -35,3 +36,10 @@ export const getEnvVars = (): EnvVars =>
     SP_VERBOSE: process.env.SP_VERBOSE,
     SP_TRACE: process.env.SP_TRACE,
   } as EnvVars);
+
+export const axiosErrorHandler = (e: any) => {
+  console.error(
+    `"${e.message}" error details: ${JSON.stringify(format(e), null, 2)}`,
+  );
+  throw e;
+};
