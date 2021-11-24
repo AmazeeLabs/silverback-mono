@@ -1,6 +1,6 @@
 {
   "name": "@-drupal/gatsby_build_monitor",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Notifies about the Gatsby Build Status via the Toolbar.",
   "publishConfig": {
     "access": "public",
@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@amazeelabs/silverback-playwright": "^1.6.0",
+    "@amazeelabs/silverback-playwright": "^1.6.1",
     "@types/jest": "^27",
     "eslint": "^7",
     "jest": "^27",
