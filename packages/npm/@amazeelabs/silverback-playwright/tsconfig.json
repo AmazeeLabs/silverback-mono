@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "noEmit": true,
+    "declaration": true,
     "target": "ES2015",
     "module": "commonjs",
     "strict": true,
@@ -8,9 +8,13 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": false,
-    "jsx": "react"
+    "jsx": "react",
+    "outDir": "dist"
   },
-  "exclude": ["node_modules"],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Recommended"
 }

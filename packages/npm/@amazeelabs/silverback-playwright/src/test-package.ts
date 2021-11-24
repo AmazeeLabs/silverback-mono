@@ -1,4 +1,4 @@
-#!/usr/bin/env ts-node-script
+#!/usr/bin/env node
 
 import prompts from 'prompts';
 import { $, cd } from 'zx';
@@ -44,7 +44,7 @@ const runTests = async (type: TestType) => {
   console.log(`⏩ Running ${type} tests...`);
   const listFlags = [
     `--grep '${tags[type]}'`,
-    `--config '${__dirname}/playwright.config.ts'`,
+    `--config '${__dirname}/playwright.config.js'`,
     '--list',
   ].join(' ');
   const listProcess = $`${envVarsString} yarn playwright test ${listFlags}`;
@@ -56,7 +56,7 @@ const runTests = async (type: TestType) => {
     cd(process.cwd());
     const runFlags = [
       `--grep '${tags[type]}'`,
-      `--config '${__dirname}/playwright.config.ts'`,
+      `--config '${__dirname}/playwright.config.js'`,
       '--workers 1', // Otherwise it can things in parallel.
       headed ? '--headed --timeout 6000000' : null,
       '--max-failures 1',

@@ -1,0 +1,11 @@
+node_modules
+src
+.eslintrc.js
+.gitignore
+.jest-runner-eslintrc
+.lintstagedrc
+.npmignore
+.prettierrc
+index.ts
+jest.config.js
+tsconfig.json
