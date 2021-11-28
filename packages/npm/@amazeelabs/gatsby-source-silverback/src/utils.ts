@@ -1,6 +1,8 @@
 export type Options = {
-  // The url of the Drupal installation.
+  // The internal url of the Drupal installation, used to fetch data.
   drupal_url: string;
+  // The external url of the Drupal installation, used to set the x-forwarded headers.
+  drupal_external_url?: string;
   // The Drupal GraphQL server path.
   graphql_path: string;
   // Optional Basic Auth Drupal user.
