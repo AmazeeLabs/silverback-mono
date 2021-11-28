@@ -4,10 +4,13 @@ export const createQueryExecutor = (
   url: string,
   user?: string,
   pass?: string,
+  headers?: RequestInit['headers']
 ) => {
   return createDefaultQueryExecutor(
     url,
-    !!user && !!pass
+    {
+      ...headers,
+      ...(!!user && !!pass
       ? {
           headers: {
             Authorization: `Basic ${Buffer.from(`${user}:${pass}`).toString(
@@ -15,6 +18,6 @@ export const createQueryExecutor = (
             )}`,
           },
         }
-      : {},
+      : {})},
   );
 };

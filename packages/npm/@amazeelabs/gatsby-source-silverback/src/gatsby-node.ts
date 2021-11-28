@@ -28,9 +28,17 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   Joi.object<Options>({
     drupal_url: Joi.string().uri({ allowRelative: false }).required(),
     graphql_path: Joi.string().uri({ relativeOnly: true }).required(),
+    drupal_external_url: Joi.string().uri({allowRelative: false}),
     auth_user: Joi.string().optional(),
     auth_pass: Joi.string().optional(),
   });
+
+const getForwardedHeaders = (url: URL) => ({
+  'X-Forwarded-Proto': url.protocol,
+  'X-Forwarded-Host': url.hostname,
+  'X-Forwarded-Port': url.port,
+})
+
 
 export const sourceNodes: GatsbyNode['sourceNodes'] = async (
   gatsbyApi: SourceNodesArgs & { webhookBody?: { buildId?: number } },
@@ -44,6 +52,7 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
     apiUrl(options),
     options.auth_user,
     options.auth_pass,
+    options.drupal_external_url ? getForwardedHeaders(new URL(options.drupal_external_url)) : undefined
   );
   // TODO: Accept configuration and fragment overrides from plugin settings.
   const config = await createSourcingConfig(gatsbyApi, executor);
