@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.4.20...@amazeelabs/gatsby-source-silverback@1.5.0) (2021-11-29)
+
+
+### Features
+
+* **gatsby:** allow to set an external drupal url that is used to send X-Forwarded-* headers ([0fb6977](https://github.com/AmazeeLabs/silverback-mono/commit/0fb6977070e10e86871241579b70bc213153d34a))
+
+
+
+
+
 ## [1.4.20](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.4.19...@amazeelabs/gatsby-source-silverback@1.4.20) (2021-11-16)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-source-silverback
