@@ -1,5 +1,6 @@
 /* global jQuery, Drupal, drupalSettings */
 (function ($, Drupal, drupalSettings) {
+  var interval = null;
   function getState() {
     if (document.hidden) {
       return;
@@ -12,15 +13,18 @@
         switch (data.state) {
           case 'idle':
             text = Drupal.t('Website is ready');
+            clearInterval(interval);
             break;
           case 'building':
             text = Drupal.t('Website is building');
             break;
           case 'failure':
             text = Drupal.t('Website build failed');
+            clearInterval(interval);
             break;
           default:
             text = Drupal.t('Website status is unknown');
+            clearInterval(interval);
         }
         var $state = $('.gatsby-build-monitor-state');
         $state.text(text);
@@ -44,6 +48,6 @@
     !window.localStorage.getItem('gatsby_build_monitor_disable') &&
     drupalSettings.gatsbyBuildMonitor.autoRefresh
   ) {
-    setInterval(getState, 2000);
+    interval = setInterval(getState, 2000);
   }
 })(jQuery, Drupal, drupalSettings);
