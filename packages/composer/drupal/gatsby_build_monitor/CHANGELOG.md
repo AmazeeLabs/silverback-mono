@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/gatsby_build_monitor@1.4.6...@-drupal/gatsby_build_monitor@1.4.7) (2021-11-30)
+
+
+### Performance Improvements
+
+* **gatsby:** only poll status endpoint while in "building" status ([95a2f6f](https://github.com/AmazeeLabs/silverback-mono/commit/95a2f6f7a270bfb499f706d44cd701ed2ee26f5d))
+
+
+
+
+
 ## [1.4.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/gatsby_build_monitor@1.4.5...@-drupal/gatsby_build_monitor@1.4.6) (2021-11-24)
 
 **Note:** Version bump only for package @-drupal/gatsby_build_monitor
