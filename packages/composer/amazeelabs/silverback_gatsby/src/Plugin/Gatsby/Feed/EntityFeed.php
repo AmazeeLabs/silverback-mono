@@ -104,6 +104,7 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
       $context instanceof EntityInterface
       && $context->getEntityTypeId() === $this->type
       && ($this->bundle !== NULL && $context->bundle() === $this->bundle)
+      && $context->access('view', $account)
     ) {
       if ($this->isTranslatable() && $context instanceof TranslatableInterface) {
         return array_map(function (LanguageInterface $lang) use ($context) {
