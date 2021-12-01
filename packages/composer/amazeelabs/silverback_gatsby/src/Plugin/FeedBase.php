@@ -3,6 +3,7 @@
 namespace Drupal\silverback_gatsby\Plugin;
 
 use Drupal\Component\Plugin\PluginBase;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
 use Drupal\silverback_gatsby\GatsbyUpdate;
@@ -96,23 +97,24 @@ abstract class FeedBase extends PluginBase implements FeedInterface {
   }
 
   /**
-   * Investigate the context of an update event and return it's id if
+   * Investigate the context of an update event and return its id if
    * applicable.
    *
    * @param mixed $context
+   * @param \Drupal\Core\Session\AccountInterface $account
    *
    * @return string[]
    *   A list of string id's to update.
    */
-  abstract function getUpdateIds($context): array;
+  abstract function getUpdateIds($context, AccountInterface $account): array;
 
   /**
    * {@inheritDoc}
    */
-  public function investigateUpdate($context) : array {
+  public function investigateUpdate($context, AccountInterface $account) : array {
     return array_map(
       fn ($id) => new GatsbyUpdate($this->getTypeName(), $id),
-      $this->getUpdateIds($context)
+      $this->getUpdateIds($context, $account)
     );
   }
 

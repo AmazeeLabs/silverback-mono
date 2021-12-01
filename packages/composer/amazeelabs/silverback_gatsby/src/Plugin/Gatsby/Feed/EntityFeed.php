@@ -7,6 +7,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\silverback_gatsby\Plugin\FeedBase;
 use Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer\GatsbyBuildId;
@@ -98,7 +99,7 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
   /**
    * {@inheritDoc}
    */
-  public function getUpdateIds($context) : array {
+  public function getUpdateIds($context, AccountInterface $account) : array {
     if (
       $context instanceof EntityInterface
       && $context->getEntityTypeId() === $this->type

@@ -9,12 +9,12 @@ use Drupal\Core\Menu\MenuLinkTreeElement;
 use Drupal\Core\Menu\MenuLinkTreeInterface;
 use Drupal\Core\Menu\MenuTreeParameters;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\graphql\GraphQL\Execution\FieldContext;
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
-use Drupal\menu_link_content\MenuLinkContentInterface;
 use Drupal\silverback_gatsby\Annotation\GatsbyFeed;
 use Drupal\silverback_gatsby\Plugin\FeedBase;
 use Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer\GatsbyMenuLinks;
@@ -122,7 +122,7 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
   /**
    * {@inheritDoc}
    */
-  public function getUpdateIds($context) : array {
+  public function getUpdateIds($context, AccountInterface $account) : array {
     $params = new MenuTreeParameters();
     if ($this->max_level > 0) {
       $params->maxDepth = $this->max_level;
