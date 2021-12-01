@@ -56,7 +56,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
   public function testInitialBuild() {
     $node = Node::create([
       'type' => 'page',
-      'title' => 'Test'
+      'title' => 'Test',
+      'status' => 0,
     ]);
     $node->save();
 
@@ -109,7 +110,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     $tracker = $this->container->get('silverback_gatsby.update_tracker');
     $node = Node::create([
       'type' => 'page',
-      'title' => 'Test'
+      'title' => 'Test',
+      'status' => 0,
     ]);
     $node->save();
     $tracker->clear();
@@ -165,7 +167,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     $tracker = $this->container->get('silverback_gatsby.update_tracker');
     $node = Node::create([
       'type' => 'page',
-      'title' => 'Test'
+      'title' => 'Test',
+      'status' => 0,
     ]);
     $node->save();
     $tracker->clear();
@@ -176,6 +179,7 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     Node::create([
       'type' => 'blog',
       'title' => 'Test',
+      'status' => 0,
     ])->save();
 
     $query = $this->getQueryFromFile('feed_info.gql');

@@ -2,9 +2,7 @@
 
 namespace Drupal\Tests\silverback_gatsby\Kernel;
 
-use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\node\Entity\Node;
-use Drupal\node\Entity\NodeType;
 use Drupal\silverback_gatsby\GatsbyUpdate;
 
 class GatsbyUpdateHandlerTest extends EntityFeedTestBase {
@@ -22,13 +20,15 @@ class GatsbyUpdateHandlerTest extends EntityFeedTestBase {
   public function testLogRelevantChanges() {
     $node = Node::create([
       'type' => 'page',
-      'title' => 'Test'
+      'title' => 'Test',
+      'status' => 0,
     ]);
     $node->save();
     $this->tracker->clear();
 
     $node->addTranslation('de', [
-      'title' => 'Test DE'
+      'title' => 'Test DE',
+      'status' => 0,
     ])->save();
 
     $node->title = 'Test 2';
@@ -44,7 +44,8 @@ class GatsbyUpdateHandlerTest extends EntityFeedTestBase {
   public function testIgnoreIrrelevantChanges() {
     $node = Node::create([
       'type' => 'article',
-      'title' => 'Test'
+      'title' => 'Test',
+      'status' => 0,
     ]);
     $node->save();
     $node->title = 'Test 2';
