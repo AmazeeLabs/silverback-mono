@@ -53,6 +53,9 @@ class GatsbyUpdateHandler {
       $schema_id = $server->get('schema');
       $schema = $manager->createInstance($schema_id);
       if ($schema instanceof ComposableSchema &&  $config = $server->get('schema_configuration')) {
+        if (!isset($config[$schema_id]['build_webhook'])) {
+          continue;
+        }
         $schema->setConfiguration($config[$schema_id] ?? []);
         $account = User::create();
         if (isset($config[$schema_id]['role'])) {
