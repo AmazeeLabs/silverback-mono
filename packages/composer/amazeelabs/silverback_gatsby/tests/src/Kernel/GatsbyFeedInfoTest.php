@@ -106,6 +106,77 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
 
+  public function testInitialPublishedBuild() {
+    $node = Node::create([
+      'type' => 'page',
+      'title' => 'Test',
+    ]);
+    $node->save();
+
+    $feedInfo = [
+      [
+        'typeName' => 'Page',
+        'translatable' => true,
+        'singleFieldName' => 'loadPage',
+        'listFieldName' => 'queryPages',
+        'changes' =>  [],
+        'pathFieldName' => 'path',
+        'templateFieldName' => null,
+      ],
+      [
+        'typeName' => 'Post',
+        'translatable' => null,
+        'singleFieldName' => 'loadPost',
+        'listFieldName' => 'queryPosts',
+        'changes' =>  [],
+        'pathFieldName' => 'path',
+        'templateFieldName' => 'template',
+      ],
+      [
+        'typeName' => 'MainMenu',
+        'translatable' => false,
+        'singleFieldName' => 'loadMainMenu',
+        'listFieldName' => 'queryMainMenus',
+        'changes' =>  [],
+        'pathFieldName' => null,
+        'templateFieldName' => null,
+      ],
+      [
+        'typeName' => 'VisibleMainMenu',
+        'translatable' => false,
+        'singleFieldName' => 'loadVisibleMainMenu',
+        'listFieldName' => 'queryVisibleMainMenus',
+        'changes' =>  [],
+        'pathFieldName' => null,
+        'templateFieldName' => null,
+      ],
+    ];
+
+    $this->useBuildServer();
+    $query = $this->getQueryFromFile('feed_info.gql');
+    $this->assertResults($query, [], [
+      // It should indicate that there has been a first build.
+      'drupalBuildId' =>  1,
+      'drupalFeedInfo' => $feedInfo,
+    ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
+
+    $this->usePreviewServer();
+    $query = $this->getQueryFromFile('feed_info.gql');
+    $this->assertResults($query, [], [
+      // It should indicate that there has been a first build.
+      'drupalBuildId' =>  2,
+      'drupalFeedInfo' => $feedInfo,
+    ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
+
+    $this->usePublicServer();
+    $query = $this->getQueryFromFile('feed_info.gql');
+    $this->assertResults($query, [], [
+      // It should indicate that there has been a first build.
+      'drupalBuildId' =>  -1,
+      'drupalFeedInfo' => $feedInfo,
+    ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
+  }
+
   public function testMultipleBuilds() {
     $tracker = $this->container->get('silverback_gatsby.update_tracker');
     $node = Node::create([
