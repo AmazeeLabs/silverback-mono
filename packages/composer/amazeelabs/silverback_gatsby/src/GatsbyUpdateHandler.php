@@ -2,10 +2,10 @@
 
 namespace Drupal\silverback_gatsby;
 
-use Drupal\Component\Plugin\ConfigurableInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\silverback_gatsby\GraphQL\ComposableSchema;
 use Drupal\silverback_gatsby\Plugin\GraphQL\SchemaExtension\SilverbackGatsbySchemaExtension;
+use Drupal\user\Entity\User;
 
 /**
  * Class GatsbyUpdateHandler
@@ -54,12 +54,16 @@ class GatsbyUpdateHandler {
       $schema = $manager->createInstance($schema_id);
       if ($schema instanceof ComposableSchema &&  $config = $server->get('schema_configuration')) {
         $schema->setConfiguration($config[$schema_id] ?? []);
+        $account = User::create();
+        if (isset($config[$schema_id]['role'])) {
+          $account->addRole($config[$schema_id]['role']);
+        }
         foreach ($schema->getExtensions() as $extension) {
           if ($extension instanceof SilverbackGatsbySchemaExtension) {
             foreach ($extension->getFeeds() as $feed) {
               if (
                 $feed instanceof $feedClassName
-                && $updates = $feed->investigateUpdate($context)
+                && $updates = $feed->investigateUpdate($context, $account)
               ) {
                 foreach ($updates as $update) {
                   $this->gatsbyUpdateTracker->track($server->id(), $update->type, $update->id);
