@@ -2,6 +2,7 @@
 
 namespace Drupal\silverback_gatsby\Plugin;
 
+use Drupal\Core\Session\AccountInterface;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
@@ -52,10 +53,11 @@ interface FeedInterface {
    * applicable.
    *
    * @param $context
+   * @param \Drupal\Core\Session\AccountInterface $account
    *
    * @return \Drupal\silverback_gatsby\GatsbyUpdate[]
    */
-  public function investigateUpdate($context) : array;
+  public function investigateUpdate($context, AccountInterface $account) : array;
 
   /**
    * Resolve the parent value's "id" attribute.
