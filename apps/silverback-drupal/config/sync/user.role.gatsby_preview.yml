@@ -7,4 +7,7 @@ label: 'Gatsby Preview'
 weight: 2
 is_admin: null
 permissions:
+  - 'access content'
   - 'bypass node access'
+  - 'execute silverback_gatsby arbitrary graphql requests'
+  - 'view media'

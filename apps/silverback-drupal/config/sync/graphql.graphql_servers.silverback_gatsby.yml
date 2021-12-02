@@ -9,6 +9,8 @@ schema_configuration:
   silverback_gatsby_test:
     extensions:
       silverback_gatsby: silverback_gatsby
+    build_webhook: 'http://localhost:9001/__rebuild'
+    role: gatsby_build
 persisted_queries_settings: {  }
 endpoint: /silverback-gatsby
 debug_flag: 15
