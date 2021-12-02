@@ -16,7 +16,9 @@ export default async function globalSetup() {
   await port.killIfUsed(gatsby.allPorts);
   await $`yarn clean`;
   // Load env vars right before starting Gatsby so that it sees them.
-  const process = nothrow($`source .envrc && yarn develop`);
+  const process = nothrow(
+    $`source .envrc && DRUPAL_GRAPHQL_PATH=${gatsby.drupal.graphQlEndpoint} DRUPAL_USER_NAME=${gatsby.drupal.user} DRUPAL_USER_PASS=${gatsby.drupal.pass} yarn develop`,
+  );
 
   // Wait until Gatsby outputs
   //   You can now view {your app} in the browser.

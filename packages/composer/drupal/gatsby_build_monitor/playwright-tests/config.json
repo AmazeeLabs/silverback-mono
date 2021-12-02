@@ -1,9 +1,22 @@
 {
   "drupal": {
-    "path": "../../../../apps/silverback-drupal",
-    "graphQlEndpoint": "/silverback-gatsby"
+    "path": "../../../../apps/silverback-drupal"
   },
   "gatsby": {
-    "path": "../../../../apps/silverback-gatsby"
+    "path": "../../../../apps/silverback-gatsby",
+    "develop": {
+      "drupal": {
+        "graphQlEndpoint": "/silverback-gatsby-preview",
+        "user": "GatsbyPreview",
+        "pass": "GatsbyPreview"
+      }
+    },
+    "build": {
+      "drupal": {
+        "graphQlEndpoint": "/silverback-gatsby",
+        "user": "GatsbyBuild",
+        "pass": "GatsbyBuild"
+      }
+    }
   }
 }

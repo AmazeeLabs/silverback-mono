@@ -34,9 +34,6 @@ export const getConfig = () => {
         login: 'admin',
         password: 'admin',
       },
-      graphQlEndpoint:
-        packageConfig.drupal.graphQlEndpoint ||
-        '/please-set-drupal.graphQlEndpoint-in-config.json',
     },
     gatsby: {
       path: path.resolve(envVars.SP_TEST_DIR, '..', packageConfig.gatsby!.path),
@@ -46,6 +43,21 @@ export const getConfig = () => {
       buildPort: gatsbyBuildPort,
       rebuildPort: gatsbyRebuildPort,
       allPorts: [gatsbyRebuildPort, gatsbyBuildPort, gatsbyDevelopPort],
+      drupal: {
+        graphQlEndpoint:
+          (envVars.SP_TEST_TYPE === 'gatsby-develop'
+            ? packageConfig.gatsby?.develop.drupal.graphQlEndpoint
+            : packageConfig.gatsby?.build.drupal.graphQlEndpoint) ||
+          '/please-set-drupalGraphQlEndpoint-in-config.json',
+        user:
+          envVars.SP_TEST_TYPE === 'gatsby-develop'
+            ? packageConfig.gatsby?.develop.drupal.user
+            : packageConfig.gatsby?.build.drupal.user,
+        pass:
+          envVars.SP_TEST_TYPE === 'gatsby-develop'
+            ? packageConfig.gatsby?.develop.drupal.pass
+            : packageConfig.gatsby?.build.drupal.pass,
+      },
       fastBuilds: {
         port: gatsbyRebuildPort,
         rebuildUrl: `http://localhost:${gatsbyRebuildPort}/__rebuild`,
@@ -53,16 +65,16 @@ export const getConfig = () => {
       timings: {
         startTimeout:
           envVars.SP_TEST_TYPE === 'gatsby-develop'
-            ? packageConfig.gatsby?.timings?.develop?.startTimeout || 30_000
-            : packageConfig.gatsby?.timings?.build?.startTimeout || 90_000,
+            ? packageConfig.gatsby?.develop?.timings?.startTimeout || 30_000
+            : packageConfig.gatsby?.build?.timings?.startTimeout || 90_000,
         refreshTimeout:
           envVars.SP_TEST_TYPE === 'gatsby-develop'
-            ? packageConfig.gatsby?.timings?.develop?.refreshTimeout || 15_000
-            : packageConfig.gatsby?.timings?.build?.refreshTimeout || 30_000,
+            ? packageConfig.gatsby?.develop?.timings?.refreshTimeout || 15_000
+            : packageConfig.gatsby?.build?.timings?.refreshTimeout || 30_000,
         retryInterval:
           envVars.SP_TEST_TYPE === 'gatsby-develop'
-            ? packageConfig.gatsby?.timings?.develop?.retryInterval || 500
-            : packageConfig.gatsby?.timings?.build?.retryInterval || 1_000,
+            ? packageConfig.gatsby?.develop?.timings?.retryInterval || 500
+            : packageConfig.gatsby?.build?.timings?.retryInterval || 1_000,
         // When we get the fresh drupalBuildId from Gatsby, Gatsby still needs
         // additional time because the fact that we were able to get the build ID
         // does not mean that all other Gatsby tasks are done.
