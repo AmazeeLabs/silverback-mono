@@ -10,7 +10,7 @@ services:
 
   silverback_gatsby.update_trigger:
     class: Drupal\silverback_gatsby\GatsbyUpdateTrigger
-    arguments: ['@http_client', '@messenger']
+    arguments: ['@http_client', '@messenger', '@entity_type.manager']
 
   silverback_gatsby.update_tracker:
     class: Drupal\silverback_gatsby\GatsbyUpdateTracker

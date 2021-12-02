@@ -2,6 +2,7 @@
 
 namespace Drupal\Tests\silverback_gatsby\Kernel;
 
+use Drupal\graphql\Entity\Server;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\silverback_gatsby\GatsbyUpdate;
 use Drupal\Tests\silverback_gatsby\Traits\BuildNotificationCheckTrait;
@@ -9,10 +10,20 @@ use Drupal\Tests\silverback_gatsby\Traits\BuildNotificationCheckTrait;
 class GatsbyUpdateTrackerTest extends KernelTestBase {
   use BuildNotificationCheckTrait;
 
+  protected $strictConfigSchema = FALSE;
+
   /**
    * @var string[]
    */
-  public static $modules = ['silverback_gatsby'];
+  public static $modules = [
+    'language',
+    'node',
+    'graphql',
+    'content_translation',
+    'silverback_gatsby',
+    'silverback_gatsby_example',
+    'menu_link_content',
+  ];
 
   /**
    * @var \Drupal\silverback_gatsby\GatsbyUpdateTracker|object|null
@@ -22,7 +33,34 @@ class GatsbyUpdateTrackerTest extends KernelTestBase {
   protected function setUp() : void{
     parent::setUp();
     $this->setupClientProphecy();
+    $this->installConfig('graphql');
     $this->installSchema('silverback_gatsby', ['gatsby_update_log']);
+    Server::create([
+      'schema' => 'silverback_gatsby_example',
+      'name' => 'foo',
+      'endpoint' => '/foo',
+      'schema_configuration' => [
+        'silverback_gatsby_example' => [
+          'extensions' => [
+            'silverback_gatsby' => 'silverback_gatsby'
+          ],
+          'build_hook' => 'http://localhost:8000/__refresh'
+        ]
+      ]
+    ])->save();
+    Server::create([
+      'schema' => 'silverback_gatsby_example',
+      'name' => 'bar',
+      'endpoint' => '/bar',
+      'schema_configuration' => [
+        'silverback_gatsby_example' => [
+          'extensions' => [
+            'silverback_gatsby' => 'silverback_gatsby'
+          ],
+          'build_hook' => 'http://localhost:8000/__refresh'
+        ]
+      ]
+    ])->save();
     $this->tracker = $this->container->get('silverback_gatsby.update_tracker');
   }
 
