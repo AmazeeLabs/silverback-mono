@@ -27,12 +27,8 @@ export const plugins = [
     options: {
       drupal_url: process.env.DRUPAL_BASE_URL,
       graphql_path: process.env.DRUPAL_GRAPHQL_PATH,
-      ...(process.env.NODE_ENV === 'production'
-        ? {}
-        : {
-            auth_user: process.env.DRUPAL_USER_NAME,
-            auth_pass: process.env.DRUPAL_USER_PASS,
-          }),
+      auth_user: process.env.DRUPAL_USER_NAME,
+      auth_pass: process.env.DRUPAL_USER_PASS,
     },
   },
   '@amazeelabs/gatsby-theme-core',
