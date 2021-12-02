@@ -2,8 +2,13 @@
 
 namespace Drupal\silverback_gatsby\GraphQL;
 
+use Drupal\Core\Cache\CacheBackendInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\graphql\Plugin\GraphQL\Schema\ComposableSchema as OriginalComposableSchema;
+use Drupal\graphql\Plugin\SchemaExtensionPluginManager;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Base class for composable/extensible schemas.
@@ -18,6 +23,48 @@ use Drupal\graphql\Plugin\GraphQL\Schema\ComposableSchema as OriginalComposableS
  * @package Drupal\silverback_gatsby\GraphQL
  */
 class ComposableSchema extends OriginalComposableSchema {
+
+  protected EntityTypeManagerInterface $entityTypeManager;
+
+  public function __construct(
+    array $configuration,
+    $pluginId,
+    array $pluginDefinition,
+    CacheBackendInterface $astCache,
+    ModuleHandlerInterface $moduleHandler,
+    SchemaExtensionPluginManager $extensionManager,
+    array $config,
+    EntityTypeManagerInterface $entityTypeManager
+  ) {
+    parent::__construct(
+      $configuration,
+      $pluginId,
+      $pluginDefinition,
+      $astCache,
+      $moduleHandler,
+      $extensionManager,
+      $config
+    );
+    $this->entityTypeManager = $entityTypeManager;
+  }
+
+  public static function create(
+    ContainerInterface $container,
+    array $configuration,
+    $plugin_id,
+    $plugin_definition
+  ) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('cache.graphql.ast'),
+      $container->get('module_handler'),
+      $container->get('plugin.manager.graphql.schema_extension'),
+      $container->getParameter('graphql.config'),
+      $container->get('entity_type.manager')
+    );
+  }
 
   /**
    * {@inheritDoc}
@@ -45,15 +92,28 @@ class ComposableSchema extends OriginalComposableSchema {
       $form,
       $form_state
     );
+
     $form['build_webhook'] = [
       '#type' => 'textfield',
       '#required' => FALSE,
       '#title' => $this->t('Build webhook'),
+      '#description' => $this->t('A webhook that will be notified when content changes relevant to this server happen.'),
       '#default_value' => $this->configuration['build_webhook'] ?? '',
     ];
-    $form['role'] = [
 
+    $form['role'] = [
+      '#type' => 'select',
+      '#required' => TRUE,
+      '#options' => [],
+      '#title' => $this->t('Notification role'),
+      '#description' => $this->t('Choose a notification role. Only changes visible to that role will trigger build updates.'),
+      '#default_value' => $this->configuration['role'] ?? '',
     ];
+    foreach ($this->entityTypeManager->getStorage('user_role')->loadMultiple() as $id => $role) {
+      if (!in_array($id, ['anonymous', 'authenticated'])) {
+        $form['role']['#options'][$id] = $role->label();
+      }
+    }
     return $form;
   }
 
