@@ -1,0 +1,18 @@
+uuid: ad8f1b44-16ca-42a5-b289-effd781bba5d
+langcode: en
+status: true
+dependencies: {  }
+name: silverback_gatsby_preview
+label: 'Silverback Gatsby Preview'
+schema: silverback_gatsby_test
+schema_configuration:
+  silverback_gatsby_test:
+    extensions:
+      silverback_gatsby: silverback_gatsby
+    build_webhook: 'http://localhost:8000/__refresh'
+    role: gatsby_preview
+persisted_queries_settings: {  }
+endpoint: /silverback-gatsby-preview
+debug_flag: 0
+caching: true
+batching: true
