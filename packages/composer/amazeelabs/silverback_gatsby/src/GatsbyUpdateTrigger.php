@@ -49,8 +49,8 @@ class GatsbyUpdateTrigger implements GatsbyUpdateTriggerInterface {
       ->getStorage('graphql_server')
       ->load($server_id);
     $schema_id = $server->get('schema');
-    if (isset($server->get('schema_configuration')[$schema_id]['build_hook'])) {
-      return $server->get('schema_configuration')[$schema_id]['build_hook'];
+    if (isset($server->get('schema_configuration')[$schema_id]['build_webhook'])) {
+      return $server->get('schema_configuration')[$schema_id]['build_webhook'];
     }
     return NULL;
   }

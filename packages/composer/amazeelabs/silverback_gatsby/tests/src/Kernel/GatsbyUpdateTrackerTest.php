@@ -17,6 +17,7 @@ class GatsbyUpdateTrackerTest extends KernelTestBase {
    */
   public static $modules = [
     'language',
+    'user',
     'node',
     'graphql',
     'content_translation',
@@ -44,7 +45,7 @@ class GatsbyUpdateTrackerTest extends KernelTestBase {
           'extensions' => [
             'silverback_gatsby' => 'silverback_gatsby'
           ],
-          'build_hook' => 'http://localhost:8000/__refresh'
+          'build_webhook' => 'http://localhost:8000/__refresh'
         ]
       ]
     ])->save();
@@ -57,7 +58,7 @@ class GatsbyUpdateTrackerTest extends KernelTestBase {
           'extensions' => [
             'silverback_gatsby' => 'silverback_gatsby'
           ],
-          'build_hook' => 'http://localhost:8000/__refresh'
+          'build_webhook' => 'http://localhost:8000/__refresh'
         ]
       ]
     ])->save();
