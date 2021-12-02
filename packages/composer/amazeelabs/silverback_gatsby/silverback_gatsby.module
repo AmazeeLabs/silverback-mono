@@ -2,7 +2,6 @@
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\silverback_gatsby\Plugin\Gatsby\Feed\EntityFeed;
-use Drupal\silverback_gatsby\Plugin\Gatsby\Feed\MenuFeed;
 
 
 function _silverback_gatsby_entity_event(EntityInterface $entity) {
@@ -20,6 +19,7 @@ function silverback_gatsby_entity_insert(EntityInterface $entity) {
  * Implements hook_entity_update().
  */
 function silverback_gatsby_entity_update(EntityInterface $entity) {
+  _silverback_gatsby_entity_event($entity->original);
   _silverback_gatsby_entity_event($entity);
 }
 
