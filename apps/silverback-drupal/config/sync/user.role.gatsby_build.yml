@@ -1,0 +1,12 @@
+uuid: ad1a8741-e713-41ac-8e99-17d132989dc2
+langcode: en
+status: true
+dependencies: {  }
+id: gatsby_build
+label: 'Gatsby Build'
+weight: 3
+is_admin: null
+permissions:
+  - 'access content'
+  - 'execute silverback_gatsby arbitrary graphql requests'
+  - 'view media'

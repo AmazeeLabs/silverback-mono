@@ -1,0 +1,14 @@
+uuid: 7747786c-dea3-4650-bdde-d669a9009fdb
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.gatsby_build
+  module:
+    - user
+id: user_add_role_action.gatsby_build
+label: 'Add the Gatsby Build role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: gatsby_build
