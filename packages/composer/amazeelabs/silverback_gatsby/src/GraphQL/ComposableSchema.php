@@ -2,6 +2,7 @@
 
 namespace Drupal\silverback_gatsby\GraphQL;
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\graphql\Plugin\GraphQL\Schema\ComposableSchema as OriginalComposableSchema;
 
 /**
@@ -34,6 +35,26 @@ class ComposableSchema extends OriginalComposableSchema {
     }
 
     return $extensions;
+  }
+
+  public function buildConfigurationForm(
+    array $form,
+    FormStateInterface $form_state
+  ) {
+    $form = parent::buildConfigurationForm(
+      $form,
+      $form_state
+    );
+    $form['build_webhook'] = [
+      '#type' => 'textfield',
+      '#required' => FALSE,
+      '#title' => $this->t('Build webhook'),
+      '#default_value' => $this->configuration['build_webhook'] ?? '',
+    ];
+    $form['role'] = [
+
+    ];
+    return $form;
   }
 
   /**
