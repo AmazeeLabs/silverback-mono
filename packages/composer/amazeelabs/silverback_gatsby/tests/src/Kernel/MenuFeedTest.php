@@ -27,7 +27,8 @@ class MenuFeedTest extends GraphQLTestBase {
           'silverback_gatsby_example' => [
             'extensions' => [
               'silverback_gatsby' => 'silverback_gatsby'
-            ]
+            ],
+            'build_webhook' => 'http://localhost:8888/__refresh'
           ]
         ]
       ]
