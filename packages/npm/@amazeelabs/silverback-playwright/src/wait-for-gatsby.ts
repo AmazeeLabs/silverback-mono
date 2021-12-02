@@ -12,7 +12,7 @@ export const waitForGatsby = async (): Promise<void> => {
   log(`waitForGatsby[${deadline}] before call drupal`);
   const drupalResponse = await axios
     .post(
-      `${drupal.baseUrl}${drupal.graphQlEndpoint}`,
+      `${drupal.baseUrl}${gatsby.drupal.graphQlEndpoint}`,
       {
         operationName: 'GatsbyBuildId',
         variables: {},
@@ -25,7 +25,7 @@ export const waitForGatsby = async (): Promise<void> => {
       {
         headers: {
           Authorization: `Basic ${Buffer.from(
-            `${drupal.adminUser.login}:${drupal.adminUser.password}`,
+            `${gatsby.drupal.user}:${gatsby.drupal.pass}`,
           ).toString('base64')}`,
         },
       },
