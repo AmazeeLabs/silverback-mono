@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.42](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.41...@-amazeelabs/silverback-drupal@1.10.42) (2021-12-03)
+
+
+### Bug Fixes
+
+* **gatsby:** missing config exports ([d637d58](https://github.com/AmazeeLabs/silverback-mono/commit/d637d58d06a443b6fd92f7b08b5a2eec99ed2268))
+* permissions ([85bc229](https://github.com/AmazeeLabs/silverback-mono/commit/85bc22913d7828456d55160f26a576db58f64676))
+
+
+
+
+
 ## [1.10.41](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.40...@-amazeelabs/silverback-drupal@1.10.41) (2021-11-30)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal

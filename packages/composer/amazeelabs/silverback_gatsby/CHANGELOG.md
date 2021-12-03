@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.11.4...@-amazeelabs/silverback_gatsby@1.12.0) (2021-12-03)
+
+
+### Bug Fixes
+
+* **gatsby:** inconsistent usage of build_hook and build_webhook ([fd47201](https://github.com/AmazeeLabs/silverback-mono/commit/fd47201898fdfc32510a4d2db369e66e525dfb4c))
+* **gatsby:** reset access control handler cache between investigating old and updated entities ([7c37490](https://github.com/AmazeeLabs/silverback-mono/commit/7c37490eb20b7bce7d0c642da50667f250c83c86))
+* **gatsby:** set all current test nodes to "unpublished" ([63779a9](https://github.com/AmazeeLabs/silverback-mono/commit/63779a977e98e2c100a433df175dfb99d6bb30c9))
+
+
+### Features
+
+* **gatsby:** configuration forms for gatsby build webhooks and roles ([6201ddc](https://github.com/AmazeeLabs/silverback-mono/commit/6201ddcf2db4edc112a9c7d35595d5768eb92582))
+* **gatsby:** inspect original entites on update to detect transitions over permission borders ([13a7d94](https://github.com/AmazeeLabs/silverback-mono/commit/13a7d9489dd03ee7dbed29e3d11f91a49b5ec882))
+* **gatsby:** only send updates to server if they are relevant for the selected role ([9290820](https://github.com/AmazeeLabs/silverback-mono/commit/92908204e711a7713debbf149905a5e067f5e69f))
+* **gatsby:** pass artificial account into feed update investigation ([eb7294b](https://github.com/AmazeeLabs/silverback-mono/commit/eb7294bd59e9f35a6004110904f2a89124e81677))
+* **gatsby:** use update webhooks from graphql schema configuration ([d9760b1](https://github.com/AmazeeLabs/silverback-mono/commit/d9760b173c3525f9347a5b2d75e71d120353590e))
+
+
+
+
+
 ## [1.11.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.11.3...@-amazeelabs/silverback_gatsby@1.11.4) (2021-10-11)
 
 

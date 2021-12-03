@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.32](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.2.31...@-amazeelabs/silverback-gastby@1.2.32) (2021-12-03)
+
+
+### Bug Fixes
+
+* always provide credentials to drupal ([00592be](https://github.com/AmazeeLabs/silverback-mono/commit/00592befa8fd0671a3e8dad3bcf7b1554364185a))
+
+
+
+
+
 ## [1.2.31](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.2.30...@-amazeelabs/silverback-gastby@1.2.31) (2021-12-02)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-gastby
