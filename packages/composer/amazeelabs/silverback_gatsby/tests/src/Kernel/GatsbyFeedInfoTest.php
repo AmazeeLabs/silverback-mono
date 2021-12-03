@@ -222,7 +222,6 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     // We have to create a new revision, or we get the last cached access result.
     $node->setTitle('Published');
     $node->setPublished();
-    $node->setNewRevision();
     $node->save();
 
     // Build server should be on build 5 now. The 3 from before plus 2 builds
@@ -272,7 +271,6 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     // We have to create a new revision, or we get the last cached access result.
     $node->setTitle('Unpublished');
     $node->setUnpublished();
-    $node->setNewRevision();
     $node->save();
 
     // Build server is on build 3, and '1:en' is marked as changed which will

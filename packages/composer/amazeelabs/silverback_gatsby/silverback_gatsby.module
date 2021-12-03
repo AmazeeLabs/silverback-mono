@@ -19,7 +19,9 @@ function silverback_gatsby_entity_insert(EntityInterface $entity) {
  * Implements hook_entity_update().
  */
 function silverback_gatsby_entity_update(EntityInterface $entity) {
+  $controlHandler = \Drupal::entityTypeManager()->getAccessControlHandler($entity->getEntityTypeId());
   _silverback_gatsby_entity_event($entity->original);
+  $controlHandler->resetCache();
   _silverback_gatsby_entity_event($entity);
 }
 
