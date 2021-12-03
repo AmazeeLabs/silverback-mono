@@ -114,7 +114,7 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     ]);
     $node->save();
     $tracker->clear();
-    $node->title = 'Changed';
+    $node->setTitle('Changed');
     $node->save();
     $tracker->clear();
 
@@ -134,7 +134,7 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     ]);
     $node->save();
     $tracker->clear();
-    $node->title = 'Changed';
+    $node->setTitle('Changed');
     $node->save();
     $tracker->clear();
 
@@ -182,8 +182,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
 
   public function testNodePublish() {
     $tracker = $this->container->get('silverback_gatsby.update_tracker');
-    // Create one inital published node so both build and preview server have
-    // a build id we can diff agains.
+    // Create one initial published node so both build and preview server have
+    // a build id we can diff against.
     Node::create([
       'type' => 'page',
       'title' => 'Published',

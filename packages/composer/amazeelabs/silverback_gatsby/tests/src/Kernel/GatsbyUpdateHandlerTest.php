@@ -31,7 +31,7 @@ class GatsbyUpdateHandlerTest extends EntityFeedTestBase {
       'status' => 0,
     ])->save();
 
-    $node->title = 'Test 2';
+    $node->setTitle('Test 2');
     $node->save();
 
     $diff = $this->tracker->diff(1, 3, $this->server->id());
@@ -48,7 +48,7 @@ class GatsbyUpdateHandlerTest extends EntityFeedTestBase {
       'status' => 0,
     ]);
     $node->save();
-    $node->title = 'Test 2';
+    $node->setTitle('Test 2');
     $node->save();
 
     $diff = $this->tracker->diff(1, 2, $this->server->id());
