@@ -255,7 +255,7 @@ class MenuFeedTest extends GraphQLTestBase {
           [
             'langcode' => 'fr',
             'items' => [
-              // French has not translations at all. The menu is empty there.
+              // French was not translations at all. The menu is empty there.
             ],
           ],
           [
