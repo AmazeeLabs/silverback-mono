@@ -1,5 +1,5 @@
 var silverbackGutenbergUtils = {
-  sanitizeText: function (text) {
+  cleanUpText: function (text) {
     return (
       text
         // When copying text from Word, HTML comments are escaped. So we get this:
@@ -7,8 +7,12 @@ var silverbackGutenbergUtils = {
         // Unescape them back.
         .replace('&lt;!--', '<!--')
         .replace('--&gt;', '-->')
-        // Now clean all HTML tags.
-        .replace(/(<([^>]+)>)/gi, '')
+    );
+  },
+
+  sanitizeText: function (text) {
+    return (
+      silverbackGutenbergUtils.cleanUpText(text).replace(/(<([^>]+)>)/gi, '')
     );
   },
 
