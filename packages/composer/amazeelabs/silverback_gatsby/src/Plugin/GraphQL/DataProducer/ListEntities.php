@@ -4,6 +4,7 @@ namespace Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer;
 
 use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\TranslatableInterface;
 
 /**
  * @DataProducer(
@@ -55,16 +56,33 @@ class ListEntities extends EntityQueryBase {
 
     $metadata->addCacheTags($entityType->getListCacheTags());
     $metadata->addCacheContexts($entityType->getListCacheContexts());
-    foreach ($entities as $entity) {
+
+    $entities = $access
+      ? array_map(
+      function (EntityInterface $entity) {
+        $result = null;
+        if ($entity->access('view')) {
+          $result = $entity;
+        }
+        else if ($entity instanceof TranslatableInterface && $entity->isTranslatable()) {
+          foreach ($entity->getTranslationLanguages(false) as $lang) {
+            $translation = $entity->getTranslation($lang->getId());
+            if ($translation->access('view')) {
+              $result = $translation;
+              break;
+            }
+          }
+        }
+        return $result;
+      },
+      $entities
+    ) : $entities;
+
+    foreach (array_filter($entities) as $entity) {
       $metadata->addCacheableDependency($entity);
     }
 
-    return $access
-      ? array_map(
-        fn (EntityInterface $entity) => $entity->access('view') ? $entity : null,
-        $entities
-      )
-      : $entities;
+    return $entities;
   }
 
 }
