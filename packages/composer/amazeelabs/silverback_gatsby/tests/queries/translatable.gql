@@ -2,7 +2,7 @@ query ($id: String!) {
   loadPage(id: $id) {
     title
   }
-  queryPages(limit: 10, offset: 0) {
+  queryPages {
     id
     drupalId
     translations {
