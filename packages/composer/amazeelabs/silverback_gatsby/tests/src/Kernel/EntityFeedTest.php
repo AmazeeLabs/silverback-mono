@@ -210,6 +210,40 @@ class EntityFeedTest extends EntityFeedTestBase {
     ], $metadata);
   }
 
+  public function testUnpublishedSource() {
+    $node = Node::create([
+      'type' => 'page',
+      'title' => 'English',
+      'status' => 0,
+    ]);
+    $node->save();
+    $node->addTranslation('de', ['title' => 'German', 'status' => 1])->save();
+
+    $query = $this->getQueryFromFile('translatable.gql');
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheContexts(['user.node_grants:view', 'static:language:de']);
+    $metadata->addCacheTags(['node:1', 'node_list']);
+
+    $this->assertResults($query, ['id' => '1:de'], [
+      'loadPage' => [
+        "title" => "German"
+      ],
+      'queryPages' => [
+        null
+      ],
+    ], $metadata);
+
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheContexts(['user.node_grants:view']);
+    $metadata->addCacheTags(['node:1', 'node_list']);
+    $this->assertResults($query, ['id' => '1:en'], [
+      'loadPage' => null,
+      'queryPages' => [
+        null
+      ],
+    ], $metadata);
+  }
+
   public function testCreatePageFields() {
     $regular = Node::create([
       'type' => 'blog',
