@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.12.0...@-amazeelabs/silverback_gatsby@1.13.0) (2021-12-10)
+
+
+### Bug Fixes
+
+* **gatsby:** fall back to first published translation if the source is not accessible in listings ([db8897c](https://github.com/AmazeeLabs/silverback-mono/commit/db8897cf28744c8c22f36e08318780c940e54988)), closes [#882](https://github.com/AmazeeLabs/silverback-mono/issues/882)
+
+
+### Features
+
+* **gatsby:** make limit and offset in list queries optional ([70cd820](https://github.com/AmazeeLabs/silverback-mono/commit/70cd8209e60da0cbc6167a78510b84d3d9b4ca31)), closes [#849](https://github.com/AmazeeLabs/silverback-mono/issues/849)
+
+
+
+
+
 # [1.12.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.11.4...@-amazeelabs/silverback_gatsby@1.12.0) (2021-12-03)
 
 
