@@ -133,7 +133,7 @@ extend type Query {
 
 extend type Query {
   loadImage(id: String!): Image
-  queryImages(offset: Int!, limit: Int!): [Image]!
+  queryImages(offset: Int, limit: Int): [Image]!
 }
 extend type Image {
   id: String!
@@ -145,7 +145,7 @@ extend type Image {
 
 extend type Query {
   loadTag(id: String!): Tag
-  queryTags(offset: Int!, limit: Int!): [Tag]!
+  queryTags(offset: Int, limit: Int): [Tag]!
 }
 extend type Tag {
   id: String!
@@ -154,7 +154,7 @@ extend type Tag {
 
 extend type Query {
   loadPage(id: String!): Page
-  queryPages(offset: Int!, limit: Int!): [Page]!
+  queryPages(offset: Int, limit: Int): [Page]!
 }
 extend type Page {
   id: String!
@@ -166,7 +166,7 @@ extend type Page {
 
 extend type Query {
   loadGutenbergPage(id: String!): GutenbergPage
-  queryGutenbergPages(offset: Int!, limit: Int!): [GutenbergPage]!
+  queryGutenbergPages(offset: Int, limit: Int): [GutenbergPage]!
 }
 extend type GutenbergPage {
   id: String!
@@ -178,7 +178,7 @@ extend type GutenbergPage {
 
 extend type Query {
   loadWebform(id: String!): Webform
-  queryWebforms(offset: Int!, limit: Int!): [Webform]!
+  queryWebforms(offset: Int, limit: Int): [Webform]!
 }
 extend type Webform {
   id: String!
@@ -187,7 +187,7 @@ extend type Webform {
 
 extend type Query {
   loadArticle(id: String!): Article
-  queryArticles(offset: Int!, limit: Int!): [Article]!
+  queryArticles(offset: Int, limit: Int): [Article]!
 }
 extend type Article {
   id: String!
@@ -199,7 +199,7 @@ extend type Article {
 
 extend type Query {
   loadMainMenu(id: String!): MainMenu
-  queryMainMenus(offset: Int!, limit: Int!): [MainMenu]!
+  queryMainMenus(offset: Int, limit: Int): [MainMenu]!
 }
 extend type MainMenu {
   id: String!
@@ -217,7 +217,7 @@ extend type MenuItem {
 }
 extend type Query {
   loadFirstLevelMainMenu(id: String!): FirstLevelMainMenu
-  queryFirstLevelMainMenus(offset: Int!, limit: Int!): [FirstLevelMainMenu]!
+  queryFirstLevelMainMenus(offset: Int, limit: Int): [FirstLevelMainMenu]!
 }
 extend type FirstLevelMainMenu {
   id: String!
