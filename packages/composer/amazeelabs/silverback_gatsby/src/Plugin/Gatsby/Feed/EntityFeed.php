@@ -140,8 +140,14 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
       ->map('type', $this->builder->fromValue($this->type))
       ->map('bundle', $this->builder->fromValue($this->bundle))
       ->map('access', $this->builder->fromValue($this->access))
-      ->map('offset', $this->builder->fromArgument('offset'))
-      ->map('limit', $this->builder->fromArgument('limit'));
+      ->map('offset', $this->builder->defaultValue(
+        $this->builder->fromArgument('offset'),
+        $this->builder->fromValue(0)
+      ))
+      ->map('limit', $this->builder->defaultValue(
+        $this->builder->fromArgument('limit'),
+        $this->builder->fromValue(10),
+      ));
   }
 
   /**

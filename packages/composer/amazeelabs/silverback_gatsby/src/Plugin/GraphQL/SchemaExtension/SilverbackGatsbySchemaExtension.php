@@ -182,7 +182,7 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
     $schema = [
       "extend type Query {",
       "  $singleFieldName(id: String!): $typeName",
-      "  $listFieldName(offset: Int!, limit: Int!): [$typeName]!",
+      "  $listFieldName(offset: Int, limit: Int): [$typeName]!",
     ];
 
     $schema [] = "}";
