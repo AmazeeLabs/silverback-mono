@@ -221,7 +221,7 @@ class EntityFeedTest extends EntityFeedTestBase {
 
     $query = $this->getQueryFromFile('translatable.gql');
     $metadata = $this->defaultCacheMetaData();
-    $metadata->addCacheContexts(['user.node_grants:view', 'static:language:de']);
+    $metadata->addCacheContexts(['user.node_grants:view', 'static:language:de', 'static:language:en']);
     $metadata->addCacheTags(['node:1', 'node_list']);
 
     $this->assertResults($query, ['id' => '1:de'], [
@@ -229,17 +229,37 @@ class EntityFeedTest extends EntityFeedTestBase {
         "title" => "German"
       ],
       'queryPages' => [
-        null
+        [
+          'id' => '1:de',
+          'drupalId' => '1',
+          'translations' => [
+            [
+              'defaultTranslation' => false,
+              'langcode' => 'de',
+              'title' => 'German',
+            ]
+          ],
+        ],
       ],
     ], $metadata);
 
     $metadata = $this->defaultCacheMetaData();
-    $metadata->addCacheContexts(['user.node_grants:view']);
+    $metadata->addCacheContexts(['user.node_grants:view', 'static:language:de', 'static:language:en']);
     $metadata->addCacheTags(['node:1', 'node_list']);
     $this->assertResults($query, ['id' => '1:en'], [
       'loadPage' => null,
       'queryPages' => [
-        null
+        [
+          'id' => '1:de',
+          'drupalId' => '1',
+          'translations' => [
+            [
+              'defaultTranslation' => false,
+              'langcode' => 'de',
+              'title' => 'German',
+            ]
+          ],
+        ],
       ],
     ], $metadata);
   }
