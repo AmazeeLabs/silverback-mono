@@ -3,9 +3,17 @@ import userEvent from '@testing-library/user-event';
 import { Field } from 'formik';
 import React from 'react';
 
-import { buildForm, buildImage, buildLink } from '../storybook';
+import {
+  ActionsDecorator,
+  buildForm,
+  buildImage,
+  buildLink,
+} from '../storybook';
 
 const action = jest.fn();
+
+const wouldNavigate = jest.fn();
+const wouldSubmit = jest.fn();
 
 jest.mock('@storybook/addon-actions', () => ({
   action: () => action,
@@ -118,29 +126,53 @@ describe('buildLink', () => {
     expect(screen.getByRole('link').getAttribute('class')).toEqual('text-red');
   });
 
-  it('logs a storybook action on click', () => {
+  it('tracks a click event in the ActionsDecorator ', () => {
     const Link = buildLink({ href: '#test' });
     expect(Link.href).toEqual('#test');
-    render(<Link>test</Link>);
+    render(
+      ActionsDecorator(() => <Link>test</Link>, {
+        args: { wouldNavigate },
+      } as any),
+    );
     fireEvent.click(screen.getByRole('link'));
-    expect(action).toHaveBeenCalledTimes(1);
-    expect(action).toHaveBeenCalledWith('#test');
+    expect(wouldNavigate).toHaveBeenCalledTimes(1);
+    expect(wouldNavigate).toHaveBeenCalledWith('#test');
   });
 
-  it('exposes a navigate function that logs a storybook action', () => {
+  it('exposes a navigate function that tracks a would-navigate event in the ActionsDecorator', () => {
     const Link = buildLink({ href: '#test' });
     expect(Link.href).toEqual('#test');
+    render(
+      ActionsDecorator(
+        (props) => {
+          return <button onClick={props.args.Link.navigate()}>test</button>;
+        },
+        {
+          args: { wouldNavigate, Link },
+        } as any,
+      ),
+    );
     Link.navigate();
-    expect(action).toHaveBeenCalledTimes(1);
-    expect(action).toHaveBeenCalledWith('#test');
+    expect(wouldNavigate).toHaveBeenCalledTimes(1);
+    expect(wouldNavigate).toHaveBeenCalledWith('#test');
   });
 
   it('exposes a navigate function that logs a storybook action and allows to override queries and fragments', () => {
     const Link = buildLink({ href: '/foo', query: { a: 'b' } });
     expect(Link.href).toEqual('/foo?a=b');
+    render(
+      ActionsDecorator(
+        (props) => {
+          return <button onClick={props.args.Link.navigate()}>test</button>;
+        },
+        {
+          args: { wouldNavigate, Link },
+        } as any,
+      ),
+    );
     Link.navigate({ query: { a: 'c' }, fragment: 'bar' });
-    expect(action).toHaveBeenCalledTimes(1);
-    expect(action).toHaveBeenCalledWith('/foo?a=c#bar');
+    expect(wouldNavigate).toHaveBeenCalledTimes(1);
+    expect(wouldNavigate).toHaveBeenCalledWith('/foo?a=c#bar');
   });
 });
 
@@ -165,16 +197,25 @@ describe('buildForm', () => {
   it('logs a storybook action on submit', async () => {
     const Form = buildForm({ initialValues: { foo: '' } });
     render(
-      <Form>
-        <Field type="text" name="foo" />
-        <button type="submit" />
-      </Form>,
+      ActionsDecorator(
+        (props) => {
+          return (
+            <props.args.Form>
+              <Field type="text" name="foo" />
+              <button type="submit" />
+            </props.args.Form>
+          );
+        },
+        {
+          args: { wouldSubmit, Form },
+        } as any,
+      ),
     );
     userEvent.type(screen.getByRole('textbox'), 'bar');
     userEvent.click(screen.getByRole('button'));
     await waitFor(() => {
-      expect(action).toHaveBeenCalledTimes(1);
-      expect(action).toHaveBeenCalledWith({ foo: 'bar' });
+      expect(wouldSubmit).toHaveBeenCalledTimes(1);
+      expect(wouldSubmit).toHaveBeenCalledWith({ foo: 'bar' });
     });
   });
 });
