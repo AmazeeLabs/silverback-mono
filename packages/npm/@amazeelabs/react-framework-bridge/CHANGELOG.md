@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.6.1...@amazeelabs/react-framework-bridge@1.7.0) (2021-12-14)
+
+
+### Features
+
+* **storybook:** deeper integration with storybook actions ([a16a449](https://github.com/AmazeeLabs/silverback-mono/commit/a16a4492700c7ce779750f14aa3fe63b3101ec42))
+
+
+
+
+
 ## [1.6.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.6.0...@amazeelabs/react-framework-bridge@1.6.1) (2021-12-14)
 
 **Note:** Version bump only for package @amazeelabs/react-framework-bridge
