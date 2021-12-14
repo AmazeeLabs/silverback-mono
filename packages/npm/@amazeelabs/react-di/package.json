@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/react-di",
-  "version": "1.0.39",
+  "version": "1.0.40",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
@@ -30,7 +30,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@amazeelabs/eslint-config": "^1.4.6",
+    "@amazeelabs/eslint-config": "^1.4.7",
     "@amazeelabs/prettier-config": "^1.1.1"
   }
 }

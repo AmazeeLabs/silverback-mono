@@ -2,13 +2,13 @@
   "name": "@-amazeelabs/silverback-gastby",
   "private": true,
   "description": "gatsby-graphql-toolkit example for drupal",
-  "version": "1.2.34",
+  "version": "1.2.35",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
-    "@-amazeelabs/silverback-drupal": "^1.10.44",
-    "@amazeelabs/gatsby-source-silverback": "^1.5.0",
-    "@amazeelabs/gatsby-theme-core": "^0.6.27",
-    "@amazeelabs/silverback-iframe": "^1.1.15",
+    "@-amazeelabs/silverback-drupal": "^1.10.45",
+    "@amazeelabs/gatsby-source-silverback": "^1.5.1",
+    "@amazeelabs/gatsby-theme-core": "^0.6.28",
+    "@amazeelabs/silverback-iframe": "^1.1.16",
     "axios": "^0.21.1",
     "dotenv": "^10.0.0",
     "gatsby": "^3.0.0",
@@ -29,7 +29,7 @@
     "tmp": "^0.2.1"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.6",
+    "@amazeelabs/eslint-config": "^1.4.7",
     "@amazeelabs/jest-preset": "^1.3.12",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@graphql-codegen/cli": "^2.0.0",
