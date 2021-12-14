@@ -48,7 +48,6 @@ module.exports = {
     "@typescript-eslint",
     "tailwindcss",
     "promise",
-    "deprecate",
     "simple-import-sort",
     "import",
     "no-only-tests",
@@ -57,7 +56,6 @@ module.exports = {
   rules: {
     "no-unused-vars": ["off"],
     "@typescript-eslint/no-unused-vars": ["error"],
-    "deprecate/import": ["error"],
     "simple-import-sort/imports": "error",
     "sort-imports": "off",
     "import/first": "error",

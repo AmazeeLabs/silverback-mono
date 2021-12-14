@@ -54,7 +54,6 @@
     "prettier": "^2.1.2"
   },
   "resolutions": {
-    "node-sass": "^6",
     "@graphql-tools/load": "^7"
   }
 }
