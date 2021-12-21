@@ -37,10 +37,16 @@ export default [
   },
   {
     input: `src/storybook.tsx`,
-    output: {
-      file: 'storybook.js',
-      format: 'esm',
-    },
+    output: [
+      {
+        file: 'storybook.js',
+        format: 'esm',
+      },
+      {
+        file: 'index.cjs.js',
+        format: 'cjs',
+      },
+    ],
     external: [
       ...Object.keys(pkg.dependencies),
       ...Object.keys(pkg.peerDependencies),
