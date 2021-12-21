@@ -6,6 +6,7 @@ index.js
 index.esm.js
 index.d.ts
 storybook.js
+storybook.cjs.js
 storybook.d.ts
 utils.js
 utils.d.ts
