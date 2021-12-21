@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.7.0...@amazeelabs/react-framework-bridge@1.7.1) (2021-12-21)
+
+
+### Bug Fixes
+
+* **gatsby:** cjs build artifact name ([8964142](https://github.com/AmazeeLabs/silverback-mono/commit/896414292c009c36cc6a05151d9d0420f6bd7930))
+* **gatsby:** emit a cjs build for storybook helpers ([cd2afca](https://github.com/AmazeeLabs/silverback-mono/commit/cd2afcab067d4e60285e9014341eee2896084b5e))
+* **gatsby:** ignore storybook.cjs.js ([ef8f985](https://github.com/AmazeeLabs/silverback-mono/commit/ef8f98568f1e240ebddd6ec3d00f1ab32c2cd6fe))
+
+
+
+
+
 # [1.7.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.6.1...@amazeelabs/react-framework-bridge@1.7.0) (2021-12-14)
 
 
