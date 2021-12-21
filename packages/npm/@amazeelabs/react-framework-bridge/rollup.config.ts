@@ -43,7 +43,7 @@ export default [
         format: 'esm',
       },
       {
-        file: 'index.cjs.js',
+        file: 'storybook.cjs.js',
         format: 'cjs',
       },
     ],
