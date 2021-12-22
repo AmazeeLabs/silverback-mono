@@ -1,0 +1,67 @@
+{
+  extends: [
+    // Same options as in "config:base", but without "group:monorepos" and
+    // "group:recommended".
+    ":separateMajorReleases",
+    ":combinePatchMinorReleases",
+    ":ignoreUnstable",
+    ":prImmediately",
+    ":semanticPrefixFixDepsChoreOthers",
+    ":updateNotScheduled",
+    ":automergeDisabled",
+    ":ignoreModulesAndTests",
+    ":autodetectPinVersions",
+    ":prHourlyLimit2",
+    ":prConcurrentLimit20",
+    "helpers:disableTypesNodeMajor"
+  ],
+  ignorePaths: [
+    // We want full control on the Dockerfiles.
+    ".lagoon/**",
+  ],
+  internalChecksFilter: "strict",
+  packageRules: [
+    {
+      matchUpdateTypes: ["minor", "patch", "digest"],
+      groupName: "all-non-major",
+      automerge: true
+    },
+    {
+      matchUpdateTypes: ["major"],
+      groupName: "all-major",
+      // Give major updates a month to stabilize.
+      stabilityDays: 30,
+      automerge: true
+    },
+    {
+      // We are not ready for ESM yet. Disable major updates of some packages.
+      paths: ["apps/silverback-gatsby/package.json"],
+      packageNames: [
+        "p-queue",
+        "strip-ansi",
+      ],
+      updateTypes: ["major"],
+      enabled: false,
+    },
+    {
+      // We want to manage the node version manually.
+      paths: [".nvmrc"],
+      enabled: false,
+    }
+  ],
+  dependencyDashboard: true,
+  // This will run all tests on Renovate PRs. This is required because
+  // `lerna run --since` will run nothing if only the root yarn.lock is updated.
+  branchPrefix: "test-all/renovate/",
+  // The `bump` strategy helps a lot with Composer updates.
+  rangeStrategy: "bump",
+  // Drupal's security release window: Wednesdays, from 16:00 UTC to 22:00 UTC
+  // https://www.drupal.org/drupal-security-team/security-release-numbers-and-release-timing#s-release-timing
+  schedule: ["before 3am on thursday"],
+  // Do Lock File Maintenance on the same day.
+  lockFileMaintenance: {
+    enabled: true,
+    schedule: ["before 5am on thursday"],
+    automerge: true
+  },
+}

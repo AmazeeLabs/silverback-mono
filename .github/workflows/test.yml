@@ -65,16 +65,28 @@ jobs:
             ${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash }}-composer-${{ steps.composer-version.outputs.hash }}-
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --frozen-lockfile
 
       - name: Run static tests
+        if: startsWith(github.head_ref, 'test-all/') == false
         run: yarn test:static
+      - name: Run all static tests
+        if: startsWith(github.head_ref, 'test-all/') == true
+        run: yarn test:static:all
 
       - name: Run unit tests
+        if: startsWith(github.head_ref, 'test-all/') == false
         run: yarn test:unit
+      - name: Run all unit tests
+        if: startsWith(github.head_ref, 'test-all/') == true
+        run: yarn test:unit:all
 
       - name: Run integration tests
+        if: startsWith(github.head_ref, 'test-all/') == false
         run: yarn test:integration
+      - name: Run all integration tests
+        if: startsWith(github.head_ref, 'test-all/') == true
+        run: yarn test:integration:all
 
       - name: Check for uncommitted changes
         run: |
@@ -97,10 +109,10 @@ jobs:
           silverback setup --no-config-import
           drush cex -y
           cd -
-          if [[ $(git status --porcelain -- apps/silverback-drupal/config) ]]
+          if [[ $(git status --porcelain -- apps/silverback-drupal/config ':!apps/silverback-drupal/config/sync/language') ]]
           then
-            >&2 echo 'Error: Found uncommitted Drupal config. If it was due to Drupal update which changed Drupal config: checkout this branch locally, switch to `apps/silverback-drupal` dir, run `composer i && silverback setup --no-config-import && drush cex -y`, commit and push. If it was intentional change to Drupal config files: checkout this branch locally, switch to `apps/silverback-drupal` dir, run `composer i && silverback setup --profile=minimal`, commit and push.'
-            git status --porcelain -- apps/silverback-drupal/config
+            >&2 echo 'Error: Found uncommitted Drupal config. If it was due to Drupal update which changed Drupal config: checkout this branch locally, switch to `apps/silverback-drupal` dir, run `composer i && silverback setup --no-config-import && drush cex -y`, review the config changes, commit and push. If it was intentional change to Drupal config files: checkout this branch locally, switch to `apps/silverback-drupal` dir, run `composer i && silverback setup --profile=minimal`, commit and push.'
+            git status --porcelain -- apps/silverback-drupal/config ':!apps/silverback-drupal/config/sync/language'
             false
           else
             echo 'Success: Found no new config changes.'
