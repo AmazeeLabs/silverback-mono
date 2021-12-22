@@ -24,13 +24,14 @@
     {
       matchUpdateTypes: ["minor", "patch", "digest"],
       groupName: "all-non-major",
-      automerge: true
     },
     {
       matchUpdateTypes: ["major"],
       groupName: "all-major",
       // Give major updates a month to stabilize.
       stabilityDays: 30,
+      // Enable auto-merge only for the major updates.
+      // https://github.com/AmazeeLabs/silverback-mono/issues/888#issuecomment-999724488
       automerge: true
     },
     {
@@ -62,6 +63,5 @@
   lockFileMaintenance: {
     enabled: true,
     schedule: ["before 5am on thursday"],
-    automerge: true
   },
 }
