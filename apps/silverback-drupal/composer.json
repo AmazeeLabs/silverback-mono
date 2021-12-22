@@ -27,7 +27,7 @@
         "amazeelabs/silverback_gutenberg": "^1.0",
         "amazeelabs/silverback_iframe": "^1.0",
         "amazeelabs/silverback_iframe_theme": "^1.0",
-        "composer/composer": "2.1.8",
+        "composer/composer": "2.2.0",
         "composer/installers": "^2.0",
         "cweagans/composer-patches": "^1.7",
         "drupal/admin_toolbar": "^3.0",

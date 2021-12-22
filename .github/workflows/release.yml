@@ -21,7 +21,7 @@ jobs:
           # - https://github.com/mglaman/phpstan-drupal supports it
           php-version: '7.4'
 
-      - uses: webfactory/ssh-agent@v0.5.3
+      - uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ secrets.SSL_PRIVATE }}
 

@@ -8,7 +8,7 @@
     "@amazeelabs/react-di": "^1.0.40",
     "@mdx-js/mdx": "^1.6.21",
     "@mdx-js/react": "^1.6.21",
-    "@tailwindcss/typography": "^0.4.0",
+    "@tailwindcss/typography": "^0.5.0",
     "@tailwindcss/ui": "^0.7.2",
     "classnames": "^2.2.6",
     "gatsby": "^3.0.0",

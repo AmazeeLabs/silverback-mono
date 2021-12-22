@@ -9,7 +9,7 @@
     "@amazeelabs/gatsby-source-silverback": "^1.5.1",
     "@amazeelabs/gatsby-theme-core": "^0.6.28",
     "@amazeelabs/silverback-iframe": "^1.1.16",
-    "axios": "^0.21.1",
+    "axios": "^0.24.0",
     "dotenv": "^10.0.0",
     "gatsby": "^3.0.0",
     "gatsby-graphql-source-toolkit": "^2.0.0",
