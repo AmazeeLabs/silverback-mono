@@ -28,8 +28,8 @@
     "postinstall": "lerna run prepare && husky install && rm -rf node_modules/@-*"
   },
   "devDependencies": {
-    "@commitlint/cli": "^13.0.0",
-    "@commitlint/config-conventional": "^13.0.0",
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
     "commitizen": "^4.2.2",
     "husky": "^7.0.0",
     "lerna": "^4.0.0",

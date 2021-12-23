@@ -16,11 +16,11 @@
     "@amazeelabs/jest-preset": "^1.3.12",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@types/jest": "^27.0.0",
-    "@types/node": "^14.10.1",
+    "@types/node": "^16.11.9",
     "eslint": "^8.0.0",
-    "gatsby-plugin-image": "^1.2.0",
+    "gatsby-plugin-image": "^2.2.0",
     "jest": "^27.0.0",
-    "lint-staged": "^11.0.0",
+    "lint-staged": "^12.1.2",
     "prettier": "^2.2.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
@@ -31,8 +31,8 @@
   },
   "peerDependencies": {
     "@storybook/addon-actions": "^6.0.21",
-    "gatsby": "^3.0.0",
-    "gatsby-plugin-image": "^1.2.0"
+    "gatsby": "^4.2.0",
+    "gatsby-plugin-image": "^2.2.0"
   },
   "scripts": {
     "prepare": "tsc",
