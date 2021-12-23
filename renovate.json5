@@ -20,6 +20,11 @@
       automerge: false,
     },
     {
+      // Do not update "engines" field in package.json files.
+      matchDepTypes: ["engines"],
+      enabled: false,
+    },
+    {
       // We are not ready for ESM yet. Disable major updates of some packages.
       paths: ["apps/silverback-gatsby/package.json"],
       packageNames: [
