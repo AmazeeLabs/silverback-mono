@@ -1,17 +1,30 @@
 {
+  // Manually control versions for
   ignorePaths: [
-    // We want full control on the Dockerfiles.
-    ".lagoon/**",
-    // We want to manage the node version manually.
+    // Images in Lagoon Dockerfiles
+    "apps/silverback-drupal/lagoon/**",
+    // Node.js
     ".nvmrc",
   ],
+
+  // This changes the behaviour of "stabilityDays"
+  // - from the standard "create PR and add a stabilityDays check to it"
+  // - to "create PR, but do not include updates for packages which did not pass
+  //   the stabilityDays check"
   internalChecksFilter: "strict",
+
+  dependencyDashboard: true,
+
+  // This will run all tests on Renovate PRs. This is required because
+  // `lerna run --since` will run nothing if only the root yarn.lock is updated.
+  branchPrefix: "test-all/renovate/",
+
+  // The "bump" strategy helps a lot with Composer updates.
+  rangeStrategy: "bump",
+
   packageRules: [
-    {
-      matchUpdateTypes: ["minor", "patch", "digest"],
-      groupName: "all-non-major",
-      automerge: false
-    },
+
+    // Standard rules.
     {
       matchUpdateTypes: ["major"],
       groupName: "all-major",
@@ -20,10 +33,17 @@
       automerge: false,
     },
     {
+      matchUpdateTypes: ["minor", "patch", "digest"],
+      groupName: "all-non-major",
+      automerge: false
+    },
+    {
       // Do not update "engines" field in package.json files.
       matchDepTypes: ["engines"],
       enabled: false,
     },
+
+    // Package-specific rules.
     {
       // We are not ready for ESM yet. Disable major updates of some packages.
       paths: ["apps/silverback-gatsby/package.json"],
@@ -35,15 +55,11 @@
       enabled: false,
     },
   ],
-  dependencyDashboard: true,
-  // This will run all tests on Renovate PRs. This is required because
-  // `lerna run --since` will run nothing if only the root yarn.lock is updated.
-  branchPrefix: "test-all/renovate/",
-  // The `bump` strategy helps a lot with Composer updates.
-  rangeStrategy: "bump",
+
   // Drupal's security release window: Wednesdays, from 16:00 UTC to 22:00 UTC
   // https://www.drupal.org/drupal-security-team/security-release-numbers-and-release-timing#s-release-timing
   schedule: ["before 3am on thursday"],
+
   lockFileMaintenance: {
     enabled: true,
     // Do Lock File Maintenance right after other updates.
