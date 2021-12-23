@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - gutenberg
     - media
 name: Rich
 format: rich
@@ -21,10 +22,10 @@ filters:
     weight: 100
     settings:
       default_view_mode: default
-      allowed_media_types:
-        image: image
       allowed_view_modes:
         default: default
+      allowed_media_types:
+        image: image
   filter_html:
     id: filter_html
     provider: filter
