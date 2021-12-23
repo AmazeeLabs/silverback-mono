@@ -16,10 +16,10 @@
   "peerDependencies": {
     "@storybook/addon-actions": ">=6",
     "formik": ">=2",
-    "gatsby": ">=3",
-    "gatsby-plugin-image": ">=1",
-    "react": ">=16",
-    "react-dom": ">=16",
+    "gatsby": ">=4.2.0",
+    "gatsby-plugin-image": ">=2.2.0",
+    "react": ">=17.0.2",
+    "react-dom": ">=17.0.2",
     "yup": ">=0.32"
   },
   "devDependencies": {
@@ -37,10 +37,10 @@
     "@types/react-dom": "^17.0.9",
     "eslint": "^8",
     "formik": "^2",
-    "gatsby": "^3",
-    "gatsby-plugin-image": "^1",
+    "gatsby": "^4",
+    "gatsby-plugin-image": "^2",
     "jest": "^27",
-    "lint-staged": "^11.1.2",
+    "lint-staged": "^12.1.2",
     "prettier": "^2",
     "rollup": "^2.58.0",
     "rollup-plugin-multi-input": "^1.3.1",
