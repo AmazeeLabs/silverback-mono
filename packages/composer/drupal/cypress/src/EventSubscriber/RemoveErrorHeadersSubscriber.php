@@ -22,7 +22,6 @@ class RemoveErrorHeadersSubscriber implements EventSubscriberInterface {
    * @return void
    */
   public function onResponse(FilterResponseEvent $event) {
-    // @phpstan-ignore-next-line PHPStan thinks it is always FALSE.
     if (DRUPAL_TEST_IN_CHILD_SITE) {
       $prefix = 'X-Drupal-Assertion-';
       $count = 0;

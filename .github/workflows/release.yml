@@ -17,8 +17,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          # We can upgrade to PHP 8 when
-          # - https://github.com/mglaman/phpstan-drupal supports it
+          # TODO: Upgrade to PHP 8.
           php-version: '7.4'
 
       - uses: webfactory/ssh-agent@v0.5.3
