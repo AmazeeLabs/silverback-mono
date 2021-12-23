@@ -6,13 +6,7 @@
       <script value="develop" />
     </scripts>
     <node-interpreter value="project" />
-    <envs>
-      <env name="DRUPAL_BASE_URL" value="http://localhost:8888" />
-      <env name="DRUPAL_GRAPHQL_PATH" value="/silverback-gatsby" />
-      <env name="DRUPAL_USER_NAME" value="GatsbyPreview" />
-      <env name="DRUPAL_USER_PASS" value="GatsbyPreview" />
-      <env name="ENABLE_GATSBY_REFRESH_ENDPOINT" value="true" />
-    </envs>
+    <envs />
     <method v="2" />
   </configuration>
 </component>

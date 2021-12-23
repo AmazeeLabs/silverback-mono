@@ -6,11 +6,7 @@
       <script value="setup" />
     </scripts>
     <node-interpreter value="project" />
-    <envs>
-      <env name="SB_ENVIRONMENT" value="development" />
-      <env name="SB_ADMIN_USER" value="admin" />
-      <env name="SB_ADMIN_PASS" value="admin" />
-    </envs>
+    <envs />
     <method v="2" />
   </configuration>
 </component>
