@@ -129,6 +129,11 @@ export const Then: StepDefinition = (expression, implementation) => {
 
 Cypress.Commands.add(
   'perform',
+  // @ts-ignore Suppress the following:
+  // Argument of type '(task: ScreenPlayTask<any>, param?: any) => Cypress.Chainable<Promise<Actor>>' is not assignable to parameter of type 'CommandFn<"perform">'.
+  //   Type 'Chainable<Promise<Actor>>' is not assignable to type 'void | Chainable<void>'.
+  //     Type 'Chainable<Promise<Actor>>' is not assignable to type 'Chainable<void>'.
+  //       Type 'Promise<Actor>' is not assignable to type 'void'.
   (task: ScreenPlayTask<any>, param: any = undefined) => {
     return cy.wrap(_actor.perform(task, param), { log: false });
   },
