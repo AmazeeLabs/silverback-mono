@@ -1,6 +1,6 @@
 {
   "name": "@-drupal/cypress",
-  "version": "2.3.33",
+  "version": "2.3.34",
   "description": "Cypress E2E testing for Drupal.",
   "publishConfig": {
     "access": "public",
