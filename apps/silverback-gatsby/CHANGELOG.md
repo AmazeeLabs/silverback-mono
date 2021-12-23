@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.36](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.2.35...@-amazeelabs/silverback-gastby@1.2.36) (2021-12-23)
+
+
+### Bug Fixes
+
+* fix a TS error ([433f535](https://github.com/AmazeeLabs/silverback-mono/commit/433f5351f0061181c450a5d3d1cbea87c2323776))
+* use gatsby-build endpoint/user by default ([260c3ab](https://github.com/AmazeeLabs/silverback-mono/commit/260c3abca1864e23b8f308422e724ed388e911b4))
+
+
+
+
+
 ## [1.2.35](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.2.34...@-amazeelabs/silverback-gastby@1.2.35) (2021-12-14)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-gastby

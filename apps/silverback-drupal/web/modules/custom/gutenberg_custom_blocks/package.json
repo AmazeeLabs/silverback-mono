@@ -1,6 +1,6 @@
 {
   "name": "@-silverback-drupal/gutenberg_custom_blocks",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "private": true,
   "scripts": {
     "start": "yarn drupal-js-build --css && yarn drupal-js-build watch --css",

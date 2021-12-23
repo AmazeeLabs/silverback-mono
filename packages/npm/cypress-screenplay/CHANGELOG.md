@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.18](https://github.com/AmazeeLabs/silverback-mono/compare/cypress-screenplay@0.5.17...cypress-screenplay@0.5.18) (2021-12-23)
+
+
+### Bug Fixes
+
+* supress a TS error ([234b75c](https://github.com/AmazeeLabs/silverback-mono/commit/234b75c365ed09049ef06b6c27a72e3fc8529dbf))
+
+
+
+
+
 ## [0.5.17](https://github.com/AmazeeLabs/silverback-mono/compare/cypress-screenplay@0.5.16...cypress-screenplay@0.5.17) (2021-12-14)
 
 **Note:** Version bump only for package cypress-screenplay
