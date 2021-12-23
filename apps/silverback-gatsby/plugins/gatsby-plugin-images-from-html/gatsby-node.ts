@@ -48,7 +48,7 @@ export const onCreateNode = async (
         });
         args.actions.createParentChildLink({
           parent: args.node,
-          child: args.getNode(id),
+          child: args.getNode(id)!,
         });
       }
     }
