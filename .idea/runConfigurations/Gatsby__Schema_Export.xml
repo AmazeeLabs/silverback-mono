@@ -6,10 +6,7 @@
       <script value="update-schema" />
     </scripts>
     <node-interpreter value="project" />
-    <envs>
-      <env name="DRUPAL_BASE_URL" value="http://localhost:8888" />
-      <env name="DRUPAL_GRAPHQL_PATH" value="/silverback-gatsby" />
-    </envs>
+    <envs />
     <method v="2" />
   </configuration>
 </component>
