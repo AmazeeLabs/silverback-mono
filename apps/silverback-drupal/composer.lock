@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "451e94549c2d442be5386fe1bc718779",
+    "content-hash": "b25bdb319c0ac08bd63c1a4ce452424b",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -107,14 +107,14 @@
         },
         {
             "name": "amazeelabs/proxy-gutenberg",
-            "version": "1.0.0",
+            "version": "1.1.5",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-gutenberg",
-                "reference": "73352303f28591c68cd4d8cd713faf8c20f7a8ed"
+                "reference": "7563cd7d299f62b7089c65cd342d93c5a5c04583"
             },
             "require": {
-                "drupal/gutenberg": "^2.1"
+                "drupal/gutenberg": "^2.2"
             },
             "type": "library",
             "extra": {
@@ -122,6 +122,7 @@
                 "composer-exit-on-patch-failure": true,
                 "patches": {
                     "drupal/gutenberg": {
+                        "Uncaught TypeError in JS": "https://www.drupal.org/files/issues/2021-11-13/gutenberg-gutenberg-broken-3247204-8.patch",
                         "Missing core block definitions (#3202756)": "https://git.drupalcode.org/project/gutenberg/-/merge_requests/3/diffs.patch"
                     }
                 }
