@@ -35,13 +35,12 @@
         "drupal/core": "^9.0",
         "drupal/core-composer-scaffold": "^9",
         "drupal/core-dev": "^9.0",
-        "drupal/core-project-message": "^9",
         "drupal/core-recommended": "^9",
         "drupal/cypress": "@dev",
-        "drupal/cypress-dev": "@dev",
         "drupal/default_content": "^2.0@alpha",
         "drupal/gatsby_build_monitor": "@dev",
         "drupal/graphql": "^4",
+        "drupal/gutenberg": "^2.1",
         "drupal/test_session": "@dev",
         "drupal/webform": "^6.0",
         "phpspec/prophecy-phpunit": "^2"
@@ -52,7 +51,12 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "drupal/core-composer-scaffold": true
+        }
     },
     "extra": {
         "drupal-scaffold": {
@@ -84,27 +88,6 @@
             ],
             "web/themes/custom/{$name}": [
                 "type:drupal-custom-theme"
-            ]
-        },
-        "drupal-core-project-message": {
-            "include-keys": [
-                "homepage",
-                "support"
-            ],
-            "post-create-project-cmd-message": [
-                "<bg=blue;fg=white>                                                         </>",
-                "<bg=blue;fg=white>  Congratulations, you’ve installed the Drupal codebase  </>",
-                "<bg=blue;fg=white>  from the drupal/recommended-project template!          </>",
-                "<bg=blue;fg=white>                                                         </>",
-                "",
-                "<bg=yellow;fg=black>Next steps</>:",
-                "  * Install the site: https://www.drupal.org/docs/8/install",
-                "  * Read the user guide: https://www.drupal.org/docs/user_guide/en/index.html",
-                "  * Get support: https://www.drupal.org/support",
-                "  * Get involved with the Drupal community:",
-                "      https://www.drupal.org/getting-involved",
-                "  * Remove the plugin that prints this message:",
-                "      composer remove drupal/core-project-message"
             ]
         },
         "enable-patching": true,
