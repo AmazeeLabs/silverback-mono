@@ -138,11 +138,11 @@
         },
         {
             "name": "amazeelabs/silverback-cli",
-            "version": "2.7.5",
+            "version": "2.7.6",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback-cli",
-                "reference": "df0ad974ef1fbf0fab3ea3d30b28974b9e4fee94"
+                "reference": "e06a15390435cc043a848c18677503a7d3abf94f"
             },
             "require": {
                 "alchemy/zippy": "^1.0.0",
@@ -231,11 +231,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "1.3.6",
+            "version": "1.3.7",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "c4790795faa2d18b377a073dbcfc43947a4233ec"
+                "reference": "a379f3409d2bcac3f6b5fcd43842bbe6d63eea63"
             },
             "type": "drupal-module",
             "license": [
@@ -2993,11 +2993,11 @@
         },
         {
             "name": "drupal/cypress",
-            "version": "2.3.35",
+            "version": "2.3.36",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/cypress",
-                "reference": "06152f7bb5209b5d3c31c055286750d67b21124a"
+                "reference": "b43df490654f6d9fe7ee551cb6c2883217975180"
             },
             "require": {
                 "alchemy/zippy": "^1.0.0",
@@ -3107,11 +3107,11 @@
         },
         {
             "name": "drupal/gatsby_build_monitor",
-            "version": "1.4.11",
+            "version": "1.4.12",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/gatsby_build_monitor",
-                "reference": "0495564b95613715411072372f44fb99b0f0060c"
+                "reference": "4686396c891dde3ee719ad38bcca3ca02c7c781f"
             },
             "require": {
                 "justinrainbow/json-schema": "^5.2.11"
@@ -3276,11 +3276,11 @@
         },
         {
             "name": "drupal/test_session",
-            "version": "1.2.15",
+            "version": "1.2.16",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/test_session",
-                "reference": "fea568e2e01ef3be6df46e1f820d34a3d4539da8"
+                "reference": "9655e6e1b4dcbd320344517e6ecdced84fe3bedf"
             },
             "type": "drupal-module",
             "license": [
