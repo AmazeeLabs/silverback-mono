@@ -10,7 +10,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.21.0"
+    "axios": "^0.24.0"
   },
   "scripts": {
     "prepare": "tsc",
@@ -29,6 +29,6 @@
     "eslint": "^8",
     "jest": "^27",
     "prettier": "^2",
-    "typescript": "^4.4.4"
+    "typescript": "^4.5.4"
   }
 }

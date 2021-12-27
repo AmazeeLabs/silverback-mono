@@ -21,11 +21,11 @@
     "@amazeelabs/jest-preset": "^1.3.12",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@types/jest": "^27",
-    "@types/node": "^16.11.9",
-    "cypress": "^9.0.0",
+    "@types/node": "^16.11.17",
+    "cypress": "^9.2.0",
     "eslint": "^8",
     "jest": "^27",
     "prettier": "^2",
-    "typescript": "^4.4.4"
+    "typescript": "^4.5.4"
   }
 }
