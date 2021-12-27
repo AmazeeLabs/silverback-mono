@@ -1,6 +1,6 @@
 {
   "name": "@-amazeelabs/proxy-gutenberg",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "author": "Amazee Labs <development@amazeelabs.com>",
   "publishConfig": {
     "access": "public",
@@ -9,7 +9,7 @@
     "branch": "main"
   },
   "devDependencies": {
-    "@amazeelabs/sync-composer-version": "^1.1.0"
+    "@amazeelabs/sync-composer-version": "^1.1.2"
   },
   "scripts": {
     "version": "sync-composer-version"

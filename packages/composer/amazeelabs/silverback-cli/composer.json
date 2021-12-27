@@ -1,36 +1,40 @@
 {
-    "name": "amazeelabs/silverback-cli",
-    "description": "Scaffolder for Amazee Silverback projects.",
-    "type": "package",
-    "license": "GPL-2.0-or-later",
-    "version": "1.0.0",
-    "require": {
-        "ext-zip": "*",
-        "alchemy/zippy": "^1.0.0",
-        "drush/drush": "^10.3.6",
-        "vlucas/phpdotenv": "^5.2",
-        "ext-json": "*"
-    },
-    "bin": [ "bin/silverback", "bin/silverback-dev", "bin/silverback-test" ],
-    "autoload": {
-        "psr-4": {
-            "AmazeeLabs\\Silverback\\": "src/AmazeeLabs/Silverback"
-        }
-    },
-    "extra": {
-        "drupal-scaffold": {
-            "file-mapping": {
-                "[project-root]/.env.local.example": "assets/.env.local.example",
-                "[project-root]/.envrc": "assets/.envrc",
-                "[project-root]/.gitignore": {
-                    "append": "assets/.gitignore.append.txt",
-                    "force-append": true
-                },
-                "[web-root]/sites/default/settings.php": {
-                    "append": "assets/settings.php.append.txt",
-                    "force-append": true
-                }
-            }
-        }
+  "name": "amazeelabs/silverback-cli",
+  "description": "Scaffolder for Amazee Silverback projects.",
+  "type": "package",
+  "license": "GPL-2.0-or-later",
+  "version": "2.7.5",
+  "require": {
+    "ext-zip": "*",
+    "alchemy/zippy": "^1.0.0",
+    "drush/drush": "^10.3.6",
+    "vlucas/phpdotenv": "^5.2",
+    "ext-json": "*"
+  },
+  "bin": [
+    "bin/silverback",
+    "bin/silverback-dev",
+    "bin/silverback-test"
+  ],
+  "autoload": {
+    "psr-4": {
+      "AmazeeLabs\\Silverback\\": "src/AmazeeLabs/Silverback"
     }
+  },
+  "extra": {
+    "drupal-scaffold": {
+      "file-mapping": {
+        "[project-root]/.env.local.example": "assets/.env.local.example",
+        "[project-root]/.envrc": "assets/.envrc",
+        "[project-root]/.gitignore": {
+          "append": "assets/.gitignore.append.txt",
+          "force-append": true
+        },
+        "[web-root]/sites/default/settings.php": {
+          "append": "assets/settings.php.append.txt",
+          "force-append": true
+        }
+      }
+    }
+  }
 }

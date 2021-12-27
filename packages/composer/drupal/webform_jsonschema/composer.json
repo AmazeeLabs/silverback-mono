@@ -2,7 +2,9 @@
   "name": "drupal/webform_jsonschema",
   "type": "drupal-module",
   "description": "Expose webforms as JSON Schema, UI Schema, and Form Data. Make webforms work with react-jsonschema-form.",
-  "keywords": ["Drupal"],
+  "keywords": [
+    "Drupal"
+  ],
   "license": "GPL-2.0+",
   "homepage": "https://www.drupal.org/project/webform_jsonschema",
   "minimum-stability": "dev",
@@ -12,5 +14,6 @@
   },
   "require": {
     "drupal/webform": "^5 || ^6"
-  }
+  },
+  "version": "2.0.4"
 }

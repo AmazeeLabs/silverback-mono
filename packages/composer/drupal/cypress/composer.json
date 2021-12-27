@@ -4,7 +4,7 @@
   "description": "Cypress E2E testing helpers",
   "license": "GPL-2.0-or-later",
   "minimum-stability": "dev",
-  "version": "1.0.0",
+  "version": "2.3.35",
   "extra": {
     "patches": {
       "drupal/core": {

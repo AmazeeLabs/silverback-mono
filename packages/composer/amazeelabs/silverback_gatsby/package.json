@@ -1,13 +1,13 @@
 {
   "name": "@-amazeelabs/silverback_gatsby",
-  "version": "1.13.1",
+  "version": "1.13.2",
   "main": "index.js",
   "scripts": {
     "version": "sync-composer-version",
     "test": "./test.sh"
   },
   "devDependencies": {
-    "@amazeelabs/sync-composer-version": "^1.1.0"
+    "@amazeelabs/sync-composer-version": "^1.1.2"
   },
   "author": "Amazee Labs <development@amazeelabs.com>",
   "publishConfig": {
