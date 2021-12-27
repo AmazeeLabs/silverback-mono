@@ -3,7 +3,11 @@
   "version": "1.13.1",
   "main": "index.js",
   "scripts": {
+    "version": "sync-composer-version",
     "test": "./test.sh"
+  },
+  "devDependencies": {
+    "@amazeelabs/sync-composer-version": "^1.1.0"
   },
   "author": "Amazee Labs <development@amazeelabs.com>",
   "publishConfig": {

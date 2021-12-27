@@ -8,5 +8,11 @@
     "registry": "http://localhost:4873",
     "repository": "git@github.com:AmazeeLabs/silverback_iframe.git",
     "branch": "main"
+  },
+  "devDependencies": {
+    "@amazeelabs/sync-composer-version": "^1.1.0"
+  },
+  "scripts": {
+    "version": "sync-composer-version"
   }
 }

@@ -16,6 +16,12 @@
     "cypress-screenplay": "^0.5.18",
     "drupal-test-session-cypress": "^1.1.21"
   },
+  "devDependencies": {
+    "@amazeelabs/sync-composer-version": "^1.1.0"
+  },
+  "scripts": {
+    "version": "sync-composer-version"
+  },
   "author": "",
   "license": "ISC"
 }

@@ -22,13 +22,15 @@
   "dependencies": {
     "@amazeelabs/eslint-config": "^1.4.7",
     "@amazeelabs/jest-preset": "^1.3.12",
-    "@amazeelabs/prettier-config": "^1.1.1"
+    "@amazeelabs/prettier-config": "^1.1.1",
+    "@amazeelabs/sync-composer-version": "^1.1.0"
   },
   "scripts": {
     "prepare": "exit 0",
     "precommit": "lint-staged",
     "test": "yarn test:static && yarn test:unit && yarn test:integration",
     "watch": "jest --watch",
+    "version": "sync-composer-version",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "jest --passWithNoTests",
     "test:integration": "if [ -f test.sh ]; then ./test.sh; fi && sp-test",
