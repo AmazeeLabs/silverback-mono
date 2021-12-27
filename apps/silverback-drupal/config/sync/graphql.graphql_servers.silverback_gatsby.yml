@@ -4,7 +4,11 @@ status: true
 dependencies: {  }
 name: silverback_gatsby
 label: 'Silverback Gatsby'
+endpoint: /silverback-gatsby
+debug_flag: 15
 schema: silverback_gatsby_test
+caching: true
+batching: true
 schema_configuration:
   silverback_gatsby_test:
     extensions:
@@ -12,7 +16,3 @@ schema_configuration:
     build_webhook: 'http://localhost:9001/__rebuild'
     role: gatsby_build
 persisted_queries_settings: {  }
-endpoint: /silverback-gatsby
-debug_flag: 15
-caching: true
-batching: true
