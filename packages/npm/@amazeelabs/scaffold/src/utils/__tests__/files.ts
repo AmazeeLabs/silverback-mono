@@ -2,8 +2,11 @@ import * as fs from 'fs';
 import mock from 'mock-fs';
 
 import { installConfigFiles } from '../files';
+import { fixMockFs } from '../fix-mock-fs';
 
 afterEach(mock.restore);
+
+fixMockFs();
 
 describe('installConfigFiles', () => {
   it('adds missing files', () => {
