@@ -14,9 +14,9 @@
     "jest": "^27"
   },
   "dependencies": {
-    "@swc/core": "^1.2.108",
-    "@swc/jest": "^0.2.5",
-    "@testing-library/react": "^12.0.0",
+    "@swc/core": "^1.2.123",
+    "@swc/jest": "^0.2.15",
+    "@testing-library/react": "^12.1.2",
     "@tsconfig/recommended": "^1",
     "identity-obj-proxy": "^3.0.0",
     "jest-runner-eslint": "^1.0.0",
