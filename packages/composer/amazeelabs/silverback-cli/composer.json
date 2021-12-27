@@ -3,7 +3,7 @@
   "description": "Scaffolder for Amazee Silverback projects.",
   "type": "package",
   "license": "GPL-2.0-or-later",
-  "version": "2.7.5",
+  "version": "2.7.6",
   "require": {
     "ext-zip": "*",
     "alchemy/zippy": "^1.0.0",

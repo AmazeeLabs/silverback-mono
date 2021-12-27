@@ -3,5 +3,5 @@
   "type": "drupal-module",
   "description": "Helpers for E2E testing.",
   "license": "GPL-2.0-or-later",
-  "version": "1.2.15"
+  "version": "1.2.16"
 }

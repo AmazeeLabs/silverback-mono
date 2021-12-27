@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.30](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.3.29...@amazeelabs/scaffold@1.3.30) (2021-12-27)
+
+
+### Bug Fixes
+
+* add workaround to fix mock-fs issue ([e9c58d5](https://github.com/AmazeeLabs/silverback-mono/commit/e9c58d58a064ed38bc7f437cef20eeed5d8a26a7))
+
+
+
+
+
 ## [1.3.29](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.3.28...@amazeelabs/scaffold@1.3.29) (2021-12-23)
 
 **Note:** Version bump only for package @amazeelabs/scaffold

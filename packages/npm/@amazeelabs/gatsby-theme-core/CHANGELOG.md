@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.30](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.6.29...@amazeelabs/gatsby-theme-core@0.6.30) (2021-12-27)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-theme-core
+
+
+
+
+
 ## [0.6.29](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.6.28...@amazeelabs/gatsby-theme-core@0.6.29) (2021-12-23)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-theme-core
