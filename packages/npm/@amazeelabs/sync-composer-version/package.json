@@ -2,7 +2,7 @@
   "name": "@amazeelabs/sync-composer-version",
   "private": true,
   "description": "Syncs version from package.json to composer.json.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "scripts": {
     "prepare": "chmod +x sync-composer-version.js"
   },
