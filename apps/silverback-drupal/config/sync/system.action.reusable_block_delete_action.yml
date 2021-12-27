@@ -2,11 +2,11 @@ uuid: e2933ceb-d927-4142-bede-a3356e9f16bb
 langcode: en
 status: true
 dependencies:
+  module:
+    - gutenberg
   enforced:
     module:
       - gutenberg
-  module:
-    - gutenberg
 _core:
   default_config_hash: 6Nffs0f0augGItO21H-DDIcPxIBbB5txCgVuY_3xY8k
 id: reusable_block_delete_action

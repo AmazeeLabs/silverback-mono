@@ -1,7 +1,12 @@
 uuid: 68e12bf0-951d-430e-b6aa-b0ae17bc1204
 langcode: de
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - graphql
+    - media
+    - node
+    - system
 id: gatsby_preview
 label: 'Gatsby Preview'
 weight: 2

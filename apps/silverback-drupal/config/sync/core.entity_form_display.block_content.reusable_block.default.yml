@@ -5,11 +5,11 @@ dependencies:
   config:
     - block_content.type.reusable_block
     - field.field.block_content.reusable_block.body
+  module:
+    - text
   enforced:
     module:
       - gutenberg
-  module:
-    - text
 _core:
   default_config_hash: LMzXnAY8MqVbuuzTpfSafPS4IbJIbCo3fXQKwfyf9tY
 id: block_content.reusable_block.default
@@ -20,12 +20,12 @@ content:
   body:
     type: text_textarea_with_summary
     weight: 26
+    region: content
     settings:
       rows: 9
       summary_rows: 3
       placeholder: ''
     third_party_settings: {  }
-    region: content
   info:
     type: string_textfield
     weight: -5

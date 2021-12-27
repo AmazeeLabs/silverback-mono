@@ -5,6 +5,7 @@ dependencies: {  }
 id: webform
 label: Webform
 description: ''
+weight: 0
 folder: ../config/webform/sync
 module:
   webform: 0
@@ -14,4 +15,3 @@ blacklist: {  }
 graylist: {  }
 graylist_dependents: false
 graylist_skip_equal: false
-weight: 0

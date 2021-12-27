@@ -5,11 +5,11 @@ dependencies:
   config:
     - block_content.type.reusable_block
     - field.storage.block_content.body
+  module:
+    - text
   enforced:
     module:
       - gutenberg
-  module:
-    - text
 _core:
   default_config_hash: 5RXQefQODLix37m6HHHb7dKXF_l8R7yp0zr9fyRVbts
 id: block_content.reusable_block.body

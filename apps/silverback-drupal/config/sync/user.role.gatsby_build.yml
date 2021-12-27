@@ -1,7 +1,11 @@
 uuid: ad1a8741-e713-41ac-8e99-17d132989dc2
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - graphql
+    - media
+    - system
 id: gatsby_build
 label: 'Gatsby Build'
 weight: 3

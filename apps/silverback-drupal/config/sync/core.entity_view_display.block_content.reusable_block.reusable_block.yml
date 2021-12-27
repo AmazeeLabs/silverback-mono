@@ -6,11 +6,11 @@ dependencies:
     - block_content.type.reusable_block
     - core.entity_view_mode.block_content.reusable_block
     - field.field.block_content.reusable_block.body
+  module:
+    - gutenberg
   enforced:
     module:
       - gutenberg
-  module:
-    - gutenberg
 _core:
   default_config_hash: SBJIE09BTiRCwFOuLIhkS10jRR1xZ-xudPsdqThfqLc
 id: block_content.reusable_block.reusable_block
@@ -19,13 +19,13 @@ bundle: reusable_block
 mode: reusable_block
 content:
   body:
-    label: hidden
     type: gutenberg_text
-    weight: 1
+    label: hidden
     settings:
       format: gutenberg
       content_only: true
     third_party_settings: {  }
+    weight: 1
     region: content
 hidden:
   langcode: true
