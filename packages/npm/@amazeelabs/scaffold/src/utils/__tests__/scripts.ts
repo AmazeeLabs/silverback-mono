@@ -1,9 +1,12 @@
 import mock from 'mock-fs';
 
+import { fixMockFs } from '../fix-mock-fs';
 import { readPackageInfo } from '../helpers';
 import { installScripts } from '../scripts';
 
 afterEach(mock.restore);
+
+fixMockFs();
 
 describe('installScripts', () => {
   it('inserts missing scripts', () => {
