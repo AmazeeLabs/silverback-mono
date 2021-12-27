@@ -26,6 +26,9 @@
   // The "bump" strategy helps a lot with Composer updates.
   rangeStrategy: "bump",
 
+  // All updates except for the major wait for a manual approval.
+  dependencyDashboardApproval: true,
+
   packageRules: [
 
     // Standard rules.
@@ -35,11 +38,15 @@
       // Give major updates a month to stabilize.
       stabilityDays: 30,
       automerge: false,
+      dependencyDashboardApproval: false,
+      // Drupal's security release window: Wednesdays, from 16:00 UTC to 22:00 UTC
+      // https://www.drupal.org/drupal-security-team/security-release-numbers-and-release-timing#s-release-timing
+      schedule: ["before 3am on thursday"]
     },
     {
       matchUpdateTypes: ["minor", "patch", "digest"],
       groupName: "all-non-major",
-      automerge: false
+      automerge: false,
     },
     {
       // Do not update "engines" field in package.json files.
@@ -60,14 +67,9 @@
     },
   ],
 
-  // Drupal's security release window: Wednesdays, from 16:00 UTC to 22:00 UTC
-  // https://www.drupal.org/drupal-security-team/security-release-numbers-and-release-timing#s-release-timing
-  schedule: ["before 3am on thursday"],
-
   lockFileMaintenance: {
     enabled: true,
-    // Do Lock File Maintenance right after other updates.
-    schedule: ["before 5am on thursday"],
-    automerge: false
+    schedule: ["at any time"],
+    automerge: false,
   },
 }
