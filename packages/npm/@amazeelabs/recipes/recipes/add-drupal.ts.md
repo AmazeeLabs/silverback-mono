@@ -53,10 +53,10 @@ Drupal core in `web/core` and contributed modules and themes in
 .phpunit.result.cache
 ```
 
-We maintain a package for common Drupal core patches that should be added upfront.
-This will make sure that you won't have to maintain patches in this project on your
-own. We also need to make sure patching is enabled and that broken patches will fail
-any deployments.
+We maintain a package for common Drupal core patches that should be added
+upfront. This will make sure that you won't have to maintain patches in this
+project on your own. We also need to make sure patching is enabled and that
+broken patches will fail any deployments.
 
 ```typescript
 $$('composer require amazeelabs/proxy-drupal-core');
@@ -64,10 +64,50 @@ $$.file('composer.json', (json) => ({
   ...json,
   extra: {
     ...json.extra,
-    "enable-patching": true,
-    "composer-exit-on-patch-failure": true,
-  }
-}))
+    'enable-patching': true,
+    'composer-exit-on-patch-failure': true,
+  },
+}));
+```
+
+## Minimal Drupal setup
+
+Drupal needs some essential settings to work. We are going to append them to the
+standard `setting.php` file.
+
+```typescript
+$$('mkdir -p scaffold');
+const crypto = require('crypto');
+$$.vars({
+  hashSalt: crypto.randomBytes(20).toString('hex'),
+});
+```
+
+```txt
+// |-> scaffold/settings.php.append.txt
+
+// Basic settings
+$settings['hash_salt'] = '{{hashSalt}}';
+$settings['config_sync_directory'] = '../config/sync';
+$settings['file_private_path'] = $app_root . '/sites/default/files/private';
+```
+
+```typescript
+$$.file('composer.json', (json) => ({
+  ...json,
+  extra: {
+    ...json.extra,
+    'drupal-scaffold': {
+      ...json.extra['drupal-scaffold'],
+      'file-mapping': {
+        ...(json.extra['drupal-scaffold']['file-mapping'] || {}),
+        '[web-root]/sites/default/settings.php': {
+          append: 'scaffold/settings.php.append.txt',
+        },
+      },
+    },
+  },
+}));
 ```
 
 ## Lagoon
@@ -102,10 +142,6 @@ automatically.
 
 First we create the required file in the `scaffold` folder within the Drupal
 directory.
-
-```typescript
-$$('mkdir -p scaffold');
-```
 
 ```php
 <?php
@@ -174,7 +210,7 @@ version: '2.3'
 
 x-lagoon-project:
   # Lagoon project name (leave `&lagoon-project` when you edit this)
-  &lagoon-project { { projectName } }
+  &lagoon-project '{{projectName}}'
 
 x-drupal-volumes:
   &drupal-volumes # Define all volumes you would like to have real-time mounted into the drupal docker containers
@@ -272,16 +308,8 @@ tasks:
           fi
         service: cli
     - run:
-        name: Run any Drupal update hooks
-        command: drush -y updb
-        service: cli
-    - run:
-        name: Import configuration changes
-        command: drush -y cim
-        service: cli
-    - run:
-        name: Clear caches
-        command: drush -y cr
+        name: Run Drupal deploy tasks
+        command: drush -y deploy
         service: cli
     - run:
         name: Initiate Drush aliases
@@ -315,20 +343,34 @@ $$('mkdir .lagoon');
 # |-> .lagoon/cli.Dockerfile
 FROM amazeeio/php:7.4-cli-drupal as builder
 
-RUN apk add --no-cache git && \
+RUN apk add --no-cache git imagemagick && \
   docker-php-ext-install intl && \
-  docker-php-ext-enable intl
   docker-php-ext-enable intl && \
-  composer selfupdate --2
+  composer selfupdate --2 && \
+  composer config --global github-protocols https && \
+  composer global remove hirak/prestissimo
+
+# Initiate the whole monorepo for the case if Drupal will need something from
+# other yarn workspaces (e.g. CSS files for the editor).
+COPY package.json yarn.lock /app/
+
+COPY apps/cms/package.json /app/apps/cms/package.json
+# You might need to copy package.json files from all workspaces.
+
+# Yarn's postinstall scripts can be tricky, so we use --ignore-scripts flag. For
+# the case if something required is missing, it can be built with `npm rebuild`
+# after `yarn install`.
+# Example:
+# RUN yarn install --pure-lockfile --ignore-scripts --ignore-engines
+# RUN npm rebuild node-sass
+# RUN yarn lerna run prepare
+RUN yarn install --pure-lockfile --ignore-scripts --ignore-engines
+COPY . /app
 
 WORKDIR /app/apps/cms
-RUN composer install
-RUN composer config --global github-protocols https
-RUN composer install --prefer-dist
-RUN apk add --no-cache imagemagick
-RUN chmod +r ~/.composer/auth.json ~/.composer/config.json
+RUN composer install --prefer-dist --no-interaction
 
-ENV WEBROOT=apps/cms/web
+ENV WEBROOT=/app/apps/cms/web
 ```
 
 ```dockerfile
@@ -337,9 +379,12 @@ ARG CLI_IMAGE
 FROM ${CLI_IMAGE} as cli
 
 FROM amazeeio/php:7.4-fpm
-RUN apk add --no-cache imagemagick git
+RUN apk add --no-cache git imagemagick && \
+  docker-php-ext-install intl && \
+  docker-php-ext-enable intl
 
 COPY --from=cli /app/apps/cms /app/apps/cms
+WORKDIR /app/apps/cms
 ENV WEBROOT=apps/cms/web
 ```
 
@@ -352,6 +397,14 @@ FROM amazeeio/nginx-drupal
 
 COPY --from=cli /app/apps/cms /app/apps/cms
 ENV WEBROOT=apps/cms/web
+```
+
+```ignorelang
+# |-> .dockerignore
+**/node_modules
+**/vendor
+_local
+
 ```
 
 ## Silverback CLI
@@ -385,14 +438,6 @@ $$.file('composer.json', (json) => ({
 }));
 ```
 
-It also depends on the latest version of `alchemy/zippy`, which is not a stable
-release. The preferred stability is "stable", and we don't want to change that,
-so we have to explicitly install the `dev` version of `alchemy/zippy`.
-
-```typescript
-$$('composer require alchemy/zippy:dev-master');
-```
-
 Now we can install `amazeelabs/silverback-cli` and everything it entails.
 
 ```typescript
@@ -423,11 +468,11 @@ $$.file('package.json', (json) => ({
     ...json.scripts,
     prepare:
       'if php -v && [[ -z $LAGOON ]]; then composer install && yarn setup; fi',
-    'drupal-install': 'source .envrc && silverback setup --profile standard',
+    'drupal-install': 'source .envrc && silverback setup --profile minimal',
     setup: 'source .envrc && silverback setup',
-    start: 'source .envrc && cd web && php -S 127.0.0.1:8888 .ht.router.php',
+    start: 'source .envrc && drush serve',
+    admin: 'source .envrc && drush uli',
     drush: 'source .envrc && drush',
-    silverback: 'source .envrc && silverback',
   },
 }));
 ```
@@ -456,6 +501,15 @@ $$('ls -la', {
 });
 ```
 
+Export initial Drupal config.
+
+```typescript
+$$('yarn drush -y cex');
+$$('yarn drush status', {
+  stdout: /Drupal bootstrap\s+:\s+Successful/,
+});
+```
+
 Over time the Drupal config will accumulate more and more changes, and
 `yarn setup` will take longer again. Then you can run `yarn install` again to
 create and updated version of `install-cache.zip` and commit it.
@@ -465,14 +519,113 @@ management system.
 
 [direnv]: https://direnv.net/
 
+```typescript
+$$.chdir('../../');
+```
+
+## Continuous integration
+
+Adjust testing workflow.
+
+```yml
+# >-> .github/workflows/test.yml
+
+      - name: Check if there are config changes after Drupal updates
+        run: |
+          set -e
+          cd apps/cms
+          source .envrc
+          composer i
+          silverback setup --no-config-import
+          drush cex -y
+          cd -
+          if [[ $(git status --porcelain -- apps/cms/config ':!apps/cms/config/sync/language') ]]
+          then
+            >&2 echo 'Error: Found uncommitted Drupal config.'
+            echo 'If it was due to Drupal updates which changed Drupal config: checkout this branch locally, switch to `apps/cms` dir, run `composer i && silverback setup --no-config-import && drush cex -y`, review the config changes, commit and push.'
+            echo 'If it was an intentional change to Drupal config files: checkout this branch locally, switch to `apps/cms` dir, run `composer i && silverback setup --profile=minimal`, commit and push.'
+            git status --porcelain -- apps/cms/config ':!apps/cms/config/sync/language'
+            false
+          else
+            echo 'Success: Found no new config changes.'
+          fi
+
+  docker_build:
+    name: Docker Build
+    if: startsWith(github.head_ref, 'test-all/') == true
+    runs-on: ubuntu-20.04
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2
+          bundler-cache: true
+
+      - name: Install Pygmy
+        run: gem install pygmy
+
+      - name: Start Pygmy
+        run: pygmy up
+
+      - name: Docker Build
+        run: docker-compose build
+```
+
+Adjust lock-file-changes workflow.
+
+<!-- prettier-ignore-start -->
+```yml
+# >-> .github/workflows/lock-file-changes.yml
+
+      # composer.lock
+      - name: Generate composer diff
+        id: composer_diff
+        uses: IonBazan/composer-diff-action@v1
+        with:
+          base: {{'${{ github.event.pull_request.base.sha }}:apps/cms/composer.lock'}}
+          target: apps/cms/composer.lock
+      - uses: marocchino/sticky-pull-request-comment@v2
+        if: {{'${{ steps.composer_diff.outputs.composer_diff }}'}}
+        with:
+          header: composer-diff
+          # Make the message look similar to the one produced by
+          # Simek/yarn-lock-changes.
+          message: |
+            ## `composer.lock` changes
+
+            <details>
+            <summary>Click to toggle table visibility</summary>
+
+            {{'${{ steps.composer_diff.outputs.composer_diff }}'}}
+
+            </details>
+      - uses: marocchino/sticky-pull-request-comment@v2
+        if: {{'${{ steps.composer_diff.outputs.composer_diff == 0 }}'}}
+        with:
+          header: composer-diff
+          delete: true
+```
+<!-- prettier-ignore-end -->
+
 ## Finishing up
 
 That's it. Now just commit all the changes.
 
 ```typescript
-$$.chdir('../../');
-$$('git add apps/cms docker-compose.yml .lagoon.yml .lagoon');
+$$('git add apps/cms/config');
+$$('git commit -m "chore: export initial drupal config"');
+
+$$('git add apps/cms docker-compose.yml .lagoon.yml .lagoon .dockerignore');
 $$('git commit -m "chore: lagoon setup"');
+
+$$('git add .github');
+$$('git commit -m "ci: adjust github workflows for drupal"');
 ```
 
 As always, the repository should be clean now.

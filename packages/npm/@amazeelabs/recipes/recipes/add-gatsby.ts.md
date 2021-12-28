@@ -24,12 +24,18 @@ Switch into the newly created directory and attempt to build the website. This
 should create a `index.html` file in the `public` folder with the starter kits
 dummy content.
 
+We run `yarn update-schema` instead of `yarn build` to build Gatsby and export
+its GraphQL schema in one shot.
+
 ```typescript
 $$.chdir('website');
-$$('yarn build');
+$$('yarn update-schema');
 $$('cat public/index.html', {
   stdout: /Welcome to your new Gatsby site./,
 });
+
+$$('git add generated');
+$$('git commit -m "chore: export gatsby schema"');
 ```
 
 The `.gitignore` file is not populated by the starter. The `public`,
@@ -38,9 +44,7 @@ repository.
 
 ```typescript
 $$.file('.gitignore', (lines) => [
-  'public',
-  'node_modules',
-  'generated',
+  'generated/*',
   '!generated/schema.graphql',
   ...lines,
 ]);
@@ -62,10 +66,16 @@ $$.file('package.json', (json) => ({
 }));
 ```
 
-Finally, commit the new app to the mono-repository.
+Re-run `yarn install` on the root level to update `yarn.lock`.
 
 ```typescript
 $$.chdir('../../');
+$$('yarn');
+```
+
+Finally, commit the new app to the mono-repository.
+
+```typescript
 $$('git add apps/website yarn.lock');
 $$('git commit -m "chore: initiate Gatsby website app"');
 ```

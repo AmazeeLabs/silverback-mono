@@ -1,6 +1,7 @@
 {
   extends: [
     ":ignoreModulesAndTests",
+    "helpers:disableTypesNodeMajor",
   ],
 
   // Manually control versions for
@@ -26,7 +27,7 @@
   // The "bump" strategy helps a lot with Composer updates.
   rangeStrategy: "bump",
 
-  // All updates except for the major wait for a manual approval.
+  // All updates, except for the major, wait for a manual approval.
   dependencyDashboardApproval: true,
 
   packageRules: [

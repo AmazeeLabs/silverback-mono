@@ -54,7 +54,7 @@ try {
 
   const recipeLogFile = path.resolve(gitDir, 'README.md');
 
-  const recipeLogHeading = `## Recipe log\nThese recipes have been executed on the project.\n`;
+  const recipeLogHeading = `## Recipe log\n\nThese recipes have been executed on the project.\n\n`;
   const injectHeading = (log: string) =>
     log.includes(recipeLogHeading) ? log : `${log}\n${recipeLogHeading}`;
 
@@ -71,6 +71,9 @@ try {
       null,
       2,
     )}\n\`\`\`\n\n`,
+  );
+  $$(
+    `git add ${recipeLogFile} && git commit -m 'chore: executed "${recipe}" recipe'`,
   );
 } catch (err) {
   $$.log.prettyError(err as any, true, true, true, 1);

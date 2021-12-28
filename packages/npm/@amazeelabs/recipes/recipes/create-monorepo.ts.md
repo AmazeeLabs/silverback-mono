@@ -12,13 +12,15 @@ $$('git --version', {
 
 // Check node version.
 $$('node -v', {
-  stdout: $$.minimalVersion('12'),
+  stdout: $$.minimalVersion('14'),
 });
 
 // Check yarn version.
 $$('yarn -v', {
   stdout: $$.minimalVersion('1.0'),
 });
+
+// TODO: Should we test for nvm? And maybe for direnv?
 ```
 
 ## Basic project setup
@@ -44,6 +46,36 @@ $$(`mkdir ${projectName}`);
 
 // Change into that directory.
 $$.chdir(projectName);
+```
+
+Store Node.js version in `.nvmrc` file and make it autoload when switching into
+the project directory. You can change it later.
+
+```typescript
+$$('node -v', {
+  stdout: (version: string) => {
+    $$.vars({ nodeVersion: version.match(/[0-9]+/)![0] });
+    return undefined;
+  },
+});
+```
+
+```txt
+# |-> .nvmrc
+
+{{nodeVersion}}
+```
+
+```bash
+# |-> .envrc
+#!/usr/bin/env bash
+
+# Set node version defined in .nvmrc.
+nvm_sh=~/.nvm/nvm.sh
+if [[ -e $nvm_sh ]]; then
+  source $nvm_sh
+  nvm use || nvm install
+fi
 ```
 
 Initiate a new yarn workspace project and set the author field.
@@ -149,7 +181,7 @@ node_modules
 Now initiate the git repository and stage all the changes for our first commit:
 
 ```typescript
-$$(`git add .gitignore package.json yarn.lock .husky`);
+$$(`git add .nvmrc .envrc .gitignore package.json yarn.lock .husky`);
 ```
 
 Committing with an invalid message should fail now:
@@ -186,6 +218,10 @@ First we have to declare our yarn workspaces in `package.json`:
 ```typescript
 $$.file('package.json', (json) => ({
   ...json,
+  scripts: {
+    ...json.scripts,
+    postinstall: `lerna run prepare && ${json.scripts.postinstall}`,
+  },
   workspaces: ['apps/*', 'packages/*/*'],
   private: true,
 }));
@@ -353,6 +389,13 @@ We can run the `@amazeelabs/scaffold` package to inject common tooling like
 $$('npx @amazeelabs/scaffold');
 ```
 
+We now need to re-run `yarn install` on the root level. For Yarn 1 it's a
+required action after making changes in the workspaces.
+
+```typescript
+$$('cd ../../.. && yarn');
+```
+
 Among some others, this registered bespoken `precommit` script to the package
 which will run `lint-staged` within the package scope. The configuration for
 lint-staged in turn will prettify all staged files and run [jest] tests related
@@ -368,6 +411,8 @@ $$('mkdir -p src');
 
 ```typescript
 // |-> src/foo.ts
+
+// TODO: Delete this file when you have actual code in the package.
 export const foo = (bar: any) => true;
 ```
 
@@ -444,11 +489,18 @@ Now the script should pass 🎉
 $$('yarn precommit');
 ```
 
-We know now that the `precommit` script does what it should do, so we can delete
-our test files, move back to the repository root and commit the whole package.
+Also add `.gitignore` (used by `eslint`).
+
+```gitignore
+# |-> .gitignore
+
+node_modules
+```
+
+We leave the test files as examples for developers, move back to the repository
+root and commit the whole package.
 
 ```typescript
-$$('rm -rf src/**');
 $$.chdir(`../../..`);
 $$('git add packages');
 $$(`git commit -m "chore: initiated @${projectName}/meta"`);
@@ -467,15 +519,23 @@ dependencies and then run the `test` scripts for all packages that changed since
 the last release.
 
 For convenience, we add this test script to the root `package.json` of our
-repository. It should not run tests in parallel, because when we bring in
-Drupal, we have to rely on a single database that would get scrambled then.
+repository. It should not run integration tests in parallel, because when we
+bring in Drupal, we have to rely on a single database that would get scrambled
+then.
 
 ```typescript
 $$.file('package.json', (json) => ({
   ...json,
   scripts: {
     ...json.scripts,
-    test: 'lerna run test --since --concurrency=1 --stream',
+    'test:static': 'lerna run test:static --since',
+    'test:static:all': 'lerna run test:static',
+    'test:unit': 'lerna run test:unit --since',
+    'test:unit:all': 'lerna run test:unit',
+    'test:integration':
+      'lerna run test:integration --since --concurrency=1 --stream',
+    'test:integration:all':
+      'lerna run test:integration --concurrency=1 --stream',
   },
 }));
 ```
@@ -493,21 +553,14 @@ on:
   pull_request:
     branches:
       - dev
+  push:
+    branches:
+      - dev
 jobs:
   test:
     name: Test
     runs-on: ubuntu-20.04
     steps:
-      # Tell yarn to use bash, so we can use "source" to load environment
-      # variables
-      - name: Configure yarn shell
-        run: yarn config set script-shell /bin/bash
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 12
-
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -519,50 +572,76 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Read .nvmrc
+        run: |
+          echo "##[set-output name=NODE_VERSION;]$(cat .nvmrc| grep -oE '[0-9]+(\.[0-9]+)?(\.[0-9]+)?' | head -1)"
+        id: node_version
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: |
+            {{'${{ steps.node_version.outputs.NODE_VERSION }}'}}
+
+      - name: Tell yarn to use bash
+        run: yarn config set script-shell /bin/bash
+
       - name: Get Yarn cache directory
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
-
       - name: Get Yarn version hash
         id: yarn-version
-        run:
-          echo "::set-output name=hash::$(yarn --version | shasum | cut -d' '
-          -f1)"
-
+        run: |
+          echo "::set-output name=hash::$(yarn --version | shasum | cut -d' ' -f1)"
       - name: Get Composer cache directory
         id: composer-cache
         run: |
           echo "::set-output name=dir::$(composer global config cache-files-dir)"
-
       - name: Get Composer version hash
         id: composer-version
         run: |
           echo "::set-output name=hash::$(composer --version | shasum | cut -d' ' -f1)"
-
       - name: Cache dependencies
         uses: actions/cache@v2
         env:
           cache-name: cache-dependencies
         with:
           path: |
-            {{'${{steps.yarn-cache.outputs.dir}}'}}
-            {{'${{steps.composer-cache.outputs.dir}}'}}
+            {{'${{ steps.yarn-cache.outputs.dir }}'}}
+            {{'${{ steps.composer-cache.outputs.dir }}'}}
           key: |
-            {{'${{steps.yarn-version.outputs.hash}}-${{steps.composer-version.outputs.hash}}-${{github.run_id}}'}}
+            {{'${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash }}-composer-${{ steps.composer-version.outputs.hash }}-github_run_id-${{ github.run_id }}'}}
           restore-keys: |
-            {{'${{steps.yarn-version.outputs.hash}}-${{steps.composer-version.outputs.hash}}-'}}
+            {{'${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash }}-composer-${{ steps.composer-version.outputs.hash }}-'}}
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Run tests
-        run: yarn test
+      - name: Run static tests
+        if: startsWith(github.head_ref, 'test-all/') == false
+        run: yarn test:static
+      - name: Run all static tests
+        if: startsWith(github.head_ref, 'test-all/') == true
+        run: yarn test:static:all
+
+      - name: Run unit tests
+        if: startsWith(github.head_ref, 'test-all/') == false
+        run: yarn test:unit
+      - name: Run all unit tests
+        if: startsWith(github.head_ref, 'test-all/') == true
+        run: yarn test:unit:all
+
+      - name: Run integration tests
+        if: startsWith(github.head_ref, 'test-all/') == false
+        run: yarn test:integration
+      - name: Run all integration tests
+        if: startsWith(github.head_ref, 'test-all/') == true
+        run: yarn test:integration:all
 
       - name: Check for uncommitted changes
         run: |
           if [[ $(git status --porcelain) ]]
           then
-            echo "Error: Found uncommitted changes. Lerna publish will fail."
+            >&2 echo "Error: Found uncommitted changes. Lerna publish will fail."
             git status --porcelain
             git diff
             false
@@ -579,24 +658,11 @@ $$(`git commit -m "chore: configured test workflow"`);
 ### Release workflow
 
 The **Release** workflow runs on a scheduled interval or manual trigger and will
-re-run all tests before eventually tell [lerna] to tag new release versions for
-all packages and merge the latest version into the `prod` branch. During
+re-run tests before eventually tell [lerna] to tag new release versions for all
+packages and merge the latest version into the `prod` branch. During
 development, we schedule the release to every late afternoon, so whatever we
 merge over the day gets deployed. When more users start to work on the system,
 this deployment window should be adjusted according to their needs.
-
-Again, we first add a script to `package.json`. This time, it will run all tests
-that are there.
-
-```typescript
-$$.file('package.json', (json) => ({
-  ...json,
-  scripts: {
-    ...json.scripts,
-    'test-all': 'lerna run test --concurrency=1 --stream',
-  },
-}));
-```
 
 The new workflow file has to look like this:
 
@@ -614,21 +680,10 @@ jobs:
     name: Release
     runs-on: ubuntu-20.04
     steps:
-      # Tell yarn to use bash, so we can use "source" to load environment
-      # variables
-      - name: Configure yarn shell
-        run: yarn config set script-shell /bin/bash
-
-      # Set a git user identity for Lerna's release commits..
       - name: Git mail
         run: git config --global user.email "kitt@amazee.com"
       - name: Git username
         run: git config --global user.name "K.I.T.T."
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 12
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -642,44 +697,56 @@ jobs:
           fetch-depth: 0
           ref: dev
 
+      - name: Read .nvmrc
+        run: |
+          echo "##[set-output name=NODE_VERSION;]$(cat .nvmrc| grep -oE '[0-9]+(\.[0-9]+)?(\.[0-9]+)?' | head -1)"
+        id: node_version
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: |
+            {{'${{ steps.node_version.outputs.NODE_VERSION }}'}}
+
+      - name: Tell yarn to use bash
+        run: yarn config set script-shell /bin/bash
+
       - name: Get Yarn cache directory
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
-
       - name: Get Yarn version hash
         id: yarn-version
-        run:
-          echo "::set-output name=hash::$(yarn --version | shasum | cut -d' '
-          -f1)"
-
+        run: |
+          echo "::set-output name=hash::$(yarn --version | shasum | cut -d' ' -f1)"
       - name: Get Composer cache directory
         id: composer-cache
         run: |
           echo "::set-output name=dir::$(composer global config cache-files-dir)"
-
       - name: Get Composer version hash
         id: composer-version
         run: |
           echo "::set-output name=hash::$(composer --version | shasum | cut -d' ' -f1)"
-
       - name: Cache dependencies
         uses: actions/cache@v2
         env:
           cache-name: cache-dependencies
         with:
           path: |
-            {{'${{steps.yarn-cache.outputs.dir}}'}}
-            {{'${{steps.composer-cache.outputs.dir}}'}}
+            {{'${{ steps.yarn-cache.outputs.dir }}'}}
+            {{'${{ steps.composer-cache.outputs.dir }}'}}
           key: |
-            {{'${{steps.yarn-version.outputs.hash}}-${{steps.composer-version.outputs.hash}}-${{github.run_id}}'}}
+            {{'${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash }}-composer-${{ steps.composer-version.outputs.hash }}-github_run_id-${{ github.run_id }}'}}
           restore-keys: |
-            {{'${{steps.yarn-version.outputs.hash}}-${{steps.composer-version.outputs.hash}}-'}}
+            {{'${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash }}-composer-${{ steps.composer-version.outputs.hash }}-'}}
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Run tests
-        run: yarn test-all
+      - name: Run static tests
+        run: yarn test:static
+      - name: Run unit tests
+        run: yarn test:unit
+      - name: Run integration tests
+        run: yarn test:integration
 
       - name: Check for uncommitted changes
         run: |
@@ -692,19 +759,18 @@ jobs:
           else
             echo "Success: Found no uncommitted changes"
           fi
+
       - name: Release
         env:
-          GITHUB_TOKEN: |
-            {{'${{secrets.GITHUB_TOKEN}}'}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: yarn lerna version -y
 
       - name: Merge dev -> prod
-        uses: devmasx/merge-branch@v1.3.1
+        uses: devmasx/merge-branch@1.4.0
         with:
           type: now
           target_branch: prod
-          github_token: |
-            {{'${{github.token}}'}}
+          github_token: ${{ github.token }}
 ```
 
 ```typescript
@@ -722,62 +788,108 @@ that by simply dropping this configuration file into the repository root.
 ```json5
 // |-> renovate.json5
 {
-  extends: [
-    // Same options as in "config:base", but without "group:monorepos" and
-    // "group:recommended".
-    ':separateMajorReleases',
-    ':combinePatchMinorReleases',
-    ':ignoreUnstable',
-    ':prImmediately',
-    ':semanticPrefixFixDepsChoreOthers',
-    ':updateNotScheduled',
-    ':automergeDisabled',
-    ':ignoreModulesAndTests',
-    ':autodetectPinVersions',
-    ':prHourlyLimit2',
-    ':prConcurrentLimit20',
-    'helpers:disableTypesNodeMajor',
+  extends: [':ignoreModulesAndTests', 'helpers:disableTypesNodeMajor'],
+
+  ignorePaths: [
+    // We want full control on the Dockerfiles.
+    '.lagoon/**',
+    // Same for the Node version.
+    '.nvmrc',
   ],
+
+  // This changes the behaviour of "stabilityDays"
+  // - from the standard "create PR and add a stabilityDays check to it"
+  // - to "create PR, but do not include updates for packages which did not pass
+  //   the stabilityDays check"
+  internalChecksFilter: 'strict',
+
+  dependencyDashboard: true,
+
+  // This will run all tests on Renovate PRs. This is required because
+  // `lerna run --since` will run nothing if only the root yarn.lock is updated.
+  branchPrefix: 'test-all/renovate/',
+
+  // The "bump" strategy helps a lot with Composer updates.
+  rangeStrategy: 'bump',
+
+  // All updates, except for the major, wait for a manual approval.
+  dependencyDashboardApproval: true,
+
   packageRules: [
+    // Standard rules.
     {
-      updateTypes: ['major', 'minor', 'patch', 'digest'],
-      automerge: true,
+      matchUpdateTypes: ['major'],
+      groupName: 'all-major',
+      // Give major updates a month to stabilize.
+      stabilityDays: 30,
+      automerge: false,
+      dependencyDashboardApproval: false,
+      // Drupal's security release window: Wednesdays, from 16:00 UTC to 22:00 UTC
+      // https://www.drupal.org/drupal-security-team/security-release-numbers-and-release-timing#s-release-timing
+      schedule: ['before 3am on thursday'],
     },
+    {
+      matchUpdateTypes: ['minor', 'patch', 'digest'],
+      groupName: 'all-non-major',
+      automerge: false,
+    },
+    {
+      // Do not update "engines" field in package.json files.
+      matchDepTypes: ['engines'],
+      enabled: false,
+    },
+
+    // Package-specific rules.
+    // - none yet -
   ],
-  rangeStrategy: 'replace',
-  groupName: 'all',
-  // Regular updates go first.
-  schedule: ['before 3am on monday'],
-  // Lock File Maintenance goes next.
-  //   Note: We keep the Lock File Maintenance separate from the updates.
-  //   Because, if we merge them, the list of updated packages in the PR will be
-  //   incomplete. (Renovate only reports packages which are defined in
-  //   package.json/composer.json files. Dependencies of dependencies, which are
-  //   stored in the lock files, are not listed.)
+
   lockFileMaintenance: {
     enabled: true,
-    schedule: ['before 5am on monday'],
-    branchPrefix: 'test-all/renovate/',
-    automerge: true,
+    schedule: ['at any time'],
+    automerge: false,
   },
 }
 ```
 
-This will run two different maintenance workflows. Both are scheduled for Sunday
-night, so there is the lowest chance to conflict with other pull requests (that
-all have been merged on friday, right?).
+Automerge is disabled, so on Thursday morning (right after the Drupal security
+release window) you'll need:
 
-- **update major version:** Attempts to upgrade all packages to their latest
-  major version.
-- **lockfile maintenance:** Updates all the dependencies to maximum of their
-  current version range.
+- merge `all-major` PR (created automatically)
+- approve `all-non-major` PR creation on the Dependency Dashboard, then merge it
+- approve `lock file maintenance` PR creation on the Dependency Dashboard, then
+  merge it
 
-[renovate] will create two pull requests that will automatically be merged when
-the _Test_ workflow for them passes. If they fail, it will leave instructions on
-how to proceed on monday morning 🥱
+Also, let's add `lock-file-changes` GitHub workflow. It creates a comment on
+every PR describing changes in the Yarn dependencies. Because Renovate is not
+always accurate with change reports and there is no change report in the
+`lock file maintenance` PR.
+
+<!-- prettier-ignore-start -->
+```yml
+# |-> .github/workflows/lock-file-changes.yml
+
+name: Lock File Changes
+on: [pull_request]
+jobs:
+  lock_file_changes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      # yarn.lock
+      - name: Yarn Lock Changes
+        uses: Simek/yarn-lock-changes@main
+        with:
+          token: {{'${{ secrets.GITHUB_TOKEN }}'}}
+          collapsibleThreshold: 1
+```
+<!-- prettier-ignore-end -->
 
 ```typescript
-$$('git add renovate.json5');
+$$('git add renovate.json5 .github/workflows/lock-file-changes.yml');
 $$(`git commit -m "chore: configured renovate"`);
 ```
 
@@ -873,8 +985,6 @@ $$('git status --porcelain', {
 
 ## Next steps
 
-Executing this recipe should have appended some information to the projects
-`README.md` that you should also commit. You are good to push the `dev` branch
-or proceed with the next steps:
+You are good to push the `dev` branch or proceed with the next steps:
 
 - `amazee-recipes add-gatsby`
