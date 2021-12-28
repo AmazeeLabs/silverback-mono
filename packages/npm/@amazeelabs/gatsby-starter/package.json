@@ -2,12 +2,12 @@
   "name": "@amazeelabs/gatsby-starter",
   "private": false,
   "description": "Gatsby starter for Amazee Labs projects",
-  "version": "0.7.49",
+  "version": "0.7.50",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
     "dotenv": "^10.0.0",
     "gatsby": "^4.4.0",
-    "gatsby-plugin-schema-export": "^1.1.5",
+    "gatsby-plugin-schema-export": "^1.1.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },

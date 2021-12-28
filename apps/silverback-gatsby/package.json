@@ -2,7 +2,7 @@
   "name": "@-amazeelabs/silverback-gastby",
   "private": true,
   "description": "gatsby-graphql-toolkit example for drupal",
-  "version": "1.2.40",
+  "version": "1.2.41",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
     "@-amazeelabs/silverback-drupal": "^1.10.50",
@@ -15,7 +15,7 @@
     "gatsby-graphql-source-toolkit": "^2.0.1",
     "gatsby-image": "^3.11.0",
     "gatsby-plugin-remote-images": "^3.2.0",
-    "gatsby-plugin-schema-export": "^1.1.5",
+    "gatsby-plugin-schema-export": "^1.1.6",
     "gatsby-plugin-sharp": "^4.4.0",
     "gatsby-transformer-sharp": "^4.4.0",
     "html-react-parser": "^1.4.4",

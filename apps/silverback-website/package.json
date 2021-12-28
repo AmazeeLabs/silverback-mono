@@ -1,7 +1,7 @@
 {
   "name": "silverback-website",
   "description": "Silverback website",
-  "version": "0.15.47",
+  "version": "0.15.48",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
     "@amazeelabs/gatsby-theme-core": "^0.6.30",
@@ -14,7 +14,7 @@
     "gatsby": "^4.4.0",
     "gatsby-plugin-mdx": "^3.4.0",
     "gatsby-plugin-postcss": "^5.4.0",
-    "gatsby-plugin-schema-export": "^1.1.5",
+    "gatsby-plugin-schema-export": "^1.1.6",
     "gatsby-plugin-schema-snapshot": "^3.4.0",
     "gatsby-plugin-sharp": "^4.4.0",
     "gatsby-remark-autolink-headers": "^5.4.0",
