@@ -108,7 +108,7 @@ we use and configure the just-in-time compiler to look for classes used in
 components within `src`.
 
 ```typescript
-# |-> tailwind.config.js
+// |-> tailwind.config.js
 module.exports = {
   mode: 'jit',
   purge: ['./src/**/*.tsx'],

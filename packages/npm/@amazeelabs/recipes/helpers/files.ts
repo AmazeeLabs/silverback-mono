@@ -60,3 +60,13 @@ export const __writeFile = (source: string, target: string) => {
   log.info(`updated ${chalk.cyan(targetName)}`);
   log.silly(`contents of ${chalk.cyan(targetName)}:\n${content}\n`);
 };
+
+export const __appendFile = (source: string, target: string) => {
+  const targetName = renderString(target, _vars);
+  const targetPath = path.resolve(process.cwd(), targetName);
+  const sourcePath = path.resolve(__dirname, '../files', source);
+  const content = renderString(fs.readFileSync(sourcePath).toString(), _vars);
+  fs.appendFileSync(targetPath, content);
+  log.info(`updated ${chalk.cyan(targetName)}`);
+  log.silly(`contents of ${chalk.cyan(targetName)}:\n${content}\n`);
+};

@@ -46,6 +46,9 @@ console.log('test');
 console.log('test');
 ```
 
+`>-> [filename]` does the same, but appends the contents to the file instead of
+overriding it.
+
 Files run through [Nunjucks](https://mozilla.github.io/nunjucks/), and it is
 possible to provide variables and dynamically replace them.
 
@@ -168,3 +171,8 @@ const { message } = $$.prompts({
   message: 'Enter a message:',
 });
 ```
+
+## How to test recipes
+
+Manual testing is possible with
+`yarn prepare && LOG=silly node ./dist/index.js my-recipe`.
