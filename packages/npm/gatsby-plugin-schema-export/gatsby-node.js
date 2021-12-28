@@ -15,6 +15,10 @@ module.exports.onPostBootstrap = ({ store, reporter }, options) => {
     const { schema } = store.getState();
     graphql(schema, getIntrospectionQuery())
       .then((res) => {
+        const dir = path.dirname(dest);
+        if (!fs.existsSync(dir)) {
+          fs.mkdirSync(dir, { recursive: true });
+        }
         fs.writeFileSync(dest, printSchema(buildClientSchema(res.data)));
         return undefined;
       })
