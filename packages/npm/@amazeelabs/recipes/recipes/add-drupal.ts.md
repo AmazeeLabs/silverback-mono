@@ -773,6 +773,58 @@ $$.file('package.json', (json) => ({
 }));
 ```
 
+## Configure Drupal
+
+Drupal installed with the Minimal profile looks like a monster. Fix this.
+
+```typescript
+$$('yarn drush -y theme:enable seven');
+$$('yarn drush -y config-set system.theme default seven');
+$$('yarn drush -y theme:uninstall stark');
+$$('yarn drush -y config:delete block.block.seven_tools');
+$$('yarn drush -y config:delete block.block.seven_admin');
+$$('yarn drush -y config:delete block.block.seven_branding');
+
+$$('composer require drupal/admin_toolbar');
+$$('yarn drush -y en admin_toolbar_tools admin_toolbar_search');
+```
+
+Also, get rid of some standard modules...
+
+```typescript
+$$('yarn drush -y pmu update');
+```
+
+And install the most commonly used ones.
+
+```typescript
+const modules = [
+  'ckeditor',
+  'block_content',
+  'menu_link_content',
+  'field_ui',
+  'inline_form_errors',
+  'media',
+  'media_library',
+  'menu_ui',
+  'path',
+  'shortcut',
+  'taxonomy',
+  'editor',
+  'views',
+  'views_ui',
+  'datetime',
+  'datetime_range',
+  'file',
+  'image',
+  'link',
+  'options',
+  'telephone',
+  'basic_auth',
+];
+$$(`yarn drush -y en ${modules.join(' ')}`);
+```
+
 ## Finishing up
 
 Get rid of Drupal's welcome message.
