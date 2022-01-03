@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.13.2...@-amazeelabs/silverback_gatsby@1.13.3) (2022-01-03)
+
+
+### Bug Fixes
+
+* fix schema export ([eb81e00](https://github.com/AmazeeLabs/silverback-mono/commit/eb81e00266d4f6648babc84cef3aa09184d7b5e3))
+
+
+
+
+
 ## [1.13.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.13.1...@-amazeelabs/silverback_gatsby@1.13.2) (2021-12-27)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gatsby

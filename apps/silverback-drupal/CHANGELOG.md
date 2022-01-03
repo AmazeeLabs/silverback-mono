@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.51](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.50...@-amazeelabs/silverback-drupal@1.10.51) (2022-01-03)
+
+
+### Bug Fixes
+
+* fix schema export ([eb81e00](https://github.com/AmazeeLabs/silverback-mono/commit/eb81e00266d4f6648babc84cef3aa09184d7b5e3))
+
+
+
+
+
 ## [1.10.50](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.49...@-amazeelabs/silverback-drupal@1.10.50) (2021-12-27)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
