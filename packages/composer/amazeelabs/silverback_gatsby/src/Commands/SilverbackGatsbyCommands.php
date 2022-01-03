@@ -56,7 +56,7 @@ class SilverbackGatsbyCommands extends DrushCommands {
         '%id' => $server->id(),
         '%path' => $path,
       ]));
-      $definition[] = $schema->getSchemaDefinition();
+      $definition = [$schema->getSchemaDefinition()];
       foreach ($schema->getExtensions() as $extension) {
         $definition[] = $extension->getBaseDefinition();
         $definition[] = $extension->getExtensionDefinition();
