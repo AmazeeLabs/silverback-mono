@@ -1,0 +1,75 @@
+name: Test Recipes
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    name: Test Recipes
+    runs-on: ubuntu-20.04
+    steps:
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          # TODO: Upgrade to PHP 8.
+          php-version: '7.4'
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2
+          bundler-cache: true
+
+      - name: Install Pygmy
+        run: gem install pygmy
+
+      - name: Start Pygmy
+        run: pygmy up
+
+      - name: Read .nvmrc
+        run: echo "##[set-output name=NODE_VERSION;]$(cat .nvmrc| grep -oE '[0-9]+(\.[0-9]+)?(\.[0-9]+)?' | head -1)"
+        id: node_version
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "${{ steps.node_version.outputs.NODE_VERSION }}"
+
+      - name: Tell yarn to use bash
+        run: yarn config set script-shell /bin/bash
+
+      - name: Get Yarn cache directory
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Get Yarn version hash
+        id: yarn-version
+        run: echo "::set-output name=hash::$(yarn --version | shasum | cut -d' ' -f1)"
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer global config cache-files-dir)"
+      - name: Get Composer version hash
+        id: composer-version
+        run: |
+          echo "::set-output name=hash::$(composer --version | shasum | cut -d' ' -f1)"
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-dependencies
+        with:
+          path: |
+            ${{ steps.yarn-cache.outputs.dir }}
+            ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash }}-composer-${{ steps.composer-version.outputs.hash }}-github_run_id-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash }}-composer-${{ steps.composer-version.outputs.hash }}-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Run recipe tests
+        run: cd packages/npm/@amazeelabs/recipes && yarn test:manual

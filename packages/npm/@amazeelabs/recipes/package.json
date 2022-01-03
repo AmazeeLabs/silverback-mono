@@ -48,6 +48,7 @@
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "jest --passWithNoTests",
     "test:integration": "if [ -f test.sh ]; then ./test.sh; fi",
+    "test:manual": "./test-manual.sh",
     "test:watch": "jest --watch"
   }
 }

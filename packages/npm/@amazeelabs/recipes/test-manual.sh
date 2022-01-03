@@ -21,7 +21,5 @@ yarn test:static:all
 yarn test:unit:all
 yarn test:integration:all
 
-
-# AXXX add
-# docker-compose build
-# docker-compose rm -fsv
+docker-compose build
+docker-compose rm -fsv
