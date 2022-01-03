@@ -7,6 +7,11 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
 
+      - name: Git mail
+        run: git config --global user.email "kitt@amazee.com"
+      - name: Git username
+        run: git config --global user.name "K.I.T.T."
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
