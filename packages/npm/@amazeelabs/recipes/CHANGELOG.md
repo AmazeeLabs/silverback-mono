@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.7.25...@amazeelabs/recipes@1.8.0) (2022-01-03)
+
+
+### Features
+
+* default content management for drupal ([13f3dde](https://github.com/AmazeeLabs/silverback-mono/commit/13f3ddee73bcb15b296afe8a9d2e581e906c7a4b))
+
+
+
+
+
 ## [1.7.25](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.7.24...@amazeelabs/recipes@1.7.25) (2022-01-03)
 
 **Note:** Version bump only for package @amazeelabs/recipes
