@@ -51,6 +51,10 @@ export const file = (
 export const __writeFile = (source: string, target: string) => {
   const targetName = renderString(target, _vars);
   const targetPath = path.resolve(process.cwd(), targetName);
+  const targetDir = path.dirname(targetPath);
+  if (!fs.existsSync(targetDir)) {
+    run(`mkdir -p '${targetDir}'`);
+  }
   const sourcePath = path.resolve(__dirname, '../files', source);
   if (fs.existsSync(target)) {
     run(`rm -rf ${targetPath}`);
