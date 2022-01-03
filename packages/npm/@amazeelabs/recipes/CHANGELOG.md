@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.8.0...@amazeelabs/recipes@1.9.0) (2022-01-03)
+
+
+### Features
+
+* un-uglify drupal ([40253b4](https://github.com/AmazeeLabs/silverback-mono/commit/40253b44f7baebd2379a811f37211318fe1c3690))
+
+
+
+
+
 # [1.8.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.7.25...@amazeelabs/recipes@1.8.0) (2022-01-03)
 
 
