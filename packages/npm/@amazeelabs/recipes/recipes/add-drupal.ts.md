@@ -9,6 +9,12 @@ $$('cat README.md', {
 });
 
 const { name: projectName } = $$.file('package.json');
+const projectNameDrupal = projectName.replace('-', '_').toLowerCase();
+
+$$.vars({
+  projectName,
+  projectNameDrupal,
+});
 ```
 
 To initiate a Drupal content management system, we first create a vanilla Drupal
@@ -197,12 +203,6 @@ $$.chdir('../../');
 
 First we drop the `docker-compose.yml` with the definition of the services we
 need. Those are a NGINX webserver, a PHP runtime and a MariaDB database host.
-
-```typescript
-$$.vars({
-  projectName,
-});
-```
 
 ```yaml
 # |-> docker-compose.yml
@@ -404,7 +404,6 @@ ENV WEBROOT=apps/cms/web
 **/node_modules
 **/vendor
 _local
-
 ```
 
 ## Silverback CLI
@@ -501,10 +500,7 @@ $$('ls -la', {
 });
 ```
 
-Export initial Drupal config.
-
 ```typescript
-$$('yarn drush -y cex');
 $$('yarn drush status', {
   stdout: /Drupal bootstrap\s+:\s+Successful/,
 });
@@ -613,13 +609,218 @@ Adjust lock-file-changes workflow.
 ```
 <!-- prettier-ignore-end -->
 
-## Finishing up
+## Default content export/import
 
-That's it. Now just commit all the changes.
+Let's add some helpers for exporting/importing the default content for local
+development and testing.
+
+We are going to use
+[Default Content](https://www.drupal.org/project/default_content) module for
+that.
 
 ```typescript
-$$('git add apps/cms/config');
+$$.chdir('apps/cms');
+$$("composer require 'drupal/default_content:^2.0.0-alpha1'");
+$$('yarn drush -y en default_content');
+```
+
+Create a custom module which will keep the exported content.
+
+```yml
+# |-> web/modules/custom/{{projectNameDrupal}}_default_content/{{projectNameDrupal}}_default_content.info.yml
+
+name: Default content for {{projectName}}
+package: Custom
+type: module
+core_version_requirement: ^8.0 || ^9.0
+dependencies:
+  - default_content:default_content
+```
+
+```php
+<?php
+// |-> web/modules/custom/{{projectNameDrupal}}_default_content/export.php
+
+if (PHP_SAPI !== 'cli') {
+  die;
+}
+
+// Define the list of excluded entity types.
+$excluded = [
+  // Created automatically on node creation. Cause troubles if exported.
+  'path_alias',
+  // Default users (admin and anonymous) cause troubles if exported. We
+  // create users manually in import.php.
+  'user',
+];
+
+require_once 'helpers.php';
+export($excluded);
+```
+
+```php
+<?php
+// |-> web/modules/custom/{{projectNameDrupal}}_default_content/import.php
+
+if (PHP_SAPI !== 'cli') {
+  die;
+}
+
+// Create users. Example:
+//$user = \Drupal\user\Entity\User::create();
+//$user->setUsername('GatsbyPreview');
+//$user->setPassword('GatsbyPreview');
+//$user->enforceIsNew();
+//$user->addRole('_gatsbypreview');
+//$user->activate();
+//$user->save();
+
+require_once 'helpers.php';
+import();
+```
+
+```php
+<?php
+// |-> web/modules/custom/{{projectNameDrupal}}_default_content/helpers.php
+
+use Drupal\Core\Entity\ContentEntityType;
+
+function export(array $excluded): void {
+  $dir = __DIR__ . '/content';
+  rrmdir($dir);
+  /** @var \Drupal\default_content\ExporterInterface $exporter */
+  $exporter = \Drupal::service('default_content.exporter');
+  $entity_type_definitions = \Drupal::entityTypeManager()->getDefinitions();
+  foreach ($entity_type_definitions as $definition) {
+    $entityTypeId = $definition->id();
+    if (
+      $definition instanceof ContentEntityType &&
+      !in_array($entityTypeId, $excluded, TRUE)
+    ) {
+      $entityIds = \Drupal::entityQuery($entityTypeId)->execute();
+      foreach ($entityIds as $entityId) {
+        $exporter->exportContentWithReferences($entityTypeId, $entityId, $dir);
+      }
+    }
+  }
+}
+
+function import(): void {
+  /** @var \Drupal\default_content\ImporterInterface $importer */
+  $importer = \Drupal::service('default_content.importer');
+  try {
+    $importer->importContent('{{projectNameDrupal}}_default_content');
+  }
+  catch (\Throwable $e) {
+    $message = $e->getMessage();
+    if (
+      strpos($message, 'UNIQUE constraint failed') !== FALSE &&
+      strpos($message, 'INSERT INTO "paragraphs_item"') !== FALSE
+    ) {
+      // This is fine: https://www.drupal.org/project/default_content/issues/2698425
+      return;
+    }
+    throw $e;
+  }
+}
+
+// From https://stackoverflow.com/a/3338133/580371
+function rrmdir(string $dir) {
+  if (is_dir($dir)) {
+    $objects = scandir($dir);
+    foreach ($objects as $object) {
+      if ($object != "." && $object != "..") {
+        if (is_dir($dir. DIRECTORY_SEPARATOR .$object) && !is_link($dir."/".$object))
+          rrmdir($dir. DIRECTORY_SEPARATOR .$object);
+        else
+          unlink($dir. DIRECTORY_SEPARATOR .$object);
+      }
+    }
+    rmdir($dir);
+  }
+}
+```
+
+```php
+<?php
+// |-> web/modules/custom/{{projectNameDrupal}}_default_content/{{projectNameDrupal}}_default_content.install
+
+/**
+ * Implements hook_requirements().
+ */
+function {{projectNameDrupal}}_default_content_requirements($phase) {
+  return [
+    'module' => [
+      'title' => '{{projectNameDrupal}}_default_content module should never be enabled',
+      'description' => '{{projectNameDrupal}}_default_content module should never be enabled',
+      'severity' => REQUIREMENT_ERROR,
+    ],
+  ];
+}
+```
+
+Register scripts in `package.json`.
+
+```typescript
+$$.file('package.json', (json) => ({
+  ...json,
+  scripts: {
+    ...json.scripts,
+    'default-content-export': `source .envrc && drush php-script web/modules/custom/${projectNameDrupal}_default_content/export.php`,
+    'default-content-import': `source .envrc && drush php-script web/modules/custom/${projectNameDrupal}_default_content/import.php`,
+    setup: `${json.scripts.setup} && yarn default-content-import`,
+  },
+}));
+```
+
+## Finishing up
+
+Get rid of Drupal's welcome message.
+
+```typescript
+$$.file('composer.json', (json) => ({
+  ...json,
+  extra: {
+    ...json.extra,
+    'post-create-project-cmd-message': undefined,
+  },
+}));
+$$('composer remove drupal/core-project-message');
+```
+
+Allow plugins execution. This part can be removed once
+[#3255749](https://www.drupal.org/project/drupal/issues/3255749) is resolved.
+
+```typescript
+$$.file('composer.json', (json) => ({
+  ...json,
+  config: {
+    ...json.config,
+    'allow-plugins': {
+      'composer/installers': true,
+      'drupal/core-composer-scaffold': true,
+    },
+  },
+}));
+```
+
+Export Drupal config and update Drupal install cache.
+
+```typescript
+$$('yarn drush -y cex');
+$$('yarn drupal-install');
+```
+
+Commit all the changes.
+
+```typescript
+$$.chdir('../..');
+
+$$('git add apps/cms/config apps/cms/install-cache.zip');
 $$('git commit -m "chore: export initial drupal config"');
+
+$$(`git add apps/cms/web/modules/custom/${projectNameDrupal}_default_content`);
+$$('git commit -m "chore: default content scripts"');
 
 $$('git add apps/cms docker-compose.yml .lagoon.yml .lagoon .dockerignore');
 $$('git commit -m "chore: lagoon setup"');
