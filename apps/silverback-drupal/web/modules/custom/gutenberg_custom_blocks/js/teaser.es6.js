@@ -90,19 +90,7 @@ const settings = {
     );
   },
 
-  save: (props) => {
-    // TODO (gutenberg): display media on the node vew form. Probably: do not
-    //  save data here, but render it with a twig template on Drupal side (this
-    //  approach is called "dynamic" block).
-    return (
-      <div className={props.attributes.className}>
-        <a href={props.attributes.url}>
-          <h2>{props.attributes.title}</h2>
-          <h4>{props.attributes.subtitle}</h4>
-        </a>
-      </div>
-    );
-  },
+  save: () => null,
 };
 
 registerBlockType(`custom/teaser`, settings);
