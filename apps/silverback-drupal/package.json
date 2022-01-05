@@ -12,6 +12,8 @@
     "snapshot-restore": "source .envrc && silverback snapshot-restore test",
     "clear": "source .envrc && drush cr",
     "test": "composer install && bash vendor/bin/silverback-test",
+    "test:integration": "yarn snapshot-restore && start-server-and-test start 8888 test:schema",
+    "test:schema": "yarn graphql-schema-test generated",
     "export-content": "web/modules/custom/silverback_gatsby_test/export_content.sh"
   },
   "dependencies": {
@@ -21,5 +23,9 @@
     "@-drupal/gatsby_build_monitor": "^1.4.12",
     "@-silverback-drupal-config/webform": "^1.0.3",
     "@-silverback-drupal/gutenberg_custom_blocks": "^1.0.20"
+  },
+  "devDependencies": {
+    "@amazeelabs/graphql-schema-test": "^1.0.0",
+    "start-server-and-test": "^1.14.0"
   }
 }

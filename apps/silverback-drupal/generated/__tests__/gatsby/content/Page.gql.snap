@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gatsby/content/Page.gql 1`] = `
+{
+  "Gatsby Build": {
+    "code": 200,
+    "data": {
+      "data": {
+        "loadPage": {
+          "__typename": "Page",
+          "id": "[numeric]:en",
+          "drupalId": "[numeric]",
+          "title": "A page",
+          "langcode": "en",
+          "body": "<p>Some text.</p>\\n",
+          "defaultTranslation": true,
+          "path": "/en/page/a-page",
+          "translations": [
+            {
+              "langcode": "en",
+              "defaultTranslation": true
+            },
+            {
+              "langcode": "de",
+              "defaultTranslation": false
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Gatsby Preview": {
+    "code": 200,
+    "data": {
+      "data": {
+        "loadPage": {
+          "__typename": "Page",
+          "id": "[numeric]:en",
+          "drupalId": "[numeric]",
+          "title": "A page",
+          "langcode": "en",
+          "body": "<p>Some text.</p>\\n",
+          "defaultTranslation": true,
+          "path": "/en/page/a-page",
+          "translations": [
+            {
+              "langcode": "en",
+              "defaultTranslation": true
+            },
+            {
+              "langcode": "de",
+              "defaultTranslation": false
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Extra": {
+    "code": 200,
+    "data": {
+      "errors": [
+        {
+          "message": "Type \\"Page\\" not found in document."
+        }
+      ]
+    }
+  }
+}
+`;

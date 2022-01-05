@@ -1,12 +1,26 @@
 {
-  "name": "Untitled GraphQL Schema",
-  "schemaPath": "website.composed.graphqls",
+  "name": "Project Schema",
+  "schemaPath": "*.composed.graphqls",
   "extensions": {
     "endpoints": {
-      "Default GraphQL Endpoint": {
+      "Gatsby Build": {
         "url": "http://localhost:8888/silverback-gatsby",
         "headers": {
-          "user-agent": "JS GraphQL"
+          "Authorization": "Basic R2F0c2J5QnVpbGQ6R2F0c2J5QnVpbGQ="
+        },
+        "introspect": false
+      },
+      "Gatsby Preview": {
+        "url": "http://localhost:8888/silverback-gatsby-preview",
+        "headers": {
+          "Authorization": "Basic R2F0c2J5UHJldmlldzpHYXRzYnlQcmV2aWV3"
+        },
+        "introspect": false
+      },
+      "Extra": {
+        "url": "http://localhost:8888/extra",
+        "headers": {
+          "Authorization": "Basic YWRtaW46YWRtaW4="
         },
         "introspect": false
       }

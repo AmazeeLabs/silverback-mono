@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gatsby/Image.gql 1`] = `
+{
+  "Gatsby Build": {
+    "code": 200,
+    "data": {
+      "data": {
+        "loadImage": {
+          "__typename": "Image",
+          "id": "[numeric]:en",
+          "drupalId": "[numeric]",
+          "langcode": "en",
+          "defaultTranslation": true,
+          "translations": [
+            {
+              "langcode": "en",
+              "defaultTranslation": true
+            },
+            {
+              "langcode": "de",
+              "defaultTranslation": false
+            }
+          ],
+          "url": "http://localhost:8888/sites/default/files/[date]/image_jpg_kitten.jpg",
+          "alt": "Kitten alt text"
+        }
+      }
+    }
+  },
+  "Gatsby Preview": {
+    "code": 200,
+    "data": {
+      "data": {
+        "loadImage": {
+          "__typename": "Image",
+          "id": "[numeric]:en",
+          "drupalId": "[numeric]",
+          "langcode": "en",
+          "defaultTranslation": true,
+          "translations": [
+            {
+              "langcode": "en",
+              "defaultTranslation": true
+            },
+            {
+              "langcode": "de",
+              "defaultTranslation": false
+            }
+          ],
+          "url": "http://localhost:8888/sites/default/files/[date]/image_jpg_kitten.jpg",
+          "alt": "Kitten alt text"
+        }
+      }
+    }
+  },
+  "Extra": {
+    "code": 200,
+    "data": {
+      "errors": [
+        {
+          "message": "Type \\"Image\\" not found in document."
+        }
+      ]
+    }
+  }
+}
+`;

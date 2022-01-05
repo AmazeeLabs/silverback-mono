@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`extra/extraField.gql 1`] = `
+{
+  "Gatsby Build": {
+    "code": 200,
+    "data": {
+      "errors": [
+        {
+          "message": "Cannot query field \\"extraField\\" on type \\"Query\\"."
+        }
+      ]
+    }
+  },
+  "Gatsby Preview": {
+    "code": 200,
+    "data": {
+      "errors": [
+        {
+          "message": "Cannot query field \\"extraField\\" on type \\"Query\\"."
+        }
+      ]
+    }
+  },
+  "Extra": {
+    "code": 200,
+    "data": {
+      "data": {
+        "extraField": "Extra value"
+      }
+    }
+  }
+}
+`;

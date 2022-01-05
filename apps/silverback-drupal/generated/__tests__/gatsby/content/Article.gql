@@ -1,0 +1,36 @@
+fragment Article on Article {
+  __typename
+  id
+  drupalId
+  title
+  langcode
+  body
+  image {
+    id
+  }
+  tags {
+    id
+  }
+  defaultTranslation
+  path
+  template
+  translations {
+    langcode
+    defaultTranslation
+  }
+}
+
+{
+  complete: loadArticle(id: "c997198a-a4a5-484a-8567-46ca6a24301a") {
+    ...Article
+  }
+  minimal: loadArticle(id: "80b65cc6-5f5f-4113-a52b-c00d3bd0bfe9") {
+    ...Article
+  }
+  promoted: loadArticle(id: "7702e639-4704-4599-a8b5-a65d88c61ea3") {
+    template
+  }
+  unpublished: loadArticle(id: "a86ca24a-e4f9-4a7d-ac4e-26b61b9db974") {
+    title
+  }
+}

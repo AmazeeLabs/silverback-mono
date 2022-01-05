@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gatsby/content/Article.gql 1`] = `
+{
+  "Gatsby Build": {
+    "code": 200,
+    "data": {
+      "data": {
+        "complete": {
+          "__typename": "Article",
+          "id": "[numeric]:en",
+          "drupalId": "[numeric]",
+          "title": "With everything",
+          "langcode": "en",
+          "body": "<p><strong>Article</strong> <em>body</em>.</p>\\n\\n<p>Pug is embedded 👇 </p>\\n\\n<article class=\\"media media--type-image media--view-mode-default\\" data-align=\\"center\\">\\n  \\n      \\n  <div class=\\"field field--name-field-media-image field--type-image field--label-visually_hidden\\">\\n    <div class=\\"field__label visually-hidden\\">Image</div>\\n              <div class=\\"field__item\\">  <img src=\\"/sites/default/files/2021-01/image_jpg_pug.jpg\\" width=\\"1920\\" height=\\"1080\\" alt=\\"Pug alt text\\" loading=\\"lazy\\" />\\n\\n</div>\\n          </div>\\n\\n  </article>\\n\\n\\n<p>Kitten goes in a separate field 👉</p>\\n",
+          "image": {
+            "id": "[numeric]:en"
+          },
+          "tags": [
+            {
+              "id": "[numeric]"
+            },
+            {
+              "id": "[numeric]"
+            }
+          ],
+          "defaultTranslation": true,
+          "path": "/en/article/with-everything",
+          "template": null,
+          "translations": [
+            {
+              "langcode": "en",
+              "defaultTranslation": true
+            },
+            {
+              "langcode": "de",
+              "defaultTranslation": false
+            },
+            {
+              "langcode": "fr",
+              "defaultTranslation": false
+            }
+          ]
+        },
+        "minimal": {
+          "__typename": "Article",
+          "id": "[numeric]:en",
+          "drupalId": "[numeric]",
+          "title": "Other article",
+          "langcode": "en",
+          "body": null,
+          "image": null,
+          "tags": [],
+          "defaultTranslation": true,
+          "path": "/en/article/other",
+          "template": null,
+          "translations": [
+            {
+              "langcode": "en",
+              "defaultTranslation": true
+            }
+          ]
+        },
+        "promoted": {
+          "template": "article-promoted"
+        },
+        "unpublished": null
+      }
+    }
+  },
+  "Gatsby Preview": {
+    "code": 200,
+    "data": {
+      "data": {
+        "complete": {
+          "__typename": "Article",
+          "id": "[numeric]:en",
+          "drupalId": "[numeric]",
+          "title": "With everything",
+          "langcode": "en",
+          "body": "<p><strong>Article</strong> <em>body</em>.</p>\\n\\n<p>Pug is embedded 👇 </p>\\n\\n<article class=\\"media media--type-image media--view-mode-default\\" data-align=\\"center\\">\\n  \\n      \\n  <div class=\\"field field--name-field-media-image field--type-image field--label-visually_hidden\\">\\n    <div class=\\"field__label visually-hidden\\">Image</div>\\n              <div class=\\"field__item\\">  <img src=\\"/sites/default/files/2021-01/image_jpg_pug.jpg\\" width=\\"1920\\" height=\\"1080\\" alt=\\"Pug alt text\\" loading=\\"lazy\\" />\\n\\n</div>\\n          </div>\\n\\n  </article>\\n\\n\\n<p>Kitten goes in a separate field 👉</p>\\n",
+          "image": {
+            "id": "[numeric]:en"
+          },
+          "tags": [
+            {
+              "id": "[numeric]"
+            },
+            {
+              "id": "[numeric]"
+            }
+          ],
+          "defaultTranslation": true,
+          "path": "/en/article/with-everything",
+          "template": null,
+          "translations": [
+            {
+              "langcode": "en",
+              "defaultTranslation": true
+            },
+            {
+              "langcode": "de",
+              "defaultTranslation": false
+            },
+            {
+              "langcode": "fr",
+              "defaultTranslation": false
+            }
+          ]
+        },
+        "minimal": {
+          "__typename": "Article",
+          "id": "[numeric]:en",
+          "drupalId": "[numeric]",
+          "title": "Other article",
+          "langcode": "en",
+          "body": null,
+          "image": null,
+          "tags": [],
+          "defaultTranslation": true,
+          "path": "/en/article/other",
+          "template": null,
+          "translations": [
+            {
+              "langcode": "en",
+              "defaultTranslation": true
+            }
+          ]
+        },
+        "promoted": {
+          "template": "article-promoted"
+        },
+        "unpublished": {
+          "title": "Not published"
+        }
+      }
+    }
+  },
+  "Extra": {
+    "code": 200,
+    "data": {
+      "errors": [
+        {
+          "message": "Type \\"Article\\" not found in document."
+        }
+      ]
+    }
+  }
+}
+`;
