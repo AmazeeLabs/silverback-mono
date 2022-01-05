@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Gatsby: Schema Export" type="js.build_tools.npm">
+  <configuration default="false" name="Gatsby: Schema Export" type="js.build_tools.npm" folderName="Gatsby">
     <package-json value="$PROJECT_DIR$/apps/silverback-gatsby/package.json" />
     <command value="run" />
     <scripts>
