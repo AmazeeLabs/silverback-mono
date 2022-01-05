@@ -147,6 +147,17 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
    * @return \GraphQL\Deferred
    */
   public function resolve($type, $id, ?string $language, ?array $bundles, ?bool $access, ?AccountInterface $accessUser, ?string $accessOperation, FieldContext $context) {
+    if (!preg_match('^[0-9]+$', $id)) {
+      // Looks like we got a UUID. Transform it to a regular ID.
+      $result = $this->entityTypeManager
+        ->getStorage($type)
+        ->getQuery()
+        ->condition('uuid', $id)
+        ->execute();
+      if ($result) {
+        $id = reset($result);
+      }
+    }
     $resolver = $this->entityBuffer->add($type, $id);
 
     return new Deferred(function () use ($type, $language, $bundles, $resolver, $context, $access, $accessUser, $accessOperation) {
