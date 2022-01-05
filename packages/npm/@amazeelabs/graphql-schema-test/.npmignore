@@ -1,0 +1,10 @@
+node_modules
+docs
+src
+.eslintrc.js
+.gitignore
+.lintstagedrc
+.npmignore
+.prettierrc
+jest.config.js
+tsconfig.json
