@@ -108,8 +108,6 @@ test('@gatsby-develop test LinkProcessor', async ({ page }) => {
   const teaserBlock = blocks[0].innerBlocks[1];
   expect(teaserBlock.blockName).toEqual('custom/teaser');
   expect(teaserBlock.attrs.url).toEqual(`/node/${targetNodeId}`);
-  expect(teaserBlock.innerHTML).toContain(`href="/node/${targetNodeId}"`);
-  expect(teaserBlock.innerContent[0]).toContain(`href="/node/${targetNodeId}"`);
 
   expect(blocks).toHaveProperty('0.innerBlocks.2');
   const mediaBlock = blocks[0].innerBlocks[2];
