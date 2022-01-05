@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Drupal: Login" type="js.build_tools.npm">
+  <configuration default="false" name="Drupal: Login" type="js.build_tools.npm" folderName="Drupal">
     <package-json value="$PROJECT_DIR$/apps/silverback-drupal/package.json" />
     <command value="run" />
     <scripts>
