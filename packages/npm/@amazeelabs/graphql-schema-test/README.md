@@ -33,7 +33,7 @@ For an example, see
 
 ## PhpStorm
 
-If you are a PhpStorm user and have the GraphLQ plugin installed, you are very
+If you are a PhpStorm user and have the GraphQL plugin installed, you are very
 lucky :) Because you can easily test your queries against any endpoint:
 
 ![Run queries in PhpStorm](docs/phpstorm.png)
