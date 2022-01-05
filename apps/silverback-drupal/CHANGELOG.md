@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.51...@-amazeelabs/silverback-drupal@1.11.0) (2022-01-05)
+
+
+### Bug Fixes
+
+* do not save markup to avoid issues with gutenberg ([52a1610](https://github.com/AmazeeLabs/silverback-mono/commit/52a1610202b8638c797b0d1385f217d3fb463f6e))
+
+
+### Features
+
+* integrate @amazeelabs/graphql-schema-test package ([ca4fdf8](https://github.com/AmazeeLabs/silverback-mono/commit/ca4fdf8418e2357bc20512abd5494ad0b7335f66))
+
+
+
+
+
 ## [1.10.51](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.10.50...@-amazeelabs/silverback-drupal@1.10.51) (2022-01-03)
 
 

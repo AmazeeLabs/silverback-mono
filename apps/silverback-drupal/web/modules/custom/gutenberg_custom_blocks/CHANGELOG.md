@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.21](https://github.com/AmazeeLabs/silverback-mono/compare/@-silverback-drupal/gutenberg_custom_blocks@1.0.20...@-silverback-drupal/gutenberg_custom_blocks@1.0.21) (2022-01-05)
+
+
+### Bug Fixes
+
+* do not save markup to avoid issues with gutenberg ([52a1610](https://github.com/AmazeeLabs/silverback-mono/commit/52a1610202b8638c797b0d1385f217d3fb463f6e))
+
+
+
+
+
 ## [1.0.20](https://github.com/AmazeeLabs/silverback-mono/compare/@-silverback-drupal/gutenberg_custom_blocks@1.0.19...@-silverback-drupal/gutenberg_custom_blocks@1.0.20) (2021-12-27)
 
 **Note:** Version bump only for package @-silverback-drupal/gutenberg_custom_blocks

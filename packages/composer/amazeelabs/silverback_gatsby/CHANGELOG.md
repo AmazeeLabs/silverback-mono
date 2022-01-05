@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.13.3...@-amazeelabs/silverback_gatsby@1.14.0) (2022-01-05)
+
+
+### Features
+
+* allow loading entities by UUID ([6da1055](https://github.com/AmazeeLabs/silverback-mono/commit/6da10551ab53fb4e93c3fbd29a58e1d6d9456a7c))
+
+
+
+
+
 ## [1.13.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.13.2...@-amazeelabs/silverback_gatsby@1.13.3) (2022-01-03)
 
 
