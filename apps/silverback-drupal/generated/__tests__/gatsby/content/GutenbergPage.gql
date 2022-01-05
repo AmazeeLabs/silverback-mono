@@ -1,0 +1,65 @@
+fragment GutenbergPage on GutenbergPage {
+  __typename
+  id
+  drupalId
+  title
+  langcode
+  body {
+    ...BlockHtml
+    ...BlockImage
+    ...BlockTeaser
+    ... on BlockTwoColumns {
+      __typename
+      children {
+        __typename
+        children {
+          ...BlockHtml
+          ...BlockImage
+          ...BlockTeaser
+        }
+        children {
+          ...BlockHtml
+          ...BlockImage
+          ...BlockTeaser
+        }
+      }
+
+    }
+  }
+  defaultTranslation
+  path
+  translations {
+    langcode
+    defaultTranslation
+  }
+}
+
+fragment BlockHtml on BlockHtml {
+  __typename
+  html
+}
+fragment BlockImage on BlockImage {
+  __typename
+  image {
+    id
+  }
+  caption
+}
+fragment BlockTeaser on BlockTeaser {
+  __typename
+  image {
+    id
+  }
+  title
+  subtitle
+  url
+}
+
+{
+  complete: loadGutenbergPage(id: "f9778402-1375-4bc0-a550-00610ad3865d") {
+    ...GutenbergPage
+  }
+  minimal: loadGutenbergPage(id: "af2bb5e4-237a-4e76-befe-e7a3d8dc699c") {
+    ...GutenbergPage
+  }
+}

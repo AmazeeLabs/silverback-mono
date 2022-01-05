@@ -1,0 +1,46 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: af2bb5e4-237a-4e76-befe-e7a3d8dc699c
+  bundle: gutenberg_page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Empty Gutenberg page'
+  created:
+    -
+      value: 1641364954
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  body:
+    -
+      value: "<!-- wp:custom/root -->\r\n<main class=\"wp-block-custom-root\"><!-- wp:paragraph -->\r\n<p></p>\r\n<!-- /wp:paragraph --></main>\r\n<!-- /wp:custom/root -->"
+      format: gutenberg
+      summary: ''

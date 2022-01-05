@@ -1,0 +1,224 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gatsby/content/GutenbergPage.gql 1`] = `
+{
+  "Gatsby Build": {
+    "code": 200,
+    "data": {
+      "data": {
+        "complete": {
+          "__typename": "GutenbergPage",
+          "id": "[numeric]:en",
+          "drupalId": "[numeric]",
+          "title": "Gutenberg page",
+          "langcode": "en",
+          "body": [
+            {
+              "__typename": "BlockHtml",
+              "html": "<p>A paragraph.</p>"
+            },
+            {
+              "__typename": "BlockHtml",
+              "html": "<ul><li>unordered</li><li>list</li></ul>"
+            },
+            {
+              "__typename": "BlockHtml",
+              "html": "<ol><li>ordered</li><li>list</li></ol>"
+            },
+            {
+              "__typename": "BlockHtml",
+              "html": "<blockquote class=\\"wp-block-quote\\"><p>A quote</p><cite>With a citation.</cite></blockquote>"
+            },
+            {
+              "__typename": "BlockHtml",
+              "html": "<p>Grouped paragraph 1.</p>"
+            },
+            {
+              "__typename": "BlockHtml",
+              "html": "<p>Grouped paragraph 2.</p>"
+            },
+            {
+              "__typename": "BlockTwoColumns",
+              "children": [
+                {
+                  "__typename": "BlockColumn",
+                  "children": [
+                    {
+                      "__typename": "BlockTeaser",
+                      "image": {
+                        "id": "[numeric]:en"
+                      },
+                      "title": "Teaser",
+                      "subtitle": "on left",
+                      "url": "/en/page/a-page"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "BlockColumn",
+                  "children": [
+                    {
+                      "__typename": "BlockImage",
+                      "image": {
+                        "id": "[numeric]:en"
+                      },
+                      "caption": "Just media on right"
+                    },
+                    {
+                      "__typename": "BlockHtml",
+                      "html": "<p></p>"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "defaultTranslation": true,
+          "path": "/en/node/[numeric]",
+          "translations": [
+            {
+              "langcode": "en",
+              "defaultTranslation": true
+            }
+          ]
+        },
+        "minimal": {
+          "__typename": "GutenbergPage",
+          "id": "[numeric]:en",
+          "drupalId": "[numeric]",
+          "title": "Empty Gutenberg page",
+          "langcode": "en",
+          "body": [
+            {
+              "__typename": "BlockHtml",
+              "html": "<p></p>"
+            }
+          ],
+          "defaultTranslation": true,
+          "path": "/en/node/[numeric]",
+          "translations": [
+            {
+              "langcode": "en",
+              "defaultTranslation": true
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Gatsby Preview": {
+    "code": 200,
+    "data": {
+      "data": {
+        "complete": {
+          "__typename": "GutenbergPage",
+          "id": "[numeric]:en",
+          "drupalId": "[numeric]",
+          "title": "Gutenberg page",
+          "langcode": "en",
+          "body": [
+            {
+              "__typename": "BlockHtml",
+              "html": "<p>A paragraph.</p>"
+            },
+            {
+              "__typename": "BlockHtml",
+              "html": "<ul><li>unordered</li><li>list</li></ul>"
+            },
+            {
+              "__typename": "BlockHtml",
+              "html": "<ol><li>ordered</li><li>list</li></ol>"
+            },
+            {
+              "__typename": "BlockHtml",
+              "html": "<blockquote class=\\"wp-block-quote\\"><p>A quote</p><cite>With a citation.</cite></blockquote>"
+            },
+            {
+              "__typename": "BlockHtml",
+              "html": "<p>Grouped paragraph 1.</p>"
+            },
+            {
+              "__typename": "BlockHtml",
+              "html": "<p>Grouped paragraph 2.</p>"
+            },
+            {
+              "__typename": "BlockTwoColumns",
+              "children": [
+                {
+                  "__typename": "BlockColumn",
+                  "children": [
+                    {
+                      "__typename": "BlockTeaser",
+                      "image": {
+                        "id": "[numeric]:en"
+                      },
+                      "title": "Teaser",
+                      "subtitle": "on left",
+                      "url": "/en/page/a-page"
+                    }
+                  ]
+                },
+                {
+                  "__typename": "BlockColumn",
+                  "children": [
+                    {
+                      "__typename": "BlockImage",
+                      "image": {
+                        "id": "[numeric]:en"
+                      },
+                      "caption": "Just media on right"
+                    },
+                    {
+                      "__typename": "BlockHtml",
+                      "html": "<p></p>"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "defaultTranslation": true,
+          "path": "/en/node/[numeric]",
+          "translations": [
+            {
+              "langcode": "en",
+              "defaultTranslation": true
+            }
+          ]
+        },
+        "minimal": {
+          "__typename": "GutenbergPage",
+          "id": "[numeric]:en",
+          "drupalId": "[numeric]",
+          "title": "Empty Gutenberg page",
+          "langcode": "en",
+          "body": [
+            {
+              "__typename": "BlockHtml",
+              "html": "<p></p>"
+            }
+          ],
+          "defaultTranslation": true,
+          "path": "/en/node/[numeric]",
+          "translations": [
+            {
+              "langcode": "en",
+              "defaultTranslation": true
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Extra": {
+    "code": 200,
+    "data": {
+      "errors": [
+        {
+          "message": "Type \\"GutenbergPage\\" not found in document."
+        }
+      ]
+    }
+  }
+}
+`;

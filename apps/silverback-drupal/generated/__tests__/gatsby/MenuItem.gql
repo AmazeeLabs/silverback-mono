@@ -1,0 +1,15 @@
+fragment MenuItem on MenuItem {
+  __typename
+  id
+  url
+  label
+  parent
+}
+
+{
+  queryMainMenus(offset: 0, limit: 100) {
+    items {
+      ...MenuItem
+    }
+  }
+}

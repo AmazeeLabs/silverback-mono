@@ -1,0 +1,20 @@
+fragment Page on Page {
+  __typename
+  id
+  drupalId
+  title
+  langcode
+  body
+  defaultTranslation
+  path
+  translations {
+    langcode
+    defaultTranslation
+  }
+}
+
+{
+  loadPage(id: "a38bce61-3640-4799-bacf-18ccc6e74216") {
+    ...Page
+  }
+}
