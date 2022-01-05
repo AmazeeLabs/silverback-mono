@@ -23,8 +23,8 @@
     "test:integration": "yarn lerna run test:integration --stream --concurrency=1 --since",
     "test:integration:all": "yarn lerna run test:integration --stream --concurrency=1",
     "git-registry": "yarn verdaccio -c config.yml",
-    "make-sp-test-bin-available-in-monorepo": "rm -rf packages/npm/@amazeelabs/silverback-playwright/dist && mkdir -p packages/npm/@amazeelabs/silverback-playwright/dist/src && echo '' > packages/npm/@amazeelabs/silverback-playwright/dist/src/test-package.js",
-    "preinstall": "yarn make-sp-test-bin-available-in-monorepo",
+    "make-local-bins-available-in-monorepo": "rm -rf packages/npm/@amazeelabs/silverback-playwright/dist && mkdir -p packages/npm/@amazeelabs/silverback-playwright/dist/src && echo '' > packages/npm/@amazeelabs/silverback-playwright/dist/src/test-package.js && rm -rf packages/npm/@amazeelabs/graphql-schema-test/dist && mkdir -p packages/npm/@amazeelabs/graphql-schema-test/dist && echo '' > packages/npm/@amazeelabs/graphql-schema-test/dist/graphql-schema-test.js",
+    "preinstall": "yarn make-local-bins-available-in-monorepo",
     "postinstall": "lerna run prepare && husky install && rm -rf node_modules/@-*"
   },
   "devDependencies": {
