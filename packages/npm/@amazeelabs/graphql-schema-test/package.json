@@ -5,6 +5,15 @@
   "author": "Amazee Labs",
   "license": "MIT",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/npm/@amazeelabs/graphql-schema-test#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AmazeeLabs/silverback-mono.git",
+    "directory": "packages/npm/@amazeelabs/graphql-schema-test"
+  },
   "dependencies": {
     "axios": "^0.24.0",
     "jest": "^27",
