@@ -154,7 +154,7 @@ everything correctly.
 
 ```typescript
 // Install & initialize Storybook
-$$('npx sb init');
+$$('yarn global add @storybook/cli && yarn exec sb init'); // `npx sb init` replacement, reason: https://git.io/JSHCa
 // Install @storybook/addon-postcss to include Tailwind styles.
 $$('yarn add -D @storybook/addon-postcss');
 ```
@@ -337,4 +337,23 @@ $$('yarn prepare');
 $$('cat styles.css', {
   stdout: /prose/,
 });
+```
+
+## Finishing up
+
+Add build paths to `.gitignore`.
+
+```gitignore
+# >-> .gitignore
+build-storybook.log
+storybook-static
+```
+
+Commit everything.
+
+```typescript
+$$.chdir('../../..');
+$$('yarn');
+$$('git add .');
+$$('git commit -m "chore: initialize storybook"');
 ```
