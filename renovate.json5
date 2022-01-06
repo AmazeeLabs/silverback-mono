@@ -58,10 +58,10 @@
     // Package-specific rules.
     {
       // We are not ready for ESM yet. Disable major updates of some packages.
-      paths: ["apps/silverback-gatsby/package.json"],
       packageNames: [
         "p-queue",
         "strip-ansi",
+        "chalk",
       ],
       updateTypes: ["major"],
       enabled: false,
