@@ -3458,10 +3458,10 @@
   resolved "https://registry.yarnpkg.com/@napi-rs/triples/-/triples-1.1.0.tgz#88c35b72e79a20b79bb4c9b3e2817241a1c9f4f9"
   integrity sha512-XQr74QaLeMiqhStEhLn1im9EOMnkypp7MZOwQhGzqp2Weu5eQJbpPxWxixxlYRKWPOmJjsk6qYfYH9kq43yc2w==
 
-"@netlify/open-api@^2.5.2":
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/@netlify/open-api/-/open-api-2.7.0.tgz#d8147396a0c41b5e9de1f52889004ad2a1d59163"
-  integrity sha512-WzedpLK6XFs67naFDX1K3QWk3GKlUQVCuIlMuXb0dWvJvfB71R/Njk1bq0FqVllIWw2RRCQMkCIywEABbnB2Yg==
+"@netlify/open-api@^2.8.0":
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/@netlify/open-api/-/open-api-2.8.0.tgz#e59537ae9aa8342c2aa64952d42e5e089c8422f4"
+  integrity sha512-lfNB/QYDgaP07pwm/nWEaWPvRAAGyhxvJqNzvxMijc7A4uwquMjlbYve8yYyd0LJXPwgBpGobwiQj5RA76xzUQ==
 
 "@node-rs/helper@^1.0.0":
   version "1.3.0"
@@ -20129,12 +20129,12 @@ nested-error-stacks@^2.0.0, nested-error-stacks@^2.1.0:
   resolved "https://registry.yarnpkg.com/nested-error-stacks/-/nested-error-stacks-2.1.0.tgz#0fbdcf3e13fe4994781280524f8b96b0cdff9c61"
   integrity sha512-AO81vsIO1k1sM4Zrd6Hu7regmJN1NSiAja10gc4bX3F0wd+9rQmcuHQaHVQCYIEC8iFXnE+mavh23GOt7wBgug==
 
-netlify@^8.0.4:
-  version "8.0.4"
-  resolved "https://registry.yarnpkg.com/netlify/-/netlify-8.0.4.tgz#2dcb785b527b5799f55c041f402ae6b842466bd9"
-  integrity sha512-v0iG/u5y3GDP+H50SEbQHUdYHTNMNKtoxUP9cBbt2H0i4rpCcebQAQ1AKEwbpxF8sCO0+ywXIqpGiOd5Wwzjew==
+netlify@^10.0.0:
+  version "10.1.1"
+  resolved "https://registry.yarnpkg.com/netlify/-/netlify-10.1.1.tgz#dbd8b978cc4615d3b7ffd4db26ccf469febd3c34"
+  integrity sha512-aXW+R0rhTpLWK9aa51QETcPI+U2WuMUWA7wPr0thBCsMy/q4tsuAUC3f9OXYXcR3AzRkLOTwqmAfzWb+zKmqGg==
   dependencies:
-    "@netlify/open-api" "^2.5.2"
+    "@netlify/open-api" "^2.8.0"
     lodash.camelcase "^4.3.0"
     micro-api-client "^3.3.0"
     node-fetch "^2.6.1"
