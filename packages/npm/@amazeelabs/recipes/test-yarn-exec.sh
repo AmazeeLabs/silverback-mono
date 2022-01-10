@@ -2,8 +2,6 @@
 set -ex
 
 rm -rf test
-yarn prepare
-
 yarn global add @amazeelabs/recipes
 
 echo 'test' | LOG=silly yarn exec amazee-recipes create-monorepo

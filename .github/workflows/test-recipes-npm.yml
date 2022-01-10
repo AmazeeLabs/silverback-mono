@@ -1,9 +1,9 @@
-name: Test Recipes with NPX
+name: Test Recipes with NPM
 on:
   workflow_dispatch:
 jobs:
   test:
-    name: Test Recipes with NPX
+    name: Test Recipes with NPM
     runs-on: ubuntu-20.04
     steps:
 
@@ -77,4 +77,4 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Run recipe tests
-        run: cd packages/npm/@amazeelabs/recipes && yarn test:npx
+        run: cd packages/npm/@amazeelabs/recipes && yarn test:npm
