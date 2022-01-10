@@ -235,6 +235,7 @@ by one or more applications.
 config file in the repository root.
 
 ```typescript
+$$('yarn add -W lerna');
 $$.file('lerna.json', () => ({
   version: 'independent',
   npmClient: 'yarn',
@@ -246,7 +247,6 @@ $$.file('lerna.json', () => ({
     },
   },
 }));
-$$('yarn add -W lerna');
 ```
 
 This configuration tells lerna to use `yarn` and [yarn workspaces], use
