@@ -218,10 +218,6 @@ First we have to declare our yarn workspaces in `package.json`:
 ```typescript
 $$.file('package.json', (json) => ({
   ...json,
-  scripts: {
-    ...json.scripts,
-    postinstall: `lerna run prepare && ${json.scripts.postinstall}`,
-  },
   workspaces: ['apps/*', 'packages/*/*'],
   private: true,
 }));
@@ -245,6 +241,18 @@ $$.file('lerna.json', () => ({
       conventionalCommits: true,
       message: 'chore(release): release',
     },
+  },
+}));
+```
+
+Configure [Lerna] to run `prepare` script in every workspace on post-install.
+
+```typescript
+$$.file('package.json', (json) => ({
+  ...json,
+  scripts: {
+    ...json.scripts,
+    postinstall: `lerna run prepare && ${json.scripts.postinstall}`,
   },
 }));
 ```
