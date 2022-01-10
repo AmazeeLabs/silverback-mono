@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 jobs:
   test:
-    name: Test Recipes
+    name: Test Recipes with yarn exec
     runs-on: ubuntu-20.04
     steps:
 
