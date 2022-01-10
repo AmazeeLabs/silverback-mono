@@ -1,4 +1,4 @@
-name: Test Recipes
+name: Test Recipes with NPX
 on:
   workflow_dispatch:
 jobs:
