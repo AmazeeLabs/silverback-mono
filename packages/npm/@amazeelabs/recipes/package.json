@@ -49,6 +49,8 @@
     "test:unit": "jest --passWithNoTests",
     "test:integration": "if [ -f test.sh ]; then ./test.sh; fi",
     "test:manual": "./test-manual.sh",
+    "test:npx": "./test-npx.sh",
+    "test:yarn-exec": "./test-yarn-exec.sh",
     "test:watch": "jest --watch"
   }
 }
