@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.9.3...@amazeelabs/recipes@1.9.4) (2022-01-10)
+
+
+### Bug Fixes
+
+* fix adding lerna to monorepo ([956e991](https://github.com/AmazeeLabs/silverback-mono/commit/956e9911491f68b942a0c480671383209074d18f))
+
+
+
+
+
 ## [1.9.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.9.2...@amazeelabs/recipes@1.9.3) (2022-01-10)
 
 **Note:** Version bump only for package @amazeelabs/recipes
