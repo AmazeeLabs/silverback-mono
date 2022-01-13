@@ -231,11 +231,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "1.3.8",
+            "version": "1.3.9",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "32ba241a1890c6a176e0501a0136e9beb6954a7a"
+                "reference": "ee8416c34f9f6f7d01e5cd90cb304d6c8f7a4a4c"
             },
             "type": "drupal-module",
             "license": [
@@ -600,16 +600,16 @@
         },
         {
             "name": "composer/composer",
-            "version": "2.2.3",
+            "version": "2.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "3c92ba5cdc7d48b7db2dcd197e6fa0e8fa6d9f4a"
+                "reference": "8a5ad75194f901e3b39ece4bbd22cbdabc79ae8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/3c92ba5cdc7d48b7db2dcd197e6fa0e8fa6d9f4a",
-                "reference": "3c92ba5cdc7d48b7db2dcd197e6fa0e8fa6d9f4a",
+                "url": "https://api.github.com/repos/composer/composer/zipball/8a5ad75194f901e3b39ece4bbd22cbdabc79ae8f",
+                "reference": "8a5ad75194f901e3b39ece4bbd22cbdabc79ae8f",
                 "shasum": ""
             },
             "require": {
@@ -679,7 +679,7 @@
             "support": {
                 "irc": "ircs://irc.libera.chat:6697/composer",
                 "issues": "https://github.com/composer/composer/issues",
-                "source": "https://github.com/composer/composer/tree/2.2.3"
+                "source": "https://github.com/composer/composer/tree/2.2.4"
             },
             "funding": [
                 {
@@ -695,7 +695,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-12-31T11:18:53+00:00"
+            "time": "2022-01-08T11:30:42+00:00"
         },
         {
             "name": "composer/installers",
@@ -2994,11 +2994,11 @@
         },
         {
             "name": "drupal/cypress",
-            "version": "2.3.37",
+            "version": "2.3.38",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/cypress",
-                "reference": "980a00904979b1bd1384c962e205ffa3292ea328"
+                "reference": "181b1379afdb8d5b6c64932369ef36fd15892054"
             },
             "require": {
                 "alchemy/zippy": "^1.0.0",
@@ -3108,11 +3108,11 @@
         },
         {
             "name": "drupal/gatsby_build_monitor",
-            "version": "1.4.13",
+            "version": "1.4.14",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/gatsby_build_monitor",
-                "reference": "723cda966d12355f1ef96f1829d02f3823ff7d6f"
+                "reference": "fd54bead1f152d2436e81474ad947407a2d8ff0a"
             },
             "require": {
                 "justinrainbow/json-schema": "^5.2.11"
@@ -3215,7 +3215,7 @@
             "extra": {
                 "drupal": {
                     "version": "8.x-2.2",
-                    "datestamp": "1635435771",
+                    "datestamp": "1641567684",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3277,11 +3277,11 @@
         },
         {
             "name": "drupal/test_session",
-            "version": "1.2.17",
+            "version": "1.2.18",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/test_session",
-                "reference": "cd9679dcd31954834ee4cb9f61090b4c927660f8"
+                "reference": "1e6fc46143253591490e5a69c369704b6b49b977"
             },
             "type": "drupal-module",
             "license": [
