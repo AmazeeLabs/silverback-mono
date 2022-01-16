@@ -8,6 +8,7 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": false,
     "jsx": "react",
+    "declaration": true,
     "outDir": "dist"
   },
   "exclude": [
