@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/graphql-schema-test@1.0.5...@amazeelabs/graphql-schema-test@1.0.6) (2022-01-16)
+
+
+### Bug Fixes
+
+* remove zx ([99d5557](https://github.com/AmazeeLabs/silverback-mono/commit/99d5557bc6a5666e5afb1dc01bed8cb66b7c6e26))
+
+
+
+
+
 ## [1.0.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/graphql-schema-test@1.0.4...@amazeelabs/graphql-schema-test@1.0.5) (2022-01-16)
 
 **Note:** Version bump only for package @amazeelabs/graphql-schema-test
