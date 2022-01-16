@@ -1,9 +1,16 @@
-module.exports = {
-  default(responses) {
-    maskImageUrl(responses);
-    return responses;
-  },
-};
+const path = require("path");
+const {
+  listFiles,
+  createExecutor,
+} = require("@amazeelabs/graphql-schema-test");
+
+const graphQlConfigPath = path.resolve(__dirname, "../.graphqlconfig");
+const queriesPath = path.resolve(__dirname, "queries");
+
+execute = createExecutor(graphQlConfigPath, maskImageUrl);
+test.each(listFiles(queriesPath))("%s", async (_, path) => {
+  await execute(path);
+});
 
 // Image URLs contain current date, e.g.
 // http://localhost:8888/sites/default/files/2021-01/image.jpg
