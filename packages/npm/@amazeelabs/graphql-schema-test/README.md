@@ -1,35 +1,43 @@
 # GraphQL Schema Test
 
 The package takes a set of `.gql` files, runs them against each endpoint defined
-in `.graphqlconfig` and creates snapshots containing the responses.
+in `.graphqlconfig` and creates snapshots containing the responses. Jest used as
+a test runner.
 
 ## Usage
 
 Add the package to a project:
 
 ```
-yarn add --dev @amazeelabs/graphql-schema-test
+yarn add --dev @amazeelabs/graphql-schema-test jest
+```
+
+Create a Jest test file:
+
+```js
+const {
+  listFiles,
+  createExecutor,
+} = require('@amazeelabs/graphql-schema-test');
+
+execute = createExecutor('path/to/.graphqlconfig/file', myOptionalSerializer);
+test.each(listFiles('path/to/queries/dir'))('%s', async (_, path) => {
+  await execute(path);
+});
+
+function myOptionalSerializer(responses) {
+  // serialize data in responses
+}
 ```
 
 Run tests:
 
 ```
-yarn graphql-schema-test path/to/directory
+yarn jest --testMatch '<rootDir>/path/to/my/test/file.js'
 ```
 
-Available flags:
-
-- `--verbose` (`-v`)
-- `--updateSnapshot` (`-u`)
-
-The directory should have the following structure:
-
-- `__tests__`: Directory containing queries in `.gql` files.
-- `.graphqlconfig`: GraphQL endpoints definition.
-- `serializer.js`: Optional. Serializer for responses.
-
 For an example, see
-[apps/silverback-drupal/generated](../../../../apps/silverback-drupal/generated).
+[apps/silverback-drupal/generated/\_\_tests\_\_](../../../../apps/silverback-drupal/generated/__tests__).
 
 ## PhpStorm
 
