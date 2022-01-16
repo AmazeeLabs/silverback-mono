@@ -1,6 +1,6 @@
 import axios from 'axios';
+import fs from 'fs';
 import _ from 'lodash';
-import { fs } from 'zx';
 
 require('jest-specific-snapshot');
 const addSerializer = require('jest-specific-snapshot').addSerializer;
