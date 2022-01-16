@@ -19,8 +19,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "jest-specific-snapshot": "^5.0.0",
-    "lodash": "^4.17.21",
-    "zx": "^4.2.0"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "^1.4.10",
