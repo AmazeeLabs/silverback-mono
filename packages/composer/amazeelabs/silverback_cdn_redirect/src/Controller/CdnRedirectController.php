@@ -63,7 +63,9 @@ class CdnRedirectController extends ControllerBase {
       ]);
       $response = $http->get($location);
       if ($response->getStatusCode() === 200) {
-        return new Response($response->getBody(), 404);
+        return new Response($response->getBody(), 404, [
+          'cache-control' => 'public, max-age=' . 60*60*24*30,
+        ]);
       }
       elseif (
         $response->getStatusCode() === 401 &&
@@ -75,7 +77,9 @@ class CdnRedirectController extends ControllerBase {
           ],
         ]);
         if ($response->getStatusCode() === 200) {
-          return new Response($response->getBody(), 404);
+          return new Response($response->getBody(), 404, [
+            'cache-control' => 'public, max-age=' . 60*60*24*30,
+          ]);
         }
       }
     }
