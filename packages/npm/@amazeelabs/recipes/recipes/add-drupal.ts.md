@@ -538,8 +538,8 @@ Adjust testing workflow.
           if [[ $(git status --porcelain -- apps/cms/config ':!apps/cms/config/sync/language') ]]
           then
             >&2 echo 'Error: Found uncommitted Drupal config.'
-            echo 'If it was due to Drupal updates which changed Drupal config: checkout this branch locally, switch to `apps/cms` dir, run `composer i && silverback setup --no-config-import && drush cex -y`, review the config changes, commit and push.'
-            echo 'If it was an intentional change to Drupal config files: checkout this branch locally, switch to `apps/cms` dir, run `composer i && silverback setup --profile=minimal`, commit and push.'
+            >&2 echo 'If it was due to a Drupal database update which changed the Drupal config: checkout this branch locally, switch to `apps/cms` dir, run `composer i && silverback setup --no-config-import && drush cex -y`, review the config changes, commit and push.'
+            >&2 echo 'If it was an intentional change to the Drupal config: checkout this branch locally, switch to `apps/cms` dir, run `composer i && silverback setup --profile=minimal`, commit and push.'
             git status --porcelain -- apps/cms/config ':!apps/cms/config/sync/language'
             false
           else

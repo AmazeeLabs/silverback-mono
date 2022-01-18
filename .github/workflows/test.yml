@@ -110,7 +110,9 @@ jobs:
           cd -
           if [[ $(git status --porcelain -- apps/silverback-drupal/config ':!apps/silverback-drupal/config/sync/language') ]]
           then
-            >&2 echo 'Error: Found uncommitted Drupal config. If it was due to Drupal update which changed Drupal config: checkout this branch locally, switch to `apps/silverback-drupal` dir, run `composer i && silverback setup --no-config-import && drush cex -y`, review the config changes, commit and push. If it was intentional change to Drupal config files: checkout this branch locally, switch to `apps/silverback-drupal` dir, run `composer i && silverback setup --profile=minimal`, commit and push.'
+            >&2 echo 'Error: Found uncommitted Drupal config.'
+            >&2 echo 'If it was due to a Drupal database update which changed the Drupal config: checkout this branch locally, switch to `apps/silverback-drupal` dir, run `composer i && silverback setup --no-config-import && drush cex -y`, review the config changes, commit and push.'
+            >&2 echo 'If it was an intentional change to the Drupal config: checkout this branch locally, switch to `apps/silverback-drupal` dir, run `composer i && silverback setup --profile=minimal`, commit and push.'
             git status --porcelain -- apps/silverback-drupal/config ':!apps/silverback-drupal/config/sync/language'
             false
           else
