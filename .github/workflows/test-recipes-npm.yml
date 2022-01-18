@@ -47,34 +47,5 @@ jobs:
       - name: Tell yarn to use bash
         run: yarn config set script-shell /bin/bash
 
-      - name: Get Yarn cache directory
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - name: Get Yarn version hash
-        id: yarn-version
-        run: echo "::set-output name=hash::$(yarn --version | shasum | cut -d' ' -f1)"
-      - name: Get Composer cache directory
-        id: composer-cache
-        run: |
-          echo "::set-output name=dir::$(composer global config cache-files-dir)"
-      - name: Get Composer version hash
-        id: composer-version
-        run: |
-          echo "::set-output name=hash::$(composer --version | shasum | cut -d' ' -f1)"
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-dependencies
-        with:
-          path: |
-            ${{ steps.yarn-cache.outputs.dir }}
-            ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash }}-composer-${{ steps.composer-version.outputs.hash }}-github_run_id-${{ github.run_id }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash }}-composer-${{ steps.composer-version.outputs.hash }}-
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
       - name: Run recipe tests
-        run: cd packages/npm/@amazeelabs/recipes && yarn test:npm
+        run: cd packages/npm/@amazeelabs/recipes && ./test-npm.sh
