@@ -1,0 +1,21 @@
+{
+  "name": "amazeelabs/proxy-graphql",
+  "type": "library",
+  "version": "1.0.0",
+  "description": "Proxy package for drupal/graphql.",
+  "homepage": "https://silverback.netlify.app",
+  "license": "GPL-2.0+",
+  "extra": {
+    "enable-patching": true,
+    "composer-exit-on-patch-failure": true,
+    "patches": {
+      "drupal/graphql": {
+        "Log errors with Drupal logger": "https://github.com/drupal-graphql/graphql/commit/cf5a7a1b0115c0d2acb77289dfb25816c76a3e03.patch"
+      }
+    }
+  },
+  "require": {
+    "cweagans/composer-patches": "^1.7",
+    "drupal/graphql": "^4.2"
+  }
+}
