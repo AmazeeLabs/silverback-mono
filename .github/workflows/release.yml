@@ -97,40 +97,6 @@ jobs:
       - name: Run integration tests
         run: yarn test:integration
 
-      - name: Update Drupal install cache
-        run: |
-          set -e
-          cd apps/silverback-drupal
-          source .envrc
-          set -x
-          composer i
-          silverback setup > setup-log.txt
-
-          UPDATES=$(cat setup-log.txt | grep -o 'Finished performing updates.' || true)
-          NO_UPDATES=$(cat setup-log.txt | grep -o 'No pending updates.' || true)
-          if [[ -z $UPDATES && -z $NO_UPDATES ]]
-          then
-            >&2 echo "Cannot get if there are pending Drupal updates."
-            exit 1
-          fi
-
-          CHANGES=$(cat setup-log.txt | grep -o 'The configuration was imported successfully.' || true)
-          NO_CHANGES=$(cat setup-log.txt | grep -o 'There are no changes to import.' || true)
-          if [[ -z $CHANGES && -z $NO_CHANGES ]]
-          then
-            >&2 echo "Cannot get if there are Drupal config changes."
-            exit 1
-          fi
-
-          if [[ -z $NO_UPDATES || -z $NO_CHANGES ]]
-          then
-            silverback setup --profile=minimal
-            drush cex -y
-            cd -
-            git add apps/silverback-drupal/.
-            git commit -m 'ci: update drupal install cache'
-          fi
-
       - name: Build verdaccio-git
         run: yarn prepublishOnly
         working-directory: packages/npm/verdaccio-git
