@@ -1,7 +1,7 @@
 {
   "name": "amazeelabs/proxy-graphql",
   "type": "library",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Proxy package for drupal/graphql.",
   "homepage": "https://silverback.netlify.app",
   "license": "GPL-2.0+",
