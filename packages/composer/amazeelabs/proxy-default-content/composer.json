@@ -15,6 +15,7 @@
     }
   },
   "require": {
+    "cweagans/composer-patches": "^1.7",
     "drupal/default_content": "^2.0.0-alpha1"
   }
 }
