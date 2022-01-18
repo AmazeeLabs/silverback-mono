@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.9.7...@amazeelabs/recipes@1.9.8) (2022-01-18)
+
+
+### Bug Fixes
+
+* ensure composer patches are applied ([d2741bb](https://github.com/AmazeeLabs/silverback-mono/commit/d2741bb3802be821240a41606d1f33fd8873b6ad))
+
+
+
+
+
 ## [1.9.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.9.6...@amazeelabs/recipes@1.9.7) (2022-01-18)
 
 **Note:** Version bump only for package @amazeelabs/recipes
