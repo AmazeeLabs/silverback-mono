@@ -27,6 +27,22 @@ $$('composer create-project drupal/recommended-project cms');
 $$.chdir('cms');
 ```
 
+Allow Composer plugins execution.
+
+```typescript
+$$.file('composer.json', (json) => ({
+  ...json,
+  config: {
+    ...json.config,
+    'allow-plugins': {
+      'composer/installers': true,
+      'cweagans/composer-patches': true,
+      'drupal/core-composer-scaffold': true,
+    },
+  },
+}));
+```
+
 Create a `.gitignore` file that ignores composer dependencies in `vendor`,
 Drupal core in `web/core` and contributed modules and themes in
 `web/modules/contrib` and `web/themes/contrib`.
@@ -74,6 +90,8 @@ $$.file('composer.json', (json) => ({
     'composer-exit-on-patch-failure': true,
   },
 }));
+// Make sure the patches are applied to core.
+$$('rm -rf web/core && composer install');
 ```
 
 ## Minimal Drupal setup
@@ -620,7 +638,9 @@ that.
 
 ```typescript
 $$.chdir('apps/cms');
-$$("composer require 'drupal/default_content:^2.0.0-alpha1'");
+$$(
+  'composer require amazeelabs/proxy-default-content drupal/default_content:^2.0.0-alpha1',
+);
 $$('yarn drush -y en default_content');
 ```
 
@@ -708,20 +728,7 @@ function export(array $excluded): void {
 function import(): void {
   /** @var \Drupal\default_content\ImporterInterface $importer */
   $importer = \Drupal::service('default_content.importer');
-  try {
-    $importer->importContent('{{projectNameDrupal}}_default_content');
-  }
-  catch (\Throwable $e) {
-    $message = $e->getMessage();
-    if (
-      strpos($message, 'UNIQUE constraint failed') !== FALSE &&
-      strpos($message, 'INSERT INTO "paragraphs_item"') !== FALSE
-    ) {
-      // This is fine: https://www.drupal.org/project/default_content/issues/2698425
-      return;
-    }
-    throw $e;
-  }
+  $importer->importContent('{{projectNameDrupal}}_default_content');
 }
 
 // From https://stackoverflow.com/a/3338133/580371
@@ -838,22 +845,6 @@ $$.file('composer.json', (json) => ({
   },
 }));
 $$('composer remove drupal/core-project-message');
-```
-
-Allow plugins execution. This part can be removed once
-[#3255749](https://www.drupal.org/project/drupal/issues/3255749) is resolved.
-
-```typescript
-$$.file('composer.json', (json) => ({
-  ...json,
-  config: {
-    ...json.config,
-    'allow-plugins': {
-      'composer/installers': true,
-      'drupal/core-composer-scaffold': true,
-    },
-  },
-}));
 ```
 
 Export Drupal config and update Drupal install cache.
