@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.8](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-gutenberg@1.1.7...@-amazeelabs/proxy-gutenberg@1.1.8) (2022-01-18)
+
+
+### Bug Fixes
+
+* require cweagans/composer-patches from proxy packages ([2636d41](https://github.com/AmazeeLabs/silverback-mono/commit/2636d4121ebc3474dd3e13240e30fe054f4acb57))
+
+
+
+
+
 ## [1.1.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-gutenberg@1.1.6...@-amazeelabs/proxy-gutenberg@1.1.7) (2021-12-27)
 
 **Note:** Version bump only for package @-amazeelabs/proxy-gutenberg

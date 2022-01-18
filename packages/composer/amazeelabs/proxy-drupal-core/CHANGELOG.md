@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-drupal-core@1.1.4...@-amazeelabs/proxy-drupal-core@1.1.5) (2022-01-18)
+
+
+### Bug Fixes
+
+* require cweagans/composer-patches from proxy packages ([2636d41](https://github.com/AmazeeLabs/silverback-mono/commit/2636d4121ebc3474dd3e13240e30fe054f4acb57))
+
+
+
+
+
 ## [1.1.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-drupal-core@1.1.3...@-amazeelabs/proxy-drupal-core@1.1.4) (2022-01-18)
 
 **Note:** Version bump only for package @-amazeelabs/proxy-drupal-core
