@@ -147,7 +147,7 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
    * @return \GraphQL\Deferred
    */
   public function resolve($type, $id, ?string $language, ?array $bundles, ?bool $access, ?AccountInterface $accessUser, ?string $accessOperation, FieldContext $context) {
-    if (!preg_match('^[0-9]+$', $id)) {
+    if (!preg_match('/^[0-9]+$/', $id)) {
       // Looks like we got a UUID. Transform it to a regular ID.
       $result = $this->entityTypeManager
         ->getStorage($type)
