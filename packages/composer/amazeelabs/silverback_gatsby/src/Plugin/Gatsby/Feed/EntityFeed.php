@@ -46,9 +46,9 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
   protected bool $access;
 
   /**
-   * @var \Drupal\content_translation\ContentTranslationManagerInterface
+   * @var \Drupal\content_translation\ContentTranslationManagerInterface|null
    */
-  protected ContentTranslationManagerInterface $contentTranslationManager;
+  protected ?ContentTranslationManagerInterface $contentTranslationManager;
 
 
   /**
@@ -64,18 +64,17 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('content_translation.manager')
+      $container->has('content_translation.manager')
+        ? $container->get('content_translation.manager')
+        : NULL
     );
   }
 
-  /**
-   * {@inheritDoc}
-   */
   public function __construct(
     $config,
     $plugin_id,
     $plugin_definition,
-    ContentTranslationManagerInterface $contentTranslationManager
+    ?ContentTranslationManagerInterface $contentTranslationManager
   ) {
     $this->type = $config['type'];
     $this->bundle = $config['bundle'] ?? NULL;
@@ -93,7 +92,8 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
    * {@inheritDoc}
    */
   public function isTranslatable(): bool {
-    return $this->contentTranslationManager->isEnabled($this->type, $this->bundle);
+    return $this->contentTranslationManager &&
+      $this->contentTranslationManager->isEnabled($this->type, $this->bundle);
   }
 
   /**
