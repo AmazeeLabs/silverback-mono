@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.14.1...@-amazeelabs/silverback_gatsby@1.14.2) (2022-01-19)
+
+
+### Bug Fixes
+
+* keep not translatable menu links ([b2fa801](https://github.com/AmazeeLabs/silverback-mono/commit/b2fa8014f4191bcf251d0e1b2cd28ecab4eaae58))
+* rely on the negotiated language instead of the default one ([d6388e8](https://github.com/AmazeeLabs/silverback-mono/commit/d6388e883af056402e895ca954cdcb7320f39682))
+
+
+
+
+
 ## [1.14.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.14.0...@-amazeelabs/silverback_gatsby@1.14.1) (2022-01-19)
 
 
