@@ -27,6 +27,19 @@ $$('composer create-project drupal/recommended-project cms');
 $$.chdir('cms');
 ```
 
+Get rid of Drupal's welcome message.
+
+```typescript
+$$.file('composer.json', (json) => ({
+  ...json,
+  extra: {
+    ...json.extra,
+    'post-create-project-cmd-message': undefined,
+  },
+}));
+$$('composer remove drupal/core-project-message');
+```
+
 Allow Composer plugins execution.
 
 ```typescript
@@ -94,6 +107,18 @@ $$.file('composer.json', (json) => ({
 $$('rm -rf web/core && composer install');
 ```
 
+To integrate better with the Javascript development process, we make the `cms`
+app a yarn package too.
+
+```typescript
+$$('yarn init -p -y');
+$$.file('package.json', (json) => ({
+  ...json,
+  name: `@${projectName}/cms`,
+  description: `Content management system for ${projectName.toUpperCase()}`,
+}));
+```
+
 ## Minimal Drupal setup
 
 Drupal needs some essential settings to work. We are going to append them to the
@@ -132,6 +157,13 @@ $$.file('composer.json', (json) => ({
     },
   },
 }));
+```
+
+Commit.
+
+```typescript
+$$('git add .');
+$$('git commit -m "chore: basic drupal setup"');
 ```
 
 ## Lagoon
@@ -424,6 +456,13 @@ ENV WEBROOT=apps/cms/web
 _local
 ```
 
+Commit.
+
+```typescript
+$$('git add .');
+$$('git commit -m "chore: lagoon setup"');
+```
+
 ## Silverback CLI
 
 [`silverback-cli`][silverback-cli] is a command line tool for rapid local Drupal
@@ -462,18 +501,7 @@ $$('composer require amazeelabs/silverback-cli --with-all-dependencies');
 ```
 
 If you have [direnv] installed, you should be able to run `direnv allow` and
-afterwards `silverback setup --profile standard` to install vanilla Drupal. Due
-to that dependency and also to integrate better with the Javascript development
-process, we make the `cms` app a yarn package too.
-
-```typescript
-$$('yarn init -p -y');
-$$.file('package.json', (json) => ({
-  ...json,
-  name: `@${projectName}/cms`,
-  description: `Content management system for ${projectName.toUpperCase()}`,
-}));
-```
+afterwards `silverback setup --profile minimal` to install vanilla Drupal.
 
 Now we can add some scripts to conveniently access common Drupal command line
 tasks.
@@ -530,6 +558,14 @@ create and updated version of `install-cache.zip` and commit it.
 
 `yarn start` will start a local PHP development server, hosting the content
 management system.
+
+Commit.
+
+```typescript
+$$('yarn drush -y cex');
+$$('git add .');
+$$('git commit -m "chore: integrate amazeelabs/silverback-cli"');
+```
 
 [direnv]: https://direnv.net/
 
@@ -626,6 +662,13 @@ Adjust lock-file-changes workflow.
           delete: true
 ```
 <!-- prettier-ignore-end -->
+
+Commit.
+
+```typescript
+$$('git add .');
+$$('git commit -m "ci: adjust github workflows for drupal"');
+```
 
 ## Default content export/import
 
@@ -780,6 +823,14 @@ $$.file('package.json', (json) => ({
 }));
 ```
 
+Commit.
+
+```typescript
+$$('yarn drush -y cex');
+$$(`git add .`);
+$$('git commit -m "chore: default content scripts"');
+```
+
 ## Configure Drupal
 
 Drupal installed with the Minimal profile looks like a monster. Fix this.
@@ -832,44 +883,133 @@ const modules = [
 $$(`yarn drush -y en ${modules.join(' ')}`);
 ```
 
-## Finishing up
-
-Get rid of Drupal's welcome message.
-
-```typescript
-$$.file('composer.json', (json) => ({
-  ...json,
-  extra: {
-    ...json.extra,
-    'post-create-project-cmd-message': undefined,
-  },
-}));
-$$('composer remove drupal/core-project-message');
-```
-
-Export Drupal config and update Drupal install cache.
+Commit.
 
 ```typescript
 $$('yarn drush -y cex');
+$$('git add .');
+$$('git commit -m "chore: configure drupal"');
+```
+
+## Add GraphQL schema
+
+Add `drupal/graphql` and `amazeelabs/silverback_gatsby` modules.
+
+```typescript
+$$(
+  'composer require amazeelabs/proxy-graphql drupal/typed_data:^1.0.0-alpha1 amazeelabs/silverback_gatsby',
+);
+$$('yarn drush -y en silverback_gatsby');
+```
+
+Create a custom module with a GraphQL schema.
+
+```yml
+# |-> web/modules/custom/{{projectNameDrupal}}_graphql/{{projectNameDrupal}}_graphql.info.yml
+
+name: GraphQL schema for {{projectName}}
+type: module
+description: 'GraphQL schema for {{projectName}}.'
+package: Custom
+dependencies:
+  - graphql:graphql
+core_version_requirement: ^8 || ^9
+```
+
+```graphql
+# |-> web/modules/custom/{{projectNameDrupal}}_graphql/graphql/{{projectNameDrupal}}_website.graphqls
+
+schema {
+  query: Query
+}
+
+type Query {
+  exampleField: String!
+}
+```
+
+```php
+<?php
+// |-> web/modules/custom/{{projectNameDrupal}}_graphql/src/Plugin/GraphQL/Schema/WebsiteSchema.php
+
+namespace Drupal\{{projectNameDrupal}}_graphql\Plugin\GraphQL\Schema;
+
+use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
+use Drupal\graphql\GraphQL\ResolverBuilder;
+use Drupal\graphql\GraphQL\ResolverRegistry;
+use Drupal\silverback_gatsby\GraphQL\ComposableSchema;
+
+/**
+ * @Schema(
+ *   id = "{{projectNameDrupal}}_website",
+ *   name = "Website schema",
+ * )
+ */
+class WebsiteSchema extends ComposableSchema {
+
+  public function getResolverRegistry(): ResolverRegistry {
+    $builder = new ResolverBuilder();
+    $registry = new ResolverRegistry();
+    $this->addFieldResolvers($registry, $builder);
+    return $registry;
+  }
+
+  protected function addFieldResolvers(ResolverRegistry $registry, ResolverBuilder $builder): void {
+    $addResolver = function(string $path, ResolverInterface $resolver) use ($registry) {
+      [$type, $field] = explode('.', $path);
+      $registry->addFieldResolver($type, $field, $resolver);
+    };
+
+    $addResolver('Query.exampleField', $builder->fromValue('OK'));
+  }
+
+}
+```
+
+Make it comfortable to work with the schema in PhpStorm.
+
+```json5
+// |-> web/modules/custom/{{projectNameDrupal}}_graphql/graphql/.graphqlconfig
+
+{
+  name: 'Project Schema',
+  schemaPath: '*.graphqls',
+}
+```
+
+```typescript
+$$(
+  `cd web/modules/custom/${projectNameDrupal}_graphql/graphql && ln -s ../../../contrib/silverback_gatsby/graphql silverback`,
+);
+```
+
+Commit enable the module and commit changes.
+
+```typescript
+$$(`yarn drush -y en ${projectNameDrupal}_graphql`);
+```
+
+Commit.
+
+```typescript
+$$('yarn drush -y cex');
+$$('git add .');
+$$('git commit -m "chore: graphql schema"');
+```
+
+## Finishing up
+
+Update Drupal install cache.
+
+```typescript
 $$('yarn drupal-install');
 ```
 
-Commit all the changes.
+Commit.
 
 ```typescript
-$$.chdir('../..');
-
-$$('git add apps/cms/config apps/cms/install-cache.zip');
-$$('git commit -m "chore: export initial drupal config"');
-
-$$(`git add apps/cms/web/modules/custom/${projectNameDrupal}_default_content`);
-$$('git commit -m "chore: default content scripts"');
-
-$$('git add apps/cms docker-compose.yml .lagoon.yml .lagoon .dockerignore');
-$$('git commit -m "chore: lagoon setup"');
-
-$$('git add .github');
-$$('git commit -m "ci: adjust github workflows for drupal"');
+$$('git add .');
+$$('git commit -m "chore: update drupal install cache"');
 ```
 
 As always, the repository should be clean now.
