@@ -182,7 +182,7 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
   public function resolveLangcode(): ResolverInterface {
     return $this->builder->callback(
       fn(Menu $value, $args, $context, $info, FieldContext $fieldContext) =>
-      $value->__language ?? $this->languageManager->getDefaultLanguage()->getId()
+      $value->__language ?? $this->languageManager->getCurrentLanguage()->getId()
     );
   }
 
@@ -230,7 +230,7 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
       $builder->tap($builder->produce('language_switch')
         ->map('language', $builder->callback(
           function ($menu) {
-            return $menu->__language ?? $this->languageManager->getDefaultLanguage()->getId();
+            return $menu->__language ?? $this->languageManager->getCurrentLanguage()->getId();
           }
         ))
       ),
