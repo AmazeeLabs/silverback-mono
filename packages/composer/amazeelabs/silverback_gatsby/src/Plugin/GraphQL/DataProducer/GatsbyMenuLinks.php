@@ -65,7 +65,10 @@ class GatsbyMenuLinks extends DataProducerPluginBase {
       $menuLink = \Drupal::entityTypeManager()
         ->getStorage('menu_link_content')
         ->load($entity_id);
-      return !$language || $menuLink->hasTranslation($language) || $menuLink->language()->getId() === $language;
+      return !$language ||
+        !$menuLink->isTranslatable() ||
+        $menuLink->hasTranslation($language) ||
+        $menuLink->language()->getId() === $language;
     });
 
     return $items;
