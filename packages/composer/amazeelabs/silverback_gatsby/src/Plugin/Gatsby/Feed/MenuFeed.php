@@ -54,9 +54,9 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
   protected string $item_type;
 
   /**
-   * @var \Drupal\content_translation\ContentTranslationManagerInterface
+   * @var \Drupal\content_translation\ContentTranslationManagerInterface|null
    */
-  protected ContentTranslationManagerInterface $contentTranslationManager;
+  protected ?ContentTranslationManagerInterface $contentTranslationManager;
 
   /**
    * @var \Drupal\Core\Language\LanguageManagerInterface
@@ -81,20 +81,19 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('content_translation.manager'),
+      $container->has('content_translation.manager')
+        ? $container->get('content_translation.manager')
+        : NULL,
       $container->get('menu.link_tree'),
       $container->get('language_manager')
     );
   }
 
-  /**
-   * {@inheritDoc}
-   */
   public function __construct(
     $config,
     $plugin_id,
     $plugin_definition,
-    ContentTranslationManagerInterface $contentTranslationManager,
+    ?ContentTranslationManagerInterface $contentTranslationManager,
     MenuLinkTreeInterface $menuLinkTree,
     LanguageManagerInterface $languageManager
   ) {
@@ -116,7 +115,8 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
    * {@inheritDoc}
    */
   public function isTranslatable(): bool {
-    return $this->contentTranslationManager->isEnabled('menu_link_content', 'menu_link_content');
+    return $this->contentTranslationManager &&
+      $this->contentTranslationManager->isEnabled('menu_link_content', 'menu_link_content');
   }
 
   /**
