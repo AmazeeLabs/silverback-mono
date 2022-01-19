@@ -912,7 +912,7 @@ type: module
 description: 'GraphQL schema for {{projectName}}.'
 package: Custom
 dependencies:
-  - graphql:graphql
+  - silverback_gatsby:silverback_gatsby
 core_version_requirement: ^8 || ^9
 ```
 
@@ -968,12 +968,12 @@ class WebsiteSchema extends ComposableSchema {
 
 Make it comfortable to work with the schema in PhpStorm.
 
-```json5
+```json
 // |-> web/modules/custom/{{projectNameDrupal}}_graphql/graphql/.graphqlconfig
 
 {
-  name: 'Project Schema',
-  schemaPath: '*.graphqls',
+  "name": "Project Schema",
+  "schemaPath": "*.graphqls"
 }
 ```
 
