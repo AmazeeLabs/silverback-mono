@@ -63,7 +63,8 @@
   "scripts": {
     "prepublishOnly": "tsc",
     "pretest": "tsc && yarn lint && yarn formatting",
-    "test": "jest --coverage && ./test",
+    "test:unit": "jest --coverage",
+    "test:integration": "./test",
     "lint": "eslint '*/**.ts'",
     "formatting": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\""
   }

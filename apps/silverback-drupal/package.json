@@ -12,7 +12,6 @@
     "snapshot-create": "source .envrc && silverback snapshot-create test -y",
     "snapshot-restore": "source .envrc && silverback snapshot-restore test",
     "clear": "source .envrc && drush cr",
-    "test": "composer install && bash vendor/bin/silverback-test",
     "test:integration": "yarn snapshot-restore && start-server-and-test start:silent 8888 test:schema",
     "test:schema": "yarn jest --testMatch '<rootDir>/generated/__tests__/test-queries.js'",
     "export-content": "web/modules/custom/silverback_gatsby_test/export_content.sh"

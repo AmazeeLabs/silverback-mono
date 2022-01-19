@@ -15,7 +15,7 @@
   "private": false,
   "scripts": {
     "prepare": "tsc --outDir . --declaration",
-    "test": "jest --passWithNoTests",
+    "test:unit": "jest --passWithNoTests",
     "watch": "jest --watch"
   },
   "devDependencies": {
