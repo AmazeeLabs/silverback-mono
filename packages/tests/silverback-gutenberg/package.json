@@ -1,12 +1,12 @@
 {
   "name": "@-amazeelabs/silverback-gutenberg-tests",
-  "version": "1.1.25",
+  "version": "1.1.26",
   "description": "e2e tests for Silverback Gutenberg.",
   "author": "Amazee Labs",
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@-amazeelabs/silverback-drupal": "^1.11.7",
+    "@-amazeelabs/silverback-drupal": "^1.11.8",
     "@-amazeelabs/silverback_gutenberg": "^1.3.9",
     "@amazeelabs/silverback-playwright": "^1.6.10"
   },

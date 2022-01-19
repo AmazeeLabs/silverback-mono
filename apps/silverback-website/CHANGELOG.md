@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.15.51](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.15.50...silverback-website@0.15.51) (2022-01-19)
+
+
+### Bug Fixes
+
+* fix test:static script ([dd0cd3d](https://github.com/AmazeeLabs/silverback-mono/commit/dd0cd3dec6b549411fd7b8b37c38a722054ff17b))
+* restore tests in multiple packages ([92c2e00](https://github.com/AmazeeLabs/silverback-mono/commit/92c2e003e162d991e5cc7fee511e75c7339f0049))
+
+
+
+
+
 ## [0.15.50](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.15.49...silverback-website@0.15.50) (2022-01-13)
 
 **Note:** Version bump only for package silverback-website

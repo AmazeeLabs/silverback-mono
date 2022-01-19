@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.14.0...@-amazeelabs/silverback_gatsby@1.14.1) (2022-01-19)
+
+
+### Bug Fixes
+
+* fix regex ([5c964db](https://github.com/AmazeeLabs/silverback-mono/commit/5c964dbcfcb0d0ed6a23e63cbe5826fc4f99eb96))
+* restore tests in multiple packages ([92c2e00](https://github.com/AmazeeLabs/silverback-mono/commit/92c2e003e162d991e5cc7fee511e75c7339f0049))
+* support projects with content_translation module disabled ([a8bf062](https://github.com/AmazeeLabs/silverback-mono/commit/a8bf0625d19bde6f18d6491cad3d67e5b39ead5e))
+
+
+
+
+
 # [1.14.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.13.3...@-amazeelabs/silverback_gatsby@1.14.0) (2022-01-05)
 
 

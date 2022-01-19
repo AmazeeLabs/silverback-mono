@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@2.7.6...@-amazeelabs/silverback-cli@2.7.7) (2022-01-19)
+
+
+### Bug Fixes
+
+* allow drush 11 ([e99ee05](https://github.com/AmazeeLabs/silverback-mono/commit/e99ee05b763e28d99df910cec594625f878d1aff))
+* restore tests in multiple packages ([92c2e00](https://github.com/AmazeeLabs/silverback-mono/commit/92c2e003e162d991e5cc7fee511e75c7339f0049))
+
+
+
+
+
 ## [2.7.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@2.7.5...@-amazeelabs/silverback-cli@2.7.6) (2021-12-27)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-cli
