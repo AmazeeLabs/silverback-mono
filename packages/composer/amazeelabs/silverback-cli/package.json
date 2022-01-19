@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "version": "sync-composer-version",
-    "test": "./test"
+    "test:integration": "./test"
   },
   "devDependencies": {
     "@amazeelabs/sync-composer-version": "^1.1.2"

@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "version": "sync-composer-version",
-    "test": "./test.sh"
+    "test:unit": "cd ../../../../apps/silverback-drupal && vendor/phpunit/phpunit/phpunit web/modules/contrib/silverback_gatsby"
   },
   "devDependencies": {
     "@amazeelabs/sync-composer-version": "^1.1.2"

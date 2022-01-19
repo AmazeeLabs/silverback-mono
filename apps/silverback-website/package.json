@@ -59,9 +59,9 @@
     "clean": "gatsby clean",
     "update-schema": "GATSBY_UPDATE_SCHEMA_SNAPSHOT=true gatsby build",
     "codegen": "graphql-codegen --config codegen.yml",
-    "test:ci": "yarn codegen && yarn tsc && jest --passWithNoTests && yarn build",
-    "test:watch": "jest --watch",
-    "test": "is-ci test:ci test:watch",
+    "test:static": "yarn codegen && yarn tsc && jest --passWithNoTests",
+    "test:unit": "jest --passWithNoTests",
+    "test:integration": "yarn build",
     "storybook": "start-storybook -p 6006",
     "storybook:build": "build-storybook"
   },
