@@ -2,7 +2,6 @@
 
 namespace Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer;
 
-use Drupal\Core\Annotation\ContextDefinition;
 use Drupal\Core\Menu\InaccessibleMenuLink;
 use Drupal\Core\Menu\MenuLinkTreeElement;
 use Drupal\graphql\GraphQL\Execution\FieldContext;
