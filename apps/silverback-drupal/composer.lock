@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a1de88affd25040bf84105e28267d0f7",
+    "content-hash": "b7717c2c0cfbfeda9a1aa06acb770f37",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -76,13 +76,14 @@
         },
         {
             "name": "amazeelabs/proxy-drupal-core",
-            "version": "1.1.3",
+            "version": "1.1.5",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-drupal-core",
-                "reference": "cc6ed3559764514e2e468ba884e0c878672a46af"
+                "reference": "e5254c4e368e58a3ca0874fec6184dd8e25e48b2"
             },
             "require": {
+                "cweagans/composer-patches": "^1.7",
                 "drupal/core-recommended": "^9"
             },
             "type": "library",
@@ -107,13 +108,14 @@
         },
         {
             "name": "amazeelabs/proxy-gutenberg",
-            "version": "1.1.7",
+            "version": "1.1.8",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-gutenberg",
-                "reference": "6ff6128697a6b7c8512b133ca6f240727b76ff4a"
+                "reference": "9213dbcdd014eac5849ea0974c10de3140fea8b8"
             },
             "require": {
+                "cweagans/composer-patches": "^1.7",
                 "drupal/gutenberg": "^2.2"
             },
             "type": "library",
@@ -138,15 +140,15 @@
         },
         {
             "name": "amazeelabs/silverback-cli",
-            "version": "2.7.6",
+            "version": "2.7.7",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback-cli",
-                "reference": "e06a15390435cc043a848c18677503a7d3abf94f"
+                "reference": "426d6e3e6b9b208ea921cf5385505c9b77efdcce"
             },
             "require": {
                 "alchemy/zippy": "^1.0.0",
-                "drush/drush": "^10.6.2",
+                "drush/drush": ">=10.6.2",
                 "ext-json": "*",
                 "ext-zip": "*",
                 "vlucas/phpdotenv": "^5.4"
@@ -206,11 +208,11 @@
         },
         {
             "name": "amazeelabs/silverback_gatsby",
-            "version": "1.14.0",
+            "version": "1.14.2",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gatsby",
-                "reference": "914852402aaeee9968b8ba6efcea6fc473fa9228"
+                "reference": "b823cd173536fdbb28511b1382d7eec284a7d60b"
             },
             "type": "drupal-module",
             "extra": {
@@ -231,11 +233,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "1.3.9",
+            "version": "1.3.11",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "ee8416c34f9f6f7d01e5cd90cb304d6c8f7a4a4c"
+                "reference": "63183bed964b58b7d2556bc4e23135eee192a2a9"
             },
             "type": "drupal-module",
             "license": [
@@ -249,11 +251,11 @@
         },
         {
             "name": "amazeelabs/silverback_iframe",
-            "version": "1.1.3",
+            "version": "1.1.4",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_iframe",
-                "reference": "61602b558303c648d9f0ccd2d7150cbf8fedb7cd"
+                "reference": "f8e056ea68bd9eff12a1a74bede9deeac082bc47"
             },
             "type": "drupal-module",
             "license": [
@@ -1743,16 +1745,16 @@
         },
         {
             "name": "consolidation/site-process",
-            "version": "4.1.1",
+            "version": "4.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/consolidation/site-process.git",
-                "reference": "4817b35b2f98a2e3ad82956a968b49f7b257d26c"
+                "reference": "ca41dc82b280bccdf1b231d5599c7d506fba5c04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/consolidation/site-process/zipball/4817b35b2f98a2e3ad82956a968b49f7b257d26c",
-                "reference": "4817b35b2f98a2e3ad82956a968b49f7b257d26c",
+                "url": "https://api.github.com/repos/consolidation/site-process/zipball/ca41dc82b280bccdf1b231d5599c7d506fba5c04",
+                "reference": "ca41dc82b280bccdf1b231d5599c7d506fba5c04",
                 "shasum": ""
             },
             "require": {
@@ -1760,7 +1762,7 @@
                 "consolidation/site-alias": "^3",
                 "php": ">=7.1.3",
                 "symfony/console": "^2.8.52|^3|^4.4|^5",
-                "symfony/process": "^4.3.4"
+                "symfony/process": "^4.3.4|^5"
             },
             "require-dev": {
                 "phpunit/phpunit": "^7.5.20|^8.5.14",
@@ -1795,9 +1797,9 @@
             "description": "A thin wrapper around the Symfony Process Component that allows applications to use the Site Alias library to specify the target for a remote call.",
             "support": {
                 "issues": "https://github.com/consolidation/site-process/issues",
-                "source": "https://github.com/consolidation/site-process/tree/4.1.1"
+                "source": "https://github.com/consolidation/site-process/tree/4.1.3"
             },
-            "time": "2022-01-03T18:57:42+00:00"
+            "time": "2022-01-18T23:04:54+00:00"
         },
         {
             "name": "cweagans/composer-patches",
@@ -2551,16 +2553,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "9.3.2",
+            "version": "9.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "6c9ba6b6314550e7efb8f5f4e2a40f54cfd6aee1"
+                "reference": "a9bd68be9a4e39724ea555f8040114759a8faf7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/6c9ba6b6314550e7efb8f5f4e2a40f54cfd6aee1",
-                "reference": "6c9ba6b6314550e7efb8f5f4e2a40f54cfd6aee1",
+                "url": "https://api.github.com/repos/drupal/core/zipball/a9bd68be9a4e39724ea555f8040114759a8faf7f",
+                "reference": "a9bd68be9a4e39724ea555f8040114759a8faf7f",
                 "shasum": ""
             },
             "require": {
@@ -2802,13 +2804,13 @@
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
             "support": {
-                "source": "https://github.com/drupal/core/tree/9.3.2"
+                "source": "https://github.com/drupal/core/tree/9.3.3"
             },
-            "time": "2022-01-05T02:55:30+00:00"
+            "time": "2022-01-19T00:13:54+00:00"
         },
         {
             "name": "drupal/core-composer-scaffold",
-            "version": "9.3.2",
+            "version": "9.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-composer-scaffold.git",
@@ -2852,13 +2854,13 @@
                 "drupal"
             ],
             "support": {
-                "source": "https://github.com/drupal/core-composer-scaffold/tree/9.3.2"
+                "source": "https://github.com/drupal/core-composer-scaffold/tree/9.3.3"
             },
             "time": "2021-11-19T09:52:23+00:00"
         },
         {
             "name": "drupal/core-dev",
-            "version": "9.3.2",
+            "version": "9.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-dev.git",
@@ -2902,22 +2904,22 @@
             ],
             "description": "require-dev dependencies from drupal/drupal; use in addition to drupal/core-recommended to run tests from drupal/core.",
             "support": {
-                "source": "https://github.com/drupal/core-dev/tree/9.3.2"
+                "source": "https://github.com/drupal/core-dev/tree/9.3.3"
             },
             "time": "2021-11-30T05:41:29+00:00"
         },
         {
             "name": "drupal/core-recommended",
-            "version": "9.3.2",
+            "version": "9.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-recommended.git",
-                "reference": "9f570d6bf6e568b8c2deab02349a11fad3d1e272"
+                "reference": "a2fc42cb765874e5393d203ee807ac57abe04b12"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/9f570d6bf6e568b8c2deab02349a11fad3d1e272",
-                "reference": "9f570d6bf6e568b8c2deab02349a11fad3d1e272",
+                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/a2fc42cb765874e5393d203ee807ac57abe04b12",
+                "reference": "a2fc42cb765874e5393d203ee807ac57abe04b12",
                 "shasum": ""
             },
             "require": {
@@ -2926,7 +2928,7 @@
                 "doctrine/annotations": "1.13.2",
                 "doctrine/lexer": "1.2.1",
                 "doctrine/reflection": "1.2.2",
-                "drupal/core": "9.3.2",
+                "drupal/core": "9.3.3",
                 "egulias/email-validator": "3.1.2",
                 "guzzlehttp/guzzle": "6.5.5",
                 "guzzlehttp/promises": "1.5.1",
@@ -2988,17 +2990,17 @@
             ],
             "description": "Locked core dependencies; require this project INSTEAD OF drupal/core.",
             "support": {
-                "source": "https://github.com/drupal/core-recommended/tree/9.3.2"
+                "source": "https://github.com/drupal/core-recommended/tree/9.3.3"
             },
-            "time": "2022-01-05T02:55:30+00:00"
+            "time": "2022-01-19T00:13:54+00:00"
         },
         {
             "name": "drupal/cypress",
-            "version": "2.3.38",
+            "version": "2.3.40",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/cypress",
-                "reference": "181b1379afdb8d5b6c64932369ef36fd15892054"
+                "reference": "7265f429c4dcbccc3054c69cfc5b3012bcd92e2a"
             },
             "require": {
                 "alchemy/zippy": "^1.0.0",
@@ -3108,11 +3110,11 @@
         },
         {
             "name": "drupal/gatsby_build_monitor",
-            "version": "1.4.14",
+            "version": "1.4.16",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/gatsby_build_monitor",
-                "reference": "fd54bead1f152d2436e81474ad947407a2d8ff0a"
+                "reference": "b3816702a7282b1248281c53fb9cc387380a18f5"
             },
             "require": {
                 "justinrainbow/json-schema": "^5.2.11"
@@ -3277,11 +3279,11 @@
         },
         {
             "name": "drupal/test_session",
-            "version": "1.2.18",
+            "version": "1.2.20",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/test_session",
-                "reference": "1e6fc46143253591490e5a69c369704b6b49b977"
+                "reference": "d8d0cd93e97461c9af561d499fc59adeca38e1b1"
             },
             "type": "drupal-module",
             "license": [
@@ -11177,28 +11179,28 @@
         },
         {
             "name": "webonyx/graphql-php",
-            "version": "v14.11.3",
+            "version": "v14.11.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webonyx/graphql-php.git",
-                "reference": "a7192e7a2b0487dc5e185feb4f4df1fc24d35d86"
+                "reference": "d8d6307399df7246f09a1e9cc05e1574214ca67c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/a7192e7a2b0487dc5e185feb4f4df1fc24d35d86",
-                "reference": "a7192e7a2b0487dc5e185feb4f4df1fc24d35d86",
+                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/d8d6307399df7246f09a1e9cc05e1574214ca67c",
+                "reference": "d8d6307399df7246f09a1e9cc05e1574214ca67c",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-mbstring": "*",
-                "php": "^7.1 || ^8.0"
+                "php": "^7.1 || ^8"
             },
             "require-dev": {
                 "amphp/amp": "^2.3",
                 "doctrine/coding-standard": "^6.0",
                 "nyholm/psr7": "^1.2",
-                "phpbench/phpbench": "^0.16.10",
+                "phpbench/phpbench": "^1.2",
                 "phpstan/extension-installer": "^1.0",
                 "phpstan/phpstan": "0.12.82",
                 "phpstan/phpstan-phpunit": "0.12.18",
@@ -11231,7 +11233,7 @@
             ],
             "support": {
                 "issues": "https://github.com/webonyx/graphql-php/issues",
-                "source": "https://github.com/webonyx/graphql-php/tree/v14.11.3"
+                "source": "https://github.com/webonyx/graphql-php/tree/v14.11.4"
             },
             "funding": [
                 {
@@ -11239,7 +11241,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2021-11-19T09:42:02+00:00"
+            "time": "2022-01-20T15:10:45+00:00"
         }
     ],
     "packages-dev": [],
