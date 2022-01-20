@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_iframe@1.1.3...@-amazeelabs/silverback_iframe@1.1.4) (2022-01-20)
+
+
+### Bug Fixes
+
+* restore fallback behavior for webforms ([fc2eae3](https://github.com/AmazeeLabs/silverback-mono/commit/fc2eae34a49a06749d603763d1a66d0123ba1c6a))
+
+
+
+
+
 ## [1.1.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_iframe@1.1.2...@-amazeelabs/silverback_iframe@1.1.3) (2021-12-27)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_iframe
