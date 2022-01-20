@@ -23,13 +23,15 @@ const verbose =
   process.argv.includes('--verbose') || process.argv.includes('-v');
 const trace = process.argv.includes('--trace') || process.argv.includes('-t');
 
+const testDir = `${process.cwd()}/playwright-tests`;
+
 $.verbose = verbose;
 // We escape args ourselves.
 $.quote = (arg) => arg;
 
 const runTests = async (type: TestType) => {
   const envVars: Record<string, string> = {
-    SP_TEST_DIR: `${process.cwd()}/playwright-tests`,
+    SP_TEST_DIR: testDir,
     SP_TEST_TYPE: type,
     SP_VERBOSE: verbose ? 'true' : '',
     SP_TRACE: trace ? 'true' : '',
