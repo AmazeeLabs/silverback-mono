@@ -1,6 +1,6 @@
 {
   "name": "@-amazeelabs/silverback-iframe-tests",
-  "version": "1.1.16",
+  "version": "1.1.17",
   "description": "e2e tests for Silverback Iframe solution.",
   "author": "Amazee Labs",
   "license": "MIT",
@@ -9,12 +9,12 @@
     "@-amazeelabs/silverback_iframe": "^1.1.4",
     "@-amazeelabs/silverback_iframe_theme": "^1.1.3",
     "@-silverback-drupal-config/webform": "^1.0.3",
-    "@amazeelabs/silverback-iframe": "^1.1.21",
-    "@amazeelabs/silverback-playwright": "^1.6.11"
+    "@amazeelabs/silverback-iframe": "^1.1.22",
+    "@amazeelabs/silverback-playwright": "^1.6.12"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.11",
-    "@amazeelabs/jest-preset": "^1.3.15",
+    "@amazeelabs/eslint-config": "^1.4.12",
+    "@amazeelabs/jest-preset": "^1.3.16",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@types/jest": "^27",
     "eslint": "^8",

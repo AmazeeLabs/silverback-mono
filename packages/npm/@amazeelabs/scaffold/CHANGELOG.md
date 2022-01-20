@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.34](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.3.33...@amazeelabs/scaffold@1.3.34) (2022-01-20)
+
+**Note:** Version bump only for package @amazeelabs/scaffold
+
+
+
+
+
 ## [1.3.33](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scaffold@1.3.32...@amazeelabs/scaffold@1.3.33) (2022-01-20)
 
 **Note:** Version bump only for package @amazeelabs/scaffold

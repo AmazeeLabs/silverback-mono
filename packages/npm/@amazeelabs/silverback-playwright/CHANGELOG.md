@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.12](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/silverback-playwright@1.6.11...@amazeelabs/silverback-playwright@1.6.12) (2022-01-20)
+
+
+### Bug Fixes
+
+* get cwd early as it can change during the tests execution ([54f793f](https://github.com/AmazeeLabs/silverback-mono/commit/54f793f2a6d04b69b5f7ee25cd123fe429b8fa7d))
+
+
+
+
+
 ## [1.6.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/silverback-playwright@1.6.10...@amazeelabs/silverback-playwright@1.6.11) (2022-01-20)
 
 **Note:** Version bump only for package @amazeelabs/silverback-playwright
