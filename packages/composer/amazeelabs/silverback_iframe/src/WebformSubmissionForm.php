@@ -61,17 +61,28 @@ class WebformSubmissionForm extends Original {
         break;
 
       case WebformInterface::CONFIRMATION_MESSAGE:
-        // Display message above the form.
         // Prepare the default form redirect as it's done in FormSubmitter.
         $url = Url::fromRoute('<current>', [], [
-          'query' => [
+          'query' => \Drupal::request()->query->all(),
+          'absolute' => TRUE,
+        ]);
+        $message = $this->getMessage();
+        if (strpos($message, 'js-iframe-parent-message') !== FALSE) {
+          // Fallback to the default behavior if we see a special class in the
+          // message HTML.
+          // See Drupal.behaviors.silverbackIframeRedirect
+          $this->getMessageManager()->display(WebformMessageManagerInterface::SUBMISSION_CONFIRMATION_MESSAGE);
+          $form_state->setRedirectUrl($url);
+        }
+        else {
+          // Display message above the form.
+          $url->setOption('query', [
             // Pass the message in the URL to not mess with session. User won't
             // see it anyway.
             'iframe_message' => $this->getMessage(),
-          ] + \Drupal::request()->query->all(),
-          'absolute' => TRUE,
-        ]);
-        $form_state->setRedirectUrl($url);
+          ] + \Drupal::request()->query->all());
+          $form_state->setRedirectUrl($url);
+        }
         break;
 
       case WebformInterface::CONFIRMATION_NONE:
