@@ -1,4 +1,4 @@
-FROM amazeeio/php:7.4-cli-drupal
+FROM uselagoon/php-8.1-cli-drupal
 
 RUN apk add --no-cache python2 make g++
 
