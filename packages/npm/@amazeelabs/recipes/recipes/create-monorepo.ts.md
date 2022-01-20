@@ -572,8 +572,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          # TODO: Upgrade to PHP 8.
-          php-version: '7.4'
+          php-version: '8.1'
 
       - name: Checkout
         uses: actions/checkout@v2
@@ -696,8 +695,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          # TODO: Upgrade to PHP 8.
-          php-version: '7.4'
+          php-version: '8.1'
 
       - name: Checkout
         uses: actions/checkout@v2
