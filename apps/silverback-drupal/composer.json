@@ -90,7 +90,12 @@
             ]
         },
         "enable-patching": true,
-        "composer-exit-on-patch-failure": true
+        "composer-exit-on-patch-failure": true,
+        "patches": {
+            "drupal/webform": {
+                "Deprecated function: strpos()": "https://git.drupalcode.org/project/webform/-/commit/3cff1c9.diff"
+            }
+        }
     },
     "scripts": {
         "run-tests": [
