@@ -106,6 +106,25 @@ test('@gatsby-both confirmation type: none', async ({ page }) => {
   expect(await page.$('.status-messages-inner')).toBeNull();
 });
 
+test('@gatsby-both confirmation type: message with fallback', async ({
+  page,
+}) => {
+  await setConfirmationOption(page, 'message', {
+    addMessage:
+      '<span class="hidden js-iframe-parent-message">The contact form has been submitted</span><div>You will be redirected back to the <a class="js-iframe-parent-redirect" href="/article/other">form</a>.</div>',
+  });
+  await submitWebform(page);
+  await page.waitForNavigation();
+
+  expect(await page.innerHTML('.status-messages-inner')).toContain(
+    'The contact form has been submitted',
+  );
+  expect(page.url()).toBe(
+    // It's important to ensure that we are redirected to Gatsby, not to Drupal.
+    `${gatsby.baseUrl}/en/article/other`,
+  );
+});
+
 const confirmationOptions = [
   'inline',
   'message',
@@ -118,7 +137,10 @@ type ConfirmationOption = typeof confirmationOptions[number];
 const setConfirmationOption = async (
   page: PlaywrightTestArgs['page'],
   confirmationOption: ConfirmationOption,
-  options?: { addMessage?: boolean; setRedirectUrl?: string },
+  options?: {
+    addMessage?: boolean | string;
+    setRedirectUrl?: string;
+  },
 ) => {
   await drupalLogin(page);
   await page.goto(
@@ -129,7 +151,7 @@ const setConfirmationOption = async (
     `input[name="confirmation_type"][value="${confirmationOption}"]`,
   );
 
-  if (options?.addMessage) {
+  if (options?.addMessage === true) {
     const editorFrame = (await (
       await page.waitForSelector(
         '.form-item--confirmation-message-value .cke_wysiwyg_frame',
@@ -142,6 +164,10 @@ const setConfirmationOption = async (
       '.form-item--confirmation-message-value .cke_button__bold',
     );
     await page.keyboard.type('some bold text.');
+  }
+  if (typeof options?.addMessage === 'string') {
+    await page.click('a[role="button"]:has-text("Source")');
+    await page.fill('#cke_1_contents div textarea', options.addMessage);
   }
 
   if (options?.setRedirectUrl) {
