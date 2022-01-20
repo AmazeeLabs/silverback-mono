@@ -396,9 +396,7 @@ FROM uselagoon/php-8.1-cli-drupal as builder
 RUN apk add --no-cache git imagemagick && \
   docker-php-ext-install intl && \
   docker-php-ext-enable intl && \
-  composer selfupdate --2 && \
-  composer config --global github-protocols https && \
-  composer global remove hirak/prestissimo
+  composer config --global github-protocols https
 
 # Initiate the whole monorepo for the case if Drupal will need something from
 # other yarn workspaces (e.g. CSS files for the editor).
