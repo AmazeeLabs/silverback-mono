@@ -14,7 +14,7 @@ export const getConfig = () => {
   const configFile = path.resolve(envVars.SP_TEST_DIR, 'config.json');
   if (!fs.existsSync(configFile)) {
     throw new Error(
-      `'config.json' file does not exists in '${envVars.SP_TEST_DIR}' directory.`,
+      `'config.json' file does not exist in '${envVars.SP_TEST_DIR}' directory.`,
     );
   }
   const packageConfig: Config = JSON.parse(
