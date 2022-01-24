@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/recipes",
-  "version": "1.9.13",
+  "version": "1.9.14",
   "description": "Executable recipes to setup and extend Amazee Labs projects.",
   "main": "dist/index.js",
   "license": "MIT",
