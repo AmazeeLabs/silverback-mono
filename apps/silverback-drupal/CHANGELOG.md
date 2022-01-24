@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.11.13...@-amazeelabs/silverback-drupal@1.12.0) (2022-01-24)
+
+
+### Features
+
+* re-do default content in silverback-drupal ([bfaffe3](https://github.com/AmazeeLabs/silverback-mono/commit/bfaffe35974f41d347dd9c4ba1a4180874ddce93))
+
+
+
+
+
 ## [1.11.13](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.11.12...@-amazeelabs/silverback-drupal@1.11.13) (2022-01-20)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
