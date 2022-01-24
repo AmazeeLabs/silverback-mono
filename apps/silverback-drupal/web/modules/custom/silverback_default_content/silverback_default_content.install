@@ -1,0 +1,13 @@
+<?php
+/**
+ * Implements hook_requirements().
+ */
+function silverback_default_content_requirements($phase) {
+  return [
+    'module' => [
+      'title' => 'silverback_default_content module should never be enabled',
+      'description' => 'silverback_default_content module should never be enabled',
+      'severity' => REQUIREMENT_ERROR,
+    ],
+  ];
+}

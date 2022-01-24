@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b7717c2c0cfbfeda9a1aa06acb770f37",
+    "content-hash": "1051317180ad92d58facaf8844d890b8",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -73,6 +73,62 @@
                 "source": "https://github.com/alchemy-fr/Zippy/tree/1.0.0"
             },
             "time": "2021-04-13T14:13:44+00:00"
+        },
+        {
+            "name": "amazeelabs/default-content",
+            "version": "1.1.2",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/composer/amazeelabs/default-content",
+                "reference": "687ea143c713bda7ec1fa4c223cab19864347f4f"
+            },
+            "require": {
+                "amazeelabs/proxy-default-content": "^1.0"
+            },
+            "type": "package",
+            "autoload": {
+                "psr-4": {
+                    "AmazeeLabs\\DefaultContent\\": "src/AmazeeLabs/DefaultContent"
+                }
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Helpers for managing the Drupal's default content.",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "amazeelabs/proxy-default-content",
+            "version": "1.1.1",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/composer/amazeelabs/proxy-default-content",
+                "reference": "9dd2ff0758777820f527327addb11ff393482c91"
+            },
+            "require": {
+                "cweagans/composer-patches": "^1.7",
+                "drupal/default_content": "^2.0.0-alpha1"
+            },
+            "type": "library",
+            "extra": {
+                "enable-patching": true,
+                "composer-exit-on-patch-failure": true,
+                "patches": {
+                    "drupal/default_content": {
+                        "Do not reimport existing entities": "https://www.drupal.org/files/issues/2022-01-18/2698425-167.patch"
+                    }
+                }
+            },
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Proxy package for drupal/default_content.",
+            "homepage": "https://silverback.netlify.app",
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "amazeelabs/proxy-drupal-core",
