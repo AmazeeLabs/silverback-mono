@@ -77,7 +77,7 @@ Story:
 
 ```tsx
 import React from 'react';
-import { Meta } from '@storybook/react/types-6-0';
+import { Meta } from '@storybook/react';
 import { Teaser as TeaserComponent } from '../teaser';
 import {
   buildHtml,
@@ -95,7 +95,7 @@ export const Teaser = () => (
     Description={buildHtml(
       '<p>This is a text with a <a href="https://www.amazeelabs.com">Link</a>.<p>',
     )}
-    Link={buildLink('/about-us')}
+    Link={buildLink({ href: '/about-us' })}
   />
 );
 ```
@@ -120,7 +120,7 @@ const Homepage = (data) => (
       <Teaser
         title={teaser.title}
         Description={buildHtml(teaser.description)}
-        Link={buildLink(teaser.url)}
+        Link={buildLink({ href: teaser.url })}
       />
     ))}
   </div>
@@ -139,11 +139,11 @@ Currently Gatsby and Storybook are supported.
 
 ### Link
 
-The `buildStorybookLink` and `buildGatsbyLink` functions accept a set of
-properties that is equivalent to the allowed attributes of a standard Anchor
-element, except the CSS-class attribute. Instead, it is possible to add
-`className` and `activeClassName` properties to the resulting component to
-control the visual appearance within the component library.
+The `buildLink` for Gatsby and Storybook functions accept a set of properties
+that is equivalent to the allowed attributes of a standard Anchor element,
+except the CSS-class attribute. Instead, it is possible to add `className` and
+`activeClassName` properties to the resulting component to control the visual
+appearance within the component library.
 
 In Storybook, the `activeClassName` will be applied if the `href` attribute
 contains `active`. In Gatsby it will use the built-in active-link functionality.
@@ -218,7 +218,6 @@ string per element name or a function that results in a class.
 const Html = buildHtml(
   `<p>This is a test with a <a href="https://www.amazeelabs.com">link</a>.</p>`,
 );
-
 ...
 
 <Html
@@ -227,4 +226,43 @@ const Html = buildHtml(
     a: (node) => node.attribs['href'].contains('amazee') ? 'text-orage' : 'text-blue'
   }}
 />
+```
+
+## Storybook actions integration
+
+The `buildLink` and `buildForm` functions integrate with
+[@storybook/addon-actions](https://www.npmjs.com/package/@storybook/addon-actions)
+and
+[@storybook/addon-interactions](https://www.npmjs.com/package/@storybook/addon-interactions).
+A play function that clicks a `Link` or submits af `Form` will trigger an action
+that is logged. Additionally, artificial arguments called `wouldNavigate` and
+`wouldSubmit` are added to the story context. They can be used with jest's
+assertions on mock functions to test actual interactions in a play function.
+
+It needs to be added to the projects `.storybook/preview.tsx` file to work.
+First, re-export the `argTypes` definition provided by this package to tell
+Storybook that `wouldNavigate` and `wouldSubmit` are events that need to be
+logged and mocked. To collect all occurences you also have to add the
+`ActionsDecorator`.
+
+```typescript
+export { argTypes } from '@amazeelabs/react-framework-bridge/storybook';
+
+import { ActionsDecorator } from '@amazeelabs/react-framework-bridge/storybook';
+
+export const decorator = [ActionsDecorator];
+```
+
+Now you should be able to implement assertions in play functions like this:
+
+```typescript
+export const MyStory = {
+  play: async (context) => {
+    const canvas = within(context.canvasElement);
+    fireEvent.click(await canvas.findByRole('link', { name: 'Test' }));
+    await waitFor(() =>
+      expect(context.args.wouldNavigate).toHaveBeenCalledWith('/test'),
+    );
+  },
+};
 ```
