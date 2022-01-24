@@ -680,7 +680,7 @@ that.
 ```typescript
 $$.chdir('apps/cms');
 $$(
-  'composer require amazeelabs/proxy-default-content drupal/default_content:^2.0.0-alpha1',
+  'composer require amazeelabs/default-content drupal/default_content:^2.0.0-alpha1',
 );
 $$('yarn drush -y en default_content');
 ```
@@ -706,17 +706,14 @@ if (PHP_SAPI !== 'cli') {
   die;
 }
 
-// Define the list of excluded entity types.
+// The list of excluded content entity types.
 $excluded = [
-  // Created automatically on node creation. Cause troubles if exported.
+  // Path aliases are created automatically on the node creation. They cause
+  // troubles if exported to the default content.
   'path_alias',
-  // Default users (admin and anonymous) cause troubles if exported. We
-  // create users manually in import.php.
-  'user',
 ];
 
-require_once 'helpers.php';
-export($excluded);
+\AmazeeLabs\DefaultContent\Export::run('{{projectNameDrupal}}_default_content', $excluded);
 ```
 
 ```php
@@ -727,66 +724,7 @@ if (PHP_SAPI !== 'cli') {
   die;
 }
 
-// Create users. Example:
-//$user = \Drupal\user\Entity\User::create();
-//$user->setUsername('GatsbyPreview');
-//$user->setPassword('GatsbyPreview');
-//$user->enforceIsNew();
-//$user->addRole('_gatsbypreview');
-//$user->activate();
-//$user->save();
-
-require_once 'helpers.php';
-import();
-```
-
-```php
-<?php
-// |-> web/modules/custom/{{projectNameDrupal}}_default_content/helpers.php
-
-use Drupal\Core\Entity\ContentEntityType;
-
-function export(array $excluded): void {
-  $dir = __DIR__ . '/content';
-  rrmdir($dir);
-  /** @var \Drupal\default_content\ExporterInterface $exporter */
-  $exporter = \Drupal::service('default_content.exporter');
-  $entity_type_definitions = \Drupal::entityTypeManager()->getDefinitions();
-  foreach ($entity_type_definitions as $definition) {
-    $entityTypeId = $definition->id();
-    if (
-      $definition instanceof ContentEntityType &&
-      !in_array($entityTypeId, $excluded, TRUE)
-    ) {
-      $entityIds = \Drupal::entityQuery($entityTypeId)->execute();
-      foreach ($entityIds as $entityId) {
-        $exporter->exportContentWithReferences($entityTypeId, $entityId, $dir);
-      }
-    }
-  }
-}
-
-function import(): void {
-  /** @var \Drupal\default_content\ImporterInterface $importer */
-  $importer = \Drupal::service('default_content.importer');
-  $importer->importContent('{{projectNameDrupal}}_default_content');
-}
-
-// From https://stackoverflow.com/a/3338133/580371
-function rrmdir(string $dir) {
-  if (is_dir($dir)) {
-    $objects = scandir($dir);
-    foreach ($objects as $object) {
-      if ($object != "." && $object != "..") {
-        if (is_dir($dir. DIRECTORY_SEPARATOR .$object) && !is_link($dir."/".$object))
-          rrmdir($dir. DIRECTORY_SEPARATOR .$object);
-        else
-          unlink($dir. DIRECTORY_SEPARATOR .$object);
-      }
-    }
-    rmdir($dir);
-  }
-}
+\AmazeeLabs\DefaultContent\Import::run('{{projectNameDrupal}}_default_content');
 ```
 
 ```php
