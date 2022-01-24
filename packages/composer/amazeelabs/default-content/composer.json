@@ -1,0 +1,15 @@
+{
+  "name": "amazeelabs/default-content",
+  "description": "Helpers for managing the Drupal's default content.",
+  "type": "package",
+  "license": "GPL-2.0-or-later",
+  "version": "1.0.0",
+  "require": {
+    "amazeelabs/proxy-default-content": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "AmazeeLabs\\DefaultContent\\": "src/AmazeeLabs/DefaultContent"
+    }
+  }
+}
