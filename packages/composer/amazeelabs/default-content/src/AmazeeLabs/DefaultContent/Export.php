@@ -33,6 +33,23 @@ abstract class Export {
           }
           $exporter->exportContentWithReferences($entityTypeId, $entityId, $dir);
         }
+        if ($entityTypeId === 'user') {
+          $userDir = $dir . DIRECTORY_SEPARATOR . 'user';
+          if (is_dir($userDir)) {
+            foreach (scandir($userDir) as $fileName) {
+              $filePath = $userDir . DIRECTORY_SEPARATOR . $fileName;
+              if (is_file($filePath)) {
+                # Fix passwords.
+                # https://www.drupal.org/project/default_content/issues/2943458#comment-14022041
+                file_put_contents($filePath, str_replace(
+                  'pre_hashed: false',
+                  'pre_hashed: true',
+                  file_get_contents($filePath)
+                ));
+              }
+            }
+          }
+        }
       }
     }
   }
