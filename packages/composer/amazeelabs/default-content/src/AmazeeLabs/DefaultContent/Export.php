@@ -7,11 +7,11 @@ use Drupal\Core\Entity\ContentEntityType;
 abstract class Export {
 
   public static function run(string $module, array $excludedContentEntityTypes): void {
-    /** @var \Drupal\Core\Extension\ModuleHandlerInterface $moduleHandler */
-    $moduleHandler = \Drupal::service('module_handler');
+    /** @var \Drupal\Core\Extension\ModuleExtensionList $extensionList */
+    $extensionList = \Drupal::service('extension.list.module');
     $dir = DRUPAL_ROOT .
       DIRECTORY_SEPARATOR .
-      $moduleHandler->getModule($module)->getPath() .
+      $extensionList->getPath($module) .
       DIRECTORY_SEPARATOR .
       'content';
     self::rrmdir($dir);
