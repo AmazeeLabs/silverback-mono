@@ -8,13 +8,14 @@
     "start": "source .envrc && cd web && php -S 127.0.0.1:8888 .ht.router.php",
     "start:silent": "yarn start > /tmp/drupal.log 2>&1",
     "login": "source .envrc && drush uli",
-    "setup": "source .envrc && silverback setup",
+    "setup": "source .envrc && silverback setup && yarn content:import",
     "snapshot-create": "source .envrc && silverback snapshot-create test -y",
     "snapshot-restore": "source .envrc && silverback snapshot-restore test",
     "clear": "source .envrc && drush cr",
     "test:integration": "yarn snapshot-restore && start-server-and-test start:silent 8888 test:schema",
     "test:schema": "yarn jest --testMatch '<rootDir>/generated/__tests__/test-queries.js'",
-    "export-content": "web/modules/custom/silverback_gatsby_test/export_content.sh"
+    "content:export": "source .envrc && drush php-script web/modules/custom/silverback_default_content/export.php",
+    "content:import": "source .envrc && drush php-script web/modules/custom/silverback_default_content/import.php"
   },
   "dependencies": {
     "@-amazeelabs/silverback-cli": "^2.7.7",

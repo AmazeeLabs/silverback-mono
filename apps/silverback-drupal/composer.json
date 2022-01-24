@@ -19,6 +19,7 @@
         }
     ],
     "require": {
+        "amazeelabs/default-content": "^1.1",
         "amazeelabs/proxy-drupal-core": "^1.1",
         "amazeelabs/proxy-gutenberg": "^1.1",
         "amazeelabs/silverback-cli": "@dev",
