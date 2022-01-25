@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.12.0...@-amazeelabs/silverback-drupal@1.13.0) (2022-01-25)
+
+
+### Bug Fixes
+
+* temporary comment our gutenberg url fields ([95048b1](https://github.com/AmazeeLabs/silverback-mono/commit/95048b191963fbe8f0a77b87f3e2b94bedb276c8))
+
+
+### Features
+
+* add paragraphs and entity references to schema ([8b9d830](https://github.com/AmazeeLabs/silverback-mono/commit/8b9d83066dc4aa8a96ab0712fa1aac160110ca62))
+
+
+
+
+
 # [1.12.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.11.13...@-amazeelabs/silverback-drupal@1.12.0) (2022-01-24)
 
 
