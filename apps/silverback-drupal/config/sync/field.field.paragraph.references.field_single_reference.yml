@@ -1,0 +1,29 @@
+uuid: d6df19f1-f8b6-48cb-ab5f-333f1ca0786c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_single_reference
+    - node.type.gutenberg_page
+    - paragraphs.paragraphs_type.references
+id: paragraph.references.field_single_reference
+field_name: field_single_reference
+entity_type: paragraph
+bundle: references
+label: 'Single reference'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      gutenberg_page: gutenberg_page
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -6,38 +6,52 @@ type Query
 
 type Image @entity(type: "media", bundle: "image") {
   url: String!
-  alt: String! @property(path: "field_media_image.0.alt")
+  alt: String! @resolveProperty(path: "field_media_image.0.alt")
 }
 
 type Tag @entity(type: "taxonomy_term", bundle: "tag") {
-  title: String! @property(path: "name.value")
+  title: String! @resolveProperty(path: "name.value")
 }
 
 type Page @entity(type: "node", bundle: "page") {
-  path: String! @path
-  title: String! @property(path: "title.value")
-  body: String @property(path: "field_body.0.processed")
+  path: String! @isPath @resolveEntityPath
+  title: String! @resolveProperty(path: "title.value")
+  body: String @resolveProperty(path: "field_body.0.processed")
+  paragraphs: [PageParagraphs!]! @resolveEntityReferenceRevisions(field: "field_paragraphs", single: false)
+}
+
+union PageParagraphs =
+  | ParagraphText
+  | ParagraphReferences
+
+type ParagraphText {
+  text: String @resolveProperty(path: "field_text.0.value")
+}
+
+type ParagraphReferences {
+  references: [Article]! @resolveEntityReference(field: "field_references", single: false)
+  singleReference: GutenbergPage @resolveEntityReference(field: "field_single_reference", single: true)
 }
 
 type GutenbergPage @entity(type: "node", bundle: "gutenberg_page") {
-  path: String! @path
-  title: String! @property(path: "title.value")
+  path: String! @isPath @resolveEntityPath
+  title: String! @resolveProperty(path: "title.value")
   body: [RootBlock!]!
 }
 
 type Webform @entity(type: "webform", access: false) {
-  path: String! @path
+  path: String! @isPath @resolveEntityPath
   url: String!
-  title: String! @property(path: "title")
+  title: String! @resolveProperty(path: "title")
 }
 
 type Article @entity(type: "node", bundle: "article") {
-  path: String! @path
-  title: String! @property(path: "title.value")
-  body: String @property(path: "field_body.0.processed")
-  tags: [Tag!]!
-  image: Image
-  template: String @template
+  path: String! @isPath @resolveEntityPath
+  title: String! @resolveProperty(path: "title.value")
+  body: String @resolveProperty(path: "field_body.0.processed")
+  tags: [Tag]! @resolveEntityReference(field: "field_tags", single: false)
+  image: Image @resolveEntityReference(field: "field_image", single: true)
+  template: String @isTemplate
 }
 
 union RootBlock = BlockTwoColumns |  BlockHtml | BlockImage | BlockTeaser

@@ -41,6 +41,7 @@
         "drupal/gatsby_build_monitor": "@dev",
         "drupal/graphql": "^4",
         "drupal/gutenberg": "^2.2",
+        "drupal/paragraphs": "^1.12",
         "drupal/test_session": "@dev",
         "drupal/webform": "^6.1",
         "phpspec/prophecy-phpunit": "^2"

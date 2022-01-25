@@ -1,0 +1,49 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: bb230ced-eb4d-495f-9571-50a7f6f69e67
+  bundle: page
+  default_langcode: en
+  depends:
+    85b7efd3-eeb8-46cc-a424-469f77f6e032: paragraph
+    09d31e00-dec2-404e-8537-3c02441f4ea8: paragraph
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Page with paragraphs'
+  created:
+    -
+      value: 1643030416
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  field_paragraphs:
+    -
+      entity: 85b7efd3-eeb8-46cc-a424-469f77f6e032
+    -
+      entity: 09d31e00-dec2-404e-8537-3c02441f4ea8

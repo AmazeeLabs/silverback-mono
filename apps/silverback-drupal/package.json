@@ -4,7 +4,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "prepare": "if php -v && [[ -z $LAGOON ]]; then composer install && yarn setup && yarn snapshot-create && source .envrc && drush silverback-gatsby:schema-export; fi",
+    "prepare": "if php -v && [[ -z $LAGOON ]]; then composer install && yarn setup && yarn snapshot-create && yarn schema:export; fi",
     "start": "source .envrc && cd web && php -S 127.0.0.1:8888 .ht.router.php",
     "start:silent": "yarn start > /tmp/drupal.log 2>&1",
     "login": "source .envrc && drush uli",
@@ -12,8 +12,10 @@
     "snapshot-create": "source .envrc && silverback snapshot-create test -y",
     "snapshot-restore": "source .envrc && silverback snapshot-restore test",
     "clear": "source .envrc && drush cr",
-    "test:integration": "yarn snapshot-restore && start-server-and-test start:silent 8888 test:schema",
-    "test:schema": "yarn jest --testMatch '<rootDir>/generated/__tests__/test-queries.js'",
+    "test:integration": "yarn snapshot-restore && start-server-and-test start:silent 8888 schema:test",
+    "schema:export": "source .envrc && drush silverback-gatsby:schema-export",
+    "schema:test": "yarn jest --testMatch '<rootDir>/generated/__tests__/test-queries.js'",
+    "schema:update": "yarn schema:test -u",
     "content:export": "source .envrc && drush php-script web/modules/custom/silverback_default_content/export.php",
     "content:import": "source .envrc && drush php-script web/modules/custom/silverback_default_content/import.php"
   },
