@@ -52,40 +52,38 @@ unpublished content to be able to display previews.
 
 ## Automatic creation of Gatsby pages
 
-The [silverback gatsby] module provides `@path` and `@template` field directives
-which allow automatic creation of Gatsby pages. Both directives are optional.
+The [silverback gatsby] module provides `@isPath` and `@isTemplate` field
+directives which allow automatic creation of Gatsby pages. Both directives are
+optional.
 
-- If a field is marked with `@path` directive, the plugin will attempt to create
-  a Gatsby page for a Gatsby node fetched from Drupal.
-- The `@template` directive can be used to define which template to use for the
-  page creation.
+- If a field is marked with `@isPath` directive, the plugin will attempt to
+  create a Gatsby page for a Gatsby node fetched from Drupal.
+- The `@isTemplate` directive can be used to define which template to use for
+  the page creation.
 
 ### Example GraphQL schema on Drupal side with some details
 
 ```graphql
 type SpecialPage @entity(type: "node", bundle: "special_page") {
-  # There is no `@path` directive, so the plugin will not try to create pages
+  # There is no `@isPath` directive, so the plugin will not try to create pages
   # for this type.
   path: String!
-  title: String!
 }
 
 type RegularPage @entity(type: "node", bundle: "page") {
   # Because the `path` field is optional, the page will only be created if
   # the `path` value is truthy.
-  path: String @path
-  # There is no `@template` directive, so the plugin will use the CamelCase type
-  # name to build the snake-case template name. For this type it will be
+  path: String @isPath
+  # There is no `@isTemplate` directive, so the plugin will use the CamelCase
+  # type name to build the snake-case template name. For this type it will be
   # `regular-page.tsx`.
-  title: String!
 }
 
 type Post @entity(type: "node", bundle: "blog") {
-  path: String! @path
-  title: String!
-  # If the field value is falthy, the regular template will be used: `post.tsx`
+  path: String! @isPath
+  # If the field value is falsy, the regular template will be used: `post.tsx`
   # Otherwise the field value will be used: `${node.template}.tsx`
-  template: String @template
+  template: String @isTemplate
 }
 ```
 
