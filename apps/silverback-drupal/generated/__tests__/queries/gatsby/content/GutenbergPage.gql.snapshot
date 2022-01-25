@@ -49,8 +49,7 @@ exports[`gatsby/content/GutenbergPage.gql 1`] = `
                         "id": "[numeric]:en"
                       },
                       "title": "Teaser",
-                      "subtitle": "on left",
-                      "url": "/en/page/a-page"
+                      "subtitle": "on left"
                     }
                   ]
                 },
@@ -153,8 +152,7 @@ exports[`gatsby/content/GutenbergPage.gql 1`] = `
                         "id": "[numeric]:en"
                       },
                       "title": "Teaser",
-                      "subtitle": "on left",
-                      "url": "/en/page/a-page"
+                      "subtitle": "on left"
                     }
                   ]
                 },

@@ -52,7 +52,8 @@ fragment BlockTeaser on BlockTeaser {
   }
   title
   subtitle
-  url
+  # TODO: Uncomment once Gutenberg uses UUIDs for linking content.
+  #url
 }
 
 {
