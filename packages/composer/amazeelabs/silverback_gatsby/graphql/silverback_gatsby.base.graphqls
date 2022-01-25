@@ -8,11 +8,44 @@ type Feed {
   templateFieldName: String
 }
 
+################################################################################
 # Directives for the automatic Gatsby pages creation.
+################################################################################
+
+directive @isPath on FIELD_DEFINITION
+"""
+DEPRECATED, use @isPath
+"""
 directive @path on FIELD_DEFINITION
+
+directive @isTemplate on FIELD_DEFINITION
+"""
+DEPRECATED, use @isTemplate
+"""
 directive @template on FIELD_DEFINITION
 
+################################################################################
 # Directives for automatic resolvers.
+################################################################################
+
+directive @resolveEntityPath on FIELD_DEFINITION
+
+directive @resolveProperty(
+  path: String!
+) on FIELD_DEFINITION
+"""
+DEPRECATED, use @resolveProperty
+"""
 directive @property(
   path: String!
+) on FIELD_DEFINITION
+
+directive @resolveEntityReference(
+  field: String!
+  single: Boolean!
+) on FIELD_DEFINITION
+
+directive @resolveEntityReferenceRevisions(
+  field: String!
+  single: Boolean!
 ) on FIELD_DEFINITION

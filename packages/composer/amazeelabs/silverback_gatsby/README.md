@@ -89,7 +89,7 @@ now.
 
 ## Automatic creation of Gatsby pages
 
-Available using `@path` and `@template` field directives. See
+Available using `@isPath` and `@isTemplate` field directives. See
 [`@amazeelabs/gatsby-source-silverback`](../../../npm/@amazeelabs/gatsby-source-silverback)
 plugin README for details.
 
@@ -97,7 +97,7 @@ plugin README for details.
 
 There are directives which create GraphQL resolvers automatically.
 
-### @property
+### @resolveProperty
 
 This field directive is a shortcut for `property_path` data producer.
 
@@ -105,7 +105,7 @@ For example, this schema
 
 ```graphql
 type Page @entity(type: "node", bundle: "page") {
-  body: String @property(path: "field_body.0.processed")
+  body: String @resolveProperty(path: "field_body.0.processed")
 }
 ```
 
@@ -118,6 +118,51 @@ $builder->produce('property_path', [
   'type' => $builder->fromValue('entity:node:page'),
 ])
 ```
+
+### @resolveEntityPath
+
+Resolves the relative path to an entity. A shortcut for `entity_url`+`url_path`
+data producers.
+
+Example:
+
+```graphql
+type Page @entity(type: "node", bundle: "page") {
+  path: String! @resolveEntityPath
+}
+```
+
+### @resolveEntityReference
+
+Resolves the references entities. A shortcut for `entity_reference` data
+producer.
+
+Example:
+
+<!-- prettier-ignore-start -->
+```graphql
+type Page @entity(type: "node", bundle: "page") {
+  relatedArticles: [Article]! @resolveEntityReference(field: "field_related_articles", single: false)
+  parentPage: Page @resolveEntityReference(field: "field_related_articles", single: true)
+}
+```
+<!-- prettier-ignore-end -->
+
+### @resolveEntityReferenceRevisions
+
+Resolves the entity reference revisions fields, e.g. Paragraphs. A shortcut for
+`entity_reference_revisions` data producer.
+
+Example:
+
+<!-- prettier-ignore-start -->
+```graphql
+type Page @entity(type: "node", bundle: "page") {
+  paragraphs: [PageParagraphs!]! @resolveEntityReferenceRevisions(field: "field_paragraphs", single: false)
+  singleParagraph: ParagraphText @resolveEntityReferenceRevisions(field: "field_single_paragraph", single: true)
+}
+```
+<!-- prettier-ignore-end -->
 
 ## Menus
 
