@@ -1,0 +1,4 @@
+{
+  "name": "Silverback Gatsby Schema Extensions",
+  "schemaPath": "*.graphqls"
+}

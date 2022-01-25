@@ -4,8 +4,10 @@ namespace Drupal\silverback_gatsby\Plugin\GraphQL\SchemaExtension;
 
 use Drupal\Component\Plugin\PluginManagerInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
+use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
@@ -45,13 +47,23 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
   protected array $feeds = [];
 
   /**
-   * The list of fields marked with "property" directive.
+   * The list of fields marked with "resolve*" directives.
    *
    * @var array
-   *   Keys are GraphQL paths, values are directive arguments.
-   *   Example: ['Page.title' => ['path' => 'title.value']]
+   *   Keys are GraphQL paths, values are directive names and arguments.
+   *   Example:
+   *   [
+   *     'Page.path' => [
+   *       'name' => 'resolvePath',
+   *       'arguments' => [],
+   *     ],
+   *     'Page.title' => [
+   *       'name' => 'resolveProperty',
+   *       'arguments' => ['path' => 'title.value'],
+   *     ]
+   *   ]
    */
-  protected array $properties = [];
+  protected array $resolvers;
 
   /**
    * @var \Drupal\Core\Plugin\DefaultPluginManager|object|null
@@ -149,17 +161,11 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
               foreach ($field->directives as $fieldDirective) {
 
                 // Directives used for automatic page creation.
-                if (in_array($fieldDirective->name->value, ['path', 'template'], TRUE)) {
-                  $config['createPageFields'][$fieldDirective->name->value] = $field->name->value;
+                if (in_array($fieldDirective->name->value, ['isPath', 'path'], TRUE)) {
+                  $config['createPageFields']['isPath'] = $field->name->value;
                 }
-
-                // The @property directive.
-                if ($fieldDirective->name->value === 'property') {
-                  $graphQlPath = $definition->name->value . '.' . $field->name->value;
-                  foreach ($fieldDirective->arguments->getIterator() as $arg) {
-                    /** @var \GraphQL\Language\AST\ArgumentNode $arg */
-                    $this->properties[$graphQlPath][$arg->name->value] = $arg->value->value;
-                  }
+                if (in_array($fieldDirective->name->value, ['isTemplate', 'template'], TRUE)) {
+                  $config['createPageFields']['isTemplate'] = $field->name->value;
                 }
               }
             }
@@ -170,6 +176,47 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
       }
     }
     return $this->feeds;
+  }
+
+  /**
+   * @see SilverbackGatsbySchemaExtension::$resolvers
+   */
+  protected function getResolveDirectives(): array {
+    if (isset($this->resolvers)) {
+      return $this->resolvers;
+    }
+    $this->resolvers = [];
+    foreach ($this->parentAst->definitions->getIterator() as $definition) {
+      if (!($definition instanceof ObjectTypeDefinitionNode)) {
+        continue;
+      }
+      foreach ($definition->fields as $field) {
+        foreach ($field->directives as $fieldDirective) {
+          $list = [
+            'resolveEntityPath',
+            'resolveProperty',
+            'property',
+            'resolveEntityReference',
+            'resolveEntityReferenceRevisions',
+          ];
+          if (in_array($fieldDirective->name->value, $list, TRUE)) {
+            $graphQlPath = $definition->name->value . '.' . $field->name->value;
+            $name = $fieldDirective->name->value === 'property'
+              ? 'resolveProperty'
+              : $fieldDirective->name->value;
+            $this->resolvers[$graphQlPath] = [
+              'name' => $name,
+              'arguments' => [],
+            ];
+            foreach ($fieldDirective->arguments->getIterator() as $arg) {
+              /** @var \GraphQL\Language\AST\ArgumentNode $arg */
+              $this->resolvers[$graphQlPath]['arguments'][$arg->name->value] = $arg->value->value;
+            }
+          }
+        }
+      }
+    }
+    return $this->resolvers;
   }
 
   /**
@@ -301,15 +348,69 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
       }
     }
 
-    foreach ($this->properties as $path => $args) {
-      [$typeName, $fieldName] = explode('.', $path);
-      $registry->addFieldResolver($typeName, $fieldName, $builder->produce('property_path', [
-        'path' => $builder->fromValue($args['path']),
-        'value' => $builder->fromParent(),
-        'type' => $builder->callback(
-          fn(EntityInterface $entity) => $entity->getTypedData()->getDataDefinition()->getDataType()
-        ),
-      ]));
+    $addResolver = function(string $path, ResolverInterface $resolver) use ($registry) {
+      [$type, $field] = explode('.', $path);
+      $registry->addFieldResolver($type, $field, $resolver);
+    };
+    foreach ($this->getResolveDirectives() as $path => $definition) {
+      switch ($definition['name']) {
+
+        case 'resolveEntityPath':
+          $addResolver($path, $builder->compose(
+            $builder->produce('entity_url')->map('entity', $builder->fromParent()),
+            $builder->produce('url_path')->map('url', $builder->fromParent())
+          ));
+          break;
+
+        case 'resolveProperty':
+          $addResolver($path, $builder->produce('property_path', [
+            'path' => $builder->fromValue($definition['arguments']['path']),
+            'value' => $builder->fromParent(),
+            'type' => $builder->callback(
+              fn(EntityInterface $entity) => $entity->getTypedData()->getDataDefinition()->getDataType()
+            ),
+          ]));
+          break;
+
+        case 'resolveEntityReference':
+          $resolverMultiple = $builder->defaultValue(
+            $builder->produce('entity_reference')
+              ->map('entity', $builder->fromParent())
+              ->map('language', $builder->callback(
+                fn(TranslatableInterface $value) => $value->language()->getId()
+              ))
+              ->map('field', $builder->fromValue($definition['arguments']['field'])),
+            $builder->fromValue([])
+          );
+          if ($definition['arguments']['single']) {
+            $addResolver($path, $builder->compose(
+              $resolverMultiple,
+              $builder->callback(fn(array $values) => reset($values) ?: NULL)
+            ));
+          }
+          else {
+            $addResolver($path, $resolverMultiple);
+          }
+          break;
+
+        case 'resolveEntityReferenceRevisions':
+          $resolverMultiple = $builder->defaultValue(
+            $builder->produce('entity_reference_revisions')
+              ->map('entity', $builder->fromParent())
+              ->map('field', $builder->fromValue($definition['arguments']['field'])),
+            $builder->fromValue([])
+          );
+          if ($definition['arguments']['single']) {
+            $addResolver($path, $builder->compose(
+              $resolverMultiple,
+              $builder->callback(fn(array $values) => reset($values) ?: NULL)
+            ));
+          }
+          else {
+            $addResolver($path, $resolverMultiple);
+          }
+          break;
+      }
     }
   }
 

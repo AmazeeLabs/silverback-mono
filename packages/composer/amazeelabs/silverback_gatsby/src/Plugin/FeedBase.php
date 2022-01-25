@@ -53,8 +53,8 @@ abstract class FeedBase extends PluginBase implements FeedInterface {
     parent::__construct($config, $plugin_id, $plugin_definition);
     $this->builder = new ResolverBuilder();
     $this->typeName = $config['typeName'];
-    $this->pathFieldName = $config['createPageFields']['path'] ?? NULL;
-    $this->templateFieldName = $config['createPageFields']['template'] ?? NULL;
+    $this->pathFieldName = $config['createPageFields']['isPath'] ?? NULL;
+    $this->templateFieldName = $config['createPageFields']['isTemplate'] ?? NULL;
   }
 
   /**
