@@ -1,7 +1,8 @@
 <?php
+
 namespace Drupal\silverback_gatsby_test\Plugin\GraphQL\Schema;
+
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Entity\FieldableEntityInterface;
 use Drupal\Core\Url;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
@@ -30,16 +31,16 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
     $registry->addTypeResolver('RootBlock', fn($value) => $value['__type']);
     $registry->addTypeResolver('ContentBlock', fn($value) => $value['__type']);
 
-    $entityReferences = fn(string $field) => $builder->defaultValue(
-      $builder->produce('entity_reference')
-        ->map('entity', $builder->fromParent())
-        ->map('field', $builder->fromValue($field)),
-      $builder->fromValue([])
-    );
-
-    $firstEntityReference = fn(string $field) => $builder->callback(
-      fn(FieldableEntityInterface $value) => $value->get($field)->entity
-    );
+    $registry->addTypeResolver('PageParagraphs', function (EntityInterface $value) {
+      switch ($value->bundle()) {
+        case 'text':
+          return 'ParagraphText';
+        case 'references':
+          return 'ParagraphReferences';
+        default:
+          throw new \Exception('Unknown paragraph type: "' . $value->getEntityTypeId() . ':' . $value->bundle() . '"');
+      }
+    });
 
     $imageUrl = $builder->compose(
       $builder->produce('property_path', [
@@ -51,16 +52,6 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
         ->map('entity', $builder->fromParent())
     );
 
-    $nodePath = $builder->callback(fn(NodeInterface $value) => Url::fromRoute(
-      'entity.node.canonical',
-      ['node' => $value->id()],
-      ['language' => $value->language()]
-    )
-      ->setAbsolute(FALSE)
-      ->toString(TRUE)
-      ->getGeneratedUrl()
-    );
-
     $gutenberg = $builder->produce('gutenberg')
       ->map('entity', $builder->fromParent());
 
@@ -70,14 +61,8 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
         : NULL
     );
 
-    $addResolver('Page.path', $nodePath);
-
-    $addResolver('GutenbergPage.path', $nodePath);
     $addResolver('GutenbergPage.body', $gutenberg);
 
-    $addResolver('Article.path', $nodePath);
-    $addResolver('Article.tags', $entityReferences('field_tags'));
-    $addResolver('Article.image', $firstEntityReference('field_image'));
     $addResolver('Article.template', $articleTemplate);
 
     $addResolver('Image.url', $imageUrl);
@@ -93,12 +78,6 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
       $builder->produce('url_path')->map('url', $builder->fromParent()),
     ));
 
-    $addResolver('Webform.path',
-      $builder->compose(
-        $builder->produce('entity_url')->map('entity', $builder->fromParent()),
-        $builder->produce('url_path')->map('url', $builder->fromParent())
-      )
-    );
     $addResolver('Webform.url',
       $builder->compose(
         $builder->produce('entity_url')->map('entity', $builder->fromParent()),

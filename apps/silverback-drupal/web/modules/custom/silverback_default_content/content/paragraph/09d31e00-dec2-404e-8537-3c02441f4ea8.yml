@@ -1,0 +1,31 @@
+_meta:
+  version: '1.0'
+  entity_type: paragraph
+  uuid: 09d31e00-dec2-404e-8537-3c02441f4ea8
+  bundle: references
+  default_langcode: en
+  depends:
+    7702e639-4704-4599-a8b5-a65d88c61ea3: node
+    80b65cc6-5f5f-4113-a52b-c00d3bd0bfe9: node
+    af2bb5e4-237a-4e76-befe-e7a3d8dc699c: node
+default:
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1643030428
+  behavior_settings:
+    -
+      value: {  }
+  revision_translation_affected:
+    -
+      value: true
+  field_references:
+    -
+      entity: 7702e639-4704-4599-a8b5-a65d88c61ea3
+    -
+      entity: 80b65cc6-5f5f-4113-a52b-c00d3bd0bfe9
+  field_single_reference:
+    -
+      entity: af2bb5e4-237a-4e76-befe-e7a3d8dc699c

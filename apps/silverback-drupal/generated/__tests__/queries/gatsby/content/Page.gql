@@ -11,10 +11,27 @@ fragment Page on Page {
     langcode
     defaultTranslation
   }
+  paragraphs {
+    __typename
+    ... on ParagraphText {
+      text
+    }
+    ... on ParagraphReferences {
+      singleReference {
+        id
+      }
+      references {
+        id
+      }
+    }
+  }
 }
 
 {
-  loadPage(id: "a38bce61-3640-4799-bacf-18ccc6e74216") {
+  basic: loadPage(id: "a38bce61-3640-4799-bacf-18ccc6e74216") {
+    ...Page
+  }
+  references: loadPage(id: "bb230ced-eb4d-495f-9571-50a7f6f69e67") {
     ...Page
   }
 }
