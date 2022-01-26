@@ -101,12 +101,39 @@ class ComposableSchema extends OriginalComposableSchema {
       '#default_value' => $this->configuration['build_webhook'] ?? '',
     ];
 
+    /** @var \Drupal\graphql\Form\ServerForm $formObject */
+    $formObject = $form_state->getFormObject();
+    /** @var \Drupal\graphql\Entity\Server $server */
+    $server = $formObject->getEntity();
+
+    $form['user'] = [
+      '#type' => 'select',
+      '#options' => ['' => $this->t('- None -')],
+      '#title' => $this->t('Notification user'),
+      '#description' => $this->t('Only changes visible to this user will trigger build updates.'),
+      '#default_value' => $this->configuration['user'] ?? '',
+      '#states'=> [
+        'required' => [
+          ':input[name="schema_configuration[' . $server->schema . '][extensions][silverback_gatsby]"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+    $users = [];
+    /** @var \Drupal\user\UserInterface $user */
+    foreach ($this->entityTypeManager->getStorage('user')->loadMultiple() as $user) {
+      $users[$user->uuid()] = $user->getAccountName() === '' ? 'Anonymous' : $user->getAccountName();
+    }
+    natcasesort($users);
+    $form['user']['#options'] += $users;
+
     $form['role'] = [
       '#type' => 'select',
-      '#required' => TRUE,
-      '#options' => [],
+      '#required' => FALSE,
+      '#options' => ['' => $this->t('- None -')],
       '#title' => $this->t('Notification role'),
-      '#description' => $this->t('Choose a notification role. Only changes visible to that role will trigger build updates.'),
+      '#description' => $this->t('<strong>DEPRECATED</strong>: use the "@userField" field instead.', [
+        '@userField' => $this->t('Notification user'),
+      ]),
       '#default_value' => $this->configuration['role'] ?? '',
     ];
     foreach ($this->entityTypeManager->getStorage('user_role')->loadMultiple() as $id => $role) {

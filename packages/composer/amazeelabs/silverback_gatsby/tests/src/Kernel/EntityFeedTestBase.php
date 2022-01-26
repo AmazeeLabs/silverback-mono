@@ -30,24 +30,6 @@ abstract class EntityFeedTestBase extends GraphQLTestBase {
   protected $serverPublic;
 
   /**
-   * A role ID that with the permission to view unpublished content.
-   * @var false|string
-   */
-  protected $rolePreview;
-
-  /**
-   * A role ID that can only view published content.
-   * @var false|string
-   */
-  protected $roleBuild;
-
-  /**
-   * A role ID that can only view published content.
-   * @var false|string
-   */
-  protected $rolePublic;
-
-  /**
    * Switch the test case to run queries against the build server.
    */
   protected function useBuildServer() {
@@ -72,7 +54,7 @@ abstract class EntityFeedTestBase extends GraphQLTestBase {
     parent::setUp();
     $this->installSchema('silverback_gatsby', ['gatsby_update_log']);
 
-    $this->rolePreview = $this->createRole(['bypass node access',], 'gatsby_preview');
+    $userPreview = $this->createUser(['bypass node access']);
     $this->serverPreview = Server::create([
       'schema' => 'silverback_gatsby_example',
       'name' => 'silverback_gatsby_preview',
@@ -83,13 +65,13 @@ abstract class EntityFeedTestBase extends GraphQLTestBase {
             'silverback_gatsby' => 'silverback_gatsby'
           ],
           'build_webhook' => 'http://localhost:8001/__refresh',
-          'role' => $this->rolePreview,
+          'user' => $userPreview->uuid(),
         ]
       ]
     ]);
     $this->serverPreview->save();
 
-    $this->roleBuild = $this->createRole(['access content'], 'gatsby_build');
+    $userBuild = $this->createUser(['access content']);
     $this->serverBuild = Server::create([
       'schema' => 'silverback_gatsby_example',
       'name' => 'silverback_gatsby_build',
@@ -100,13 +82,13 @@ abstract class EntityFeedTestBase extends GraphQLTestBase {
             'silverback_gatsby' => 'silverback_gatsby'
           ],
           'build_webhook' => 'http://localhost:8000/__rebuild',
-          'role' => $this->roleBuild,
+          'user' => $userBuild->uuid(),
         ]
       ]
     ]);
     $this->serverBuild->save();
 
-    $this->rolePublic = $this->createRole(['access content'], 'gatsby_public');
+    $userPublic = $this->createUser(['access content']);
     $this->serverPublic = Server::create([
       'schema' => 'silverback_gatsby_example',
       'name' => 'silverback_gatsby_public',
@@ -116,7 +98,7 @@ abstract class EntityFeedTestBase extends GraphQLTestBase {
           'extensions' => [
             'silverback_gatsby' => 'silverback_gatsby'
           ],
-          'role' => $this->rolePublic,
+          'user' => $userPublic->uuid(),
         ]
       ]
     ]);
