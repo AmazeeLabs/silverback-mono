@@ -57,10 +57,28 @@ class GatsbyUpdateHandler {
           continue;
         }
         $schema->setConfiguration($config[$schema_id] ?? []);
-        $account = User::create();
-        if (isset($config[$schema_id]['role'])) {
-          $account->addRole($config[$schema_id]['role']);
+
+        if ($config[$schema_id]['user'] ?? NULL) {
+          $accounts = $this->entityTypeManager->getStorage('user')->loadByProperties(['uuid' => $config[$schema_id]['user']]);
+          $account = reset($accounts);
+          if (!$account) {
+            \Drupal::messenger()->addError("The website won't be rebuilt because of a misconfigured GraphQL server (missing user)");
+            \Drupal::logger('silverback_gatsby')->error('Cannot load user "{user}" configured in server "{server}".', [
+              'user' => $config[$schema_id]['user'],
+              'server' => $server->id(),
+            ]);
+            return;
+          }
         }
+        else {
+          // This is deprecated. It causes issues with the domain module:
+          // https://github.com/AmazeeLabs/silverback-mono/issues/928
+          $account = User::create();
+          if (isset($config[$schema_id]['role'])) {
+            $account->addRole($config[$schema_id]['role']);
+          }
+        }
+
         foreach ($schema->getExtensions() as $extension) {
           if ($extension instanceof SilverbackGatsbySchemaExtension) {
             foreach ($extension->getFeeds() as $feed) {
