@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.16.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.15.0...@-amazeelabs/silverback_gatsby@1.16.0) (2022-01-26)
+
+
+### Features
+
+* link servers to users, not roles ([cda4436](https://github.com/AmazeeLabs/silverback-mono/commit/cda443623af848f7262fed835554e8d9c7d108b6))
+
+
+
+
+
 # [1.15.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.14.2...@-amazeelabs/silverback_gatsby@1.15.0) (2022-01-25)
 
 
