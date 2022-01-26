@@ -14,5 +14,6 @@ schema_configuration:
     extensions:
       silverback_gatsby: 0
     build_webhook: ''
-    role: gatsby_preview
+    user: ''
+    role: ''
 persisted_queries_settings: {  }
