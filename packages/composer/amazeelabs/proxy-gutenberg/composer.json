@@ -10,13 +10,12 @@
     "composer-exit-on-patch-failure": true,
     "patches": {
       "drupal/gutenberg": {
-        "Uncaught TypeError in JS": "https://www.drupal.org/files/issues/2021-11-13/gutenberg-gutenberg-broken-3247204-8.patch",
         "Missing core block definitions (#3202756)": "https://git.drupalcode.org/project/gutenberg/-/merge_requests/3/diffs.patch"
       }
     }
   },
   "require": {
     "cweagans/composer-patches": "^1.7",
-    "drupal/gutenberg": "^2.2"
+    "drupal/gutenberg": "^2.4"
   }
 }
