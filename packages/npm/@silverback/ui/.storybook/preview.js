@@ -13,4 +13,7 @@ export const parameters = {
       ],
     },
   },
+  axe: {
+    skip: true,
+  },
 };
