@@ -16,7 +16,7 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
-    "eslint-plugin-tailwindcss": "^1.17.2"
+    "eslint-plugin-tailwindcss": "^3.0.0"
   },
   "peerDependencies": {
     "eslint": "^8"
