@@ -8,6 +8,12 @@ NPM: `npm install -g @amazeelabs/recipes`
 
 Yarn: `yarn global add @amazeelabs/recipes`
 
+## Upgrade
+
+If installed with NPM: `npm update -g @amazeelabs/recipes`
+
+If installed with Yarn: `yarn global upgrade @amazeelabs/recipes`
+
 ## Usage
 
 If installed with NPM: `amazee-recipes`
