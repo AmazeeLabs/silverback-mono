@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.10](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-gutenberg@1.1.9...@-amazeelabs/proxy-gutenberg@1.1.10) (2022-01-27)
+
+
+### Bug Fixes
+
+* remove another patch which was released in gutenberg 2.4 ([ab78cbf](https://github.com/AmazeeLabs/silverback-mono/commit/ab78cbf8c8c17b79527c6a05391bd77ccb04f1b3))
+
+
+
+
+
 ## [1.1.9](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-gutenberg@1.1.8...@-amazeelabs/proxy-gutenberg@1.1.9) (2022-01-27)
 
 
