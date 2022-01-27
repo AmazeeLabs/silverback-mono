@@ -7,3 +7,6 @@ gatsby-node.js
 .prettierrc
 jest.config.js
 ### MANAGED BY @amazeelabs/scaffold - END
+
+test-results
+yarn-error.log

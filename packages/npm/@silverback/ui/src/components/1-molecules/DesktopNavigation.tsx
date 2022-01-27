@@ -20,7 +20,6 @@ export const DesktopNavigation = ({ items }: {items: Array<NavItem>}) => {
                 className={
                   'px-3 py-2 text-lg font-medium leading-6 rounded-md hover:text-white hover:bg-amazee-dark focus:outline-none focus:text-white focus:bg-amazee-dark lg:text-xl lg:px-4 lg:py-3'
                 }
-                activeClassName={'text-white bg-amazee-dark'}
                 onClick={(event) => {
                   setActiveItem(index);
                   event.preventDefault();

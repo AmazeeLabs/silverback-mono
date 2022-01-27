@@ -6,14 +6,16 @@ At the moment it can be used only with Silverback monorepo packages.
 
 # Usage
 
-Add `@amazeelabs/silverback-playwright` to your package dev dependencies.
+In your package:
+
+- Add this package with `yarn add @amazeelabs/silverback-playwright --dev`
+- Add `test-results` to `.gitignore`
+- Create `playwright-tests` directory
+- Create some test files following `*.spec.ts` name pattern
+- Run `yarn sp-test`
 
 (Consider making tests a separate package. In this case you can depend it on
 several other packages without ruining their dependencies.)
-
-In your package, create `playwright-tests` directory with test files.
-
-Run `yarn sp-test`.
 
 ## Example test
 
@@ -60,7 +62,7 @@ The runner will run tests in different modes. Each mode has own context.
 
 - `drupal-only` has Drupal started
 - `gatsby-develop` has Drupal and `gatsby develop` started
-- `@gatsby-build` has Drupal and
+- `gatsby-build` has Drupal and
   [Gatsby Fast Builds](../../../../apps/silverback-gatsby/fast-builds/README.md)
   started
 
@@ -83,22 +85,41 @@ Tests marked with `@gatsby-both` will be executed in both `gatsby-develop` and
 - `drupal` and `gatsby` provide various constants (ports, URLs, credentials,
   etc.)
 
-## Debug tests
+## Debugging tests
 
-To debug a particular test:
+There are few options.
 
-- Mark it with `.only` and use `page.pause()`
-  ```ts
-  test.only('my test', async ({ page }) => {
-    // ...
-    await page.pause();
-    // ...
-  });
-  ```
-- Run the tests with `--headed` (`-h`) flag.
+### To debug a particular test
 
-If you suspect that something is wrong with the test runner, start it with
-`--verbose` (`-v`) flag.
+Mark it with `.only` and use `page.pause()`
+
+```ts
+test.only('my test', async ({ page }) => {
+  // ...
+  await page.pause();
+  // ...
+});
+```
+
+Run the tests with `--headed` (`-h`) flag.
+
+### If you suspect that something is wrong with the test runner
+
+Start tests with `--verbose` (`-v`) flag.
+
+### Traces
+
+Sometimes it can happen that a test works in the headed mode, but fails in the
+headless one. [Traces](https://playwright.dev/docs/trace-viewer/) help a lot
+here.
+
+To record traces, run the tests with `--trace` (`-t`) flag.
+
+To see the traces, go to your package dir and run
+
+```
+yarn playwright show-trace ./test-results/path/to/trace.zip
+```
 
 # Tips
 

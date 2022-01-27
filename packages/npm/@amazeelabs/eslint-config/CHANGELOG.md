@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/eslint-config@1.3.2...@amazeelabs/eslint-config@1.4.0) (2021-09-15)
+
+
+### Features
+
+* catch forgotten `test.only` occurrences ([1cc5868](https://github.com/AmazeeLabs/silverback-mono/commit/1cc586861a050270eb21e0ecebe50e915440cc07))
+
+
+
+
+
 ## [1.3.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/eslint-config@1.3.1...@amazeelabs/eslint-config@1.3.2) (2021-07-29)
 
 **Note:** Version bump only for package @amazeelabs/eslint-config

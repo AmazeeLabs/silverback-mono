@@ -98,6 +98,20 @@
       if (!href) {
         return true;
       }
+
+      // Exclude some links.
+      if (
+        // Drupal a11y links.
+        $this.hasClass("visually-hidden") ||
+        // Commerce checkout "Edit" links.
+        $this.closest(".checkout-pane-review").length ||
+        // Multistep form navigation links.
+        $this.closest(".form-actions").length
+      ) {
+        return true;
+      }
+
+      // Process links.
       // 1. Remove "iframe=true" from the URL.
       href = removeIframeFromUrl(href);
       // 2. Use parent frame base URL for relative links.

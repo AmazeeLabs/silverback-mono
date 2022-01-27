@@ -151,11 +151,46 @@ contains `active`. In Gatsby it will use the built-in active-link functionality.
 ```tsx
 const Link = buildLink({ href: '/active' });
 
-...
+//...
 
 <Link className={'text-blue'} activeClassName={'text-red'}>
   I'm red!
 </Link>;
+```
+
+The Link also exposes a `navigate` method that will cause the application to
+navigate to its target.
+
+```tsx
+const Link = buildLink({ href: '/active' });
+
+//...
+
+<Button onClick={() => Link.navigate()}>To infinity and beyond!</Button>;
+```
+
+Both rendering `Link` and using `navigate` allow adding or override query
+parameters and fragments from the user interface code.
+
+```tsx
+const Link = buildLink({ href: '/active' });
+
+//...
+
+<Link
+  className={'text-blue'}
+  activeClassName={'text-red'}
+  query={{ foo: 'bar' }}
+  fragment={'baz'}
+>
+  To infinity and beyond!
+</Link>;
+
+<Button
+  onClick={() => Link.navigate({ query: { foo: 'bar' }, fragment: 'baz' })}
+>
+  To infinity and beyond!
+</Button>;
 ```
 
 ### Images

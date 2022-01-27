@@ -3,6 +3,97 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.8](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.2.7...@-amazeelabs/silverback-gastby@1.2.8) (2021-10-04)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-gastby
+
+
+
+
+
+## [1.2.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.2.6...@-amazeelabs/silverback-gastby@1.2.7) (2021-09-28)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-gastby
+
+
+
+
+
+## [1.2.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.2.5...@-amazeelabs/silverback-gastby@1.2.6) (2021-09-28)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-gastby
+
+
+
+
+
+## [1.2.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.2.4...@-amazeelabs/silverback-gastby@1.2.5) (2021-09-28)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-gastby
+
+
+
+
+
+## [1.2.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.2.3...@-amazeelabs/silverback-gastby@1.2.4) (2021-09-20)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-gastby
+
+
+
+
+
+## [1.2.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.2.2...@-amazeelabs/silverback-gastby@1.2.3) (2021-09-20)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-gastby
+
+
+
+
+
+## [1.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.2.1...@-amazeelabs/silverback-gastby@1.2.2) (2021-09-20)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-gastby
+
+
+
+
+
+## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.2.0...@-amazeelabs/silverback-gastby@1.2.1) (2021-09-15)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-gastby
+
+
+
+
+
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.1.4...@-amazeelabs/silverback-gastby@1.2.0) (2021-09-15)
+
+
+### Features
+
+* catch forgotten `test.only` occurrences ([1cc5868](https://github.com/AmazeeLabs/silverback-mono/commit/1cc586861a050270eb21e0ecebe50e915440cc07))
+
+
+
+
+
+## [1.1.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.1.3...@-amazeelabs/silverback-gastby@1.1.4) (2021-09-13)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-gastby
+
+
+
+
+
+## [1.1.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.1.2...@-amazeelabs/silverback-gastby@1.1.3) (2021-09-13)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-gastby
+
+
+
+
+
 ## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.1.1...@-amazeelabs/silverback-gastby@1.1.2) (2021-09-06)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-gastby

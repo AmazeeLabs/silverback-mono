@@ -2,9 +2,12 @@ import axios from 'axios';
 
 import { gatsby } from '../constants';
 import drupalResetState from '../drupal-only/reset-state';
+import { log } from '../utils';
 import { waitForGatsby } from '../wait-for-gatsby';
 
 export default async function resetState() {
+  log('gatsby-develop resetState start');
+
   await drupalResetState();
   try {
     await axios.post(
@@ -21,4 +24,6 @@ export default async function resetState() {
     // Can happen if Gatsby is starting. Does not make sense to report.
   }
   await waitForGatsby();
+
+  log('gatsby-develop resetState end');
 }

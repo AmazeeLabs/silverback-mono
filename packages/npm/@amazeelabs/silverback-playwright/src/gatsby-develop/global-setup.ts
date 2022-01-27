@@ -2,29 +2,36 @@ import { $, cd } from 'zx';
 
 import { gatsby } from '../constants';
 import drupalGlobalSetup from '../drupal-only/global-setup';
-import { port } from '../utils';
+import { log, port } from '../utils';
 
 $.verbose = !!process.env.SP_VERBOSE;
 
 export default async function globalSetup() {
+  log('gatsby-develop globalSetup start');
+
   await drupalGlobalSetup();
 
   cd(gatsby.path);
-
-  // Gatsby loads env vars from .env file. Create it.
-  await $`source .envrc`;
-
-  await port.killIfUsed(gatsby.port);
+  await port.killIfUsed(gatsby.allPorts);
   await $`yarn clean`;
-  $`yarn develop`;
-  await port.waitUntilUsed(
-    gatsby.port,
-    gatsby.timings.retryInterval,
-    gatsby.timings.startTimeout,
-  );
+  // Load env vars right before starting Gatsby so that it sees them.
+  const process = $`source .envrc && yarn develop`;
 
-  // Do not waitForGatsby here. Reasons:
-  // - test will call resetState which does it anyways
-  // - if we do it, Gatsby will crash with crazy error 🤷
-  //   (yoga-layout/build/Release/nbind.js address already in use)
+  // Wait until Gatsby outputs
+  //   You can now view {your app} in the browser.
+  //   http://localhost:8000/
+  // Before this happens, it's really dangerous to touch Gatsby. It can crash.
+  await new Promise<void>((resolve) => {
+    const event = 'data';
+    const listener = (chunk: any) => {
+      const string: string = chunk.toString();
+      if (string.includes(gatsby.baseUrl)) {
+        process.stdout.removeListener(event, listener);
+        resolve();
+      }
+    };
+    process.stdout.addListener(event, listener);
+  });
+
+  log('gatsby-develop globalSetup end');
 }
