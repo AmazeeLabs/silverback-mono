@@ -4,11 +4,15 @@ Automated recipes for recurring tasks.
 
 ## Installation
 
-`npm install -g @amazeelabs/recipes`
+NPM: `npm install -g @amazeelabs/recipes`
+
+Yarn: `yarn global add @amazeelabs/recipes`
 
 ## Usage
 
-`amazee-recipes`
+If installed with NPM: `amazee-recipes`
+
+If installed with Yarn: `yarn exec amazee-recipes`
 
 ## Contributing recipes
 
