@@ -49,9 +49,7 @@ test('@gatsby-develop test LinkProcessor', async ({ page }) => {
   // Create a Gutenberg page.
 
   await page.goto(`${drupal.baseUrl}/en/node/add/gutenberg_page`);
-  await page.click('button[aria-label="Add block"]');
 
-  await page.click(':text-is("Paragraph")');
   await page.type('[data-type="core/paragraph"]', 'link');
   await page.press(
     '[data-type="core/paragraph"]',
@@ -60,13 +58,16 @@ test('@gatsby-develop test LinkProcessor', async ({ page }) => {
   await page.click('[aria-label="Link"]');
   await page.fill('[placeholder="Search or type url"]', 'target page');
   await selectFirstAutocompleteResult();
+  await page.press('[data-type="core/paragraph"]', 'Enter');
 
+  await page.click('button[aria-label="Toggle block inserter"]');
   await page.click(':text-is("Teaser")');
   await page.type('[aria-label="Title"]', 'Teaser title');
   await page.type('[aria-label="Subtitle"]', 'Teaser subtitle');
   await page.fill('[placeholder="Search or type url"]', 'target page');
   await selectFirstAutocompleteResult();
 
+  await page.click('button[aria-label="Toggle block inserter"]');
   await page.click('.block-editor-inserter__menu :text-is("Media")');
   await page.click('button:text-is("Media Library") >> nth=-1');
   await page.check('input[name="media_library_select_form[0]"]');
