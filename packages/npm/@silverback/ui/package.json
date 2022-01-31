@@ -20,6 +20,7 @@
     "@amazeelabs/prettier-config": "^1.1.1",
     "@babel/core": "^7.16.10",
     "@chanzuckerberg/axe-storybook-testing": "^5.0.0",
+    "@storybook/addon-a11y": "^6.4.17",
     "@storybook/addon-actions": "^6.4.13",
     "@storybook/addon-essentials": "^6.4.13",
     "@storybook/addon-links": "^6.4.13",
