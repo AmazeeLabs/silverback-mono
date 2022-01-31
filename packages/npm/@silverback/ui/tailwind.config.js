@@ -83,7 +83,6 @@ module.exports = {
     // https://tailwindcss.com/docs/extracting-components#writing-a-component-plugin
     // https://tailwindcss.com/docs/adding-new-utilities#using-a-plugin
     require('@tailwindcss/typography'),
-    require('@tailwindcss/ui'),
   ],
   future: {
     // Opt-in for future upcoming changes.
