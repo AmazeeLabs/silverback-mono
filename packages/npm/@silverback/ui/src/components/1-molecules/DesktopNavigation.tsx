@@ -10,13 +10,15 @@ export const DesktopNavigation = ({ items }: {items: Array<NavItem>}) => {
   );
 
   return (
-    <div className="flex items-baseline ml-10 space-x-4">
+    <ul role="navigation" aria-label="Main navigation" className="flex items-baseline ml-10 space-x-4">
       {items.map(({ name, Link, children }, index) => (
-        <div key={index} className="relative">
+        <li key={index} className="relative">
           {children && children.length > 0 ? (
             <>
               <a
                 href="#"
+                role="button"
+                aria-label={name}
                 className={
                   'px-3 py-2 text-lg font-medium leading-6 rounded-md hover:text-white hover:bg-amazee-dark focus:outline-none focus:text-white focus:bg-amazee-dark lg:text-xl lg:px-4 lg:py-3'
                 }
@@ -55,6 +57,7 @@ export const DesktopNavigation = ({ items }: {items: Array<NavItem>}) => {
                         ({ Link, name }, index) => (
                           <Link
                             key={index}
+                            title="test"
                             className={
                               'block py-2 px-4 space-y-1 text-base font-medium transition duration-150 ease-in-out rounded-md hover:bg-amazee-dark hover:text-white'
                             }
@@ -80,8 +83,8 @@ export const DesktopNavigation = ({ items }: {items: Array<NavItem>}) => {
               {name}
             </Link>
           )}
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
