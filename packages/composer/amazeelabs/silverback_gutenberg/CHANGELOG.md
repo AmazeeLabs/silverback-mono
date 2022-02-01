@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.14](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.3.13...@-amazeelabs/silverback_gutenberg@1.3.14) (2022-02-01)
+
+
+### Bug Fixes
+
+* workaround for the gutenberg autocomplete bug ([288f85e](https://github.com/AmazeeLabs/silverback-mono/commit/288f85ee28bf026f772f78bd2b33eb88bb7945ac))
+
+
+
+
+
 ## [1.3.13](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.3.12...@-amazeelabs/silverback_gutenberg@1.3.13) (2022-01-27)
 
 
