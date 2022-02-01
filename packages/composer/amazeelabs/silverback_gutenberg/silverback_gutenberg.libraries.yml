@@ -6,6 +6,7 @@ tweaks:
       css/gutenberg-tweaks.css: { }
   dependencies:
     - core/drupalSettings
+    - core/jquery
 
 base:
   version: VERSION
