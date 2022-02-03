@@ -31,7 +31,7 @@ export const createExecutor = (
       if (serializer) {
         serializer(processed);
       }
-      return JSON.stringify(processed, null, 2);
+      return JSON.stringify(combine(processed), null, 2);
     },
     test: () => true,
   });
@@ -150,4 +150,56 @@ function walk(dir: string) {
     }
   });
   return results;
+}
+
+/**
+ * If responses are same, we combine them together.
+ *
+ * So instead of
+ *   {
+ *     "First endpoint": {
+ *       "code": 200,
+ *       "data": { "field": "same" }
+ *     },
+ *     "Second endpoint": {
+ *       "code": 200,
+ *       "data": { "field": "same" }
+ *     }
+ *   }
+ * we get
+ *   {
+ *     "First endpoint & Second endpoint": {
+ *       "code": 200,
+ *       "data": { "field": "same" }
+ *     }
+ *   }
+ */
+function combine(responses: any): any {
+  if (
+    responses === null ||
+    typeof responses !== 'object' ||
+    Array.isArray(responses)
+  ) {
+    return responses;
+  }
+  const map: Array<{ keys: Array<String>; json: string; raw: any }> = [];
+  Object.keys(responses).map((key) => {
+    const json = JSON.stringify(responses[key]);
+    const item = map.find((item) => item.json === json);
+    if (item) {
+      item.keys.push(key);
+    } else {
+      map.push({
+        keys: [key],
+        json,
+        raw: responses[key],
+      });
+      return;
+    }
+  });
+  const processed: any = {};
+  map.map((item) => {
+    processed[item.keys.join(' & ')] = item.raw;
+  });
+  return processed;
 }
