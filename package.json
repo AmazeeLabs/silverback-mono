@@ -28,12 +28,12 @@
     "postinstall": "lerna run prepare && husky install && rm -rf node_modules/@-*"
   },
   "devDependencies": {
-    "@commitlint/cli": "^16.1.0",
-    "@commitlint/config-conventional": "^16.0.0",
-    "commitizen": "^4.2.4",
-    "husky": "^7.0.4",
-    "lerna": "^4.0.0",
-    "verdaccio": "^5.5.2",
+    "@commitlint/cli": "16.1.0",
+    "@commitlint/config-conventional": "16.0.0",
+    "commitizen": "4.2.4",
+    "husky": "7.0.4",
+    "lerna": "4.0.0",
+    "verdaccio": "5.5.2",
     "verdaccio-git": ">= 0.0.1"
   },
   "commitlint": {
@@ -53,7 +53,7 @@
     }
   },
   "dependencies": {
-    "prettier": "^2.5.1"
+    "prettier": "2.5.1"
   },
   "resolutions": {
     "@graphql-tools/load": "^7"
