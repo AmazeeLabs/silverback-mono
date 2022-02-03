@@ -284,11 +284,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "1.3.15",
+            "version": "1.3.16",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "c57187b698b71c5636740692287255c35b8d9a7a"
+                "reference": "a889c5abeb61c6af6dd95602e02090c2acb14e36"
             },
             "require": {
                 "drupal/gutenberg": "^2.4"
@@ -1476,16 +1476,16 @@
         },
         {
             "name": "consolidation/log",
-            "version": "2.0.4",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/consolidation/log.git",
-                "reference": "fc9ec5476ba13a31778695bd2d4f2fa0b0684356"
+                "reference": "9efdd57031bf2fda033f6a256cd8b7902a4e6b92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/consolidation/log/zipball/fc9ec5476ba13a31778695bd2d4f2fa0b0684356",
-                "reference": "fc9ec5476ba13a31778695bd2d4f2fa0b0684356",
+                "url": "https://api.github.com/repos/consolidation/log/zipball/9efdd57031bf2fda033f6a256cd8b7902a4e6b92",
+                "reference": "9efdd57031bf2fda033f6a256cd8b7902a4e6b92",
                 "shasum": ""
             },
             "require": {
@@ -1522,9 +1522,9 @@
             "description": "Improved Psr-3 / Psr\\Log logger based on Symfony Console components.",
             "support": {
                 "issues": "https://github.com/consolidation/log/issues",
-                "source": "https://github.com/consolidation/log/tree/2.0.4"
+                "source": "https://github.com/consolidation/log/tree/2.1.0"
             },
-            "time": "2021-12-30T19:05:18+00:00"
+            "time": "2022-01-30T03:49:07+00:00"
         },
         {
             "name": "consolidation/output-formatters",
@@ -3122,11 +3122,11 @@
         },
         {
             "name": "drupal/cypress",
-            "version": "2.3.43",
+            "version": "2.3.44",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/cypress",
-                "reference": "7fed87d47fe20afb9dcdeb2924f56f35d6fd6be6"
+                "reference": "340c6d537096fcec279d4876d917545513d15528"
             },
             "require": {
                 "alchemy/zippy": "^1.0.0",
@@ -3295,11 +3295,11 @@
         },
         {
             "name": "drupal/gatsby_build_monitor",
-            "version": "1.4.19",
+            "version": "1.4.20",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/gatsby_build_monitor",
-                "reference": "189549fed339ef19a5cf30d190bd8f0a514fccb9"
+                "reference": "5408ebd58738ef24b89a41c7b415c54faeb0a40a"
             },
             "require": {
                 "justinrainbow/json-schema": "^5.2.11"
@@ -3435,14 +3435,6 @@
                     "homepage": "https://www.drupal.org/u/codebymikey"
                 },
                 {
-                    "name": "roborn",
-                    "homepage": "https://www.drupal.org/user/139474"
-                },
-                {
-                    "name": "sayco",
-                    "homepage": "https://www.drupal.org/user/3517832"
-                },
-                {
                     "name": "szeidler",
                     "homepage": "https://www.drupal.org/user/767652"
                 },
@@ -3545,11 +3537,11 @@
         },
         {
             "name": "drupal/test_session",
-            "version": "1.2.23",
+            "version": "1.2.24",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/test_session",
-                "reference": "22c50c9475a19af36d33b385f5d08f2015874ff7"
+                "reference": "9bd1062a05ead3d056081f8dc4daaecbe1453f16"
             },
             "type": "drupal-module",
             "license": [
@@ -11555,16 +11547,16 @@
         },
         {
             "name": "webonyx/graphql-php",
-            "version": "v14.11.4",
+            "version": "v14.11.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webonyx/graphql-php.git",
-                "reference": "d8d6307399df7246f09a1e9cc05e1574214ca67c"
+                "reference": "ffa431c0821821839370a68dab3c2597c06bf7f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/d8d6307399df7246f09a1e9cc05e1574214ca67c",
-                "reference": "d8d6307399df7246f09a1e9cc05e1574214ca67c",
+                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/ffa431c0821821839370a68dab3c2597c06bf7f0",
+                "reference": "ffa431c0821821839370a68dab3c2597c06bf7f0",
                 "shasum": ""
             },
             "require": {
@@ -11609,7 +11601,7 @@
             ],
             "support": {
                 "issues": "https://github.com/webonyx/graphql-php/issues",
-                "source": "https://github.com/webonyx/graphql-php/tree/v14.11.4"
+                "source": "https://github.com/webonyx/graphql-php/tree/v14.11.5"
             },
             "funding": [
                 {
@@ -11617,7 +11609,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2022-01-20T15:10:45+00:00"
+            "time": "2022-01-24T11:13:31+00:00"
         }
     ],
     "packages-dev": [],
