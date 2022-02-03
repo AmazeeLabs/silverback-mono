@@ -27,6 +27,11 @@
   // All updates, except for the major, wait for a manual approval.
   dependencyDashboardApproval: true,
 
+  postUpdateOptions: [
+    // Deduplicate Yarn dependencies.
+    "yarnDedupeHighest",
+  ],
+
   // Pin dependencies by default.
   rangeStrategy: "pin",
 
