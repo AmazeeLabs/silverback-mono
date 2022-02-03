@@ -24,8 +24,7 @@
   // `lerna run --since` will run nothing if only the root yarn.lock is updated.
   branchPrefix: "test-all/renovate/",
 
-  // The "bump" strategy helps a lot with Composer updates.
-  rangeStrategy: "bump",
+  rangeStrategy: "auto",
 
   // All updates, except for the major, wait for a manual approval.
   dependencyDashboardApproval: true,
