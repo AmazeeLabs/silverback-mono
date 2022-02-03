@@ -1,4 +1,4 @@
-import { Link } from './Link';
+import { Link } from '@amazeelabs/react-framework-bridge';
 
 export type NavItem = {
   id: string;

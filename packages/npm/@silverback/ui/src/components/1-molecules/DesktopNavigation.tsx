@@ -15,8 +15,7 @@ export const DesktopNavigation = ({ items }: {items: Array<NavItem>}) => {
         <li key={index} className="relative">
           {children && children.length > 0 ? (
             <>
-              <a
-                href="#"
+              <button
                 role="button"
                 aria-label={name}
                 className={
@@ -28,7 +27,7 @@ export const DesktopNavigation = ({ items }: {items: Array<NavItem>}) => {
                 }}
               >
                 {name}
-              </a>
+              </button>
               <div
                 className={classnames(
                   'absolute z-40 px-2 mt-2 whitespace-no-wrap transform -translate-x-1/2 left-1/2 sm:px-0',
@@ -57,7 +56,6 @@ export const DesktopNavigation = ({ items }: {items: Array<NavItem>}) => {
                         ({ Link, name }, index) => (
                           <Link
                             key={index}
-                            title="test"
                             className={
                               'block py-2 px-4 space-y-1 text-base font-medium transition duration-150 ease-in-out rounded-md hover:bg-amazee-dark hover:text-white'
                             }

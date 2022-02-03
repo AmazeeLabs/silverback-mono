@@ -1,6 +1,8 @@
 import '../tailwind.css';
+export { argTypes } from '@amazeelabs/react-framework-bridge/storybook';
+import { ActionsDecorator } from '@amazeelabs/react-framework-bridge/storybook';
+export const decorators = [ActionsDecorator];
 export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' },
   options: {
     storySort: {
       order: [

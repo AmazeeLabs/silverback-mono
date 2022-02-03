@@ -19,7 +19,7 @@ export type HeaderProps = {
 
 export const Header = ({
   LogoLink,
-  navItems
+  navItems,
 }: HeaderProps) => {
   const [open, toggle] = useMobileMenu();
 
