@@ -2,69 +2,7 @@
 
 exports[`gatsby/MenuItem.gql 1`] = `
 {
-  "Gatsby Build": {
-    "code": 200,
-    "data": {
-      "data": {
-        "queryMainMenus": [
-          {
-            "items": [
-              {
-                "__typename": "MenuItem",
-                "id": "menu_link_content:6fba1578-67b4-415f-95ad-484fc39cb0ea",
-                "url": "/en",
-                "label": "Sub-sub item",
-                "parent": "menu_link_content:fb5806a5-e3c9-4288-b24a-4e9479cdc691"
-              },
-              {
-                "__typename": "MenuItem",
-                "id": "menu_link_content:8c0b0fa6-c1ef-462d-8e6e-0de18b6ca17a",
-                "url": "/en",
-                "label": "Sub-Item 1",
-                "parent": "menu_link_content:9cdfa685-ec5a-4fe9-8395-5abfb024e9a3"
-              },
-              {
-                "__typename": "MenuItem",
-                "id": "menu_link_content:fb5806a5-e3c9-4288-b24a-4e9479cdc691",
-                "url": "/en",
-                "label": "Sub-Item 2",
-                "parent": "menu_link_content:9cdfa685-ec5a-4fe9-8395-5abfb024e9a3"
-              },
-              {
-                "__typename": "MenuItem",
-                "id": "menu_link_content:b9e46083-ddab-4d3d-8aee-b92029e473a0",
-                "url": "/en",
-                "label": "English",
-                "parent": ""
-              },
-              {
-                "__typename": "MenuItem",
-                "id": "menu_link_content:c5b3b5b8-22e1-4cb3-a1e2-59d0a8f054a3",
-                "url": "/en",
-                "label": "German",
-                "parent": ""
-              },
-              {
-                "__typename": "MenuItem",
-                "id": "menu_link_content:9cdfa685-ec5a-4fe9-8395-5abfb024e9a3",
-                "url": "/en",
-                "label": "Parent item",
-                "parent": ""
-              },
-              {
-                "__typename": "MenuItem",
-                "id": "menu_link_content:a64465a1-beb3-4b5e-86c5-3956de6dbdf2",
-                "url": "/en",
-                "label": "Translated (English)",
-                "parent": ""
-              }
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "Gatsby Preview": {
+  "Gatsby Build & Gatsby Preview": {
     "code": 200,
     "data": {
       "data": {

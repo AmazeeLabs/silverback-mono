@@ -2,17 +2,7 @@
 
 exports[`extra/extraField.gql 1`] = `
 {
-  "Gatsby Build": {
-    "code": 200,
-    "data": {
-      "errors": [
-        {
-          "message": "Cannot query field \\"extraField\\" on type \\"Query\\"."
-        }
-      ]
-    }
-  },
-  "Gatsby Preview": {
+  "Gatsby Build & Gatsby Preview": {
     "code": 200,
     "data": {
       "errors": [

@@ -2,22 +2,7 @@
 
 exports[`gatsby/Webform.gql 1`] = `
 {
-  "Gatsby Build": {
-    "code": 200,
-    "data": {
-      "data": {
-        "loadWebform": {
-          "__typename": "Webform",
-          "id": "for_testing_confirmation_options",
-          "drupalId": "for_testing_confirmation_options",
-          "url": "http://localhost:8888/en/form/for-testing-confirmation-options",
-          "title": "For testing confirmation options",
-          "path": "/en/form/for-testing-confirmation-options"
-        }
-      }
-    }
-  },
-  "Gatsby Preview": {
+  "Gatsby Build & Gatsby Preview": {
     "code": 200,
     "data": {
       "data": {
