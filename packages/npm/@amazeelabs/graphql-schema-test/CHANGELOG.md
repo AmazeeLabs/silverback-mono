@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/graphql-schema-test@1.0.12...@amazeelabs/graphql-schema-test@1.1.0) (2022-02-03)
+
+
+### Features
+
+* combine identical responses in graphql snapshots ([b52e5fc](https://github.com/AmazeeLabs/silverback-mono/commit/b52e5fc4e6295e62d34863b14ce733a936689fe6))
+
+
+
+
+
 ## [1.0.12](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/graphql-schema-test@1.0.11...@amazeelabs/graphql-schema-test@1.0.12) (2022-02-03)
 
 **Note:** Version bump only for package @amazeelabs/graphql-schema-test

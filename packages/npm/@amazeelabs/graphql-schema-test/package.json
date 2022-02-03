@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/graphql-schema-test",
-  "version": "1.0.12",
+  "version": "1.1.0",
   "description": "Snapshot testing for GraphQL schemas.",
   "author": "Amazee Labs",
   "license": "MIT",
