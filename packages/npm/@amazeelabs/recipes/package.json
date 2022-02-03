@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/recipes",
-  "version": "1.9.19",
+  "version": "1.9.20",
   "description": "Executable recipes to setup and extend Amazee Labs projects.",
   "main": "dist/index.js",
   "license": "MIT",
@@ -23,8 +23,8 @@
     "update-notifier": "^5.1.0"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.14",
-    "@amazeelabs/jest-preset": "^1.3.17",
+    "@amazeelabs/eslint-config": "^1.4.15",
+    "@amazeelabs/jest-preset": "^1.3.18",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@types/chalk": "2.2.0",
     "@types/deasync": "0.1.2",

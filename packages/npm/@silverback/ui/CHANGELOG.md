@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.21](https://github.com/AmazeeLabs/silverback-mono/compare/@silverback/ui@1.0.20...@silverback/ui@1.0.21) (2022-02-03)
+
+**Note:** Version bump only for package @silverback/ui
+
+
+
+
+
 ## [1.0.20](https://github.com/AmazeeLabs/silverback-mono/compare/@silverback/ui@1.0.19...@silverback/ui@1.0.20) (2022-02-03)
 
 **Note:** Version bump only for package @silverback/ui

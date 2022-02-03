@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.15](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/eslint-config@1.4.14...@amazeelabs/eslint-config@1.4.15) (2022-02-03)
+
+**Note:** Version bump only for package @amazeelabs/eslint-config
+
+
+
+
+
 ## [1.4.14](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/eslint-config@1.4.13...@amazeelabs/eslint-config@1.4.14) (2022-01-27)
 
 **Note:** Version bump only for package @amazeelabs/eslint-config

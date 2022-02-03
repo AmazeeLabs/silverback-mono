@@ -1,11 +1,11 @@
 {
   "name": "silverback-website",
   "description": "Silverback website",
-  "version": "0.15.56",
+  "version": "0.15.57",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
-    "@amazeelabs/gatsby-theme-core": "^0.6.38",
-    "@amazeelabs/react-di": "^1.0.49",
+    "@amazeelabs/gatsby-theme-core": "^0.6.39",
+    "@amazeelabs/react-di": "^1.0.50",
     "@mdx-js/mdx": "1.6.22",
     "@mdx-js/react": "1.6.22",
     "@tailwindcss/typography": "0.5.1",
@@ -14,7 +14,7 @@
     "gatsby": "4.6.1",
     "gatsby-plugin-mdx": "3.6.0",
     "gatsby-plugin-postcss": "5.6.0",
-    "gatsby-plugin-schema-export": "^1.1.9",
+    "gatsby-plugin-schema-export": "^1.1.10",
     "gatsby-plugin-schema-snapshot": "3.6.0",
     "gatsby-plugin-sharp": "4.6.0",
     "gatsby-remark-autolink-headers": "5.6.0",
@@ -29,8 +29,8 @@
     "typescript": "4.5.5"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.14",
-    "@amazeelabs/jest-preset": "^1.3.17",
+    "@amazeelabs/eslint-config": "^1.4.15",
+    "@amazeelabs/jest-preset": "^1.3.18",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@graphql-codegen/cli": "2.4.0",
     "@graphql-codegen/typescript": "2.4.2",

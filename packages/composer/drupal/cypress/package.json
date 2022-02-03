@@ -1,6 +1,6 @@
 {
   "name": "@-drupal/cypress",
-  "version": "2.3.43",
+  "version": "2.3.44",
   "description": "Cypress E2E testing for Drupal.",
   "publishConfig": {
     "access": "public",
@@ -13,8 +13,8 @@
     "cypress": "9.4.1",
     "cypress-cucumber-preprocessor": "4.3.1",
     "cypress-file-upload": "5.0.8",
-    "cypress-screenplay": "^0.5.26",
-    "drupal-test-session-cypress": "^1.1.29"
+    "cypress-screenplay": "^0.5.27",
+    "drupal-test-session-cypress": "^1.1.30"
   },
   "devDependencies": {
     "@amazeelabs/sync-composer-version": "^1.1.2"
