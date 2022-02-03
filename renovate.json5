@@ -24,12 +24,24 @@
   // `lerna run --since` will run nothing if only the root yarn.lock is updated.
   branchPrefix: "test-all/renovate/",
 
-  rangeStrategy: "auto",
-
   // All updates, except for the major, wait for a manual approval.
   dependencyDashboardApproval: true,
 
+  // Pin dependencies by default.
+  rangeStrategy: "pin",
+
   packageRules: [
+
+    // Use bump range strategy for packages.
+    {
+      matchPaths: ["packages/composer/**/composer.json"],
+      rangeStrategy: "bump",
+    },
+    {
+      matchPaths: ["packages/npm/**/package.json"],
+      matchDepTypes: ["dependencies"],
+      rangeStrategy: "bump",
+    },
 
     // Standard rules.
     {
