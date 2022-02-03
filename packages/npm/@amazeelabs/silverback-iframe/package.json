@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/silverback-iframe",
-  "version": "1.1.24",
+  "version": "1.1.25",
   "description": "Frontend part of amazeelabs/silverback_iframe Drupal module.",
   "author": "Amazee Labs",
   "main": "dist/index.js",

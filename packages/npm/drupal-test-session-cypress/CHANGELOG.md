@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.29](https://github.com/AmazeeLabs/silverback-mono/compare/drupal-test-session-cypress@1.1.28...drupal-test-session-cypress@1.1.29) (2022-02-03)
+
+**Note:** Version bump only for package drupal-test-session-cypress
+
+
+
+
+
 ## [1.1.28](https://github.com/AmazeeLabs/silverback-mono/compare/drupal-test-session-cypress@1.1.27...drupal-test-session-cypress@1.1.28) (2022-01-27)
 
 **Note:** Version bump only for package drupal-test-session-cypress
