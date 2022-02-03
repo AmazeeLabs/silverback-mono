@@ -2,71 +2,7 @@
 
 exports[`gatsby/content/Page.gql 1`] = `
 {
-  "Gatsby Build": {
-    "code": 200,
-    "data": {
-      "data": {
-        "basic": {
-          "__typename": "Page",
-          "id": "[numeric]:en",
-          "drupalId": "[numeric]",
-          "title": "A page",
-          "langcode": "en",
-          "body": "<p>Some text.</p>\\n",
-          "defaultTranslation": true,
-          "path": "/en/page/a-page",
-          "translations": [
-            {
-              "langcode": "en",
-              "defaultTranslation": true
-            },
-            {
-              "langcode": "de",
-              "defaultTranslation": false
-            }
-          ],
-          "paragraphs": []
-        },
-        "references": {
-          "__typename": "Page",
-          "id": "[numeric]:en",
-          "drupalId": "[numeric]",
-          "title": "Page with paragraphs",
-          "langcode": "en",
-          "body": null,
-          "defaultTranslation": true,
-          "path": "/en/node/[numeric]",
-          "translations": [
-            {
-              "langcode": "en",
-              "defaultTranslation": true
-            }
-          ],
-          "paragraphs": [
-            {
-              "__typename": "ParagraphText",
-              "text": "Some text."
-            },
-            {
-              "__typename": "ParagraphReferences",
-              "singleReference": {
-                "id": "[numeric]:en"
-              },
-              "references": [
-                {
-                  "id": "[numeric]:en"
-                },
-                {
-                  "id": "[numeric]:en"
-                }
-              ]
-            }
-          ]
-        }
-      }
-    }
-  },
-  "Gatsby Preview": {
+  "Gatsby Build & Gatsby Preview": {
     "code": 200,
     "data": {
       "data": {
