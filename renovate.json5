@@ -39,7 +39,12 @@
     },
     {
       matchPaths: ["packages/npm/**/package.json"],
-      matchDepTypes: ["dependencies"],
+      matchDepTypes: [
+        "dependencies",
+        "peerDependencies",
+        "bundledDependencies",
+        "optionalDependencies",
+      ],
       rangeStrategy: "bump",
     },
 
