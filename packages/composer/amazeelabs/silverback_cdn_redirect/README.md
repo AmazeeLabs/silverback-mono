@@ -10,8 +10,8 @@ To be used with Gatsby hosted on Netlify.
 - Set the settings, for example:
   ```
   drush cset silverback_cdn_redirect.settings base_url https://my-gatsby.site
-  drush cset silverback_cdn_redirect.settings fallback_path /404
-  drush cset silverback_cdn_redirect.settings prefix_fallback_path true
+  drush cset silverback_cdn_redirect.settings 404_path /404
+  drush cset silverback_cdn_redirect.settings should_prefix_404_path true
   ```
 
 ## Gatsby config
