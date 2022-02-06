@@ -4,13 +4,37 @@ namespace Drupal\silverback_cdn_redirect\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Routing\TrustedRedirectResponse;
+use Drupal\Core\Routing\UrlGeneratorInterface;
 use Drupal\silverback_cdn_redirect\EventSubscriber\CdnRedirectRouteSubscriber;
 use GuzzleHttp\Client;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 
 class CdnRedirectController extends ControllerBase {
+  /**
+   * The URL generator service.
+   *
+   * @var \Drupal\Core\Routing\UrlGeneratorInterface
+   */
+  protected $urlGenerator;
+
+  /**
+   * Creates a CdnRedirectController object.
+   */
+  public function __construct(UrlGeneratorInterface $url_generator) {
+    $this->urlGenerator = $url_generator;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('url_generator'),
+    );
+  }
 
   public function handle(string $path, Request $request) {
     $settings = \Drupal::config('silverback_cdn_redirect.settings');
@@ -39,6 +63,17 @@ class CdnRedirectController extends ControllerBase {
         ($parts['path'] ?? '') .
         (isset($parts['query']) ? "?{$parts['query']}" : '');
       $responseCode = $response->getStatusCode();
+    } else {
+      // If the returned response is not a redirect, we still want to check if
+      // there is a path alias for the current path. If it exists, then we
+      // should redirect to it.
+      $routeUri = $this->urlGenerator->generateFromRoute('<current>', [], []);
+      if ($routeUri !== '/' . $path) {
+        $location = $baseUrl .
+          $routeUri .
+          (is_null($queryString) ? '' : '?' . $queryString);
+        $responseCode= 301;
+      }
     }
 
     if (!$location || !$responseCode) {
