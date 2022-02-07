@@ -815,13 +815,35 @@ that by simply dropping this configuration file into the repository root.
   // `lerna run --since` will run nothing if only the root yarn.lock is updated.
   branchPrefix: 'test-all/renovate/',
 
-  // The "bump" strategy helps a lot with Composer updates.
-  rangeStrategy: 'bump',
-
   // All updates, except for the major, wait for a manual approval.
   dependencyDashboardApproval: true,
 
+  postUpdateOptions: [
+    // Deduplicate Yarn dependencies.
+    'yarnDedupeHighest',
+  ],
+
+  // Pin dependencies by default.
+  rangeStrategy: 'pin',
+
   packageRules: [
+    // Use "bump" range strategy for resolutions.
+    {
+      matchPaths: ['package.json'],
+      matchDepTypes: ['resolutions'],
+      rangeStrategy: 'bump',
+    },
+    // Use "bump" range strategy for special dependency types.
+    {
+      matchPaths: ['**/package.json'],
+      matchDepTypes: [
+        'peerDependencies',
+        'bundledDependencies',
+        'optionalDependencies',
+      ],
+      rangeStrategy: 'bump',
+    },
+
     // Standard rules.
     {
       matchUpdateTypes: ['major'],
