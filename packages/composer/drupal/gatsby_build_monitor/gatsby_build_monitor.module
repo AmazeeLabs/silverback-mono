@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\Core\Url;
+use Drupal\gatsby_build_monitor\BuildMonitorStatsInterface;
 use Drupal\silverback_gatsby\Gatsby;
 
 /**
@@ -51,11 +52,22 @@ function gatsby_build_monitor_toolbar() {
         'drupalSettings' => [
           'gatsbyBuildMonitor' => [
             'autoRefresh' => getenv('LAGOON') ||
-              getenv('GATSBY_BUILD_MONITOR_AUTO_REFRESH') === 'true',
+               getenv('GATSBY_BUILD_MONITOR_AUTO_REFRESH') === 'true'
           ],
         ],
       ],
       '#weight' => 1000,
+    ],
+    'gatsby_build_monitor_progress' => [
+      '#type' => 'toolbar_item',
+      'tab' => [
+        '#type' => 'inline_template',
+        '#template' => '<div class="build-monitor-progress" title="' . t('This is only an estimate based on the previous build times, and it may not be accurate in all the cases.') . '"></div>',
+        '#cache' => [
+          'max-age' => 0,
+        ],
+      ],
+      '#weight' => 1001,
     ],
   ];
 }
@@ -75,4 +87,8 @@ function _gatsby_build_monitor_state($state = NULL) {
   }
   \Drupal::state()->set('gatsby_build_monitor.state', $state);
   \Drupal::state()->set('gatsby_build_monitor.state_updated', \Drupal::time()->getCurrentTime());
+
+  /* @var BuildMonitorStatsInterface $statsService */
+  $statsService = \Drupal::service('gatsby_build_monitor.stats');
+  \Drupal::state()->set('gatsby_build_monitor.average_build_duration', $statsService->getAverageBuildDuration());
 }

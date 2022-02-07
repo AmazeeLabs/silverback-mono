@@ -1,5 +1,8 @@
 state:
   version: VERSION
+  css:
+    theme:
+      css/state.css: {}
   js:
     js/state.js: {}
   dependencies:
