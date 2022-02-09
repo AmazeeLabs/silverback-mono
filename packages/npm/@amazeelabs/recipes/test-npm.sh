@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 set -ex
 
-rm -rf test
+rm -rf /tmp/recipes_test
 npm install -g @amazeelabs/recipes
 
-echo 'test' | LOG=silly amazee-recipes create-monorepo
+cd /tmp
 
-cd test
+echo 'recipes_test' | LOG=silly amazee-recipes create-monorepo
+
+cd recipes_test
 LOG=silly amazee-recipes add-gatsby
 LOG=silly amazee-recipes add-drupal
 LOG=silly amazee-recipes add-storybook
@@ -17,5 +19,5 @@ yarn test:static:all
 yarn test:unit:all
 yarn test:integration:all
 
-docker-compose build
-docker-compose rm -fsv
+docker-compose up --detach --build
+docker-compose down -v --rmi all --remove-orphans
