@@ -3,6 +3,18 @@
 > This recipe has to be run from the root folder of a mono-repository created
 > with `amazee-recipes create-monorepo`.
 
+## Requirements
+
+We need `composer` _2_.
+
+```typescript
+$$('composer --version', {
+  stdout: $$.minimalVersion('2'),
+});
+```
+
+## Basic setup
+
 ```typescript
 $$('cat README.md', {
   stdout: /Executed `create-monorepo`/,
