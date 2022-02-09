@@ -3,6 +3,7 @@ set -ex
 
 rm -rf /tmp/recipes_test
 yarn global add @amazeelabs/recipes
+yarn global upgrade @amazeelabs/recipes
 
 cd /tmp
 

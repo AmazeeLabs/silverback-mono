@@ -3,6 +3,7 @@ set -ex
 
 rm -rf /tmp/recipes_test
 npm install -g @amazeelabs/recipes
+npm update -g @amazeelabs/recipes
 
 cd /tmp
 
