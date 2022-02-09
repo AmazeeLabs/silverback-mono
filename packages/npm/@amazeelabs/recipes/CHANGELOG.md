@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.22](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.9.21...@amazeelabs/recipes@1.9.22) (2022-02-09)
+
+
+### Bug Fixes
+
+* move tests into /tmp ([dba6dec](https://github.com/AmazeeLabs/silverback-mono/commit/dba6decefc1498d36e2e07b280034d5dab313943))
+* remove projectNameDrupal ([96b6054](https://github.com/AmazeeLabs/silverback-mono/commit/96b60542b33ecaf6859a1cbffd25f419ad94dade))
+* typo ([a251b1c](https://github.com/AmazeeLabs/silverback-mono/commit/a251b1c9fc946e8ffa81dd5d721d4a65600c306f))
+
+
+
+
+
 ## [1.9.21](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.9.20...@amazeelabs/recipes@1.9.21) (2022-02-07)
 
 **Note:** Version bump only for package @amazeelabs/recipes
