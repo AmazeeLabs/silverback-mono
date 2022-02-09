@@ -21,11 +21,9 @@ $$('cat README.md', {
 });
 
 const { name: projectName } = $$.file('package.json');
-const projectNameDrupal = projectName.replace('-', '_').toLowerCase();
 
 $$.vars({
   projectName,
-  projectNameDrupal,
 });
 ```
 
@@ -700,7 +698,7 @@ $$('yarn drush -y en default_content');
 Create a custom module which will keep the exported content.
 
 ```yml
-# |-> web/modules/custom/{{projectNameDrupal}}_default_content/{{projectNameDrupal}}_default_content.info.yml
+# |-> web/modules/custom/{{projectName}}_default_content/{{projectName}}_default_content.info.yml
 
 name: Default content for {{projectName}}
 package: Custom
@@ -712,7 +710,7 @@ dependencies:
 
 ```php
 <?php
-// |-> web/modules/custom/{{projectNameDrupal}}_default_content/export.php
+// |-> web/modules/custom/{{projectName}}_default_content/export.php
 
 if (PHP_SAPI !== 'cli') {
   die;
@@ -725,32 +723,32 @@ $excluded = [
   'path_alias',
 ];
 
-\AmazeeLabs\DefaultContent\Export::run('{{projectNameDrupal}}_default_content', $excluded);
+\AmazeeLabs\DefaultContent\Export::run('{{projectName}}_default_content', $excluded);
 ```
 
 ```php
 <?php
-// |-> web/modules/custom/{{projectNameDrupal}}_default_content/import.php
+// |-> web/modules/custom/{{projectName}}_default_content/import.php
 
 if (PHP_SAPI !== 'cli') {
   die;
 }
 
-\AmazeeLabs\DefaultContent\Import::run('{{projectNameDrupal}}_default_content');
+\AmazeeLabs\DefaultContent\Import::run('{{projectName}}_default_content');
 ```
 
 ```php
 <?php
-// |-> web/modules/custom/{{projectNameDrupal}}_default_content/{{projectNameDrupal}}_default_content.install
+// |-> web/modules/custom/{{projectName}}_default_content/{{projectName}}_default_content.install
 
 /**
  * Implements hook_requirements().
  */
-function {{projectNameDrupal}}_default_content_requirements($phase) {
+function {{projectName}}_default_content_requirements($phase) {
   return [
     'module' => [
-      'title' => '{{projectNameDrupal}}_default_content module should never be enabled',
-      'description' => '{{projectNameDrupal}}_default_content module should never be enabled',
+      'title' => '{{projectName}}_default_content module should never be enabled',
+      'description' => '{{projectName}}_default_content module should never be enabled',
       'severity' => REQUIREMENT_ERROR,
     ],
   ];
@@ -764,8 +762,8 @@ $$.file('package.json', (json) => ({
   ...json,
   scripts: {
     ...json.scripts,
-    'default-content-export': `source .envrc && drush php-script web/modules/custom/${projectNameDrupal}_default_content/export.php`,
-    'default-content-import': `source .envrc && drush php-script web/modules/custom/${projectNameDrupal}_default_content/import.php`,
+    'default-content-export': `source .envrc && drush php-script web/modules/custom/${projectName}_default_content/export.php`,
+    'default-content-import': `source .envrc && drush php-script web/modules/custom/${projectName}_default_content/import.php`,
     setup: `${json.scripts.setup} && yarn default-content-import`,
   },
 }));
@@ -853,7 +851,7 @@ $$('yarn drush -y en silverback_gatsby');
 Create a custom module with a GraphQL schema.
 
 ```yml
-# |-> web/modules/custom/{{projectNameDrupal}}_graphql/{{projectNameDrupal}}_graphql.info.yml
+# |-> web/modules/custom/{{projectName}}_graphql/{{projectName}}_graphql.info.yml
 
 name: GraphQL schema for {{projectName}}
 type: module
@@ -865,7 +863,7 @@ core_version_requirement: ^8 || ^9
 ```
 
 ```graphql
-# |-> web/modules/custom/{{projectNameDrupal}}_graphql/graphql/{{projectNameDrupal}}_website.graphqls
+# |-> web/modules/custom/{{projectName}}_graphql/graphql/{{projectName}}_website.graphqls
 
 schema {
   query: Query
@@ -878,9 +876,9 @@ type Query {
 
 ```php
 <?php
-// |-> web/modules/custom/{{projectNameDrupal}}_graphql/src/Plugin/GraphQL/Schema/WebsiteSchema.php
+// |-> web/modules/custom/{{projectName}}_graphql/src/Plugin/GraphQL/Schema/WebsiteSchema.php
 
-namespace Drupal\{{projectNameDrupal}}_graphql\Plugin\GraphQL\Schema;
+namespace Drupal\{{projectName}}_graphql\Plugin\GraphQL\Schema;
 
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
@@ -889,7 +887,7 @@ use Drupal\silverback_gatsby\GraphQL\ComposableSchema;
 
 /**
  * @Schema(
- *   id = "{{projectNameDrupal}}_website",
+ *   id = "{{projectName}}_website",
  *   name = "Website schema",
  * )
  */
@@ -917,7 +915,7 @@ class WebsiteSchema extends ComposableSchema {
 Make it comfortable to work with the schema in PhpStorm.
 
 ```json
-// |-> web/modules/custom/{{projectNameDrupal}}_graphql/graphql/.graphqlconfig
+// |-> web/modules/custom/{{projectName}}_graphql/graphql/.graphqlconfig
 
 {
   "name": "Project Schema",
@@ -927,14 +925,14 @@ Make it comfortable to work with the schema in PhpStorm.
 
 ```typescript
 $$(
-  `cd web/modules/custom/${projectNameDrupal}_graphql/graphql && ln -s ../../../contrib/silverback_gatsby/graphql silverback`,
+  `cd web/modules/custom/${projectName}_graphql/graphql && ln -s ../../../contrib/silverback_gatsby/graphql silverback`,
 );
 ```
 
 Commit enable the module and commit changes.
 
 ```typescript
-$$(`yarn drush -y en ${projectNameDrupal}_graphql`);
+$$(`yarn drush -y en ${projectName}_graphql`);
 ```
 
 Commit.
