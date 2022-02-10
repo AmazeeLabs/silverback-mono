@@ -1,3 +1,6 @@
+import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import esbuild from 'rollup-plugin-esbuild';
 
 export default {
@@ -6,5 +9,10 @@ export default {
     file: `build/server.js`,
     format: 'cjs',
   },
-  plugins: [esbuild()],
+  plugins: [
+    json(),
+    commonjs(),
+    esbuild(),
+    nodeResolve({ preferBuiltins: true }),
+  ],
 };
