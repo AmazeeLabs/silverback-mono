@@ -2,6 +2,7 @@
   "name": "@amazeelabs/publisher",
   "version": "0.0.0",
   "license": "MIT",
+  "bin": "./cli.js",
   "scripts": {
     "develop": "concurrently \"yarn build:server:watch\" \"yarn dev:server\" \"yarn dev:ui\"",
     "dev:ui": "vite",
