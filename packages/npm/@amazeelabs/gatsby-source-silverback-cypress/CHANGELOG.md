@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.23](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback-cypress@1.1.22...@amazeelabs/gatsby-source-silverback-cypress@1.1.23) (2022-02-10)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-source-silverback-cypress
+
+
+
+
+
 ## [1.1.22](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback-cypress@1.1.21...@amazeelabs/gatsby-source-silverback-cypress@1.1.22) (2022-02-03)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-source-silverback-cypress
