@@ -1,18 +1,10 @@
 import express from 'express';
 import expressWs from 'express-ws';
 import { createProxyMiddleware } from 'http-proxy-middleware';
-import { negate } from 'lodash';
 import morgan from 'morgan';
-import {
-  combineLatestWith,
-  filter,
-  scan,
-  shareReplay,
-  startWith,
-  Subject,
-} from 'rxjs';
+import { filter, shareReplay, Subject } from 'rxjs';
 
-import { BuildService, BuildState, isQueueStatus } from './server/build';
+import { BuildService } from './server/build';
 import {
   GatewayCommands,
   GatewayService,
@@ -20,6 +12,7 @@ import {
   isGatewayState,
 } from './server/gateway';
 import { isSpawnChunk } from './server/spawn';
+import { statusUpdates } from './server/status';
 
 const ews = expressWs(express());
 const { app } = ews;
@@ -37,6 +30,12 @@ const gateway$ = GatewayService(
   },
   gatewayCommands$,
 ).pipe(shareReplay(100));
+
+app.locals.isReady = false;
+
+gateway$.pipe(filter(isGatewayState)).subscribe((state) => {
+  app.locals.isReady = state === GatewayState.Ready;
+});
 
 const builder$ = BuildService(
   {
@@ -72,55 +71,23 @@ app.ws('/___status/builder/logs', (ws) => {
 });
 
 app.ws('/___status/updates', (ws) => {
-  const sub = gateway$
-    .pipe(
-      filter(isGatewayState),
-      combineLatestWith(
-        builder$.pipe(filter(negate(isSpawnChunk)), startWith(BuildState.Init)),
-      ),
-      scan(
-        (acc, [gateway, builder]) => {
-          return isQueueStatus(builder)
-            ? {
-                ...acc,
-                gateway,
-                queue: builder,
-              }
-            : {
-                ...acc,
-                gateway,
-                builder,
-              };
-        },
-        {
-          builder: BuildState.Finished,
-          gateway: GatewayState.Starting,
-          queue: [] as Array<any>,
-        },
-      ),
-      shareReplay(1),
-    )
-    .subscribe((data) => {
-      ws.send(JSON.stringify(data));
-    });
+  const sub = statusUpdates(gateway$, builder$).subscribe((data) => {
+    ws.send(JSON.stringify(data));
+  });
 
   ws.on('close', sub.unsubscribe);
 });
 
 app.use('/___status', express.static('dist'));
 
-let isReady = false;
-
-gateway$.pipe(filter(isGatewayState)).subscribe((state) => {
-  isReady = state === GatewayState.Ready;
-  console.log(isReady);
-});
-
 app.get('/', (req, res, next) => {
-  console.log(isReady);
-  if (!isReady) {
-    res.redirect(302, `/___status/status.html?dest=${req.originalUrl}`);
-    res.send();
+  if (!req.app.locals.isReady) {
+    if (req.accepts('text/html')) {
+      res.redirect(302, `/___status/status.html?dest=${req.originalUrl}`);
+    } else {
+      res.status(404);
+    }
+    res.end();
   }
   next();
 });

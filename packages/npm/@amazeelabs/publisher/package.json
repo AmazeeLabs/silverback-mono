@@ -11,7 +11,7 @@
     "build:server:watch": "rollup -c rollup.config.js -w",
     "start": "node build/server.js",
     "preview": "vite preview",
-    "prepare": "exit 0",
+    "prepare": "yarn build:server && yarn build:ui",
     "precommit": "lint-staged",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "jest --passWithNoTests",
@@ -20,6 +20,7 @@
     "test": "yarn test:static && yarn test:unit && yarn test:integration"
   },
   "dependencies": {
+    "@react-rxjs/core": "^0.8.4",
     "cosmiconfig": "^7.0.1",
     "express": "^4.17.2",
     "express-ws": "^5.0.2",
@@ -30,8 +31,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-lazylog": "^4.5.3",
-    "react-query": "^3.34.14",
-    "react-use-websocket": "^3.0.0",
+    "react-rxjs": "^3.0.0-alpha.6",
     "rxjs": "^7.5.2",
     "rxjs-shell": "^3.1.2"
   },
