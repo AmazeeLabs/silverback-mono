@@ -10,6 +10,7 @@ import {
   take,
   takeUntil,
 } from 'rxjs';
+import { RunHelpers } from 'rxjs/testing';
 
 import {
   GatewayCommands,
@@ -21,158 +22,190 @@ import { runScheduled, ShellMock, stdoutChunk } from './helpers';
 
 jest.mock('./spawn');
 
+const outputChunks = {
+  s: stdoutChunk('serving'),
+  a: stdoutChunk('startup step 1'),
+  b: stdoutChunk('startup step 2'),
+  c: stdoutChunk('startup step 3'),
+  e: stdoutChunk('clean step 1'),
+  f: stdoutChunk('clean step 2'),
+  g: stdoutChunk('clean step 3'),
+};
+
+type GatewayTestInput = {
+  startMarbles: string;
+  cleanMarbles: string;
+  eventMarbles: string;
+  printMarbles: string;
+  stateMarbles: string;
+};
+
+function runGatewayService(helpers: RunHelpers, config: GatewayTestInput) {
+  const t = helpers.time('-|');
+
+  ShellMock.add(
+    'yarn start',
+    concat(
+      helpers.cold(config.startMarbles, outputChunks),
+      /#$/.test(config.startMarbles)
+        ? EMPTY
+        : interval(t).pipe(
+            map(() => outputChunks.s),
+            startWith(outputChunks.s),
+          ),
+    ),
+  );
+  ShellMock.add('yarn clean', helpers.cold(config.cleanMarbles, outputChunks));
+
+  const fakeCommands$ = helpers.hot<GatewayCommands>(config.eventMarbles, {
+    s: 'start',
+    c: 'clean',
+  });
+
+  const testSpan$ = interval(t * 20).pipe(take(1), share());
+  return GatewayService(
+    {
+      startCommand: 'yarn start',
+      cleanCommand: 'yarn clean',
+      startRetries: 1,
+      readyPattern: /startup step 3/,
+    },
+    fakeCommands$,
+  ).pipe(takeUntil(testSpan$));
+}
+
+function testGatewayOutput(input: GatewayTestInput) {
+  runScheduled((helpers) => {
+    helpers
+      .expectObservable(
+        runGatewayService(helpers, input).pipe(filter(negate(isGatewayState))),
+      )
+      .toBe(input.printMarbles, outputChunks);
+  });
+}
+
+function testGatewayStates(input: GatewayTestInput) {
+  runScheduled((helpers) => {
+    helpers
+      .expectObservable(
+        runGatewayService(helpers, input).pipe(filter(isGatewayState)),
+      )
+      .toBe(input.stateMarbles, {
+        s: GatewayState.Starting,
+        r: GatewayState.Ready,
+        c: GatewayState.Cleaning,
+        e: GatewayState.Error,
+        o: -1,
+      });
+  });
+}
+
 describe('GatewayService', () => {
-  const def = {
-    startRetries: 1,
-    startCommand: 'yarn start',
-    cleanCommand: 'yarn clean',
-    readyPattern: /startup step 3/,
-    start: 'abc|',
-    clean: 'efg|',
-  };
-  describe.each([['output'], ['status']])('%s', (test) => {
-    it.each([
-      {
-        ...def,
-        title: 'No input',
-        events: '--------------------|',
-        output: '--------------------|',
-        status: '--------------------|',
-      },
-      {
-        ...def,
-        title: 'Immediate start',
-        events: 's-------------------|',
-        output: 'abcsssssssssssssssss|',
-        status: 's-r-----------------|',
-      },
-      {
-        ...def,
-        title: 'Delayed start',
-        events: '---s----------------|',
-        output: '---abcssssssssssssss|',
-        status: '---s-r--------------|',
-      },
-      {
-        ...def,
-        title: 'Double start',
-        events: 'ss------------------|',
-        output: 'aabcssssssssssssssss|',
-        status: 'ss-r----------------|',
-      },
-      {
-        ...def,
-        title: 'Initial clean',
-        events: 'c-------------------|',
-        output: 'efgabcssssssssssssss|',
-        status: 'c--s-r--------------|',
-      },
-      {
-        ...def,
-        title: 'Clean during startup',
-        events: 'sc------------------|',
-        output: 'aefgabcsssssssssssss|',
-        status: 'sc--s-r-------------|',
-      },
-      {
-        ...def,
-        title: 'Clean during serve',
-        events: 's---c---------------|',
-        output: 'abcsefgabcssssssssss|',
-        status: 's-r-c--s-r----------|',
-      },
-      {
-        ...def,
-        title: 'Restart after error',
-        start: 'ab#',
-        events: 's-------------------|',
-        output: 'abab----------------|',
-        status: 's-s-e---------------|',
-      },
-      {
-        ...def,
-        title: 'Manual restart after error',
-        start: 'ab#',
-        events: 's------s------s-----|',
-        output: 'abab---abab---abab--|',
-        status: 's-s-e--s-s-e--s-s-e-|',
-      },
-    ])(
-      '$title',
-      ({
-        events,
-        start,
-        output,
-        status,
-        clean,
-        readyPattern,
-        startRetries,
-        startCommand,
-        cleanCommand,
-      }) => {
-        runScheduled(({ expectObservable, time, cold, hot }) => {
-          const values = {
-            s: stdoutChunk('serving'),
-            a: stdoutChunk('startup step 1'),
-            b: stdoutChunk('startup step 2'),
-            c: stdoutChunk('startup step 3'),
-            e: stdoutChunk('clean step 1'),
-            f: stdoutChunk('clean step 2'),
-            g: stdoutChunk('clean step 3'),
-          };
+  describe('No input', () => {
+    const input: GatewayTestInput = {
+      startMarbles: 'abc|',
+      cleanMarbles: 'efg|',
+      eventMarbles: '--------------------|',
+      printMarbles: '--------------------|',
+      stateMarbles: '--------------------|',
+    };
+    test('Output', () => testGatewayOutput(input));
+    test('States', () => testGatewayStates(input));
+  });
 
-          const t = time('-|');
+  describe('Immediate start', () => {
+    const input: GatewayTestInput = {
+      startMarbles: 'abc|',
+      cleanMarbles: 'efg|',
+      eventMarbles: 's-------------------|',
+      printMarbles: 'abcsssssssssssssssss|',
+      stateMarbles: 's-r-----------------|',
+    };
+    test('Output', () => testGatewayOutput(input));
+    test('States', () => testGatewayStates(input));
+  });
 
-          ShellMock.add(
-            startCommand,
-            concat(
-              cold(start, values),
-              /#$/.test(start)
-                ? EMPTY
-                : interval(t).pipe(
-                    map(() => values.s),
-                    startWith(values.s),
-                  ),
-            ),
-          );
-          ShellMock.add(cleanCommand, cold(clean, values));
+  describe('Delayed start', () => {
+    const input: GatewayTestInput = {
+      startMarbles: 'abc|',
+      cleanMarbles: 'efg|',
+      eventMarbles: '---s----------------|',
+      printMarbles: '---abcssssssssssssss|',
+      stateMarbles: '---s-r--------------|',
+    };
+    test('Output', () => testGatewayOutput(input));
+    test('States', () => testGatewayStates(input));
+  });
 
-          const fakeCommands$ = hot<GatewayCommands>(events, {
-            s: 'start',
-            c: 'clean',
-          });
+  describe('Double start', () => {
+    const input: GatewayTestInput = {
+      startMarbles: 'abc|',
+      cleanMarbles: 'efg|',
+      eventMarbles: 'ss------------------|',
+      printMarbles: 'aabcssssssssssssssss|',
+      stateMarbles: 'ss-r----------------|',
+    };
+    test('Output', () => testGatewayOutput(input));
+    test('States', () => testGatewayStates(input));
+  });
 
-          const output$ = GatewayService(
-            {
-              cleanCommand,
-              startCommand,
-              startRetries,
-              readyPattern,
-            },
-            fakeCommands$,
-          );
+  describe('Initial clean', () => {
+    const input: GatewayTestInput = {
+      startMarbles: 'abc|',
+      cleanMarbles: 'efg|',
+      eventMarbles: 'c-------------------|',
+      printMarbles: 'efgabcssssssssssssss|',
+      stateMarbles: 'c--s-r--------------|',
+    };
+    test('Output', () => testGatewayOutput(input));
+    test('States', () => testGatewayStates(input));
+  });
 
-          const testSpan$ = interval(t * 20).pipe(take(1), share());
+  describe('Clean during startup', () => {
+    const input: GatewayTestInput = {
+      startMarbles: 'abc|',
+      cleanMarbles: 'efg|',
+      eventMarbles: 'sc------------------|',
+      printMarbles: 'aefgabcsssssssssssss|',
+      stateMarbles: 'sc--s-r-------------|',
+    };
+    test('Output', () => testGatewayOutput(input));
+    test('States', () => testGatewayStates(input));
+  });
 
-          if (test === 'output') {
-            expectObservable(
-              output$
-                .pipe(takeUntil(testSpan$))
-                .pipe(filter(negate(isGatewayState))),
-            ).toBe(output, values);
-          } else {
-            expectObservable(
-              output$.pipe(takeUntil(testSpan$)).pipe(filter(isGatewayState)),
-            ).toBe(status, {
-              s: GatewayState.Starting,
-              r: GatewayState.Ready,
-              c: GatewayState.Cleaning,
-              e: GatewayState.Error,
-              o: -1,
-            });
-          }
-        });
-      },
-    );
+  describe('Clean during serve', () => {
+    const input: GatewayTestInput = {
+      startMarbles: 'abc|',
+      cleanMarbles: 'efg|',
+      eventMarbles: 's---c---------------|',
+      printMarbles: 'abcsefgabcssssssssss|',
+      stateMarbles: 's-r-c--s-r----------|',
+    };
+    test('Output', () => testGatewayOutput(input));
+    test('States', () => testGatewayStates(input));
+  });
+
+  describe('Restart after error', () => {
+    const input: GatewayTestInput = {
+      startMarbles: 'ab#',
+      cleanMarbles: 'efg|',
+      eventMarbles: 's-------------------|',
+      printMarbles: 'abab----------------|',
+      stateMarbles: 's-s-e---------------|',
+    };
+    test('Output', () => testGatewayOutput(input));
+    test('States', () => testGatewayStates(input));
+  });
+
+  describe('Manual restart after error', () => {
+    const input: GatewayTestInput = {
+      startMarbles: 'ab#',
+      cleanMarbles: 'efg|',
+      eventMarbles: 's------s------s-----|',
+      printMarbles: 'abab---abab---abab--|',
+      stateMarbles: 's-s-e--s-s-e--s-s-e-|',
+    };
+    test('Output', () => testGatewayOutput(input));
+    test('States', () => testGatewayStates(input));
   });
 });
