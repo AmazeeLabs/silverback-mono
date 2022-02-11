@@ -11,7 +11,9 @@ export default {
   },
   plugins: [
     json(),
-    commonjs(),
+    commonjs({
+      ignoreDynamicRequires: true,
+    }),
     esbuild(),
     nodeResolve({ preferBuiltins: true }),
   ],

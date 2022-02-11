@@ -1,3 +1,4 @@
+import { isString } from 'lodash';
 import {
   catchError,
   concat,
@@ -19,7 +20,9 @@ const DefaultGatewayConfig = {
   startRetries: 3,
   readyPattern: /localhost:3000/,
 };
-type GatewayConfig = typeof DefaultGatewayConfig;
+type GatewayConfig = typeof DefaultGatewayConfig & {
+  readyPattern: string | RegExp;
+};
 
 export type GatewayCommands = 'start' | 'clean';
 
@@ -49,6 +52,9 @@ export function GatewayService(
   config: GatewayConfig,
   commands$: Observable<GatewayCommands>,
 ): GatewayOutput {
+  if (isString(config.readyPattern)) {
+    config.readyPattern = new RegExp(config.readyPattern);
+  }
   const commands: { [Command in GatewayCommands]: GatewayOutput } = {
     start: spawn(config.startCommand).pipe(
       startWith(GatewayState.Starting),

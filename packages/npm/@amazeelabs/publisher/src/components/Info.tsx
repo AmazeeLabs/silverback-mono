@@ -7,12 +7,12 @@ import { GatewayState } from '../server/gateway';
 import { useStatus } from '../utils/status';
 
 const clean$ = ajax({
-  url: 'http://localhost:3001/___status/clean',
+  url: '/___status/clean',
   method: 'POST',
 });
 
 const build$ = ajax({
-  url: 'http://localhost:3001/___status/build',
+  url: '/___status/build',
   method: 'POST',
 });
 
