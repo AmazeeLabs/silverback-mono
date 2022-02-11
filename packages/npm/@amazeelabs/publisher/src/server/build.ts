@@ -89,6 +89,7 @@ export function BuildService<TEvent extends any>(
     ),
     retry(config.buildRetries),
     catchError(() => of(BuildState.Failed)),
+    share(),
   );
 
   output$.pipe(filter(isBuildState)).subscribe(status$);
@@ -100,6 +101,5 @@ export function BuildService<TEvent extends any>(
         map((item) => item.events),
       ),
     ),
-    share(),
   );
 }
