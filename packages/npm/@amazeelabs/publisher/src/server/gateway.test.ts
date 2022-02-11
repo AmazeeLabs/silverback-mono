@@ -38,6 +38,7 @@ type GatewayTestInput = {
   eventMarbles: string;
   printMarbles: string;
   stateMarbles: string;
+  spawnMarbles: string;
 };
 
 function runGatewayService(helpers: RunHelpers, config: GatewayTestInput) {
@@ -100,6 +101,26 @@ function testGatewayStates(input: GatewayTestInput) {
   });
 }
 
+function testGatewaySpawns(input: GatewayTestInput) {
+  runScheduled((helpers) => {
+    const testSpan$ = interval(helpers.time('-|') * 20).pipe(take(1), share());
+    const spawns$ = ShellMock.execs$.pipe(share());
+    runGatewayService(helpers, input).subscribe();
+    helpers
+      .expectObservable(spawns$.pipe(takeUntil(testSpan$)))
+      .toBe(input.spawnMarbles, {
+        s: {
+          cmd: 'yarn start',
+          payload: undefined,
+        },
+        c: {
+          cmd: 'yarn clean',
+          payload: undefined,
+        },
+      });
+  });
+}
+
 describe('GatewayService', () => {
   describe('No input', () => {
     const input: GatewayTestInput = {
@@ -108,9 +129,11 @@ describe('GatewayService', () => {
       eventMarbles: '--------------------|',
       printMarbles: '--------------------|',
       stateMarbles: '--------------------|',
+      spawnMarbles: '--------------------|',
     };
     test('Output', () => testGatewayOutput(input));
     test('States', () => testGatewayStates(input));
+    test('Spawns', () => testGatewaySpawns(input));
   });
 
   describe('Immediate start', () => {
@@ -120,9 +143,11 @@ describe('GatewayService', () => {
       eventMarbles: 's-------------------|',
       printMarbles: 'abcsssssssssssssssss|',
       stateMarbles: 's-r-----------------|',
+      spawnMarbles: 's-------------------|',
     };
     test('Output', () => testGatewayOutput(input));
     test('States', () => testGatewayStates(input));
+    test('Spawns', () => testGatewaySpawns(input));
   });
 
   describe('Delayed start', () => {
@@ -132,9 +157,11 @@ describe('GatewayService', () => {
       eventMarbles: '---s----------------|',
       printMarbles: '---abcssssssssssssss|',
       stateMarbles: '---s-r--------------|',
+      spawnMarbles: '---s----------------|',
     };
     test('Output', () => testGatewayOutput(input));
     test('States', () => testGatewayStates(input));
+    test('Spawns', () => testGatewaySpawns(input));
   });
 
   describe('Double start', () => {
@@ -144,9 +171,11 @@ describe('GatewayService', () => {
       eventMarbles: 'ss------------------|',
       printMarbles: 'aabcssssssssssssssss|',
       stateMarbles: 'ss-r----------------|',
+      spawnMarbles: 'ss------------------|',
     };
     test('Output', () => testGatewayOutput(input));
     test('States', () => testGatewayStates(input));
+    test('Spawns', () => testGatewaySpawns(input));
   });
 
   describe('Initial clean', () => {
@@ -156,9 +185,11 @@ describe('GatewayService', () => {
       eventMarbles: 'c-------------------|',
       printMarbles: 'efgabcssssssssssssss|',
       stateMarbles: 'c--s-r--------------|',
+      spawnMarbles: 'c--s----------------|',
     };
     test('Output', () => testGatewayOutput(input));
     test('States', () => testGatewayStates(input));
+    test('Spawns', () => testGatewaySpawns(input));
   });
 
   describe('Clean during startup', () => {
@@ -168,9 +199,11 @@ describe('GatewayService', () => {
       eventMarbles: 'sc------------------|',
       printMarbles: 'aefgabcsssssssssssss|',
       stateMarbles: 'sc--s-r-------------|',
+      spawnMarbles: 'sc--s---------------|',
     };
     test('Output', () => testGatewayOutput(input));
     test('States', () => testGatewayStates(input));
+    test('Spawns', () => testGatewaySpawns(input));
   });
 
   describe('Clean during serve', () => {
@@ -180,9 +213,11 @@ describe('GatewayService', () => {
       eventMarbles: 's---c---------------|',
       printMarbles: 'abcsefgabcssssssssss|',
       stateMarbles: 's-r-c--s-r----------|',
+      spawnMarbles: 's---c--s------------|',
     };
     test('Output', () => testGatewayOutput(input));
     test('States', () => testGatewayStates(input));
+    test('Spawns', () => testGatewaySpawns(input));
   });
 
   describe('Restart after error', () => {
@@ -192,9 +227,11 @@ describe('GatewayService', () => {
       eventMarbles: 's-------------------|',
       printMarbles: 'abab----------------|',
       stateMarbles: 's-s-e---------------|',
+      spawnMarbles: 's-s-----------------|',
     };
     test('Output', () => testGatewayOutput(input));
     test('States', () => testGatewayStates(input));
+    test('Spawns', () => testGatewaySpawns(input));
   });
 
   describe('Manual restart after error', () => {
@@ -204,8 +241,10 @@ describe('GatewayService', () => {
       eventMarbles: 's------s------s-----|',
       printMarbles: 'abab---abab---abab--|',
       stateMarbles: 's-s-e--s-s-e--s-s-e-|',
+      spawnMarbles: 's-s----s-s----s-s---|',
     };
     test('Output', () => testGatewayOutput(input));
     test('States', () => testGatewayStates(input));
+    test('Spawns', () => testGatewaySpawns(input));
   });
 });

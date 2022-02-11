@@ -1,7 +1,7 @@
 /**
  * @file Helper functions for tests.
  */
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { RunHelpers, TestScheduler } from 'rxjs/testing';
 
 import { SpawnChunk } from './spawn';
@@ -28,6 +28,14 @@ export class ShellMock {
   protected static mocks: { [key: string]: Observable<SpawnChunk> } = {};
 
   /**
+   * Observable shell executions that happened.
+   */
+  public static execs$: Subject<{
+    cmd: string;
+    payload: any;
+  }> = new Subject();
+
+  /**
    * Add a new shell mock.
    *
    * @param cmd The command to be mocked.
@@ -38,17 +46,24 @@ export class ShellMock {
   }
 
   /**
-   * Retrieve a shell mock.
+   * Create a shell mock observable.
    *
    * @param cmd The command to be executed.
+   * @param payload The build payload that will be sent.
    */
-  public static get(cmd: string) {
-    return this.mocks[cmd];
+  public static create(cmd: string, payload?: any) {
+    return new Observable((subscriber) => {
+      this.execs$.next({
+        cmd,
+        payload,
+      });
+      this.mocks[cmd].subscribe(subscriber);
+    });
   }
 }
 
 /**
- * Run tests in an rxjs scheduler for marble testing.
+ * Run tests in a rxjs scheduler for marble testing.
  * https://rxjs.dev/guide/testing/marble-testing
  *
  * @param fn The actual test function.
