@@ -13,8 +13,11 @@ import {
   GatewayState,
   isGatewayState,
 } from './server/gateway';
-import { isSpawnChunk } from './server/spawn';
-import { statusUpdates } from './server/status';
+import {
+  buildStatusLogs,
+  gatewayStatusLogs,
+  statusUpdates,
+} from './server/status';
 
 const ews = expressWs(express());
 const { app } = ews;
@@ -61,14 +64,14 @@ app.post('/___status/clean', (req, res) => {
 });
 
 app.ws('/___status/gateway/logs', (ws) => {
-  const sub = gateway$.pipe(filter(isSpawnChunk)).subscribe((data) => {
+  const sub = gatewayStatusLogs(gateway$).subscribe((data) => {
     ws.send(data.chunk);
   });
   ws.on('close', sub.unsubscribe);
 });
 
 app.ws('/___status/builder/logs', (ws) => {
-  const sub = builder$.pipe(filter(isSpawnChunk)).subscribe((data) => {
+  const sub = buildStatusLogs(builder$).subscribe((data) => {
     ws.send(data.chunk);
   });
   ws.on('close', sub.unsubscribe);
