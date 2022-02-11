@@ -1,3 +1,4 @@
+import { mapValues } from 'lodash';
 import { filter, interval, share, take, takeUntil } from 'rxjs';
 import { RunHelpers } from 'rxjs/testing';
 
@@ -27,7 +28,8 @@ type BuildTestInput = {
   printMarbles: string;
   stateMarbles: string;
   queueMarbles: string;
-  queuedEvents: Record<string, Array<any>>;
+  spawnMarbles: string;
+  payloads: Record<string, Array<any>>;
 };
 
 function runBuildService(helpers: RunHelpers, input: BuildTestInput) {
@@ -80,7 +82,19 @@ function testBuildQueue(input: BuildTestInput) {
           filter((item) => item.length > 0),
         ),
       )
-      .toBe(input.queueMarbles, input.queuedEvents);
+      .toBe(input.queueMarbles, input.payloads);
+  });
+}
+
+function testBuildSpawns(input: BuildTestInput) {
+  runScheduled((helpers) => {
+    const testSpan$ = interval(helpers.time('-|') * 20).pipe(take(1), share());
+    const spawns$ = ShellMock.execs$.pipe(share());
+    runBuildService(helpers, input).subscribe();
+    helpers.expectObservable(spawns$.pipe(takeUntil(testSpan$))).toBe(
+      input.spawnMarbles,
+      mapValues(input.payloads, (v) => ({ cmd: 'yarn build', payload: v })),
+    );
   });
 }
 
@@ -92,11 +106,13 @@ describe('BuilderService', () => {
       printMarbles: '--------------------|',
       stateMarbles: '--------------------|',
       queueMarbles: '--------------------|',
-      queuedEvents: {},
+      spawnMarbles: '--------------------|',
+      payloads: {},
     };
     test('Output', () => testBuildOutput(input));
     test('Status', () => testBuildStates(input));
     test('Queue', () => testBuildQueue(input));
+    test('Spawns', () => testBuildSpawns(input));
   });
 
   describe('Single run', () => {
@@ -106,11 +122,15 @@ describe('BuilderService', () => {
       printMarbles: '-abcde--------------|',
       stateMarbles: '-r----f-------------|',
       queueMarbles: '--------------------|',
-      queuedEvents: {},
+      spawnMarbles: '-x------------------|',
+      payloads: {
+        x: ['x'],
+      },
     };
     test('Output', () => testBuildOutput(input));
     test('Status', () => testBuildStates(input));
     test('Queue', () => testBuildQueue(input));
+    test('Spawns', () => testBuildSpawns(input));
   });
 
   describe('Subsequent runs', () => {
@@ -120,11 +140,15 @@ describe('BuilderService', () => {
       printMarbles: '-abcde-abcde--------|',
       stateMarbles: '-r----fr----f-------|',
       queueMarbles: '--------------------|',
-      queuedEvents: {},
+      spawnMarbles: '-x-----x------------|',
+      payloads: {
+        x: ['x'],
+      },
     };
     test('Output', () => testBuildOutput(input));
     test('Status', () => testBuildStates(input));
     test('Queue', () => testBuildQueue(input));
+    test('Spawns', () => testBuildSpawns(input));
   });
 
   describe('Queued run', () => {
@@ -134,13 +158,15 @@ describe('BuilderService', () => {
       printMarbles: '-abcdeabcde---------|',
       stateMarbles: '-r----(rf)-f--------|',
       queueMarbles: '--y-----------------|',
-      queuedEvents: {
+      spawnMarbles: '-y----y-------------|',
+      payloads: {
         y: [payloads.x],
       },
     };
     test('Output', () => testBuildOutput(input));
     test('Status', () => testBuildStates(input));
     test('Queue', () => testBuildQueue(input));
+    test('Spawns', () => testBuildSpawns(input));
   });
 
   describe('Queued runs', () => {
@@ -150,7 +176,8 @@ describe('BuilderService', () => {
       printMarbles: '-abcdeabcde---------|',
       stateMarbles: '-r----(rf)-f--------|',
       queueMarbles: '--y-z---------------|',
-      queuedEvents: {
+      spawnMarbles: '-y----z-------------|',
+      payloads: {
         y: [payloads.x],
         z: [payloads.x, payloads.y],
       },
@@ -158,6 +185,7 @@ describe('BuilderService', () => {
     test('Output', () => testBuildOutput(input));
     test('Status', () => testBuildStates(input));
     test('Queue', () => testBuildQueue(input));
+    test('Spawns', () => testBuildSpawns(input));
   });
 
   describe('Buffered run', () => {
@@ -167,7 +195,26 @@ describe('BuilderService', () => {
       printMarbles: '-abcde--------------|',
       stateMarbles: '-r----f-------------|',
       queueMarbles: '--------------------|',
-      queuedEvents: {
+      spawnMarbles: '-z------------------|',
+      payloads: {
+        z: [payloads.x, payloads.x],
+      },
+    };
+    test('Output', () => testBuildOutput(input));
+    test('Status', () => testBuildStates(input));
+    test('Queue', () => testBuildQueue(input));
+    test('Spawns', () => testBuildSpawns(input));
+  });
+
+  describe('Queued buffered run', () => {
+    const input: BuildTestInput = {
+      buildMarbles: 'abcde|',
+      eventMarbles: 'x-(xy)--------------|',
+      printMarbles: '-abcdeabcde---------|',
+      stateMarbles: '-r----(rf)-f--------|',
+      queueMarbles: '--z-----------------|',
+      spawnMarbles: '-y----z-------------|',
+      payloads: {
         y: [payloads.x],
         z: [payloads.x, payloads.y],
       },
@@ -175,21 +222,6 @@ describe('BuilderService', () => {
     test('Output', () => testBuildOutput(input));
     test('Status', () => testBuildStates(input));
     test('Queue', () => testBuildQueue(input));
-  });
-
-  describe('Buffered run', () => {
-    const input: BuildTestInput = {
-      buildMarbles: 'abcde|',
-      eventMarbles: 'x-(xy)--------------|',
-      printMarbles: '-abcdeabcde---------|',
-      stateMarbles: '-r----(rf)-f--------|',
-      queueMarbles: '--z-----------------|',
-      queuedEvents: {
-        z: [payloads.x, payloads.y],
-      },
-    };
-    test('Output', () => testBuildOutput(input));
-    test('Status', () => testBuildStates(input));
-    test('Queue', () => testBuildQueue(input));
+    test('Spawns', () => testBuildSpawns(input));
   });
 });
