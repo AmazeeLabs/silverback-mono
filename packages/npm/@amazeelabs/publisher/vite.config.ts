@@ -16,6 +16,8 @@ export default defineConfig({
     esbuildOptions: {
       plugins: [
         {
+          // Necessary due to wrong export definition in react-virtualized:
+          // https://github.com/bvaughn/react-virtualized/issues/1212
           name: 'resolve-fixup',
           setup(build) {
             build.onResolve({ filter: /react-virtualized/ }, async () => {
