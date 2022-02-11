@@ -1,7 +1,9 @@
+import { cosmiconfigSync } from 'cosmiconfig';
 import express from 'express';
 import expressWs from 'express-ws';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import morgan from 'morgan';
+import * as path from 'path';
 import { filter, shareReplay, Subject } from 'rxjs';
 
 import { BuildService } from './server/build';
@@ -18,18 +20,27 @@ const ews = expressWs(express());
 const { app } = ews;
 app.use(morgan('dev'));
 
+const explorerSync = cosmiconfigSync('amazeelabs-publisher');
+const loadedConfig = explorerSync.search();
+const config = {
+  cleanCommand: 'yarn clean',
+  startCommand: 'yarn start',
+  startRetries: 3,
+  readyPattern: /http:\/\/.*?:3000/,
+  buildCommand: 'yarn build',
+  buildBufferTime: 500,
+  buildRetries: 3,
+  gatewayPort: 3001,
+  applicationPort: 3000,
+  ...(loadedConfig?.config || {}),
+};
+
 const gatewayCommands$ = new Subject<GatewayCommands>();
 const buildEvents$ = new Subject<{}>();
 
-const gateway$ = GatewayService(
-  {
-    cleanCommand: 'test/clean.sh',
-    startCommand: 'test/start.sh',
-    startRetries: 3,
-    readyPattern: /http:\/\/localhost:3002/,
-  },
-  gatewayCommands$,
-).pipe(shareReplay(100));
+const gateway$ = GatewayService(config, gatewayCommands$).pipe(
+  shareReplay(100),
+);
 
 app.locals.isReady = false;
 
@@ -37,14 +48,7 @@ gateway$.pipe(filter(isGatewayState)).subscribe((state) => {
   app.locals.isReady = state === GatewayState.Ready;
 });
 
-const builder$ = BuildService(
-  {
-    buildBufferTime: 500,
-    buildCommand: 'test/build.sh',
-    buildRetries: 3,
-  },
-  buildEvents$,
-).pipe(shareReplay(100));
+const builder$ = BuildService(config, buildEvents$).pipe(shareReplay(100));
 
 app.post('/___status/build', (req, res) => {
   buildEvents$.next(req.body);
@@ -78,7 +82,7 @@ app.ws('/___status/updates', (ws) => {
   ws.on('close', sub.unsubscribe);
 });
 
-app.use('/___status', express.static('dist'));
+app.use('/___status', express.static(path.resolve(__dirname, '../dist')));
 
 app.get('/', (req, res, next) => {
   if (!req.app.locals.isReady) {
@@ -95,10 +99,10 @@ app.get('/', (req, res, next) => {
 app.use(
   '/',
   createProxyMiddleware({
-    target: 'http://127.0.0.1:3002',
+    target: `http://127.0.0.1:${config.applicationPort}`,
   }),
 );
 
-app.listen(3001);
+app.listen(config.gatewayPort);
 gateway$.subscribe();
 gatewayCommands$.next('start');

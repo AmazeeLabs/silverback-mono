@@ -1,5 +1,5 @@
 import { has, isObject } from 'lodash';
-import { map } from 'rxjs';
+import { map, share } from 'rxjs';
 import { spawn as originalSpawn } from 'rxjs-shell';
 
 /**

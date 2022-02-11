@@ -27,4 +27,4 @@ sleep 1
 
 echo "Starting server"
 sleep 1
-CI=true yarn serve -p 3002 "$BUILD_DIR"
+CI=true yarn serve -p 3002 "test/public"
