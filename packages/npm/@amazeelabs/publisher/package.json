@@ -47,6 +47,7 @@
     "express": "^4.17.2",
     "express-ws": "^5.0.2",
     "http-proxy-middleware": "^2.0.3",
+    "http-terminator": "^3.0.4",
     "jest": "^27",
     "lodash": "^4.17.21",
     "morgan": "^1.10.0",
