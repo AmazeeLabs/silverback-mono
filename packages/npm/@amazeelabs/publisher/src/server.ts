@@ -23,7 +23,7 @@ const ews = expressWs(express());
 const { app } = ews;
 app.use(morgan('dev'));
 
-const explorerSync = cosmiconfigSync('amazeelabs-publisher');
+const explorerSync = cosmiconfigSync('publisher');
 const loadedConfig = explorerSync.search();
 const config = {
   cleanCommand: 'yarn clean',
