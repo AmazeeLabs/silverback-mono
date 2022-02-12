@@ -1,7 +1,9 @@
+import colors from 'colors';
 import { cosmiconfigSync } from 'cosmiconfig';
 import express from 'express';
 import expressWs from 'express-ws';
 import { createProxyMiddleware } from 'http-proxy-middleware';
+import { createHttpTerminator } from 'http-terminator';
 import morgan from 'morgan';
 import * as path from 'path';
 import { filter, shareReplay, Subject } from 'rxjs';
@@ -101,11 +103,21 @@ app.get('/', (req, res, next) => {
 
 app.use(
   '/',
-  createProxyMiddleware({
+  createProxyMiddleware(() => app.locals.isReady, {
     target: `http://127.0.0.1:${config.applicationPort}`,
   }),
 );
 
-app.listen(config.gatewayPort);
-gateway$.subscribe();
+const server = app.listen(config.gatewayPort);
+const terminator = createHttpTerminator({ server });
+const sub = gateway$.subscribe();
 gatewayCommands$.next('start');
+
+process.on('SIGINT', function () {
+  console.log(colors.bgMagenta('⏱ Stopping publisher service.'));
+  sub.unsubscribe();
+  return terminator.terminate().then(() => {
+    console.log(colors.bgCyan('🛑 Publisher service stopped.'));
+    return process.exit();
+  });
+});
