@@ -1,5 +1,5 @@
 import { has, isObject } from 'lodash';
-import { map, share } from 'rxjs';
+import { map } from 'rxjs';
 import { spawn as originalSpawn } from 'rxjs-shell';
 
 /**
@@ -13,7 +13,11 @@ import { spawn as originalSpawn } from 'rxjs-shell';
 export const spawn = (command: string, payload?: any) => {
   const [cmd, ...args] = command.split(' ');
   return originalSpawn(cmd, args, {
-    env: { ...process.env, PUBLISHER_PAYLOAD: JSON.stringify(payload) },
+    env: {
+      ...process.env,
+      PUBLISHER_PAYLOAD: JSON.stringify(payload),
+      CI: 'true',
+    },
   }).pipe(
     map((output) => ({
       ...output,
