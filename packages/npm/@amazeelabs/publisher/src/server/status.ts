@@ -69,6 +69,10 @@ export function gatewayStatusLogs(
       isGatewayState(item) ? { chunk: formattedGatewayStatusLogs[item] } : item,
     ),
     filter(isSpawnChunk),
+    map((item) => ({
+      ...item,
+      chunk: item.type === 'stderr' ? colors.red(item.chunk) : item.chunk,
+    })),
   );
 }
 
