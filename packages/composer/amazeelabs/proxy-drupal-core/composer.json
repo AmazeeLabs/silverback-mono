@@ -11,7 +11,8 @@
     "patches": {
       "drupal/core": {
         "Catch-All routes (#2741939)": "https://git.drupalcode.org/project/drupal/-/merge_requests/443/diffs.patch",
-        "SameSite cookie (#3150614)": "https://www.drupal.org/files/issues/2021-04-13/3150614-16.patch"
+        "SameSite cookie (#3150614)": "https://www.drupal.org/files/issues/2021-04-13/3150614-16.patch",
+        "Wrong language field labels after drupal_rebuild()": "https://www.drupal.org/files/issues/2021-12-01/3221375-27-workaround.patch"
       }
     }
   },
