@@ -1,5 +1,6 @@
-!/build/
-!/dist/
+!/build
+!/dist
+/.idea
 /src/
 /test/
 /.eslintrc.js
@@ -7,8 +8,8 @@
 /.lintstagedrc
 /.prettierrc
 /index.html
-jest.config.js
-rollup.config.js
-status.html
-tsconfig.json
-vite.config.ts
+/jest.config.js
+/rollup.config.js
+/status.html
+/tsconfig.json
+/vite.config.ts
