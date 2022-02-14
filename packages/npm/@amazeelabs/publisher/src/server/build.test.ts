@@ -39,14 +39,14 @@ function runBuildService(helpers: RunHelpers, input: BuildTestInput) {
 
   const testSpan$ = interval(helpers.time('-|') * 20).pipe(take(1), share());
 
-  return BuildService(
-    {
+  return fakeCommands$.pipe(
+    BuildService({
       buildCommand: 'yarn build',
       buildRetries: 2,
       buildBufferTime: 1,
-    },
-    fakeCommands$,
-  ).pipe(takeUntil(testSpan$));
+    }),
+    takeUntil(testSpan$),
+  );
 }
 
 function testBuildOutput(input: BuildTestInput) {

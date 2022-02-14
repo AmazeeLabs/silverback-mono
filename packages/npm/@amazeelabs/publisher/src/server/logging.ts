@@ -9,8 +9,8 @@ import {
   startWith,
 } from 'rxjs';
 
-import { BuildService, BuildState, isBuildState, isQueueStatus } from './build';
-import { GatewayService, GatewayState, isGatewayState } from './gateway';
+import { BuildOutput, BuildState, isBuildState, isQueueStatus } from './build';
+import { GatewayOutput, GatewayState, isGatewayState } from './gateway';
 import { isSpawnChunk, SpawnChunk } from './spawn';
 
 export type StatusUpdate = {
@@ -26,8 +26,8 @@ export type StatusUpdate = {
  * @param builder$
  */
 export function statusUpdates(
-  gateway$: ReturnType<typeof GatewayService>,
-  builder$: ReturnType<typeof BuildService>,
+  gateway$: Observable<GatewayOutput>,
+  builder$: Observable<BuildOutput>,
 ): Observable<StatusUpdate> {
   return gateway$.pipe(
     filter(isGatewayState),
@@ -62,7 +62,7 @@ const formattedGatewayStatusLogs: { [key in GatewayState]: string } = {
 };
 
 export function gatewayStatusLogs(
-  gateway$: ReturnType<typeof GatewayService>,
+  gateway$: Observable<GatewayOutput>,
 ): Observable<SpawnChunk> {
   return gateway$.pipe(
     map((item) =>
@@ -84,7 +84,7 @@ const formattedBuildStatusLogs: { [key in BuildState]: string } = {
 };
 
 export function buildStatusLogs(
-  builder$: ReturnType<typeof BuildService>,
+  builder$: Observable<BuildOutput>,
 ): Observable<SpawnChunk> {
   return builder$.pipe(
     map((item) =>

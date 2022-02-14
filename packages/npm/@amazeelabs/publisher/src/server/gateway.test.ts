@@ -64,15 +64,15 @@ function runGatewayService(helpers: RunHelpers, config: GatewayTestInput) {
   });
 
   const testSpan$ = interval(t * 20).pipe(take(1), share());
-  return GatewayService(
-    {
+  return fakeCommands$.pipe(
+    GatewayService({
       startCommand: 'yarn start',
       cleanCommand: 'yarn clean',
       startRetries: 1,
       readyPattern: /startup step 3/,
-    },
-    fakeCommands$,
-  ).pipe(takeUntil(testSpan$));
+    }),
+    takeUntil(testSpan$),
+  );
 }
 
 function testGatewayOutput(input: GatewayTestInput) {

@@ -42,44 +42,48 @@ export function isGatewayState(value: any): value is GatewayState {
   );
 }
 
-type GatewayOutput = Observable<SpawnChunk | GatewayState>;
+export type GatewayOutput = SpawnChunk | GatewayState;
 
-export function GatewayService(
-  config: GatewayConfig,
-  commands$: Observable<GatewayCommands>,
-): GatewayOutput {
-  const commands: { [Command in GatewayCommands]: GatewayOutput } = {
-    start: spawn(config.startCommand).pipe(
-      startWith(GatewayState.Starting),
-      retry(config.startRetries),
-    ),
-    clean: concat(
-      spawn(config.cleanCommand).pipe(startWith(GatewayState.Cleaning)),
-      spawn(config.startCommand).pipe(
+export function GatewayService(config: GatewayConfig) {
+  return function (
+    commands$: Observable<GatewayCommands>,
+  ): Observable<GatewayOutput> {
+    const commands: {
+      [Command in GatewayCommands]: Observable<GatewayOutput>;
+    } = {
+      start: spawn(config.startCommand).pipe(
         startWith(GatewayState.Starting),
         retry(config.startRetries),
       ),
-    ),
-  };
-
-  // Check if the output item signals the service to be ready.
-  const isReady = (value: SpawnChunk | GatewayState) =>
-    !isGatewayState(value) && config.readyPattern.test(value.chunk.toString());
-
-  return commands$.pipe(
-    // Whenever a new command comes in, kill the previous one and switch there.
-    switchMap((cmd) =>
-      commands[cmd].pipe(
-        // Catch errors and emit them as "error" markers on the output stream,
-        // so we can wait for a new command after it.
-        catchError(() => of(GatewayState.Error)),
-        // If this log signals the service to be "ready", inject a new state
-        // marker after it.
-        mergeMap((value) =>
-          isReady(value) ? from([value, GatewayState.Ready]) : from([value]),
+      clean: concat(
+        spawn(config.cleanCommand).pipe(startWith(GatewayState.Cleaning)),
+        spawn(config.startCommand).pipe(
+          startWith(GatewayState.Starting),
+          retry(config.startRetries),
         ),
       ),
-    ),
-    share(),
-  );
+    };
+
+    // Check if the output item signals the service to be ready.
+    const isReady = (value: SpawnChunk | GatewayState) =>
+      !isGatewayState(value) &&
+      config.readyPattern.test(value.chunk.toString());
+
+    return commands$.pipe(
+      // Whenever a new command comes in, kill the previous one and switch there.
+      switchMap((cmd) =>
+        commands[cmd].pipe(
+          // Catch errors and emit them as "error" markers on the output stream,
+          // so we can wait for a new command after it.
+          catchError(() => of(GatewayState.Error)),
+          // If this log signals the service to be "ready", inject a new state
+          // marker after it.
+          mergeMap((value) =>
+            isReady(value) ? from([value, GatewayState.Ready]) : from([value]),
+          ),
+        ),
+      ),
+      share(),
+    );
+  };
 }
