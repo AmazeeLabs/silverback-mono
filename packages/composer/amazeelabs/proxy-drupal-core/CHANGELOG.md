@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-drupal-core@1.1.5...@-amazeelabs/proxy-drupal-core@1.1.6) (2022-02-14)
+
+
+### Bug Fixes
+
+* resolve wrong field label translations after drupal_rebuild() ([41d269b](https://github.com/AmazeeLabs/silverback-mono/commit/41d269b7b6269a00aaf1d9ac03937d136194d0da))
+
+
+
+
+
 ## [1.1.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-drupal-core@1.1.4...@-amazeelabs/proxy-drupal-core@1.1.5) (2022-01-18)
 
 
