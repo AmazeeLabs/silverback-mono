@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "bin": "./cli.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "develop": "concurrently \"yarn build:server:watch\" \"yarn dev:server\" \"yarn dev:ui\"",
     "dev:ui": "vite",
