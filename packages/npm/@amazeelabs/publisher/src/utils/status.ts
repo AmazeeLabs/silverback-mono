@@ -4,7 +4,7 @@ import { webSocket } from 'rxjs/webSocket';
 
 import { BuildState } from '../server/build';
 import { GatewayState } from '../server/gateway';
-import { StatusUpdate } from '../server/status';
+import { StatusUpdate } from '../server/logging';
 
 const defaultStatus = {
   gateway: GatewayState.Init,
