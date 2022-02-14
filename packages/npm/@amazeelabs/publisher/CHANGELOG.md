@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.1.0...@amazeelabs/publisher@0.1.1) (2022-02-14)
+
+
+### Bug Fixes
+
+* **publisher:** fix npmignores ([f0ce6b5](https://github.com/AmazeeLabs/silverback-mono/commit/f0ce6b5dc94e2eb1f9ca415817e78ea2605a0371))
+
+
+
+
+
 # 0.1.0 (2022-02-14)
 
 
