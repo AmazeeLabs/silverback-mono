@@ -19,7 +19,7 @@ import {
   buildStatusLogs,
   gatewayStatusLogs,
   statusUpdates,
-} from './server/status';
+} from './server/logging';
 
 const ews = expressWs(express());
 const { app } = ews;
@@ -43,7 +43,8 @@ const config = {
 const gatewayCommands$ = new Subject<GatewayCommands>();
 const buildEvents$ = new Subject<{}>();
 
-const gateway$ = GatewayService(config, gatewayCommands$).pipe(
+const gateway$ = gatewayCommands$.pipe(
+  GatewayService(config),
   shareReplay(100),
 );
 
@@ -53,7 +54,7 @@ gateway$.pipe(filter(isGatewayState)).subscribe((state) => {
   app.locals.isReady = state === GatewayState.Ready;
 });
 
-const builder$ = BuildService(config, buildEvents$).pipe(shareReplay(100));
+const builder$ = buildEvents$.pipe(BuildService(config), shareReplay(100));
 
 app.post('/___status/build', (req, res) => {
   buildEvents$.next(req.body);
