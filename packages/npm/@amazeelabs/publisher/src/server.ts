@@ -92,6 +92,7 @@ app.use('/___status', express.static(path.resolve(__dirname, '../dist')));
 
 app.get('*', (req, res, next) => {
   if (!req.app.locals.isReady) {
+    res.set('Cache-control', 'no-cache');
     if (req.accepts('text/html')) {
       res.redirect(302, `/___status/status.html?dest=${req.originalUrl}`);
     } else {
