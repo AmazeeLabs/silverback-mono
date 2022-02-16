@@ -21,6 +21,7 @@ else
   mkdir -p "$BUILD_DIR";
   echo "1" > "$BUILD_DIR/count.txt"
   echo "<h1>Build Nr.: 1</h1>" > "$BUILD_DIR/index.html"
+  echo "<h1>Not found!</h1>" > "$BUILD_DIR/404.html"
 fi
 
 sleep 1

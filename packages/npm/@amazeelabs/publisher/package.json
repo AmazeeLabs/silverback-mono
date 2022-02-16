@@ -9,7 +9,7 @@
   "scripts": {
     "develop": "concurrently \"yarn build:server:watch\" \"yarn dev:server\" \"yarn dev:ui\"",
     "dev:ui": "vite",
-    "dev:server": "nodemon --watch build ./build/server.js",
+    "dev:server": "cd test && nodemon --watch ../build ../build/server.js",
     "build:ui": "vite build --base=/___status/",
     "build:server": "rollup -c rollup.config.js",
     "build:server:watch": "rollup -c rollup.config.js -w",
