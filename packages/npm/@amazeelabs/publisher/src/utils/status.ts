@@ -14,7 +14,7 @@ const defaultStatus = {
 
 export function createWebsocketUrl(path: string) {
   if (window) {
-    const protocol = window.location.protocol === 'https' ? 'wss' : 'ws';
+    const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
     return `${protocol}://${window.location.host}${path}`;
   }
   return null;
