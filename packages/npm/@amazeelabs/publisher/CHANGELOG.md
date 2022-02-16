@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.1.1...@amazeelabs/publisher@0.1.2) (2022-02-16)
+
+
+### Bug Fixes
+
+* **publisher:** add 404.html for testing, disable caching of redirects ([4b354fb](https://github.com/AmazeeLabs/silverback-mono/commit/4b354fb6f4afda9cb8aa66d9e39e38813c8f9746))
+* **publisher:** use relative urls for log websockets ([6120aae](https://github.com/AmazeeLabs/silverback-mono/commit/6120aae3bd9da3413b52bec9944b42c96346ef9a))
+
+
+
+
+
 ## [0.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.1.0...@amazeelabs/publisher@0.1.1) (2022-02-14)
 
 
