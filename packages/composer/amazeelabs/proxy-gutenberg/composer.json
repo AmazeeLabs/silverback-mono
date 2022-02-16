@@ -9,7 +9,9 @@
     "enable-patching": true,
     "composer-exit-on-patch-failure": true,
     "patches": {
-      "Fix media dialog": "https://www.drupal.org/files/issues/2022-02-02/3258284-fix-media-library-modal.patch"
+      "drupal/gutenberg": {
+        "Fix media dialog": "https://www.drupal.org/files/issues/2022-02-02/3258284-fix-media-library-modal.patch"
+      }
     }
   },
   "require": {
