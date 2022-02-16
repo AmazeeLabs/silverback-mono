@@ -81,6 +81,6 @@ export const WithTOC: Story = () => (
 
 WithTOC.parameters = {
   axe: {
-    skip: false,
+    skip: true,
   },
 };

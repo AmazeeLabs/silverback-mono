@@ -39,13 +39,13 @@
   "scripts": {
     "prepare": "exit 0",
     "precommit": "lint-staged",
-    "test": "build-storybook && axe-storybook && tsc --noEmit && jest --passWithNoTests && if [ -f test.sh ]; then ./test.sh; fi",
+    "test": "yarn test:static && yarn test:unit && yarn test:integration",
     "watch": "jest --watch",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "jest --passWithNoTests",
-    "test:integration": "if [ -f test.sh ]; then ./test.sh; fi",
+    "test:integration": "yarn storybook:axe",
     "test:watch": "jest --watch",
     "storybook:axe": "build-storybook && axe-storybook"
   }

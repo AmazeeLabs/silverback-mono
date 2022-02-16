@@ -23,6 +23,11 @@ export const WithChildren: playStoryType<typeof DesktopNavigation>  = {
   args: {
     items: mockNavItems(6, true),
   },
+  parameters: {
+    axe: {
+      skip: false,
+    },
+  },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const mainNavigation = within(
@@ -36,7 +41,7 @@ export const WithChildren: playStoryType<typeof DesktopNavigation>  = {
     await userEvent.click(menuButton);
 
     await userEvent.click(
-      await within(menuButton.parentElement!).findByText('SubNavigation Link 1-'),
+      await within(menuButton.parentElement!).findByText('SubNavigation Link 1'),
     );
   },
 };
