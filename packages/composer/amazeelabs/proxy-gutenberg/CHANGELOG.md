@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.12](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-gutenberg@1.1.11...@-amazeelabs/proxy-gutenberg@1.1.12) (2022-02-16)
+
+
+### Bug Fixes
+
+* **gutenberg:** patch for the media dialog bug ([da3f5ff](https://github.com/AmazeeLabs/silverback-mono/commit/da3f5ffca841890ee8fcda72a724cc58863b0799)), closes [/www.drupal.org/project/gutenberg/issues/3258284#comment-14395206](https://github.com//www.drupal.org/project/gutenberg/issues/3258284/issues/comment-14395206)
+
+
+
+
+
 ## [1.1.11](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-gutenberg@1.1.10...@-amazeelabs/proxy-gutenberg@1.1.11) (2022-02-16)
 
 
