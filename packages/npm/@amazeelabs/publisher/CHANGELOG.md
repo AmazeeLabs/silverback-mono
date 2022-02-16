@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.1.2...@amazeelabs/publisher@0.1.3) (2022-02-16)
+
+
+### Bug Fixes
+
+* **publisher:** properly check for https ([9bdfc18](https://github.com/AmazeeLabs/silverback-mono/commit/9bdfc1812435e6b11f077988e0449317882aa9e6))
+
+
+
+
+
 ## [0.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.1.1...@amazeelabs/publisher@0.1.2) (2022-02-16)
 
 
