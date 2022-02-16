@@ -12,12 +12,19 @@ const defaultStatus = {
   queue: [],
 };
 
+export function createWebsocketUrl(path: string) {
+  if (window) {
+    const protocol = window.location.protocol === 'https' ? 'wss' : 'ws';
+    return `${protocol}://${window.location.host}${path}`;
+  }
+  return null;
+}
+
 function createWebsocket() {
-  if (!window) {
+  const url = createWebsocketUrl('/___status/updates');
+  if (!url) {
     return of(defaultStatus);
   }
-  const protocol = window.location.protocol === 'https' ? 'wss' : 'ws';
-  const url = `${protocol}://${window.location.host}/___status/updates`;
   return webSocket<StatusUpdate>({
     url,
   });

@@ -4,7 +4,7 @@ import { ajax } from 'rxjs/ajax';
 
 import { BuildState } from '../server/build';
 import { GatewayState } from '../server/gateway';
-import { useStatus } from '../utils/status';
+import { createWebsocketUrl, useStatus } from '../utils/status';
 
 const clean$ = ajax({
   url: '/___status/clean',
@@ -68,6 +68,8 @@ function BuilderStatus() {
 
 export default function Info() {
   const status = useStatus();
+  const gatewaySocket = createWebsocketUrl('/___status/gateway/logs');
+  const builderSocket = createWebsocketUrl('/___status/builder/logs');
   return (
     <div style={{ display: 'flex' }}>
       <div style={{ marginRight: 10, width: '100%' }}>
@@ -83,13 +85,15 @@ export default function Info() {
           )}
         </div>
         <div style={{ height: 500, marginTop: 20 }}>
-          <LazyLog
-            enableSearch={true}
-            follow={true}
-            websocket={true}
-            url={'ws://localhost:3001/___status/gateway/logs'}
-            selectableLines={true}
-          />
+          {gatewaySocket ? (
+            <LazyLog
+              enableSearch={true}
+              follow={true}
+              websocket={true}
+              url={gatewaySocket}
+              selectableLines={true}
+            />
+          ) : null}
         </div>
       </div>
       <div style={{ width: '100%' }}>
@@ -98,13 +102,17 @@ export default function Info() {
         </h1>
         <BuildButton />
         <div style={{ height: 500, marginTop: 20 }}>
-          <LazyLog
-            enableSearch={true}
-            follow={true}
-            websocket={true}
-            url={'ws://localhost:3001/___status/builder/logs'}
-            selectableLines={true}
-          />
+          {builderSocket ? (
+            <LazyLog
+              enableSearch={true}
+              follow={true}
+              websocket={true}
+              url={builderSocket}
+              selectableLines={true}
+            />
+          ) : (
+            builderSocket
+          )}
         </div>
       </div>
     </div>
