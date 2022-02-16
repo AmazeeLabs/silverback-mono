@@ -8,7 +8,9 @@
   "extra": {
     "enable-patching": true,
     "composer-exit-on-patch-failure": true,
-    "patches": {}
+    "patches": {
+      "Fix media dialog": "https://www.drupal.org/files/issues/2022-02-02/3258284-fix-media-library-modal.patch"
+    }
   },
   "require": {
     "cweagans/composer-patches": "^1.7",
