@@ -117,6 +117,15 @@ $$.file('composer.json', (json) => ({
 $$('rm -rf web/core && composer install');
 ```
 
+Install Drush.
+
+```typescript
+// Use version 10 as Lagoon's drupal_integrations module does not support Drush
+// 11 yet.
+// TODO: Remove ":^10" once https://github.com/amazeeio/drupal-integrations/issues/7 is resolved.
+$$('composer require drush/drush:^10');
+```
+
 To integrate better with the Javascript development process, we make the `cms`
 app a yarn package too.
 
