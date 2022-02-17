@@ -7,7 +7,7 @@
   "require": {
     "ext-zip": "*",
     "alchemy/zippy": "^1.0.0",
-    "drush/drush": ">=10.6.2",
+    "drush/drush": ">=11.0.1",
     "vlucas/phpdotenv": "^5.4",
     "ext-json": "*"
   },
