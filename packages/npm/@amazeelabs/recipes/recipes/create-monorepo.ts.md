@@ -868,7 +868,17 @@ that by simply dropping this configuration file into the repository root.
     },
 
     // Package-specific rules.
-    // - none yet -
+    {
+      paths: ['apps/cms/composer.json'],
+      packageNames: [
+        // Lagoon's drupal_integrations module does not support Drush 11 yet. So
+        // we stay on Drush 10 for now.
+        // TODO: Remove once https://github.com/amazeeio/drupal-integrations/issues/7 is resolved.
+        'drush/drush',
+      ],
+      updateTypes: ['major'],
+      enabled: false,
+    },
   ],
 
   lockFileMaintenance: {

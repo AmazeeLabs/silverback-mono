@@ -93,6 +93,16 @@
       updateTypes: ["major"],
       enabled: false,
     },
+    {
+      packageNames: [
+        // Lagoon's drupal_integrations module does not support Drush 11 yet. So
+        // we stay on Drush 10 for now.
+        // TODO: Remove once https://github.com/amazeeio/drupal-integrations/issues/7 is resolved.
+        "drush/drush",
+      ],
+      updateTypes: ["major"],
+      enabled: false,
+    }
   ],
 
   lockFileMaintenance: {
