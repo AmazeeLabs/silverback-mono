@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.25](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.9.24...@amazeelabs/recipes@1.9.25) (2022-02-17)
+
+
+### Bug Fixes
+
+* downgrade Drush to version 10 ([84a60b4](https://github.com/AmazeeLabs/silverback-mono/commit/84a60b41ed14061353947a4d4b50adc815340310))
+
+
+
+
+
 ## [1.9.24](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.9.23...@amazeelabs/recipes@1.9.24) (2022-02-10)
 
 **Note:** Version bump only for package @amazeelabs/recipes

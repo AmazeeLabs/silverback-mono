@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.47](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.3.46...@-drupal/cypress@2.3.47) (2022-02-17)
+
+
+### Bug Fixes
+
+* downgrade Drush to version 10 ([84a60b4](https://github.com/AmazeeLabs/silverback-mono/commit/84a60b41ed14061353947a4d4b50adc815340310))
+
+
+
+
+
 ## [2.3.46](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.3.45...@-drupal/cypress@2.3.46) (2022-02-17)
 
 **Note:** Version bump only for package @-drupal/cypress
