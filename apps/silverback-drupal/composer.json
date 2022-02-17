@@ -56,7 +56,8 @@
         "allow-plugins": {
             "composer/installers": true,
             "cweagans/composer-patches": true,
-            "drupal/core-composer-scaffold": true
+            "drupal/core-composer-scaffold": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
     "extra": {
@@ -93,11 +94,7 @@
         },
         "enable-patching": true,
         "composer-exit-on-patch-failure": true,
-        "patches": {
-            "drupal/webform": {
-                "Deprecated function: strpos()": "https://git.drupalcode.org/project/webform/-/commit/3cff1c9.diff"
-            }
-        }
+        "patches": {}
     },
     "scripts": {
         "run-tests": [
