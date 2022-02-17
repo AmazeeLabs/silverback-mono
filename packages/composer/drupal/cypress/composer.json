@@ -21,7 +21,7 @@
     "ext-json": "*",
     "alchemy/zippy": "^1.0.0",
     "drupal/test_session": "^1.0.0",
-    "drush/drush": ">=10"
+    "drush/drush": ">=10.6.2"
   },
   "require-dev": {
     "drupal/cypress-dev": "*"
