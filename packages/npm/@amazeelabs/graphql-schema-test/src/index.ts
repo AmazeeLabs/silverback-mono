@@ -78,6 +78,7 @@ function processData(responses: any) {
   // Replace Drupal's numeric IDs with "[numeric]" placeholder.
   const processIds = (value: any) => {
     return _.transform(value, (result, value, key) => {
+      // Silverback Gatsby numeric IDs.
       if (
         key === 'id' &&
         _.isString(value) &&
@@ -85,20 +86,32 @@ function processData(responses: any) {
       ) {
         // @ts-ignore
         result[key] = value.replace(/^([0-9]+)(:[^:]+)?$/, '[numeric]$2');
-      } else if (
+      }
+      // Silverback Gatsby numeric IDs.
+      else if (
         key === 'drupalId' &&
         _.isString(value) &&
         value.match(/^[0-9]+$/)
       ) {
         // @ts-ignore
         result[key] = '[numeric]';
-      } else if (
+      }
+      // Drupal internal paths.
+      else if (
         key === 'path' &&
         _.isString(value) &&
         value.match(/^.*\/[0-9]+$/)
       ) {
         // @ts-ignore
         result[key] = value.replace(/^(.*\/)[0-9]+$/, '$1[numeric]');
+      }
+      // "data-id" attributes in Gutenberg links.
+      else if (_.isString(value) && value.match(/<a.*\sdata-id="\d+"/)) {
+        // @ts-ignore
+        result[key] = value.replace(
+          /(<a.*\s)data-id="\d+"/g,
+          '$1data-id="[numeric]"',
+        );
       } else {
         if (_.isArray(value) || _.isObject(value)) {
           // @ts-ignore
