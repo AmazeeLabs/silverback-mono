@@ -40,6 +40,9 @@ test('@gatsby-develop test LinkProcessor', async ({ page }) => {
   await page.click(':text-is("Save")');
 
   const targetNodeId = await getNodeId();
+  const targetNodeUuid = (
+    await $`source .envrc && drush eval 'echo \\Drupal\\node\\Entity\\Node::load(${targetNodeId})->uuid();'`
+  ).stdout;
 
   await page.click('.tabs--primary :text-is("Translate")');
   await page.click(':text-is("Add"):right-of(:text-is("German"))');
@@ -100,20 +103,24 @@ test('@gatsby-develop test LinkProcessor', async ({ page }) => {
   expect(blocks).toHaveProperty('0.innerBlocks.0');
   const paragraphBlock = blocks[0].innerBlocks[0];
   expect(paragraphBlock.blockName).toEqual('core/paragraph');
-  expect(paragraphBlock.innerHTML).toContain(`href="/node/${targetNodeId}"`);
+  expect(paragraphBlock.innerHTML).toContain(`href="/node/${targetNodeUuid}"`);
   expect(paragraphBlock.innerContent[0]).toContain(
-    `href="/node/${targetNodeId}"`,
+    `href="/node/${targetNodeUuid}"`,
   );
 
   expect(blocks).toHaveProperty('0.innerBlocks.1');
   const teaserBlock = blocks[0].innerBlocks[1];
   expect(teaserBlock.blockName).toEqual('custom/teaser');
-  expect(teaserBlock.attrs.url).toEqual(`/node/${targetNodeId}`);
+  expect(teaserBlock.attrs.url).toEqual(`/node/${targetNodeUuid}`);
+  expect(teaserBlock.innerHTML).toContain(`href="/node/${targetNodeUuid}"`);
+  expect(teaserBlock.innerContent[0]).toContain(
+    `href="/node/${targetNodeUuid}"`,
+  );
 
   expect(blocks).toHaveProperty('0.innerBlocks.2');
   const mediaBlock = blocks[0].innerBlocks[2];
   expect(mediaBlock.blockName).toEqual('drupalmedia/drupal-media-entity');
-  expect(mediaBlock.attrs.caption).toContain(`href="/node/${targetNodeId}"`);
+  expect(mediaBlock.attrs.caption).toContain(`href="/node/${targetNodeUuid}"`);
 
   // Ensure that URL aliases are used in the editor.
 
