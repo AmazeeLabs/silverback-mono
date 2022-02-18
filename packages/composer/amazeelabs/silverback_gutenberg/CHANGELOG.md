@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.20](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.3.19...@-amazeelabs/silverback_gutenberg@1.3.20) (2022-02-18)
+
+
+### Reverts
+
+* Revert "fix(gutenberg): remove the media bundles workaround" ([859cf2c](https://github.com/AmazeeLabs/silverback-mono/commit/859cf2c2ba55a740d586c64beecee95b5fd8bafd))
+
+
+
+
+
 ## [1.3.19](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.3.18...@-amazeelabs/silverback_gutenberg@1.3.19) (2022-02-17)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gutenberg
