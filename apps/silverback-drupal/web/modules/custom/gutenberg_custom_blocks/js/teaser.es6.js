@@ -90,7 +90,16 @@ const settings = {
     );
   },
 
-  save: () => null,
+  save: (props) => {
+    return (
+      <div className={props.attributes.className}>
+        <a href={props.attributes.url}>
+          <h2>{props.attributes.title}</h2>
+          <h4>{props.attributes.subtitle}</h4>
+        </a>
+      </div>
+    );
+  },
 };
 
 registerBlockType(`custom/teaser`, settings);

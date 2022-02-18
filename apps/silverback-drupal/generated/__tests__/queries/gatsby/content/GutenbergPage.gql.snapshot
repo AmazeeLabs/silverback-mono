@@ -15,7 +15,7 @@ exports[`gatsby/content/GutenbergPage.gql 1`] = `
           "body": [
             {
               "__typename": "BlockHtml",
-              "html": "<p>A paragraph.</p>"
+              "html": "<p>A paragraph with a <a href=\\"/en/article/with-everything\\" data-type=\\"[EN] article\\" data-id=\\"[numeric]\\">link</a>.</p>"
             },
             {
               "__typename": "BlockHtml",
