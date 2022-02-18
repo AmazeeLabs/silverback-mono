@@ -4,6 +4,8 @@ namespace Drupal\silverback_gutenberg;
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\StreamWrapper\PublicStream;
@@ -19,18 +21,33 @@ class LinkProcessor {
   protected ModuleHandlerInterface $moduleHandler;
   protected string $currentHost;
   protected int $currentPort;
+  protected EntityRepositoryInterface $entityRepository;
+  protected EntityTypeManagerInterface $entityTypeManager;
+  protected array $linkPatterns = [];
+  protected array $idToUuidMapping = [];
 
   public function __construct(
-    AliasManagerInterface $pathAliasManager,
-    ConfigFactoryInterface $configFactory,
-    RequestStack $requestStack,
-    ModuleHandlerInterface $moduleHandler
+    AliasManagerInterface      $pathAliasManager,
+    ConfigFactoryInterface     $configFactory,
+    RequestStack               $requestStack,
+    ModuleHandlerInterface     $moduleHandler,
+    EntityRepositoryInterface  $entityRepository,
+    EntityTypeManagerInterface $entityTypeManager
   ) {
     $this->pathAliasManager = $pathAliasManager;
     $this->configFactory = $configFactory;
     $this->moduleHandler = $moduleHandler;
     $this->currentHost = $requestStack->getCurrentRequest()->getHost();
     $this->currentPort = (int) $requestStack->getCurrentRequest()->getPort();
+    $this->entityRepository = $entityRepository;
+    $this->entityTypeManager = $entityTypeManager;
+
+    foreach ($entityTypeManager->getDefinitions() as $entityType) {
+      $linkTemplate = $entityType->getLinkTemplate('canonical');
+      if ($linkTemplate) {
+        $this->linkPatterns[$entityType->id()] = '~(^' . preg_replace('~\{[^}]+}~', ')([^/]+)(', $linkTemplate, 1) . '$)~';
+      }
+    }
   }
 
   public function processLinks(string $html, string $direction, LanguageInterface $language = NULL) {
@@ -165,7 +182,13 @@ class LinkProcessor {
         $href = $this->cleanUrl($href);
       }
 
-      $link->setAttribute('href', $this->processUrl($href, $direction, $language));
+      $link->setAttribute('href', $this->processUrl($href, $direction, $language, $metadata));
+      if ($direction === 'inbound' && isset($metadata['uuid']) && $link->hasAttribute('data-id')) {
+        $link->setAttribute('data-id', $metadata['uuid']);
+      }
+      if ($direction === 'outbound' && isset($metadata['id']) && $link->hasAttribute('data-id')) {
+        $link->setAttribute('data-id', $metadata['id']);
+      }
     }
 
     if ($direction === 'inbound') {
@@ -177,7 +200,9 @@ class LinkProcessor {
 
   }
 
-  public function processUrl(string $url, string $direction, LanguageInterface $language = NULL): string {
+  public function processUrl(string $url, string $direction, LanguageInterface $language = NULL, array &$metadata = NULL): string {
+    $metadata = [];
+
     if ($direction === 'outbound' && !$language) {
       throw new \Exception('$language is required for "outbound" direction.');
     }
@@ -192,6 +217,23 @@ class LinkProcessor {
 
       // Corrupted URL.
       return $url;
+    }
+
+    if ($direction === 'outbound') {
+      // Replace UUIDs with IDs.
+      foreach ($this->linkPatterns as $entityType => $pattern) {
+        if (preg_match($pattern, $parts['path'], $matches)) {
+          $uuid = $matches[2];
+          $id = $this->getId($entityType, $uuid);
+          if ($id) {
+            $parts['path'] = preg_replace($pattern, '${1}' . $id . '${3}', $parts['path']);
+            $metadata['entity_type'] = $entityType;
+            $metadata['id'] = $id;
+            $metadata['uuid'] = $uuid;
+          }
+          break;
+        }
+      }
     }
 
     if ($direction === 'inbound') {
@@ -249,6 +291,23 @@ class LinkProcessor {
       }
     }
 
+    if ($direction === 'inbound') {
+      // Replace IDs with UUIDs.
+      foreach ($this->linkPatterns as $entityType => $pattern) {
+        if (preg_match($pattern, $parts['path'], $matches)) {
+          $id = $matches[2];
+          $uuid = $this->getUuid($entityType, $id);
+          if ($uuid) {
+            $parts['path'] = preg_replace($pattern, '${1}' . $uuid . '${3}', $parts['path']);
+            $metadata['entity_Type'] = $entityType;
+            $metadata['id'] = $id;
+            $metadata['uuid'] = $uuid;
+          }
+          break;
+        }
+      }
+    }
+
     $url = $this->buildUrl($parts);
 
     if ($direction === 'inbound') {
@@ -272,6 +331,37 @@ class LinkProcessor {
       (isset($parts['path']) ? "{$parts['path']}" : '') .
       (isset($parts['query']) ? "?{$parts['query']}" : '') .
       (isset($parts['fragment']) ? "#{$parts['fragment']}" : '');
+  }
+
+  protected function getUuid(string $entityType, string $id): ?string {
+    if (!isset($this->idToUuidMapping[$entityType][$id])) {
+      $entity = $this->entityTypeManager->getStorage($entityType)->load($id);
+      if ($entity) {
+        $this->idToUuidMapping[$entityType][$id] = $entity->uuid();
+      }
+      else {
+        $this->idToUuidMapping[$entityType][$id] = FALSE;
+      }
+    }
+    return $this->idToUuidMapping[$entityType][$id] ?: NULL;
+  }
+
+  protected function getId(string $entityType, string $uuid): ?string {
+    if (!isset($this->idToUuidMapping[$entityType])) {
+      $this->idToUuidMapping[$entityType] = [];
+    }
+    $id = array_search($uuid, $this->idToUuidMapping[$entityType]);
+    if ($id) {
+      return $id;
+    }
+    else {
+      $entity = $this->entityRepository->loadEntityByUuid($entityType, $uuid);
+      if ($entity) {
+        $this->idToUuidMapping[$entityType][$entity->id()] = $uuid;
+        return $entity->id();
+      }
+    }
+    return NULL;
   }
 
 }
