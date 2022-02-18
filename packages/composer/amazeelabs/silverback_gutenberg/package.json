@@ -15,7 +15,7 @@
     "prepare": "exit 0",
     "version": "sync-composer-version",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
-    "test:unit": "jest --passWithNoTests",
+    "test:unit": "jest --passWithNoTests && ./test.sh",
     "test:integration": "exit 0",
     "test:watch": "jest --watch"
   },
