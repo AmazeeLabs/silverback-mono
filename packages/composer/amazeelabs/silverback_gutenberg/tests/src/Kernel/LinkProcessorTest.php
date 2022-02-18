@@ -4,14 +4,15 @@ namespace Drupal\Tests\silverback_gutenberg\Kernel;
 
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\StreamWrapper\PublicStream;
-use Drupal\KernelTests\KernelTestBase;
 use Drupal\language\Entity\ConfigurableLanguage;
+use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
 use Drupal\silverback_gutenberg\LinkProcessor;
+use Drupal\Tests\media\Kernel\MediaKernelTestBase;
 use Drupal\user\Entity\User;
 
-class LinkProcessorTest extends KernelTestBase {
+class LinkProcessorTest extends MediaKernelTestBase {
 
   protected static $modules = [
     'path',
@@ -79,6 +80,13 @@ class LinkProcessorTest extends KernelTestBase {
     $translation->get('path')->alias = '/german';
     $translation->save();
 
+    $media = Media::create([
+      'bundle' => $this->testMediaType->id(),
+      'name' => 'Unnamed',
+      'field_media_test' => 'Whatever.',
+    ]);
+    $media->save();
+
     /** @var \Drupal\silverback_gutenberg\LinkProcessor $linkProcessor */
     $linkProcessor = \Drupal::service(LinkProcessor::class);
 
@@ -105,30 +113,56 @@ class LinkProcessorTest extends KernelTestBase {
       ],
       'without alias' => [
         'inbound' => [
-          ['/node/1' => '/node/1'],
-          ['/de/node/1' => '/node/1'],
+          ['/node/' . $withoutAlias->id() => '/node/' . $withoutAlias->uuid()],
+          ['/de/node/' . $withoutAlias->id() => '/node/' . $withoutAlias->uuid()],
         ],
         'outbound' => [
           [
-            '/node/1' => [
-              'en' => '/node/1',
-              'de' => '/de/node/1',
+            '/node/' . $withoutAlias->id() => [
+              'en' => '/node/' . $withoutAlias->id(),
+              'de' => '/de/node/' . $withoutAlias->id(),
+            ],
+            '/node/' . $withoutAlias->uuid() => [
+              'en' => '/node/' . $withoutAlias->id(),
+              'de' => '/de/node/' . $withoutAlias->id(),
             ],
           ],
         ],
       ],
       'with alias' => [
         'inbound' => [
-          ['/node/2' => '/node/2'],
-          ['/de/node/2' => '/node/2'],
-          ['/english' => '/node/2'],
-          ['/de/german' => '/node/2'],
+          ['/node/' . $withAlias->id() => '/node/' . $withAlias->uuid()],
+          ['/de/node/' . $withAlias->id() => '/node/' . $withAlias->uuid()],
+          ['/english' => '/node/' . $withAlias->uuid()],
+          ['/de/german' => '/node/' . $withAlias->uuid()],
         ],
         'outbound' => [
           [
-            '/node/2' => [
+            '/node/' . $withAlias->id() => [
               'en' => '/english',
               'de' => '/de/german',
+            ],
+            '/node/' . $withAlias->uuid() => [
+              'en' => '/english',
+              'de' => '/de/german',
+            ],
+          ],
+        ],
+      ],
+      'media' => [
+        'inbound' => [
+          ['/media/' . $media->id() . '/edit' => '/media/' . $media->uuid() . '/edit'],
+          ['/de/media/' . $media->id() . '/edit' => '/media/' . $media->uuid() . '/edit'],
+        ],
+        'outbound' => [
+          [
+            '/media/' . $media->id() . '/edit' => [
+              'en' => '/media/' . $media->id() . '/edit',
+              'de' => '/de/media/' . $media->id() . '/edit',
+            ],
+            '/media/' . $media->uuid() . '/edit' => [
+              'en' => '/media/' . $media->id() . '/edit',
+              'de' => '/de/media/' . $media->id() . '/edit',
             ],
           ],
         ],
