@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.3.20...@-amazeelabs/silverback_gutenberg@1.4.0) (2022-02-18)
+
+
+### Features
+
+* use UUIDs when storing links ([a5c074b](https://github.com/AmazeeLabs/silverback-mono/commit/a5c074baed2e0ecd5e9a00180f432ca7b0ad9133))
+
+
+
+
+
 ## [1.3.20](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.3.19...@-amazeelabs/silverback_gutenberg@1.3.20) (2022-02-18)
 
 

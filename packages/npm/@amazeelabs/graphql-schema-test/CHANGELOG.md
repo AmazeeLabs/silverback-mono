@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/graphql-schema-test@1.1.2...@amazeelabs/graphql-schema-test@1.1.3) (2022-02-18)
+
+
+### Bug Fixes
+
+* mask data-id attributes in gutenberg links ([f059f56](https://github.com/AmazeeLabs/silverback-mono/commit/f059f56dad7c66d53f5d4b4bb6ab399124639180))
+
+
+
+
+
 ## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/graphql-schema-test@1.1.1...@amazeelabs/graphql-schema-test@1.1.2) (2022-02-17)
 
 **Note:** Version bump only for package @amazeelabs/graphql-schema-test
