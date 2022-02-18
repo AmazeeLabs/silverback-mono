@@ -152,8 +152,10 @@ class MediaNormalizerTest extends KernelTestBase {
     ]);
     $node->save();
     $node->addTranslation('de', [
+      'title' => 'Test DE',
       'body' => $source,
     ]);
+    $node->save();
 
     /** @var \Drupal\default_content\Normalizer\ContentEntityNormalizer $normalizer */
     $normalizer = $this->container->get('default_content.content_entity_normalizer');
