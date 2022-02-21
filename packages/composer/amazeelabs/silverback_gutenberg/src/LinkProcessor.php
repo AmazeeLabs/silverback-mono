@@ -286,6 +286,10 @@ class LinkProcessor {
         ->setOption('language', $language)
         ->toString(TRUE)
         ->getGeneratedUrl();
+      // The toString() call above will encode the urls, so now we need to
+      // decode them to avoid double encoding upon the save operation
+      // afterwards.
+      $pathAlias = rawurldecode($pathAlias);
       if ($pathAlias !== $parts['path']) {
         $parts['path'] = $pathAlias;
       }

@@ -122,6 +122,8 @@ class LinkProcessorTest extends MediaKernelTestBase {
               'en' => '/node/' . $withoutAlias->id(),
               'de' => '/de/node/' . $withoutAlias->id(),
             ],
+          ],
+          [
             '/node/' . $withoutAlias->uuid() => [
               'en' => '/node/' . $withoutAlias->id(),
               'de' => '/de/node/' . $withoutAlias->id(),
@@ -142,6 +144,8 @@ class LinkProcessorTest extends MediaKernelTestBase {
               'en' => '/english',
               'de' => '/de/german',
             ],
+          ],
+          [
             '/node/' . $withAlias->uuid() => [
               'en' => '/english',
               'de' => '/de/german',
@@ -160,6 +164,8 @@ class LinkProcessorTest extends MediaKernelTestBase {
               'en' => '/media/' . $media->id() . '/edit',
               'de' => '/de/media/' . $media->id() . '/edit',
             ],
+          ],
+          [
             '/media/' . $media->uuid() . '/edit' => [
               'en' => '/media/' . $media->id() . '/edit',
               'de' => '/de/media/' . $media->id() . '/edit',
@@ -178,10 +184,18 @@ class LinkProcessorTest extends MediaKernelTestBase {
               'en' => '/unrouted-path',
               'de' => '/unrouted-path',
             ],
+          ],
+          [
             '/de/unrouted-path' => [
               'en' => '/de/unrouted-path',
               'de' => '/de/unrouted-path',
             ],
+          ],
+          [
+            '/unrouted-path with spaces' => [
+              'en' => '/unrouted-path with spaces',
+              'de' => '/unrouted-path with spaces',
+            ]
           ],
         ],
       ],
