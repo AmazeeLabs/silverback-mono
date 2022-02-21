@@ -5,7 +5,29 @@ generator client {
   provider = "prisma-client-js"
 }
 
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+datasource local {
+  provider = "sqlite"
+  url      = env("PUBLISHER_DATABASE")
+}
+
+model Build {
+  // The incremental build id.
+  id Int @id @default(autoincrement())
+  // Timestamp when the build was started.
+  startedAt Int
+  // Timestamp when the build was finished.
+  finishedAt Int
+  // Indicates if the build finished with a 0 exit status.
+  success Boolean
+  // A short string build type identifier. E.g. "iniital" or "incremental"
+  type String
+  // The JSON encoded logstream of this build.
+  // [
+  //   {
+  //     chunk: string
+  //     time: number
+  //     type: 'stdout' | 'stderr'
+  //   }
+  // ]
+  logs String
 }

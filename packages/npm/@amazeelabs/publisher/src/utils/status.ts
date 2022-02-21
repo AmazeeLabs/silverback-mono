@@ -10,7 +10,7 @@ const defaultStatus = {
   gateway: GatewayState.Init,
   builder: BuildState.Init,
   queue: [],
-};
+} as StatusUpdate;
 
 export function createWebsocketUrl(path: string) {
   if (window) {
@@ -30,6 +30,8 @@ function createWebsocket() {
   });
 }
 
-const [statusHook] = bind(createWebsocket(), defaultStatus);
+export const updates$ = createWebsocket();
+
+const [statusHook] = bind(updates$, defaultStatus);
 
 export const useStatus = statusHook;

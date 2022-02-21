@@ -9,6 +9,7 @@ export default {
     file: `build/server.js`,
     format: 'cjs',
   },
+  external: ['@prisma/client'],
   plugins: [
     json(),
     commonjs({

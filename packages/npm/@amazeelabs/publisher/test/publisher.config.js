@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   cleanCommand: './clean.sh',
   startCommand: './start.sh',
@@ -7,4 +9,5 @@ module.exports = {
   buildBufferTime: 500,
   buildRetries: 3,
   applicationPort: 3002,
+  databaseUrl: 'file:' + path.resolve(__dirname, 'publisher.db'),
 };
