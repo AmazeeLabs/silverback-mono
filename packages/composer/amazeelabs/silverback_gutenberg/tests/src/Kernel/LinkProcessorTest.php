@@ -161,6 +161,7 @@ class LinkProcessorTest extends MediaKernelTestBase {
         'inbound' => [
           '/unrouted-path' => '/unrouted-path',
           '/de/unrouted-path' => '/de/unrouted-path',
+          '/unrouted-path with spaces' => '/unrouted-path with spaces',
         ],
         'outbound' => [
           '/unrouted-path' => [
