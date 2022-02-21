@@ -1,3 +1,5 @@
+import { PrismaClient } from '@prisma/client';
+import { execSync } from 'child_process';
 import colors from 'colors';
 import { cosmiconfigSync } from 'cosmiconfig';
 import express from 'express';
@@ -15,6 +17,7 @@ import {
   GatewayState,
   isGatewayState,
 } from './server/gateway';
+import { buildReport, gatewayReport } from './server/history';
 import {
   buildStatusLogs,
   gatewayStatusLogs,
@@ -37,11 +40,21 @@ const config = {
   buildRetries: 3,
   gatewayPort: 3001,
   applicationPort: 3000,
+  databaseUrl: '/tmp/publisher.db',
   ...(loadedConfig?.config || {}),
 };
 
 const gatewayCommands$ = new Subject<GatewayCommands>();
 const buildEvents$ = new Subject<{}>();
+
+const def = `
+    create table if not exists Build(id INTEGER not null primary key autoincrement, startedAt INTEGER not null,finishedAt INTEGER not null, success BOOLEAN not null, type TEXT not null, logs TEXT not null);`;
+
+execSync(`sqlite3 ${config.databaseUrl} "${def}"`);
+
+const prisma = new PrismaClient({
+  datasources: { local: { url: `file:${config.databaseUrl}` } },
+});
 
 const gateway$ = gatewayCommands$.pipe(
   GatewayService(config),
@@ -54,7 +67,14 @@ gateway$.pipe(filter(isGatewayState)).subscribe((state) => {
   app.locals.isReady = state === GatewayState.Ready;
 });
 
+gateway$.pipe(gatewayReport()).subscribe(async (data) => {
+  await prisma.build.create({ data });
+});
+
 const builder$ = buildEvents$.pipe(BuildService(config), shareReplay(100));
+builder$.pipe(buildReport()).subscribe(async (data) => {
+  await prisma.build.create({ data });
+});
 
 app.post('/___status/build', (req, res) => {
   buildEvents$.next(req.body);
@@ -86,6 +106,29 @@ app.ws('/___status/updates', (ws) => {
   });
 
   ws.on('close', sub.unsubscribe);
+});
+
+app.get('/___status/history', async (req, res) => {
+  const result = await prisma.build.findMany({
+    select: {
+      id: true,
+      success: true,
+      startedAt: true,
+      finishedAt: true,
+    },
+    orderBy: { id: 'desc' },
+    take: 10,
+  });
+  res.json(result);
+});
+
+app.get('/___status/history/:id', async (req, res) => {
+  const result = await prisma.build.findFirst({
+    where: {
+      id: parseInt(req.params.id),
+    },
+  });
+  res.json(result);
 });
 
 app.use('/___status', express.static(path.resolve(__dirname, '../dist')));
