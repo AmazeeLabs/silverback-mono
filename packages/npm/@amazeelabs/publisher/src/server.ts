@@ -115,6 +115,7 @@ app.get('/___status/history', async (req, res) => {
       success: true,
       startedAt: true,
       finishedAt: true,
+      type: true,
     },
     orderBy: { id: 'desc' },
     take: 10,
