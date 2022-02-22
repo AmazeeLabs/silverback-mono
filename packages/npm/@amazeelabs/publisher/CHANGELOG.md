@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.1.5...@amazeelabs/publisher@0.2.0) (2022-02-22)
+
+
+### Features
+
+* **publisher:** basic history logs display ([6ea5546](https://github.com/AmazeeLabs/silverback-mono/commit/6ea55461f071b81030002586b8634026b9f05fc9))
+* **publisher:** basic history storage ([e9b2406](https://github.com/AmazeeLabs/silverback-mono/commit/e9b24066741f7d17b2c7c49f24d7db387e9e0d3c))
+
+
+
+
+
 ## [0.1.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.1.4...@amazeelabs/publisher@0.1.5) (2022-02-17)
 
 **Note:** Version bump only for package @amazeelabs/publisher
