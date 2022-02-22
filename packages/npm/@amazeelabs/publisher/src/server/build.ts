@@ -16,6 +16,7 @@ import {
   Subject,
 } from 'rxjs';
 
+import { BuildState } from '../states';
 import { spawn, SpawnChunk } from './spawn';
 
 export type BuildConfig = {
@@ -23,16 +24,6 @@ export type BuildConfig = {
   buildRetries: number;
   buildBufferTime: number;
 };
-
-/**
- * The primary states a build can be in.
- */
-export enum BuildState {
-  Init,
-  Running,
-  Finished,
-  Failed,
-}
 
 export const isBuildState: (value: any) => value is BuildState = isNumber;
 

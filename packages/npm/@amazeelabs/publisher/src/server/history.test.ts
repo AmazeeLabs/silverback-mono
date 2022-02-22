@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client';
 
-import { BuildOutput, BuildState } from './build';
+import { BuildState } from '../states';
+import { BuildOutput } from './build';
 import { runScheduled } from './helpers';
 import { buildReport } from './history';
 

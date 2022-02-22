@@ -20,8 +20,8 @@ if [ -d "$BUILD_DIR" ]; then
 else
   mkdir -p "$BUILD_DIR";
   echo "1" > "$BUILD_DIR/count.txt"
-  echo "<h1>Build Nr.: 1</h1>" > "$BUILD_DIR/index.html"
-  echo "<h1>Not found!</h1>" > "$BUILD_DIR/404.html"
+  echo "<html><head></head><body><h1>Build Nr.: 1</h1></body></html>" > "$BUILD_DIR/index.html"
+  echo "<html><head></head><body><h1>Not found!</h1></body></html>" > "$BUILD_DIR/404.html"
 fi
 
 sleep 1

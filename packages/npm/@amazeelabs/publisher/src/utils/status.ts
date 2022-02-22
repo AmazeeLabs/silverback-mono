@@ -2,9 +2,8 @@ import { bind } from '@react-rxjs/core';
 import { of } from 'rxjs';
 import { webSocket } from 'rxjs/webSocket';
 
-import { BuildState } from '../server/build';
-import { GatewayState } from '../server/gateway';
 import { StatusUpdate } from '../server/logging';
+import { BuildState, GatewayState } from '../states';
 
 const defaultStatus = {
   gateway: GatewayState.Init,

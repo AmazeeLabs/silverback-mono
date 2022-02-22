@@ -12,12 +12,8 @@ import {
 } from 'rxjs';
 import { RunHelpers } from 'rxjs/testing';
 
-import {
-  GatewayCommands,
-  GatewayService,
-  GatewayState,
-  isGatewayState,
-} from './gateway';
+import { GatewayState } from '../states';
+import { GatewayCommands, GatewayService, isGatewayState } from './gateway';
 import { runScheduled, ShellMock, stdoutChunk } from './helpers';
 
 jest.mock('./spawn');

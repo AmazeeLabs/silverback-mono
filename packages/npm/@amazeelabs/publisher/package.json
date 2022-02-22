@@ -15,7 +15,7 @@
     "build:server:watch": "rollup -c rollup.config.js -w",
     "start": "cd test && ../cli.js",
     "preview": "vite preview",
-    "prepare": "yarn build:server && yarn build:ui",
+    "prepare": "yarn build:ui && yarn build:server",
     "precommit": "lint-staged",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "jest --passWithNoTests",

@@ -11,6 +11,7 @@ import {
   switchMap,
 } from 'rxjs';
 
+import { GatewayState } from '../states';
 import { spawn, SpawnChunk } from './spawn';
 
 type GatewayConfig = {
@@ -21,14 +22,6 @@ type GatewayConfig = {
 };
 
 export type GatewayCommands = 'start' | 'clean';
-
-export enum GatewayState {
-  Init,
-  Starting,
-  Cleaning,
-  Ready,
-  Error,
-}
 
 export function isGatewayState(value: any): value is GatewayState {
   return (
