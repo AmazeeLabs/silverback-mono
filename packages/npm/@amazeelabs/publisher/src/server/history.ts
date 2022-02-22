@@ -1,8 +1,9 @@
 import { Prisma } from '@prisma/client';
 import { filter, map, Observable, scan, Timestamp, timestamp } from 'rxjs';
 
-import { BuildOutput, BuildState, isBuildState } from './build';
-import { GatewayOutput, GatewayState, isGatewayState } from './gateway';
+import { BuildState, GatewayState } from '../states';
+import { BuildOutput, isBuildState } from './build';
+import { GatewayOutput, isGatewayState } from './gateway';
 import { isSpawnChunk, SpawnChunk } from './spawn';
 
 type ReportAggregate<T extends GatewayOutput | BuildOutput> = Omit<

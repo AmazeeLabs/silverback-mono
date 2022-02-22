@@ -9,8 +9,9 @@ import {
   startWith,
 } from 'rxjs';
 
-import { BuildOutput, BuildState, isBuildState, isQueueStatus } from './build';
-import { GatewayOutput, GatewayState, isGatewayState } from './gateway';
+import { BuildState, GatewayState } from '../states';
+import { BuildOutput, isBuildState, isQueueStatus } from './build';
+import { GatewayOutput, isGatewayState } from './gateway';
 import { isSpawnChunk, SpawnChunk } from './spawn';
 
 export type StatusUpdate = {

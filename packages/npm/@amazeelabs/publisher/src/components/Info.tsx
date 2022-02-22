@@ -6,8 +6,7 @@ import { filter, switchMap } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 import { SpawnChunk } from 'rxjs-shell';
 
-import { BuildState } from '../server/build';
-import { GatewayState } from '../server/gateway';
+import { BuildState, GatewayState } from '../states';
 import { createWebsocketUrl, updates$, useStatus } from '../utils/status';
 
 const clean$ = ajax({

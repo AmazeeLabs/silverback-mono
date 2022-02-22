@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { GatewayState } from '../server/gateway';
+import { GatewayState } from '../states';
 import { useStatus } from '../utils/status';
 import { GatewayStatus } from './Info';
 

@@ -19,7 +19,7 @@ if [ -d "$BUILD_DIR" ]; then
   count=$(cat "$BUILD_DIR/count.txt")
   newcount=$((count + 1))
   echo "${newcount}" > "$BUILD_DIR/count.txt"
-  echo "<h1>Build Nr.: ${newcount}</h1>" > "$BUILD_DIR/index.html"
+  echo "<html><head></head><body><h1>Build Nr.: ${newcount}</h1></body></html>" > "$BUILD_DIR/index.html"
   echo "Build finished"
 else
   echo "Build directory does not exist"

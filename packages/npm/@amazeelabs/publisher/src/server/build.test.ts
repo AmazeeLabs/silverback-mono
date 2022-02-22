@@ -2,7 +2,8 @@ import { mapValues } from 'lodash';
 import { filter, interval, share, take, takeUntil } from 'rxjs';
 import { RunHelpers } from 'rxjs/testing';
 
-import { BuildService, BuildState, isBuildState, isQueueStatus } from './build';
+import { BuildState } from '../states';
+import { BuildService, isBuildState, isQueueStatus } from './build';
 import { runScheduled, ShellMock, stdoutChunk } from './helpers';
 import { isSpawnChunk } from './spawn';
 

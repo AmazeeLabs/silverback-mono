@@ -4,7 +4,10 @@ import colors from 'colors';
 import { cosmiconfigSync } from 'cosmiconfig';
 import express from 'express';
 import expressWs from 'express-ws';
-import { createProxyMiddleware } from 'http-proxy-middleware';
+import {
+  createProxyMiddleware,
+  responseInterceptor,
+} from 'http-proxy-middleware';
 import { createHttpTerminator } from 'http-terminator';
 import morgan from 'morgan';
 import * as path from 'path';
@@ -14,7 +17,6 @@ import { BuildService } from './server/build';
 import {
   GatewayCommands,
   GatewayService,
-  GatewayState,
   isGatewayState,
 } from './server/gateway';
 import { buildReport, gatewayReport } from './server/history';
@@ -23,6 +25,7 @@ import {
   gatewayStatusLogs,
   statusUpdates,
 } from './server/logging';
+import { GatewayState } from './states';
 
 const ews = expressWs(express());
 const { app } = ews;
@@ -62,6 +65,11 @@ const gateway$ = gatewayCommands$.pipe(
 );
 
 app.locals.isReady = false;
+
+app.use(function (req, res, next) {
+  res.set('Cache-control', 'no-cache');
+  next();
+});
 
 gateway$.pipe(filter(isGatewayState)).subscribe((state) => {
   app.locals.isReady = state === GatewayState.Ready;
@@ -136,7 +144,6 @@ app.use('/___status', express.static(path.resolve(__dirname, '../dist')));
 
 app.get('*', (req, res, next) => {
   if (!req.app.locals.isReady) {
-    res.set('Cache-control', 'no-cache');
     if (req.accepts('text/html')) {
       res.redirect(302, `/___status/status.html?dest=${req.originalUrl}`);
     } else {
@@ -151,6 +158,14 @@ app.use(
   '/',
   createProxyMiddleware(() => app.locals.isReady, {
     target: `http://127.0.0.1:${config.applicationPort}`,
+    selfHandleResponse: true,
+    onProxyRes: responseInterceptor(async (responseBuffer) => {
+      const response = responseBuffer.toString('utf8');
+      return response.replace(
+        '</head>',
+        '<script src="/___status/refresh.js"></script></head>',
+      );
+    }),
   }),
 );
 
