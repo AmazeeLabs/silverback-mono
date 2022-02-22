@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.2.1...@amazeelabs/publisher@0.3.0) (2022-02-22)
+
+
+### Features
+
+* **publisher:** auto-reload previews when builds finish ([1574879](https://github.com/AmazeeLabs/silverback-mono/commit/1574879a584b8ce4448b8072a67d9f9e9fef9e49))
+
+
+
+
+
 ## [0.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.2.0...@amazeelabs/publisher@0.2.1) (2022-02-22)
 
 
