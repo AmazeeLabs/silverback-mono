@@ -1,7 +1,7 @@
 import { Prisma } from '@prisma/client';
 import { filter, map, Observable, scan, Timestamp, timestamp } from 'rxjs';
 
-import { BuildOutput, BuildState, isBuildState, isQueueStatus } from './build';
+import { BuildOutput, BuildState, isBuildState } from './build';
 import { GatewayOutput, GatewayState, isGatewayState } from './gateway';
 import { isSpawnChunk, SpawnChunk } from './spawn';
 
