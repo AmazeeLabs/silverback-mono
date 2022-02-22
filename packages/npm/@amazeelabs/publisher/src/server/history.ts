@@ -7,9 +7,8 @@ import { isSpawnChunk, SpawnChunk } from './spawn';
 
 type ReportAggregate<T extends GatewayOutput | BuildOutput> = Omit<
   Prisma.BuildCreateInput,
-  'logs' | 'payload'
+  'logs'
 > & {
-  payload: any;
   logs: Array<SpawnChunk & { timestamp: number }>;
   state: T;
 };
@@ -25,12 +24,11 @@ export function finalizeBuildReport(type: string) {
     source$: Observable<ReportAggregate<any>>,
   ): Observable<Prisma.BuildCreateInput> {
     return source$.pipe(
-      map(({ logs, state, payload, ...input }) => ({
+      map(({ logs, state, ...input }) => ({
         ...input,
         type,
         success: state === BuildState.Finished,
         logs: JSON.stringify(logs),
-        payload: JSON.stringify(payload),
       })),
     );
   };
@@ -41,12 +39,11 @@ export function finalizeGatewayReport(type: string) {
     source$: Observable<ReportAggregate<any>>,
   ): Observable<Prisma.BuildCreateInput> {
     return source$.pipe(
-      map(({ logs, state, payload, ...input }) => ({
+      map(({ logs, state, ...input }) => ({
         ...input,
         type,
         success: state === GatewayState.Ready,
         logs: JSON.stringify(logs),
-        payload: JSON.stringify(payload),
       })),
     );
   };
@@ -86,13 +83,6 @@ export function buildReport() {
                 startedAt: item.timestamp,
               };
             }
-          }
-
-          if (isQueueStatus(item.value)) {
-            return {
-              ...acc,
-              payload: item.value,
-            };
           }
 
           if (isSpawnChunk(item.value)) {
