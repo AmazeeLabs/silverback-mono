@@ -1,8 +1,10 @@
+import { Build } from '@prisma/client';
 import { bind } from '@react-rxjs/core';
-import React from 'react';
+import React, { useState } from 'react';
 import { LazyLog } from 'react-lazylog';
 import { filter, switchMap } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
+import { SpawnChunk } from 'rxjs-shell';
 
 import { BuildState } from '../server/build';
 import { GatewayState } from '../server/gateway';
@@ -32,6 +34,7 @@ const historyCall$ = ajax.getJSON<
     startedAt: number;
     finishedAt: number;
     success: boolean;
+    type: string;
   }>
 >('/___status/history');
 
@@ -41,14 +44,50 @@ const [useHistory] = bind(history$, []);
 
 function History() {
   const history = useHistory();
+  const [expanded, setExpanded] = useState<number>();
   return (
-    <table>
-      {history.map((item) => (
-        <tr key={item.id}>
-          <td>{item.id}</td>
-        </tr>
-      ))}
-    </table>
+    <div>
+      {history.map((item) => {
+        const date = new Date();
+        date.setTime(item.startedAt);
+        return (
+          <div key={item.id}>
+            <div onClick={() => setExpanded(item.id)}>
+              <div>
+                {item.id}, {item.type}, {date.toUTCString()} ,{' '}
+                {Math.round((item.finishedAt - item.startedAt) / 1000)} sec,{' '}
+                {item.success ? 'success' : 'failed'}
+              </div>
+              {item.id === expanded ? <HistoryLogs id={item.id} /> : null}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+const [useHistoryItem] = bind(
+  (id: number) => ajax.getJSON<Build | undefined>(`/___status/history/${id}`),
+  undefined,
+);
+
+function HistoryLogs(props: { id: number }) {
+  const value = useHistoryItem(props.id);
+  return (
+    <div>
+      <pre>
+        {value
+          ? (
+              JSON.parse(value.logs) as Array<
+                SpawnChunk & { timestamp: number }
+              >
+            )
+              .map((item) => item.chunk)
+              .join('\n')
+          : ''}
+      </pre>
+    </div>
   );
 }
 
