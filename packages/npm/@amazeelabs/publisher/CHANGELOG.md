@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.2.0...@amazeelabs/publisher@0.2.1) (2022-02-22)
+
+
+### Bug Fixes
+
+* **publisher:** fix linting violation ([84df2f9](https://github.com/AmazeeLabs/silverback-mono/commit/84df2f9b8e00f345c7cffe069adac0557e485be4))
+* **publisher:** remove buggy payload leftovers in history ([3f9c8a2](https://github.com/AmazeeLabs/silverback-mono/commit/3f9c8a2928a3e129730807788864e7b4026b85ad))
+
+
+
+
+
 # [0.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.1.5...@amazeelabs/publisher@0.2.0) (2022-02-22)
 
 
