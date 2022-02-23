@@ -1,5 +1,5 @@
 import { bind } from '@react-rxjs/core';
-import { of } from 'rxjs';
+import { interval, of, Subject } from 'rxjs';
 import { webSocket } from 'rxjs/webSocket';
 
 import { StatusUpdate } from '../server/logging';
@@ -22,7 +22,9 @@ export function createWebsocketUrl(path: string) {
 function createWebsocket() {
   const url = createWebsocketUrl('/___status/updates');
   if (!url) {
-    return of(defaultStatus);
+    const dummySubject = new Subject();
+    dummySubject.next(defaultStatus);
+    return dummySubject;
   }
   return webSocket<StatusUpdate>({
     url,
@@ -30,6 +32,7 @@ function createWebsocket() {
 }
 
 export const updates$ = createWebsocket();
+interval(3000).subscribe(() => updates$.next(defaultStatus));
 
 const [statusHook] = bind(updates$, defaultStatus);
 
