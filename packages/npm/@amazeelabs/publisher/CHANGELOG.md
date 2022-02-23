@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.3.0...@amazeelabs/publisher@0.4.0) (2022-02-23)
+
+
+### Bug Fixes
+
+* **publisher:** broken test command ([9d6564f](https://github.com/AmazeeLabs/silverback-mono/commit/9d6564f1faa1aa99659d4badfbaa867063222ea2))
+* **publisher:** remove leftover dependencies ([c341a36](https://github.com/AmazeeLabs/silverback-mono/commit/c341a368e82943128f748ae497ddacce3eb97d81))
+* **publisher:** send keepalive pings to the status socket ([668486f](https://github.com/AmazeeLabs/silverback-mono/commit/668486fdc20b0b6ef7e6903b1c4977f0652e2d1f))
+
+
+### Features
+
+* **publisher:** on-screen build indicator for previews ([21dd941](https://github.com/AmazeeLabs/silverback-mono/commit/21dd9410b91eb47f13c34cf30035997b7a00ba10))
+
+
+
+
+
 # [0.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.2.1...@amazeelabs/publisher@0.3.0) (2022-02-22)
 
 
