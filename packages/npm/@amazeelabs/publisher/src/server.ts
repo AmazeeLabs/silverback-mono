@@ -161,10 +161,12 @@ app.use(
     selfHandleResponse: true,
     onProxyRes: responseInterceptor(async (responseBuffer) => {
       const response = responseBuffer.toString('utf8');
-      return response.replace(
-        '</head>',
-        '<script src="/___status/refresh.js"></script></head>',
-      );
+      return response
+        .replace(
+          '</head>',
+          '<script src="/___status/refresh.js"></script></head>',
+        )
+        .replace('</body>', '<publisher-refresh/></body>');
     }),
   }),
 );

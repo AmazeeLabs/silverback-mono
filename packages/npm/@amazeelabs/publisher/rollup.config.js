@@ -1,7 +1,8 @@
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
+import resolve from '@rollup/plugin-node-resolve';
 import esbuild from 'rollup-plugin-esbuild';
+import litcss from 'rollup-plugin-lit-css';
 
 export default [
   {
@@ -17,7 +18,7 @@ export default [
         ignoreDynamicRequires: true,
       }),
       esbuild(),
-      nodeResolve({ preferBuiltins: true }),
+      resolve({ preferBuiltins: true }),
     ],
   },
   {
@@ -26,6 +27,6 @@ export default [
       file: `dist/refresh.js`,
       format: 'iife',
     },
-    plugins: [esbuild(), nodeResolve()],
+    plugins: [litcss(), esbuild(), resolve()],
   },
 ];
