@@ -96,10 +96,6 @@ jobs:
       - name: Run integration tests
         run: yarn test:integration
 
-      - name: Build verdaccio-git
-        run: yarn prepublishOnly
-        working-directory: packages/npm/verdaccio-git
-
       - name: Start verdaccio
         run: yarn git-registry &
 
