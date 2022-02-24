@@ -669,6 +669,8 @@ dependencies:
 <?php
 // |-> web/modules/custom/{{projectName}}_default_content/export.php
 
+use AmazeeLabs\DefaultContent\Export;
+
 if (PHP_SAPI !== 'cli') {
   die;
 }
@@ -680,18 +682,20 @@ $excluded = [
   'path_alias',
 ];
 
-\AmazeeLabs\DefaultContent\Export::run('{{projectName}}_default_content', $excluded);
+Export::run('{{projectName}}_default_content', $excluded);
 ```
 
 ```php
 <?php
 // |-> web/modules/custom/{{projectName}}_default_content/import.php
 
+use AmazeeLabs\DefaultContent\Import;
+
 if (PHP_SAPI !== 'cli') {
   die;
 }
 
-\AmazeeLabs\DefaultContent\Import::run('{{projectName}}_default_content');
+Import::run('{{projectName}}_default_content');
 ```
 
 ```php
