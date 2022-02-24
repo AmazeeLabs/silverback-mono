@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.48](https://github.com/AmazeeLabs/storage-git/compare/verdaccio-git@0.1.47...verdaccio-git@0.1.48) (2022-02-24)
+
+
+### Bug Fixes
+
+* restore integration test ([aead28b](https://github.com/AmazeeLabs/storage-git/commit/aead28b8a11058d1129e8fb4549e3b13fbcfccc7))
+
+
+
+
+
 ## [0.1.47](https://github.com/AmazeeLabs/storage-git/compare/verdaccio-git@0.1.46...verdaccio-git@0.1.47) (2022-02-17)
 
 **Note:** Version bump only for package verdaccio-git
