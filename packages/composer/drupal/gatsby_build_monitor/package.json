@@ -12,7 +12,7 @@
   "license": "ISC",
   "devDependencies": {
     "@amazeelabs/silverback-playwright": "^1.6.18",
-    "@types/jest": "27.4.0",
+    "@types/jest": "27.4.1",
     "eslint": "8.9.0",
     "jest": "27.5.1",
     "lint-staged": "12.3.4",
