@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.17](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.13.16...@-amazeelabs/silverback-drupal@1.13.17) (2022-02-24)
+
+
+### Bug Fixes
+
+* get rid of lagoon.aliases.drushrc.php stub ([0ab46dd](https://github.com/AmazeeLabs/silverback-mono/commit/0ab46dd3c831275cad28d23a1d84e3ce060d3a10))
+
+
+
+
+
 ## [1.13.16](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.13.15...@-amazeelabs/silverback-drupal@1.13.16) (2022-02-24)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
