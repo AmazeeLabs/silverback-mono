@@ -60,10 +60,10 @@
     }
   },
   "scripts": {
-    "prepublishOnly": "tsc",
+    "prepare": "tsc",
     "pretest": "tsc && yarn lint && yarn formatting",
     "test:unit": "jest --coverage",
-    "test:integration": "exit 0; ./test",
+    "test:integration": "./test",
     "lint": "eslint '*/**.ts'",
     "formatting": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\""
   }
