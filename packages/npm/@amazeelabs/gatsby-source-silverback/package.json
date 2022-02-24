@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/gatsby-source-silverback",
-  "version": "1.5.14",
+  "version": "1.5.15",
   "description": "Source data from a Silverback GraphQL schema.",
   "main": "index.js",
   "types": "types.d.ts",
@@ -11,8 +11,8 @@
     "access": "public"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.17",
-    "@amazeelabs/jest-preset": "^1.3.20",
+    "@amazeelabs/eslint-config": "^1.4.18",
+    "@amazeelabs/jest-preset": "^1.3.21",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@types/jest": "27.4.1",
     "eslint": "8.9.0",
