@@ -210,52 +210,6 @@ $$.file('composer.json', (json) => ({
 }));
 ```
 
-Drush 9 or higher does not work with [Lagoon] out of the box. We have to place a
-`lagoon.aliases.drushrc.php` in the drush folder. This folder is managed by
-composer, so we add our file to [drupal-scaffold], so it is installed
-automatically.
-
-First we create the required file in the `scaffold` folder within the Drupal
-directory.
-
-```php
-<?php
-// |-> scaffold/lagoon.aliases.drushrc.php
-// Don't change anything here, it's magic!
-global $aliases_stub;
-if (empty($aliases_stub)) {
-  $ch = curl_init();
-  curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
-  curl_setopt($ch, CURLOPT_HEADER, 0);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-  curl_setopt($ch, CURLOPT_URL, 'https://drush-alias.lagoon.amazeeio.cloud/aliases.drushrc.php.stub');
-  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
-  $aliases_stub = curl_exec($ch);
-  curl_close($ch);
-}
-eval($aliases_stub);
-```
-
-Then we register the new file to be scaffolded by composer during install by
-adding it to the `file-mapping` dictionary.
-
-```typescript
-$$.file('composer.json', (json) => ({
-  ...json,
-  extra: {
-    ...json.extra,
-    'drupal-scaffold': {
-      ...json.extra['drupal-scaffold'],
-      'file-mapping': {
-        ...(json.extra['drupal-scaffold']['file-mapping'] || {}),
-        '[project-root]/drush/lagoon.aliases.drushrc.php':
-          'scaffold/lagoon.aliases.drushrc.php',
-      },
-    },
-  },
-}));
-```
-
 Simply install the `amazeeio/drupal_integrations` package, and we are almost
 good to go.
 
@@ -379,12 +333,6 @@ tasks:
     - run:
         name: Run Drupal deploy tasks
         command: drush -y deploy
-        service: cli
-    - run:
-        name: Initiate Drush aliases
-        command: |
-          drush site:alias-convert /app/drush/sites --yes
-          mv /app/drush/sites/*.yml ./drush/sites/
         service: cli
 
 environments:
