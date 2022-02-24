@@ -647,7 +647,7 @@ that.
 ```typescript
 $$.chdir('apps/cms');
 $$(
-  'composer require amazeelabs/default-content drupal/default_content:^2.0.0-alpha1',
+  'composer require amazeelabs/default-content drupal/default_content:^2.0@alpha',
 );
 $$('yarn drush -y en default_content');
 ```
@@ -800,7 +800,7 @@ Add `drupal/graphql` and `amazeelabs/silverback_gatsby` modules.
 
 ```typescript
 $$(
-  'composer require amazeelabs/proxy-graphql drupal/typed_data:^1.0.0-alpha1 amazeelabs/silverback_gatsby',
+  'composer require amazeelabs/proxy-graphql drupal/typed_data:^1.0@alpha amazeelabs/silverback_gatsby',
 );
 $$('yarn drush -y en silverback_gatsby');
 ```
