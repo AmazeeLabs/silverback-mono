@@ -6,7 +6,7 @@
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
     "dotenv": "^14.3.2",
-    "gatsby": "^4.7.2",
+    "gatsby": "^4.8.0",
     "gatsby-plugin-schema-export": "^1.1.12",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
@@ -19,10 +19,10 @@
     "@graphql-codegen/typescript": "2.4.5",
     "@graphql-codegen/typescript-operations": "2.3.2",
     "@types/classnames": "2.3.1",
-    "@types/jest": "27.4.0",
+    "@types/jest": "27.4.1",
     "@types/node": "16.11.25",
     "eslint": "8.9.0",
-    "gatsby-source-filesystem": "4.7.0",
+    "gatsby-source-filesystem": "4.8.0",
     "husky": "7.0.4",
     "jest": "27.5.1",
     "lint-staged": "12.3.4",
