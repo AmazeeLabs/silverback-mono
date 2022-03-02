@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.4.1...@-amazeelabs/silverback_gutenberg@1.4.2) (2022-03-02)
+
+
+### Bug Fixes
+
+* double encoding in the outbound link processing ([db7b896](https://github.com/AmazeeLabs/silverback-mono/commit/db7b896f6cef8e6ba4c115408cda34543b3d08c9))
+
+
+
+
+
 ## [1.4.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.4.0...@-amazeelabs/silverback_gutenberg@1.4.1) (2022-02-24)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gutenberg
