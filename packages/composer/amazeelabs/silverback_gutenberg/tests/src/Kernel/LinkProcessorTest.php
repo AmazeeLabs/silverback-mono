@@ -93,122 +93,110 @@ class LinkProcessorTest extends MediaKernelTestBase {
     $cases = [
       'absolute' => [
         'inbound' => [
-          ['https://example.com/foo' => 'https://example.com/foo'],
-          ['https://example.com/de/foo' => 'https://example.com/de/foo'],
+          'https://example.com/foo' => 'https://example.com/foo',
+          'https://example.com/de/foo' => 'https://example.com/de/foo',
         ],
         'outbound' => [
-          [
-            'https://example.com/foo' => [
-              'en' => 'https://example.com/foo',
-              'de' => 'https://example.com/foo',
-            ],
+          'https://example.com/foo' => [
+            'en' => 'https://example.com/foo',
+            'de' => 'https://example.com/foo',
           ],
-          [
-            'https://example.com/de/foo' => [
-              'en' => 'https://example.com/de/foo',
-              'de' => 'https://example.com/de/foo',
-            ],
+          'https://example.com/de/foo' => [
+            'en' => 'https://example.com/de/foo',
+            'de' => 'https://example.com/de/foo',
           ],
         ],
       ],
       'without alias' => [
         'inbound' => [
-          ['/node/' . $withoutAlias->id() => '/node/' . $withoutAlias->uuid()],
-          ['/de/node/' . $withoutAlias->id() => '/node/' . $withoutAlias->uuid()],
+          '/node/' . $withoutAlias->id() => '/node/' . $withoutAlias->uuid(),
+          '/de/node/' . $withoutAlias->id() => '/node/' . $withoutAlias->uuid(),
         ],
         'outbound' => [
-          [
-            '/node/' . $withoutAlias->id() => [
-              'en' => '/node/' . $withoutAlias->id(),
-              'de' => '/de/node/' . $withoutAlias->id(),
-            ],
-            '/node/' . $withoutAlias->uuid() => [
-              'en' => '/node/' . $withoutAlias->id(),
-              'de' => '/de/node/' . $withoutAlias->id(),
-            ],
+          '/node/' . $withoutAlias->id() => [
+            'en' => '/node/' . $withoutAlias->id(),
+            'de' => '/de/node/' . $withoutAlias->id(),
+          ],
+          '/node/' . $withoutAlias->uuid() => [
+            'en' => '/node/' . $withoutAlias->id(),
+            'de' => '/de/node/' . $withoutAlias->id(),
           ],
         ],
       ],
       'with alias' => [
         'inbound' => [
-          ['/node/' . $withAlias->id() => '/node/' . $withAlias->uuid()],
-          ['/de/node/' . $withAlias->id() => '/node/' . $withAlias->uuid()],
-          ['/english' => '/node/' . $withAlias->uuid()],
-          ['/de/german' => '/node/' . $withAlias->uuid()],
+          '/node/' . $withAlias->id() => '/node/' . $withAlias->uuid(),
+          '/de/node/' . $withAlias->id() => '/node/' . $withAlias->uuid(),
+          '/english' => '/node/' . $withAlias->uuid(),
+          '/de/german' => '/node/' . $withAlias->uuid(),
         ],
         'outbound' => [
-          [
-            '/node/' . $withAlias->id() => [
-              'en' => '/english',
-              'de' => '/de/german',
-            ],
-            '/node/' . $withAlias->uuid() => [
-              'en' => '/english',
-              'de' => '/de/german',
-            ],
+          '/node/' . $withAlias->id() => [
+            'en' => '/english',
+            'de' => '/de/german',
+          ],
+          '/node/' . $withAlias->uuid() => [
+            'en' => '/english',
+            'de' => '/de/german',
           ],
         ],
       ],
       'media' => [
         'inbound' => [
-          ['/media/' . $media->id() . '/edit' => '/media/' . $media->uuid() . '/edit'],
-          ['/de/media/' . $media->id() . '/edit' => '/media/' . $media->uuid() . '/edit'],
+          '/media/' . $media->id() . '/edit' => '/media/' . $media->uuid() . '/edit',
+          '/de/media/' . $media->id() . '/edit' => '/media/' . $media->uuid() . '/edit',
         ],
         'outbound' => [
-          [
-            '/media/' . $media->id() . '/edit' => [
-              'en' => '/media/' . $media->id() . '/edit',
-              'de' => '/de/media/' . $media->id() . '/edit',
-            ],
-            '/media/' . $media->uuid() . '/edit' => [
-              'en' => '/media/' . $media->id() . '/edit',
-              'de' => '/de/media/' . $media->id() . '/edit',
-            ],
+          '/media/' . $media->id() . '/edit' => [
+            'en' => '/media/' . $media->id() . '/edit',
+            'de' => '/de/media/' . $media->id() . '/edit',
+          ],
+          '/media/' . $media->uuid() . '/edit' => [
+            'en' => '/media/' . $media->id() . '/edit',
+            'de' => '/de/media/' . $media->id() . '/edit',
           ],
         ],
       ],
       'unrouted' => [
         'inbound' => [
-          ['/unrouted-path' => '/unrouted-path'],
-          ['/de/unrouted-path' => '/de/unrouted-path'],
+          '/unrouted-path' => '/unrouted-path',
+          '/de/unrouted-path' => '/de/unrouted-path',
+          '/unrouted-path with spaces' => '/unrouted-path with spaces',
         ],
         'outbound' => [
-          [
-            '/unrouted-path' => [
-              'en' => '/unrouted-path',
-              'de' => '/unrouted-path',
-            ],
-            '/de/unrouted-path' => [
-              'en' => '/de/unrouted-path',
-              'de' => '/de/unrouted-path',
-            ],
+          '/unrouted-path' => [
+            'en' => '/unrouted-path',
+            'de' => '/unrouted-path',
+          ],
+          '/de/unrouted-path' => [
+            'en' => '/de/unrouted-path',
+            'de' => '/de/unrouted-path',
+          ],
+          '/unrouted-path with spaces' => [
+            'en' => '/unrouted-path with spaces',
+            'de' => '/unrouted-path with spaces',
           ],
         ],
       ],
       'mailto' => [
         'inbound' => [
-          ['mailto:someone@example.site' => 'mailto:someone@example.site'],
+          'mailto:someone@example.site' => 'mailto:someone@example.site',
         ],
         'outbound' => [
-          [
-            'mailto:someone@example.site' => [
-              'en' => 'mailto:someone@example.site',
-              'de' => 'mailto:someone@example.site',
-            ]
-          ]
+          'mailto:someone@example.site' => [
+            'en' => 'mailto:someone@example.site',
+            'de' => 'mailto:someone@example.site',
+          ],
         ],
       ],
     ];
 
     foreach ($cases as $name => $directions) {
       foreach ($directions as $direction => $samples) {
-        foreach ($samples as $sample) {
-          $target = reset($sample);
-          $original = key($sample);
+        foreach ($samples as $original => $target) {
           if ($direction === 'inbound') {
-            $processed = $target;
             $url = $linkProcessor->processUrl($original, 'inbound');
-            $this->assertEquals($processed, $url, "Case name: {$name}, direction: {$direction}, original: {$original}");
+            $this->assertEquals($target, $url, "Case name: {$name}, direction: {$direction}, original: {$original}");
           }
           else {
             foreach ($target as $langcode => $processed) {
