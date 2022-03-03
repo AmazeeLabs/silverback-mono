@@ -17,13 +17,19 @@ function hook_silverback_gutenberg_link_processor_block_attributes_alter(
  *   Has the following keys:
  *   - blockName: a string containing the block name
  *   - processUrlCallback: a callback to process a single URL string
+ *       Callback signature: (string $url): string
  *   - processLinksCallback: a callback to process links in an HTML string
+ *       Callback signature: (string $html): string
+ *   - direction: "inbound" or "outbound"
+ *   - language: LanguageInterface or null
  */
 function hook_silverback_gutenberg_link_processor_block_attrs_alter(array &$attributes, array $context) {
   if ($context['blockName'] === 'custom/my-links-block' && isset($attributes['urls'])) {
     $attributes['urlsUnprocessed'] = [];
     foreach ($attributes['urls'] as $key => $url) {
-      $attributes['urlsUnprocessed'][$key] = $url;
+      if ($context['direction'] === 'outbound') {
+        $attributes['urlsUnprocessed'][$key] = $url;
+      }
       $attributes['urls'][$key] = $context['processUrlCallback']($url);
     }
   }
