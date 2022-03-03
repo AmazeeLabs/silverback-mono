@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@testing-library/cypress": "8.0.2",
-    "cypress": "9.5.0",
+    "cypress": "9.5.1",
     "cypress-cucumber-preprocessor": "4.3.1",
     "cypress-file-upload": "5.0.8",
     "cypress-screenplay": "^0.5.32",
