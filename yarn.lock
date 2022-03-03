@@ -4055,21 +4055,21 @@
   dependencies:
     type-detect "4.0.8"
 
-"@sinonjs/fake-timers@>=5":
+"@sinonjs/fake-timers@>=5", "@sinonjs/fake-timers@^9.0.0":
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/@sinonjs/fake-timers/-/fake-timers-9.1.0.tgz#8c92c56f195e0bed4c893ba59c8e3d55831ca0df"
   integrity sha512-M8vapsv9qQupMdzrVzkn5rb9jG7aUTEPAZdMtME2PuBaefksFZVE2C1g4LBRTkF/k3nRDNbDc5tp5NFC1PEYxA==
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sinonjs/fake-timers@^8.0.1", "@sinonjs/fake-timers@^8.1.0":
+"@sinonjs/fake-timers@^8.0.1":
   version "8.1.0"
   resolved "https://registry.yarnpkg.com/@sinonjs/fake-timers/-/fake-timers-8.1.0.tgz#3fdc2b6cb58935b21bfb8d1625eb1300484316e7"
   integrity sha512-OAPJUAtgeINhh/TAlUID4QTs53Njm7xzddaVlEs/SXwgtiD1tW22zAB/W1wdqfrpmikgaWQ9Fw6Ws+hsiRm5Vg==
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@sinonjs/samsam@^6.0.2":
+"@sinonjs/samsam@^6.1.1":
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/@sinonjs/samsam/-/samsam-6.1.1.tgz#627f7f4cbdb56e6419fa2c1a3e4751ce4f6a00b1"
   integrity sha512-cZ7rKJTLiE7u7Wi/v9Hc2fs3Ucc3jrWeMgPHbbTCeVAB2S0wOBbYlkJVeNSL04i7fdhT8wIbDq1zhC/PXTD2SA==
@@ -12010,15 +12010,20 @@ dotenv-safe@^5.0.1:
   dependencies:
     dotenv "^5.0.0"
 
-dotenv@14.3.2, dotenv@^14.3.2:
-  version "14.3.2"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-14.3.2.tgz#7c30b3a5f777c79a3429cb2db358eef6751e8369"
-  integrity sha512-vwEppIphpFdvaMCaHfCEv9IgwcxMljMw2TnAQBB4VWPvzXQLTb82jwmdOKzlEVUL3gNFT4l4TPKO+Bn+sqcrVQ==
+dotenv@15.0.0:
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-15.0.0.tgz#2a585639429bf2c2c62f387f0fffde9c75aafde0"
+  integrity sha512-/l1sXXm79ry34KwwS0y4oVZjB468iw/6u9g1W26dtexKcIJAnVL2pMF+hxQwzZ7LutxOwEgtym9eIxvX33CMKg==
 
 dotenv@^10.0.0:
   version "10.0.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-10.0.0.tgz#3d4227b8fb95f81096cdd2b66653fb2c7085ba81"
   integrity sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==
+
+dotenv@^15.0.0:
+  version "15.0.1"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-15.0.1.tgz#bf96a46782923e17a64b5edb35eb50d2292efd65"
+  integrity sha512-4OnbwRfzR+xQThp7uq1xpUS9fmgZ//njexOtPjPSbK3yHGrSHSJnaJRsXderSSm2elfvVj+Y5awDC0I8Oy8rkA==
 
 dotenv@^5.0.0, dotenv@^5.0.1:
   version "5.0.1"
@@ -25535,14 +25540,14 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
-sinon@12.0.1:
-  version "12.0.1"
-  resolved "https://registry.yarnpkg.com/sinon/-/sinon-12.0.1.tgz#331eef87298752e1b88a662b699f98e403c859e9"
-  integrity sha512-iGu29Xhym33ydkAT+aNQFBINakjq69kKO6ByPvTsm3yyIACfyQttRTP03aBP/I8GfhFmLzrnKwNNkr0ORb1udg==
+sinon@13.0.0:
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/sinon/-/sinon-13.0.0.tgz#3701f90204a1baa7457a3da70c9adcf335e92056"
+  integrity sha512-3tjMDB/tY04b06Bnb4aMKQfNrau2C9HET+R4HVWfv2KegDVLGg4wnBqjVepvxR7S7R1GTwDZzEv52tpFipt6yA==
   dependencies:
     "@sinonjs/commons" "^1.8.3"
-    "@sinonjs/fake-timers" "^8.1.0"
-    "@sinonjs/samsam" "^6.0.2"
+    "@sinonjs/fake-timers" "^9.0.0"
+    "@sinonjs/samsam" "^6.1.1"
     diff "^5.0.0"
     nise "^5.1.0"
     supports-color "^7.2.0"
