@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.4.3...@-amazeelabs/silverback_gutenberg@1.5.0) (2022-03-03)
+
+
+### Features
+
+* add more context to the gutenberg hook ([a371608](https://github.com/AmazeeLabs/silverback-mono/commit/a371608fcd4fcb973d108b93505edaacf2d2170a))
+
+
+
+
+
 ## [1.4.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.4.2...@-amazeelabs/silverback_gutenberg@1.4.3) (2022-03-03)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gutenberg
