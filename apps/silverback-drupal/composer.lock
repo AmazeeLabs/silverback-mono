@@ -289,11 +289,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "1.4.2",
+            "version": "1.4.3",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "60e94e0f55a53069ae8c2cc7f258159204693fb6"
+                "reference": "9db311e6afc9415f62ec374a1045b27f2c8c5e18"
             },
             "require": {
                 "drupal/gutenberg": "^2.4"
@@ -3143,11 +3143,11 @@
         },
         {
             "name": "drupal/cypress",
-            "version": "2.3.50",
+            "version": "2.3.51",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/cypress",
-                "reference": "f0afa5697daf070b39a9322edb619d0ee3180d2c"
+                "reference": "11eca4fde66a50c9c8e526125dec69a2ae91bda7"
             },
             "require": {
                 "alchemy/zippy": "^1.0.0",
@@ -3316,11 +3316,11 @@
         },
         {
             "name": "drupal/gatsby_build_monitor",
-            "version": "1.4.23",
+            "version": "1.4.24",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/gatsby_build_monitor",
-                "reference": "77d94ab61c5132696d16940ca8018f711a46191f"
+                "reference": "0752b4a834faf3e530f61051de494226b3fdda2e"
             },
             "require": {
                 "justinrainbow/json-schema": "^5.2.11"
@@ -3558,11 +3558,11 @@
         },
         {
             "name": "drupal/test_session",
-            "version": "1.2.27",
+            "version": "1.2.28",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/test_session",
-                "reference": "c7e17dff4ff4dad6d6745b3de16fcd504d203479"
+                "reference": "9c1b0db76040dec1abaa6ee2956c07399bbe5689"
             },
             "type": "drupal-module",
             "license": [
@@ -6704,16 +6704,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.11.1",
+            "version": "v0.11.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "570292577277f06f590635381a7f761a6cf4f026"
+                "reference": "7f7da640d68b9c9fec819caae7c744a213df6514"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/570292577277f06f590635381a7f761a6cf4f026",
-                "reference": "570292577277f06f590635381a7f761a6cf4f026",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/7f7da640d68b9c9fec819caae7c744a213df6514",
+                "reference": "7f7da640d68b9c9fec819caae7c744a213df6514",
                 "shasum": ""
             },
             "require": {
@@ -6723,6 +6723,9 @@
                 "php": "^8.0 || ^7.0.8",
                 "symfony/console": "^6.0 || ^5.0 || ^4.0 || ^3.4",
                 "symfony/var-dumper": "^6.0 || ^5.0 || ^4.0 || ^3.4"
+            },
+            "conflict": {
+                "symfony/console": "4.4.37 || 5.3.14 || 5.3.15 || 5.4.3 || 5.4.4 || 6.0.3 || 6.0.4"
             },
             "require-dev": {
                 "bamarni/composer-bin-plugin": "^1.2",
@@ -6773,9 +6776,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.11.1"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.11.2"
             },
-            "time": "2022-01-03T13:58:38+00:00"
+            "time": "2022-02-28T15:28:54+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
