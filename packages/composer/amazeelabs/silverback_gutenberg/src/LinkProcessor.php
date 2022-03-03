@@ -95,6 +95,8 @@ class LinkProcessor {
         'blockName' => $block['blockName'],
         'processUrlCallback' => $processUrlCallback,
         'processLinksCallback' => $processLinksCallback,
+        'direction' => $direction,
+        'language' => $language,
       ];
       $this->moduleHandler->alter(
         'silverback_gutenberg_link_processor_block_attrs',
