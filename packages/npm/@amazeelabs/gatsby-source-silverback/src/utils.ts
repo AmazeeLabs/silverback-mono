@@ -5,10 +5,12 @@ export type Options = {
   drupal_external_url?: string;
   // The Drupal GraphQL server path.
   graphql_path: string;
-  // Optional Basic Auth Drupal user.
+  // Optional Basic Auth user.
   auth_user?: string;
-  // Optional Basic Auth Drupal password.
+  // Optional Basic Auth password.
   auth_pass?: string;
+  // Optional Key Auth.
+  auth_key?: string;
 };
 
 export const validOptions = (options: {

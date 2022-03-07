@@ -39,16 +39,23 @@ The following configuration options are supported:
   connect to.
 - `graphql_path` **(required)**: The configured path of the configured Drupal
   GraphQL server instance.
-- `auth_user` **(optional)**: A Drupal username to use for sending requests.
-- `auth_pass` **(optional)**: A Drupal password to use for sending requests.
+- `auth_user` and `auth_pass` **(optional)**: A username and a password for
+  either
+  - passing by the basic auth protection (e.g. if Drupal is protected with
+    Lagoon's basic auth)
+  - authorizing GraphQL requests (e.g. if Drupal's `basic_auth` module is
+    enabled)
+- `auth_key` **(optional)**: A key to be passed in `api-key` header to authorize
+  GraphQL requests (e.g. if [key_auth](https://www.drupal.org/project/key_auth)
+  module is enabled)
 
-The optional credential parameters (`auth_user` and `auth_pass`) can be used to
-enable different workflows. On production, they can be omitted to make sure
-Drupal handles these requests anonymously and won't expose any unpublished
-content. Alternatively one can also configure a dedicated role and user for this
-task and block anonymous users entirely from accessing Drupal. In a preview
-environment on the other hand, the credentials should allow Gatsby to access
-unpublished content to be able to display previews.
+The optional credential parameters can be used to enable different workflows. On
+production, they can be omitted to make sure Drupal handles these requests
+anonymously and won't expose any unpublished content. Alternatively one can also
+configure a dedicated role and user for this task and block anonymous users
+entirely from accessing Drupal. In a preview environment on the other hand, the
+credentials should allow Gatsby to access unpublished content to be able to
+display previews.
 
 ## Automatic creation of Gatsby pages
 
