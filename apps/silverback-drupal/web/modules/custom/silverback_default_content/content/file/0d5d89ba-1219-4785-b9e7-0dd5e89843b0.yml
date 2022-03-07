@@ -1,0 +1,27 @@
+_meta:
+  version: '1.0'
+  entity_type: file
+  uuid: 0d5d89ba-1219-4785-b9e7-0dd5e89843b0
+  default_langcode: en
+default:
+  uid:
+    -
+      target_id: 1
+  filename:
+    -
+      value: mountain.jpg
+  uri:
+    -
+      value: 'public://2022-03/mountain.jpg'
+  filemime:
+    -
+      value: image/jpeg
+  filesize:
+    -
+      value: 39926
+  status:
+    -
+      value: true
+  created:
+    -
+      value: 1646626849
