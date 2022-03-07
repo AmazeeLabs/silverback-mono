@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.16.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.16.0...@-amazeelabs/silverback_gatsby@1.16.1) (2022-03-07)
+
+
+### Bug Fixes
+
+* remove basic_auth from dependencies ([122381b](https://github.com/AmazeeLabs/silverback-mono/commit/122381b86aad8e7c761915997a2c1a3a768c7b19))
+
+
+
+
+
 # [1.16.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.15.0...@-amazeelabs/silverback_gatsby@1.16.0) (2022-01-26)
 
 

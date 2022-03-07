@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.5.16...@amazeelabs/gatsby-source-silverback@1.6.0) (2022-03-07)
+
+
+### Features
+
+* add auth_key option ([0908132](https://github.com/AmazeeLabs/silverback-mono/commit/0908132464a462ee977e633ef9df409bb2537ad6))
+
+
+
+
+
 ## [1.5.16](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.5.15...@amazeelabs/gatsby-source-silverback@1.5.16) (2022-03-03)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-source-silverback
