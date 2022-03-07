@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.29](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.9.28...@amazeelabs/recipes@1.9.29) (2022-03-03)
+
+**Note:** Version bump only for package @amazeelabs/recipes
+
+
+
+
+
 ## [1.9.28](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.9.27...@amazeelabs/recipes@1.9.28) (2022-02-24)
 
 

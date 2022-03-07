@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/react-di",
-  "version": "1.0.53",
+  "version": "1.0.54",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
@@ -10,14 +10,14 @@
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "^1.4.4",
-    "@amazeelabs/jest-preset": "^1.3.21",
+    "@amazeelabs/jest-preset": "^1.3.22",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@types/jest": "27.4.1",
-    "eslint": "8.9.0",
+    "eslint": "8.10.0",
     "jest": "27.5.1",
     "lint-staged": "12.3.4",
     "prettier": "2.5.1",
-    "typescript": "4.5.5"
+    "typescript": "4.6.2"
   },
   "scripts": {
     "prepare": "tsc",
@@ -30,7 +30,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "@amazeelabs/eslint-config": "^1.4.18",
+    "@amazeelabs/eslint-config": "^1.4.19",
     "@amazeelabs/prettier-config": "^1.1.1"
   }
 }

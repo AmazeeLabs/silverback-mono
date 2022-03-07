@@ -20,7 +20,7 @@ jobs:
           php-version: '8.1'
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -29,7 +29,7 @@ jobs:
         id: node_version
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: "${{ steps.node_version.outputs.NODE_VERSION }}"
 
