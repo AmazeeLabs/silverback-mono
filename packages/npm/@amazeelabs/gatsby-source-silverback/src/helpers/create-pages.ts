@@ -17,6 +17,7 @@ export const createPages = async (
     apiUrl(options),
     options.auth_user,
     options.auth_pass,
+    options.auth_key,
   );
   const feeds = await drupalFeeds(executor);
   for (const feed of feeds) {
