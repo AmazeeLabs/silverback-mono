@@ -1,5 +1,6 @@
 import { graphql, Link, PageProps, useStaticQuery } from 'gatsby';
 import React from 'react';
+import { useIntl } from 'react-intl';
 
 import {
   ImageSet,
@@ -75,12 +76,19 @@ const IndexPage: React.FC<PageProps> = () => {
     }
   }
 
+  const intl = useIntl();
   return (
     <>
       <b>Some page. Just one Page node. Without a dedicated site page.</b>
       <table>
         <tr>
-          <Row>ID</Row>
+          <Row>
+            {
+              intl.formatMessage({
+                defaultMessage: 'ID',
+              })
+            }
+          </Row>
           <Row>Title</Row>
           <Row>Language</Row>
           <Row>Path</Row>
