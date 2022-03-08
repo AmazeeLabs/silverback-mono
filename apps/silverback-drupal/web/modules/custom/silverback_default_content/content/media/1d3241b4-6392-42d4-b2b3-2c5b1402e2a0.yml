@@ -1,0 +1,75 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 1d3241b4-6392-42d4-b2b3-2c5b1402e2a0
+  bundle: image
+  default_langcode: en
+  depends:
+    0d5d89ba-1219-4785-b9e7-0dd5e89843b0: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: Mountain
+  created:
+    -
+      value: 1646626833
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  field_media_image:
+    -
+      entity: 0d5d89ba-1219-4785-b9e7-0dd5e89843b0
+      alt: Mountain
+      title: ''
+      width: 600
+      height: 338
+translations:
+  de:
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    name:
+      -
+        value: Berg
+    created:
+      -
+        value: 1646626906
+    revision_translation_affected:
+      -
+        value: true
+    path:
+      -
+        alias: ''
+        langcode: de
+    content_translation_source:
+      -
+        value: en
+    content_translation_outdated:
+      -
+        value: false
+    field_media_image:
+      -
+        entity: 0d5d89ba-1219-4785-b9e7-0dd5e89843b0
+        alt: Berg
+        title: ''
+        width: 600
+        height: 338

@@ -477,7 +477,7 @@ $$.file('package.json', (json) => ({
   scripts: {
     ...json.scripts,
     prepare:
-      'if php -v && [[ -z $LAGOON ]]; then composer install && yarn setup; fi',
+      'if php -v && [[ -z $LAGOON ]]; then composer install && SB_SETUP=1 yarn setup; fi',
     'drupal-install': 'source .envrc && silverback setup --profile minimal',
     setup: 'source .envrc && silverback setup',
     start: 'source .envrc && drush serve',

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aea03ba9a6813e854411e62c2eaf5de8",
+    "content-hash": "3b2cae115b728463a1e9e91af92a89a3",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -264,11 +264,11 @@
         },
         {
             "name": "amazeelabs/silverback_gatsby",
-            "version": "1.16.0",
+            "version": "1.16.2",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gatsby",
-                "reference": "93f9cad1d65a79807d3cffce362f8dfdc6eb4dfe"
+                "reference": "2fcdf1734389eafc3e8662f3f511dd36951a54d1"
             },
             "type": "drupal-module",
             "extra": {
@@ -289,11 +289,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "1.4.3",
+            "version": "1.5.0",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "9db311e6afc9415f62ec374a1045b27f2c8c5e18"
+                "reference": "8d466ca25e4f9784aae6797bcc32d3028c5de797"
             },
             "require": {
                 "drupal/gutenberg": "^2.4"
@@ -350,14 +350,14 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_translations",
-                "reference": "a46f9f7a45881c49bccf7f98cedfdff19da78dd8"
+                "reference": "a17231b3285513b4033419a4bd1eb9e86c6550d0"
             },
             "type": "drupal-module",
             "license": [
                 "GPL-2.0+"
             ],
             "description": "Provides a way for importing translation sources and exporting translated labels.",
-            "homepage": "https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/composer/amazeelabs/silverback_iframe#readme",
+            "homepage": "https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/composer/amazeelabs/silverback_translations#readme",
             "transport-options": {
                 "relative": true
             }
@@ -3330,6 +3330,74 @@
             "homepage": "https://www.drupal.org/project/entity_reference_revisions",
             "support": {
                 "source": "https://git.drupalcode.org/project/entity_reference_revisions"
+            }
+        },
+        {
+            "name": "drupal/entity_usage",
+            "version": "2.0.0-beta6",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/entity_usage.git",
+                "reference": "8.x-2.0-beta6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/entity_usage-8.x-2.0-beta6.zip",
+                "reference": "8.x-2.0-beta6",
+                "shasum": "b641f9549fc3edaa81f0548f0fc209ece3ed369c"
+            },
+            "require": {
+                "drupal/core": "^8.8 || ^9"
+            },
+            "require-dev": {
+                "drupal/block_field": "~1.0",
+                "drupal/dynamic_entity_reference": "~1.0",
+                "drupal/entity_browser": "~2.0",
+                "drupal/entity_browser_block": "~1.0",
+                "drupal/entity_embed": "~1.0",
+                "drupal/entity_reference_revisions": "~1.0",
+                "drupal/inline_entity_form": "^1.0@RC",
+                "drupal/paragraphs": "~1.0",
+                "drupal/webform": "^6.0.0-alpha4"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-2.0-beta6",
+                    "datestamp": "1633676588",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "marcoscano",
+                    "homepage": "https://www.drupal.org/user/1288796"
+                },
+                {
+                    "name": "seanB",
+                    "homepage": "https://www.drupal.org/user/545912"
+                }
+            ],
+            "description": "Track usage of entities referenced by other entities",
+            "homepage": "https://www.drupal.org/project/entity_usage",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/entity_usage",
+                "issues": "http://drupal.org/project/issues/entity_usage"
             }
         },
         {
@@ -11817,6 +11885,7 @@
         "amazeelabs/silverback_iframe_theme": 20,
         "amazeelabs/silverback_translations": 20,
         "drupal/cypress": 20,
+        "drupal/entity_usage": 10,
         "drupal/gatsby_build_monitor": 20,
         "drupal/test_session": 20
     },
