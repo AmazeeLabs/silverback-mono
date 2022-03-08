@@ -1,0 +1,4 @@
+services:
+  silverback_translations.json_processor:
+    class: Drupal\silverback_translations\JSONTranslationsProcessor
+    arguments: ['@locale.storage']

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "38029b05baa184b328341f6a9c0270fd",
+    "content-hash": "aea03ba9a6813e854411e62c2eaf5de8",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -340,6 +340,24 @@
             ],
             "description": "Theme for amazeelabs/silverback_iframe module.",
             "homepage": "https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/composer/amazeelabs/silverback_iframe_theme#readme",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "amazeelabs/silverback_translations",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/composer/amazeelabs/silverback_translations",
+                "reference": "a46f9f7a45881c49bccf7f98cedfdff19da78dd8"
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Provides a way for importing translation sources and exporting translated labels.",
+            "homepage": "https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/composer/amazeelabs/silverback_iframe#readme",
             "transport-options": {
                 "relative": true
             }
@@ -11797,6 +11815,7 @@
         "amazeelabs/silverback_gutenberg": 20,
         "amazeelabs/silverback_iframe": 20,
         "amazeelabs/silverback_iframe_theme": 20,
+        "amazeelabs/silverback_translations": 20,
         "drupal/cypress": 20,
         "drupal/gatsby_build_monitor": 20,
         "drupal/test_session": 20
@@ -11805,5 +11824,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.0.0"
 }
