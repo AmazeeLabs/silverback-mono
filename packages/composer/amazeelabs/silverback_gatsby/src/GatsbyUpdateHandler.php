@@ -62,11 +62,13 @@ class GatsbyUpdateHandler {
           $accounts = $this->entityTypeManager->getStorage('user')->loadByProperties(['uuid' => $config[$schema_id]['user']]);
           $account = reset($accounts);
           if (!$account) {
-            \Drupal::messenger()->addError("The website won't be rebuilt because of a misconfigured GraphQL server (missing user)");
-            \Drupal::logger('silverback_gatsby')->error('Cannot load user "{user}" configured in server "{server}".', [
-              'user' => $config[$schema_id]['user'],
-              'server' => $server->id(),
-            ]);
+            if (!getenv('SB_SETUP')) {
+              \Drupal::messenger()->addError("The website won't be rebuilt because of a misconfigured GraphQL server (missing user)");
+              \Drupal::logger('silverback_gatsby')->error('Cannot load user "{user}" configured in server "{server}".', [
+                'user' => $config[$schema_id]['user'],
+                'server' => $server->id(),
+              ]);
+            }
             return;
           }
         }
