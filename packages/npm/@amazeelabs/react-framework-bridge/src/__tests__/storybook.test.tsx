@@ -218,4 +218,23 @@ describe('buildForm', () => {
       expect(wouldSubmit).toHaveBeenCalledWith({ foo: 'bar' });
     });
   });
+
+  it('emits value changes via the "onChange" callback', async () => {
+    const onChange = jest.fn();
+    const Form = buildForm({ initialValues: { foo: '' }, onChange });
+    render(
+      <Form>
+        <Field type="text" name="foo" />
+        <button type="submit" />
+      </Form>,
+    );
+    await userEvent.type(screen.getByRole('textbox'), 'bar');
+    await waitFor(() => {
+      expect(onChange).toHaveBeenCalledTimes(4);
+      expect(onChange).toHaveBeenNthCalledWith(1, { foo: '' });
+      expect(onChange).toHaveBeenNthCalledWith(2, { foo: 'b' });
+      expect(onChange).toHaveBeenNthCalledWith(3, { foo: 'ba' });
+      expect(onChange).toHaveBeenNthCalledWith(4, { foo: 'bar' });
+    });
+  });
 });

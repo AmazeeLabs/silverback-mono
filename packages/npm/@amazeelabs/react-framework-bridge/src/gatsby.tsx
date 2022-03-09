@@ -8,6 +8,7 @@ import { Form, FormBuilderProps } from './types';
 import {
   buildHtmlBuilder,
   buildUrlBuilder,
+  FormikChanges,
   isInternalTarget,
   isRelative,
 } from './utils';
@@ -115,10 +116,11 @@ export const buildImage = (props: ImageProps): Image => {
 
 export const buildHtml = buildHtmlBuilder(buildLink);
 
-export function buildForm<Values>(
-  formikProps: FormBuilderProps<Values>,
-): Form<Values> {
-  return function GatsbyFormBuilder(formProps) {
+export function buildForm<Values>({
+  onChange,
+  ...formikProps
+}: FormBuilderProps<Values>): Form<Values> {
+  return function GatsbyFormBuilder({ children, ...formProps }) {
     return (
       <Formik
         onSubmit={(values) => {
@@ -126,7 +128,10 @@ export function buildForm<Values>(
         }}
         {...formikProps}
       >
-        <FormComponent {...formProps} />
+        <FormComponent {...formProps}>
+          {onChange ? <FormikChanges onChange={onChange} /> : null}
+          {children}
+        </FormComponent>
       </Formik>
     );
   };
