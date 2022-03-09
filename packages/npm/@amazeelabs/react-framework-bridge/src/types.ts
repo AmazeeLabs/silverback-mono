@@ -75,4 +75,6 @@ export type FormBuilderProps<Values extends FormikValues> = Omit<
   FormikConfig<Values>,
   'onSubmit'
 > &
-  Partial<Pick<FormikConfig<Values>, 'onSubmit'>>;
+  Partial<Pick<FormikConfig<Values>, 'onSubmit'>> & {
+    onChange?: (values: Partial<Values>) => void;
+  };
