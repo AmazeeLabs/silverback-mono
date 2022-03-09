@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.7.16...@amazeelabs/react-framework-bridge@1.8.0) (2022-03-09)
+
+
+### Features
+
+* **gatsby:** asynchronous form initialization ([62b52a4](https://github.com/AmazeeLabs/silverback-mono/commit/62b52a4d26538ab5e3e1d678cfad199d522b9fee))
+* **gatsby:** emit value updates from forms ([3db7fba](https://github.com/AmazeeLabs/silverback-mono/commit/3db7fba286b057f3064a3b5bfa41cb0c2d0de324))
+
+
+
+
+
 ## [1.7.16](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.7.15...@amazeelabs/react-framework-bridge@1.7.16) (2022-03-03)
 
 **Note:** Version bump only for package @amazeelabs/react-framework-bridge
