@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Field } from 'formik';
-import React from 'react';
+import { Field, FormikValues } from 'formik';
+import React, { useEffect, useState } from 'react';
 
 import {
   ActionsDecorator,
@@ -236,5 +236,27 @@ describe('buildForm', () => {
       expect(onChange).toHaveBeenNthCalledWith(3, { foo: 'ba' });
       expect(onChange).toHaveBeenNthCalledWith(4, { foo: 'bar' });
     });
+  });
+
+  it('pre-populates the from useInitialValues hook if available', async () => {
+    const useInitialValues = () => {
+      const [values, setValues] = useState<FormikValues | undefined>(undefined);
+      useEffect(() => {
+        setTimeout(() => {
+          setValues({ foo: 'foo' });
+        }, 100);
+      }, [setValues]);
+      return values;
+    };
+
+    const Form = buildForm({ initialValues: { foo: '' }, useInitialValues });
+    render(
+      <Form>
+        <Field type="text" name="foo" />
+        <button type="submit" />
+      </Form>,
+    );
+    const input = screen.getByRole('textbox');
+    await waitFor(() => expect(input.getAttribute('value')).toEqual('foo'));
   });
 });

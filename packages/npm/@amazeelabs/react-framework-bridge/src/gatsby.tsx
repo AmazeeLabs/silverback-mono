@@ -9,6 +9,7 @@ import {
   buildHtmlBuilder,
   buildUrlBuilder,
   FormikChanges,
+  FormikInitialValues,
   isInternalTarget,
   isRelative,
 } from './utils';
@@ -118,6 +119,7 @@ export const buildHtml = buildHtmlBuilder(buildLink);
 
 export function buildForm<Values>({
   onChange,
+  useInitialValues,
   ...formikProps
 }: FormBuilderProps<Values>): Form<Values> {
   return function GatsbyFormBuilder({ children, ...formProps }) {
@@ -130,6 +132,9 @@ export function buildForm<Values>({
       >
         <FormComponent {...formProps}>
           {onChange ? <FormikChanges onChange={onChange} /> : null}
+          {useInitialValues ? (
+            <FormikInitialValues useInitialValues={useInitialValues} />
+          ) : null}
           {children}
         </FormComponent>
       </Formik>
