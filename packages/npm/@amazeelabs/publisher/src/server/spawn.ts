@@ -1,4 +1,4 @@
-import { has, isObject } from 'lodash-es';
+import { has, isObject } from 'lodash';
 import { map } from 'rxjs';
 import { spawn as originalSpawn } from 'rxjs-shell';
 

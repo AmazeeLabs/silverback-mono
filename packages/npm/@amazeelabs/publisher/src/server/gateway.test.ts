@@ -1,4 +1,4 @@
-import { negate } from 'lodash-es';
+import { negate } from 'lodash';
 import {
   concat,
   EMPTY,

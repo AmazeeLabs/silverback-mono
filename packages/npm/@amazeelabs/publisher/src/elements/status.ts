@@ -1,7 +1,7 @@
 import { CSSResultArray, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { isArray, isString } from 'lodash-es';
+import { isArray, isString } from 'lodash';
 import { from, Observable, of } from 'rxjs';
 import { webSocket } from 'rxjs/webSocket';
 

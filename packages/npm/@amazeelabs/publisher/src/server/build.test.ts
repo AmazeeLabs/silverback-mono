@@ -1,4 +1,4 @@
-import { mapValues } from 'lodash-es';
+import { mapValues } from 'lodash';
 import { filter, interval, share, take, takeUntil } from 'rxjs';
 import { RunHelpers } from 'rxjs/testing';
 
