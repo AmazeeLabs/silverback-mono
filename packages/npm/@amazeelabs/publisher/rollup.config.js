@@ -1,3 +1,4 @@
+import alias from '@rollup/plugin-alias';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
@@ -35,6 +36,13 @@ export default [
       file: `dist/elements.js`,
       format: 'iife',
     },
-    plugins: [litcss(), esbuild(), resolve()],
+    plugins: [
+      alias({
+        entries: [{ find: 'lodash', replacement: 'lodash-es' }],
+      }),
+      litcss(),
+      esbuild(),
+      resolve(),
+    ],
   },
 ];
