@@ -29,4 +29,12 @@ export default [
     },
     plugins: [litcss(), esbuild(), resolve()],
   },
+  {
+    input: `src/elements.ts`,
+    output: {
+      file: `dist/elements.js`,
+      format: 'iife',
+    },
+    plugins: [litcss(), esbuild(), resolve()],
+  },
 ];

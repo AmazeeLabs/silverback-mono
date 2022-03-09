@@ -4,8 +4,7 @@ import { filter, of, scan } from 'rxjs';
 import { webSocket } from 'rxjs/webSocket';
 
 import style from './refresh.css';
-import type { StatusUpdate } from './server/logging';
-import { BuildState, GatewayState } from './states';
+import { BuildState, GatewayState, StatusUpdate } from './states';
 
 const defaultStatus = {
   gateway: GatewayState.Init,

@@ -4,3 +4,4 @@ dist
 dist-ssr
 build
 *.local
+tailwind.build.css

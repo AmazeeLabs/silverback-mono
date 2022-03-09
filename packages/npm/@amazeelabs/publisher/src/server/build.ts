@@ -1,4 +1,4 @@
-import { isArray, isNumber } from 'lodash';
+import { isArray, isNumber } from 'lodash-es';
 import {
   bufferTime,
   catchError,

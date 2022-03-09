@@ -15,3 +15,9 @@ export enum GatewayState {
   Ready,
   Error,
 }
+
+export type StatusUpdate = {
+  builder: BuildState;
+  gateway: GatewayState;
+  queue: Array<any>;
+};
