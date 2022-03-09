@@ -9,7 +9,7 @@ import parse, {
 import { stringify } from 'qs';
 import React, { ComponentProps, useEffect } from 'react';
 
-import { Html, LinkBuilder, LinkProps } from './types';
+import { FormBuilderProps, Html, LinkBuilder, LinkProps } from './types';
 
 export const isInternalTarget = (target?: string) =>
   typeof target === 'undefined' || target === '' || target === '_self';
@@ -47,6 +47,24 @@ export function FormikChanges<T extends FormikValues>({
   useEffect(() => {
     onChange(values);
   }, [values, onChange]);
+  return null;
+}
+
+export function FormikInitialValues<T extends FormikValues>({
+  useInitialValues,
+}: Required<Pick<FormBuilderProps<T>, 'useInitialValues'>>) {
+  const { touched, setFieldTouched, setFieldValue } = useFormikContext<T>();
+  const values = useInitialValues();
+  useEffect(() => {
+    if (values) {
+      for (const field in values) {
+        if (!touched[field]) {
+          setFieldValue(field, values[field], false);
+          setFieldTouched(field, true, false);
+        }
+      }
+    }
+  }, [touched, setFieldTouched, setFieldValue, values]);
   return null;
 }
 

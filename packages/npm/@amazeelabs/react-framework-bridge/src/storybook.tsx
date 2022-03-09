@@ -10,7 +10,12 @@ import {
   Link,
   LinkProps,
 } from './types';
-import { buildHtmlBuilder, buildUrlBuilder, FormikChanges } from './utils';
+import {
+  buildHtmlBuilder,
+  buildUrlBuilder,
+  FormikChanges,
+  FormikInitialValues,
+} from './utils';
 
 export type ActionsContext = {
   wouldNavigate: (to: string) => void;
@@ -125,6 +130,7 @@ export const buildHtml = buildHtmlBuilder(buildLink);
 
 export function buildForm<Values>({
   onChange,
+  useInitialValues,
   ...formikProps
 }: FormBuilderProps<Values>): Form<Values> {
   return function StorybookFormBuilder({ children, ...formProps }) {
@@ -138,6 +144,9 @@ export function buildForm<Values>({
       >
         <FormComponent {...formProps}>
           {onChange ? <FormikChanges onChange={onChange} /> : null}
+          {useInitialValues ? (
+            <FormikInitialValues useInitialValues={useInitialValues} />
+          ) : null}
           {children}
         </FormComponent>
       </Formik>
