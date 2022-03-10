@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0fc8c867974859f5391cd4a585c9e92a",
+    "content-hash": "ddd4ceee24bba4550ed7043f0c69d6c9",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -264,11 +264,11 @@
         },
         {
             "name": "amazeelabs/silverback_gatsby",
-            "version": "1.16.0",
+            "version": "1.16.2",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gatsby",
-                "reference": "93f9cad1d65a79807d3cffce362f8dfdc6eb4dfe"
+                "reference": "2fcdf1734389eafc3e8662f3f511dd36951a54d1"
             },
             "type": "drupal-module",
             "extra": {
@@ -289,11 +289,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "1.5.0",
+            "version": "1.5.1",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "8d466ca25e4f9784aae6797bcc32d3028c5de797"
+                "reference": "4a81c173fd78643be5470315d6e6b8a54287892a"
             },
             "require": {
                 "drupal/gutenberg": "^2.4"
@@ -11866,7 +11866,6 @@
         "amazeelabs/silverback_iframe": 20,
         "amazeelabs/silverback_iframe_theme": 20,
         "drupal/cypress": 20,
-        "drupal/entity_usage": 10,
         "drupal/gatsby_build_monitor": 20,
         "drupal/test_session": 20
     },
@@ -11874,5 +11873,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.2.0"
 }
