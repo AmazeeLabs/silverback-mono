@@ -480,7 +480,7 @@ $$.file('package.json', (json) => ({
     silverback: 'source .envrc && silverback',
     prepare:
       'if php -v && [[ -z $LAGOON ]]; then composer install && SB_SETUP=1 yarn setup; fi',
-    'drupal-install': 'yarn silverback setup --profile minimal',
+    'drupal-install': 'SB_SETUP=1 yarn silverback setup --profile minimal',
     setup: 'yarn silverback setup',
     start: 'yarn drush serve',
     login: 'yarn drush uli',
