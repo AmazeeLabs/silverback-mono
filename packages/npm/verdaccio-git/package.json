@@ -30,14 +30,14 @@
     "@types/mock-fs": "4.13.1",
     "@types/node": "16.11.26",
     "@types/tar": "6.1.1",
-    "@typescript-eslint/eslint-plugin": "5.13.0",
+    "@typescript-eslint/eslint-plugin": "5.14.0",
     "@verdaccio/types": "10.3.0",
     "eslint": "8.10.0",
     "jest": "27.5.1",
     "mock-fs": "5.1.2",
     "prettier": "2.5.1",
     "standard-version": "9.3.2",
-    "verdaccio": "5.6.2"
+    "verdaccio": "5.7.1"
   },
   "keywords": [
     "verdaccio,plugin,storage,git,verdaccio-git"

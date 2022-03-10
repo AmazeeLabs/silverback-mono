@@ -17,7 +17,7 @@
     "directory": "packages/npm/@amazeelabs/graphql-schema-test"
   },
   "dependencies": {
-    "axios": "^0.26.0",
+    "axios": "^0.26.1",
     "jest-specific-snapshot": "^5.0.0",
     "lodash": "^4.17.21"
   },
