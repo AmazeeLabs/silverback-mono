@@ -476,13 +476,14 @@ $$.file('package.json', (json) => ({
   ...json,
   scripts: {
     ...json.scripts,
+    drush: 'source .envrc && drush',
+    silverback: 'source .envrc && silverback',
     prepare:
       'if php -v && [[ -z $LAGOON ]]; then composer install && SB_SETUP=1 yarn setup; fi',
-    'drupal-install': 'source .envrc && silverback setup --profile minimal',
-    setup: 'source .envrc && silverback setup',
-    start: 'source .envrc && drush serve',
-    admin: 'source .envrc && drush uli',
-    drush: 'source .envrc && drush',
+    'drupal-install': 'yarn silverback setup --profile minimal',
+    setup: 'yarn silverback setup',
+    start: 'yarn drush serve',
+    login: 'yarn drush uli',
   },
 }));
 ```
@@ -723,9 +724,9 @@ $$.file('package.json', (json) => ({
   ...json,
   scripts: {
     ...json.scripts,
-    'default-content-export': `source .envrc && drush php-script web/modules/custom/${projectName}_default_content/export.php`,
-    'default-content-import': `source .envrc && drush php-script web/modules/custom/${projectName}_default_content/import.php`,
-    setup: `${json.scripts.setup} && yarn default-content-import`,
+    'content:export': `source .envrc && drush php-script web/modules/custom/${projectName}_default_content/export.php`,
+    'content:import': `source .envrc && drush php-script web/modules/custom/${projectName}_default_content/import.php`,
+    setup: `${json.scripts.setup} && yarn content:import`,
   },
 }));
 ```
