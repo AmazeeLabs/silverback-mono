@@ -1,6 +1,6 @@
 import { DecoratorFn } from '@storybook/react';
 import { Form as FormComponent, Formik } from 'formik';
-import React, { PropsWithChildren, useContext, useEffect, useRef } from 'react';
+import React, { PropsWithChildren, useEffect, useRef } from 'react';
 
 import {
   Form,
@@ -42,6 +42,12 @@ const ActionsWrapper = ({
     eventBoundary.current?.addEventListener('would-navigate', (event) => {
       if (event instanceof CustomEvent) {
         wouldNavigate(event.detail);
+      }
+    });
+
+    eventBoundary.current?.addEventListener('would-submit', (event) => {
+      if (event instanceof CustomEvent) {
+        wouldSubmit(event.detail);
       }
     });
   });
@@ -87,13 +93,16 @@ export function buildLink<Query = {}>({
     children,
   }) {
     const target = buildUrl(queryOverride, fragment);
-    const ctx = useContext(ActionsContext);
     return (
       <a
         href={target}
         onClick={(ev) => {
           ev.preventDefault();
-          ctx.wouldNavigate(target);
+          document.getElementById('storybook-event-boundary')?.dispatchEvent(
+            new CustomEvent('would-navigate', {
+              detail: target,
+            }),
+          );
         }}
         className={
           target?.includes('active')
@@ -134,11 +143,14 @@ export function buildForm<Values>({
   ...formikProps
 }: FormBuilderProps<Values>): Form<Values> {
   return function StorybookFormBuilder({ children, ...formProps }) {
-    const ctx = useContext(ActionsContext);
     return (
       <Formik
         onSubmit={(values) => {
-          ctx.wouldSubmit(values);
+          document.getElementById('storybook-event-boundary')?.dispatchEvent(
+            new CustomEvent('would-submit', {
+              detail: values,
+            }),
+          );
         }}
         {...formikProps}
       >
