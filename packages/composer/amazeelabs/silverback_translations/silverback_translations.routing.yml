@@ -4,4 +4,4 @@ silverback_translations.create_sources:
   defaults:
     _controller: '\Drupal\silverback_translations\Controller\TranslationsController::createSources'
   requirements:
-    _permission: 'access create translations endpoint'
+    _permission: 'access create translation sources endpoint'

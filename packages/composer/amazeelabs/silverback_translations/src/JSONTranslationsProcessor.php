@@ -6,8 +6,8 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\locale\StringStorageInterface;
 
 /**
- * A translation processor that is able to create translation sources using
- * JSON.
+ * A translation processor that is able to create translation sources from a
+ * JSON formatted string.
  */
 class JSONTranslationsProcessor implements TranslationsProcessorInterface {
   use StringTranslationTrait;
@@ -33,8 +33,8 @@ class JSONTranslationsProcessor implements TranslationsProcessorInterface {
     if (!empty($sources)) {
       foreach ($sources as $source => $defaultTranslation) {
         // Make sure that we do not have already a string with the same source
-        // and context. We only add a new string and a default translation only
-        // if there is no existing string.
+        // and context. We add a new string and a default translation only if
+        // there is no existing string.
         $existingString = $this->localeStorage->getStrings([
           'source' => $source,
           'context' => $context,

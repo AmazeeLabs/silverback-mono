@@ -2,3 +2,8 @@ services:
   silverback_translations.json_processor:
     class: Drupal\silverback_translations\JSONTranslationsProcessor
     arguments: ['@locale.storage']
+  silverback_translations.route_subscriber:
+    class: Drupal\silverback_translations\Routing\RouteSubscriber
+    arguments: ['@authentication_collector']
+    tags:
+      - { name: event_subscriber }
