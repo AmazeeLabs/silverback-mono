@@ -286,6 +286,34 @@ describe('buildForm', () => {
     });
   });
 
+  it('also sends submission to the onSubmit callback', async () => {
+    const callback = jest.fn();
+    const Form = buildForm({ initialValues: { foo: '' }, onSubmit: callback });
+    render(
+      ActionsDecorator(
+        (props) => {
+          return (
+            <props.args.Form>
+              <Field type="text" name="foo" />
+              <button type="submit" />
+            </props.args.Form>
+          );
+        },
+        {
+          args: { wouldSubmit, Form },
+        } as any,
+      ),
+    );
+    userEvent.type(screen.getByRole('textbox'), 'bar');
+    userEvent.click(screen.getByRole('button'));
+    await waitFor(() => {
+      expect(wouldSubmit).toHaveBeenCalledTimes(1);
+      expect(wouldSubmit).toHaveBeenCalledWith({ foo: 'bar' });
+      expect(callback).toHaveBeenCalledTimes(1);
+      expect(callback).toHaveBeenCalledWith({ foo: 'bar' }, expect.anything());
+    });
+  });
+
   it('emits value changes via the "onChange" callback', async () => {
     const onChange = jest.fn();
     const Form = buildForm({ initialValues: { foo: '' }, onChange });

@@ -170,12 +170,14 @@ export const buildHtml = buildHtmlBuilder(buildLink);
 export function buildForm<Values>({
   onChange,
   useInitialValues,
+  onSubmit,
   ...formikProps
 }: FormBuilderProps<Values>): Form<Values> {
   return function StorybookFormBuilder({ children, ...formProps }) {
     return (
       <Formik
-        onSubmit={(values) => {
+        onSubmit={(values, formikHelpers) => {
+          onSubmit?.(values, formikHelpers);
           document.getElementById('storybook-event-boundary')?.dispatchEvent(
             new CustomEvent('would-submit', {
               detail: values,
