@@ -1,6 +1,12 @@
 import { DecoratorFn } from '@storybook/react';
 import { Form as FormComponent, Formik } from 'formik';
-import React, { PropsWithChildren, useEffect, useRef } from 'react';
+import React, {
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import {
   Form,
@@ -17,14 +23,22 @@ import {
   FormikInitialValues,
 } from './utils';
 
+type Location = {
+  pathname?: string;
+  params?: URLSearchParams;
+  hash?: string;
+};
+
 export type ActionsContext = {
   wouldNavigate: (to: string) => void;
   wouldSubmit: (values: any) => void;
+  location?: Location;
 };
 
 const ActionsContext = React.createContext<ActionsContext>({
   wouldNavigate: () => undefined,
   wouldSubmit: () => undefined,
+  location: undefined,
 });
 
 export const argTypes = {
@@ -32,16 +46,31 @@ export const argTypes = {
   wouldNavigate: { action: 'would-navigate' },
 };
 
+export function createLocation(uri: string): Location {
+  const url = new URL(uri, 'http://fake');
+  return {
+    pathname: url.pathname,
+    hash: url.hash.replace(/^#/, ''),
+    params: new URLSearchParams(url.search),
+  };
+}
+
+export function useLocation() {
+  return useContext(ActionsContext).location;
+}
+
 const ActionsWrapper = ({
   wouldNavigate,
   wouldSubmit,
   children,
 }: PropsWithChildren<ActionsContext>) => {
   const eventBoundary = useRef<HTMLDivElement>(null);
+  const [location, setLocation] = useState<Location | undefined>(undefined);
   useEffect(() => {
     eventBoundary.current?.addEventListener('would-navigate', (event) => {
       if (event instanceof CustomEvent) {
         wouldNavigate(event.detail);
+        setLocation(createLocation(event.detail));
       }
     });
 
@@ -54,8 +83,9 @@ const ActionsWrapper = ({
   return (
     <ActionsContext.Provider
       value={{
-        wouldSubmit: wouldSubmit,
-        wouldNavigate: wouldNavigate,
+        wouldSubmit,
+        wouldNavigate,
+        location,
       }}
     >
       <div id="storybook-event-boundary" ref={eventBoundary}>
