@@ -66,20 +66,28 @@ const ActionsWrapper = ({
 }: PropsWithChildren<ActionsContext>) => {
   const eventBoundary = useRef<HTMLDivElement>(null);
   const [location, setLocation] = useState<Location | undefined>(undefined);
+
   useEffect(() => {
-    eventBoundary.current?.addEventListener('would-navigate', (event) => {
+    const boundary = eventBoundary.current;
+    const handleNavigation = (event: Event) => {
       if (event instanceof CustomEvent) {
         wouldNavigate(event.detail);
         setLocation(createLocation(event.detail));
       }
-    });
+    };
 
-    eventBoundary.current?.addEventListener('would-submit', (event) => {
+    const handleSubmission = (event: Event) => {
       if (event instanceof CustomEvent) {
         wouldSubmit(event.detail);
       }
-    });
-  });
+    };
+    boundary?.addEventListener('would-navigate', handleNavigation);
+    boundary?.addEventListener('would-submit', handleSubmission);
+    return () => {
+      boundary?.removeEventListener('would-navigate', handleNavigation);
+      boundary?.removeEventListener('would-submit', handleSubmission);
+    };
+  }, [eventBoundary, setLocation, wouldNavigate, wouldSubmit]);
   return (
     <ActionsContext.Provider
       value={{
