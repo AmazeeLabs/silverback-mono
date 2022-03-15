@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.8.2...@amazeelabs/react-framework-bridge@1.8.3) (2022-03-15)
+
+
+### Bug Fixes
+
+* **storybook:** unsubscribe event handlers when re-rendering the actions wrapper ([366100a](https://github.com/AmazeeLabs/silverback-mono/commit/366100af456d8c71eb343e22c4c208f3d4c07550))
+
+
+
+
+
 ## [1.8.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.8.1...@amazeelabs/react-framework-bridge@1.8.2) (2022-03-14)
 
 **Note:** Version bump only for package @amazeelabs/react-framework-bridge
