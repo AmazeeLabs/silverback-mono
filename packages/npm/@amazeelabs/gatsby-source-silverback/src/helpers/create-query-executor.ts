@@ -1,4 +1,5 @@
 import { createDefaultQueryExecutor } from 'gatsby-graphql-source-toolkit';
+import { RequestInit } from 'node-fetch';
 
 export const createQueryExecutor = (
   url: string,
@@ -8,16 +9,16 @@ export const createQueryExecutor = (
   headers?: RequestInit['headers'],
 ) => {
   return createDefaultQueryExecutor(url, {
-    ...headers,
-    ...(!!authUser && !!authPass
-      ? {
-          headers: {
+    headers: {
+      ...headers,
+      ...(authUser && authPass
+        ? {
             Authorization: `Basic ${Buffer.from(
               `${authUser}:${authPass}`,
             ).toString('base64')}`,
-          },
-        }
-      : {}),
-    ...(authKey ? { 'api-key': authKey } : {}),
+          }
+        : {}),
+      ...(authKey ? { 'api-key': authKey } : {}),
+    },
   });
 };
