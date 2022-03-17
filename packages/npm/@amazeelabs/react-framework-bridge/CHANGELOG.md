@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.8.3...@amazeelabs/react-framework-bridge@1.9.0) (2022-03-17)
+
+
+### Features
+
+* **storybook:** allow stories to define an initial location ([ff60303](https://github.com/AmazeeLabs/silverback-mono/commit/ff60303c887be432e6db653fcb0960af01e5fc35))
+
+
+
+
+
 ## [1.8.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.8.2...@amazeelabs/react-framework-bridge@1.8.3) (2022-03-15)
 
 
