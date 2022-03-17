@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.88](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.2.87...@-amazeelabs/silverback-gastby@1.2.88) (2022-03-17)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-gastby
+
+
+
+
+
 ## [1.2.87](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.2.86...@-amazeelabs/silverback-gastby@1.2.87) (2022-03-15)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-gastby
