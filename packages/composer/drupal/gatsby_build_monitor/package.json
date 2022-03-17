@@ -13,10 +13,10 @@
   "devDependencies": {
     "@amazeelabs/silverback-playwright": "^1.6.21",
     "@types/jest": "27.4.1",
-    "eslint": "8.10.0",
+    "eslint": "8.11.0",
     "jest": "27.5.1",
-    "lint-staged": "12.3.5",
-    "prettier": "2.5.1",
+    "lint-staged": "12.3.6",
+    "prettier": "2.6.0",
     "typescript": "4.6.2"
   },
   "dependencies": {

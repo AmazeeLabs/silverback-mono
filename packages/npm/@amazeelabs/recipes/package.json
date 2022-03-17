@@ -34,10 +34,10 @@
     "@types/prompts": "2.0.14",
     "@types/semver": "7.3.9",
     "@types/update-notifier": "5.1.0",
-    "eslint": "8.10.0",
+    "eslint": "8.11.0",
     "jest": "27.5.1",
-    "lint-staged": "12.3.5",
-    "prettier": "2.5.1",
+    "lint-staged": "12.3.6",
+    "prettier": "2.6.0",
     "typescript": "4.6.2"
   },
   "scripts": {
