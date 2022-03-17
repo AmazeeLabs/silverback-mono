@@ -63,9 +63,12 @@ const ActionsWrapper = ({
   wouldNavigate,
   wouldSubmit,
   children,
+  location: initialLocation,
 }: PropsWithChildren<ActionsContext>) => {
   const eventBoundary = useRef<HTMLDivElement>(null);
-  const [location, setLocation] = useState<Location | undefined>(undefined);
+  const [location, setLocation] = useState<Location | undefined>(
+    initialLocation,
+  );
 
   useEffect(() => {
     const boundary = eventBoundary.current;
@@ -106,8 +109,9 @@ const ActionsWrapper = ({
 export const ActionsDecorator: DecoratorFn = (story, context) => {
   return (
     <ActionsWrapper
-      wouldNavigate={context.args.wouldNavigate}
-      wouldSubmit={context.args.wouldSubmit}
+      wouldNavigate={context.args?.wouldNavigate}
+      wouldSubmit={context.args?.wouldSubmit}
+      location={createLocation(context.parameters?.initialLocation || '/')}
     >
       {story(context)}
     </ActionsWrapper>

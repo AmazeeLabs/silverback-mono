@@ -229,7 +229,11 @@ describe('buildLink', () => {
     });
 
     expect(locationTest).toHaveBeenCalledTimes(3);
-    expect(locationTest).toHaveBeenNthCalledWith(1, undefined);
+    expect(locationTest).toHaveBeenNthCalledWith(1, {
+      pathname: '/',
+      params: new URLSearchParams(),
+      hash: '',
+    });
     expect(locationTest).toHaveBeenNthCalledWith(2, {
       pathname: '/foo',
       params: new URLSearchParams('?a=b'),
@@ -239,6 +243,31 @@ describe('buildLink', () => {
       pathname: '/bar',
       params: new URLSearchParams('?a=c'),
       hash: 'y',
+    });
+  });
+
+  it('allows to set an initial location', () => {
+    const locationTest = jest.fn();
+
+    function Test() {
+      const location = useLocation();
+      useEffect(() => {
+        locationTest(location);
+      }, [location]);
+      return <div />;
+    }
+    render(
+      ActionsDecorator(() => <Test />, {
+        args: {},
+        parameters: { initialLocation: '/foo?bar=baz#xyz' },
+      } as any),
+    );
+
+    expect(locationTest).toHaveBeenCalledTimes(1);
+    expect(locationTest).toHaveBeenNthCalledWith(1, {
+      pathname: '/foo',
+      params: new URLSearchParams('?bar=baz'),
+      hash: 'xyz',
     });
   });
 });
