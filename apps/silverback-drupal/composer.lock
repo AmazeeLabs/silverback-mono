@@ -289,11 +289,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "1.5.2",
+            "version": "1.5.4",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "a062349d8bdd520e95e8dde2be125e4d629e5cc2"
+                "reference": "d0bcbaff18de88e470ef8e5e6f7221e5cd1f16c1"
             },
             "require": {
                 "drupal/gutenberg": "^2.4"
@@ -3110,11 +3110,11 @@
         },
         {
             "name": "drupal/cypress",
-            "version": "2.3.52",
+            "version": "2.3.53",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/cypress",
-                "reference": "820c6702344710b67e4f6383d60abd18fcc2eed2"
+                "reference": "b573126f6102d882ce926f369143186a86449358"
             },
             "require": {
                 "alchemy/zippy": "^1.0.0",
@@ -3351,11 +3351,11 @@
         },
         {
             "name": "drupal/gatsby_build_monitor",
-            "version": "1.4.25",
+            "version": "1.4.27",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/gatsby_build_monitor",
-                "reference": "02dae6dec59a94aabc14142e7f5784fa6b3344ca"
+                "reference": "0ddc2e2dad5a940d3d95e06452ea881c6515632a"
             },
             "require": {
                 "justinrainbow/json-schema": "^5.2.11"
@@ -3593,11 +3593,11 @@
         },
         {
             "name": "drupal/test_session",
-            "version": "1.2.29",
+            "version": "1.2.30",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/test_session",
-                "reference": "a60c6393886cff81088c6f82f0eec84e96a15f0a"
+                "reference": "de635d39a46997595308f9e186e3f2d9c2268a41"
             },
             "type": "drupal-module",
             "license": [
