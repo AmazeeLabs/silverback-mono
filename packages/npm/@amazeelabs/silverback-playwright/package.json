@@ -2,7 +2,7 @@
   "name": "@amazeelabs/silverback-playwright",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "version": "1.6.22",
+  "version": "1.6.23",
   "description": "Helps running Playwright tests on Silverback setups.",
   "author": "Amazee Labs",
   "license": "MIT",
