@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.9.2...@amazeelabs/react-framework-bridge@1.9.3) (2022-03-18)
+
+
+### Bug Fixes
+
+* **storybook:** optional `children` property for form types ([69db96b](https://github.com/AmazeeLabs/silverback-mono/commit/69db96ba2e9cf5c482b9c2b4e7fd0f44949ae0f9))
+
+
+
+
+
 ## [1.9.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.9.1...@amazeelabs/react-framework-bridge@1.9.2) (2022-03-18)
 
 **Note:** Version bump only for package @amazeelabs/react-framework-bridge
