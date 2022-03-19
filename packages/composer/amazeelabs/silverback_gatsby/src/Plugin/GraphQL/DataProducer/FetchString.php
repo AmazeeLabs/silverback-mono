@@ -22,11 +22,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *     "id" = @ContextDefinition("string",
  *       label = @Translation("Identifier"),
  *       required = FALSE
- *     ),
- *     "language" = @ContextDefinition("string",
- *       label = @Translation("Entity language"),
- *       required = FALSE
  *     )
+ *   }
  * )
  */
 class FetchString extends DataProducerPluginBase implements ContainerFactoryPluginInterface {
@@ -57,18 +54,10 @@ class FetchString extends DataProducerPluginBase implements ContainerFactoryPlug
     );
   }
 
-  public function resolve($id, ?string $language) {
-    // If no language is provided, then we just return a source string.
-    if (empty($language)) {
-      $strings = $this->localeStorage->getStrings(['lid' => $id]);
-      if (!empty($strings)) {
-        return reset($strings);
-      }
-    } else {
-      $translations = $this->localeStorage->getTranslations(['lid' => $id]);
-      if (!empty($translations)) {
-        return reset($translations);
-      }
+  public function resolve($id) {
+    $strings = $this->localeStorage->getStrings(['lid' => $id]);
+    if (!empty($strings)) {
+      return reset($strings);
     }
     return NULL;
   }

@@ -91,3 +91,6 @@ type MenuItem {
 type MainMenu @menu(menu_id: "main", item_type: "MenuItem")
 
 type FirstLevelMainMenu @menu(menu_id: "main", item_type: "MenuItem", max_level: 1)
+
+type GatsbyStringTranslation @string_translation(context_prefix: "gatsby")
+type WebsiteStringTranslation @string_translation(context_prefix: "website")

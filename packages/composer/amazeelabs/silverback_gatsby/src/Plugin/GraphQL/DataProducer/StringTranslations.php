@@ -7,6 +7,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
 use Drupal\locale\StringInterface;
 use Drupal\locale\StringStorageInterface;
+use Drupal\locale\TranslationString;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -21,8 +22,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *     multiple = TRUE
  *   ),
  *   consumes = {
- *     "string" = @ContextDefinition("any",
- *       label = @Translation("String")
+ *     "sourceString" = @ContextDefinition("any",
+ *       label = @Translation("Source string")
  *     )
  *   }
  * )
@@ -68,22 +69,22 @@ class StringTranslations extends DataProducerPluginBase implements ContainerFact
   /**
    * Resolver.
    *
-   * @param \Drupal\locale\StringInterface $string
-   *
-   * @return int|string|null
+   * @param Drupal\locale\StringInterface $sourceString
+   * @return TranslationString[]
    */
-  public function resolve(StringInterface $string) {
+  public function resolve(StringInterface $sourceString) {
     $languages  = $this->languageManager->getLanguages();
     $translations = [];
     foreach ($languages as $language) {
       $translatedStrings = $this->localeStorage->getTranslations([
+        'lid' => $sourceString->getId(),
         'language' => $language->getId(),
-        'source' => $string,
-        //'context' => $translationContext,
       ]);
       if (!empty($translatedStrings)) {
         $translatedString = reset($translatedStrings);
-        $translations[$language->getId()] = $translatedString->getString();
+        if ($translatedString->isTranslation()) {
+          $translations[$language->getId()] = $translatedString;
+        }
       }
     }
     return $translations;

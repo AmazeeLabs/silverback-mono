@@ -1,7 +1,7 @@
 # Directive for the "StringTranslationFeed" plugin.
-directive @stringTranslation(
+directive @string_translation(
   """
   The string context
   """
-  context: String
+  context_prefix: String
 ) on OBJECT

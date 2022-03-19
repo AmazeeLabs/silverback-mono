@@ -6,7 +6,7 @@ use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
 use Drupal\locale\StringInterface;
 
 /**
- * Returns the ID of a String.
+ * Returns the ID of a string.
  *
  * @DataProducer(
  *   id = "string_id",
