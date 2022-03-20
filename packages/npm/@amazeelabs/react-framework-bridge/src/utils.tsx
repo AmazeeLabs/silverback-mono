@@ -1,3 +1,4 @@
+import { FormikValues, useFormikContext } from 'formik';
 import parse, {
   attributesToProps,
   DOMNode,
@@ -6,9 +7,9 @@ import parse, {
   HTMLReactParserOptions,
 } from 'html-react-parser';
 import { stringify } from 'qs';
-import React, { ComponentProps } from 'react';
+import React, { ComponentProps, useEffect } from 'react';
 
-import { Html, LinkBuilder, LinkProps } from './types';
+import { FormBuilderProps, Html, LinkBuilder, LinkProps } from './types';
 
 export const isInternalTarget = (target?: string) =>
   typeof target === 'undefined' || target === '' || target === '_self';
@@ -30,6 +31,42 @@ export const slugify = (...args: (string | number)[]): string => {
     .replace(/[^a-z0-9 ]/g, '') // remove all chars not letters, numbers and spaces (to be replaced)
     .replace(/\s+/g, '-'); // separator
 };
+
+/**
+ * React component that will catch any updated field values within a Form.
+ *
+ * @param onChange Callback the updates will be sent to.
+ * @constructor
+ */
+export function FormikChanges<T extends FormikValues>({
+  onChange,
+}: {
+  onChange: (values: T) => void;
+}) {
+  const { values } = useFormikContext<T>();
+  useEffect(() => {
+    onChange(values);
+  }, [values, onChange]);
+  return null;
+}
+
+export function FormikInitialValues<T extends FormikValues>({
+  useInitialValues,
+}: Required<Pick<FormBuilderProps<T>, 'useInitialValues'>>) {
+  const { touched, setFieldTouched, setFieldValue } = useFormikContext<T>();
+  const values = useInitialValues();
+  useEffect(() => {
+    if (values) {
+      for (const field in values) {
+        if (!touched[field]) {
+          setFieldValue(field, values[field], false);
+          setFieldTouched(field, true, false);
+        }
+      }
+    }
+  }, [touched, setFieldTouched, setFieldValue, values]);
+  return null;
+}
 
 export const isElement = (
   node: DOMNode & { children?: DOMNode[] },

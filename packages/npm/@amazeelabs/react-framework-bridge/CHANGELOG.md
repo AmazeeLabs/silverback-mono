@@ -3,6 +3,83 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.9.2...@amazeelabs/react-framework-bridge@1.9.3) (2022-03-18)
+
+
+### Bug Fixes
+
+* **storybook:** optional `children` property for form types ([69db96b](https://github.com/AmazeeLabs/silverback-mono/commit/69db96ba2e9cf5c482b9c2b4e7fd0f44949ae0f9))
+
+
+
+
+
+## [1.9.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.9.1...@amazeelabs/react-framework-bridge@1.9.2) (2022-03-18)
+
+**Note:** Version bump only for package @amazeelabs/react-framework-bridge
+
+
+
+
+
+## [1.9.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.9.0...@amazeelabs/react-framework-bridge@1.9.1) (2022-03-18)
+
+**Note:** Version bump only for package @amazeelabs/react-framework-bridge
+
+
+
+
+
+# [1.9.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.8.3...@amazeelabs/react-framework-bridge@1.9.0) (2022-03-17)
+
+
+### Features
+
+* **storybook:** allow stories to define an initial location ([ff60303](https://github.com/AmazeeLabs/silverback-mono/commit/ff60303c887be432e6db653fcb0960af01e5fc35))
+
+
+
+
+
+## [1.8.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.8.2...@amazeelabs/react-framework-bridge@1.8.3) (2022-03-15)
+
+
+### Bug Fixes
+
+* **storybook:** unsubscribe event handlers when re-rendering the actions wrapper ([366100a](https://github.com/AmazeeLabs/silverback-mono/commit/366100af456d8c71eb343e22c4c208f3d4c07550))
+
+
+
+
+
+## [1.8.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.8.1...@amazeelabs/react-framework-bridge@1.8.2) (2022-03-14)
+
+**Note:** Version bump only for package @amazeelabs/react-framework-bridge
+
+
+
+
+
+## [1.8.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.8.0...@amazeelabs/react-framework-bridge@1.8.1) (2022-03-10)
+
+**Note:** Version bump only for package @amazeelabs/react-framework-bridge
+
+
+
+
+
+# [1.8.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.7.16...@amazeelabs/react-framework-bridge@1.8.0) (2022-03-09)
+
+
+### Features
+
+* **gatsby:** asynchronous form initialization ([62b52a4](https://github.com/AmazeeLabs/silverback-mono/commit/62b52a4d26538ab5e3e1d678cfad199d522b9fee))
+* **gatsby:** emit value updates from forms ([3db7fba](https://github.com/AmazeeLabs/silverback-mono/commit/3db7fba286b057f3064a3b5bfa41cb0c2d0de324))
+
+
+
+
+
 ## [1.7.16](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.7.15...@amazeelabs/react-framework-bridge@1.7.16) (2022-03-03)
 
 **Note:** Version bump only for package @amazeelabs/react-framework-bridge

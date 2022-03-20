@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.4.7...@amazeelabs/publisher@0.4.8) (2022-03-18)
+
+**Note:** Version bump only for package @amazeelabs/publisher
+
+
+
+
+
+## [0.4.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.4.6...@amazeelabs/publisher@0.4.7) (2022-03-10)
+
+**Note:** Version bump only for package @amazeelabs/publisher
+
+
+
+
+
+## [0.4.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.4.5...@amazeelabs/publisher@0.4.6) (2022-03-10)
+
+**Note:** Version bump only for package @amazeelabs/publisher
+
+
+
+
+
+## [0.4.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.4.4...@amazeelabs/publisher@0.4.5) (2022-03-09)
+
+
+### Bug Fixes
+
+* **publisher:** broken imports ([f82ed3b](https://github.com/AmazeeLabs/silverback-mono/commit/f82ed3bdbf690564e3a1565878b17703e635e6fc))
+* **publisher:** build tailwind before building server sources ([7067707](https://github.com/AmazeeLabs/silverback-mono/commit/70677071a832b9acb7becf4ab9e1f96f23f0e216))
+* **publisher:** use rollup aliases to swap lodash with lodash-es ([356824e](https://github.com/AmazeeLabs/silverback-mono/commit/356824eb5443ed523a777c417445e6f296530cde))
+
+
+
+
+
 ## [0.4.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.4.3...@amazeelabs/publisher@0.4.4) (2022-03-03)
 
 **Note:** Version bump only for package @amazeelabs/publisher

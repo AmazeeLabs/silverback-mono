@@ -1,13 +1,16 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Field } from 'formik';
-import React from 'react';
+import { Field, FormikValues } from 'formik';
+import React, { useEffect, useState } from 'react';
+import { act } from 'react-dom/test-utils';
 
 import {
   ActionsDecorator,
   buildForm,
   buildImage,
   buildLink,
+  createLocation,
+  useLocation,
 } from '../storybook';
 
 const action = jest.fn();
@@ -20,6 +23,19 @@ jest.mock('@storybook/addon-actions', () => ({
 }));
 
 beforeEach(jest.resetAllMocks);
+
+describe('createLocation', () => {
+  test('creates a relative url', () => {
+    const location = createLocation('/foo?a=b#bar');
+    expect(location.params.has('a')).toBeTruthy();
+    expect(location.params.get('a')).toEqual('b');
+    expect(location).toEqual({
+      pathname: '/foo',
+      params: new URLSearchParams('?a=b'),
+      hash: 'bar',
+    });
+  });
+});
 
 describe('buildLink', () => {
   it('can build a link from segments and query parameters', () => {
@@ -134,7 +150,9 @@ describe('buildLink', () => {
         args: { wouldNavigate },
       } as any),
     );
-    fireEvent.click(screen.getByRole('link'));
+    act(() => {
+      fireEvent.click(screen.getByRole('link'));
+    });
     expect(wouldNavigate).toHaveBeenCalledTimes(1);
     expect(wouldNavigate).toHaveBeenCalledWith('#test');
   });
@@ -152,7 +170,9 @@ describe('buildLink', () => {
         } as any,
       ),
     );
-    Link.navigate();
+    act(() => {
+      Link.navigate();
+    });
     expect(wouldNavigate).toHaveBeenCalledTimes(1);
     expect(wouldNavigate).toHaveBeenCalledWith('#test');
   });
@@ -170,9 +190,85 @@ describe('buildLink', () => {
         } as any,
       ),
     );
-    Link.navigate({ query: { a: 'c' }, fragment: 'bar' });
+    act(() => {
+      Link.navigate({ query: { a: 'c' }, fragment: 'bar' });
+    });
     expect(wouldNavigate).toHaveBeenCalledTimes(1);
     expect(wouldNavigate).toHaveBeenCalledWith('/foo?a=c#bar');
+  });
+
+  it('exposes the changing locations with the `useLocation` hook', () => {
+    const LinkA = buildLink({ href: '/foo', query: { a: 'b' } });
+    const LinkB = buildLink({ href: '/bar', query: { a: 'c' } });
+    const locationTest = jest.fn();
+
+    function Test() {
+      const location = useLocation();
+      useEffect(() => {
+        locationTest(location);
+      }, [location]);
+      return (
+        <div>
+          <LinkA fragment="x">A</LinkA>
+          <LinkB fragment="y">B</LinkB>
+        </div>
+      );
+    }
+    render(
+      ActionsDecorator(() => <Test />, {
+        args: { wouldNavigate },
+      } as any),
+    );
+
+    act(() => {
+      fireEvent.click(screen.getByRole('link', { name: 'A' }));
+    });
+
+    act(() => {
+      fireEvent.click(screen.getByRole('link', { name: 'B' }));
+    });
+
+    expect(locationTest).toHaveBeenCalledTimes(3);
+    expect(locationTest).toHaveBeenNthCalledWith(1, {
+      pathname: '/',
+      params: new URLSearchParams(),
+      hash: '',
+    });
+    expect(locationTest).toHaveBeenNthCalledWith(2, {
+      pathname: '/foo',
+      params: new URLSearchParams('?a=b'),
+      hash: 'x',
+    });
+    expect(locationTest).toHaveBeenNthCalledWith(3, {
+      pathname: '/bar',
+      params: new URLSearchParams('?a=c'),
+      hash: 'y',
+    });
+  });
+
+  it('allows to set an initial location', () => {
+    const locationTest = jest.fn();
+
+    function Test() {
+      const location = useLocation();
+      useEffect(() => {
+        locationTest(location);
+      }, [location]);
+      return <div />;
+    }
+    render(
+      ActionsDecorator(() => <Test />, {
+        args: {},
+        parameters: { initialLocation: '/foo?bar=baz#xyz' },
+      } as any),
+    );
+
+    expect(locationTest).toHaveBeenCalledTimes(1);
+    expect(locationTest).toHaveBeenNthCalledWith(1, {
+      pathname: '/foo',
+      params: new URLSearchParams('?bar=baz'),
+      hash: 'xyz',
+    });
   });
 });
 
@@ -217,5 +313,74 @@ describe('buildForm', () => {
       expect(wouldSubmit).toHaveBeenCalledTimes(1);
       expect(wouldSubmit).toHaveBeenCalledWith({ foo: 'bar' });
     });
+  });
+
+  it('also sends submission to the onSubmit callback', async () => {
+    const callback = jest.fn();
+    const Form = buildForm({ initialValues: { foo: '' }, onSubmit: callback });
+    render(
+      ActionsDecorator(
+        (props) => {
+          return (
+            <props.args.Form>
+              <Field type="text" name="foo" />
+              <button type="submit" />
+            </props.args.Form>
+          );
+        },
+        {
+          args: { wouldSubmit, Form },
+        } as any,
+      ),
+    );
+    userEvent.type(screen.getByRole('textbox'), 'bar');
+    userEvent.click(screen.getByRole('button'));
+    await waitFor(() => {
+      expect(wouldSubmit).toHaveBeenCalledTimes(1);
+      expect(wouldSubmit).toHaveBeenCalledWith({ foo: 'bar' });
+      expect(callback).toHaveBeenCalledTimes(1);
+      expect(callback).toHaveBeenCalledWith({ foo: 'bar' }, expect.anything());
+    });
+  });
+
+  it('emits value changes via the "onChange" callback', async () => {
+    const onChange = jest.fn();
+    const Form = buildForm({ initialValues: { foo: '' }, onChange });
+    render(
+      <Form>
+        <Field type="text" name="foo" />
+        <button type="submit" />
+      </Form>,
+    );
+    await userEvent.type(screen.getByRole('textbox'), 'bar');
+    await waitFor(() => {
+      expect(onChange).toHaveBeenCalledTimes(4);
+      expect(onChange).toHaveBeenNthCalledWith(1, { foo: '' });
+      expect(onChange).toHaveBeenNthCalledWith(2, { foo: 'b' });
+      expect(onChange).toHaveBeenNthCalledWith(3, { foo: 'ba' });
+      expect(onChange).toHaveBeenNthCalledWith(4, { foo: 'bar' });
+    });
+  });
+
+  it('pre-populates the from useInitialValues hook if available', async () => {
+    const useInitialValues = () => {
+      const [values, setValues] = useState<FormikValues | undefined>(undefined);
+      useEffect(() => {
+        setTimeout(() => {
+          setValues({ foo: 'foo' });
+        }, 100);
+      }, [setValues]);
+      return values;
+    };
+
+    const Form = buildForm({ initialValues: { foo: '' }, useInitialValues });
+    render(
+      <Form>
+        <Field type="text" name="foo" />
+        <button type="submit" />
+      </Form>,
+    );
+    const input = screen.getByRole('textbox');
+    await waitFor(() => expect(input.getAttribute('value')).toEqual('foo'));
   });
 });

@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.6.3...@amazeelabs/gatsby-source-silverback@1.6.4) (2022-03-18)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-source-silverback
+
+
+
+
+
+## [1.6.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.6.2...@amazeelabs/gatsby-source-silverback@1.6.3) (2022-03-18)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-source-silverback
+
+
+
+
+
+## [1.6.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.6.1...@amazeelabs/gatsby-source-silverback@1.6.2) (2022-03-15)
+
+
+### Bug Fixes
+
+* fix api-key header ([cc19478](https://github.com/AmazeeLabs/silverback-mono/commit/cc194783f4ac62ea31ad8912c38c44618060ba7d))
+
+
+
+
+
+## [1.6.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.6.0...@amazeelabs/gatsby-source-silverback@1.6.1) (2022-03-10)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-source-silverback
+
+
+
+
+
 # [1.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.5.16...@amazeelabs/gatsby-source-silverback@1.6.0) (2022-03-07)
 
 

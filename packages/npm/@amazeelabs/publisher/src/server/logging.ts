@@ -9,16 +9,10 @@ import {
   startWith,
 } from 'rxjs';
 
-import { BuildState, GatewayState } from '../states';
+import { BuildState, GatewayState, StatusUpdate } from '../states';
 import { BuildOutput, isBuildState, isQueueStatus } from './build';
 import { GatewayOutput, isGatewayState } from './gateway';
 import { isSpawnChunk, SpawnChunk } from './spawn';
-
-export type StatusUpdate = {
-  builder: BuildState;
-  gateway: GatewayState;
-  queue: Array<any>;
-};
 
 /**
  * Aggregate output of Gateway- and BuildService into one stream of UI updates.

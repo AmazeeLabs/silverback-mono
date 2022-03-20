@@ -1,19 +1,19 @@
 {
   "name": "@amazeelabs/eslint-config",
-  "version": "1.4.19",
+  "version": "1.4.21",
   "description": "ESLint configuration for silverback projects.",
   "main": "index.js",
   "author": "Philipp Melab",
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.13.0",
-    "@typescript-eslint/parser": "^5.13.0",
+    "@typescript-eslint/eslint-plugin": "^5.15.0",
+    "@typescript-eslint/parser": "^5.15.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-no-only-tests": "^2.6.0",
     "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-react": "^7.29.2",
+    "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-tailwindcss": "^3.5.0"

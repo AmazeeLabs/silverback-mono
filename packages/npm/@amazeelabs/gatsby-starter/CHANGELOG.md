@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.69](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.7.68...@amazeelabs/gatsby-starter@0.7.69) (2022-03-18)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-starter
+
+
+
+
+
+## [0.7.68](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.7.67...@amazeelabs/gatsby-starter@0.7.68) (2022-03-18)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-starter
+
+
+
+
+
+## [0.7.67](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.7.66...@amazeelabs/gatsby-starter@0.7.67) (2022-03-17)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-starter
+
+
+
+
+
+## [0.7.66](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.7.65...@amazeelabs/gatsby-starter@0.7.66) (2022-03-10)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-starter
+
+
+
+
+
 ## [0.7.65](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-starter@0.7.64...@amazeelabs/gatsby-starter@0.7.65) (2022-03-03)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-starter

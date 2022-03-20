@@ -2,8 +2,7 @@ import { bind } from '@react-rxjs/core';
 import { delayWhen, interval, retryWhen, Subject, timer } from 'rxjs';
 import { webSocket } from 'rxjs/webSocket';
 
-import { StatusUpdate } from '../server/logging';
-import { BuildState, GatewayState } from '../states';
+import { BuildState, GatewayState, StatusUpdate } from '../states';
 
 const defaultStatus = {
   gateway: GatewayState.Init,

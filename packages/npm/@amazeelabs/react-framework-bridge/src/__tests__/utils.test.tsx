@@ -1,8 +1,18 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import React from 'react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { Field, Form, Formik, FormikValues } from 'formik';
+import React, { useEffect, useState } from 'react';
+import { act } from 'react-dom/test-utils';
 
 import { Link, LinkProps } from '../types';
-import { buildHtmlBuilder, buildUrl, isElement, isRelative } from '../utils';
+import {
+  buildHtmlBuilder,
+  buildUrl,
+  FormikChanges,
+  FormikInitialValues,
+  isElement,
+  isRelative,
+} from '../utils';
 
 describe('isRelative', () => {
   it('returns true for a relative url', () => {
@@ -55,12 +65,12 @@ describe('buildHtmlBuilder', () => {
     expect(Html.initialHtmlString).toEqual(htmlString);
     render(<Html />);
     expect(screen.getByRole('main')).toMatchInlineSnapshot(`
-<main>
-  <p>
-    Test
-  </p>
-</main>
-`);
+      <main>
+        <p>
+          Test
+        </p>
+      </main>
+    `);
   });
 
   it('wraps list element contents in a div to avoid Tailwind styling issues', () => {
@@ -70,44 +80,44 @@ describe('buildHtmlBuilder', () => {
     const Html = buildHtml('<main><ul><li>Test</li></ul></main>');
     render(<Html />);
     expect(screen.getByRole('main')).toMatchInlineSnapshot(`
-<main>
-  <ul>
-    <li>
-      <div>
-        Test
-      </div>
-    </li>
-  </ul>
-</main>
-`);
+      <main>
+        <ul>
+          <li>
+            <div>
+              Test
+            </div>
+          </li>
+        </ul>
+      </main>
+    `);
   });
 
   it('adds automatic ids to h2 elements', () => {
     const Html = buildHtml('<main><h2>Test</h2></main>');
     render(<Html />);
     expect(screen.getByRole('main')).toMatchInlineSnapshot(`
-<main>
-  <h2
-    id="test"
-  >
-    Test
-  </h2>
-</main>
-`);
+      <main>
+        <h2
+          id="test"
+        >
+          Test
+        </h2>
+      </main>
+    `);
   });
 
   it('applies framework-specific link components', () => {
     const Html = buildHtml('<main><a href="/test">Test</a></main>');
     render(<Html />);
     expect(screen.getByRole('main')).toMatchInlineSnapshot(`
-<main>
-  <a
-    href="/test"
-  >
-    Test
-  </a>
-</main>
-`);
+      <main>
+        <a
+          href="/test"
+        >
+          Test
+        </a>
+      </main>
+    `);
 
     fireEvent.click(screen.getByRole('link'));
     expect(nav).toHaveBeenCalledTimes(1);
@@ -124,14 +134,14 @@ describe('buildHtmlBuilder', () => {
       />,
     );
     expect(screen.getByRole('main')).toMatchInlineSnapshot(`
-<main>
-  <p
-    class="text-red"
-  >
-    Test
-  </p>
-</main>
-`);
+      <main>
+        <p
+          class="text-red"
+        >
+          Test
+        </p>
+      </main>
+    `);
   });
 
   it('allows to define class functions for elements', () => {
@@ -152,20 +162,20 @@ describe('buildHtmlBuilder', () => {
       />,
     );
     expect(screen.getByRole('main')).toMatchInlineSnapshot(`
-<main>
-  <a
-    href="http://www.amazeelabs.com"
-  >
-    Amazee
-  </a>
-  <a
-    class="text-blue"
-    href="http://www.google.com"
-  >
-    Google
-  </a>
-</main>
-`);
+      <main>
+        <a
+          href="http://www.amazeelabs.com"
+        >
+          Amazee
+        </a>
+        <a
+          class="text-blue"
+          href="http://www.google.com"
+        >
+          Google
+        </a>
+      </main>
+    `);
   });
 });
 
@@ -239,5 +249,237 @@ describe('buildUrl', () => {
     expect(
       buildUrl(['https://fake.url/', 'a', 'b'], undefined, undefined, 'foo'),
     ).toStrictEqual(`https://fake.url/a/b#foo`);
+  });
+});
+
+describe('FormikChanges', () => {
+  it('emits form value changes via "onChange"', async () => {
+    const onChange = jest.fn();
+    render(
+      <Formik initialValues={{ query: '' }} onSubmit={() => {}}>
+        <Form>
+          <FormikChanges onChange={onChange} />
+          <label>
+            Query
+            <Field type="text" name="query" />
+          </label>
+        </Form>
+      </Formik>,
+    );
+    const input = await screen.findByRole('textbox');
+
+    await userEvent.type(input, 'foo');
+    await userEvent.clear(input);
+    await userEvent.type(input, 'bar');
+
+    await waitFor(() => {
+      expect(onChange).toHaveBeenCalledTimes(8);
+      expect(onChange).toHaveBeenNthCalledWith(1, { query: '' });
+      expect(onChange).toHaveBeenNthCalledWith(2, { query: 'f' });
+      expect(onChange).toHaveBeenNthCalledWith(3, { query: 'fo' });
+      expect(onChange).toHaveBeenNthCalledWith(4, { query: 'foo' });
+      expect(onChange).toHaveBeenNthCalledWith(5, { query: '' });
+      expect(onChange).toHaveBeenNthCalledWith(6, { query: 'b' });
+      expect(onChange).toHaveBeenNthCalledWith(7, { query: 'ba' });
+      expect(onChange).toHaveBeenNthCalledWith(8, { query: 'bar' });
+    });
+  });
+});
+
+describe('FormikInitialValues', () => {
+  it('does nothing when the hook returns undefined', async () => {
+    await act(async () => {
+      render(
+        <Formik initialValues={{ a: '', b: '' }} onSubmit={() => {}}>
+          <Form>
+            <FormikInitialValues useInitialValues={() => undefined} />
+            <label>
+              A
+              <Field type="text" name="a" />
+            </label>
+            <label>
+              B
+              <Field type="text" name="b" />
+            </label>
+          </Form>
+        </Formik>,
+      );
+    });
+    const a = await screen.findByRole('textbox', { name: 'A' });
+    const b = await screen.findByRole('textbox', { name: 'B' });
+    expect(a.getAttribute('value')).toEqual('');
+    expect(b.getAttribute('value')).toEqual('');
+  });
+
+  it('does nothing when the hook returns an empty object', async () => {
+    await act(async () => {
+      render(
+        <Formik initialValues={{ a: '', b: '' }} onSubmit={() => {}}>
+          <Form>
+            <FormikInitialValues useInitialValues={() => ({})} />
+            <label>
+              A
+              <Field type="text" name="a" />
+            </label>
+            <label>
+              B
+              <Field type="text" name="b" />
+            </label>
+          </Form>
+        </Formik>,
+      );
+    });
+    const a = await screen.findByRole('textbox', { name: 'A' });
+    const b = await screen.findByRole('textbox', { name: 'B' });
+    expect(a.getAttribute('value')).toEqual('');
+    expect(b.getAttribute('value')).toEqual('');
+  });
+
+  it('sets a value when the hook returns an a value', async () => {
+    await act(async () => {
+      render(
+        <Formik initialValues={{ a: '', b: '' }} onSubmit={() => {}}>
+          <Form>
+            <FormikInitialValues useInitialValues={() => ({ a: 'foo' })} />
+            <label>
+              A
+              <Field type="text" name="a" />
+            </label>
+            <label>
+              B
+              <Field type="text" name="b" />
+            </label>
+          </Form>
+        </Formik>,
+      );
+    });
+    const a = await screen.findByRole('textbox', { name: 'A' });
+    const b = await screen.findByRole('textbox', { name: 'B' });
+    expect(a.getAttribute('value')).toEqual('foo');
+    expect(b.getAttribute('value')).toEqual('');
+  });
+
+  it('sets a value when the hook returns an a value a little later', async () => {
+    await act(async () => {
+      const useInitialValues = () => {
+        const [values, setValues] = useState<FormikValues | undefined>(
+          undefined,
+        );
+        useEffect(() => {
+          setTimeout(() => {
+            setValues({ a: 'foo' });
+          }, 100);
+        }, [setValues]);
+        return values;
+      };
+
+      render(
+        <Formik initialValues={{ a: '', b: '' }} onSubmit={() => {}}>
+          <Form>
+            <FormikInitialValues useInitialValues={useInitialValues} />
+            <label>
+              A
+              <Field type="text" name="a" />
+            </label>
+            <label>
+              B
+              <Field type="text" name="b" />
+            </label>
+          </Form>
+        </Formik>,
+      );
+    });
+
+    const a = await screen.findByRole('textbox', { name: 'A' });
+    const b = await screen.findByRole('textbox', { name: 'B' });
+    await waitFor(() => expect(a.getAttribute('value')).toEqual('foo'));
+    await waitFor(() => expect(b.getAttribute('value')).toEqual(''));
+  });
+
+  it('does not overwrite a value that has already been set', async () => {
+    await act(async () => {
+      const useInitialValues = () => {
+        const [values, setValues] = useState<FormikValues | undefined>(
+          undefined,
+        );
+        useEffect(() => {
+          setTimeout(() => {
+            setValues({ a: 'foo' });
+          }, 100);
+          setTimeout(() => {
+            setValues({ a: 'bar' });
+          }, 150);
+        }, [setValues]);
+        return values;
+      };
+
+      render(
+        <Formik initialValues={{ a: '', b: '' }} onSubmit={() => {}}>
+          <Form>
+            <FormikInitialValues useInitialValues={useInitialValues} />
+            <label>
+              A
+              <Field type="text" name="a" />
+            </label>
+            <label>
+              B
+              <Field type="text" name="b" />
+            </label>
+          </Form>
+        </Formik>,
+      );
+      await new Promise((resolve) => setTimeout(resolve, 200));
+    });
+
+    const a = await screen.findByRole('textbox', { name: 'A' });
+    const b = await screen.findByRole('textbox', { name: 'B' });
+
+    await waitFor(() => expect(a.getAttribute('value')).toEqual('foo'));
+    await waitFor(() => expect(b.getAttribute('value')).toEqual(''));
+  });
+
+  it('does not overwrite a value that has been modified', async () => {
+    await act(async () => {
+      const useInitialValues = () => {
+        const [values, setValues] = useState<FormikValues | undefined>(
+          undefined,
+        );
+        useEffect(() => {
+          setTimeout(() => {
+            setValues({ a: 'foo' });
+          }, 100);
+        }, [setValues]);
+        return values;
+      };
+      render(
+        <Formik initialValues={{ a: '', b: '' }} onSubmit={() => {}}>
+          <Form>
+            <FormikInitialValues useInitialValues={useInitialValues} />
+            <label>
+              A
+              <Field type="text" name="a" />
+            </label>
+            <label>
+              B
+              <Field type="text" name="b" />
+            </label>
+          </Form>
+        </Formik>,
+      );
+
+      const a = await screen.findByRole('textbox', { name: 'A' });
+      const b = await screen.findByRole('textbox', { name: 'B' });
+
+      await userEvent.type(a, 'bar');
+      await userEvent.type(b, 'baz');
+
+      await new Promise((resolve) => setTimeout(resolve, 200));
+    });
+
+    const a = await screen.findByRole('textbox', { name: 'A' });
+    const b = await screen.findByRole('textbox', { name: 'B' });
+
+    await waitFor(() => expect(a.getAttribute('value')).toEqual('bar'));
+    await waitFor(() => expect(b.getAttribute('value')).toEqual('baz'));
   });
 });

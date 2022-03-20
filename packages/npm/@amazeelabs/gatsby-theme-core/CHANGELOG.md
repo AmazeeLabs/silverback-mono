@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.46](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.6.45...@amazeelabs/gatsby-theme-core@0.6.46) (2022-03-18)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-theme-core
+
+
+
+
+
+## [0.6.45](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.6.44...@amazeelabs/gatsby-theme-core@0.6.45) (2022-03-18)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-theme-core
+
+
+
+
+
+## [0.6.44](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.6.43...@amazeelabs/gatsby-theme-core@0.6.44) (2022-03-10)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-theme-core
+
+
+
+
+
 ## [0.6.43](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-theme-core@0.6.42...@amazeelabs/gatsby-theme-core@0.6.43) (2022-03-03)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-theme-core

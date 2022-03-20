@@ -1,9 +1,9 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Field } from 'formik';
+import { Field, FormikValues } from 'formik';
 import { GatsbyLinkProps } from 'gatsby';
 import { GatsbyImageProps } from 'gatsby-plugin-image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { buildForm, buildImage, buildLink } from '../gatsby';
 
@@ -227,5 +227,46 @@ describe('buildForm', () => {
       expect(callback).toHaveBeenCalledTimes(1);
       expect(callback).toHaveBeenCalledWith({ foo: 'bar' });
     });
+  });
+
+  it('emits value changes via the "onChange" callback', async () => {
+    const onChange = jest.fn();
+    const Form = buildForm({ initialValues: { foo: '' }, onChange });
+    render(
+      <Form>
+        <Field type="text" name="foo" />
+        <button type="submit" />
+      </Form>,
+    );
+    await userEvent.type(screen.getByRole('textbox'), 'bar');
+    await waitFor(() => {
+      expect(onChange).toHaveBeenCalledTimes(4);
+      expect(onChange).toHaveBeenNthCalledWith(1, { foo: '' });
+      expect(onChange).toHaveBeenNthCalledWith(2, { foo: 'b' });
+      expect(onChange).toHaveBeenNthCalledWith(3, { foo: 'ba' });
+      expect(onChange).toHaveBeenNthCalledWith(4, { foo: 'bar' });
+    });
+  });
+
+  it('pre-populates the from useInitialValues hook if available', async () => {
+    const useInitialValues = () => {
+      const [values, setValues] = useState<FormikValues | undefined>(undefined);
+      useEffect(() => {
+        setTimeout(() => {
+          setValues({ foo: 'foo' });
+        }, 100);
+      }, [setValues]);
+      return values;
+    };
+
+    const Form = buildForm({ initialValues: { foo: '' }, useInitialValues });
+    render(
+      <Form>
+        <Field type="text" name="foo" />
+        <button type="submit" />
+      </Form>,
+    );
+    const input = screen.getByRole('textbox');
+    await waitFor(() => expect(input.getAttribute('value')).toEqual('foo'));
   });
 });

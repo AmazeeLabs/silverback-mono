@@ -68,11 +68,14 @@ export type LinkBuilder<T = {}> = (props: LinkProps<T>) => Link;
 
 export type Form<Values extends FormikValues> = React.FC<
   Omit<FormikFormProps, 'target' | 'action'> &
-    Pick<FormikConfig<Values>, 'children'>
+    Partial<Pick<FormikConfig<Values>, 'children'>>
 >;
 
 export type FormBuilderProps<Values extends FormikValues> = Omit<
   FormikConfig<Values>,
   'onSubmit'
 > &
-  Partial<Pick<FormikConfig<Values>, 'onSubmit'>>;
+  Partial<Pick<FormikConfig<Values>, 'onSubmit'>> & {
+    onChange?: (values: Partial<Values>) => void;
+    useInitialValues?: () => Partial<Values> | undefined;
+  };

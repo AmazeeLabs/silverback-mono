@@ -89,6 +89,7 @@
         "p-queue",
         "strip-ansi",
         "chalk",
+        "zx",
       ],
       updateTypes: ["major"],
       enabled: false,
