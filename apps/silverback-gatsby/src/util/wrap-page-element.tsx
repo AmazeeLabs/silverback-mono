@@ -19,8 +19,6 @@ function loadLocaleData(locale: string) {
 }
 
 const PageWrapper = ({ pageContext, children }: Props) => {
-  console.log('locale: ', pageContext.locale);
-  console.log('data: ', loadLocaleData(pageContext.locale));
   return (
     <IntlProvider
       defaultLocale="en"

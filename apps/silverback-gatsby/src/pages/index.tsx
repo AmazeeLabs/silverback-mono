@@ -89,8 +89,20 @@ const IndexPage: React.FC<PageProps> = () => {
               })
             }
           </Row>
-          <Row>Title</Row>
-          <Row>Language</Row>
+          <Row>
+            {
+              intl.formatMessage({
+                defaultMessage: 'Title',
+              })
+            }
+          </Row>
+          <Row>
+            {
+              intl.formatMessage({
+                defaultMessage: 'Language',
+              })
+            }
+          </Row>
           <Row>Path</Row>
           <Row>Body</Row>
         </tr>

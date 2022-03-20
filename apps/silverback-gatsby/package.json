@@ -40,6 +40,8 @@
     "@types/classnames": "2.3.1",
     "@types/jest": "27.4.1",
     "@types/node": "16.11.26",
+    "babel-plugin-formatjs": "^10.3.18",
+    "babel-preset-gatsby": "^2.10.0",
     "eslint": "8.11.0",
     "gatsby-source-filesystem": "4.10.0",
     "husky": "7.0.4",
@@ -73,7 +75,8 @@
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "jest --passWithNoTests",
     "test:integration": "exit 0",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "translations:extract":  "formatjs extract 'src/**/*.ts*' --ignore='**/*.d.ts' --out-file lang/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]'"
   },
   "repository": {
     "type": "git",
