@@ -6,6 +6,7 @@ dependencies:
     - graphql
     - media
     - node
+    - silverback_translations
     - system
 id: gatsby_preview
 label: 'Gatsby Preview'
@@ -13,6 +14,7 @@ weight: 2
 is_admin: null
 permissions:
   - 'access content'
+  - 'access create translation sources endpoint'
   - 'bypass node access'
   - 'execute silverback_gatsby_preview arbitrary graphql requests'
   - 'view media'

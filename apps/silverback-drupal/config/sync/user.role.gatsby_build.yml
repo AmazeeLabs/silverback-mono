@@ -5,6 +5,7 @@ dependencies:
   module:
     - graphql
     - media
+    - silverback_translations
     - system
 id: gatsby_build
 label: 'Gatsby Build'
@@ -12,5 +13,6 @@ weight: 3
 is_admin: null
 permissions:
   - 'access content'
+  - 'access create translation sources endpoint'
   - 'execute silverback_gatsby arbitrary graphql requests'
   - 'view media'
