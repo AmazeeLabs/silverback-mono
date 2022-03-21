@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.6.4...@amazeelabs/gatsby-source-silverback@1.6.5) (2022-03-21)
+
+
+### Bug Fixes
+
+* move gatsby-graphql-source-toolkit to runtime dependencies ([5bd463c](https://github.com/AmazeeLabs/silverback-mono/commit/5bd463c67389d04445f8dfbfc342063b69dbf80f))
+
+
+
+
+
 ## [1.6.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.6.3...@amazeelabs/gatsby-source-silverback@1.6.4) (2022-03-18)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-source-silverback
