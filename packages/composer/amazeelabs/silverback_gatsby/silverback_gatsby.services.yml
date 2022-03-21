@@ -25,3 +25,9 @@ services:
     decorates: menu.tree_storage
     public: false
     arguments: ['@silverback_gatsby.menu_tree_storage.inner', '@silverback_gatsby.update_handler']
+
+  silverback_gatsby.locale.storage:
+    class: Drupal\silverback_gatsby\LocaleStorageDecorator
+    decorates: locale.storage
+    public: false
+    arguments: ['@silverback_gatsby.locale.storage.inner']

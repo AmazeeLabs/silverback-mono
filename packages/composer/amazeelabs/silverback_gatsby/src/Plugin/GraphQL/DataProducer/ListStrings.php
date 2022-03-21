@@ -2,10 +2,10 @@
 
 namespace Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer;
 
-use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Database\Query\Condition;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\graphql\GraphQL\Execution\FieldContext;
 use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
 use Drupal\locale\SourceString;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -63,7 +63,8 @@ class ListStrings extends DataProducerPluginBase implements ContainerFactoryPlug
     );
   }
 
-  public function resolve(int $offset, int $limit, array $translationContext, RefinableCacheableDependencyInterface $metadata) {
+  public function resolve(int $offset, int $limit, array $translationContext, FieldContext $context) {
+    $context->addCacheTags(['locale']);
     $query = $this->connection->select('locales_source', 's')
       ->fields('s');
     if (!empty($translationContext)) {

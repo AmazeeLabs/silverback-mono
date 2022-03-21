@@ -4,6 +4,7 @@ namespace Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer;
 
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\graphql\GraphQL\Execution\FieldContext;
 use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
 use Drupal\locale\StringInterface;
 use Drupal\locale\StringStorageInterface;
@@ -72,7 +73,8 @@ class StringTranslations extends DataProducerPluginBase implements ContainerFact
    * @param Drupal\locale\StringInterface $sourceString
    * @return TranslationString[]
    */
-  public function resolve(StringInterface $sourceString) {
+  public function resolve(StringInterface $sourceString, FieldContext $context) {
+    $context->addCacheTags(['locale']);
     $languages  = $this->languageManager->getLanguages();
     $translations = [];
     foreach ($languages as $language) {
