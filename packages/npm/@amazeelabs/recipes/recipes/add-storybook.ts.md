@@ -8,7 +8,7 @@ use Storybook with the latest Tailwind version.
 
 ```typescript
 $$('cat README.md', {
-  stdout: /Executed `create-monorepo`/,
+  assert: { stdout: /Executed `create-monorepo`/ },
 });
 
 const { name: projectName } = $$.file('package.json');
@@ -335,7 +335,7 @@ components.
 ```typescript
 $$('yarn prepare');
 $$('cat styles.css', {
-  stdout: /prose/,
+  assert: { stdout: /prose/ },
 });
 ```
 

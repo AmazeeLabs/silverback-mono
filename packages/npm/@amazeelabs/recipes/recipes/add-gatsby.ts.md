@@ -5,19 +5,49 @@
 
 ```typescript
 $$('cat README.md', {
-  stdout: /Executed `create-monorepo`/,
+  assert: { stdout: /Executed `create-monorepo`/ },
 });
 
 const { name: projectName } = $$.file('package.json');
 ```
 
-Create a new Gatsby project from the [AmazeeLabs Gatsby starter] in
-`apps/website`.
+## Init Gatsby
+
+Create a new Gatsby project in `apps/website`.
 
 ```typescript
 $$('mkdir -p apps');
 $$.chdir('apps');
-$$('npx gatsby new website https://github.com/AmazeeLabs/gatsby-starter');
+$$('yarn create gatsby website -y -ts', {
+  // We need to give it interactive IO, even if it does not ask questions.
+  // Otherwise, it fails with "TypeError: qi.cursorTo is not a function"
+  stdio: 'inherit',
+});
+```
+
+Make it a part of the monorepo.
+
+```typescript
+$$.chdir('website');
+$$('rm -rf .git');
+$$('rm -rf node_modules');
+$$('rm package-lock.json');
+```
+
+Commit.
+
+```typescript
+$$('git add .');
+$$('git commit -m "chore: init gatsby"');
+```
+
+## Scaffold it
+
+```typescript
+$$('npx @amazeelabs/scaffold');
+$$('git add .');
+$$('git commit -m "chore: scaffold gatsby"');
+$$('exit 1');
 ```
 
 Switch into the newly created directory and attempt to build the website. This
@@ -31,16 +61,14 @@ its GraphQL schema in one shot.
 $$.chdir('website');
 $$('yarn update-schema');
 $$('cat public/index.html', {
-  stdout: /Welcome to your new Gatsby site./,
+  assert: { stdout: /Welcome to your new Gatsby site./ },
 });
 
 $$('git add generated');
 $$('git commit -m "chore: export gatsby schema"');
 ```
 
-The `.gitignore` file is not populated by the starter. The `public`,
-`node_modules` and parts of the `generated` directory should not be part of the
-repository.
+Exclude generated code from Git.
 
 ```typescript
 $$.file('.gitignore', (lines) => [
@@ -78,16 +106,4 @@ Finally, commit the new app to the mono-repository.
 ```typescript
 $$('git add apps/website yarn.lock');
 $$('git commit -m "chore: initiate Gatsby website app"');
-```
-
-Now the repository should be clean and you can start working on the new website
-application.
-
-```typescript
-$$('git status --porcelain', {
-  stdout: (output) =>
-    output.trim().length !== 0
-      ? `uncommitted changes:\n${output}\n`
-      : undefined,
-});
 ```

@@ -96,7 +96,7 @@ recipe will fail if the command _does not_ return exit code `1`.
 
 ```typescript
 $$('command-that-does-not-exist', {
-  code: 1,
+  assert: { code: 1 },
 });
 ```
 
@@ -105,15 +105,15 @@ The API expects either a regular expression, or a validation function.
 
 ```typescript
 $$('echo "foo"', {
-  stdout: /foo/,
+  assert: { stdout: /foo/ },
 });
 
 $$('echo "bar"', {
-  stdout: (output) => output.length > 2,
+  assert: { stdout: (output) => output.length > 2 },
 });
 
 $$('command-that-does-not-exist', {
-  stderr: /not found/,
+  asert: { stderr: /not found/ },
 });
 ```
 
@@ -128,7 +128,7 @@ This for example will fail, if no PHP < 7.4 or no PHP at all is available.
 
 ```typescript
 $$('php -v', {
-  stdout: $$.minimalVersion('7.4'),
+  assert: { stdout: $$.minimalVersion('7.4') },
 });
 ```
 

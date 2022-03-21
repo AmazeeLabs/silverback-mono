@@ -7,17 +7,17 @@ the least. Make sure you installed them on your machine.
 
 ```typescript
 $$('git --version', {
-  stdout: $$.minimalVersion('2'),
+  assert: { stdout: $$.minimalVersion('2') },
 });
 
 // Check node version.
 $$('node -v', {
-  stdout: $$.minimalVersion('14'),
+  assert: { stdout: $$.minimalVersion('14') },
 });
 
 // Check yarn version.
 $$('yarn -v', {
-  stdout: $$.minimalVersion('1.0'),
+  assert: { stdout: $$.minimalVersion('1.0') },
 });
 
 // TODO: Should we test for nvm? And maybe for direnv?
@@ -53,9 +53,11 @@ the project directory. You can change it later.
 
 ```typescript
 $$('node -v', {
-  stdout: (version: string) => {
-    $$.vars({ nodeVersion: version.match(/[0-9]+/)![0] });
-    return undefined;
+  assert: {
+    stdout: (version: string) => {
+      $$.vars({ nodeVersion: version.match(/[0-9]+/)![0] });
+      return undefined;
+    },
   },
 });
 ```
@@ -188,7 +190,7 @@ Committing with an invalid message should fail now:
 
 ```typescript
 $$(`git commit -m "fixes!!!"`, {
-  code: 1,
+  assert: { code: 1 },
 });
 ```
 
@@ -305,7 +307,7 @@ $$.file('test.js', () => ['"foobar"']);
 ```typescript
 $$('yarn prettier -w test.js');
 $$('cat test.js', {
-  stdout: /'foobar';/,
+  assert: { stdout: /'foobar';/ },
 });
 ```
 
@@ -429,7 +431,7 @@ The `precommit` command should fail now.
 ```typescript
 $$('git add src/foo.ts');
 $$('yarn precommit', {
-  code: 1,
+  assert: { code: 1 },
 });
 ```
 
@@ -448,7 +450,7 @@ violation has been fixed magically.
 $$('git add src/foo.ts');
 $$('yarn precommit');
 $$('cat src/foo.ts', {
-  stdout: /export const foo = \(\) => true;/,
+  assert: { stdout: /export const foo = \(\) => true;/ },
 });
 ```
 
@@ -474,8 +476,10 @@ test.
 ```typescript
 $$('git add src/foo.ts');
 $$('yarn precommit', {
-  code: 1,
-  stderr: /src\/__tests__\/foo.test.ts/,
+  assert: {
+    code: 1,
+    stderr: /src\/__tests__\/foo.test.ts/,
+  },
 });
 ```
 
@@ -1010,14 +1014,16 @@ be clean.
 
 ```typescript
 $$('git branch', {
-  stdout: /^\* dev$/m,
+  assert: { stdout: /^\* dev$/m },
 });
 
 $$('git status --porcelain', {
-  stdout: (output) =>
-    output.trim().length !== 0
-      ? `uncommitted changes:\n${output}\n`
-      : undefined,
+  assert: {
+    stdout: (output) =>
+      output.trim().length !== 0
+        ? `uncommitted changes:\n${output}\n`
+        : undefined,
+  },
 });
 ```
 

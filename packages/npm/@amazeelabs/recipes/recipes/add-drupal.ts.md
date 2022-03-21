@@ -9,7 +9,7 @@ We need `composer` _2_.
 
 ```typescript
 $$('composer --version', {
-  stdout: $$.minimalVersion('2'),
+  assert: { stdout: $$.minimalVersion('2') },
 });
 ```
 
@@ -17,7 +17,7 @@ $$('composer --version', {
 
 ```typescript
 $$('cat README.md', {
-  stdout: /Executed `create-monorepo`/,
+  assert: { stdout: /Executed `create-monorepo`/ },
 });
 
 const { name: projectName } = $$.file('package.json');
@@ -496,7 +496,7 @@ it worked, but inspecting the output of `yarn drush status`.
 ```typescript
 $$('yarn drupal-install');
 $$('yarn drush status', {
-  stdout: /Drupal bootstrap\s+:\s+Successful/,
+  assert: { stdout: /Drupal bootstrap\s+:\s+Successful/ },
 });
 ```
 
@@ -508,13 +508,13 @@ upgrade hooks.
 
 ```typescript
 $$('ls -la', {
-  stdout: /install-cache\.zip/,
+  assert: { stdout: /install-cache\.zip/ },
 });
 ```
 
 ```typescript
 $$('yarn drush status', {
-  stdout: /Drupal bootstrap\s+:\s+Successful/,
+  assert: { stdout: /Drupal bootstrap\s+:\s+Successful/ },
 });
 ```
 
@@ -924,9 +924,11 @@ As always, the repository should be clean now.
 
 ```typescript
 $$('git status --porcelain', {
-  stdout: (output) =>
-    output.trim().length !== 0
-      ? `uncommitted changes:\n${output}\n`
-      : undefined,
+  assert: {
+    stdout: (output) =>
+      output.trim().length !== 0
+        ? `uncommitted changes:\n${output}\n`
+        : undefined,
+  },
 });
 ```

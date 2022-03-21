@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { spawnSync } from 'child_process';
+import { spawnSync, StdioOptions } from 'child_process';
 
 import { RecipeError } from './errors';
 import { log } from './logger';
@@ -12,38 +12,22 @@ type Assert = {
   code?: number;
 };
 
-const isAssert = (val?: Assert | string): val is Assert =>
-  typeof val !== 'string' && typeof val !== 'undefined';
-
-const isCwd = (val?: Assert | string): val is string =>
-  typeof val === 'string' && typeof val !== 'undefined';
-
 export function chdir(path: string) {
   process.chdir(path);
   log.info(`switched into ${chalk.cyan(path)}`);
 }
 
-export function run(cmd: string): void;
-export function run(cmd: string, cwd: string): void;
-export function run(cmd: string, assert: Assert): void;
-export function run(cmd: string, assert: Assert, cwd: string): void;
-export function run(cmd: string, cwd: string, assert: Assert): void;
-
 export function run(
   cmd: string,
-  arg1?: Assert | string,
-  arg2?: Assert | string,
+  options?: {
+    cwd?: string;
+    assert?: Assert;
+    stdio?: StdioOptions;
+  },
 ) {
-  const cwd: string | undefined = isCwd(arg1)
-    ? arg1
-    : isCwd(arg2)
-    ? arg2
-    : undefined;
-  const assert: Assert = isAssert(arg1)
-    ? arg1
-    : isAssert(arg2)
-    ? arg2
-    : { code: 0 };
+  const cwd = options?.cwd;
+  const assert = options?.assert || { code: 0 };
+  const stdio = options?.stdio;
 
   log.info(
     `running ${chalk.yellow(cmd)}${cwd ? ` in ${chalk.cyan(cwd)}` : ''}`,
@@ -51,6 +35,7 @@ export function run(
   const response = spawnSync(cmd, {
     shell: 'bash',
     cwd,
+    stdio,
   });
   log.debug(
     `${chalk.blue(cmd)} returned with exit code ${
@@ -59,8 +44,8 @@ export function run(
         : chalk.red(response.status)
     }`,
   );
-  const stdout = response.stdout.toString();
-  const stderr = response.stderr.toString();
+  const stdout = response.stdout?.toString();
+  const stderr = response.stderr?.toString();
   if (stdout) {
     log.silly(
       `${chalk.green('stdout')} of ${chalk.blue(cmd)}:\n${chalk.green(stdout)}`,
