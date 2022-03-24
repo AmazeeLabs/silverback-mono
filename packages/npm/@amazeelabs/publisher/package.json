@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/publisher",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "license": "MIT",
   "bin": "./cli.js",
   "publishConfig": {
@@ -34,8 +34,8 @@
     "prisma": "3.11.0"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.21",
-    "@amazeelabs/jest-preset": "^1.3.24",
+    "@amazeelabs/eslint-config": "^1.4.22",
+    "@amazeelabs/jest-preset": "^1.3.25",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@babel/core": "7.17.8",
     "@react-rxjs/core": "0.9.0",
