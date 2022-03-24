@@ -55,7 +55,7 @@ jobs:
         run: |
           echo "::set-output name=hash::$(composer --version | shasum | cut -d' ' -f1)"
       - name: Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-dependencies
         with:
