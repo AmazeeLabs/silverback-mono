@@ -19,7 +19,7 @@
     "nunjucks": "^3.2.3",
     "prompts": "^2.4.2",
     "semver": "^7.3.5",
-    "tslog": "^3.3.2",
+    "tslog": "^3.3.3",
     "update-notifier": "^5.1.0"
   },
   "devDependencies": {

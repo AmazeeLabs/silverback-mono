@@ -18,7 +18,7 @@
     "@types/jest": "27.4.1",
     "@types/node": "16.11.26",
     "eslint": "8.11.0",
-    "gatsby-plugin-image": "2.10.0",
+    "gatsby-plugin-image": "2.10.1",
     "jest": "27.5.1",
     "lint-staged": "12.3.7",
     "prettier": "2.6.0",
@@ -31,8 +31,8 @@
   },
   "peerDependencies": {
     "@storybook/addon-actions": "^6.4.19",
-    "gatsby": "^4.10.0",
-    "gatsby-plugin-image": "^2.10.0"
+    "gatsby": "^4.10.3",
+    "gatsby-plugin-image": "^2.10.1"
   },
   "scripts": {
     "prepare": "tsc",
