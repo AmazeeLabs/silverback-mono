@@ -9,7 +9,7 @@
   "private": false,
   "sideEffects": false,
   "dependencies": {
-    "@playwright/test": "^1.20.0",
+    "@playwright/test": "^1.20.1",
     "@redtea/format-axios-error": "^2.1.0",
     "axios": "^0.26.1",
     "cross-port-killer": "^1.4.0",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f250937c69f720b2876293b387d2c249",
+    "content-hash": "3c4bb4e7f1404668bdcfd69b5385370c",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -770,16 +770,16 @@
         },
         {
             "name": "composer/installers",
-            "version": "v2.0.1",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "a241e78aaeb09781f5f5b92ac01ffd13ab43e5e8"
+                "reference": "75e5ef05436c90ac565a48176cc7465991908352"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/a241e78aaeb09781f5f5b92ac01ffd13ab43e5e8",
-                "reference": "a241e78aaeb09781f5f5b92ac01ffd13ab43e5e8",
+                "url": "https://api.github.com/repos/composer/installers/zipball/75e5ef05436c90ac565a48176cc7465991908352",
+                "reference": "75e5ef05436c90ac565a48176cc7465991908352",
                 "shasum": ""
             },
             "require": {
@@ -799,7 +799,8 @@
                 "class": "Composer\\Installers\\Plugin",
                 "branch-alias": {
                     "dev-main": "2.x-dev"
-                }
+                },
+                "plugin-modifies-install-path": true
             },
             "autoload": {
                 "psr-4": {
@@ -893,7 +894,7 @@
             ],
             "support": {
                 "issues": "https://github.com/composer/installers/issues",
-                "source": "https://github.com/composer/installers/tree/v2.0.1"
+                "source": "https://github.com/composer/installers/tree/v2.1.0"
             },
             "funding": [
                 {
@@ -909,7 +910,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-09-13T08:21:20+00:00"
+            "time": "2022-03-18T12:27:54+00:00"
         },
         {
             "name": "composer/metadata-minifier",
@@ -2667,16 +2668,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "9.3.8",
+            "version": "9.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "e8e3b7e5b3353f7ebf24de9d39087df75bd66afe"
+                "reference": "86b0c4496e20ae7f945e9a7f0404fafe191ab774"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/e8e3b7e5b3353f7ebf24de9d39087df75bd66afe",
-                "reference": "e8e3b7e5b3353f7ebf24de9d39087df75bd66afe",
+                "url": "https://api.github.com/repos/drupal/core/zipball/86b0c4496e20ae7f945e9a7f0404fafe191ab774",
+                "reference": "86b0c4496e20ae7f945e9a7f0404fafe191ab774",
                 "shasum": ""
             },
             "require": {
@@ -2918,13 +2919,13 @@
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
             "support": {
-                "source": "https://github.com/drupal/core/tree/9.3.8"
+                "source": "https://github.com/drupal/core/tree/9.3.9"
             },
-            "time": "2022-03-16T15:34:53+00:00"
+            "time": "2022-03-21T21:21:58+00:00"
         },
         {
             "name": "drupal/core-composer-scaffold",
-            "version": "9.3.8",
+            "version": "9.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-composer-scaffold.git",
@@ -2968,13 +2969,13 @@
                 "drupal"
             ],
             "support": {
-                "source": "https://github.com/drupal/core-composer-scaffold/tree/9.3.8"
+                "source": "https://github.com/drupal/core-composer-scaffold/tree/9.3.9"
             },
             "time": "2022-02-24T17:40:56+00:00"
         },
         {
             "name": "drupal/core-dev",
-            "version": "9.3.8",
+            "version": "9.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-dev.git",
@@ -3018,22 +3019,22 @@
             ],
             "description": "require-dev dependencies from drupal/drupal; use in addition to drupal/core-recommended to run tests from drupal/core.",
             "support": {
-                "source": "https://github.com/drupal/core-dev/tree/9.3.8"
+                "source": "https://github.com/drupal/core-dev/tree/9.3.9"
             },
             "time": "2021-11-30T05:41:29+00:00"
         },
         {
             "name": "drupal/core-recommended",
-            "version": "9.3.8",
+            "version": "9.3.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-recommended.git",
-                "reference": "98048032809157c723131ecc2394ff55421d5dc6"
+                "reference": "3ce3f2b6145de56178e006fb2ef94089d32cf411"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/98048032809157c723131ecc2394ff55421d5dc6",
-                "reference": "98048032809157c723131ecc2394ff55421d5dc6",
+                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/3ce3f2b6145de56178e006fb2ef94089d32cf411",
+                "reference": "3ce3f2b6145de56178e006fb2ef94089d32cf411",
                 "shasum": ""
             },
             "require": {
@@ -3042,11 +3043,11 @@
                 "doctrine/annotations": "1.13.2",
                 "doctrine/lexer": "1.2.1",
                 "doctrine/reflection": "1.2.2",
-                "drupal/core": "9.3.8",
+                "drupal/core": "9.3.9",
                 "egulias/email-validator": "3.1.2",
                 "guzzlehttp/guzzle": "6.5.5",
                 "guzzlehttp/promises": "1.5.1",
-                "guzzlehttp/psr7": "1.8.3",
+                "guzzlehttp/psr7": "1.8.5",
                 "laminas/laminas-diactoros": "2.8.0",
                 "laminas/laminas-escaper": "2.9.0",
                 "laminas/laminas-feed": "2.15.0",
@@ -3104,9 +3105,9 @@
             ],
             "description": "Locked core dependencies; require this project INSTEAD OF drupal/core.",
             "support": {
-                "source": "https://github.com/drupal/core-recommended/tree/9.3.8"
+                "source": "https://github.com/drupal/core-recommended/tree/9.3.9"
             },
-            "time": "2022-03-16T15:34:53+00:00"
+            "time": "2022-03-21T21:21:58+00:00"
         },
         {
             "name": "drupal/cypress",
@@ -4461,16 +4462,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.8.3",
+            "version": "1.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "1afdd860a2566ed3c2b0b4a3de6e23434a79ec85"
+                "reference": "337e3ad8e5716c15f9657bd214d16cc5e69df268"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/1afdd860a2566ed3c2b0b4a3de6e23434a79ec85",
-                "reference": "1afdd860a2566ed3c2b0b4a3de6e23434a79ec85",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/337e3ad8e5716c15f9657bd214d16cc5e69df268",
+                "reference": "337e3ad8e5716c15f9657bd214d16cc5e69df268",
                 "shasum": ""
             },
             "require": {
@@ -4551,7 +4552,7 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/1.8.3"
+                "source": "https://github.com/guzzle/psr7/tree/1.8.5"
             },
             "funding": [
                 {
@@ -4567,7 +4568,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-10-05T13:56:00+00:00"
+            "time": "2022-03-20T21:51:18+00:00"
         },
         {
             "name": "instaclick/php-webdriver",

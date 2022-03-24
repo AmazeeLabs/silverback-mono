@@ -16,7 +16,7 @@
     "@amazeelabs/prettier-config": "^1.1.1",
     "@types/jest": "27.4.1",
     "eslint": "8.11.0",
-    "gatsby": "4.10.0",
+    "gatsby": "4.10.3",
     "jest": "27.5.1",
     "lint-staged": "12.3.7",
     "prettier": "2.6.0",
@@ -34,6 +34,6 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "gatsby-graphql-source-toolkit": "^2.0.1"
+    "gatsby-graphql-source-toolkit": "^2.0.2"
   }
 }
