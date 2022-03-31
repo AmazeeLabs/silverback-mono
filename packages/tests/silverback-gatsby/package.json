@@ -1,18 +1,18 @@
 {
   "name": "@-amazeelabs/silverback-gatsby-tests",
-  "version": "1.1.40",
+  "version": "1.1.41",
   "description": "e2e tests for Drupal-Gatsby connection.",
   "author": "Amazee Labs",
   "license": "MIT",
   "private": true,
   "dependencies": {
     "@-amazeelabs/silverback_gatsby": "^1.16.2",
-    "@amazeelabs/gatsby-source-silverback": "^1.6.6",
-    "@amazeelabs/silverback-playwright": "^1.6.24"
+    "@amazeelabs/gatsby-source-silverback": "^1.6.7",
+    "@amazeelabs/silverback-playwright": "^1.6.25"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.22",
-    "@amazeelabs/jest-preset": "^1.3.25",
+    "@amazeelabs/eslint-config": "^1.4.23",
+    "@amazeelabs/jest-preset": "^1.3.26",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@types/jest": "27.4.1",
     "eslint": "8.12.0",

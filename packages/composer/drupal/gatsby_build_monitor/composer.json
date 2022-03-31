@@ -3,7 +3,7 @@
   "type": "drupal-module",
   "description": "Gatsby build monitor for the Toolbar",
   "license": "GPL-2.0-or-later",
-  "version": "1.4.28",
+  "version": "1.4.29",
   "require": {
     "justinrainbow/json-schema": "^5.2.11"
   }
