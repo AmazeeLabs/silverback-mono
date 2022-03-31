@@ -14,7 +14,7 @@
     "jest": "^27"
   },
   "dependencies": {
-    "@swc/core": "^1.2.160",
+    "@swc/core": "^1.2.161",
     "@swc/jest": "^0.2.20",
     "@testing-library/react": "^12.1.4",
     "@tsconfig/recommended": "^1",

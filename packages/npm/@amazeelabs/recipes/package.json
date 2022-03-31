@@ -14,7 +14,7 @@
   "dependencies": {
     "@amazeelabs/prettier-config": "^1.1.1",
     "chalk": "^4.1.2",
-    "deasync": "^0.1.24",
+    "deasync": "^0.1.25",
     "js-yaml": "^4.1.0",
     "nunjucks": "^3.2.3",
     "prompts": "^2.4.2",
@@ -34,11 +34,11 @@
     "@types/prompts": "2.0.14",
     "@types/semver": "7.3.9",
     "@types/update-notifier": "5.1.0",
-    "eslint": "8.11.0",
+    "eslint": "8.12.0",
     "jest": "27.5.1",
     "lint-staged": "12.3.7",
-    "prettier": "2.6.0",
-    "typescript": "4.6.2"
+    "prettier": "2.6.1",
+    "typescript": "4.6.3"
   },
   "scripts": {
     "prepare": "./prepare.sh",
