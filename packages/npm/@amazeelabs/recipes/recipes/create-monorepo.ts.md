@@ -815,7 +815,7 @@ that by simply dropping this configuration file into the repository root.
   // `lerna run --since` will run nothing if only the root yarn.lock is updated.
   branchPrefix: 'test-all/renovate/',
 
-  // All PRs should wait for a manual approval.
+  // All updates, except for the major, wait for a manual approval.
   dependencyDashboardApproval: true,
 
   postUpdateOptions: [
@@ -851,6 +851,12 @@ that by simply dropping this configuration file into the repository root.
       // Give major updates a month to stabilize.
       stabilityDays: 30,
       automerge: false,
+      // We need to automate PR creation in order to make the stabilityDays
+      // option work.
+      dependencyDashboardApproval: false,
+      // Drupal's security release window: Wednesdays, from 16:00 UTC to 22:00 UTC
+      // https://www.drupal.org/drupal-security-team/security-release-numbers-and-release-timing#s-release-timing
+      schedule: ['before 3am on thursday'],
     },
     {
       matchUpdateTypes: ['minor', 'patch', 'digest'],
