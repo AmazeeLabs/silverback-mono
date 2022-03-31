@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.37](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.9.36...@amazeelabs/recipes@1.9.37) (2022-03-31)
+
+
+### Bug Fixes
+
+* make Renovate's stabilityDays option work ([346c5c9](https://github.com/AmazeeLabs/silverback-mono/commit/346c5c9d8e7e59307167191435c5eb9a919af553))
+
+
+
+
+
 ## [1.9.36](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.9.35...@amazeelabs/recipes@1.9.36) (2022-03-24)
 
 
