@@ -158,6 +158,28 @@ $$.vars({
 $settings['hash_salt'] = '{{hashSalt}}';
 $settings['config_sync_directory'] = '../config/sync';
 $settings['file_private_path'] = $app_root . '/sites/default/files/private';
+
+// Environment indicator.
+$config['environment_indicator.indicator']['name'] = 'Local Silverback';
+$config['environment_indicator.indicator']['bg_color'] = '#42a877';
+$config['environment_indicator.indicator']['fg_color'] = '#ffffff';
+if (getenv('LAGOON')) {
+  if (getenv('LAGOON_ENVIRONMENT') === 'prod') {
+    $config['environment_indicator.indicator']['name'] = 'PROD';
+    $config['environment_indicator.indicator']['bg_color'] = '#8e0000';
+  }
+  elseif (getenv('LAGOON_ENVIRONMENT') === 'dev') {
+    $config['environment_indicator.indicator']['name'] = 'Dev';
+    $config['environment_indicator.indicator']['bg_color'] = '#0036b1';
+  }
+  elseif (getenv('LAGOON_ENVIRONMENT') === 'stage') {
+    $config['environment_indicator.indicator']['name'] = 'Stage';
+    $config['environment_indicator.indicator']['bg_color'] = '#6b008e';
+  } else {
+    $config['environment_indicator.indicator']['name'] = 'Local Docker';
+    $config['environment_indicator.indicator']['bg_color'] = '#0036b1';
+  }
+}
 ```
 
 ```typescript
@@ -744,15 +766,15 @@ $$('git commit -m "chore: default content scripts"');
 Drupal installed with the Minimal profile looks like a monster. Fix this.
 
 ```typescript
-$$('yarn drush -y theme:enable seven');
-$$('yarn drush -y config-set system.theme default seven');
+$$('yarn drush -y theme:enable claro');
+$$('yarn drush -y config-set system.theme default claro');
 $$('yarn drush -y theme:uninstall stark');
-$$('yarn drush -y config:delete block.block.seven_tools');
-$$('yarn drush -y config:delete block.block.seven_admin');
-$$('yarn drush -y config:delete block.block.seven_branding');
 
 $$('composer require drupal/admin_toolbar');
 $$('yarn drush -y en admin_toolbar_tools admin_toolbar_search');
+
+$$('composer require drupal/environment_indicator');
+$$('yarn drush -y en environment_indicator');
 ```
 
 Also, get rid of some standard modules...
