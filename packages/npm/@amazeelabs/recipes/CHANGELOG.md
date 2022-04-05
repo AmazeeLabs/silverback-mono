@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.10.1...@amazeelabs/recipes@1.11.0) (2022-04-05)
+
+
+### Features
+
+* gatsby recipe now uses official gatsby starter ([9603771](https://github.com/AmazeeLabs/silverback-mono/commit/9603771d190d60c7830fea82d4e5e30310b42e45))
+
+
+
+
+
 ## [1.10.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.10.0...@amazeelabs/recipes@1.10.1) (2022-04-05)
 
 
