@@ -4,7 +4,7 @@ import { Field, Form, Formik, FormikValues } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { act } from 'react-dom/test-utils';
 
-import { Link, LinkProps } from '../types';
+import { Link, LinkProps } from '../../types';
 import {
   buildHtmlBuilder,
   buildUrl,
@@ -12,7 +12,7 @@ import {
   FormikInitialValues,
   isElement,
   isRelative,
-} from '../utils';
+} from '../';
 
 describe('isRelative', () => {
   it('returns true for a relative url', () => {

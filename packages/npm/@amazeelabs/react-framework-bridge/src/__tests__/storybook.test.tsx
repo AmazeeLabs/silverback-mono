@@ -7,11 +7,28 @@ import { act } from 'react-dom/test-utils';
 import {
   ActionsDecorator,
   buildForm,
+  buildHtml,
   buildImage,
   buildLink,
   createLocation,
+  layoutArgsEnhancer,
+  LayoutStory,
+  OrganismDecorator,
+  OrganismStory,
+  renderRouteStory,
+  RouteStory,
   useLocation,
 } from '../storybook';
+import {
+  AsyncContent,
+  Content,
+  ContentHeader,
+  Footer,
+  Header,
+  Page,
+  PageLayout,
+  SyncContent,
+} from '../utils/example-ui';
 
 const action = jest.fn();
 
@@ -382,5 +399,237 @@ describe('buildForm', () => {
     );
     const input = screen.getByRole('textbox');
     await waitFor(() => expect(input.getAttribute('value')).toEqual('foo'));
+  });
+});
+
+describe('layoutArgsEnhancer', () => {
+  it('renders placeholders in stories withing "Elements/Layouts"', () => {
+    const story: LayoutStory<typeof PageLayout> = {
+      args: {
+        header: ['Header', 'indigo'],
+        footer: ['Footer', 'blue'],
+      },
+    };
+    const { container } = render(
+      <PageLayout
+        {...layoutArgsEnhancer({
+          id: 'elements-layouts-page',
+          initialArgs: story.args,
+        } as any)}
+      />,
+    );
+    expect(container).toMatchInlineSnapshot(`
+          <div>
+            <div>
+              <header>
+                <div
+                  data-testid="header"
+                  style="background-color: rgb(224, 231, 255); height: 200px; display: flex; align-items: center;"
+                >
+                  <div
+                    style="text-align: center; width: 100%; font-style: italic; font-weight: bold; color: rgb(55, 65, 81);"
+                  >
+                    Header
+                  </div>
+                </div>
+              </header>
+              <main />
+              <footer>
+                <div
+                  data-testid="footer"
+                  style="background-color: rgb(219, 234, 254); height: 200px; display: flex; align-items: center;"
+                >
+                  <div
+                    style="text-align: center; width: 100%; font-style: italic; font-weight: bold; color: rgb(55, 65, 81);"
+                  >
+                    Footer
+                  </div>
+                </div>
+              </footer>
+            </div>
+          </div>
+      `);
+  });
+});
+
+describe('OrganismDecorator', () => {
+  it('allows to pass a status code into an organism', () => {
+    const { container } = render(
+      OrganismDecorator((props) => <AsyncContent Content={props.Content} />, {
+        parameters: {
+          useMockedBehaviour(args) {
+            return [args, 102];
+          },
+        },
+      } as any),
+    );
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <p>
+          Loading ...
+        </p>
+      </div>
+    `);
+  });
+});
+
+describe('renderRouteStory', () => {
+  it('can render a simple route', () => {
+    const IntroStory: OrganismStory<typeof ContentHeader> = {
+      args: {
+        title: 'Foo',
+      },
+    };
+    const SyncContentStory: OrganismStory<typeof SyncContent> = {
+      args: {
+        Content: buildHtml('<p>Sync content</p>'),
+      },
+    };
+
+    const RouteStory: RouteStory<typeof Content> = {
+      render: renderRouteStory(Content),
+      args: {
+        intro: IntroStory,
+        body: [
+          {
+            key: 'sync',
+            story: SyncContentStory,
+          },
+        ],
+      },
+    };
+    const { container } = render(<RouteStory.render {...RouteStory.args} />);
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <div>
+          <div>
+            <h1>
+              Foo
+            </h1>
+          </div>
+          <div>
+            <p>
+              Sync content
+            </p>
+          </div>
+        </div>
+      </div>
+    `);
+  });
+
+  it('allows to mock behaviour with hooks', () => {
+    const IntroStory: OrganismStory<typeof ContentHeader> = {
+      args: {
+        title: 'Foo',
+      },
+    };
+    const AsyncContentStory: OrganismStory<typeof AsyncContent> = {
+      args: {
+        Content: buildHtml('<p>Async content</p>'),
+      },
+      parameters: {
+        useMockedBehaviour(args) {
+          return [args, 102];
+        },
+      },
+    };
+
+    const RouteStory: RouteStory<typeof Content> = {
+      render: renderRouteStory(Content),
+      args: {
+        intro: IntroStory,
+        body: [
+          {
+            key: 'async',
+            story: AsyncContentStory,
+          },
+        ],
+      },
+    };
+    const { container } = render(<RouteStory.render {...RouteStory.args} />);
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <div>
+          <div>
+            <h1>
+              Foo
+            </h1>
+          </div>
+          <div>
+            <p>
+              Loading ...
+            </p>
+          </div>
+        </div>
+      </div>
+    `);
+  });
+
+  it('renders nested stories', () => {
+    const HeaderStory: OrganismStory<typeof Header> = { args: {} };
+    const FooterStory: OrganismStory<typeof Footer> = { args: {} };
+    const PageStory: RouteStory<typeof Page> = {
+      render: renderRouteStory(Page),
+      args: {
+        header: HeaderStory,
+        footer: FooterStory,
+      },
+    };
+
+    const IntroStory: OrganismStory<typeof ContentHeader> = {
+      args: {
+        title: 'Foo',
+      },
+    };
+    const SyncContentStory: OrganismStory<typeof SyncContent> = {
+      args: {
+        Content: buildHtml('<p>Sync content</p>'),
+      },
+    };
+
+    const RouteStory: RouteStory<typeof Content> = {
+      render: renderRouteStory(Content, PageStory),
+      args: {
+        intro: IntroStory,
+        body: [
+          {
+            key: 'sync',
+            story: SyncContentStory,
+          },
+        ],
+      },
+    };
+
+    const { container } = render(<RouteStory.render {...RouteStory.args} />);
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <div>
+          <header>
+            <div>
+              Header
+            </div>
+          </header>
+          <main>
+            <div>
+              <div>
+                <h1>
+                  Foo
+                </h1>
+              </div>
+              <div>
+                <p>
+                  Sync content
+                </p>
+              </div>
+            </div>
+          </main>
+          <footer>
+            <div>
+              Footer
+            </div>
+          </footer>
+        </div>
+      </div>
+    `);
   });
 });
