@@ -1,6 +1,10 @@
-import { DecoratorFn } from '@storybook/react';
+import { ArgsEnhancer } from '@storybook/csf';
+import { DecoratorFn, ReactFramework, StoryObj } from '@storybook/react';
 import { Form as FormComponent, Formik } from 'formik';
+import { isArray, isObject, mapValues } from 'lodash';
 import React, {
+  ComponentProps,
+  JSXElementConstructor,
   PropsWithChildren,
   useContext,
   useEffect,
@@ -21,6 +25,13 @@ import {
   buildUrlBuilder,
   FormikChanges,
   FormikInitialValues,
+  LayoutProps,
+  OrganismComponent,
+  OrganismMap,
+  OrganismProps,
+  OrganismStatus,
+  OrganismStatusProvider,
+  Route,
 } from './utils';
 
 type Location = {
@@ -206,6 +217,229 @@ export function buildForm<Values>({
           {children}
         </FormComponent>
       </Formik>
+    );
+  };
+}
+
+type SlotDefinitions<T extends JSXElementConstructor<LayoutProps<any>>> = {
+  [Property in keyof ComponentProps<T>]: Placeholder;
+};
+
+export type LayoutStory<T extends JSXElementConstructor<LayoutProps<any>>> =
+  Omit<StoryObj<SlotDefinitions<T>>, 'args'> & { args: SlotDefinitions<T> };
+
+const colors = {
+  gray: '#F3F4F6',
+  red: '#FEE2E2',
+  yellow: '#FEF3C7',
+  green: '#D1FAE5',
+  blue: '#DBEAFE',
+  indigo: '#E0E7FF',
+  purple: '#EDE9FE',
+  pink: '#FCE7F3',
+};
+
+type Placeholder =
+  | [string, keyof typeof colors]
+  | [string, keyof typeof colors, number];
+
+/**
+ * React component rendering a colored placeholder.
+ *
+ * To be used in storybook stories to showcase layout regions.
+ *
+ * @param id
+ * @param children
+ * @param color
+ * @param height
+ * @constructor
+ */
+export const Placeholder = ({
+  id,
+  children,
+  color,
+  height,
+}: PropsWithChildren<{
+  id: string;
+  color: keyof typeof colors;
+  height?: number;
+}>) => {
+  return (
+    <div
+      data-testid={id}
+      style={{
+        backgroundColor: !color ? undefined : colors[color],
+        height: height || 200,
+        display: 'flex',
+        alignItems: 'center',
+      }}
+    >
+      <div
+        style={{
+          textAlign: 'center',
+          width: '100%',
+          fontStyle: 'italic',
+          fontWeight: 'bold',
+          color: '#374151',
+        }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+};
+
+export const layoutArgsEnhancer: ArgsEnhancer<ReactFramework> = ({
+  id,
+  initialArgs,
+}) => {
+  if (id.match(/^elements-layouts-/)) {
+    return enhanceLayoutArgs(initialArgs);
+  }
+  return initialArgs;
+};
+
+export const enhanceLayoutArgs = (args: SlotDefinitions<any>) => {
+  return Object.keys(args)
+    .map((slot) => ({
+      [slot]: (
+        <Placeholder id={slot} color={args[slot][1]} height={args[slot][2]}>
+          {args[slot][0]}
+        </Placeholder>
+      ),
+    }))
+    .reduce((acc, val) => ({ ...acc, ...val }), {});
+};
+
+const OrganismWrapper = ({
+  useMockedBehaviour,
+  Story,
+  context,
+}: PropsWithChildren<{
+  useMockedBehaviour: (props: any) => [any, OrganismStatus];
+  Story: any;
+  context: any;
+}>) => {
+  const [data, status] = useMockedBehaviour(context.args);
+  return (
+    <OrganismStatusProvider status={status}>
+      {Story({ args: { ...context.args, ...data } })}
+    </OrganismStatusProvider>
+  );
+};
+
+export const OrganismDecorator: DecoratorFn = (Story, context) => {
+  if (context.parameters.useMockedBehaviour) {
+    return (
+      <OrganismWrapper
+        useMockedBehaviour={context.parameters.useMockedBehaviour}
+        Story={Story}
+        context={context}
+      />
+    );
+  } else {
+    return Story(context);
+  }
+};
+
+/**
+ * A list of organism key and prop definitions to be passed into a layout property.
+ */
+type OrganismStoryList<T extends OrganismMap> = Array<
+  {
+    [Property in keyof T]: {
+      key: Property;
+      story: OrganismStory<T[Property]>;
+    };
+  }[keyof T]
+>;
+
+export type OrganismStory<T extends JSXElementConstructor<OrganismProps<any>>> =
+  Omit<StoryObj<ComponentProps<T>>, 'args' | 'play'> & {
+    // This is needed because storybook typing makes all arguments optional,
+    // but we want clear indication that the component will fail.
+    args: ComponentProps<T>;
+    parameters?: {
+      initialLocation?: string;
+      useMockedBehaviour?: (
+        props: ComponentProps<T>,
+      ) => [ComponentProps<T>, OrganismStatus];
+    };
+    play?: StoryObj<
+      ComponentProps<T> & {
+        wouldNavigate: () => {};
+        wouldSubmit: () => {};
+      }
+    >['play'];
+  };
+
+type RouteStoryArgs<TRoute extends Route<any, any>> = {
+  [Property in keyof TRoute[1]]: TRoute[1][Property] extends OrganismMap
+    ? OrganismStoryList<TRoute[1][Property]>
+    : TRoute[1][Property] extends OrganismComponent
+    ? OrganismStory<TRoute[1][Property]>
+    : never;
+};
+
+export type RouteStory<TRoute extends Route<any, any>> = Omit<
+  StoryObj<RouteStoryArgs<TRoute>>,
+  'args'
+> & {
+  parameters?: {
+    initialLocation?: string;
+  };
+  args: RouteStoryArgs<TRoute>;
+};
+
+function isOrganismStoryList(input: any): input is OrganismStoryList<any> {
+  return isArray(input);
+}
+
+function isOrganismStory(input: any): input is OrganismStory<any> {
+  return isObject(input);
+}
+
+function mockedBehaviour(story: OrganismStory<any>) {
+  return story.parameters?.useMockedBehaviour
+    ? () => story.parameters?.useMockedBehaviour!(story.args)
+    : story.args;
+}
+
+export function renderRouteStory<TRoute extends Route<any, any>>(
+  RouteDefinition: TRoute,
+  Wrapper: any = {
+    render: ({ children }: PropsWithChildren<{}>) => children,
+    args: {},
+  },
+) {
+  return function RouteRender({
+    children,
+    ...input
+  }: PropsWithChildren<RouteStoryArgs<TRoute>>) {
+    const routeValues = mapValues(input, (organismProps) => {
+      if (isOrganismStoryList(organismProps)) {
+        return organismProps.map((organism) => {
+          return {
+            key: organism.key,
+            input: mockedBehaviour(organism.story),
+          };
+        });
+      } else if (isOrganismStory(organismProps)) {
+        return mockedBehaviour(organismProps);
+      }
+      return {};
+    });
+
+    return (
+      <Wrapper.render {...Wrapper.args}>
+        <Route
+          definition={RouteDefinition}
+          input={routeValues}
+          intl={{ locale: 'en' }}
+        >
+          {children}
+        </Route>
+      </Wrapper.render>
     );
   };
 }
