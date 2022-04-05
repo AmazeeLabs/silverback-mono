@@ -777,6 +777,13 @@ $$('composer require drupal/environment_indicator');
 $$('yarn drush -y en environment_indicator');
 ```
 
+Disable user account registration
+
+```typescript
+
+$$('yarn drush -y config-set user.settings register admin_only')
+```
+
 Also, get rid of some standard modules...
 
 ```typescript
