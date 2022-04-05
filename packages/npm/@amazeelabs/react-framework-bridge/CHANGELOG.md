@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.9.5...@amazeelabs/react-framework-bridge@1.10.0) (2022-04-05)
+
+
+### Features
+
+* **storybook:** add routing- and organism subsystem to framework bridge ([20ae2de](https://github.com/AmazeeLabs/silverback-mono/commit/20ae2dec30d70f87f2d1c72018cff828d756c1d4))
+
+
+
+
+
 ## [1.9.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.9.4...@amazeelabs/react-framework-bridge@1.9.5) (2022-03-31)
 
 **Note:** Version bump only for package @amazeelabs/react-framework-bridge
