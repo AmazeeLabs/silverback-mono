@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.10.0...@amazeelabs/recipes@1.10.1) (2022-04-05)
+
+
+### Bug Fixes
+
+* add icu-dev as a Lagoon build dependency due to issue with intl package ([3f646e1](https://github.com/AmazeeLabs/silverback-mono/commit/3f646e1dc109111e74e3b35ccf1389f0f627d5a3))
+
+
+
+
+
 # [1.10.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.9.38...@amazeelabs/recipes@1.10.0) (2022-04-05)
 
 
