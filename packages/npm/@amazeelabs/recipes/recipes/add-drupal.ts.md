@@ -382,7 +382,7 @@ $$('mkdir .lagoon');
 # |-> .lagoon/cli.Dockerfile
 FROM uselagoon/php-8.1-cli-drupal as builder
 
-RUN apk add --no-cache git imagemagick && \
+RUN apk add --no-cache git imagemagick icu-dev && \
   docker-php-ext-install intl && \
   docker-php-ext-enable intl && \
   composer config --global github-protocols https
@@ -416,7 +416,7 @@ ARG CLI_IMAGE
 FROM ${CLI_IMAGE} as cli
 
 FROM uselagoon/php-8.1-fpm
-RUN apk add --no-cache git imagemagick && \
+RUN apk add --no-cache git imagemagick icu-dev && \
   docker-php-ext-install intl && \
   docker-php-ext-enable intl
 
