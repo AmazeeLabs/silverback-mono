@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.9.38...@amazeelabs/recipes@1.10.0) (2022-04-05)
+
+
+### Features
+
+* drupal recipe update to set default admin theme to Claro and enable environment indicator ([1aa5da9](https://github.com/AmazeeLabs/silverback-mono/commit/1aa5da9d211a4fff822c267a708dce7717e62c74))
+
+
+
+
+
 ## [1.9.38](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.9.37...@amazeelabs/recipes@1.9.38) (2022-03-31)
 
 **Note:** Version bump only for package @amazeelabs/recipes
