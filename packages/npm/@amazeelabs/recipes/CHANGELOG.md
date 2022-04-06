@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.12.1...@amazeelabs/recipes@1.13.0) (2022-04-06)
+
+
+### Features
+
+* **recipes:** updated storybook recipe to the latest developments ([b522ed2](https://github.com/AmazeeLabs/silverback-mono/commit/b522ed21e5b4365cbfa577ffb9d764adbb8c3602))
+
+
+
+
+
 ## [1.12.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.12.0...@amazeelabs/recipes@1.12.1) (2022-04-06)
 
 **Note:** Version bump only for package @amazeelabs/recipes
