@@ -775,6 +775,9 @@ $$('yarn drush -y en admin_toolbar_tools admin_toolbar_search');
 
 $$('composer require drupal/environment_indicator');
 $$('yarn drush -y en environment_indicator');
+
+$$('composer require drupal/key_auth');
+$$('yarn drush -y en key_auth');
 ```
 
 Also, get rid of some standard modules...
@@ -807,8 +810,7 @@ const modules = [
   'image',
   'link',
   'options',
-  'telephone',
-  'basic_auth',
+  'telephone'
 ];
 $$(`yarn drush -y en ${modules.join(' ')}`);
 ```
