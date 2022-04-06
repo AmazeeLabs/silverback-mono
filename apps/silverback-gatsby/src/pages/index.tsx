@@ -103,7 +103,13 @@ const IndexPage: React.FC<PageProps> = () => {
               })
             }
           </Row>
-          <Row>Path</Row>
+          <Row>
+            {
+              intl.formatMessage({
+                defaultMessage: 'Path',
+              })
+            }
+          </Row>
           <Row>Body</Row>
         </tr>
         {somePage?.translations.map((page) => (
