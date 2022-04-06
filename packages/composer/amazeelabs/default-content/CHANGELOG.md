@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/default-content@1.1.3...@-amazeelabs/default-content@1.1.4) (2022-04-06)
+
+
+### Bug Fixes
+
+* disable access checks on entity query when exporting content ([1fc0eb7](https://github.com/AmazeeLabs/silverback-mono/commit/1fc0eb7642c12199aa94946502e0572f7e2e2fe9))
+
+
+
+
+
 ## [1.1.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/default-content@1.1.2...@-amazeelabs/default-content@1.1.3) (2022-01-27)
 
 **Note:** Version bump only for package @-amazeelabs/default-content
