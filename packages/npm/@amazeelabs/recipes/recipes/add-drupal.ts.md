@@ -506,6 +506,8 @@ $$.file('package.json', (json) => ({
     setup: 'yarn silverback setup',
     start: 'yarn drush serve',
     login: 'yarn drush uli',
+    "config:export": "yarn drush cex -y",
+    "config:import": "yarn drush -y cim"
   },
 }));
 ```
@@ -919,6 +921,18 @@ Commit enable the module and commit changes.
 
 ```typescript
 $$(`yarn drush -y en ${projectName}_graphql`);
+```
+
+Register the schema export script
+```typescript
+$$.file('package.json', (json) => ({
+  ...json,
+  scripts: {
+    ...json.scripts,
+    "schema:export": "yarn drush silverback-gatsby:schema-export",
+    setup: `${json.scripts.setup} && yarn schema:export`,
+  },
+}));
 ```
 
 Commit.
