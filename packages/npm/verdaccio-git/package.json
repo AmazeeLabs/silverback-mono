@@ -1,6 +1,6 @@
 {
   "name": "verdaccio-git",
-  "version": "0.1.53",
+  "version": "0.1.55",
   "description": "Publish packages to git repositories.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -16,7 +16,7 @@
     "@verdaccio/streams": "^10.2.0",
     "file-system": "^2.2.2",
     "fs-extra": "^10.0.1",
-    "simple-git": "^3.3.0",
+    "simple-git": "^3.5.0",
     "sync-directory": "^4.0.12",
     "tar": "^6.1.11"
   },
@@ -30,12 +30,12 @@
     "@types/mock-fs": "4.13.1",
     "@types/node": "16.11.26",
     "@types/tar": "6.1.1",
-    "@typescript-eslint/eslint-plugin": "5.15.0",
+    "@typescript-eslint/eslint-plugin": "5.17.0",
     "@verdaccio/types": "10.3.0",
-    "eslint": "8.11.0",
+    "eslint": "8.12.0",
     "jest": "27.5.1",
     "mock-fs": "5.1.2",
-    "prettier": "2.6.0",
+    "prettier": "2.6.1",
     "standard-version": "9.3.2",
     "verdaccio": "5.8.0"
   },

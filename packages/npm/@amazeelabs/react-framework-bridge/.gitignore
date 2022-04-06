@@ -10,4 +10,5 @@ storybook.cjs.js
 storybook.d.ts
 utils.js
 utils.d.ts
+utils/
 types.d.ts

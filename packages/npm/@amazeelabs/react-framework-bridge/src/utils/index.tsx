@@ -9,7 +9,9 @@ import parse, {
 import { stringify } from 'qs';
 import React, { ComponentProps, useEffect } from 'react';
 
-import { FormBuilderProps, Html, LinkBuilder, LinkProps } from './types';
+import { FormBuilderProps, Html, LinkBuilder, LinkProps } from '../types';
+
+export * from './atomic';
 
 export const isInternalTarget = (target?: string) =>
   typeof target === 'undefined' || target === '' || target === '_self';

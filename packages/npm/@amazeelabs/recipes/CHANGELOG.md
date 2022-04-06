@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.10.0...@amazeelabs/recipes@1.10.1) (2022-04-05)
+
+
+### Bug Fixes
+
+* add icu-dev as a Lagoon build dependency due to issue with intl package ([3f646e1](https://github.com/AmazeeLabs/silverback-mono/commit/3f646e1dc109111e74e3b35ccf1389f0f627d5a3))
+
+
+
+
+
+# [1.10.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.9.38...@amazeelabs/recipes@1.10.0) (2022-04-05)
+
+
+### Features
+
+* drupal recipe update to set default admin theme to Claro and enable environment indicator ([1aa5da9](https://github.com/AmazeeLabs/silverback-mono/commit/1aa5da9d211a4fff822c267a708dce7717e62c74))
+
+
+
+
+
+## [1.9.38](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.9.37...@amazeelabs/recipes@1.9.38) (2022-03-31)
+
+**Note:** Version bump only for package @amazeelabs/recipes
+
+
+
+
+
+## [1.9.37](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.9.36...@amazeelabs/recipes@1.9.37) (2022-03-31)
+
+
+### Bug Fixes
+
+* make Renovate's stabilityDays option work ([346c5c9](https://github.com/AmazeeLabs/silverback-mono/commit/346c5c9d8e7e59307167191435c5eb9a919af553))
+
+
+
+
+
+## [1.9.36](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.9.35...@amazeelabs/recipes@1.9.36) (2022-03-24)
+
+
+### Bug Fixes
+
+* all renovate PRs should be approved manually ([6b88ba8](https://github.com/AmazeeLabs/silverback-mono/commit/6b88ba85e7666fbc25e741728f20ca262a1e2a08))
+
+
+
+
+
+## [1.9.35](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.9.34...@amazeelabs/recipes@1.9.35) (2022-03-24)
+
+**Note:** Version bump only for package @amazeelabs/recipes
+
+
+
+
+
 ## [1.9.34](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.9.33...@amazeelabs/recipes@1.9.34) (2022-03-18)
 
 **Note:** Version bump only for package @amazeelabs/recipes
