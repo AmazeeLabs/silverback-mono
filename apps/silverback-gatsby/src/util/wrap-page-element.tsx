@@ -1,4 +1,4 @@
-import { GatsbyBrowser, PageProps, WrapPageElementBrowserArgs } from 'gatsby';
+import { GatsbyBrowser, graphql,PageProps, useStaticQuery, WrapPageElementBrowserArgs } from 'gatsby';
 import React, { PropsWithChildren } from 'react';
 import { IntlProvider } from 'react-intl';
 
@@ -9,13 +9,47 @@ type Props = PropsWithChildren<{
   pageContext: PageContext;
 }>;
 
-function loadLocaleData(locale: string) {
-  switch (locale) {
-    case 'de':
-      return require('../../compiled-lang/de.json');
-    default:
-      return require('../../compiled-lang/en.json');
-  }
+function loadLocaleData(locale: string, defaultLocale: string) {
+  // @todo: cache this into a global variable or maybe into a json file as this
+  // gets called on every page render!
+  const {
+    allDrupalGatsbyStringTranslation: {nodes: allTranslations}
+  } = useStaticQuery<StringTranslationsQuery>(graphql`
+    query StringTranslations {
+      allDrupalGatsbyStringTranslation {
+        nodes {
+          id
+          source
+          translations {
+            langcode
+            translation
+          }
+        }
+      }
+    }
+  `);
+
+  const langcode = locale || defaultLocale || 'en';
+  const computedTranslations:any = {};
+  allTranslations.forEach((translation) => {
+    computedTranslations[translation.source] = [translation.translations?.reduce((accumulator: any, currentValue: any) => {
+      if (currentValue?.langcode === langcode) {
+        return {
+          'type': 0,
+          'value': currentValue.translation
+        };
+      }
+      if (!accumulator.value && currentValue?.langcode === defaultLocale) {
+        return {
+          'type': 0,
+          'value': currentValue.translation
+        }
+      }
+      return accumulator;
+    }, {})];
+  });
+
+  return computedTranslations;
 }
 
 const PageWrapper = ({ pageContext, children }: Props) => {
@@ -23,7 +57,7 @@ const PageWrapper = ({ pageContext, children }: Props) => {
     <IntlProvider
       defaultLocale="en"
       locale={pageContext.locale}
-      messages={loadLocaleData(pageContext.locale)}
+      messages={loadLocaleData(pageContext.locale, 'en')}
     >
       {children}
     </IntlProvider>

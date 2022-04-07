@@ -110,7 +110,13 @@ const IndexPage: React.FC<PageProps> = () => {
               })
             }
           </Row>
-          <Row>Body</Row>
+          <Row>
+            {
+              intl.formatMessage({
+                defaultMessage: 'Body',
+              })
+            }
+          </Row>
         </tr>
         {somePage?.translations.map((page) => (
           <tr key={`page-row-${somePage.id}-${page.langcode}`}>
