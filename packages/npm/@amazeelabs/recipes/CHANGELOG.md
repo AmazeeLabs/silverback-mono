@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.13.0...@amazeelabs/recipes@1.13.1) (2022-04-07)
+
+
+### Bug Fixes
+
+* **storybook:** import ordering in recipe ([865b791](https://github.com/AmazeeLabs/silverback-mono/commit/865b791d847f0103fde6bb205db19548beba2d4b))
+
+
+
+
+
 # [1.13.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.12.1...@amazeelabs/recipes@1.13.0) (2022-04-06)
 
 
