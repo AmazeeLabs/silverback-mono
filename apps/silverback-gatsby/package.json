@@ -11,7 +11,7 @@
     "@amazeelabs/silverback-iframe": "^1.1.35",
     "axios": "0.26.1",
     "dotenv": "16.0.0",
-    "gatsby": "4.11.1",
+    "gatsby": "4.11.2",
     "gatsby-graphql-source-toolkit": "2.0.2",
     "gatsby-image": "3.11.0",
     "gatsby-plugin-remote-images": "3.3.0",
@@ -43,7 +43,7 @@
     "husky": "7.0.4",
     "jest": "27.5.1",
     "lint-staged": "12.3.7",
-    "prettier": "2.6.1",
+    "prettier": "2.6.2",
     "ts-node": "10.7.0",
     "typescript": "4.6.3"
   },

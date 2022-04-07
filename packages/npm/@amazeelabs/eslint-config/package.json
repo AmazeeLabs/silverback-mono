@@ -7,10 +7,10 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.17.0",
-    "@typescript-eslint/parser": "^5.17.0",
+    "@typescript-eslint/eslint-plugin": "^5.18.0",
+    "@typescript-eslint/parser": "^5.18.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-no-only-tests": "^2.6.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.29.4",
