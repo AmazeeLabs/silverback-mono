@@ -389,8 +389,8 @@ classes along with some margin based on the current screen size.
 
 ```tsx
 // |-> src/elements/organisms/Prose.tsx
-import React from 'react';
 import { Html, OrganismProps } from '@amazeelabs/react-framework-bridge';
+import React from 'react';
 
 export default function Prose({
   Content,
@@ -411,11 +411,11 @@ and we should use that to illustrate all edge cases.
 
 ```tsx
 // |-> src/elements/organisms/Prose.stories.ts
-import { Meta } from '@storybook/react';
 import {
   buildHtml,
   OrganismStory,
 } from '@amazeelabs/react-framework-bridge/storybook';
+import { Meta } from '@storybook/react';
 import { within } from '@storybook/testing-library';
 
 import Prose from './Prose';
@@ -454,8 +454,8 @@ $$('mkdir -p src/elements/layouts');
 
 ```tsx
 // |-> src/elements/layouts/Page.tsx
-import React from 'react';
 import { LayoutProps } from '@amazeelabs/react-framework-bridge';
+import React from 'react';
 import { useIntl } from 'react-intl';
 
 export default function Page(props: LayoutProps<'header' | 'footer'>) {
@@ -483,9 +483,10 @@ export default function Page(props: LayoutProps<'header' | 'footer'>) {
 
 ```typescript
 // |-> src/elements/layouts/Page.stories.ts
-import Page from './Page';
-import { Meta } from '@storybook/react';
 import { LayoutStory } from '@amazeelabs/react-framework-bridge/storybook';
+import { Meta } from '@storybook/react';
+
+import Page from './Page';
 
 export default {
   component: Page,
@@ -541,8 +542,8 @@ export default function Footer() {
 
 ```tsx
 // |-> src/elements/organisms/Footer.stories.ts
-import { Meta } from '@storybook/react';
 import { OrganismStory } from '@amazeelabs/react-framework-bridge/storybook';
+import { Meta } from '@storybook/react';
 
 import Footer from './Footer';
 
@@ -559,8 +560,8 @@ footer configuration.
 
 ```tsx
 // |-> src/elements/layouts/Content.tsx
-import React from 'react';
 import { LayoutProps } from '@amazeelabs/react-framework-bridge';
+import React from 'react';
 
 export default function Content(props: LayoutProps<'body'>) {
   return <div>{props.body}</div>;
@@ -569,9 +570,10 @@ export default function Content(props: LayoutProps<'body'>) {
 
 ```typescript
 // |-> src/elements/layouts/Content.stories.ts
-import Content from './Content';
-import { Meta } from '@storybook/react';
 import { LayoutStory } from '@amazeelabs/react-framework-bridge/storybook';
+import { Meta } from '@storybook/react';
+
+import Content from './Content';
 
 export default {
   component: Content,
@@ -590,10 +592,11 @@ Now we are ready to declare our routes, by combining layouts with organisms.
 ```typescript
 // |-> src/routes.ts
 import { route } from '@amazeelabs/react-framework-bridge';
-import Page from './elements/layouts/Page';
+
 import Content from './elements/layouts/Content';
-import Header from './elements/organisms/Header';
+import Page from './elements/layouts/Page';
 import Footer from './elements/organisms/Footer';
+import Header from './elements/organisms/Header';
 import Prose from './elements/organisms/Prose';
 
 export const PageRoute = route(Page, {
@@ -613,15 +616,16 @@ them. Just like routes, these stories can be nested.
 
 ```typescript
 // |-> src/pages.stories.ts
-import { Meta } from '@storybook/react';
 import {
   renderRouteStory,
   RouteStory,
 } from '@amazeelabs/react-framework-bridge/storybook';
-import { PageRoute, ContentRoute } from './routes';
-import { ExampleHeader } from './elements/organisms/Header.stories';
+import { Meta } from '@storybook/react';
+
 import { ExampleFooter } from './elements/organisms/Footer.stories';
+import { ExampleHeader } from './elements/organisms/Header.stories';
 import { ExampleProse } from './elements/organisms/Prose.stories';
+import { ContentRoute, PageRoute } from './routes';
 
 export default {
   title: 'Pages',
