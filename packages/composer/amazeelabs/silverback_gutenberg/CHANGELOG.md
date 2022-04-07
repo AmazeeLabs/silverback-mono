@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.5.6...@-amazeelabs/silverback_gutenberg@1.5.7) (2022-04-07)
+
+**Note:** Version bump only for package @-amazeelabs/silverback_gutenberg
+
+
+
+
+
 ## [1.5.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.5.5...@-amazeelabs/silverback_gutenberg@1.5.6) (2022-03-31)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gutenberg
