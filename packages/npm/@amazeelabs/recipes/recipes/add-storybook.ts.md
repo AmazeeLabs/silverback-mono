@@ -989,10 +989,10 @@ name: 'Chromatic'
 on:
   push:
     branches:
-      - gatsby
+      - dev
   pull_request:
     branches:
-      - gatsby
+      - dev
 
 # List of jobs
 jobs:
