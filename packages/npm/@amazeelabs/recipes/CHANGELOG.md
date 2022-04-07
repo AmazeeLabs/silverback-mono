@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.13.1...@amazeelabs/recipes@1.13.2) (2022-04-07)
+
+**Note:** Version bump only for package @amazeelabs/recipes
+
+
+
+
+
+## [1.13.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.13.0...@amazeelabs/recipes@1.13.1) (2022-04-07)
+
+
+### Bug Fixes
+
+* **storybook:** import ordering in recipe ([865b791](https://github.com/AmazeeLabs/silverback-mono/commit/865b791d847f0103fde6bb205db19548beba2d4b))
+
+
+
+
+
+# [1.13.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.12.1...@amazeelabs/recipes@1.13.0) (2022-04-06)
+
+
+### Features
+
+* **recipes:** updated storybook recipe to the latest developments ([b522ed2](https://github.com/AmazeeLabs/silverback-mono/commit/b522ed21e5b4365cbfa577ffb9d764adbb8c3602))
+
+
+
+
+
+## [1.12.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.12.0...@amazeelabs/recipes@1.12.1) (2022-04-06)
+
+**Note:** Version bump only for package @amazeelabs/recipes
+
+
+
+
+
+# [1.12.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.11.0...@amazeelabs/recipes@1.12.0) (2022-04-05)
+
+
+### Features
+
+* disable user account registration in create drupal recipe ([1a57c03](https://github.com/AmazeeLabs/silverback-mono/commit/1a57c037b9719cef6ba4aa3ae1357179be94393a))
+
+
+
+
+
+# [1.11.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.10.1...@amazeelabs/recipes@1.11.0) (2022-04-05)
+
+
+### Features
+
+* gatsby recipe now uses official gatsby starter ([9603771](https://github.com/AmazeeLabs/silverback-mono/commit/9603771d190d60c7830fea82d4e5e30310b42e45))
+
+
+
+
+
 ## [1.10.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.10.0...@amazeelabs/recipes@1.10.1) (2022-04-05)
 
 

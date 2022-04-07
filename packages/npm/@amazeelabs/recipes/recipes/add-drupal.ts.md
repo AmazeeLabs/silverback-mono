@@ -506,6 +506,8 @@ $$.file('package.json', (json) => ({
     setup: 'yarn silverback setup',
     start: 'yarn drush serve',
     login: 'yarn drush uli',
+    "config:export": "yarn drush cex -y",
+    "config:import": "yarn drush -y cim"
   },
 }));
 ```
@@ -775,6 +777,16 @@ $$('yarn drush -y en admin_toolbar_tools admin_toolbar_search');
 
 $$('composer require drupal/environment_indicator');
 $$('yarn drush -y en environment_indicator');
+
+$$('composer require drupal/key_auth');
+$$('yarn drush -y en key_auth');
+```
+
+Disable user account registration
+
+```typescript
+
+$$('yarn drush -y config-set user.settings register admin_only')
 ```
 
 Also, get rid of some standard modules...
@@ -807,8 +819,7 @@ const modules = [
   'image',
   'link',
   'options',
-  'telephone',
-  'basic_auth',
+  'telephone'
 ];
 $$(`yarn drush -y en ${modules.join(' ')}`);
 ```
@@ -917,6 +928,18 @@ Commit enable the module and commit changes.
 
 ```typescript
 $$(`yarn drush -y en ${projectName}_graphql`);
+```
+
+Register the schema export script
+```typescript
+$$.file('package.json', (json) => ({
+  ...json,
+  scripts: {
+    ...json.scripts,
+    "schema:export": "yarn drush silverback-gatsby:schema-export",
+    setup: `${json.scripts.setup} && yarn schema:export`,
+  },
+}));
 ```
 
 Commit.

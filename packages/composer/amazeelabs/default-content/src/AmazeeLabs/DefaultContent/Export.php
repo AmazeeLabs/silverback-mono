@@ -24,7 +24,12 @@ abstract class Export {
         $definition instanceof ContentEntityType &&
         !in_array($entityTypeId, $excludedContentEntityTypes, TRUE)
       ) {
-        $entityIds = \Drupal::entityQuery($entityTypeId)->execute();
+        $entityIds = \Drupal::entityQuery($entityTypeId)
+          // Disable access checks to prevent modules (like
+          // https://www.drupal.org/project/domain_entity) to hide some entities
+          // from the export.
+          ->accessCheck(FALSE)
+          ->execute();
         foreach ($entityIds as $entityId) {
           if ($entityTypeId === 'user' && ($entityId == 0 || $entityId == 1)) {
             // Users 0 and 1 are created automatically on Drupal installation.
