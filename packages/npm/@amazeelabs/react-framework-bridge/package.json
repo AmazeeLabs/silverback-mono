@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/react-framework-bridge",
-  "version": "1.10.0",
+  "version": "1.10.1",
   "description": "Bridge code to implement framework independent react components.",
   "types": "index.d.ts",
   "main": "index.js",
