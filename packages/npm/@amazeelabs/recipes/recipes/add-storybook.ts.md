@@ -901,7 +901,7 @@ also necessary because npm will by default ignore everything that is listed in
 intend to distribute the newly built contents of the `build` folder.
 
 ```gitignore
-# >-> .gitignore
+# |-> .npmignore
 node_modules
 src
 .storybook
@@ -1032,14 +1032,13 @@ settings.
 Add build paths to `.gitignore`.
 
 ```gitignore
-# >-> .gitignore
+# |-> .gitignore
 build-storybook.log
 storybook-static
 node_modules
 coverage
 build
 styles.css
-storybook-static
 dts
 ```
 
