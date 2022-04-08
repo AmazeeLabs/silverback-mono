@@ -116,10 +116,10 @@ export type OrganismProps<T extends { [key: string]: any }> = {
 export type RouteInput<
   TRoute extends Route<any, any>,
   Slot extends keyof Omit<ComponentProps<TRoute[0]>, 'children'>,
-  TKeys extends TRoute[1][Slot] extends Record<any, JSXElementConstructor<any>>
+  TKeys extends TRoute[1][Slot] extends OrganismMap
     ? keyof TRoute[1][Slot]
     : never = any,
-> = TRoute[1][Slot] extends Record<any, JSXElementConstructor<any>>
+> = TRoute[1][Slot] extends OrganismMap
   ? OrganismPropsList<TRoute[1][Slot]> extends Array<infer TItem>
     ? TItem extends { key: TKeys; props: OrganismProps<any> }
       ? { key: TItem['key']; input: OrganismInput<TItem['props']> }
@@ -168,7 +168,7 @@ function toHook<T extends OrganismProps<any>>(
  * A map of organisms that can be injected into a layout slot.
  */
 export type OrganismMap = {
-  [key: string]: OrganismComponent;
+  [key: string]: JSXElementConstructor<any>;
 };
 
 /**
