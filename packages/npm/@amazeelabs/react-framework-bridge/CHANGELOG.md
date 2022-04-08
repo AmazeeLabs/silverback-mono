@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.10.3...@amazeelabs/react-framework-bridge@1.10.4) (2022-04-08)
+
+
+### Bug Fixes
+
+* **framework-bridge:** loosened typing for RouteInput ([01ff947](https://github.com/AmazeeLabs/silverback-mono/commit/01ff9473548bd0ee194d96365660a3cebea0bdf4))
+
+
+
+
+
 ## [1.10.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.10.2...@amazeelabs/react-framework-bridge@1.10.3) (2022-04-08)
 
 
