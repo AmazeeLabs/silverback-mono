@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { act } from 'react-dom/test-utils';
 
 import { buildHtml } from '../../storybook';
-import { createMapper, Route, RouteInput } from '../atomic';
+import { createMapper, Route, RouteInput, RouteSlotInput } from '../atomic';
 import { Content, Page } from '../example-ui';
 
 describe('Route rendering', () => {
@@ -292,7 +292,7 @@ describe('createMapper', () => {
     };
     const map = (
       input: SyncFragment | AsyncFragment,
-    ): RouteInput<typeof Content, 'body', 'sync' | 'async'> => ({
+    ): RouteSlotInput<typeof Content, 'body', 'sync' | 'async'> => ({
       key: input.__typename === 'Sync' ? 'sync' : 'async',
       input: {
         Content: buildHtml(
@@ -305,7 +305,7 @@ describe('createMapper', () => {
 
     type Input = Array<SyncFragment | AsyncFragment>;
 
-    const mapper = createMapper<Input, RouteInput<typeof Content, 'body'>>({
+    const mapper = createMapper<Input, RouteSlotInput<typeof Content, 'body'>>({
       Sync: map,
       Async: map,
     });

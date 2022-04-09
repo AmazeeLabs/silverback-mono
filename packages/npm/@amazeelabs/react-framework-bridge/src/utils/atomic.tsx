@@ -76,7 +76,7 @@ export const OrganismStatusProvider = ({
 
 export type Mappers<
   TInput extends Array<{ __typename: TKey }>,
-  TOptions extends RouteInput<any, any>,
+  TOptions extends RouteSlotInput<any, any>,
   TKey extends string = string,
 > = Partial<{
   [Property in TInput[number]['__typename']]: (
@@ -86,7 +86,7 @@ export type Mappers<
 
 export function createMapper<
   TInput extends Array<{ __typename: TKey }>,
-  TOptions extends RouteInput<any, any>,
+  TOptions extends RouteSlotInput<any, any>,
   TKey extends string = string,
 >(mappers: Mappers<TInput, TOptions>) {
   return function (input: TInput) {
@@ -113,7 +113,11 @@ export type OrganismProps<T extends { [key: string]: any }> = {
   [Property in keyof T]: T[Property];
 };
 
-export type RouteInput<
+export type RouteInput<TRoute extends Route<any, any>> = RouteInputs<
+  RouteProps<TRoute[1]>
+>;
+
+export type RouteSlotInput<
   TRoute extends Route<any, any>,
   Slot extends keyof Omit<ComponentProps<TRoute[0]>, 'children'>,
   TKeys extends TRoute[1][Slot] extends OrganismMap
