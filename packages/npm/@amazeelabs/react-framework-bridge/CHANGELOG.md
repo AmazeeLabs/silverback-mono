@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.0...@amazeelabs/react-framework-bridge@1.11.1) (2022-04-10)
+
+
+### Bug Fixes
+
+* **framework-bridge:** typing mistake in RouteProps ([789d915](https://github.com/AmazeeLabs/silverback-mono/commit/789d9158b63a98b937c435427f1c8863cbdad73a))
+
+
+
+
+
 # [1.11.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.10.4...@amazeelabs/react-framework-bridge@1.11.0) (2022-04-10)
 
 
