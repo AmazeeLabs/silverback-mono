@@ -109,7 +109,7 @@ export function createMapper<
  * Organisms think in dictionaries where the keys are strings and the values
  * are primitives or data structures.
  */
-export type OrganismProps<T extends { [key: string]: any }> = {
+export type OrganismProps<T extends { [key: string]: Data }> = {
   [Property in keyof T]: T[Property];
 };
 
@@ -172,7 +172,7 @@ function toHook<T extends OrganismProps<any>>(
  * A map of organisms that can be injected into a layout slot.
  */
 export type OrganismMap = {
-  [key: string]: JSXElementConstructor<any>;
+  [key: string]: OrganismComponent;
 };
 
 /**
@@ -218,7 +218,7 @@ export type RouteProps<TLayoutMap extends LayoutMap<LayoutComponent>> = {
       OrganismPropsList<TLayoutMap[Property]>
     : // ... else we are dealing with a standard organism component.
     TLayoutMap[Property] extends OrganismComponent
-    ? OrganismProps<TLayoutMap[Property]>
+    ? ComponentProps<TLayoutMap[Property]>
     : never;
 };
 

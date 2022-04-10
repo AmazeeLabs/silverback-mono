@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { act } from 'react-dom/test-utils';
 
 import { buildHtml } from '../../storybook';
-import { createMapper, Route, RouteInput, RouteSlotInput } from '../atomic';
+import { createMapper, Route, RouteSlotInput } from '../atomic';
 import { Content, Page } from '../example-ui';
 
 describe('Route rendering', () => {
