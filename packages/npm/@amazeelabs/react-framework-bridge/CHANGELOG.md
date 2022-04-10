@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.10.4...@amazeelabs/react-framework-bridge@1.11.0) (2022-04-10)
+
+
+### Features
+
+* **framework-bridge:** expose helper type for all route inputs ([34094da](https://github.com/AmazeeLabs/silverback-mono/commit/34094daa4f22d1fb9e7d0667eacb0b46a818746c))
+
+
+
+
+
 ## [1.10.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.10.3...@amazeelabs/react-framework-bridge@1.10.4) (2022-04-08)
 
 
