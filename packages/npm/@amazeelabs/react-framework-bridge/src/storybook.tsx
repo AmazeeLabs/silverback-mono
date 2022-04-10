@@ -434,7 +434,7 @@ export function renderRouteStory<TRoute extends Route<any, any>>(
       <Wrapper.render {...Wrapper.args}>
         <Route
           definition={RouteDefinition}
-          input={routeValues}
+          input={routeValues as any}
           intl={{ locale: 'en' }}
         >
           {children}
