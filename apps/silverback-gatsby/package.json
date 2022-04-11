@@ -77,7 +77,7 @@
     "test:integration": "exit 0",
     "test:watch": "jest --watch",
     "translations:extract": "formatjs extract 'src/**/*.ts*' --ignore='**/*.d.ts' --out-file=.cache/translation_sources.json --id-interpolation-pattern '[sha512:contenthash:base64:6]'",
-    "translations:push" : "yarn translations:extract && ts-node scripts/push_translation_sources.ts .cache/translation_sources.json"
+    "translations:push_sources" : "yarn translations:extract && ts-node scripts/push_translation_sources.ts .cache/translation_sources.json"
   },
   "repository": {
     "type": "git",

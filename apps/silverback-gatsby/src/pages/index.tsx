@@ -152,7 +152,7 @@ const IndexPage: React.FC<PageProps> = () => {
               </Row>
               <Row>{translation.langcode}</Row>
               <Row>{translation.path}</Row>
-              <Row>{translation.tags.map((tag) => tag.title).join(', ')}</Row>
+              <Row>{translation.tags?.map((tag) => tag.title).join(', ')}</Row>
             </tr>
           )),
         )}

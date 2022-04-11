@@ -2,6 +2,7 @@ import { SilverbackPageContext } from '@amazeelabs/gatsby-source-silverback';
 import { graphql, Link, PageProps } from 'gatsby';
 import Image from 'gatsby-image';
 import React from 'react';
+import { useIntl } from 'react-intl';
 
 import {
   ImageSet,
@@ -56,21 +57,52 @@ const Article: React.FC<
       });
     }
   }
+  const intl = useIntl();
 
   return (
     <StandardLayout locationState={location.state}>
       <Link to="/">To frontpage</Link>
       <table>
         <tr>
-          <Row>Title</Row>
-          <Row>Tags</Row>
-          <Row>Body</Row>
-          <Row>Image</Row>
-          <Row>Other languages</Row>
+          <Row>
+            {
+              intl.formatMessage({
+                defaultMessage: 'Title',
+              })
+            }
+          </Row>
+          <Row>
+            {
+              intl.formatMessage({
+                defaultMessage: 'Tags',
+              })
+            }
+          </Row>
+          <Row>
+            {
+              intl.formatMessage({
+                defaultMessage: 'Body',
+              })
+            }
+          </Row>
+          <Row>
+            {
+              intl.formatMessage({
+                defaultMessage: 'Image',
+              })
+            }
+          </Row>
+          <Row>
+            {
+              intl.formatMessage({
+                defaultMessage: 'Other languages',
+              })
+            }
+          </Row>
         </tr>
         <tr>
           <Row>{article.title}</Row>
-          <Row>{article.tags.map((tag) => tag.title).join(', ')}</Row>
+          <Row>{article.tags?.map((tag) => tag.title).join(', ')}</Row>
           <Row>
             <div className="html-from-drupal">
               {article.body && renderHtml(article.body, imageSets)}

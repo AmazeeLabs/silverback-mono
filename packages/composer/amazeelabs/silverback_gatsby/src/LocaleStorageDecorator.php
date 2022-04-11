@@ -2,10 +2,11 @@
 
 namespace Drupal\silverback_gatsby;
 
+use Drupal\locale\StringContextInterface;
 use Drupal\locale\StringStorageInterface;
 use Drupal\silverback_gatsby\Plugin\Gatsby\Feed\StringTranslationFeed;
 
-class LocaleStorageDecorator implements StringStorageInterface {
+class LocaleStorageDecorator implements StringStorageInterface, StringContextInterface {
 
   /**
    * @var \Drupal\locale\StringStorageInterface
@@ -134,6 +135,16 @@ class LocaleStorageDecorator implements StringStorageInterface {
    */
   public function createTranslation($values = []) {
     return $this->subject->createTranslation($values + ['storage' => $this]);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function getContexts(): array {
+    if ($this->subject instanceof StringContextInterface) {
+      return $this->subject->getContexts();
+    }
+    return [];
   }
 
   /**
