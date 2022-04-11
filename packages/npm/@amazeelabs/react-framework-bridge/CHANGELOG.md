@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.4...@amazeelabs/react-framework-bridge@1.11.5) (2022-04-11)
+
+
+### Bug Fixes
+
+* **framework-bridge:** type loosening and type definitions as build artifact ([b340dc7](https://github.com/AmazeeLabs/silverback-mono/commit/b340dc7aeb289c5178acaed2fba7c67609fb79cb))
+
+
+
+
+
 ## [1.11.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.3...@amazeelabs/react-framework-bridge@1.11.4) (2022-04-11)
 
 
