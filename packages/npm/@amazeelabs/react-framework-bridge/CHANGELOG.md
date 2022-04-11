@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.5...@amazeelabs/react-framework-bridge@1.11.6) (2022-04-11)
+
+
+### Bug Fixes
+
+* **framework-bridge:** loosen typing on OrganismStories and remove src and dst from npm package ([faa7ff5](https://github.com/AmazeeLabs/silverback-mono/commit/faa7ff545faa15f90ed41d833777bf0f33615859))
+
+
+
+
+
 ## [1.11.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.4...@amazeelabs/react-framework-bridge@1.11.5) (2022-04-11)
 
 
