@@ -129,7 +129,7 @@ export type RouteSlotInput<
       ? { key: TItem['key']; input: OrganismInput<TItem['props']> }
       : never
     : never
-  : TRoute[1][Slot] extends OrganismComponent
+  : TRoute[1][Slot] extends JSXElementConstructor<any>
   ? OrganismInput<ComponentProps<TRoute[1][Slot]>>
   : never;
 
@@ -172,7 +172,7 @@ function toHook<T extends OrganismProps<any>>(
  * A map of organisms that can be injected into a layout slot.
  */
 export type OrganismMap = {
-  [key: string]: OrganismComponent;
+  [key: string]: JSXElementConstructor<any>;
 };
 
 /**
@@ -217,7 +217,7 @@ export type RouteProps<TLayoutMap extends LayoutMap<LayoutComponent>> = {
     ? // ... then the route property has to be an organism property list
       OrganismPropsList<TLayoutMap[Property]>
     : // ... else we are dealing with a standard organism component.
-    TLayoutMap[Property] extends OrganismComponent
+    TLayoutMap[Property] extends JSXElementConstructor<any>
     ? ComponentProps<TLayoutMap[Property]>
     : never;
 };
@@ -294,7 +294,7 @@ export function Route<
         mapValues(definition[1], (entry, key) => {
           const organismProps = input[key];
           if (isOrganismMap(entry) && isArray(organismProps)) {
-            return organismProps.map((organism, index) => {
+            return organismProps.map((organism: any, index: any) => {
               return withOrganismProps(
                 entry[organism.key as keyof typeof entry],
               )((organism as OrganismInput<any>).input, index);
