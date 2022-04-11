@@ -9,7 +9,7 @@ type Props = PropsWithChildren<{
   pageContext: PageContext;
 }>;
 
-function loadLocaleData(locale: string, defaultLocale: string) {
+const PageWrapper = ({ pageContext, children }: Props) => {
   // @todo: cache this into a global variable or maybe into a json file as this
   // gets called on every page render!
   const {
@@ -29,7 +29,8 @@ function loadLocaleData(locale: string, defaultLocale: string) {
     }
   `);
 
-  const langcode = locale || defaultLocale || 'en';
+  const defaultLocale = 'en'
+  const langcode = pageContext.locale || defaultLocale;
   const computedTranslations:any = {};
   allTranslations.forEach((translation) => {
     computedTranslations[translation.source] = [translation.translations?.reduce((accumulator: any, currentValue: any) => {
@@ -49,15 +50,11 @@ function loadLocaleData(locale: string, defaultLocale: string) {
     }, {})];
   });
 
-  return computedTranslations;
-}
-
-const PageWrapper = ({ pageContext, children }: Props) => {
   return (
     <IntlProvider
-      defaultLocale="en"
+      defaultLocale={defaultLocale}
       locale={pageContext.locale}
-      messages={loadLocaleData(pageContext.locale, 'en')}
+      messages={computedTranslations}
     >
       {children}
     </IntlProvider>
