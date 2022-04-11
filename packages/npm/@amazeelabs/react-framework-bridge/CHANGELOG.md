@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.3...@amazeelabs/react-framework-bridge@1.11.4) (2022-04-11)
+
+
+### Bug Fixes
+
+* **framework-bridge:** add src to the npm package since it's used for typing now ([0ecd726](https://github.com/AmazeeLabs/silverback-mono/commit/0ecd726b1e553cfb36ea98cfd4e7dea526f886f8))
+
+
+
+
+
 ## [1.11.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.2...@amazeelabs/react-framework-bridge@1.11.3) (2022-04-11)
 
 
