@@ -76,7 +76,7 @@ export const OrganismStatusProvider = ({
 
 export type Mappers<
   TInput extends Array<{ __typename: TKey }>,
-  TOptions extends RouteInput<any>[any],
+  TOptions extends RouteSlotInput<any, any>,
   TKey extends string = string,
 > = Partial<{
   [Property in TInput[number]['__typename']]: (
@@ -86,7 +86,7 @@ export type Mappers<
 
 export function createMapper<
   TInput extends Array<{ __typename: TKey }>,
-  TOptions extends RouteInput<any>[any],
+  TOptions extends RouteSlotInput<any, any>,
   TKey extends string = string,
 >(mappers: Mappers<TInput, TOptions>) {
   return function (input: TInput) {
@@ -116,6 +116,22 @@ export type OrganismProps<T extends { [key: string]: Data }> = {
 export type RouteInput<TRoute extends Route<any, any>> = RouteInputs<
   RouteProps<TRoute[1]>
 >;
+
+export type RouteSlotInput<
+  TRoute extends Route<any, any>,
+  Slot extends keyof Omit<ComponentProps<TRoute[0]>, 'children'>,
+  TKeys extends TRoute[1][Slot] extends OrganismMap
+    ? keyof TRoute[1][Slot]
+    : never = any,
+> = TRoute[1][Slot] extends OrganismMap
+  ? OrganismPropsList<TRoute[1][Slot]> extends Array<infer TItem>
+    ? TItem extends { key: TKeys; props: OrganismProps<any> }
+      ? { key: TItem['key']; input: OrganismInput<TItem['props']> }
+      : never
+    : never
+  : TRoute[1][Slot] extends OrganismComponent
+  ? OrganismInput<ComponentProps<TRoute[1][Slot]>>
+  : never;
 
 /**
  * An organism react component.
@@ -258,14 +274,17 @@ function isOrganismMap(
  * @param input
  * @param intl
  */
-export function Route<TRoute extends Route<any, any>>({
+export function Route<
+  TLayoutComponent extends LayoutComponent,
+  TLayoutMap extends LayoutMap<TLayoutComponent>,
+>({
   definition,
   input,
   intl,
   children,
 }: PropsWithChildren<{
-  definition: TRoute;
-  input: RouteInput<TRoute>;
+  definition: Route<TLayoutComponent, TLayoutMap>;
+  input: RouteInputs<RouteProps<TLayoutMap>>;
   intl: ComponentProps<typeof IntlProvider>;
 }>) {
   return (
@@ -275,7 +294,7 @@ export function Route<TRoute extends Route<any, any>>({
         mapValues(definition[1], (entry, key) => {
           const organismProps = input[key];
           if (isOrganismMap(entry) && isArray(organismProps)) {
-            return organismProps.map((organism: any, index: number) => {
+            return organismProps.map((organism, index) => {
               return withOrganismProps(
                 entry[organism.key as keyof typeof entry],
               )((organism as OrganismInput<any>).input, index);

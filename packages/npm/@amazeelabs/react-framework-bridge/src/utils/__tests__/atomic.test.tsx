@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { act } from 'react-dom/test-utils';
 
 import { buildHtml } from '../../storybook';
-import { createMapper, Route, RouteInput } from '../atomic';
+import { createMapper, Route, RouteSlotInput } from '../atomic';
 import { Content, Page } from '../example-ui';
 
 describe('Route rendering', () => {
@@ -173,16 +173,6 @@ describe('Route rendering', () => {
   });
 
   it('accepts hooks as input', async () => {
-    const useAsyncInput: RouteInput<
-      typeof Content
-    >['body'][number]['input'] = () => {
-      return [
-        {
-          Content: buildHtml(`<p>Async content.</p>`),
-        },
-        102,
-      ];
-    };
     const { container } = render(
       <Route
         definition={Content}
@@ -193,7 +183,12 @@ describe('Route rendering', () => {
           body: [
             {
               key: 'async',
-              input: useAsyncInput,
+              input: () => [
+                {
+                  Content: buildHtml(`<p>Async content.</p>`),
+                },
+                102,
+              ],
             },
           ],
         }}
@@ -297,7 +292,7 @@ describe('createMapper', () => {
     };
     const map = (
       input: SyncFragment | AsyncFragment,
-    ): RouteInput<typeof Content>['body'][number] => ({
+    ): RouteSlotInput<typeof Content, 'body', 'sync' | 'async'> => ({
       key: input.__typename === 'Sync' ? 'sync' : 'async',
       input: {
         Content: buildHtml(
@@ -310,10 +305,7 @@ describe('createMapper', () => {
 
     type Input = Array<SyncFragment | AsyncFragment>;
 
-    const mapper = createMapper<
-      Input,
-      RouteInput<typeof Content>['body'][number]
-    >({
+    const mapper = createMapper<Input, RouteSlotInput<typeof Content, 'body'>>({
       Sync: map,
       Async: map,
     });
