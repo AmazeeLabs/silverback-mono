@@ -1,6 +1,6 @@
 import common from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
-import typescript from '@rollup/plugin-typescript';
+import esbuild from 'rollup-plugin-esbuild';
 
 import pkg from './package.json';
 
@@ -21,7 +21,7 @@ export default [
       ...Object.keys(pkg.dependencies),
       ...Object.keys(pkg.peerDependencies),
     ],
-    plugins: [resolve(), common(), typescript({ tsconfig: './tsconfig.json' })],
+    plugins: [esbuild(), resolve(), common()],
   },
   {
     input: `src/gatsby.tsx`,
@@ -33,7 +33,7 @@ export default [
       ...Object.keys(pkg.dependencies),
       ...Object.keys(pkg.peerDependencies),
     ],
-    plugins: [resolve(), typescript({ tsconfig: './tsconfig.json' })],
+    plugins: [esbuild(), resolve()],
   },
   {
     input: `src/storybook.tsx`,
@@ -51,6 +51,6 @@ export default [
       ...Object.keys(pkg.dependencies),
       ...Object.keys(pkg.peerDependencies),
     ],
-    plugins: [resolve(), typescript({ tsconfig: './tsconfig.json' })],
+    plugins: [esbuild(), resolve()],
   },
 ];
