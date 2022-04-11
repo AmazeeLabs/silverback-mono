@@ -26,7 +26,6 @@ import {
   FormikChanges,
   FormikInitialValues,
   LayoutProps,
-  OrganismComponent,
   OrganismMap,
   OrganismStatus,
   OrganismStatusProvider,
@@ -377,7 +376,7 @@ export type OrganismStory<T extends JSXElementConstructor<any>> = Omit<
 type RouteStoryArgs<TRoute extends Route<any, any>> = {
   [Property in keyof TRoute[1]]: TRoute[1][Property] extends OrganismMap
     ? OrganismStoryList<TRoute[1][Property]>
-    : TRoute[1][Property] extends OrganismComponent
+    : TRoute[1][Property] extends JSXElementConstructor<any>
     ? OrganismStory<TRoute[1][Property]>
     : never;
 };
