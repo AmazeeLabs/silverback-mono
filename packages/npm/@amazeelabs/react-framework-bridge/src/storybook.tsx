@@ -28,7 +28,6 @@ import {
   LayoutProps,
   OrganismComponent,
   OrganismMap,
-  OrganismProps,
   OrganismStatus,
   OrganismStatusProvider,
   Route,
@@ -354,24 +353,26 @@ type OrganismStoryList<T extends OrganismMap> = Array<
   }[keyof T]
 >;
 
-export type OrganismStory<T extends JSXElementConstructor<OrganismProps<any>>> =
-  Omit<StoryObj<ComponentProps<T>>, 'args' | 'play'> & {
-    // This is needed because storybook typing makes all arguments optional,
-    // but we want clear indication that the component will fail.
-    args: ComponentProps<T>;
-    parameters?: {
-      initialLocation?: string;
-      useMockedBehaviour?: (
-        props: ComponentProps<T>,
-      ) => [ComponentProps<T>, OrganismStatus];
-    };
-    play?: StoryObj<
-      ComponentProps<T> & {
-        wouldNavigate: () => {};
-        wouldSubmit: () => {};
-      }
-    >['play'];
+export type OrganismStory<T extends JSXElementConstructor<any>> = Omit<
+  StoryObj<ComponentProps<T>>,
+  'args' | 'play'
+> & {
+  // This is needed because storybook typing makes all arguments optional,
+  // but we want clear indication that the component will fail.
+  args: ComponentProps<T>;
+  parameters?: {
+    initialLocation?: string;
+    useMockedBehaviour?: (
+      props: ComponentProps<T>,
+    ) => [ComponentProps<T>, OrganismStatus];
   };
+  play?: StoryObj<
+    ComponentProps<T> & {
+      wouldNavigate: () => {};
+      wouldSubmit: () => {};
+    }
+  >['play'];
+};
 
 type RouteStoryArgs<TRoute extends Route<any, any>> = {
   [Property in keyof TRoute[1]]: TRoute[1][Property] extends OrganismMap
