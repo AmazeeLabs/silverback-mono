@@ -1,6 +1,6 @@
 {
   "name": "@-amazeelabs/silverback_external_preview",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "author": "Amazee Labs <development@amazeelabs.com>",
   "publishConfig": {
     "access": "public",

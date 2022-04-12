@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_external_preview@1.1.4...@-amazeelabs/silverback_external_preview@1.1.5) (2022-04-12)
+
+
+### Bug Fixes
+
+* set external preview toolbar item to cache based on URL ([296218a](https://github.com/AmazeeLabs/silverback-mono/commit/296218ab7560f78edf9a6799e18edebdc2371512))
+
+
+
+
+
 ## [1.1.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_external_preview@1.1.3...@-amazeelabs/silverback_external_preview@1.1.4) (2021-12-27)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_external_preview
