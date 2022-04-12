@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.4.11...@amazeelabs/publisher@0.5.0) (2022-04-12)
+
+
+### Features
+
+* basic auth for publisher ([4f3bc17](https://github.com/AmazeeLabs/silverback-mono/commit/4f3bc17950d09826fe245fa89c2e3b71d37c3bd5))
+
+
+
+
+
 ## [0.4.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.4.10...@amazeelabs/publisher@0.4.11) (2022-04-07)
 
 **Note:** Version bump only for package @amazeelabs/publisher
