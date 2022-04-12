@@ -55,7 +55,7 @@ function _silverback_external_preview_get_toolbar_item($routeMatch) {
         ],
       ]),
       '#cache' => [
-        'max-age' => 0,
+        'contexts' => ['url'],
       ],
       '#attributes' => [
         'class' => [
