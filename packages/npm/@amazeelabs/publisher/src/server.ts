@@ -3,6 +3,7 @@ import { execSync } from 'child_process';
 import colors from 'colors';
 import { cosmiconfigSync } from 'cosmiconfig';
 import express from 'express';
+import basicAuth from 'express-basic-auth';
 import expressWs from 'express-ws';
 import {
   createProxyMiddleware,
@@ -65,6 +66,16 @@ const gateway$ = gatewayCommands$.pipe(
 );
 
 app.locals.isReady = false;
+
+// Basic Authentication
+if (config.basicAuth) {
+  app.use(
+    basicAuth({
+      users: { [config.basicAuth.username]: config.basicAuth.password },
+      challenge: true,
+    }),
+  );
+}
 
 app.use(function (req, res, next) {
   res.set('Cache-control', 'no-cache');
