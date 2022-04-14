@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.5.3...@amazeelabs/publisher@0.5.4) (2022-04-14)
+
+
+### Bug Fixes
+
+* **publisher:** define referrer policy on Publisher express server ([d8cfb3e](https://github.com/AmazeeLabs/silverback-mono/commit/d8cfb3e1b2f495b10e9b8510db86708043f2d115))
+
+
+
+
+
 ## [0.5.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.5.2...@amazeelabs/publisher@0.5.3) (2022-04-14)
 
 
