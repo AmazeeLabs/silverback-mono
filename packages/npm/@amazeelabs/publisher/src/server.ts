@@ -79,6 +79,7 @@ if (config.basicAuth) {
 
 app.use(function (req, res, next) {
   res.set('Cache-control', 'no-cache');
+  res.header('Access-Control-Allow-Origin', '*');
   next();
 });
 
