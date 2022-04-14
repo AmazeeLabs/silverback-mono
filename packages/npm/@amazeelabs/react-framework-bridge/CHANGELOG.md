@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.11.9](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.8...@amazeelabs/react-framework-bridge@1.11.9) (2022-04-14)
+
+
+### Bug Fixes
+
+* add children prop to Link ([af70f6d](https://github.com/AmazeeLabs/silverback-mono/commit/af70f6df450b5459bd07514e1db10321888ad547))
+
+
+
+
+
 ## [1.11.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.7...@amazeelabs/react-framework-bridge@1.11.8) (2022-04-14)
 
 **Note:** Version bump only for package @amazeelabs/react-framework-bridge
