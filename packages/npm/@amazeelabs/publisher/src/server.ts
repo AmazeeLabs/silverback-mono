@@ -13,6 +13,7 @@ import {
 import { createHttpTerminator } from 'http-terminator';
 import morgan from 'morgan';
 import * as path from 'path';
+import referrerPolicy from 'referrer-policy';
 import { filter, shareReplay, Subject } from 'rxjs';
 
 import { BuildService } from './server/build';
@@ -79,6 +80,7 @@ if (config.basicAuth) {
 }
 
 // Allow cross-origin requests
+// @TODO see if we need to lock this down
 // Default config:
 //{
 //   "origin": "*",
@@ -87,6 +89,10 @@ if (config.basicAuth) {
 //   "optionsSuccessStatus": 204
 // }
 app.use(cors());
+
+// Chromium based browsers employ strict-origin-when-cross-origin if no Referrer Policy set
+// @TODO see if we need to lock this down
+app.use(referrerPolicy());
 
 app.use(function (req, res, next) {
   res.set('Cache-control', 'no-cache');
