@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { execSync } from 'child_process';
 import colors from 'colors';
+import cors from 'cors';
 import { cosmiconfigSync } from 'cosmiconfig';
 import express from 'express';
 import basicAuth from 'express-basic-auth';
@@ -77,9 +78,18 @@ if (config.basicAuth) {
   );
 }
 
+// Allow cross-origin requests
+// Default config:
+//{
+//   "origin": "*",
+//   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+//   "preflightContinue": false,
+//   "optionsSuccessStatus": 204
+// }
+app.use(cors());
+
 app.use(function (req, res, next) {
   res.set('Cache-control', 'no-cache');
-  res.header('Access-Control-Allow-Origin', '*');
   next();
 });
 
