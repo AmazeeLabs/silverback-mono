@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.5.1...@amazeelabs/publisher@0.5.2) (2022-04-14)
+
+
+### Bug Fixes
+
+* **publisher:** fix CORS issues with Access-Control-Allow-Origin header ([0c99cf5](https://github.com/AmazeeLabs/silverback-mono/commit/0c99cf53076d03734e094de4c74e7706d3c27907))
+
+
+
+
+
 ## [0.5.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.5.0...@amazeelabs/publisher@0.5.1) (2022-04-14)
 
 **Note:** Version bump only for package @amazeelabs/publisher
