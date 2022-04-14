@@ -9,7 +9,7 @@
   "private": false,
   "sideEffects": false,
   "dependencies": {
-    "@playwright/test": "^1.20.2",
+    "@playwright/test": "^1.21.0",
     "@redtea/format-axios-error": "^2.1.0",
     "axios": "^0.26.1",
     "cross-port-killer": "^1.4.0",
@@ -22,7 +22,7 @@
     "@amazeelabs/prettier-config": "^1.1.1",
     "@types/jest": "27.4.1",
     "@types/tcp-port-used": "1.0.1",
-    "eslint": "8.12.0",
+    "eslint": "8.13.0",
     "jest": "27.5.1",
     "lint-staged": "12.3.7",
     "prettier": "2.6.2",
