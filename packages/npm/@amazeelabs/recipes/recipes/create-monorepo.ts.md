@@ -820,7 +820,7 @@ that by simply dropping this configuration file into the repository root.
 
   postUpdateOptions: [
     // Deduplicate Yarn dependencies.
-    'yarnDedupeHighest',
+    'yarnDedupeFewer',
   ],
 
   // Pin dependencies by default.

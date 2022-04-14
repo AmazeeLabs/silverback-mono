@@ -29,7 +29,7 @@
 
   postUpdateOptions: [
     // Deduplicate Yarn dependencies.
-    "yarnDedupeHighest",
+    "yarnDedupeFewer",
   ],
 
   // Pin dependencies by default.
