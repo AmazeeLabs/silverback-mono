@@ -1,6 +1,6 @@
 {
   "name": "@-amazeelabs/silverback-drupal",
-  "version": "1.13.34",
+  "version": "1.13.35",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -22,13 +22,13 @@
   "dependencies": {
     "@-amazeelabs/silverback-cli": "^2.7.10",
     "@-amazeelabs/silverback_gatsby": "^1.16.2",
-    "@-drupal/cypress": "^2.3.56",
-    "@-drupal/gatsby_build_monitor": "^1.4.30",
+    "@-drupal/cypress": "^2.3.57",
+    "@-drupal/gatsby_build_monitor": "^1.4.31",
     "@-silverback-drupal-config/webform": "^1.0.3",
-    "@-silverback-drupal/gutenberg_custom_blocks": "^1.0.40"
+    "@-silverback-drupal/gutenberg_custom_blocks": "^1.0.41"
   },
   "devDependencies": {
-    "@amazeelabs/graphql-schema-test": "^1.1.10",
+    "@amazeelabs/graphql-schema-test": "^1.1.11",
     "jest": "27.5.1",
     "start-server-and-test": "1.14.0"
   }

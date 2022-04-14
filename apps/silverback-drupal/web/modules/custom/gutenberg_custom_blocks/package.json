@@ -1,6 +1,6 @@
 {
   "name": "@-silverback-drupal/gutenberg_custom_blocks",
-  "version": "1.0.40",
+  "version": "1.0.41",
   "private": true,
   "scripts": {
     "start": "yarn drupal-js-build --css && yarn drupal-js-build watch --css",
@@ -19,8 +19,8 @@
     "drupal-js-build": "https://github.com/AmazeeLabs/drupal-js-build"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.24",
-    "@amazeelabs/jest-preset": "^1.3.27",
+    "@amazeelabs/eslint-config": "^1.4.25",
+    "@amazeelabs/jest-preset": "^1.3.28",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@types/jest": "27.4.1",
     "eslint": "8.13.0",
