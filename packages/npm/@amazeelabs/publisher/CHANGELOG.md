@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.5.2...@amazeelabs/publisher@0.5.3) (2022-04-14)
+
+
+### Bug Fixes
+
+* **publisher:** use cors package in place of manually setting headers ([f35ea52](https://github.com/AmazeeLabs/silverback-mono/commit/f35ea52c8a026fb0b7a4003827d0f3c80072671e))
+
+
+
+
+
 ## [0.5.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.5.1...@amazeelabs/publisher@0.5.2) (2022-04-14)
 
 
