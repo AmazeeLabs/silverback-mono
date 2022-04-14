@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.13.2...@amazeelabs/recipes@1.13.3) (2022-04-14)
+
+
+### Bug Fixes
+
+* fix yarn deduplicate ([1bb1e85](https://github.com/AmazeeLabs/silverback-mono/commit/1bb1e85dcd64b2fc2449a49f0c6ad874ef6cf138))
+
+
+
+
+
 ## [1.13.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.13.1...@amazeelabs/recipes@1.13.2) (2022-04-07)
 
 **Note:** Version bump only for package @amazeelabs/recipes
