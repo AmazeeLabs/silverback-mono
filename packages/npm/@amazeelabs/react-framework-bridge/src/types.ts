@@ -33,7 +33,6 @@ export type ImageBuilder = (props: ImageProps) => Image;
 
 export type Link<Query extends Parameters<typeof stringify>[0] = {}> =
   React.FC<{
-    children?: React.ReactNode;
     className?: string;
     activeClassName?: string;
     query?: Query;
