@@ -289,11 +289,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "1.5.7",
+            "version": "1.5.8",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "093694640c1b9bbe1da12541d929fe9dc27ae7f8"
+                "reference": "cc8967b5468d49a5e0be8b9450fd511bac3373f1"
             },
             "require": {
                 "drupal/gutenberg": "^2.4"
@@ -3112,11 +3112,11 @@
         },
         {
             "name": "drupal/cypress",
-            "version": "2.3.56",
+            "version": "2.3.57",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/cypress",
-                "reference": "3e81b3a7f6bca8f73668557edf1125ac2d16043a"
+                "reference": "0cedd096846df0aa28701b3f122bce341331ece2"
             },
             "require": {
                 "alchemy/zippy": "^1.0.0",
@@ -3353,11 +3353,11 @@
         },
         {
             "name": "drupal/gatsby_build_monitor",
-            "version": "1.4.30",
+            "version": "1.4.31",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/gatsby_build_monitor",
-                "reference": "b40a195b08b8b76fcee92591529827797cfa398d"
+                "reference": "aa5672d165dd35d519d2675c6bd7c0fd91379f08"
             },
             "require": {
                 "justinrainbow/json-schema": "^5.2.12"
@@ -3595,11 +3595,11 @@
         },
         {
             "name": "drupal/test_session",
-            "version": "1.2.33",
+            "version": "1.2.34",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/test_session",
-                "reference": "063d1381d7f8f0c5d3ef726a3ef248764d604d1b"
+                "reference": "37bb731fe57b419a11f0f08df2fe071746b8fd85"
             },
             "type": "drupal-module",
             "license": [
@@ -3777,22 +3777,22 @@
         },
         {
             "name": "drush/drush",
-            "version": "11.0.7",
+            "version": "11.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drush-ops/drush.git",
-                "reference": "6991a3b8f6827d0bab13005402730fc50d130a50"
+                "reference": "098935045aa4b28191bee64346eccd5f24267245"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drush-ops/drush/zipball/6991a3b8f6827d0bab13005402730fc50d130a50",
-                "reference": "6991a3b8f6827d0bab13005402730fc50d130a50",
+                "url": "https://api.github.com/repos/drush-ops/drush/zipball/098935045aa4b28191bee64346eccd5f24267245",
+                "reference": "098935045aa4b28191bee64346eccd5f24267245",
                 "shasum": ""
             },
             "require": {
                 "chi-teck/drupal-code-generator": "^2.4",
                 "composer/semver": "^1.4 || ^3",
-                "consolidation/annotated-command": "^4.5",
+                "consolidation/annotated-command": "^4.5.3",
                 "consolidation/config": "^2",
                 "consolidation/filter-via-dot-access-data": "^2",
                 "consolidation/robo": "^3.0.9",
@@ -3911,7 +3911,7 @@
                 "irc": "irc://irc.freenode.org/drush",
                 "issues": "https://github.com/drush-ops/drush/issues",
                 "slack": "https://drupal.slack.com/messages/C62H9CWQM",
-                "source": "https://github.com/drush-ops/drush/tree/11.0.7"
+                "source": "https://github.com/drush-ops/drush/tree/11.0.8"
             },
             "funding": [
                 {
@@ -3919,7 +3919,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-03-09T19:32:53+00:00"
+            "time": "2022-04-09T10:54:19+00:00"
         },
         {
             "name": "easyrdf/easyrdf",
@@ -6019,16 +6019,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.4.3",
+            "version": "1.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "34545bb30a6f8bd86cfa371dbd42140a657bbf0d"
+                "reference": "d8e9fd97ca11f2f24fc1aafbcfb1f78bce762267"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/34545bb30a6f8bd86cfa371dbd42140a657bbf0d",
-                "reference": "34545bb30a6f8bd86cfa371dbd42140a657bbf0d",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/d8e9fd97ca11f2f24fc1aafbcfb1f78bce762267",
+                "reference": "d8e9fd97ca11f2f24fc1aafbcfb1f78bce762267",
                 "shasum": ""
             },
             "require": {
@@ -6057,9 +6057,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.4.3"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.4.4"
             },
-            "time": "2022-04-08T11:30:34+00:00"
+            "time": "2022-04-14T12:24:06+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -11755,16 +11755,16 @@
         },
         {
             "name": "webonyx/graphql-php",
-            "version": "v14.11.5",
+            "version": "v14.11.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webonyx/graphql-php.git",
-                "reference": "ffa431c0821821839370a68dab3c2597c06bf7f0"
+                "reference": "6070542725b61fc7d0654a8a9855303e5e157434"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/ffa431c0821821839370a68dab3c2597c06bf7f0",
-                "reference": "ffa431c0821821839370a68dab3c2597c06bf7f0",
+                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/6070542725b61fc7d0654a8a9855303e5e157434",
+                "reference": "6070542725b61fc7d0654a8a9855303e5e157434",
                 "shasum": ""
             },
             "require": {
@@ -11809,7 +11809,7 @@
             ],
             "support": {
                 "issues": "https://github.com/webonyx/graphql-php/issues",
-                "source": "https://github.com/webonyx/graphql-php/tree/v14.11.5"
+                "source": "https://github.com/webonyx/graphql-php/tree/v14.11.6"
             },
             "funding": [
                 {
@@ -11817,7 +11817,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2022-01-24T11:13:31+00:00"
+            "time": "2022-04-13T16:25:32+00:00"
         }
     ],
     "packages-dev": [],
