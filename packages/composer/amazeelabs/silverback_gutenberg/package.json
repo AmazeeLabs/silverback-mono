@@ -25,7 +25,7 @@
     "@amazeelabs/prettier-config": "^1.1.1",
     "@amazeelabs/sync-composer-version": "^1.1.2",
     "@types/jest": "27.4.1",
-    "eslint": "8.12.0",
+    "eslint": "8.13.0",
     "jest": "27.5.1",
     "lint-staged": "12.3.7",
     "prettier": "2.6.2",
