@@ -16,6 +16,7 @@ export type Primitive =
   | null
   | undefined
   | boolean
+  | Date
   | Html
   | Link
   | Image
