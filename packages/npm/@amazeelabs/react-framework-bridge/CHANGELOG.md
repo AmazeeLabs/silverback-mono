@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.11...@amazeelabs/react-framework-bridge@1.12.0) (2022-04-16)
+
+
+### Features
+
+* **framework-bridge:** allow javascript date objects as primitive organism input ([a55fddf](https://github.com/AmazeeLabs/silverback-mono/commit/a55fddf1e0733fe2985e11baf5317ffec08715cf))
+
+
+
+
+
 ## [1.11.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.10...@amazeelabs/react-framework-bridge@1.11.11) (2022-04-14)
 
 **Note:** Version bump only for package @amazeelabs/react-framework-bridge
