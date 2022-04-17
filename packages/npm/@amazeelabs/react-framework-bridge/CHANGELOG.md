@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.12.0...@amazeelabs/react-framework-bridge@1.13.0) (2022-04-17)
+
+
+### Features
+
+* **framework-bridge:** molecule story typing ([f818d0f](https://github.com/AmazeeLabs/silverback-mono/commit/f818d0ff6cf375616f8d0c9528d5bc89247de987))
+
+
+
+
+
 # [1.12.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.11...@amazeelabs/react-framework-bridge@1.12.0) (2022-04-16)
 
 
