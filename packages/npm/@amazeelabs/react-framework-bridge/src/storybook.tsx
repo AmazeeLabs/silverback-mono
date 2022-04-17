@@ -226,6 +226,21 @@ type SlotDefinitions<T extends JSXElementConstructor<LayoutProps<any>>> = {
 export type LayoutStory<T extends JSXElementConstructor<LayoutProps<any>>> =
   Omit<StoryObj<SlotDefinitions<T>>, 'args'> & { args: SlotDefinitions<T> };
 
+export type MoleculeStory<T extends JSXElementConstructor<any>> = Omit<
+  StoryObj<ComponentProps<T>>,
+  'play' | 'args'
+  > & {
+  // This is needed because storybook typing makes all arguments optional,
+  // but we want clear indication that the component will fail.
+  args: ComponentProps<T>;
+  play?: StoryObj<
+    ComponentProps<T> & {
+    wouldNavigate: () => {};
+    wouldSubmit: () => {};
+  }
+    >['play'];
+};
+
 const colors = {
   gray: '#F3F4F6',
   red: '#FEE2E2',
@@ -359,7 +374,7 @@ export type OrganismStory<T extends JSXElementConstructor<any>> = Omit<
   // This is needed because storybook typing makes all arguments optional,
   // but we want clear indication that the component will fail.
   args: ComponentProps<T>;
-  parameters?: {
+  parameters?: StoryObj<ComponentProps<T>>['parameters'] & {
     initialLocation?: string;
     useMockedBehaviour?: (
       props: ComponentProps<T>,
