@@ -14,7 +14,10 @@ LOG=silly node "$DIR/dist/index.js" add-gatsby
 LOG=silly node "$DIR/dist/index.js" add-drupal
 LOG=silly node "$DIR/dist/index.js" add-storybook
 cd packages/@recipes_test/ui
-echo 'FooBar' | LOG=silly node "$DIR/dist/index.js" new-organism
+echo 'TestOrganism' | LOG=silly node "$DIR/dist/index.js" new-organism
+echo 'TestMolecule' | LOG=silly node "$DIR/dist/index.js" new-molecule
+echo 'TestLayout' | LOG=silly node "$DIR/dist/index.js" new-layout
+echo 'TestAtom' | LOG=silly node "$DIR/dist/index.js" new-atom
 cd /tmp/recipes_test/
 
 yarn install
