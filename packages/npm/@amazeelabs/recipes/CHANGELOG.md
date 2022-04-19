@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.13.4...@amazeelabs/recipes@1.14.0) (2022-04-19)
+
+
+### Features
+
+* **recipe:** recipe for creating a UI organism ([afb13c3](https://github.com/AmazeeLabs/silverback-mono/commit/afb13c3aef08bcb8a93f68607b8f26704c38c6b9))
+* **recipe:** recipes for layouts, molecules and atoms ([c262b74](https://github.com/AmazeeLabs/silverback-mono/commit/c262b74678c7db5366aa8773b89fa8b061b74b61))
+* **recipe:** support uppercase variable replacement ([8394de7](https://github.com/AmazeeLabs/silverback-mono/commit/8394de73e1a50992bac04929973fd1b3007b1bf4))
+
+
+### Reverts
+
+* Revert "chore(recipe): enable recipe integration tests" ([adf9891](https://github.com/AmazeeLabs/silverback-mono/commit/adf98912bb74b20e39372654f5dfa13e3caf0200))
+
+
+
+
+
 ## [1.13.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.13.3...@amazeelabs/recipes@1.13.4) (2022-04-14)
 
 **Note:** Version bump only for package @amazeelabs/recipes
