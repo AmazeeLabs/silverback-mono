@@ -6,6 +6,7 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
+use Drupal\locale\SourceString;
 use Drupal\locale\StringInterface;
 use Drupal\locale\TranslationString;
 use Drupal\silverback_gatsby\Plugin\FeedBase;
@@ -39,7 +40,17 @@ class StringTranslationFeed extends FeedBase {
    * {@inheritDoc}
    */
   function getUpdateIds($context, AccountInterface $account): array {
-    if ($context instanceof StringInterface) {
+    if (!$context instanceof StringInterface) {
+      return [];
+    }
+
+    // If the string has the 'context' property, we only return its id if it has
+    // the context prefix match. If there's no context property, then we return
+    // its id in any case.
+    if (!isset($context->context) || empty($this->contextPrefix)) {
+      return [$context->getId()];
+    }
+    if (strpos($context->context, $this->contextPrefix) === 0) {
       return [$context->getId()];
     }
     return [];

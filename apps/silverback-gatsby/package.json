@@ -57,8 +57,8 @@
   "license": "MIT",
   "scripts": {
     "prepare": "yarn codegen",
-    "build": "gatsby build",
-    "develop": "gatsby develop",
+    "build": "yarn translations:push_sources && gatsby build",
+    "develop": "yarn translations:push_sources && gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "fast-builds:serve:local": "ts-node fast-builds/serve.ts 9001 local",
