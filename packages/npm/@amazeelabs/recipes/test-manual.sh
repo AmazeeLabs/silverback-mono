@@ -13,6 +13,9 @@ cd recipes_test
 LOG=silly node "$DIR/dist/index.js" add-gatsby
 LOG=silly node "$DIR/dist/index.js" add-drupal
 LOG=silly node "$DIR/dist/index.js" add-storybook
+cd packages/@recipes_test/ui
+echo 'FooBar' | LOG=silly node "$DIR/dist/index.js" new-organism
+cd /tmp/recipes_test/
 
 yarn install
 
