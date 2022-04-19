@@ -60,7 +60,7 @@ export default {
   component: ORGANISM,
 } as Meta;
 
-export const ExampleORGANISM = {
+export const ExampleORGANISM: OrganismStory<typeof ORGANISM> = {
   name: 'ORGANISM',
   args: {
     content: 'My awesome organism.',
