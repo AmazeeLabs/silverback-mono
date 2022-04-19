@@ -88,7 +88,7 @@ if (config.basicAuth) {
 //   "preflightContinue": false,
 //   "optionsSuccessStatus": 204
 // }
-app.use(cors());
+app.use(cors({ ...(config.corsOptions ?? {}) }));
 
 // Chromium based browsers employ strict-origin-when-cross-origin if no Referrer Policy set
 // @TODO see if we need to lock this down
