@@ -8,6 +8,16 @@ import { RecipeError } from './errors';
 import { log } from './logger';
 import { run } from './process';
 
+export function processUppercasedVariables(input: string) {
+  let output = input;
+  Object.keys(_vars)
+    .filter((name) => /^[A-Z_]+$/.test(name))
+    .forEach((name) => {
+      output = output.replace(new RegExp(name, 'g'), `{{${name}}}`);
+    });
+  return output;
+}
+
 const _vars = {};
 export const vars = (vars: any) => Object.assign(_vars, vars);
 
@@ -49,7 +59,7 @@ export const file = (
 };
 
 export const __writeFile = (source: string, target: string) => {
-  const targetName = renderString(target, _vars);
+  const targetName = renderString(processUppercasedVariables(target), _vars);
   const targetPath = path.resolve(process.cwd(), targetName);
   const targetDir = path.dirname(targetPath);
   if (!fs.existsSync(targetDir)) {
@@ -59,17 +69,23 @@ export const __writeFile = (source: string, target: string) => {
   if (fs.existsSync(target)) {
     run(`rm -rf ${targetPath}`);
   }
-  const content = renderString(fs.readFileSync(sourcePath).toString(), _vars);
+  const content = renderString(
+    processUppercasedVariables(fs.readFileSync(sourcePath).toString()),
+    _vars,
+  );
   fs.writeFileSync(targetPath, content);
   log.info(`updated ${chalk.cyan(targetName)}`);
   log.silly(`contents of ${chalk.cyan(targetName)}:\n${content}\n`);
 };
 
 export const __appendFile = (source: string, target: string) => {
-  const targetName = renderString(target, _vars);
+  const targetName = renderString(processUppercasedVariables(target), _vars);
   const targetPath = path.resolve(process.cwd(), targetName);
   const sourcePath = path.resolve(__dirname, '../files', source);
-  const content = renderString(fs.readFileSync(sourcePath).toString(), _vars);
+  const content = renderString(
+    processUppercasedVariables(fs.readFileSync(sourcePath).toString()),
+    _vars,
+  );
   fs.appendFileSync(targetPath, content);
   log.info(`updated ${chalk.cyan(targetName)}`);
   log.silly(`contents of ${chalk.cyan(targetName)}:\n${content}\n`);
