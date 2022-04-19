@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.5.3...@amazeelabs/publisher@0.5.4) (2022-04-14)
+
+
+### Bug Fixes
+
+* **publisher:** define referrer policy on Publisher express server ([d8cfb3e](https://github.com/AmazeeLabs/silverback-mono/commit/d8cfb3e1b2f495b10e9b8510db86708043f2d115))
+
+
+
+
+
+## [0.5.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.5.2...@amazeelabs/publisher@0.5.3) (2022-04-14)
+
+
+### Bug Fixes
+
+* **publisher:** use cors package in place of manually setting headers ([f35ea52](https://github.com/AmazeeLabs/silverback-mono/commit/f35ea52c8a026fb0b7a4003827d0f3c80072671e))
+
+
+
+
+
+## [0.5.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.5.1...@amazeelabs/publisher@0.5.2) (2022-04-14)
+
+
+### Bug Fixes
+
+* **publisher:** fix CORS issues with Access-Control-Allow-Origin header ([0c99cf5](https://github.com/AmazeeLabs/silverback-mono/commit/0c99cf53076d03734e094de4c74e7706d3c27907))
+
+
+
+
+
+## [0.5.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.5.0...@amazeelabs/publisher@0.5.1) (2022-04-14)
+
+**Note:** Version bump only for package @amazeelabs/publisher
+
+
+
+
+
+# [0.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.4.11...@amazeelabs/publisher@0.5.0) (2022-04-12)
+
+
+### Features
+
+* basic auth for publisher ([4f3bc17](https://github.com/AmazeeLabs/silverback-mono/commit/4f3bc17950d09826fe245fa89c2e3b71d37c3bd5))
+
+
+
+
+
 ## [0.4.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.4.10...@amazeelabs/publisher@0.4.11) (2022-04-07)
 
 **Note:** Version bump only for package @amazeelabs/publisher

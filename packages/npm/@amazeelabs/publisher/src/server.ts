@@ -1,8 +1,10 @@
 import { PrismaClient } from '@prisma/client';
 import { execSync } from 'child_process';
 import colors from 'colors';
+import cors from 'cors';
 import { cosmiconfigSync } from 'cosmiconfig';
 import express from 'express';
+import basicAuth from 'express-basic-auth';
 import expressWs from 'express-ws';
 import {
   createProxyMiddleware,
@@ -11,6 +13,7 @@ import {
 import { createHttpTerminator } from 'http-terminator';
 import morgan from 'morgan';
 import * as path from 'path';
+import referrerPolicy from 'referrer-policy';
 import { filter, shareReplay, Subject } from 'rxjs';
 
 import { BuildService } from './server/build';
@@ -65,6 +68,31 @@ const gateway$ = gatewayCommands$.pipe(
 );
 
 app.locals.isReady = false;
+
+// Basic Authentication
+if (config.basicAuth) {
+  app.use(
+    basicAuth({
+      users: { [config.basicAuth.username]: config.basicAuth.password },
+      challenge: true,
+    }),
+  );
+}
+
+// Allow cross-origin requests
+// @TODO see if we need to lock this down
+// Default config:
+//{
+//   "origin": "*",
+//   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+//   "preflightContinue": false,
+//   "optionsSuccessStatus": 204
+// }
+app.use(cors());
+
+// Chromium based browsers employ strict-origin-when-cross-origin if no Referrer Policy set
+// @TODO see if we need to lock this down
+app.use(referrerPolicy());
 
 app.use(function (req, res, next) {
   res.set('Cache-control', 'no-cache');

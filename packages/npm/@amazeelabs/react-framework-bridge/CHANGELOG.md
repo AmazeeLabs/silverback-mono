@@ -3,6 +3,181 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.13.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.12.0...@amazeelabs/react-framework-bridge@1.13.0) (2022-04-17)
+
+
+### Features
+
+* **framework-bridge:** molecule story typing ([f818d0f](https://github.com/AmazeeLabs/silverback-mono/commit/f818d0ff6cf375616f8d0c9528d5bc89247de987))
+
+
+
+
+
+# [1.12.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.11...@amazeelabs/react-framework-bridge@1.12.0) (2022-04-16)
+
+
+### Features
+
+* **framework-bridge:** allow javascript date objects as primitive organism input ([a55fddf](https://github.com/AmazeeLabs/silverback-mono/commit/a55fddf1e0733fe2985e11baf5317ffec08715cf))
+
+
+
+
+
+## [1.11.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.10...@amazeelabs/react-framework-bridge@1.11.11) (2022-04-14)
+
+**Note:** Version bump only for package @amazeelabs/react-framework-bridge
+
+
+
+
+
+## [1.11.10](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.9...@amazeelabs/react-framework-bridge@1.11.10) (2022-04-14)
+
+
+### Reverts
+
+* Revert "fix: add children prop to Link" ([b283037](https://github.com/AmazeeLabs/silverback-mono/commit/b2830371acb374b710e7fc73e0d090fe24164aab))
+
+
+
+
+
+## [1.11.9](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.8...@amazeelabs/react-framework-bridge@1.11.9) (2022-04-14)
+
+
+### Bug Fixes
+
+* add children prop to Link ([af70f6d](https://github.com/AmazeeLabs/silverback-mono/commit/af70f6df450b5459bd07514e1db10321888ad547))
+
+
+
+
+
+## [1.11.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.7...@amazeelabs/react-framework-bridge@1.11.8) (2022-04-14)
+
+**Note:** Version bump only for package @amazeelabs/react-framework-bridge
+
+
+
+
+
+## [1.11.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.6...@amazeelabs/react-framework-bridge@1.11.7) (2022-04-11)
+
+
+### Bug Fixes
+
+* **framework-bridge:** another case of type loosening ([f20a18c](https://github.com/AmazeeLabs/silverback-mono/commit/f20a18c397cd3d4d188444576de4b57acc4ee7f6))
+
+
+
+
+
+## [1.11.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.5...@amazeelabs/react-framework-bridge@1.11.6) (2022-04-11)
+
+
+### Bug Fixes
+
+* **framework-bridge:** loosen typing on OrganismStories and remove src and dst from npm package ([faa7ff5](https://github.com/AmazeeLabs/silverback-mono/commit/faa7ff545faa15f90ed41d833777bf0f33615859))
+
+
+
+
+
+## [1.11.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.4...@amazeelabs/react-framework-bridge@1.11.5) (2022-04-11)
+
+
+### Bug Fixes
+
+* **framework-bridge:** type loosening and type definitions as build artifact ([b340dc7](https://github.com/AmazeeLabs/silverback-mono/commit/b340dc7aeb289c5178acaed2fba7c67609fb79cb))
+
+
+
+
+
+## [1.11.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.3...@amazeelabs/react-framework-bridge@1.11.4) (2022-04-11)
+
+
+### Bug Fixes
+
+* **framework-bridge:** add src to the npm package since it's used for typing now ([0ecd726](https://github.com/AmazeeLabs/silverback-mono/commit/0ecd726b1e553cfb36ea98cfd4e7dea526f886f8))
+
+
+
+
+
+## [1.11.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.2...@amazeelabs/react-framework-bridge@1.11.3) (2022-04-11)
+
+
+### Bug Fixes
+
+* **framework-bridge:** revert typing mistakes and use typescript sources as types ([591a2d7](https://github.com/AmazeeLabs/silverback-mono/commit/591a2d76f89ce5ced7a8b78d278261288ba38649))
+
+
+### Reverts
+
+* Revert "fix(framework-bridge): simplify route typing" ([ca32c37](https://github.com/AmazeeLabs/silverback-mono/commit/ca32c3715efae83797b90990345394c8a2b67f3c))
+
+
+
+
+
+## [1.11.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.1...@amazeelabs/react-framework-bridge@1.11.2) (2022-04-10)
+
+
+### Bug Fixes
+
+* **framework-bridge:** simplify route typing ([1ae05bb](https://github.com/AmazeeLabs/silverback-mono/commit/1ae05bb821d0aa77d3c98b4617db53973b8415bd))
+
+
+
+
+
+## [1.11.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.11.0...@amazeelabs/react-framework-bridge@1.11.1) (2022-04-10)
+
+
+### Bug Fixes
+
+* **framework-bridge:** typing mistake in RouteProps ([789d915](https://github.com/AmazeeLabs/silverback-mono/commit/789d9158b63a98b937c435427f1c8863cbdad73a))
+
+
+
+
+
+# [1.11.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.10.4...@amazeelabs/react-framework-bridge@1.11.0) (2022-04-10)
+
+
+### Features
+
+* **framework-bridge:** expose helper type for all route inputs ([34094da](https://github.com/AmazeeLabs/silverback-mono/commit/34094daa4f22d1fb9e7d0667eacb0b46a818746c))
+
+
+
+
+
+## [1.10.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.10.3...@amazeelabs/react-framework-bridge@1.10.4) (2022-04-08)
+
+
+### Bug Fixes
+
+* **framework-bridge:** loosened typing for RouteInput ([01ff947](https://github.com/AmazeeLabs/silverback-mono/commit/01ff9473548bd0ee194d96365660a3cebea0bdf4))
+
+
+
+
+
+## [1.10.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.10.2...@amazeelabs/react-framework-bridge@1.10.3) (2022-04-08)
+
+
+### Bug Fixes
+
+* **framework-bridge:** loosened typing for RouteInput ([9704eeb](https://github.com/AmazeeLabs/silverback-mono/commit/9704eebc12837c8c078dc5b435068bc21130f062))
+
+
+
+
+
 ## [1.10.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.10.1...@amazeelabs/react-framework-bridge@1.10.2) (2022-04-07)
 
 **Note:** Version bump only for package @amazeelabs/react-framework-bridge

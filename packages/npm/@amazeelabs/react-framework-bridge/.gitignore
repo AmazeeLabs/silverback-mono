@@ -1,4 +1,5 @@
 dist
+dts
 node_modules
 gatsby.js
 gatsby.d.ts

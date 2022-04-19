@@ -1,6 +1,7 @@
 import common from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
-import typescript from '@rollup/plugin-typescript';
+import dts from 'rollup-plugin-dts';
+import esbuild from 'rollup-plugin-esbuild';
 
 import pkg from './package.json';
 
@@ -21,7 +22,12 @@ export default [
       ...Object.keys(pkg.dependencies),
       ...Object.keys(pkg.peerDependencies),
     ],
-    plugins: [resolve(), common(), typescript({ tsconfig: './tsconfig.json' })],
+    plugins: [esbuild(), resolve(), common()],
+  },
+  {
+    input: 'dts/index.d.ts',
+    output: [{ file: 'index.d.ts' }],
+    plugins: [dts()],
   },
   {
     input: `src/gatsby.tsx`,
@@ -33,7 +39,12 @@ export default [
       ...Object.keys(pkg.dependencies),
       ...Object.keys(pkg.peerDependencies),
     ],
-    plugins: [resolve(), typescript({ tsconfig: './tsconfig.json' })],
+    plugins: [esbuild(), resolve()],
+  },
+  {
+    input: 'dts/gatsby.d.ts',
+    output: [{ file: 'gatsby.d.ts' }],
+    plugins: [dts()],
   },
   {
     input: `src/storybook.tsx`,
@@ -51,6 +62,11 @@ export default [
       ...Object.keys(pkg.dependencies),
       ...Object.keys(pkg.peerDependencies),
     ],
-    plugins: [resolve(), typescript({ tsconfig: './tsconfig.json' })],
+    plugins: [esbuild(), resolve()],
+  },
+  {
+    input: 'dts/storybook.d.ts',
+    output: [{ file: 'storybook.d.ts' }],
+    plugins: [dts()],
   },
 ];

@@ -1,6 +1,6 @@
 {
   "name": "verdaccio-git",
-  "version": "0.1.56",
+  "version": "0.1.57",
   "description": "Publish packages to git repositories.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -12,11 +12,11 @@
   },
   "dependencies": {
     "@verdaccio/commons-api": "^10.2.0",
-    "@verdaccio/local-storage": "^10.2.0",
+    "@verdaccio/local-storage": "^10.2.1",
     "@verdaccio/streams": "^10.2.0",
     "file-system": "^2.2.2",
     "fs-extra": "^10.0.1",
-    "simple-git": "^3.5.0",
+    "simple-git": "^3.6.0",
     "sync-directory": "^4.0.12",
     "tar": "^6.1.11"
   },
@@ -28,16 +28,16 @@
     "@types/fs-extra": "9.0.13",
     "@types/jest": "27.4.1",
     "@types/mock-fs": "4.13.1",
-    "@types/node": "16.11.26",
+    "@types/node": "16.11.27",
     "@types/tar": "6.1.1",
-    "@typescript-eslint/eslint-plugin": "5.18.0",
+    "@typescript-eslint/eslint-plugin": "5.19.0",
     "@verdaccio/types": "10.3.0",
-    "eslint": "8.12.0",
+    "eslint": "8.13.0",
     "jest": "27.5.1",
     "mock-fs": "5.1.2",
     "prettier": "2.6.2",
     "standard-version": "9.3.2",
-    "verdaccio": "5.8.0"
+    "verdaccio": "5.9.0"
   },
   "keywords": [
     "verdaccio,plugin,storage,git,verdaccio-git"
