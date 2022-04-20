@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@2.7.10...@-amazeelabs/silverback-cli@2.8.0) (2022-04-20)
+
+
+### Features
+
+* add write-cache command ([fe3bbe4](https://github.com/AmazeeLabs/silverback-mono/commit/fe3bbe44c2f259b76125d3428804ef1233fbd214))
+
+
+
+
+
 ## [2.7.10](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@2.7.9...@-amazeelabs/silverback-cli@2.7.10) (2022-02-17)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-cli
