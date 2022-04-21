@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.44](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/ui@0.2.43...@amazeelabs/ui@0.2.44) (2022-04-21)
+
+**Note:** Version bump only for package @amazeelabs/ui
+
+
+
+
+
 ## [0.2.43](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/ui@0.2.42...@amazeelabs/ui@0.2.43) (2022-04-14)
 
 **Note:** Version bump only for package @amazeelabs/ui
