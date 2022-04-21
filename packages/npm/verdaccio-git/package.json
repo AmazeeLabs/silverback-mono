@@ -15,9 +15,9 @@
     "@verdaccio/local-storage": "^10.2.1",
     "@verdaccio/streams": "^10.2.0",
     "file-system": "^2.2.2",
-    "fs-extra": "^10.0.1",
-    "simple-git": "^3.6.0",
-    "sync-directory": "^4.0.12",
+    "fs-extra": "^10.1.0",
+    "simple-git": "^3.7.0",
+    "sync-directory": "^4.0.14",
     "tar": "^6.1.11"
   },
   "devDependencies": {
@@ -30,7 +30,7 @@
     "@types/mock-fs": "4.13.1",
     "@types/node": "16.11.27",
     "@types/tar": "6.1.1",
-    "@typescript-eslint/eslint-plugin": "5.19.0",
+    "@typescript-eslint/eslint-plugin": "5.20.0",
     "@verdaccio/types": "10.3.0",
     "eslint": "8.13.0",
     "jest": "27.5.1",
