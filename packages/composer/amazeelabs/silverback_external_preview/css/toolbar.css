@@ -14,6 +14,14 @@
     color: #1a1a1a;
 }
 
+.toolbar .toolbar-bar .toolbar-tab-disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.toolbar .toolbar-bar .toolbar-tab-disabled a {
+    pointer-events: none;
+}
 .toolbar .external-preview-toolbar-tab .toolbar-icon-external-preview-live {
     background-color: #81c071;
 }
@@ -47,6 +55,11 @@
     color: inherit;
 }
 
+.toolbar .toolbar-bar .external-preview-toolbar-tab .toolbar-item:hover,
+.toolbar .toolbar-bar .external-preview-toolbar-tab .toolbar-item:focus {
+    text-decoration: none;
+}
+
 [dir="rtl"] .toolbar .toolbar-bar .external-preview-toolbar-tab .toolbar-item {
     text-align: right;
 }
@@ -58,12 +71,16 @@
 
 .toolbar .toolbar-icon-external-preview:before {
     background-image: url("../icons/preview.svg");
+    transition: transform .5s ease-in-out;
 }
 
 .toolbar .toolbar-icon-external-preview-live:before {
     background-image: url("../icons/live.svg");
 }
-
+.toolbar .toolbar-bar .external-preview-toolbar-tab .toolbar-item:hover::before,
+.toolbar .toolbar-bar .external-preview-toolbar-tab .toolbar-item:focus::before{
+    transform: scale(1.05, 0.9);
+}
 
 @media all and (max-width: 766px) {
     .toolbar-oriented .toolbar-bar .external-preview-toolbar-tab .toolbar-icon-external-preview {

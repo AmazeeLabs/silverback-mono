@@ -6,6 +6,7 @@ use AmazeeLabs\Silverback\Commands\SnapshotRestore;
 use AmazeeLabs\Silverback\Commands\Setup;
 use AmazeeLabs\Silverback\Commands\SnapshotCreate;
 use AmazeeLabs\Silverback\Commands\Teardown;
+use AmazeeLabs\Silverback\Commands\WriteCache;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -18,6 +19,7 @@ class SilverbackCli extends Application {
     $this->add(new Teardown($fileSystem));
     $this->add(new SnapshotCreate($fileSystem));
     $this->add(new SnapshotRestore($fileSystem));
+    $this->add(new WriteCache($fileSystem));
   }
 
 }

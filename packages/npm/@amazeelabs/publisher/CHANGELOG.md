@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.5.5...@amazeelabs/publisher@0.6.0) (2022-04-19)
+
+
+### Features
+
+* **publisher:** granular basicAuth challenges ([f96cf60](https://github.com/AmazeeLabs/silverback-mono/commit/f96cf60774fb4cbcb7fcc1ad89a78e3576d6112e))
+
+
+
+
+
+## [0.5.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.5.4...@amazeelabs/publisher@0.5.5) (2022-04-19)
+
+
+### Bug Fixes
+
+* **publisher:** allow for configurable cors options ([b236547](https://github.com/AmazeeLabs/silverback-mono/commit/b23654726a4b394315979b91e54abae477f80d04))
+
+
+
+
+
 ## [0.5.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.5.3...@amazeelabs/publisher@0.5.4) (2022-04-14)
 
 

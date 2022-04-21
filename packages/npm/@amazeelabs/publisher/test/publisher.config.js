@@ -14,4 +14,8 @@ module.exports = {
     username: 'test',
     password: 'test',
   },
+  corsOptions: {
+    credentials: true,
+    origin: ['http://localhost:8888', 'http://127.0.0.1:8888'],
+  },
 };

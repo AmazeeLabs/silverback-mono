@@ -3,7 +3,7 @@ import { execSync } from 'child_process';
 import colors from 'colors';
 import cors from 'cors';
 import { cosmiconfigSync } from 'cosmiconfig';
-import express from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import basicAuth from 'express-basic-auth';
 import expressWs from 'express-ws';
 import {
@@ -70,14 +70,12 @@ const gateway$ = gatewayCommands$.pipe(
 app.locals.isReady = false;
 
 // Basic Authentication
-if (config.basicAuth) {
-  app.use(
-    basicAuth({
+const authMiddleware = config.basicAuth
+  ? basicAuth({
       users: { [config.basicAuth.username]: config.basicAuth.password },
       challenge: true,
-    }),
-  );
-}
+    })
+  : (req: Request, res: Response, next: NextFunction) => next;
 
 // Allow cross-origin requests
 // @TODO see if we need to lock this down
@@ -88,7 +86,7 @@ if (config.basicAuth) {
 //   "preflightContinue": false,
 //   "optionsSuccessStatus": 204
 // }
-app.use(cors());
+app.use(cors({ ...(config.corsOptions ?? {}) }));
 
 // Chromium based browsers employ strict-origin-when-cross-origin if no Referrer Policy set
 // @TODO see if we need to lock this down
@@ -169,6 +167,7 @@ app.get('/___status/history/:id', async (req, res) => {
 });
 
 app.use('/___status', express.static(path.resolve(__dirname, '../dist')));
+app.use('/___status/index.html', authMiddleware);
 
 app.get('*', (req, res, next) => {
   if (!req.app.locals.isReady) {
@@ -184,6 +183,7 @@ app.get('*', (req, res, next) => {
 
 app.use(
   '/',
+  authMiddleware,
   createProxyMiddleware(() => app.locals.isReady, {
     target: `http://127.0.0.1:${config.applicationPort}`,
     selfHandleResponse: true,

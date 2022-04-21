@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.13](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-gutenberg@1.1.12...@-amazeelabs/proxy-gutenberg@1.1.13) (2022-04-21)
+
+
+### Bug Fixes
+
+* remove a patch since it was already released ([5755007](https://github.com/AmazeeLabs/silverback-mono/commit/5755007839a2573898b4f2c9f8789edb7cc18a20))
+
+
+
+
+
 ## [1.1.12](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-gutenberg@1.1.11...@-amazeelabs/proxy-gutenberg@1.1.12) (2022-02-16)
 
 
