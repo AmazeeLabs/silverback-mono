@@ -1,1 +1,2 @@
-import './elements/status';
+import './elements/Status';
+import './elements/Floater';

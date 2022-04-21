@@ -192,9 +192,12 @@ app.use(
       return response
         .replace(
           '</head>',
-          '<script src="/___status/refresh.js"></script></head>',
+          '<script src="/___status/elements.js"></script></head>',
         )
-        .replace('</body>', '<publisher-refresh/></body>');
+        .replace(
+          '</body>',
+          '<publisher-floater><publisher-status /></publisher-floater></body>',
+        );
     }),
   }),
 );
