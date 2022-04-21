@@ -19,7 +19,7 @@ jobs:
       # composer.lock
       - name: Generate composer diff
         id: composer_diff
-        uses: IonBazan/composer-diff-action@v1
+        uses: IonBazan/composer-diff-action@master
         with:
           base: ${{ github.event.pull_request.base.sha }}:apps/silverback-drupal/composer.lock
           target: apps/silverback-drupal/composer.lock
