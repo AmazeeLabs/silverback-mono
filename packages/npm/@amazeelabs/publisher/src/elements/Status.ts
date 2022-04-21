@@ -1,6 +1,6 @@
 import { html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { distinctUntilChanged, map, Observable, of } from 'rxjs';
+import { distinctUntilChanged, map, Observable } from 'rxjs';
 
 import {
   ApplicationState,

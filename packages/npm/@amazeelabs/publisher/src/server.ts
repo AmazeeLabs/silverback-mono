@@ -75,7 +75,7 @@ const authMiddleware = config.basicAuth
       users: { [config.basicAuth.username]: config.basicAuth.password },
       challenge: true,
     })
-  : (req: Request, res: Response, next: NextFunction) => next;
+  : (req: Request, res: Response, next: NextFunction) => next();
 
 // Allow cross-origin requests
 // @TODO see if we need to lock this down
