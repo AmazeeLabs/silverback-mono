@@ -23,14 +23,6 @@ export default [
     ],
   },
   {
-    input: `src/refresh.ts`,
-    output: {
-      file: `dist/refresh.js`,
-      format: 'iife',
-    },
-    plugins: [litcss(), esbuild(), resolve()],
-  },
-  {
     input: `src/elements.ts`,
     output: {
       file: `dist/elements.js`,
