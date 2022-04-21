@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.6.0...@amazeelabs/publisher@0.7.0) (2022-04-21)
+
+
+### Bug Fixes
+
+* **publisher:** actually call `next` when skipping auth middleware ([e57142a](https://github.com/AmazeeLabs/silverback-mono/commit/e57142abd524380be5810181556092dedd4e7eb1))
+
+
+### Features
+
+* **publisher:** reusable status elements for preview and drupal ([7156634](https://github.com/AmazeeLabs/silverback-mono/commit/7156634571c243dab0b16ac8bbc0cc406536f836))
+
+
+
+
+
 # [0.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.5.5...@amazeelabs/publisher@0.6.0) (2022-04-19)
 
 
