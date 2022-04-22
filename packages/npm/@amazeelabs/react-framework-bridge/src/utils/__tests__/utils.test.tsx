@@ -180,6 +180,9 @@ describe('buildHtmlBuilder', () => {
 });
 
 describe('buildUrl', () => {
+  it('allows to create a root url to /', () => {
+    expect(buildUrl(['/'])).toStrictEqual(`/`);
+  });
   it('concatenates segments', () => {
     expect(buildUrl(['https://fake.url/', 'a', 'b'])).toStrictEqual(
       `https://fake.url/a/b`,
