@@ -187,7 +187,10 @@ app.use(
   createProxyMiddleware(() => app.locals.isReady, {
     target: `http://127.0.0.1:${config.applicationPort}`,
     selfHandleResponse: true,
-    onProxyRes: responseInterceptor(async (responseBuffer) => {
+    onProxyRes: responseInterceptor(async (responseBuffer, proxyRes) => {
+      if (!proxyRes.headers['content-type']?.includes('text/html')) {
+        return responseBuffer;
+      }
       const response = responseBuffer.toString('utf8');
       return response
         .replace(
