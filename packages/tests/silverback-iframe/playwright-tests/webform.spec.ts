@@ -36,16 +36,31 @@ test('@drupal-only the unsupported confirmation type is replaced with the defaul
 test('@drupal-only only allowed confirmation types are listed in the webform config', async ({
   page,
 }) => {
+  const getOptions = async () => {
+    await page.goto(
+      `${drupal.baseUrl}/en/admin/structure/webform/manage/for_testing_confirmation_options/settings/confirmation`,
+    );
+    return Promise.all(
+      (
+        await page.$$('input[name="confirmation_type"]')
+      ).map((option) => option.getAttribute('value')),
+    );
+  }
+
   await drupalLogin(page);
-  await page.goto(
-    `${drupal.baseUrl}/en/admin/structure/webform/manage/for_testing_confirmation_options/settings/confirmation`,
-  );
-  const options = await Promise.all(
-    (
-      await page.$$('input[name="confirmation_type"]')
-    ).map((option) => option.getAttribute('value')),
-  );
-  expect(options).toEqual(confirmationOptions);
+
+  // Case: limit_webform_confirmation_options is FALSE.
+  // Can't use "drush cset" due to https://github.com/drush-ops/drush/issues/3793
+  await $`source .envrc && drush eval '\\Drupal::configFactory()->getEditable("silverback_iframe.settings")->set("limit_webform_confirmation_options", FALSE)->save();'`;
+  expect(await getOptions()).not.toEqual(confirmationOptions);
+
+  // Case: limit_webform_confirmation_options is TRUE.
+  await $`source .envrc && drush -y cset silverback_iframe.settings limit_webform_confirmation_options true --input-format=yaml`;
+  expect(await getOptions()).toEqual(confirmationOptions);
+
+  // Case: limit_webform_confirmation_options is missing.
+  await $`source .envrc && drush -y cdel silverback_iframe.settings`;
+  expect(await getOptions()).toEqual(confirmationOptions);
 });
 
 test('@gatsby-both confirmation type: inline', async ({ page }) => {
