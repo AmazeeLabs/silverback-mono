@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_iframe@1.1.4...@-amazeelabs/silverback_iframe@1.2.0) (2022-04-25)
+
+
+### Features
+
+* introduce limit_webform_confirmation_options setting ([9ee3ae7](https://github.com/AmazeeLabs/silverback-mono/commit/9ee3ae77d548c506d6c1907401248d30b6c06e86))
+
+
+
+
+
 ## [1.1.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_iframe@1.1.3...@-amazeelabs/silverback_iframe@1.1.4) (2022-01-20)
 
 

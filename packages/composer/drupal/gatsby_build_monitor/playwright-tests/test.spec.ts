@@ -16,11 +16,11 @@ test('@gatsby-build Gatsby Build Monitor integration works', async ({
   await drupalLogin(page);
   await page.goto(`${drupal.baseUrl}/admin`);
 
+  // The test fails when GitHub CI is slow. So we increase the timeout.
+  const readyTimeout = 40_000;
+
   await expect(page.locator('a:has-text("Website is ready")')).toBeVisible({
-    // Gatsby can be still building when the test starts.
-    // (waitForGatsby used in resetState only guarantees that Gatsby has the
-    // same Build ID as Drupal. But the building process can still be running.)
-    timeout: 20_000,
+    timeout: readyTimeout,
   });
 
   await page.goto(`${drupal.baseUrl}/node/add/page`);
@@ -33,7 +33,9 @@ test('@gatsby-build Gatsby Build Monitor integration works', async ({
 
   await waitForGatsby();
 
-  await expect(page.locator('a:has-text("Website is ready")')).toBeVisible();
+  await expect(page.locator('a:has-text("Website is ready")')).toBeVisible({
+    timeout: readyTimeout,
+  });
 
   await page.goto(`${drupal.baseUrl}/admin/reports/gatsby-build-logs`);
   expect(

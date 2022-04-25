@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/publisher",
-  "version": "0.6.0",
+  "version": "0.7.2",
   "license": "MIT",
   "bin": "./cli.js",
   "publishConfig": {
@@ -38,15 +38,15 @@
     "referrer-policy": "^1.2.0"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.25",
-    "@amazeelabs/jest-preset": "^1.3.28",
+    "@amazeelabs/eslint-config": "^1.4.26",
+    "@amazeelabs/jest-preset": "^1.3.29",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@babel/core": "7.17.9",
     "@react-rxjs/core": "0.9.5",
     "@rollup/plugin-alias": "3.1.9",
-    "@rollup/plugin-commonjs": "21.0.3",
+    "@rollup/plugin-commonjs": "21.1.0",
     "@rollup/plugin-json": "4.1.0",
-    "@rollup/plugin-node-resolve": "13.2.0",
+    "@rollup/plugin-node-resolve": "13.2.1",
     "@rollup/plugin-replace": "4.0.0",
     "@storybook/addon-actions": "6.4.22",
     "@storybook/addon-essentials": "6.4.22",
@@ -63,16 +63,17 @@
     "@types/react-dom": "17.0.15",
     "@types/react-lazylog": "4.5.1",
     "@vitejs/plugin-react": "1.3.1",
-    "babel-loader": "8.2.4",
+    "babel-loader": "8.2.5",
+    "clsx": "^1.1.1",
     "colors": "1.4.0",
     "concurrently": "7.1.0",
     "cosmiconfig": "7.0.1",
-    "esbuild": "0.14.36",
+    "esbuild": "0.14.37",
     "eslint": "8.13.0",
-    "eslint-plugin-storybook": "0.5.8",
+    "eslint-plugin-storybook": "0.5.11",
     "express": "4.17.3",
     "express-ws": "5.0.2",
-    "http-proxy-middleware": "2.0.4",
+    "http-proxy-middleware": "2.0.6",
     "http-terminator": "3.2.0",
     "jest": "27.5.1",
     "lit": "2.2.2",
@@ -84,7 +85,7 @@
     "react-dom": "17.0.2",
     "react-lazylog": "4.5.3",
     "react-rxjs": "3.0.0-alpha.6",
-    "rollup": "2.70.1",
+    "rollup": "2.70.2",
     "rollup-plugin-esbuild": "4.9.1",
     "rollup-plugin-lit-css": "3.2.1",
     "rxjs": "7.5.5",
@@ -92,6 +93,6 @@
     "serve": "13.0.2",
     "tailwindcss": "3.0.24",
     "typescript": "4.6.3",
-    "vite": "2.9.4"
+    "vite": "2.9.5"
   }
 }

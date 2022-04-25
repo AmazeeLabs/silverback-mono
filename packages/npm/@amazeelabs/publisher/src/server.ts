@@ -75,7 +75,7 @@ const authMiddleware = config.basicAuth
       users: { [config.basicAuth.username]: config.basicAuth.password },
       challenge: true,
     })
-  : (req: Request, res: Response, next: NextFunction) => next;
+  : (req: Request, res: Response, next: NextFunction) => next();
 
 // Allow cross-origin requests
 // @TODO see if we need to lock this down
@@ -187,14 +187,20 @@ app.use(
   createProxyMiddleware(() => app.locals.isReady, {
     target: `http://127.0.0.1:${config.applicationPort}`,
     selfHandleResponse: true,
-    onProxyRes: responseInterceptor(async (responseBuffer) => {
+    onProxyRes: responseInterceptor(async (responseBuffer, proxyRes) => {
+      if (!proxyRes.headers['content-type']?.includes('text/html')) {
+        return responseBuffer;
+      }
       const response = responseBuffer.toString('utf8');
       return response
         .replace(
           '</head>',
-          '<script src="/___status/refresh.js"></script></head>',
+          '<script src="/___status/elements.js"></script></head>',
         )
-        .replace('</body>', '<publisher-refresh/></body>');
+        .replace(
+          '</body>',
+          '<publisher-floater><publisher-status /></publisher-floater></body>',
+        );
     }),
   }),
 );

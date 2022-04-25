@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.13.1...@amazeelabs/react-framework-bridge@1.13.2) (2022-04-22)
+
+
+### Bug Fixes
+
+* **gatsby:** allow buildUrl function to create a simple / link ([7ff8913](https://github.com/AmazeeLabs/silverback-mono/commit/7ff8913a85ac388d1c3bd0023ddeac60de2b3fc1))
+
+
+
+
+
+## [1.13.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.13.0...@amazeelabs/react-framework-bridge@1.13.1) (2022-04-21)
+
+**Note:** Version bump only for package @amazeelabs/react-framework-bridge
+
+
+
+
+
 # [1.13.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.12.0...@amazeelabs/react-framework-bridge@1.13.0) (2022-04-17)
 
 

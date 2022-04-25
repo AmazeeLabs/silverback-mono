@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "79b5565ad6c291df30b58accc41eaa5f",
+    "content-hash": "95ef48c4c1fd21638006c32b2f9fdcee",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -165,25 +165,21 @@
         },
         {
             "name": "amazeelabs/proxy-gutenberg",
-            "version": "1.1.12",
+            "version": "1.1.13",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-gutenberg",
-                "reference": "63f4b94a9e5b131ff3ac719276fcc8211cbc94a9"
+                "reference": "e0c8d71671fd53ead97709f96190ca6820c1119d"
             },
             "require": {
                 "cweagans/composer-patches": "^1.7",
-                "drupal/gutenberg": "^2.4"
+                "drupal/gutenberg": "^2.5"
             },
             "type": "library",
             "extra": {
                 "enable-patching": true,
                 "composer-exit-on-patch-failure": true,
-                "patches": {
-                    "drupal/gutenberg": {
-                        "Fix media dialog": "https://www.drupal.org/files/issues/2022-02-02/3258284-fix-media-library-modal.patch"
-                    }
-                }
+                "patches": []
             },
             "license": [
                 "GPL-2.0+"
@@ -196,11 +192,11 @@
         },
         {
             "name": "amazeelabs/silverback-cli",
-            "version": "2.7.10",
+            "version": "2.8.0",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback-cli",
-                "reference": "ce3015ed2152051415b1f2f8e24b66d5a479b8ed"
+                "reference": "6bfcc27d35e71abe3e1809bf6e1e712311e2f3cf"
             },
             "require": {
                 "alchemy/zippy": "^1.0.0",
@@ -246,11 +242,11 @@
         },
         {
             "name": "amazeelabs/silverback_external_preview",
-            "version": "1.1.5",
+            "version": "1.1.7",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_external_preview",
-                "reference": "cbec80d6ba49d0a60fb28055f51e0e4af712ecdf"
+                "reference": "b7d87cb659ca143bab9813b7018c3c4c5b050050"
             },
             "type": "drupal-module",
             "license": [
@@ -2687,16 +2683,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "9.3.11",
+            "version": "9.3.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "b8978dd6a4639bdc0930a6eb7791afffcd931a1b"
+                "reference": "ed6af33093f66a9c5048d02f9f2c326ad0e7e90c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/b8978dd6a4639bdc0930a6eb7791afffcd931a1b",
-                "reference": "b8978dd6a4639bdc0930a6eb7791afffcd931a1b",
+                "url": "https://api.github.com/repos/drupal/core/zipball/ed6af33093f66a9c5048d02f9f2c326ad0e7e90c",
+                "reference": "ed6af33093f66a9c5048d02f9f2c326ad0e7e90c",
                 "shasum": ""
             },
             "require": {
@@ -2938,13 +2934,13 @@
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
             "support": {
-                "source": "https://github.com/drupal/core/tree/9.3.11"
+                "source": "https://github.com/drupal/core/tree/9.3.12"
             },
-            "time": "2022-04-14T00:39:08+00:00"
+            "time": "2022-04-20T14:25:27+00:00"
         },
         {
             "name": "drupal/core-composer-scaffold",
-            "version": "9.3.11",
+            "version": "9.3.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-composer-scaffold.git",
@@ -2988,13 +2984,13 @@
                 "drupal"
             ],
             "support": {
-                "source": "https://github.com/drupal/core-composer-scaffold/tree/9.3.11"
+                "source": "https://github.com/drupal/core-composer-scaffold/tree/9.3.12"
             },
             "time": "2022-02-24T17:40:56+00:00"
         },
         {
             "name": "drupal/core-dev",
-            "version": "9.3.11",
+            "version": "9.3.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-dev.git",
@@ -3038,22 +3034,22 @@
             ],
             "description": "require-dev dependencies from drupal/drupal; use in addition to drupal/core-recommended to run tests from drupal/core.",
             "support": {
-                "source": "https://github.com/drupal/core-dev/tree/9.3.11"
+                "source": "https://github.com/drupal/core-dev/tree/9.3.12"
             },
             "time": "2021-11-30T05:41:29+00:00"
         },
         {
             "name": "drupal/core-recommended",
-            "version": "9.3.11",
+            "version": "9.3.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-recommended.git",
-                "reference": "9454fd8bce0172964d132feea87123a70948b6ee"
+                "reference": "a8fa50016c1aa1eb7f4e54f590e6343d286c418f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/9454fd8bce0172964d132feea87123a70948b6ee",
-                "reference": "9454fd8bce0172964d132feea87123a70948b6ee",
+                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/a8fa50016c1aa1eb7f4e54f590e6343d286c418f",
+                "reference": "a8fa50016c1aa1eb7f4e54f590e6343d286c418f",
                 "shasum": ""
             },
             "require": {
@@ -3062,7 +3058,7 @@
                 "doctrine/annotations": "1.13.2",
                 "doctrine/lexer": "1.2.1",
                 "doctrine/reflection": "1.2.2",
-                "drupal/core": "9.3.11",
+                "drupal/core": "9.3.12",
                 "egulias/email-validator": "3.1.2",
                 "guzzlehttp/guzzle": "6.5.5",
                 "guzzlehttp/promises": "1.5.1",
@@ -3124,9 +3120,9 @@
             ],
             "description": "Locked core dependencies; require this project INSTEAD OF drupal/core.",
             "support": {
-                "source": "https://github.com/drupal/core-recommended/tree/9.3.11"
+                "source": "https://github.com/drupal/core-recommended/tree/9.3.12"
             },
-            "time": "2022-04-14T00:39:08+00:00"
+            "time": "2022-04-20T14:25:27+00:00"
         },
         {
             "name": "drupal/cypress",
@@ -3457,17 +3453,17 @@
         },
         {
             "name": "drupal/gutenberg",
-            "version": "2.4.0",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/gutenberg.git",
-                "reference": "8.x-2.4"
+                "reference": "8.x-2.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/gutenberg-8.x-2.4.zip",
-                "reference": "8.x-2.4",
-                "shasum": "44b16076fb21ac3c5e71e4d91a9515055ab1dba0"
+                "url": "https://ftp.drupal.org/files/projects/gutenberg-8.x-2.5.zip",
+                "reference": "8.x-2.5",
+                "shasum": "e44241bd0aaf07216abd314da757fa2b0fa0b2ee"
             },
             "require": {
                 "drupal/core": "^8 || ^9",
@@ -3477,8 +3473,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.4",
-                    "datestamp": "1642702828",
+                    "version": "8.x-2.5",
+                    "datestamp": "1650411254",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3532,20 +3528,20 @@
         },
         {
             "name": "drupal/paragraphs",
-            "version": "1.13.0",
+            "version": "1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/paragraphs.git",
-                "reference": "8.x-1.13"
+                "reference": "8.x-1.14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/paragraphs-8.x-1.13.zip",
-                "reference": "8.x-1.13",
-                "shasum": "5e06df68411b17a5d8adaa292ddf70840d00876f"
+                "url": "https://ftp.drupal.org/files/projects/paragraphs-8.x-1.14.zip",
+                "reference": "8.x-1.14",
+                "shasum": "caa1a945dcfd058c4937c4907743eed970ce14cc"
             },
             "require": {
-                "drupal/core": "^8.8 || ^9",
+                "drupal/core": "^9.2",
                 "drupal/entity_reference_revisions": "~1.3"
             },
             "require-dev": {
@@ -3567,8 +3563,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.13",
-                    "datestamp": "1646121716",
+                    "version": "8.x-1.14",
+                    "datestamp": "1650520869",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4591,16 +4587,16 @@
         },
         {
             "name": "instaclick/php-webdriver",
-            "version": "1.4.11",
+            "version": "1.4.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/instaclick/php-webdriver.git",
-                "reference": "608e8b20a9072f84cac4f2fddb4420893d69eb83"
+                "reference": "200b8df772b74d604bebf25ef42ad6f8ee6380a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/instaclick/php-webdriver/zipball/608e8b20a9072f84cac4f2fddb4420893d69eb83",
-                "reference": "608e8b20a9072f84cac4f2fddb4420893d69eb83",
+                "url": "https://api.github.com/repos/instaclick/php-webdriver/zipball/200b8df772b74d604bebf25ef42ad6f8ee6380a9",
+                "reference": "200b8df772b74d604bebf25ef42ad6f8ee6380a9",
                 "shasum": ""
             },
             "require": {
@@ -4608,8 +4604,8 @@
                 "php": ">=5.3.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.8",
-                "satooshi/php-coveralls": "^1.0||^2.0"
+                "phpunit/phpunit": "^8.5 || ^9.5",
+                "satooshi/php-coveralls": "^1.0 || ^2.0"
             },
             "type": "library",
             "extra": {
@@ -4648,9 +4644,9 @@
             ],
             "support": {
                 "issues": "https://github.com/instaclick/php-webdriver/issues",
-                "source": "https://github.com/instaclick/php-webdriver/tree/1.4.11"
+                "source": "https://github.com/instaclick/php-webdriver/tree/1.4.14"
             },
-            "time": "2022-03-30T01:28:33+00:00"
+            "time": "2022-04-19T02:06:59+00:00"
         },
         {
             "name": "justinrainbow/json-schema",

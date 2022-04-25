@@ -31,23 +31,23 @@ function silverback_iframe_page_top(array &$page_top) {
  * Implements hook_form_FORM_ID_alter().
  */
 function silverback_iframe_form_webform_settings_confirmation_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-  $allowed = [
-    WebformInterface::CONFIRMATION_URL,
-    WebformInterface::CONFIRMATION_URL_MESSAGE,
-    WebformInterface::CONFIRMATION_MESSAGE,
-    WebformInterface::CONFIRMATION_INLINE,
-    WebformInterface::CONFIRMATION_NONE,
-  ];
-  $default = WebformInterface::CONFIRMATION_INLINE;
-
-  foreach (array_keys($form['confirmation_type']['confirmation_type']['#options']) as $key) {
-    if (!in_array($key, $allowed, TRUE)) {
-      unset($form['confirmation_type']['confirmation_type']['#options'][$key]);
+  if (\Drupal::config('silverback_iframe.settings')->get('limit_webform_confirmation_options') ?? TRUE) {
+    $allowed = [
+      WebformInterface::CONFIRMATION_URL,
+      WebformInterface::CONFIRMATION_URL_MESSAGE,
+      WebformInterface::CONFIRMATION_MESSAGE,
+      WebformInterface::CONFIRMATION_INLINE,
+      WebformInterface::CONFIRMATION_NONE,
+    ];
+    $default = WebformInterface::CONFIRMATION_INLINE;
+    foreach (array_keys($form['confirmation_type']['confirmation_type']['#options']) as $key) {
+      if (!in_array($key, $allowed, TRUE)) {
+        unset($form['confirmation_type']['confirmation_type']['#options'][$key]);
+      }
     }
-  }
-
-  if (!in_array($form['confirmation_type']['confirmation_type']['#default_value'], $allowed, TRUE)) {
-    $form['confirmation_type']['confirmation_type']['#default_value'] = $default;
+    if (!in_array($form['confirmation_type']['confirmation_type']['#default_value'], $allowed, TRUE)) {
+      $form['confirmation_type']['confirmation_type']['#default_value'] = $default;
+    }
   }
 }
 

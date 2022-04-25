@@ -162,7 +162,9 @@ const isTruthy = (i: string | null | undefined): i is string => Boolean(i);
 
 const stripSlashes = (segment: string, index: number) => {
   if (index === 0) {
-    return segment.replace(/^\/{2,}/g, '/').replace(/\/+$/g, '');
+    return segment === '/'
+      ? segment
+      : segment.replace(/^\/{2,}/g, '/').replace(/\/+$/g, '');
   }
 
   return segment.replace(/^\/+|\/+$/g, '');
