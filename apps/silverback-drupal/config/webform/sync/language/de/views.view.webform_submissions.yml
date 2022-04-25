@@ -1,0 +1,142 @@
+display:
+  default:
+    display_title: Master
+    display_options:
+      exposed_form:
+        options:
+          submit_button: Anwenden
+          reset_button_label: Zurücksetzen
+          exposed_sorts_label: 'Sortieren nach'
+          sort_asc_label: Aufsteigend
+          sort_desc_label: Absteigend
+      pager:
+        options:
+          tags:
+            previous: ‹‹
+            next: ››
+            first: '« Anfang'
+            last: 'Ende »'
+          expose:
+            items_per_page_label: 'Elemente pro Seite'
+            items_per_page_options_all_label: '- Alle -'
+            offset_label: Versatz
+      fields:
+        sid:
+          separator: ', '
+        in_draft:
+          separator: ', '
+        created:
+          label: Erstellt
+          separator: ', '
+        remote_addr:
+          label: IP-Adresse
+          separator: ', '
+        view_webform_submission:
+          label: Aktionen
+          text: Ansicht
+      header:
+        result:
+          content: '@start - @end von @total wird angezeigt'
+      arguments:
+        in_draft:
+          exception:
+            title: Alle
+  embed_administer:
+    display_options:
+      fields:
+        webform_submission_bulk_form:
+          action_title: Aktion
+        sid:
+          separator: ', '
+        in_draft:
+          separator: ', '
+        sticky:
+          label: 'am Anfang von Listen'
+          separator: ', '
+        locked:
+          label: Gesperrt
+          separator: ', '
+        created:
+          label: Erstellt
+          separator: ', '
+        completed:
+          separator: ', '
+        remote_addr:
+          label: IP-Adresse
+          separator: ', '
+        operations:
+          label: Aktionen
+      filters:
+        sticky:
+          expose:
+            label: 'am Anfang von Listen'
+        locked:
+          expose:
+            label: Gesperrt
+  embed_manage:
+    display_options:
+      fields:
+        webform_submission_bulk_form:
+          action_title: Aktion
+        sid:
+          separator: ', '
+        in_draft:
+          separator: ', '
+        sticky:
+          label: 'am Anfang von Listen'
+          separator: ', '
+        locked:
+          label: Gesperrt
+          separator: ', '
+        created:
+          label: Erstellt
+          separator: ', '
+        completed:
+          separator: ', '
+        remote_addr:
+          label: IP-Adresse
+          separator: ', '
+        view_webform_submission:
+          label: Aktionen
+          text: Ansicht
+        edit_webform_submission:
+          label: Aktionen
+          text: Bearbeiten
+      filters:
+        sticky:
+          expose:
+            label: 'am Anfang von Listen'
+        locked:
+          expose:
+            label: Gesperrt
+  embed_review:
+    display_options:
+      fields:
+        sid:
+          separator: ', '
+        in_draft:
+          separator: ', '
+        sticky:
+          label: 'am Anfang von Listen'
+          separator: ', '
+        locked:
+          label: Gesperrt
+          separator: ', '
+        created:
+          label: Erstellt
+          separator: ', '
+        completed:
+          separator: ', '
+        remote_addr:
+          label: IP-Adresse
+          separator: ', '
+        view_webform_submission:
+          label: Aktionen
+          text: Ansicht
+      filters:
+        sticky:
+          expose:
+            label: 'am Anfang von Listen'
+        locked:
+          expose:
+            label: Gesperrt
