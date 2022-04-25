@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.7.1...@amazeelabs/publisher@0.7.2) (2022-04-25)
+
+
+### Bug Fixes
+
+* **publisher:** bypass response processing for anything else than text/html ([dadba42](https://github.com/AmazeeLabs/silverback-mono/commit/dadba427eed9bea060f716777e48efc4e9e51512))
+
+
+
+
+
 ## [0.7.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.7.0...@amazeelabs/publisher@0.7.1) (2022-04-21)
 
 **Note:** Version bump only for package @amazeelabs/publisher
