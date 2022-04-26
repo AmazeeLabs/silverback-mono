@@ -28,11 +28,8 @@ directive @menu(
 ) on OBJECT
 
 # Directive for the "StringTranslationFeed" plugin.
-directive @string_translation(
-  """
-  The string context
-  """
-  context_prefix: String
+directive @stringTranslation(
+  contextPrefix: String
 ) on OBJECT
 
 schema {
@@ -129,8 +126,7 @@ type MainMenu @menu(menu_id: "main", item_type: "MenuItem")
 
 type FirstLevelMainMenu @menu(menu_id: "main", item_type: "MenuItem", max_level: 1)
 
-type GatsbyStringTranslation @string_translation(context_prefix: "gatsby")
-type WebsiteStringTranslation @string_translation(context_prefix: "website")
+type GatsbyStringTranslation @stringTranslation(contextPrefix: "gatsby")
 
 type Feed {
   typeName: String!
@@ -304,24 +300,6 @@ extend type GatsbyStringTranslation {
   translations: [GatsbyStringTranslationTranslation]
 }
 type GatsbyStringTranslationTranslation {
-  id: String!
-  source: String!
-  langcode: String!
-  translation: String!
-}
-extend type Query {
-  loadWebsiteStringTranslation(id: String!): WebsiteStringTranslation
-  queryWebsiteStringTranslations(offset: Int, limit: Int): [WebsiteStringTranslation]!
-}
-extend type WebsiteStringTranslation {
-  id: String!
-  drupalId: String!
-}
-extend type WebsiteStringTranslation {
-  source: String!
-  translations: [WebsiteStringTranslationTranslation]
-}
-type WebsiteStringTranslationTranslation {
   id: String!
   source: String!
   langcode: String!

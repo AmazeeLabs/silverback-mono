@@ -16,7 +16,7 @@ use GraphQL\Language\AST\DocumentNode;
  * Feed plugin that creates Gatsby feeds based on Drupal string translations.
  *
  * @GatsbyFeed(
- *   id = "string_translation"
+ *   id = "stringTranslation"
  * )
  */
 class StringTranslationFeed extends FeedBase {
@@ -28,7 +28,7 @@ class StringTranslationFeed extends FeedBase {
     $plugin_id,
     $plugin_definition
   ) {
-    $this->contextPrefix = $config['context_prefix'];
+    $this->contextPrefix = $config['contextPrefix'];
     parent::__construct($config, $plugin_id, $plugin_definition);
   }
 

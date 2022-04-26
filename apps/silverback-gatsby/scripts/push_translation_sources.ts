@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { existsSync,readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 
 const pushTranslationSources = async (translationSourcesPath) => {
   if (
