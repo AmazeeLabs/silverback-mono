@@ -3,6 +3,7 @@
 namespace Drupal\silverback_gatsby\Plugin\Gatsby\Feed;
 
 use Drupal\content_translation\ContentTranslationManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Menu\MenuLinkTreeElement;
@@ -35,9 +36,17 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
   /**
    * The target menu id.
    *
-   * @var string
+   * @var string | null
    */
-  protected string $menu_id;
+  protected $menu_id;
+
+  /**
+   * Internal menu id's. The first one the current user has access to will be
+   * picked.
+   *
+   * @var string[] | null
+   */
+  protected $menu_ids;
 
   /**
    * The maximum menu level.
@@ -69,6 +78,11 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
   protected MenuLinkTreeInterface $menuLinkTree;
 
   /**
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected EntityTypeManagerInterface $entityTypeManager;
+
+  /**
    * {@inheritDoc}
    */
   public static function create(
@@ -85,7 +99,8 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
         ? $container->get('content_translation.manager')
         : NULL,
       $container->get('menu.link_tree'),
-      $container->get('language_manager')
+      $container->get('language_manager'),
+      $container->get('entity_type.manager')
     );
   }
 
@@ -95,20 +110,36 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
     $plugin_definition,
     ?ContentTranslationManagerInterface $contentTranslationManager,
     MenuLinkTreeInterface $menuLinkTree,
-    LanguageManagerInterface $languageManager
+    LanguageManagerInterface $languageManager,
+    EntityTypeManagerInterface $entityTypeManager
   ) {
-    $this->menu_id = $config['menu_id'];
+    $this->menu_id = $config['menu_id'] ?? NULL;
+    $this->menu_ids = $config['menu_ids'] ?? NULL;
     $this->max_level = $config['max_level'] ?? -1;
     $this->item_type = $config['item_type'];
     $this->contentTranslationManager = $contentTranslationManager;
     $this->menuLinkTree = $menuLinkTree;
     $this->languageManager = $languageManager;
+    $this->entityTypeManager = $entityTypeManager;
 
     parent::__construct(
       $config,
       $plugin_id,
       $plugin_definition
     );
+  }
+
+  /**
+   * The menu ids to be loaded and negotiated.
+   *
+   * @return string[]
+   */
+  public function menuIds() {
+    $ids = $this->menu_ids ?: [];
+    if ($this->menu_id) {
+      $ids[] = $this->menu_id;
+    }
+    return $ids;
   }
 
   /**
@@ -127,14 +158,30 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
     if ($this->max_level > 0) {
       $params->maxDepth = $this->max_level;
     }
-    $tree = $this->menuLinkTree->load($this->menu_id, $params);
+
+    // Get all menus that are associated with this feed, and pick the first one
+    // the account has access to.
+    /** @var \Drupal\system\Entity\Menu[] $menus */
+    $menus = $this->entityTypeManager->getStorage('menu')->loadMultiple($this->menuIds());
+    $relevantMenu = NULL;
+    foreach($menus as $menu) {
+      if ($menu->access('view label', $account)) {
+        $relevantMenu = $menu;
+      }
+    }
+
+    if (!$relevantMenu) {
+      return [];
+    }
+
+    $tree = $this->menuLinkTree->load($relevantMenu->id(), $params);
     $items = GatsbyMenuLinks::flatten($tree, -1);
 
     $ids = [$context];
     $match = count(array_filter($items, function (MenuLinkTreeElement $item) use ($ids) {
       return in_array($item->link->getPluginId(), $ids);
     })) > 0;
-    return $match ? [$this->menu_id] : [];
+    return $match ? [$relevantMenu->id()] : [];
   }
 
   /**
@@ -164,8 +211,9 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
   public function resolveItems(ResolverInterface $limit, ResolverInterface $offset): ResolverInterface {
     return $this->builder->produce('entity_load_multiple')
       ->map('type', $this->builder->fromValue('menu'))
-      ->map('ids', $this->builder->fromValue([$this->menu_id]))
-      ->map('access', $this->builder->fromValue(false));
+      ->map('ids', $this->builder->fromValue($this->menuIds()))
+      ->map('access', $this->builder->fromValue(true))
+      ->map('access_operation', $this->builder->fromValue('view label'));
   }
 
   /**

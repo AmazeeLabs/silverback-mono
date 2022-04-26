@@ -5,6 +5,7 @@ namespace Drupal\Tests\silverback_gatsby\Kernel;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\menu_link_content\MenuLinkContentInterface;
 use Drupal\silverback_gatsby\GatsbyUpdate;
+use Drupal\system\Entity\Menu;
 use Drupal\Tests\graphql\Kernel\GraphQLTestBase;
 
 class MenuFeedTest extends GraphQLTestBase {
@@ -36,12 +37,17 @@ class MenuFeedTest extends GraphQLTestBase {
 
     // Set up the menu system.
     $this->installEntitySchema('menu_link_content');
+    // Create a menu nobody has access to (see `silverback_gatsby_example.module).
+    Menu::create([
+      'id' => 'access_denied',
+      'label' => 'Access denied',
+    ])->save();
   }
 
-  protected function createMenuItem(string $label, string $url, MenuLinkContentInterface $parent = null) : MenuLinkContentInterface {
+  protected function createMenuItem(string $label, string $url, MenuLinkContentInterface $parent = null, $menu = 'main') : MenuLinkContentInterface {
     $item = MenuLinkContent::create([
       'provider' => 'silverback_gatsby',
-      'menu_name' => 'main',
+      'menu_name' => $menu,
       'title' => $label,
       'link' => ['uri' => $url],
       'weight' => $this->itemCount++,
@@ -75,7 +81,7 @@ class MenuFeedTest extends GraphQLTestBase {
     $query = $this->getQueryFromFile('menus.gql');
     $metadata = $this->defaultCacheMetaData();
     $metadata->addCacheContexts(['languages:language_interface']);
-    $metadata->addCacheTags(['config:system.menu.main']);
+    $metadata->addCacheTags(['config:system.menu.main', 'config:system.menu.access_denied']);
     $this->assertResults($query, [], $this->expectedResult(), $metadata);
   }
 
@@ -99,7 +105,7 @@ class MenuFeedTest extends GraphQLTestBase {
     $query = $this->getQueryFromFile('menus.gql');
     $metadata = $this->defaultCacheMetaData();
     $metadata->addCacheContexts(['languages:language_interface']);
-    $metadata->addCacheTags(['config:system.menu.main']);
+    $metadata->addCacheTags(['config:system.menu.main', 'config:system.menu.access_denied']);
     $this->assertResults($query, [], $this->expectedResult([
       'loadMainMenu' => ['items' => $resultItems],
       'loadVisibleMainMenu' => ['items' => $resultItems],
@@ -126,7 +132,7 @@ class MenuFeedTest extends GraphQLTestBase {
     $query = $this->getQueryFromFile('menus.gql');
     $metadata = $this->defaultCacheMetaData();
     $metadata->addCacheContexts(['languages:language_interface']);
-    $metadata->addCacheTags(['config:system.menu.main']);
+    $metadata->addCacheTags(['config:system.menu.main', 'config:system.menu.access_denied']);
     $this->assertResults($query, [], $this->expectedResult([
       'loadMainMenu' => ['items' => $resultItems],
       'loadVisibleMainMenu' => ['items' => $resultItems],
@@ -140,7 +146,7 @@ class MenuFeedTest extends GraphQLTestBase {
     $query = $this->getQueryFromFile('menus.gql');
     $metadata = $this->defaultCacheMetaData();
     $metadata->addCacheContexts(['languages:language_interface']);
-    $metadata->addCacheTags(['config:system.menu.main']);
+    $metadata->addCacheTags(['config:system.menu.main', 'config:system.menu.access_denied']);
     $this->assertResults($query, [], $this->expectedResult([
       'loadMainMenu' => ['items' => [
         [
@@ -187,7 +193,7 @@ class MenuFeedTest extends GraphQLTestBase {
     $query = $this->getQueryFromFile('menus.gql');
     $metadata = $this->defaultCacheMetaData();
     $metadata->addCacheContexts(['languages:language_interface']);
-    $metadata->addCacheTags(['config:system.menu.main']);
+    $metadata->addCacheTags(['config:system.menu.main', 'config:system.menu.access_denied']);
     $this->assertResults($query, [], $this->expectedResult([
       'loadMainMenu' => ['items' => [
         [

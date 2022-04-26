@@ -16,7 +16,9 @@ use Drupal\silverback_gatsby\GraphQL\DirectiveProviderExtensionInterface;
 use Drupal\silverback_gatsby\GraphQL\ParentAwareSchemaExtensionInterface;
 use Drupal\silverback_gatsby\Plugin\FeedInterface;
 use GraphQL\Language\AST\DocumentNode;
+use GraphQL\Language\AST\ListValueNode;
 use GraphQL\Language\AST\ObjectTypeDefinitionNode;
+use GraphQL\Language\AST\StringValueNode;
 use GraphQL\Language\Parser;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -152,7 +154,18 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
             // Collect the directive arguments.
             foreach ($directive->arguments->getIterator() as $arg) {
               /** @var \GraphQL\Language\AST\ArgumentNode $arg */
-              $config[$arg->name->value] = $arg->value->value;
+              if ($arg->value instanceof ListValueNode) {
+                // If it's a list value, turn it into an array of values.
+                $config[$arg->name->value] = [];
+                for($i = 0; $i < $arg->value->values->count(); $i++) {
+                  if ($arg->value->values[$i] instanceof StringValueNode) {
+                    $config[$arg->name->value][] = $arg->value->values[$i]->value;
+                  }
+                }
+              }
+              else {
+                $config[$arg->name->value] = $arg->value->value;
+              }
             }
 
             // Collect the field directives.

@@ -249,6 +249,26 @@ type MainMenu @menu(menu_id: "main", item_type: "MenuItem")
 type LayoutMainMenu @menu(menu_id: "main", item_type: "MenuItem", max_level: 1)
 ```
 
+### Menu negotiation
+
+In some cases, the same GraphQL field might have to return different menus,
+based on the current context. A prominent use case would be a multi-site setup
+where different menus should be displayed based on the current account Gatsby is
+using to fetch data with.
+
+In this case, multiple menu id's can be passed to the `@menu` directive, and the
+resolver will pick **the first one** that is accessible to the user account.
+
+```graphql
+type MainMenu
+  @menu(menu_ids: ["site_a_main", "site_b_main"], item_type: "MenuItem")
+```
+
+It checks access for the `view label` operation on the `Menu` entity, which is
+allowed for everybody by default. The consuming project has to implement other
+mechanisms to restrict access therefore control which menus are used for which
+site.
+
 ## Configuring update notifications
 
 The last thing to do is to tell Gatsby whenever something noteworthy changes. By
