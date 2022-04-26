@@ -24,6 +24,7 @@ display:
         sid:
           separator: ', '
         in_draft:
+          label: Brouillon
           separator: ', '
         created:
           label: Créé
@@ -49,6 +50,7 @@ display:
         sid:
           separator: ', '
         in_draft:
+          label: Brouillon
           separator: ', '
         sticky:
           label: 'Épinglé (en haut des listes)'
@@ -81,6 +83,7 @@ display:
         sid:
           separator: ', '
         in_draft:
+          label: Brouillon
           separator: ', '
         sticky:
           label: 'Épinglé (en haut des listes)'
@@ -115,6 +118,7 @@ display:
         sid:
           separator: ', '
         in_draft:
+          label: Brouillon
           separator: ', '
         sticky:
           label: 'Épinglé (en haut des listes)'
