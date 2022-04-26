@@ -1,10 +1,7 @@
 <?php
 
-use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Session\AccountInterface;
 use Drupal\silverback_gatsby\Plugin\Gatsby\Feed\EntityFeed;
-use Drupal\system\MenuInterface;
 
 
 function _silverback_gatsby_entity_event(EntityInterface $entity) {
@@ -34,10 +31,3 @@ function silverback_gatsby_entity_update(EntityInterface $entity) {
 function silverback_gatsby_entity_delete(EntityInterface $entity) {
   _silverback_gatsby_entity_event($entity);
 }
-
-/**
- * Implements hook_ENTITY_TYPE_access().
- */
-//function silverback_gatsby_menu_access(MenuInterface $entity, $operation, AccountInterface $account) {
-//  return AccessResult::allowed();
-//}
