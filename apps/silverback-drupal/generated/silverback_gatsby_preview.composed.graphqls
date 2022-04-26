@@ -10,7 +10,13 @@ directive @menu(
   """
   The internal menu id.
   """
-  menu_id: String!
+  menu_id: String
+
+  """
+  Internal menu id's. The first one the current user has access to will be
+  picked.
+  """
+  menu_ids: [String!]
 
   """
   GraphQL type for menu items.
