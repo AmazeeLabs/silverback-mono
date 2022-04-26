@@ -83,8 +83,7 @@ class LocaleStorageDecorator implements StringStorageInterface, StringContextInt
     $string->setStorage($this);
     // For now, we only track strings which have a context, for performance
     // reasons.
-    $contexts =  $this->getContexts();
-    if (!empty($contexts)) {
+    if (!empty($string->context)) {
       $this->getGatsbyUpdateHandler()->handle(StringTranslationFeed::class, $string);
     }
     return $this;
