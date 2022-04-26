@@ -167,6 +167,7 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
     foreach($menus as $menu) {
       if ($menu->access('view label', $account)) {
         $relevantMenu = $menu;
+        break;
       }
     }
 
