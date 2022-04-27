@@ -26,6 +26,10 @@ abstract class Import extends Base {
     $dir = self::getContentDir($module);
     /** @var \Drupal\default_content\ExporterInterface $exporter */
     $exporter = \Drupal::service('default_content.exporter');
+    $stats = [
+      'updated' => [],
+      'removed' => [],
+    ];
 
     $map = [];
     if (file_exists($dir) && is_dir($dir)) {
@@ -72,6 +76,10 @@ abstract class Import extends Base {
             if ($diff) {
               // Instead of messing with the entity update, we delete it.
               $entity->delete();
+              if (!isset($stats['updated'][$entityType])) {
+                $stats['updated'][$entityType] = 0;
+              }
+              $stats['updated'][$entityType]++;
             }
           }
         }
@@ -87,8 +95,12 @@ abstract class Import extends Base {
       if ($ids) {
         $storage = \Drupal::entityTypeManager()->getStorage($entityType);
         $storage->delete($storage->loadMultiple($ids));
+        $stats['removed'][$entityType] = count($ids);
       }
     }
+
+    echo "Default content update stats:\n";
+    var_dump($stats);
 
     self::run($module);
   }
