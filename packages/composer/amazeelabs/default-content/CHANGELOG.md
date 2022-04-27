@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/default-content@1.2.0...@-amazeelabs/default-content@1.2.1) (2022-04-27)
+
+
+### Bug Fixes
+
+* fix the difference check ([44656d8](https://github.com/AmazeeLabs/silverback-mono/commit/44656d829799d35ec99c4e859f40422ede9d9704))
+
+
+
+
+
 # [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/default-content@1.1.4...@-amazeelabs/default-content@1.2.0) (2022-04-27)
 
 

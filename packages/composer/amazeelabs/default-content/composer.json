@@ -3,7 +3,7 @@
   "description": "Helpers for managing the Drupal's default content.",
   "type": "package",
   "license": "GPL-2.0-or-later",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "require": {
     "amazeelabs/proxy-default-content": "^1.1"
   },
