@@ -149,7 +149,7 @@ class StringTranslationFeed extends FeedBase {
       fn (StringInterface $value) => $value->getString()
     ));
     $registry->addFieldResolver($this->getTypeName(), 'context', $builder->callback(
-      fn (StringInterface $value) => $value->context ?? ''
+      fn (StringInterface $value) => $value->context
     ));
     $registry->addFieldResolver($this->getTypeName(), 'translations', $this->resolveTranslations());
 
