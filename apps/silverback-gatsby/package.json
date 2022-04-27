@@ -56,7 +56,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "prepare": "yarn codegen",
+    "prepare": "yarn codegen && yarn translations:extract",
     "build": "yarn translations:push_sources && gatsby build",
     "develop": "yarn translations:push_sources && gatsby develop",
     "serve": "gatsby serve",
@@ -77,7 +77,7 @@
     "test:integration": "exit 0",
     "test:watch": "jest --watch",
     "translations:extract": "formatjs extract 'src/**/*.ts*' --ignore='**/*.d.ts' --out-file=generated/translation_sources.json --id-interpolation-pattern '[sha512:contenthash:base64:6]'",
-    "translations:push_sources" : "yarn translations:extract && ts-node scripts/push_translation_sources.ts generated/translation_sources.json"
+    "translations:push_sources" : "ts-node scripts/push_translation_sources.ts generated/translation_sources.json"
   },
   "repository": {
     "type": "git",
