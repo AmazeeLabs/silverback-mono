@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "95ef48c4c1fd21638006c32b2f9fdcee",
+    "content-hash": "b561cf9e375be1112e085a5be1fc77c7",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -76,11 +76,11 @@
         },
         {
             "name": "amazeelabs/default-content",
-            "version": "1.1.4",
+            "version": "1.2.0",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/default-content",
-                "reference": "1c87a0cf950166a459fb709766f7dfdc90ba06d5"
+                "reference": "0de9c94c7a9fb94cdded9b39a540c9eac46037b1"
             },
             "require": {
                 "amazeelabs/proxy-default-content": "^1.1"
@@ -260,11 +260,11 @@
         },
         {
             "name": "amazeelabs/silverback_gatsby",
-            "version": "1.16.2",
+            "version": "1.16.3",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gatsby",
-                "reference": "2fcdf1734389eafc3e8662f3f511dd36951a54d1"
+                "reference": "a117ba47af73e47efdcf0e4ac12a61e6bc3587a6"
             },
             "type": "drupal-module",
             "extra": {
@@ -285,11 +285,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "1.5.8",
+            "version": "1.5.9",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "cc8967b5468d49a5e0be8b9450fd511bac3373f1"
+                "reference": "a88b5973e99b2adf59f30529e79ca98127cfb3da"
             },
             "require": {
                 "drupal/gutenberg": "^2.4"
@@ -306,11 +306,11 @@
         },
         {
             "name": "amazeelabs/silverback_iframe",
-            "version": "1.1.4",
+            "version": "1.2.0",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_iframe",
-                "reference": "f8e056ea68bd9eff12a1a74bede9deeac082bc47"
+                "reference": "3043d0c34b06a18be4c4f6419b3e3493696b1740"
             },
             "type": "drupal-module",
             "license": [
@@ -342,11 +342,11 @@
         },
         {
             "name": "amazeelabs/silverback_translations",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_translations",
-                "reference": "a17231b3285513b4033419a4bd1eb9e86c6550d0"
+                "reference": "04deaa5424cd047eb0617107bc07447951d73002"
             },
             "type": "drupal-module",
             "license": [
@@ -1296,16 +1296,16 @@
         },
         {
             "name": "consolidation/annotated-command",
-            "version": "4.5.4",
+            "version": "4.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/consolidation/annotated-command.git",
-                "reference": "93398c3166d9026ab93219ce23b2092b4d7b7904"
+                "reference": "67cea8e8e7656b74da651ea6f49321853996c0fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/consolidation/annotated-command/zipball/93398c3166d9026ab93219ce23b2092b4d7b7904",
-                "reference": "93398c3166d9026ab93219ce23b2092b4d7b7904",
+                "url": "https://api.github.com/repos/consolidation/annotated-command/zipball/67cea8e8e7656b74da651ea6f49321853996c0fd",
+                "reference": "67cea8e8e7656b74da651ea6f49321853996c0fd",
                 "shasum": ""
             },
             "require": {
@@ -1346,9 +1346,9 @@
             "description": "Initialize Symfony Console commands from annotated command class methods.",
             "support": {
                 "issues": "https://github.com/consolidation/annotated-command/issues",
-                "source": "https://github.com/consolidation/annotated-command/tree/4.5.4"
+                "source": "https://github.com/consolidation/annotated-command/tree/4.5.5"
             },
-            "time": "2022-04-05T17:58:10+00:00"
+            "time": "2022-04-26T16:18:25+00:00"
         },
         {
             "name": "consolidation/config",
@@ -3126,11 +3126,11 @@
         },
         {
             "name": "drupal/cypress",
-            "version": "2.3.57",
+            "version": "2.3.58",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/cypress",
-                "reference": "0cedd096846df0aa28701b3f122bce341331ece2"
+                "reference": "6648f9047d9e2a5566c902d9d7634eecf3354243"
             },
             "require": {
                 "alchemy/zippy": "^1.0.0",
@@ -3367,11 +3367,11 @@
         },
         {
             "name": "drupal/gatsby_build_monitor",
-            "version": "1.4.31",
+            "version": "1.4.32",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/gatsby_build_monitor",
-                "reference": "aa5672d165dd35d519d2675c6bd7c0fd91379f08"
+                "reference": "03438c8d99a3131da2031971854ebd7645bd9392"
             },
             "require": {
                 "justinrainbow/json-schema": "^5.2.12"
@@ -3609,11 +3609,11 @@
         },
         {
             "name": "drupal/test_session",
-            "version": "1.2.34",
+            "version": "1.2.35",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/test_session",
-                "reference": "37bb731fe57b419a11f0f08df2fe071746b8fd85"
+                "reference": "4cdd013cffa79216128dd6d821845767d5e6c9d4"
             },
             "type": "drupal-module",
             "license": [
@@ -3791,16 +3791,16 @@
         },
         {
             "name": "drush/drush",
-            "version": "11.0.8",
+            "version": "11.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drush-ops/drush.git",
-                "reference": "098935045aa4b28191bee64346eccd5f24267245"
+                "reference": "88b2293ded84f67aad96ad6dbd64cacd84bcd6fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drush-ops/drush/zipball/098935045aa4b28191bee64346eccd5f24267245",
-                "reference": "098935045aa4b28191bee64346eccd5f24267245",
+                "url": "https://api.github.com/repos/drush-ops/drush/zipball/88b2293ded84f67aad96ad6dbd64cacd84bcd6fe",
+                "reference": "88b2293ded84f67aad96ad6dbd64cacd84bcd6fe",
                 "shasum": ""
             },
             "require": {
@@ -3925,7 +3925,7 @@
                 "irc": "irc://irc.freenode.org/drush",
                 "issues": "https://github.com/drush-ops/drush/issues",
                 "slack": "https://drupal.slack.com/messages/C62H9CWQM",
-                "source": "https://github.com/drush-ops/drush/tree/11.0.8"
+                "source": "https://github.com/drush-ops/drush/tree/11.0.9"
             },
             "funding": [
                 {
@@ -3933,7 +3933,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-04-09T10:54:19+00:00"
+            "time": "2022-04-16T12:01:55+00:00"
         },
         {
             "name": "easyrdf/easyrdf",
@@ -4270,26 +4270,25 @@
         },
         {
             "name": "grasmash/expander",
-            "version": "2.0.2",
+            "version": "2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/grasmash/expander.git",
-                "reference": "f4df21d01d1fbda38269cca89e3dbb6ba223da7f"
+                "reference": "b7cbc1f2fdf9a9c0e253a424c2a4058316b7cb6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/grasmash/expander/zipball/f4df21d01d1fbda38269cca89e3dbb6ba223da7f",
-                "reference": "f4df21d01d1fbda38269cca89e3dbb6ba223da7f",
+                "url": "https://api.github.com/repos/grasmash/expander/zipball/b7cbc1f2fdf9a9c0e253a424c2a4058316b7cb6e",
+                "reference": "b7cbc1f2fdf9a9c0e253a424c2a4058316b7cb6e",
                 "shasum": ""
             },
             "require": {
                 "dflydev/dot-access-data": "^3.0.0",
-                "php": ">=5.6",
-                "psr/log": "^1 | ^2"
+                "php": ">=7.1",
+                "psr/log": "^1 | ^2 | ^3"
             },
             "require-dev": {
                 "greg-1-anderson/composer-test-scenarios": "^1",
-                "php-coveralls/php-coveralls": "^2.0",
                 "phpunit/phpunit": "^6.0 || ^8.0 || ^9",
                 "squizlabs/php_codesniffer": "^2.7 || ^3.3"
             },
@@ -4316,9 +4315,9 @@
             "description": "Expands internal property references in PHP arrays file.",
             "support": {
                 "issues": "https://github.com/grasmash/expander/issues",
-                "source": "https://github.com/grasmash/expander/tree/2.0.2"
+                "source": "https://github.com/grasmash/expander/tree/2.0.3"
             },
-            "time": "2022-02-24T03:58:20+00:00"
+            "time": "2022-04-25T22:17:46+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -6033,16 +6032,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.4.4",
+            "version": "1.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "d8e9fd97ca11f2f24fc1aafbcfb1f78bce762267"
+                "reference": "129a63b3bc7caeb593c224c41f420675e63cfefc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/d8e9fd97ca11f2f24fc1aafbcfb1f78bce762267",
-                "reference": "d8e9fd97ca11f2f24fc1aafbcfb1f78bce762267",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/129a63b3bc7caeb593c224c41f420675e63cfefc",
+                "reference": "129a63b3bc7caeb593c224c41f420675e63cfefc",
                 "shasum": ""
             },
             "require": {
@@ -6071,9 +6070,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.4.4"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.4.5"
             },
-            "time": "2022-04-14T12:24:06+00:00"
+            "time": "2022-04-22T11:11:01+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
