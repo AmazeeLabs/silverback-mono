@@ -28,36 +28,28 @@ class JSONTranslationsProcessor implements TranslationsProcessorInterface {
   /**
    * {@inheritdoc}
    */
-  public function createSources($json_sources, $context, $defaultTranslationLanguage) {
+  public function createSources($json_sources, $context) {
     $sources = json_decode($json_sources, TRUE);
     if (!empty($sources)) {
-      foreach ($sources as $source => $defaultTranslation) {
+      foreach ($sources as $source) {
         // Make sure that we do not have already a string with the same source
-        // and context. We add a new string and a default translation only if
-        // there is no existing string.
+        // and context. We add a new source only if there is no existing one.
+        $stringContext = $context;
+        if (!empty($source['description'])) {
+          $stringContext .= ': ' . $source['description'];
+        }
         $existingString = $this->localeStorage->getStrings([
-          'source' => $source,
-          'context' => $context,
+          'source' => $source['defaultMessage'],
+          'context' => $stringContext,
         ]);
         if (!empty($existingString)) {
           continue;
         }
 
-        // First, create a string.
-        $string = $this->localeStorage->createString([
-          'source' => $source,
-          'context' => $context,
+        $this->localeStorage->createString([
+          'source' => $source['defaultMessage'],
+          'context' => $stringContext,
         ])->save();
-
-        // Second, add a default translation, if a default message is provided.
-        if ($defaultTranslation['defaultMessage']) {
-          $this->localeStorage->createTranslation([
-            'lid' => $string->getId(),
-            'language' => $defaultTranslationLanguage,
-            'translation' => $defaultTranslation['defaultMessage'],
-            'customized' => 1,
-          ])->save();
-        }
       }
     }
   }

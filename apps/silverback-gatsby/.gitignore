@@ -73,6 +73,7 @@ yarn-error.log
 # Ignore generated files
 generated/types
 /cypress/screenshots
+generated/translation_sources.json
 
 _local
 /test-results

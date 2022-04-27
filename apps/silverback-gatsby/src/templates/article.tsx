@@ -68,6 +68,7 @@ const Article: React.FC<
             {
               intl.formatMessage({
                 defaultMessage: 'Title',
+                description: 'article title'
               })
             }
           </Row>

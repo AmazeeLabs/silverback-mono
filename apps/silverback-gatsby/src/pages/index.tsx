@@ -93,6 +93,7 @@ const IndexPage: React.FC<PageProps> = () => {
             {
               intl.formatMessage({
                 defaultMessage: 'Title',
+                description: "table title"
               })
             }
           </Row>

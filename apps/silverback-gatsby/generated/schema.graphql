@@ -685,6 +685,7 @@ type DrupalGatsbyStringTranslation implements Node {
   remoteId: String!
   drupalId: String!
   source: String!
+  context: String
   translations: [DrupalGatsbyStringTranslationTranslation]
   id: ID!
   parent: Node
@@ -693,26 +694,6 @@ type DrupalGatsbyStringTranslation implements Node {
 }
 
 type DrupalGatsbyStringTranslationTranslation {
-  remoteTypeName: String!
-  id: String!
-  source: String!
-  langcode: String!
-  translation: String!
-}
-
-type DrupalWebsiteStringTranslation implements Node {
-  remoteTypeName: String!
-  remoteId: String!
-  drupalId: String!
-  source: String!
-  translations: [DrupalWebsiteStringTranslationTranslation]
-  id: ID!
-  parent: Node
-  children: [Node!]!
-  internal: Internal!
-}
-
-type DrupalWebsiteStringTranslationTranslation {
   remoteTypeName: String!
   id: String!
   source: String!
@@ -752,10 +733,8 @@ type Query {
   allDrupalMainMenu(filter: DrupalMainMenuFilterInput, sort: DrupalMainMenuSortInput, skip: Int, limit: Int): DrupalMainMenuConnection!
   drupalFirstLevelMainMenu(remoteTypeName: StringQueryOperatorInput, translations: DrupalFirstLevelMainMenuFilterListInput, remoteId: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, items: DrupalMenuItemFilterListInput, translation: DrupalFirstLevelMainMenuFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalFirstLevelMainMenu
   allDrupalFirstLevelMainMenu(filter: DrupalFirstLevelMainMenuFilterInput, sort: DrupalFirstLevelMainMenuSortInput, skip: Int, limit: Int): DrupalFirstLevelMainMenuConnection!
-  drupalGatsbyStringTranslation(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, source: StringQueryOperatorInput, translations: DrupalGatsbyStringTranslationTranslationFilterListInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalGatsbyStringTranslation
+  drupalGatsbyStringTranslation(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, source: StringQueryOperatorInput, context: StringQueryOperatorInput, translations: DrupalGatsbyStringTranslationTranslationFilterListInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalGatsbyStringTranslation
   allDrupalGatsbyStringTranslation(filter: DrupalGatsbyStringTranslationFilterInput, sort: DrupalGatsbyStringTranslationSortInput, skip: Int, limit: Int): DrupalGatsbyStringTranslationConnection!
-  drupalWebsiteStringTranslation(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, source: StringQueryOperatorInput, translations: DrupalWebsiteStringTranslationTranslationFilterListInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalWebsiteStringTranslation
-  allDrupalWebsiteStringTranslation(filter: DrupalWebsiteStringTranslationFilterInput, sort: DrupalWebsiteStringTranslationSortInput, skip: Int, limit: Int): DrupalWebsiteStringTranslationConnection!
   imagesFromHtml(urlOriginal: StringQueryOperatorInput, urlAbsolute: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImagesFromHtml
   allImagesFromHtml(filter: ImagesFromHtmlFilterInput, sort: ImagesFromHtmlSortInput, skip: Int, limit: Int): ImagesFromHtmlConnection!
   imageSharp(fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: JSONQueryOperatorInput, original: ImageSharpOriginalFilterInput, resize: ImageSharpResizeFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImageSharp
@@ -5915,6 +5894,7 @@ enum DrupalGatsbyStringTranslationFieldsEnum {
   remoteId
   drupalId
   source
+  context
   translations
   translations___remoteTypeName
   translations___id
@@ -6028,6 +6008,7 @@ input DrupalGatsbyStringTranslationFilterInput {
   remoteId: StringQueryOperatorInput
   drupalId: StringQueryOperatorInput
   source: StringQueryOperatorInput
+  context: StringQueryOperatorInput
   translations: DrupalGatsbyStringTranslationTranslationFilterListInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
@@ -6037,166 +6018,6 @@ input DrupalGatsbyStringTranslationFilterInput {
 
 input DrupalGatsbyStringTranslationSortInput {
   fields: [DrupalGatsbyStringTranslationFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
-}
-
-input DrupalWebsiteStringTranslationTranslationFilterListInput {
-  elemMatch: DrupalWebsiteStringTranslationTranslationFilterInput
-}
-
-input DrupalWebsiteStringTranslationTranslationFilterInput {
-  remoteTypeName: StringQueryOperatorInput
-  id: StringQueryOperatorInput
-  source: StringQueryOperatorInput
-  langcode: StringQueryOperatorInput
-  translation: StringQueryOperatorInput
-}
-
-type DrupalWebsiteStringTranslationConnection {
-  totalCount: Int!
-  edges: [DrupalWebsiteStringTranslationEdge!]!
-  nodes: [DrupalWebsiteStringTranslation!]!
-  pageInfo: PageInfo!
-  distinct(field: DrupalWebsiteStringTranslationFieldsEnum!): [String!]!
-  max(field: DrupalWebsiteStringTranslationFieldsEnum!): Float
-  min(field: DrupalWebsiteStringTranslationFieldsEnum!): Float
-  sum(field: DrupalWebsiteStringTranslationFieldsEnum!): Float
-  group(skip: Int, limit: Int, field: DrupalWebsiteStringTranslationFieldsEnum!): [DrupalWebsiteStringTranslationGroupConnection!]!
-}
-
-type DrupalWebsiteStringTranslationEdge {
-  next: DrupalWebsiteStringTranslation
-  node: DrupalWebsiteStringTranslation!
-  previous: DrupalWebsiteStringTranslation
-}
-
-enum DrupalWebsiteStringTranslationFieldsEnum {
-  remoteTypeName
-  remoteId
-  drupalId
-  source
-  translations
-  translations___remoteTypeName
-  translations___id
-  translations___source
-  translations___langcode
-  translations___translation
-  id
-  parent___id
-  parent___parent___id
-  parent___parent___parent___id
-  parent___parent___parent___children
-  parent___parent___children
-  parent___parent___children___id
-  parent___parent___children___children
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___children
-  parent___children___id
-  parent___children___parent___id
-  parent___children___parent___children
-  parent___children___children
-  parent___children___children___id
-  parent___children___children___children
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  children
-  children___id
-  children___parent___id
-  children___parent___parent___id
-  children___parent___parent___children
-  children___parent___children
-  children___parent___children___id
-  children___parent___children___children
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___children
-  children___children___id
-  children___children___parent___id
-  children___children___parent___children
-  children___children___children
-  children___children___children___id
-  children___children___children___children
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-}
-
-type DrupalWebsiteStringTranslationGroupConnection {
-  totalCount: Int!
-  edges: [DrupalWebsiteStringTranslationEdge!]!
-  nodes: [DrupalWebsiteStringTranslation!]!
-  pageInfo: PageInfo!
-  distinct(field: DrupalWebsiteStringTranslationFieldsEnum!): [String!]!
-  max(field: DrupalWebsiteStringTranslationFieldsEnum!): Float
-  min(field: DrupalWebsiteStringTranslationFieldsEnum!): Float
-  sum(field: DrupalWebsiteStringTranslationFieldsEnum!): Float
-  group(skip: Int, limit: Int, field: DrupalWebsiteStringTranslationFieldsEnum!): [DrupalWebsiteStringTranslationGroupConnection!]!
-  field: String!
-  fieldValue: String
-}
-
-input DrupalWebsiteStringTranslationFilterInput {
-  remoteTypeName: StringQueryOperatorInput
-  remoteId: StringQueryOperatorInput
-  drupalId: StringQueryOperatorInput
-  source: StringQueryOperatorInput
-  translations: DrupalWebsiteStringTranslationTranslationFilterListInput
-  id: StringQueryOperatorInput
-  parent: NodeFilterInput
-  children: NodeFilterListInput
-  internal: InternalFilterInput
-}
-
-input DrupalWebsiteStringTranslationSortInput {
-  fields: [DrupalWebsiteStringTranslationFieldsEnum]
   order: [SortOrderEnum] = [ASC]
 }
 

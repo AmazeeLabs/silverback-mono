@@ -15,9 +15,7 @@ interface TranslationsProcessorInterface {
    *  the translation source.
    * @param string $context
    *  The context in which the translations should be created.
-   * @param string $defaultTranslationLanguage
-   *  The default language to add a translation for.
    */
-  public function createSources($json_sources, $context, $defaultTranslationLanguage);
+  public function createSources($json_sources, $context);
 
 }

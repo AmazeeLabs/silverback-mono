@@ -129,6 +129,7 @@ class StringTranslationFeed extends FeedBase {
     $def = [];
     $def[] = "extend type $typeName {";
     $def[] = "  source: String!";
+    $def[] = "  context: String";
     $def[] = "  translations: [$translationTypeName]";
     $def[] = "}";
     $def[] = "type $translationTypeName {";
@@ -146,6 +147,9 @@ class StringTranslationFeed extends FeedBase {
   ): void {
     $registry->addFieldResolver($this->getTypeName(), 'source', $builder->callback(
       fn (StringInterface $value) => $value->getString()
+    ));
+    $registry->addFieldResolver($this->getTypeName(), 'context', $builder->callback(
+      fn (StringInterface $value) => $value->context ?? ''
     ));
     $registry->addFieldResolver($this->getTypeName(), 'translations', $this->resolveTranslations());
 
