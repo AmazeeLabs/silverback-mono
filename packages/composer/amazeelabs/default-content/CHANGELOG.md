@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/default-content@1.1.4...@-amazeelabs/default-content@1.2.0) (2022-04-27)
+
+
+### Features
+
+* a way to update already imported default content ([f9d7a43](https://github.com/AmazeeLabs/silverback-mono/commit/f9d7a4329243de0adee530f8946e525f2589c569))
+
+
+
+
+
 ## [1.1.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/default-content@1.1.3...@-amazeelabs/default-content@1.1.4) (2022-04-06)
 
 
