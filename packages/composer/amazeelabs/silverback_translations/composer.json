@@ -1,7 +1,7 @@
 {
   "name": "amazeelabs/silverback_translations",
   "type": "drupal-module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Provides a way for importing translation sources and exporting translated labels.",
   "homepage": "https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/composer/amazeelabs/silverback_translations#readme",
   "license": "GPL-2.0+"
