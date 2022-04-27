@@ -70,14 +70,17 @@ class ComposableSchema extends OriginalComposableSchema {
    * {@inheritDoc}
    */
   public function getExtensions() {
-    $extensions = parent::getExtensions();
+    $extensions = &drupal_static(__METHOD__);
+    if (!$extensions) {
+      $extensions = parent::getExtensions();
 
-    $schema = $this->getSchemaDefinition();
-    // Iterate through all extensions and pass them the current schema, so they
-    // can act on it.
-    foreach($extensions as $extension) {
-      if ($extension instanceof ParentAwareSchemaExtensionInterface) {
-        $extension->setParentSchemaDefinition($schema);
+      $schema = $this->getSchemaDefinition();
+      // Iterate through all extensions and pass them the current schema, so they
+      // can act on it.
+      foreach ($extensions as $extension) {
+        if ($extension instanceof ParentAwareSchemaExtensionInterface) {
+          $extension->setParentSchemaDefinition($schema);
+        }
       }
     }
 

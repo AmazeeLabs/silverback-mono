@@ -27,6 +27,11 @@ directive @menu(
   max_level: Int
 ) on OBJECT
 
+# Directive for the "StringTranslationFeed" plugin.
+directive @stringTranslation(
+  contextPrefix: String
+) on OBJECT
+
 schema {
   query: Query
 }
@@ -120,6 +125,8 @@ type MenuItem {
 type MainMenu @menu(menu_id: "main", item_type: "MenuItem")
 
 type FirstLevelMainMenu @menu(menu_id: "main", item_type: "MenuItem", max_level: 1)
+
+type GatsbyStringTranslation @stringTranslation(contextPrefix: "gatsby")
 
 type Feed {
   typeName: String!
@@ -279,4 +286,23 @@ extend type FirstLevelMainMenu {
 extend type MenuItem {
   id: String!
   parent: String!
+}
+extend type Query {
+  loadGatsbyStringTranslation(id: String!): GatsbyStringTranslation
+  queryGatsbyStringTranslations(offset: Int, limit: Int): [GatsbyStringTranslation]!
+}
+extend type GatsbyStringTranslation {
+  id: String!
+  drupalId: String!
+}
+extend type GatsbyStringTranslation {
+  source: String!
+  context: String
+  translations: [GatsbyStringTranslationTranslation]
+}
+type GatsbyStringTranslationTranslation {
+  id: String!
+  source: String!
+  langcode: String!
+  translation: String!
 }

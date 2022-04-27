@@ -1,0 +1,3 @@
+access create translation sources endpoint:
+  title: 'Access create translation sources endpoint'
+  description: "Allows users to create translations sources via the API endpoint."

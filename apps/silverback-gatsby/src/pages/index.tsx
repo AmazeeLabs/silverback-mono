@@ -1,5 +1,6 @@
 import { graphql, Link, PageProps, useStaticQuery } from 'gatsby';
 import React from 'react';
+import { useIntl } from 'react-intl';
 
 import {
   ImageSet,
@@ -75,16 +76,48 @@ const IndexPage: React.FC<PageProps> = () => {
     }
   }
 
+  const intl = useIntl();
   return (
     <>
       <b>Some page. Just one Page node. Without a dedicated site page.</b>
       <table>
         <tr>
-          <Row>ID</Row>
-          <Row>Title</Row>
-          <Row>Language</Row>
-          <Row>Path</Row>
-          <Row>Body</Row>
+          <Row>
+            {
+              intl.formatMessage({
+                defaultMessage: 'ID',
+              })
+            }
+          </Row>
+          <Row>
+            {
+              intl.formatMessage({
+                defaultMessage: 'Title',
+                description: "table title"
+              })
+            }
+          </Row>
+          <Row>
+            {
+              intl.formatMessage({
+                defaultMessage: 'Language',
+              })
+            }
+          </Row>
+          <Row>
+            {
+              intl.formatMessage({
+                defaultMessage: 'Path',
+              })
+            }
+          </Row>
+          <Row>
+            {
+              intl.formatMessage({
+                defaultMessage: 'Body',
+              })
+            }
+          </Row>
         </tr>
         {somePage?.translations.map((page) => (
           <tr key={`page-row-${somePage.id}-${page.langcode}`}>
@@ -120,7 +153,7 @@ const IndexPage: React.FC<PageProps> = () => {
               </Row>
               <Row>{translation.langcode}</Row>
               <Row>{translation.path}</Row>
-              <Row>{translation.tags.map((tag) => tag.title).join(', ')}</Row>
+              <Row>{translation.tags?.map((tag) => tag.title).join(', ')}</Row>
             </tr>
           )),
         )}

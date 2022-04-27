@@ -1,0 +1,7 @@
+silverback_translations.create_sources:
+  path: '/translations/create/{context}'
+  methods: [POST]
+  defaults:
+    _controller: '\Drupal\silverback_translations\Controller\TranslationsController::createSources'
+  requirements:
+    _permission: 'access create translation sources endpoint'

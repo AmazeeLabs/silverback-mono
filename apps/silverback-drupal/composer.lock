@@ -341,6 +341,24 @@
             }
         },
         {
+            "name": "amazeelabs/silverback_translations",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/composer/amazeelabs/silverback_translations",
+                "reference": "a17231b3285513b4033419a4bd1eb9e86c6550d0"
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Provides a way for importing translation sources and exporting translated labels.",
+            "homepage": "https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/composer/amazeelabs/silverback_translations#readme",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
             "name": "asm89/stack-cors",
             "version": "1.3.0",
             "source": {
@@ -11829,6 +11847,7 @@
         "amazeelabs/silverback_gutenberg": 20,
         "amazeelabs/silverback_iframe": 20,
         "amazeelabs/silverback_iframe_theme": 20,
+        "amazeelabs/silverback_translations": 20,
         "drupal/cypress": 20,
         "drupal/gatsby_build_monitor": 20,
         "drupal/test_session": 20

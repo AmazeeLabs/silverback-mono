@@ -46,8 +46,8 @@ test('@gatsby-develop test LinkProcessor', async ({ page }) => {
 
   await page.click('.tabs--primary :text-is("Translate")');
   await page.click(':text-is("Add"):right-of(:text-is("German"))');
-  await page.fill('label:text-is("URL alias")', '/target-page-de');
-  await page.click('input:text-is("Save (this translation)")');
+  await page.fill('input[name="path[0][alias]"]', '/target-page-de');
+  await page.click('input[id="edit-submit"]');
 
   // Create a Gutenberg page.
 

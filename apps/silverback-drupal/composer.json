@@ -28,6 +28,7 @@
         "amazeelabs/silverback_gutenberg": "@dev",
         "amazeelabs/silverback_iframe": "@dev",
         "amazeelabs/silverback_iframe_theme": "@dev",
+        "amazeelabs/silverback_translations": "@dev",
         "composer/installers": "2.1.1",
         "cweagans/composer-patches": "1.7.2",
         "drupal/admin_toolbar": "3.1.0",
@@ -95,7 +96,11 @@
         },
         "enable-patching": true,
         "composer-exit-on-patch-failure": true,
-        "patches": {}
+        "patches": {
+            "drupal/core": {
+                "Add string context and location filters to the translate interface": "https://www.drupal.org/files/issues/2021-05-28/drupal-n2123543-71.patch"
+            }
+        }
     },
     "scripts": {
         "run-tests": [
