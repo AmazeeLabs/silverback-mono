@@ -4,16 +4,10 @@ namespace AmazeeLabs\DefaultContent;
 
 use Drupal\Core\Entity\ContentEntityType;
 
-abstract class Export {
+abstract class Export extends Base {
 
   public static function run(string $module, array $excludedContentEntityTypes): void {
-    /** @var \Drupal\Core\Extension\ModuleExtensionList $extensionList */
-    $extensionList = \Drupal::service('extension.list.module');
-    $dir = DRUPAL_ROOT .
-      DIRECTORY_SEPARATOR .
-      $extensionList->getPath($module) .
-      DIRECTORY_SEPARATOR .
-      'content';
+    $dir = self::getContentDir($module);
     self::rrmdir($dir);
     /** @var \Drupal\default_content\ExporterInterface $exporter */
     $exporter = \Drupal::service('default_content.exporter');
