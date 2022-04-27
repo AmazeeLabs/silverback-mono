@@ -14,16 +14,14 @@ The format of the JSON string should be like that:
 {
   "9a9+ww": {
     "defaultMessage": "Lorem ipsum dolor sit amet"
+    "description": "Donec et nunc turpis"
   },
   "Qp1beM": {
     "defaultMessage": "Donec et nunc turpis. In mollis laoreet mi, eu interdum enim tempus sed."
   }
 }
 ```
-so it is a string that can be generated with the [formatjs](https://formatjs.io/) library. Each property in the root JSON object represents the source string.
+so it is a string that can be generated with the [formatjs](https://formatjs.io/) library. Each nested object in the JSON represent a source string. The *defaultMessage* property will be used as the source string label and the *description* property will be appended to the context of the string.
 
 ## Endpoint access
 The request must be a POST request, done with an user which has the 'access create translation sources endpoint' permissions. The basic auth method can be used to authenticate the request.
-
-## Default translations
-The POSTed JSON string has values for a default message (default translation). The default language can be specified in the *defaultLanguage* query parameter, like: */translations/create/gatsby?defaultLanguage=de*. If nothing specified, the site default language will be used.
