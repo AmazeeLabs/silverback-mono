@@ -72,8 +72,10 @@ abstract class Import extends Base {
           if ($imported !== $exported) {
             $imported = Yaml::decode($imported);
             $exported = Yaml::decode($exported);
-            $diff = DiffArray::diffAssocRecursive($imported, $exported);
-            if ($diff) {
+            if (
+              DiffArray::diffAssocRecursive($imported, $exported) ||
+              DiffArray::diffAssocRecursive($exported, $imported)
+            ) {
               // Instead of messing with the entity update, we delete it.
               $entity->delete();
               if (!isset($stats['updated'][$entityType])) {
