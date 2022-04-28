@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.17.0...@-amazeelabs/silverback_gatsby@1.18.0) (2022-04-28)
+
+
+### Features
+
+* **gatsby:** more flexible and explicit [@menu](https://github.com/menu) directives ([14c5027](https://github.com/AmazeeLabs/silverback-mono/commit/14c502748a5141ed3d9027ccbe3d4ca3b380fcfe))
+
+
+
+
+
 # [1.17.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.16.3...@-amazeelabs/silverback_gatsby@1.17.0) (2022-04-28)
 
 
