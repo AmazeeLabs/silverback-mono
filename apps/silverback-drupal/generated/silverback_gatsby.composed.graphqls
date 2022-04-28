@@ -20,9 +20,27 @@ directive @menu(
 
   """
   GraphQL type for menu items.
-  """
-  item_type: String!
 
+  **DEPRECATED**: Explicitly define Menu item types with `resolveMenu*`
+  directives instead.
+  """
+  item_type: String
+
+  """
+  The maximum level to be fetched.
+  This can be used to optimizing caching. Most of the time only one or two
+  levels of menus are immediately visible on the page. By declaring multiple
+  types, we can generate different cache buckets, so a new menu item on a low
+  level does not require a full rebuild of every page.
+
+  """
+  max_level: Int
+) on OBJECT
+
+"""
+Resolve menu items in a menu.
+"""
+directive @resolveMenuItems(
   """
   The maximum level to be fetched.
   This can be used to optimizing caching. Most of the time only one or two
@@ -31,7 +49,27 @@ directive @menu(
   level does not require a full rebuild of every page.
   """
   max_level: Int
-) on OBJECT
+) on FIELD_DEFINITION
+
+"""
+Resolve the menu items id.
+"""
+directive @resolveMenuItemId on FIELD_DEFINITION
+
+"""
+Resolve the menu item parents id.
+"""
+directive @resolveMenuItemParentId on FIELD_DEFINITION
+
+"""
+Resolve a menu items label.
+"""
+directive @resolveMenuItemLabel on FIELD_DEFINITION
+
+"""
+Resolve the Url from within a menu item.
+"""
+directive @resolveMenuItemUrl on FIELD_DEFINITION
 
 # Directive for the "StringTranslationFeed" plugin.
 directive @stringTranslation(
