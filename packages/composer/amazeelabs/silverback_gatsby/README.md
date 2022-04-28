@@ -166,33 +166,19 @@ type Page @entity(type: "node", bundle: "page") {
 
 ## Menus
 
-To expose Drupal menus to Gatsby, one can use the `@menu` directive. It takes a
-menu id, and a menu item type name as arguments. The latter is used to declare a
-GraphQL type in the schema that will be emitted from the menu's `items` field.
+To expose Drupal menus to Gatsby, one can use the `@menu` directive.
 
 ```graphql
-type MainMenu @menu(menu_id: "main", item_type: "MenuItem")
+type MainMenu @menu(menu_id: "main") {
+  items: [MenuItem!]! @resolveMenuItems
+}
 
 type MenuItem {
-  label: String!
-  url: String!
+  id: String! @resolveMenuItemId
+  parent: String! @resolveMenuItemId
+  label: String! @resolveMenuItemLabel
+  url: String! @resolveMenuItemUrl
 }
-```
-
-The resolvers for custom field of menu items (in this case `label` and `url`)
-still need to be provided by the schema implementation.
-
-```php
-$registry->addFieldResolver('MenuItem', 'label', $builder->compose(
-  $builder->produce('menu_tree_link')->map('element', $builder->fromParent()),
-  $builder->produce('menu_link_label')->map('link', $builder->fromParent()),
-));
-
-$registry->addFieldResolver('MenuItem', 'url', $builder->compose(
-  $builder->produce('menu_tree_link')->map('element', $builder->fromParent()),
-  $builder->produce('menu_link_url')->map('link', $builder->fromParent()),
-  $builder->produce('url_path')->map('url', $builder->fromParent()),
-));
 ```
 
 GraphQL does not allow recursive fragments, so something like this would not be
@@ -243,10 +229,10 @@ separating this into two levels, we can make sure the outer layout really only
 changes when menu levels are changed that are displayed.
 
 ```graphql
-type MainMenu @menu(menu_id: "main", item_type: "MenuItem")
+type MainMenu @menu(menu_id: "main") {...}
 # Will only include the first level and trigger updates when a first level item
 # changes.
-type LayoutMainMenu @menu(menu_id: "main", item_type: "MenuItem", max_level: 1)
+type LayoutMainMenu @menu(menu_id: "main", max_level: 1) {...}
 ```
 
 ### Menu negotiation

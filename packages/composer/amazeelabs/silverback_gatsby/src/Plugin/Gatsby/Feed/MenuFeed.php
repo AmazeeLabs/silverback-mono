@@ -58,9 +58,9 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
   /**
    * The GraphQL item type used for menu items.
    *
-   * @var string
+   * @var string | null
    */
-  protected string $item_type;
+  protected $item_type;
 
   /**
    * @var \Drupal\content_translation\ContentTranslationManagerInterface|null
@@ -116,7 +116,7 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
     $this->menu_id = $config['menu_id'] ?? NULL;
     $this->menu_ids = $config['menu_ids'] ?? NULL;
     $this->max_level = $config['max_level'] ?? -1;
-    $this->item_type = $config['item_type'];
+    $this->item_type = $config['item_type'] ?? NULL;
     $this->contentTranslationManager = $contentTranslationManager;
     $this->menuLinkTree = $menuLinkTree;
     $this->languageManager = $languageManager;
@@ -127,6 +127,15 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
       $plugin_id,
       $plugin_definition
     );
+  }
+
+  /**
+   * Expose the configured max level so it can be used by the schema extension.
+   *
+   * @return int|mixed
+   */
+  public function getMaxLevel() {
+    return $this->max_level;
   }
 
   /**
@@ -260,6 +269,9 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
   public function getExtensionDefinition(DocumentNode $parentAst): string {
     $typeName = $this->typeName;
     $itemTypeName = $this->item_type;
+    if (!$itemTypeName) {
+      return '';
+    }
     $def = [];
     $def[] = "extend type $typeName {";
     $def[] = "  items: [$itemTypeName!]!";
@@ -275,25 +287,27 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
     ResolverRegistryInterface $registry,
     ResolverBuilder $builder
   ): void {
-    $registry->addFieldResolver($this->typeName, 'items', $builder->compose(
-      $builder->tap($builder->produce('language_switch')
-        ->map('language', $builder->callback(
-          function ($menu) {
-            return $menu->__language ?? $this->languageManager->getCurrentLanguage()->getId();
-          }
-        ))
-      ),
-      $builder->produce('menu_links')->map('menu', $builder->fromParent()),
-      $builder->produce('gatsby_menu_links')
-        ->map('items', $builder->fromParent())
-        ->map('max_level', $builder->fromValue($this->max_level))
-      ,
-    ));
-    $registry->addFieldResolver($this->item_type, 'id', $builder->callback(
-      fn (MenuLinkTreeElement $element) => $element->link->getPluginId()
-    ));
-    $registry->addFieldResolver($this->item_type, 'parent', $builder->callback(
-      fn (MenuLinkTreeElement $element) => $element->link->getParent()
-    ));
+    if ($this->item_type) {
+      $registry->addFieldResolver($this->typeName, 'items', $builder->compose(
+        $builder->tap($builder->produce('language_switch')
+          ->map('language', $builder->callback(
+            function ($menu) {
+              return $menu->__language ?? $this->languageManager->getCurrentLanguage()->getId();
+            }
+          ))
+        ),
+        $builder->produce('menu_links')->map('menu', $builder->fromParent()),
+        $builder->produce('gatsby_menu_links')
+          ->map('items', $builder->fromParent())
+          ->map('max_level', $builder->fromValue($this->max_level))
+        ,
+      ));
+      $registry->addFieldResolver($this->item_type, 'id', $builder->callback(
+        fn (MenuLinkTreeElement $element) => $element->link->getPluginId()
+      ));
+      $registry->addFieldResolver($this->item_type, 'parent', $builder->callback(
+        fn (MenuLinkTreeElement $element) => $element->link->getParent()
+      ));
+    }
   }
 }

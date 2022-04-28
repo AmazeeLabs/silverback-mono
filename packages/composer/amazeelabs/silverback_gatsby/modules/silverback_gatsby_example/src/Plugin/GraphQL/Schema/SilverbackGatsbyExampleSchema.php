@@ -37,17 +37,6 @@ class SilverbackGatsbyExampleSchema extends ComposableSchema {
       )
     );
 
-    $registry->addFieldResolver('MenuItem', 'label', $builder->compose(
-      $builder->produce('menu_tree_link')->map('element', $builder->fromParent()),
-      $builder->produce('menu_link_label')->map('link', $builder->fromParent()),
-    ));
-
-    $registry->addFieldResolver('MenuItem', 'url', $builder->compose(
-      $builder->produce('menu_tree_link')->map('element', $builder->fromParent()),
-      $builder->produce('menu_link_url')->map('link', $builder->fromParent()),
-      $builder->produce('url_path')->map('url', $builder->fromParent()),
-    ));
-
     return $registry;
   }
 }

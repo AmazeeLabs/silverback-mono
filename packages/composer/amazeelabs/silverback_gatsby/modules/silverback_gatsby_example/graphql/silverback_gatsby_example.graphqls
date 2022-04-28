@@ -16,16 +16,22 @@ type Post @entity(type: "node", bundle: "blog") {
 }
 
 type MenuItem {
-  label: String!
-  url: String!
+  id: String! @resolveMenuItemId
+  parent: String @resolveMenuItemParentId
+  label: String! @resolveMenuItemLabel
+  url: String! @resolveMenuItemUrl
 }
 
 """
 All menu items, for the sitemap or being post-loaded.
 """
-type MainMenu @menu(menu_ids: ["access_denied", "main"], item_type: "MenuItem")
+type MainMenu @menu(menu_ids: ["access_denied", "main"]) {
+  items: [MenuItem!]! @resolveMenuItems
+}
 
 """
 Menu items up to level 2, to be rendered directly into the page layout.
 """
-type VisibleMainMenu @menu(menu_ids: ["access_denied", "main"], max_level: 2, item_type: "MenuItem")
+type VisibleMainMenu @menu(menu_ids: ["access_denied", "main"], max_level: 2) {
+  items: [MenuItem!]! @resolveMenuItems
+}

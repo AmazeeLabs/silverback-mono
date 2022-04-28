@@ -6,6 +6,7 @@ use Drupal\Component\Plugin\PluginManagerInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Core\Menu\MenuLinkTreeElement;
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
@@ -15,6 +16,7 @@ use Drupal\graphql\Plugin\GraphQL\SchemaExtension\SdlSchemaExtensionPluginBase;
 use Drupal\silverback_gatsby\GraphQL\DirectiveProviderExtensionInterface;
 use Drupal\silverback_gatsby\GraphQL\ParentAwareSchemaExtensionInterface;
 use Drupal\silverback_gatsby\Plugin\FeedInterface;
+use Drupal\silverback_gatsby\Plugin\Gatsby\Feed\MenuFeed;
 use GraphQL\Language\AST\DocumentNode;
 use GraphQL\Language\AST\ListValueNode;
 use GraphQL\Language\AST\ObjectTypeDefinitionNode;
@@ -211,6 +213,11 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
             'property',
             'resolveEntityReference',
             'resolveEntityReferenceRevisions',
+            'resolveMenuItems',
+            'resolveMenuItemId',
+            'resolveMenuItemParentId',
+            'resolveMenuItemLabel',
+            'resolveMenuItemUrl',
           ];
           if (in_array($fieldDirective->name->value, $list, TRUE)) {
             $graphQlPath = $definition->name->value . '.' . $field->name->value;
@@ -423,6 +430,60 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
             $addResolver($path, $resolverMultiple);
           }
           break;
+
+        case 'resolveMenuItems':
+          [$type,] = explode('.', $path);
+          /** @var MenuFeed $menuFeed */
+          $menuFeeds = array_filter($this->getFeeds(), function (FeedInterface $feed) use ($type) {
+            return $feed instanceof MenuFeed && $feed->getTypeName() === $type;
+          });
+          $menuFeed = array_pop($menuFeeds);
+          if (!$menuFeed) {
+            throw new \Exception('@resolveMenuItems has to be attached to a @menu feed type.');
+          }
+          $addResolver($path, $builder->compose(
+            $builder->tap($builder->produce('language_switch')
+              ->map('language', $builder->callback(
+                function ($menu) {
+                  return $menu->__language ?? \Drupal::service('language_manager')->getCurrentLanguage()->getId();
+                }
+              ))
+            ),
+            $builder->produce('menu_links')->map('menu', $builder->fromParent()),
+            $builder->produce('gatsby_menu_links')
+              ->map('items', $builder->fromParent())
+              ->map('max_level', $builder->fromValue($menuFeed->getMaxLevel()))
+            ,
+          ));
+          break;
+
+        case 'resolveMenuItemId':
+          $addResolver($path, $builder->callback(
+            fn (MenuLinkTreeElement $element) => $element->link->getPluginId()
+          ));
+          break;
+
+        case 'resolveMenuItemParentId':
+          $addResolver($path, $builder->callback(
+            fn (MenuLinkTreeElement $element) => $element->link->getParent()
+          ));
+          break;
+
+        case 'resolveMenuItemLabel':
+          $addResolver($path, $builder->compose(
+            $builder->produce('menu_tree_link')->map('element', $builder->fromParent()),
+            $builder->produce('menu_link_label')->map('link', $builder->fromParent()),
+          ));
+          break;
+
+        case 'resolveMenuItemUrl':
+          $addResolver($path, $builder->compose(
+            $builder->produce('menu_tree_link')->map('element', $builder->fromParent()),
+            $builder->produce('menu_link_url')->map('link', $builder->fromParent()),
+            $builder->produce('url_path')->map('url', $builder->fromParent()),
+          ));
+          break;
+
       }
     }
   }
