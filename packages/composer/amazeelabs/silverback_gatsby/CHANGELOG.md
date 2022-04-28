@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.16.3...@-amazeelabs/silverback_gatsby@1.17.0) (2022-04-28)
+
+
+### Bug Fixes
+
+* **gatsby:** all the things I would have forgotten without @Leksat ([a42d366](https://github.com/AmazeeLabs/silverback-mono/commit/a42d3663c8931264feed2dc503c27b05267936ac))
+
+
+### Features
+
+* **gatsby:** menu negotiation ([60e3210](https://github.com/AmazeeLabs/silverback-mono/commit/60e321063bde3f6f01930b9db78d1c181d01fac9))
+
+
+
+
+
 ## [1.16.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.16.2...@-amazeelabs/silverback_gatsby@1.16.3) (2022-04-27)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gatsby
