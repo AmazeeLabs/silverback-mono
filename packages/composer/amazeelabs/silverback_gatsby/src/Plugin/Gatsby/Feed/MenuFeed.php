@@ -201,7 +201,8 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
     $resolver = $this->builder->produce('entity_load')
       ->map('type', $this->builder->fromValue('menu'))
       ->map('id', $id)
-      ->map('access', $this->builder->fromValue(false));
+      ->map('access', $this->builder->fromValue(true))
+      ->map('access_operation', $this->builder->fromValue('view label'));
     if ($this->isTranslatable() && $langcode) {
       $resolver->map('language', $langcode);
       $resolver = $this->builder->compose(
