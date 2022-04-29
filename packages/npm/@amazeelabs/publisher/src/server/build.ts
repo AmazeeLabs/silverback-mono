@@ -77,12 +77,29 @@ function BuildRunner<TEvent extends any>(config: BuildConfig) {
       mergeMap((ev) =>
         concat(
           of(BuildState.Running),
-          spawn(config.buildCommand, ev.events),
+          spawn(config.buildCommand, ev.events).pipe(
+            retry(config.buildRetries),
+            catchError(() => of(BuildState.Failed)),
+          ),
           of(BuildState.Finished),
+        ).pipe(
+          scan<SpawnChunk | BuildState, SpawnChunk | BuildState>(
+            (prev, current) => {
+              if (
+                isBuildState(prev) &&
+                isBuildState(current) &&
+                prev === BuildState.Failed &&
+                current === BuildState.Finished
+              ) {
+                return BuildState.Failed;
+              }
+              return current;
+            },
+            BuildState.Finished,
+          ),
+          distinctUntilChanged(),
         ),
       ),
-      retry(config.buildRetries),
-      catchError(() => of(BuildState.Failed)),
     );
   };
 }

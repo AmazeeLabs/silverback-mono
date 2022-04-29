@@ -43,7 +43,7 @@ function runBuildService(helpers: RunHelpers, input: BuildTestInput) {
   return fakeCommands$.pipe(
     BuildService({
       buildCommand: 'yarn build',
-      buildRetries: 2,
+      buildRetries: 1,
       buildBufferTime: 1,
     }),
     takeUntil(testSpan$),
@@ -215,6 +215,44 @@ describe('BuilderService', () => {
       stateMarbles: '-r----(rf)-f--------|',
       queueMarbles: '--z-----------------|',
       spawnMarbles: '-y----z-------------|',
+      payloads: {
+        y: [payloads.x],
+        z: [payloads.x, payloads.y],
+      },
+    };
+    test('Output', () => testBuildOutput(input));
+    test('Status', () => testBuildStates(input));
+    test('Queue', () => testBuildQueue(input));
+    test('Spawns', () => testBuildSpawns(input));
+  });
+
+  describe('Build error', () => {
+    const input: BuildTestInput = {
+      buildMarbles: 'abc#',
+      eventMarbles: 'x-------------------|',
+      printMarbles: '-abcabc-------------|',
+      stateMarbles: '-r-----e------------|',
+      queueMarbles: '--------------------|',
+      spawnMarbles: '-y--y---------------|',
+      payloads: {
+        y: [payloads.x],
+        z: [payloads.x, payloads.y],
+      },
+    };
+    test('Output', () => testBuildOutput(input));
+    test('Status', () => testBuildStates(input));
+    test('Queue', () => testBuildQueue(input));
+    test('Spawns', () => testBuildSpawns(input));
+  });
+
+  describe('Manual restart after build error', () => {
+    const input: BuildTestInput = {
+      buildMarbles: 'abc#',
+      eventMarbles: 'x----------x--------|',
+      printMarbles: '-abcabc----abcabc---|',
+      stateMarbles: '-r-----e---r-----e--|',
+      queueMarbles: '--------------------|',
+      spawnMarbles: '-y--y------y--y-----|',
       payloads: {
         y: [payloads.x],
         z: [payloads.x, payloads.y],

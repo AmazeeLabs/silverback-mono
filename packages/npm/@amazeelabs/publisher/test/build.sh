@@ -7,6 +7,7 @@ sleep 1
 echo "Build step 2/5";
 sleep 1
 echo "Build step 3/5";
+exit 1
 sleep 1
 echo "Build step 4/5";
 sleep 1
