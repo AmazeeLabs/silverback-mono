@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.7.4...@amazeelabs/publisher@0.7.5) (2022-04-29)
+
+
+### Bug Fixes
+
+* **publisher:** build retries and error states ([a9e063c](https://github.com/AmazeeLabs/silverback-mono/commit/a9e063cf1f55fff6f23d226cf3aa9e8e24db1c67))
+
+
+
+
+
 ## [0.7.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.7.3...@amazeelabs/publisher@0.7.4) (2022-04-29)
 
 

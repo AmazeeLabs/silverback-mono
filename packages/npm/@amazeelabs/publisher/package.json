@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/publisher",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "license": "MIT",
   "bin": "./cli.js",
   "publishConfig": {
