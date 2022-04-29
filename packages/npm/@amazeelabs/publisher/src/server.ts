@@ -111,7 +111,7 @@ builder$.pipe(buildReport()).subscribe(async (data) => {
 });
 
 app.post('/___status/build', (req, res) => {
-  if (!req.app.locals.isReady) {
+  if (req.app.locals.isReady) {
     buildEvents$.next(req.body);
   }
   res.json(false);
