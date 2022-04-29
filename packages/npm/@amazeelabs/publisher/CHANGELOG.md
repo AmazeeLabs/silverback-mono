@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.7.2...@amazeelabs/publisher@0.7.3) (2022-04-29)
+
+
+### Bug Fixes
+
+* **publisher:** don't allow to trigger a build while the app is not yet in ready state ([ec1642a](https://github.com/AmazeeLabs/silverback-mono/commit/ec1642a9000d59392240835357d1a247684ea9ee))
+
+
+
+
+
 ## [0.7.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.7.1...@amazeelabs/publisher@0.7.2) (2022-04-25)
 
 
