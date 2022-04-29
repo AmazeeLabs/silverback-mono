@@ -111,8 +111,10 @@ builder$.pipe(buildReport()).subscribe(async (data) => {
 });
 
 app.post('/___status/build', (req, res) => {
-  buildEvents$.next(req.body);
-  res.json(true);
+  if (!req.app.locals.isReady) {
+    buildEvents$.next(req.body);
+  }
+  res.json(false);
 });
 
 app.post('/___status/clean', (req, res) => {
