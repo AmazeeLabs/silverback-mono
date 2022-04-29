@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.18.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.18.0...@-amazeelabs/silverback_gatsby@1.18.1) (2022-04-29)
+
+
+### Bug Fixes
+
+* **gatsby:** inconsistent access checks in menu GraphQL API ([56945a2](https://github.com/AmazeeLabs/silverback-mono/commit/56945a2bcf3204c43d7731be9a330f1364ef3a61))
+
+
+
+
+
 # [1.18.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.17.0...@-amazeelabs/silverback_gatsby@1.18.0) (2022-04-28)
 
 
