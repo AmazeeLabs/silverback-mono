@@ -328,6 +328,36 @@ class MenuFeedTest extends GraphQLTestBase {
     ], $diff);
   }
 
+  public function testUpdateMultilingualMenu() {
+    $this->container
+      ->get('content_translation.manager')
+      ->setEnabled('menu_link_content', 'menu_link_content', TRUE);
+    $translated = $this->createMenuItem('English', 'internal:/translated');
+
+    $tracker = $this->container->get('silverback_gatsby.update_tracker');
+    $latest = $tracker->latestBuild($this->server->id());
+    $tracker->clear();
+
+    $translated->addTranslation('de', [
+      'title' => 'German',
+    ])->save();
+
+    $current = $tracker->latestBuild($this->server->id());
+    $tracker->clear();
+
+    $diff = $tracker->diff($latest, $current, $this->server->id());
+    $this->assertEquals([
+      // This should update the 'MainMenu' type only, since the change happened
+      // below the visible two levels of 'VisibleMainMenu'.
+      new GatsbyUpdate('MainMenu', 'main:en'),
+      new GatsbyUpdate('MainMenu', 'main:fr'),
+      new GatsbyUpdate('MainMenu', 'main:de'),
+      new GatsbyUpdate('VisibleMainMenu', 'main:en'),
+      new GatsbyUpdate('VisibleMainMenu', 'main:fr'),
+      new GatsbyUpdate('VisibleMainMenu', 'main:de'),
+    ], $diff);
+  }
+
   public function testDeletedMenuItem() {
     $foo = $this->createMenuItem('Foo', 'internal:/foo');
 

@@ -16,8 +16,10 @@ use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
+use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Drupal\silverback_gatsby\Annotation\GatsbyFeed;
 use Drupal\silverback_gatsby\Plugin\FeedBase;
+use Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer\GatsbyBuildId;
 use Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer\GatsbyMenuLinks;
 use Drupal\system\Entity\Menu;
 use GraphQL\Language\AST\DocumentNode;
@@ -191,7 +193,22 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
     $match = count(array_filter($items, function (MenuLinkTreeElement $item) use ($ids) {
       return in_array($item->link->getPluginId(), $ids);
     })) > 0;
-    return $match ? [$relevantMenu->id()] : [];
+
+    // If the menu item is not in any exposed menus, don't return any updates.
+    if (!$match) {
+      return [];
+    }
+
+    if ($this->isTranslatable()) {
+      // If menu items are translatable, trigger an update in each language,
+      // since we can't determine easily which language was affected.
+      return array_map(
+        fn (LanguageInterface $lang) =>
+          GatsbyBuildId::build($relevantMenu->id(), $lang->getId())
+        , $this->languageManager->getLanguages());
+    }
+    // Else, simply return the menu id.
+    return [$relevantMenu->id()];
   }
 
   /**
