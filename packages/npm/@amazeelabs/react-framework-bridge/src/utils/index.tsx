@@ -177,7 +177,7 @@ export const buildUrl = (
   fragment?: string,
 ) => {
   const url = segments
-    ? segments.filter(isTruthy).map(stripSlashes).join('/')
+    ? segments.filter(isTruthy).map(stripSlashes).join('/').replace(/^\/+/, '/')
     : '';
 
   const queryString = stringify(query, {

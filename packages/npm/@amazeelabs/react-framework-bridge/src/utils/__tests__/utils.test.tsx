@@ -183,6 +183,9 @@ describe('buildUrl', () => {
   it('allows to create a root url to /', () => {
     expect(buildUrl(['/'])).toStrictEqual(`/`);
   });
+  it('allows to create a url from segments starting with /', () => {
+    expect(buildUrl(['/', 'foo', 'bar'])).toStrictEqual(`/foo/bar`);
+  });
   it('concatenates segments', () => {
     expect(buildUrl(['https://fake.url/', 'a', 'b'])).toStrictEqual(
       `https://fake.url/a/b`,
