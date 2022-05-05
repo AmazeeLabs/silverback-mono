@@ -16,28 +16,28 @@
     "@verdaccio/streams": "^10.2.0",
     "file-system": "^2.2.2",
     "fs-extra": "^10.1.0",
-    "simple-git": "^3.7.0",
-    "sync-directory": "^4.0.14",
+    "simple-git": "^3.7.1",
+    "sync-directory": "^4.1.2",
     "tar": "^6.1.11"
   },
   "devDependencies": {
-    "@babel/preset-env": "7.16.11",
+    "@babel/preset-env": "7.17.10",
     "@babel/preset-typescript": "7.16.7",
     "@tsconfig/recommended": "1.0.1",
     "@types/express": "4.17.13",
     "@types/fs-extra": "9.0.13",
-    "@types/jest": "27.4.1",
+    "@types/jest": "27.5.0",
     "@types/mock-fs": "4.13.1",
-    "@types/node": "16.11.27",
+    "@types/node": "16.11.33",
     "@types/tar": "6.1.1",
-    "@typescript-eslint/eslint-plugin": "5.20.0",
+    "@typescript-eslint/eslint-plugin": "5.22.0",
     "@verdaccio/types": "10.3.0",
-    "eslint": "8.13.0",
+    "eslint": "8.14.0",
     "jest": "27.5.1",
     "mock-fs": "5.1.2",
     "prettier": "2.6.2",
     "standard-version": "9.3.2",
-    "verdaccio": "5.9.0"
+    "verdaccio": "5.10.1"
   },
   "keywords": [
     "verdaccio,plugin,storage,git,verdaccio-git"
