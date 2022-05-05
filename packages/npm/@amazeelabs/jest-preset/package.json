@@ -14,13 +14,13 @@
     "jest": "^27"
   },
   "dependencies": {
-    "@swc/core": "^1.2.170",
+    "@swc/core": "^1.2.177",
     "@swc/jest": "^0.2.20",
     "@testing-library/react": "^12.1.5",
     "@tsconfig/recommended": "^1",
     "identity-obj-proxy": "^3.0.0",
     "jest-runner-eslint": "^1.0.0",
     "jest-watch-select-projects": "^2",
-    "jest-watch-typeahead": "^1.0.0"
+    "jest-watch-typeahead": "^1.1.0"
   }
 }
