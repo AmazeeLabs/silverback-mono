@@ -4,9 +4,32 @@ schema {
 
 type Query
 
+union WithPath = Page | Post
+
 type Page @entity(type: "node", bundle: "page") {
   path: String! @path
   title: String!
+  content: [Blocks!]! @resolveEditorBlocks(path: "body.value")
+}
+
+union Blocks = Text | Figure | Columns
+union ColumnBlocks = Text | Figure
+
+type Text @editorBlock(type: "custom/text") {
+  content: String @resolveEditorBlockAttribute(name: "markup")
+}
+
+type Figure @editorBlock(type: "custom/figure") {
+  caption: String @resolveEditorBlockAttribute(name: "caption")
+  image: Image @resolveEditorBlockAttribute(name: "media")
+}
+
+type Image {
+  alt: String @property(path: "field_media_image.alt")
+}
+
+type Columns @editorBlock(type: "custom/columns") {
+  columns: [ColumnBlocks!]! @resolveEditorBlockAttribute(name: "children")
 }
 
 type Post @entity(type: "node", bundle: "blog") {

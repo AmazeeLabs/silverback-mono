@@ -1,6 +1,8 @@
 <?php
 namespace Drupal\Tests\silverback_gatsby\Kernel;
 
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\graphql\Entity\Server;
 use Drupal\node\Entity\NodeType;
 use Drupal\Tests\graphql\Kernel\GraphQLTestBase;
@@ -9,7 +11,7 @@ abstract class EntityFeedTestBase extends GraphQLTestBase {
 
   protected $strictConfigSchema = FALSE;
 
-  public static $modules = ['silverback_gatsby', 'silverback_gatsby_example'];
+  public static $modules = ['text', 'silverback_gatsby', 'silverback_gatsby_example'];
 
   /**
    * A GraphQL server instance triggering updates for a public build server.
@@ -108,13 +110,28 @@ abstract class EntityFeedTestBase extends GraphQLTestBase {
     // trigger updates there.
     $this->usePreviewServer();
 
-    NodeType::create(
+    $pageType = NodeType::create(
       [
         'type' => 'page',
         'name' => 'Page',
         'translatable' => TRUE,
       ]
-    )->save();
+    );
+    $pageType->save();
+
+    FieldStorageConfig::create([
+      'field_name' => 'body',
+      'entity_type' => 'node',
+      'type' => 'text_long',
+      'cardinality' => 1,
+    ])->save();
+
+    FieldConfig::create([
+      'field_name' => 'body',
+      'entity_type' => 'node',
+      'bundle' => 'page',
+      'label' => 'Body',
+    ])->save();
 
     NodeType::create(
       [

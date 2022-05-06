@@ -1,0 +1,30 @@
+fragment BlockPage on Page {
+  title
+  content {
+    __typename
+    ... on Text {
+      content
+    }
+    ... on Figure {
+      caption
+      image {
+        alt
+      }
+    }
+    ... on Columns {
+      columns {
+        __typename
+      }
+    }
+  }
+}
+
+query {
+  en:loadPage(id: "1:en") {
+    ...BlockPage
+  }
+
+  de:loadPage(id: "1:de") {
+    ...BlockPage
+  }
+}
