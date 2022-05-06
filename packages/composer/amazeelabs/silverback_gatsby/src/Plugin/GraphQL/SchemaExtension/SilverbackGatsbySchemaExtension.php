@@ -17,10 +17,12 @@ use Drupal\silverback_gatsby\GraphQL\DirectiveProviderExtensionInterface;
 use Drupal\silverback_gatsby\GraphQL\ParentAwareSchemaExtensionInterface;
 use Drupal\silverback_gatsby\Plugin\FeedInterface;
 use Drupal\silverback_gatsby\Plugin\Gatsby\Feed\MenuFeed;
+use Drupal\typed_data\Exception\LogicException;
 use GraphQL\Language\AST\DocumentNode;
 use GraphQL\Language\AST\ListValueNode;
 use GraphQL\Language\AST\ObjectTypeDefinitionNode;
 use GraphQL\Language\AST\StringValueNode;
+use GraphQL\Language\AST\UnionTypeDefinitionNode;
 use GraphQL\Language\Parser;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -124,7 +126,13 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
   public function getDirectiveDefinitions(): string {
     $feeds = $this->feedManager->getDefinitions();
     uasort($feeds, fn ($a, $b) => strnatcasecmp($a['id'], $b['id']));
-    return implode("\n", array_map(fn ($def) => $def['directive'], $feeds));
+    $directives = array_map(fn ($def) => $def['directive'], $feeds);
+
+    $module = \Drupal::moduleHandler()->getModule('silverback_gatsby');
+    $path = 'graphql/editor_block.directive.graphqls';
+    $file = $module->getPath() . '/' . $path;
+    $directives[] = file_get_contents($file);
+    return implode("\n", $directives);
   }
 
   /**
@@ -218,6 +226,8 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
             'resolveMenuItemParentId',
             'resolveMenuItemLabel',
             'resolveMenuItemUrl',
+            'resolveEditorBlocks',
+            'resolveEditorBlockAttribute'
           ];
           if (in_array($fieldDirective->name->value, $list, TRUE)) {
             $graphQlPath = $definition->name->value . '.' . $field->name->value;
@@ -289,7 +299,63 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
    * {@inheritDoc}
    */
   public function registerResolvers(ResolverRegistryInterface $registry) {
-    $this->addFieldResolvers($registry, new ResolverBuilder());
+    $builder = new ResolverBuilder();
+    $this->addFieldResolvers($registry, $builder);
+    $this->addTypeResolvers($registry, $builder);
+  }
+
+  /**
+   * Collect and build type resolvers from the AST.
+   *
+   * @param \Drupal\graphql\GraphQL\ResolverRegistry $registry
+   * @param \Drupal\graphql\GraphQL\ResolverBuilder $builder
+   *
+   * @return void
+   */
+  protected function addTypeResolvers(ResolverRegistry $registry, ResolverBuilder $builder) {
+    $editorBlockTypes = [];
+    foreach ($this->parentAst->definitions->getIterator() as $definition) {
+      if ($definition instanceof ObjectTypeDefinitionNode && $definition->directives) {
+        foreach($definition->directives->getIterator() as $directive) {
+          if ($directive->name->value === 'editorBlock') {
+            foreach ($directive->arguments->getIterator() as $argument) {
+              if ($argument->name->value === 'type') {
+                $editorBlockTypes[$definition->name->value] = $argument->value->value;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    $editorBlockUnions = [];
+
+    foreach ($this->parentAst->definitions->getIterator() as $definition) {
+      if ($definition instanceof UnionTypeDefinitionNode) {
+        $union = $definition->name->value;
+        $editorBlockUnions[$union] = [];
+        $unionTypes = [];
+        foreach ($definition->types->getIterator() as $type) {
+          $unionType = $type->name->value;
+          $unionTypes[] = $unionType;
+          if (array_key_exists($unionType, $editorBlockTypes)) {
+            $editorBlockUnions[$union][$editorBlockTypes[$unionType]] = $unionType;
+          }
+        }
+        if (count($editorBlockUnions[$union]) !== 0 && $unionTypes !== array_values($editorBlockUnions[$union])) {
+          throw new LogicException('Block unions have to consist of @editorBlock types only.');
+        }
+      }
+    }
+
+    foreach($editorBlockUnions as $unionType => $typeMap) {
+      if (count($typeMap) > 0)  {
+        $registry->addTypeResolver($unionType, function ($block) use ($typeMap) {
+          return $typeMap[$block['blockName']];
+        });
+      }
+    }
+
   }
 
   /**
@@ -390,6 +456,42 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
               fn(EntityInterface $entity) => $entity->getTypedData()->getDataDefinition()->getDataType()
             ),
           ]));
+          break;
+
+        case 'resolveEditorBlocks':
+          $addResolver($path, $builder->produce('editor_blocks', [
+            'path' => $builder->fromValue($definition['arguments']['path']),
+            'entity' => $builder->fromParent(),
+            'type' => $builder->callback(
+              fn(EntityInterface $entity) => $entity->getTypedData()->getDataDefinition()->getDataType()
+            ),
+          ]));
+          break;
+
+        case 'resolveEditorBlockAttribute':
+          switch ($definition['arguments']['name']) {
+            case 'markup':
+              $addResolver($path, $builder->produce('editor_block_html')
+                ->map('block', $builder->fromParent())
+              );
+              break;
+            case 'media':
+              $addResolver($path, $builder->produce('editor_block_media')
+                ->map('block', $builder->fromParent())
+              );
+              break;
+            case 'children':
+              $addResolver($path, $builder->produce('editor_block_children')
+                ->map('block', $builder->fromParent())
+              );
+              break;
+            default:
+              $addResolver($path, $builder->produce('editor_block_attribute')
+                ->map('block', $builder->fromParent())
+                ->map('name', $builder->fromValue($definition['arguments']['name']))
+              );
+              break;
+          }
           break;
 
         case 'resolveEntityReference':

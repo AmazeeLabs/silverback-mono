@@ -1,0 +1,31 @@
+"""
+Annotate a type to correspond to a editor block (e.g. Gutenberg)
+"""
+directive @editorBlock(
+  """
+  The block ID within the CMS.
+  """
+  type: String!
+) on OBJECT
+
+"""
+Parse field content using the editor block parser.
+"""
+directive @resolveEditorBlocks(
+  """
+  The property path to resolve the HTML content blog within the current entity.
+  """
+  path: String!
+) on FIELD_DEFINITION
+
+"""
+Resolve an attribute value on a block.
+
+* "markup": resolve the blocks inner html content as string
+* "children": resolves the blocks inner blocks as array of blocks
+* "media": a media item, related to that block
+* ... anything else will resolve the blocks attribute as string
+"""
+directive @resolveEditorBlockAttribute(
+  name: String!
+) on FIELD_DEFINITION
