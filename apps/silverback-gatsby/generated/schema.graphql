@@ -600,13 +600,21 @@ type DrupalGutenbergPage implements Node {
   internal: Internal!
 }
 
-union DrupalRootBlock = DrupalBlockTwoColumns | DrupalBlockHtml | DrupalBlockImage | DrupalBlockTeaser
+union DrupalRootBlock = DrupalBlockTwoColumns | DrupalBlockHtmlList | DrupalBlockHtmlParagraph | DrupalBlockHtmlQuote | DrupalBlockImage | DrupalBlockTeaser
 
 type DrupalBlockTwoColumns {
   children: [DrupalBlockColumn!]!
 }
 
-type DrupalBlockHtml {
+type DrupalBlockHtmlList {
+  html: String!
+}
+
+type DrupalBlockHtmlParagraph {
+  html: String!
+}
+
+type DrupalBlockHtmlQuote {
   html: String!
 }
 
@@ -627,7 +635,7 @@ type DrupalBlockColumn {
   children: [DrupalContentBlock!]!
 }
 
-union DrupalContentBlock = DrupalBlockHtml | DrupalBlockImage | DrupalBlockTeaser
+union DrupalContentBlock = DrupalBlockHtmlList | DrupalBlockHtmlParagraph | DrupalBlockHtmlQuote | DrupalBlockImage | DrupalBlockTeaser
 
 type DrupalWebform implements Node {
   remoteTypeName: String!
