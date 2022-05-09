@@ -3,6 +3,7 @@
 namespace AmazeeLabs\DefaultContent;
 
 use Drupal\Component\Utility\DiffArray;
+use Drupal\Component\Utility\Variable;
 use Drupal\Core\Serialization\Yaml;
 
 abstract class Import extends Base {
@@ -26,6 +27,8 @@ abstract class Import extends Base {
     $dir = self::getContentDir($module);
     /** @var \Drupal\default_content\ExporterInterface $exporter */
     $exporter = \Drupal::service('default_content.exporter');
+    /** @var \Drupal\default_content\Normalizer\ContentEntityNormalizerInterface $normalizer */
+    $normalizer = \Drupal::service('default_content.content_entity_normalizer');
     $stats = [
       'updated' => [],
       'removed' => [],
@@ -58,8 +61,10 @@ abstract class Import extends Base {
       }
     }
 
+    // First run the import so missing entities are created.
+    self::run($module);
+
     // Find entities which need an update.
-    $toDelete = [];
     foreach ($map as $entityType => $data) {
       /** @var \Drupal\Core\Entity\EntityRepositoryInterface $entityRepository */
       $entityRepository = \Drupal::service('entity.repository');
@@ -73,12 +78,38 @@ abstract class Import extends Base {
           if ($imported !== $exported) {
             $imported = Yaml::decode($imported);
             $exported = Yaml::decode($exported);
-            if (
-              DiffArray::diffAssocRecursive($imported, $exported) ||
-              DiffArray::diffAssocRecursive($exported, $imported)
-            ) {
-              // Instead of messing with the entity update, we delete it.
-              $toDelete[] = $entity;
+            $diff1 = DiffArray::diffAssocRecursive($imported, $exported)['default'] ?? [];
+            $diff2 = DiffArray::diffAssocRecursive($exported, $imported)['default'] ?? [];
+            if ($diff1 || $diff2) {
+              $fields = array_unique(array_merge(array_keys($diff1), array_keys($diff2)));
+
+              if ($entityType === 'user') {
+                // This one changes frequently, but affects nothing.
+                $index = array_search('access', $fields, TRUE);
+                if ($index !== FALSE) {
+                  unset($fields[$index]);
+                }
+                // This one is updated during the export.
+                $index = array_search('pass', $fields, TRUE);
+                if ($index !== FALSE && isset($diff1['pass'][0]['pre_hashed']) && count($diff1['pass'][0]) === 1) {
+                  unset($fields[$index]);
+                }
+                // Maybe we don't need the update now.
+                if (empty($fields)) {
+                  continue;
+                }
+              }
+
+              $exportedEntity = $normalizer->denormalize($exported);
+              foreach ($fields as $field) {
+                if ($exportedEntity->get($field)->isEmpty()) {
+                  $entity->get($field)->delete();
+                }
+                else {
+                  $entity->get($field)->setValue($exportedEntity->get($field)->getValue());
+                }
+              }
+              $entity->save();
               if (!isset($stats['updated'][$entityType])) {
                 $stats['updated'][$entityType] = 0;
               }
@@ -86,9 +117,6 @@ abstract class Import extends Base {
             }
           }
         }
-      }
-      foreach ($toDelete as $entity) {
-        $entity->delete();
       }
 
       // Delete entities not existing in the exported content.
@@ -106,9 +134,7 @@ abstract class Import extends Base {
     }
 
     echo "Default content update stats:\n";
-    var_dump($stats);
-
-    self::run($module);
+    echo Variable::export($stats) . "\n";
   }
 
 }
