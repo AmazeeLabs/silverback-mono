@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-default-content@1.1.2...@-amazeelabs/proxy-default-content@1.1.3) (2022-05-09)
+
+
+### Bug Fixes
+
+* let "denormalize" method denormalize ([d63c56a](https://github.com/AmazeeLabs/silverback-mono/commit/d63c56a817b8f2df41d5eab8511a599871664a46))
+
+
+
+
+
 ## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-default-content@1.1.1...@-amazeelabs/proxy-default-content@1.1.2) (2022-01-25)
 
 
