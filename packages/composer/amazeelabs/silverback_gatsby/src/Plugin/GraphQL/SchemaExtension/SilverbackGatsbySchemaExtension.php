@@ -240,7 +240,17 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
             ];
             foreach ($fieldDirective->arguments->getIterator() as $arg) {
               /** @var \GraphQL\Language\AST\ArgumentNode $arg */
-              $this->resolvers[$graphQlPath]['arguments'][$arg->name->value] = $arg->value->value;
+              if ($arg->value instanceof ListValueNode) {
+                $this->resolvers[$graphQlPath]['arguments'][$arg->name->value] = [];
+                foreach ($arg->value->values->getIterator() as $value) {
+                  if ($value instanceof StringValueNode) {
+                    $this->resolvers[$graphQlPath]['arguments'][$arg->name->value][] = $value->value;
+                  }
+                }
+              }
+              else {
+                $this->resolvers[$graphQlPath]['arguments'][$arg->name->value] = $arg->value->value;
+              }
             }
           }
         }
@@ -350,7 +360,7 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
 
     foreach($editorBlockUnions as $unionType => $typeMap) {
       if (count($typeMap) > 0)  {
-        $registry->addTypeResolver($unionType, function ($block) use ($typeMap) {
+        $registry->addTypeResolver($unionType, function ($block) use ($unionType, $typeMap) {
           return $typeMap[$block['blockName']];
         });
       }
@@ -465,6 +475,7 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
             'type' => $builder->callback(
               fn(EntityInterface $entity) => $entity->getTypedData()->getDataDefinition()->getDataType()
             ),
+            'ignored' => $builder->fromValue($definition['arguments']['ignore'] ?? [])
           ]));
           break;
 

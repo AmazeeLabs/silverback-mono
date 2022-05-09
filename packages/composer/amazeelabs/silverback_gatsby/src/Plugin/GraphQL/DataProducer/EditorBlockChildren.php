@@ -2,7 +2,9 @@
 
 namespace Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer;
 
+use Drupal\graphql\GraphQL\Execution\FieldContext;
 use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
+use Drupal\silverback_gatsby\EditorBlocksProcessor;
 
 
 /**
@@ -23,7 +25,8 @@ use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
  * )
  */
 class EditorBlockChildren extends DataProducerPluginBase {
-  public function resolve($block) {
-    return $block['innerBlocks'] ?? [];
+  public function resolve($block, FieldContext $fieldContext) {
+    $transientEditorBlocks = $fieldContext->getContextValue('ignored_editor_blocks');
+    return EditorBlocksProcessor::processsIgnoredBlocks($block['innerBlocks'] ?? [], $transientEditorBlocks);
   }
 }
