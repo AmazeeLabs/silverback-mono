@@ -20,13 +20,21 @@ export const query = graphql`
       body {
         __typename
         ...BlockTwoColumns
-        ...BlockHtml
+        ...BlockHtmlParagraph
+        ...BlockHtmlList
+        ...BlockHtmlQuote
         ...BlockImage
         ...BlockTeaser
       }
     }
   }
-  fragment BlockHtml on DrupalBlockHtml {
+  fragment BlockHtmlParagraph on DrupalBlockHtmlParagraph {
+    html
+  }
+  fragment BlockHtmlList on DrupalBlockHtmlList {
+    html
+  }
+  fragment BlockHtmlQuote on DrupalBlockHtmlQuote {
     html
   }
   fragment BlockImage on DrupalBlockImage {
@@ -52,7 +60,9 @@ export const query = graphql`
       __typename
       children {
         __typename
-        ...BlockHtml
+        ...BlockHtmlParagraph
+        ...BlockHtmlList
+        ...BlockHtmlQuote
         ...BlockImage
         ...BlockTeaser
       }
@@ -79,7 +89,9 @@ const GutenbergPage: React.FC<
           <Row className="gutenberg-body">
             {page.body.map((block) => {
               switch (block.__typename) {
-                case 'DrupalBlockHtml':
+                case 'DrupalBlockHtmlParagraph':
+                case 'DrupalBlockHtmlList':
+                case 'DrupalBlockHtmlQuote':
                   return <BlockHtml {...block} />;
                 case 'DrupalBlockImage':
                   return <BlockImage {...block} />;

@@ -14,28 +14,28 @@ exports[`gatsby/content/GutenbergPage.gql 1`] = `
           "langcode": "en",
           "body": [
             {
-              "__typename": "BlockHtml",
-              "html": "<p>A paragraph with a <a href=\\"/en/article/with-everything\\" data-type=\\"[EN] article\\" data-id=\\"[numeric]\\">link</a>.</p>"
+              "__typename": "BlockHtmlParagraph",
+              "html": "\\r\\n<p>A paragraph with a <a href=\\"/en/article/with-everything\\" data-type=\\"[EN] article\\" data-id=\\"[numeric]\\">link</a>.</p>\\r\\n"
             },
             {
-              "__typename": "BlockHtml",
-              "html": "<ul><li>unordered</li><li>list</li></ul>"
+              "__typename": "BlockHtmlList",
+              "html": "\\r\\n<ul><li>unordered</li><li>list</li></ul>\\r\\n"
             },
             {
-              "__typename": "BlockHtml",
-              "html": "<ol><li>ordered</li><li>list</li></ol>"
+              "__typename": "BlockHtmlList",
+              "html": "\\r\\n<ol><li>ordered</li><li>list</li></ol>\\r\\n"
             },
             {
-              "__typename": "BlockHtml",
-              "html": "<blockquote class=\\"wp-block-quote\\"><p>A quote</p><cite>With a citation.</cite></blockquote>"
+              "__typename": "BlockHtmlQuote",
+              "html": "\\r\\n<blockquote class=\\"wp-block-quote\\"><p>A quote</p><cite>With a citation.</cite></blockquote>\\r\\n"
             },
             {
-              "__typename": "BlockHtml",
-              "html": "<p>Grouped paragraph 1.</p>"
+              "__typename": "BlockHtmlParagraph",
+              "html": "\\r\\n<p>Grouped paragraph 1.</p>\\r\\n"
             },
             {
-              "__typename": "BlockHtml",
-              "html": "<p>Grouped paragraph 2.</p>"
+              "__typename": "BlockHtmlParagraph",
+              "html": "\\r\\n<p>Grouped paragraph 2.</p>\\r\\n"
             },
             {
               "__typename": "BlockTwoColumns",
@@ -64,8 +64,8 @@ exports[`gatsby/content/GutenbergPage.gql 1`] = `
                       "caption": "Just media on right"
                     },
                     {
-                      "__typename": "BlockHtml",
-                      "html": "<p></p>"
+                      "__typename": "BlockHtmlParagraph",
+                      "html": "\\r\\n<p></p>\\r\\n"
                     }
                   ]
                 }
@@ -89,8 +89,8 @@ exports[`gatsby/content/GutenbergPage.gql 1`] = `
           "langcode": "en",
           "body": [
             {
-              "__typename": "BlockHtml",
-              "html": "<p></p>"
+              "__typename": "BlockHtmlParagraph",
+              "html": "\\r\\n<p></p>\\r\\n"
             }
           ],
           "defaultTranslation": true,

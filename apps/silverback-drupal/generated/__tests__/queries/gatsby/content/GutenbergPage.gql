@@ -5,7 +5,9 @@ fragment GutenbergPage on GutenbergPage {
   title
   langcode
   body {
-    ...BlockHtml
+    ...BlockHtmlParagraph
+    ...BlockHtmlList
+    ...BlockHtmlQuote
     ...BlockImage
     ...BlockTeaser
     ... on BlockTwoColumns {
@@ -13,12 +15,9 @@ fragment GutenbergPage on GutenbergPage {
       children {
         __typename
         children {
-          ...BlockHtml
-          ...BlockImage
-          ...BlockTeaser
-        }
-        children {
-          ...BlockHtml
+          ...BlockHtmlParagraph
+          ...BlockHtmlList
+          ...BlockHtmlQuote
           ...BlockImage
           ...BlockTeaser
         }
@@ -34,7 +33,15 @@ fragment GutenbergPage on GutenbergPage {
   }
 }
 
-fragment BlockHtml on BlockHtml {
+fragment BlockHtmlParagraph on BlockHtmlParagraph {
+  __typename
+  html
+}
+fragment BlockHtmlList on BlockHtmlList {
+  __typename
+  html
+}
+fragment BlockHtmlQuote on BlockHtmlQuote {
   __typename
   html
 }
