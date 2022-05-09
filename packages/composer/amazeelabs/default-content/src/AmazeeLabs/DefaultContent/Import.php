@@ -59,6 +59,7 @@ abstract class Import extends Base {
     }
 
     // Find entities which need an update.
+    $toDelete = [];
     foreach ($map as $entityType => $data) {
       /** @var \Drupal\Core\Entity\EntityRepositoryInterface $entityRepository */
       $entityRepository = \Drupal::service('entity.repository');
@@ -77,7 +78,7 @@ abstract class Import extends Base {
               DiffArray::diffAssocRecursive($exported, $imported)
             ) {
               // Instead of messing with the entity update, we delete it.
-              $entity->delete();
+              $toDelete[] = $entity;
               if (!isset($stats['updated'][$entityType])) {
                 $stats['updated'][$entityType] = 0;
               }
@@ -85,6 +86,9 @@ abstract class Import extends Base {
             }
           }
         }
+      }
+      foreach ($toDelete as $entity) {
+        $entity->delete();
       }
 
       // Delete entities not existing in the exported content.
