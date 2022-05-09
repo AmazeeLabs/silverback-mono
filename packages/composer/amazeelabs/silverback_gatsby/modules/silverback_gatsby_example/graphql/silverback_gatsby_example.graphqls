@@ -7,8 +7,8 @@ type Query
 union WithPath = Page | Post
 
 type Page @entity(type: "node", bundle: "page") {
-  path: String! @path
-  title: String!
+  path: String! @isPath @resolveEntityPath
+  title: String! @resolveProperty(path: "title.value")
   content: [Blocks!]! @resolveEditorBlocks(path: "body.value")
 }
 
@@ -33,8 +33,8 @@ type Columns @editorBlock(type: "custom/columns") {
 }
 
 type Post @entity(type: "node", bundle: "blog") {
-  path: String! @path
-  title: String!
+  path: String! @isPath @resolveEntityPath
+  title: String! @resolveProperty(path: "title.value")
   template: String @template
 }
 

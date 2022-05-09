@@ -18,17 +18,6 @@ class SilverbackGatsbyExampleSchema extends ComposableSchema {
     $builder = new ResolverBuilder();
     $registry = new ResolverRegistry();
 
-    foreach (['Page', 'Post'] as $type) {
-      $registry->addFieldResolver($type, 'path',
-        $builder->compose(
-          $builder->produce('entity_url')->map('entity', $builder->fromParent()),
-          $builder->produce('url_path')->map('url', $builder->fromParent())
-        )
-      );
-      $registry->addFieldResolver($type, 'title',
-        $builder->produce('entity_label')->map('entity', $builder->fromParent())
-      );
-    }
     $registry->addFieldResolver('Post', 'template',
       $builder->callback(
         fn(NodeInterface $node) => $node->get('promote')->value
