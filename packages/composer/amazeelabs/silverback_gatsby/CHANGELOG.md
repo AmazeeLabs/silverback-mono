@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.19.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.18.2...@-amazeelabs/silverback_gatsby@1.19.0) (2022-05-09)
+
+
+### Features
+
+* **gatsby:** graphql directives for gutenberg documents ([f925058](https://github.com/AmazeeLabs/silverback-mono/commit/f92505861e2bf66d2cf960ca7deec2be7741a945))
+* **gutenberg:** add option to ignore blocks in graphql ([bb0cffd](https://github.com/AmazeeLabs/silverback-mono/commit/bb0cffd0a83fb39bfeae9d86ba3f1f143487a71c))
+
+
+
+
+
 ## [1.18.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.18.1...@-amazeelabs/silverback_gatsby@1.18.2) (2022-05-04)
 
 
