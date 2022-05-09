@@ -52,16 +52,11 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
         ->map('entity', $builder->fromParent())
     );
 
-    $gutenberg = $builder->produce('gutenberg')
-      ->map('entity', $builder->fromParent());
-
     $articleTemplate = $builder->callback(
       fn(NodeInterface $node) => $node->get('promote')->value
         ? 'article-promoted'
         : NULL
     );
-
-    $addResolver('GutenbergPage.body', $gutenberg);
 
     $addResolver('Article.template', $articleTemplate);
 

@@ -36,7 +36,7 @@ type ParagraphReferences {
 type GutenbergPage @entity(type: "node", bundle: "gutenberg_page") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
-  body: [RootBlock!]!
+  body: [RootBlock!]! @resolveEditorBlocks(path: "body.value", ignore: ["custom/root", "core/columns"])
 }
 
 type Webform @entity(type: "webform", access: false) {
@@ -54,32 +54,40 @@ type Article @entity(type: "node", bundle: "article") {
   template: String @isTemplate
 }
 
-union RootBlock = BlockTwoColumns |  BlockHtml | BlockImage | BlockTeaser
+union RootBlock = BlockTwoColumns |  BlockHtmlList | BlockHtmlParagraph | BlockHtmlQuote | BlockImage | BlockTeaser
 
-union ContentBlock = BlockHtml | BlockImage | BlockTeaser
+union ContentBlock = BlockHtmlList | BlockHtmlParagraph | BlockHtmlQuote | BlockImage | BlockTeaser
 
-type BlockTwoColumns {
-  children: [BlockColumn!]!
+type BlockTwoColumns @editorBlock(type: "custom/two-columns") {
+  children: [BlockColumn!]! @resolveEditorBlockAttribute(name: "children")
 }
 
-type BlockColumn {
-  children: [ContentBlock!]!
+type BlockColumn @editorBlock(type: "core/column") {
+  children: [ContentBlock!]! @resolveEditorBlockAttribute(name: "children")
 }
 
-type BlockHtml {
-  html: String!
+type BlockHtmlParagraph @editorBlock(type: "core/paragraph") {
+  html: String! @resolveEditorBlockAttribute(name: "markup")
 }
 
-type BlockImage {
-  caption: String!
-  image: Image
+type BlockHtmlList @editorBlock(type: "core/list") {
+  html: String! @resolveEditorBlockAttribute(name: "markup")
 }
 
-type BlockTeaser {
-  image: Image
-  title: String!
-  subtitle: String!
-  url: String!
+type BlockHtmlQuote @editorBlock(type: "core/quote") {
+  html: String! @resolveEditorBlockAttribute(name: "markup")
+}
+
+type BlockImage @editorBlock(type: "drupalmedia/drupal-media-entity") {
+  caption: String! @resolveEditorBlockAttribute(name: "caption")
+  image: Image @resolveEditorBlockAttribute(name: "media")
+}
+
+type BlockTeaser @editorBlock(type: "custom/teaser") {
+  image: Image @resolveEditorBlockAttribute(name: "media")
+  title: String! @resolveEditorBlockAttribute(name: "title")
+  subtitle: String! @resolveEditorBlockAttribute(name: "subtitle")
+  url: String! @resolveEditorBlockAttribute(name: "url")
 }
 
 

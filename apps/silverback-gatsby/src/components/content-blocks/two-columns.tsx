@@ -13,7 +13,9 @@ export const BlockTwoColumns: React.FC<BlockTwoColumnsFragment> = ({
       <div className="column w-1/2" key={index}>
         {column.children.map((block) => {
           switch (block.__typename) {
-            case 'DrupalBlockHtml':
+            case 'DrupalBlockHtmlParagraph':
+            case 'DrupalBlockHtmlList':
+            case 'DrupalBlockHtmlQuote':
               return <BlockHtml {...block} />;
             case 'DrupalBlockImage':
               return <BlockImage {...block} />;
