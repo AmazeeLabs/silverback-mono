@@ -10,7 +10,7 @@
     "composer-exit-on-patch-failure": true,
     "patches": {
       "drupal/default_content": {
-        "Paragraphs support": "https://www.drupal.org/files/issues/2022-01-25/2698425-168.patch"
+        "Paragraphs support": "https://www.drupal.org/files/issues/2022-05-09/2698425-173.patch"
       }
     }
   },
