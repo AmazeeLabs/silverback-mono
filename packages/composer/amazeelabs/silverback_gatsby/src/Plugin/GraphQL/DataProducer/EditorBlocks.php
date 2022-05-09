@@ -11,6 +11,7 @@ use Drupal\Core\TypedData\TypedDataTrait;
 use Drupal\graphql\GraphQL\Execution\FieldContext;
 use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
 use Drupal\gutenberg\Parser\BlockParser;
+use Drupal\silverback_gatsby\EditorBlocksProcessor;
 use Drupal\silverback_gutenberg\LinkProcessor;
 use Drupal\typed_data\DataFetcherTrait;
 use Drupal\typed_data\Exception\InvalidArgumentException;
@@ -37,6 +38,10 @@ use Drupal\typed_data\Exception\LogicException;
  *     "type" = @ContextDefinition("string",
  *       label = @Translation("Root type"),
  *       required = FALSE
+ *     ),
+ *     "ignored" = @ContextDefinition("any",
+ *       label = @Translation("Ignored block types"),
+ *       required = FALSE
  *     )
  *   }
  * )
@@ -49,6 +54,7 @@ class EditorBlocks extends DataProducerPluginBase {
     $path,
     $entity,
     $type,
+    $ignored,
     FieldContext $field
   ) {
     if (!$entity instanceof EntityInterface) {
@@ -95,7 +101,12 @@ class EditorBlocks extends DataProducerPluginBase {
     if (!$context->isEmpty()) {
       $field->addCacheableDependency($context->pop());
     }
-    return $result;
+
+    $ignored = array_merge(['core/group'], $ignored ?? []);
+
+    $field->setContextValue('ignored_editor_blocks', $ignored);
+
+    return EditorBlocksProcessor::processsIgnoredBlocks($result, $ignored);
   }
 
 }

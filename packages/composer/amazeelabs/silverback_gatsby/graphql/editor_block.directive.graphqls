@@ -16,6 +16,12 @@ directive @resolveEditorBlocks(
   The property path to resolve the HTML content blog within the current entity.
   """
   path: String!
+  """
+  List of block types that don't contribute to the document and will be ignored.
+  If an ignored block has children, they are flattened into the list of blocks.
+  "core/group" is ignored by default.
+  """
+  ignore: [String!]
 ) on FIELD_DEFINITION
 
 """

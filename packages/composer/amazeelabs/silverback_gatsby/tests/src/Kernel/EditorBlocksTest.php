@@ -63,31 +63,39 @@ class EditorBlocksTest extends EntityFeedTestBase {
       'innerContent' => ['<p>A test paragraph</p>', '<p>Another test paragraph</p>'],
       'attrs' => [],
       'innerBlocks' => [],
-    ], [
-      'blockName' => 'custom/figure',
-      'innerContent' => [],
-      'attrs' => [
-        'caption' => 'This is the caption',
-        'mediaEntityIds' => [$media->id()],
-      ],
-      'innerBlocks' => [],
-    ], [
-      'blockName' => 'custom/columns',
-      'innerContent' => [null, null],
-      'attrs' => [],
-      'innerBlocks' => [
-        [
-          'blockName' => 'custom/text',
-          'innerContent' => ['<p>First column</p>'],
-          'attrs' => [],
-          'innerBlocks' => [],
-        ],
-        [
-          'blockName' => 'custom/text',
-          'innerContent' => ['<p>Second column</p>'],
-          'attrs' => [],
-          'innerBlocks' => [],
-        ],
+    ],
+      [
+        'blockName' => 'core/group',
+        'attrs' => [],
+        'innerContent' => [null, null],
+        'innerBlocks' => [
+          [
+            'blockName' => 'custom/figure',
+            'innerContent' => [],
+            'attrs' => [
+              'caption' => 'This is the caption',
+              'mediaEntityIds' => [$media->id()],
+            ],
+            'innerBlocks' => [],
+          ], [
+            'blockName' => 'custom/columns',
+            'innerContent' => [null, null],
+            'attrs' => [],
+            'innerBlocks' => [
+              [
+                'blockName' => 'custom/text',
+                'innerContent' => ['<p>First column</p>'],
+                'attrs' => [],
+                'innerBlocks' => [],
+              ],
+              [
+                'blockName' => 'custom/text',
+                'innerContent' => ['<p>Second column</p>'],
+                'attrs' => [],
+                'innerBlocks' => [],
+              ],
+            ],
+        ]
       ],
     ]];
 
