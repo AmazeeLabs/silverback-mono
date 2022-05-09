@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/default-content@1.2.2...@-amazeelabs/default-content@1.2.3) (2022-05-09)
+
+
+### Bug Fixes
+
+* update entities instead of re-importing them ([2cbb714](https://github.com/AmazeeLabs/silverback-mono/commit/2cbb714c5e156eef2c43598e42f008c97c46407f))
+
+
+
+
+
 ## [1.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/default-content@1.2.1...@-amazeelabs/default-content@1.2.2) (2022-05-09)
 
 
