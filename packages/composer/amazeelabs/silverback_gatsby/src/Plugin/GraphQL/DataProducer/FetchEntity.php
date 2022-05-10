@@ -153,6 +153,7 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
         ->getStorage($type)
         ->getQuery()
         ->condition('uuid', $id)
+        ->accessCheck(FALSE)
         ->execute();
       if ($result) {
         $id = reset($result);
