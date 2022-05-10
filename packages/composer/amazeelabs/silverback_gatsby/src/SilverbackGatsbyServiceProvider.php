@@ -19,7 +19,10 @@ class SilverbackGatsbyServiceProvider extends ServiceProviderBase {
     // To not introduce a dependency on the locale module, we only decorate the
     // locale.storage service if the service actually exists, so if the locale
     // module is enabled.
-    if ($container->hasDefinition('locale.storage')) {
+    // We also check if the StringContextInterface exists, otherwise most
+    // probably the patch from https://www.drupal.org/node/2123543 was not
+    // applied.
+    if ($container->hasDefinition('locale.storage') && interface_exists('Drupal\locale\StringContextInterface')) {
       $localeDecoratorDefinition = new Definition();
       $localeDecoratorDefinition->setClass(LocaleStorageDecorator::class);
       $localeDecoratorDefinition->setDecoratedService('locale.storage');
