@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.19.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.19.0...@-amazeelabs/silverback_gatsby@1.19.1) (2022-05-10)
+
+
+### Bug Fixes
+
+* disable access check when fetching entity ID by its UUID ([8c01028](https://github.com/AmazeeLabs/silverback-mono/commit/8c01028e3a6e308dcaa4eec118120fcee3001f48))
+
+
+
+
+
 # [1.19.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.18.2...@-amazeelabs/silverback_gatsby@1.19.0) (2022-05-09)
 
 
