@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.7.6...@amazeelabs/publisher@0.8.0) (2022-05-11)
+
+
+### Features
+
+* **publisher:** add proxy options ([8fb6902](https://github.com/AmazeeLabs/silverback-mono/commit/8fb69022534315fbad3a53f794780d3473d40bfe))
+
+
+
+
+
 ## [0.7.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.7.5...@amazeelabs/publisher@0.7.6) (2022-05-05)
 
 **Note:** Version bump only for package @amazeelabs/publisher
