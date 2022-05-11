@@ -47,6 +47,7 @@ const config = {
   gatewayPort: 3001,
   applicationPort: 3000,
   databaseUrl: '/tmp/publisher.db',
+  proxy: [],
   ...(loadedConfig?.config || {}),
 };
 
@@ -170,6 +171,18 @@ app.get('/___status/history/:id', async (req, res) => {
 
 app.use('/___status', express.static(path.resolve(__dirname, '../dist')));
 app.use('/___status/index.html', authMiddleware);
+
+config.proxy.forEach(
+  ({ prefix, target }: { prefix: string; target: string }) => {
+    app.use(
+      prefix,
+      authMiddleware,
+      createProxyMiddleware({
+        target,
+      }),
+    );
+  },
+);
 
 app.get('*', (req, res, next) => {
   if (!req.app.locals.isReady) {
