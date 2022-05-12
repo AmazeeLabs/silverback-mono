@@ -500,6 +500,7 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
               $addResolver($path, $builder->produce('editor_block_attribute')
                 ->map('block', $builder->fromParent())
                 ->map('name', $builder->fromValue($definition['arguments']['name']))
+                ->map('plainText', $builder->fromValue($definition['arguments']['plainText'] ?? true))
               );
               break;
           }

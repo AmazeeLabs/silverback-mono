@@ -23,11 +23,20 @@ use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
  *     "name" = @ContextDefinition("string",
  *       label = @Translation("The attribute name.")
  *     ),
+ *     "plainText" = @ContextDefinition("boolean",
+ *       label = @Translation("Whether to process as plain text.")
+ *     ),
  *   }
  * )
  */
 class EditorBlockAttribute extends DataProducerPluginBase {
-  public function resolve($block, $name) {
-    return $block['attrs'][$name] ?? NULL;
+  protected function processPlainText(string $text): string {
+    // Even if we do not use any HTML markup in a block text, Gutenberg still
+    // treats it as HTML, e.g. it turns "<" into "&lt;".
+    return html_entity_decode(trim($text));
+  }
+  public function resolve($block, $name, $plain_text = true) {
+    $field_value = $block['attrs'][$name];
+    return $field_value ? $plain_text ? $this->processPlainText($field_value) : $field_value : NULL;
   }
 }
