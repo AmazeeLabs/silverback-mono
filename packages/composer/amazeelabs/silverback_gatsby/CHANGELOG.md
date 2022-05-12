@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.19.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.19.4...@-amazeelabs/silverback_gatsby@1.19.5) (2022-05-12)
+
+
+### Bug Fixes
+
+* **gatsby:** remove array index warning ([e847cde](https://github.com/AmazeeLabs/silverback-mono/commit/e847cde878d34ca91f374c19430e828d221f2708))
+
+
+
+
+
 ## [1.19.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.19.3...@-amazeelabs/silverback_gatsby@1.19.4) (2022-05-12)
 
 
