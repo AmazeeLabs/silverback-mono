@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.19.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.19.3...@-amazeelabs/silverback_gatsby@1.19.4) (2022-05-12)
+
+
+### Bug Fixes
+
+* allow for special chars in gutenberg "plain text" fields ([b0b7377](https://github.com/AmazeeLabs/silverback-mono/commit/b0b7377420b41329b440f6afcd7b9b5a1e464e2f))
+
+
+
+
+
 ## [1.19.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.19.2...@-amazeelabs/silverback_gatsby@1.19.3) (2022-05-10)
 
 
