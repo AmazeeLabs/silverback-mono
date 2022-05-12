@@ -36,7 +36,7 @@ class EditorBlockAttribute extends DataProducerPluginBase {
     return html_entity_decode(trim($text));
   }
   public function resolve($block, $name, $plain_text = true) {
-    $field_value = $block['attrs'][$name];
-    return $field_value ? $plain_text ? $this->processPlainText($field_value) : $field_value : NULL;
+    $field_value = $block['attrs'][$name] ?? NULL;
+    return $field_value && $plain_text ? $this->processPlainText($field_value) : $field_value;
   }
 }
