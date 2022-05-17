@@ -26,7 +26,12 @@ export type Struct = {
   [key: string]: Data;
 };
 
-export type Data = Primitive | Struct | Array<Primitive> | Array<Struct>;
+export type Data =
+  | Primitive
+  | Struct
+  | Array<Primitive>
+  | Array<Struct>
+  | RouteInput<any>;
 
 /**
  * Reserved property names that should not be used in layouts.
@@ -249,6 +254,16 @@ export function route<
   return [Component, layoutMap];
 }
 
+function GroupLayout(props: LayoutProps<'items'>) {
+  return <>{props.items}</>;
+}
+
+export function group<T extends LayoutMap<typeof GroupLayout>>(
+  layoutMap: T,
+): [typeof GroupLayout, T] {
+  return [GroupLayout, layoutMap];
+}
+
 function withOrganismProps<T extends OrganismProps<any>>(
   Component: JSXElementConstructor<T>,
 ) {
@@ -307,5 +322,33 @@ export function Route<
         children,
       )}
     </IntlProvider>
+  );
+}
+
+export function Group<
+  TLayoutComponent extends LayoutComponent,
+  TLayoutMap extends LayoutMap<TLayoutComponent>,
+>({
+  definition,
+  input,
+}: {
+  definition: Route<TLayoutComponent, TLayoutMap>;
+  input: RouteInputs<RouteProps<TLayoutMap>>;
+}) {
+  return React.createElement(
+    definition[0],
+    mapValues(definition[1], (entry, key) => {
+      const organismProps = input[key];
+      if (isOrganismMap(entry) && isArray(organismProps)) {
+        return organismProps.map((organism: any, index: any) => {
+          return withOrganismProps(entry[organism.key as keyof typeof entry])(
+            (organism as OrganismInput<any>).input,
+            index,
+          );
+        });
+      } else if (isFunction(entry)) {
+        return withOrganismProps(entry)(input[key], 0);
+      }
+    }),
   );
 }
