@@ -5,7 +5,10 @@ import parse, {
   domToReact,
   Element,
   HTMLReactParserOptions,
+  Node,
+  Text,
 } from 'html-react-parser';
+import { has } from 'lodash';
 import { stringify } from 'qs';
 import React, { ComponentProps, useEffect } from 'react';
 
@@ -20,6 +23,14 @@ export const isRelative = (url?: string) =>
   url?.startsWith('#') ||
   url?.startsWith('?') ||
   Boolean(url?.match(/^\/(?!\/)/));
+
+function hasChildren(input: Node): input is Node & { children: Node[] } {
+  return has(input, 'children');
+}
+
+function isText(input: Node): input is Text {
+  return has(input, 'data');
+}
 
 // https://gist.github.com/max10rogerio/c67c5d2d7a3ce714c4bc0c114a3ddc6e
 export const slugify = (...args: (string | number)[]): string => {
@@ -74,6 +85,20 @@ export const isElement = (
   node: DOMNode & { children?: DOMNode[] },
 ): node is Element => Array.isArray(node.children);
 
+function nodeToText(input: Node[]): string {
+  return input
+    .map((node) => {
+      if (isText(node)) {
+        return node.data.trim();
+      }
+      if (hasChildren(node)) {
+        return nodeToText(node.children);
+      }
+      return '';
+    })
+    .join(' ');
+}
+
 export const htmlParserOptions = (
   buildLink: LinkBuilder,
   classNames: ComponentProps<Html>['classNames'],
@@ -117,11 +142,8 @@ export const htmlParserOptions = (
             children,
             htmlParserOptions(buildLink, classNames),
           );
-          if (typeof text !== 'string') {
-            return;
-          }
           return (
-            <h2 {...props} id={props.id || slugify(text)}>
+            <h2 {...props} id={props.id || slugify(nodeToText(children))}>
               {text}
             </h2>
           );
