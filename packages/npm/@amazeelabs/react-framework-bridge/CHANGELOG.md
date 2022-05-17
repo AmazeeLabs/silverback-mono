@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.13.4...@amazeelabs/react-framework-bridge@1.13.5) (2022-05-17)
+
+
+### Bug Fixes
+
+* **gatsby:** allow nested content in h2 elements ([358b84c](https://github.com/AmazeeLabs/silverback-mono/commit/358b84cd36b553b91db6a4d445ba32893c548ac6))
+
+
+
+
+
 ## [1.13.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.13.3...@amazeelabs/react-framework-bridge@1.13.4) (2022-05-05)
 
 **Note:** Version bump only for package @amazeelabs/react-framework-bridge
