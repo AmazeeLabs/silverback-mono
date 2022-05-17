@@ -106,6 +106,32 @@ describe('buildHtmlBuilder', () => {
     `);
   });
 
+  it('adds classes and ids to h2 elements', () => {
+    const Html = buildHtml(
+      '<main><h2>Test <strong>strong</strong></h2></main>',
+    );
+    render(
+      <Html
+        classNames={{
+          h2: 'foo',
+        }}
+      />,
+    );
+    expect(screen.getByRole('main')).toMatchInlineSnapshot(`
+      <main>
+        <h2
+          class="foo"
+          id="test-strong"
+        >
+          Test 
+          <strong>
+            strong
+          </strong>
+        </h2>
+      </main>
+    `);
+  });
+
   it('applies framework-specific link components', () => {
     const Html = buildHtml('<main><a href="/test">Test</a></main>');
     render(<Html />);
