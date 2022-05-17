@@ -134,6 +134,68 @@ describe('Route rendering', () => {
     `);
   });
 
+  it('can render content groups within an organism', async () => {
+    const { container } = render(
+      <Route
+        definition={Content}
+        input={{
+          intro: {
+            title: 'Test',
+          },
+          body: [
+            {
+              key: 'group',
+              input: {
+                title: 'Test Group',
+                content: {
+                  items: [
+                    {
+                      key: 'sync',
+                      input: {
+                        Content: buildHtml(`<p>Sync content.</p>`),
+                      },
+                    },
+                    {
+                      key: 'async',
+                      input: {
+                        Content: buildHtml(`<p>Async content.</p>`),
+                      },
+                    },
+                  ],
+                },
+              },
+            },
+          ],
+        }}
+        intl={{ defaultLocale: 'en', locale: 'en' }}
+      />,
+    );
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <div>
+          <div>
+            <h1>
+              Test
+            </h1>
+          </div>
+          <div>
+            <div>
+              <h2>
+                Test Group
+              </h2>
+              <p>
+                Sync content.
+              </p>
+              <p>
+                Async content.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    `);
+  });
+
   it('assumes status 200 for async organisms by default', async () => {
     const { container } = render(
       <Route
@@ -183,12 +245,13 @@ describe('Route rendering', () => {
           body: [
             {
               key: 'async',
-              input: () => [
-                {
-                  Content: buildHtml(`<p>Async content.</p>`),
-                },
-                102,
-              ],
+              input: () =>
+                [
+                  {
+                    Content: buildHtml(`<p>Async content.</p>`),
+                  },
+                  102,
+                ] as [any, number],
             },
           ],
         }}
@@ -244,38 +307,38 @@ describe('Route rendering', () => {
         />,
       );
       expect(container).toMatchInlineSnapshot(`
-      <div>
-        <div>
-          <div>
-            <h1>
-              Test
-            </h1>
-          </div>
-          <div>
-            <p>
-              Loading ...
-            </p>
-          </div>
-        </div>
-      </div>
-    `);
+              <div>
+                <div>
+                  <div>
+                    <h1>
+                      Test
+                    </h1>
+                  </div>
+                  <div>
+                    <p>
+                      Loading ...
+                    </p>
+                  </div>
+                </div>
+              </div>
+          `);
       await new Promise((resolve) => setTimeout(resolve, 60));
       expect(container).toMatchInlineSnapshot(`
-      <div>
-        <div>
-          <div>
-            <h1>
-              Test
-            </h1>
-          </div>
-          <div>
-            <p>
-              Async content.
-            </p>
-          </div>
-        </div>
-      </div>
-    `);
+              <div>
+                <div>
+                  <div>
+                    <h1>
+                      Test
+                    </h1>
+                  </div>
+                  <div>
+                    <p>
+                      Async content.
+                    </p>
+                  </div>
+                </div>
+              </div>
+          `);
     });
   });
 });

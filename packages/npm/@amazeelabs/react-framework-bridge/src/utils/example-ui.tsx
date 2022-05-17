@@ -1,7 +1,15 @@
 import React from 'react';
 
 import { Html } from '../types';
-import { LayoutProps, OrganismProps, route, useOrganismStatus } from './atomic';
+import {
+  Group,
+  group,
+  LayoutProps,
+  OrganismProps,
+  route,
+  RouteInput,
+  useOrganismStatus,
+} from './atomic';
 
 export function PageLayout(props: LayoutProps<'header' | 'footer'>) {
   return (
@@ -43,6 +51,27 @@ export function AsyncContent(props: OrganismProps<{ Content: Html }>) {
   return status === 200 ? <props.Content /> : <p>Loading ...</p>;
 }
 
+export function GroupedContent(
+  props: OrganismProps<{
+    title: string;
+    content: RouteInput<typeof ContentGroup>;
+  }>,
+) {
+  return (
+    <div>
+      <h2>{props.title}</h2>
+      <Group definition={ContentGroup} input={props.content} />
+    </div>
+  );
+}
+
+export const ContentGroup = group({
+  items: {
+    sync: SyncContent,
+    async: AsyncContent,
+  },
+});
+
 export const Page = route(PageLayout, {
   header: Header,
   footer: Footer,
@@ -53,5 +82,6 @@ export const Content = route(ContentLayout, {
   body: {
     sync: SyncContent,
     async: AsyncContent,
+    group: GroupedContent,
   },
 });
