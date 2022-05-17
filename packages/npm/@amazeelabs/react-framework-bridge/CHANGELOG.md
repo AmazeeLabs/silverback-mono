@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.13.5...@amazeelabs/react-framework-bridge@1.14.0) (2022-05-17)
+
+
+### Features
+
+* **gatsby:** allow organisms to define content groups ([8107afa](https://github.com/AmazeeLabs/silverback-mono/commit/8107afaecfee34f369111071ca8609c6938daa5c))
+
+
+
+
+
 ## [1.13.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.13.4...@amazeelabs/react-framework-bridge@1.13.5) (2022-05-17)
 
 
