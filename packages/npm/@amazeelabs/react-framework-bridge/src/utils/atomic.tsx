@@ -1,4 +1,4 @@
-import { isArray, isFunction, isObject, mapValues } from 'lodash';
+import { isArray, isFunction, isObject, isUndefined, mapValues } from 'lodash';
 import React, {
   ComponentProps,
   JSXElementConstructor,
@@ -81,23 +81,26 @@ export const OrganismStatusProvider = ({
 );
 
 export type Mappers<
-  TInput extends Array<{ __typename: TKey }>,
+  TInput extends Array<{ __typename: TKey } | undefined>,
   TOptions extends RouteSlotInput<any, any>,
   TKey extends string = string,
 > = Partial<{
-  [Property in TInput[number]['__typename']]: (
+  [Property in Exclude<TInput[number], undefined>['__typename']]: (
     input: Extract<TInput[number], { __typename: Property }>,
   ) => TOptions;
 }>;
 
 export function createMapper<
-  TInput extends Array<{ __typename: TKey }>,
+  TInput extends Array<{ __typename: TKey } | undefined>,
   TOptions extends RouteSlotInput<any, any>,
   TKey extends string = string,
 >(mappers: Mappers<TInput, TOptions>) {
   return function (input: TInput) {
     return input
       .filter((item) => {
+        if (isUndefined(item)) {
+          return false;
+        }
         if (!mappers[item.__typename]) {
           console.error(`No mapper defined for ${item.__typename}`);
           return false;

@@ -378,6 +378,7 @@ describe('createMapper', () => {
         __typename: 'Sync',
         html: 'Sync content 1',
       },
+      undefined,
       {
         __typename: 'Async',
         html: 'Async content 1',
