@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.14.0...@amazeelabs/react-framework-bridge@1.15.0) (2022-05-19)
+
+
+### Features
+
+* **gatsby:** allow mapper inputs to be undefined ([61413eb](https://github.com/AmazeeLabs/silverback-mono/commit/61413ebbb57db4cc439443f82dbfeec4c046cfd8))
+
+
+
+
+
 # [1.14.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.13.5...@amazeelabs/react-framework-bridge@1.14.0) (2022-05-17)
 
 
