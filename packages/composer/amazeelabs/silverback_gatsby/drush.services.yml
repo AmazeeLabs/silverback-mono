@@ -4,5 +4,6 @@ services:
     arguments:
       - '@entity_type.manager'
       - '@plugin.manager.graphql.schema'
+      - '@silverback_gatsby.update_trigger'
     tags:
       - { name: drush.command }

@@ -6,6 +6,7 @@ use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\graphql\Plugin\GraphQL\Schema\ComposableSchema as OriginalComposableSchema;
 use Drupal\graphql\Plugin\SchemaExtensionPluginManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -25,6 +26,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class ComposableSchema extends OriginalComposableSchema {
 
   protected EntityTypeManagerInterface $entityTypeManager;
+  protected RouteMatchInterface $routeMatch;
 
   public function __construct(
     array $configuration,
@@ -34,7 +36,8 @@ class ComposableSchema extends OriginalComposableSchema {
     ModuleHandlerInterface $moduleHandler,
     SchemaExtensionPluginManager $extensionManager,
     array $config,
-    EntityTypeManagerInterface $entityTypeManager
+    EntityTypeManagerInterface $entityTypeManager,
+    RouteMatchInterface $routeMatch
   ) {
     parent::__construct(
       $configuration,
@@ -43,9 +46,11 @@ class ComposableSchema extends OriginalComposableSchema {
       $astCache,
       $moduleHandler,
       $extensionManager,
-      $config
+      $config,
+      $routeMatch
     );
     $this->entityTypeManager = $entityTypeManager;
+    $this->routeMatch = $routeMatch;
   }
 
   public static function create(
@@ -62,7 +67,8 @@ class ComposableSchema extends OriginalComposableSchema {
       $container->get('module_handler'),
       $container->get('plugin.manager.graphql.schema_extension'),
       $container->getParameter('graphql.config'),
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager'),
+      $container->get('current_route_match')
     );
   }
 
@@ -96,12 +102,33 @@ class ComposableSchema extends OriginalComposableSchema {
       $form_state
     );
 
+    // Build configuration has to be defined on this form,
+    // access is set to false if current route is not the build form one.
+    $isBuildForm = $this->routeMatch->getRouteName() === 'entity.graphql_server.build_form';
+    $form['extensions']['#disabled'] = $isBuildForm;
+    $form['build_trigger_on_save'] = [
+      '#type' => 'checkbox',
+      '#access' => $isBuildForm,
+      '#required' => FALSE,
+      '#title' => $this->t('Trigger a build on entity save.'),
+      '#description' => $this->t('If not checked, make sure to have an alternate build method (cron, manual).'),
+      '#default_value' => $this->configuration['build_trigger_on_save'] ?? '',
+    ];
     $form['build_webhook'] = [
       '#type' => 'textfield',
+      '#access' => $isBuildForm,
       '#required' => FALSE,
       '#title' => $this->t('Build webhook'),
       '#description' => $this->t('A webhook that will be notified when content changes relevant to this server happen.'),
       '#default_value' => $this->configuration['build_webhook'] ?? '',
+    ];
+    $form['build_url'] = [
+      '#type' => 'url',
+      '#access' => $isBuildForm,
+      '#required' => FALSE,
+      '#title' => $this->t('Build url'),
+      '#description' => $this->t('The frontend url that is the result of the build. With the scheme and without a trailing slash (https://www.example.com).'),
+      '#default_value' => $this->configuration['build_url'] ?? '',
     ];
 
     /** @var \Drupal\graphql\Form\ServerForm $formObject */
@@ -111,6 +138,7 @@ class ComposableSchema extends OriginalComposableSchema {
 
     $form['user'] = [
       '#type' => 'select',
+      '#access' => $isBuildForm,
       '#options' => ['' => $this->t('- None -')],
       '#title' => $this->t('Notification user'),
       '#description' => $this->t('Only changes visible to this user will trigger build updates.'),
@@ -131,6 +159,7 @@ class ComposableSchema extends OriginalComposableSchema {
 
     $form['role'] = [
       '#type' => 'select',
+      '#access' => $isBuildForm,
       '#required' => FALSE,
       '#options' => ['' => $this->t('- None -')],
       '#title' => $this->t('Notification role'),

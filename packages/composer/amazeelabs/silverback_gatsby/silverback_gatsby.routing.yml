@@ -1,0 +1,9 @@
+entity.graphql_server.build_form:
+  path: '/admin/config/graphql/servers/build/{graphql_server}'
+  defaults:
+    _entity_form: 'graphql_server.build'
+    _title: 'Build'
+  requirements:
+    _permission: 'administer graphql configuration+trigger a gatsby build'
+  options:
+    _admin_route: TRUE

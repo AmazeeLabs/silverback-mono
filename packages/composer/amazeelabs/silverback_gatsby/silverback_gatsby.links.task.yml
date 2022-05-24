@@ -1,0 +1,5 @@
+entity.graphql_server.build_form:
+  route_name: entity.graphql_server.build_form
+  base_route: entity.graphql_server.edit_form
+  title: Build
+  weight: -1

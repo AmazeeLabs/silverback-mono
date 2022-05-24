@@ -221,7 +221,7 @@ query MainMenu {
 
 The `@menu` directive also takes an optional `max_level` argument. It can be
 used to restrict the number of levels a type will include, which in turn can
-optimize caching and Gatsby build times.  
+optimize caching and Gatsby build times.
 In many cases, the main page layout only displays the first level of menu items.
 When a new page is created and attached to the third level, Gatsby will still
 re-render all pages, because the menu that is used in the header changed. By
@@ -295,3 +295,22 @@ access control and use it for the "Preview" environment on Gatsby cloud, so
 unpublished content can be previewed. Another sensible case would be to create a
 "build" user that has access to published content and block anonymous access to
 Drupal entirely.
+
+## Trigger a build
+
+There are multiple ways to trigger a Gatsby build:
+- on entity save
+- via the Drupal UI or Drush.
+
+### On entity save
+
+On the _Build_ tab of the schema configuration, check the _Trigger a build on entity save_ checkbox.
+
+### Drupal UI
+
+On the same _Build_ tab, click the _Gatsby Build_ button.
+
+### Drush
+
+This command can be configured in the system cron.
+`drush silverback-gatsby:build [server_id]`

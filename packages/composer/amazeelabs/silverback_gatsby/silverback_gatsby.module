@@ -31,3 +31,26 @@ function silverback_gatsby_entity_update(EntityInterface $entity) {
 function silverback_gatsby_entity_delete(EntityInterface $entity) {
   _silverback_gatsby_entity_event($entity);
 }
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function silverback_gatsby_entity_type_alter(array &$entity_types) {
+  /** @var \Drupal\Core\Entity\EntityTypeInterface[] $entity_types */
+  foreach ($entity_types as $entity_type) {
+    if ($entity_type->id() === 'graphql_server') {
+      if (!$entity_type->hasHandlerClass('build')) {
+        $entity_type->setHandlerClass(
+          'build',
+          Drupal\silverback_gatsby\GraphQL\Build::class
+        );
+      }
+      if (!$entity_type->getFormClass('build')) {
+        $entity_type->setFormClass(
+          'build',
+          Drupal\silverback_gatsby\GraphQL\Build::class
+        );
+      }
+    }
+  }
+}
