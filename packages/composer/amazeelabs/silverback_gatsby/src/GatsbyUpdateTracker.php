@@ -39,7 +39,7 @@ class GatsbyUpdateTracker implements GatsbyUpdateTrackerInterface {
   /**
    * {@inheritDoc}
    */
-  public function track(string $server, string $type, string $id) : int {
+  public function track(string $server, string $type, string $id, bool $buildOnSave = TRUE) : int {
     if (isset($this->tracked[$server]) && isset($this->tracked[$server][$type]) && in_array($id,$this->tracked[$server][$type])) {
       return $this->latestBuild($server);
     }
@@ -51,7 +51,9 @@ class GatsbyUpdateTracker implements GatsbyUpdateTrackerInterface {
       'uid' => $this->currentUser->id(),
       'timestamp' => time(),
     ])->execute();
-    $this->trigger->trigger($server, $buildId);
+    if ($buildOnSave) {
+      $this->trigger->trigger($server, $buildId);
+    }
     return $buildId;
   }
 

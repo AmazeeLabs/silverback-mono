@@ -4,10 +4,15 @@ namespace Drupal\silverback_gatsby;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Messenger\MessengerInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+use Drupal\graphql\Entity\ServerInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 
 class GatsbyUpdateTrigger implements GatsbyUpdateTriggerInterface {
+
+  use StringTranslationTrait;
 
   protected array $buildIds = [];
   protected Client $httpClient;
@@ -42,6 +47,71 @@ class GatsbyUpdateTrigger implements GatsbyUpdateTriggerInterface {
     if ($url = $this->getWebhook($server)) {
       $this->buildIds[$url] = $id;
     }
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function triggerLatestBuild(string $server) : TranslatableMarkup {
+    $servers = $this->entityTypeManager
+      ->getStorage('graphql_server')
+      ->loadByProperties(['name' => $server]);
+
+    if (empty($servers)) {
+      $message = $this->t('No server found with id @server_id.', [
+        '@server_id' => $server,
+      ]);
+      $this->messenger->addError($message);
+      return $message;
+    }
+
+    $serverEntity = reset($servers);
+    if ($serverEntity instanceof ServerInterface) {
+      // No dependency injection, prevent circular reference.
+      /** @var \Drupal\silverback_gatsby\GatsbyUpdateTrackerInterface $updateTracker */
+      $updateTracker = \Drupal::service('silverback_gatsby.update_tracker');
+      $latestBuildId = $updateTracker->latestBuild($serverEntity->id());
+      if (!$this->isFrontendLatestBuild($latestBuildId, $serverEntity)) {
+        $message = $this->t('Triggering a build for server @server_id.', [
+          '@server_id' => $server,
+        ]);
+        $this->messenger->addStatus($message);
+        $this->trigger($serverEntity->id(), $latestBuildId);
+      }
+      else {
+        $message = $this->t('Build is already up-to-date for server @server_id.', [
+          '@server_id' => $server,
+        ]);
+        $this->messenger->addStatus($message);
+      }
+    }
+
+    return $message;
+  }
+
+  /**
+   * Check on the frontend if the latest build already occurred.
+   *
+   * If the build url is not configured, presume false so the build
+   * will still happen.
+   *
+   * @param string $latestBuildId
+   * @param \Drupal\graphql\Entity\ServerInterface $serverEntity
+   *
+   * @return bool
+   */
+  protected function isFrontendLatestBuild(int $latestBuildId, ServerInterface $serverEntity) {
+    $result = FALSE;
+    $configuration = $serverEntity->get('schema_configuration')[$serverEntity->get('schema')];
+    if (!empty($configuration['build_url'])) {
+      $response = $this->httpClient->get($configuration['build_url'] . '/build.json');
+      if ($response->getStatusCode() === 200) {
+        $content = json_decode($response->getBody()->getContents(), TRUE);
+        $buildId = array_key_exists('drupalBuildId', $content) ? (int) $content['drupalBuildId'] : 0;
+        $result = $latestBuildId === $buildId;
+      }
+    }
+    return $result;
   }
 
   protected function getWebhook($server_id) {
