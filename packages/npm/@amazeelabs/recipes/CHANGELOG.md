@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.14.2...@amazeelabs/recipes@1.15.0) (2022-05-26)
+
+
+### Features
+
+* **recipes:** update drupal translations on post-rollout when deploying to Lagoon ([f1109da](https://github.com/AmazeeLabs/silverback-mono/commit/f1109da0f80086163c7965347a7d41abfcf154dc))
+
+
+
+
+
 ## [1.14.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.14.1...@amazeelabs/recipes@1.14.2) (2022-05-05)
 
 **Note:** Version bump only for package @amazeelabs/recipes
