@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.20.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.19.5...@-amazeelabs/silverback_gatsby@1.20.0) (2022-05-27)
+
+
+### Bug Fixes
+
+* better naming for trigger ([9a78e52](https://github.com/AmazeeLabs/silverback-mono/commit/9a78e52a36687d737552b24fdda99c9dc255ecd8))
+
+
+### Features
+
+* periodic build ([3038e08](https://github.com/AmazeeLabs/silverback-mono/commit/3038e08bb1d3ed08a0c4d9886df870f30dbc7afb))
+
+
+
+
+
 ## [1.19.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.19.4...@-amazeelabs/silverback_gatsby@1.19.5) (2022-05-12)
 
 
