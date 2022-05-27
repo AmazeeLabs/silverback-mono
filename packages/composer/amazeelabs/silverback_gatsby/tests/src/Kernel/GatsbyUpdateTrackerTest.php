@@ -88,6 +88,13 @@ class GatsbyUpdateTrackerTest extends KernelTestBase {
     );
   }
 
+  public function testDeferredBuild() {
+    $this->tracker->track('foo', 'Page', '1', FALSE);
+    $this->assertEquals(1, $this->tracker->latestBuild('foo'));
+    _drupal_shutdown_function();
+    $this->checkTotalNotifications(0);
+  }
+
   public function testInvalidDiff() {
     $this->tracker->track('foo', 'Page', '1');
     $this->tracker->track('foo', 'Page', '2');
