@@ -82,9 +82,9 @@ class GatsbyUpdateHandler {
         }
 
         // If the configuration is not set, assume TRUE.
-        $buildOnSave = TRUE;
+        $trigger = TRUE;
         if (array_key_exists('build_trigger_on_save', $config[$schema_id])) {
-          $buildOnSave = $config[$schema_id]['build_trigger_on_save'] === 1;
+          $trigger = $config[$schema_id]['build_trigger_on_save'] === 1;
         }
         foreach ($schema->getExtensions() as $extension) {
           if ($extension instanceof SilverbackGatsbySchemaExtension) {
@@ -94,7 +94,7 @@ class GatsbyUpdateHandler {
                 && $updates = $feed->investigateUpdate($context, $account)
               ) {
                 foreach ($updates as $update) {
-                  $this->gatsbyUpdateTracker->track($server->id(), $update->type, $update->id, $buildOnSave);
+                  $this->gatsbyUpdateTracker->track($server->id(), $update->type, $update->id, $trigger);
                 }
               }
             }
