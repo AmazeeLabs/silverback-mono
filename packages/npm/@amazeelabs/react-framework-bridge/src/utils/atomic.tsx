@@ -314,6 +314,18 @@ export function Route<
           const organismProps = input[key];
           if (isOrganismMap(entry) && isArray(organismProps)) {
             return organismProps.map((organism: any, index: any) => {
+              if (!entry[organism.key]) {
+                console.warn(
+                  `The "${organism.key}" key is missing in the "${key}" of a route. Debug data follows.`,
+                  {
+                    organismKey: organism.key,
+                    key,
+                    routeDefinition: definition,
+                    input,
+                  },
+                );
+                return React.createElement('div');
+              }
               return withOrganismProps(
                 entry[organism.key as keyof typeof entry],
               )((organism as OrganismInput<any>).input, index);
@@ -344,6 +356,18 @@ export function Group<
       const organismProps = input[key];
       if (isOrganismMap(entry) && isArray(organismProps)) {
         return organismProps.map((organism: any, index: any) => {
+          if (!entry[organism.key]) {
+            console.warn(
+              `The "${organism.key}" key is missing in the "${key}" of a group. Debug data follows.`,
+              {
+                organismKey: organism.key,
+                key,
+                groupDefinition: definition,
+                input,
+              },
+            );
+            return React.createElement('div');
+          }
           return withOrganismProps(entry[organism.key as keyof typeof entry])(
             (organism as OrganismInput<any>).input,
             index,
