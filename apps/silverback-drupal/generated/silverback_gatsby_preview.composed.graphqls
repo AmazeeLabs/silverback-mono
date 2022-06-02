@@ -270,6 +270,26 @@ directive @resolveEntityReferenceRevisions(
   single: Boolean!
 ) on FIELD_DEFINITION
 
+extend type Query { _original_typename: String! }
+extend type Image { _original_typename: String! }
+extend type Tag { _original_typename: String! }
+extend type Page { _original_typename: String! }
+extend type ParagraphText { _original_typename: String! }
+extend type ParagraphReferences { _original_typename: String! }
+extend type GutenbergPage { _original_typename: String! }
+extend type Webform { _original_typename: String! }
+extend type Article { _original_typename: String! }
+extend type BlockTwoColumns { _original_typename: String! }
+extend type BlockColumn { _original_typename: String! }
+extend type BlockHtmlParagraph { _original_typename: String! }
+extend type BlockHtmlList { _original_typename: String! }
+extend type BlockHtmlQuote { _original_typename: String! }
+extend type BlockImage { _original_typename: String! }
+extend type BlockTeaser { _original_typename: String! }
+extend type MenuItem { _original_typename: String! }
+extend type MainMenu { _original_typename: String! }
+extend type FirstLevelMainMenu { _original_typename: String! }
+extend type GatsbyStringTranslation { _original_typename: String! }
 extend type Query {
   drupalBuildId: Int!
   drupalFeedInfo: [Feed!]!

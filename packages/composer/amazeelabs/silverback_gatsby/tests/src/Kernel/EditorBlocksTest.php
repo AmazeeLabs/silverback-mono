@@ -123,44 +123,64 @@ class EditorBlocksTest extends EntityFeedTestBase {
       'en' => [
         'title' => 'Editor test',
         'content' => [
-          ['__typename' => 'Text', 'content' => '<p>A test paragraph</p><p>Another test paragraph</p>'],
+          [
+            '__typename' => 'Text',
+            'content' => '<p>A test paragraph</p><p>Another test paragraph</p>',
+            '_original_typename' => 'Text',
+          ],
           [
             '__typename' => 'Figure',
             'caption' => 'This is the caption',
             'image' => [
               'alt' => 'Screaming hairy armadillo'
-            ]
+            ],
+            '_original_typename' => 'Figure',
           ],
-          ['__typename' => 'Columns', 'columns' => [
-            [
-              '__typename' => 'Text',
+          [
+            '__typename' => 'Columns',
+            'columns' => [
+              [
+                '__typename' => 'Text',
+              ],
+              [
+                '__typename' => 'Text',
+              ],
             ],
-            [
-              '__typename' => 'Text',
-            ],
-          ]],
+            '_original_typename' => 'Columns',
+          ],
         ],
+        '_original_typename' => 'Page',
       ],
       'de' => [
         'title' => 'Editor test DE',
         'content' => [
-          ['__typename' => 'Text', 'content' => '<p>A test paragraph</p><p>Another test paragraph</p>'],
+          [
+            '__typename' => 'Text',
+            'content' => '<p>A test paragraph</p><p>Another test paragraph</p>',
+            '_original_typename' => 'Text',
+          ],
           [
             '__typename' => 'Figure',
             'caption' => 'This is the caption',
             'image' => [
               'alt' => 'Screaming hairy armadillo DE'
-            ]
+            ],
+            '_original_typename' => 'Figure',
           ],
-          ['__typename' => 'Columns', 'columns' => [
-            [
-              '__typename' => 'Text',
+          [
+            '__typename' => 'Columns',
+            'columns' => [
+              [
+                '__typename' => 'Text',
+              ],
+              [
+                '__typename' => 'Text',
+              ],
             ],
-            [
-              '__typename' => 'Text',
-            ],
-          ]],
+            '_original_typename' => 'Columns'
+          ],
         ],
+        '_original_typename' => 'Page',
       ],
     ], $metadata);
   }
