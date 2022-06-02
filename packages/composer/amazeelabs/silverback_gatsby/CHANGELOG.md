@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.21.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.20.0...@-amazeelabs/silverback_gatsby@1.21.0) (2022-06-02)
+
+
+### Features
+
+* **gatsby:** introduce `__original_typename` field on each graphql type ([edbf247](https://github.com/AmazeeLabs/silverback-mono/commit/edbf2477c3c4de547e9600c6670d2175ced113c7))
+
+
+
+
+
 # [1.20.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.19.5...@-amazeelabs/silverback_gatsby@1.20.0) (2022-05-27)
 
 
