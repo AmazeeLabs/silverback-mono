@@ -302,6 +302,7 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
     // Collect all active feeds and prepend their definitions to the schema.
     $schema = array_map(fn (FeedInterface $feed) => $this->getSchemaDefinitions($feed), $this->getFeeds());
     array_unshift($schema, parent::getExtensionDefinition());
+    array_unshift($schema, $this->getOriginalTypenameDefinitions());
     return implode("\n", $schema);
   }
 
@@ -312,6 +313,39 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
     $builder = new ResolverBuilder();
     $this->addFieldResolvers($registry, $builder);
     $this->addTypeResolvers($registry, $builder);
+    $this->addOriginalTypenameResolvers($registry, $builder);
+  }
+
+  /**
+   * Attach a _original_typename field to every type.
+   *
+   * To preserve the original type in cases where the types are namespaced and
+   * merged into a different graphql schema (e.g. Gatsby).
+   *
+   * @return string
+   */
+  protected function getOriginalTypenameDefinitions() {
+    $types = [];
+    foreach ($this->parentAst->definitions->getIterator() as $definition) {
+      if ($definition instanceof ObjectTypeDefinitionNode) {
+        $name = $definition->name->value;
+        $types[] = "extend type {$name} { _original_typename: String! }";
+      }
+    }
+    return implode("\n", $types);
+  }
+
+  /**
+   * Attach a _original_typename resolvers.
+   *
+   * @return void
+   */
+  protected function addOriginalTypenameResolvers(ResolverRegistry $registry, ResolverBuilder $builder) {
+    foreach ($this->parentAst->definitions->getIterator() as $definition) {
+      if ($definition instanceof ObjectTypeDefinitionNode) {
+        $registry->addFieldResolver($definition->name->value, '_original_typename', $builder->fromValue($definition->name->value));
+      }
+    }
   }
 
   /**

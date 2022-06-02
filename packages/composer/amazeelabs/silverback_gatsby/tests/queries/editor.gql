@@ -3,15 +3,18 @@ fragment BlockPage on Page {
   content {
     __typename
     ... on Text {
+      _original_typename
       content
     }
     ... on Figure {
+      _original_typename
       caption
       image {
         alt
       }
     }
     ... on Columns {
+      _original_typename
       columns {
         __typename
       }
@@ -21,10 +24,12 @@ fragment BlockPage on Page {
 
 query {
   en:loadPage(id: "1:en") {
+    _original_typename
     ...BlockPage
   }
 
   de:loadPage(id: "1:de") {
+    _original_typename
     ...BlockPage
   }
 }
