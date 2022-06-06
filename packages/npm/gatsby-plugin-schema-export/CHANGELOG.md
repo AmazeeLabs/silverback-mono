@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.22](https://github.com/AmazeeLabs/silverback-mono/compare/gatsby-plugin-schema-export@1.1.21...gatsby-plugin-schema-export@1.1.22) (2022-06-06)
+
+**Note:** Version bump only for package gatsby-plugin-schema-export
+
+
+
+
+
 ## [1.1.21](https://github.com/AmazeeLabs/silverback-mono/compare/gatsby-plugin-schema-export@1.1.20...gatsby-plugin-schema-export@1.1.21) (2022-05-05)
 
 **Note:** Version bump only for package gatsby-plugin-schema-export
