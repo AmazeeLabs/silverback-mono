@@ -9,8 +9,8 @@
     "branch": "8.x-1.x"
   },
   "dependencies": {
-    "@testing-library/cypress": "8.0.2",
-    "cypress": "9.6.1",
+    "@testing-library/cypress": "8.0.3",
+    "cypress": "9.7.0",
     "cypress-cucumber-preprocessor": "4.3.1",
     "cypress-file-upload": "5.0.8",
     "cypress-screenplay": "^0.5.42",
