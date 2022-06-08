@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.35](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/gatsby_build_monitor@1.4.34...@-drupal/gatsby_build_monitor@1.4.35) (2022-06-08)
+
+
+### Bug Fixes
+
+* remove integration tests from gatsby_build_monitor ([bf79799](https://github.com/AmazeeLabs/silverback-mono/commit/bf79799adebc5b23106b9982270f9654ad9bc385))
+
+
+
+
+
 ## [1.4.34](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/gatsby_build_monitor@1.4.33...@-drupal/gatsby_build_monitor@1.4.34) (2022-06-06)
 
 **Note:** Version bump only for package @-drupal/gatsby_build_monitor

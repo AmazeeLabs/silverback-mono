@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/publisher",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "license": "MIT",
   "bin": "./cli.js",
   "publishConfig": {
@@ -38,8 +38,8 @@
     "referrer-policy": "^1.2.0"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.28",
-    "@amazeelabs/jest-preset": "^1.3.31",
+    "@amazeelabs/eslint-config": "^1.4.29",
+    "@amazeelabs/jest-preset": "^1.3.32",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@babel/core": "7.18.2",
     "@react-rxjs/core": "0.9.6",
