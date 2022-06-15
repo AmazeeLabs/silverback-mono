@@ -179,6 +179,7 @@ config.proxy.forEach(
       authMiddleware,
       createProxyMiddleware({
         target,
+        changeOrigin: true,
       }),
     );
   },
