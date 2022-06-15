@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.8](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_external_preview@1.1.7...@-amazeelabs/silverback_external_preview@1.1.8) (2022-06-15)
+
+
+### Bug Fixes
+
+* **external_preview:** replace preview tempstore path with content entity id as key_value key ([34300b9](https://github.com/AmazeeLabs/silverback-mono/commit/34300b9ad29cb4eb12818bca2fa38c05690034cd))
+
+
+
+
+
 ## [1.1.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_external_preview@1.1.6...@-amazeelabs/silverback_external_preview@1.1.7) (2022-04-21)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_external_preview
