@@ -152,12 +152,13 @@ class ExternalPreviewLink {
           'language' => $entity->language(),
           'external_url_type' => $envVarName === self::PREVIEW_ENV_VARNAME ? 'preview' : 'live',
         ]);
+        $id = $entity->getEntityTypeId() . ':' . $entity->id() . ':'. $entity->get('langcode')->value;
+        // Make this accessible via admin path
+        $tempstore = $this->tempstore->get('silverback_external_preview');
+        $tempstore->set($id, $url_object);
       }
       // Allow for altering the url object via a hook
       $this->moduleHandler->alter('silverback_external_preview_url', $route, $url_object);
-      // Make this accessible via admin path
-      $tempstore = $this->tempstore->get('silverback_external_preview');
-      $tempstore->set(Url::fromRouteMatch($route)->toString(), $url_object);
     }
 
     return $url_object ?? NULL;

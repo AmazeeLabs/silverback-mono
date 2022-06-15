@@ -49,7 +49,7 @@ class Controller extends ControllerBase {
    *   The render array.
    */
   public function preview(Request $request) {
-    $preview_path = $request->get('preview-path');
+    $preview_path = $request->get('preview-id');
     $tempstore = $this->tempstore->get('silverback_external_preview');
     $url = $tempstore->get($preview_path);
     return [
