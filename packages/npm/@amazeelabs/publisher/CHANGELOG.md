@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.8.3...@amazeelabs/publisher@0.8.4) (2022-06-15)
+
+
+### Bug Fixes
+
+* **publisher:** change request origin when proxying ([0f952ee](https://github.com/AmazeeLabs/silverback-mono/commit/0f952ee34f2a9dfb560cda8d707d42487a909601))
+
+
+
+
+
 ## [0.8.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.8.2...@amazeelabs/publisher@0.8.3) (2022-06-08)
 
 **Note:** Version bump only for package @amazeelabs/publisher
