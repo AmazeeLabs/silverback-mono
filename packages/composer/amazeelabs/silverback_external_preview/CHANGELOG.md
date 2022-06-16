@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.11](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_external_preview@1.1.10...@-amazeelabs/silverback_external_preview@1.1.11) (2022-06-16)
+
+
+### Bug Fixes
+
+* **external_preview:** resolve fatal error on frontend ([10ee0d5](https://github.com/AmazeeLabs/silverback-mono/commit/10ee0d52d748841077dfd1bba50feb4685037886))
+
+
+
+
+
 ## [1.1.10](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_external_preview@1.1.9...@-amazeelabs/silverback_external_preview@1.1.10) (2022-06-16)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_external_preview
