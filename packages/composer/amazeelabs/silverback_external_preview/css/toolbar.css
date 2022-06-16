@@ -132,7 +132,3 @@
     display: table;
     border-collapse: collapse;
 }
-/* In some themes, there is an icon here*/
-.external-preview-dialog .ui-dialog.ui-dialog-off-canvas .ui-widget-header .ui-dialog-title:before {
-    display:none;
-}

@@ -18,6 +18,10 @@
     background-image: none;
     padding-left: 0;
 }
+/* In some themes, there is an icon here*/
+.external-preview-dialog.ui-dialog.ui-dialog-off-canvas .ui-widget-header .ui-dialog-title:before {
+    display:none;
+}
 
 #drupal-off-canvas .external-preview-links .bar--sizing {
     display: flex;
