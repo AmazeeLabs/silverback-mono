@@ -19,7 +19,7 @@ function silverback_external_preview_toolbar() {
     $url = $externalPreviewLink->getPreviewUrl($routeMatch);
     // Only add the toolbar item if we have a preview URL returned
     $params = $routeMatch->getParameters()->all();
-    $entity = array_shift($params);
+    $entity = array_pop($params);
     if($entity instanceof ContentEntityInterface){
       $id = $url ? $entity->getEntityTypeId() . ':' . $entity->id() . ':'. $entity->get('langcode')->value : null;
     }
