@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.12](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_external_preview@1.1.11...@-amazeelabs/silverback_external_preview@1.1.12) (2022-06-16)
+
+
+### Bug Fixes
+
+* **external_preview:** get entity from last index in route match param array instead of first ([ff12637](https://github.com/AmazeeLabs/silverback-mono/commit/ff12637130d26c74a045e79ce41fe103d8b06c84))
+
+
+
+
+
 ## [1.1.11](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_external_preview@1.1.10...@-amazeelabs/silverback_external_preview@1.1.11) (2022-06-16)
 
 
