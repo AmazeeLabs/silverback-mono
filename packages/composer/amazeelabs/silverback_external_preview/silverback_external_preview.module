@@ -1,5 +1,6 @@
 <?php
 
+use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Url;
 use Drupal\silverback_external_preview\ExternalPreviewLink;
 use Drupal\Component\Serialization\Json;
@@ -19,7 +20,9 @@ function silverback_external_preview_toolbar() {
     // Only add the toolbar item if we have a preview URL returned
     $params = $routeMatch->getParameters()->all();
     $entity = array_shift($params);
-    $id = $url ? $entity->getEntityTypeId() . ':' . $entity->id() . ':'. $entity->get('langcode')->value : null;
+    if($entity instanceof ContentEntityInterface){
+      $id = $url ? $entity->getEntityTypeId() . ':' . $entity->id() . ':'. $entity->get('langcode')->value : null;
+    }
     $toolbar_items['silverback_external_preview'] = [
       '#type' => 'toolbar_item',
       '#cache' => [
@@ -44,7 +47,7 @@ function silverback_external_preview_toolbar() {
         '#title' => t('<span>Preview website</span>'),
         '#url' => Url::fromRoute('silverback_external_preview.preview', [], [
           'query' => [
-            'preview-id' => $id,
+            'preview-id' => $id ?? NULL,
           ],
         ]),
         '#cache' => [
