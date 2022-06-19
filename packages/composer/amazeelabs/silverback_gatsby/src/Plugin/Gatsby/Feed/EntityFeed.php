@@ -9,8 +9,11 @@ use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
+use Drupal\graphql\GraphQL\ResolverBuilder;
+use Drupal\graphql\GraphQL\ResolverRegistryInterface;
 use Drupal\silverback_gatsby\Plugin\FeedBase;
 use Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer\GatsbyBuildId;
+use GraphQL\Language\AST\DocumentNode;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -190,4 +193,25 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
       $this->builder->callback(fn ($value) => [$value])
     );
   }
+
+  public function getExtensionDefinition(DocumentNode $parentAst): string {
+    $type = $this->typeName;
+    return "\nextend type Query { load{$type}Revision(id: String!, revision: String!) : $type }";
+  }
+
+  public function addExtensionResolvers(
+    ResolverRegistryInterface $registry,
+    ResolverBuilder $builder
+  ): void {
+    $type = $this->typeName;
+    $resolver = $this->builder->produce('fetch_entity')
+      ->map('type', $this->builder->fromValue($this->type))
+      ->map('bundles', $this->builder->fromValue($this->bundle === NULL ? NULL : [$this->bundle]))
+      ->map('access', $this->builder->fromValue($this->access))
+      ->map('id', $builder->fromArgument('id'))
+      ->map('revision_id', $builder->fromArgument('revision'))
+    ;
+    $registry->addFieldResolver("Query", "load{$type}Revision", $resolver);
+  }
+
 }

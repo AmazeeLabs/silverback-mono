@@ -1,0 +1,8 @@
+query {
+  a:loadPostRevision(id: "1", revision: "1") {
+    title
+  }
+  b:loadPostRevision(id: "1", revision: "2") {
+    title
+  }
+}

@@ -4,6 +4,7 @@ namespace Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer;
 
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Entity\RevisionableInterface;
 use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Session\AccountInterface;
@@ -32,6 +33,10 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *     ),
  *     "id" = @ContextDefinition("string",
  *       label = @Translation("Identifier"),
+ *       required = FALSE
+ *     ),
+ *     "revision_id" = @ContextDefinition("string",
+ *       label = @Translation("A specific revision id to fetch"),
  *       required = FALSE
  *     ),
  *     "language" = @ContextDefinition("string",
@@ -137,6 +142,7 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
    *
    * @param string $type
    * @param string $id
+   * @param string|null $revisionId
    * @param string|null $language
    * @param array|null $bundles
    * @param bool|null $access
@@ -146,7 +152,17 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
    *
    * @return \GraphQL\Deferred
    */
-  public function resolve($type, $id, ?string $language, ?array $bundles, ?bool $access, ?AccountInterface $accessUser, ?string $accessOperation, FieldContext $context) {
+  public function resolve(
+    string $type,
+    string $id,
+    ?string $revisionId,
+    ?string $language,
+    ?array $bundles,
+    ?bool $access,
+    ?AccountInterface $accessUser,
+    ?string $accessOperation,
+    FieldContext $context
+  ) {
     if (!preg_match('/^[0-9]+$/', $id)) {
       // Looks like we got a UUID. Transform it to a regular ID.
       $result = $this->entityTypeManager
@@ -161,7 +177,8 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
     }
     $resolver = $this->entityBuffer->add($type, $id);
 
-    return new Deferred(function () use ($type, $language, $bundles, $resolver, $context, $access, $accessUser, $accessOperation) {
+    return new Deferred(function () use ($type, $revisionId, $language, $bundles, $resolver, $context, $access, $accessUser, $accessOperation) {
+      /** @var $entity \Drupal\Core\Entity\EntityInterface */
       if (!$entity = $resolver()) {
         // If there is no entity with this id, add the list cache tags so that
         // the cache entry is purged whenever a new entity of this type is
@@ -171,6 +188,11 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
         $tags = $type->getListCacheTags();
         $context->addCacheTags($tags);
         return NULL;
+      }
+
+      // If we have a defined revision, attempt to load it instead.
+      if ($revisionId && $entity instanceof RevisionableInterface) {
+        $entity = $this->entityTypeManager->getStorage($type)->loadRevision($revisionId);
       }
 
       $context->addCacheableDependency($entity);
