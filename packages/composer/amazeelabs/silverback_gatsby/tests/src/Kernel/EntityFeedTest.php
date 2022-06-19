@@ -295,4 +295,27 @@ class EntityFeedTest extends EntityFeedTestBase {
     ], $metadata);
   }
 
+  public function testRevisionable() {
+    $node = Node::create([
+      'type' => 'blog',
+      'title' => 'Revision 1'
+    ]);
+    $node->save();
+    $node->set('title', 'Revision 2');
+    $node->setNewRevision();
+    $node->save();
+
+    $query = $this->getQueryFromFile('revisionable.gql');
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheTags(['node:1']);
+    $this->assertResults($query, [], [
+      'a' => [
+        'title' => 'Revision 1',
+      ],
+      'b' => [
+        'title' => 'Revision 2',
+      ],
+    ], $metadata);
+  }
+
 }
