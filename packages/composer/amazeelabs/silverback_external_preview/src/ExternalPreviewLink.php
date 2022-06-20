@@ -107,24 +107,47 @@ class ExternalPreviewLink {
   }
 
   /**
-   * Used to create a external preview Url object for a given path
+   * Used to create a external Url object for a given path.
    *
    * @param string $path
    * @param string $external_url_type
    *
    * @return \Drupal\Core\Url
    */
-  public function createPreviewlUrlFromPath(string $path, $external_url_type = 'preview') {
+  public function createPreviewUrlFromPath(string $path, $external_url_type = 'preview') {
     $base_url = $external_url_type === 'preview' ? $this->getPreviewBaseUrl() : $this->getLiveBaseUrl();
-    return Url::fromUri($base_url . $path, [
-      'language' => $this->languageManager->getCurrentLanguage(),
-      'external_url_type' => $external_url_type,
-    ]);
-
+    return Url::fromUri($base_url . $path, $this->getUrlOptions($external_url_type));
   }
 
   /**
-   * Returns a Url object with the concatenated base url and alias
+   * Used to create a external Url object for a given content entity.
+   *
+   * @param ContentEntityInterface $entity
+   * @param string $external_url_type
+   *
+   * @return \Drupal\Core\Url
+   */
+  public function createPreviewUrlFromEntity(ContentEntityInterface $entity, $external_url_type = 'preview') {
+    $base_url = $external_url_type === 'preview' ? $this->getPreviewBaseUrl() : $this->getLiveBaseUrl();
+    $path = $entity->toUrl('canonical')->toString(TRUE)->getGeneratedUrl();
+    return Url::fromUri($base_url . $path, $this->getUrlOptions($external_url_type, $entity));
+  }
+
+  private function getUrlOptions($external_url_type = 'preview', ContentEntityInterface $entity = NULL) {
+    $result = [
+      'language' => $entity instanceof ContentEntityInterface ? $entity->language() : $this->languageManager->getCurrentLanguage(),
+      'external_url_type' => $external_url_type,
+    ];
+    if ($external_url_type === 'preview') {
+      $result['query'] = [
+        'preview' => 1,
+      ];
+    }
+    return $result;
+  }
+
+  /**
+   * Returns a Url object with the concatenated base url and alias.
    *
    * @param \Drupal\Core\Routing\RouteMatchInterface $route
    * @param string $envVarName
@@ -148,10 +171,9 @@ class ExternalPreviewLink {
           ->toString());
 
         $url = $base_url . $alias;
-        $url_object = Url::fromUri($url, [
-          'language' => $entity->language(),
-          'external_url_type' => $envVarName === self::PREVIEW_ENV_VARNAME ? 'preview' : 'live',
-        ]);
+        $external_url_type = self::PREVIEW_ENV_VARNAME ? 'preview' : 'live';
+        $options = $this->getUrlOptions($external_url_type, $entity);
+        $url_object = Url::fromUri($url, $options);
         $id = $entity->getEntityTypeId() . ':' . $entity->id() . ':'. $entity->get('langcode')->value;
         // Make this accessible via admin path
         $tempstore = $this->tempstore->get('silverback_external_preview');

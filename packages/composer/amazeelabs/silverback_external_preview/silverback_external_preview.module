@@ -4,6 +4,9 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Url;
 use Drupal\silverback_external_preview\ExternalPreviewLink;
 use Drupal\Component\Serialization\Json;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\silverback_external_preview\Field\ComputedExternalPreviewLinkItemList;
 
 /**
  * Implements hook_toolbar().
@@ -91,6 +94,40 @@ function silverback_external_preview_theme() {
       'sizes' => [],
     ],
   ];
+  $theme['silverback_external_preview_iframe'] = [
+    'variables' => [
+      'preview_url' => NULL,
+      'live_url' => NULL,
+      'view_live_link' => NULL,
+      'width' => NULL,
+      'height' => NULL,
+      'class' => NULL,
+    ],
+  ];
   return $theme;
 }
 
+/**
+ * Implements hook_entity_base_field_info().
+ */
+function silverback_external_preview_entity_base_field_info(EntityTypeInterface $entity_type) {
+  $fields = [];
+  // Can be extended by other entity types when needed.
+  if ($entity_type->id() === 'node') {
+    $fields['external_preview_link'] = BaseFieldDefinition::create('link')
+      ->setName('external_preview_link')
+      ->setLabel(t('External Preview'))
+      ->setComputed(TRUE)
+      ->setTranslatable(TRUE)
+      ->setReadOnly(TRUE)
+      ->setClass(ComputedExternalPreviewLinkItemList::class)
+      ->setCardinality(1)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'external_preview_iframe_formatter',
+        'weight' => -5,
+      ]);
+  }
+  return $fields;
+}

@@ -1,0 +1,6 @@
+{% if view_live_link %}
+  <div class="external-preview-iframe-link">{{ 'Live link:'|t }}
+    <a href="{{ live_url }}" target="_blank">{{ live_url }}</a>
+  </div>
+{% endif %}
+<iframe width="{{ width }}" height="{{ height }}" src="{{ preview_url }}" class="{{ class }}" allowfullscreen></iframe>
