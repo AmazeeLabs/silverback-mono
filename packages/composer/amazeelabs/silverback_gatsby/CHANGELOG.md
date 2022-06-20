@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.22.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.21.0...@-amazeelabs/silverback_gatsby@1.22.0) (2022-06-20)
+
+
+### Features
+
+* **gatsby:** graphql fields for fetching entity revisions ([7ebc6f7](https://github.com/AmazeeLabs/silverback-mono/commit/7ebc6f7fc5f4202a89f5d34e440ae214a067697d))
+
+
+
+
+
 # [1.21.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.20.0...@-amazeelabs/silverback_gatsby@1.21.0) (2022-06-02)
 
 
