@@ -307,6 +307,7 @@ extend type Image {
   translations: [Image!]!
 }
 
+extend type Query { loadImageRevision(id: String!, revision: String!) : Image }
 extend type Query {
   loadTag(id: String!): Tag
   queryTags(offset: Int, limit: Int): [Tag]!
@@ -316,6 +317,7 @@ extend type Tag {
   drupalId: String!
 }
 
+extend type Query { loadTagRevision(id: String!, revision: String!) : Tag }
 extend type Query {
   loadPage(id: String!): Page
   queryPages(offset: Int, limit: Int): [Page]!
@@ -328,6 +330,7 @@ extend type Page {
   translations: [Page!]!
 }
 
+extend type Query { loadPageRevision(id: String!, revision: String!) : Page }
 extend type Query {
   loadGutenbergPage(id: String!): GutenbergPage
   queryGutenbergPages(offset: Int, limit: Int): [GutenbergPage]!
@@ -340,6 +343,7 @@ extend type GutenbergPage {
   translations: [GutenbergPage!]!
 }
 
+extend type Query { loadGutenbergPageRevision(id: String!, revision: String!) : GutenbergPage }
 extend type Query {
   loadWebform(id: String!): Webform
   queryWebforms(offset: Int, limit: Int): [Webform]!
@@ -349,6 +353,7 @@ extend type Webform {
   drupalId: String!
 }
 
+extend type Query { loadWebformRevision(id: String!, revision: String!) : Webform }
 extend type Query {
   loadArticle(id: String!): Article
   queryArticles(offset: Int, limit: Int): [Article]!
@@ -361,6 +366,7 @@ extend type Article {
   translations: [Article!]!
 }
 
+extend type Query { loadArticleRevision(id: String!, revision: String!) : Article }
 extend type Query {
   loadMainMenu(id: String!): MainMenu
   queryMainMenus(offset: Int, limit: Int): [MainMenu]!
