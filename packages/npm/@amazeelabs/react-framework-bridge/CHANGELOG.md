@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.16.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.15.3...@amazeelabs/react-framework-bridge@1.16.0) (2022-06-21)
+
+
+### Features
+
+* add ability to configure intl in storybook ([50c44ba](https://github.com/AmazeeLabs/silverback-mono/commit/50c44ba9f690eda7f1ebe93927c7a5b351c28f48))
+
+
+
+
+
 ## [1.15.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.15.2...@amazeelabs/react-framework-bridge@1.15.3) (2022-06-08)
 
 **Note:** Version bump only for package @amazeelabs/react-framework-bridge
