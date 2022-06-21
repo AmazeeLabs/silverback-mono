@@ -11,6 +11,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { IntlProvider } from 'react-intl';
 
 import {
   Form,
@@ -229,16 +230,16 @@ export type LayoutStory<T extends JSXElementConstructor<LayoutProps<any>>> =
 export type MoleculeStory<T extends JSXElementConstructor<any>> = Omit<
   StoryObj<ComponentProps<T>>,
   'play' | 'args'
-  > & {
+> & {
   // This is needed because storybook typing makes all arguments optional,
   // but we want clear indication that the component will fail.
   args: ComponentProps<T>;
   play?: StoryObj<
     ComponentProps<T> & {
-    wouldNavigate: () => {};
-    wouldSubmit: () => {};
-  }
-    >['play'];
+      wouldNavigate: () => {};
+      wouldSubmit: () => {};
+    }
+  >['play'];
 };
 
 const colors = {
@@ -426,6 +427,7 @@ export function renderRouteStory<TRoute extends Route<any, any>>(
     render: ({ children }: PropsWithChildren<{}>) => children,
     args: {},
   },
+  intl: ComponentProps<typeof IntlProvider> = { locale: 'en' },
 ) {
   return function RouteRender({
     children,
@@ -447,11 +449,7 @@ export function renderRouteStory<TRoute extends Route<any, any>>(
 
     return (
       <Wrapper.render {...Wrapper.args}>
-        <Route
-          definition={RouteDefinition}
-          input={routeValues}
-          intl={{ locale: 'en' }}
-        >
+        <Route definition={RouteDefinition} input={routeValues} intl={intl}>
           {children}
         </Route>
       </Wrapper.render>
