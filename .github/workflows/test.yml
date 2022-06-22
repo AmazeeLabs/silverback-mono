@@ -86,6 +86,13 @@ jobs:
         if: startsWith(github.head_ref, 'test-all/') == true
         run: yarn test:integration:all
 
+      - name: Gatsby log
+        run: cat /tmp/gatsby.log || true
+        if: always()
+      - name: Drupal log
+        run: cat /tmp/drupal.log || true
+        if: always()
+
       - name: Check for uncommitted changes
         run: |
           if [[ $(git status --porcelain) ]]
