@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-drupal-core@1.1.6...@-amazeelabs/proxy-drupal-core@1.1.7) (2022-06-22)
+
+
+### Bug Fixes
+
+* remove samesite cookie patch ([90ffbc5](https://github.com/AmazeeLabs/silverback-mono/commit/90ffbc5bb25a0358fd94622f04d4763eb249b720))
+
+
+
+
+
 ## [1.1.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-drupal-core@1.1.5...@-amazeelabs/proxy-drupal-core@1.1.6) (2022-02-14)
 
 
