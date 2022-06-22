@@ -45,6 +45,7 @@ module:
   silverback_gutenberg: 0
   silverback_iframe: 0
   silverback_translations: 0
+  sqlite: 0
   system: 0
   taxonomy: 0
   test_session: 0
