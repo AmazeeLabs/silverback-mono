@@ -37,6 +37,7 @@ export type Link<Query extends Parameters<typeof stringify>[0] = {}> =
     activeClassName?: string;
     query?: Query;
     fragment?: string;
+    children?: React.ReactNode;
   }> & {
     navigate: (opts?: { query?: Query; fragment?: string }) => void;
     href: string;
