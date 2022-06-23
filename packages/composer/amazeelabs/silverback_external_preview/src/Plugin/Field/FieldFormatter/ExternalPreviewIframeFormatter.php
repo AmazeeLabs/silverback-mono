@@ -99,7 +99,7 @@ class ExternalPreviewIframeFormatter extends LinkFormatter {
         '#theme' => 'silverback_external_preview_iframe',
         '#preview_url' => $previewUrl,
         '#live_url' => $liveUrl,
-        '#view_live_link' => $settings['view_live_link'],
+        '#view_live_link' => !$externalPreviewLink->isNodeRevisionRoute() && $settings['view_live_link'],
         '#width' => $settings['width'],
         '#height' => $settings['height'],
         '#class' => $settings['class'],
