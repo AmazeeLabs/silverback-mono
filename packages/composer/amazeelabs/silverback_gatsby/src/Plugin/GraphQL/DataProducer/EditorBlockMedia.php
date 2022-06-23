@@ -43,8 +43,9 @@ class EditorBlockMedia extends DataProducerPluginBase {
       \Drupal::logger('graphql_gutenberg')->notice("Cannot load media by ID '{$mediaId}'");
       return NULL;
     }
-    if ($media->hasTranslation($field->getContextLanguage())) {
-      $media = $media->getTranslation($field->getContextLanguage());
+    $documentLanguage = $field->getContextValue('document_language');
+    if ($media->hasTranslation($documentLanguage)) {
+      $media = $media->getTranslation($documentLanguage);
     }
     if ($media) {
       $field->addCacheableDependency($media);

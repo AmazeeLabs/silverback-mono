@@ -60,7 +60,7 @@ class EditorBlocks extends DataProducerPluginBase {
     if (!$entity instanceof EntityInterface) {
       throw new LogicException('Editor blocks can only be retrieved from Entities');
     }
-    $field->setContextLanguage($entity->language()->getId());
+    $field->setContextValue('document_language', $entity->language()->getId());
     if (!($entity instanceof TypedDataInterface) && !empty($type)) {
       $manager = $this->getTypedDataManager();
       $definition = $manager->createDataDefinition($type);
