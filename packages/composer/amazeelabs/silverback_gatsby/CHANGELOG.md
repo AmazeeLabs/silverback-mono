@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.22.0...@-amazeelabs/silverback_gatsby@1.23.0) (2022-06-23)
+
+
+### Bug Fixes
+
+* **gutenberg:** fix language context document resolution ([4c20a53](https://github.com/AmazeeLabs/silverback-mono/commit/4c20a5324effef6b991ef94d3741f70320617563))
+
+
+### Features
+
+* **gutenberg:** aggregate multiple subsequent html blocks ([1f6469e](https://github.com/AmazeeLabs/silverback-mono/commit/1f6469e74861b3016a1d2bb4c73f844fc3407342))
+
+
+
+
+
 # [1.22.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.21.0...@-amazeelabs/silverback_gatsby@1.22.0) (2022-06-20)
 
 
