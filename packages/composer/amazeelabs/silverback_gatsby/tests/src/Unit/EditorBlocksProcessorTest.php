@@ -78,4 +78,59 @@ class EditorBlocksProcessorTest extends UnitTestCase {
     );
   }
 
+  public function testTextAggregation() {
+    $input = [
+      [
+        'blockName' => 'core/paragraph',
+        'innerHTML' => '<p>A</p>',
+      ],
+      [
+        'blockName' => 'core/paragraph',
+        'innerHTML' => '<p>B</p>',
+      ],
+      [
+        'blockName' => 'custom/a',
+        'innerBlocks' => [
+
+          [
+            'blockName' => 'core/paragraph',
+            'innerHTML' => '<p>C</p>',
+          ],
+          [
+            'blockName' => 'core/list',
+            'innerHTML' => '<p>D</p>',
+          ],
+        ]
+      ],
+      [
+        'blockName' => 'core/paragraph',
+        'innerHTML' => '<p>E</p>',
+      ],
+    ];
+
+    $expected = [
+      [
+        'blockName' => 'core/paragraph',
+        'innerHTML' => '<p>A</p><p>B</p>',
+      ],
+      [
+        'blockName' => 'custom/a',
+        'innerBlocks' => [
+          [
+            'blockName' => 'core/paragraph',
+            'innerHTML' => '<p>C</p><p>D</p>',
+          ],
+        ]
+      ],
+      [
+        'blockName' => 'core/paragraph',
+        'innerHTML' => '<p>E</p>',
+      ],
+    ];
+    $this->assertEquals(
+      $expected,
+      EditorBlocksProcessor::aggregateParagraphs($input, ['core/paragraph', 'core/list']),
+    );
+  }
+
 }

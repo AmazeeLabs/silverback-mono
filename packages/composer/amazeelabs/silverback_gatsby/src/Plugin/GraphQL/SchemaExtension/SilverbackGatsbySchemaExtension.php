@@ -509,7 +509,8 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
             'type' => $builder->callback(
               fn(EntityInterface $entity) => $entity->getTypedData()->getDataDefinition()->getDataType()
             ),
-            'ignored' => $builder->fromValue($definition['arguments']['ignore'] ?? [])
+            'ignored' => $builder->fromValue($definition['arguments']['ignore'] ?? []),
+            'aggregated' => $builder->fromValue($definition['arguments']['aggregate'] ?? ['core/paragraph'])
           ]));
           break;
 

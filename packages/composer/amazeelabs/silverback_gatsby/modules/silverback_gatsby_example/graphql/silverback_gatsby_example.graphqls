@@ -9,13 +9,13 @@ union WithPath = Page | Post
 type Page @entity(type: "node", bundle: "page") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
-  content: [Blocks!]! @resolveEditorBlocks(path: "body.value")
+  content: [Blocks!]! @resolveEditorBlocks(path: "body.value", aggregate: ["core/paragraph", "core/list"])
 }
 
 union Blocks = Text | Figure | Columns
 union ColumnBlocks = Text | Figure
 
-type Text @editorBlock(type: "custom/text") {
+type Text @editorBlock(type: "core/paragraph") {
   content: String @resolveEditorBlockAttribute(name: "markup")
 }
 
