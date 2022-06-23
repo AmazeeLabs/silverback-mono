@@ -100,6 +100,12 @@ directive @resolveEditorBlocks(
   "core/group" is ignored by default.
   """
   ignore: [String!]
+  """
+  List of block types that are treated like plain HTML without attributes, just
+  as "core/paragraph". Sequences of these blocks will be aggregated into a
+  single instance of "core/paragraph".
+  """
+  aggregate: [String!]
 ) on FIELD_DEFINITION
 
 """
