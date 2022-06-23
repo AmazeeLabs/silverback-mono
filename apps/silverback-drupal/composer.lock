@@ -284,11 +284,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "1.5.12",
+            "version": "1.5.13",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "d00113eada2a4ffed852aa439fe669e7977fe54c"
+                "reference": "f2461295063d10223fe2ffa451ab58761b4a75f1"
             },
             "require": {
                 "drupal/gutenberg": "^2.4"
@@ -1295,16 +1295,16 @@
         },
         {
             "name": "consolidation/annotated-command",
-            "version": "4.5.5",
+            "version": "4.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/consolidation/annotated-command.git",
-                "reference": "67cea8e8e7656b74da651ea6f49321853996c0fd"
+                "reference": "3968070538761628546270935f0733a0cc408e1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/consolidation/annotated-command/zipball/67cea8e8e7656b74da651ea6f49321853996c0fd",
-                "reference": "67cea8e8e7656b74da651ea6f49321853996c0fd",
+                "url": "https://api.github.com/repos/consolidation/annotated-command/zipball/3968070538761628546270935f0733a0cc408e1f",
+                "reference": "3968070538761628546270935f0733a0cc408e1f",
                 "shasum": ""
             },
             "require": {
@@ -1345,22 +1345,22 @@
             "description": "Initialize Symfony Console commands from annotated command class methods.",
             "support": {
                 "issues": "https://github.com/consolidation/annotated-command/issues",
-                "source": "https://github.com/consolidation/annotated-command/tree/4.5.5"
+                "source": "https://github.com/consolidation/annotated-command/tree/4.5.6"
             },
-            "time": "2022-04-26T16:18:25+00:00"
+            "time": "2022-06-22T20:17:12+00:00"
         },
         {
             "name": "consolidation/config",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/consolidation/config.git",
-                "reference": "0c15841b2bf60d9af1ce29884673e7d9d50c3b75"
+                "reference": "dae810c162f0e799ea3f35cc2f40b0797b6e4d26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/consolidation/config/zipball/0c15841b2bf60d9af1ce29884673e7d9d50c3b75",
-                "reference": "0c15841b2bf60d9af1ce29884673e7d9d50c3b75",
+                "url": "https://api.github.com/repos/consolidation/config/zipball/dae810c162f0e799ea3f35cc2f40b0797b6e4d26",
+                "reference": "dae810c162f0e799ea3f35cc2f40b0797b6e4d26",
                 "shasum": ""
             },
             "require": {
@@ -1405,9 +1405,9 @@
             "description": "Provide configuration services for a commandline tool.",
             "support": {
                 "issues": "https://github.com/consolidation/config/issues",
-                "source": "https://github.com/consolidation/config/tree/2.1.0"
+                "source": "https://github.com/consolidation/config/tree/2.1.1"
             },
-            "time": "2022-02-24T00:32:42+00:00"
+            "time": "2022-06-22T19:59:34+00:00"
         },
         {
             "name": "consolidation/filter-via-dot-access-data",
@@ -3117,11 +3117,11 @@
         },
         {
             "name": "drupal/cypress",
-            "version": "2.3.61",
+            "version": "2.3.62",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/cypress",
-                "reference": "7410dec648fc20d6d74367b1c3e9df8d3d3952c0"
+                "reference": "4f66cee61ca61619cb4e7aa232c3f2030e445fc6"
             },
             "require": {
                 "alchemy/zippy": "^1.0.0",
@@ -3358,11 +3358,11 @@
         },
         {
             "name": "drupal/gatsby_build_monitor",
-            "version": "1.4.35",
+            "version": "1.4.36",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/gatsby_build_monitor",
-                "reference": "eb4be4af17444c4259f68771f3f36d8c0c232ea8"
+                "reference": "6530fea1d3a473f5f85e1e6ea8ffa486d0284644"
             },
             "require": {
                 "justinrainbow/json-schema": "^5.2.12"
@@ -3600,11 +3600,11 @@
         },
         {
             "name": "drupal/test_session",
-            "version": "1.2.38",
+            "version": "1.2.39",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/test_session",
-                "reference": "ebcb9f0227c2cc31bc96e3b5eb723ec32a3f1236"
+                "reference": "1071a791fcf232b51acd3159dd997c1dccf24385"
             },
             "type": "drupal-module",
             "license": [
