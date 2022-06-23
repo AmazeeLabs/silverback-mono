@@ -58,12 +58,18 @@ class EditorBlocksTest extends EntityFeedTestBase {
     $media->save();
 
     $serializer = new BlockSerializer();
-    $blocks = [[
-      'blockName' => 'custom/text',
-      'innerContent' => ['<p>A test paragraph</p>', '<p>Another test paragraph</p>'],
+    $blocks = [
+      [
+      'blockName' => 'core/paragraph',
+      'innerContent' => ['<p>A test paragraph</p>'],
       'attrs' => [],
       'innerBlocks' => [],
-    ],
+    ], [
+        'blockName' => 'core/list',
+        'innerContent' => ['<p>Another test paragraph</p>'],
+        'attrs' => [],
+        'innerBlocks' => [],
+      ],
       [
         'blockName' => 'core/group',
         'attrs' => [],
@@ -83,13 +89,13 @@ class EditorBlocksTest extends EntityFeedTestBase {
             'attrs' => [],
             'innerBlocks' => [
               [
-                'blockName' => 'custom/text',
+                'blockName' => 'core/paragraph',
                 'innerContent' => ['<p>First column</p>'],
                 'attrs' => [],
                 'innerBlocks' => [],
               ],
               [
-                'blockName' => 'custom/text',
+                'blockName' => 'core/paragraph',
                 'innerContent' => ['<p>Second column</p>'],
                 'attrs' => [],
                 'innerBlocks' => [],
@@ -142,9 +148,6 @@ class EditorBlocksTest extends EntityFeedTestBase {
               [
                 '__typename' => 'Text',
               ],
-              [
-                '__typename' => 'Text',
-              ],
             ],
             '_original_typename' => 'Columns',
           ],
@@ -170,9 +173,6 @@ class EditorBlocksTest extends EntityFeedTestBase {
           [
             '__typename' => 'Columns',
             'columns' => [
-              [
-                '__typename' => 'Text',
-              ],
               [
                 '__typename' => 'Text',
               ],
