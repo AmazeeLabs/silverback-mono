@@ -31,11 +31,7 @@ exports[`gatsby/content/GutenbergPage.gql 1`] = `
             },
             {
               "__typename": "BlockHtmlParagraph",
-              "html": "\\r\\n<p>Grouped paragraph 1.</p>\\r\\n"
-            },
-            {
-              "__typename": "BlockHtmlParagraph",
-              "html": "\\r\\n<p>Grouped paragraph 2.</p>\\r\\n"
+              "html": "\\r\\n<p>Grouped paragraph 1.</p>\\r\\n\\r\\n<p>Grouped paragraph 2.</p>\\r\\n"
             },
             {
               "__typename": "BlockTwoColumns",
