@@ -113,7 +113,7 @@ class EditorBlocks extends DataProducerPluginBase {
 
     $field->setContextValue('ignored_editor_blocks', $ignored);
 
-    return EditorBlocksProcessor::aggregateParagraphs(EditorBlocksProcessor::processsIgnoredBlocks($result, $ignored), $aggregated);
+    return EditorBlocksProcessor::aggregateParagraphs(EditorBlocksProcessor::processsIgnoredBlocks($result, $ignored), $aggregated ?: ['core/paragraph']);
   }
 
 }
