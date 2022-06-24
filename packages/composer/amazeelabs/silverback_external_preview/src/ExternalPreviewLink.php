@@ -182,7 +182,7 @@ class ExternalPreviewLink {
     }
 
     return Url::fromUri(
-      $this->getPreviewBaseUrl() . '/' . $entity->bundle(),
+      $this->getPreviewBaseUrl() . '/__preview/' . $entity->bundle(),
       [
         'query' => [
           'id' => $entity->id(),
