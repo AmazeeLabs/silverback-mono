@@ -1,4 +1,14 @@
 extend type Query {
   drupalBuildId: Int!
   drupalFeedInfo: [Feed!]!
+  currentUser: User!
+}
+
+################################################################################
+# User
+################################################################################
+
+type User {
+  id: String
+  name: String
 }
