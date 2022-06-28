@@ -27,7 +27,7 @@ function silverback_external_preview_example_silverback_external_preview_url_alt
   if($routeMatch->getRouteName() === 'system.admin_content') {
     /* @var $externalPreviewUrl ExternalPreviewLink */
     $externalPreviewUrl = Drupal::service('silverback_external_preview.external_preview_link');
-    $url = $externalPreviewUrl->createPreviewlUrlFromPath('/');
+    $url = $externalPreviewUrl->createPreviewUrlFromPath('/');
   }
 
 }

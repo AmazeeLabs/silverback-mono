@@ -3,6 +3,7 @@
 namespace Drupal\silverback_external_preview;
 
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\RevisionableStorageInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
@@ -107,24 +108,105 @@ class ExternalPreviewLink {
   }
 
   /**
-   * Used to create a external preview Url object for a given path
+   * Used to create a external Url object for a given path.
    *
    * @param string $path
    * @param string $external_url_type
    *
    * @return \Drupal\Core\Url
    */
-  public function createPreviewlUrlFromPath(string $path, $external_url_type = 'preview') {
+  public function createPreviewUrlFromPath(string $path, $external_url_type = 'preview') {
     $base_url = $external_url_type === 'preview' ? $this->getPreviewBaseUrl() : $this->getLiveBaseUrl();
-    return Url::fromUri($base_url . $path, [
-      'language' => $this->languageManager->getCurrentLanguage(),
-      'external_url_type' => $external_url_type,
-    ]);
-
+    return Url::fromUri($base_url . $path, $this->getUrlOptions($external_url_type));
   }
 
   /**
-   * Returns a Url object with the concatenated base url and alias
+   * Used to create a external Url object for a given content entity.
+   *
+   * @param ContentEntityInterface $entity
+   * @param string $external_url_type
+   *
+   * @return \Drupal\Core\Url|null
+   */
+  public function createPreviewUrlFromEntity(ContentEntityInterface $entity, $external_url_type = 'preview') {
+    if ($this->isNodeRevisionRoute()) {
+      return $this->getLatestRevisionPreviewUrlFromEntity($entity);
+    }
+    else {
+      $base_url = $external_url_type === 'preview' ? $this->getPreviewBaseUrl() : $this->getLiveBaseUrl();
+      $path = $entity->toUrl('canonical')->toString(TRUE)->getGeneratedUrl();
+      return Url::fromUri($base_url . $path, $this->getUrlOptions($external_url_type, $entity));
+    }
+  }
+
+  public function isNodeRevisionRoute() {
+    $route_name = \Drupal::routeMatch()->getRouteName();
+    $node_revision_routes = [
+      'entity.node.revision',
+      'entity.node.latest_version',
+    ];
+    return in_array($route_name, $node_revision_routes);
+  }
+
+  private function getLatestRevisionPreviewUrlFromEntity(ContentEntityInterface $entity) {
+    $entity_type_id = $entity->getEntityTypeId();
+    $storage = $this->entityTypeManager->getStorage($entity_type_id);
+    if (!$storage instanceof RevisionableStorageInterface) {
+      return NULL;
+    }
+
+    // Revision preview Url needs a UI, so assume that
+    // content moderation is installed and moderation information service
+    // is available.
+    if (!\Drupal::hasService('content_moderation.moderation_information')) {
+      return NULL;
+    }
+
+    /** @var \Drupal\content_moderation\ModerationInformationInterface $contentModerationInformation */
+    $content_moderation_information = \Drupal::service('content_moderation.moderation_information');
+    if (!$content_moderation_information->isModeratedEntity($entity)) {
+      return NULL;
+    }
+
+    $route_match = \Drupal::routeMatch();
+    if ($route_match->getRouteName() === 'entity.node.revision') {
+      /** @var \Drupal\node\NodeInterface $node_revision */
+      $revision = $route_match->getParameter('node_revision');
+      $revision_id = $revision->getRevisionId();
+    }
+    elseif ($route_match->getRouteName() === 'entity.node.latest_version') {
+      $revision_id = $storage->getLatestRevisionId($entity->id());
+    }
+    else {
+      return NULL;
+    }
+
+    return Url::fromUri(
+      $this->getPreviewBaseUrl() . '/__preview/' . $entity->bundle(),
+      [
+        'query' => [
+          'id' => $entity->id(),
+          'revision' => $revision_id,
+        ]
+      ]
+    );
+  }
+
+  private function getUrlOptions($external_url_type = 'preview', ContentEntityInterface $entity = NULL) {
+    $result = [
+      'language' => $entity instanceof ContentEntityInterface ? $entity->language() : $this->languageManager->getCurrentLanguage(),
+      'external_url_type' => $external_url_type,
+    ];
+    if ($external_url_type === 'preview') {
+      $result['query'] = [
+        'preview' => 1,
+      ];
+    }
+    return $result;
+  }
+
+  /**
+   * Returns a Url object with the concatenated base url and alias.
    *
    * @param \Drupal\Core\Routing\RouteMatchInterface $route
    * @param string $envVarName
@@ -148,10 +230,9 @@ class ExternalPreviewLink {
           ->toString());
 
         $url = $base_url . $alias;
-        $url_object = Url::fromUri($url, [
-          'language' => $entity->language(),
-          'external_url_type' => $envVarName === self::PREVIEW_ENV_VARNAME ? 'preview' : 'live',
-        ]);
+        $external_url_type = self::PREVIEW_ENV_VARNAME ? 'preview' : 'live';
+        $options = $this->getUrlOptions($external_url_type, $entity);
+        $url_object = Url::fromUri($url, $options);
         $id = $entity->getEntityTypeId() . ':' . $entity->id() . ':'. $entity->get('langcode')->value;
         // Make this accessible via admin path
         $tempstore = $this->tempstore->get('silverback_external_preview');
