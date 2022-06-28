@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.23.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.23.0...@-amazeelabs/silverback_gatsby@1.23.1) (2022-06-28)
+
+
+### Bug Fixes
+
+* **gutenberg:** add default value for aggregated blocks ([fac17ba](https://github.com/AmazeeLabs/silverback-mono/commit/fac17ba7f7362fe89ea185b3b689928c86b2632a))
+
+
+
+
+
 # [1.23.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.22.0...@-amazeelabs/silverback_gatsby@1.23.0) (2022-06-23)
 
 

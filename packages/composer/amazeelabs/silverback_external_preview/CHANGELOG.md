@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_external_preview@1.1.12...@-amazeelabs/silverback_external_preview@1.2.0) (2022-06-28)
+
+
+### Bug Fixes
+
+* add __preview prefix ([79e6131](https://github.com/AmazeeLabs/silverback-mono/commit/79e6131aa67d52a416f50f4ef742ad1f88e412cb))
+
+
+### Features
+
+* preview url for revisions [#1062](https://github.com/AmazeeLabs/silverback-mono/issues/1062) ([9ba3f7f](https://github.com/AmazeeLabs/silverback-mono/commit/9ba3f7fbd04ef0459880e03b12398f3cb3281fb0))
+* show live/preview version on node page in Drupal [#1062](https://github.com/AmazeeLabs/silverback-mono/issues/1062) ([bc6cde9](https://github.com/AmazeeLabs/silverback-mono/commit/bc6cde936a6b15c82c00427601f312f77fceb6bc))
+
+
+
+
+
 ## [1.1.12](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_external_preview@1.1.11...@-amazeelabs/silverback_external_preview@1.1.12) (2022-06-16)
 
 
