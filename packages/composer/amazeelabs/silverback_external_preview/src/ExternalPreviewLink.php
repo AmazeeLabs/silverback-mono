@@ -117,7 +117,7 @@ class ExternalPreviewLink {
    */
   public function createPreviewUrlFromPath(string $path, $external_url_type = 'preview') {
     $base_url = $external_url_type === 'preview' ? $this->getPreviewBaseUrl() : $this->getLiveBaseUrl();
-    return Url::fromUri($base_url . $path, $this->getUrlOptions($external_url_type));
+    return Url::fromUserInput($base_url . $path, $this->getUrlOptions($external_url_type));
   }
 
   /**
@@ -135,7 +135,7 @@ class ExternalPreviewLink {
     else {
       $base_url = $external_url_type === 'preview' ? $this->getPreviewBaseUrl() : $this->getLiveBaseUrl();
       $path = $entity->toUrl('canonical')->toString(TRUE)->getGeneratedUrl();
-      return Url::fromUri($base_url . $path, $this->getUrlOptions($external_url_type, $entity));
+      return Url::fromUserInput($base_url . $path, $this->getUrlOptions($external_url_type, $entity));
     }
   }
 

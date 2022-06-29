@@ -19,7 +19,7 @@ class ComputedExternalPreviewLinkItemList extends FieldItemList {
     }
     /** @var \Drupal\silverback_external_preview\ExternalPreviewLink $externalPreviewLink */
     $externalPreviewLink = \Drupal::service('silverback_external_preview.external_preview_link');
-    $uri = $externalPreviewLink->createPreviewUrlFromEntity($entity)->toString();
+    $uri = $externalPreviewLink->createPreviewUrlFromEntity($entity)->toUriString();
     $items = [];
     $items[] = [
       'uri' => $uri,
