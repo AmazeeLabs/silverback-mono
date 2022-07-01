@@ -1,0 +1,35 @@
+{
+  "name": "@amazeelabs/estimator",
+  "version": "1.0.0",
+  "description": "Estimate projects based on GraphQL definitions.",
+  "main": "index.js",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@amazeelabs/eslint-config": "^1.4.28",
+    "@amazeelabs/jest-preset": "^1.3.31",
+    "@amazeelabs/prettier-config": "^1.1.1",
+    "@types/jest": "^27",
+    "eslint": "^8",
+    "jest": "^27",
+    "lodash": "^4.17.21",
+    "prettier": "^2",
+    "typescript": "4.6.4"
+  },
+  "scripts": {
+    "prepare": "exit 0",
+    "precommit": "lint-staged",
+    "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
+    "test:unit": "jest --passWithNoTests",
+    "test:integration": "exit 0",
+    "test:watch": "jest --watch",
+    "test": "yarn test:static && yarn test:unit && yarn test:integration"
+  },
+  "dependencies": {
+    "graphql": "^16.5.0",
+    "lodash": "^4.17.21"
+  },
+  "volta": {
+    "node": "16.15.1"
+  }
+}

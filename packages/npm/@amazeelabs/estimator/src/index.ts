@@ -1,0 +1,1 @@
+export { analyzeSchema } from './schema';
