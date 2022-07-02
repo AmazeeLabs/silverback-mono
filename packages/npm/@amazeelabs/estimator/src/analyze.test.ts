@@ -4,7 +4,9 @@ type Results = Partial<ReturnType<typeof analyzeSchemas>>;
 
 describe('analyzeSchemas', () => {
   function assertResult(document: string, results: Results) {
-    expect(analyzeSchemas(document)).toMatchObject(results);
+    expect(
+      analyzeSchemas(document, ['property', 'entity', 'entityType', 'blocks']),
+    ).toMatchObject(results);
   }
   describe('accepts', () => {
     it('a single document', () => {
@@ -153,6 +155,45 @@ describe('analyzeSchemas', () => {
       UNION_DEFINITION: 1,
     });
   });
+
+  describe('counts directives instead of', () => {
+    it('field definitions', () => {
+      assertResult(
+        'type Article { title: String! @property(path: "title.0.value" )}',
+        {
+          property: 1,
+          OBJECT_FIELD_DEFINITION: 0,
+        },
+      );
+    });
+
+    it('type definitions', () => {
+      assertResult(
+        'type Article @entity(type: "node", bundle: "article") { title: String! }',
+        {
+          entity: 1,
+          OBJECT_DEFINITION: 0,
+        },
+      );
+    });
+
+    it('interface definitions', () => {
+      assertResult(
+        'interface Page @entityType(type: "node") { title: String! }',
+        {
+          entityType: 1,
+          INTERFACE_DEFINITION: 0,
+        },
+      );
+    });
+
+    it('union definitions', () => {
+      assertResult('union Blocks @blocks = A | B', {
+        blocks: 1,
+        UNION_DEFINITION: 0,
+      });
+    });
+  });
 });
 
 describe('analyzeOperations', () => {
@@ -167,7 +208,7 @@ describe('analyzeOperations', () => {
     });
     it('multiple documents', () => {
       expect(() =>
-        analyzeSchemas('type Article { title: String! }'),
+        analyzeOperations('type Article { title: String! }'),
       ).not.toThrow();
     });
     it('invalid documents', () => {
