@@ -1,11 +1,14 @@
 import {
+  ConstDirectiveNode,
+  DirectiveNode,
+  FieldsOnCorrectTypeRule,
   Kind,
   OperationTypeNode,
   parse,
   SelectionSetNode,
   TypeNode,
 } from 'graphql';
-import { isArray } from 'lodash';
+import { extend, isArray, merge, mergeWith, reduce } from 'lodash';
 
 const schemaProperties = {
   /**
@@ -193,8 +196,15 @@ type OperationResults = typeof operationProperties &
 
 export function analyzeSchemas(
   documents: string | Array<string>,
+  directives: Array<string> = [],
 ): SchemaResults {
-  const result = { ...schemaProperties, ...typePenalties } as SchemaResults;
+  const result = {
+    ...schemaProperties,
+    ...typePenalties,
+    ...directives
+      .map((dir) => ({ [dir]: 0 }))
+      .reduce((acc, val) => ({ ...acc, ...val }), {}),
+  } as SchemaResults;
 
   // Count penalties for nullable and list return types.
   function countTypePenalties(
@@ -211,6 +221,24 @@ export function analyzeSchemas(
       result.LIST_TYPE++;
       countTypePenalties(type.type);
     }
+  }
+
+  /**
+   * Check for matching directive definitions, count them and return the status.
+   *
+   * @param directives Array of directive nodes on an AST element.
+   * @returns boolean True if a directive was counted.
+   */
+  function matchDirectives(directives?: ReadonlyArray<ConstDirectiveNode>) {
+    const matchingDirectives = directives
+      ?.map((dir) => dir.name.value)
+      .filter((dir) => Object.keys(result).includes(dir));
+
+    if (matchingDirectives?.length) {
+      matchingDirectives.forEach((dir) => result[dir]++);
+      return true;
+    }
+    return false;
   }
 
   (isArray(documents) ? documents : [documents]).forEach((doc) => {
@@ -232,11 +260,22 @@ export function analyzeSchemas(
           def.kind === Kind.OBJECT_TYPE_DEFINITION &&
           !['Query', 'Mutation', 'Subscription'].includes(def.name.value)
         ) {
+          // Check if the type contains a known directive
+          // and simply increment that one instead.
+          if (matchDirectives(def.directives)) {
+            return;
+          }
           result.OBJECT_DEFINITION++;
         }
 
         // Collect field defnitions on types.
         def.fields?.forEach((field) => {
+          // Check if the field contains a known directive
+          // and simply increment that one instead.
+          if (matchDirectives(field.directives)) {
+            return;
+          }
+
           switch (def.name.value) {
             case 'Query':
               result.QUERY_FIELD_DEFINITION++;
@@ -262,12 +301,18 @@ export function analyzeSchemas(
       }
 
       // Count interface definitions.
-      if (def.kind === Kind.INTERFACE_TYPE_DEFINITION) {
+      if (
+        def.kind === Kind.INTERFACE_TYPE_DEFINITION &&
+        !matchDirectives(def.directives)
+      ) {
         result.INTERFACE_DEFINITION++;
       }
 
       // Count union type definitions.
-      if (def.kind === Kind.UNION_TYPE_DEFINITION) {
+      if (
+        def.kind === Kind.UNION_TYPE_DEFINITION &&
+        !matchDirectives(def.directives)
+      ) {
         result.UNION_DEFINITION++;
       }
 
