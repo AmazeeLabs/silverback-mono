@@ -1,126 +1,171 @@
 import { analyzeDocuments } from './analyze';
 
+type Results = Partial<ReturnType<typeof analyzeDocuments>>;
+
 describe('analyzeDocuments', () => {
-  function assertResult(
-    document: string,
-    results: Partial<ReturnType<typeof analyzeDocuments>>,
-  ) {
+  function assertResult(document: string, results: Results) {
     expect(analyzeDocuments(document)).toMatchObject(results);
   }
-
-  it('ignores invalid or empty documents', () => {
-    expect(() => analyzeDocuments(['invalid', ''])).not.toThrow();
-  });
-
-  it('accepts a single document', () => {
-    expect(() =>
-      analyzeDocuments('type Article { title: String! }'),
-    ).not.toThrow();
-  });
-
-  it('counts the number of type definions', () => {
-    assertResult('type Article { title: String! }', {
-      OBJECT_DEFINITION: 1,
+  describe('accepts', () => {
+    it('a single document', () => {
+      expect(() =>
+        analyzeDocuments('type Article { title: String! }'),
+      ).not.toThrow();
+    });
+    it('multiple documents', () => {
+      expect(() =>
+        analyzeDocuments('type Article { title: String! }'),
+      ).not.toThrow();
+    });
+    it('invalid documents', () => {
+      expect(() => analyzeDocuments(['invalid', ''])).not.toThrow();
     });
   });
 
-  it('ignores the Query type when counting type definitions', () => {
-    assertResult('type Query { status: String }', {
-      OBJECT_DEFINITION: 0,
+  describe('counts type definitions', () => {
+    it('of objects', () => {
+      assertResult('type Article { title: String! }', {
+        OBJECT_DEFINITION: 1,
+      });
+    });
+
+    it('of inputs', () => {
+      assertResult('input Credentials { user: String!, pass: String! }', {
+        INPUT_DEFINITION: 1,
+      });
+    });
+
+    it.each(['Query', 'Mutation', 'Subscription'])(
+      'but ignores the root %s type',
+      (type) => {
+        assertResult(`type ${type} { status: String }`, {
+          OBJECT_DEFINITION: 0,
+        });
+      },
+    );
+  });
+
+  describe('counts field definitions', () => {
+    const dataSet = [
+      ['Query', { QUERY_FIELD_DEFINITION: 1 }],
+      ['Mutation', { MUTATION_FIELD_DEFINITION: 1 }],
+      ['Subscription', { SUBSCRIPTION_FIELD_DEFINITION: 1 }],
+    ] as Array<[string, Results]>;
+
+    test.each(dataSet)('on the root %s type', (type, result) => {
+      assertResult(`type ${type} { status: String }`, result);
+    });
+
+    test.each(dataSet)('on root %s type extensions', (type, result) => {
+      assertResult(`extend type ${type} { status: String }`, result);
+    });
+
+    test('on object types', () => {
+      assertResult('type Article { status: String }', {
+        OBJECT_FIELD_DEFINITION: 1,
+      });
+    });
+
+    test('on object type extensions', () => {
+      assertResult('extend type Article { status: String }', {
+        OBJECT_FIELD_DEFINITION: 1,
+      });
+    });
+
+    it('on input types', () => {
+      assertResult('input Credentials { user: String!, pass: String! }', {
+        INPUT_FIELD_DEFINITION: 2,
+      });
+    });
+
+    it('on input type extensions', () => {
+      assertResult(
+        'extend input Credentials { user: String!, pass: String! }',
+        {
+          INPUT_FIELD_DEFINITION: 2,
+        },
+      );
     });
   });
 
-  it('ignores the Mutation type when counting type definitions', () => {
-    assertResult('type Mutation { status: String }', { OBJECT_DEFINITION: 0 });
-  });
-
-  it('ignores the Subscription type when counting type definitions', () => {
-    assertResult('type Subscription { status: String }', {
-      OBJECT_DEFINITION: 0,
+  describe('counts arguments', () => {
+    it('of operations', () => {
+      assertResult(
+        'mutation login($user: String!, $pass: String!) { login(user: $user, pass: $pass ) }',
+        {
+          VARIABLE_DECLARATION: 2,
+        },
+      );
     });
-  });
 
-  it('counts a Query field definition', () => {
-    assertResult('type Query { status: String }', {
-      QUERY_FIELD_DEFINITION: 1,
-    });
-  });
-
-  it('counts fields on a  Query extension', () => {
-    assertResult('extend type Query { status: String }', {
-      QUERY_FIELD_DEFINITION: 1,
+    it('of fields', () => {
+      assertResult('type Query { loadArticle(id: String!) : Article }', {
+        FIELD_ARGUMENT_DEFINITION: 1,
+      });
     });
   });
 
-  it('counts a Mutation field definition', () => {
-    assertResult('type Mutation { status: String }', {
-      MUTATION_FIELD_DEFINITION: 1,
+  describe('counts list types', () => {
+    it('on field arguments', () => {
+      assertResult('type Query { loadArticle(id: [String]) : Article }', {
+        LIST_TYPE: 1,
+      });
+    });
+
+    it('in field return types', () => {
+      assertResult('type Query { listArticles: [Article!]! }', {
+        LIST_TYPE: 1,
+      });
+      assertResult('type Query { listArticles: [[Article!]!]! }', {
+        LIST_TYPE: 2,
+      });
+    });
+
+    it('in input fields', () => {
+      assertResult('input Credentials { user: [String!]!, pass: String! }', {
+        LIST_TYPE: 1,
+      });
+    });
+
+    it('in operation variables', () => {
+      assertResult(
+        'mutation login($user: [String!]!, $pass: String!) { login(user: $user, pass: $pass ) }',
+        {
+          LIST_TYPE: 1,
+        },
+      );
     });
   });
 
-  it('counts fields on a Mutation extension', () => {
-    assertResult('extend type Mutation { status: String }', {
-      MUTATION_FIELD_DEFINITION: 1,
+  describe('counts nullable types', () => {
+    it('on field arguments', () => {
+      assertResult('type Query { loadArticle(id: String) : Article! }', {
+        NULLABLE_TYPE: 1,
+      });
     });
-  });
 
-  it('counts a Subscription field definition', () => {
-    assertResult('type Subscription { status: String }', {
-      SUBSCRIPTION_FIELD_DEFINITION: 1,
+    it('in field return types', () => {
+      assertResult('type Query { loadArticle: Article }', {
+        NULLABLE_TYPE: 1,
+      });
+      assertResult('type Query { listArticles: [[Article]] }', {
+        NULLABLE_TYPE: 3,
+      });
     });
-  });
 
-  it('counts fields on a Subscription extension', () => {
-    assertResult('extend type Subscription { status: String }', {
-      SUBSCRIPTION_FIELD_DEFINITION: 1,
+    it('in input fields', () => {
+      assertResult('input Credentials { user: String, pass: String! }', {
+        NULLABLE_TYPE: 1,
+      });
     });
-  });
 
-  it('counts a Object field definition', () => {
-    assertResult('type Article { status: String }', {
-      OBJECT_FIELD_DEFINITION: 1,
-    });
-  });
-
-  it('counts fields on an Object extension', () => {
-    assertResult('extend type Article { status: String }', {
-      OBJECT_FIELD_DEFINITION: 1,
-    });
-  });
-
-  it('counts the arguments passed into fields', () => {
-    assertResult('type Query { loadArticle(id: String!) : Article }', {
-      FIELD_ARGUMENT_DEFINITION: 1,
-    });
-  });
-
-  it('counts nullable arguments passed into fields', () => {
-    assertResult('type Query { loadArticle(id: String) : Article }', {
-      NULLABLE_TYPE: 2,
-    });
-  });
-
-  it('counts list arguments passed into fields', () => {
-    assertResult('type Query { loadArticle(id: [String]) : Article }', {
-      LIST_TYPE: 1,
-    });
-  });
-
-  it('counts list return types', () => {
-    assertResult('type Query { listArticles: [Article!]! }', {
-      LIST_TYPE: 1,
-    });
-    assertResult('type Query { listArticles: [[Article!]!]! }', {
-      LIST_TYPE: 2,
-    });
-  });
-
-  it('counts nullable return types', () => {
-    assertResult('type Query { loadArticle: Article }', {
-      NULLABLE_TYPE: 1,
-    });
-    assertResult('type Query { listArticles: [[Article]] }', {
-      NULLABLE_TYPE: 3,
+    it('in operation variables', () => {
+      assertResult(
+        'mutation login($user: String, $pass: String!) { login(user: $user, pass: $pass ) }',
+        {
+          NULLABLE_TYPE: 1,
+        },
+      );
     });
   });
 
@@ -136,79 +181,24 @@ describe('analyzeDocuments', () => {
     });
   });
 
-  it('counts input type definitions', () => {
-    assertResult('input Credentials { user: String!, pass: String! }', {
-      INPUT_DEFINITION: 1,
+  describe('counts operations', () => {
+    it('of query type', () => {
+      assertResult('query Foo { bar }', {
+        QUERY_OPERATION: 1,
+      });
     });
-  });
 
-  it('counts input type field definitions', () => {
-    assertResult('input Credentials { user: String!, pass: String! }', {
-      INPUT_FIELD_DEFINITION: 2,
+    it('of mutation type', () => {
+      assertResult('mutation Foo { bar }', {
+        MUTATION_OPERATION: 1,
+      });
     });
-  });
 
-  it('counts extenstion input type field definitions', () => {
-    assertResult('extend input Credentials { user: String!, pass: String! }', {
-      INPUT_FIELD_DEFINITION: 2,
+    it('of subscription type', () => {
+      assertResult('subscription Foo { bar }', {
+        SUBSCRIPTION_OPERATION: 1,
+      });
     });
-  });
-
-  it('counts list input type fields', () => {
-    assertResult('input Credentials { user: [String!]!, pass: String! }', {
-      LIST_TYPE: 1,
-    });
-  });
-
-  it('counts nullable input type fields', () => {
-    assertResult('input Credentials { user: String, pass: String! }', {
-      NULLABLE_TYPE: 1,
-    });
-  });
-
-  it('counts query operations', () => {
-    assertResult('query Foo { bar }', {
-      QUERY_OPERATION: 1,
-    });
-  });
-
-  it('counts mutation operations', () => {
-    assertResult('mutation Foo { bar }', {
-      MUTATION_OPERATION: 1,
-    });
-  });
-
-  it('counts subscription operations', () => {
-    assertResult('subscription Foo { bar }', {
-      SUBSCRIPTION_OPERATION: 1,
-    });
-  });
-
-  it('counts operation variables', () => {
-    assertResult(
-      'mutation login($user: String!, $pass: String!) { login(user: $user, pass: $pass ) }',
-      {
-        VARIABLE_DECLARATION: 2,
-      },
-    );
-  });
-
-  it('counts list operation variables', () => {
-    assertResult(
-      'mutation login($user: [String!]!, $pass: String!) { login(user: $user, pass: $pass ) }',
-      {
-        LIST_TYPE: 1,
-      },
-    );
-  });
-
-  it('counts nullable operation variables', () => {
-    assertResult(
-      'mutation login($user: String, $pass: String!) { login(user: $user, pass: $pass ) }',
-      {
-        NULLABLE_TYPE: 1,
-      },
-    );
   });
 
   it('counts fragment declarations', () => {
@@ -217,60 +207,69 @@ describe('analyzeDocuments', () => {
     });
   });
 
-  it('counts subselections on operations', () => {
-    assertResult('query Foo { bar { baz } }', {
-      SUBSELECTION_DECLARATION: 1,
+  describe('subselections', () => {
+    it('on operations', () => {
+      assertResult('query Foo { bar { baz } }', {
+        SUBSELECTION_DECLARATION: 1,
+      });
+    });
+
+    it('on fragments', () => {
+      assertResult('fragment Article on Article { bar { baz } }', {
+        SUBSELECTION_DECLARATION: 1,
+      });
+    });
+
+    it('withing subselections', () => {
+      assertResult('fragment Article on Article { bar { baz { foo } } }', {
+        SUBSELECTION_DECLARATION: 2,
+      });
     });
   });
 
-  it('counts subselections on fragments', () => {
-    assertResult('fragment Article on Article { bar { baz } }', {
-      SUBSELECTION_DECLARATION: 1,
+  describe('counts inline fragments', () => {
+    it('on operations', () => {
+      assertResult('query Foo { bar { ... on Foo { baz } } }', {
+        INLINE_FRAGMENT_DECLARATION: 1,
+      });
+    });
+
+    it('on fragments', () => {
+      assertResult(
+        'fragment Article on Article { bar { ... on Foo { baz } } }',
+        {
+          INLINE_FRAGMENT_DECLARATION: 1,
+        },
+      );
+    });
+
+    it('within inline fragments', () => {
+      assertResult(
+        'fragment Article on Article { bar { ... on Foo { baz { ... on Bar { foo } } } } }',
+        {
+          INLINE_FRAGMENT_DECLARATION: 2,
+        },
+      );
     });
   });
 
-  it('counts nested subselections', () => {
-    assertResult('fragment Article on Article { bar { baz { foo } } }', {
-      SUBSELECTION_DECLARATION: 2,
+  describe('counts field invocations', () => {
+    it('on operations', () => {
+      assertResult('query Foo { bar }', {
+        FIELD_INVOCATION: 1,
+      });
     });
-  });
 
-  it('counts inline fragments on operations', () => {
-    assertResult('query Foo { bar { ... on Foo { baz } } }', {
-      INLINE_FRAGMENT_DECLARATION: 1,
+    it('on fragments', () => {
+      assertResult('fragment Article on Article { bar }', {
+        FIELD_INVOCATION: 1,
+      });
     });
-  });
 
-  it('counts inline fragments on fragments', () => {
-    assertResult('fragment Article on Article { bar { ... on Foo { baz } } }', {
-      INLINE_FRAGMENT_DECLARATION: 1,
-    });
-  });
-
-  it('counts nested inline fragments', () => {
-    assertResult(
-      'fragment Article on Article { bar { ... on Foo { baz { ... on Bar { foo } } } } }',
-      {
-        INLINE_FRAGMENT_DECLARATION: 2,
-      },
-    );
-  });
-
-  it('counts field invocations on operations', () => {
-    assertResult('query Foo { bar }', {
-      FIELD_INVOCATION: 1,
-    });
-  });
-
-  it('counts field invocations on fragments', () => {
-    assertResult('fragment Article on Article { bar }', {
-      FIELD_INVOCATION: 1,
-    });
-  });
-
-  it('counts field invocations subselections', () => {
-    assertResult('query Foo { bar { baz } }', {
-      FIELD_INVOCATION: 2,
+    it('in subselections', () => {
+      assertResult('query Foo { bar { baz } }', {
+        FIELD_INVOCATION: 2,
+      });
     });
   });
 });
