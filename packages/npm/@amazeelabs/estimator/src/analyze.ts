@@ -1,6 +1,5 @@
 import {
   Kind,
-  ObjectTypeDefinitionNode,
   OperationTypeNode,
   parse,
   SelectionSetNode,
@@ -8,7 +7,7 @@ import {
 } from 'graphql';
 import { isArray } from 'lodash';
 
-const initialResults = {
+const schemaProperties = {
   /**
    * Definition of a query (root-level) field.
    *
@@ -83,7 +82,9 @@ const initialResults = {
    * - more complex data massaging, passing to resolvers
    */
   INPUT_FIELD_DEFINITION: 0,
+};
 
+const operationProperties = {
   /**
    * A query operation that gets executed by the frontend.
    *
@@ -155,7 +156,9 @@ const initialResults = {
    * - accept data and display it in the UI component
    */
   FIELD_INVOCATION: 0,
+};
 
+const typePenalties = {
   /**
    * Penalty for lists in return types, arguments or variables.
    *
@@ -173,19 +176,25 @@ const initialResults = {
 };
 
 /**
- * Usage of relevant directives within the documents.
+ * Usage of relevant directives within schema documents.
  *
  * If a directive is found on an element, it will be counted **instead** of the defintion
  * of the element itself.
  */
-type Results = typeof initialResults & Record<string, number>;
+type DirectiveResults = Record<string, number>;
 
-function isRootType(def: ObjectTypeDefinitionNode) {
-  return ['Query', 'Mutation', 'Subscription'].includes(def.name.value);
-}
+type SchemaResults = typeof schemaProperties &
+  typeof typePenalties &
+  DirectiveResults;
 
-export function analyzeDocuments(documents: string | Array<string>): Results {
-  const result = { ...initialResults } as Results;
+type OperationResults = typeof operationProperties &
+  typeof typePenalties &
+  DirectiveResults;
+
+export function analyzeSchemas(
+  documents: string | Array<string>,
+): SchemaResults {
+  const result = { ...schemaProperties, ...typePenalties } as SchemaResults;
 
   // Count penalties for nullable and list return types.
   function countTypePenalties(
@@ -204,27 +213,6 @@ export function analyzeDocuments(documents: string | Array<string>): Results {
     }
   }
 
-  // Recursively count selections.
-  function countSelections(
-    selectionSet?: SelectionSetNode,
-    sub: boolean = false,
-  ) {
-    if (sub && selectionSet) {
-      result.SUBSELECTION_DECLARATION++;
-    }
-
-    selectionSet?.selections.forEach((sel) => {
-      if (sel.kind === Kind.FIELD) {
-        result.FIELD_INVOCATION++;
-        countSelections(sel.selectionSet, true);
-      }
-      if (sel.kind === Kind.INLINE_FRAGMENT) {
-        result.INLINE_FRAGMENT_DECLARATION++;
-        countSelections(sel.selectionSet);
-      }
-    });
-  }
-
   (isArray(documents) ? documents : [documents]).forEach((doc) => {
     let ast;
     try {
@@ -240,7 +228,10 @@ export function analyzeDocuments(documents: string | Array<string>): Results {
         def.kind === Kind.OBJECT_TYPE_EXTENSION
       ) {
         // Count object type definitions, except root level types.
-        if (def.kind === Kind.OBJECT_TYPE_DEFINITION && !isRootType(def)) {
+        if (
+          def.kind === Kind.OBJECT_TYPE_DEFINITION &&
+          !['Query', 'Mutation', 'Subscription'].includes(def.name.value)
+        ) {
           result.OBJECT_DEFINITION++;
         }
 
@@ -293,7 +284,68 @@ export function analyzeDocuments(documents: string | Array<string>): Results {
           countTypePenalties(field.type);
         });
       }
+    });
+  });
 
+  return result;
+}
+
+export function analyzeOperations(
+  documents: string | Array<string>,
+): OperationResults {
+  const result = {
+    ...operationProperties,
+    ...typePenalties,
+  } as OperationResults;
+
+  // Count penalties for nullable and list return types.
+  function countTypePenalties(
+    type: TypeNode,
+    nonNullAble: Boolean = false,
+  ): void {
+    if (type.kind !== Kind.NON_NULL_TYPE && !nonNullAble) {
+      result.NULLABLE_TYPE++;
+    }
+    if (type.kind === Kind.NON_NULL_TYPE) {
+      countTypePenalties(type.type, true);
+    }
+    if (type.kind === Kind.LIST_TYPE) {
+      result.LIST_TYPE++;
+      countTypePenalties(type.type);
+    }
+  }
+
+  // Recursively count selections.
+  function countSelections(
+    selectionSet?: SelectionSetNode,
+    sub: boolean = false,
+  ) {
+    if (sub && selectionSet) {
+      result.SUBSELECTION_DECLARATION++;
+    }
+
+    selectionSet?.selections.forEach((sel) => {
+      if (sel.kind === Kind.FIELD) {
+        result.FIELD_INVOCATION++;
+        countSelections(sel.selectionSet, true);
+      }
+      if (sel.kind === Kind.INLINE_FRAGMENT) {
+        result.INLINE_FRAGMENT_DECLARATION++;
+        countSelections(sel.selectionSet);
+      }
+    });
+  }
+
+  (isArray(documents) ? documents : [documents]).forEach((doc) => {
+    let ast;
+    try {
+      ast = parse(doc);
+    } catch (exc) {
+      console.error(exc);
+      return result;
+    }
+
+    ast.definitions.forEach((def) => {
       // Count operations.
       if (def.kind === Kind.OPERATION_DEFINITION) {
         switch (def.operation) {

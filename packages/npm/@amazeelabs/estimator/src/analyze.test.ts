@@ -1,24 +1,24 @@
-import { analyzeDocuments } from './analyze';
+import { analyzeOperations, analyzeSchemas } from './analyze';
 
-type Results = Partial<ReturnType<typeof analyzeDocuments>>;
+type Results = Partial<ReturnType<typeof analyzeSchemas>>;
 
-describe('analyzeDocuments', () => {
+describe('analyzeSchemas', () => {
   function assertResult(document: string, results: Results) {
-    expect(analyzeDocuments(document)).toMatchObject(results);
+    expect(analyzeSchemas(document)).toMatchObject(results);
   }
   describe('accepts', () => {
     it('a single document', () => {
       expect(() =>
-        analyzeDocuments('type Article { title: String! }'),
+        analyzeSchemas('type Article { title: String! }'),
       ).not.toThrow();
     });
     it('multiple documents', () => {
       expect(() =>
-        analyzeDocuments('type Article { title: String! }'),
+        analyzeSchemas('type Article { title: String! }'),
       ).not.toThrow();
     });
     it('invalid documents', () => {
-      expect(() => analyzeDocuments(['invalid', ''])).not.toThrow();
+      expect(() => analyzeSchemas(['invalid', ''])).not.toThrow();
     });
   });
 
@@ -89,15 +89,6 @@ describe('analyzeDocuments', () => {
   });
 
   describe('counts arguments', () => {
-    it('of operations', () => {
-      assertResult(
-        'mutation login($user: String!, $pass: String!) { login(user: $user, pass: $pass ) }',
-        {
-          VARIABLE_DECLARATION: 2,
-        },
-      );
-    });
-
     it('of fields', () => {
       assertResult('type Query { loadArticle(id: String!) : Article }', {
         FIELD_ARGUMENT_DEFINITION: 1,
@@ -126,15 +117,6 @@ describe('analyzeDocuments', () => {
         LIST_TYPE: 1,
       });
     });
-
-    it('in operation variables', () => {
-      assertResult(
-        'mutation login($user: [String!]!, $pass: String!) { login(user: $user, pass: $pass ) }',
-        {
-          LIST_TYPE: 1,
-        },
-      );
-    });
   });
 
   describe('counts nullable types', () => {
@@ -158,15 +140,6 @@ describe('analyzeDocuments', () => {
         NULLABLE_TYPE: 1,
       });
     });
-
-    it('in operation variables', () => {
-      assertResult(
-        'mutation login($user: String, $pass: String!) { login(user: $user, pass: $pass ) }',
-        {
-          NULLABLE_TYPE: 1,
-        },
-      );
-    });
   });
 
   it('counts interface definitions', () => {
@@ -178,6 +151,27 @@ describe('analyzeDocuments', () => {
   it('counts union type definitions', () => {
     assertResult('union Block = A | B', {
       UNION_DEFINITION: 1,
+    });
+  });
+});
+
+describe('analyzeOperations', () => {
+  function assertResult(document: string, results: Results) {
+    expect(analyzeOperations(document)).toMatchObject(results);
+  }
+  describe('accepts', () => {
+    it('a single document', () => {
+      expect(() =>
+        analyzeOperations('type Article { title: String! }'),
+      ).not.toThrow();
+    });
+    it('multiple documents', () => {
+      expect(() =>
+        analyzeSchemas('type Article { title: String! }'),
+      ).not.toThrow();
+    });
+    it('invalid documents', () => {
+      expect(() => analyzeOperations(['invalid', ''])).not.toThrow();
     });
   });
 
@@ -198,6 +192,17 @@ describe('analyzeDocuments', () => {
       assertResult('subscription Foo { bar }', {
         SUBSCRIPTION_OPERATION: 1,
       });
+    });
+  });
+
+  describe('counts arguments', () => {
+    it('of operations', () => {
+      assertResult(
+        'mutation login($user: String!, $pass: String!) { login(user: $user, pass: $pass ) }',
+        {
+          VARIABLE_DECLARATION: 2,
+        },
+      );
     });
   });
 
