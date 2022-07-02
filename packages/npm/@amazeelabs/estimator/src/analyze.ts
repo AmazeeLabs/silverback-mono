@@ -1,14 +1,12 @@
 import {
   ConstDirectiveNode,
-  DirectiveNode,
-  FieldsOnCorrectTypeRule,
   Kind,
   OperationTypeNode,
   parse,
   SelectionSetNode,
   TypeNode,
 } from 'graphql';
-import { extend, isArray, merge, mergeWith, reduce } from 'lodash';
+import { isArray } from 'lodash';
 
 const schemaProperties = {
   /**
