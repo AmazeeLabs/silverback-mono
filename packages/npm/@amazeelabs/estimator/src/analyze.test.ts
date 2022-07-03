@@ -8,20 +8,23 @@ describe('analyzeSchemas', () => {
       analyzeSchemas(document, ['property', 'entity', 'entityType', 'blocks']),
     ).toMatchObject(results);
   }
+
   describe('accepts', () => {
     it('a single document', () => {
       expect(() =>
         analyzeSchemas('type Article { title: String! }'),
       ).not.toThrow();
     });
+
     it('multiple documents', () => {
       expect(() =>
         analyzeSchemas('type Article { title: String! }'),
       ).not.toThrow();
     });
-    it('invalid documents', () => {
-      expect(() => analyzeSchemas(['invalid', ''])).not.toThrow();
-    });
+  });
+
+  it('errors on invalid documents', () => {
+    expect(() => analyzeSchemas('invalid')).toThrow();
   });
 
   describe('counts type definitions', () => {
@@ -211,9 +214,10 @@ describe('analyzeOperations', () => {
         analyzeOperations('type Article { title: String! }'),
       ).not.toThrow();
     });
-    it('invalid documents', () => {
-      expect(() => analyzeOperations(['invalid', ''])).not.toThrow();
-    });
+  });
+
+  it('errors on invalid couments', () => {
+    expect(() => analyzeOperations('invalid')).toThrow();
   });
 
   describe('counts operations', () => {
