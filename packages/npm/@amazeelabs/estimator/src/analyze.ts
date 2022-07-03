@@ -240,13 +240,7 @@ export function analyzeSchemas(
   }
 
   (isArray(documents) ? documents : [documents]).forEach((doc) => {
-    let ast;
-    try {
-      ast = parse(doc);
-    } catch (exc) {
-      console.error(exc);
-      return result;
-    }
+    const ast = parse(doc);
 
     ast.definitions.forEach((def) => {
       if (
@@ -380,13 +374,7 @@ export function analyzeOperations(
   }
 
   (isArray(documents) ? documents : [documents]).forEach((doc) => {
-    let ast;
-    try {
-      ast = parse(doc);
-    } catch (exc) {
-      console.error(exc);
-      return result;
-    }
+    const ast = parse(doc);
 
     ast.definitions.forEach((def) => {
       // Count operations.
