@@ -254,32 +254,29 @@ export function analyzeSchemas(
         ) {
           // Check if the type contains a known directive
           // and simply increment that one instead.
-          if (matchDirectives(def.directives)) {
-            return;
+          if (!matchDirectives(def.directives)) {
+            result.OBJECT_DEFINITION++;
           }
-          result.OBJECT_DEFINITION++;
         }
 
         // Collect field defnitions on types.
         def.fields?.forEach((field) => {
           // Check if the field contains a known directive
           // and simply increment that one instead.
-          if (matchDirectives(field.directives)) {
-            return;
-          }
-
-          switch (def.name.value) {
-            case 'Query':
-              result.QUERY_FIELD_DEFINITION++;
-              break;
-            case 'Mutation':
-              result.MUTATION_FIELD_DEFINITION++;
-              break;
-            case 'Subscription':
-              result.SUBSCRIPTION_FIELD_DEFINITION++;
-              break;
-            default:
-              result.OBJECT_FIELD_DEFINITION++;
+          if (!matchDirectives(field.directives)) {
+            switch (def.name.value) {
+              case 'Query':
+                result.QUERY_FIELD_DEFINITION++;
+                break;
+              case 'Mutation':
+                result.MUTATION_FIELD_DEFINITION++;
+                break;
+              case 'Subscription':
+                result.SUBSCRIPTION_FIELD_DEFINITION++;
+                break;
+              default:
+                result.OBJECT_FIELD_DEFINITION++;
+            }
           }
 
           // Count argument definitions.
