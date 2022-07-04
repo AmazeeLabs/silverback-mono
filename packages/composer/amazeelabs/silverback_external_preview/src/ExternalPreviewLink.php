@@ -87,24 +87,33 @@ class ExternalPreviewLink {
   }
 
   /*
-   * Returns the preview base url env variables
-   * @return array|false|string|null
+   * Returns the preview base url from the env variable.
+   *
+   * @return string
+   * @throws \Exception
    */
   public function getPreviewBaseUrl() {
-    return getenv(self::PREVIEW_ENV_VARNAME)
-      ? rtrim(getenv(self::PREVIEW_ENV_VARNAME), '/')
-      : NULL;
+    if (getenv(self::PREVIEW_ENV_VARNAME)) {
+      return rtrim(getenv(self::PREVIEW_ENV_VARNAME), '/');
+    }
+    else {
+      throw new \Exception(self::PREVIEW_ENV_VARNAME  . ' environment variable is not set.');
+    }
   }
 
-  /**
-   * Return the live base url env variable
+  /*
+   * Returns the live base url from the env variable.
    *
-   * @return array|false|string|null
+   * @return string
+   * @throws \Exception
    */
   public function getLiveBaseUrl() {
-    return getenv(self::LIVE_ENV_VARNAME)
-      ? rtrim(getenv(self::LIVE_ENV_VARNAME), '/')
-      : NULL;
+    if (getenv(self::LIVE_ENV_VARNAME)) {
+      return rtrim(getenv(self::LIVE_ENV_VARNAME), '/');
+    }
+    else {
+      throw new \Exception(self::LIVE_ENV_VARNAME  . ' environment variable is not set.');
+    }
   }
 
   /**
@@ -130,7 +139,7 @@ class ExternalPreviewLink {
    */
   public function createPreviewUrlFromEntity(ContentEntityInterface $entity, $external_url_type = 'preview') {
     if ($this->isNodeRevisionRoute()) {
-      return $this->getLatestRevisionPreviewUrlFromEntity($entity);
+      return $this->getRevisionPreviewUrl($entity);
     }
     else {
       $base_url = $external_url_type === 'preview' ? $this->getPreviewBaseUrl() : $this->getLiveBaseUrl();
@@ -148,24 +157,11 @@ class ExternalPreviewLink {
     return in_array($route_name, $node_revision_routes);
   }
 
-  private function getLatestRevisionPreviewUrlFromEntity(ContentEntityInterface $entity) {
+  private function getRevisionPreviewUrl(ContentEntityInterface $entity) {
     $entity_type_id = $entity->getEntityTypeId();
     $storage = $this->entityTypeManager->getStorage($entity_type_id);
     if (!$storage instanceof RevisionableStorageInterface) {
-      return NULL;
-    }
-
-    // Revision preview Url needs a UI, so assume that
-    // content moderation is installed and moderation information service
-    // is available.
-    if (!\Drupal::hasService('content_moderation.moderation_information')) {
-      return NULL;
-    }
-
-    /** @var \Drupal\content_moderation\ModerationInformationInterface $contentModerationInformation */
-    $content_moderation_information = \Drupal::service('content_moderation.moderation_information');
-    if (!$content_moderation_information->isModeratedEntity($entity)) {
-      return NULL;
+      throw new \Exception('Entity type ' . $entity->getEntityTypeId() . ' is not revisionable.');
     }
 
     $route_match = \Drupal::routeMatch();
@@ -178,7 +174,7 @@ class ExternalPreviewLink {
       $revision_id = $storage->getLatestRevisionId($entity->id());
     }
     else {
-      return NULL;
+      throw new \Exception('Only node routes are currently supported for revision preview url.');
     }
 
     return Url::fromUri(

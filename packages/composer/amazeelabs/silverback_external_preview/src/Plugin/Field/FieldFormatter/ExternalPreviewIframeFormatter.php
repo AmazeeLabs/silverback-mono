@@ -5,6 +5,7 @@ namespace Drupal\silverback_external_preview\Plugin\Field\FieldFormatter;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\link\Plugin\Field\FieldFormatter\LinkFormatter;
+use GuzzleHttp\Exception\ConnectException;
 
 /**
  * External preview Iframe formatter.
@@ -26,7 +27,6 @@ class ExternalPreviewIframeFormatter extends LinkFormatter {
     return [
       'width' => '100%',
       'height' => 900,
-      'class' => 'external-preview-iframe',
       'view_live_link' => TRUE,
     ];
   }
@@ -47,12 +47,6 @@ class ExternalPreviewIframeFormatter extends LinkFormatter {
       '#default_value' => $this->getSetting('height'),
       '#required' => TRUE,
     ];
-    $elements['class'] = [
-      '#title' => $this->t('Class'),
-      '#type' => 'textfield',
-      '#default_value' => $this->getSetting('class'),
-      '#required' => FALSE,
-    ];
     $elements['view_live_link'] = [
       '#title' => $this->t('View live link'),
       '#type' => 'radios',
@@ -71,10 +65,9 @@ class ExternalPreviewIframeFormatter extends LinkFormatter {
    */
   public function settingsSummary() {
     $summary = [];
-    $summary[] = $this->t('Width: @width, Height: @height, Class: @class, View live link: @view_live_link', [
+    $summary[] = $this->t('Width: @width, Height: @height, View live link: @view_live_link', [
       '@width' => $this->getSetting('width'),
       '@height' => $this->getSetting('height'),
-      '@class' => $this->getSetting('class') == '' ? 'none' : $this->getSetting('class'),
       '@view_live_link' => $this->getSetting('view_live_link') ? $this->t('Yes') : $this->t('No'),
     ]);
     return $summary;
@@ -84,28 +77,62 @@ class ExternalPreviewIframeFormatter extends LinkFormatter {
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
-    $element = [];
+    $elements = [];
     $settings = $this->getSettings();
+    // If items turns out to be empty, this denotes an error
+    // on the computed field. Do not cache the output so the error
+    // message is displayed until it is fixed.
+    if (empty($items->getValue())) {
+      $elements[0] = [
+        '#markup' => $this->t('There was an error when generating the preview.'),
+      ];
+      $elements['#cache']['max-age'] = 0;
+      return $elements;
+    }
+
+    // Check if publisher is available.
+    /** @var \Drupal\silverback_external_preview\ExternalPreviewLink $externalPreviewLink */
+    $externalPreviewLink = \Drupal::service('silverback_external_preview.external_preview_link');
+    $publisherBaseUrl = $externalPreviewLink->getPreviewBaseUrl();
+    $isPublisherRunning = $this->isPublisherRunning($publisherBaseUrl);
+    if (!$isPublisherRunning) {
+      $this->messenger()->addError($this->t('Publisher does not seem to be running or available.'));
+      $elements['#cache']['max-age'] = 0;
+    }
+
+    // Output for preview and live urls.
     foreach ($items as $delta => $item) {
       // Preview url, computed field value.
       $previewUrl = $this->buildUrl($item);
-
       // Live url.
       $entity = $item->getEntity();
       /** @var \Drupal\silverback_external_preview\ExternalPreviewLink $externalPreviewLink */
       $externalPreviewLink = \Drupal::service('silverback_external_preview.external_preview_link');
       $liveUrl = $externalPreviewLink->createPreviewUrlFromEntity($entity, 'live')->toString();
-      $element[$delta] = [
+      $elements[$delta] = [
         '#theme' => 'silverback_external_preview_iframe',
         '#preview_url' => $previewUrl,
         '#live_url' => $liveUrl,
         '#view_live_link' => !$externalPreviewLink->isNodeRevisionRoute() && $settings['view_live_link'],
         '#width' => $settings['width'],
         '#height' => $settings['height'],
-        '#class' => $settings['class'],
       ];
     }
-    return $element;
+    return $elements;
+  }
+
+  private function isPublisherRunning(string $preview_base_url) {
+    $result = TRUE;
+    try {
+      \Drupal::httpClient()->request('GET', $preview_base_url);
+    }
+    catch (ConnectException $exception) {
+      $result = FALSE;
+    }
+    catch (\Exception $exception) {
+      // Catch any other Guzzle exception.
+    }
+    return $result;
   }
 
 }
