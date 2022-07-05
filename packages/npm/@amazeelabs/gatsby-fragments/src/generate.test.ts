@@ -4,7 +4,7 @@ import { sync } from 'glob';
 import { generate } from './generate';
 
 describe('generate', () => {
-  const filesAmountEquality = () => sync('./test/*.gql').length === sync('./test/*.ts').length;
+  const filesAmountEquality = () => sync('./test/*.gql').length === sync('./test/*.fragment.ts').length;
 
   const typeScriptFilesContains = (pattern:string) => {
     const files = sync('./test/*.ts');
