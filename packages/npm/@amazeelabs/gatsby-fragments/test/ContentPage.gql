@@ -2,6 +2,7 @@ fragment ContentPage on ContentPage {
   __typename
   drupalId
   langcode
+  title
   articleReference {
     ... on ContentArticle {
       drupalId

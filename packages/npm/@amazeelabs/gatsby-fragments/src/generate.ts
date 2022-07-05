@@ -2,10 +2,10 @@ import { readFile, writeFile } from 'fs';
 import { glob } from 'glob';
 import path from 'path';
 
-export const defaultTypeScriptFragmentsPath = './src/fragments/commons';
+export const defaultFragmentsPath = './src/fragments/commons';
 
 export const generate = (options:any) => {
-  const typeScriptFragmentsPath = options?.path || defaultTypeScriptFragmentsPath;
+  const typeScriptFragmentsPath = options?.path || defaultFragmentsPath;
 
   glob(`${typeScriptFragmentsPath}/**/*.gql`, {}, (error, files) => {
     for (const filePath of files) {
