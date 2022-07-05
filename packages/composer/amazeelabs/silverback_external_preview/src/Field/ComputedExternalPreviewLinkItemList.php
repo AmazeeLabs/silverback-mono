@@ -19,16 +19,20 @@ class ComputedExternalPreviewLinkItemList extends FieldItemList {
     }
     /** @var \Drupal\silverback_external_preview\ExternalPreviewLink $externalPreviewLink */
     $externalPreviewLink = \Drupal::service('silverback_external_preview.external_preview_link');
-    $uri = $externalPreviewLink->createPreviewUrlFromEntity($entity)->toString();
-    $items = [];
-    $items[] = [
-      'uri' => $uri,
-      'title' => $this->t('Preview @label', [
-        '@label' => $entity->label(),
-      ]),
-    ];
-    foreach ($items as $delta => $item) {
-      $this->list[] = $this->createItem($delta, $item);
+    try {
+      $previewUrl = $externalPreviewLink->createPreviewUrlFromEntity($entity);
+      $items[] = [
+        'uri' => $previewUrl->toString(),
+        'title' => $this->t('Preview @label', [
+          '@label' => $entity->label(),
+        ]),
+      ];
+      foreach ($items as $delta => $item) {
+        $this->list[] = $this->createItem($delta, $item);
+      }
+    }
+    catch (\Exception $exception) {
+      \Drupal::messenger()->addError($exception->getMessage());
     }
   }
 

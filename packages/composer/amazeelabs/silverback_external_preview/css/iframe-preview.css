@@ -1,0 +1,11 @@
+.external-preview-entity {
+  margin: 1rem 0 1rem 0;
+}
+
+.external-preview-entity__public-link {
+  margin-bottom: 1rem;
+}
+
+.external-preview-entity__iframe {
+  border: 1px solid #ccc;
+}

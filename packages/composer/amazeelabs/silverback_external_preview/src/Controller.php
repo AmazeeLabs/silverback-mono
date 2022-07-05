@@ -59,7 +59,7 @@ class Controller extends ControllerBase {
       '#theme' => 'silverback_external_preview',
       '#attached' => [
         'library' => [
-          'silverback_external_preview/preview',
+          'silverback_external_preview/dialog_preview',
         ],
       ],
       '#url' => $url,
