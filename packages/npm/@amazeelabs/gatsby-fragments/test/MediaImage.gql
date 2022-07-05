@@ -1,0 +1,6 @@
+fragment MediaImage on MediaImage {
+  __typename
+  url
+  width
+  height
+}

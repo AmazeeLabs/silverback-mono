@@ -1,0 +1,14 @@
+fragment ContentBlog on ContentBlog {
+  __typename
+  drupalId
+  langcode
+  title
+  created
+  path
+  headerImage {
+    ...MediaImage
+  }
+  teaserImage {
+    ...MediaImage
+  }
+}

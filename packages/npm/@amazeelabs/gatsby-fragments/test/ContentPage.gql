@@ -1,0 +1,12 @@
+fragment ContentPage on ContentPage {
+  __typename
+  drupalId
+  langcode
+  articleReference {
+    ... on ContentArticle {
+      drupalId
+      langcode
+      title
+    }
+  }
+}
