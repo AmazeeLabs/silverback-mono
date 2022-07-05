@@ -1,13 +1,21 @@
-import { readFile, writeFile } from 'fs';
+import { existsSync, readFile, writeFile } from 'fs';
 import { glob } from 'glob';
 import path from 'path';
 
 export const defaultFragmentsPath = './src/fragments/commons';
 
-export const generate = (options:any) => {
-  const typeScriptFragmentsPath = options?.path || defaultFragmentsPath;
+export type Options = {
+  path?: string
+};
 
-  glob(`${typeScriptFragmentsPath}/**/*.gql`, {}, (error, files) => {
+export const generate = (options:Options) => {
+  const fragmentsPath = options?.path || defaultFragmentsPath;
+
+  if (!existsSync(fragmentsPath)) {
+    throw `Directory "${fragmentsPath}" does not exist.`;
+  }
+
+  glob(`${fragmentsPath}/**/*.gql`, {}, (error, files) => {
     for (const filePath of files) {
       readFile(filePath, {encoding: 'utf-8'}, (error, gqlData) => {
         if (!error) {
@@ -34,7 +42,7 @@ export const fragment = graphql\`
         } else {
           console.error(error);
         }
-      })
+      });
     }
   });
 };
