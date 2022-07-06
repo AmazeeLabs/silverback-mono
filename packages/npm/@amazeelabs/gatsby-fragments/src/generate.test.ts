@@ -4,9 +4,10 @@ import mock from 'mock-fs';
 
 import { generate } from './generate';
 
-beforeEach(mock.restore);
-
 describe('generate', () => {
+  afterEach(() => {
+    mock.restore();
+  });
   const fragmentsPath = '/fragments';
   const gqlMocks = {
     '/fragments': {
