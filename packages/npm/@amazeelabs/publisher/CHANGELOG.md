@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.8.5...@amazeelabs/publisher@0.9.0) (2022-07-06)
+
+
+### Features
+
+* styling for publisher tool ui ([8fa2f1f](https://github.com/AmazeeLabs/silverback-mono/commit/8fa2f1f8fed3d25e44f73e558948706441f8ab28))
+* styling for publisher tool ui ([80fae38](https://github.com/AmazeeLabs/silverback-mono/commit/80fae380930e340a68558699cacb87402bfdbbcf))
+
+
+
+
+
 ## [0.8.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.8.4...@amazeelabs/publisher@0.8.5) (2022-06-22)
 
 **Note:** Version bump only for package @amazeelabs/publisher
