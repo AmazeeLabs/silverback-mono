@@ -20,5 +20,6 @@ export const createQueryExecutor = (
         : {}),
       ...(authKey ? { 'api-key': authKey } : {}),
     },
+    timeout: 60_000,
   });
 };
