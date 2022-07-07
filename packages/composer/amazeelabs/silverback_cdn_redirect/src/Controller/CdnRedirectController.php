@@ -63,7 +63,7 @@ class CdnRedirectController extends ControllerBase {
         ($parts['path'] ?? '') .
         (isset($parts['query']) ? "?{$parts['query']}" : '');
       $responseCode = $response->getStatusCode();
-    } else {
+    } elseif ($response->getStatusCode() === 200) {
       // If the returned response is not a redirect, we still want to check if
       // there is a path alias for the current path. If it exists, then we
       // should redirect to it.
