@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.15](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.6.14...@amazeelabs/gatsby-source-silverback@1.6.15) (2022-07-07)
+
+
+### Bug Fixes
+
+* add timeout to graphql executor ([b9f529f](https://github.com/AmazeeLabs/silverback-mono/commit/b9f529f57c67e2183a154e56f986b56220aa387a))
+
+
+
+
+
 ## [1.6.14](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.6.13...@amazeelabs/gatsby-source-silverback@1.6.14) (2022-06-22)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-source-silverback
