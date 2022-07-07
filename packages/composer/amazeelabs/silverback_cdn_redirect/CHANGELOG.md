@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.4.2...@-amazeelabs/silverback_cdn_redirect@1.4.3) (2022-07-07)
+
+
+### Bug Fixes
+
+* only redirect to path alias if the response is 200 ([9029602](https://github.com/AmazeeLabs/silverback-mono/commit/90296021a5ab2fcef1bf919f574d5d9727fe0b66))
+
+
+
+
+
 ## [1.4.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.4.1...@-amazeelabs/silverback_cdn_redirect@1.4.2) (2022-05-26)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_cdn_redirect

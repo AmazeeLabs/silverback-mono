@@ -1,7 +1,7 @@
 {
   "name": "amazeelabs/silverback_cdn_redirect",
   "type": "drupal-module",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Provide redirect information to CDNs.",
   "homepage": "https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/composer/amazeelabs/silverback_cdn_redirect#readme",
   "license": "GPL-2.0+"
