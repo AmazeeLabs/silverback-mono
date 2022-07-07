@@ -2,7 +2,6 @@
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Url;
-use Drupal\silverback_external_preview\ExternalPreviewLink;
 use Drupal\Component\Serialization\Json;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
@@ -14,7 +13,7 @@ use Drupal\silverback_external_preview\Field\ComputedExternalPreviewLinkItemList
 function silverback_external_preview_toolbar() {
 
   $toolbar_items = [];
-  /* @var ExternalPreviewLink */
+  /** @var \Drupal\silverback_external_preview\ExternalPreviewLink $externalPreviewLink */
   $externalPreviewLink = Drupal::service('silverback_external_preview.external_preview_link');
   if (getenv('EXTERNAL_PREVIEW_BASE_URL')) {
     $routeMatch = Drupal::routeMatch();
@@ -23,8 +22,8 @@ function silverback_external_preview_toolbar() {
     // Only add the toolbar item if we have a preview URL returned
     $params = $routeMatch->getParameters()->all();
     $entity = array_pop($params);
-    if($entity instanceof ContentEntityInterface){
-      $id = $url ? $entity->getEntityTypeId() . ':' . $entity->id() . ':'. $entity->get('langcode')->value : null;
+    if ($entity instanceof ContentEntityInterface){
+      $id = $url ? $externalPreviewLink->getEntityTempStoreId($entity) : NULL;
     }
     $toolbar_items['silverback_external_preview'] = [
       '#type' => 'toolbar_item',
