@@ -2,6 +2,8 @@
 
 use Drupal\file\Entity\File;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Url;
 use Drupal\silverback_external_preview\ExternalPreviewLink;
 
 // Example to add a query parameter
@@ -30,4 +32,12 @@ function silverback_external_preview_example_silverback_external_preview_url_alt
     $url = $externalPreviewUrl->createPreviewUrlFromPath('/');
   }
 
+}
+
+// Example to rewrite based on custom path rules.
+function silverback_external_preview_example_silverback_external_preview_entity_url_alter(ContentEntityInterface $entity, Url &$url) {
+  $uri = $url->getUri();
+  $altered_uri = preg_replace('/home-[a-z]*$/', '', $uri);
+  $altered_url_string = str_replace($uri, $altered_uri, $url->toString());
+  $url = Url::fromUri($altered_url_string);
 }

@@ -2,6 +2,7 @@
 
 namespace Drupal\silverback_external_preview\Plugin\Field\FieldFormatter;
 
+use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\link\Plugin\Field\FieldFormatter\LinkFormatter;
@@ -113,12 +114,21 @@ class ExternalPreviewIframeFormatter extends LinkFormatter {
         '#theme' => 'silverback_external_preview_iframe',
         '#preview_url' => $previewUrl,
         '#live_url' => $liveUrl,
-        '#view_live_link' => !$externalPreviewLink->isNodeRevisionRoute() && $settings['view_live_link'],
+        '#view_live_link' => $this->viewLiveLink($entity, $settings) ,
         '#width' => $settings['width'],
         '#height' => $settings['height'],
       ];
     }
     return $elements;
+  }
+
+  private function viewLiveLink(ContentEntityInterface $entity, array $settings) {
+    /** @var \Drupal\silverback_external_preview\ExternalPreviewLink $externalPreviewLink */
+    $externalPreviewLink = \Drupal::service('silverback_external_preview.external_preview_link');
+    return
+      !$externalPreviewLink->isNodeRevisionRoute() &&
+      !$externalPreviewLink->isUnpublished($entity) &&
+      $settings['view_live_link'];
   }
 
   private function isPublisherRunning(string $preview_base_url) {

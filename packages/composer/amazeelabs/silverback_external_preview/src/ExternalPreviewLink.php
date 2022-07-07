@@ -3,6 +3,7 @@
 namespace Drupal\silverback_external_preview;
 
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityPublishedInterface;
 use Drupal\Core\Entity\RevisionableStorageInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
@@ -138,14 +139,36 @@ class ExternalPreviewLink {
    * @return \Drupal\Core\Url|null
    */
   public function createPreviewUrlFromEntity(ContentEntityInterface $entity, $external_url_type = 'preview') {
-    if ($this->isNodeRevisionRoute()) {
+    if ($this->isUnpublished($entity)) {
+      return $this->getUnpublishedPreviewUrl($entity);
+    }
+    elseif ($this->isNodeRevisionRoute()) {
       return $this->getRevisionPreviewUrl($entity);
     }
     else {
       $base_url = $external_url_type === 'preview' ? $this->getPreviewBaseUrl() : $this->getLiveBaseUrl();
       $path = $entity->toUrl('canonical')->toString(TRUE)->getGeneratedUrl();
-      return Url::fromUri($base_url . $path, $this->getUrlOptions($external_url_type, $entity));
+      $url_object = Url::fromUri($base_url . $path, $this->getUrlOptions($external_url_type, $entity));
+      // Allow for altering the url object via a hook.
+      $this->moduleHandler->alter('silverback_external_preview_entity_url', $entity, $url_object);
+      return $url_object;
     }
+  }
+
+  public function isUnpublished(ContentEntityInterface $entity) {
+    return $entity instanceof EntityPublishedInterface && !$entity->isPublished();
+  }
+
+  private function getUnpublishedPreviewUrl(ContentEntityInterface $entity) {
+    return Url::fromUri(
+      $this->getPreviewBaseUrl() . '/' . $entity->language()->getId() . '/__preview/' . $entity->bundle(),
+      [
+        'query' => [
+          'id' => $entity->id(),
+          'preview' => '1',
+        ]
+      ]
+    );
   }
 
   public function isNodeRevisionRoute() {
@@ -183,6 +206,7 @@ class ExternalPreviewLink {
         'query' => [
           'id' => $entity->id(),
           'revision' => $revision_id,
+          'preview' => '1',
         ]
       ]
     );
@@ -229,7 +253,7 @@ class ExternalPreviewLink {
         $external_url_type = self::PREVIEW_ENV_VARNAME ? 'preview' : 'live';
         $options = $this->getUrlOptions($external_url_type, $entity);
         $url_object = Url::fromUri($url, $options);
-        $id = $entity->getEntityTypeId() . ':' . $entity->id() . ':'. $entity->get('langcode')->value;
+        $id = $this->getEntityTempStoreId($entity);
         // Make this accessible via admin path
         $tempstore = $this->tempstore->get('silverback_external_preview');
         $tempstore->set($id, $url_object);
@@ -239,6 +263,14 @@ class ExternalPreviewLink {
     }
 
     return $url_object ?? NULL;
+  }
+
+  public function getEntityTempStoreId(ContentEntityInterface $entity) {
+    $id_parts = [$entity->getEntityTypeId(), $entity->id()];
+    if ($entity->hasField('langcode') && !$entity->get('langcode')->isEmpty()) {
+      $id_parts[] = $entity->get('langcode')->value;
+    }
+    return implode(':', $id_parts);
   }
 
   /**
