@@ -1,0 +1,40 @@
+---
+title: Frontend Architecture
+path: /methodology/frontend-architecture
+nav: Methodology
+position: 2
+---
+
+# Frontend Architecture
+
+This guide outlines the best practices for organising your components, and Amazee's own take on the atomic design methodology.
+
+## Organisms
+
+Any page section made up of multiple elements would be created as an organism. This includes sections such as the header and footer, or also any blocks with the purpose of appearing in the main content area, such as an image carousel or teaser grid. Organisms can typically function on their own, without depending on other organisms.
+
+## Molecules
+
+Molecular components are sub-components that make up an organism. There’s no concrete rule here, but a reusable section of an organism that might appear in another organism would generally make a good molecule (e.g. a file link component that appears in a file listing as well as in an article sidebar).
+
+## Atoms
+
+Atoms are components that cannot be broken down any further, and often consist of a single HTML tag. Think buttons, dividers, icons. They can also be used to bring in styling through a single custom class, e.g. a custom font, focus state, container, or placeholder style.
+
+## Some common examples
+
+1. A footer would be an organism. The social media menu inside the footer (and repeated in the header or sidebar) would be a molecule. The social media icons would be atoms.
+2. A grid of teaser news items would be an organism. The teaser item itself would be a molecule, since perhaps these items appear somewhere other than the grid. The focus ring that appears around each teaser item when focussed on would be an atom.
+3. A sign-up form would be an organism. The custom dropdown would be a molecule. The little arrow icon on the dropdown button would be an atom.
+
+## Layouts
+
+Outside of the 3-tier structure are layouts. Layouts are created as scaffolding for the composition of a page, setting out the sections into which the components will sit. This means most of the components can sit inside a semantically correct `<main>` wrapper, which the header and footer can be placed outside of. Any extra elements which need to sit outside of this main area, such as a skip-to-content link, can also live here.
+
+## Pages
+
+This is where we combine organisms into a real template, to see how they work together and adapt across various combinations. Pages illustrate how the final website/UI will look, often with actual representative content in place.
+
+## Folder structure
+
+All components sit inside `/src/elements` and are divided into `/organisms`, `/molecules`, `/layouts` and `/atoms` folders. The storybook files for each component live inside the same folders, on the same level.
