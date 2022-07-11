@@ -28,7 +28,7 @@ function silverback_external_preview_toolbar() {
     $toolbar_items['silverback_external_preview'] = [
       '#type' => 'toolbar_item',
       '#cache' => [
-        'contexts' => ['url', 'user:role'],
+        'contexts' => ['url', 'user:roles'],
         'tags' => ['role'],
       ],
       '#wrapper_attributes' => [
