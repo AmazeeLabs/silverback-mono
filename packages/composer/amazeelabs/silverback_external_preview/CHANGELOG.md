@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_external_preview@1.3.0...@-amazeelabs/silverback_external_preview@1.3.1) (2022-07-11)
+
+
+### Bug Fixes
+
+* make external preview computed field private by default ([80e0a20](https://github.com/AmazeeLabs/silverback-mono/commit/80e0a203e648360135c46e50d5799bdc7f8aae44))
+* typo ([5ef654a](https://github.com/AmazeeLabs/silverback-mono/commit/5ef654ac5c0ad4aba9dcc27030323feacd741f3c))
+
+
+
+
+
 # [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_external_preview@1.2.1...@-amazeelabs/silverback_external_preview@1.3.0) (2022-07-07)
 
 
