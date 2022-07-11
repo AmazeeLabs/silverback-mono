@@ -79,6 +79,15 @@ class ExternalPreviewIframeFormatter extends LinkFormatter {
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = [];
+    $elements['#cache']['contexts'] = ['user.roles'];
+    $elements['#cache']['tags'] = ['role'];
+    $currentUser = \Drupal::currentUser();
+    // Do not display the field by default as the result could be indexed
+    // by e.g. Search api.
+    if (!$currentUser->hasPermission('use external preview')) {
+      return $elements;
+    }
+
     $settings = $this->getSettings();
     // If items turns out to be empty, this denotes an error
     // on the computed field. Do not cache the output so the error
