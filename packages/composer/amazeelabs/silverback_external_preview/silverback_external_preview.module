@@ -11,11 +11,11 @@ use Drupal\silverback_external_preview\Field\ComputedExternalPreviewLinkItemList
  * Implements hook_toolbar().
  */
 function silverback_external_preview_toolbar() {
-
   $toolbar_items = [];
   /** @var \Drupal\silverback_external_preview\ExternalPreviewLink $externalPreviewLink */
   $externalPreviewLink = Drupal::service('silverback_external_preview.external_preview_link');
-  if (getenv('EXTERNAL_PREVIEW_BASE_URL')) {
+  $currentUser = \Drupal::currentUser();
+  if (getenv('EXTERNAL_PREVIEW_BASE_URL') && $currentUser->hasPermission('use external preview')) {
     $routeMatch = Drupal::routeMatch();
     /* @var $url Url */
     $url = $externalPreviewLink->getPreviewUrl($routeMatch);
@@ -28,7 +28,8 @@ function silverback_external_preview_toolbar() {
     $toolbar_items['silverback_external_preview'] = [
       '#type' => 'toolbar_item',
       '#cache' => [
-        'contexts' => ['url'],
+        'contexts' => ['url', 'user:role'],
+        'tags' => ['role'],
       ],
       '#wrapper_attributes' => [
         'class' => [
