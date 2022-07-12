@@ -11,6 +11,13 @@ use Drupal\webform\WebformSubmissionForm as Original;
 
 class WebformSubmissionForm extends Original {
 
+  protected function isAjax() {
+    if (silverback_iframe_theme_enabled()) {
+      // We do not support AJAX forms.
+      return FALSE;
+    }
+  }
+  
   public function buildForm(array $form, FormStateInterface $form_state): array {
     $form = parent::buildForm($form, $form_state);
 
