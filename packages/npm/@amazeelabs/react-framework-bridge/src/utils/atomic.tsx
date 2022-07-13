@@ -17,6 +17,7 @@ export type Primitive =
   | undefined
   | boolean
   | Date
+  | React.FC
   | Html
   | Link
   | Image
