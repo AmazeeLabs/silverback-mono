@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.17.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.16.1...@amazeelabs/react-framework-bridge@1.17.0) (2022-07-13)
+
+
+### Features
+
+* allow React components in organism props ([9686d7e](https://github.com/AmazeeLabs/silverback-mono/commit/9686d7e4c5978c358a000be93b91f8990b6fdb77))
+
+
+
+
+
 ## [1.16.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.16.0...@amazeelabs/react-framework-bridge@1.16.1) (2022-06-22)
 
 **Note:** Version bump only for package @amazeelabs/react-framework-bridge
