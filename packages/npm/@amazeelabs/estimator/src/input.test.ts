@@ -1,14 +1,49 @@
 import mock from 'mock-fs';
 
-import { scanDirectory } from './input';
+import { scanDocuments } from './input';
 
 beforeEach(mock.restore);
 
-describe('scanDirectory', () => {
-  it('fails if the directory does not exist', () => {
-    expect(() => scanDirectory('/idontexist')).toThrow(
-      'Directory "/idontexist" does not exist.',
+describe('scanDocuments', () => {
+  it('from a single graphql file', () => {
+    mock({
+      '/schema': {
+        'website.graphql': 'type Query { foo: String! }',
+      },
+    });
+    expect(scanDocuments('/schema/website.graphql')).toEqual(
+      'type Query { foo: String! }',
     );
+  });
+
+  it('reads tags from a typescript file', () => {
+    mock({
+      '/schema': {
+        'fragments.ts': `
+        import graphql from 'gatsby';
+        const a = graphql\`fragment A on Test { foo }\`;
+        const b = graphql\`fragment B on Test { bar }\`;
+        `,
+      },
+    });
+
+    expect(scanDocuments('/schema')).toEqual(
+      ['fragment A on Test { foo }', 'fragment B on Test { bar }'].join('\n'),
+    );
+  });
+
+  it('reads from a directory', () => {
+    mock({
+      '/schema': {
+        'website.graphql': 'type Query { foo: String! }',
+      },
+    });
+    expect(scanDocuments('/schema')).toEqual('type Query { foo: String! }');
+  });
+
+  it('does not fail if an input does not exists', () => {
+    expect(() => scanDocuments('/idontexist')).not.toThrow();
+    expect(() => scanDocuments(['/idontexist'])).not.toThrow();
   });
 
   it('does not fail if there are no graphql files', () => {
@@ -17,19 +52,32 @@ describe('scanDirectory', () => {
         'README.md': '# The readme',
       },
     });
-    expect(scanDirectory('/schema')).toEqual([]);
+    expect(scanDocuments('/schema')).toEqual('');
   });
 
-  it('finds .graphqls schema definitions', () => {
+  it('combines everything recursively', () => {
     mock({
+      '/gatsby': {
+        src: {
+          'something.ts': `
+          import graphql from 'gatsby';
+          export const fragment = graphql\`fragment Something on Test { foobar }\`;
+          `,
+        },
+      },
       '/schema': {
         'schema.graphqls': 'type Query { foo: String }',
-        'query.gql': 'query MyQuery { foo }',
+        fragments: {
+          'a.gql': 'fragment A on Test { foo }',
+        },
       },
     });
-    expect(scanDirectory('/schema')).toEqual([
-      './query.gql',
-      './schema.graphqls',
-    ]);
+    expect(scanDocuments(['/schema', '/gatsby'])).toEqual(
+      [
+        'fragment A on Test { foo }',
+        'type Query { foo: String }',
+        'fragment Something on Test { foobar }',
+      ].join('\n'),
+    );
   });
 });
