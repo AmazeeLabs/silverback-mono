@@ -176,6 +176,10 @@ const typePenalties = {
   NULLABLE_TYPE: 0,
 };
 
+export type Properties = keyof (typeof schemaProperties &
+  typeof operationProperties &
+  typeof typePenalties);
+
 /**
  * Usage of relevant directives within schema documents.
  *
@@ -184,11 +188,11 @@ const typePenalties = {
  */
 type DirectiveResults = Record<string, number>;
 
-type SchemaResults = typeof schemaProperties &
+export type SchemaResults = typeof schemaProperties &
   typeof typePenalties &
   DirectiveResults;
 
-type OperationResults = typeof operationProperties &
+export type OperationResults = typeof operationProperties &
   typeof typePenalties &
   DirectiveResults;
 
