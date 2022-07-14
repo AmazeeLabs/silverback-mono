@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/estimator@1.1.1...@amazeelabs/estimator@1.1.2) (2022-07-14)
+
+
+### Bug Fixes
+
+* **estimator:** missing publish config ([64b2074](https://github.com/AmazeeLabs/silverback-mono/commit/64b2074c7553c7b3e82492e6d8d997df9616fdab))
+
+
+
+
+
 ## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/estimator@1.1.0...@amazeelabs/estimator@1.1.1) (2022-07-14)
 
 
