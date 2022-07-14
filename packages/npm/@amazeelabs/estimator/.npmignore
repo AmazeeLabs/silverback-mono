@@ -5,7 +5,8 @@
 .prettierrc
 CHANGELOG.md
 jest.config.js
-rollup.config.ts
+rollup.config.js
+.idea
 src
 test
 tsconfig.json
