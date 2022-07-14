@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/estimator@1.1.0...@amazeelabs/estimator@1.1.1) (2022-07-14)
+
+
+### Bug Fixes
+
+* **estimator:** tweak npm package contents ([c299af4](https://github.com/AmazeeLabs/silverback-mono/commit/c299af40c81f8340e6e7d68d06e12f8f0ebeb332))
+
+
+
+
+
 # 1.1.0 (2022-07-14)
 
 
