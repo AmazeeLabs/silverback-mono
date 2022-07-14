@@ -176,7 +176,6 @@ $$.file('gatsby-config.ts', (lines: Array<string>) => {
     {
       resolve: 'gatsby-plugin-netlify',
       options: {
-        mergeLinkHeaders: false,
         mergeCachingHeaders: false,
       },
     },
