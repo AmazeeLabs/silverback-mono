@@ -4,6 +4,7 @@ namespace Drupal\silverback_gatsby\Plugin\Gatsby\Feed;
 
 use Drupal\content_translation\ContentTranslationManagerInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityPublishedInterface;
 use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -107,7 +108,10 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
       $context instanceof EntityInterface
       && $context->getEntityTypeId() === $this->type
       && ($this->bundle !== NULL && $context->bundle() === $this->bundle)
-      && $context->access('view', $account)
+      &&  (
+        $context->access('view', $account) ||
+        $context instanceof EntityPublishedInterface && $context->isPublished() === FALSE
+      )
     ) {
       if ($this->isTranslatable() && $context instanceof TranslatableInterface) {
         return array_map(function (LanguageInterface $lang) use ($context) {
