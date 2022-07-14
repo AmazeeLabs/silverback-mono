@@ -1,15 +1,13 @@
 import { program } from 'commander';
-import { readFileSync } from 'fs';
 import { mergeWith } from 'lodash';
 
 import { analyzeOperations, analyzeSchemas } from './analyze';
-import { scanDirectory } from './input';
+import { scanDocuments } from './input';
 
 program.name('estimator');
 program.command('analyze').action(() => {
-  const files = scanDirectory(process.cwd());
-  const docs = files.map((name) => readFileSync(name).toString());
-  const schemas = analyzeSchemas(docs, [
+  const doc = scanDocuments(process.cwd());
+  const schemas = analyzeSchemas(doc, [
     'editorBlock',
     'resolveEditorBlocks',
     'resolveEditorBlockAttribute',
@@ -31,7 +29,7 @@ program.command('analyze').action(() => {
     'resolveEntityReferenceRevisions',
     'stringTranslation',
   ]);
-  const operations = analyzeOperations(docs);
+  const operations = analyzeOperations(doc);
   console.table(mergeWith(schemas, operations, (a, b) => a || 0 + b || 0));
 });
 

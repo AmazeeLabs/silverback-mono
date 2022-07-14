@@ -10,6 +10,7 @@
     "@amazeelabs/eslint-config": "^1.4.28",
     "@amazeelabs/jest-preset": "^1.3.31",
     "@amazeelabs/prettier-config": "^1.1.1",
+    "@graphql-tools/graphql-tag-pluck": "^7.3.0",
     "@rollup/plugin-commonjs": "^22.0.1",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-typescript": "^8.3.3",
