@@ -2,7 +2,7 @@ import mock from 'mock-fs';
 
 import { scanDocuments } from './input';
 
-beforeEach(mock.restore);
+afterEach(mock.restore);
 
 describe('scanDocuments', () => {
   it('from a single graphql file', () => {
