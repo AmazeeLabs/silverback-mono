@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.15.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.15.3...@amazeelabs/recipes@1.15.4) (2022-07-16)
+
+
+### Bug Fixes
+
+* remove mergeLinkHeaders from gatsby-plugin-netlify config ([7f2e20e](https://github.com/AmazeeLabs/silverback-mono/commit/7f2e20e5bc1daaecd55911706a610f9df3b1915d))
+
+
+
+
+
 ## [1.15.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.15.2...@amazeelabs/recipes@1.15.3) (2022-06-22)
 
 **Note:** Version bump only for package @amazeelabs/recipes
