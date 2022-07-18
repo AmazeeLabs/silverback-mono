@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.5.13...@-amazeelabs/silverback_gutenberg@1.6.0) (2022-07-18)
+
+
+### Features
+
+* make "local-host" urls relative ([bf5e400](https://github.com/AmazeeLabs/silverback-mono/commit/bf5e400906e088a0b1fd0eb65d6d96f62b97f0d7))
+
+
+
+
+
 ## [1.5.13](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.5.12...@-amazeelabs/silverback_gutenberg@1.5.13) (2022-06-22)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gutenberg
