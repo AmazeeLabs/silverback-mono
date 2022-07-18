@@ -46,6 +46,10 @@ class LinkProcessorTest extends MediaKernelTestBase {
     $this->installConfig(['language']);
     ConfigurableLanguage::createFromLangcode('de')->save();
 
+    $this->config('silverback_gutenberg.settings')
+      ->set('local_hosts', null)
+      ->save();
+
     // Let LanguageServiceProvider register its path processors.
     drupal_flush_all_caches();
   }

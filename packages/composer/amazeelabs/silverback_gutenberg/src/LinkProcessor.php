@@ -21,6 +21,10 @@ class LinkProcessor {
   protected ModuleHandlerInterface $moduleHandler;
   protected string $currentHost;
   protected int $currentPort;
+  /**
+   * @var array|null
+   */
+  protected $localHosts;
   protected EntityRepositoryInterface $entityRepository;
   protected EntityTypeManagerInterface $entityTypeManager;
   protected array $linkPatterns = [];
@@ -39,6 +43,7 @@ class LinkProcessor {
     $this->moduleHandler = $moduleHandler;
     $this->currentHost = $requestStack->getCurrentRequest()->getHost();
     $this->currentPort = (int) $requestStack->getCurrentRequest()->getPort();
+    $this->localHosts = $this->configFactory->get('silverback_gutenberg.settings')->get('local_hosts');
     $this->entityRepository = $entityRepository;
     $this->entityTypeManager = $entityTypeManager;
 
@@ -136,12 +141,20 @@ class LinkProcessor {
         )
       ) &&
       isset($parts['host']) &&
-      $parts['host'] === $this->currentHost &&
       (
         (
-          isset($parts['port']) && $parts['port'] == $this->currentPort
+          is_array($this->localHosts) &&
+          in_array($parts['host'], $this->localHosts, TRUE)
         ) ||
-        !isset($parts['port'])
+        (
+          $parts['host'] === $this->currentHost &&
+          (
+            (
+              isset($parts['port']) && $parts['port'] == $this->currentPort
+            ) ||
+            !isset($parts['port'])
+          )
+        )
       )
     );
   }
@@ -165,7 +178,7 @@ class LinkProcessor {
   }
 
   protected function cleanUrl(string $url): string {
-    if ($this->hasSchemeOrHost($url)) {
+    if ($this->hasSchemeOrHost($url) && !$this->linksToCurrentHost($url)) {
       return $url;
     }
     $parts = parse_url($url);
@@ -180,10 +193,6 @@ class LinkProcessor {
 
     $href = $link->getAttribute('href');
     if ($href) {
-      if (!$this->hasSchemeOrHost($href)) {
-        $href = $this->cleanUrl($href);
-      }
-
       $link->setAttribute('href', $this->processUrl($href, $direction, $language, $metadata));
       if ($direction === 'inbound' && isset($metadata['uuid']) && $link->hasAttribute('data-id')) {
         $link->setAttribute('data-id', $metadata['uuid']);
@@ -210,7 +219,12 @@ class LinkProcessor {
     }
 
     if ($this->hasSchemeOrHost($url)) {
-      return $url;
+      if ($this->linksToCurrentHost($url)) {
+        $url = $this->cleanUrl($url);
+      }
+      else {
+        return $url;
+      }
     }
 
     $parts = parse_url($url);
