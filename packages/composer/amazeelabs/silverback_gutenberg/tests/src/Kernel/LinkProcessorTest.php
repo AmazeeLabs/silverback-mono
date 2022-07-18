@@ -47,7 +47,10 @@ class LinkProcessorTest extends MediaKernelTestBase {
     ConfigurableLanguage::createFromLangcode('de')->save();
 
     $this->config('silverback_gutenberg.settings')
-      ->set('local_hosts', null)
+      ->set('local_hosts', [
+        'this.site',
+        'www.this.site',
+      ])
       ->save();
 
     // Let LanguageServiceProvider register its path processors.
@@ -94,6 +97,9 @@ class LinkProcessorTest extends MediaKernelTestBase {
     /** @var \Drupal\silverback_gutenberg\LinkProcessor $linkProcessor */
     $linkProcessor = \Drupal::service(LinkProcessor::class);
 
+    $currentHost = \Drupal::request()->getHttpHost();
+    $currentPort = \Drupal::request()->getPort();
+
     $cases = [
       'absolute' => [
         'inbound' => [
@@ -133,6 +139,9 @@ class LinkProcessorTest extends MediaKernelTestBase {
           '/de/node/' . $withAlias->id() => '/node/' . $withAlias->uuid(),
           '/english' => '/node/' . $withAlias->uuid(),
           '/de/german' => '/node/' . $withAlias->uuid(),
+          "https://{$currentHost}:{$currentPort}/node/{$withAlias->id()}" => '/node/' . $withAlias->uuid(),
+          'http://this.site/english' => '/node/' . $withAlias->uuid(),
+          "https://www.this.site/de/german" => '/node/' . $withAlias->uuid(),
         ],
         'outbound' => [
           '/node/' . $withAlias->id() => [
@@ -141,6 +150,20 @@ class LinkProcessorTest extends MediaKernelTestBase {
           ],
           '/node/' . $withAlias->uuid() => [
             'en' => '/english',
+            'de' => '/de/german',
+          ],
+          "https://{$currentHost}:{$currentPort}/node/{$withAlias->id()}" => [
+            'en' => '/english',
+            'de' => '/de/german',
+          ],
+          "http://this.site/de/node/{$withAlias->id()}" => [
+            'en' => '/english',
+            'de' => '/de/german',
+          ],
+          // In case if we somehow got an absolute URL in database, we just turn
+          // it to relative.
+          "https://www.this.site/de/german" => [
+            'en' => '/de/german',
             'de' => '/de/german',
           ],
         ],
@@ -232,6 +255,8 @@ class LinkProcessorTest extends MediaKernelTestBase {
     return [
       ['/foo', false, true, false],
       ['https://foo.bar/baz', true, false, false],
+      ['http://this.site/foo', true, true, false],
+      ['https://www.this.site/foo', true, true, false],
       ['//foo/bar', true, false, false],
       ['//**HOST**/bar', true, true, false],
       ['**BASE**', true, true, false],
