@@ -4,6 +4,7 @@ import { Field, Form, Formik, FormikValues } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { act } from 'react-dom/test-utils';
 
+import { type } from '../../test-utils';
 import { Link, LinkProps } from '../../types';
 import {
   buildHtmlBuilder,
@@ -300,9 +301,9 @@ describe('FormikChanges', () => {
     );
     const input = await screen.findByRole('textbox');
 
-    await userEvent.type(input, 'foo');
+    await type(input, 'foo');
     await userEvent.clear(input);
-    await userEvent.type(input, 'bar');
+    await type(input, 'bar');
 
     await waitFor(() => {
       expect(onChange).toHaveBeenCalledTimes(8);
@@ -478,8 +479,10 @@ describe('FormikInitialValues', () => {
         );
         useEffect(() => {
           setTimeout(() => {
-            setValues({ a: 'foo' });
-          }, 100);
+            act(() => {
+              setValues({ a: 'foo' });
+            });
+          }, 150);
         }, [setValues]);
         return values;
       };
@@ -498,18 +501,18 @@ describe('FormikInitialValues', () => {
           </Form>
         </Formik>,
       );
-
-      const a = await screen.findByRole('textbox', { name: 'A' });
-      const b = await screen.findByRole('textbox', { name: 'B' });
-
-      await userEvent.type(a, 'bar');
-      await userEvent.type(b, 'baz');
-
-      await new Promise((resolve) => setTimeout(resolve, 200));
     });
 
     const a = await screen.findByRole('textbox', { name: 'A' });
     const b = await screen.findByRole('textbox', { name: 'B' });
+
+    await userEvent.type(a, 'bar');
+    await userEvent.type(b, 'baz');
+
+    await waitFor(() => expect(a.getAttribute('value')).toEqual('bar'));
+    await waitFor(() => expect(b.getAttribute('value')).toEqual('baz'));
+
+    await new Promise((resolve) => setTimeout(resolve, 200));
 
     await waitFor(() => expect(a.getAttribute('value')).toEqual('bar'));
     await waitFor(() => expect(b.getAttribute('value')).toEqual('baz'));
