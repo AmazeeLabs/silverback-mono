@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import Code from '../Code';
 
@@ -8,10 +8,12 @@ export default {
   component: Code,
 } as Meta;
 
-const MDXCode: React.FC<{
-  mdxType: 'code';
-  className: string;
-}> = ({ children }) => <code>{children}</code>;
+const MDXCode: React.FC<
+  PropsWithChildren<{
+    mdxType: 'code';
+    className: string;
+  }>
+> = ({ children }) => <code>{children}</code>;
 
 export const Javascript: Story = () => (
   <div className="prose-xl">
