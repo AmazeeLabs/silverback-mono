@@ -126,11 +126,20 @@ class WebformSubmissionForm extends Original {
     // Don't use $this->getConfirmationUrl() because it returns absolute URL.
     $url = trim($this->getWebformSetting('confirmation_url', ''));
 
-    if (!str_starts_with($url, '/')) {
-      $this->logger('nuklear_custom')->warning('Bad redirect URL. Debug: {debug}', [
+    try {
+      $parts = parse_url($url);
+      if (!is_array($parts)) {
+        throw new \Exception('Cannot parse URL.');
+      }
+      if (empty($parts['path']) && empty($parts['host'])) {
+        throw new \Exception('URL contains no host nor path.');
+      }
+    } catch (\Throwable $e) {
+      $this->logger('silverback_iframe')->warning('Bad webform redirect URL. Debug: {debug}', [
         'debug' => json_encode([
           'url' => $url,
           'webformId' => $this->getWebform()->id(),
+          'error' => $e->getMessage(),
         ]),
       ]);
       $url = '/';
