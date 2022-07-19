@@ -6,6 +6,7 @@ import { GatsbyImageProps } from 'gatsby-plugin-image';
 import React, { useEffect, useState } from 'react';
 
 import { buildForm, buildImage, buildLink } from '../gatsby';
+import { type } from '../test-utils';
 
 const gatsbyNav = jest.fn();
 
@@ -221,8 +222,8 @@ describe('buildForm', () => {
         <button type="submit" />
       </Form>,
     );
-    userEvent.type(screen.getByRole('textbox'), 'bar');
-    userEvent.click(screen.getByRole('button'));
+    await userEvent.type(screen.getByRole('textbox'), 'bar');
+    await userEvent.click(screen.getByRole('button'));
     await waitFor(() => {
       expect(callback).toHaveBeenCalledTimes(1);
       expect(callback).toHaveBeenCalledWith({ foo: 'bar' });
@@ -238,7 +239,7 @@ describe('buildForm', () => {
         <button type="submit" />
       </Form>,
     );
-    await userEvent.type(screen.getByRole('textbox'), 'bar');
+    await type(screen.getByRole('textbox'), 'bar');
     await waitFor(() => {
       expect(onChange).toHaveBeenCalledTimes(4);
       expect(onChange).toHaveBeenNthCalledWith(1, { foo: '' });

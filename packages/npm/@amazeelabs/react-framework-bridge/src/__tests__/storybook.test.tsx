@@ -19,6 +19,7 @@ import {
   RouteStory,
   useLocation,
 } from '../storybook';
+import { type } from '../test-utils';
 import {
   AsyncContent,
   Content,
@@ -324,8 +325,10 @@ describe('buildForm', () => {
         } as any,
       ),
     );
-    userEvent.type(screen.getByRole('textbox'), 'bar');
-    userEvent.click(screen.getByRole('button'));
+    await userEvent.type(screen.getByRole('textbox'), 'b');
+    await userEvent.type(screen.getByRole('textbox'), 'a');
+    await userEvent.type(screen.getByRole('textbox'), 'r');
+    await userEvent.click(screen.getByRole('button'));
     await waitFor(() => {
       expect(wouldSubmit).toHaveBeenCalledTimes(1);
       expect(wouldSubmit).toHaveBeenCalledWith({ foo: 'bar' });
@@ -350,8 +353,8 @@ describe('buildForm', () => {
         } as any,
       ),
     );
-    userEvent.type(screen.getByRole('textbox'), 'bar');
-    userEvent.click(screen.getByRole('button'));
+    await type(screen.getByRole('textbox'), 'bar');
+    await userEvent.click(screen.getByRole('button'));
     await waitFor(() => {
       expect(wouldSubmit).toHaveBeenCalledTimes(1);
       expect(wouldSubmit).toHaveBeenCalledWith({ foo: 'bar' });
@@ -369,7 +372,7 @@ describe('buildForm', () => {
         <button type="submit" />
       </Form>,
     );
-    await userEvent.type(screen.getByRole('textbox'), 'bar');
+    await type(screen.getByRole('textbox'), 'bar');
     await waitFor(() => {
       expect(onChange).toHaveBeenCalledTimes(4);
       expect(onChange).toHaveBeenNthCalledWith(1, { foo: '' });

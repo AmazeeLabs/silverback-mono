@@ -1,6 +1,5 @@
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import React, { useEffect, useState } from 'react';
-import { act } from 'react-dom/test-utils';
 
 import { buildHtml } from '../../storybook';
 import { createMapper, Route, RouteSlotInput } from '../atomic';
@@ -277,36 +276,40 @@ describe('Route rendering', () => {
   });
 
   it('updates organisms based on hook output', async () => {
-    await act(async () => {
-      const { container } = render(
-        <Route
-          definition={Content}
-          input={{
-            intro: {
-              title: 'Test',
-            },
-            body: [
-              {
-                key: 'async',
-                input: function useAsyncInput() {
-                  const [status, setStatus] = useState(102);
-                  useEffect(() => {
-                    setTimeout(() => setStatus(200), 50);
-                  });
-                  return [
-                    {
-                      Content: buildHtml(`<p>Async content.</p>`),
-                    },
-                    status,
-                  ];
-                },
+    jest.useFakeTimers();
+    const { container } = render(
+      <Route
+        definition={Content}
+        input={{
+          intro: {
+            title: 'Test',
+          },
+          body: [
+            {
+              key: 'async',
+              input: function useAsyncInput() {
+                const [status, setStatus] = useState(102);
+                useEffect(() => {
+                  setTimeout(() => {
+                    act(() => {
+                      setStatus(200);
+                    });
+                  }, 50);
+                });
+                return [
+                  {
+                    Content: buildHtml(`<p>Async content.</p>`),
+                  },
+                  status,
+                ];
               },
-            ],
-          }}
-          intl={{ defaultLocale: 'en', locale: 'en' }}
-        />,
-      );
-      expect(container).toMatchInlineSnapshot(`
+            },
+          ],
+        }}
+        intl={{ defaultLocale: 'en', locale: 'en' }}
+      />,
+    );
+    expect(container).toMatchInlineSnapshot(`
               <div>
                 <div>
                   <div>
@@ -322,8 +325,8 @@ describe('Route rendering', () => {
                 </div>
               </div>
           `);
-      await new Promise((resolve) => setTimeout(resolve, 60));
-      expect(container).toMatchInlineSnapshot(`
+    jest.runAllTimers();
+    expect(container).toMatchInlineSnapshot(`
               <div>
                 <div>
                   <div>
@@ -339,7 +342,8 @@ describe('Route rendering', () => {
                 </div>
               </div>
           `);
-    });
+    jest.runOnlyPendingTimers();
+    jest.useRealTimers();
   });
 });
 
