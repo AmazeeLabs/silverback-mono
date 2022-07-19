@@ -1,7 +1,7 @@
 import { FormikConfig, FormikFormProps, FormikValues } from 'formik';
 import { Element } from 'html-react-parser';
 import { stringify } from 'qs';
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
 export type ClassFunction = (domNode: Element) => string | null;
 
@@ -31,16 +31,17 @@ export type ImageProps = Omit<
 
 export type ImageBuilder = (props: ImageProps) => Image;
 
-export type Link<Query extends Parameters<typeof stringify>[0] = {}> =
-  React.FC<{
+export type Link<Query extends Parameters<typeof stringify>[0] = {}> = React.FC<
+  PropsWithChildren<{
     className?: string;
     activeClassName?: string;
     query?: Query;
     fragment?: string;
-  }> & {
-    navigate: (opts?: { query?: Query; fragment?: string }) => void;
-    href: string;
-  };
+  }>
+> & {
+  navigate: (opts?: { query?: Query; fragment?: string }) => void;
+  href: string;
+};
 
 export type LinkProps<Query extends Parameters<typeof stringify>[0] = {}> =
   Omit<
