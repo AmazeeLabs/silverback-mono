@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/gatsby-fragments",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Generates fragment.ts files from .gql files to append vendor prefix.",
   "author": "Amazee Labs",
   "main": "index.js",
@@ -9,7 +9,7 @@
   "bin": "./cli.js",
   "devDependencies": {
     "@amazeelabs/eslint-config": "^1.4.28",
-    "@amazeelabs/jest-preset": "^1.3.31",
+    "@amazeelabs/jest-preset": "^1.3.34",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@rollup/plugin-commonjs": "^22.0.1",
     "@rollup/plugin-node-resolve": "^13.3.0",

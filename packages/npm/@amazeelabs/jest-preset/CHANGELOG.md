@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.34](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/jest-preset@1.3.33...@amazeelabs/jest-preset@1.3.34) (2022-07-19)
+
+
+### Bug Fixes
+
+* add jest-environment-jsdom ([860cbd9](https://github.com/AmazeeLabs/silverback-mono/commit/860cbd917c3b80ae60bc9b365385e39ef20cf0f5))
+
+
+
+
+
 ## [1.3.33](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/jest-preset@1.3.32...@amazeelabs/jest-preset@1.3.33) (2022-06-22)
 
 **Note:** Version bump only for package @amazeelabs/jest-preset

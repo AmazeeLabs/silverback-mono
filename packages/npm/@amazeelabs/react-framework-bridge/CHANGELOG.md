@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.17.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.17.0...@amazeelabs/react-framework-bridge@1.17.1) (2022-07-19)
+
+
+### Bug Fixes
+
+* adjust types for react 18 ([9da2eb6](https://github.com/AmazeeLabs/silverback-mono/commit/9da2eb6e56744a7582b9cd7abace69415d9cbe6c))
+
+
+
+
+
 # [1.17.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.16.1...@amazeelabs/react-framework-bridge@1.17.0) (2022-07-13)
 
 

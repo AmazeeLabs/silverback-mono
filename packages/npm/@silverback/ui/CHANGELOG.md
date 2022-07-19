@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.38](https://github.com/AmazeeLabs/silverback-mono/compare/@silverback/ui@1.0.37...@silverback/ui@1.0.38) (2022-07-19)
+
+
+### Bug Fixes
+
+* adjust types for react 18 ([9ef34e0](https://github.com/AmazeeLabs/silverback-mono/commit/9ef34e0ca34f9ccc4a6d64d01e6f97ec815e67d6))
+
+
+
+
+
 ## [1.0.37](https://github.com/AmazeeLabs/silverback-mono/compare/@silverback/ui@1.0.36...@silverback/ui@1.0.37) (2022-06-22)
 
 **Note:** Version bump only for package @silverback/ui
