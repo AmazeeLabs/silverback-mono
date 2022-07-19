@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_iframe@1.2.0...@-amazeelabs/silverback_iframe@1.2.1) (2022-07-19)
+
+
+### Bug Fixes
+
+* fix webform redirect url check ([710318c](https://github.com/AmazeeLabs/silverback-mono/commit/710318c97dea7c7b024fe710c7797c9984e832db))
+
+
+
+
+
 # [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_iframe@1.1.4...@-amazeelabs/silverback_iframe@1.2.0) (2022-04-25)
 
 
