@@ -102,6 +102,8 @@
         // we stay on Drush 10 for now.
         // TODO: Remove once https://github.com/amazeeio/drupal-integrations/issues/7 is resolved.
         "drush/drush",
+        // Cypress is not in use anymore, so we disable major updates.
+        "cypress",
       ],
       updateTypes: ["major"],
       enabled: false,
