@@ -44,8 +44,15 @@ function install_silverback_and_test {
     \$json = json_decode(file_get_contents('composer.json'), TRUE);
     \$json['repositories'][] = ['type' => 'path', 'url' => '$BASEDIR/../../*/*' ];
     \$json['extra']['drupal-scaffold']['allowed-packages'][] = 'amazeelabs/silverback-cli';
+    \$json['config']['allow-plugins']['drupal/core-composer-scaffold'] = true;
+    \$json['config']['allow-plugins']['composer/installers'] = true;
+    \$json['config']['allow-plugins']['cweagans/composer-patches'] = true;
+    \$json['config']['allow-plugins']['drupal/core-project-message'] = true;
+    \$json['config']['allow-plugins']['zaporylie/composer-drupal-optimizations'] = true;
+    \$json['config']['allow-plugins']['dealerdirect/phpcodesniffer-composer-installer'] = true;
     file_put_contents('composer.json', json_encode(\$json, JSON_PRETTY_PRINT));
   "
+  composer install
   # Templates/starters may come with or without settings.php. Silverback CLI
   # needs it in advance. Make sure it exists.
   if [ -f "$1/web/sites/default/default.settings.php" ]; then
@@ -83,5 +90,4 @@ TMP=$(mktemp -d)
 cd "$BASEDIR"
 git clone https://github.com/amazeeio/drupal-example-simple "$TMP"
 cd "$TMP"
-composer install
 (install_silverback_and_test "$TMP")
