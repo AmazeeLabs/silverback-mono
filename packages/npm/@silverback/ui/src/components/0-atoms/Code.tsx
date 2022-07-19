@@ -31,7 +31,7 @@ export const preToCodeBlock = (preProps: PropsWithChildren<any>) => {
   return undefined;
 };
 
-const Code: React.FC = (preProps) => {
+const Code: React.FC<PropsWithChildren> = (preProps) => {
   const props = preToCodeBlock(preProps);
 
   return props ? (

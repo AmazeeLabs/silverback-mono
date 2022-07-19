@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
-const Documentation: React.FC<{
-  title: string;
-  toc: {
-    url: string;
+const Documentation: React.FC<
+  PropsWithChildren<{
     title: string;
-  }[];
-}> = ({ children, toc }) => {
+    toc: {
+      url: string;
+      title: string;
+    }[];
+  }>
+> = ({ children, toc }) => {
   return (
     <div className="items-start lg:grid grid-cols-4">
       {toc && toc.length > 1 ? (
