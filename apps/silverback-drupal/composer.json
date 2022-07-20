@@ -45,7 +45,7 @@
         "drupal/graphql": "4.3.0",
         "drupal/gutenberg": "2.5.0",
         "drupal/paragraphs": "1.14.0",
-        "drupal/redirect": "^1.7",
+        "drupal/redirect": "1.7.0",
         "drupal/test_session": "@dev",
         "drupal/webform": "6.1.3",
         "phpspec/prophecy-phpunit": "2.0.1"
