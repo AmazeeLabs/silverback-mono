@@ -23,6 +23,7 @@
         "amazeelabs/proxy-drupal-core": "@dev",
         "amazeelabs/proxy-gutenberg": "@dev",
         "amazeelabs/silverback-cli": "@dev",
+        "amazeelabs/silverback_cdn_redirect": "@dev",
         "amazeelabs/silverback_external_preview": "@dev",
         "amazeelabs/silverback_gatsby": "@dev",
         "amazeelabs/silverback_gutenberg": "@dev",
@@ -44,6 +45,7 @@
         "drupal/graphql": "4.3.0",
         "drupal/gutenberg": "2.5.0",
         "drupal/paragraphs": "1.14.0",
+        "drupal/redirect": "^1.7",
         "drupal/test_session": "@dev",
         "drupal/webform": "6.1.3",
         "phpspec/prophecy-phpunit": "2.0.1"
