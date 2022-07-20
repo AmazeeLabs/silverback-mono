@@ -425,4 +425,65 @@ describe('createMapper', () => {
       ]
     `);
   });
+
+  it('passes execution context and payloads into mapping functions', () => {
+    type Html = {
+      __typename: 'Sync';
+      html: string;
+    };
+    type Input = Array<Html>;
+    const mappingFunction = jest.fn();
+    mappingFunction.mockReturnValue({
+      key: 'sync',
+      input: {
+        Content: buildHtml(`<div class="sync">Foo</div>`),
+      },
+    });
+    const mapper = createMapper<Input, RouteSlotInput<typeof Content, 'body'>>(
+      {
+        Sync: mappingFunction,
+      },
+      'some context',
+    );
+
+    const input: Input = [
+      {
+        __typename: 'Sync',
+        html: 'Sync content 1',
+      },
+      undefined,
+      {
+        __typename: 'Sync',
+        html: 'Sync content 2',
+      },
+    ];
+
+    expect(mapper(input)).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "input": Object {
+            "Content": [Function],
+          },
+          "key": "sync",
+        },
+        Object {
+          "input": Object {
+            "Content": [Function],
+          },
+          "key": "sync",
+        },
+      ]
+    `);
+    expect(mappingFunction).toHaveBeenCalledTimes(2);
+    expect(mappingFunction).toHaveBeenNthCalledWith(1, input[0], {
+      items: [input[0], input[2]],
+      payload: 'some context',
+      index: 0,
+    });
+    expect(mappingFunction).toHaveBeenNthCalledWith(2, input[2], {
+      items: [input[0], input[2]],
+      payload: 'some context',
+      index: 1,
+    });
+  });
 });
