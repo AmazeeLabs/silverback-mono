@@ -50,18 +50,28 @@ class CdnRedirectController extends ControllerBase {
     $queryString = $request->getQueryString();
     $uri = '/' . $path . ($queryString === NULL ? '' : '?' . $queryString);
 
-    $request = Request::create($uri, 'GET', [], [], [], $request->server->all());
-    $request->attributes->set('_silverback_cdn_redirect', TRUE);
+    $subRequest = Request::create($uri, 'GET', [], [], [], $request->server->all());
+    $subRequest->attributes->set('_silverback_cdn_redirect', TRUE);
     /** @var \Symfony\Component\HttpKernel\HttpKernelInterface $httpKernel */
     $httpKernel = \Drupal::service('http_kernel');
-    $response = $httpKernel->handle($request);
+    $response = $httpKernel->handle($subRequest);
 
     if ($response->isRedirection()) {
       $location = $response->headers->get('location');
       $parts = parse_url($location);
-      $location = $baseUrl .
-        ($parts['path'] ?? '') .
-        (isset($parts['query']) ? "?{$parts['query']}" : '');
+      $isRelative = empty($parts['scheme']) && empty($parts['host']);
+      $linksToCurrentHost = $parts['host'] === $request->getHost() &&
+        (
+          (
+            isset($parts['port']) && $parts['port'] == $request->getPort()
+          ) ||
+          !isset($parts['port'])
+        );
+      if ($isRelative || $linksToCurrentHost) {
+        $location = $baseUrl .
+          ($parts['path'] ?? '') .
+          (isset($parts['query']) ? "?{$parts['query']}" : '');
+      }
       $responseCode = $response->getStatusCode();
     } elseif ($response->getStatusCode() === 200) {
       // If the returned response is not a redirect, we still want to check if
@@ -124,10 +134,9 @@ class CdnRedirectController extends ControllerBase {
     }
 
     $response = new TrustedRedirectResponse($location, $responseCode);
-    // Vary the cache by the full URL. Otherwise it can happen that real backend
-    // request /node/123 leads to frontend https://frontend.site/alias
-    // because the redirect was already cached for /cdn-redirect/node/123
-    // request.
+    // Vary the cache by the full URL. Otherwise, it can happen that
+    // "backend.site/node/123" will lead to "frontend.site/node-alias" because
+    // the redirect was already cached for "backend.site/cdn-redirect/node/123".
     $response->getCacheableMetadata()->addCacheContexts(['url']);
     return $response;
   }
