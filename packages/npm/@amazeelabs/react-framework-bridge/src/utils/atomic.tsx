@@ -82,12 +82,18 @@ export const OrganismStatusProvider = ({
 );
 
 export type Mappers<
+  TContext extends any,
   TInput extends Array<{ __typename: TKey } | undefined>,
   TOptions extends RouteSlotInput<any, any>,
   TKey extends string = string,
 > = Partial<{
   [Property in Exclude<TInput[number], undefined>['__typename']]: (
     input: Extract<TInput[number], { __typename: Property }>,
+    context: {
+      items: TInput;
+      index: number;
+      payload: TContext;
+    },
   ) => TOptions;
 }>;
 
@@ -95,23 +101,27 @@ export function createMapper<
   TInput extends Array<{ __typename: TKey } | undefined>,
   TOptions extends RouteSlotInput<any, any>,
   TKey extends string = string,
->(mappers: Mappers<TInput, TOptions>) {
+  TContext extends any = any,
+>(mappers: Mappers<TContext, TInput, TOptions>, context?: TContext) {
   return function (input: TInput) {
-    return input
-      .filter((item) => {
-        if (isUndefined(item)) {
-          return false;
-        }
-        if (!mappers[item.__typename]) {
-          console.error(`No mapper defined for ${item.__typename}`);
-          return false;
-        }
-        return true;
-      })
-      .map((item) => {
-        // @ts-ignore
-        return mappers[item.__typename]!(item);
+    const filtered = input.filter((item) => {
+      if (isUndefined(item)) {
+        return false;
+      }
+      if (!mappers[item.__typename]) {
+        console.error(`No mapper defined for ${item.__typename}`);
+        return false;
+      }
+      return true;
+    });
+    return filtered.map((item, index) => {
+      // @ts-ignore
+      return mappers[item.__typename]!(item, {
+        items: filtered,
+        payload: context,
+        index,
       });
+    });
   };
 }
 
