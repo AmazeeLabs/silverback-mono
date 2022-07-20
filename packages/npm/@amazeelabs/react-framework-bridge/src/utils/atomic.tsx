@@ -103,7 +103,7 @@ export function createMapper<
   TKey extends string = string,
   TContext extends any = any,
 >(mappers: Mappers<TContext, TInput, TOptions>, context?: TContext) {
-  return function (input: TInput) {
+  return function (input: TInput, contextOverride?: TContext) {
     const filtered = input.filter((item) => {
       if (isUndefined(item)) {
         return false;
@@ -118,7 +118,7 @@ export function createMapper<
       // @ts-ignore
       return mappers[item.__typename]!(item, {
         items: filtered,
-        payload: context,
+        payload: contextOverride || context,
         index,
       });
     });

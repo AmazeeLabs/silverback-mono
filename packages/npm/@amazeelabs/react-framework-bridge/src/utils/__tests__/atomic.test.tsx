@@ -458,7 +458,7 @@ describe('createMapper', () => {
       },
     ];
 
-    expect(mapper(input)).toMatchInlineSnapshot(`
+    expect(mapper(input, 'some other context')).toMatchInlineSnapshot(`
       Array [
         Object {
           "input": Object {
@@ -477,12 +477,12 @@ describe('createMapper', () => {
     expect(mappingFunction).toHaveBeenCalledTimes(2);
     expect(mappingFunction).toHaveBeenNthCalledWith(1, input[0], {
       items: [input[0], input[2]],
-      payload: 'some context',
+      payload: 'some other context',
       index: 0,
     });
     expect(mappingFunction).toHaveBeenNthCalledWith(2, input[2], {
       items: [input[0], input[2]],
-      payload: 'some context',
+      payload: 'some other context',
       index: 1,
     });
   });
