@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d3037fe5b7544f347551a13089a92506",
+    "content-hash": "b3c480cb572b2f54fc92109cd0e720f7",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -241,11 +241,11 @@
         },
         {
             "name": "amazeelabs/silverback_cdn_redirect",
-            "version": "1.4.3",
+            "version": "1.4.4",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_cdn_redirect",
-                "reference": "58023043457104f33b83f745d203c82776c258a7"
+                "reference": "1697f466326daf08196cc0fad45b2f8e3a5da926"
             },
             "type": "drupal-module",
             "license": [
