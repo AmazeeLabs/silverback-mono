@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.18.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.17.1...@amazeelabs/react-framework-bridge@1.18.0) (2022-07-20)
+
+
+### Features
+
+* **framework-bridge:** allow to override global mapper context on invocation ([dbb32ba](https://github.com/AmazeeLabs/silverback-mono/commit/dbb32baecef666fc5b24fc9ed5475a24ad9a4f12))
+* **framework-bridge:** context support for mappers ([ff130bf](https://github.com/AmazeeLabs/silverback-mono/commit/ff130bf6ac49dc659e31f0d196d77f03f6bf03f9))
+
+
+
+
+
 ## [1.17.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.17.0...@amazeelabs/react-framework-bridge@1.17.1) (2022-07-19)
 
 
