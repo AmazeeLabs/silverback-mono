@@ -318,4 +318,37 @@ class EntityFeedTest extends EntityFeedTestBase {
     ], $metadata);
   }
 
+  public function testMultilingualRevisionable() {
+    $node = Node::create([
+      'type' => 'page',
+      'title' => 'Revision 1'
+    ]);
+    $node->save();
+    $node->setNewRevision();
+    $translation = $node->addTranslation('de', ['title' => 'Revision 1 German', 'status' => 1]);
+    $translation->save();
+
+
+    $translation->set('title', 'Revision 2 German');
+    $translation->setNewRevision();
+    $translation->save();
+
+    $query = $this->getQueryFromFile('revisionable-translatable.gql');
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheTags(['node:1']);
+    $metadata->addCacheContexts(['static:language:de']);
+    $this->assertResults($query, [], [
+      'a' => [
+        'title' => 'Revision 1',
+      ],
+      'b' => null,
+      'c' => [
+        'title' => 'Revision 1 German',
+      ],
+      'd' => [
+        'title' => 'Revision 2 German',
+      ],
+    ], $metadata);
+  }
+
 }
