@@ -204,11 +204,18 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
     ResolverBuilder $builder
   ): void {
     $type = $this->typeName;
+    $idResolver = $this->isTranslatable()
+      ? $builder->produce('gatsby_extract_id')->map('id', $builder->fromArgument('id'))
+      : $builder->fromArgument('id');
+    $langResolver = $this->isTranslatable()
+      ? $builder->produce('gatsby_extract_langcode')->map('id', $builder->fromArgument('id'))
+      : $builder->fromValue(null);
     $resolver = $this->builder->produce('fetch_entity')
       ->map('type', $this->builder->fromValue($this->type))
       ->map('bundles', $this->builder->fromValue($this->bundle === NULL ? NULL : [$this->bundle]))
       ->map('access', $this->builder->fromValue($this->access))
-      ->map('id', $builder->fromArgument('id'))
+      ->map('id', $idResolver)
+      ->map('language', $langResolver)
       ->map('revision_id', $builder->fromArgument('revision'))
     ;
     $registry->addFieldResolver("Query", "load{$type}Revision", $resolver);

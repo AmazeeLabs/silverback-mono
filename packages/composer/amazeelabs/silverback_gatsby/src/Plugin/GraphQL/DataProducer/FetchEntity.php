@@ -9,6 +9,7 @@ use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\graphql\GraphQL\Buffers\EntityBuffer;
+use Drupal\graphql\GraphQL\Buffers\EntityRevisionBuffer;
 use Drupal\graphql\GraphQL\Execution\FieldContext;
 use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
 use GraphQL\Deferred;
@@ -90,6 +91,11 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
   protected $entityBuffer;
 
   /**
+   * @var \Drupal\graphql\GraphQL\Buffers\EntityRevisionBuffer
+   */
+  protected $entityRevisionBuffer;
+
+  /**
    * {@inheritdoc}
    *
    * @codeCoverageIgnore
@@ -101,7 +107,8 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
       $plugin_definition,
       $container->get('entity_type.manager'),
       $container->get('entity.repository'),
-      $container->get('graphql.buffer.entity')
+      $container->get('graphql.buffer.entity'),
+      $container->get('graphql.buffer.entity_revision')
     );
   }
 
@@ -120,6 +127,8 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
    *   The entity repository service.
    * @param \Drupal\graphql\GraphQL\Buffers\EntityBuffer $entityBuffer
    *   The entity buffer service.
+   * @param \Drupal\graphql\GraphQL\Buffers\EntityRevisionBuffer $entityRevisionBuffer
+   *   The entity revision buffer service.
    *
    * @codeCoverageIgnore
    */
@@ -129,12 +138,14 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
     array $pluginDefinition,
     EntityTypeManagerInterface $entityTypeManager,
     EntityRepositoryInterface $entityRepository,
-    EntityBuffer $entityBuffer
+    EntityBuffer $entityBuffer,
+    EntityRevisionBuffer $entityRevisionBuffer
   ) {
     parent::__construct($configuration, $pluginId, $pluginDefinition);
     $this->entityTypeManager = $entityTypeManager;
     $this->entityRepository = $entityRepository;
     $this->entityBuffer = $entityBuffer;
+    $this->entityRevisionBuffer = $entityRevisionBuffer;
   }
 
   /**
@@ -175,7 +186,10 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
         $id = reset($result);
       }
     }
-    $resolver = $this->entityBuffer->add($type, $id);
+
+    $resolver = $revisionId
+      ? $this->entityRevisionBuffer->add($type, $revisionId)
+      : $this->entityBuffer->add($type, $id);
 
     return new Deferred(function () use ($type, $revisionId, $language, $bundles, $resolver, $context, $access, $accessUser, $accessOperation) {
       /** @var $entity \Drupal\Core\Entity\EntityInterface */
@@ -188,11 +202,6 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
         $tags = $type->getListCacheTags();
         $context->addCacheTags($tags);
         return NULL;
-      }
-
-      // If we have a defined revision, attempt to load it instead.
-      if ($revisionId && $entity instanceof RevisionableInterface) {
-        $entity = $this->entityTypeManager->getStorage($type)->loadRevision($revisionId);
       }
 
       $context->addCacheableDependency($entity);
