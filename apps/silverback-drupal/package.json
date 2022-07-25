@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@amazeelabs/graphql-schema-test": "^1.1.17",
-    "jest": "28.1.1",
+    "jest": "28.1.3",
     "start-server-and-test": "1.14.0"
   }
 }

@@ -14,8 +14,8 @@
     "jest": "^28"
   },
   "dependencies": {
-    "@swc/core": "^1.2.204",
-    "@swc/jest": "^0.2.21",
+    "@swc/core": "^1.2.218",
+    "@swc/jest": "^0.2.22",
     "@testing-library/react": "^13.3.0",
     "@tsconfig/recommended": "^1",
     "identity-obj-proxy": "^3.0.0",

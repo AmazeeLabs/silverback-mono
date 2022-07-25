@@ -32,12 +32,12 @@
     "postinstall": "lerna run prepare && husky install && rm -rf node_modules/@-*"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.0.2",
-    "@commitlint/config-conventional": "17.0.2",
-    "commitizen": "4.2.4",
+    "@commitlint/cli": "17.0.3",
+    "@commitlint/config-conventional": "17.0.3",
+    "commitizen": "4.2.5",
     "husky": "8.0.1",
-    "lerna": "5.1.4",
-    "verdaccio": "5.13.0",
+    "lerna": "5.2.0",
+    "verdaccio": "5.13.3",
     "verdaccio-git": ">= 0.0.1"
   },
   "commitlint": {
