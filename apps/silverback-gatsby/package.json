@@ -66,7 +66,7 @@
     "fast-builds:serve:netlify": "ts-node fast-builds/serve.ts 3000 netlify",
     "fast-builds:run:netlify": "ts-node fast-builds/netlify.ts",
     "update-schema": "SCHEMA_UPDATE=true gatsby build",
-    "codegen": "graphql-codegen --config codegen.yml",
+    "codegen": "DEBUG=1 yarn graphql-codegen --config codegen.yml",
     "test": "yarn test:static && yarn test:unit && yarn test:integration",
     "watch": "jest --watch",
     "storybook": "start-storybook -p 6006",
