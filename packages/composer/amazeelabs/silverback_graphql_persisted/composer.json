@@ -1,0 +1,7 @@
+{
+  "name": "amazeelabs/silverback_graphql_persisted",
+  "type": "drupal-module",
+  "version": "1.0.0",
+  "description": "Persisted queries plugin for GraphQL v4.",
+  "license": "GPL-2.0+"
+}
