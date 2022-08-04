@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.9.1...@amazeelabs/publisher@0.10.0) (2022-08-04)
+
+
+### Features
+
+* introduce "follow log" option ([0b592f9](https://github.com/AmazeeLabs/silverback-mono/commit/0b592f947078f1db94f64e5c54786b88e34962ba))
+
+
+
+
+
 ## [0.9.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.9.0...@amazeelabs/publisher@0.9.1) (2022-07-19)
 
 **Note:** Version bump only for package @amazeelabs/publisher
