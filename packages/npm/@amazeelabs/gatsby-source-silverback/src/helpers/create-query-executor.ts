@@ -25,7 +25,9 @@ export const createQueryExecutor = (
     },
     timeout: 60_000,
   });
-  return wrapQueryExecutorWithQueue(executor, { concurrency: 10 });
+  return wrapQueryExecutorWithQueue(executor, {
+    concurrency: options.query_concurrency || 10,
+  });
 };
 
 // Copy of the default network query executor from gatsby-graphql-source-toolkit
