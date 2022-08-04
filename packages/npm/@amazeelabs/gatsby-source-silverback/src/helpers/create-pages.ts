@@ -2,7 +2,7 @@ import fs from 'fs';
 import { CreatePagesArgs, PluginOptions } from 'gatsby';
 
 import { SilverbackPageContext } from '../../types';
-import { apiUrl, validOptions } from '../utils';
+import { validOptions } from '../utils';
 import { createQueryExecutor } from './create-query-executor';
 import { drupalFeeds } from './drupal-feeds';
 
@@ -13,12 +13,7 @@ export const createPages = async (
   if (!validOptions(options)) {
     return;
   }
-  const executor = createQueryExecutor(
-    apiUrl(options),
-    options.auth_user,
-    options.auth_pass,
-    options.auth_key,
-  );
+  const executor = createQueryExecutor(options);
   const feeds = await drupalFeeds(executor);
   for (const feed of feeds) {
     if (!feed.pathFieldName) {
