@@ -65,7 +65,7 @@ const prisma = new PrismaClient({
 
 const gateway$ = gatewayCommands$.pipe(
   GatewayService(config),
-  shareReplay(100),
+  shareReplay(500),
 );
 
 app.locals.isReady = false;
