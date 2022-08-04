@@ -1,5 +1,5 @@
 {
-  "name": "@amazeelabs/react-query-persisted-fetcher",
+  "name": "@amazeelabs/silverback-graphql-persisted",
   "version": "1.1.0",
   "main": "dist/index.js",
   "license": "MIT",
@@ -17,7 +17,7 @@
     "typescript": "4.7.4"
   },
   "scripts": {
-    "prepare": "tsc",
+    "prepare": "rm -rf dist && tsc",
     "precommit": "lint-staged",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "jest --passWithNoTests",
