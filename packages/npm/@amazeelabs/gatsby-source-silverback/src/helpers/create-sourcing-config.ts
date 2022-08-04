@@ -4,17 +4,17 @@ import {
   compileNodeQueries,
   generateDefaultFragments,
   IPaginationAdapter,
-  LimitOffset,
   loadSchema,
 } from 'gatsby-graphql-source-toolkit';
 import {
   IGatsbyNodeConfig,
   IQueryExecutor,
   ISourcingConfig,
-  RemoteTypeName,
 } from 'gatsby-graphql-source-toolkit/dist/types';
 
+import { Options } from '../utils';
 import { drupalFeeds as drupalFeedsFetcher } from './drupal-feeds';
+import { createLimitOffsetPaginationAdapter } from './pagination-adapter';
 
 type UntranslatableListResultItem = {
   remoteTypeName: string;
@@ -37,8 +37,7 @@ type ITranslatablePaginationAdapter = IPaginationAdapter<
 export const createSourcingConfig = async (
   gatsbyApi: NodePluginArgs,
   execute: IQueryExecutor,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  customFragments?: Map<RemoteTypeName, string>,
+  options: Options,
 ): Promise<ISourcingConfig> => {
   const schema = await loadSchema(execute);
   const drupalFeeds = await drupalFeedsFetcher(execute);
@@ -98,7 +97,9 @@ export const createSourcingConfig = async (
   });
 
   const LimitOffsetTranslatable: ITranslatablePaginationAdapter = {
-    ...(LimitOffset as ITranslatablePaginationAdapter),
+    ...(createLimitOffsetPaginationAdapter(
+      options.paginator_page_size || 100,
+    ) as ITranslatablePaginationAdapter),
     getItems: (pageOrResult) => {
       return pageOrResult
         .map((node) => (isTranslatable(node) ? node.translations : [node]))

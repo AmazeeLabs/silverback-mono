@@ -32,7 +32,8 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
     auth_user: Joi.string().optional(),
     auth_pass: Joi.string().optional(),
     auth_key: Joi.string().optional(),
-    query_concurrency: Joi.number().optional(),
+    query_concurrency: Joi.number().optional().min(1),
+    paginator_page_size: Joi.number().optional().min(2),
   });
 
 const getForwardedHeaders = (url: URL) => ({
@@ -56,7 +57,7 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
       : undefined,
   });
   // TODO: Accept configuration and fragment overrides from plugin settings.
-  const config = await createSourcingConfig(gatsbyApi, executor);
+  const config = await createSourcingConfig(gatsbyApi, executor, options);
   const context = createSourcingContext(config);
 
   // Source only what was changed. If there is something in cache.
@@ -138,7 +139,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
 
     const executor = createQueryExecutor(options);
     // TODO: Accept configuration and fragment overrides from plugin settings.
-    const config = await createSourcingConfig(args, executor);
+    const config = await createSourcingConfig(args, executor, options);
     await createToolkitSchemaCustomization(config);
 
     await createTranslationQueryField(args, createQueryExecutor(options));
