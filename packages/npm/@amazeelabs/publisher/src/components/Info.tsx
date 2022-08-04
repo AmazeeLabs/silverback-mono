@@ -221,6 +221,8 @@ export default function Info({
   const status = useStatus();
   const gatewaySocket = createWebsocketUrl('/___status/gateway/logs');
   const builderSocket = createWebsocketUrl('/___status/builder/logs');
+  const [followGatewayLog, setFollowGatewayLog] = useState(true);
+  const [followBuilderLog, setFollowBuilderLog] = useState(true);
   return (
     <div className={'md:m-4'}>
       <div className={'max-w-full bg-gray-900 pb-10'}>
@@ -288,13 +290,23 @@ export default function Info({
 
             <div style={{ height: 500, marginTop: 30 }}>
               {gatewaySocket ? (
-                <LazyLog
-                  enableSearch={true}
-                  follow={true}
-                  websocket={true}
-                  url={gatewaySocket}
-                  selectableLines={true}
-                />
+                <>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={followGatewayLog}
+                      onChange={() => setFollowGatewayLog(!followGatewayLog)}
+                    />{' '}
+                    Follow log
+                  </label>
+                  <LazyLog
+                    enableSearch={true}
+                    follow={followGatewayLog}
+                    websocket={true}
+                    url={gatewaySocket}
+                    selectableLines={true}
+                  />
+                </>
               ) : null}
             </div>
           </div>
@@ -316,13 +328,23 @@ export default function Info({
 
             <div style={{ height: 500, marginTop: 30 }}>
               {builderSocket ? (
-                <LazyLog
-                  enableSearch={true}
-                  follow={true}
-                  websocket={true}
-                  url={builderSocket}
-                  selectableLines={true}
-                />
+                <>
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={followBuilderLog}
+                      onChange={() => setFollowBuilderLog(!followBuilderLog)}
+                    />{' '}
+                    Follow log
+                  </label>
+                  <LazyLog
+                    enableSearch={true}
+                    follow={followBuilderLog}
+                    websocket={true}
+                    url={builderSocket}
+                    selectableLines={true}
+                  />
+                </>
               ) : (
                 builderSocket
               )}
