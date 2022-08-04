@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.6.16...@amazeelabs/gatsby-source-silverback@1.7.0) (2022-08-04)
+
+
+### Features
+
+* improved error handling for graphql requests ([2f6128d](https://github.com/AmazeeLabs/silverback-mono/commit/2f6128d1860d6ed58b3e99230f4c0b3b73584656))
+
+
+
+
+
 ## [1.6.16](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.6.15...@amazeelabs/gatsby-source-silverback@1.6.16) (2022-07-19)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-source-silverback
