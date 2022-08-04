@@ -11,6 +11,8 @@ export type Options = {
   auth_pass?: string;
   // Optional Key Auth.
   auth_key?: string;
+  // How much GraphQL queries can be executed in parallel. Defaults to 10.
+  query_concurrency?: number;
 };
 
 export const validOptions = (options: {
