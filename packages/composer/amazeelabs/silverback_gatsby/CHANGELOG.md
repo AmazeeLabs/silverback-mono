@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.23.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.23.2...@-amazeelabs/silverback_gatsby@1.23.3) (2022-08-04)
+
+
+### Bug Fixes
+
+* add forgotten index to gatsby_update_log table ([11dd8f2](https://github.com/AmazeeLabs/silverback-mono/commit/11dd8f253a67743be43390de0e88e2978a10a7a8))
+
+
+
+
+
 ## [1.23.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.23.1...@-amazeelabs/silverback_gatsby@1.23.2) (2022-07-21)
 
 
