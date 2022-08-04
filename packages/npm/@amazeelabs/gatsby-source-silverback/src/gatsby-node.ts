@@ -20,7 +20,7 @@ import { createSourcingConfig } from './helpers/create-sourcing-config';
 import { createTranslationQueryField } from './helpers/create-translation-query-field';
 import { drupalFeeds } from './helpers/drupal-feeds';
 import { fetchNodeChanges } from './helpers/fetch-node-changes';
-import { apiUrl, Options, validOptions } from './utils';
+import { Options, validOptions } from './utils';
 
 export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   Joi,
@@ -48,15 +48,12 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
     return;
   }
 
-  const executor = createQueryExecutor(
-    apiUrl(options),
-    options.auth_user,
-    options.auth_pass,
-    options.auth_key,
-    options.drupal_external_url
+  const executor = createQueryExecutor({
+    ...options,
+    headers: options.drupal_external_url
       ? getForwardedHeaders(new URL(options.drupal_external_url))
       : undefined,
-  );
+  });
   // TODO: Accept configuration and fragment overrides from plugin settings.
   const config = await createSourcingConfig(gatsbyApi, executor);
   const context = createSourcingContext(config);
@@ -138,25 +135,12 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       return;
     }
 
-    const executor = createQueryExecutor(
-      apiUrl(options),
-      options.auth_user,
-      options.auth_pass,
-      options.auth_key,
-    );
+    const executor = createQueryExecutor(options);
     // TODO: Accept configuration and fragment overrides from plugin settings.
     const config = await createSourcingConfig(args, executor);
     await createToolkitSchemaCustomization(config);
 
-    await createTranslationQueryField(
-      args,
-      createQueryExecutor(
-        apiUrl(options),
-        options.auth_user,
-        options.auth_pass,
-        options.auth_key,
-      ),
-    );
+    await createTranslationQueryField(args, createQueryExecutor(options));
     args.actions.createTypes(`
     type Query {
       drupalBuildId: Int!

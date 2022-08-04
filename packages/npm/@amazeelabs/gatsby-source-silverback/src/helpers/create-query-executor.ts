@@ -3,24 +3,25 @@ import { IQueryExecutor } from 'gatsby-graphql-source-toolkit/dist/types';
 import fetch, { RequestInit } from 'node-fetch';
 import { inspect } from 'util';
 
+import { Options } from '../utils';
+
 export const createQueryExecutor = (
-  url: string,
-  authUser?: string,
-  authPass?: string,
-  authKey?: string,
-  headers?: RequestInit['headers'],
+  options: Options & {
+    headers?: RequestInit['headers'];
+  },
 ) => {
+  const url = `${new URL(options.drupal_url).origin}${options.graphql_path}`;
   const executor = createNetworkQueryExecutor(url, {
     headers: {
-      ...headers,
-      ...(authUser && authPass
+      ...options?.headers,
+      ...(options?.auth_user && options?.auth_pass
         ? {
             Authorization: `Basic ${Buffer.from(
-              `${authUser}:${authPass}`,
+              `${options.auth_user}:${options.auth_pass}`,
             ).toString('base64')}`,
           }
         : {}),
-      ...(authKey ? { 'api-key': authKey } : {}),
+      ...(options?.auth_key ? { 'api-key': options.auth_key } : {}),
     },
     timeout: 60_000,
   });

@@ -16,6 +16,3 @@ export type Options = {
 export const validOptions = (options: {
   [key: string]: any;
 }): options is Options => options.drupal_url && options.graphql_path;
-
-export const apiUrl = (options: Options) =>
-  `${new URL(options.drupal_url).origin}${options.graphql_path}`;
