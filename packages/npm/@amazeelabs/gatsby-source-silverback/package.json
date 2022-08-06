@@ -34,6 +34,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "fetch-retry-ts": "^1.1.25",
     "gatsby-graphql-source-toolkit": "^2.0.2"
   }
 }
