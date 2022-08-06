@@ -1,4 +1,5 @@
 import { createHash } from 'crypto';
+import fetchBuilder from 'fetch-retry-ts';
 import { writeFileSync } from 'fs';
 import { wrapQueryExecutorWithQueue } from 'gatsby-graphql-source-toolkit';
 import { IQueryExecutor } from 'gatsby-graphql-source-toolkit/dist/types';
@@ -6,6 +7,8 @@ import fetch, { RequestInit } from 'node-fetch';
 import { inspect } from 'util';
 
 import { Options } from '../utils';
+
+const fetchWithRetries = fetchBuilder(fetch);
 
 export const createQueryExecutor = (
   options: Options & {
@@ -44,7 +47,7 @@ export function createNetworkQueryExecutor(
 
     let response;
     try {
-      response = await fetch(uri, {
+      response = await fetchWithRetries(uri, {
         method: 'POST',
         body: JSON.stringify({ query, variables, operationName }),
         ...fetchOptions,
