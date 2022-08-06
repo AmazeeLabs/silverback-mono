@@ -1,3 +1,5 @@
+import { createHash } from 'crypto';
+import { writeFileSync } from 'fs';
 import { wrapQueryExecutorWithQueue } from 'gatsby-graphql-source-toolkit';
 import { IQueryExecutor } from 'gatsby-graphql-source-toolkit/dist/types';
 import fetch, { RequestInit } from 'node-fetch';
@@ -52,10 +54,10 @@ export function createNetworkQueryExecutor(
         },
       });
     } catch (e) {
-      console.warn(
-        `Query ${operationName} failed.\n` +
+      console.error(
+        `Query ${operationName} failed: ${e}\n` +
           `Query variables: ${inspect(variables)}\n` +
-          `Full query: ${inspect(query)}\n`,
+          `Full query: ${logQuery(query)}\n`,
       );
       throw e;
     }
@@ -63,7 +65,7 @@ export function createNetworkQueryExecutor(
       console.warn(
         `Query ${operationName} returned status ${response.status}.\n` +
           `Query variables: ${inspect(variables)}\n` +
-          `Full query: ${inspect(query)}\n`,
+          `Full query: ${logQuery(query)}\n`,
       );
     }
     const result = await response.json();
@@ -73,9 +75,20 @@ export function createNetworkQueryExecutor(
         `Query ${operationName} returned warnings:\n` +
           `${inspect(result.errors)}\n` +
           `Query variables: ${inspect(variables)}\n` +
-          `Full query: ${inspect(query)}\n`,
+          `Full query: ${logQuery(query)}\n`,
       );
     }
     return result;
   };
 }
+
+const logQuery = (query: string): string => {
+  const hash = createHash('md5').update(query).digest('hex');
+  const filename = `/tmp/gatsby-source-silverback--failed-query--${hash}.txt`;
+  try {
+    writeFileSync(filename, query);
+    return filename;
+  } catch (e) {
+    return '[could not store query as file]';
+  }
+};
