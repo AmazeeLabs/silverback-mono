@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.8.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.7.0...@amazeelabs/gatsby-source-silverback@1.8.0) (2022-08-06)
+
+
+### Features
+
+* introduce paginator_page_size option ([bd234ff](https://github.com/AmazeeLabs/silverback-mono/commit/bd234ffe3f923313ee7eabe4e50c8561969add3a))
+* introduce query_concurrency option ([79b0056](https://github.com/AmazeeLabs/silverback-mono/commit/79b0056e2433691e2c23d7af48e41e6c656e477e))
+
+
+
+
+
 # [1.7.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.6.16...@amazeelabs/gatsby-source-silverback@1.7.0) (2022-08-04)
 
 
