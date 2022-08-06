@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.9.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.8.2...@amazeelabs/gatsby-source-silverback@1.9.0) (2022-08-06)
+
+
+### Features
+
+* fetch with retries ([e5826e0](https://github.com/AmazeeLabs/silverback-mono/commit/e5826e0ef642b5aa88a64f377496cbbd5ca173c3))
+
+
+
+
+
 ## [1.8.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.8.1...@amazeelabs/gatsby-source-silverback@1.8.2) (2022-08-06)
 
 
