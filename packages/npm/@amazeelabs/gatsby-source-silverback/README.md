@@ -48,6 +48,10 @@ The following configuration options are supported:
 - `auth_key` **(optional)**: A key to be passed in `api-key` header to authorize
   GraphQL requests (e.g. if [key_auth](https://www.drupal.org/project/key_auth)
   module is enabled)
+- `query_concurrency` **(optional)**: How many GraphQL queries can be executed
+  in parallel. Defaults to 10.
+- `paginator_page_size` **(optional)**: How many entities to fetch in a single
+  GraphQL query. Defaults to 100.
 
 The optional credential parameters can be used to enable different workflows. On
 production, they can be omitted to make sure Drupal handles these requests
