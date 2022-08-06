@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.8.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.8.1...@amazeelabs/gatsby-source-silverback@1.8.2) (2022-08-06)
+
+
+### Bug Fixes
+
+* log full query to a file as it is too big ([d733607](https://github.com/AmazeeLabs/silverback-mono/commit/d7336078c435645ff548518ef64fbdbd6ca820e0))
+
+
+
+
+
 ## [1.8.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.8.0...@amazeelabs/gatsby-source-silverback@1.8.1) (2022-08-06)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-source-silverback
