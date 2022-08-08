@@ -3,19 +3,6 @@ type QueryHash = string;
 type QueryMap = Record<QueryName, QueryHash>;
 type Fetch = typeof fetch;
 
-/**
- * To be used with @graphql-codegen/typescript-graphql-request
- *
- * Example:
- *   import { withPersistedQueries } from '@amazeelabs/silverback-graphql-persisted';
- *   import map from '../generated/client-map.json';
- *   const sdk = getSdk(
- *     new GraphQLClient(..., {
- *       ...,
- *       fetch: withPersistedQueries(fetch, map),
- *     }),
- *   );
- */
 export const withPersistedQueries = (
   fetchFunc: Fetch,
   queryMap: QueryMap,
@@ -54,19 +41,6 @@ export const withPersistedQueries = (
   };
 };
 
-/**
- * To be used with @graphql-codegen/typescript-react-query
- *
- * Example:
- *   import { persistedFetcher } from '@amazeelabs/silverback-graphql-persisted';
- *   import map from '../generated/client-map.json';
- *   export function fetcher<TData, TVariables>(
- *     query: string,
- *     variables?: TVariables,
- *   ): () => Promise<TData> {
- *     return persistedFetcher(endpoint, map, query, variables);
- *   }
- */
 export function persistedFetcher<TData, TVariables>(
   endpoint: string,
   queryMap: QueryMap,
