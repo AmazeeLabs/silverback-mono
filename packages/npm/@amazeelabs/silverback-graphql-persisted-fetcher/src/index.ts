@@ -6,11 +6,27 @@ type Config = { map: string; endpoint: string; fetchParams?: string };
 
 export const plugin: PluginFunction<Config> = (_, __, config) => {
   const getEndpoint = (): string => {
+    let endpoint = config.endpoint;
+    if (!endpoint) {
+      throw new Error(`The endpoint is missing.`);
+    }
+
+    const match = endpoint.match(/process\.env\.([a-zA-Z0-9_]+)(-(.*))?/);
+    if (match) {
+      const [, envVarName, , defaultValue] = match;
+      endpoint = process.env[envVarName] || defaultValue;
+      if (!endpoint) {
+        throw new Error(
+          `The "${config.endpoint}" environment variable cannot be found.`,
+        );
+      }
+    }
+
     try {
-      new URL(config.endpoint);
-      return JSON.stringify(config.endpoint);
+      new URL(endpoint);
+      return JSON.stringify(endpoint);
     } catch (e) {
-      throw `The endpoint "${config.endpoint}" is not a valid URL: ${e}`;
+      throw new Error(`The endpoint "${endpoint}" is not a valid URL: ${e}`);
     }
   };
 
