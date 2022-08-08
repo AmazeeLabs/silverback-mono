@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/silverback-graphql-persisted-fetcher",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "license": "MIT",
   "publishConfig": {
