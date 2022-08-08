@@ -297,7 +297,7 @@ export default function Info({
                       checked={followGatewayLog}
                       onChange={() => setFollowGatewayLog(!followGatewayLog)}
                     />{' '}
-                    Follow log
+                    Auto scroll
                   </label>
                   <LazyLog
                     enableSearch={true}
@@ -335,7 +335,7 @@ export default function Info({
                       checked={followBuilderLog}
                       onChange={() => setFollowBuilderLog(!followBuilderLog)}
                     />{' '}
-                    Follow log
+                    Auto scroll
                   </label>
                   <LazyLog
                     enableSearch={true}
