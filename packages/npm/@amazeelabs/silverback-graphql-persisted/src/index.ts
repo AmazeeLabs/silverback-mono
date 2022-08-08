@@ -1,5 +1,6 @@
 type QueryName = string;
 type QueryHash = string;
+type QueryMap = Record<QueryName, QueryHash>;
 type Fetch = typeof fetch;
 
 /**
@@ -17,7 +18,7 @@ type Fetch = typeof fetch;
  */
 export const withPersistedQueries = (
   fetchFunc: Fetch,
-  queryMap: Record<QueryName, QueryHash>,
+  queryMap: QueryMap,
 ): Fetch => {
   return function (input, init) {
     if (typeof init?.body !== 'string') {
@@ -40,22 +41,7 @@ export const withPersistedQueries = (
     }
     const query: string = body.query;
 
-    const match = query.match(/((query)|(mutation)) [A-Za-z0-9_]+[ {(]/);
-    if (!match) {
-      const message = 'Cannot find query name.';
-      console.error({ message, input, init, body, query });
-      throw new Error(message);
-    }
-    const name = match[0];
-    const entry = Object.entries(queryMap).find(([, query]) =>
-      query.includes(name),
-    );
-    if (!entry) {
-      const message = 'Cannot find query ID.';
-      console.error({ message, input, init, body, query, name });
-      throw new Error(message);
-    }
-    const id = entry[0];
+    const id = getQueryId(query, queryMap);
 
     return fetchFunc(input, {
       ...init,
@@ -80,23 +66,11 @@ export const withPersistedQueries = (
  */
 export function persistedFetcher<TData, TVariables>(
   endpoint: string,
-  queryMap: Record<QueryName, QueryHash>,
+  queryMap: QueryMap,
   query: string,
   variables?: TVariables,
 ) {
-  const match = query.match(/((query)|(mutation)) [A-Za-z0-9_]+[ {(]/);
-  if (!match) {
-    throw new Error(`Cannot find query name. Query: ${query}`);
-  }
-  const name = match[0];
-  const id = queryMap[name];
-  if (!id) {
-    throw new Error(
-      `Cannot find query ID. Query name: ${name}. Query map: ${JSON.stringify(
-        queryMap,
-      )}`,
-    );
-  }
+  const id = getQueryId(query, queryMap);
   return async (): Promise<TData> => {
     const res = await fetch(endpoint, {
       method: 'POST',
@@ -110,4 +84,23 @@ export function persistedFetcher<TData, TVariables>(
     }
     return json.data;
   };
+}
+
+function getQueryId(query: string, queryMap: QueryMap): string {
+  const match = query.match(/((query)|(mutation)) ([A-Za-z0-9_]+)[ {(]/);
+  if (!match) {
+    throw new Error(`Cannot find query name. Query: ${query}`);
+  }
+  const queryName = match[4];
+
+  const id = queryMap[queryName];
+  if (!id) {
+    throw new Error(
+      `Cannot find query ID. Query name: ${queryName}. Query map: ${JSON.stringify(
+        queryMap,
+      )}`,
+    );
+  }
+
+  return id;
 }
