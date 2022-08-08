@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/silverback-graphql-persisted@1.1.1...@amazeelabs/silverback-graphql-persisted@1.2.0) (2022-08-08)
+
+
+### Features
+
+* add withPersistedQueries fetch wrapper ([3c970da](https://github.com/AmazeeLabs/silverback-mono/commit/3c970da9e68db515e262b5b6931f9a2a6254c0e3))
+
+
+
+
+
 ## 1.1.1 (2022-08-04)
 
 **Note:** Version bump only for package @amazeelabs/silverback-graphql-persisted
