@@ -60,7 +60,10 @@ export const withPersistedQueries = (
  * Example:
  *   import { persistedFetcher } from '@amazeelabs/silverback-graphql-persisted';
  *   import map from '../generated/client-map.json';
- *   export function fetcher<TData, TVariables>(query: string, variables?: TVariables) {
+ *   export function fetcher<TData, TVariables>(
+ *     query: string,
+ *     variables?: TVariables,
+ *   ): () => Promise<TData> {
  *     return persistedFetcher(endpoint, map, query, variables);
  *   }
  */
