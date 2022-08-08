@@ -1,6 +1,6 @@
 {
-  "name": "@amazeelabs/silverback-graphql-persisted",
-  "version": "1.2.0",
+  "name": "@amazeelabs/silverback-graphql-persisted-fetch",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
@@ -25,8 +25,5 @@
     "test:integration": "exit 0",
     "test:watch": "jest --watch",
     "test": "yarn test:static && yarn test:unit && yarn test:integration"
-  },
-  "dependencies": {
-    "@graphql-codegen/plugin-helpers": "^2.6.1"
   }
 }
