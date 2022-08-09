@@ -83,40 +83,30 @@ const IndexPage: React.FC<PageProps> = () => {
       <table>
         <tr>
           <Row>
-            {
-              intl.formatMessage({
-                defaultMessage: 'ID',
-              })
-            }
+            {intl.formatMessage({
+              defaultMessage: 'ID',
+            })}
           </Row>
           <Row>
-            {
-              intl.formatMessage({
-                defaultMessage: 'Title',
-                description: "table title"
-              })
-            }
+            {intl.formatMessage({
+              defaultMessage: 'Title',
+              description: 'table title',
+            })}
           </Row>
           <Row>
-            {
-              intl.formatMessage({
-                defaultMessage: 'Language',
-              })
-            }
+            {intl.formatMessage({
+              defaultMessage: 'Language',
+            })}
           </Row>
           <Row>
-            {
-              intl.formatMessage({
-                defaultMessage: 'Path',
-              })
-            }
+            {intl.formatMessage({
+              defaultMessage: 'Path',
+            })}
           </Row>
           <Row>
-            {
-              intl.formatMessage({
-                defaultMessage: 'Body',
-              })
-            }
+            {intl.formatMessage({
+              defaultMessage: 'Body',
+            })}
           </Row>
         </tr>
         {somePage?.translations.map((page) => (
