@@ -10,24 +10,26 @@ import { Row } from '../util/Row';
 
 const IndexPage: React.FC<PageProps> = () => {
   const {
-    drupalPage: somePage,
+    allDrupalPage: { nodes: pages },
     allDrupalArticle: { nodes: articles },
     allDrupalGutenbergPage: { nodes: gutenbergPages },
     allDrupalWebform: { nodes: webforms },
   } = useStaticQuery<IndexPageQuery>(graphql`
     query IndexPage {
-      drupalPage {
-        id
-        translations {
-          langcode
-          path
-          title
-          body
-        }
-        childrenImagesFromHtml {
-          urlOriginal
-          localImage {
-            ...ImageSharpFixed
+      allDrupalPage(filter: { title: { eq: "A page" } }) {
+        nodes {
+          id
+          translations {
+            langcode
+            path
+            title
+            body
+          }
+          childrenImagesFromHtml {
+            urlOriginal
+            localImage {
+              ...ImageSharpFixed
+            }
           }
         }
       }
@@ -63,6 +65,7 @@ const IndexPage: React.FC<PageProps> = () => {
       }
     }
   `);
+  const somePage = pages[0];
 
   const imageSets: ImageSet[] = [];
   for (const childImage of somePage?.childrenImagesFromHtml || []) {
@@ -79,7 +82,7 @@ const IndexPage: React.FC<PageProps> = () => {
   const intl = useIntl();
   return (
     <>
-      <b>Some page. Just one Page node. Without a dedicated site page.</b>
+      <b>A page. Just one Page node. Without a dedicated site page.</b>
       <table>
         <tr>
           <Row>
