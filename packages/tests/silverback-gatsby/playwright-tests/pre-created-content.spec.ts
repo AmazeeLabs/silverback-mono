@@ -44,4 +44,10 @@ test('@gatsby-both other pre-created content', async ({ page }) => {
   await page.click('a:text-is("Gutenberg page")');
   await expect(page.locator('a:text-is("German")')).not.toBeVisible();
   await expect(page.locator('a:text-is("French")')).not.toBeVisible();
+
+  // Check the page with special chars in the path alias.
+  await page.goto(gatsby.baseUrl + '/en/page-ä/!@$^&*(){}[]:"|;\'<>,.3/`~-=');
+  await expect(page.locator('body')).toContainText(
+    'This is a stub page for DrupalPage',
+  );
 });
