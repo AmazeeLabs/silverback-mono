@@ -1,0 +1,46 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 4a9fccff-5a62-4235-99d8-9d32ae2eb137
+  bundle: page
+  default_langcode: en
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'Path with special chars: /page-ä/!@$^&*(){}[]:"|;''<>,.3/`~-='
+  created:
+    -
+      value: 1660040140
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: '/page-ä/!@$^&*(){}[]:"|;''<>,.3/`~-='
+      langcode: en
+  external_preview_link:
+    -
+      uri: 'http://localhost:8000/en/page-%C3%A4/%21%40%24%5E%26%2A%28%29%7B%7D%5B%5D%3A%22%7C%3B%27%3C%3E%2C.3/%60~-%3D?preview=1'
+      title: 'Preview Path with special chars: /page-ä/!@$^&amp;*(){}[]:&quot;|;&#039;&lt;&gt;,.3/`~-='
+      options: {  }
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
