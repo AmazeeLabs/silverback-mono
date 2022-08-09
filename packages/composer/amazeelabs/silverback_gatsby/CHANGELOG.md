@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.23.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.23.3...@-amazeelabs/silverback_gatsby@1.23.4) (2022-08-09)
+
+
+### Bug Fixes
+
+* handle special characters in Gatsby page paths ([d770aeb](https://github.com/AmazeeLabs/silverback-mono/commit/d770aeb95c60a7307664d857df2c14ba04135c17))
+
+
+
+
+
 ## [1.23.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.23.2...@-amazeelabs/silverback_gatsby@1.23.3) (2022-08-04)
 
 
