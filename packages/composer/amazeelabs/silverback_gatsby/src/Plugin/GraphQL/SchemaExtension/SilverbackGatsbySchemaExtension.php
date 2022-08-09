@@ -24,6 +24,7 @@ use GraphQL\Language\AST\ObjectTypeDefinitionNode;
 use GraphQL\Language\AST\StringValueNode;
 use GraphQL\Language\AST\UnionTypeDefinitionNode;
 use GraphQL\Language\Parser;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -76,6 +77,11 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
    */
   protected $feedManager;
 
+  /**
+   * @var \Psr\Log\LoggerInterface
+   */
+  protected $logger;
+
 
   /**
    * {@inheritdoc}
@@ -88,7 +94,8 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
       $plugin_id,
       $plugin_definition,
       $container->get('module_handler'),
-      $container->get('silverback_gatsby.feed_manager')
+      $container->get('silverback_gatsby.feed_manager'),
+      $container->get('logger.factory')->get('silverback_gatsby'),
     );
   }
 
@@ -100,7 +107,8 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
     $pluginId,
     array $pluginDefinition,
     ModuleHandlerInterface $moduleHandler,
-    PluginManagerInterface $feedManager
+    PluginManagerInterface $feedManager,
+    LoggerInterface $logger
   ) {
     parent::__construct(
       $configuration,
@@ -109,6 +117,7 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
       $moduleHandler,
     );
     $this->feedManager = $feedManager;
+    $this->logger = $logger;
   }
 
   /**
@@ -488,7 +497,33 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
         case 'resolveEntityPath':
           $addResolver($path, $builder->compose(
             $builder->produce('entity_url')->map('entity', $builder->fromParent()),
-            $builder->produce('url_path')->map('url', $builder->fromParent())
+            $builder->produce('url_path')->map('url', $builder->fromParent()),
+            $builder->callback(
+              function (string $path) {
+
+                // Gatsby expects raw paths. Not encoded.
+                $path = rawurldecode($path);
+
+                // Some characters may ruin Gatsby.
+                // See https://github.com/gatsbyjs/gatsby/discussions/36345
+                $bannedCharacters = [
+                  // @gatsbyjs/reach-router applies decodeURIComponent function
+                  // to paths. And % sign can lead to "URI malformed" error.
+                  '%',
+                  // Other dangerous characters. The list is maybe incomplete.
+                  '?', '#', '\\',
+                ];
+                $original = $path;
+                foreach ($bannedCharacters as $character) {
+                  if (strpos($path, $character) !== FALSE) {
+                    $path = str_replace($character, '', $path);
+                    $this->logger->warning("Found entity with '{$character}' character in its path alias. The character will not be removed from the Gatsby page path. This can lead to broken links. Please update the entity path alias. Original path alias: '{$original}'.");
+                  }
+                }
+
+                return $path;
+              }
+            )
           ));
           break;
 
