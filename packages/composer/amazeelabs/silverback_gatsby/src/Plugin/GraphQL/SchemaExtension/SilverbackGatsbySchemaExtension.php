@@ -507,7 +507,7 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
                 // Some paths may ruin Gatsby.
                 // See https://github.com/gatsbyjs/gatsby/discussions/36345#discussioncomment-3364844
                 $original = $path;
-                $bannedCharacters = ['%', '?', '#', '\\'];
+                $bannedCharacters = ['%', '?', '#', '\\', '"'];
                 foreach ($bannedCharacters as $character) {
                   if (strpos($path, $character) !== FALSE) {
                     $path = str_replace($character, '', $path);
