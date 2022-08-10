@@ -169,6 +169,7 @@ app.get('/___status/history/:id', async (req, res) => {
   res.json(result);
 });
 
+app.use('/___status', authMiddleware);
 app.use('/___status', express.static(path.resolve(__dirname, '../dist')));
 app.use('/___status/index.html', authMiddleware);
 
