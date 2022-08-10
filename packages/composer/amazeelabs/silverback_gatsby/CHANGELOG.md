@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.23.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.23.4...@-amazeelabs/silverback_gatsby@1.23.5) (2022-08-10)
+
+
+### Bug Fixes
+
+* remove dots-only path segments ([6443f6c](https://github.com/AmazeeLabs/silverback-mono/commit/6443f6c7d6f12a78699fbd0cae056cb313e4672d))
+
+
+
+
+
 ## [1.23.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.23.3...@-amazeelabs/silverback_gatsby@1.23.4) (2022-08-09)
 
 
