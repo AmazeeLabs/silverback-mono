@@ -171,7 +171,6 @@ app.get('/___status/history/:id', async (req, res) => {
 
 app.use('/___status', authMiddleware);
 app.use('/___status', express.static(path.resolve(__dirname, '../dist')));
-app.use('/___status/index.html', authMiddleware);
 
 config.proxy.forEach(
   ({ prefix, target }: { prefix: string; target: string }) => {
