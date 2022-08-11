@@ -123,6 +123,7 @@ app.post('/___status/clean', (req, res) => {
   res.json(true);
 });
 
+app.use('/___status/gateway/logs', authMiddleware);
 app.ws('/___status/gateway/logs', (ws) => {
   const sub = gatewayStatusLogs(gateway$).subscribe((data) => {
     ws.send(data.chunk);
@@ -130,6 +131,7 @@ app.ws('/___status/gateway/logs', (ws) => {
   ws.on('close', sub.unsubscribe);
 });
 
+app.use('/___status/builder/logs', authMiddleware);
 app.ws('/___status/builder/logs', (ws) => {
   const sub = buildStatusLogs(builder$).subscribe((data) => {
     ws.send(data.chunk);
