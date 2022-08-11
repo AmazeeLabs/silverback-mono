@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.10.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.10.2...@amazeelabs/publisher@0.10.3) (2022-08-11)
+
+
+### Bug Fixes
+
+* don't pass-protect /___status/elements.js ([e6569c7](https://github.com/AmazeeLabs/silverback-mono/commit/e6569c71aba0d2ef52f045020672a3181e85af49))
+* pass-protect logs ([97a7a9a](https://github.com/AmazeeLabs/silverback-mono/commit/97a7a9a4166f7c60bf3c45037d058dd6b3d5f5d8))
+
+
+
+
+
 ## [0.10.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.10.1...@amazeelabs/publisher@0.10.2) (2022-08-10)
 
 
