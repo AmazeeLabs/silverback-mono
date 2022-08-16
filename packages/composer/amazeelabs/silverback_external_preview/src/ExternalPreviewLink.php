@@ -161,7 +161,7 @@ class ExternalPreviewLink {
 
   private function getUnpublishedPreviewUrl(ContentEntityInterface $entity) {
     return Url::fromUri(
-      $this->getPreviewBaseUrl() . '/' . $entity->language()->getId() . '/__preview/' . $entity->bundle(),
+      $this->buildEntityPreviewUri($entity),
       [
         'query' => [
           'id' => $entity->id(),
@@ -201,7 +201,7 @@ class ExternalPreviewLink {
     }
 
     return Url::fromUri(
-      $this->getPreviewBaseUrl() . '/__preview/' . $entity->bundle(),
+      $this->buildEntityPreviewUri($entity),
       [
         'query' => [
           'id' => $entity->id(),
@@ -210,6 +210,16 @@ class ExternalPreviewLink {
         ]
       ]
     );
+  }
+
+  private function buildEntityPreviewUri(ContentEntityInterface $entity) {
+    $uri_parts = [ $this->getPreviewBaseUrl() ];
+    if ($entity->isTranslatable()) {
+      $uri_parts[] = $entity->language()->getId();
+    }
+    $uri_parts[] = '__preview';
+    $uri_parts[] = $entity->bundle();
+    return implode('/', $uri_parts);
   }
 
   private function getUrlOptions($external_url_type = 'preview', ContentEntityInterface $entity = NULL) {
