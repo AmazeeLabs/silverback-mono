@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.23.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.23.6...@-amazeelabs/silverback_gatsby@1.23.7) (2022-08-16)
+
+
+### Bug Fixes
+
+* exclude deactivated menu links ([5dae1e1](https://github.com/AmazeeLabs/silverback-mono/commit/5dae1e1c878a1c09d06d201626151e850cc0ec17))
+
+
+
+
+
 ## [1.23.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.23.5...@-amazeelabs/silverback_gatsby@1.23.6) (2022-08-10)
 
 
