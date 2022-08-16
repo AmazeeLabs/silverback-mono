@@ -52,6 +52,10 @@ class GatsbyMenuLinks extends DataProducerPluginBase {
     $items = $this->flatten($items, $max_level - 1);
 
     $items = array_filter($items, function ($item) use ($language) {
+      /** @var MenuLinkTreeElement $item */
+      if (!$item->link->isEnabled()) {
+        return false;
+      }
       // Filter out any menu items that are not accessible by the current user.
       if ($item->link instanceof InaccessibleMenuLink) {
         return false;
