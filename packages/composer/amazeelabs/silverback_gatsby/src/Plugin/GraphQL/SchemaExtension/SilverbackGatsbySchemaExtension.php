@@ -674,6 +674,14 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
 
       }
     }
+
+    $currentUser = $builder->produce('current_user_entity');
+    $addResolver('Query.currentUser', $currentUser);
+
+    $entityId = $builder->produce('entity_id')->map('entity', $builder->fromParent());
+    $entityLabel = $builder->callback(fn(EntityInterface $value) => $value->label());
+    $addResolver('User.id', $entityId);
+    $addResolver('User.name', $entityLabel);
   }
 
 }
