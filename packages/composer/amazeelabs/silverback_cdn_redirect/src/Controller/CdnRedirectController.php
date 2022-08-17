@@ -44,6 +44,11 @@ class CdnRedirectController extends ControllerBase {
       return new Response('The module is not configured', 500);
     }
 
+    $cacheHeaders = [
+      // Five minutes cache for 404 and redirect responses.
+      'cache-control' => 'public, max-age=' . 60*5,
+    ];
+
     $location = NULL;
     $responseCode = NULL;
 
@@ -108,9 +113,7 @@ class CdnRedirectController extends ControllerBase {
       ]);
       $response = $http->get($location);
       if ($response->getStatusCode() === 200) {
-        return new Response($response->getBody(), 404, [
-          'cache-control' => 'public, max-age=' . 60*60*24*30,
-        ]);
+        return new Response($response->getBody(), 404, $cacheHeaders);
       }
       elseif (
         $response->getStatusCode() === 401 &&
@@ -122,9 +125,7 @@ class CdnRedirectController extends ControllerBase {
           ],
         ]);
         if ($response->getStatusCode() === 200) {
-          return new Response($response->getBody(), 404, [
-            'cache-control' => 'public, max-age=' . 60*5,
-          ]);
+          return new Response($response->getBody(), 404, $cacheHeaders);
         }
       }
     }
@@ -133,12 +134,11 @@ class CdnRedirectController extends ControllerBase {
       return new Response('Circular redirect', 500);
     }
 
-    $response = new TrustedRedirectResponse($location, $responseCode);
+    $response = new TrustedRedirectResponse($location, $responseCode, $cacheHeaders);
     // Vary the cache by the full URL. Otherwise, it can happen that
     // "backend.site/node/123" will lead to "frontend.site/node-alias" because
     // the redirect was already cached for "backend.site/cdn-redirect/node/123".
     $response->getCacheableMetadata()->addCacheContexts(['url']);
-    $response->getCacheableMetadata()->mergeCacheMaxAge(60*5);
     return $response;
   }
 }
