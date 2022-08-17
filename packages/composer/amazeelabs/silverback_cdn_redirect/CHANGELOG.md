@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.4.4...@-amazeelabs/silverback_cdn_redirect@1.4.5) (2022-08-17)
+
+
+### Bug Fixes
+
+* set 404 response cache max-age to 5 minutes ([4f3e64d](https://github.com/AmazeeLabs/silverback-mono/commit/4f3e64dd4e72b8e0e1ebb615b346c4aad265b48c))
+* set redirect response cache max-age to 5 minutes ([ff2336d](https://github.com/AmazeeLabs/silverback-mono/commit/ff2336dc939da3d2d4301fb91bf6282037ef4f84))
+
+
+
+
+
 ## [1.4.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.4.3...@-amazeelabs/silverback_cdn_redirect@1.4.4) (2022-07-20)
 
 
