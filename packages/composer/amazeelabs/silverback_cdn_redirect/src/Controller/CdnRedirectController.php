@@ -123,7 +123,7 @@ class CdnRedirectController extends ControllerBase {
         ]);
         if ($response->getStatusCode() === 200) {
           return new Response($response->getBody(), 404, [
-            'cache-control' => 'public, max-age=' . 60*60*24*30,
+            'cache-control' => 'public, max-age=' . 60*5,
           ]);
         }
       }
