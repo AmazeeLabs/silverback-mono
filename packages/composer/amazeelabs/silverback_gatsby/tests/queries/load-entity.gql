@@ -1,0 +1,5 @@
+query ($input: String!) {
+  loadPage(id: $input) {
+    title
+  }
+}
