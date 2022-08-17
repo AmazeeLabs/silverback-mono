@@ -3,9 +3,27 @@
 namespace Drupal\Tests\silverback_gatsby\Kernel;
 
 use Drupal\node\Entity\Node;
+use Drupal\path_alias\Entity\PathAlias;
+use Drupal\Tests\Traits\Core\PathAliasTestTrait;
 use GraphQL\Server\OperationParams;
 
 class EntityFeedTest extends EntityFeedTestBase {
+  use PathAliasTestTrait;
+
+  public static $modules = ['path_alias'];
+
+  public function setUp(): void {
+    parent::setUp();
+    $this->installEntitySchema('path_alias');
+
+    // For some reason, the path alias processor is not registered within the
+    // kernel test setup, so we have to manually register it.
+    /** @var \Drupal\Core\PathProcessor\InboundPathProcessorInterface $aliasProcessor */
+    $aliasProcessor = \Drupal::service('path_alias.path_processor');
+    /** @var \Drupal\Core\PathProcessor\PathProcessorManager $pathProcessorManager */
+    $pathProcessorManager = \Drupal::service('path_processor_manager');
+    $pathProcessorManager->addInbound($aliasProcessor);
+  }
 
   public function testUntranslatableEntity() {
     $node = Node::create([
@@ -347,6 +365,71 @@ class EntityFeedTest extends EntityFeedTestBase {
       ],
       'd' => [
         'title' => 'Revision 2 German',
+      ],
+    ], $metadata);
+  }
+
+  public function testLoadById() {
+    $node = Node::create([
+      'type' => 'page',
+      'title' => 'Test page'
+    ]);
+    $node->save();
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheTags(['node:1']);
+    $query = $this->getQueryFromFile('load-entity.gql');
+    $this->assertResults($query, ['input' => '1:en'], [
+      'loadPage' => [
+        'title' => 'Test page',
+      ],
+    ], $metadata);
+  }
+
+  public function testLoadByUuid() {
+    $node = Node::create([
+      'type' => 'page',
+      'title' => 'Test page'
+    ]);
+    $node->save();
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheTags(['node:1']);
+    $query = $this->getQueryFromFile('load-entity.gql');
+    $this->assertResults($query, ['input' => $node->uuid() . ':en'], [
+      'loadPage' => [
+        'title' => 'Test page',
+      ],
+    ], $metadata);
+  }
+
+  public function testLoadByInternalPath() {
+    $node = Node::create([
+      'type' => 'page',
+      'title' => 'Test page'
+    ]);
+    $node->save();
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheTags(['node:1']);
+    $query = $this->getQueryFromFile('load-entity.gql');
+    $this->assertResults($query, ['input' => '/node/1:en'], [
+      'loadPage' => [
+        'title' => 'Test page',
+      ],
+    ], $metadata);
+  }
+
+  public function testLoadByAliasedPath() {
+    $node = Node::create([
+      'type' => 'page',
+      'title' => 'Test page'
+    ]);
+    $node->save();
+    $this->createPathAlias('/node/1', '/test');
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheTags(['node:1']);
+    $query = $this->getQueryFromFile('load-entity.gql');
+    $this->assertResults($query, ['input' => '/test:en'], [
+      'loadPage' => [
+        'title' => 'Test page',
       ],
     ], $metadata);
   }

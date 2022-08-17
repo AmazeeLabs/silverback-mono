@@ -6,12 +6,15 @@ use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\RevisionableInterface;
 use Drupal\Core\Entity\TranslatableInterface;
+use Drupal\Core\Path\PathValidator;
+use Drupal\Core\Path\PathValidatorInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\graphql\GraphQL\Buffers\EntityBuffer;
 use Drupal\graphql\GraphQL\Buffers\EntityRevisionBuffer;
 use Drupal\graphql\GraphQL\Execution\FieldContext;
 use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
+use Drupal\redirect\RedirectRepository;
 use GraphQL\Deferred;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -96,6 +99,11 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
   protected $entityRevisionBuffer;
 
   /**
+   * @var \Drupal\Core\Path\PathValidatorInterface
+   */
+  protected $pathValidator;
+
+  /**
    * {@inheritdoc}
    *
    * @codeCoverageIgnore
@@ -108,7 +116,8 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
       $container->get('entity_type.manager'),
       $container->get('entity.repository'),
       $container->get('graphql.buffer.entity'),
-      $container->get('graphql.buffer.entity_revision')
+      $container->get('graphql.buffer.entity_revision'),
+      $container->get('path.validator')
     );
   }
 
@@ -129,7 +138,6 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
    *   The entity buffer service.
    * @param \Drupal\graphql\GraphQL\Buffers\EntityRevisionBuffer $entityRevisionBuffer
    *   The entity revision buffer service.
-   *
    * @codeCoverageIgnore
    */
   public function __construct(
@@ -139,13 +147,15 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
     EntityTypeManagerInterface $entityTypeManager,
     EntityRepositoryInterface $entityRepository,
     EntityBuffer $entityBuffer,
-    EntityRevisionBuffer $entityRevisionBuffer
+    EntityRevisionBuffer $entityRevisionBuffer,
+    PathValidatorInterface $pathValidator
   ) {
     parent::__construct($configuration, $pluginId, $pluginDefinition);
     $this->entityTypeManager = $entityTypeManager;
     $this->entityRepository = $entityRepository;
     $this->entityBuffer = $entityBuffer;
     $this->entityRevisionBuffer = $entityRevisionBuffer;
+    $this->pathValidator = $pathValidator;
   }
 
   /**
@@ -174,6 +184,18 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
     ?string $accessOperation,
     FieldContext $context
   ) {
+    if ($id[0] === '/') {
+      // We are dealing with a path. Attempt to resolve it to an entity.
+      $url = $this->pathValidator->getUrlIfValidWithoutAccessCheck($id);
+      if (!($url && $url->isRouted() && $url->access())) {
+        $context->addCacheTags(['4xx-response']);
+        return NULL;
+      }
+
+      $parameters = $url->getRouteParameters();
+      $id = $parameters[$type];
+    }
+
     if (!preg_match('/^[0-9]+$/', $id)) {
       // Looks like we got a UUID. Transform it to a regular ID.
       $result = $this->entityTypeManager
