@@ -7,10 +7,13 @@ export const withPersistedQueries = (
   fetchFunc: Fetch,
   queryMap: QueryMap,
 ): Fetch => {
-  return function (input, init) {
+  return function (url, init) {
+    if (typeof url !== 'string') {
+      throw new Error('Request URL should be a string.');
+    }
     if (typeof init?.body !== 'string') {
       const message = 'Request body should be a string.';
-      console.error({ message, input, init });
+      console.error({ message, url, init });
       throw new Error(message);
     }
     let body;
@@ -18,26 +21,34 @@ export const withPersistedQueries = (
       body = JSON.parse(init.body);
     } catch (error) {
       const message = 'Cannot parse request body.';
-      console.error({ message, input, init });
+      console.error({ message, url, init });
       throw new Error(message);
     }
     if (!body?.query || typeof body.query !== 'string') {
       const message = 'Cannot find query in request body.';
-      console.error({ message, input, init, body });
+      console.error({ message, url, init, body });
       throw new Error(message);
     }
     const query: string = body.query;
 
-    const id = getQueryId(query, queryMap);
+    const { queryType, queryId } = getQueryData(query, queryMap);
 
-    return fetchFunc(input, {
-      ...init,
-      body: JSON.stringify({
-        ...body,
-        query: undefined,
-        id,
-      }),
-    });
+    const params = body;
+    delete params.query;
+    params.id = queryId;
+
+    if (queryType === 'mutation') {
+      return fetchFunc(url, {
+        ...init,
+        body: JSON.stringify(params),
+      });
+    } else {
+      return fetchFunc(addQueryParamsToUrl(url, params), {
+        ...init,
+        method: 'GET',
+        body: undefined,
+      });
+    }
   };
 };
 
@@ -47,13 +58,22 @@ export function persistedFetcher<TData, TVariables>(
   query: string,
   variables?: TVariables,
 ) {
-  const id = getQueryId(query, queryMap);
+  const { queryType, queryId } = getQueryData(query, queryMap);
   return async (): Promise<TData> => {
-    const res = await fetch(endpoint, {
-      method: 'POST',
-      ...{ credentials: 'include' },
-      body: JSON.stringify({ id, variables }),
-    });
+    const params = { id: queryId, variables };
+    let res;
+    if (queryType === 'mutation') {
+      res = await fetch(endpoint, {
+        method: 'POST',
+        ...{ credentials: 'include' },
+        body: JSON.stringify(params),
+      });
+    } else {
+      res = await fetch(addQueryParamsToUrl(endpoint, params), {
+        method: 'GET',
+        ...{ credentials: 'include' },
+      });
+    }
     const json = await res.json();
     if (json.errors) {
       const { message } = json.errors[0];
@@ -63,15 +83,23 @@ export function persistedFetcher<TData, TVariables>(
   };
 }
 
-function getQueryId(query: string, queryMap: QueryMap): string {
+type QueryType = 'query' | 'mutation';
+function getQueryData(
+  query: string,
+  queryMap: QueryMap,
+): {
+  queryType: QueryType;
+  queryId: string;
+} {
   const match = query.match(/((query)|(mutation)) ([A-Za-z0-9_]+)[ {(]/);
   if (!match) {
-    throw new Error(`Cannot find query name. Query: ${query}`);
+    throw new Error(`Cannot find query type and name. Query: ${query}`);
   }
+  const queryType: QueryType = match[1] as QueryType;
   const queryName = match[4];
 
-  const id = queryMap[queryName];
-  if (!id) {
+  const queryId = queryMap[queryName];
+  if (!queryId) {
     throw new Error(
       `Cannot find query ID. Query name: ${queryName}. Query map: ${JSON.stringify(
         queryMap,
@@ -79,5 +107,21 @@ function getQueryId(query: string, queryMap: QueryMap): string {
     );
   }
 
-  return id;
+  return { queryId, queryType };
+}
+
+function addQueryParamsToUrl(
+  url: string,
+  params: { id: string; variables?: any },
+): string {
+  return (
+    url +
+    '?' +
+    new URLSearchParams({
+      id: params.id,
+      ...(typeof params.variables !== 'undefined'
+        ? { variables: JSON.stringify(params.variables) }
+        : {}),
+    }).toString()
+  );
 }
