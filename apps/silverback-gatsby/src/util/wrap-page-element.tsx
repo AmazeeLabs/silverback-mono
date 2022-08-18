@@ -1,4 +1,10 @@
-import { GatsbyBrowser, graphql,PageProps, useStaticQuery, WrapPageElementBrowserArgs } from 'gatsby';
+import {
+  GatsbyBrowser,
+  graphql,
+  PageProps,
+  useStaticQuery,
+  WrapPageElementBrowserArgs,
+} from 'gatsby';
 import React, { PropsWithChildren } from 'react';
 import { IntlProvider } from 'react-intl';
 
@@ -14,7 +20,7 @@ const PageWrapper = ({ pageContext, children }: Props) => {
   // @todo: cache this into a global variable or maybe into a json file as this
   // gets called on every page render!
   const {
-    allDrupalGatsbyStringTranslation: {nodes: allTranslations}
+    allDrupalGatsbyStringTranslation: { nodes: allTranslations },
   } = useStaticQuery<StringTranslationsQuery>(graphql`
     query StringTranslations {
       allDrupalGatsbyStringTranslation {
@@ -31,9 +37,9 @@ const PageWrapper = ({ pageContext, children }: Props) => {
     }
   `);
 
-  const defaultLocale = 'en'
+  const defaultLocale = 'en';
   const langcode = pageContext.locale || defaultLocale;
-  const computedTranslations:any = {};
+  const computedTranslations: any = {};
   // We need to do this trick to convert the imported JSON object into a 'any'
   // type, so that we can access the 'description' property later on, which is
   // not available on all of the extracted translation sources.
@@ -50,31 +56,43 @@ const PageWrapper = ({ pageContext, children }: Props) => {
       // 'gatsby: description', otherwise the context is just 'gatsby'. The
       // context is specified when the translation sources are pushed to Drupal
       // (see the DRUPAL_CREATE_TRANSLATIONS_SOURCE_PATH env variable).
-      const context = translationSources[key].description && `gatsby: ${translationSources[key].description}` || 'gatsby';
-      return translationSources[key].defaultMessage === translation.source && translation.context === context;
+      const context =
+        (translationSources[key].description &&
+          `gatsby: ${translationSources[key].description}`) ||
+        'gatsby';
+      return (
+        translationSources[key].defaultMessage === translation.source &&
+        translation.context === context
+      );
     });
     if (translationSourceKey) {
-      computedTranslations[translationSourceKey] = [translation.translations?.reduce((accumulator: any, currentValue: any) => {
-        if (currentValue?.langcode === langcode) {
-          return {
-            'type': 0,
-            'value': currentValue.translation
-          };
-        }
-        if (!accumulator.value && currentValue?.langcode === defaultLocale) {
-          return {
-            'type': 0,
-            'value': currentValue.translation
-          }
-        }
-        return accumulator;
-      },
-      // Initially, we just use the source string, if no translation was found.
-      {
-        'type': 0,
-        'value': translation.source
-      }
-      )];
+      computedTranslations[translationSourceKey] = [
+        translation.translations?.reduce(
+          (accumulator: any, currentValue: any) => {
+            if (currentValue?.langcode === langcode) {
+              return {
+                type: 0,
+                value: currentValue.translation,
+              };
+            }
+            if (
+              !accumulator.value &&
+              currentValue?.langcode === defaultLocale
+            ) {
+              return {
+                type: 0,
+                value: currentValue.translation,
+              };
+            }
+            return accumulator;
+          },
+          // Initially, we just use the source string, if no translation was found.
+          {
+            type: 0,
+            value: translation.source,
+          },
+        ),
+      ];
     }
   });
 
