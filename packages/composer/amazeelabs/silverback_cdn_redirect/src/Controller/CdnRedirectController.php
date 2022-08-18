@@ -7,6 +7,7 @@ use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\Core\Routing\UrlGeneratorInterface;
 use Drupal\silverback_cdn_redirect\EventSubscriber\CdnRedirectRouteSubscriber;
 use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,10 +22,16 @@ class CdnRedirectController extends ControllerBase {
   protected $urlGenerator;
 
   /**
+   * @var \GuzzleHttp\ClientInterface
+   */
+  protected $client;
+
+  /**
    * Creates a CdnRedirectController object.
    */
-  public function __construct(UrlGeneratorInterface $url_generator) {
+  public function __construct(UrlGeneratorInterface $url_generator, ClientInterface $client) {
     $this->urlGenerator = $url_generator;
+    $this->client = $client;
   }
 
   /**
@@ -33,6 +40,7 @@ class CdnRedirectController extends ControllerBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('url_generator'),
+      $container->get('silverback_cdn_redirect.http_client'),
     );
   }
 
@@ -106,12 +114,7 @@ class CdnRedirectController extends ControllerBase {
       $responseCode = 302;
 
       // Desired behavior: fetch the 404 page and return its contents.
-      $http = new Client([
-        'http_errors' => FALSE,
-        // We might need cookies if Netlify site is password protected.
-        'cookies' => TRUE,
-      ]);
-      $response = $http->get($location);
+      $response = $this->client->get($location);
       if ($response->getStatusCode() === 200) {
         return new Response($response->getBody(), 404, $cacheHeaders);
       }
@@ -119,7 +122,7 @@ class CdnRedirectController extends ControllerBase {
         $response->getStatusCode() === 401 &&
         ($password = $settings->get('netlify_password'))
       ) {
-        $response = $http->post($location, [
+        $response = $this->client->post($location, [
           'form_params' => [
             'password' => $password,
           ],
