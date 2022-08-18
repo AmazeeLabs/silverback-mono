@@ -113,6 +113,35 @@ class CdnRedirectTest extends KernelTestBase {
     $this->assertRewrite('/user/login', 404, 'Not found');
   }
 
+  public function testCSRNode() {
+    $this->mockHttpClient
+      ->request('GET', 'http://example.com/___csr/page')
+      ->willReturn(new Response(200, [], 'Page template'));
+
+    $node = Node::create([
+      'title' => 'Test',
+      'type' => 'page',
+    ]);
+    $node->save();
+
+    $this->assertRewrite('/node/' . $node->id(), 200, 'Page template');
+  }
+
+  public function testAliasedCSRNode() {
+    $this->mockHttpClient
+      ->request('GET', 'http://example.com/___csr/page')
+      ->willReturn(new Response(200, [], 'Page template'));
+
+    $node = Node::create([
+      'title' => 'Test',
+      'type' => 'page',
+      'path' => ['alias' => '/test'],
+    ]);
+    $node->save();
+
+    $this->assertRewrite('/test', 200, 'Page template');
+  }
+
   public function testRedirect() {
     $redirect = Redirect::create();
     $redirect->setSource('to/frontpage');

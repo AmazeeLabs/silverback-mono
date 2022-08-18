@@ -3,10 +3,11 @@
 namespace Drupal\silverback_cdn_redirect\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Extension\ModuleHandlerInterface;
+use Drupal\Core\Path\PathValidatorInterface;
 use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\Core\Routing\UrlGeneratorInterface;
 use Drupal\silverback_cdn_redirect\EventSubscriber\CdnRedirectRouteSubscriber;
-use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,13 +27,28 @@ class CdnRedirectController extends ControllerBase {
    */
   protected $client;
 
+  /**
+   * @var \Drupal\Core\Path\PathValidatorInterface
+   */
+  protected $pathValidator;
+
+  /**
+   * @var \Drupal\Core\Extension\ModuleHandlerInterface
+   */
+  protected $moduleHandler;
+
   protected $cacheHeaders;
   protected $cdnAuthParams = null;
 
   /**
    * Creates a CdnRedirectController object.
    */
-  public function __construct(UrlGeneratorInterface $url_generator, ClientInterface $client) {
+  public function __construct(
+    UrlGeneratorInterface $url_generator,
+    ClientInterface $client,
+    PathValidatorInterface $pathValidator,
+    ModuleHandlerInterface $moduleHandler
+  ) {
     $this->urlGenerator = $url_generator;
     $this->client = $client;
     $this->cacheHeaders = [
@@ -48,6 +64,8 @@ class CdnRedirectController extends ControllerBase {
         ],
       ];
     }
+    $this->pathValidator = $pathValidator;
+    $this->moduleHandler = $moduleHandler;
   }
 
   /**
@@ -57,6 +75,8 @@ class CdnRedirectController extends ControllerBase {
     return new static(
       $container->get('url_generator'),
       $container->get('silverback_cdn_redirect.http_client'),
+      $container->get('path.validator'),
+      $container->get('module_handler')
     );
   }
 
@@ -99,6 +119,23 @@ class CdnRedirectController extends ControllerBase {
       }
       $responseCode = $response->getStatusCode();
     } elseif ($response->getStatusCode() === 200) {
+
+      if (($url = $this->pathValidator->getUrlIfValidWithoutAccessCheck($path)) && $url->isRouted() && $url->access()) {
+        // Check if the path leads to an entity. In that case we (might) want to
+        // display a client side rendered template.
+        [, $type] = explode('.', $url->getRouteName());
+        $parameters = $url->getRouteParameters();
+        if ($type && isset($parameters[$type]) && $id = $parameters[$type]) {
+          $path = false;
+          $context = ['entity_type' => $type, 'entity_id' => $id];
+          $this->moduleHandler->alter('silverback_cdn_csr_template_path', $path, $context);
+
+          if ($path && $response = $this->rewriteToCDN($baseUrl . $path, 200)) {
+            return $response;
+          }
+        }
+      }
+
       // If the returned response is not a redirect, we still want to check if
       // there is a path alias for the current path. If it exists, then we
       // should redirect to it.
