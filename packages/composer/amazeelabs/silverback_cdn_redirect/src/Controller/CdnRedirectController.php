@@ -114,7 +114,7 @@ class CdnRedirectController extends ControllerBase {
       $responseCode = 302;
 
       // Desired behavior: fetch the 404 page and return its contents.
-      $response = $this->client->get($location);
+      $response = $this->client->request('GET', $location);
       if ($response->getStatusCode() === 200) {
         return new Response($response->getBody(), 404, $cacheHeaders);
       }
@@ -122,7 +122,7 @@ class CdnRedirectController extends ControllerBase {
         $response->getStatusCode() === 401 &&
         ($password = $settings->get('netlify_password'))
       ) {
-        $response = $this->client->post($location, [
+        $response = $this->client->request('POST', $location, [
           'form_params' => [
             'password' => $password,
           ],
