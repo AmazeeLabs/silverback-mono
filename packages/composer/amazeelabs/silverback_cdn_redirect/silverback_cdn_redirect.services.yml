@@ -1,4 +1,10 @@
 services:
+  silverback_cdn_redirect.http_client:
+    class: GuzzleHttp\Client
+    arguments:
+       - http_errors: false
+         # We might need cookies if Netlify site is password protected.
+         cookies: true
   silverback_cdn_redirect.route_subscriber:
     class: Drupal\silverback_cdn_redirect\EventSubscriber\CdnRedirectRouteSubscriber
     tags:
