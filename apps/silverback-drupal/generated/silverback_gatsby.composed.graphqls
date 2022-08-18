@@ -299,6 +299,12 @@ extend type GatsbyStringTranslation { _original_typename: String! }
 extend type Query {
   drupalBuildId: Int!
   drupalFeedInfo: [Feed!]!
+  currentUser: User!
+}
+
+type User {
+  id: String
+  name: String
 }
 
 extend type Query {
