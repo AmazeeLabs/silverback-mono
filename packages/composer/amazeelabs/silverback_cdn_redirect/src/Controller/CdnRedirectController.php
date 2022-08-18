@@ -26,12 +26,28 @@ class CdnRedirectController extends ControllerBase {
    */
   protected $client;
 
+  protected $cacheHeaders;
+  protected $cdnAuthParams = null;
+
   /**
    * Creates a CdnRedirectController object.
    */
   public function __construct(UrlGeneratorInterface $url_generator, ClientInterface $client) {
     $this->urlGenerator = $url_generator;
     $this->client = $client;
+    $this->cacheHeaders = [
+      // Five minutes cache for 404 and redirect responses.
+      'cache-control' => 'public, max-age=' . 60*5,
+    ];
+
+    $settings = \Drupal::config('silverback_cdn_redirect.settings');
+    if ($password = $settings->get('netlify_password')) {
+      $this->cdnAuthParams = [
+        'form_params' => [
+          'password' => $password,
+        ],
+      ];
+    }
   }
 
   /**
@@ -52,10 +68,6 @@ class CdnRedirectController extends ControllerBase {
       return new Response('The module is not configured', 500);
     }
 
-    $cacheHeaders = [
-      // Five minutes cache for 404 and redirect responses.
-      'cache-control' => 'public, max-age=' . 60*5,
-    ];
 
     $location = NULL;
     $responseCode = NULL;
@@ -112,24 +124,8 @@ class CdnRedirectController extends ControllerBase {
       // Fallback behavior: redirect to 404 page.
       $location = $baseUrl . $prefix . $notFoundPath;
       $responseCode = 302;
-
-      // Desired behavior: fetch the 404 page and return its contents.
-      $response = $this->client->request('GET', $location);
-      if ($response->getStatusCode() === 200) {
-        return new Response($response->getBody(), 404, $cacheHeaders);
-      }
-      elseif (
-        $response->getStatusCode() === 401 &&
-        ($password = $settings->get('netlify_password'))
-      ) {
-        $response = $this->client->request('POST', $location, [
-          'form_params' => [
-            'password' => $password,
-          ],
-        ]);
-        if ($response->getStatusCode() === 200) {
-          return new Response($response->getBody(), 404, $cacheHeaders);
-        }
+      if ($response = $this->rewriteToCDN($location, 404)) {
+        return $response;
       }
     }
 
@@ -137,11 +133,28 @@ class CdnRedirectController extends ControllerBase {
       return new Response('Circular redirect', 500);
     }
 
-    $response = new TrustedRedirectResponse($location, $responseCode, $cacheHeaders);
+    $response = new TrustedRedirectResponse($location, $responseCode, $this->cacheHeaders);
     // Vary the cache by the full URL. Otherwise, it can happen that
     // "backend.site/node/123" will lead to "frontend.site/node-alias" because
     // the redirect was already cached for "backend.site/cdn-redirect/node/123".
     $response->getCacheableMetadata()->addCacheContexts(['url']);
     return $response;
+  }
+
+  protected function rewriteToCDN($location, $statusCode) {
+    // Desired behavior: fetch the 404 page and return its contents.
+    $response = $this->client->request('GET', $location);
+    if ($response->getStatusCode() === 200) {
+      return new Response($response->getBody(), $statusCode, $this->cacheHeaders);
+    }
+    elseif (
+      $response->getStatusCode() === 401 &&
+      $this->cdnAuthParams
+    ) {
+      $response = $this->client->request('POST', $location, $this->cdnAuthParams);
+      if ($response->getStatusCode() === 200) {
+        return new Response($response->getBody(), $statusCode, $this->cacheHeaders);
+      }
+    }
   }
 }
