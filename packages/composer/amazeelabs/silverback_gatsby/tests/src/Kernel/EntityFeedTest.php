@@ -2,27 +2,27 @@
 
 namespace Drupal\Tests\silverback_gatsby\Kernel;
 
+use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\node\Entity\Node;
-use Drupal\path_alias\Entity\PathAlias;
 use Drupal\Tests\Traits\Core\PathAliasTestTrait;
-use GraphQL\Server\OperationParams;
 
 class EntityFeedTest extends EntityFeedTestBase {
   use PathAliasTestTrait;
 
   public static $modules = ['path_alias'];
 
+  public function register(ContainerBuilder $container) {
+    parent::register($container);
+
+    // Restore AliasPathProcessor tags which are removed in the parent method.
+    $container->getDefinition('path_alias.path_processor')
+      ->addTag('path_processor_inbound', ['priority' => 100])
+      ->addTag('path_processor_outbound', ['priority' => 300]);
+  }
+
   public function setUp(): void {
     parent::setUp();
     $this->installEntitySchema('path_alias');
-
-    // For some reason, the path alias processor is not registered within the
-    // kernel test setup, so we have to manually register it.
-    /** @var \Drupal\Core\PathProcessor\InboundPathProcessorInterface $aliasProcessor */
-    $aliasProcessor = \Drupal::service('path_alias.path_processor');
-    /** @var \Drupal\Core\PathProcessor\PathProcessorManager $pathProcessorManager */
-    $pathProcessorManager = \Drupal::service('path_processor_manager');
-    $pathProcessorManager->addInbound($aliasProcessor);
   }
 
   public function testUntranslatableEntity() {
