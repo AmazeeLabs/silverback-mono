@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.4.6...@-amazeelabs/silverback_cdn_redirect@1.5.0) (2022-08-18)
+
+
+### Features
+
+* **gatsby:** rewrite paths to client-side-rendered templates ([b7a8df0](https://github.com/AmazeeLabs/silverback-mono/commit/b7a8df041ba47312f317a44c0863054735336c83))
+
+
+
+
+
 ## [1.4.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.4.5...@-amazeelabs/silverback_cdn_redirect@1.4.6) (2022-08-17)
 
 

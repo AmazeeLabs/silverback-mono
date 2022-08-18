@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.24.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.23.7...@-amazeelabs/silverback_gatsby@1.24.0) (2022-08-18)
+
+
+### Features
+
+* **gatsby:** load entities by path ([2bd5dae](https://github.com/AmazeeLabs/silverback-mono/commit/2bd5dae1573a3e8601e14526d209dbc60fb4028d))
+
+
+
+
+
 ## [1.23.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.23.6...@-amazeelabs/silverback_gatsby@1.23.7) (2022-08-16)
 
 

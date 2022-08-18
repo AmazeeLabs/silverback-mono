@@ -1,6 +1,6 @@
 {
   "name": "@-amazeelabs/silverback_cdn_redirect",
-  "version": "1.4.6",
+  "version": "1.5.0",
   "author": "Amazee Labs <development@amazeelabs.com>",
   "publishConfig": {
     "access": "public",

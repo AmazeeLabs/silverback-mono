@@ -1,6 +1,6 @@
 {
   "name": "@-amazeelabs/silverback-drupal",
-  "version": "1.14.17",
+  "version": "1.14.18",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@-amazeelabs/silverback-cli": "^2.8.1",
-    "@-amazeelabs/silverback_gatsby": "^1.23.7",
+    "@-amazeelabs/silverback_gatsby": "^1.24.0",
     "@-drupal/cypress": "^2.3.63",
     "@-drupal/gatsby_build_monitor": "^1.4.37",
     "@-silverback-drupal-config/webform": "^1.0.4",
