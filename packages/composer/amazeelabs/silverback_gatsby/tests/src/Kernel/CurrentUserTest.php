@@ -8,8 +8,9 @@ class CurrentUserTest extends EntityFeedTestBase {
   function testAnonymousUser() {
     $query = $this->getQueryFromFile('current-user.gql');
     $metadata = $this->defaultCacheMetaData();
-    $metadata->addCacheTags(['node_list']);
+    $metadata->setCacheMaxAge(0);
     $anonymous = User::load(0);
+    $metadata->addCacheTags($anonymous->getCacheTags());
     $this->setCurrentUser($anonymous);
     $this->assertResults($query, [], [
       'currentUser' => [
