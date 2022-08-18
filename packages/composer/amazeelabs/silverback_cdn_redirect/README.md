@@ -1,6 +1,46 @@
 # Silverback CDN Redirect
 
-To be used with Gatsby hosted on Netlify.
+To be used with static websites, hosted on a CDN (e.g. Gatsby and Netlify).
+Solves two problems:
+
+1. Can resolve redirects that are not stored in CDN config, which is necessary,
+   since Drupal's redirect module creates a redirect for each path change,
+   which can be a lot. In that case, the redirect is resolved by rewriting the
+   request to Drupal.
+2. Rewrite paths not know by the CDN, to client-side rendered pages. Useful for
+   pages that should not be rendered statically.
+
+## Flowchart!
+
+```mermaid
+
+flowchart
+
+  subgraph Drupal
+      RedirectCheck{Drupal redirect exists?}
+      EntityCheck{Drupal page exists?}
+      RequestNotFound[Fetch 404 from CDN]
+      RequestCSR[Fetch CSR template from CDN]
+  end
+
+  subgraph CDN
+      Request(User navigates to path)
+      CDNCheck{Static page exists?}
+      CDNDeliver{{Respond with static page}}
+      CDNRedirect{{Respond with redirect from Drupal}}
+      CDNRewrite{{Respond with content from Drupal}}
+  end
+
+  CDNCheck -- no --> RedirectCheck
+  RedirectCheck -- yes --> CDNRedirect
+  RedirectCheck -- no --> EntityCheck
+  Request --> CDNCheck
+  CDNCheck -- yes --> CDNDeliver
+  EntityCheck -- no --> RequestNotFound
+  EntityCheck -- yes --> RequestCSR
+  RequestNotFound ----> CDNRewrite
+  RequestCSR ----> CDNRewrite
+```
 
 ## Drupal config
 
@@ -22,7 +62,7 @@ To be used with Gatsby hosted on Netlify.
 - Configure the catch-all redirect in `createPages`
   ```js
   createRedirect({
-    fromPath: '/*',
+    fromPath: "/*",
     toPath: `https://my-drupal.site/cdn-redirect/:splat`,
     statusCode: 200,
   });
