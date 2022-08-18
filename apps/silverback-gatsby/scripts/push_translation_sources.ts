@@ -25,9 +25,8 @@ const pushTranslationSources = async (translationSourcesPath) => {
   try {
     await axios
       .post(url, translationSources, {
-        auth: {
-          username: process.env.DRUPAL_USER_NAME,
-          password: process.env.DRUPAL_USER_PASS,
+        headers: {
+          'api-key': 'aadecf7602d1e19a66dd80d9b86b8fd9',
         },
       })
       .then((response) => {

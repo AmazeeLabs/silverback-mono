@@ -6,21 +6,21 @@
       "Gatsby Build": {
         "url": "http://localhost:8888/silverback-gatsby",
         "headers": {
-          "Authorization": "Basic R2F0c2J5QnVpbGQ6R2F0c2J5QnVpbGQ="
+          "api-key": "aadecf7602d1e19a66dd80d9b86b8fd9"
         },
         "introspect": false
       },
       "Gatsby Preview": {
         "url": "http://localhost:8888/silverback-gatsby-preview",
         "headers": {
-          "Authorization": "Basic R2F0c2J5UHJldmlldzpHYXRzYnlQcmV2aWV3"
+          "api-key": "cdc2055f30d52e2b1a86f8a37cc6daaf"
         },
         "introspect": false
       },
       "Extra": {
         "url": "http://localhost:8888/extra",
         "headers": {
-          "Authorization": "Basic YWRtaW46YWRtaW4="
+          "api-key": "aadecf7602d1e19a66dd80d9b86b8fd9"
         },
         "introspect": false
       }

@@ -1,5 +1,10 @@
 schema {
   query: Query
+  mutation: Mutation
+}
+
+type Mutation {
+  getRandomInt(randomInt: Int!): Int!
 }
 
 type Query

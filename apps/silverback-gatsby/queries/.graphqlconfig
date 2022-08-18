@@ -1,0 +1,15 @@
+{
+  "name": "Project Schema",
+  "schemaPath": "*.composed.graphqls",
+  "extensions": {
+    "endpoints": {
+      "Gatsby Build": {
+        "url": "http://localhost:8888/silverback-gatsby",
+        "headers": {
+          "api-key": "aadecf7602d1e19a66dd80d9b86b8fd9"
+        },
+        "introspect": false
+      }
+    }
+  }
+}

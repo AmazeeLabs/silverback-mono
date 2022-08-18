@@ -1,0 +1,5 @@
+query GetPages($offset: Int!, $limit: Int!) {
+  queryPages(offset: $offset, limit: $limit) {
+    title
+  }
+}

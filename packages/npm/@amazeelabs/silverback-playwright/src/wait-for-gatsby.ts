@@ -24,9 +24,7 @@ export const waitForGatsby = async (): Promise<void> => {
       },
       {
         headers: {
-          Authorization: `Basic ${Buffer.from(
-            `${gatsby.drupal.user}:${gatsby.drupal.pass}`,
-          ).toString('base64')}`,
+          'api-key': gatsby.drupal.authKey || '',
         },
       },
     )

@@ -1,3 +1,5 @@
+label: 'Soumissions de webform'
+description: 'Vue par défaut des soumissions de webform.'
 display:
   default:
     display_title: Maître
@@ -22,6 +24,7 @@ display:
             offset_label: Décalage
       fields:
         sid:
+          label: '#'
           separator: ', '
         in_draft:
           label: Brouillon
@@ -38,16 +41,27 @@ display:
       header:
         result:
           content: 'Affichage de @start à @end sur @total'
+      empty:
+        area_text_custom:
+          content: 'Aucune soumission n''est disponible.'
       arguments:
         in_draft:
           exception:
             title: Tout
-  embed_administer:
+      title: 'Soumissions de webform'
+  embed_default:
+    display_title: 'Intégrer : Par défaut'
     display_options:
+      display_description: 'Afficher les soumissions.'
+  embed_administer:
+    display_title: 'Intégrer : Administrer'
+    display_options:
+      display_description: 'Administrer les soumissions.'
       fields:
         webform_submission_bulk_form:
           action_title: Action
         sid:
+          label: '#'
           separator: ', '
         in_draft:
           label: Brouillon
@@ -62,6 +76,7 @@ display:
           label: Créé
           separator: ', '
         completed:
+          label: Terminé
           separator: ', '
         remote_addr:
           label: 'Adresse IP'
@@ -69,6 +84,9 @@ display:
         operations:
           label: Actions
       filters:
+        in_draft:
+          expose:
+            label: 'Est un brouillon'
         sticky:
           expose:
             label: 'Épinglé (en haut des listes)'
@@ -76,11 +94,14 @@ display:
           expose:
             label: Verrouillé
   embed_manage:
+    display_title: 'Intégrer : Gérer'
     display_options:
+      display_description: 'Gérer les soumissions.'
       fields:
         webform_submission_bulk_form:
           action_title: Action
         sid:
+          label: '#'
           separator: ', '
         in_draft:
           label: Brouillon
@@ -95,6 +116,7 @@ display:
           label: Créé
           separator: ', '
         completed:
+          label: Terminé
           separator: ', '
         remote_addr:
           label: 'Adresse IP'
@@ -106,6 +128,9 @@ display:
           label: Actions
           text: modifier
       filters:
+        in_draft:
+          expose:
+            label: 'Est un brouillon'
         sticky:
           expose:
             label: 'Épinglé (en haut des listes)'
@@ -113,9 +138,12 @@ display:
           expose:
             label: Verrouillé
   embed_review:
+    display_title: 'Intégrer : Évaluer'
     display_options:
+      display_description: 'Évaluer les soumissions.'
       fields:
         sid:
+          label: '#'
           separator: ', '
         in_draft:
           label: Brouillon
@@ -130,6 +158,7 @@ display:
           label: Créé
           separator: ', '
         completed:
+          label: Terminé
           separator: ', '
         remote_addr:
           label: 'Adresse IP'
@@ -138,6 +167,9 @@ display:
           label: Actions
           text: voir
       filters:
+        in_draft:
+          expose:
+            label: 'Est un brouillon'
         sticky:
           expose:
             label: 'Épinglé (en haut des listes)'

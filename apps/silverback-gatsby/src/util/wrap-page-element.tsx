@@ -7,6 +7,7 @@ import {
 } from 'gatsby';
 import React, { PropsWithChildren } from 'react';
 import { IntlProvider } from 'react-intl';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 import originalTranslationSources from '../../generated/translation_sources.json';
 import { LocationState } from '../types/LocationState';
@@ -15,6 +16,8 @@ import { PageContext } from '../types/PageContext';
 type Props = PropsWithChildren<{
   pageContext: PageContext;
 }>;
+
+const client = new QueryClient();
 
 const PageWrapper = ({ pageContext, children }: Props) => {
   // @todo: cache this into a global variable or maybe into a json file as this
@@ -102,7 +105,7 @@ const PageWrapper = ({ pageContext, children }: Props) => {
       locale={pageContext.locale}
       messages={computedTranslations}
     >
-      {children}
+      <QueryClientProvider client={client}>{children}</QueryClientProvider>
     </IntlProvider>
   );
 };

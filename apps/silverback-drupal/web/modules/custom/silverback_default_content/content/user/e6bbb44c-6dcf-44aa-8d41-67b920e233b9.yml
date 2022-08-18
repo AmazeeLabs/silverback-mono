@@ -36,3 +36,6 @@ default:
   roles:
     -
       target_id: gatsby_preview
+  api_key:
+    -
+      value: cdc2055f30d52e2b1a86f8a37cc6daaf

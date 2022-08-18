@@ -1,0 +1,33 @@
+{
+  "name": "@-amazeelabs/silverback-persisted-queries",
+  "version": "1.1.78",
+  "description": "e2e tests for Silverback persisted queries.",
+  "author": "Amazee Labs",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@-amazeelabs/silverback-gastby": "^1.2.142",
+    "@amazeelabs/silverback-graphql-persisted": "^1.0.5"
+  },
+  "devDependencies": {
+    "@amazeelabs/eslint-config": "^1.4.30",
+    "@amazeelabs/jest-preset": "^1.3.34",
+    "@amazeelabs/prettier-config": "^1.1.1",
+    "@types/jest": "28.1.2",
+    "eslint": "8.18.0",
+    "jest": "28.1.1",
+    "lint-staged": "13.0.2",
+    "prettier": "2.7.1",
+    "typescript": "4.7.4"
+  },
+  "scripts": {
+    "prepare": "exit 0",
+    "precommit": "lint-staged",
+    "test": "yarn test:static && yarn test:unit && yarn test:integration",
+    "watch": "jest --watch",
+    "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
+    "test:unit": "jest --passWithNoTests",
+    "test:integration": "if [ -f test.sh ]; then ./test.sh; fi && sp-test",
+    "test:watch": "jest --watch"
+  }
+}
