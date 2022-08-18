@@ -4,9 +4,7 @@ namespace Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer;
 
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Entity\RevisionableInterface;
 use Drupal\Core\Entity\TranslatableInterface;
-use Drupal\Core\Path\PathValidator;
 use Drupal\Core\Path\PathValidatorInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Session\AccountInterface;
@@ -14,7 +12,6 @@ use Drupal\graphql\GraphQL\Buffers\EntityBuffer;
 use Drupal\graphql\GraphQL\Buffers\EntityRevisionBuffer;
 use Drupal\graphql\GraphQL\Execution\FieldContext;
 use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
-use Drupal\redirect\RedirectRepository;
 use GraphQL\Deferred;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
