@@ -122,6 +122,11 @@ directive @resolveEditorBlockAttribute(
 
 schema {
   query: Query
+  mutation: Mutation
+}
+
+type Mutation {
+  getRandomInt(randomInt: Int!): Int!
 }
 
 type Query
@@ -276,6 +281,7 @@ directive @resolveEntityReferenceRevisions(
   single: Boolean!
 ) on FIELD_DEFINITION
 
+extend type Mutation { _original_typename: String! }
 extend type Query { _original_typename: String! }
 extend type Image { _original_typename: String! }
 extend type Tag { _original_typename: String! }

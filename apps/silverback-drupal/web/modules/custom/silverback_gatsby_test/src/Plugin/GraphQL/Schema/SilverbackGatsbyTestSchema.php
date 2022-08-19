@@ -80,6 +80,8 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
       )
     );
 
+    $addResolver('Mutation.getRandomInt',$builder->callback(fn() => rand()));
+
     return $registry;
   }
 }

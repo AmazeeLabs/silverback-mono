@@ -49,14 +49,10 @@ export const getConfig = () => {
             ? packageConfig.gatsby?.develop.drupal.graphQlEndpoint
             : packageConfig.gatsby?.build.drupal.graphQlEndpoint) ||
           '/please-set-drupalGraphQlEndpoint-in-config.json',
-        user:
+        authKey:
           envVars.SP_TEST_TYPE === 'gatsby-develop'
-            ? packageConfig.gatsby?.develop.drupal.user
-            : packageConfig.gatsby?.build.drupal.user,
-        pass:
-          envVars.SP_TEST_TYPE === 'gatsby-develop'
-            ? packageConfig.gatsby?.develop.drupal.pass
-            : packageConfig.gatsby?.build.drupal.pass,
+            ? packageConfig.gatsby?.develop.drupal.authKey
+            : packageConfig.gatsby?.build.drupal.authKey,
       },
       fastBuilds: {
         port: gatsbyRebuildPort,

@@ -19,4 +19,6 @@ schema_configuration:
     build_webhook: ''
     user: ''
     role: ''
-persisted_queries_settings: {  }
+persisted_queries_settings:
+  silverback_graphql_persisted:
+    weight: 0

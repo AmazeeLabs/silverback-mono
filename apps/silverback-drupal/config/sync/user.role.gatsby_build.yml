@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - graphql
+    - key_auth
     - media
     - silverback_translations
     - system
@@ -14,5 +15,7 @@ is_admin: null
 permissions:
   - 'access content'
   - 'access create translation sources endpoint'
+  - 'execute extra arbitrary graphql requests'
   - 'execute silverback_gatsby arbitrary graphql requests'
+  - 'use key authentication'
   - 'view media'

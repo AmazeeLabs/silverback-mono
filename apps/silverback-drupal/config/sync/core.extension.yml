@@ -3,7 +3,6 @@ _core:
 module:
   admin_toolbar: 0
   admin_toolbar_tools: 0
-  basic_auth: 0
   block: 0
   block_content: 0
   breakpoint: 0
@@ -27,6 +26,7 @@ module:
   gutenberg_custom_blocks: 0
   hal: 0
   image: 0
+  key_auth: 0
   language: 0
   link: 0
   locale: 0
@@ -42,6 +42,7 @@ module:
   silverback_external_preview: 0
   silverback_gatsby: 0
   silverback_gatsby_test: 0
+  silverback_graphql_persisted: 0
   silverback_gutenberg: 0
   silverback_iframe: 0
   silverback_translations: 0

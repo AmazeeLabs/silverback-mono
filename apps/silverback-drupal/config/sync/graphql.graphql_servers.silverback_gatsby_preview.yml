@@ -19,4 +19,6 @@ schema_configuration:
     build_webhook: 'http://localhost:8000/__refresh'
     user: e6bbb44c-6dcf-44aa-8d41-67b920e233b9
     role: ''
-persisted_queries_settings: {  }
+persisted_queries_settings:
+  silverback_graphql_persisted:
+    weight: 0

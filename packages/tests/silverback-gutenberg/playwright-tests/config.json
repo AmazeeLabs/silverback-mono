@@ -7,15 +7,13 @@
     "develop": {
       "drupal": {
         "graphQlEndpoint": "/silverback-gatsby-preview",
-        "user": "GatsbyPreview",
-        "pass": "GatsbyPreview"
+        "authKey": "cdc2055f30d52e2b1a86f8a37cc6daaf"
       }
     },
     "build": {
       "drupal": {
         "graphQlEndpoint": "/silverback-gatsby",
-        "user": "GatsbyBuild",
-        "pass": "GatsbyBuild"
+        "authKey": "aadecf7602d1e19a66dd80d9b86b8fd9"
       }
     }
   }

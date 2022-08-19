@@ -22,8 +22,7 @@ type GatsbyTimings = {
 
 type DrupalConfig = {
   graphQlEndpoint: string;
-  user: string;
-  pass: string;
+  authKey: string;
 };
 
 export type Config = {

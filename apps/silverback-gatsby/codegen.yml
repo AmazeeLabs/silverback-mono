@@ -11,3 +11,50 @@ generates:
     config:
       noExport: true
       maybeValue: T | undefined
+
+  generated/react-query.ts:
+    schema: ../silverback-drupal/generated/silverback_gatsby_preview.composed.graphqls
+    documents:
+      - ./queries/**/*.graphql
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-query'
+    config:
+      fetcher: ../src/util/fetcher#fetcher
+      legacyMode: true
+      maybeValue: T | undefined
+      skipTypename: true
+      preResolveTypes: false
+
+  generated/graphql-request.ts:
+    schema: ../silverback-drupal/generated/silverback_gatsby_preview.composed.graphqls
+    documents:
+      - ./queries/**/*.graphql
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-graphql-request'
+    config:
+      maybeValue: T | undefined
+      skipTypename: true
+      preResolveTypes: false
+  ../silverback-drupal/generated/persisted-queries-map.json:
+    schema: ../silverback-drupal/generated/silverback_gatsby_preview.composed.graphqls
+    documents:
+      - ./queries/**/*.graphql
+    plugins:
+      - graphql-codegen-persisted-query-ids
+    config:
+      output: server
+      algorithm: sha256
+
+  generated/persisted-queries-map.json:
+    schema: ../silverback-drupal/generated/silverback_gatsby_preview.composed.graphqls
+    documents:
+      - ./queries/**/*.graphql
+    plugins:
+      - graphql-codegen-persisted-query-ids
+    config:
+      output: client
+      algorithm: sha256

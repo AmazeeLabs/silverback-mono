@@ -1,11 +1,16 @@
 uuid: 7d2258be-9b8e-43fa-9954-710be09084a4
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - graphql
 _core:
   default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
 id: authenticated
 label: 'Authenticated user'
 weight: 1
 is_admin: false
-permissions: {  }
+permissions:
+  - 'execute extra persisted graphql requests'
+  - 'execute silverback_gatsby persisted graphql requests'
+  - 'execute silverback_gatsby_preview persisted graphql requests'

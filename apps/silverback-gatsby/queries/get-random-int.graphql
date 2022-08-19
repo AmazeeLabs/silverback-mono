@@ -1,0 +1,3 @@
+mutation GetRandomInt($randomInt: Int!) {
+  getRandomInt(randomInt: $randomInt)
+}

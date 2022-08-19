@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b3c480cb572b2f54fc92109cd0e720f7",
+    "content-hash": "80686570a71ab4436dcea9a4b7653dd6",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -241,11 +241,11 @@
         },
         {
             "name": "amazeelabs/silverback_cdn_redirect",
-            "version": "1.4.4",
+            "version": "1.5.0",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_cdn_redirect",
-                "reference": "1697f466326daf08196cc0fad45b2f8e3a5da926"
+                "reference": "8714e1abc312bf21bbab2d66a39edef7e038769c"
             },
             "type": "drupal-module",
             "license": [
@@ -259,11 +259,11 @@
         },
         {
             "name": "amazeelabs/silverback_external_preview",
-            "version": "1.3.1",
+            "version": "1.3.2",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_external_preview",
-                "reference": "559e1b44fa97754de047d659947d9cedbbad9745"
+                "reference": "eec01d0c692d29851a68b3fae04a012a3cbe8696"
             },
             "type": "drupal-module",
             "license": [
@@ -277,11 +277,11 @@
         },
         {
             "name": "amazeelabs/silverback_gatsby",
-            "version": "1.23.1",
+            "version": "1.24.0",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gatsby",
-                "reference": "505ae48e6023caa1f6f4028256cee9154575782d"
+                "reference": "4e934a8b34e284f2e59b71fd9a09d4d67050e4a5"
             },
             "type": "drupal-module",
             "extra": {
@@ -296,6 +296,23 @@
             ],
             "description": "Bridge module between Gatsby and Drupal.",
             "homepage": "https://silverback.netlify.app",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "amazeelabs/silverback_graphql_persisted",
+            "version": "1.1.1",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/composer/amazeelabs/silverback_graphql_persisted",
+                "reference": "ea049f83ec4ec5d518e943a97640784b2f01fa9c"
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Persisted queries plugin for GraphQL v4.",
             "transport-options": {
                 "relative": true
             }
@@ -3533,6 +3550,62 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/gutenberg",
                 "issues": "https://www.drupal.org/project/issues/gutenberg"
+            }
+        },
+        {
+            "name": "drupal/key_auth",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/key_auth.git",
+                "reference": "2.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/key_auth-2.0.1.zip",
+                "reference": "2.0.1",
+                "shasum": "ea906de39a552bcdd9355907b4498f65603b38d3"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.1",
+                    "datestamp": "1642497672",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Rajeshreeputra",
+                    "homepage": "https://www.drupal.org/user/3418561"
+                },
+                {
+                    "name": "ganeshsurya11",
+                    "homepage": "https://www.drupal.org/user/3526791"
+                },
+                {
+                    "name": "mstef",
+                    "homepage": "https://www.drupal.org/user/107190"
+                },
+                {
+                    "name": "perfectcu.be",
+                    "homepage": "https://www.drupal.org/user/2442008"
+                }
+            ],
+            "description": "Provides an authentication provider based on per-user API keys.",
+            "homepage": "https://www.drupal.org/project/key_auth",
+            "support": {
+                "source": "https://git.drupalcode.org/project/key_auth"
             }
         },
         {

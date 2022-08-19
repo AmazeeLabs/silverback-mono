@@ -15,6 +15,16 @@ targetEntityType: node
 bundle: page
 mode: default
 content:
+  external_preview_link:
+    type: external_preview_iframe_formatter
+    label: hidden
+    settings:
+      width: 100%
+      height: 900
+      view_live_link: true
+    third_party_settings: {  }
+    weight: -5
+    region: content
   field_body:
     type: text_default
     label: above
