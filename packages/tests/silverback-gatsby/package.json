@@ -1,6 +1,6 @@
 {
   "name": "@-amazeelabs/silverback-gatsby-tests",
-  "version": "1.1.78",
+  "version": "1.1.79",
   "description": "e2e tests for Drupal-Gatsby connection.",
   "author": "Amazee Labs",
   "license": "MIT",
@@ -8,7 +8,7 @@
   "dependencies": {
     "@-amazeelabs/silverback_gatsby": "^1.24.0",
     "@amazeelabs/gatsby-source-silverback": "^1.9.0",
-    "@amazeelabs/silverback-playwright": "^1.6.33"
+    "@amazeelabs/silverback-playwright": "^1.6.34"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "^1.4.30",
