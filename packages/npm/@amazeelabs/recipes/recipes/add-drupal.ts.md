@@ -706,9 +706,10 @@ if (PHP_SAPI !== 'cli') {
 
 // The list of excluded content entity types.
 $excluded = [
-  // Path aliases are created automatically on the node creation. They cause
-  // troubles if exported to the default content.
+  // Created automatically on node creation. Cause troubles if exported.
+  'content_moderation_state',
   'path_alias',
+  'redirect',
 ];
 
 Export::run('{{projectName}}_default_content', $excluded);
