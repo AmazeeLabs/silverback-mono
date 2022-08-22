@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.5.0...@-amazeelabs/silverback_cdn_redirect@1.6.0) (2022-08-22)
+
+
+### Features
+
+* **gatsby:** option to use redirects for csr pages ([3fd2af8](https://github.com/AmazeeLabs/silverback-mono/commit/3fd2af88e2be82ca8f61eb1f8f2ca0ef8cf8b89c))
+
+
+
+
+
 # [1.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.4.6...@-amazeelabs/silverback_cdn_redirect@1.5.0) (2022-08-18)
 
 
