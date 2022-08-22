@@ -14,6 +14,9 @@ silverback_cdn_redirect.settings:
     netlify_password:
       type: string
       label: 'The global password for Netlify.'
+    csr_redirect:
+      type: string
+      label: 'Handle CSR pages with redirects instead of rewrites.'
     missing_translation_redirect_entity_types:
       type: sequence
       label: 'Entity type IDs for which the missing translation redirect should be performed.'

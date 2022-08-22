@@ -142,6 +142,33 @@ class CdnRedirectTest extends KernelTestBase {
     $this->assertRewrite('/test', 200, 'Page template');
   }
 
+  public function testCSRRedirectNode() {
+    $this->config('silverback_cdn_redirect.settings')
+      ->set('csr_redirect', true)
+      ->save();
+    $node = Node::create([
+      'title' => 'Test',
+      'type' => 'page',
+    ]);
+    $node->save();
+
+    $this->assertRedirect('/node/' . $node->id(), 302, 'http://example.com/___csr/page?id=' . $node->id());
+  }
+
+  public function testAliasedCSRRedirectNode() {
+    $this->config('silverback_cdn_redirect.settings')
+      ->set('csr_redirect', true)
+      ->save();
+    $node = Node::create([
+      'title' => 'Test',
+      'type' => 'page',
+      'path' => ['alias' => '/test'],
+    ]);
+    $node->save();
+
+    $this->assertRedirect('/test', 302, 'http://example.com/___csr/page?id=' . $node->id());
+  }
+
   public function testRedirect() {
     $redirect = Redirect::create();
     $redirect->setSource('to/frontpage');
