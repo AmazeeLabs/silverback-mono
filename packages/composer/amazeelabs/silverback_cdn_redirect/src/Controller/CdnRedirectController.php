@@ -126,11 +126,15 @@ class CdnRedirectController extends ControllerBase {
         [, $type] = explode('.', $url->getRouteName());
         $parameters = $url->getRouteParameters();
         if ($type && isset($parameters[$type]) && $id = $parameters[$type]) {
-          $path = false;
+          $templatePath = false;
           $context = ['entity_type' => $type, 'entity_id' => $id];
-          $this->moduleHandler->alter('silverback_cdn_csr_template_path', $path, $context);
+          $this->moduleHandler->alter('silverback_cdn_csr_template_path', $templatePath, $context);
+          if ($settings->get('csr_redirect') && $templatePath) {
+            $location = $baseUrl . $templatePath . '?id=' . $id;
+            return new TrustedRedirectResponse($location);
+          }
 
-          if ($path && $response = $this->rewriteToCDN($baseUrl . $path, 200)) {
+          else if ($templatePath && $response = $this->rewriteToCDN($baseUrl . $templatePath, 200)) {
             return $response;
           }
         }
