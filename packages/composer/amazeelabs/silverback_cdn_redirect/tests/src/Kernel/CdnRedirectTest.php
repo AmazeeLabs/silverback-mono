@@ -115,7 +115,7 @@ class CdnRedirectTest extends KernelTestBase {
 
   public function testCSRNode() {
     $this->mockHttpClient
-      ->request('GET', 'http://example.com/___csr/page')
+      ->request('GET', 'http://example.com/_/page')
       ->willReturn(new Response(200, [], 'Page template'));
 
     $node = Node::create([
@@ -129,7 +129,7 @@ class CdnRedirectTest extends KernelTestBase {
 
   public function testAliasedCSRNode() {
     $this->mockHttpClient
-      ->request('GET', 'http://example.com/___csr/page')
+      ->request('GET', 'http://example.com/_/page')
       ->willReturn(new Response(200, [], 'Page template'));
 
     $node = Node::create([
@@ -152,7 +152,7 @@ class CdnRedirectTest extends KernelTestBase {
     ]);
     $node->save();
 
-    $this->assertRedirect('/node/' . $node->id(), 302, 'http://example.com/___csr/page?id=' . $node->id());
+    $this->assertRedirect('/node/' . $node->id(), 302, 'http://example.com/_/page?id=' . $node->id());
   }
 
   public function testAliasedCSRRedirectNode() {
@@ -166,7 +166,7 @@ class CdnRedirectTest extends KernelTestBase {
     ]);
     $node->save();
 
-    $this->assertRedirect('/test', 302, 'http://example.com/___csr/page?id=' . $node->id());
+    $this->assertRedirect('/test', 302, 'http://example.com/_/page?id=' . $node->id());
   }
 
   public function testRedirect() {

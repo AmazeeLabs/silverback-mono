@@ -1,15 +1,15 @@
 <?php
 
+use Drupal\Core\Entity\EntityInterface;
+
 /**
- * Alter the path for the Silverback CDN CSR template.
+ * Alter the path for the Silverback CDN CSR template for a given entity.
  *
  * @param string $path
- * @param mixed $context
+ * @param \Drupal\Core\Entity\EntityInterface $context
  *
  * @return void
  */
-function hook_silverback_cdn_csr_template_path_alter(&$path, $context) {
-  // Inspect the context and determine the path to the template.
-  // $entity = \Drupal::entityTypeManager()->getStorage($context['entity_type'])->load($context['entity_id']);
-  // $path = '/___csr/' . $entity->bundle();
+function hook_silverback_cdn_csr_template_path_alter(&$path, EntityInterface $entity) {
+  $path = '/_/' . $entity->bundle();
 }

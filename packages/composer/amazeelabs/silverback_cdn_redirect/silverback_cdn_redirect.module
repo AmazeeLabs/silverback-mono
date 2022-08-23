@@ -1,9 +1,10 @@
 <?php
 
+use Drupal\Core\Entity\EntityInterface;
+
 /**
  * Implements hook_silverback_cdn_csr_template_path_alter().
  */
-function silverback_cdn_redirect_silverback_cdn_csr_template_path_alter(&$path, $context) {
-  $entity = \Drupal::entityTypeManager()->getStorage($context['entity_type'])->load($context['entity_id']);
-  $path = '/___csr/' . $entity->bundle();
+function silverback_cdn_redirect_silverback_cdn_csr_template_path_alter(&$path, EntityInterface $entity) {
+  $path = '/_/' . $entity->bundle();
 }

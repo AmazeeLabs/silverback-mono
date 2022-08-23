@@ -3,6 +3,7 @@
 namespace Drupal\silverback_cdn_redirect\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Path\PathValidatorInterface;
 use Drupal\Core\Routing\TrustedRedirectResponse;
@@ -37,6 +38,11 @@ class CdnRedirectController extends ControllerBase {
    */
   protected $moduleHandler;
 
+  /**
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
   protected $cacheHeaders;
   protected $cdnAuthParams = null;
 
@@ -47,9 +53,11 @@ class CdnRedirectController extends ControllerBase {
     UrlGeneratorInterface $url_generator,
     ClientInterface $client,
     PathValidatorInterface $pathValidator,
-    ModuleHandlerInterface $moduleHandler
+    ModuleHandlerInterface $moduleHandler,
+    EntityTypeManagerInterface $entityTypeManager
   ) {
     $this->urlGenerator = $url_generator;
+    $this->entityTypeManager = $entityTypeManager;
     $this->client = $client;
     $this->cacheHeaders = [
       // Five minutes cache for 404 and redirect responses.
@@ -76,7 +84,8 @@ class CdnRedirectController extends ControllerBase {
       $container->get('url_generator'),
       $container->get('silverback_cdn_redirect.http_client'),
       $container->get('path.validator'),
-      $container->get('module_handler')
+      $container->get('module_handler'),
+      $container->get('entity_type.manager')
     );
   }
 
@@ -127,13 +136,14 @@ class CdnRedirectController extends ControllerBase {
         $parameters = $url->getRouteParameters();
         if ($type && isset($parameters[$type]) && $id = $parameters[$type]) {
           $templatePath = false;
-          $context = ['entity_type' => $type, 'entity_id' => $id];
-          $this->moduleHandler->alter('silverback_cdn_csr_template_path', $templatePath, $context);
+          if ($context = $this->entityTypeManager->getStorage($type)->load($id)) {
+            $this->moduleHandler->alter('silverback_cdn_csr_template_path', $templatePath, $context);
+          }
+
           if ($settings->get('csr_redirect') && $templatePath) {
             $location = $baseUrl . $templatePath . '?id=' . $id;
             return new TrustedRedirectResponse($location);
           }
-
           else if ($templatePath && $response = $this->rewriteToCDN($baseUrl . $templatePath, 200)) {
             return $response;
           }
