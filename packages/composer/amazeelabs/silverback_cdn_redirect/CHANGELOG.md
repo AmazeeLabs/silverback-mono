@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.6.0...@-amazeelabs/silverback_cdn_redirect@1.7.0) (2022-08-23)
+
+
+### Features
+
+* **gatsby:** nicer CSR path ([46a56a0](https://github.com/AmazeeLabs/silverback-mono/commit/46a56a0593e12ec0f00eb34e22b36c269ad8eaab))
+
+
+
+
+
 # [1.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.5.0...@-amazeelabs/silverback_cdn_redirect@1.6.0) (2022-08-22)
 
 
