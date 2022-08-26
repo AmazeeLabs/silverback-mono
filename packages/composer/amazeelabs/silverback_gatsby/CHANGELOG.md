@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.25.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.24.0...@-amazeelabs/silverback_gatsby@1.25.0) (2022-08-26)
+
+
+### Features
+
+* **gutenberg:** alterable gutenberg blocks output ([28d626c](https://github.com/AmazeeLabs/silverback-mono/commit/28d626c9f57107feb304703088f2ab97c0026312))
+
+
+
+
+
 # [1.24.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.23.7...@-amazeelabs/silverback_gatsby@1.24.0) (2022-08-18)
 
 
