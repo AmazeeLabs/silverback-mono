@@ -112,8 +112,12 @@ class EditorBlocks extends DataProducerPluginBase {
     $ignored = array_merge(['core/group'], $ignored ?? []);
 
     $field->setContextValue('ignored_editor_blocks', $ignored);
+    $blocks = EditorBlocksProcessor::processsIgnoredBlocks($result, $ignored);
+    $blocks = EditorBlocksProcessor::aggregateParagraphs($blocks, $aggregated ?: ['core/paragraph']);
 
-    return EditorBlocksProcessor::aggregateParagraphs(EditorBlocksProcessor::processsIgnoredBlocks($result, $ignored), $aggregated ?: ['core/paragraph']);
+    \Drupal::moduleHandler()->alter('editor_blocks', $blocks, $entity);
+
+    return $blocks;
   }
 
 }
