@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.7.0...@-amazeelabs/silverback_cdn_redirect@1.7.1) (2022-08-29)
+
+
+### Bug Fixes
+
+* switch to single template for CSR rewrites ([0d22241](https://github.com/AmazeeLabs/silverback-mono/commit/0d2224118c734f5f622a549108df409a812f765e))
+
+
+
+
+
 # [1.7.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.6.0...@-amazeelabs/silverback_cdn_redirect@1.7.0) (2022-08-23)
 
 
