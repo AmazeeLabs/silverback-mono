@@ -135,16 +135,8 @@ class CdnRedirectController extends ControllerBase {
         [, $type] = explode('.', $url->getRouteName());
         $parameters = $url->getRouteParameters();
         if ($type && isset($parameters[$type]) && $id = $parameters[$type]) {
-          $templatePath = false;
-          if ($context = $this->entityTypeManager->getStorage($type)->load($id)) {
-            $this->moduleHandler->alter('silverback_cdn_csr_template_path', $templatePath, $context);
-          }
-
-          if ($settings->get('csr_redirect') && $templatePath) {
-            $location = $baseUrl . $templatePath . '?id=' . $id;
-            return new TrustedRedirectResponse($location);
-          }
-          else if ($templatePath && $response = $this->rewriteToCDN($baseUrl . $templatePath, 200)) {
+          $entity = $this->entityTypeManager->getStorage($type)->load($id);
+          if ($entity && $response = $this->rewriteToCDN($baseUrl . '/___csr', 200, $entity->getEntityTypeId() . ':' . $entity->bundle(), $entity->id())) {
             return $response;
           }
         }
@@ -192,11 +184,12 @@ class CdnRedirectController extends ControllerBase {
     return $response;
   }
 
-  protected function rewriteToCDN($location, $statusCode) {
+  protected function rewriteToCDN($location, $statusCode, $type = null , $id = null) {
     // Desired behavior: fetch the 404 page and return its contents.
     $response = $this->client->request('GET', $location);
     if ($response->getStatusCode() === 200) {
-      return new Response($response->getBody(), $statusCode, $this->cacheHeaders);
+      $body = str_replace(['___PAGE_TYPE___', '___PAGE_ID___'], [$type ?: '', $id ?: ''], $response->getBody()->getContents());
+      return new Response($body, $statusCode, $this->cacheHeaders);
     }
     elseif (
       $response->getStatusCode() === 401 &&

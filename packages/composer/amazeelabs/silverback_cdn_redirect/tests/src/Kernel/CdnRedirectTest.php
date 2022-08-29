@@ -115,8 +115,8 @@ class CdnRedirectTest extends KernelTestBase {
 
   public function testCSRNode() {
     $this->mockHttpClient
-      ->request('GET', 'http://example.com/_/page')
-      ->willReturn(new Response(200, [], 'Page template'));
+      ->request('GET', 'http://example.com/___csr')
+      ->willReturn(new Response(200, [], 'Page template ___PAGE_TYPE___ ___PAGE_ID___'));
 
     $node = Node::create([
       'title' => 'Test',
@@ -124,13 +124,13 @@ class CdnRedirectTest extends KernelTestBase {
     ]);
     $node->save();
 
-    $this->assertRewrite('/node/' . $node->id(), 200, 'Page template');
+    $this->assertRewrite('/node/' . $node->id(), 200,  'Page template node:page '. $node->id());
   }
 
   public function testAliasedCSRNode() {
     $this->mockHttpClient
-      ->request('GET', 'http://example.com/_/page')
-      ->willReturn(new Response(200, [], 'Page template'));
+      ->request('GET', 'http://example.com/___csr')
+      ->willReturn(new Response(200, [], 'Page template ___PAGE_TYPE___ ___PAGE_ID___'));
 
     $node = Node::create([
       'title' => 'Test',
@@ -139,34 +139,7 @@ class CdnRedirectTest extends KernelTestBase {
     ]);
     $node->save();
 
-    $this->assertRewrite('/test', 200, 'Page template');
-  }
-
-  public function testCSRRedirectNode() {
-    $this->config('silverback_cdn_redirect.settings')
-      ->set('csr_redirect', true)
-      ->save();
-    $node = Node::create([
-      'title' => 'Test',
-      'type' => 'page',
-    ]);
-    $node->save();
-
-    $this->assertRedirect('/node/' . $node->id(), 302, 'http://example.com/_/page?id=' . $node->id());
-  }
-
-  public function testAliasedCSRRedirectNode() {
-    $this->config('silverback_cdn_redirect.settings')
-      ->set('csr_redirect', true)
-      ->save();
-    $node = Node::create([
-      'title' => 'Test',
-      'type' => 'page',
-      'path' => ['alias' => '/test'],
-    ]);
-    $node->save();
-
-    $this->assertRedirect('/test', 302, 'http://example.com/_/page?id=' . $node->id());
+    $this->assertRewrite('/test', 200, 'Page template node:page '. $node->id());
   }
 
   public function testRedirect() {
