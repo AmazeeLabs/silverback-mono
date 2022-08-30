@@ -1,5 +1,6 @@
 import { act, render } from '@testing-library/react';
 import React, { useEffect, useState } from 'react';
+import { describe, expect, it, vi } from 'vitest';
 
 import { buildHtml } from '../../storybook';
 import { createMapper, Route, RouteSlotInput } from '../atomic';
@@ -276,7 +277,7 @@ describe('Route rendering', () => {
   });
 
   it('updates organisms based on hook output', async () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const { container } = render(
       <Route
         definition={Content}
@@ -325,7 +326,7 @@ describe('Route rendering', () => {
                 </div>
               </div>
           `);
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(container).toMatchInlineSnapshot(`
               <div>
                 <div>
@@ -342,8 +343,8 @@ describe('Route rendering', () => {
                 </div>
               </div>
           `);
-    jest.runOnlyPendingTimers();
-    jest.useRealTimers();
+    vi.runOnlyPendingTimers();
+    vi.useRealTimers();
   });
 });
 
@@ -370,7 +371,7 @@ describe('createMapper', () => {
       },
     });
 
-    type Input = Array<SyncFragment | AsyncFragment>;
+    type Input = Array<SyncFragment | AsyncFragment | undefined>;
 
     const mapper = createMapper<Input, RouteSlotInput<typeof Content, 'body'>>({
       Sync: map,
@@ -397,27 +398,27 @@ describe('createMapper', () => {
       },
     ];
     expect(mapper(input)).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "input": Object {
+      [
+        {
+          "input": {
             "Content": [Function],
           },
           "key": "sync",
         },
-        Object {
-          "input": Object {
+        {
+          "input": {
             "Content": [Function],
           },
           "key": "async",
         },
-        Object {
-          "input": Object {
+        {
+          "input": {
             "Content": [Function],
           },
           "key": "sync",
         },
-        Object {
-          "input": Object {
+        {
+          "input": {
             "Content": [Function],
           },
           "key": "async",
@@ -431,8 +432,8 @@ describe('createMapper', () => {
       __typename: 'Sync';
       html: string;
     };
-    type Input = Array<Html>;
-    const mappingFunction = jest.fn();
+    type Input = Array<Html | undefined>;
+    const mappingFunction = vi.fn();
     mappingFunction.mockReturnValue({
       key: 'sync',
       input: {
@@ -459,15 +460,15 @@ describe('createMapper', () => {
     ];
 
     expect(mapper(input, 'some other context')).toMatchInlineSnapshot(`
-      Array [
-        Object {
-          "input": Object {
+      [
+        {
+          "input": {
             "Content": [Function],
           },
           "key": "sync",
         },
-        Object {
-          "input": Object {
+        {
+          "input": {
             "Content": [Function],
           },
           "key": "sync",

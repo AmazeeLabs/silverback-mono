@@ -1,4 +1,4 @@
-dts
+dist
 src
 !*.js
 !*.d.ts

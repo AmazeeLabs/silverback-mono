@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { Field, FormikValues } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { act } from 'react-dom/test-utils';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import {
   ActionsDecorator,
@@ -31,22 +32,30 @@ import {
   SyncContent,
 } from '../utils/example-ui';
 
-const action = jest.fn();
+const action = vi.fn();
 
-const wouldNavigate = jest.fn();
-const wouldSubmit = jest.fn();
+const wouldNavigate = vi.fn();
+const wouldSubmit = vi.fn();
 
-jest.mock('@storybook/addon-actions', () => ({
+function assertDefined<T>(input: T): asserts input is Exclude<T, undefined> {
+  if (typeof input === 'undefined') {
+    throw 'Something is undefined!';
+  }
+}
+
+vi.mock('@storybook/addon-actions', () => ({
   action: () => action,
 }));
 
-beforeEach(jest.resetAllMocks);
+beforeEach(() => {
+  vi.resetAllMocks();
+});
 
 describe('createLocation', () => {
   test('creates a relative url', () => {
     const location = createLocation('/foo?a=b#bar');
-    expect(location.params.has('a')).toBeTruthy();
-    expect(location.params.get('a')).toEqual('b');
+    expect(location.params?.has('a')).toBeTruthy();
+    expect(location.params?.get('a')).toEqual('b');
     expect(location).toEqual({
       pathname: '/foo',
       params: new URLSearchParams('?a=b'),
@@ -181,7 +190,7 @@ describe('buildLink', () => {
     render(
       ActionsDecorator(
         (props) => {
-          return <button onClick={props.args.Link.navigate()}>test</button>;
+          return <button onClick={props?.args?.Link.navigate()}>test</button>;
         },
         {
           args: { wouldNavigate, Link },
@@ -201,7 +210,7 @@ describe('buildLink', () => {
     render(
       ActionsDecorator(
         (props) => {
-          return <button onClick={props.args.Link.navigate()}>test</button>;
+          return <button onClick={props?.args?.Link.navigate()}>test</button>;
         },
         {
           args: { wouldNavigate, Link },
@@ -218,7 +227,7 @@ describe('buildLink', () => {
   it('exposes the changing locations with the `useLocation` hook', () => {
     const LinkA = buildLink({ href: '/foo', query: { a: 'b' } });
     const LinkB = buildLink({ href: '/bar', query: { a: 'c' } });
-    const locationTest = jest.fn();
+    const locationTest = vi.fn();
 
     function Test() {
       const location = useLocation();
@@ -265,7 +274,7 @@ describe('buildLink', () => {
   });
 
   it('allows to set an initial location', () => {
-    const locationTest = jest.fn();
+    const locationTest = vi.fn();
 
     function Test() {
       const location = useLocation();
@@ -313,11 +322,13 @@ describe('buildForm', () => {
     render(
       ActionsDecorator(
         (props) => {
-          return (
+          return props?.args?.Form ? (
             <props.args.Form>
               <Field type="text" name="foo" />
               <button type="submit" />
             </props.args.Form>
+          ) : (
+            <></>
           );
         },
         {
@@ -336,16 +347,19 @@ describe('buildForm', () => {
   });
 
   it('also sends submission to the onSubmit callback', async () => {
-    const callback = jest.fn();
+    const callback = vi.fn();
     const Form = buildForm({ initialValues: { foo: '' }, onSubmit: callback });
+
     render(
       ActionsDecorator(
         (props) => {
-          return (
+          return props?.args?.Form ? (
             <props.args.Form>
               <Field type="text" name="foo" />
               <button type="submit" />
             </props.args.Form>
+          ) : (
+            <></>
           );
         },
         {
@@ -364,7 +378,7 @@ describe('buildForm', () => {
   });
 
   it('emits value changes via the "onChange" callback', async () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const Form = buildForm({ initialValues: { foo: '' }, onChange });
     render(
       <Form>
@@ -458,9 +472,9 @@ describe('layoutArgsEnhancer', () => {
 describe('OrganismDecorator', () => {
   it('allows to pass a status code into an organism', () => {
     const { container } = render(
-      OrganismDecorator((props) => <AsyncContent Content={props.Content} />, {
+      OrganismDecorator((props) => <AsyncContent Content={props?.Content} />, {
         parameters: {
-          useMockedBehaviour(args) {
+          useMockedBehaviour(args: any) {
             return [args, 102];
           },
         },
@@ -501,6 +515,7 @@ describe('renderRouteStory', () => {
         ],
       },
     };
+    assertDefined(RouteStory.render);
     const { container } = render(<RouteStory.render {...RouteStory.args} />);
     expect(container).toMatchInlineSnapshot(`
       <div>
@@ -549,6 +564,7 @@ describe('renderRouteStory', () => {
         ],
       },
     };
+    assertDefined(RouteStory.render);
     const { container } = render(<RouteStory.render {...RouteStory.args} />);
     expect(container).toMatchInlineSnapshot(`
       <div>
@@ -603,6 +619,7 @@ describe('renderRouteStory', () => {
       },
     };
 
+    assertDefined(RouteStory.render);
     const { container } = render(<RouteStory.render {...RouteStory.args} />);
     expect(container).toMatchInlineSnapshot(`
       <div>
