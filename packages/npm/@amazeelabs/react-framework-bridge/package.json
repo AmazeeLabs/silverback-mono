@@ -2,9 +2,31 @@
   "name": "@amazeelabs/react-framework-bridge",
   "version": "1.18.0",
   "description": "Bridge code to implement framework independent react components.",
-  "types": "index.d.ts",
-  "main": "index.js",
-  "module": "index.esm.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./gatsby": {
+      "import": "./dist/gatsby.mjs",
+      "require": "./dist/gatsby.cjs"
+    },
+    "./storybook": {
+      "import": "./dist/storybook.mjs",
+      "require": "./dist/storybook.cjs"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "index": ["./dist/index.d.ts"],
+      "storybook": ["./dist/storybook.d.ts"],
+      "gatsby": ["./dist/gatsby.d.ts"]
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
   "author": "Amazee Labs",
   "license": "MIT",
   "private": false,
@@ -26,22 +48,21 @@
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "^1.4.30",
-    "@amazeelabs/jest-preset": "^1.3.34",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@rollup/plugin-commonjs": "22.0.0",
     "@rollup/plugin-multi-entry": "4.1.0",
     "@rollup/plugin-node-resolve": "13.3.0",
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/user-event": "14.2.1",
-    "@types/jest": "28.1.2",
     "@types/qs": "6.9.7",
     "@types/react": "18.0.14",
     "@types/react-dom": "18.0.5",
+    "@vitejs/plugin-react": "^2.0.1",
     "esbuild": "0.14.47",
     "eslint": "8.18.0",
     "formik": "2.2.9",
     "gatsby": "4.17.0",
     "gatsby-plugin-image": "2.17.0",
-    "jest": "28.1.1",
     "lint-staged": "13.0.2",
     "prettier": "2.7.1",
     "react-intl": "6.0.4",
@@ -49,18 +70,24 @@
     "rollup-plugin-dts": "4.2.2",
     "rollup-plugin-esbuild": "4.9.1",
     "rollup-plugin-multi-input": "1.3.1",
-    "typescript": "4.7.4"
+    "typescript": "4.7.4",
+    "vite": "^3.0.9",
+    "vite-plugin-dts": "^1.4.1",
+    "vitest": "^0.22.1"
   },
   "scripts": {
     "prepare": "yarn build",
-    "build": "rm -rf dist && tsc --emitDeclarationOnly && rollup -c rollup.config.ts",
+    "build": "yarn build:index && yarn build:gatsby && yarn build:storybook",
+    "build:index": "ENTRYPOINT=index vite build",
+    "build:gatsby": "ENTRYPOINT=gatsby vite build",
+    "build:storybook": "ENTRYPOINT=storybook vite build",
+    "dev": "vite build --watch",
     "precommit": "lint-staged",
     "test": "yarn test:static && yarn test:unit && yarn test:integration",
-    "watch": "jest --watch",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
-    "test:unit": "jest --passWithNoTests",
-    "test:integration": "if [ -f test.sh ]; then ./test.sh; fi",
-    "test:watch": "jest --watch"
+    "test:unit": "vitest run",
+    "test:integration": "exit 0",
+    "test:watch": "vitest"
   },
   "publishConfig": {
     "access": "public"

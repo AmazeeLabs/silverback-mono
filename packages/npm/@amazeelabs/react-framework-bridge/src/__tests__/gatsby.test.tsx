@@ -1,4 +1,3 @@
-import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Field, FormikValues } from 'formik';
 import { GatsbyLinkProps } from 'gatsby';
@@ -6,16 +5,16 @@ import { GatsbyImageProps } from 'gatsby-plugin-image';
 import React, { useEffect, useState } from 'react';
 
 import { buildForm, buildImage, buildLink } from '../gatsby';
-import { type } from '../test-utils';
+import { render, screen, type, waitFor } from '../test-utils';
 
-const gatsbyNav = jest.fn();
+const gatsbyNav = vi.fn();
 
 type gatsby = {
   Link: (props: GatsbyLinkProps<any>) => JSX.Element;
   navigate: (to: string) => Promise<void>;
 };
 
-jest.mock(
+vi.mock(
   'gatsby',
   (): gatsby => ({
     // eslint-disable-next-line react/display-name
@@ -32,17 +31,20 @@ type gatsbyPluginImage = {
   GatsbyImage: (props: GatsbyImageProps) => JSX.Element;
 };
 
-jest.mock(
+vi.mock(
   'gatsby-plugin-image',
   (): gatsbyPluginImage => ({
     // eslint-disable-next-line react/display-name
     GatsbyImage: (props) => {
       const { image, ...rest } = props;
+      // @ts-ignore
       return <div data-gatsby-image={JSON.stringify(image)} {...rest} />;
     },
   }),
 );
-beforeEach(jest.resetAllMocks);
+beforeEach(() => {
+  vi.resetAllMocks();
+});
 
 describe('buildImage', () => {
   it('builds a GatsbyImage if there is Gatsby image data', () => {
@@ -211,7 +213,7 @@ describe('buildLink', () => {
 
 describe('buildForm', () => {
   it('hands form values to the submit callback', async () => {
-    const callback = jest.fn();
+    const callback = vi.fn();
     const Form = buildForm({
       initialValues: { foo: '' },
       onSubmit: (values) => callback(values),
@@ -231,7 +233,7 @@ describe('buildForm', () => {
   });
 
   it('emits value changes via the "onChange" callback', async () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const Form = buildForm({ initialValues: { foo: '' }, onChange });
     render(
       <Form>

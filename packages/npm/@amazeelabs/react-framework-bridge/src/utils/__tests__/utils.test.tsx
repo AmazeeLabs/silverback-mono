@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { Field, Form, Formik, FormikValues } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { act } from 'react-dom/test-utils';
+import { describe, expect, it, vi } from 'vitest';
 
 import { type } from '../../test-utils';
 import { Link, LinkProps } from '../../types';
@@ -33,7 +34,7 @@ describe('isRelative', () => {
   });
 });
 
-const nav = jest.fn();
+const nav = vi.fn();
 const buildLink = ({ href, ...props }: LinkProps): Link => {
   const Element: Link = function MockLink({ className, children }) {
     return (
@@ -58,7 +59,7 @@ const buildLink = ({ href, ...props }: LinkProps): Link => {
 const buildHtml = buildHtmlBuilder(buildLink);
 
 describe('buildHtmlBuilder', () => {
-  beforeEach(jest.resetAllMocks);
+  beforeEach(vi.resetAllMocks);
 
   it('renders a simple paragraph', () => {
     const htmlString = '<main><p>Test</p></main>';
@@ -287,7 +288,7 @@ describe('buildUrl', () => {
 
 describe('FormikChanges', () => {
   it('emits form value changes via "onChange"', async () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     render(
       <Formik initialValues={{ query: '' }} onSubmit={() => {}}>
         <Form>
