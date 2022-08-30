@@ -197,7 +197,8 @@ class CdnRedirectController extends ControllerBase {
     ) {
       $response = $this->client->request('POST', $location, $this->cdnAuthParams);
       if ($response->getStatusCode() === 200) {
-        return new Response($response->getBody(), $statusCode, $this->cacheHeaders);
+        $body = str_replace(['___PAGE_TYPE___', '___PAGE_ID___'], [$type ?: '', $id ?: ''], $response->getBody()->getContents());
+        return new Response($body, $statusCode, $this->cacheHeaders);
       }
     }
   }
