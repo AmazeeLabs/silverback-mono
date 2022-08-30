@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.7.1...@-amazeelabs/silverback_cdn_redirect@1.7.2) (2022-08-30)
+
+
+### Bug Fixes
+
+* **gatsby:** also replace page type and id in csr templates when netlify is access protected ([23ae49b](https://github.com/AmazeeLabs/silverback-mono/commit/23ae49be104ab0e73ebac344d798f2616ced834d))
+
+
+
+
+
 ## [1.7.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.7.0...@-amazeelabs/silverback_cdn_redirect@1.7.1) (2022-08-29)
 
 
