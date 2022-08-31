@@ -5,15 +5,15 @@
   "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
+      "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
     "./gatsby": {
-      "import": "./dist/gatsby.mjs",
+      "import": "./dist/gatsby.js",
       "require": "./dist/gatsby.cjs"
     },
     "./storybook": {
-      "import": "./dist/storybook.mjs",
+      "import": "./dist/storybook.js",
       "require": "./dist/storybook.cjs"
     }
   },
