@@ -201,6 +201,46 @@ describe('buildHtmlBuilder', () => {
       </main>
     `);
   });
+  it('allows to inject react components instead of tags', () => {
+    const Html = buildHtml(
+      '<main>' +
+        '<a href="http://www.amazeelabs.com">Amazee</a>' +
+        '<a href="http://www.google.com">Google</a>' +
+        '</main>',
+    );
+    render(
+      <Html
+        components={{
+          a: (props) => (
+            <button data-href={props.href}>
+              {props.children}
+              <b>!</b>
+            </button>
+          ),
+        }}
+      />,
+    );
+    expect(screen.getByRole('main')).toMatchInlineSnapshot(`
+      <main>
+        <button
+          data-href="http://www.amazeelabs.com"
+        >
+          Amazee
+          <b>
+            !
+          </b>
+        </button>
+        <button
+          data-href="http://www.google.com"
+        >
+          Google
+          <b>
+            !
+          </b>
+        </button>
+      </main>
+    `);
+  });
 });
 
 describe('buildUrl', () => {

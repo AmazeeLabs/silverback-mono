@@ -109,7 +109,7 @@ const rehypeAddClasses: Plugin<[{ [key: string]: string }], Element> =
 export const buildHtmlBuilder =
   (buildLink: LinkBuilder) =>
   (input: string): Html => {
-    const Element: Html = function MockHtml({ classNames }) {
+    const Element: Html = function MockHtml({ classNames, components }) {
       return unified()
         .use(rehypeParse, { fragment: true })
         .use(rehypeAddClasses, classNames || {})
@@ -120,10 +120,13 @@ export const buildHtmlBuilder =
           createElement,
           passNode: true,
           components: {
-            a: (props) => {
-              const { children, ...rest } = omit(props, 'node');
-              const Link = buildLink(rest);
-              return createElement(Link, {}, children);
+            ...{
+              a: (props) => {
+                const { children, ...rest } = omit(props, 'node');
+                const Link = buildLink(rest);
+                return createElement(Link, {}, children);
+              },
+              ...components,
             },
           },
         })
