@@ -1,14 +1,17 @@
 import { FormikConfig, FormikFormProps, FormikValues } from 'formik';
 import { Element } from 'hast';
 import { stringify } from 'qs';
-import React, { PropsWithChildren } from 'react';
-
-export type ClassFunction = (domNode: Element) => string | null;
+import React, { ComponentType, PropsWithChildren } from 'react';
 
 export type Html = React.VFC<{
   classNames?: {
     [key: string]: string;
   };
+  components?: Partial<{
+    [TagName in keyof JSX.IntrinsicElements]:
+      | keyof JSX.IntrinsicElements
+      | ComponentType<{ node: Element } & JSX.IntrinsicElements[TagName]>;
+  }>;
 }> & {
   initialHtmlString: string;
 };

@@ -229,6 +229,28 @@ const Html = buildHtml(
 />
 ```
 
+It also allows to specify custom react components for certain HTML tags. These
+components will receive the elements properties and children as regular
+properties, as well as an additional `node` property that is of type
+[`Element`](https://github.com/syntax-tree/hast#element) and can be used to do
+additional checks.
+
+```tsx
+const Html = buildHtml(
+  `<p>This is a test with a <a href="https://www.amazeelabs.com">link</a>.</p>`,
+);
+...
+
+<Html
+  components={{
+    a: ({href, node, children, ...props}) =>
+      node.parent.tagName === 'div'
+        ? <button data-href={href} {...props}>{children}</button>
+        : <a href={href} {...props}>{children}</a>
+  }}
+/>
+```
+
 ## Storybook actions integration
 
 The `buildLink` and `buildForm` functions integrate with
