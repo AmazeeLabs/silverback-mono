@@ -211,8 +211,9 @@ const Image = buildImage({ src: './cat.jpg', alt: 'A cat!' });
 We also provide a dedicated component for rendering strings that contain HTML
 markup, typically emitted by a content management system. In this case we just
 pass the string containing the markup to the build function. The resulting
-component then allows to control the visual appearance by either passing a class
-string per element name or a function that results in a class.
+component then allows to control the visual appearance by selecting elements and
+adding classes to them. The selection suppoerts the syntax documented in
+[`hast-util-select`](https://github.com/syntax-tree/hast-util-select#support).
 
 ```tsx
 const Html = buildHtml(
@@ -223,7 +224,7 @@ const Html = buildHtml(
 <Html
   classNames={{
     p: 'text-gray',
-    a: (node) => node.attribs['href'].contains('amazee') ? 'text-orage' : 'text-blue'
+    'a[href*=amazee]': 'text-orage',
   }}
 />
 ```

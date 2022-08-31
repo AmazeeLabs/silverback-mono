@@ -12,7 +12,6 @@ import {
   buildUrl,
   FormikChanges,
   FormikInitialValues,
-  isElement,
   isRelative,
 } from '../';
 
@@ -36,16 +35,16 @@ describe('isRelative', () => {
 
 const nav = vi.fn();
 const buildLink = ({ href, ...props }: LinkProps): Link => {
-  const Element: Link = function MockLink({ className, children }) {
+  const Element: Link = function MockLink({ children, ...innerProps }) {
     return (
       <a
         {...props}
+        {...innerProps}
         href={href}
         onClick={(ev) => {
           ev.preventDefault();
           nav(href);
         }}
-        className={className}
       >
         {children}
       </a>
@@ -172,7 +171,7 @@ describe('buildHtmlBuilder', () => {
     `);
   });
 
-  it('allows to define class functions for elements', () => {
+  it('allows to apply classes with hast-util-select queries', () => {
     const Html = buildHtml(
       '<main>' +
         '<a href="http://www.amazeelabs.com">Amazee</a>' +
@@ -182,10 +181,7 @@ describe('buildHtmlBuilder', () => {
     render(
       <Html
         classNames={{
-          a: (domNode) =>
-            isElement(domNode) && domNode.attribs['href'].includes('google')
-              ? 'text-blue'
-              : null,
+          'a[href*=google]': 'text-blue',
         }}
       />,
     );

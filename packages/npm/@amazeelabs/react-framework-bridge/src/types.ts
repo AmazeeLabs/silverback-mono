@@ -1,5 +1,5 @@
 import { FormikConfig, FormikFormProps, FormikValues } from 'formik';
-import { Element } from 'html-react-parser';
+import { Element } from 'hast';
 import { stringify } from 'qs';
 import React, { PropsWithChildren } from 'react';
 
@@ -7,7 +7,7 @@ export type ClassFunction = (domNode: Element) => string | null;
 
 export type Html = React.VFC<{
   classNames?: {
-    [key: string]: string | ClassFunction;
+    [key: string]: string;
   };
 }> & {
   initialHtmlString: string;

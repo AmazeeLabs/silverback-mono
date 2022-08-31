@@ -1,16 +1,16 @@
 import { FormikValues, useFormikContext } from 'formik';
-import parse, {
-  attributesToProps,
-  DOMNode,
-  domToReact,
-  Element,
-  HTMLReactParserOptions,
-  Node,
-  Text,
-} from 'html-react-parser';
-import { has } from 'lodash';
+import { Element } from 'hast';
+import { isElement } from 'hast-util-is-element';
+import { selectAll } from 'hast-util-select';
+import { omit } from 'lodash';
 import { stringify } from 'qs';
-import React, { ComponentProps, useEffect } from 'react';
+import { createElement, Fragment, useEffect } from 'react';
+import rehypeParse from 'rehype-parse';
+import rehypeReact from 'rehype-react';
+import rehypeSlug from 'rehype-slug';
+import { Plugin, unified } from 'unified';
+import { modifyChildren } from 'unist-util-modify-children';
+import { visit } from 'unist-util-visit';
 
 import { FormBuilderProps, Html, LinkBuilder, LinkProps } from '../types';
 
@@ -23,14 +23,6 @@ export const isRelative = (url?: string) =>
   url?.startsWith('#') ||
   url?.startsWith('?') ||
   Boolean(url?.match(/^\/(?!\/)/));
-
-function hasChildren(input: Node): input is Node & { children: Node[] } {
-  return has(input, 'children');
-}
-
-function isText(input: Node): input is Text {
-  return has(input, 'data');
-}
 
 // https://gist.github.com/max10rogerio/c67c5d2d7a3ce714c4bc0c114a3ddc6e
 export const slugify = (...args: (string | number)[]): string => {
@@ -81,100 +73,61 @@ export function FormikInitialValues<T extends FormikValues>({
   return null;
 }
 
-export const isElement = (
-  node: DOMNode & { children?: DOMNode[] },
-): node is Element => Array.isArray(node.children);
-
-function nodeToText(input: Node[]): string {
-  return input
-    .map((node) => {
-      if (isText(node)) {
-        return node.data.trim();
+const rehypeTailwindLists: Plugin = () => (tree) => {
+  visit(
+    tree,
+    'element',
+    modifyChildren((node) => {
+      if (isElement(node, 'li')) {
+        node.children = [
+          {
+            type: 'element',
+            tagName: 'div',
+            children: node.children,
+          },
+        ];
       }
-      if (hasChildren(node)) {
-        return nodeToText(node.children);
-      }
-      return '';
-    })
-    .join(' ');
-}
+    }),
+  );
+};
 
-export const htmlParserOptions = (
-  buildLink: LinkBuilder,
-  classNames: ComponentProps<Html>['classNames'],
-): HTMLReactParserOptions => ({
-  replace: (node) => {
-    if (isElement(node)) {
-      const { attribs, children, tagName } = node;
-      const props = attributesToProps(attribs);
-
-      const className = classNames?.[node.name];
-      const addedClass =
-        typeof className === 'string'
-          ? className
-          : typeof className === 'function'
-          ? className(node)
-          : undefined;
-
-      if (addedClass) {
-        props['className'] = [props['className'], addedClass]
-          .filter((c) => !!c)
-          .join(' ');
-      }
-
-      switch (tagName) {
-        case 'li': {
-          const text = domToReact(
-            children,
-            htmlParserOptions(buildLink, classNames),
-          );
-
-          // Fix prose lists with breaks, by wrapping content in a <div>.
-          // https://github.com/tailwindlabs/tailwindcss-typography/issues/68
-          return (
-            <li {...props}>
-              <div>{text}</div>
-            </li>
-          );
+const rehypeAddClasses: Plugin<[{ [key: string]: string }], Element> =
+  (settings) => (tree) => {
+    Object.keys(settings || {}).forEach((matcher) => {
+      const cls = settings[matcher];
+      selectAll(matcher, tree).forEach((node) => {
+        if (!node.properties) {
+          node.properties = { class: cls };
+        } else {
+          node.properties.class = [node.properties.class, cls].join();
         }
-        case 'h2': {
-          const text = domToReact(
-            children,
-            htmlParserOptions(buildLink, classNames),
-          );
-          return (
-            <h2 {...props} id={props.id || slugify(nodeToText(children))}>
-              {text}
-            </h2>
-          );
-        }
-        case 'a': {
-          const Link = buildLink(props);
-          return (
-            <Link {...props}>
-              {domToReact(children, htmlParserOptions(buildLink, classNames))}
-            </Link>
-          );
-        }
-        default: {
-          return addedClass
-            ? React.createElement(
-                node.name,
-                props,
-                domToReact(children, htmlParserOptions(buildLink, classNames)),
-              )
-            : undefined;
-        }
-      }
-    }
-  },
-});
+        node.properties['class'] = cls;
+      });
+    });
+  };
 
 export const buildHtmlBuilder =
   (buildLink: LinkBuilder) =>
   (input: string): Html => {
     const Element: Html = function MockHtml({ classNames }) {
-      return <>{parse(input, htmlParserOptions(buildLink, classNames))}</>;
+      return unified()
+        .use(rehypeParse, { fragment: true })
+        .use(rehypeAddClasses, classNames || {})
+        .use(rehypeSlug)
+        .use(rehypeTailwindLists)
+        .use(rehypeReact, {
+          Fragment,
+          createElement,
+          passNode: true,
+          components: {
+            a: (props) => {
+              const { children, ...rest } = omit(props, 'node');
+              const Link = buildLink(rest);
+              return createElement(Link, {}, children);
+            },
+          },
+        })
+        .processSync(input).result;
     };
     Element.initialHtmlString = input;
     return Element;
