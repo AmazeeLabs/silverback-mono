@@ -1,5 +1,3 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { Field, FormikValues } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { act } from 'react-dom/test-utils';
@@ -20,7 +18,14 @@ import {
   RouteStory,
   useLocation,
 } from '../storybook';
-import { type } from '../test-utils';
+import {
+  fireEvent,
+  render,
+  screen,
+  type,
+  userEvent,
+  waitFor,
+} from '../test-utils';
 import {
   AsyncContent,
   Content,

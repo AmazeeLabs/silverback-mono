@@ -1,11 +1,10 @@
-import userEvent from '@testing-library/user-event';
 import { Field, FormikValues } from 'formik';
 import { GatsbyLinkProps } from 'gatsby';
 import { GatsbyImageProps } from 'gatsby-plugin-image';
 import React, { useEffect, useState } from 'react';
 
 import { buildForm, buildImage, buildLink } from '../gatsby';
-import { render, screen, type, waitFor } from '../test-utils';
+import { render, screen, type, userEvent, waitFor } from '../test-utils';
 
 const gatsbyNav = vi.fn();
 
