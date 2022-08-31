@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.18.0...@amazeelabs/react-framework-bridge@2.0.0) (2022-08-31)
+
+
+### Bug Fixes
+
+* **react:** fix test environment ([3e90566](https://github.com/AmazeeLabs/silverback-mono/commit/3e90566fb623ca659e9005333d33b77771d2f81e))
+
+
+### Code Refactoring
+
+* **react:** use unified for html rendering ([7270cd2](https://github.com/AmazeeLabs/silverback-mono/commit/7270cd2fa2acb17241b5ed37ed021685cd0771fb))
+
+
+### Features
+
+* **react:** allow to replace tags with react components in html strings ([d178be1](https://github.com/AmazeeLabs/silverback-mono/commit/d178be1a3c517c4ddcb817748e3ad722c67fa91b))
+
+
+### BREAKING CHANGES
+
+* **react:** classNames property of the HTML type now only takes strings
+
+
+
+
+
 # [1.18.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@1.17.1...@amazeelabs/react-framework-bridge@1.18.0) (2022-07-20)
 
 
