@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.36](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/silverback-playwright@1.6.35...@amazeelabs/silverback-playwright@1.6.36) (2022-09-01)
+
+
+### Reverts
+
+* Revert "fix: temporarily skip gatsby-develop tests due to timeouts" ([3a5b067](https://github.com/AmazeeLabs/silverback-mono/commit/3a5b067c23017058b3a0952583fa49a25c798e39))
+
+
+
+
+
 ## [1.6.35](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/silverback-playwright@1.6.34...@amazeelabs/silverback-playwright@1.6.35) (2022-08-26)
 
 
