@@ -1,4 +1,4 @@
-import { Form as FormComponent, Formik } from 'formik';
+import { Form as FormComponent, Formik, FormikValues } from 'formik';
 import { GatsbyLinkProps, Link as GatsbyLink, navigate } from 'gatsby';
 import { GatsbyImage, GatsbyImageProps } from 'gatsby-plugin-image';
 import React, { ImgHTMLAttributes } from 'react';
@@ -117,7 +117,7 @@ export const buildImage = (props: ImageProps): Image => {
 
 export const buildHtml = buildHtmlBuilder(buildLink);
 
-export function buildForm<Values>({
+export function buildForm<Values extends FormikValues>({
   onChange,
   useInitialValues,
   ...formikProps
