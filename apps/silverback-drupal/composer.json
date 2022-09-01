@@ -102,7 +102,7 @@
         "composer-exit-on-patch-failure": true,
         "patches": {
             "drupal/core": {
-                "Add string context and location filters to the translate interface": "https://www.drupal.org/files/issues/2021-05-28/drupal-n2123543-71.patch"
+                "Add string context and location filters to the translate interface": "https://www.drupal.org/files/issues/2022-08-01/2123543-9.4.x-74.patch"
             }
         }
     },
