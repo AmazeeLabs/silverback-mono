@@ -20,7 +20,7 @@
     "prompts": "^2.4.2",
     "semver": "^7.3.7",
     "tslog": "^3.3.3",
-    "update-notifier": "^5.1.0"
+    "update-notifier": "^6.0.2"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "^1.4.30",
@@ -33,7 +33,7 @@
     "@types/nunjucks": "3.2.1",
     "@types/prompts": "2.0.14",
     "@types/semver": "7.3.10",
-    "@types/update-notifier": "5.1.0",
+    "@types/update-notifier": "6.0.1",
     "eslint": "8.18.0",
     "jest": "28.1.1",
     "lint-staged": "13.0.2",
