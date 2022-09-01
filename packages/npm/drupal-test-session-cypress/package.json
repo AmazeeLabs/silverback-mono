@@ -1,6 +1,6 @@
 {
   "name": "drupal-test-session-cypress",
-  "version": "1.1.46",
+  "version": "1.1.47",
   "description": "Cypress commands for Drupal's Test Session module.",
   "main": "commands.js",
   "types": "commands.d.ts",
@@ -24,8 +24,8 @@
     "test:watch": "jest --watch"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.30",
-    "@amazeelabs/jest-preset": "^1.3.34",
+    "@amazeelabs/eslint-config": "^1.4.31",
+    "@amazeelabs/jest-preset": "^1.3.35",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@types/jest": "28.1.2",
     "cypress": "9.7.0",
