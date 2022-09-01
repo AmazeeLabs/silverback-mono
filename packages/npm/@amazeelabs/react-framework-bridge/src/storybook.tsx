@@ -1,7 +1,8 @@
 import { ArgsEnhancer } from '@storybook/csf';
 import { DecoratorFn, ReactFramework, StoryObj } from '@storybook/react';
-import { Form as FormComponent, Formik } from 'formik';
+import { Form as FormComponent, Formik, FormikValues } from 'formik';
 import { isArray, isObject, mapValues } from 'lodash';
+import { stringify } from 'qs';
 import React, {
   ComponentProps,
   JSXElementConstructor,
@@ -128,14 +129,21 @@ export const ActionsDecorator: DecoratorFn = (story, context) => {
   );
 };
 
-export function buildLink<Query = {}>({
+export function buildLink<Query extends Parameters<typeof stringify>[0] = {}>({
   href,
   segments,
   query,
   queryOptions,
   ...props
 }: LinkProps<Query>): Link<Query> {
-  const buildUrl = buildUrlBuilder(segments || [href], query, queryOptions);
+  const buildUrl = buildUrlBuilder(
+    segments || [href],
+    // TODO: Remove @ts-ignore
+    //  error TS2345: Argument of type 'Query | undefined' is not assignable to parameter of type '{} | undefined'.
+    // @ts-ignore
+    query,
+    queryOptions,
+  );
 
   const Element: Link = function StorybookLinkBuilder({
     className,
@@ -189,7 +197,7 @@ export const buildImage = (props: ImageProps): Image => {
 
 export const buildHtml = buildHtmlBuilder(buildLink);
 
-export function buildForm<Values>({
+export function buildForm<Values extends FormikValues>({
   onChange,
   useInitialValues,
   onSubmit,
