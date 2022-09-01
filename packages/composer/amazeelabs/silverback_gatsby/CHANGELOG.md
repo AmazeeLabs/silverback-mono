@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.25.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.25.0...@-amazeelabs/silverback_gatsby@1.25.1) (2022-09-01)
+
+
+### Bug Fixes
+
+* process $entity->original in hook_entity_presave ([a74e19f](https://github.com/AmazeeLabs/silverback-mono/commit/a74e19f10f0192cd038b072ce0789b957068c2a3))
+
+
+
+
+
 # [1.25.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.24.0...@-amazeelabs/silverback_gatsby@1.25.0) (2022-08-26)
 
 
