@@ -106,8 +106,8 @@ class MediaNormalizerTest extends KernelTestBase {
     $normalizer = $this->container->get('default_content.content_entity_normalizer');
     $this->assertTrue(_gutenberg_is_gutenberg_enabled($node));
     $result = $normalizer->normalize($node);
-    $this->assertEquals($target, $result['default']['body'][0]['value']);
-    $this->assertEquals($target, $result['translations']['de']['body'][0]['value']);
+    $this->assertSameHtml($target, $result['default']['body'][0]['value']);
+    $this->assertSameHtml($target, $result['translations']['de']['body'][0]['value']);
   }
 
   public function testDependencies() {
@@ -163,7 +163,12 @@ class MediaNormalizerTest extends KernelTestBase {
     $result = $normalizer->normalize($node);
     /** @var \Drupal\node\NodeInterface $denormalized */
     $denormalized = $normalizer->denormalize($result);
-    $this->assertEquals($source, $denormalized->body->value);
-    $this->assertEquals($source, $denormalized->getTranslation('de')->body->value);
+    $this->assertSameHtml($source, $denormalized->body->value);
+    $this->assertSameHtml($source, $denormalized->getTranslation('de')->body->value);
+  }
+
+  protected function assertSameHtml(string $expected, string $actual) {
+    $normalize = fn (string $html) => trim(preg_replace('/>\s+</', '><', $html));
+    $this->assertEquals($normalize($expected), $normalize($actual));
   }
 }
