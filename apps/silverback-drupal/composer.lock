@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "80686570a71ab4436dcea9a4b7653dd6",
+    "content-hash": "6f817087d3d8f8001891819ae57787af",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -241,11 +241,11 @@
         },
         {
             "name": "amazeelabs/silverback_cdn_redirect",
-            "version": "1.5.0",
+            "version": "1.7.2",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_cdn_redirect",
-                "reference": "8714e1abc312bf21bbab2d66a39edef7e038769c"
+                "reference": "6816759b05350e5616ab3d153ef7bb3b854db427"
             },
             "type": "drupal-module",
             "license": [
@@ -277,11 +277,11 @@
         },
         {
             "name": "amazeelabs/silverback_gatsby",
-            "version": "1.24.0",
+            "version": "1.25.1",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gatsby",
-                "reference": "4e934a8b34e284f2e59b71fd9a09d4d67050e4a5"
+                "reference": "47eaf2f97656d83ccb62d746ee70dc12d39b22e9"
             },
             "type": "drupal-module",
             "extra": {
@@ -3586,10 +3586,6 @@
             ],
             "authors": [
                 {
-                    "name": "Rajeshreeputra",
-                    "homepage": "https://www.drupal.org/user/3418561"
-                },
-                {
                     "name": "ganeshsurya11",
                     "homepage": "https://www.drupal.org/user/3526791"
                 },
@@ -3600,6 +3596,10 @@
                 {
                     "name": "perfectcu.be",
                     "homepage": "https://www.drupal.org/user/2442008"
+                },
+                {
+                    "name": "Rajeshreeputra",
+                    "homepage": "https://www.drupal.org/user/3418561"
                 }
             ],
             "description": "Provides an authentication provider based on per-user API keys.",
