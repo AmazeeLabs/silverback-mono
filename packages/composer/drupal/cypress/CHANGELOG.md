@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.65](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.3.64...@-drupal/cypress@2.3.65) (2022-09-05)
+
+**Note:** Version bump only for package @-drupal/cypress
+
+
+
+
+
 ## [2.3.64](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.3.63...@-drupal/cypress@2.3.64) (2022-09-01)
 
 **Note:** Version bump only for package @-drupal/cypress
