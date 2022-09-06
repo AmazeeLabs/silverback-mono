@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.7.2...@-amazeelabs/silverback_cdn_redirect@2.0.0) (2022-09-06)
+
+
+* feat(gatsby)!: add page path to CSR template ([a9573c0](https://github.com/AmazeeLabs/silverback-mono/commit/a9573c05bfa521a415e9c2667ed7aedbf9494e14))
+
+
+### BREAKING CHANGES
+
+* Values are now expected in double quotes.
+
+
+
+
+
 ## [1.7.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@1.7.1...@-amazeelabs/silverback_cdn_redirect@1.7.2) (2022-08-30)
 
 
