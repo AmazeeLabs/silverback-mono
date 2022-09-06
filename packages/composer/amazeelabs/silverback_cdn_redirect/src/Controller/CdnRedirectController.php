@@ -136,7 +136,16 @@ class CdnRedirectController extends ControllerBase {
         $parameters = $url->getRouteParameters();
         if ($type && isset($parameters[$type]) && $id = $parameters[$type]) {
           $entity = $this->entityTypeManager->getStorage($type)->load($id);
-          if ($entity && $response = $this->rewriteToCDN($baseUrl . '/___csr', 200, $entity->getEntityTypeId() . ':' . $entity->bundle(), $entity->id())) {
+          if (
+            $entity &&
+            $response = $this->rewriteToCDN(
+              $baseUrl . '/___csr',
+              200,
+              $entity->getEntityTypeId() . ':' . $entity->bundle(),
+              $entity->id(),
+              '/' . $path
+            )
+          ) {
             return $response;
           }
         }
@@ -184,11 +193,23 @@ class CdnRedirectController extends ControllerBase {
     return $response;
   }
 
-  protected function rewriteToCDN($location, $statusCode, $type = null , $id = null) {
+  protected function rewriteToCDN($location, $statusCode, $type = null , $id = null, $path = null) {
     // Desired behavior: fetch the 404 page and return its contents.
     $response = $this->client->request('GET', $location);
     if ($response->getStatusCode() === 200) {
-      $body = str_replace(['___PAGE_TYPE___', '___PAGE_ID___'], [$type ?: '', $id ?: ''], $response->getBody()->getContents());
+      $body = str_replace(
+        [
+          '"___PAGE_TYPE___"',
+          '"___PAGE_ID___"',
+          '"___PAGE_PATH___"',
+        ],
+        [
+          json_encode((string) $type ?: ''),
+          json_encode((string) $id ?: ''),
+          json_encode((string) $path ?: ''),
+        ],
+        $response->getBody()->getContents()
+      );
       return new Response($body, $statusCode, $this->cacheHeaders);
     }
     elseif (
@@ -197,7 +218,19 @@ class CdnRedirectController extends ControllerBase {
     ) {
       $response = $this->client->request('POST', $location, $this->cdnAuthParams);
       if ($response->getStatusCode() === 200) {
-        $body = str_replace(['___PAGE_TYPE___', '___PAGE_ID___'], [$type ?: '', $id ?: ''], $response->getBody()->getContents());
+        $body = str_replace(
+          [
+            '"___PAGE_TYPE___"',
+            '"___PAGE_ID___"',
+            '"___PAGE_PATH___"',
+          ],
+          [
+            json_encode((string) $type ?: ''),
+            json_encode((string) $id ?: ''),
+            json_encode((string) $path ?: ''),
+          ],
+          $response->getBody()->getContents()
+        );
         return new Response($body, $statusCode, $this->cacheHeaders);
       }
     }

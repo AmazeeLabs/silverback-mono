@@ -116,7 +116,7 @@ class CdnRedirectTest extends KernelTestBase {
   public function testCSRNode() {
     $this->mockHttpClient
       ->request('GET', 'http://example.com/___csr')
-      ->willReturn(new Response(200, [], 'Page template ___PAGE_TYPE___ ___PAGE_ID___'));
+      ->willReturn(new Response(200, [], 'Page template "___PAGE_TYPE___" "___PAGE_ID___" "___PAGE_PATH___"'));
 
     $node = Node::create([
       'title' => 'Test',
@@ -124,13 +124,16 @@ class CdnRedirectTest extends KernelTestBase {
     ]);
     $node->save();
 
-    $this->assertRewrite('/node/' . $node->id(), 200,  'Page template node:page '. $node->id());
+    $type = json_encode('node:page');
+    $id = json_encode((string) $node->id());
+    $path = json_encode('/node/' . $node->id());
+    $this->assertRewrite('/node/' . $node->id(), 200, "Page template {$type} {$id} {$path}");
   }
 
   public function testAliasedCSRNode() {
     $this->mockHttpClient
       ->request('GET', 'http://example.com/___csr')
-      ->willReturn(new Response(200, [], 'Page template ___PAGE_TYPE___ ___PAGE_ID___'));
+      ->willReturn(new Response(200, [], 'Page template "___PAGE_TYPE___" "___PAGE_ID___" "___PAGE_PATH___"'));
 
     $node = Node::create([
       'title' => 'Test',
@@ -139,7 +142,10 @@ class CdnRedirectTest extends KernelTestBase {
     ]);
     $node->save();
 
-    $this->assertRewrite('/test', 200, 'Page template node:page '. $node->id());
+    $type = json_encode('node:page');
+    $id = json_encode((string) $node->id());
+    $path = json_encode('/test');
+    $this->assertRewrite('/test', 200, "Page template {$type} {$id} {$path}");
   }
 
   public function testRedirect() {
