@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": false,
   "peerDependencies": {
-    "gatsby": "^4.22.0"
+    "gatsby": "^4.22.1"
   },
   "keywords": [
     "gatsby",

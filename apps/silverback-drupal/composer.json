@@ -41,7 +41,7 @@
         "drupal/core-recommended": "9.4.5",
         "drupal/cypress": "@dev",
         "drupal/default_content": "2.0.0-alpha2",
-        "drupal/entity_usage": "2.0.0-beta6",
+        "drupal/entity_usage": "2.0.0-beta7",
         "drupal/gatsby_build_monitor": "@dev",
         "drupal/graphql": "4.3.0",
         "drupal/gutenberg": "2.5.0",

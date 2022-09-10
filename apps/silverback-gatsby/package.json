@@ -12,7 +12,7 @@
     "@amazeelabs/silverback-iframe": "^1.1.45",
     "axios": "0.27.2",
     "dotenv": "16.0.2",
-    "gatsby": "4.22.0",
+    "gatsby": "4.22.1",
     "gatsby-graphql-source-toolkit": "2.0.2",
     "gatsby-image": "3.11.0",
     "gatsby-plugin-remote-images": "3.4.0",
@@ -25,7 +25,7 @@
     "postcss-import": "14.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-intl": "6.1.0",
+    "react-intl": "6.1.1",
     "react-query": "3.39.2",
     "strip-ansi": "6.0.1",
     "tailwindcss": "3.1.8",
@@ -43,9 +43,9 @@
     "@graphql-codegen/typescript-react-query": "4.0.1",
     "@types/classnames": "2.3.1",
     "@types/jest": "28.1.8",
-    "@types/node": "16.11.56",
+    "@types/node": "16.11.58",
     "babel-plugin-formatjs": "10.3.28",
-    "babel-preset-gatsby": "2.22.0",
+    "babel-preset-gatsby": "2.22.1",
     "eslint": "8.23.0",
     "gatsby-source-filesystem": "4.22.0",
     "graphql-codegen-persisted-query-ids": "0.1.2",
@@ -54,7 +54,7 @@
     "lint-staged": "13.0.3",
     "prettier": "2.7.1",
     "ts-node": "10.9.1",
-    "typescript": "4.8.2"
+    "typescript": "4.8.3"
   },
   "keywords": [
     "gatsby"

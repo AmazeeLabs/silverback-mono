@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "499fb4da95d6b178b1c428b4f45ff1d2",
+    "content-hash": "0e95e46aa808447a6a95ff2dae8213bf",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -241,11 +241,11 @@
         },
         {
             "name": "amazeelabs/silverback_cdn_redirect",
-            "version": "1.7.2",
+            "version": "2.0.0",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_cdn_redirect",
-                "reference": "6816759b05350e5616ab3d153ef7bb3b854db427"
+                "reference": "bc7bf4ef2ab494d8f4544b5e079e777baa46816d"
             },
             "type": "drupal-module",
             "license": [
@@ -3286,20 +3286,20 @@
         },
         {
             "name": "drupal/entity_usage",
-            "version": "2.0.0-beta6",
+            "version": "2.0.0-beta7",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/entity_usage.git",
-                "reference": "8.x-2.0-beta6"
+                "reference": "8.x-2.0-beta7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/entity_usage-8.x-2.0-beta6.zip",
-                "reference": "8.x-2.0-beta6",
-                "shasum": "b641f9549fc3edaa81f0548f0fc209ece3ed369c"
+                "url": "https://ftp.drupal.org/files/projects/entity_usage-8.x-2.0-beta7.zip",
+                "reference": "8.x-2.0-beta7",
+                "shasum": "ce2a51b024082100442c0736f3c9d137af7c5b0a"
             },
             "require": {
-                "drupal/core": "^8.8 || ^9"
+                "drupal/core": "^9.1 || ^10"
             },
             "require-dev": {
                 "drupal/block_field": "~1.0",
@@ -3315,8 +3315,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.0-beta6",
-                    "datestamp": "1633676588",
+                    "version": "8.x-2.0-beta7",
+                    "datestamp": "1662722179",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."

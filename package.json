@@ -36,8 +36,8 @@
     "@commitlint/config-conventional": "17.1.0",
     "commitizen": "4.2.5",
     "husky": "8.0.1",
-    "lerna": "5.5.0",
-    "verdaccio": "5.14.0",
+    "lerna": "5.5.1",
+    "verdaccio": "5.15.3",
     "verdaccio-git": ">= 0.0.1"
   },
   "commitlint": {
