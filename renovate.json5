@@ -115,12 +115,4 @@
     schedule: ["at any time"],
     automerge: false,
   },
-
-  "hostRules": [
-    {
-      // Try to debug gob timeouts.
-      // https://github.com/renovatebot/renovate/discussions/17632#discussioncomment-3595543
-      "timeout": 10000,
-    },
-  ],
 }
