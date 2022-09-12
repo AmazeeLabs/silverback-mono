@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@2.1.0...@-amazeelabs/silverback_cdn_redirect@2.1.1) (2022-09-12)
+
+
+### Bug Fixes
+
+* **gatsby:** limit CSR rewrites to nodes ([57327ba](https://github.com/AmazeeLabs/silverback-mono/commit/57327ba68338204543074603fa7013bdd5026579))
+
+
+
+
+
 # [2.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@2.0.0...@-amazeelabs/silverback_cdn_redirect@2.1.0) (2022-09-12)
 
 
