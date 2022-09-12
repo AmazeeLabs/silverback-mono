@@ -197,19 +197,7 @@ class CdnRedirectController extends ControllerBase {
     // Desired behavior: fetch the 404 page and return its contents.
     $response = $this->client->request('GET', $location);
     if ($response->getStatusCode() === 200) {
-      $body = str_replace(
-        [
-          '"___PAGE_TYPE___"',
-          '"___PAGE_ID___"',
-          '"___PAGE_PATH___"',
-        ],
-        [
-          json_encode((string) $type ?: ''),
-          json_encode((string) $id ?: ''),
-          json_encode((string) $path ?: ''),
-        ],
-        $response->getBody()->getContents()
-      );
+      $body = $this->replacePageMetadata($response->getBody()->getContents(), $type, $id, $path);
       return new Response($body, $statusCode, $this->cacheHeaders);
     }
     elseif (
@@ -218,21 +206,25 @@ class CdnRedirectController extends ControllerBase {
     ) {
       $response = $this->client->request('POST', $location, $this->cdnAuthParams);
       if ($response->getStatusCode() === 200) {
-        $body = str_replace(
-          [
-            '"___PAGE_TYPE___"',
-            '"___PAGE_ID___"',
-            '"___PAGE_PATH___"',
-          ],
-          [
-            json_encode((string) $type ?: ''),
-            json_encode((string) $id ?: ''),
-            json_encode((string) $path ?: ''),
-          ],
-          $response->getBody()->getContents()
-        );
+        $body = $this->replacePageMetadata($response->getBody()->getContents(), $type, $id, $path);
         return new Response($body, $statusCode, $this->cacheHeaders);
       }
     }
+  }
+
+  protected function replacePageMetadata(string $content, ?string $type, ?string $id, ?string $path) {
+    return str_replace(
+      [
+        '"___PAGE_TYPE___"',
+        '"___PAGE_ID___"',
+        '"___PAGE_PATH___"',
+      ],
+      [
+        json_encode($type ?: ''),
+        json_encode($id ?: ''),
+        json_encode($path ?: ''),
+      ],
+      $content
+    );
   }
 }
