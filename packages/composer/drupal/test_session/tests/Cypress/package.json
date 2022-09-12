@@ -1,6 +1,6 @@
 {
   "name": "@-test_session/cypress-tests",
-  "version": "1.1.53",
+  "version": "1.1.54",
   "private": true,
   "scripts": {
     "test": "yarn test:static && yarn test:unit && yarn test:integration",
@@ -16,9 +16,9 @@
     "test:watch": "jest --watch"
   },
   "devDependencies": {
-    "@-drupal/test_session": "^1.2.42",
-    "@amazeelabs/eslint-config": "^1.4.32",
-    "@amazeelabs/jest-preset": "^1.3.36",
+    "@-drupal/test_session": "^1.2.43",
+    "@amazeelabs/eslint-config": "^1.4.33",
+    "@amazeelabs/jest-preset": "^1.3.37",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@types/jest": "28.1.8",
     "@types/node": "16.11.58",
