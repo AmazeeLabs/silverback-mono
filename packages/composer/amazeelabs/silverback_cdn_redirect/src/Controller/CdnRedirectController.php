@@ -134,7 +134,7 @@ class CdnRedirectController extends ControllerBase {
         // display a client side rendered template.
         [, $type] = explode('.', $url->getRouteName());
         $parameters = $url->getRouteParameters();
-        if ($type && isset($parameters[$type]) && $id = $parameters[$type]) {
+        if ($type === 'node' && isset($parameters[$type]) && $id = $parameters[$type]) {
           $entity = $this->entityTypeManager->getStorage($type)->load($id);
           if (
             $entity &&
