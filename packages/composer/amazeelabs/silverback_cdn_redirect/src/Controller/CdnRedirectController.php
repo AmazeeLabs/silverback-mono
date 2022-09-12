@@ -215,11 +215,13 @@ class CdnRedirectController extends ControllerBase {
   protected function replacePageMetadata(string $content, ?string $type, ?string $id, ?string $path) {
     return str_replace(
       [
+        '/___csr',
         '"___PAGE_TYPE___"',
         '"___PAGE_ID___"',
         '"___PAGE_PATH___"',
       ],
       [
+        $path ?: '',
         json_encode($type ?: ''),
         json_encode($id ?: ''),
         json_encode($path ?: ''),
