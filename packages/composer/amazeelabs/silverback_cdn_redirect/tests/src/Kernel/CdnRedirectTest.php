@@ -148,6 +148,36 @@ class CdnRedirectTest extends KernelTestBase {
     $this->assertRewrite('/test', 200, "Page template {$type} {$id} {$path}");
   }
 
+  public function testGatsbyPagePath() {
+    $this->mockHttpClient
+      ->request('GET', 'http://example.com/___csr')
+      ->willReturn(new Response(200, [], '<script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/___csr";window.___webpackCompilationHash="123";/*]]>*/</script>'));
+
+    $node = Node::create([
+      'title' => 'Test',
+      'type' => 'page',
+      'path' => ['alias' => '/test'],
+    ]);
+    $node->save();
+
+    $this->assertRewrite('/test', 200, '<script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/test";window.___webpackCompilationHash="123";/*]]>*/</script>');
+  }
+
+  public function testMultilingualGatsbyPagePath() {
+    $this->mockHttpClient
+      ->request('GET', 'http://example.com/___csr')
+      ->willReturn(new Response(200, [], '<script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/en/___csr";window.___webpackCompilationHash="123";/*]]>*/</script>'));
+
+    $node = Node::create([
+      'title' => 'Test',
+      'type' => 'page',
+      'path' => ['alias' => '/test'],
+    ]);
+    $node->save();
+    
+    $this->assertRewrite('/test', 200, '<script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/en/test";window.___webpackCompilationHash="123";/*]]>*/</script>');
+  }
+
   public function testRedirect() {
     $redirect = Redirect::create();
     $redirect->setSource('to/frontpage');
