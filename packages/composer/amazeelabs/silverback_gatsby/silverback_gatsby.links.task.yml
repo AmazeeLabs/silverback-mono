@@ -2,4 +2,5 @@ entity.graphql_server.build_form:
   route_name: entity.graphql_server.build_form
   base_route: entity.graphql_server.edit_form
   title: Build
+  title_context: silverback_gatsby
   weight: -1
