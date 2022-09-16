@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.25.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.25.1...@-amazeelabs/silverback_gatsby@1.25.2) (2022-09-16)
+
+
+### Bug Fixes
+
+* **gatsby:** add title context to the local task ([d5a6baa](https://github.com/AmazeeLabs/silverback-mono/commit/d5a6baa4326224ee00c981af02eeaf4abd8466e7))
+
+
+
+
+
 ## [1.25.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.25.0...@-amazeelabs/silverback_gatsby@1.25.1) (2022-09-01)
 
 
