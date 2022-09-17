@@ -1,0 +1,10 @@
+!dist
+.eslintrc.cjs
+.lintstagedrc
+.prettierrc
+tsconfig.json
+tsconfig.node.json
+vite.config.ts
+.storybook
+src
+static
