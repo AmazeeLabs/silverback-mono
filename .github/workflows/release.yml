@@ -17,7 +17,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'
+          php-version: "8.1"
 
       - uses: webfactory/ssh-agent@v0.5.4
         with:
@@ -102,11 +102,11 @@ jobs:
       - name: Wait a moment
         run: sleep 5
 
+      - name: Deploy
+        run: yarn lerna run deploy --since
+
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: yarn lerna publish -y
-
-      - name: Deploy
-        run: yarn lerna run deploy --since
