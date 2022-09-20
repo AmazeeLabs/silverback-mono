@@ -23,7 +23,7 @@
     "test": "yarn test:static && yarn test:unit && yarn test:integration",
     "storybook": "start-storybook -p 6006 --ci",
     "build-storybook": "build-storybook",
-    "deploy": "netlify deploy -a $NETLIFY_AUTH_TOKEN -d storybook-static -p -s amazeelabs-molecules"
+    "deploy": "yarn build-storybook && yarn netlify deploy -a $NETLIFY_AUTH_TOKEN -d storybook-static -p -s amazeelabs-molecules"
   },
   "peerDependencies": {
     "react": ">=17",
