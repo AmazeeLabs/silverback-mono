@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/molecules@0.2.0...@amazeelabs/molecules@0.2.1) (2022-09-20)
+
+
+### Bug Fixes
+
+* **molecules:** avoid top level await ([c369e61](https://github.com/AmazeeLabs/silverback-mono/commit/c369e61a9e79f7efc5a79ea719a8e6b30058d8f1))
+
+
+
+
+
 # [0.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/molecules@0.1.0...@amazeelabs/molecules@0.2.0) (2022-09-20)
 
 
