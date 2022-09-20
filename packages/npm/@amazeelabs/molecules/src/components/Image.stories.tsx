@@ -1,6 +1,20 @@
 import { ComponentStoryObj, DecoratorFn, Meta, Story } from '@storybook/react';
 import { pick } from 'lodash';
 
+import LandscapeOriginal from '../assets/landscape.jpg?metadata';
+import LandscapeSmallJpeg from '../assets/landscape.jpg?w=1000&tint=aa0000&metadata';
+import LandscapeSmallWebp from '../assets/landscape.jpg?w=1000&webp&tint=aa0000&metadata';
+import LandscapeMediumJpeg from '../assets/landscape.jpg?w=2000&tint=00aa00&metadata';
+import LandscapeMediumWebp from '../assets/landscape.jpg?w=2000&webp&tint=00aa00&metadata';
+import LandscapeLargeJpeg from '../assets/landscape.jpg?w=3000&tint=0000aa&metadata';
+import LandscapeLargeWebp from '../assets/landscape.jpg?w=3000&webp&tint=0000aa&metadata';
+import PortraitOriginal from '../assets/portrait.jpg?metadata';
+import PortraitSmallJpeg from '../assets/portrait.jpg?w=1000&tint=aa0000&metadata';
+import PortraitSmallWebp from '../assets/portrait.jpg?w=1000&webp&tint=aa0000&metadata';
+import PortraitMediumJpeg from '../assets/portrait.jpg?w=2000&tint=00aa00&metadata';
+import PortraitMediumWebp from '../assets/portrait.jpg?w=2000&webp&tint=00aa00&metadata';
+import PortraitLargeJpeg from '../assets/portrait.jpg?w=3000&tint=0000aa&metadata';
+import PortraitLargeWebp from '../assets/portrait.jpg?w=3000&webp&tint=0000aa&metadata';
 import { Image, useImageContext } from './Image';
 
 export default {
@@ -8,26 +22,26 @@ export default {
 } as Meta;
 
 const Portrait = {
-  original: await import(`../assets/portrait.jpg?metadata`),
+  original: PortraitOriginal,
   sizes: [
-    await import('../assets/portrait.jpg?w=1000&webp&tint=aa0000&metadata'),
-    await import('../assets/portrait.jpg?w=2000&webp&tint=00aa00&metadata'),
-    await import('../assets/portrait.jpg?w=3000&webp&tint=0000aa&metadata'),
-    await import('../assets/portrait.jpg?w=1000&tint=aa0000&metadata'),
-    await import('../assets/portrait.jpg?w=2000&tint=00aa00&metadata'),
-    await import('../assets/portrait.jpg?w=3000&tint=0000aa&metadata'),
+    PortraitSmallJpeg,
+    PortraitMediumJpeg,
+    PortraitLargeJpeg,
+    PortraitSmallWebp,
+    PortraitMediumWebp,
+    PortraitLargeWebp,
   ],
 };
 
 const Landscape = {
-  original: await import(`../assets/landscape.jpg?metadata`),
+  original: LandscapeOriginal,
   sizes: [
-    await import('../assets/landscape.jpg?w=1000&webp&tint=aa0000&metadata'),
-    await import('../assets/landscape.jpg?w=2000&webp&tint=00aa00&metadata'),
-    await import('../assets/landscape.jpg?w=3000&webp&tint=0000aa&metadata'),
-    await import('../assets/landscape.jpg?w=1000&tint=aa0000&metadata'),
-    await import('../assets/landscape.jpg?w=2000tint=00aa00&metadata'),
-    await import('../assets/landscape.jpg?w=3000&tint=0000aa&metadata'),
+    LandscapeSmallJpeg,
+    LandscapeMediumJpeg,
+    LandscapeLargeJpeg,
+    LandscapeSmallWebp,
+    LandscapeMediumWebp,
+    LandscapeLargeWebp,
   ],
 };
 
