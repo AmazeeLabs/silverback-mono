@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Introduction" />
+
+# Amazee Labs Molecules
+
+A collection of reusable React components, built to be styled using
+[tailwindcss](https://tailwindcss.com).
+
+## Installation
+
+```shell
+npm install @amazeelabs/molecules
+```
+
+## Usage
+
+Simply import and use components. They are optimized, tree-shakeable and ready
+to be styled by adding `classNames`.
+
+```tsx
+import { Image } from '@amazeelabs/molecules';
+
+export function MyComponent() {
+  return (
+    <Image
+      src="/my-image.jpg"
+      alt="A beautiful image."
+      classNames="border-solid border-red-500 border-3"
+    />
+  );
+}
+```

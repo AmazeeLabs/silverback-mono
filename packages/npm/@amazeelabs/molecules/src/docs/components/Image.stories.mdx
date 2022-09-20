@@ -1,0 +1,123 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs';
+
+<Meta title="Docs/Image" />
+
+# Image
+
+A responsive image component that handles loading states, layout, fallbacks and
+art direction.
+
+## Layout
+
+The `layout` property controls how the image behaves within the document. The
+default setting is `fluid`. In that case, the image will cover 100% of its
+parent container width and keep its own aspect ratio, which results in a
+variable height display.
+
+<Canvas>
+  <Story id="components-image--fluid" />
+</Canvas>
+
+The second option is `cover`. In that case, the image will exactly match the
+parent containers size and scale to fill the whole box. In that case, the image
+might be cropped to the parents aspect ratio.
+
+<Canvas>
+  <Story id="components-image--fixed-cover" />
+</Canvas>
+
+When setting `contain`, the image will also match the parent containers size,
+but won't attempt to fill the area, but scale to show the whole image, which
+will result in whitespace.
+
+<Canvas>
+  <Story id="components-image--fixed-contain" />
+</Canvas>
+
+## Fallback for broken or loading images
+
+If an image is currently loading or can't be loaded, a fallback is displayed. By
+default, it shows the alternative text in a representational area, that is not
+accessible by screen-readers, which would still just display the alternative
+text.
+
+<Canvas>
+  <Story id="components-image--fallback" />
+</Canvas>
+
+### Loading states
+
+The component tracks the image's loading status and allows to set classes for
+the three states:
+
+- `className` is always applied
+- `loadingClassName` is applied as long as the image is loading
+- `errorClassName` is applied if there was an error displaying the image
+- `readyClassName` is applied if the image has been successfully loaded
+
+These can be used to hide the duplicated alternative text and add a smooth
+loading fade-in.
+
+<Canvas>
+  <Story id="components-image--fade-in" />
+</Canvas>
+
+### Custom placeholders
+
+It's possible to provide a custom placeholder that will be displayed while the
+image is not available. Add the placeholder content as the components
+`children`. There, you also have access to the `useImageContext` hook that will
+provide information on the loading status and image metadata.
+
+<Canvas>
+  <Story id="components-image--custom-placeholder" />
+</Canvas>
+
+<Canvas>
+  <Story id="components-image--use-custom-placeholder" />
+</Canvas>
+
+## Responsive images
+
+The `Image` component accepts additional source sets, differently scaled
+variants for different viewports and screen sizes.
+
+<Canvas>
+  <Story id="components-image--responsive" />
+</Canvas>
+
+When operating within a constrained layout, the `sizes` attribute should be used
+to hint the browser at which width the image is going to be displayed. This way,
+we can avoid loading a too large preset when an image is displayed in a smaller
+box.
+
+<Canvas>
+  <Story id="components-image--responsive-constrained" />
+</Canvas>
+
+## Art direction
+
+Sometimes its necessary to use completely different image sets for different
+viewports. This can be achieved with multiple source sets and art direction.
+
+<Canvas>
+  <Story id="components-image--art-direction" />
+</Canvas>
+
+Also, for art direction, constrained layouts can be used. The `sizes` attribute
+only has to be provided only once in this case.
+
+<Canvas>
+  <Story id="components-image--art-direction-constrained" />
+</Canvas>
+
+## Lazy loading
+
+All images are lazy loaded by default, using the browsers capabilities. To
+explicitly disable lazy loading for an image, which should be done for header
+images that are above the fold and affect the largest contentful paint (LCP),
+set the `lazy` attribute to `false`.
+
+<Canvas>
+  <Story id="components-image--lazy-loading" />
+</Canvas>
