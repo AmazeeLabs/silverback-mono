@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import {
   createContext,
+  HTMLAttributes,
   PropsWithChildren,
   useContext,
   useEffect,
@@ -32,7 +33,13 @@ type ImageSourceSet = {
  * Tuple of a media query and the slot width
  * in either viewport units or pixesl
  */
-type ImageSize = [string, `${number}${'vw' | 'px'}`];
+type ImageSize =
+  | [string, `${number}${'vw' | 'px'}`]
+  | `${number}${'vw' | 'px'}`;
+
+function RealPicture(props: HTMLAttributes<HTMLPictureElement>) {
+  return <picture {...props} />;
+}
 
 type ImageProps = PropsWithChildren<{
   /**
@@ -107,6 +114,14 @@ type ImageProps = PropsWithChildren<{
    * when the image could not be loaded.
    */
   errorClassName?: string;
+
+  /**
+   * Picture renderer.
+   *
+   * Defaults to `picture`, but allows to use a different renderer
+   * for testing loading events.
+   */
+  Picture?: typeof RealPicture;
 }>;
 
 type ImageContext = {
@@ -160,6 +175,7 @@ export function Image({
   sources,
   layout = 'fluid',
   lazy = true,
+  Picture = RealPicture,
   ...props
 }: ImageProps) {
   // The image starts in "ready" state for server side rendering.
@@ -196,14 +212,13 @@ export function Image({
           </ImageContext.Provider>
         </div>
       ) : null}
-      <picture
+      <Picture
         style={{
           position: 'absolute',
           top: 0,
           left: 0,
           bottom: 0,
           right: 0,
-          objectFit: layout === 'fluid' ? undefined : layout,
         }}
         onLoad={() => setState('ready')}
         onError={() => setState('error')}
@@ -214,16 +229,24 @@ export function Image({
             media={media}
             srcSet={srcSet.map(([src, width]) => `${src} ${width}w`).join(', ')}
             sizes={sizes
-              ?.map(([media, size]) => (media ? `${media} ${size}` : size))
+              ?.map((size) => {
+                return typeof size === 'string' ? [undefined, size] : size;
+              })
+              .map(([media, size]) => (media ? `${media} ${size}` : size))
               .join(', ')}
           />
         ))}
-        <source
-          srcSet={srcSet?.map(([src, width]) => `${src} ${width}w`).join(', ')}
-          sizes={sizes
-            ?.map(([media, size]) => (media ? `${media} ${size}` : size))
-            .join(', ')}
-        />
+        {srcSet ? (
+          <source
+            srcSet={srcSet.map(([src, width]) => `${src} ${width}w`).join(', ')}
+            sizes={sizes
+              ?.map((size) => {
+                return typeof size === 'string' ? [undefined, size] : size;
+              })
+              .map(([media, size]) => (media ? `${media} ${size}` : size))
+              .join(', ')}
+          />
+        ) : undefined}
         <img
           loading={lazy ? 'lazy' : 'eager'}
           alt={alt}
@@ -237,7 +260,7 @@ export function Image({
             [errorClassName || '']: state === 'error',
           })}
         />
-      </picture>
+      </Picture>
     </div>
   );
 }
