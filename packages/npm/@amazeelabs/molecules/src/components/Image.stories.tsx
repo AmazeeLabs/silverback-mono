@@ -16,6 +16,11 @@ import PortraitMediumWebp from '../assets/portrait.jpg?w=2000&webp&tint=00aa00&m
 import PortraitLargeJpeg from '../assets/portrait.jpg?w=3000&tint=0000aa&metadata';
 import PortraitLargeWebp from '../assets/portrait.jpg?w=3000&webp&tint=0000aa&metadata';
 import { Image, useImageContext } from './Image';
+import {
+  DelayedReadyPicture,
+  ErrorPicture,
+  LoadingPicture,
+} from './Image.mocks';
 
 export default {
   title: 'Components/Image',
@@ -46,19 +51,19 @@ const Landscape = {
   ],
 };
 
-const FluidContainer: DecoratorFn = (story) => (
+export const FluidContainer: DecoratorFn = (story) => (
   <div className="w-96 p-4 border-dotted border-2 border-gray-400">
     {story()}
   </div>
 );
 
-const FixedContainer: DecoratorFn = (story) => (
+export const FixedContainer: DecoratorFn = (story) => (
   <div className="w-96 h-32 p-4 border-dotted border-2 border-gray-400">
     {story()}
   </div>
 );
 
-const ConstrainedContainer: DecoratorFn = (story) => (
+export const ConstrainedContainer: DecoratorFn = (story) => (
   <div className="max-w-[1000px]">{story()}</div>
 );
 
@@ -66,7 +71,7 @@ export const Fluid: ComponentStoryObj<typeof Image> = {
   decorators: [FluidContainer],
   args: {
     ...pick(Landscape.original, ['width', 'height', 'src']),
-    alt: 'How did the goat get up there?!?',
+    alt: 'How did the goat et up there?!?',
   },
 };
 
@@ -86,7 +91,7 @@ export const FixedContain: ComponentStoryObj<typeof Image> = {
   },
 };
 
-export const Fallback: ComponentStoryObj<typeof Image> = {
+export const DefaultFallback: ComponentStoryObj<typeof Image> = {
   decorators: [FluidContainer],
   args: {
     ...Fluid.args,
@@ -101,6 +106,7 @@ export const FadeIn: ComponentStoryObj<typeof Image> = {
     ...Fluid.args,
     className: 'transition-opacity duration-1000 opacity-0',
     readyClassName: 'opacity-100',
+    Picture: DelayedReadyPicture,
   },
 };
 
@@ -115,11 +121,22 @@ export const CustomPlaceholder: Story = function Placeholder() {
   return <></>;
 };
 
-export const UseCustomPlaceholder: ComponentStoryObj<typeof Image> = {
+export const CustomLoadingPlaceholder: ComponentStoryObj<typeof Image> = {
   decorators: [FluidContainer],
   args: {
     ...FadeIn.args,
-    ...Fallback.args,
+    ...DefaultFallback.args,
+    Picture: LoadingPicture,
+    children: <CustomPlaceholder />,
+  },
+};
+
+export const CustomErrorPlaceholder: ComponentStoryObj<typeof Image> = {
+  decorators: [FluidContainer],
+  args: {
+    ...FadeIn.args,
+    ...DefaultFallback.args,
+    Picture: ErrorPicture,
     children: <CustomPlaceholder />,
   },
 };
