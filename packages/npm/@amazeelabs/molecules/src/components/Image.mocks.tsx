@@ -14,8 +14,8 @@ export const ReadyPicture: Exclude<
 export const LoadingPicture: Exclude<
   ComponentProps<typeof Image>['Picture'],
   undefined
-> = ({ ...props }) => {
-  return <picture {...omit(props, 'onLoad')} />;
+> = (props) => {
+  return <picture {...omit(props, 'onLoad', 'onError')} />;
 };
 
 export const ErrorPicture: Exclude<
@@ -33,7 +33,7 @@ export const DelayedReadyPicture: Exclude<
   useEffect(() => {
     window.setTimeout(() => {
       onLoad?.(undefined as any);
-    }, 3000);
+    }, 1000);
   }, [onLoad]);
   return <picture {...omit(props, 'onError')} />;
 };
@@ -45,7 +45,7 @@ export const DelayedErrorPicture: Exclude<
   useEffect(() => {
     window.setTimeout(() => {
       onError?.(undefined as any);
-    }, 3000);
+    }, 1000);
   }, [onError]);
   return <picture {...omit(props, 'onLoad')} />;
 };
