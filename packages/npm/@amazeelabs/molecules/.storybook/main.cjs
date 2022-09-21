@@ -9,8 +9,9 @@ module.exports = {
     });
   },
   stories: [
+    '../src/docs/introduction.stories.mdx',
     '../src/docs/**/*.stories.mdx',
-    '../src/**/*.stories.@(js|jsx|ts|tsx)',
+    '../src/components/*.stories.tsx',
   ],
   addons: [
     '@storybook/addon-links',

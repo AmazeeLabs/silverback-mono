@@ -18,6 +18,7 @@ import PortraitLargeWebp from '../assets/portrait.jpg?w=3000&webp&tint=0000aa&me
 import { Image, useImageContext } from './Image';
 
 export default {
+  title: 'Components/Image',
   component: Image,
 } as Meta;
 
