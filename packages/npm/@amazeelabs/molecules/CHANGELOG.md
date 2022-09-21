@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/molecules@0.2.3...@amazeelabs/molecules@0.3.0) (2022-09-21)
+
+
+### Bug Fixes
+
+* **molecules:** initiate image in a dedicated "rendered" state ([16162b3](https://github.com/AmazeeLabs/silverback-mono/commit/16162b374a2d75012a6887926677bb24baf8b832))
+
+
+### Features
+
+* **molecules:** expose testing mocks ([780de83](https://github.com/AmazeeLabs/silverback-mono/commit/780de83d93c3225953a21a77b40b8e934acc0904))
+
+
+
+
+
 ## [0.2.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/molecules@0.2.2...@amazeelabs/molecules@0.2.3) (2022-09-21)
 
 **Note:** Version bump only for package @amazeelabs/molecules
