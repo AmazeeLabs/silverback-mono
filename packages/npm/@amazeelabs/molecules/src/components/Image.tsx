@@ -125,7 +125,7 @@ type ImageProps = PropsWithChildren<{
 }>;
 
 type ImageContext = {
-  state: 'loading' | 'ready' | 'error';
+  state: 'rendered' | 'loading' | 'ready' | 'error';
   props: ImageProps;
 };
 
@@ -178,13 +178,16 @@ export function Image({
   Picture = RealPicture,
   ...props
 }: ImageProps) {
-  // The image starts in "ready" state for server side rendering.
-  const [state, setState] = useState<ImageContext['state']>('ready');
+  // The image starts in "rendered" state for server side rendering.
+  const [state, setState] = useState<ImageContext['state']>('rendered');
+  const showPlaceholder = state === 'loading' || state === 'error';
 
   // In the browser, initiate the state to "loading".
   useEffect(() => {
-    setState('loading');
-  }, [setState]);
+    if (state === 'rendered') {
+      setState('loading');
+    }
+  }, [setState, state]);
 
   return (
     <div
@@ -200,7 +203,7 @@ export function Image({
             }
       }
     >
-      {state !== 'ready' ? (
+      {showPlaceholder ? (
         <div style={{ position: 'absolute', inset: 0 }} aria-hidden={true}>
           <ImageContext.Provider
             value={{
@@ -255,7 +258,7 @@ export function Image({
             layout === 'fluid' ? {} : { objectFit: layout, height: '100%' }
           }
           className={clsx(className, {
-            [readyClassName || '']: state === 'ready',
+            [readyClassName || '']: state === 'ready' || state === 'rendered',
             [loadingClassName || '']: state === 'loading',
             [errorClassName || '']: state === 'error',
           })}
