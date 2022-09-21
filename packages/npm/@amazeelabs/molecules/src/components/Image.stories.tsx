@@ -15,12 +15,13 @@ import PortraitMediumJpeg from '../assets/portrait.jpg?w=2000&tint=00aa00&metada
 import PortraitMediumWebp from '../assets/portrait.jpg?w=2000&webp&tint=00aa00&metadata';
 import PortraitLargeJpeg from '../assets/portrait.jpg?w=3000&tint=0000aa&metadata';
 import PortraitLargeWebp from '../assets/portrait.jpg?w=3000&webp&tint=0000aa&metadata';
-import { Image, useImageContext } from './Image';
 import {
   DelayedReadyPicture,
   ErrorPicture,
+  Image,
   LoadingPicture,
-} from './Image.mocks';
+  useImageContext,
+} from './Image';
 
 export default {
   title: 'Components/Image',

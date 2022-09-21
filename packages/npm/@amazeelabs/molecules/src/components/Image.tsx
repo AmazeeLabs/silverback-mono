@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { omit } from 'lodash';
 import {
   createContext,
   HTMLAttributes,
@@ -36,6 +37,76 @@ type ImageSourceSet = {
 type ImageSize =
   | [string, `${number}${'vw' | 'px'}`]
   | `${number}${'vw' | 'px'}`;
+
+/**
+ * Simulate a picture that immediatley switches to the loaded state.
+ * Useful for unit testing.
+ */
+export const ReadyPicture: Exclude<ImageProps['Picture'], undefined> = ({
+  onLoad,
+  ...props
+}) => {
+  useEffect(() => {
+    onLoad?.(undefined as any);
+  }, [onLoad]);
+  return <picture {...props} />;
+};
+
+/**
+ * Simulate a picture that always stays in the loading state.
+ * Useful for unit testing and visually testing the loading state.
+ */
+export const LoadingPicture: Exclude<ImageProps['Picture'], undefined> = (
+  props,
+) => {
+  return <picture {...omit(props, 'onLoad', 'onError')} />;
+};
+
+/**
+ * Simulate a picture that immediately goes to the error state.
+ * Useful for unit testing and visually testing the error state.
+ */
+export const ErrorPicture: Exclude<ImageProps['Picture'], undefined> = ({
+  onError,
+  ...props
+}) => {
+  useEffect(() => {
+    onError?.(undefined as any);
+  }, [onError]);
+  return <picture {...omit(props, 'onLoad')} />;
+};
+
+/**
+ * Simulate a picture that stays in loading for 1 second before switching to the loaded state.
+ * Useful for testing visual transitions.
+ */
+export const DelayedReadyPicture: Exclude<ImageProps['Picture'], undefined> = ({
+  onLoad,
+  ...props
+}) => {
+  useEffect(() => {
+    window.setTimeout(() => {
+      onLoad?.(undefined as any);
+    }, 1000);
+  }, [onLoad]);
+  return <picture {...omit(props, 'onError')} />;
+};
+
+/**
+ * Simulate a picture that stays in loading for 1 second before switching to the error state.
+ * Useful for testing visual transitions.
+ */
+export const DelayedErrorPicture: Exclude<ImageProps['Picture'], undefined> = ({
+  onError,
+  ...props
+}) => {
+  useEffect(() => {
+    window.setTimeout(() => {
+      onError?.(undefined as any);
+    }, 1000);
+  }, [onError]);
+  return <picture {...omit(props, 'onLoad')} />;
+};
 
 function RealPicture(props: HTMLAttributes<HTMLPictureElement>) {
   return <picture {...props} />;

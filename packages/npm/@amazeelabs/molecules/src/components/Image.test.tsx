@@ -1,13 +1,25 @@
 import { cleanup, render } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { Image } from './Image';
 import {
-  CustomPlaceholder,
   ErrorPicture,
+  Image,
   LoadingPicture,
   ReadyPicture,
-} from './Image.mocks';
+  useImageContext,
+} from './Image';
+
+const CustomPlaceholder = () => {
+  const { state } = useImageContext();
+  switch (state) {
+    case 'loading':
+      return <div>🚏 Loading...</div>;
+    case 'error':
+      return <div>💣 Error!</div>;
+    default:
+      return <div>😝 This should never be visible.</div>;
+  }
+};
 
 afterEach(cleanup);
 
