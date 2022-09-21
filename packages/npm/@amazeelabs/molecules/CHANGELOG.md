@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/molecules@0.2.1...@amazeelabs/molecules@0.2.2) (2022-09-21)
+
+
+### Bug Fixes
+
+* **molecules:** story sorting ([514486d](https://github.com/AmazeeLabs/silverback-mono/commit/514486dd23e1e9e3f48e0826562f3254b568661c))
+
+
+
+
+
 ## [0.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/molecules@0.2.0...@amazeelabs/molecules@0.2.1) (2022-09-20)
 
 
