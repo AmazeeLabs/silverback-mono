@@ -5,7 +5,7 @@ import { Meta } from '@storybook/addon-docs';
 # Amazee Labs Molecules
 
 A collection of reusable React components, built to be styled using
-[tailwindcss](https://tailwindcss.com).
+[TailwindCSS].
 
 ## Installation
 
@@ -31,3 +31,21 @@ export function MyComponent() {
   );
 }
 ```
+
+## Development
+
+New molecules should be added to the `src/components` directory and referenced
+in `src/index.ts`. Each new molecule should also have a set of stories, a
+documentation page and possible unit tests. Please refer to
+`src/components/Image.tsx`, `src/components/Image.stories.tsx`,
+`src/components/Image.test.tsx` and `src/docs/components/Image.stories.mdx` for
+a real world example.
+
+## Visual styling
+
+The development package contains [TailwindCSS], but only for the sake of example
+styling in stories. Molecules should be largely agnostic to visual styling and
+provide `className` properties style them where they are used. Styles that are
+vital to the function of the molecule should be added with the `style` property.
+
+[tailwindcss]: https://tailwindcss.com

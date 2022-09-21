@@ -51,19 +51,19 @@ const Landscape = {
   ],
 };
 
-export const FluidContainer: DecoratorFn = (story) => (
+const FluidContainer: DecoratorFn = (story) => (
   <div className="w-96 p-4 border-dotted border-2 border-gray-400">
     {story()}
   </div>
 );
 
-export const FixedContainer: DecoratorFn = (story) => (
+const FixedContainer: DecoratorFn = (story) => (
   <div className="w-96 h-32 p-4 border-dotted border-2 border-gray-400">
     {story()}
   </div>
 );
 
-export const ConstrainedContainer: DecoratorFn = (story) => (
+const ConstrainedContainer: DecoratorFn = (story) => (
   <div className="max-w-[1000px]">{story()}</div>
 );
 
