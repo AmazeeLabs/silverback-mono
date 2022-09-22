@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.25.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.25.2...@-amazeelabs/silverback_gatsby@1.25.3) (2022-09-22)
+
+
+### Bug Fixes
+
+* **gatsby:** fix drupal "build" route title ([5fb3352](https://github.com/AmazeeLabs/silverback-mono/commit/5fb3352c57a42511280c00d5c89788e0a2686eac))
+
+
+
+
+
 ## [1.25.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.25.1...@-amazeelabs/silverback_gatsby@1.25.2) (2022-09-16)
 
 
