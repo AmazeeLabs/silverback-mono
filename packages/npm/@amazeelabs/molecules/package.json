@@ -26,8 +26,8 @@
     "deploy": "yarn build-storybook && yarn netlify deploy -a $NETLIFY_AUTH_TOKEN -d storybook-static -p -s amazeelabs-molecules"
   },
   "peerDependencies": {
-    "react": ">=17",
-    "react-dom": ">=17"
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "^1.4.30",
