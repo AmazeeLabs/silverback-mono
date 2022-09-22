@@ -3,6 +3,7 @@ entity.graphql_server.build_form:
   defaults:
     _entity_form: 'graphql_server.build'
     _title: 'Build'
+    _title_context: silverback_gatsby
   requirements:
     _permission: 'administer graphql configuration+trigger a gatsby build'
   options:
