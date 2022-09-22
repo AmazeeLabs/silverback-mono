@@ -6,12 +6,13 @@ import {
   PropsWithChildren,
   useContext,
   useEffect,
+  useRef,
   useState,
 } from 'react';
 
 /**
  * Defines a single image source.
- * Tuple of URL and intrinsinc width in pixels.
+ * Tuple of URL and intrinsic width in pixels.
  */
 type ImageSource = [string, number];
 
@@ -32,14 +33,17 @@ type ImageSourceSet = {
 /**
  * Defines a single image size hint.
  * Tuple of a media query and the slot width
- * in either viewport units or pixesl
+ * in either viewport units or pixels.
  */
-type ImageSize =
-  | [string, `${number}${'vw' | 'px'}`]
-  | `${number}${'vw' | 'px'}`;
+type ImageSlotWidth = `${number}${'vw' | 'px'}`;
+type ImageSize = [string, ImageSlotWidth] | ImageSlotWidth;
+
+function hasMediaQuery(size: ImageSize): size is [string, ImageSlotWidth] {
+  return Array.isArray(size);
+}
 
 /**
- * Simulate a picture that immediatley switches to the loaded state.
+ * Simulate a picture that immediately switches to the loaded state.
  * Useful for unit testing.
  */
 export const ReadyPicture: Exclude<ImageProps['Picture'], undefined> = ({
@@ -170,6 +174,12 @@ type ImageProps = PropsWithChildren<{
 
   /**
    * CSS classes that will be applied to the <picture> element
+   * before the image is hydrated and enters the "loading" state.
+   */
+  renderedClassName?: string;
+
+  /**
+   * CSS classes that will be applied to the <picture> element
    * while the image is loading.
    */
   loadingClassName?: string;
@@ -236,6 +246,7 @@ const DefaultImageFallback = () => {
 
 export function Image({
   className,
+  renderedClassName,
   loadingClassName,
   errorClassName,
   readyClassName,
@@ -252,13 +263,14 @@ export function Image({
   // The image starts in "rendered" state for server side rendering.
   const [state, setState] = useState<ImageContext['state']>('rendered');
   const showPlaceholder = state === 'loading' || state === 'error';
+  const imageRef = useRef<HTMLImageElement>(null);
 
   // In the browser, initiate the state to "loading".
   useEffect(() => {
     if (state === 'rendered') {
-      setState('loading');
+      setState(imageRef.current?.complete ? 'ready' : 'loading');
     }
-  }, [setState, state]);
+  }, [setState, imageRef, state]);
 
   return (
     <div
@@ -304,7 +316,7 @@ export function Image({
             srcSet={srcSet.map(([src, width]) => `${src} ${width}w`).join(', ')}
             sizes={sizes
               ?.map((size) => {
-                return typeof size === 'string' ? [undefined, size] : size;
+                return hasMediaQuery(size) ? size : [undefined, size];
               })
               .map(([media, size]) => (media ? `${media} ${size}` : size))
               .join(', ')}
@@ -315,13 +327,14 @@ export function Image({
             srcSet={srcSet.map(([src, width]) => `${src} ${width}w`).join(', ')}
             sizes={sizes
               ?.map((size) => {
-                return typeof size === 'string' ? [undefined, size] : size;
+                return hasMediaQuery(size) ? size : [undefined, size];
               })
               .map(([media, size]) => (media ? `${media} ${size}` : size))
               .join(', ')}
           />
         ) : undefined}
         <img
+          ref={imageRef}
           loading={lazy ? 'lazy' : 'eager'}
           alt={alt}
           {...props}
@@ -329,7 +342,8 @@ export function Image({
             layout === 'fluid' ? {} : { objectFit: layout, height: '100%' }
           }
           className={clsx(className, {
-            [readyClassName || '']: state === 'ready' || state === 'rendered',
+            [renderedClassName || '']: state === 'rendered',
+            [readyClassName || '']: state === 'ready',
             [loadingClassName || '']: state === 'loading',
             [errorClassName || '']: state === 'error',
           })}

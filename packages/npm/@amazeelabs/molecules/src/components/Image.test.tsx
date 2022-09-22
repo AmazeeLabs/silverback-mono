@@ -1,4 +1,5 @@
 import { cleanup, render } from '@testing-library/react';
+import * as ReactDomServer from 'react-dom/server';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import {
@@ -85,6 +86,160 @@ describe('Image', () => {
                 loading="lazy"
                 src="/test.jpg"
                 style="object-fit: cover; height: 100%;"
+                width="400"
+              />
+            </picture>
+          </div>
+        </div>
+      </body>
+    `);
+  });
+
+  it('adds a rendered class before the image is hydrated', () => {
+    const output = ReactDomServer.renderToString(
+      <Image
+        width={400}
+        height={300}
+        alt="Alt text"
+        src="/test.jpg"
+        className={'always-class'}
+        readyClassName={'ready-class'}
+        renderedClassName={'rendered-class'}
+      />,
+    );
+    expect(output).toMatchInlineSnapshot('"<div style=\\"position:relative;padding-bottom:75%\\"><picture style=\\"position:absolute;top:0;left:0;bottom:0;right:0\\"><img loading=\\"lazy\\" alt=\\"Alt text\\" width=\\"400\\" height=\\"300\\" src=\\"/test.jpg\\" class=\\"always-class rendered-class\\"/></picture></div>"');
+  });
+
+  it('adds a ready class when the image is loaded', () => {
+    const screen = render(
+      <Image
+        width={400}
+        height={300}
+        alt="Alt text"
+        src="/test.jpg"
+        Picture={ReadyPicture}
+        className={'always-class'}
+        readyClassName={'ready-class'}
+      />,
+    );
+    expect(screen.baseElement).toMatchInlineSnapshot(`
+      <body>
+        <div>
+          <div
+            style="position: relative; padding-bottom: 75%;"
+          >
+            <picture
+              style="position: absolute; top: 0; left: 0; bottom: 0; right: 0;"
+            >
+              <img
+                alt="Alt text"
+                class="always-class ready-class"
+                height="300"
+                loading="lazy"
+                src="/test.jpg"
+                width="400"
+              />
+            </picture>
+          </div>
+        </div>
+      </body>
+    `);
+  });
+
+  it('adds a loading class when the image is loading', () => {
+    const screen = render(
+      <Image
+        width={400}
+        height={300}
+        alt="Alt text"
+        src="/test.jpg"
+        Picture={LoadingPicture}
+        className={'always-class'}
+        readyClassName={'ready-class'}
+        loadingClassName={'loading-class'}
+      />,
+    );
+    expect(screen.baseElement).toMatchInlineSnapshot(`
+      <body>
+        <div>
+          <div
+            style="position: relative; padding-bottom: 75%;"
+          >
+            <div
+              aria-hidden="true"
+              style="position: absolute;"
+            >
+              <div
+                style="display: flex; align-items: center; width: 100%; height: 100%;"
+              >
+                <div
+                  style="text-align: center; width: 100%;"
+                >
+                  Alt text
+                </div>
+              </div>
+            </div>
+            <picture
+              style="position: absolute; top: 0; left: 0; bottom: 0; right: 0;"
+            >
+              <img
+                alt="Alt text"
+                class="always-class loading-class"
+                height="300"
+                loading="lazy"
+                src="/test.jpg"
+                width="400"
+              />
+            </picture>
+          </div>
+        </div>
+      </body>
+    `);
+  });
+
+  it('adds a error class when the image is not available', () => {
+    const screen = render(
+      <Image
+        width={400}
+        height={300}
+        alt="Alt text"
+        src="/test.jpg"
+        Picture={ErrorPicture}
+        className={'always-class'}
+        readyClassName={'ready-class'}
+        loadingClassName={'loading-class'}
+        errorClassName={'error-class'}
+      />,
+    );
+    expect(screen.baseElement).toMatchInlineSnapshot(`
+      <body>
+        <div>
+          <div
+            style="position: relative; padding-bottom: 75%;"
+          >
+            <div
+              aria-hidden="true"
+              style="position: absolute;"
+            >
+              <div
+                style="display: flex; align-items: center; width: 100%; height: 100%;"
+              >
+                <div
+                  style="text-align: center; width: 100%;"
+                >
+                  Alt text
+                </div>
+              </div>
+            </div>
+            <picture
+              style="position: absolute; top: 0; left: 0; bottom: 0; right: 0;"
+            >
+              <img
+                alt="Alt text"
+                class="always-class error-class"
+                height="300"
+                loading="lazy"
+                src="/test.jpg"
                 width="400"
               />
             </picture>

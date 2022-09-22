@@ -20,8 +20,9 @@
     "test:unit": "vitest run --passWithNoTests",
     "test:integration": "exit 0",
     "test:watch": "vitest",
+    "test:ui": "vitest --ui",
     "test": "yarn test:static && yarn test:unit && yarn test:integration",
-    "storybook": "start-storybook -p 6006 --ci",
+    "storybook": "start-storybook -p 6007 --ci",
     "build-storybook": "build-storybook",
     "deploy": "yarn build-storybook && yarn netlify deploy -a $NETLIFY_AUTH_TOKEN -d storybook-static -p -s amazeelabs-molecules"
   },
