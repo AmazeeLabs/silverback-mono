@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/molecules@0.3.1...@amazeelabs/molecules@0.4.0) (2022-09-22)
+
+
+### Features
+
+* **molecules:** add dedicated class for "non-hydrated" image state ([232c18c](https://github.com/AmazeeLabs/silverback-mono/commit/232c18c5d6eb112d4fcf966c131466d2ef08a217))
+
+
+
+
+
 ## [0.3.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/molecules@0.3.0...@amazeelabs/molecules@0.3.1) (2022-09-22)
 
 **Note:** Version bump only for package @amazeelabs/molecules
