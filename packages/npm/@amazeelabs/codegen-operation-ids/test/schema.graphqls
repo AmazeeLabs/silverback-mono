@@ -1,0 +1,15 @@
+type Query {
+  loadPage(path: String!): Page
+  listPages(limit: Int, offset: Int): [Page!]!
+}
+
+type Mutation {
+  login(user: String!, pass: String!): Boolean
+}
+
+type Page {
+  path: String!
+  title: String!
+  content: String!
+  relatedPages: [Page!]
+}

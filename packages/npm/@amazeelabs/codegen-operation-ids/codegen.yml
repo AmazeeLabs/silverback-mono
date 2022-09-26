@@ -1,0 +1,18 @@
+overwrite: true
+schema: ./test/schema.graphqls
+
+generates:
+  test/generated/schema.ts:
+    documents:
+      - ./test/graphql/**/*.gql
+    plugins:
+      - typescript
+      - typescript-operations
+      - ./dist/index.cjs
+
+  test/generated/map.json:
+    documents:
+      - ./test/graphql/**/*.gql
+    plugins:
+      - ./dist/index.cjs
+
