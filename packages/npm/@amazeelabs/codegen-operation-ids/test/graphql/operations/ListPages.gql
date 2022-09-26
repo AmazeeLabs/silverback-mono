@@ -1,0 +1,5 @@
+query ListPages($limit: Int, $offset: Int) {
+  listPages(limit: $limit, offset: $offset) {
+    ...PageTeaser
+  }
+}

@@ -1,0 +1,4 @@
+fragment PageTeaser on Page {
+  title
+  path
+}

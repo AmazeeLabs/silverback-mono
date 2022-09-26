@@ -1,0 +1,4 @@
+fragment PageFull on Page {
+  title
+  content
+}
