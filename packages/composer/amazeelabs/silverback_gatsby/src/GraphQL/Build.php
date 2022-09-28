@@ -11,7 +11,7 @@ use Drupal\Core\Form\SubformState;
 use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\graphql\Plugin\SchemaPluginManager;
-use Drupal\silverback_gatsby\GatsbyUpdateTriggerInterface;
+use Drupal\silverback_gatsby\GatsbyBuildTriggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -31,9 +31,9 @@ class Build extends EntityForm {
   /**
    * The Gatsby update trigger.
    *
-   * @var \Drupal\silverback_gatsby\GatsbyUpdateTriggerInterface
+   * @var \Drupal\silverback_gatsby\GatsbyBuildTriggerInterface
    */
-  protected $updateTrigger;
+  protected $buildTrigger;
 
   /**
    * The current user.
@@ -52,11 +52,11 @@ class Build extends EntityForm {
    */
   public function __construct(
     SchemaPluginManager $schemaManager,
-    GatsbyUpdateTriggerInterface $updateTrigger,
+    GatsbyBuildTriggerInterface $buildTrigger,
     AccountProxyInterface $currentUser
   ) {
     $this->schemaManager = $schemaManager;
-    $this->updateTrigger = $updateTrigger;
+    $this->buildTrigger = $buildTrigger;
     $this->currentUser = $currentUser;
   }
 
@@ -68,7 +68,7 @@ class Build extends EntityForm {
   public static function create(ContainerInterface $container): self {
     return new static(
       $container->get('plugin.manager.graphql.schema'),
-      $container->get('silverback_gatsby.update_trigger'),
+      $container->get('silverback_gatsby.build_trigger'),
       $container->get('current_user')
     );
   }
@@ -131,7 +131,7 @@ class Build extends EntityForm {
    */
   public function gatsbyBuild(array $form, FormStateInterface $form_state) {
     $response = new AjaxResponse();
-    $buildMessage = $this->updateTrigger->triggerLatestBuild($this->entity->id());
+    $buildMessage = $this->buildTrigger->triggerLatestBuild($this->entity->id());
     $response->addCommand(new HtmlCommand('.gatsby-build-message', $buildMessage));
     return $response;
   }

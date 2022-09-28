@@ -10,7 +10,7 @@ use Drupal\graphql\Entity\ServerInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 
-class GatsbyUpdateTrigger implements GatsbyUpdateTriggerInterface {
+class GatsbyBuildTrigger implements GatsbyBuildTriggerInterface {
 
   use StringTranslationTrait;
 
@@ -20,7 +20,7 @@ class GatsbyUpdateTrigger implements GatsbyUpdateTriggerInterface {
   protected EntityTypeManagerInterface $entityTypeManager;
 
   /**
-   * GatsbyUpdateTriggerDecorator constructor.
+   * GatsbyBuildTriggerDecorator constructor.
    *
    * @param \GuzzleHttp\Client $httpClient
    * @param \Drupal\Core\Messenger\MessengerInterface $messenger
