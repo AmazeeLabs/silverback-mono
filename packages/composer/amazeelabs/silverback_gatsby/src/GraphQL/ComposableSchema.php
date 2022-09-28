@@ -122,6 +122,14 @@ class ComposableSchema extends OriginalComposableSchema {
       '#description' => $this->t('A webhook that will be notified when content changes relevant to this server happen.'),
       '#default_value' => $this->configuration['build_webhook'] ?? '',
     ];
+    $form['update_webhook'] = [
+      '#type' => 'textfield',
+      '#access' => $isBuildForm,
+      '#required' => FALSE,
+      '#title' => $this->t('Update webhook'),
+      '#description' => $this->t('A webhook to notify clients about realtime data updates.'),
+      '#default_value' => $this->configuration['update_webhook'] ?? '',
+    ];
     $form['build_url'] = [
       '#type' => 'url',
       '#access' => $isBuildForm,
