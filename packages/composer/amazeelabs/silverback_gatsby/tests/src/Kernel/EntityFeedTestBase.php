@@ -67,6 +67,7 @@ abstract class EntityFeedTestBase extends GraphQLTestBase {
             'silverback_gatsby' => 'silverback_gatsby'
           ],
           'build_webhook' => 'http://localhost:8001/__refresh',
+          'update_webhook' => 'http://localhost:8001/__update',
           'user' => $userPreview->uuid(),
         ]
       ]

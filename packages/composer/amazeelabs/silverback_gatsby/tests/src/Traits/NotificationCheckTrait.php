@@ -30,4 +30,11 @@ trait NotificationCheckTrait {
       'timeout' => 2,
     ]))->shouldHaveBeenCalledTimes(1);
   }
+
+  protected function checkUpdateNotification(string $url, array $updates) {
+    $this->clientProphecy->post(Argument::exact($url), Argument::exact([
+      'json' => $updates,
+      'timeout' => 2,
+    ]))->shouldHaveBeenCalledTimes(1);
+  }
 }

@@ -17,14 +17,17 @@ use Drupal\user\Entity\User;
 class GatsbyUpdateHandler {
 
   protected EntityTypeManagerInterface $entityTypeManager;
-  protected GatsbyUpdateTracker $gatsbyUpdateTracker;
+  protected GatsbyUpdateTrackerInterface $gatsbyUpdateTracker;
+  protected GatsbyUpdateTriggerInterface $gatsbyUpdateTrigger;
 
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
-    GatsbyUpdateTracker $gatsbyUpdateTracker
+    GatsbyUpdateTrackerInterface $gatsbyUpdateTracker,
+    GatsbyUpdateTriggerInterface $gatsbyUpdateTrigger
   ) {
     $this->entityTypeManager = $entityTypeManager;
     $this->gatsbyUpdateTracker = $gatsbyUpdateTracker;
+    $this->gatsbyUpdateTrigger = $gatsbyUpdateTrigger;
   }
 
   /**
@@ -94,7 +97,16 @@ class GatsbyUpdateHandler {
                 && $updates = $feed->investigateUpdate($context, $account)
               ) {
                 foreach ($updates as $update) {
-                  $this->gatsbyUpdateTracker->track($server->id(), $update->type, $update->id, $trigger);
+                  $this->gatsbyUpdateTracker->track(
+                    $server->id(),
+                    $update->type,
+                    $update->id,
+                    $trigger
+                  );
+                  $this->gatsbyUpdateTrigger->trigger(
+                    $server->id(),
+                    $update
+                  );
                 }
               }
             }
