@@ -8,8 +8,8 @@ services:
       - '\Drupal\silverback_gatsby\Plugin\FeedInterface'
       - '\Drupal\silverback_gatsby\Annotation\GatsbyFeed'
 
-  silverback_gatsby.update_trigger:
-    class: Drupal\silverback_gatsby\GatsbyUpdateTrigger
+  silverback_gatsby.build_trigger:
+    class: Drupal\silverback_gatsby\GatsbyBuildTrigger
     arguments:
       - '@http_client'
       - '@messenger'
@@ -17,7 +17,7 @@ services:
 
   silverback_gatsby.update_tracker:
     class: Drupal\silverback_gatsby\GatsbyUpdateTracker
-    arguments: ['@database', '@current_user', '@silverback_gatsby.update_trigger']
+    arguments: ['@database', '@current_user', '@silverback_gatsby.build_trigger']
 
   silverback_gatsby.update_handler:
     class: Drupal\silverback_gatsby\GatsbyUpdateHandler

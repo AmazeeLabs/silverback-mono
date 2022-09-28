@@ -5,7 +5,7 @@ namespace Drupal\Tests\silverback_gatsby\Traits;
 use GuzzleHttp\Client;
 use Prophecy\Argument;
 
-trait BuildNotificationCheckTrait {
+trait NotificationCheckTrait {
 
   /**
    * @var \Prophecy\Prophecy\ObjectProphecy
@@ -21,7 +21,7 @@ trait BuildNotificationCheckTrait {
     $this->clientProphecy->post(Argument::any(), Argument::any())->shouldHaveBeenCalledTimes($number);
   }
 
-  protected function checkNotification(string $url, int $buildId) {
+  protected function checkBuildNotification(string $url, int $buildId) {
     $this->clientProphecy->post(Argument::exact($url), Argument::exact([
       'headers' => [
         'User-Agent' => 'CMS',

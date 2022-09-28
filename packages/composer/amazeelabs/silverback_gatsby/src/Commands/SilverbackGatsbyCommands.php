@@ -4,7 +4,7 @@ namespace Drupal\silverback_gatsby\Commands;
 
 use Drupal\Component\Plugin\PluginManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\silverback_gatsby\GatsbyUpdateTriggerInterface;
+use Drupal\silverback_gatsby\GatsbyBuildTriggerInterface;
 use Drupal\silverback_gatsby\GraphQL\ComposableSchema;
 use Drush\Commands\DrushCommands;
 
@@ -23,17 +23,17 @@ class SilverbackGatsbyCommands extends DrushCommands {
 
   protected EntityTypeManagerInterface $entityTypeManager;
   protected PluginManagerInterface $schemaPluginManager;
-  protected GatsbyUpdateTriggerInterface $updateTrigger;
+  protected GatsbyBuildTriggerInterface $buildTrigger;
 
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
     PluginManagerInterface $schemaPluginManager,
-    GatsbyUpdateTriggerInterface $updateTrigger
+    GatsbyBuildTriggerInterface $buildTrigger
   ) {
     parent::__construct();
     $this->entityTypeManager = $entityTypeManager;
     $this->schemaPluginManager = $schemaPluginManager;
-    $this->updateTrigger = $updateTrigger;
+    $this->buildTrigger = $buildTrigger;
   }
 
   /**
@@ -83,7 +83,7 @@ class SilverbackGatsbyCommands extends DrushCommands {
    * @usage silverback-gatsby:build [server_id]
    */
   public function triggerBuild($server) {
-    $this->updateTrigger->triggerLatestBuild($server);
+    $this->buildTrigger->triggerLatestBuild($server);
   }
 
 }

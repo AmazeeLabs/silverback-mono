@@ -5,13 +5,13 @@ namespace Drupal\Tests\silverback_gatsby\Kernel;
 use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\graphql\Entity\Server;
 use Drupal\KernelTests\KernelTestBase;
-use Drupal\Tests\silverback_gatsby\Traits\BuildNotificationCheckTrait;
+use Drupal\Tests\silverback_gatsby\Traits\NotificationCheckTrait;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use Prophecy\Argument;
 
-class GatsbyUpdateTriggerTest extends KernelTestBase {
-  use BuildNotificationCheckTrait;
+class GatsbyBuildTriggerTest extends KernelTestBase {
+  use NotificationCheckTrait;
 
   protected $strictConfigSchema = FALSE;
 
@@ -35,7 +35,7 @@ class GatsbyUpdateTriggerTest extends KernelTestBase {
   protected $messengerProphecy;
 
   /**
-   * @var \Drupal\silverback_gatsby\GatsbyUpdateTrigger
+   * @var \Drupal\silverback_gatsby\GatsbyBuildTrigger
    */
   protected $trigger;
 
@@ -48,7 +48,7 @@ class GatsbyUpdateTriggerTest extends KernelTestBase {
     $this->installConfig('graphql');
     $this->installSchema('silverback_gatsby', ['gatsby_update_log']);
 
-    $this->trigger = $this->container->get('silverback_gatsby.update_trigger');
+    $this->trigger = $this->container->get('silverback_gatsby.build_trigger');
 
     Server::create([
       'schema' => 'silverback_gatsby_example',
@@ -100,7 +100,7 @@ class GatsbyUpdateTriggerTest extends KernelTestBase {
     $this->trigger->trigger('foo', 1);
     _drupal_shutdown_function();
     $this->checkTotalNotifications(1);
-    $this->checkNotification('http://localhost:8000/__refresh', 1);
+    $this->checkBuildNotification('http://localhost:8000/__refresh', 1);
   }
 
   public function testMultipleTriggers() {
@@ -108,7 +108,7 @@ class GatsbyUpdateTriggerTest extends KernelTestBase {
     $this->trigger->trigger('foo', 2);
     _drupal_shutdown_function();
     $this->checkTotalNotifications(1);
-    $this->checkNotification('http://localhost:8000/__refresh', 2);
+    $this->checkBuildNotification('http://localhost:8000/__refresh', 2);
   }
 
   public function testMultipleServers() {
@@ -116,7 +116,7 @@ class GatsbyUpdateTriggerTest extends KernelTestBase {
     $this->trigger->trigger('bar', 2);
     _drupal_shutdown_function();
     $this->checkTotalNotifications(2);
-    $this->checkNotification('http://localhost:8000/__refresh', 1);
-    $this->checkNotification('http://localhost:9000/__refresh', 2);
+    $this->checkBuildNotification('http://localhost:8000/__refresh', 1);
+    $this->checkBuildNotification('http://localhost:9000/__refresh', 2);
   }
 }

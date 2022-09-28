@@ -15,13 +15,13 @@ use Drupal\Core\Session\AccountInterface;
 class GatsbyUpdateTracker implements GatsbyUpdateTrackerInterface {
   protected Connection $database;
   protected AccountInterface $currentUser;
-  protected GatsbyUpdateTriggerInterface $trigger;
+  protected GatsbyBuildTriggerInterface $trigger;
   protected array $tracked;
 
   public function __construct(
     Connection $database,
     AccountInterface $currentUser,
-    GatsbyUpdateTriggerInterface $trigger
+    GatsbyBuildTriggerInterface $trigger
   ) {
     $this->tracked = [];
     $this->database = $database;

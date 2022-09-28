@@ -5,10 +5,10 @@ namespace Drupal\Tests\silverback_gatsby\Kernel;
 use Drupal\graphql\Entity\Server;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\silverback_gatsby\GatsbyUpdate;
-use Drupal\Tests\silverback_gatsby\Traits\BuildNotificationCheckTrait;
+use Drupal\Tests\silverback_gatsby\Traits\NotificationCheckTrait;
 
 class GatsbyUpdateTrackerTest extends KernelTestBase {
-  use BuildNotificationCheckTrait;
+  use NotificationCheckTrait;
 
   protected $strictConfigSchema = FALSE;
 

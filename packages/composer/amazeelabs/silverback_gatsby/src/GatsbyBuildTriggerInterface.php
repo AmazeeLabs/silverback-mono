@@ -4,7 +4,7 @@ namespace Drupal\silverback_gatsby;
 
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 
-interface GatsbyUpdateTriggerInterface {
+interface GatsbyBuildTriggerInterface {
 
   /**
    * Trigger a build for a given server with a build id.
