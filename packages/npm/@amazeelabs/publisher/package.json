@@ -41,6 +41,8 @@
     "@storybook/builder-webpack5": "^6.5.10",
     "@storybook/manager-webpack5": "^6.5.10",
     "@types/cors": "^2.8.12",
+    "body-parser": "^1.20.0",
+    "bytes": "^3.1.2",
     "cors": "^2.8.5",
     "express-basic-auth": "^1.2.1",
     "prisma": "4.3.1",
