@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import bodyParser from 'body-parser';
 import { execSync } from 'child_process';
 import colors from 'colors';
 import cors from 'cors';
@@ -33,6 +34,7 @@ import { GatewayState } from './states';
 const ews = expressWs(express());
 const { app } = ews;
 app.use(morgan('dev'));
+app.use(bodyParser.json());
 
 const explorerSync = cosmiconfigSync('publisher');
 const loadedConfig = explorerSync.search();
@@ -109,6 +111,21 @@ gateway$.pipe(gatewayReport()).subscribe(async (data) => {
 const builder$ = buildEvents$.pipe(BuildService(config), shareReplay(100));
 builder$.pipe(buildReport()).subscribe(async (data) => {
   await prisma.build.create({ data });
+});
+
+const updates$ = new Subject();
+
+app.post('/___status/update', (req, res) => {
+  updates$.next(req.body);
+  res.json(true);
+});
+
+app.ws('/___status/changes', (ws) => {
+  const sub = updates$.subscribe((data) => {
+    ws.send(JSON.stringify(data));
+  });
+
+  ws.on('close', sub.unsubscribe);
 });
 
 app.post('/___status/build', (req, res) => {
