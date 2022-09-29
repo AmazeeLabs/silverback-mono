@@ -1,4 +1,3 @@
-import { Prisma } from '@prisma/client';
 import { filter, map, Observable, scan, Timestamp, timestamp } from 'rxjs';
 
 import { BuildState, GatewayState } from '../states';
@@ -6,8 +5,17 @@ import { BuildOutput, isBuildState } from './build';
 import { GatewayOutput, isGatewayState } from './gateway';
 import { isSpawnChunk, SpawnChunk } from './spawn';
 
+export type HistoryEntry = {
+  id: number;
+  startedAt: number;
+  finishedAt: number;
+  success: boolean;
+  type: string;
+  logs: string;
+};
+
 type ReportAggregate<T extends GatewayOutput | BuildOutput> = Omit<
-  Prisma.BuildCreateInput,
+  HistoryEntry,
   'logs'
 > & {
   logs: Array<SpawnChunk & { timestamp: number }>;
@@ -23,7 +31,7 @@ export function isReportFinished<T extends GatewayOutput | BuildOutput>(
 export function finalizeBuildReport(type: string) {
   return function (
     source$: Observable<ReportAggregate<any>>,
-  ): Observable<Prisma.BuildCreateInput> {
+  ): Observable<HistoryEntry> {
     return source$.pipe(
       map(({ logs, state, ...input }) => ({
         ...input,
@@ -38,7 +46,7 @@ export function finalizeBuildReport(type: string) {
 export function finalizeGatewayReport(type: string) {
   return function (
     source$: Observable<ReportAggregate<any>>,
-  ): Observable<Prisma.BuildCreateInput> {
+  ): Observable<HistoryEntry> {
     return source$.pipe(
       map(({ logs, state, ...input }) => ({
         ...input,
@@ -51,9 +59,7 @@ export function finalizeGatewayReport(type: string) {
 }
 
 export function buildReport() {
-  return function (
-    source$: Observable<BuildOutput>,
-  ): Observable<Prisma.BuildCreateInput> {
+  return function (source$: Observable<BuildOutput>): Observable<HistoryEntry> {
     return source$.pipe(
       timestamp(),
       scan<Timestamp<BuildOutput>, Partial<ReportAggregate<BuildOutput>>>(
@@ -111,7 +117,7 @@ export function buildReport() {
 export function gatewayReport() {
   return function (
     source$: Observable<GatewayOutput>,
-  ): Observable<Prisma.BuildCreateInput> {
+  ): Observable<HistoryEntry> {
     return source$.pipe(
       timestamp(),
       scan<Timestamp<GatewayOutput>, Partial<ReportAggregate<GatewayOutput>>>(

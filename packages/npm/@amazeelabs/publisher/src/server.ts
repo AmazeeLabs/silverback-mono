@@ -1,6 +1,4 @@
-import { PrismaClient } from '@prisma/client';
 import bodyParser from 'body-parser';
-import { execSync } from 'child_process';
 import colors from 'colors';
 import cors from 'cors';
 import { cosmiconfigSync } from 'cosmiconfig';
@@ -16,6 +14,7 @@ import morgan from 'morgan';
 import * as path from 'path';
 import referrerPolicy from 'referrer-policy';
 import { filter, shareReplay, Subject } from 'rxjs';
+import { DataTypes, Sequelize } from 'sequelize';
 
 import { BuildService } from './server/build';
 import {
@@ -31,13 +30,9 @@ import {
 } from './server/logging';
 import { GatewayState } from './states';
 
-const ews = expressWs(express());
-const { app } = ews;
-app.use(morgan('dev'));
-app.use(bodyParser.json());
-
 const explorerSync = cosmiconfigSync('publisher');
 const loadedConfig = explorerSync.search();
+
 const config = {
   cleanCommand: 'yarn clean',
   startCommand: 'yarn start',
@@ -53,17 +48,47 @@ const config = {
   ...(loadedConfig?.config || {}),
 };
 
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: config.databaseUrl,
+});
+
+const Build = sequelize.define('Build', {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+  },
+  startedAt: {
+    type: DataTypes.BIGINT,
+  },
+  finishedAt: {
+    type: DataTypes.BIGINT,
+  },
+  success: {
+    type: DataTypes.BOOLEAN,
+  },
+  type: {
+    type: DataTypes.STRING,
+  },
+  logs: {
+    type: DataTypes.TEXT,
+  },
+});
+
+async function initialize() {
+  await sequelize.authenticate();
+  await sequelize.sync({ alter: true });
+  gatewayCommands$.next('start');
+}
+
+const ews = expressWs(express());
+const { app } = ews;
+app.use(morgan('dev'));
+app.use(bodyParser.json());
+
 const gatewayCommands$ = new Subject<GatewayCommands>();
 const buildEvents$ = new Subject<{}>();
-
-const def = `
-    create table if not exists Build(id INTEGER not null primary key autoincrement, startedAt INTEGER not null,finishedAt INTEGER not null, success BOOLEAN not null, type TEXT not null, logs TEXT not null);`;
-
-execSync(`sqlite3 ${config.databaseUrl} "${def}"`);
-
-const prisma = new PrismaClient({
-  datasources: { local: { url: `file:${config.databaseUrl}` } },
-});
 
 const gateway$ = gatewayCommands$.pipe(
   GatewayService(config),
@@ -105,12 +130,12 @@ gateway$.pipe(filter(isGatewayState)).subscribe((state) => {
 });
 
 gateway$.pipe(gatewayReport()).subscribe(async (data) => {
-  await prisma.build.create({ data });
+  await Build.build(data).save();
 });
 
 const builder$ = buildEvents$.pipe(BuildService(config), shareReplay(100));
 builder$.pipe(buildReport()).subscribe(async (data) => {
-  await prisma.build.create({ data });
+  await Build.build(data).save();
 });
 
 const updates$ = new Subject();
@@ -165,26 +190,13 @@ app.ws('/___status/updates', (ws) => {
 });
 
 app.get('/___status/history', async (req, res) => {
-  const result = await prisma.build.findMany({
-    select: {
-      id: true,
-      success: true,
-      startedAt: true,
-      finishedAt: true,
-      type: true,
-    },
-    orderBy: { id: 'desc' },
-    take: 10,
-  });
+  const result = await Build.findAll();
+  console.log(result);
   res.json(result);
 });
 
 app.get('/___status/history/:id', async (req, res) => {
-  const result = await prisma.build.findFirst({
-    where: {
-      id: parseInt(req.params.id),
-    },
-  });
+  const result = await Build.findByPk(req.params.id);
   res.json(result);
 });
 
@@ -248,7 +260,8 @@ app.use(
 const server = app.listen(config.gatewayPort);
 const terminator = createHttpTerminator({ server });
 const sub = gateway$.subscribe();
-gatewayCommands$.next('start');
+
+initialize().catch(console.error);
 
 process.on('SIGINT', function () {
   console.log(colors.bgMagenta('⏱ Stopping publisher service.'));

@@ -1,7 +1,6 @@
 import '../../tailwind.build.css';
 
 import { OrganismProps } from '@amazeelabs/react-framework-bridge';
-import { Build } from '@prisma/client';
 import { bind } from '@react-rxjs/core';
 import clsx from 'clsx';
 import React, { ComponentProps, useState } from 'react';
@@ -133,7 +132,7 @@ function History({
 }
 
 const [useHistoryItem] = bind(
-  (id: number) => ajax.getJSON<Build | undefined>(`/___status/history/${id}`),
+  (id: number) => ajax.getJSON<any | undefined>(`/___status/history/${id}`),
   undefined,
 );
 
