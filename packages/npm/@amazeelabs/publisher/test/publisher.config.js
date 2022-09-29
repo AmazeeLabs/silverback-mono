@@ -9,7 +9,7 @@ module.exports = {
   buildBufferTime: 500,
   buildRetries: 3,
   applicationPort: 3002,
-  databaseUrl: 'file:' + path.resolve(__dirname, 'publisher.db'),
+  databaseUrl: 'publisher.db',
   basicAuth: {
     username: 'test',
     password: 'test',

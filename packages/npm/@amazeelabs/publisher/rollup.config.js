@@ -5,6 +5,8 @@ import resolve from '@rollup/plugin-node-resolve';
 import esbuild from 'rollup-plugin-esbuild';
 import litcss from 'rollup-plugin-lit-css';
 
+import packageJson from './package.json';
+
 export default [
   {
     input: `src/server.ts`,
@@ -12,7 +14,7 @@ export default [
       file: `build/server.js`,
       format: 'cjs',
     },
-    external: ['@prisma/client'],
+    external: Object.keys(packageJson.dependencies),
     plugins: [
       json(),
       commonjs({

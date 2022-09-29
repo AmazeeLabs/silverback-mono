@@ -25,12 +25,10 @@
     "test:integration": "exit 0",
     "test:watch": "jest --watch",
     "test": "yarn test:static && yarn test:unit && yarn test:integration",
-    "postinstall": "prisma generate",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@prisma/client": "4.3.1",
     "@storybook/addon-a11y": "^6.5.10",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-docs": "^6.5.10",
@@ -45,8 +43,9 @@
     "bytes": "^3.1.2",
     "cors": "^2.8.5",
     "express-basic-auth": "^1.2.1",
-    "prisma": "4.3.1",
-    "referrer-policy": "^1.2.0"
+    "referrer-policy": "^1.2.0",
+    "sequelize": "^6.23.2",
+    "sqlite3": "^5.1.1"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "^1.4.33",

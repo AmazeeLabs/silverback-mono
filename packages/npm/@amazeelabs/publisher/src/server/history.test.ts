@@ -1,15 +1,13 @@
-import { Prisma } from '@prisma/client';
-
 import { BuildState } from '../states';
 import { BuildOutput } from './build';
 import { runScheduled } from './helpers';
-import { buildReport } from './history';
+import { buildReport, HistoryEntry } from './history';
 
 type HistoryTestInput = {
   outputMarbles: string;
   reportMarbles: string;
   outputPayload: { [key: string]: BuildOutput };
-  reportPayload: { [key: string]: Prisma.BuildCreateInput };
+  reportPayload: { [key: string]: Omit<HistoryEntry, 'id'> };
   inputPayload: Array<any>;
 };
 
