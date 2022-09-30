@@ -7,6 +7,7 @@ sleep 1
 echo "Build step 2/5";
 sleep 1
 echo "Build step 3/5";
+echo "This is going to fail on purpose. We want to test the error handling.";
 exit 1
 sleep 1
 echo "Build step 4/5";

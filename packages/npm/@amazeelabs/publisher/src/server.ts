@@ -43,15 +43,19 @@ const config = {
   buildRetries: 3,
   gatewayPort: 3001,
   applicationPort: 3000,
-  databaseUrl: '/tmp/publisher.db',
+  logStorage: {
+    dialect: 'sqlite',
+    storage: '/tmp/publisher.db',
+  },
   proxy: [],
   ...(loadedConfig?.config || {}),
 };
 
 const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: config.databaseUrl,
+  logging: false,
+  ...config.logStorage,
 });
+console.log(config.logStorage);
 
 const Build = sequelize.define('Build', {
   id: {
@@ -190,8 +194,9 @@ app.ws('/___status/updates', (ws) => {
 });
 
 app.get('/___status/history', async (req, res) => {
-  const result = await Build.findAll();
-  console.log(result);
+  const result = await Build.findAll({
+    order: [['id', 'DESC']],
+  });
   res.json(result);
 });
 

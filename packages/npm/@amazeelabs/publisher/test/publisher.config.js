@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
   cleanCommand: './clean.sh',
   startCommand: './start.sh',
@@ -9,7 +7,19 @@ module.exports = {
   buildBufferTime: 500,
   buildRetries: 3,
   applicationPort: 3002,
-  databaseUrl: 'publisher.db',
+  // Example config for mariadb:
+  // logStorage: {
+  //   dialect: 'mariadb',
+  //   database: 'publisher',
+  //   username: 'root',
+  //   password: 'mypass',
+  //   host: '127.0.0.1',
+  //   port: 3306,
+  // },
+  logStorage: {
+    dialect: 'sqlite',
+    storage: 'publisher.db',
+  },
   basicAuth: {
     username: 'test',
     password: 'test',
