@@ -311,40 +311,167 @@ describe('Route rendering', () => {
       />,
     );
     expect(container).toMatchInlineSnapshot(`
-              <div>
-                <div>
-                  <div>
-                    <h1>
-                      Test
-                    </h1>
-                  </div>
-                  <div>
-                    <p>
-                      Loading ...
-                    </p>
-                  </div>
-                </div>
-              </div>
-          `);
+      <div>
+        <div>
+          <div>
+            <h1>
+              Test
+            </h1>
+          </div>
+          <div>
+            <p>
+              Loading ...
+            </p>
+          </div>
+        </div>
+      </div>
+    `);
     vi.runAllTimers();
     expect(container).toMatchInlineSnapshot(`
-              <div>
-                <div>
-                  <div>
-                    <h1>
-                      Test
-                    </h1>
-                  </div>
-                  <div>
-                    <p>
-                      Async content.
-                    </p>
-                  </div>
-                </div>
-              </div>
-          `);
+      <div>
+        <div>
+          <div>
+            <h1>
+              Test
+            </h1>
+          </div>
+          <div>
+            <p>
+              Async content.
+            </p>
+          </div>
+        </div>
+      </div>
+    `);
     vi.runOnlyPendingTimers();
     vi.useRealTimers();
+  });
+
+  it('catches errors on organism level during mapping', () => {
+    const { container } = render(
+      <Route
+        definition={Content}
+        input={{
+          intro: {
+            title: 'Test',
+          },
+          body: [
+            {
+              key: 'async',
+              input: () => {
+                throw new Error('Error while mapping organism.');
+                return [
+                  {
+                    Content: buildHtml(`<p>Async content.</p>`),
+                  },
+                  102,
+                ] as [any, number];
+              },
+            },
+            {
+              key: 'sync',
+              input: () =>
+                [
+                  {
+                    Content: buildHtml(`<p>Sync content.</p>`),
+                  },
+                  200,
+                ] as [any, number],
+            },
+          ],
+        }}
+        intl={{ defaultLocale: 'en', locale: 'en' }}
+      />,
+    );
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <div>
+          <div>
+            <h1>
+              Test
+            </h1>
+          </div>
+          <div>
+            <div
+              class="uncaught-error"
+            >
+              <p>
+                An error happened while rendering organism.
+              </p>
+              <p>
+                Error while mapping organism.
+              </p>
+            </div>
+            <p>
+              Sync content.
+            </p>
+          </div>
+        </div>
+      </div>
+    `);
+  });
+
+  it('catches errors on organism level during rendering', () => {
+    const { container } = render(
+      <Route
+        definition={Content}
+        input={{
+          intro: {
+            title: 'Test',
+          },
+          body: [
+            {
+              key: 'error',
+              input: () => {
+                return [
+                  {
+                    Content: buildHtml(`<p>Async content.</p>`),
+                  },
+                  102,
+                ] as [any, number];
+              },
+            },
+            {
+              key: 'async',
+              input: () =>
+                [
+                  {
+                    Content: buildHtml(`<p>Async content.</p>`),
+                  },
+                  102,
+                ] as [any, number],
+            },
+          ],
+        }}
+        intl={{ defaultLocale: 'en', locale: 'en' }}
+      />,
+    );
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <div>
+          <div>
+            <h1>
+              Test
+            </h1>
+          </div>
+          <div>
+            <div
+              class="uncaught-error"
+            >
+              <p>
+                An error happened while rendering organism.
+              </p>
+              <p>
+                Error while rendering organism.
+              </p>
+            </div>
+            <p>
+              Loading ...
+            </p>
+          </div>
+        </div>
+      </div>
+    `);
   });
 });
 
