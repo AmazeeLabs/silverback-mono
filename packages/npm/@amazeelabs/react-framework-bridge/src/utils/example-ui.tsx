@@ -51,6 +51,11 @@ export function AsyncContent(props: OrganismProps<{ Content: Html }>) {
   return status === 200 ? <props.Content /> : <p>Loading ...</p>;
 }
 
+export function ErrorContent(props: OrganismProps<{ Content: Html }>) {
+  throw new Error('Error while rendering organism.');
+  return <props.Content />;
+}
+
 export function GroupedContent(
   props: OrganismProps<{
     title: string;
@@ -69,6 +74,7 @@ export const ContentGroup = group({
   items: {
     sync: SyncContent,
     async: AsyncContent,
+    error: ErrorContent,
   },
 });
 
@@ -82,6 +88,7 @@ export const Content = route(ContentLayout, {
   body: {
     sync: SyncContent,
     async: AsyncContent,
+    error: ErrorContent,
     group: GroupedContent,
   },
 });

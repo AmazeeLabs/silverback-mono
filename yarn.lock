@@ -2044,7 +2044,7 @@
     tslib "^2.4.0"
     unixify "^1.0.0"
 
-"@graphql-tools/load@^7", "@graphql-tools/load@^7.5.10", "@graphql-tools/load@^7.5.5", "@graphql-tools/load@^7.7.1":
+"@graphql-tools/load@^7.5.10", "@graphql-tools/load@^7.5.5", "@graphql-tools/load@^7.7.1":
   version "7.7.7"
   resolved "https://registry.yarnpkg.com/@graphql-tools/load/-/load-7.7.7.tgz#0d6fb0804177658f609562982a6a68e008073ca0"
   integrity sha512-IpI2672zcoAX4FLjcH5kvHc7eqjPyLP1svrIcZKQenv0GRS6dW0HI9E5UCBs0y/yy8yW6s+SvpmNsfIlkMj3Kw==
@@ -29030,6 +29030,13 @@ react-element-to-jsx-string@^14.3.4:
     "@base2/pretty-print-object" "1.0.1"
     is-plain-object "5.0.0"
     react-is "17.0.2"
+
+react-error-boundary@^3.1.4:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/react-error-boundary/-/react-error-boundary-3.1.4.tgz#255db92b23197108757a888b01e5b729919abde0"
+  integrity sha512-uM9uPzZJTF6wRQORmSrvOIgt4lJ9MC1sNgEOj2XGsDTRE4kmpWxg7ENK9EWNKJRMAOY9z0MuF4yIfl6gp4sotA==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
 
 react-error-overlay@6.0.9:
   version "6.0.9"

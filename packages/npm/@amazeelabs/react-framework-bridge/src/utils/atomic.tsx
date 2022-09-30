@@ -6,6 +6,7 @@ import React, {
   ReactNode,
   useContext,
 } from 'react';
+import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 import { IntlProvider } from 'react-intl';
 
 import { Form, Html, Image, Link } from '../types';
@@ -278,17 +279,41 @@ export function group<T extends LayoutMap<typeof GroupLayout>>(
   return [GroupLayout, layoutMap];
 }
 
+function OrganismErrorFallback(props: FallbackProps) {
+  console.error(`Error rendering organism.`);
+  console.error(props.error);
+  return (
+    <div className="uncaught-error">
+      <p>An error happened while rendering organism.</p>
+      <p>{props.error.message}</p>
+    </div>
+  );
+}
+
+function withOrganismErrorFallback(Component: JSXElementConstructor<any>) {
+  return function OrganismErrorBoundary(
+    props: ComponentProps<typeof Component>,
+  ) {
+    return (
+      <ErrorBoundary FallbackComponent={OrganismErrorFallback}>
+        <Component {...props} />
+      </ErrorBoundary>
+    );
+  };
+}
+
 function withOrganismProps<T extends OrganismProps<any>>(
   Component: JSXElementConstructor<T>,
+  input: OrganismInput<T>,
 ) {
-  return function OrganismHost(input: OrganismInput<T>, index: number) {
+  return withOrganismErrorFallback(function OrganismHost() {
     const [data, status] = toHook(input)();
     return (
-      <OrganismStatusProvider status={status} key={index}>
+      <OrganismStatusProvider status={status}>
         <Component {...data} />
       </OrganismStatusProvider>
     );
-  };
+  });
 }
 
 function isOrganismMap(
@@ -337,12 +362,15 @@ export function Route<
                 );
                 return React.createElement('div');
               }
-              return withOrganismProps(
+              const Organism = withOrganismProps(
                 entry[organism.key as keyof typeof entry],
-              )((organism as OrganismInput<any>).input, index);
+                (organism as OrganismInput<any>).input,
+              );
+              return <Organism key={index} />;
             });
           } else if (isFunction(entry)) {
-            return withOrganismProps(entry)(input[key], 0);
+            const Organism = withOrganismProps(entry, input[key]);
+            return <Organism />;
           }
         }),
         children,
@@ -379,13 +407,15 @@ export function Group<
             );
             return React.createElement('div');
           }
-          return withOrganismProps(entry[organism.key as keyof typeof entry])(
+          const Organism = withOrganismProps(
+            entry[organism.key as keyof typeof entry],
             (organism as OrganismInput<any>).input,
-            index,
           );
+          return <Organism key={index} />;
         });
       } else if (isFunction(entry)) {
-        return withOrganismProps(entry)(input[key], 0);
+        const Organism = withOrganismProps(entry, input[key]);
+        return <Organism />;
       }
     }),
   );
