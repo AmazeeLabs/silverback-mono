@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@2.0.6...@amazeelabs/react-framework-bridge@2.1.0) (2022-09-30)
+
+
+### Features
+
+* **atomic:** organism error handling ([d50c268](https://github.com/AmazeeLabs/silverback-mono/commit/d50c26871db1e8a086f8a3e90b7f7686d0c12094))
+
+
+
+
+
 ## [2.0.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@2.0.5...@amazeelabs/react-framework-bridge@2.0.6) (2022-09-12)
 
 **Note:** Version bump only for package @amazeelabs/react-framework-bridge
