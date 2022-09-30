@@ -17,8 +17,13 @@ vi.mock(
   'gatsby',
   (): gatsby => ({
     // eslint-disable-next-line react/display-name
-    Link: ({ children, to, ...props }) => (
-      <a href={to} data-gatsby={true} {...props}>
+    Link: ({ children, to, activeClassName, ...props }) => (
+      <a
+        href={to}
+        data-gatsby={true}
+        data-active-classname={activeClassName}
+        {...props}
+      >
         {children}
       </a>
     ),
