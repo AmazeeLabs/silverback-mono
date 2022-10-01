@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.10.7...@amazeelabs/publisher@0.11.0) (2022-10-01)
+
+
+### Features
+
+* **gatsby:** relay update events to clients through publisher ([dd7a129](https://github.com/AmazeeLabs/silverback-mono/commit/dd7a129e868f2117686496d52a299bf6eebd21ad))
+* **publisher:** mariadb and mysql log storage support ([dc55f8b](https://github.com/AmazeeLabs/silverback-mono/commit/dc55f8bc1b9bbd16302853fd0a83c2feb8049290))
+
+
+
+
+
 ## [0.10.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.10.6...@amazeelabs/publisher@0.10.7) (2022-09-29)
 
 **Note:** Version bump only for package @amazeelabs/publisher

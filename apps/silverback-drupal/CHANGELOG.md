@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.14.29...@-amazeelabs/silverback-drupal@1.15.0) (2022-10-01)
+
+
+### Bug Fixes
+
+* **gatsby:** revert unrelated config change that caused tests to fail ([2ad15e4](https://github.com/AmazeeLabs/silverback-mono/commit/2ad15e4b12151c69fdaf0cfbf561552b96841811))
+
+
+### Features
+
+* **gatsby:** additional webhook configuration for realtime updates ([8cdc30d](https://github.com/AmazeeLabs/silverback-mono/commit/8cdc30d4565f39cd8897b0dfa5d06821e6c2b562))
+
+
+
+
+
 ## [1.14.29](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.14.28...@-amazeelabs/silverback-drupal@1.14.29) (2022-09-29)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal

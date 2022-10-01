@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.26.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.25.3...@-amazeelabs/silverback_gatsby@1.26.0) (2022-10-01)
+
+
+### Features
+
+* **gatsby:** additional webhook configuration for realtime updates ([8cdc30d](https://github.com/AmazeeLabs/silverback-mono/commit/8cdc30d4565f39cd8897b0dfa5d06821e6c2b562))
+* **gatsby:** new update trigger service for realtime update notifications ([f73e3a6](https://github.com/AmazeeLabs/silverback-mono/commit/f73e3a63c42023aef630a18052cd902c5dfd6c0b))
+
+
+
+
+
 ## [1.25.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.25.2...@-amazeelabs/silverback_gatsby@1.25.3) (2022-09-22)
 
 
