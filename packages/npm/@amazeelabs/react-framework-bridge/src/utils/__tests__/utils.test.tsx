@@ -1,6 +1,10 @@
 import { Field, Form, Formik, FormikValues } from 'formik';
+import { isElement } from 'hast-util-is-element';
 import React, { useEffect, useState } from 'react';
 import { act } from 'react-dom/test-utils';
+import { Plugin } from 'unified';
+import { modifyChildren } from 'unist-util-modify-children';
+import { visit } from 'unist-util-visit';
 import { describe, expect, it, vi } from 'vitest';
 
 import {
@@ -245,6 +249,59 @@ describe('buildHtmlBuilder', () => {
             !
           </b>
         </button>
+      </main>
+    `);
+  });
+  it('allows to apply unified plugins', () => {
+    const Html = buildHtml(
+      '<main>' +
+        '<p><a href="http://www.amazeelabs.com">Amazee</a></p>' +
+        '<p>Go to <a href="http://www.google.com">Google</a></p>' +
+        '</main>',
+    );
+    const arrowLinks: Plugin = () => (tree) => {
+      visit(
+        tree,
+        'element',
+        modifyChildren((node) => {
+          if (
+            isElement(node, 'p') &&
+            node.children.length === 1 &&
+            isElement(node.children[0], 'a')
+          ) {
+            node.children[0].children.push({
+              type: 'element',
+              tagName: 'span',
+              properties: {
+                className: ['arrow'],
+              },
+              children: [],
+            });
+          }
+        }),
+      );
+    };
+    render(<Html plugins={[arrowLinks]} />);
+    expect(screen.getByRole('main')).toMatchInlineSnapshot(`
+      <main>
+        <p>
+          <a
+            href="http://www.amazeelabs.com"
+          >
+            Amazee
+            <span
+              class="arrow"
+            />
+          </a>
+        </p>
+        <p>
+          Go to 
+          <a
+            href="http://www.google.com"
+          >
+            Google
+          </a>
+        </p>
       </main>
     `);
   });

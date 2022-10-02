@@ -2,6 +2,7 @@ import { FormikConfig, FormikFormProps, FormikValues } from 'formik';
 import { Element } from 'hast';
 import { stringify } from 'qs';
 import React, { ComponentType, PropsWithChildren } from 'react';
+import { Pluggable } from 'unified';
 
 export type Html = React.VFC<{
   classNames?: {
@@ -12,6 +13,7 @@ export type Html = React.VFC<{
       | keyof JSX.IntrinsicElements
       | ComponentType<{ node: Element } & JSX.IntrinsicElements[TagName]>;
   }>;
+  plugins?: Pluggable[];
 }> & {
   initialHtmlString: string;
 };

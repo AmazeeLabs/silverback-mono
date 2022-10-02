@@ -109,12 +109,17 @@ const rehypeAddClasses: Plugin<[{ [key: string]: string }], Element> =
 export const buildHtmlBuilder =
   (buildLink: LinkBuilder) =>
   (input: string): Html => {
-    const Element: Html = function MockHtml({ classNames, components }) {
+    const Element: Html = function MockHtml({
+      classNames,
+      components,
+      plugins,
+    }) {
       return unified()
         .use(rehypeParse, { fragment: true })
         .use(rehypeAddClasses, classNames || {})
         .use(rehypeSlug)
         .use(rehypeTailwindLists)
+        .use(plugins || [])
         .use(rehypeReact, {
           Fragment,
           createElement,
