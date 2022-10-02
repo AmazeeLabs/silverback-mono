@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@2.1.0...@amazeelabs/react-framework-bridge@2.2.0) (2022-10-02)
+
+
+### Features
+
+* **atomic:** allow ui components to inject rehype plugins for html rendering ([46bbd1a](https://github.com/AmazeeLabs/silverback-mono/commit/46bbd1a9917996a71d6b3acb5bd9af6f5e909207))
+
+
+
+
+
 # [2.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@2.0.6...@amazeelabs/react-framework-bridge@2.1.0) (2022-09-30)
 
 
