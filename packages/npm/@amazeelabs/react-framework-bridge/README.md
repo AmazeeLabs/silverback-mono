@@ -251,6 +251,40 @@ const Html = buildHtml(
 />
 ```
 
+By adding custom
+[unified plugins](https://unifiedjs.com/learn/guide/create-a-plugin/), the UI
+component has even more control over rendering of the HTML.
+
+```tsx
+/**
+ * Inject arrows at the end of links that are alone within a paragraph.
+ */
+const arrowLinks: Plugin = () => (tree) => {
+  visit(
+    tree,
+    'element',
+    modifyChildren((node) => {
+      if (
+        isElement(node, 'p') &&
+        node.children.length === 1 &&
+        isElement(node.children[0], 'a')
+      ) {
+        node.children[0].children.push({
+          type: 'element',
+          tagName: 'span',
+          properties: {
+            className: ['arrow'],
+          },
+          children: [],
+        });
+      }
+    }),
+  );
+};
+
+<Html plugins={[arrowLinks]} />;
+```
+
 ## Storybook actions integration
 
 The `buildLink` and `buildForm` functions integrate with
