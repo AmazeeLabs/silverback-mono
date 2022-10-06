@@ -29,6 +29,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@slack/webhook": "^6.1.0",
     "@storybook/addon-a11y": "^6.5.10",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-docs": "^6.5.10",
