@@ -67,7 +67,7 @@
     "@amazeelabs/prettier-config": "^1.1.1",
     "@rollup/plugin-commonjs": "22.0.2",
     "@rollup/plugin-multi-entry": "4.1.0",
-    "@rollup/plugin-node-resolve": "13.3.0",
+    "@rollup/plugin-node-resolve": "14.0.0",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/user-event": "14.4.3",
     "@types/qs": "6.9.7",
