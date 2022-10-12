@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.11.1...@amazeelabs/publisher@0.12.0) (2022-10-12)
+
+
+### Features
+
+* slack notify on gateway or build failure ([a59f2e3](https://github.com/AmazeeLabs/silverback-mono/commit/a59f2e3066e0ef1d7fc8a5b52ee824456076bd9c))
+
+
+
+
+
 ## [0.11.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.11.0...@amazeelabs/publisher@0.11.1) (2022-10-06)
 
 **Note:** Version bump only for package @amazeelabs/publisher
