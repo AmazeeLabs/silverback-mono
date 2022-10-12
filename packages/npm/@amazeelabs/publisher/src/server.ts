@@ -16,7 +16,7 @@ import referrerPolicy from 'referrer-policy';
 import { filter, shareReplay, Subject } from 'rxjs';
 import { DataTypes, Sequelize } from 'sequelize';
 
-import { BuildService } from './server/build';
+import { BuildService, isBuildState } from './server/build';
 import {
   GatewayCommands,
   GatewayService,
@@ -28,6 +28,7 @@ import {
   gatewayStatusLogs,
   statusUpdates,
 } from './server/logging';
+import { buildStateNotify, gatewayStateNotify } from './server/notify';
 import { GatewayState } from './states';
 
 const explorerSync = cosmiconfigSync('publisher');
@@ -131,6 +132,7 @@ app.use(function (req, res, next) {
 
 gateway$.pipe(filter(isGatewayState)).subscribe((state) => {
   app.locals.isReady = state === GatewayState.Ready;
+  gatewayStateNotify(state);
 });
 
 gateway$.pipe(gatewayReport()).subscribe(async (data) => {
@@ -140,6 +142,10 @@ gateway$.pipe(gatewayReport()).subscribe(async (data) => {
 const builder$ = buildEvents$.pipe(BuildService(config), shareReplay(100));
 builder$.pipe(buildReport()).subscribe(async (data) => {
   await Build.build(data).save();
+});
+
+builder$.pipe(filter(isBuildState)).subscribe(async (state) => {
+  buildStateNotify(state);
 });
 
 const updates$ = new Subject();
