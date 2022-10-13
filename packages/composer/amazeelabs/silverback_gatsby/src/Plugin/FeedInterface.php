@@ -53,11 +53,11 @@ interface FeedInterface {
    * applicable.
    *
    * @param $context
-   * @param \Drupal\Core\Session\AccountInterface $account
+   * @param \Drupal\Core\Session\AccountInterface|null $account
    *
    * @return \Drupal\silverback_gatsby\GatsbyUpdate[]
    */
-  public function investigateUpdate($context, AccountInterface $account) : array;
+  public function investigateUpdate($context, ?AccountInterface $account) : array;
 
   /**
    * Resolve the parent value's "id" attribute.

@@ -94,19 +94,27 @@ class GatsbyUpdateHandler {
             foreach ($extension->getFeeds() as $feed) {
               if (
                 $feed instanceof $feedClassName
-                && $updates = $feed->investigateUpdate($context, $account)
               ) {
-                foreach ($updates as $update) {
-                  $this->gatsbyUpdateTracker->track(
-                    $server->id(),
-                    $update->type,
-                    $update->id,
-                    $trigger
-                  );
-                  $this->gatsbyUpdateTrigger->trigger(
-                    $server->id(),
-                    $update
-                  );
+                // Updates for the actual build. They should respect access
+                // permissions of the configured account.
+                if ($updates = $feed->investigateUpdate($context, $account)) {
+                  foreach ($updates as $update) {
+                    $this->gatsbyUpdateTracker->track(
+                      $server->id(),
+                      $update->type,
+                      $update->id,
+                      $trigger
+                    );
+                  }
+                }
+                // Preview change notifications should always go through.
+                if ($changes = $feed->investigateUpdate($context, null)) {
+                  foreach ($changes as $change) {
+                    $this->gatsbyUpdateTrigger->trigger(
+                      $server->id(),
+                      $change
+                    );
+                  }
                 }
               }
             }

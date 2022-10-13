@@ -39,7 +39,7 @@ class StringTranslationFeed extends FeedBase {
   /**
    * {@inheritDoc}
    */
-  function getUpdateIds($context, AccountInterface $account): array {
+  function getUpdateIds($context, ?AccountInterface $account): array {
     if (!$context instanceof StringInterface) {
       return [];
     }

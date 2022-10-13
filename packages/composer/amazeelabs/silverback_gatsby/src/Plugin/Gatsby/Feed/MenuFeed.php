@@ -164,7 +164,7 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
   /**
    * {@inheritDoc}
    */
-  public function getUpdateIds($context, AccountInterface $account) : array {
+  public function getUpdateIds($context, ?AccountInterface $account) : array {
     $params = new MenuTreeParameters();
     if ($this->max_level > 0) {
       $params->maxDepth = $this->max_level;
@@ -176,7 +176,7 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
     $menus = $this->entityTypeManager->getStorage('menu')->loadMultiple($this->menuIds());
     $relevantMenu = NULL;
     foreach($menus as $menu) {
-      if ($menu->access('view label', $account)) {
+      if (!$account || $menu->access('view label', $account)) {
         $relevantMenu = $menu;
         break;
       }

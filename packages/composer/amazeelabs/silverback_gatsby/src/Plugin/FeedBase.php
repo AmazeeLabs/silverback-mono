@@ -101,17 +101,17 @@ abstract class FeedBase extends PluginBase implements FeedInterface {
    * applicable.
    *
    * @param mixed $context
-   * @param \Drupal\Core\Session\AccountInterface $account
+   * @param \Drupal\Core\Session\AccountInterface|null $account
    *
    * @return string[]
    *   A list of string id's to update.
    */
-  abstract function getUpdateIds($context, AccountInterface $account): array;
+  abstract function getUpdateIds($context, ?AccountInterface $account): array;
 
   /**
    * {@inheritDoc}
    */
-  public function investigateUpdate($context, AccountInterface $account) : array {
+  public function investigateUpdate($context, ?AccountInterface $account) : array {
     return array_map(
       fn ($id) => new GatsbyUpdate($this->getTypeName(), $id),
       $this->getUpdateIds($context, $account)
