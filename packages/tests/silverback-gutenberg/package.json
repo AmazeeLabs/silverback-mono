@@ -1,18 +1,18 @@
 {
   "name": "@-amazeelabs/silverback-gutenberg-tests",
-  "version": "1.1.125",
+  "version": "1.1.126",
   "description": "e2e tests for Silverback Gutenberg.",
   "author": "Amazee Labs",
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@-amazeelabs/silverback-drupal": "^1.15.2",
-    "@-amazeelabs/silverback_gutenberg": "^1.6.6",
-    "@amazeelabs/silverback-playwright": "^1.6.41"
+    "@-amazeelabs/silverback-drupal": "^1.15.3",
+    "@-amazeelabs/silverback_gutenberg": "^1.6.7",
+    "@amazeelabs/silverback-playwright": "^1.6.42"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.34",
-    "@amazeelabs/jest-preset": "^1.3.38",
+    "@amazeelabs/eslint-config": "^1.4.35",
+    "@amazeelabs/jest-preset": "^1.3.39",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@types/jest": "29.1.2",
     "eslint": "8.25.0",
