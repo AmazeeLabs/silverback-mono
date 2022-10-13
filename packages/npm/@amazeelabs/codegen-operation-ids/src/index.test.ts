@@ -293,23 +293,6 @@ describe('mode: map', () => {
   });
 });
 
-// type PageQueryResult = { loadPage: { title: string } };
-// type PageQueryVariables = { path: string };
-//
-// const PageQuery = '123' as OperationId<PageQueryResult, PageQueryVariables>;
-//
-// function fetcher<T extends AnyOperationId>(
-//   id: T,
-//   variables: OperationVariables<T>,
-// ): Promise<OperationResult<T>> {
-//   return {};
-// }
-//
-// async function foo() {
-//   const res = await fetcher(PageQuery, { path: '/' });
-//   res.loadPage.title;
-// }
-
 describe('mode: ids', () => {
   function runPlugin(documents: Array<Types.DocumentFile>) {
     return plugin(schema, documents, {}, { outputFile: 'output.ts' });
