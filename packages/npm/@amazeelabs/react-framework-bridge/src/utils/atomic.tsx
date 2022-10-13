@@ -8,6 +8,7 @@ import React, {
 } from 'react';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 import { IntlProvider } from 'react-intl';
+import { StoreApi } from 'zustand';
 
 import { Form, Html, Image, Link } from '../types';
 
@@ -22,6 +23,7 @@ export type Primitive =
   | Html
   | Link
   | Image
+  | StoreApi<any>
   | Form<any>;
 
 export type Struct = {

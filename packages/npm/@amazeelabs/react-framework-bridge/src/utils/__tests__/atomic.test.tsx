@@ -1,6 +1,7 @@
 import { act, render } from '@testing-library/react';
 import React, { useEffect, useState } from 'react';
 import { describe, expect, it, vi } from 'vitest';
+import { createStore } from 'zustand';
 
 import { buildHtml } from '../../storybook';
 import { createMapper, Route, RouteSlotInput } from '../atomic';
@@ -472,6 +473,121 @@ describe('Route rendering', () => {
         </div>
       </div>
     `);
+  });
+
+  it('allows to pass zustand stores into organisms', () => {
+    const store = createStore(() => ({
+      x: 'Foo',
+      y: 0,
+    }));
+    const { container } = render(
+      <Route
+        definition={Content}
+        intl={{ defaultLocale: 'en', locale: 'en' }}
+        input={{
+          intro: { title: 'Dynamic' },
+          body: [
+            {
+              key: 'dynamic',
+              input: {
+                dynamicData: store,
+              },
+            },
+          ],
+        }}
+      />,
+    );
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <div>
+          <div>
+            <h1>
+              Dynamic
+            </h1>
+          </div>
+          <div>
+            <p>
+              Foo
+            </p>
+          </div>
+        </div>
+      </div>
+    `);
+  });
+
+  it('updates organisms based on store changes', async () => {
+    vi.useFakeTimers();
+
+    type Store = {
+      x: string;
+      y: number;
+      swap: () => void;
+    };
+
+    const store = createStore<Store>((set) => ({
+      x: 'Foo',
+      y: 0,
+      swap: () => set({ x: 'Bar' }),
+    }));
+
+    setTimeout(() => {
+      act(() => {
+        store.getState().swap();
+      });
+    }, 50);
+
+    const { container } = render(
+      <Route
+        definition={Content}
+        intl={{ defaultLocale: 'en', locale: 'en' }}
+        input={{
+          intro: { title: 'Dynamic' },
+          body: [
+            {
+              key: 'dynamic',
+              input: {
+                dynamicData: store,
+              },
+            },
+          ],
+        }}
+      />,
+    );
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <div>
+          <div>
+            <h1>
+              Dynamic
+            </h1>
+          </div>
+          <div>
+            <p>
+              Foo
+            </p>
+          </div>
+        </div>
+      </div>
+    `);
+    vi.runAllTimers();
+    expect(container).toMatchInlineSnapshot(`
+      <div>
+        <div>
+          <div>
+            <h1>
+              Dynamic
+            </h1>
+          </div>
+          <div>
+            <p>
+              Bar
+            </p>
+          </div>
+        </div>
+      </div>
+    `);
+    vi.runOnlyPendingTimers();
+    vi.useRealTimers();
   });
 });
 

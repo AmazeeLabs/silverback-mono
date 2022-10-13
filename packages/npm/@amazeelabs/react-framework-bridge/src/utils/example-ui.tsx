@@ -1,4 +1,5 @@
 import React from 'react';
+import { StoreApi, useStore } from 'zustand';
 
 import { Html } from '../types';
 import {
@@ -46,6 +47,13 @@ export function SyncContent(props: OrganismProps<{ Content: Html }>) {
   return <props.Content />;
 }
 
+export function DynamicContent(
+  props: OrganismProps<{ dynamicData: StoreApi<{ x: string; y: number }> }>,
+) {
+  const x = useStore(props.dynamicData, (state) => state.x);
+  return <p>{x}</p>;
+}
+
 export function AsyncContent(props: OrganismProps<{ Content: Html }>) {
   const status = useOrganismStatus();
   return status === 200 ? <props.Content /> : <p>Loading ...</p>;
@@ -90,5 +98,6 @@ export const Content = route(ContentLayout, {
     async: AsyncContent,
     error: ErrorContent,
     group: GroupedContent,
+    dynamic: DynamicContent,
   },
 });
