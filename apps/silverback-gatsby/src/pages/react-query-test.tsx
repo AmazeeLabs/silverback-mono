@@ -72,7 +72,6 @@ const Sitemap: React.FC = () => {
   });
   const { mutate } = usePersistedMutation(GetRandomIntMutation, {
     onSuccess: (data) => {
-      console.log(data);
       setRandomInt(data.getRandomInt);
     },
   });
