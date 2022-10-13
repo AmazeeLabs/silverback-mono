@@ -102,12 +102,12 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
   /**
    * {@inheritDoc}
    */
-  public function getUpdateIds($context, AccountInterface $account) : array {
+  public function getUpdateIds($context, ?AccountInterface $account) : array {
     if (
       $context instanceof EntityInterface
       && $context->getEntityTypeId() === $this->type
       && ($this->bundle !== NULL && $context->bundle() === $this->bundle)
-      && $context->access('view', $account)
+      && (!$account || $context->access('view', $account))
     ) {
       if ($this->isTranslatable() && $context instanceof TranslatableInterface) {
         return array_map(function (LanguageInterface $lang) use ($context) {
