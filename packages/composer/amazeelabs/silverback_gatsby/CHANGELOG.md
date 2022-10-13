@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.26.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.26.0...@-amazeelabs/silverback_gatsby@1.26.1) (2022-10-13)
+
+
+### Bug Fixes
+
+* **gatsby:** distribute update hook notifications in any case ([73862f8](https://github.com/AmazeeLabs/silverback-mono/commit/73862f81d2291faed4a034e4802d1d24f96e5f6a))
+
+
+
+
+
 # [1.26.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.25.3...@-amazeelabs/silverback_gatsby@1.26.0) (2022-10-01)
 
 
