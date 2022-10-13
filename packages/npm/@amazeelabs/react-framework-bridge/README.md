@@ -323,3 +323,30 @@ export const MyStory = {
   },
 };
 ```
+
+## Zustand integration
+
+Organisms can accept a [Zustand](https://github.com/pmndrs/zustand) store as a
+prop to implement dynamic behaviour with fine-grained control over re-rendering.
+Create a store api with the `createStore` function and pass it to the organisms'
+property. Inside the organism, make use of `useStore` to retrieve values from
+it.
+
+```tsx
+type Counter = {
+  count: number;
+  increment: () => void;
+};
+
+const store = createStore<Counter>({
+  count: 0,
+  increment: (state) => () => {
+    state.count++;
+  },
+});
+
+function CounterDisplay({ counter }: { counter: StoreApi<Counter> }) {
+  const count = useStore(counter, (state) => state.count);
+  return <div>{count}</div>;
+}
+```
