@@ -74,9 +74,8 @@ yarn-error.log
 generated/types
 /cypress/screenshots
 generated/translation_sources.json
-/generated/graphql-request.ts
 /generated/persisted-queries-map.json
-/generated/react-query.ts
+/generated/operations.ts
 
 _local
 /test-results
