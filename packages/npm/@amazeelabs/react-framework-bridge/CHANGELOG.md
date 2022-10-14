@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@2.2.2...@amazeelabs/react-framework-bridge@2.3.0) (2022-10-14)
+
+### Features
+
+- **react:** allow zustand stores as organism inputs
+  ([510605c](https://github.com/AmazeeLabs/silverback-mono/commit/510605cfe2caf33449125060356194c64a1c756e))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@2.2.1...@amazeelabs/react-framework-bridge@2.2.2) (2022-10-13)
 
 **Note:** Version bump only for package @amazeelabs/react-framework-bridge
