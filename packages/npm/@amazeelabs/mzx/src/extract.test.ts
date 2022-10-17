@@ -26,6 +26,22 @@ Something else
 foo: bar
 \`\`\`
     `),
-    ).toEqual(`await $\`pwd\``);
+    ).toEqual('await $`pwd`');
+  });
+
+  it('turns shell script blocks into zx shell commands', () => {
+    expect(
+      extractCodeBlocks(`
+# Hello there!
+
+\`\`\`shell
+mkdir test
+cd test
+yarn init -y
+\`\`\`
+    `),
+    ).toEqual(
+      'await $`mkdir test`;\nawait $`cd test`;\nawait $`yarn init -y`;',
+    );
   });
 });

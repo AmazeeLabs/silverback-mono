@@ -30,4 +30,25 @@ await $`echo "goodbye"`;
 ```
 ````
 
+### Shell blocks
+
+Blocks that are marked as `shell` get turned into sequences of [ZX] shell
+commands and executed respectively.
+
+````markdown
+# Setup instructions
+
+First run this:
+
+```shell
+rm -rf
+```
+
+Then do that:
+
+```shell
+echo "goodbye"
+```
+````
+
 [zx]: https://github.com/google/zx
