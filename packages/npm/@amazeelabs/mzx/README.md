@@ -67,4 +67,33 @@ foo: bar
 ```
 ````
 
+### Environment variable interpolation
+
+Environment variables are inherited to scripts and can be set within scripts by
+writing to `process.env`. All variables will be inherited to sub-commands and
+also interpolated into file blocks.
+
+````markdown
+# Project setup
+
+Decide on a project name:
+
+```typescript
+process.env.PROJECT_NAME = 'my_project';
+```
+
+Create the directory:
+
+```shell
+mkdir $PROJECT_NAME
+```
+
+Create a config file;
+
+```yaml
+# |-> PROJECT_NAME/config.yml
+title: 'PROJECT_NAME'
+```
+````
+
 [zx]: https://github.com/google/zx

@@ -5,30 +5,34 @@
 $`rm -rf test`.nothrow();
 ```
 
-First we create a test directory.
+```typescript
+process.env.PROJECT_NAME = 'test_project';
+```
+
+First we create a project directory.
 
 ```shell
-mkdir test
+mkdir $PROJECT_NAME
 ```
 
 Then we switch the current working directory to there.
 
 ```typescript
-cd('test');
+cd(process.env.PROJECT_NAME);
 ```
 
 We write a file.
 
 ```yaml
 # |-> config.yml
-Foobar!
+title: 'PROJECT_NAME'
 ```
 
 Let's verify the file is there.
 
 ```typescript
 const output = await $`cat config.yml`;
-if (!/Foobar/.test(output.stdout)) {
+if (!/test_project/.test(output.stdout)) {
   await $`echo "Config file was not created."`;
   await $`exit 1`;
 }
@@ -43,13 +47,13 @@ cd('../');
 Delete the test directory.
 
 ```shell
-rm -rf test
+rm -rf $PROJECT_NAME
 ```
 
 And make sure its gone.
 
 ```typescript
-if (await fs.exists('test')) {
+if (await fs.exists(process.env.PROJECT_NAME)) {
   await $`echo "Test directory is still there."`;
   await $`exit 1`;
 }
