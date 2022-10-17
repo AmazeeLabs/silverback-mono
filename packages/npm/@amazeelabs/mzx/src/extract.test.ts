@@ -58,4 +58,21 @@ bar: baz
     `),
     ).toEqual("await fs.writeFile('config/test.yaml', 'foo: bar\nbar: baz');");
   });
+
+  it('interpolates upper-cased environment variables into files and filenames', () => {
+    process.env.PROJECT_NAME = 'my_project';
+    expect(
+      extractCodeBlocks(`
+# Hello there!
+
+\`\`\`yaml
+# |-> config/PROJECT_NAME.yaml
+foo: bar
+bar: PROJECT_NAME
+\`\`\`
+    `),
+    ).toEqual(
+      "await fs.writeFile('config/' + (process.env.PROJECT_NAME || 'PROJECT_NAME') + '.yaml', 'foo: bar\nbar: ' + (process.env.PROJECT_NAME || 'PROJECT_NAME') + '');",
+    );
+  });
 });
