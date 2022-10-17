@@ -36,12 +36,16 @@ export function preprocess(input: Array<CodeBlock>) {
 
       const content = block.content.replace(/.*?[|>]->.*\n*/g, '');
       const targetFile = fileMatches[0][2];
+      const sanitize = (input: string) => {
+        return input
+          .replaceAll("'", "\\'")
+          .replaceAll(/([A-Z_]+)/g, "' + (process.env.$1 || '$1') + '");
+      };
       return {
         lang: 'typescript',
-        content: `await fs.writeFile('${targetFile.replaceAll(
-          "'",
-          "\\'",
-        )}', '${content.replaceAll("'", "\\'")}');`,
+        content: `await fs.writeFile('${sanitize(targetFile)}', '${sanitize(
+          content,
+        )}');`,
       };
     })
     .filter(isDefined)
