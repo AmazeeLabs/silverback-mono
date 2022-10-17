@@ -4,7 +4,7 @@ This is a basic persisted-queries plugin for GraphQL Drupal module.
 
 ## Setup
 
-1. Configure the frontend to generate the query map. See [@amazeelabs/silverback-graphql-persisted](https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/npm/%40amazeelabs/silverback-graphql-persisted#readme) package.
+1. Configure the frontend to generate the query map. See [@amazeelabs/codegen-operation-ids](https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/npm/%40amazeelabs/codegen-operation-ids#readme) package.
 1. Install this module.
    ```
    composer require amazeelabs/silverback_graphql_persisted
