@@ -4,6 +4,7 @@
   "description": "Generates fragment.ts files from .gql files to append vendor prefix.",
   "author": "Amazee Labs",
   "main": "index.js",
+  "type": "module",
   "license": "MIT",
   "private": false,
   "bin": "./cli.js",
