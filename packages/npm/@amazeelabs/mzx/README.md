@@ -51,4 +51,20 @@ echo "goodbye"
 ```
 ````
 
+### Writing files
+
+To write arbitrary files, one can create a file block in any language and mark
+it with `|-> [target-file]` to write the blocks content to that file.
+
+````markdown
+# Setup instructions
+
+Create a configuration file:
+
+```yaml
+# |-> config.yml
+foo: bar
+```
+````
+
 [zx]: https://github.com/google/zx
