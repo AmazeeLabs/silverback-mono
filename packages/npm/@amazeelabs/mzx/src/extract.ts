@@ -23,6 +23,28 @@ const handlers: Record<string, BlockHandler> = {
 
 export function preprocess(input: Array<CodeBlock>) {
   return input
+    .map((block) => {
+      if (block.lang === `typescript`) {
+        return block;
+      }
+      const fileMatches = [
+        ...block.content.matchAll(/([|>])->\s([^\s]+).*?\n?/gs),
+      ];
+      if (fileMatches.length === 0) {
+        return block;
+      }
+
+      const content = block.content.replace(/.*?[|>]->.*\n*/g, '');
+      const targetFile = fileMatches[0][2];
+      return {
+        lang: 'typescript',
+        content: `await fs.writeFile('${targetFile.replaceAll(
+          "'",
+          "\\'",
+        )}', '${content.replaceAll("'", "\\'")}');`,
+      };
+    })
+    .filter(isDefined)
     .filter((block) => !!handlers[block.lang])
     .map((block) => handlers[block.lang](block));
 }

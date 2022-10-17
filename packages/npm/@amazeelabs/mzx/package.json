@@ -34,7 +34,7 @@
     "precommit": "lint-staged",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "vitest run --passWithNoTests",
-    "test:integration": "exit 0",
+    "test:integration": "./cli.js test.md",
     "test:watch": "vitest",
     "test": "yarn test:static && yarn test:unit && yarn test:integration"
   }
