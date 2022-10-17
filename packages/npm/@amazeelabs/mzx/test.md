@@ -1,12 +1,12 @@
 # MXZ integration test
 
 ```typescript
-// Ignore if the directory does not exist.
-$`rm -rf test`.nothrow();
+process.env.PROJECT_NAME = 'test_project';
 ```
 
 ```typescript
-process.env.PROJECT_NAME = 'test_project';
+// Ignore if the directory does not exist.
+$`rm -rf ${process.env.PROJECT_NAME}`.nothrow();
 ```
 
 First we create a project directory.
