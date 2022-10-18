@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.12.2...@amazeelabs/publisher@0.13.0) (2022-10-18)
+
+### Features
+
+- **publisher:** add metadata and Publisher url to notification
+  ([d5acc91](https://github.com/AmazeeLabs/silverback-mono/commit/d5acc91fbd3eb41ad5706f19de4ad12120ff6231))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [0.12.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.12.1...@amazeelabs/publisher@0.12.2) (2022-10-14)
 
 **Note:** Version bump only for package @amazeelabs/publisher
