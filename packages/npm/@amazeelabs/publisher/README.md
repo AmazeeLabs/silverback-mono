@@ -1,8 +1,18 @@
 # Publisher
 
-## Get Slack notifications
+## Slack notifications
 
-To be notified in case of failure set these environment variables:
+To be notified in case of failure.
 
-- `PUBLISHER_SLACK_WEBHOOK="https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"`
-- `PUBLISHER_SLACK_CHANNEL="#project-ci-channel"`
+### Mandatory environment variables
+
+- Slack Webhook ([documentation](https://api.slack.com/messaging/webhooks))
+  `PUBLISHER_SLACK_WEBHOOK="https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"`
+- Slack Channel `PUBLISHER_SLACK_CHANNEL="#project-ci-channel"`
+
+### Optional environment variables
+
+- Publisher url, without a trailing slash. Adds a link to the status page, to
+  the notification message. `PUBLISHER_URL="https://build.project.com"`
+- Project and Environment (Lagoon only). Adds `LAGOON_PROJECT` and
+  `LAGOON_ENVIRONMENT` to the notification message.
