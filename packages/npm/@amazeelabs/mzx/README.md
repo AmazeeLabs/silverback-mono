@@ -5,13 +5,23 @@ in markdown files.
 
 ## Usage
 
+To make things easier, create an alias in your shell configuration:
+
 ```shell
-npx @amazeelabs/mzx my-tutorial.md
+alias mzx="npx @amazeelabs/mzx"
+```
+
+Now you should be able to run a script with:
+
+```shell
+mzx run my-tutorial.md
 ```
 
 ## Writing scripts
 
-MZX scripts can be regular markdown files. Any code blocks in the `typescript`
+### Typescript blocks
+
+MZX scripts are regular markdown files. Any code blocks in the `typescript`
 language will be concatenated to a [ZX] script and executed.
 
 ````markdown
@@ -93,6 +103,31 @@ Create a config file;
 ```yaml
 # |-> PROJECT_NAME/config.yml
 title: 'PROJECT_NAME'
+```
+````
+
+### Patching files
+
+It is possible to include inline patches as code blocks that modify a given
+file. To create one of these patches, prepare the old and new version of the
+file and use the `mx diff` command and paste the output into a codeblock marked
+with the `diff` language.
+
+```shell
+mx diff original.ts modified.ts | pbcopy
+```
+
+````markdown
+```diff
+Index: original.ts
+===================================================================
+--- original.ts
++++ original.ts
+@@ -1,3 +1,4 @@
+ const a = 'foo';
+ const b = 'bar';
++const c = 'baz';
+ console.log(a,b).
 ```
 ````
 

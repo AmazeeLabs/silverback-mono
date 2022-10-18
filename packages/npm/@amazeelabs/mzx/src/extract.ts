@@ -21,11 +21,36 @@ const handlers: Record<string, BlockHandler> = {
     input.lang === 'typescript' ? input : undefined,
 };
 
+const sanitize = (input: string) => {
+  return input
+    .replaceAll('`', '\\`')
+    .replaceAll(/([A-Z][A-Z_]+)/g, "` + (process.env.$1 || '$1') + `");
+};
+
 export function preprocess(input: Array<CodeBlock>) {
   return input
     .map((block) => {
       if (block.lang === `typescript`) {
         return block;
+      }
+      if (block.lang === 'diff') {
+        const diffMatches = [
+          ...block.content.matchAll(/Index:\s(.+)\n=+\n?/gs),
+        ];
+
+        if (diffMatches.length === 0) {
+          return block;
+        }
+
+        const file = diffMatches[0][1];
+        return {
+          lang: 'typescript',
+          content: `await fs.writeFile(\`${sanitize(
+            file,
+          )}\`, require(\`diff\`).applyPatch((await fs.readFile(\`${sanitize(
+            file,
+          )}\`)).toString(), \`${sanitize(block.content)}\`));`,
+        };
       }
       const fileMatches = [
         ...block.content.matchAll(/([|>])->\s([^\s]+).*?\n?/gs),
@@ -36,11 +61,6 @@ export function preprocess(input: Array<CodeBlock>) {
 
       const content = block.content.replace(/.*?[|>]->.*\n*/g, '');
       const targetFile = fileMatches[0][2];
-      const sanitize = (input: string) => {
-        return input
-          .replaceAll('`', '\\`')
-          .replaceAll(/([A-Z][A-Z_]+)/g, "` + (process.env.$1 || '$1') + `");
-      };
       return {
         lang: 'typescript',
         content: `await fs.writeFile(\`${sanitize(targetFile)}\`, \`${sanitize(

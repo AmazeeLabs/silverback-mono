@@ -6,7 +6,7 @@ process.env.PROJECT_NAME = 'test_project';
 
 ```typescript
 // Ignore if the directory does not exist.
-$`rm -rf ${process.env.PROJECT_NAME}`.nothrow();
+await $`rm -rf ${process.env.PROJECT_NAME}`.nothrow();
 ```
 
 First we create a project directory.
@@ -31,9 +31,45 @@ title: 'PROJECT_NAME'
 Let's verify the file is there.
 
 ```typescript
-const output = await $`cat config.yml`;
-if (!/test_project/.test(output.stdout)) {
+const config = await $`cat config.yml`;
+if (!/test_project/.test(config.stdout)) {
   await $`echo "Config file was not created."`;
+  await $`exit 1`;
+}
+```
+
+Create another file.
+
+```text
+|-> PROJECT_NAME.txt
+"This is"
+`some`
+content.
+```
+
+And attempt to patch it:
+
+```diff
+Index: PROJECT_NAME.txt
+===================================================================
+--- PROJECT_NAME.txt
++++ PROJECT_NAME.txt
+@@ -1,3 +1,4 @@
+ "This is"
+ `some`
++PROJECT_NAME
+ content.
+```
+
+Verify that the files content has been patched.
+
+```typescript
+const patched = await $`cat ${process.env.PROJECT_NAME}.txt`;
+if (
+  patched.stdout !==
+  '"This is"\n`some`\n' + process.env.PROJECT_NAME + '\ncontent.'
+) {
+  await $`echo "Text file was not patched."`;
   await $`exit 1`;
 }
 ```
