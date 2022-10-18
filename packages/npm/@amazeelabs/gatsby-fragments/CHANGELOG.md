@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.10](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-fragments@1.1.9...@amazeelabs/gatsby-fragments@1.1.10) (2022-10-18)
+
+### Bug Fixes
+
+- **fragments:** eslint file has to be commonjs
+  ([e9896c4](https://github.com/AmazeeLabs/silverback-mono/commit/e9896c4b0cececf21d941ef057351172d37c2c09))
+- **fragments:** jest file has to be commonjs
+  ([1ecdbfd](https://github.com/AmazeeLabs/silverback-mono/commit/1ecdbfd072528b4ed7c122c233c5da6e48c9638d))
+- wrong package type for gatsby-fragments
+  ([41f8bc8](https://github.com/AmazeeLabs/silverback-mono/commit/41f8bc88c5de170cfea549879885ba29e5740daa))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.9](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-fragments@1.1.8...@amazeelabs/gatsby-fragments@1.1.9) (2022-10-13)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-fragments
