@@ -50,7 +50,7 @@ describe('extractCodeBlocks', () => {
         'bar: baz',
         '```',
       ],
-      ["await fs.writeFile('config/test.yaml', 'foo: bar\nbar: baz');"],
+      ['await fs.writeFile(`config/test.yaml`, `foo: bar\nbar: baz`);'],
     );
   });
 
@@ -67,7 +67,7 @@ describe('extractCodeBlocks', () => {
         '```',
       ],
       [
-        "await fs.writeFile('config/' + (process.env.PROJECT_NAME || 'PROJECT_NAME') + '.yaml', 'foo: bar\nbar: ' + (process.env.PROJECT_NAME || 'PROJECT_NAME') + '');",
+        "await fs.writeFile(`config/` + (process.env.PROJECT_NAME || 'PROJECT_NAME') + `.yaml`, `foo: bar\nbar: ` + (process.env.PROJECT_NAME || 'PROJECT_NAME') + ``);",
       ],
     );
   });
