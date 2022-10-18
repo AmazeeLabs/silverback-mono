@@ -38,14 +38,14 @@ export function preprocess(input: Array<CodeBlock>) {
       const targetFile = fileMatches[0][2];
       const sanitize = (input: string) => {
         return input
-          .replaceAll("'", "\\'")
-          .replaceAll(/([A-Z_]+)/g, "' + (process.env.$1 || '$1') + '");
+          .replaceAll('`', '\\`')
+          .replaceAll(/([A-Z][A-Z_]+)/g, "` + (process.env.$1 || '$1') + `");
       };
       return {
         lang: 'typescript',
-        content: `await fs.writeFile('${sanitize(targetFile)}', '${sanitize(
+        content: `await fs.writeFile(\`${sanitize(targetFile)}\`, \`${sanitize(
           content,
-        )}');`,
+        )}\`);`,
       };
     })
     .filter(isDefined)
