@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "commander": "^9.4.1",
+    "diff": "^5.1.0",
     "remark-parse": "^10.0.1",
     "unified": "^10.1.2",
     "zx": "^7.1.1"
@@ -21,6 +22,7 @@
     "@amazeelabs/prettier-config": "^1.1.1",
     "@rollup/plugin-node-resolve": "^15.0.0",
     "@rollup/plugin-typescript": "^9.0.1",
+    "@types/diff": "^5.0.2",
     "eslint": "^8",
     "prettier": "^2",
     "rollup": "^3.2.2",
@@ -31,10 +33,11 @@
   },
   "scripts": {
     "prepare": "rollup -c rollup.config.js",
+    "build:watch": "rollup -c rollup.config.js --watch",
     "precommit": "lint-staged",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "vitest run --passWithNoTests",
-    "test:integration": "./cli.js test.md",
+    "test:integration": "./cli.js run test.md",
     "test:watch": "vitest",
     "test": "yarn test:static && yarn test:unit && yarn test:integration"
   }

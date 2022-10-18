@@ -3,7 +3,9 @@ import { describe, expect, it } from 'vitest';
 import { extractCodeBlocks } from './extract';
 
 function assertCodeBlocks(input: Array<string>, output: Array<string>) {
-  expect(extractCodeBlocks(input.join('\n'))).toEqual(output.join('\n'));
+  const extracted = extractCodeBlocks(input.join('\n'));
+  const expected = output.join('\n');
+  expect(extracted).toEqual(expected);
 }
 
 describe('extractCodeBlocks', () => {
@@ -68,6 +70,63 @@ describe('extractCodeBlocks', () => {
       ],
       [
         "await fs.writeFile(`config/` + (process.env.PROJECT_NAME || 'PROJECT_NAME') + `.yaml`, `foo: bar\nbar: ` + (process.env.PROJECT_NAME || 'PROJECT_NAME') + ``);",
+      ],
+    );
+  });
+
+  it('applies patch diffs', () => {
+    const patch = [
+      'Index: a.txt',
+      '===================================================================',
+      '--- a.txt',
+      '+++ a.txt',
+      '@@ -1,3 +1,4 @@',
+      'This is',
+      'some',
+      '+more',
+      'content.',
+    ];
+    assertCodeBlocks(
+      ['```diff', ...patch, '```'],
+      [
+        'await fs.writeFile(`a.txt`, require(`diff`).applyPatch((await fs.readFile(`a.txt`)).toString(), `' +
+          patch.join('\n') +
+          '`));',
+      ],
+    );
+  });
+
+  it('interpolates upper-cased environment variables while applying patch diffs', () => {
+    process.env.PROJECT_NAME = 'my_project';
+    const patch = [
+      'Index: PROJECT_NAME.txt',
+      '===================================================================',
+      '--- PROJECT_NAME.txt',
+      '+++ PROJECT_NAME.txt',
+      '@@ -1,3 +1,4 @@',
+      'This is',
+      'some',
+      '+PROJECT_NAME',
+      'content.',
+    ];
+    const sanitized = [
+      "Index: ` + (process.env.PROJECT_NAME || 'PROJECT_NAME') + `.txt",
+      '===================================================================',
+      "--- ` + (process.env.PROJECT_NAME || 'PROJECT_NAME') + `.txt",
+      "+++ ` + (process.env.PROJECT_NAME || 'PROJECT_NAME') + `.txt",
+      '@@ -1,3 +1,4 @@',
+      'This is',
+      'some',
+      "+` + (process.env.PROJECT_NAME || 'PROJECT_NAME') + `",
+      'content.',
+    ];
+
+    assertCodeBlocks(
+      ['```diff', ...patch, '```'],
+      [
+        "await fs.writeFile(`` + (process.env.PROJECT_NAME || 'PROJECT_NAME') + `.txt`, require(`diff`).applyPatch((await fs.readFile(`` + (process.env.PROJECT_NAME || 'PROJECT_NAME') + `.txt`)).toString(), `" +
+          sanitized.join('\n') +
+          '`));',
       ],
     );
   });
