@@ -77,6 +77,36 @@ foo: bar
 ```
 ````
 
+### Prompting for input
+
+There is a `prompt` helper that allows you to ask for user input and directly
+store the result in an environment variable. Should the variable already exist,
+the prompt will be skipped, which is useful for automatically running scripts.
+
+Under the hood, it uses the [prompts] package. Please refer to its documentation
+for all the ways to inquire for input.
+
+[prompts]: https://www.npmjs.com/package/prompts
+
+````markdown
+Choose a project name:
+
+```typescript
+const projectNameRegex = /^[a-z][a-z\d_]+$/;
+const projectNameMessage =
+  'Project names must start with a letter ' +
+  'and contain lower case letters, numbers and underscores only.';
+
+await prompt('PROJECT_NAME', {
+  type: 'text',
+  message: 'Choose a project name:',
+  validate: (name) =>
+    !projectNameRegex.test(name) ? projectNameMessage : true,
+});
+```
+````
+
+`````markdown
 ### Environment variable interpolation
 
 Environment variables are inherited to scripts and can be set within scripts by
@@ -105,6 +135,9 @@ Create a config file;
 title: 'PROJECT_NAME'
 ```
 ````
+`````
+
+`````
 
 ### Patching files
 
@@ -132,3 +165,4 @@ Index: original.ts
 ````
 
 [zx]: https://github.com/google/zx
+`````
