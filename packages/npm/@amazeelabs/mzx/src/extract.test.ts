@@ -56,6 +56,20 @@ describe('extractCodeBlocks', () => {
     );
   });
 
+  it('does not execute typescript codeblocks with file annotations', () => {
+    assertCodeBlocks(
+      [
+        '# Hello there!',
+        '',
+        '```typescript',
+        '# |-> test.ts',
+        'console.log("Hello world");',
+        '```',
+      ],
+      ['await fs.writeFile(`test.ts`, `console.log("Hello world");`);'],
+    );
+  });
+
   it('interpolates upper-cased environment variables into files and filenames', () => {
     process.env.PROJECT_NAME = 'my_project';
     assertCodeBlocks(
