@@ -21,12 +21,7 @@ export async function mzx(zx: () => void) {
     .action(async (file) => {
       const content = (await readFileSync(file)).toString();
       const processed = extractCodeBlocks(content);
-      process.argv = [
-        ...process.argv.slice(0, 2),
-        '--install',
-        '-e',
-        processed,
-      ];
+      process.argv = [...process.argv.slice(0, 2), '-e', processed];
       zx();
     });
 
