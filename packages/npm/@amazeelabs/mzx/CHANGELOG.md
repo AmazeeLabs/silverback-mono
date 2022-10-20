@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/mzx@1.1.0...@amazeelabs/mzx@1.2.0) (2022-10-20)
+
+### Bug Fixes
+
+- **mzx:** do not execute typescript blocks that are written to files
+  ([bd43136](https://github.com/AmazeeLabs/silverback-mono/commit/bd4313618d4b8642cd1e773f7476da7bc3bfaec6))
+
+### Features
+
+- **mzx:** prompts with env-variable integration
+  ([c121633](https://github.com/AmazeeLabs/silverback-mono/commit/c121633ed8d4cfa915545c2d60e3803106242ca7))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # 1.1.0 (2022-10-18)
 
 ### Bug Fixes
