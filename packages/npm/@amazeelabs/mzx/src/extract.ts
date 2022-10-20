@@ -2,25 +2,6 @@ import { Code, Content } from 'mdast';
 import remarkParse from 'remark-parse';
 import { unified } from 'unified';
 
-type BlockHandler = (input: CodeBlock) => CodeBlock | undefined;
-
-const handlers: Record<string, BlockHandler> = {
-  shell: (input: CodeBlock) => {
-    if (['shell'].includes(input.lang)) {
-      return {
-        lang: `typescript`,
-        content: input.content
-          .split('\n')
-          .map((line) => `await $\`${line}\`;`)
-          .join('\n'),
-      };
-    }
-    return undefined;
-  },
-  typescript: (input: CodeBlock) =>
-    input.lang === 'typescript' ? input : undefined,
-};
-
 const sanitize = (input: string) => {
   return input
     .replaceAll('`', '\\`')
@@ -30,9 +11,41 @@ const sanitize = (input: string) => {
 export function preprocess(input: Array<CodeBlock>) {
   return input
     .map((block) => {
+      // Search for `|-> [filename]` patterns. In this case, the code block
+      // should be written to a file instead of being executed.
+      const fileMatches = [
+        ...block.content.matchAll(/([|>])->\s([^\s]+).*?\n?/gs),
+      ];
+
+      if (fileMatches.length === 1) {
+        const content = block.content.replace(/.*?[|>]->.*\n*/g, '');
+        const targetFile = fileMatches[0][2];
+        return {
+          lang: 'typescript',
+          content: `await fs.writeFile(\`${sanitize(
+            targetFile,
+          )}\`, \`${sanitize(content)}\`);`,
+        };
+      }
+
+      // A typescript block is returned as-is to be executed.
       if (block.lang === `typescript`) {
         return block;
       }
+
+      // Shell blocks are transformed into a typescript block with an awaited
+      // statement for each line in the command.
+      if (block.lang === 'shell') {
+        return {
+          lang: `typescript`,
+          content: block.content
+            .split('\n')
+            .map((line) => `await $\`${line}\`;`)
+            .join('\n'),
+        };
+      }
+
+      // Diff blocks try to patch the target file.
       if (block.lang === 'diff') {
         const diffMatches = [
           ...block.content.matchAll(/Index:\s(.+)\n=+\n?/gs),
@@ -52,25 +65,12 @@ export function preprocess(input: Array<CodeBlock>) {
           )}\`)).toString(), \`${sanitize(block.content)}\`));`,
         };
       }
-      const fileMatches = [
-        ...block.content.matchAll(/([|>])->\s([^\s]+).*?\n?/gs),
-      ];
-      if (fileMatches.length === 0) {
-        return block;
-      }
 
-      const content = block.content.replace(/.*?[|>]->.*\n*/g, '');
-      const targetFile = fileMatches[0][2];
-      return {
-        lang: 'typescript',
-        content: `await fs.writeFile(\`${sanitize(targetFile)}\`, \`${sanitize(
-          content,
-        )}\`);`,
-      };
+      // If nothing matches, return undefined so the block is ignored during
+      // execution;
+      return undefined;
     })
-    .filter(isDefined)
-    .filter((block) => !!handlers[block.lang])
-    .map((block) => handlers[block.lang](block));
+    .filter(isDefined);
 }
 
 function isCodeBlock(content: Content): content is Code & { lang: string } {
