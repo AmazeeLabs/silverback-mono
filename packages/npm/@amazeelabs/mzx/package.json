@@ -13,6 +13,7 @@
   "dependencies": {
     "commander": "^9.4.1",
     "diff": "^5.1.0",
+    "fs-extra": "^10.1.0",
     "remark-parse": "^10.0.1",
     "unified": "^10.1.2",
     "zx": "^7.1.1"

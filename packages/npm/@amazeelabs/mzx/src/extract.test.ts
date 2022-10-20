@@ -102,11 +102,7 @@ describe('extractCodeBlocks', () => {
     ];
     assertCodeBlocks(
       ['```diff', ...patch, '```'],
-      [
-        'await fs.writeFile(`a.txt`, require(`diff`).applyPatch((await fs.readFile(`a.txt`)).toString(), `' +
-          patch.join('\n') +
-          '`));',
-      ],
+      ['await patchFile(`a.txt`, `' + patch.join('\n') + '`);'],
     );
   });
 
@@ -138,9 +134,9 @@ describe('extractCodeBlocks', () => {
     assertCodeBlocks(
       ['```diff', ...patch, '```'],
       [
-        "await fs.writeFile(`` + (process.env.PROJECT_NAME || 'PROJECT_NAME') + `.txt`, require(`diff`).applyPatch((await fs.readFile(`` + (process.env.PROJECT_NAME || 'PROJECT_NAME') + `.txt`)).toString(), `" +
+        "await patchFile(`` + (process.env.PROJECT_NAME || 'PROJECT_NAME') + `.txt`, `" +
           sanitized.join('\n') +
-          '`));',
+          '`);',
       ],
     );
   });

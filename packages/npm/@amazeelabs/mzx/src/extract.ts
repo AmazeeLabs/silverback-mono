@@ -51,19 +51,14 @@ export function preprocess(input: Array<CodeBlock>) {
           ...block.content.matchAll(/Index:\s(.+)\n=+\n?/gs),
         ];
 
-        if (diffMatches.length === 0) {
-          return block;
+        if (diffMatches.length === 1) {
+          const file = sanitize(diffMatches[0][1]);
+          const patch = sanitize(block.content);
+          return {
+            lang: 'typescript',
+            content: `await patchFile(\`${file}\`, \`${patch}\`);`,
+          };
         }
-
-        const file = diffMatches[0][1];
-        return {
-          lang: 'typescript',
-          content: `await fs.writeFile(\`${sanitize(
-            file,
-          )}\`, require(\`diff\`).applyPatch((await fs.readFile(\`${sanitize(
-            file,
-          )}\`)).toString(), \`${sanitize(block.content)}\`));`,
-        };
       }
 
       // If nothing matches, return undefined so the block is ignored during
