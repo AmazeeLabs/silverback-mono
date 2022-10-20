@@ -1,7 +1,17 @@
 # MXZ integration test
 
 ```typescript
-process.env.PROJECT_NAME = 'test_project';
+const projectNameRegex = /^[a-z][a-z\d_]+$/;
+const projectNameMessage =
+  'Project names must start with a letter ' +
+  'and contain lower case letters, numbers and underscores only.';
+
+await prompt('PROJECT_NAME', {
+  type: 'text',
+  message: 'Choose a project name:',
+  validate: (name) =>
+    !projectNameRegex.test(name) ? projectNameMessage : true,
+});
 ```
 
 ```typescript
@@ -32,7 +42,7 @@ Let's verify the file is there.
 
 ```typescript
 const config = await $`cat config.yml`;
-if (!/test_project/.test(config.stdout)) {
+if (!/title/.test(config.stdout)) {
   await $`echo "Config file was not created."`;
   await $`exit 1`;
 }
