@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/mzx@1.2.0...@amazeelabs/mzx@1.2.1) (2022-10-20)
+
+### Bug Fixes
+
+- **mzx:** don't auto install script dependencies
+  ([d813b26](https://github.com/AmazeeLabs/silverback-mono/commit/d813b26b2752c1500bb4488b62a6406cb3f02406))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/mzx@1.1.0...@amazeelabs/mzx@1.2.0) (2022-10-20)
 
 ### Bug Fixes
