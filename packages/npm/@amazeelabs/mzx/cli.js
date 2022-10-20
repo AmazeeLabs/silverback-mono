@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-import { mzx } from './dist/index.js';
+import { helpers, mzx } from './dist/index.js';
 
 mzx(() => {
+  Object.assign(global, helpers);
   import('zx/cli');
 })
   .then(() => undefined)
