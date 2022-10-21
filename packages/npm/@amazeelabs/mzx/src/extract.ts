@@ -4,6 +4,8 @@ import { unified } from 'unified';
 
 const sanitize = (input: string) => {
   return input
+    .replaceAll('\\', '\\\\')
+    .replaceAll('$', '\\$')
     .replaceAll('`', '\\`')
     .replaceAll(/([A-Z][A-Z_]+)/g, "` + (process.env.$1 || '$1') + `");
 };

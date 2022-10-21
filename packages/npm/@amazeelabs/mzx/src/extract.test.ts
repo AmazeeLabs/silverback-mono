@@ -63,10 +63,28 @@ describe('extractCodeBlocks', () => {
         '',
         '```typescript',
         '# |-> test.ts',
-        'console.log("Hello world");',
+        'console.log(`Hello world\\n`);',
         '```',
       ],
-      ['await fs.writeFile(`test.ts`, `console.log("Hello world");`);'],
+      [
+        'await fs.writeFile(`test.ts`, `console.log(\\`Hello world\\\\n\\`);`);',
+      ],
+    );
+  });
+
+  it('does not break when writing github actions', () => {
+    assertCodeBlocks(
+      [
+        '# Hello there!',
+        '',
+        '```typescript',
+        '# |-> action.yml',
+        'something: ${{ github.token }}',
+        '```',
+      ],
+      [
+        `await fs.writeFile(\`action.yml\`, \`something: \\\${{ github.token }}\`);`,
+      ],
     );
   });
 

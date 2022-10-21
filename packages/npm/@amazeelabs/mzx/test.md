@@ -36,6 +36,12 @@ We write a file.
 ```yaml
 # |-> config.yml
 title: 'PROJECT_NAME'
+token: ${{ github.token }}
+```
+
+```typescript
+// |-> foo.ts
+const x = `PROJECT_${'NAME'}\n`;
 ```
 
 Let's verify the file is there.
