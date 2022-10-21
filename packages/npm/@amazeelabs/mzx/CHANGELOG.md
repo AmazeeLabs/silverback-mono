@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/mzx@1.2.1...@amazeelabs/mzx@1.2.2) (2022-10-21)
+
+### Bug Fixes
+
+- **mzx:** fix typescript special characters in files
+  ([aa5715b](https://github.com/AmazeeLabs/silverback-mono/commit/aa5715b1f2f9d4558ad43f182f1efef739ba0423))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/mzx@1.2.0...@amazeelabs/mzx@1.2.1) (2022-10-20)
 
 ### Bug Fixes
