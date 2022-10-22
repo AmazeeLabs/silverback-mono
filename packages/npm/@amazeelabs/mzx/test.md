@@ -33,14 +33,12 @@ cd(process.env.PROJECT_NAME);
 
 We write a file.
 
-```yaml
-# |-> config.yml
+```yaml title="./config.yml"
 title: 'PROJECT_NAME'
 token: ${{ github.token }}
 ```
 
-```typescript
-// |-> foo.ts
+```typescript title="./foo.ts"
 const x = `PROJECT_${'NAME'}\n`;
 ```
 
@@ -56,8 +54,7 @@ if (!/title/.test(config.stdout)) {
 
 Create another file.
 
-```text
-|-> PROJECT_NAME.txt
+```text title="./PROJECT_NAME.txt"
 "This is"
 `some`
 content.
