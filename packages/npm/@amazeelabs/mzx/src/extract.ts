@@ -13,20 +13,18 @@ const sanitize = (input: string) => {
 export function preprocess(input: Array<CodeBlock>) {
   return input
     .map((block) => {
-      // Search for `|-> [filename]` patterns. In this case, the code block
+      // Search for `title="./[...]"` patterns. In this case, the code block
       // should be written to a file instead of being executed.
-      const fileMatches = [
-        ...block.content.matchAll(/([|>])->\s([^\s]+).*?\n?/gs),
-      ];
+      const fileMatches = block.meta?.matchAll(/title="\.\/([^\s]+)".*?/g);
 
-      if (fileMatches.length === 1) {
-        const content = block.content.replace(/.*?[|>]->.*\n*/g, '');
-        const targetFile = fileMatches[0][2];
+      const match = fileMatches?.next();
+      if (match && match.value) {
+        const targetFile = match.value[1];
         return {
           lang: 'typescript',
           content: `await fs.writeFile(\`${sanitize(
             targetFile,
-          )}\`, \`${sanitize(content)}\`);`,
+          )}\`, \`${sanitize(block.content)}\`);`,
         };
       }
 
@@ -79,6 +77,7 @@ function isDefined<T extends any>(input: T | undefined): input is T {
 }
 
 export type CodeBlock = {
+  meta?: string;
   lang: string;
   content: string;
 };
@@ -86,10 +85,13 @@ export type CodeBlock = {
 export function extractCodeBlocks(input: string): string {
   const root = unified().use(remarkParse).parse(input);
   return preprocess(
-    root.children.filter(isCodeBlock).map((block) => ({
-      lang: block.lang,
-      content: block.value,
-    })),
+    root.children.filter(isCodeBlock).map((block) => {
+      return {
+        meta: block.meta || undefined,
+        lang: block.lang,
+        content: block.value,
+      };
+    }),
   )
     .filter(isDefined)
     .map((block) => block.content)

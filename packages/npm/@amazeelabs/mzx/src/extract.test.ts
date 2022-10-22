@@ -46,8 +46,7 @@ describe('extractCodeBlocks', () => {
       [
         '# Hello there!',
         '',
-        '```yaml',
-        '# |-> config/test.yaml',
+        '```yaml title="./config/test.yaml"',
         'foo: bar',
         'bar: baz',
         '```',
@@ -61,8 +60,7 @@ describe('extractCodeBlocks', () => {
       [
         '# Hello there!',
         '',
-        '```typescript',
-        '# |-> test.ts',
+        '```typescript title="./test.ts"',
         'console.log(`Hello world\\n`);',
         '```',
       ],
@@ -77,8 +75,7 @@ describe('extractCodeBlocks', () => {
       [
         '# Hello there!',
         '',
-        '```typescript',
-        '# |-> action.yml',
+        '```typescript title="./action.yml"',
         'something: ${{ github.token }}',
         '```',
       ],
@@ -94,8 +91,7 @@ describe('extractCodeBlocks', () => {
       [
         '# Hello there!',
         '',
-        '```yaml',
-        '# |-> config/PROJECT_NAME.yaml',
+        '```yaml title="./config/PROJECT_NAME.yaml"',
         'foo: bar',
         'bar: PROJECT_NAME',
         '```',
