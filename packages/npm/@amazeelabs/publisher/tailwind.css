@@ -20,6 +20,10 @@ custom element.
     @apply font-alt border border-yellow-500 bg-yellow-500 mr-4 cursor-pointer px-6 md:px-8 py-3.5 rounded-md text-xs font-bold uppercase hover:bg-yellow-600 hover:border-yellow-600 transition focus:bg-gray-200 focus:text-yellow-500 active:bg-gray-200 active:text-yellow-500 focus:outline-none;
 }
 
+.button-secondary {
+    @apply font-alt border border-yellow-500 bg-gray-200 text-yellow-500 mr-4 cursor-pointer px-6 md:px-8 py-3.5 rounded-md text-xs font-bold uppercase hover:bg-black transition focus:bg-black active:bg-black focus:outline-none;
+}
+
 .pre-container pre {
     @apply leading-4 bg-origin-content px-2.5 text-justify mt-2 py-4;
     background: linear-gradient(180deg, #e8edf1 0, #e8edf1 16px, #f9fafb 0);
