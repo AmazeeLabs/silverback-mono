@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.28.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.27.0...@-amazeelabs/silverback_gatsby@1.28.0) (2022-10-24)
+
+### Features
+
+- **gatsby:** write javascript-cookie for login status
+  ([a16ac67](https://github.com/AmazeeLabs/silverback-mono/commit/a16ac678d6abb42ad80b43b614816935749d00c8))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.27.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.26.1...@-amazeelabs/silverback_gatsby@1.27.0) (2022-10-24)
 
 ### Features
