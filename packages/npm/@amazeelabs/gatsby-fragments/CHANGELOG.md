@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-fragments@1.1.10...@amazeelabs/gatsby-fragments@1.1.11) (2022-10-24)
+
+### Bug Fixes
+
+- **gatsby:** make fragment generation a esm-tool
+  ([5e5858d](https://github.com/AmazeeLabs/silverback-mono/commit/5e5858dfbea31cc5e7ef47dae1fb8fad7542e089))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.10](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-fragments@1.1.9...@amazeelabs/gatsby-fragments@1.1.10) (2022-10-18)
 
 ### Bug Fixes
