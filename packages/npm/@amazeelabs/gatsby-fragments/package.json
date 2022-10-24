@@ -3,11 +3,11 @@
   "version": "1.1.12",
   "description": "Generates fragment.ts files from .gql files to append vendor prefix.",
   "author": "Amazee Labs",
-  "main": "index.js",
-  "type": "module",
+  "main": "index.cjs",
+  "type": "commonjs",
   "license": "MIT",
   "private": false,
-  "bin": "./cli.js",
+  "bin": "./cli.cjs",
   "publishConfig": {
     "access": "public"
   },

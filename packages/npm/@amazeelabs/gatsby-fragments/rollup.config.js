@@ -5,12 +5,8 @@ import typescript from '@rollup/plugin-typescript';
 export default {
   input: 'src/index.ts',
   output: {
-    file: 'index.js',
-    format: 'esm',
+    file: 'index.cjs',
+    format: 'commonjs',
   },
-  plugins: [
-    nodeResolve({ preferBuiltins: true }),
-    typescript(),
-    commonjs(),
-  ],
+  plugins: [nodeResolve({ preferBuiltins: true }), typescript(), commonjs()],
 };
