@@ -2,6 +2,7 @@
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\silverback_gatsby\Plugin\Gatsby\Feed\EntityFeed;
+use Drupal\user\UserInterface;
 
 
 function _silverback_gatsby_entity_event(EntityInterface $entity) {
@@ -61,5 +62,17 @@ function silverback_gatsby_entity_type_alter(array &$entity_types) {
         );
       }
     }
+  }
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function silverback_gatsby_user_login(UserInterface $account) {
+  // Write a javascript-accessible cookie that tells the frontend if the user is
+  // authenticated, so it can make additional requests based on that information.
+  $opts = \Drupal::getContainer()->getParameter('session.storage.options');
+  if (isset($opts['cookie_domain'])) {
+    setcookie('drupal_user', $account->id(), 0, '/', $opts['cookie_domain'], false, false);
   }
 }
