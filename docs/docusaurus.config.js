@@ -10,7 +10,8 @@ const config = {
   tagline: "the way of the mountain goat",
   url: "https://technology.amazeelabs.com",
   baseUrl: "/",
-  onBrokenLinks: "throw",
+  // TODO: set to throw when docs are rewritten
+  onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
 
