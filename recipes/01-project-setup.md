@@ -40,15 +40,13 @@ cd(process.env.PROJECT_NAME);
 Store Node.js version in `.npmrc` file. This makes [pnpm] use it for all
 processes.
 
-```text
-# |-> .npmrc
+```text title="./.npmrc"
 use-node-version=16.18.0
 ```
 
 Initiate an empty pnpm workspaces package.
 
-```text
-|-> package.json
+```json title="./package.json"
 {
   "name": "PROJECT_NAME",
   "private": true
@@ -83,8 +81,7 @@ pnpm add -O @commitlint/{cli,config-conventional}
 
 We also have to add the [commitlint] configuration to package.json
 
-```yaml
-# |-> .commitlintrc.yaml
+```yaml title="./commitlintrc.yaml"
 extends: ['@commitlint/config-conventional']
 ```
 
@@ -136,8 +133,7 @@ pnpm postinstall
 We do not want the `node_modules` directory in the git repository, so we create
 a `.gitignore` file to ignore it.
 
-```ignore
-# |-> .gitignore
+```ignore title="./.gitignore"
 node_modules
 ```
 
@@ -169,8 +165,7 @@ multiple [npm] packages within the same repository and connect them to each
 other. All we have to do is to drop a `pnpm-workspace.yaml` in our project
 directory.
 
-```yaml
-# |-> pnpm-workspace.yaml
+```yaml title="./pnpm-workspace.yaml"
 packages:
   - apps/**
   - packages/**
@@ -207,8 +202,7 @@ pnpm add -O -w prettier @prettier/plugin-php
 
 We also need to add a configuration file to the project root.
 
-```javascript
-// |-> .prettierrc.js
+```javascript title="./.prettierrc.js"
 module.exports = {
   singleQuote: true,
   trailingComma: 'all',
@@ -224,8 +218,7 @@ module.exports = {
 Let's test formatting of a Typescript file. The configuration file above defines
 that we should prefer single quotes.
 
-```text
-// |-> test.ts
+```text title="./test.ts"
 "Hello, world!";
 ```
 
@@ -241,9 +234,8 @@ if ((await fs.readFile('test.ts', 'utf8')) !== "'Hello, world!';\n") {
 
 Now let's do the same with a PHP file.
 
-```php
+```php title="./test.php"
 <?php
-// |-> test.php
 "Hello, world!";
 ```
 
@@ -279,8 +271,7 @@ pnpm add -O -w eslint eslint-config-prettier eslint-plugin-no-only-tests eslint-
 
 And again, we need a configuration file with a set oft sensible presets.
 
-```javascript
-// |-> .eslintrc.js
+```javascript title="./.eslintrc.js"
 module.exports = {
   env: {
     browser: true,
@@ -342,8 +333,7 @@ ESLint can report violations while statically testing, but also fix some of them
 for us. Let's test that. Create a simple typescript file with fake imports that
 violate the import sorting rules.
 
-```typescript
-// |-> test.ts
+```typescript title="./test.ts"
 import x from './b';
 import y from 'a';
 ```
@@ -402,9 +392,7 @@ pnpm add -O -w lint-staged
 Add a configuration file for [lint-staged] that runs eslint and prettier on all
 staged files and attempts to fix any violations.
 
-```javascript
-// |-> lint-staged.config.js
-
+```javascript title="./lint-staged.config.js"
 // Files that should be linted.
 const eslintPattern = /.*\.(ts|js|tsx|jsx)$/;
 // Files that should be formatted.
@@ -428,14 +416,16 @@ git commit -m "chore: install and configure lint-staged"
 
 To test if it works correctly, we add two files that contain formatting errors.
 
-```text
-// |-> a.ts
-export function a() { return "a";}
+```typescript title="./a.ts"
+export function a() {
+  return 'a';
+}
 ```
 
-```text
-// |-> b.ts
-export function b() { return "b";}
+```typescript title="./b.ts"
+export function b() {
+  return 'b';
+}
 ```
 
 We stage only one of them.
@@ -502,8 +492,7 @@ There we find the central `schema.graphqls`, which describes the schema acts as
 the central point of documentation and type definition for the whole project.
 There we define the first fundamental datatype - the `Account` .
 
-```graphql
-# |-> graphql/schema.graphqls
+```graphql title="./graphql/schema.graphqls"
 type Query {
   # Retrieve the currently logged in account.
   currentAccount: Account
@@ -535,8 +524,7 @@ provide type definitions.
 We create our first fragment that fetches all information about the current user
 account, aptly named `AccountInfo`.
 
-```graphql
-# |-> graphql/fragments/Account.gql
+```graphql title="./graphql/fragments/Account.gql"
 fragment AccountInfo on Account {
   id
   name
@@ -546,8 +534,7 @@ fragment AccountInfo on Account {
 
 This fragment is used by the first operations.
 
-```graphql
-# |-> graphql/operations/Account.gql
+```graphql title="./graphql/operations/Account.gql"
 query AccountStatus {
   currentAccount {
     ...AccountInfo
@@ -588,8 +575,7 @@ await fs.mkdirp('packages/schema');
 cd('packages/schema');
 ```
 
-```json
-// |-> package.json
+```json title="./package.json"
 {
   "name": "@PROJECT_NAME/schema",
   "description": "Generated GraphQL schema",
@@ -607,8 +593,7 @@ pnpm add -D @graphql-codegen/{cli,typescript,typescript-operations} graphql type
 The `codegen.yml` configuration file defines files that we want to generate and
 their inputs.
 
-```yaml
-# |-> codegen.yml
+```yaml title="./codegen.yml"
 schema: ../../graphql/schema.graphqls
 documents: ../../graphql/**/*.gql
 generates:
@@ -705,8 +690,7 @@ Now we can create our first pipelines in `turbo.json`. This file is
 - `test:integration`: Slow running integration tests that actually start the
   application.
 
-```json
-// |-> turbo.json
+```json title="./turbo.json"
 {
   "$schema": "https://turborepo.org/schema.json",
   "pipeline": {
@@ -820,8 +804,7 @@ git commit -m "feat: add turbo build pipeline"
 [renovate] is going to regularly update our project dependencies. We initiate
 that by simply dropping this configuration file into the repository root.
 
-```json5
-// |-> renovate.json5
+```json5 title="./renovate.json5"
 {
   extends: [':ignoreModulesAndTests', 'helpers:disableTypesNodeMajor'],
 
@@ -930,9 +913,7 @@ a template that will remind everybody about this.
 mkdir -p .github
 ```
 
-```markdown
-|-> .github/pull_request_template.md
-
+```markdown title="./.github/pull_request_template.md"
 ## Description of changes
 
 <!-- a brief summary of your code changes -->
@@ -968,8 +949,7 @@ mkdir -p .github/actions/setup
 mkdir -p .github/workflows
 ```
 
-```yaml
-# |-> .github/actions/setup/action.yml
+```yaml title="./.github/actions/setup/action.yml"
 name: 'Setup'
 description: 'Common setup steps for GitHub Actions'
 runs:
@@ -1011,8 +991,7 @@ always contains the latest version for internal testing. It will install all
 dependencies and then run the `test` script which invokes [turborepo] to build
 the required packages and run all tests.
 
-```yaml
-# |-> .github/workflows/test.yml
+```yaml title="./.github/workflows/test.yml"
 name: Test
 on:
   pull_request:
@@ -1047,8 +1026,7 @@ this deployment window should be adjusted according to their needs.
 
 The new workflow file has to look like this:
 
-```yaml
-# |-> .github/workflows/release.yml
+```yaml title="./.github/workflows/release.yml"
 name: Release
 on:
   workflow_dispatch:
@@ -1088,8 +1066,7 @@ At this point we don't have any applications in our repository, but we can
 already prepare the `builder` image, which acts as a base for all other images
 and reduces duplication of docker layers.
 
-```yaml
-# |-> docker-compose.yml
+```yaml title="./docker-compose.yml"
 version: '2.3'
 
 x-environment: &default-environment
@@ -1124,7 +1101,7 @@ dependencies when the `pnpm-lock.yaml` changes.
 mkdir -p .lagoon
 ```
 
-```dockerfile
+```dockerfile title="./.lagoon/builder.Dockerfile"
 # This container will be used as a base image to de-duplicate layers.
 FROM uselagoon/node-16-builder
 
@@ -1162,8 +1139,7 @@ Index: package.json
 The docker image already has a built in node version, and it does not like when
 pnpm attempts to switch it, so we ignore the `.npmrc` file.
 
-```ignore
-# |-> .dockerignore
+```ignore title="./.dockerignore"
 .npmrc
 ```
 
