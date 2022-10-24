@@ -1,0 +1,316 @@
+---
+title: Tech stack
+path: /gatsby/tech-stack
+nav: Gatsby
+position: 1
+---
+
+# Tech stack
+
+Decide which package to use for a specific functionality is often hard. You need
+to take into account a lot of different aspect, like:
+
+- is it easy to use for other developers?
+- is it reliable?
+- is it actively maintained?
+- is it well documented?
+
+Here you'll find a list of battle-tested libraries that have already been used
+on our projects. But remember, no package is universal, and you might end up
+using a new one. Just ask yourself the questions above, and if the answer is
+yes, open a pull request to add the new library to this documentation, so we can
+have a discussion about integrating it in our stack.
+
+You can use these websites to get different indicators, like popularity,
+quality, stars or download count. Is then up to you to pick the right one for
+your purpose.
+
+- [npm](https://www.npmjs.com/)
+- [Openbase](https://openbase.com/)
+
+## Forbidden
+
+These packages have been tried and we decided not to use them.
+
+- `tsconfig-paths`: Typescript allows defining path aliases in `tsconfig.json`
+  that helps to load typings with aliases. With plugins for webpack and jest
+  its even possible to have full package aliases to avoid ugly imports like
+  `../../../hooks` or similar. Imports are managed by the IDE anyway and
+  integrations for all build systems are a heavy burden.
+
+## Defaults
+
+Packages under this section should be considered default packages, as we've used
+them in pretty much every project. Those are installed by default when you kick
+off a project with Silverback. Remember to remove the packages you don't use
+before going live.
+
+### [`tailwindcss`](https://github.com/tailwindlabs/tailwindcss)
+
+**Description**: A utility-first CSS framework for rapid UI development.
+
+**Features**:
+
+- Utility first
+- Responsive Design
+- Hover, focus and states
+- Highly configurable
+- Plugginable
+- Themable
+
+### [`react-intl`](https://formatjs.io/docs/getting-started/installation/)
+
+**Description**: react-intl has a set of [React components](https://formatjs.io/docs/react-intl/components) that provide a declarative way to setup an i18n context and format dates, numbers, and strings for display in a web UI.
+
+**Features**:
+
+- Use [`format.js`](https://formatjs.io/) under the hood
+- Backed by Yahoo
+- Supports more than 150 languages globally
+- Uses the React context and higher-order components
+- Easy to use react components
+- Use arguments in your translated text
+- Localize date, time, numbers and currencies to different locales
+- Pluralization
+
+### [`classnames`](https://github.com/JedWatson/classnames)
+
+**Description**: A simple JavaScript utility for conditionally joining
+classNames together.
+
+**Features**: Express the conditional classes more simply as an object, array or
+a mix of the two.
+
+### [`react-body-classname`](https://github.com/iest/react-body-classname)
+
+**Description**: Declarative, nested, stateful, isomorphic `body.className` for
+React.
+
+**Features**: Provides a declarative way to specify `document.body.className` in
+your react app. Supports server-side usage too.
+
+### [`react-helmet`](https://github.com/nfl/react-helmet)
+
+**Description**: A document head manager for React.
+
+**Features**:
+
+- Supports all valid head tags: title, base, meta, link, script, noscript, and
+  style tags.
+- Supports attributes for body, html and title tags.
+- Supports server-side rendering.
+- Nested components override duplicate head changes.
+- Duplicate head changes are preserved when specified in the same component
+  (support for tags like "apple-touch-icon").
+- Callback for tracking DOM changes.
+
+### [`query-string`](https://github.com/sindresorhus/query-string)
+
+**Description**: Parse and stringify URL query strings
+
+### [`date-fns`](https://github.com/date-fns/date-fns)
+
+**Description**: Provides the most comprehensive, yet simple and consistent
+toolset for manipulating JavaScript dates in a browser & Node.js.
+
+**Features**:
+
+- It has 180+ functions for all occasions.
+- Modular: Pick what you need. Works with webpack, Browserify, or Rollup and
+  also supports tree-shaking.
+- Native dates: Uses existing native type. It doesn't extend core objects for
+  safety's sake.
+- Immutable & Pure: Built using pure functions and always returns a new date
+  instance.
+- TypeScript & Flow: Supports both Flow and TypeScript
+- I18n: Dozens of locales. Include only what you need.
+
+### [`he`](https://github.com/mathiasbynens/he)
+
+**Description**: A robust HTML entity encoder/decoder written in JavaScript.
+
+**Features**: Robust HTML entity encoder/decoder written in JavaScript. It
+supports all standardized named character references as per HTML, handles
+ambiguous ampersands and other edge cases just like a browser would, has an
+extensive test suite, and — contrary to many other JavaScript solutions — `he`
+handles astral Unicode symbols just fine.
+
+## UI libraries
+
+### [`@headlessui/react`](https://github.com/tailwindlabs/headlessui/tree/main/packages/%40headlessui-react)
+
+**Description**: Completely unstyled, fully accessible UI components, designed to integrate beautifully with Tailwind CSS.
+
+**Features**:
+
+- Transition component
+- Menu/Dropdown
+- Listbox/Select
+- Switch/Toggle
+
+## Fetching data
+
+### [`graphql-code-generator`](https://github.com/dotansimha/graphql-code-generator)
+
+**Description**: GraphQL Code Generator is a tool that generates code out of
+your GraphQL schema. Whether you are developing a frontend or backend, you can
+utilize GraphQL Code Generator to generate output from your GraphQL Schema and
+GraphQL Documents (query/mutation/subscription/fragment).
+
+**Features**:
+
+- Generate code from your GraphQL schema and GraphQL operations with a single function call regardless of your environment or code format
+- Watch for changes in your GraphQL schema and operations, and automatically generate code as you go. Codegen easily integrates into your development workflow
+- Allow you to easily customize the output, and add custom behaviour according to your needs
+- Generate resolvers' signatures
+- Dump schemas
+- Model types
+- Query builders
+- React hooks
+
+### [`openapi-generator`](https://github.com/OpenAPITools/openapi-generator)
+
+**Description**: OpenAPI Generator allows generation of API client libraries (SDK generation), server stubs, documentation and configuration automatically given an OpenAPI Spec (v2, v3)
+
+**Features**:
+
+- Generate code to interact with any server which exposes an OpenAPI document
+- Automatically generate and distribute clients as part of official SDKs
+- Supports different options and features, but all templates can be replaced with Mustache-based templates
+- Generate server stubs for 40+ different languages and technologies
+- Convert the metadata about your API into some other format
+- Distribute static documentation to your consumers
+- Generate from OpenAPI 2.0 to newer JSON/YAML OpenAPI 3.x documents
+
+### [`react-query`](https://github.com/tannerlinsley/react-query)
+
+**Description**: Hooks for fetching, caching and updating asynchronous data in
+React.
+
+**Features**:
+
+- Transport/protocol/backend agnostic data fetching (REST, GraphQL, promises,
+  whatever!)
+- Auto Caching + Refetching (stale-while-revalidate, Window Refocus,
+  Polling/Realtime)
+- Parallel + Dependent Queries
+- Mutations + Reactive Query Refetching
+- Multi-layer Cache + Automatic Garbage Collection
+- Paginated + Cursor-based Queries
+- Load-More + Infinite Scroll Queries w/ Scroll Recovery
+- Request Cancellation
+- React Suspense + Fetch-As-You-Render Query Prefetching
+
+### [`isomorphic-fetch`](https://github.com/matthew-andrews/isomorphic-fetch)
+
+**Description**: Fetch for node and Browserify. Built on top of
+[GitHub's WHATWG Fetch polyfill](https://github.com/github/fetch).
+
+**Features**: The Fetch API is currently not implemented consistently across
+browsers. This module will enable you to use fetch in your Node code in a
+cross-browser compliant fashion. The Fetch API is part of the Web platform API
+defined by the standards bodies WHATWG and W3C.
+
+## Forms
+
+### [`formik`](https://github.com/formium/formik)
+
+**Description**: Build forms in React, without the tears.
+
+**Features**:
+
+- Form-level Validation
+- Error Messages
+- Wizards and multi-step forms
+- Field-level validation
+- Array Fields
+- API Errors
+- Custom Validation
+- Internationalization (i18n)
+- Auto-saving forms
+- Dependent Validation
+- Conditional Logic
+- Dynamic Fields
+- React Native
+- Tree shakeable
+
+## Maps
+
+### [`google-map-react`](https://github.com/google-map-react/google-map-react)
+
+**Description**: Google map library for react that allows rendering components
+as markers.
+
+**Features**: Render any React component on the Google Map. Fully isomorphic and
+can render on a server. Additionally, it can render map components in the
+browser even if the Google Maps API is not loaded. It uses an internal,
+tweakable hover algorithm - every object on the map can be hovered.
+
+## Sliders
+
+### [`swiper`](https://github.com/nolimits4web/swiper)
+
+**Description**: Most modern mobile touch slider with hardware accelerated
+transitions.
+
+**Features**:
+
+- Tree-shakeable
+- Mobile-friendly
+- Library Agnostic
+- 1:1 Touch movement
+- Mutation Observer
+- Rich API
+- RTL
+- Multi Row Slides Layout
+- Transition Effects
+- Two-way Control
+- Full Navigation Control
+- Flexbox Layout
+- Most Flexible Slides Layout Grid
+- Images Lazy Loading
+- Virtual Slides
+- Loop mode
+- Autoplay
+- Keyboard control
+- Mousewheel control
+- Nested sliders
+- History navigation
+- Hash navigation
+- Breakpoints configuration
+- Accessibility (A11y)
+
+## Headers
+
+### [`headroom.js`](https://github.com/WickyNilliams/headroom.js)
+
+**Description**: Give your pages some headroom. Hide your header until you need
+it.
+
+**Features**: Headroom.js is a lightweight, high-performance JS widget (with no
+dependencies) that allows you to react to the user's scroll.
+
+## Iframes
+
+### [`iframe-resizer-react`](https://github.com/davidjbradshaw/iframe-resizer-react)
+
+**Description**: The official React interface for Iframe-Resizer
+
+**Features**:
+
+- Height and width resizing of the iFrame to content size.
+- Works with multiple and nested iFrames.
+- Domain authentication for cross domain iFrames.
+- Provides a range of page size calculation methods to support complex CSS
+  layouts.
+- Detects changes to the DOM that can cause the page to resize using
+  MutationObserver.
+- Detects events that can cause the page to resize (Window Resize, CSS Animation
+  and Transition, Orientation Change and Mouse events).
+- Simplified messaging between iFrame and host page via postMessage.
+- Fixes in page links in iFrame and supports links between the iFrame and parent
+  page.
+- Provides custom sizing and scrolling methods.
+- Exposes parent position and viewport size to the iFrame.
+- Works with ViewerJS to support PDF and ODF documents.
+- Supports IE 11

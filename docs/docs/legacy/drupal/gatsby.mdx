@@ -1,0 +1,129 @@
+---
+title: Gatsby
+path: /drupal/gatsby
+nav: Drupal
+position: 3
+---
+
+# Gatsby
+
+An example how to connect Gatsby to Drupal via
+[gatsby-graphql-toolkit](https://github.com/gatsbyjs/gatsby-graphql-toolkit).
+
+## What's in the example
+
+- **Drupal:** Manages the content (including content translations and URL
+  aliases) and exposes it via a custom GraphQL schema.
+- **Gatsby Preview:** A website used by editors to preview unpublished content.
+- **Gatsby Site:** A production website serving pre-built static content.
+
+Gatsby Preview and Gatsby Site are the same app. The first one is served with
+`gatsby develop`, so it supports hot reload. The second one uses `gatsby build`
+to produce static files.
+
+Content fetched from Drupal:
+
+- Page and Article content types.
+- Taxonomy tags and media images used on the content.
+
+## Features
+
+- 🚚 Drupal content updates trigger Gatsby Preview refresh and Gatsby Site
+  rebuild.
+- 🚀 Gatsby fetches only the content which was updated since the last build.
+  This is true for both Gatsby Preview and Gatsby Site. You could call this Fast
+  Builds.
+- 🔗 Gatsby knows Drupal's content references. E.g. if a tag label is updated,
+  Gatsby will refetch it and update all pages where it is used.
+
+## How it works
+
+Follow the links to get more technical details.
+
+### Overview
+
+- [apps/silverback-drupal](https://github.com/AmazeeLabs/silverback-mono/tree/development/apps/silverback-drupal#readme)
+  - Provides a custom GraphQL schema via Drupal's GraphQL v4 module.
+  - Uses Drupal's Gatsby module to ping Gatsby Preview refresh and Gatsby Site
+    rebuild.
+- [apps/silverback-gatsby](https://github.com/AmazeeLabs/silverback-mono/tree/development/apps/silverback-gatsby#readme)
+  - Uses gatsby-graphql-toolkit to
+    - transform Drupal's GraphQL schema into Gatsby's GraphQL schema
+    - fetch content (and content changes) from Drupal
+
+### Gatsby Preview
+
+- Serves the site with `gatsby develop`.
+- A POST request to `{gatsbyPreviewUrl}/__refresh` refreshes the content and
+  updates the frontend.
+
+### Gatsby Site
+
+- Locally the site is served with `gatsby build && gatsby serve`.
+- On Lagoon setup it is built in a Lagoon container and then is deployed to
+  Netlify.
+- Both implementations expose `{customAppUrl}/__rebuild` endpoint to re-build
+  the site. The Gatsby data is preserved between the re-runs, so the re-builds
+  are fast.
+
+### How the example setup is tested
+
+See details in
+[apps/silverback-gatsby/test.sh](https://github.com/AmazeeLabs/silverback-mono/blob/development/apps/silverback-gatsby/test.sh).
+
+## How to run Gatsby Site fast builds in production
+
+Options:
+
+- Gatsby Cloud. The example works just fine there.
+- Lagoon + Netlify setup can be found in the example.
+  - Netlify could be replaced with any other static file server, including
+    Lagoon itself.
+- Anything that can run Node.js.
+
+## How to run the example locally
+
+Set up the monorepo locally as described in the
+[readme](https://github.com/AmazeeLabs/silverback-mono#setup-locally).
+
+Prepare (run from the silverback-mono root):
+
+```shell
+cd apps/silverback-drupal
+direnv allow
+composer install
+silverback setup
+
+cd ../..
+
+cd apps/silverback-gatsby
+direnv allow
+yarn codegen
+```
+
+To run Drupal (from `apps/silverback-drupal`):
+
+- Start the server: `drush serve`
+- Login to drupal: `drush uli`
+
+To run Gatsby (from `apps/silverback-gatsby`):
+
+- Preview:
+  - `yarn develop`
+  - Visit [http://localhost:8000/](http://localhost:8000/) to see the site
+  - Visit
+    [http://localhost:8000/\_\_\_graphql](http://localhost:8000/___graphql) to
+    see the GraphQL schema
+- Site:
+  - `yarn fast-builds:serve:local`
+  - Visit [http://localhost:9000/](http://localhost:9000/)
+
+It is not possible to run Gatsby Preview and Gatsby Site in parallel from the
+same directory because they use the same `.cache`. But if you really want to
+make them work together:
+
+- Get a separate clone of silverback-mono.
+- Prepare it.
+- Run Gatsby Site (or Gatsby Preview) from there.
+
+**Have fun!**
