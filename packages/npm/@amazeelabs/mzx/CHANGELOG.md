@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/mzx@1.2.2...@amazeelabs/mzx@1.3.0) (2022-10-24)
+
+### Features
+
+- **mzx:** use docusaurus title annotation for writing files
+  ([13d889e](https://github.com/AmazeeLabs/silverback-mono/commit/13d889ea3b52d5c52a898f70c0c2136609196440))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/mzx@1.2.1...@amazeelabs/mzx@1.2.2) (2022-10-21)
 
 ### Bug Fixes
