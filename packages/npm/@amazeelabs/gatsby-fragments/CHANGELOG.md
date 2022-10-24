@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.13](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-fragments@1.1.12...@amazeelabs/gatsby-fragments@1.1.13) (2022-10-24)
+
+### Bug Fixes
+
+- **gatsby:** make fragment generation a cjs-tool again
+  ([cb7c55f](https://github.com/AmazeeLabs/silverback-mono/commit/cb7c55fadc59aab9033a2018ffb49ef333cb61b6))
+- **gatsby:** make fragment generation a cjs-tool again
+  ([8270b74](https://github.com/AmazeeLabs/silverback-mono/commit/8270b745ab796f7cdbc8d2f8ed1da3b6a2b1c62a))
+- **gatsby:** make fragment generation a cjs-tool again
+  ([47372a9](https://github.com/AmazeeLabs/silverback-mono/commit/47372a9b86b4f909df13106c162b117094d9f58c))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.12](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-fragments@1.1.11...@amazeelabs/gatsby-fragments@1.1.12) (2022-10-24)
 
 ### Bug Fixes
