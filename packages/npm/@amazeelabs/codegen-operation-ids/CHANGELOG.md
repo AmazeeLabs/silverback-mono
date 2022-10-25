@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/codegen-operation-ids@0.1.1...@amazeelabs/codegen-operation-ids@0.1.2) (2022-10-25)
+
+**Note:** Version bump only for package @amazeelabs/codegen-operation-ids
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [0.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/codegen-operation-ids@0.1.0...@amazeelabs/codegen-operation-ids@0.1.1) (2022-10-14)
 
 ### Bug Fixes
