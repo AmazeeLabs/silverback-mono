@@ -109,7 +109,7 @@ export const plugin: PluginFunction<any, string> = async (
   const document = [
     `declare const OperationId: unique symbol;
 
-type OperationId<
+export type OperationId<
   TQueryResult extends any,
   TQueryVariables extends any,
 > = string & {

@@ -302,7 +302,7 @@ describe('mode: ids', () => {
     expect(result).toMatchInlineSnapshot(`
       "declare const OperationId: unique symbol;
 
-      type OperationId<
+      export type OperationId<
         TQueryResult extends any,
         TQueryVariables extends any,
       > = string & {
@@ -335,7 +335,7 @@ describe('mode: ids', () => {
     expect(result).toMatchInlineSnapshot(`
       "declare const OperationId: unique symbol;
 
-      type OperationId<
+      export type OperationId<
         TQueryResult extends any,
         TQueryVariables extends any,
       > = string & {
@@ -370,7 +370,7 @@ describe('mode: ids', () => {
     expect(result).toMatchInlineSnapshot(`
       "declare const OperationId: unique symbol;
 
-      type OperationId<
+      export type OperationId<
         TQueryResult extends any,
         TQueryVariables extends any,
       > = string & {
