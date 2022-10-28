@@ -2,6 +2,9 @@ directive @value (
   json: String
 ) on FIELD_DEFINITION
 
+directive @unknown on FIELD_DEFINITION
+
 type Query {
   foo: String! @value(json: "\"bar\"")
+  bar: String @unknown
 }

@@ -2,14 +2,17 @@
 
 namespace Drupal\graphql_directives\Plugin\GraphQL\Schema;
 
-use Drupal\Component\Plugin\ConfigurableInterface;
+use Drupal\Component\Plugin\PluginManagerInterface;
+use Drupal\Core\Cache\CacheBackendInterface;
+use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Plugin\PluginFormInterface;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
-use Drupal\graphql\Plugin\GraphQL\Schema\SdlSchemaPluginBase;
+use Drupal\graphql\Plugin\GraphQL\Schema\ComposableSchema;
+use Drupal\graphql\Plugin\SchemaExtensionPluginManager;
+use GraphQL\Language\AST\NodeList;
 use GraphQL\Language\AST\ObjectTypeDefinitionNode;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * @Schema(
@@ -17,8 +20,55 @@ use GraphQL\Language\AST\ObjectTypeDefinitionNode;
  *   name = "Directable schema"
  * )
  */
-class DirectableSchema extends SdlSchemaPluginBase implements ConfigurableInterface, PluginFormInterface {
-  use StringTranslationTrait;
+class DirectableSchema extends ComposableSchema {
+
+  protected PluginManagerInterface $directiveManager;
+
+  /**
+   * {@inheritdoc}
+   *
+   * @codeCoverageIgnore
+   */
+  public static function create(
+    ContainerInterface $container,
+    array $configuration,
+    $plugin_id,
+    $plugin_definition
+  ) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('cache.graphql.ast'),
+      $container->get('module_handler'),
+      $container->get('plugin.manager.graphql.schema_extension'),
+      $container->get('graphql_directives.manager'),
+      $container->getParameter('graphql.config')
+    );
+  }
+
+  public function __construct(
+    array $configuration,
+    $pluginId,
+    array $pluginDefinition,
+    ?CacheBackendInterface $astCache,
+    ?ModuleHandlerInterface $moduleHandler,
+    ?SchemaExtensionPluginManager $extensionManager,
+    ?PluginManagerInterface $directiveManager,
+    array $config
+  ) {
+    $this->directiveManager = $directiveManager;
+
+    parent::__construct(
+      $configuration,
+      $pluginId,
+      $pluginDefinition,
+      $astCache,
+      $moduleHandler,
+      $extensionManager,
+      $config
+    );
+  }
 
   /**
    * Retrieves the raw schema definition string.
@@ -37,6 +87,21 @@ class DirectableSchema extends SdlSchemaPluginBase implements ConfigurableInterf
     return file_get_contents($file) ?: NULL;
   }
 
+  /**
+   * @param ?\GraphQL\Language\AST\NodeList $arguments
+   *
+   * @return array
+   */
+  protected function argumentsToParameters(?NodeList $arguments): array {
+    $config = [];
+    if ($arguments) {
+      foreach ($arguments as $argument) {
+        $config[$argument->name->value] = $argument->value->value;
+      }
+    }
+    return $config;
+  }
+
   public function getResolverRegistry() {
     $registry = new ResolverRegistry();
     $extensions = $this->getExtensions();
@@ -48,17 +113,19 @@ class DirectableSchema extends SdlSchemaPluginBase implements ConfigurableInterf
         foreach($definition->fields as $field) {
           if ($field->directives) {
             foreach ($field->directives as $directive) {
-              if ($directive->name->value == 'value') {
-                foreach ($directive->arguments as $argument) {
-                  if ($argument->name->value == 'json') {
-                    $data = json_decode($argument->value->value);
-                    $registry->addFieldResolver(
-                      $definition->name->value,
-                      $field->name->value,
-                      $builder->fromValue($data)
-                    );
-                  }
-                }
+              if ($this->directiveManager->hasDefinition($directive->name->value)) {
+                $plugin = $this->directiveManager
+                  ->createInstance($directive->name->value);
+                $parameters = $this->argumentsToParameters($directive->arguments);
+
+                $registry->addFieldResolver(
+                  $definition->name->value,
+                  $field->name->value,
+                  $plugin->buildResolver(
+                    $builder,
+                    $parameters
+                  )
+                );
               }
             }
           }
@@ -78,30 +145,14 @@ class DirectableSchema extends SdlSchemaPluginBase implements ConfigurableInterf
     return $form;
   }
 
-  public function getConfiguration() {
-    return $this->configuration;
-  }
-
-  public function setConfiguration(array $configuration) {
-    $this->configuration = $configuration;
-  }
-
+  /**
+   * {@inheritdoc}
+   */
   public function defaultConfiguration() {
-    return ['schema_definition' => 'schema.graphqls'];
-  }
-
-  public function validateConfigurationForm(
-    array &$form,
-    FormStateInterface $form_state
-  ) {
-    // Nothing to do here.
-  }
-
-  public function submitConfigurationForm(
-    array &$form,
-    FormStateInterface $form_state
-  ) {
-    // Nothing to do here.
+    return [
+      'schema_definition' => 'schema.graphqls',
+      'extensions' => [],
+    ];
   }
 
 }
