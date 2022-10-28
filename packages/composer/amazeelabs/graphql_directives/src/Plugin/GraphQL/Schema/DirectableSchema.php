@@ -6,8 +6,10 @@ use Drupal\Component\Plugin\ConfigurableInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\PluginFormInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\Plugin\GraphQL\Schema\SdlSchemaPluginBase;
+use GraphQL\Language\AST\ObjectTypeDefinitionNode;
 
 /**
  * @Schema(
@@ -36,7 +38,34 @@ class DirectableSchema extends SdlSchemaPluginBase implements ConfigurableInterf
   }
 
   public function getResolverRegistry() {
-    return new ResolverRegistry();
+    $registry = new ResolverRegistry();
+    $extensions = $this->getExtensions();
+    $builder = new ResolverBuilder();
+    $document = $this->getSchemaDocument($extensions);
+
+    foreach ($document->definitions as $definition) {
+      if ($definition instanceof ObjectTypeDefinitionNode) {
+        foreach($definition->fields as $field) {
+          if ($field->directives) {
+            foreach ($field->directives as $directive) {
+              if ($directive->name->value == 'value') {
+                foreach ($directive->arguments as $argument) {
+                  if ($argument->name->value == 'json') {
+                    $data = json_decode($argument->value->value);
+                    $registry->addFieldResolver(
+                      $definition->name->value,
+                      $field->name->value,
+                      $builder->fromValue($data)
+                    );
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    return $registry;
   }
 
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {

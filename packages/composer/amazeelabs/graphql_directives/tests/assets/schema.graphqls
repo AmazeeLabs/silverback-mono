@@ -1,3 +1,7 @@
+directive @value (
+  json: String
+) on FIELD_DEFINITION
+
 type Query {
-  foo: String
+  foo: String! @value(json: "\"bar\"")
 }
