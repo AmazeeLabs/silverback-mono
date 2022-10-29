@@ -7,3 +7,8 @@ services:
       - '@module_handler'
       - '\Drupal\graphql_directives\DirectiveInterface'
       - '\Drupal\graphql_directives\Annotation\Directive'
+
+  graphql_directives.printer:
+    class: Drupal\graphql_directives\DirectivePrinter
+    arguments:
+      - '@graphql_directives.manager'

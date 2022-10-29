@@ -1,7 +1,3 @@
-directive @value (
-  json: String
-) on FIELD_DEFINITION
-
 directive @unknown on FIELD_DEFINITION
 
 type Query {
