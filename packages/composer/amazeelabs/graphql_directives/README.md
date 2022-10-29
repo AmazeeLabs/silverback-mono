@@ -24,6 +24,19 @@ implemented.
 drush graphql:directives >> directives.graphqls
 ```
 
+### Chaining
+
+Directives can be chained to combine reusable data producers. They are composed
+from left to right, meaning the output of the left directive is passed as parent
+value to its right neighbour.
+
+```graphql
+type Query {
+  # This will emit "three".
+  list: String! @value(json: "[\"one\", \"two\", \"three\"]") @seek(pos: 2)
+}
+```
+
 ## Directives
 
 ### `@value`
@@ -34,6 +47,18 @@ encoded string.
 ```graphql
 type Query {
   hello: String @value(json: "\"Hello world!\"")
+}
+```
+
+### `@seek`
+
+Extracts a value from a list or iterable. The `pos` argument marks the target
+position.
+
+```graphql
+type Query {
+  # This will emit "three".
+  list: String! @value(json: "[\"one\", \"two\", \"three\"]") @seek(pos: 2)
 }
 ```
 
