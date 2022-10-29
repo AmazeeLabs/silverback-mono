@@ -12,6 +12,16 @@ class DirectableSchemaTest extends GraphQLTestBase {
   protected function setUp(): void {
     parent::setUp();
     $this->installConfig('graphql_directives');
+
+    $path = \Drupal::moduleHandler()->getModule('graphql_directives')->getPath();
+    $directives = $this->container->get('graphql_directives.printer')
+      ->printDirectives();
+
+    file_put_contents(
+      $path . '/tests/assets/directives.graphqls',
+      $directives
+    );
+
     $this->server = Server::create([
       'status' => true,
       'name' => 'directives_test',

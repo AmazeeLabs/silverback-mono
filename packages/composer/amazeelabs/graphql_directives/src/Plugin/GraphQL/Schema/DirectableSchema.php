@@ -10,6 +10,7 @@ use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\Plugin\GraphQL\Schema\ComposableSchema;
 use Drupal\graphql\Plugin\SchemaExtensionPluginManager;
+use Drupal\graphql_directives\DirectivePrinter;
 use GraphQL\Language\AST\NodeList;
 use GraphQL\Language\AST\ObjectTypeDefinitionNode;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -23,6 +24,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class DirectableSchema extends ComposableSchema {
 
   protected PluginManagerInterface $directiveManager;
+  protected DirectivePrinter $directivePrinter;
 
   /**
    * {@inheritdoc}
@@ -43,6 +45,7 @@ class DirectableSchema extends ComposableSchema {
       $container->get('module_handler'),
       $container->get('plugin.manager.graphql.schema_extension'),
       $container->get('graphql_directives.manager'),
+      $container->get('graphql_directives.printer'),
       $container->getParameter('graphql.config')
     );
   }
@@ -55,9 +58,11 @@ class DirectableSchema extends ComposableSchema {
     ?ModuleHandlerInterface $moduleHandler,
     ?SchemaExtensionPluginManager $extensionManager,
     ?PluginManagerInterface $directiveManager,
+    ?DirectivePrinter $directivePrinter,
     array $config
   ) {
     $this->directiveManager = $directiveManager;
+    $this->directivePrinter = $directivePrinter;
 
     parent::__construct(
       $configuration,
@@ -84,7 +89,10 @@ class DirectableSchema extends ComposableSchema {
       throw new \Exception(sprintf('Schema definition file %s does not exist.', $file));
     }
 
-    return file_get_contents($file) ?: NULL;
+    return implode("\n", [
+      $this->directivePrinter->printDirectives(),
+      file_get_contents($file),
+    ]);
   }
 
   /**
@@ -140,7 +148,9 @@ class DirectableSchema extends ComposableSchema {
       '#type' => 'textfield',
       '#title' => $this->t('Schema definition'),
       '#default_value' => $this->configuration['schema_definition'],
-      '#description' => $this->t('Path to the schema definition file. Relative to webroot.'),
+      '#description' => $this->t(
+        'Path to the schema definition file. Relative to webroot.'
+      ),
     ];
     return $form;
   }
