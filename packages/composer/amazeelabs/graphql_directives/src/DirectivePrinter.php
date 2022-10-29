@@ -35,10 +35,26 @@ class DirectivePrinter {
         }
       }
 
+      $description = isset($definition['description'])
+        ? [$definition['description']]
+        : [];
+
+      if (isset($definition['provider']) || isset($definition['class'])) {
+        $description[] = '';
+      }
+
+      if (isset($definition['provider'])) {
+        $description[] = sprintf('Provided by the "%s" module.', $definition['provider']);
+      }
+
+      if (isset($definition['class'])) {
+        $description[] = sprintf('Implemented in "%s".', $definition['class']);
+      }
+
       $dir = new DirectiveDefinitionNode([
         'name' => new NameNode(['value' => $definition['id']]),
-        'description' => isset($definition['description'])
-          ? new StringValueNode(['value' => $definition['description'], 'block' => TRUE])
+        'description' => count($description)
+          ? new StringValueNode(['value' => implode("\n", $description), 'block' => TRUE])
           : NULL,
         'arguments' => new NodeList($arguments),
         'locations' => new NodeList([

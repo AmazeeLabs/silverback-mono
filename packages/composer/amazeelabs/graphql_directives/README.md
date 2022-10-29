@@ -17,7 +17,8 @@ schema definition path to the created schema file.
 
 Directive definitions will be automatically prepended to the schema. To support
 IDE's with autocompletion and syntax checking, there is a `drush` command to
-generate a schema file with all directives.
+generate a schema file with all directives and information where they are
+implemented.
 
 ```shell
 drush graphql:directives >> directives.graphqls
@@ -51,6 +52,7 @@ use Drupal\graphql_directives\DirectiveInterface;
 /**
 * @Directive(
 *   id="echo",
+*   description="Return the same string that you put in.",
 *   arguments = {
 *     "input" = "String!",
 *   }

@@ -86,4 +86,34 @@ class DirectivePrinterTest extends UnitTestCase {
     );
   }
 
+  public function testProviderInfo() {
+    $directiveManager = $this->prophesize(PluginManagerInterface::class);
+    $directiveManager->getDefinitions()->willReturn([
+      'value' => [
+        'id' => 'value',
+        'description' => 'Provide a static json value.',
+        'arguments' => [
+          'json' => 'String!',
+          'function' => 'String',
+        ],
+        'class' => 'Drupal\graphql_directives\Plugin\GraphQL\Directive\Value',
+        'provider' => 'graphql_directives',
+      ],
+    ]);
+    $printer = new DirectivePrinter($directiveManager->reveal());
+
+    $this->assertEquals(
+      implode("\n", [
+        '"""',
+        'Provide a static json value.',
+        '',
+        'Provided by the "graphql_directives" module.',
+        'Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Value".',
+        '"""',
+        'directive @value(json: String!, function: String) on FIELD_DEFINITION',
+      ]),
+      $printer->printDirectives()
+    );
+  }
+
 }
