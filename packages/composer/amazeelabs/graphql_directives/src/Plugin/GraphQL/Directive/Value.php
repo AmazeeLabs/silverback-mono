@@ -10,6 +10,7 @@ use Drupal\graphql_directives\DirectiveInterface;
 /**
  * @Directive(
  *   id = "value",
+ *   description = "Provide a static value as JSON string.",
  *   arguments = {
  *     "json" = "String!",
  *   }

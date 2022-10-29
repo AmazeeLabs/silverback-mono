@@ -17,6 +17,13 @@ class Directive extends Plugin {
   public string $id;
 
   /**
+   * The directive description.
+   *
+   * @var string
+   */
+  public string $description;
+
+  /**
    * The directives argument definitions.
    *
    * @var array

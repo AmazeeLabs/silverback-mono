@@ -21,6 +21,27 @@ class DirectivePrinterTest extends UnitTestCase {
       $printer->printDirectives()
     );
   }
+  public function testCommentedDirective() {
+    $directiveManager = $this->prophesize(PluginManagerInterface::class);
+    $directiveManager->getDefinitions()->willReturn([
+      'todo' => [
+        'id' => 'todo',
+        'description' => 'Mark a field as not implemented.',
+      ],
+    ]);
+    $printer = new DirectivePrinter($directiveManager->reveal());
+    $this->assertEquals(
+      implode("\n", [
+        '"""',
+        'Mark a field as not implemented.',
+        '"""',
+        'directive @todo on FIELD_DEFINITION',
+      ]),
+      $printer->printDirectives()
+    );
+  }
+
+
   public function testDirectiveArguments() {
     $directiveManager = $this->prophesize(PluginManagerInterface::class);
     $directiveManager->getDefinitions()->willReturn([

@@ -7,6 +7,7 @@ use GraphQL\Language\AST\DirectiveDefinitionNode;
 use GraphQL\Language\AST\InputValueDefinitionNode;
 use GraphQL\Language\AST\NameNode;
 use GraphQL\Language\AST\NodeList;
+use GraphQL\Language\AST\StringValueNode;
 use GraphQL\Language\DirectiveLocation;
 use GraphQL\Language\Printer;
 use GraphQL\Language\Parser;
@@ -36,6 +37,9 @@ class DirectivePrinter {
 
       $dir = new DirectiveDefinitionNode([
         'name' => new NameNode(['value' => $definition['id']]),
+        'description' => isset($definition['description'])
+          ? new StringValueNode(['value' => $definition['description'], 'block' => TRUE])
+          : NULL,
         'arguments' => new NodeList($arguments),
         'locations' => new NodeList([
           new NameNode(['value' => DirectiveLocation::FIELD_DEFINITION]),
