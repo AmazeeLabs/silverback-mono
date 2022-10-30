@@ -5,4 +5,5 @@ type Query {
   bar: String @unknown
   seek: String! @value(json: "[\"one\", \"two\"]") @seek(pos: 1)
   prop: String! @value(json: "{\"foo\": \"bar\"}") @prop(key: "foo")
+  map: [String!]! @value(json: "[{\"x\": \"a\"},{\"x\": \"b\"}]") @map @prop(key: "x")
 }

@@ -7,44 +7,49 @@ use Drupal\graphql_directives\DirectivePrinter;
 use Drupal\Tests\UnitTestCase;
 
 class DirectivePrinterTest extends UnitTestCase {
-  public function testSingleDirective() {
+  protected function assertDirectiveOutput($plugins, $lines) {
     $directiveManager = $this->prophesize(PluginManagerInterface::class);
-    $directiveManager->getDefinitions()->willReturn([
-      'todo' => [
-        'id' => 'todo',
-      ],
-    ]);
+    $directiveManager->getDefinitions()->willReturn($plugins);
     $printer = new DirectivePrinter($directiveManager->reveal());
-
+    $builtin = [
+      '"""',
+      'Apply all directives on the right to output on the left.',
+      '"""',
+      'directive @map on FIELD_DEFINITION',
+    ];
     $this->assertEquals(
-      'directive @todo on FIELD_DEFINITION',
+      implode("\n", array_merge($builtin, $lines)),
       $printer->printDirectives()
     );
   }
+
+  public function testSingleDirective() {
+    $this->assertDirectiveOutput([
+      'todo' => [
+        'id' => 'todo',
+      ],
+    ], [
+      'directive @todo on FIELD_DEFINITION',
+    ]);
+  }
+
   public function testCommentedDirective() {
-    $directiveManager = $this->prophesize(PluginManagerInterface::class);
-    $directiveManager->getDefinitions()->willReturn([
+    $this->assertDirectiveOutput([
       'todo' => [
         'id' => 'todo',
         'description' => 'Mark a field as not implemented.',
       ],
+    ], [
+      '"""',
+      'Mark a field as not implemented.',
+      '"""',
+      'directive @todo on FIELD_DEFINITION',
     ]);
-    $printer = new DirectivePrinter($directiveManager->reveal());
-    $this->assertEquals(
-      implode("\n", [
-        '"""',
-        'Mark a field as not implemented.',
-        '"""',
-        'directive @todo on FIELD_DEFINITION',
-      ]),
-      $printer->printDirectives()
-    );
   }
 
 
   public function testDirectiveArguments() {
-    $directiveManager = $this->prophesize(PluginManagerInterface::class);
-    $directiveManager->getDefinitions()->willReturn([
+    $this->assertDirectiveOutput([
       'value' => [
         'id' => 'value',
         'arguments' => [
@@ -52,18 +57,13 @@ class DirectivePrinterTest extends UnitTestCase {
           'function' => 'String',
         ],
       ],
-    ]);
-    $printer = new DirectivePrinter($directiveManager->reveal());
-
-    $this->assertEquals(
+    ], [
       'directive @value(json: String!, function: String) on FIELD_DEFINITION',
-      $printer->printDirectives()
-    );
+    ]);
   }
 
   public function testMultipleDirectives() {
-    $directiveManager = $this->prophesize(PluginManagerInterface::class);
-    $directiveManager->getDefinitions()->willReturn([
+    $this->assertDirectiveOutput([
       'value' => [
         'id' => 'value',
         'arguments' => [
@@ -74,21 +74,14 @@ class DirectivePrinterTest extends UnitTestCase {
       'todo' => [
         'id' => 'todo',
       ],
+    ], [
+      'directive @value(json: String!, function: String) on FIELD_DEFINITION',
+      'directive @todo on FIELD_DEFINITION',
     ]);
-    $printer = new DirectivePrinter($directiveManager->reveal());
-
-    $this->assertEquals(
-      implode("\n", [
-        'directive @value(json: String!, function: String) on FIELD_DEFINITION',
-        'directive @todo on FIELD_DEFINITION',
-      ]),
-      $printer->printDirectives()
-    );
   }
 
   public function testProviderInfo() {
-    $directiveManager = $this->prophesize(PluginManagerInterface::class);
-    $directiveManager->getDefinitions()->willReturn([
+    $this->assertDirectiveOutput([
       'value' => [
         'id' => 'value',
         'description' => 'Provide a static json value.',
@@ -99,21 +92,14 @@ class DirectivePrinterTest extends UnitTestCase {
         'class' => 'Drupal\graphql_directives\Plugin\GraphQL\Directive\Value',
         'provider' => 'graphql_directives',
       ],
+    ], [
+      '"""',
+      'Provide a static json value.',
+      '',
+      'Provided by the "graphql_directives" module.',
+      'Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Value".',
+      '"""',
+      'directive @value(json: String!, function: String) on FIELD_DEFINITION',
     ]);
-    $printer = new DirectivePrinter($directiveManager->reveal());
-
-    $this->assertEquals(
-      implode("\n", [
-        '"""',
-        'Provide a static json value.',
-        '',
-        'Provided by the "graphql_directives" module.',
-        'Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Value".',
-        '"""',
-        'directive @value(json: String!, function: String) on FIELD_DEFINITION',
-      ]),
-      $printer->printDirectives()
-    );
   }
-
 }

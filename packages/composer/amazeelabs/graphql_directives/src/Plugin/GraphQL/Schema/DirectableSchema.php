@@ -122,6 +122,7 @@ class DirectableSchema extends ComposableSchema {
         foreach($definition->fields as $field) {
           if ($field->directives) {
             $composite = new Composite([]);
+
             foreach ($field->directives as $directive) {
               if ($this->directiveManager->hasDefinition($directive->name->value)) {
                 $plugin = $this->directiveManager
@@ -133,6 +134,7 @@ class DirectableSchema extends ComposableSchema {
                   ));
               }
             }
+
             $registry->addFieldResolver(
               $definition->name->value,
               $field->name->value,
