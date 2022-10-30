@@ -49,4 +49,18 @@ class DirectableSchemaTest extends GraphQLTestBase {
   function testMapDirective() {
     $this->assertResults('{ map }', [], ['map' => ['a', 'b']]);
   }
+
+  function testUnion() {
+    $this->assertResults(
+      '{ union { ... on A { y } ... on B { z } } }', [],
+      ['union' => [['y' => 'A'], ['z' => 'B']]]
+    );
+  }
+
+  function testInterface() {
+    $this->assertResults(
+      '{ interface { ... on A { y } ... on B { z } } }', [],
+      ['interface' => [['y' => 'A'], ['z' => 'B']]]
+    );
+  }
 }
