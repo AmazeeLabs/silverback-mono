@@ -33,7 +33,28 @@ class DirectivePrinter {
         new NameNode(['value' => DirectiveLocation::FIELD_DEFINITION]),
       ]),
     ]);
-    $directives = [Printer::doPrint($map)];
+
+    $type = new DirectiveDefinitionNode([
+      'name' => new NameNode(['value' => 'type']),
+      'description' => new StringValueNode(['value' => implode("\n", [
+        'Mark a type as member of a generic.',
+        'The id argument contains a string that has to match the generics resolution.'
+      ]), 'block' => TRUE]),
+      'arguments' => new NodeList([
+        new InputValueDefinitionNode([
+            'name' => new NameNode(['value' => 'id']),
+            'type' => Parser::parseType('String!'),
+          ])
+      ]),
+      'locations' => new NodeList([
+        new NameNode(['value' => DirectiveLocation::OBJECT]),
+      ]),
+    ]);
+
+    $directives = [
+      Printer::doPrint($map),
+      Printer::doPrint($type),
+    ];
     foreach ($definitions as $definition) {
 
       $arguments = [];
@@ -70,6 +91,8 @@ class DirectivePrinter {
         'arguments' => new NodeList($arguments),
         'locations' => new NodeList([
           new NameNode(['value' => DirectiveLocation::FIELD_DEFINITION]),
+          new NameNode(['value' => DirectiveLocation::UNION]),
+          new NameNode(['value' => DirectiveLocation::IFACE]),
         ]),
       ]);
       $directives[] = Printer::doPrint($dir);
