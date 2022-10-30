@@ -7,6 +7,7 @@ use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\graphql\GraphQL\Resolver\Composite;
+use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\Plugin\GraphQL\Schema\ComposableSchema;
@@ -111,6 +112,46 @@ class DirectableSchema extends ComposableSchema {
     return $config;
   }
 
+  protected function buildResolverFromDirectives(
+    NodeList $directives,
+    ResolverBuilder $builder
+  ): ResolverInterface {
+    /** @var \Drupal\graphql\GraphQL\Resolver\Composite[] $composites */
+    $composites = [];
+    $composite = new Composite([]);
+
+    // Stack composites of directives on top of each other.
+    foreach ($directives as $directive) {
+
+      // If the directive is "map" start a new stack entry.
+      if ($directive->name->value === 'map') {
+        $composites[] = $composite;
+        $composite = new Composite([]);
+        continue;
+      }
+
+      // If the directive is implemented, add it to the current composite.
+      if ($this->directiveManager->hasDefinition($directive->name->value)) {
+        $plugin = $this->directiveManager
+          ->createInstance($directive->name->value);
+        $parameters = $this->argumentsToParameters($directive->arguments);
+        $composite->add($plugin->buildResolver(
+          $builder,
+          $parameters
+        ));
+      }
+    }
+
+    // Fold the stack of composites, but adding each composite as a mapped
+    // resolver to its parent in the stack.
+    while($parent = array_pop($composites)) {
+      $parent->add($builder->map($composite));
+      $composite = $parent;
+    }
+
+    return $composite;
+  }
+
   public function getResolverRegistry() {
     $registry = new ResolverRegistry();
     $extensions = $this->getExtensions();
@@ -121,43 +162,10 @@ class DirectableSchema extends ComposableSchema {
       if ($definition instanceof ObjectTypeDefinitionNode) {
         foreach($definition->fields as $field) {
           if ($field->directives) {
-            /** @var \Drupal\graphql\GraphQL\Resolver\Composite[] $composites */
-            $composites = [];
-            $composite = new Composite([]);
-
-            // Stack composites of directives on top of each other.
-            foreach ($field->directives as $directive) {
-
-              // If the directive is "map" start a new stack entry.
-              if ($directive->name->value === 'map') {
-                $composites[] = $composite;
-                $composite = new Composite([]);
-                continue;
-              }
-
-              // If the directive is implemented, add it to the current composite.
-              if ($this->directiveManager->hasDefinition($directive->name->value)) {
-                $plugin = $this->directiveManager
-                  ->createInstance($directive->name->value);
-                $parameters = $this->argumentsToParameters($directive->arguments);
-                $composite->add($plugin->buildResolver(
-                    $builder,
-                    $parameters
-                  ));
-              }
-            }
-
-            // Fold the stack of composites, but adding each composite as a mapped
-            // resolver to its parent in the stack.
-            while($parent = array_pop($composites)) {
-              $parent->add($builder->map($composite));
-              $composite = $parent;
-            }
-
             $registry->addFieldResolver(
               $definition->name->value,
               $field->name->value,
-              $composite
+              $this->buildResolverFromDirectives($field->directives, $builder)
             );
           }
         }
