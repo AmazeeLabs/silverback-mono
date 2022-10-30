@@ -6,6 +6,7 @@ use Drupal\Component\Plugin\PluginManagerInterface;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\graphql\GraphQL\Execution\FieldContext;
 use Drupal\graphql\GraphQL\Resolver\Composite;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
@@ -13,8 +14,10 @@ use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\Plugin\GraphQL\Schema\ComposableSchema;
 use Drupal\graphql\Plugin\SchemaExtensionPluginManager;
 use Drupal\graphql_directives\DirectivePrinter;
+use GraphQL\Language\AST\InterfaceTypeDefinitionNode;
 use GraphQL\Language\AST\NodeList;
 use GraphQL\Language\AST\ObjectTypeDefinitionNode;
+use GraphQL\Language\AST\UnionTypeDefinitionNode;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -27,6 +30,8 @@ class DirectableSchema extends ComposableSchema {
 
   protected PluginManagerInterface $directiveManager;
   protected DirectivePrinter $directivePrinter;
+  protected $typeMap = [];
+  protected $typeResolvers = [];
 
   /**
    * {@inheritdoc}
@@ -160,6 +165,15 @@ class DirectableSchema extends ComposableSchema {
 
     foreach ($document->definitions as $definition) {
       if ($definition instanceof ObjectTypeDefinitionNode) {
+        foreach ($definition->directives as $directive) {
+          if ($directive->name->value === 'type' && $directive->arguments) {
+            foreach ($directive->arguments as $argument) {
+              if ($argument->name->value === 'id') {
+                $this->typeMap[$argument->value->value] = $definition->name->value;
+              }
+            }
+          }
+        }
         foreach($definition->fields as $field) {
           if ($field->directives) {
             $registry->addFieldResolver(
@@ -168,6 +182,24 @@ class DirectableSchema extends ComposableSchema {
               $this->buildResolverFromDirectives($field->directives, $builder)
             );
           }
+        }
+      }
+
+      if (
+        $definition instanceof InterfaceTypeDefinitionNode
+        ||
+        $definition instanceof UnionTypeDefinitionNode
+      ) {
+        if ($definition->directives) {
+          $this->typeResolvers[$definition->name->value] = $this->buildResolverFromDirectives($definition->directives, $builder);
+          $registry->addTypeResolver(
+            $definition->name->value,
+            function ($value, $context, $info) use ($definition, $builder) {
+              $id = $this->typeResolvers[$definition->name->value]
+                ->resolve($value, [], $context, $info, new FieldContext($context, $info));
+              return $this->typeMap[$id];
+            }
+          );
         }
       }
     }
