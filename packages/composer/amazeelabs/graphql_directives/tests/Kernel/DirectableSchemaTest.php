@@ -45,4 +45,8 @@ class DirectableSchemaTest extends GraphQLTestBase {
   function testPropDirective() {
     $this->assertResults('{ prop }', [], ['prop' => 'bar']);
   }
+
+  function testMapDirective() {
+    $this->assertResults('{ map }', [], ['map' => ['a', 'b']]);
+  }
 }
