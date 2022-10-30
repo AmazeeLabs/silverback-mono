@@ -52,6 +52,30 @@ type Query {
 }
 ```
 
+### Type resolution
+
+Directives can also be used to resolve the runtime types of unions and
+interfaces. To do that, apply any directives that can be used to resolve field
+values to the interface or union. The chain of directives should resolve to a
+string value which will be treated as a type id.
+
+```graphql
+union Letters @prop(key: "type") = A | B
+```
+
+This resolved type id will then be matched against object types annotated with
+the `@type` directive to retrieve the actual type.
+
+```graphql
+type A @type(id: "a") {
+  type: String!
+}
+
+type B @type(id: "b") {
+  type: String!
+}
+```
+
 ## Directives
 
 ### `@value`
@@ -100,6 +124,23 @@ type Query {
     @value(json: "[{\"x\": \"a\"},{\"x\": \"b\"}]")
     @map
     @prop(key: "x")
+}
+```
+
+### `@type`
+
+Annotate an object type with a specific id that will be used for interface- and
+union type resolution.
+
+```graphql
+union Letters @prop(key: "type") = A | B
+
+type A @type(id: "a") {
+  type: String!
+}
+
+type B @type(id: "B") {
+  type: String!
 }
 ```
 
