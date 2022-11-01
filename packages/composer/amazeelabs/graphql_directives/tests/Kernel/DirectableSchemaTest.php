@@ -7,7 +7,10 @@ use Drupal\Tests\graphql\Kernel\GraphQLTestBase;
 
 class DirectableSchemaTest extends GraphQLTestBase {
 
-  public static $modules = ['graphql_directives'];
+  public static $modules = [
+    'graphql_directives',
+    'graphql_directives_test',
+  ];
 
   protected function setUp(): void {
     parent::setUp();
@@ -29,7 +32,10 @@ class DirectableSchemaTest extends GraphQLTestBase {
       'endpoint'=> '/graphql/directives-test',
       'schema' => 'directable',
       'schema_configuration'=> [
-        'directable' => ['schema_definition' => __DIR__ . '/../assets/schema.graphqls'],
+        'directable' => [
+          'schema_definition' => __DIR__ . '/../assets/schema.graphqls',
+          'extensions' => ['test_directable' => 'test_directable']
+        ],
       ],
     ]);
   }
@@ -62,5 +68,14 @@ class DirectableSchemaTest extends GraphQLTestBase {
       '{ interface { ... on A { y } ... on B { z } } }', [],
       ['interface' => [['y' => 'A'], ['z' => 'B']]]
     );
+  }
+
+  function testExtension() {
+    $this->assertResults('{ listArticle { title } }', [], [
+      'listArticle' => [
+        ['title' => 'One'],
+        ['title' => 'Two'],
+      ],
+    ]);
   }
 }
