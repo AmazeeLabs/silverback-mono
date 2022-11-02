@@ -139,7 +139,7 @@ type A @type(id: "a") {
   type: String!
 }
 
-type B @type(id: "B") {
+type B @type(id: "b") {
   type: String!
 }
 ```
