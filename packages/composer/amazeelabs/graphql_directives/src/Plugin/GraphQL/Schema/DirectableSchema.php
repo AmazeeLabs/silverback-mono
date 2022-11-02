@@ -91,7 +91,7 @@ class DirectableSchema extends ComposableSchema {
    *
    * @throws \Exception
    */
-  protected function getSchemaDefinition() {
+  public function getSchemaDefinition() {
     $file = $this->configuration['schema_definition'];
     if (!file_exists($file)) {
       throw new \Exception(sprintf('Schema definition file %s does not exist.', $file));
@@ -240,6 +240,10 @@ class DirectableSchema extends ComposableSchema {
       }
     }
     return $document;
+  }
+
+  public function getExtensions() {
+    return parent::getExtensions();
   }
 
 }
