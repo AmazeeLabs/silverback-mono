@@ -8,7 +8,7 @@ Create a GraphQL schema definition file, and annotate it with directives.
 
 ```graphql
 type Query {
-  hello: String @value(json: "Hello world!")
+  hello: String @value(json: "\"Hello world!\"")
 }
 ```
 
