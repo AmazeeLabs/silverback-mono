@@ -3,9 +3,11 @@
 namespace Drupal\silverback_gatsby;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\graphql_directives\Plugin\GraphQL\Schema\DirectableSchema;
 use Drupal\silverback_gatsby\GraphQL\ComposableSchema;
 use Drupal\silverback_gatsby\Plugin\GraphQL\SchemaExtension\SilverbackGatsbySchemaExtension;
 use Drupal\user\Entity\User;
+use GraphQL\Language\Parser;
 
 /**
  * Class GatsbyUpdateHandler
@@ -55,7 +57,7 @@ class GatsbyUpdateHandler {
     foreach($servers as  $server) {
       $schema_id = $server->get('schema');
       $schema = $manager->createInstance($schema_id);
-      if ($schema instanceof ComposableSchema &&  $config = $server->get('schema_configuration')) {
+      if ($schema instanceof DirectableSchema && $config = $server->get('schema_configuration')) {
         if (!isset($config[$schema_id]['build_webhook'])) {
           continue;
         }
@@ -89,9 +91,11 @@ class GatsbyUpdateHandler {
         if (array_key_exists('build_trigger_on_save', $config[$schema_id])) {
           $trigger = $config[$schema_id]['build_trigger_on_save'] === 1;
         }
-        foreach ($schema->getExtensions() as $extension) {
+        $extensions = $schema->getExtensions();
+        $ast = $schema->getSchemaDocument($extensions);
+        foreach ($extensions as $extension) {
           if ($extension instanceof SilverbackGatsbySchemaExtension) {
-            foreach ($extension->getFeeds() as $feed) {
+            foreach ($extension->getFeeds($ast) as $feed) {
               if (
                 $feed instanceof $feedClassName
               ) {

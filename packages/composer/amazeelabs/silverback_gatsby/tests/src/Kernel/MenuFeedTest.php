@@ -13,7 +13,7 @@ class MenuFeedTest extends GraphQLTestBase {
   protected $strictConfigSchema = FALSE;
   protected $itemCount;
 
-  public static $modules = ['silverback_gatsby', 'silverback_gatsby_example'];
+  public static $modules = ['graphql_directives', 'silverback_gatsby', 'silverback_gatsby_example'];
 
   protected function setUp(): void {
     parent::setUp();
@@ -21,14 +21,15 @@ class MenuFeedTest extends GraphQLTestBase {
     // Silverback Gatsby setup.
     $this->installSchema('silverback_gatsby', ['gatsby_update_log']);
     $this->createTestServer(
-      'silverback_gatsby_example',
+      'directable',
       '/gatsby',
       [
         'schema_configuration' => [
-          'silverback_gatsby_example' => [
+          'directable' => [
             'extensions' => [
               'silverback_gatsby' => 'silverback_gatsby'
             ],
+            'schema_definition' => __DIR__ . '/../../../modules/silverback_gatsby_example/graphql/silverback_gatsby_example.graphqls',
             'build_webhook' => 'http://localhost:8888/__refresh'
           ]
         ]
