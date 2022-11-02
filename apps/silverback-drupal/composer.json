@@ -20,6 +20,7 @@
     ],
     "require": {
         "amazeelabs/default-content": "@dev",
+        "amazeelabs/graphql_directives": "@dev",
         "amazeelabs/proxy-drupal-core": "@dev",
         "amazeelabs/proxy-gutenberg": "@dev",
         "amazeelabs/silverback-cli": "@dev",

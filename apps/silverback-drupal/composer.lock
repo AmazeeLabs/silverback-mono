@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6f988e1bdb5842b297fefa8295f7c2f7",
+    "content-hash": "e685328ac82cfa7fcf759fa86c7f575d",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -100,6 +100,31 @@
             }
         },
         {
+            "name": "amazeelabs/graphql_directives",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/composer/amazeelabs/graphql_directives",
+                "reference": "5c7813cd0bc08cba48481b32d7fe3f6e42cca356"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^10"
+                    }
+                }
+            },
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Directive based GraphQL schemas for Drupal.",
+            "homepage": "https://silverback.netlify.app",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
             "name": "amazeelabs/proxy-default-content",
             "version": "1.1.5",
             "dist": {
@@ -164,11 +189,11 @@
         },
         {
             "name": "amazeelabs/proxy-gutenberg",
-            "version": "1.1.15",
+            "version": "1.1.16",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-gutenberg",
-                "reference": "689cdc7cf7ef5d26e7d875b16f7eca692944f43b"
+                "reference": "08661694d61dd7adfbbbd3c1b2b4d547cb5f0b05"
             },
             "require": {
                 "cweagans/composer-patches": "^1.7.3",
@@ -276,11 +301,11 @@
         },
         {
             "name": "amazeelabs/silverback_gatsby",
-            "version": "1.28.0",
+            "version": "1.28.1",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gatsby",
-                "reference": "feda5340c0b65561d17ca0d916353565d3210415"
+                "reference": "80a1594d62b0e4bee1f64287593921c58a5c483e"
             },
             "type": "drupal-module",
             "extra": {
@@ -318,11 +343,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "1.6.11",
+            "version": "1.6.12",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "92fcef8fa617114add1d21012164a1e9b13d1309"
+                "reference": "185b217018c627907e6cf58edabd8a9bb8b91c86"
             },
             "require": {
                 "drupal/gutenberg": "^2.4"
@@ -3107,20 +3132,17 @@
         },
         {
             "name": "drupal/cypress",
-            "version": "2.3.74",
+            "version": "2.3.76",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/cypress",
-                "reference": "917117d061e0ecd4ac09aedad19836aa55eaf041"
+                "reference": "cf46e50844d1104f1a4eed832eb9e092bde39075"
             },
             "require": {
                 "alchemy/zippy": "^1.0.0",
                 "drupal/test_session": "^1.0.0",
                 "drush/drush": ">=10.6.2",
                 "ext-json": "*"
-            },
-            "require-dev": {
-                "drupal/cypress-dev": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -12081,6 +12103,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "amazeelabs/default-content": 20,
+        "amazeelabs/graphql_directives": 20,
         "amazeelabs/proxy-drupal-core": 20,
         "amazeelabs/proxy-gutenberg": 20,
         "amazeelabs/silverback-cli": 20,
@@ -12103,5 +12126,5 @@
     "platform-overrides": {
         "php": "8.1.13"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.1.0"
 }
