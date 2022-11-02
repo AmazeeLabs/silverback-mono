@@ -27,7 +27,10 @@ abstract class DirectableSchemaExtensionPluginBase extends SdlSchemaExtensionPlu
    * {@inheritDoc}
    */
   final public function getExtensionDefinition() {
-    return $this->getDirectableExtensionDefinition($this->parentAst);
+    return implode("\n", array_filter([
+      parent::getExtensionDefinition(),
+      $this->getDirectableExtensionDefinition($this->parentAst),
+    ]));
   }
 
   /**
