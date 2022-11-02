@@ -177,3 +177,14 @@ class EchoDirective extends PluginBase implements DirectiveInterface {
   }
 }
 ```
+
+## Schema Extensions
+
+The module provides a `DirectableSchemaExtensionPluginBase` class that can be
+used to create schema extensions that react to directives in the parent schema
+definition. A schema extension plugin for the Drupal GraphQL module provides two
+schema definitions: one for the "base" schema and one for the actual extensions.
+In case of directable schema extension, the base schema definition should contain
+the directives while the extension schema defines the derived types and fields.
+
+For a very simple example, please refer to the `graphql_directives_test` module.
