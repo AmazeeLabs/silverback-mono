@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@2.2.0...@-amazeelabs/silverback_cdn_redirect@2.2.1) (2022-11-03)
+
+### Bug Fixes
+
+- **gatsby:** add missing import ([8441a65](https://github.com/AmazeeLabs/silverback-mono/commit/8441a652ddac4c8f80d8bc9194d9e633e6789dfc))
+
 # [2.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@2.1.2...@-amazeelabs/silverback_cdn_redirect@2.2.0) (2022-11-03)
 
 ### Features
