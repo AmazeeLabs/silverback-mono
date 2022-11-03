@@ -28,7 +28,7 @@
     "@amazeelabs/prettier-config": "^1.1.1",
     "@tsconfig/recommended": "1.0.1",
     "@types/jest": "29.1.2",
-    "@types/mocha": "9.1.1",
+    "@types/mocha": "10.0.0",
     "@types/sinon": "10.0.13",
     "chai": "4.3.6",
     "cypress": "9.7.0",

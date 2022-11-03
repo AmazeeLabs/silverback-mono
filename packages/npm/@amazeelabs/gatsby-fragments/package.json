@@ -38,6 +38,6 @@
     "test": "yarn test:static && yarn test:unit && yarn test:integration"
   },
   "volta": {
-    "node": "16.18.0"
+    "node": "18.10.0"
   }
 }
