@@ -104,23 +104,3 @@ jobs:
           else
             echo "Success: Found no uncommitted changes"
           fi
-
-      - name: Check if there are config changes after Drupal updates
-        run: |
-          set -e
-          cd apps/silverback-drupal
-          source .envrc
-          composer i
-          silverback setup --no-config-import
-          drush cex -y
-          cd -
-          if [[ $(git status --porcelain -- apps/silverback-drupal/config ':!apps/silverback-drupal/config/sync/language') ]]
-          then
-            >&2 echo 'Error: Found uncommitted Drupal config.'
-            >&2 echo 'If it was due to a Drupal database update which changed the Drupal config: checkout this branch locally, switch to `apps/silverback-drupal` dir, run `composer i && silverback setup --no-config-import && drush cex -y`, review the config changes, commit and push.'
-            >&2 echo 'If it was an intentional change to the Drupal config: checkout this branch locally, switch to `apps/silverback-drupal` dir, run `composer i && silverback setup --profile=minimal`, commit and push.'
-            git status --porcelain -- apps/silverback-drupal/config ':!apps/silverback-drupal/config/sync/language'
-            false
-          else
-            echo 'Success: Found no new config changes.'
-          fi
