@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/mzx",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "Executable markdown recipes.",
   "main": "dist/index.js",
   "bin": "./cli.js",
@@ -20,7 +20,7 @@
     "zx": "^7.1.1"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.35",
+    "@amazeelabs/eslint-config": "^1.4.36",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@rollup/plugin-node-resolve": "15.0.1",
     "@rollup/plugin-typescript": "9.0.2",

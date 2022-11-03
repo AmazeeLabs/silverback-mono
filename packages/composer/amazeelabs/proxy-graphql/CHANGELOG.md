@@ -3,9 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# 1.1.0 (2022-01-18)
+## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-graphql@1.1.0...@-amazeelabs/proxy-graphql@1.1.1) (2022-11-03)
 
+**Note:** Version bump only for package @-amazeelabs/proxy-graphql
+
+# 1.1.0 (2022-01-18)
 
 ### Features
 
-* introduce proxy for drupal/graphql ([15be444](https://github.com/AmazeeLabs/silverback-mono/commit/15be444b35a28ce537cea69f5b98d52f6ea899c2))
+- introduce proxy for drupal/graphql ([15be444](https://github.com/AmazeeLabs/silverback-mono/commit/15be444b35a28ce537cea69f5b98d52f6ea899c2))
