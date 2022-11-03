@@ -8,7 +8,7 @@
     "ext-zip": "*",
     "alchemy/zippy": "^1.0.0",
     "drush/drush": ">=10.6.2",
-    "vlucas/phpdotenv": "^5.4",
+    "vlucas/phpdotenv": "^5.5.0",
     "ext-json": "*"
   },
   "bin": [
