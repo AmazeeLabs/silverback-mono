@@ -10,6 +10,7 @@ use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\Core\Routing\UrlGeneratorInterface;
 use Drupal\silverback_cdn_redirect\EventSubscriber\CdnRedirectRouteSubscriber;
 use GuzzleHttp\ClientInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
