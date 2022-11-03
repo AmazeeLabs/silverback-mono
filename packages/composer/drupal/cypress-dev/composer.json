@@ -7,7 +7,7 @@
   "require": {
     "jangregor/phpstan-prophecy": "^1.0.0",
     "mglaman/phpstan-drupal": "^1.1.25",
-    "mikey179/vfsstream": "^1.6",
-    "phpstan/extension-installer": "^1.1"
+    "mikey179/vfsstream": "^1.6.11",
+    "phpstan/extension-installer": "^1.2.0"
   }
 }
