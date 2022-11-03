@@ -136,6 +136,10 @@ class CdnRedirectController extends ControllerBase {
         $parameters = $url->getRouteParameters();
         if ($type === 'node' && isset($parameters[$type]) && $id = $parameters[$type]) {
           $entity = $this->entityTypeManager->getStorage($type)->load($id);
+          $redirects = $this->moduleHandler->invokeAll('csr_path', [$entity]);
+          if (count($redirects) > 0) {
+            return new RedirectResponse($redirects[0], 301);
+          }
           if (
             $entity &&
             $response = $this->rewriteToCDN(
