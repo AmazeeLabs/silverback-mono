@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.14.1...@amazeelabs/publisher@0.14.2) (2022-11-07)
+
+### Bug Fixes
+
+- **gatsby:** move development stuff to dev dependencies
+  ([ba8bef1](https://github.com/AmazeeLabs/silverback-mono/commit/ba8bef1a25b57f8fbf6ea521c109428b64f4a3b6))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [0.14.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.14.0...@amazeelabs/publisher@0.14.1) (2022-11-03)
 
 **Note:** Version bump only for package @amazeelabs/publisher
