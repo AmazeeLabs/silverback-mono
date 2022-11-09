@@ -65,6 +65,8 @@
     "vitest": "0.24.5"
   },
   "dependencies": {
-    "clsx": "^1.2.1"
+    "@headlessui/react": "^1.7.4",
+    "clsx": "^1.2.1",
+    "gsap": "^3.11.3"
   }
 }
