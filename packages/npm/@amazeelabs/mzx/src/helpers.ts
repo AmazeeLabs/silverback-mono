@@ -1,5 +1,6 @@
 import * as diff from 'diff';
 import fs from 'fs-extra';
+import yaml from 'js-yaml';
 import prompts, { PromptObject } from 'prompts';
 
 export async function patchFile(file: string, patch: string) {
@@ -32,4 +33,31 @@ export async function prompt(variable: string, prompt: PromptObject) {
   process.env[variable] = (
     await prompts<string>({ ...prompt, name: 'value' })
   ).value;
+}
+
+export function file(
+  filename: string,
+  processor: (data: any) => any = (data) => data,
+): any {
+  const content = fs.existsSync(filename)
+    ? fs.readFileSync(filename).toString()
+    : null;
+  if (filename.match(/\.json$/)) {
+    const data = processor(content ? JSON.parse(content) : {});
+    fs.writeFileSync(filename, JSON.stringify(data, null, 2));
+    return data;
+  }
+  if (filename.match(/\.ya?ml$/)) {
+    const data = processor(content ? yaml.load(content) : {});
+    fs.writeFileSync(
+      filename,
+      yaml.dump(data, {
+        indent: 2,
+      }),
+    );
+    return data;
+  }
+  const data = processor(content ? content.split('\n') : []);
+  fs.writeFileSync(filename, data.join('\n'));
+  return data;
 }

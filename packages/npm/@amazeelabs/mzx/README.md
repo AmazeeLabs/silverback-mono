@@ -106,7 +106,6 @@ await prompt('PROJECT_NAME', {
 ```
 ````
 
-`````markdown
 ### Environment variable interpolation
 
 Environment variables are inherited to scripts and can be set within scripts by
@@ -135,9 +134,6 @@ Create a config file;
 title: 'PROJECT_NAME'
 ```
 ````
-`````
-
-`````
 
 ### Patching files
 
@@ -164,5 +160,22 @@ Index: original.ts
 ```
 ````
 
+### Programmatically creating or modifying files
+
+There is a `file` helper function that can create and modify files. It takes the
+file name as the first argument, and a processor function as the second. The
+processor function takes the current file content as input and return its new
+content as output. The shape of input and output depends on the file extension.
+For `.json`, `.yml` and `.yaml` its objects that will automatically be decoded
+and encoded, all other files operate on a list of files.
+
+````markdown
+```typescript
+file('./package.json', (json) => ({
+  ...json,
+  scripts: 'vite build',
+});
+```
+````
+
 [zx]: https://github.com/google/zx
-`````

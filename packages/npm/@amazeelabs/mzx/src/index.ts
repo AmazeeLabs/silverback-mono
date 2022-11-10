@@ -3,7 +3,7 @@ import * as Diff from 'diff';
 import fs, { readFileSync } from 'fs';
 
 import { extractCodeBlocks } from './extract';
-import { patchFile, prompt } from './helpers';
+import { file, patchFile, prompt } from './helpers';
 
 export async function mzx(zx: () => void) {
   program
@@ -41,4 +41,4 @@ export async function mzx(zx: () => void) {
   program.parse();
 }
 
-export const helpers = { patchFile, prompt };
+export const helpers = { patchFile, prompt, file };
