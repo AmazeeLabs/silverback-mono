@@ -1,6 +1,44 @@
-import clsx from 'clsx';
 import gsap, { Power3 } from 'gsap';
-import { ReactNode, useEffect, useRef } from 'react';
+import {
+  forwardRef,
+  memo,
+  ReactNode,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+} from 'react';
+
+const Animated = memo(
+  forwardRef(({ children }: { children: ReactNode }, ref) => {
+    const el = useRef<HTMLDivElement>(null);
+    const animation = useRef<gsap.core.Tween>();
+    useLayoutEffect(() => {
+      const ctx = gsap.context(() => {
+        if (el.current) {
+          animation.current = gsap.from(el.current, {
+            height: 0,
+          });
+        }
+      });
+      return () => ctx.revert();
+    }, []);
+
+    useEffect(() => {
+      // forward the animation instance
+      if (typeof ref === 'function') {
+        ref(animation.current);
+      } else if (ref) {
+        ref.current = animation.current;
+      }
+    }, [ref]);
+
+    return (
+      <div ref={el} className={'bg-red-500'}>
+        {children}
+      </div>
+    );
+  }),
+);
 
 export function HeightTransition({
   children,
@@ -27,49 +65,11 @@ export function HeightTransition({
   delayLeave?: number;
   className?: string;
 }) {
-  const wrapRef = useRef<HTMLDivElement>(null);
+  const animation = useRef<gsap.core.Tween>();
 
   useEffect(() => {
-    const wrap = wrapRef?.current;
-    if (wrap) {
-      if (show) {
-        beforeEnter && beforeEnter();
-        gsap.to(wrap, {
-          height: 'auto',
-          paddingTop: 'auto',
-          paddingBottom: 'auto',
-          duration: durationEnter,
-          ease: Power3.easeOut,
-          delay: delayEnter,
-          onComplete: afterEnter ? () => afterEnter() : undefined,
-        });
-      } else {
-        beforeLeave && beforeLeave();
-        gsap.to(wrap, {
-          height: 0,
-          paddingTop: 0,
-          paddingBottom: 0,
-          duration: durationLeave,
-          ease: Power3.easeOut,
-          delay: delayLeave,
-          onComplete: afterLeave ? () => afterLeave() : undefined,
-        });
-      }
-    }
-    return () => {};
-  }, [wrapRef, show]);
+    animation.current?.reversed(show);
+  }, [show]);
 
-  // const CollapsibleStyle = {
-  //   overflow: 'hidden',
-  //   height: 'inherit',
-  // };
-
-  return (
-    <div
-      ref={wrapRef}
-      className={clsx('overflow-hidden', { 'h-0': !show }, className)}
-    >
-      {children}
-    </div>
-  );
+  return <Animated ref={animation}>{children}</Animated>;
 }
