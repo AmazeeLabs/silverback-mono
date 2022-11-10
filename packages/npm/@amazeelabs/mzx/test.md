@@ -87,6 +87,36 @@ if (
 }
 ```
 
+Create a `.yaml` file.
+
+```typescript
+file('test.yaml', (data) => ({
+  foo: 'bar',
+}));
+
+const yaml = await $`cat test.yaml`;
+if (!/foo: bar/.test(yaml.stdout)) {
+  await $`echo "Yaml file was not created."`;
+  await $`exit 1`;
+}
+```
+
+Modify it:
+
+```typescript
+file('test.yaml', (data) => ({
+  ...data,
+  x: 'y',
+}));
+
+const yamlMod = await file('test.yaml');
+
+if (!yamlMod.foo === 'bar' || !yamlMod.x === 'y') {
+  await $`echo "Yaml file was not modified."`;
+  await $`exit 1`;
+}
+```
+
 Move back out:
 
 ```typescript
