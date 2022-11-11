@@ -81,7 +81,7 @@ pnpm add -O @commitlint/{cli,config-conventional}
 
 We also have to add the [commitlint] configuration to package.json
 
-```yaml title="./commitlintrc.yaml"
+```yaml title="./.commitlintrc.yaml"
 extends: ['@commitlint/config-conventional']
 ```
 
@@ -96,25 +96,14 @@ dependencies.
 pnpm add -O husky
 ```
 
-```diff
-Index: package.json
-===================================================================
---- package.json
-+++ package.json
-@@ -1,9 +1,12 @@
- {
-   "name": "PROJECT_NAME",
-   "private": true,
-+  "scripts": {
-+    "postinstall": "husky install || true"
-+  },
-   "optionalDependencies": {
-     "@commitlint/cli": "^17.1.2",
-     "@commitlint/config-conventional": "^17.1.0",
-     "husky": "^8.0.1"
-   }
--}
-+}
+```typescript
+file('package.json', (json) => ({
+  ...json,
+  scripts: {
+    ...json.scripts,
+    postinstall: 'husky install || true',
+  },
+}));
 ```
 
 Initiate the git repository and tell husky to check every commit message against
@@ -422,10 +411,8 @@ export function a() {
 }
 ```
 
-```typescript title="./b.ts"
-export function b() {
-  return 'b';
-}
+```text title="./b.ts"
+export function b() { return "b";}
 ```
 
 We stage only one of them.
@@ -610,24 +597,19 @@ generates:
       - '@amazeelabs/codegen-operation-ids'
 ```
 
-Codegen is run from a script in the `package.json` .
+Codegen is run from a script in the `package.json`. It also copies the schema
+definition into the packages build folder, to easily make it available to
+deployed apps later on.
 
-```diff
-Index: package.json
-===================================================================
---- package.json
-+++ package.json
-@@ -9,6 +9,9 @@
-     "@graphql-codegen/typescript": "^2.7.5",
-     "@graphql-codegen/typescript-operations": "^2.5.5",
-     "graphql": "^16.6.0",
-     "typescript": "^4.8.4"
-+  },
-+  "scripts": {
-+    "build": "graphql-codegen"
-   }
--}
-+}
+```typescript
+file('package.json', (json) => ({
+  ...json,
+  scripts: {
+    ...json.scripts,
+    build:
+      'graphql-codegen && cp ../../graphql/schema.graphqls build/schema.graphqls',
+  },
+}));
 ```
 
 Running the command will create a `build` folder containing the files we defined
@@ -642,6 +624,10 @@ if (!(await fs.exists('build/index.ts'))) {
 
 if (!(await fs.exists('build/map.json'))) {
   throw 'Persisted operation map was not created.';
+}
+
+if (!(await fs.exists('build/schema.graphqls'))) {
+  throw 'Schema was not copied.';
 }
 ```
 
@@ -666,6 +652,191 @@ Index: .gitignore
 ```shell
 git add .gitignore packages/schema pnpm-lock.yaml
 git commit -m "feat: add graphql schema code generation"
+```
+
+### Voyager application
+
+As a first application, we are going to add [GraphQL Voyager] to our project.
+It's a very simple example to test the repository layout and even brings value
+by providing a visual representation of the schema.
+
+[graphql voyager]: https://github.com/IvanGoncharov/graphql-voyager
+
+```typescript
+await $`mkdir -p apps/voyager`;
+cd('apps/voyager');
+```
+
+```json title="./package.json"
+{
+  "name": "@PROJECT_NAME/voyager",
+  "private": true,
+  "type": "module",
+  "version": "0.0.0"
+}
+```
+
+Our little application will consist of a single typescript file that starts an
+[express] server hosting [GraphQL Voyager]. To transpile the typescript code, we
+use [rollup], so lets start by adding the necessary dependencies.
+
+```shell
+pnpm add -D typescript rollup @rollup/plugin-typescript rollup-plugin-string @types/express
+```
+
+At runtime, we will need express, graphql voyager, apollo server and their peer
+dependencies.
+
+```shell
+pnpm add express graphql graphql-voyager apollo-server-express react@16 react-dom@16
+```
+
+The application needs access to the defined schema. Instead of simply
+referencing the schema at the root level, we add a workspace dependency to the
+local `schema` package. This will make sure the build pipeline can optimize its
+process.
+
+```typescript
+const schemaPackage = `@${process.env.PROJECT_NAME}/schema`;
+file('./package.json', (json) => ({
+  ...json,
+  dependencies: {
+    ...json.dependencies,
+    [schemaPackage]: 'workspace:*',
+  },
+}));
+```
+
+Run `pnpm install` again to make sure the workspace dependency is resolved.
+
+```shell
+pnpm install
+```
+
+Time to add the actual application code in the `src` folder.
+
+```shell
+mkdir src
+```
+
+```typescript title="./src/index.ts"
+import { ApolloServer, gql } from 'apollo-server-express';
+import express from 'express';
+import voyager from 'graphql-voyager/middleware';
+
+// Relative import because the rollup string plugin does not work in tandem
+// with the node-resolve plugin.
+// @ts-ignore
+import schema from '../node_modules/@PROJECT_NAME/schema/build/schema.graphqls';
+
+const server = new ApolloServer({ typeDefs: gql(schema) });
+
+const app = express();
+server
+  .start()
+  .then(() => {
+    server.applyMiddleware({ app });
+    app.use('/', voyager.express({ endpointUrl: '/graphql' }));
+
+    const port = process.env.PORT || 4000;
+
+    return app.listen(port, () => {
+      console.log(`listening on http://0.0.0.0:${port}`);
+    });
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+```
+
+To be able to start the application, we need to transpile it. Therefore, we add
+the rollup configuration, typescript configuration and inject a build and start
+script into `package.json`.
+
+```json title="./tsconfig.json"
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Recommended"
+}
+```
+
+```javascript title="./rollup.config.js"
+import typescript from '@rollup/plugin-typescript';
+import { string } from 'rollup-plugin-string';
+
+export default {
+  input: 'src/index.ts',
+  output: {
+    format: 'cjs',
+    file: 'build/index.cjs',
+  },
+  plugins: [string({ include: '**/*schema.graphqls' }), typescript()],
+  external: [
+    'express',
+    'apollo-server-express',
+    'graphql-voyager/middleware',
+    'fs',
+  ],
+};
+```
+
+```typescript
+file('package.json', (json) => ({
+  ...json,
+  scripts: {
+    ...json.scripts,
+    build: 'rollup -c rollup.config.js',
+    start: 'node build/index.cjs',
+  },
+}));
+```
+
+At this point we should be able to run the build script and verify the
+executable application is there.
+
+```shell
+pnpm build
+```
+
+```typescript
+if (!(await fs.exists('build/index.cjs'))) {
+  throw 'Voyager application was not built.';
+}
+```
+
+The application is so simple that unit tests would be overkill. But we can at
+least make sure there are no typescript errors.
+
+```typescript
+file('package.json', (json) => ({
+  ...json,
+  scripts: {
+    ...json.scripts,
+    'test:static': 'tsc --noEmit',
+  },
+}));
+```
+
+```shell
+pnpm test:static
+```
+
+```typescript
+cd('../../');
+```
+
+```shell
+git add apps/voyager
+git commit -m "feat: graphql schema display application"
 ```
 
 ## Task runner
@@ -740,6 +911,10 @@ Now we can create our first pipelines in `turbo.json`. This file is
     "@PROJECT_NAME/schema#build": {
       // The schema package as different inputs than other packages.
       "inputs": ["../../graphql/**"]
+    },
+    "@PROJECT_NAME/voyager#build": {
+      // The voyager package has different inputs than other packages.
+      "inputs": ["./src", "rollup.config.js", "tsconfig.json"]
     }
   }
 }
@@ -748,32 +923,15 @@ Now we can create our first pipelines in `turbo.json`. This file is
 Let's add a new script to the root `package.json` that will build the project
 with [Turborepo].
 
-```diff
-Index: package.json
-===================================================================
---- package.json
-+++ package.json
-@@ -1,9 +1,11 @@
- {
-   "name": "foobar",
-   "private": true,
-   "scripts": {
--    "postinstall": "husky install || true"
-+    "postinstall": "husky install || true",
-+    "build": "turbo build",
-+    "test": "turbo test:integration"
-   },
-   "optionalDependencies": {
-     "@commitlint/cli": "^17.1.2",
-     "@commitlint/config-conventional": "^17.1.0",
-@@ -26,5 +28,5 @@
-     "prettier": "^2.7.1",
-     "turbo": "^1.6.0",
-     "typescript": "^4.8.4"
-   }
--}
-+}
-
+```typescript
+file('package.json', (json) => ({
+  ...json,
+  scripts: {
+    ...json.scripts,
+    build: 'turbo build',
+    test: 'turbo test:integration',
+  },
+}));
 ```
 
 Running the build script now should run codegen in our schema package.
@@ -792,10 +950,17 @@ if (!/FULL TURBO/.test(buildOutput)) {
 }
 ```
 
+Turbo places `.turbo` cache directories in each package. These can be safely
+ignored by git.
+
+```typescript
+file('.gitignore', (lines) => [...lines, '.turbo']);
+```
+
 With the build pipeline in place, it's time to commit our changes.
 
 ```shell
-git add turbo.json package.json pnpm-lock.yaml
+git add .gitignore turbo.json package.json pnpm-lock.yaml
 git commit -m "feat: add turbo build pipeline"
 ```
 
@@ -804,93 +969,93 @@ git commit -m "feat: add turbo build pipeline"
 [renovate] is going to regularly update our project dependencies. We initiate
 that by simply dropping this configuration file into the repository root.
 
-```json5 title="./renovate.json5"
+```json title="./renovate.json5"
 {
-  extends: [':ignoreModulesAndTests', 'helpers:disableTypesNodeMajor'],
+  "extends": [":ignoreModulesAndTests", "helpers:disableTypesNodeMajor"],
 
-  ignorePaths: [
+  "ignorePaths": [
     // We want full control on the Dockerfiles.
-    '.lagoon/**',
+    ".lagoon/**"
   ],
 
   // This changes the behaviour of "stabilityDays"
   // - from the standard "create PR and add a stabilityDays check to it"
   // - to "create PR, but do not include updates for packages which did not pass
   //   the stabilityDays check"
-  internalChecksFilter: 'strict',
+  "internalChecksFilter": "strict",
 
-  dependencyDashboard: true,
+  "dependencyDashboard": true,
 
-  branchPrefix: 'renovate/',
+  "branchPrefix": "renovate/",
 
   // All updates, except for the major, wait for a manual approval.
-  dependencyDashboardApproval: true,
+  "dependencyDashboardApproval": true,
 
   // Pin dependencies by default.
-  rangeStrategy: 'pin',
+  "rangeStrategy": "pin",
 
-  packageRules: [
+  "packageRules": [
     // Use "bump" range strategy for resolutions.
     {
-      matchPaths: ['package.json'],
-      matchDepTypes: ['resolutions'],
-      rangeStrategy: 'bump',
+      "matchPaths": ["package.json"],
+      "matchDepTypes": ["resolutions"],
+      "rangeStrategy": "bump"
     },
     // Use "bump" range strategy for special dependency types.
     {
-      matchPaths: ['**/package.json'],
-      matchDepTypes: [
-        'peerDependencies',
-        'bundledDependencies',
-        'optionalDependencies',
+      "matchPaths": ["**/package.json"],
+      "matchDepTypes": [
+        "peerDependencies",
+        "bundledDependencies",
+        "optionalDependencies"
       ],
-      rangeStrategy: 'bump',
+      "rangeStrategy": "bump"
     },
 
     // Standard rules.
     {
-      matchUpdateTypes: ['major'],
-      groupName: 'all-major',
+      "matchUpdateTypes": ["major"],
+      "groupName": "all-major",
       // Give major updates a month to stabilize.
-      stabilityDays: 30,
-      automerge: false,
+      "stabilityDays": 30,
+      "automerge": false,
       // We need to automate PR creation in order to make the stabilityDays
       // option work.
-      dependencyDashboardApproval: false,
+      "dependencyDashboardApproval": false,
       // Drupal's security release window: Wednesdays, from 16:00 UTC to 22:00 UTC
       // https://www.drupal.org/drupal-security-team/security-release-numbers-and-release-timing#s-release-timing
-      schedule: ['before 3am on thursday'],
+      "schedule": ["before 3am on thursday"]
     },
     {
-      matchUpdateTypes: ['minor', 'patch', 'digest'],
-      groupName: 'all-non-major',
-      automerge: false,
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "groupName": "all-non-major",
+      "automerge": false
     },
     {
       // Do not update "engines" field in package.json files.
-      matchDepTypes: ['engines'],
-      enabled: false,
+      "matchDepTypes": ["engines"],
+      "enabled": false
     },
 
     // Package-specific rules.
     {
-      paths: ['apps/cms/composer.json'],
-      packageNames: [
+      "paths": ["apps/cms/composer.json"],
+      "packageNames": [
         // Lagoon's drupal_integrations module does not support Drush 11 yet. So
         // we stay on Drush 10 for now.
         // TODO: Remove once https://github.com/amazeeio/drupal-integrations/issues/7 is resolved.
-        'drush/drush',
+        "drush/drush"
       ],
-      updateTypes: ['major'],
-      enabled: false,
-    },
+      "updateTypes": ["major"],
+      "enabled": false
+    }
   ],
 
-  lockFileMaintenance: {
-    enabled: true,
-    schedule: ['at any time'],
-    automerge: false,
-  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["at any time"],
+    "automerge": false
+  }
 }
 ```
 
@@ -903,6 +1068,11 @@ release window) you'll need:
   merge it
 
 [//]: # 'TODO: Replicate lock file changes with pnpm.'
+
+```shell
+git add renovate.json5
+git commit -m "ci: automatic updates with renovate"
+```
 
 ## Pull request template
 
@@ -1017,12 +1187,8 @@ jobs:
 
 ### Release workflow
 
-The **Release** workflow runs on a scheduled interval or manual trigger and will
-re-run tests before eventually tell [lerna] to tag new release versions for all
-packages and merge the latest version into the `prod` branch. During
-development, we schedule the release to every late afternoon, so whatever we
-merge over the day gets deployed. When more users start to work on the system,
-this deployment window should be adjusted according to their needs.
+The **Release** workflow runs on a manual trigger and will re-run tests before
+eventually merging the latest version into the `prod` branch.
 
 The new workflow file has to look like this:
 
@@ -1030,10 +1196,6 @@ The new workflow file has to look like this:
 name: Release
 on:
   workflow_dispatch:
-  # TODO: During development, it's good to have daily releases.
-  #       This should be adjusted to a regular deployment window later.
-  schedule:
-    - cron: '15 14 * * *'
 jobs:
   test:
     name: Test
@@ -1056,15 +1218,23 @@ jobs:
           github_token: ${{ github.token }}
 ```
 
+```shell
+git add .github
+git commit -m "ci: github workflows for testing and releasing"
+```
+
 ## Lagoon and Docker
 
 Most of our projects are hosted on [lagoon], which is a container-based hosting
 platform. We have to create a `docker-composer.yml` and Dockerfiles for each
 application in the monorepo.
 
-At this point we don't have any applications in our repository, but we can
-already prepare the `builder` image, which acts as a base for all other images
-and reduces duplication of docker layers.
+```yaml title="./.lagoon.yml"
+docker-compose-yaml: docker-compose.yml
+project: 'PROJECT_NAME'
+```
+
+We can already add a lagoon service to host our [GraphQL Voyager] application.
 
 ```yaml title="./docker-compose.yml"
 version: '2.3'
@@ -1075,18 +1245,21 @@ x-environment: &default-environment
   LAGOON_ENVIRONMENT_TYPE: production
 
 services:
-  builder:
+  voyager:
     build:
       context: .
-      dockerfile: .lagoon/builder.Dockerfile
-    image: &builder-image ${COMPOSE_PROJECT_NAME:-PROJECT_NAME}-builder
+      dockerfile: .lagoon/voyager.Dockerfile
     labels:
-      lagoon.type: cli
+      lagoon.type: node
     user: root
     volumes_from:
       - container:amazeeio-ssh-agent
     environment:
       <<: *default-environment
+      LAGOON_LOCALDEV_URL: voyager-${COMPOSE_PROJECT_NAME:-caritas}.docker.amazee.io
+    networks:
+      - amazeeio-network
+      - default
 
 networks:
   amazeeio-network:
@@ -1101,17 +1274,27 @@ dependencies when the `pnpm-lock.yaml` changes.
 mkdir -p .lagoon
 ```
 
-```dockerfile title="./.lagoon/builder.Dockerfile"
-# This container will be used as a base image to de-duplicate layers.
-FROM uselagoon/node-16-builder
+```dockerfile title="./.lagoon/voyager.Dockerfile"
+FROM uselagoon/node-18-builder as builder
 
-# Install dependencies.
+# Install pnpm
 RUN npm install -g pnpm
+# Copy pnpm lockfile and install only dependencies required for building.
 COPY pnpm-lock.yaml /app/
-RUN pnpm fetch --dev
+RUN pnpm fetch --no-optional
+
+# Copy the all package sources, install dev packages from local storage and build.
 COPY . /app
-RUN pnpm install --frozen-lockfile --prefer-offline
+RUN pnpm install --no-optional --frozen-lockfile --prefer-offline
 RUN pnpm build:docker
+
+# Produced a pruned package for the current application and its runtime dependencies.
+RUN pnpm deploy --filter "@PROJECT_NAME/voyager" .deploy --prod
+
+FROM uselagoon/node-18
+COPY --from=builder /app/.deploy /app
+
+ENV PORT=3000
 ```
 
 We install without optional dependencies, which unfortunately means tha
@@ -1119,28 +1302,31 @@ We install without optional dependencies, which unfortunately means tha
 anyway, that's not a huge issue. But we need a specific `build:docker` command
 that will build all packages recursively.
 
-```diff
-Index: package.json
-===================================================================
---- package.json
-+++ package.json
-@@ -3,8 +3,9 @@
-   "private": true,
-   "scripts": {
-     "postinstall": "husky install || true",
-     "build": "turbo build",
-+    "build:docker": "pnpm run -r build",
-     "test": "turbo test:integration"
-   },
-   "optionalDependencies": {
-     "@commitlint/cli": "^17.1.2",
+```typescript
+file('package.json', (json) => ({
+  ...json,
+  scripts: {
+    ...json.scripts,
+    'build:docker': 'pnpm run -r build',
+  },
+}));
 ```
 
 The docker image already has a built in node version, and it does not like when
-pnpm attempts to switch it, so we ignore the `.npmrc` file.
+pnpm attempts to switch it, so we ignore the `.npmrc` file. Also we don't want
+any local `node_modules`, build artifacts or caches to be included in the docker
+scope.
 
 ```ignore title="./.dockerignore"
 .npmrc
+node_modules
+build
+.turbo
+```
+
+```shell
+git add .dockerignore package.json docker-compose.yml .lagoon
+git commit -m "ci: lagoon integration"
 ```
 
 [renovate]: https://github.com/renovatebot/renovate
