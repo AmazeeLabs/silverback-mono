@@ -481,24 +481,36 @@ There we define the first fundamental datatype - the `Account` .
 
 ```graphql title="./graphql/schema.graphqls"
 type Query {
-  # Retrieve the currently logged in account.
+  """
+  Retrieve the currently logged in account.
+  """
   currentAccount: Account
 }
 
 type Mutation {
-  # Log in with the given credentials.
+  """
+  Log in with the given credentials.
+  """
   login(name: String!, pass: String!): Account
-  # Log out the currently logged in account.
+  """
+  Log out the currently logged in account.
+  """
   logout: Boolean
 }
 
 # An account that can log in to the system.
 type Account {
-  # The unique identifier of the account.
+  """
+  The unique identifier of the account.
+  """
   id: ID!
-  # The name of the account.
+  """
+  The name of the account.
+  """
   name: String!
-  # The user roles, associated with this account.
+  """
+  The user roles, associated with this account.
+  """
   roles: [String!]!
 }
 ```
@@ -830,12 +842,136 @@ file('package.json', (json) => ({
 pnpm test:static
 ```
 
+It would also be great if we can make sure that the application works as
+expected from the outside. [Playwright] is the tool of choice for integration
+tests. It will again be installed optionally, since we don't want it in our
+deployment images.
+
+```shell
+pnpm add -O @playwright/test
+```
+
+We add a configuration that will run tests located in the `playwright` folder in
+Chrome and automatically starts the voyager app and disposes it again.
+
+```typescript title="./playwright.config.ts"
+import type { PlaywrightTestConfig } from '@playwright/test';
+import { devices } from '@playwright/test';
+
+/**
+ * See https://playwright.dev/docs/test-configuration.
+ */
+const config: PlaywrightTestConfig = {
+  testDir: './playwright',
+  /* Maximum time one test can run for. */
+  timeout: 30 * 1000,
+  expect: {
+    /**
+     * Maximum time expect() should wait for the condition to be met.
+     * For example in `await expect(locator).toHaveText();`
+     */
+    timeout: 5000,
+  },
+  /* Run tests in files in parallel */
+  fullyParallel: true,
+  /* Fail the build on CI if you accidentally left test.only in the source code. */
+  forbidOnly: !!process.env.CI,
+  /* Retry on CI only */
+  retries: process.env.CI ? 2 : 0,
+  /* Opt out of parallel tests on CI. */
+  workers: process.env.CI ? 1 : undefined,
+  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+  reporter: 'html',
+  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  use: {
+    /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
+    actionTimeout: 0,
+    /* Base URL to use in actions like `await page.goto('/')`. */
+    // baseURL: 'http://localhost:3000',
+
+    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    trace: 'on-first-retry',
+  },
+
+  /* Configure projects for major browsers */
+  projects: [
+    {
+      name: 'chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+      },
+    },
+  ],
+
+  /* Folder for test artifacts such as screenshots, videos, traces, etc. */
+  // outputDir: 'test-results/',
+
+  /* Run your local dev server before starting the tests */
+  webServer: {
+    command: 'pnpm start',
+    port: 4000,
+  },
+};
+
+export default config;
+```
+
+Let's add a first test case that verifies the application is available and
+contains our defined schema.
+
+```shell
+mkdir playwright
+```
+
+```typescript title="./playwright/voyager.spec.ts"
+import { expect, test } from '@playwright/test';
+
+test('voyager is accessible at port 4000 and shows the current schema', async ({
+  page,
+}) => {
+  await page.goto('http://localhost:4000/');
+
+  await expect(page).toHaveTitle(/GraphQL Voyager/);
+  await expect(page.getByText('Account')).toBeVisible();
+});
+```
+
+We also inject a test script into `package.json`.
+
+```typescript
+file('package.json', (json) => ({
+  ...json,
+  scripts: {
+    ...json.scripts,
+    'test:integration': 'playwright test',
+  },
+}));
+```
+
+Now we are able to run this test, and it should pass.
+
+```shell
+pnpm test:integration
+```
+
 ```typescript
 cd('../../');
 ```
 
+The test run has created a couple of files that we don't want in the git
+repository.
+
+```typescript
+file('.gitignore', (lines) => [
+  ...lines,
+  'test-results',
+  'playwright/.cache',
+  'playwright-report',
+]);
+```
+
 ```shell
-git add apps/voyager
+git add .gitignore apps/voyager pnpm-lock.yaml
 git commit -m "feat: graphql schema display application"
 ```
 
@@ -1140,7 +1276,11 @@ runs:
       with:
         version: 7
         run_install: false
-    #
+
+    - name: Install Playwright browsers
+      run: pnpx playwright install
+      shell: bash
+
     - uses: actions/cache@v3
       name: Setup pnpm cache
       with:
@@ -1325,7 +1465,7 @@ build
 ```
 
 ```shell
-git add .dockerignore package.json docker-compose.yml .lagoon
+git add .lagoon.yml .dockerignore package.json docker-compose.yml .lagoon
 git commit -m "ci: lagoon integration"
 ```
 
