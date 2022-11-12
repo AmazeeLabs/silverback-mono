@@ -241,6 +241,14 @@ We can remove our test files again.
 rm test.ts test.php
 ```
 
+By default, we want prettier to ignore anything that is not stored in the git
+repository (e.g. build artifacts). Fortunately, `.prettierignore` has the same
+syntax as `.gitignore`, so we can just make it a symlink.
+
+```shell
+ln -s .gitignore .prettierignore
+```
+
 Let's commit the addition and configuration of Prettier.
 
 ```shell
@@ -262,6 +270,11 @@ And again, we need a configuration file with a set oft sensible presets.
 
 ```javascript title="./.eslintrc.js"
 module.exports = {
+  settings: {
+    react: {
+      version: '18',
+    },
+  },
   env: {
     browser: true,
     es6: true,
@@ -285,9 +298,6 @@ module.exports = {
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
-    },
-    react: {
-      version: '18',
     },
   },
   plugins: [
@@ -316,6 +326,13 @@ module.exports = {
     'react/react-in-jsx-scope': ['off'],
   },
 };
+```
+
+Like with prettier, we also want ESLint to ignore anything that is not stored in
+the git repository:
+
+```shell
+ln -s .gitignore .eslintignore
 ```
 
 ESLint can report violations while statically testing, but also fix some of them
@@ -826,14 +843,14 @@ if (!(await fs.exists('build/index.cjs'))) {
 ```
 
 The application is so simple that unit tests would be overkill. But we can at
-least make sure there are no typescript errors.
+least make sure there are no typing or linting errors.
 
 ```typescript
 file('package.json', (json) => ({
   ...json,
   scripts: {
     ...json.scripts,
-    'test:static': 'tsc --noEmit',
+    'test:static': 'tsc --noEmit && eslint "**/*.{ts,tsx,js,jsx}"',
   },
 }));
 ```
