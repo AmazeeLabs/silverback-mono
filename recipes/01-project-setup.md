@@ -252,7 +252,7 @@ ln -s .gitignore .prettierignore
 Let's commit the addition and configuration of Prettier.
 
 ```shell
-git add package.json pnpm-lock.yaml .prettierrc.js
+git add package.json pnpm-lock.yaml .prettierrc.js .prettierignore
 git commit -m "chore: add and configure prettier"
 ```
 
@@ -263,7 +263,7 @@ example using React hooks. Therefore, it requires a couple of plugins. We can
 install all of them at once.
 
 ```shell
-pnpm add -O -w eslint eslint-config-prettier eslint-plugin-no-only-tests eslint-plugin-formatjs eslint-plugin-import eslint-plugin-promise eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-simple-import-sort eslint-plugin-storybook eslint-plugin-tailwindcss typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser
+pnpm add -O -w eslint eslint-config-prettier eslint-plugin-no-only-tests eslint-plugin-formatjs eslint-plugin-import eslint-plugin-promise eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-simple-import-sort eslint-plugin-storybook eslint-plugin-tailwindcss typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-plugin-formatjs
 ```
 
 And again, we need a configuration file with a set oft sensible presets.
@@ -285,6 +285,8 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:promise/recommended',
     'plugin:react/recommended',
+    'plugin:storybook/recommended',
+    'plugin:tailwindcss/recommended',
     // Prettier always goes last.
     'prettier',
   ],
@@ -309,6 +311,7 @@ module.exports = {
     'no-only-tests',
     'react',
     'react-hooks',
+    'formatjs',
   ],
   rules: {
     'no-unused-vars': ['off'],
@@ -324,6 +327,19 @@ module.exports = {
     'react/prop-types': ['off'],
     'react/prefer-stateless-function': ['error'],
     'react/react-in-jsx-scope': ['off'],
+    'react/jsx-no-literals': [
+      'error',
+      {
+        noStrings: true,
+        ignoreProps: true,
+        noAttributeStrings: false,
+      },
+    ],
+    'formatjs/enforce-default-message': 'error',
+    'formatjs/no-id': 'error',
+    'formatjs/enforce-placeholders': 'error',
+    'formatjs/no-camel-case': 'error',
+    'tailwindcss/classnames-order': [0],
   },
 };
 ```
@@ -377,7 +393,7 @@ changes.
 
 ```shell
 rm test.ts
-git add package.json pnpm-lock.yaml .eslintrc.js
+git add package.json pnpm-lock.yaml .eslintrc.js .eslintignore
 git commit -m "chore: add and configure eslint"
 ```
 
