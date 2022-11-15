@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/molecules@0.5.0...@amazeelabs/molecules@0.5.1) (2022-11-15)
+
+### Bug Fixes
+
+- **molecules:** export height transition component
+  ([234fa30](https://github.com/AmazeeLabs/silverback-mono/commit/234fa309241c48b25fa2c8bc4b22086ced77465a))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [0.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/molecules@0.4.6...@amazeelabs/molecules@0.5.0) (2022-11-15)
 
 ### Features
