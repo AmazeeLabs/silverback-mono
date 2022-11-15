@@ -1,3 +1,4 @@
+import { Disclosure, Transition } from '@headlessui/react';
 import { Meta } from '@storybook/react';
 import { useState } from 'react';
 
@@ -64,5 +65,45 @@ export function Delayed() {
         {content}
       </HeightTransition>
     </>
+  );
+}
+
+export function HeadlessUIDisclosure() {
+  return (
+    <Disclosure>
+      {({ open }) => (
+        <>
+          <Disclosure.Button>Toggle</Disclosure.Button>
+          <HeightTransition show={open}>
+            <Disclosure.Panel static>{content}</Disclosure.Panel>
+          </HeightTransition>
+        </>
+      )}
+    </Disclosure>
+  );
+}
+
+export function Coordinated() {
+  return (
+    <Disclosure>
+      {({ open }) => (
+        <div className={'bg-indigo-200'}>
+          <Disclosure.Button>Toggle</Disclosure.Button>
+          <HeightTransition show={open} delayLeave={1}>
+            <Transition
+              show={open}
+              enter="transition duration-1000 ease-out delay-1000"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="transition duration-1000 ease-out"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <Disclosure.Panel static>{content}</Disclosure.Panel>
+            </Transition>
+          </HeightTransition>
+        </div>
+      )}
+    </Disclosure>
   );
 }

@@ -11,8 +11,8 @@ import { createStore, StoreApi } from 'zustand';
 type HeightTransitionStore = {
   initialState?: boolean;
   el?: HTMLDivElement;
-  tween?: gsap.core.Tween;
-  animate: (reverse: boolean) => gsap.core.Tween | undefined;
+  tween?: gsap.core.Timeline;
+  animate: (reverse: boolean) => gsap.core.Timeline | undefined;
   clean: () => void;
   setOpened: (opened: boolean) => void;
   setElement: (el: HTMLDivElement) => void;
@@ -82,17 +82,24 @@ export function HeightTransition({
               tween.reversed(reverse);
               return tween;
             }
-            const newTween = getState().initialState
-              ? gsap.to(el, {
-                  height: 0,
-                  duration: duration,
-                })
-              : gsap.to(el, {
-                  height: 'auto',
-                  duration: duration,
-                });
-            set({ tween: newTween });
-            return newTween;
+            const timeline = gsap.timeline();
+            getState().initialState
+              ? timeline
+                  .to(el, { opacity: 1, duration: delayLeave })
+                  .to(el, {
+                    height: 0,
+                    duration: duration,
+                  })
+                  .to(el, { opacity: 1, duration: delayEnter })
+              : timeline
+                  .to(el, { opacity: 1, duration: delayEnter })
+                  .to(el, {
+                    height: 'auto',
+                    duration: duration,
+                  })
+                  .to(el, { opacity: 1, duration: delayLeave });
+            set({ tween: timeline });
+            return timeline;
           }
         },
         clean: () => {
