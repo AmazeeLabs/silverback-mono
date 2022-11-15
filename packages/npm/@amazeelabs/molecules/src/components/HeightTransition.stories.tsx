@@ -23,8 +23,10 @@ export function Open() {
   const [open, setOpen] = useState(true);
   return (
     <>
-      <button onClick={() => setOpen(!open)}>Toggle</button>
-      <HeightTransition show={open}>{content}</HeightTransition>
+      <div className="bg-green-100 p-2">
+        <button onClick={() => setOpen(!open)}>Toggle</button>
+        <HeightTransition show={open}>{content}</HeightTransition>
+      </div>
     </>
   );
 }

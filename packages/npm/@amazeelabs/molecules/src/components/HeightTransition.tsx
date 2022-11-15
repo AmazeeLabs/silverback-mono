@@ -3,6 +3,7 @@ import {
   memo,
   MutableRefObject,
   ReactNode,
+  useEffect,
   useLayoutEffect,
   useRef,
 } from 'react';
@@ -129,6 +130,12 @@ export function HeightTransition({
   useLayoutEffect(() => {
     storeRef.current?.getState().setOpened(show);
   }, [storeRef, show]);
+
+  useEffect(() => {
+    const resizeHandler = () => storeRef.current?.getState().clean();
+    window.addEventListener('resize', resizeHandler);
+    return () => window.removeEventListener('resize', resizeHandler);
+  });
 
   return <Animated storeRef={storeRef}>{children}</Animated>;
 }
