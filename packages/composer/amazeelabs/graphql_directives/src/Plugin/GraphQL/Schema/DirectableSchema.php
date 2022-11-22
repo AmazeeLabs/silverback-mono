@@ -208,13 +208,16 @@ class DirectableSchema extends ComposableSchema {
   }
 
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
-    $form['schema_definition'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Schema definition'),
-      '#default_value' => $this->configuration['schema_definition'],
-      '#description' => $this->t(
-        'Path to the schema definition file. Relative to webroot.'
-      ),
+    $form = parent::buildConfigurationForm($form, $form_state);
+    $form['directable'] = [
+      'schema_definition' => [
+        '#type' => 'textfield',
+        '#title' => $this->t('Schema definition'),
+        '#default_value' => $this->configuration['directable']['schema_definition'],
+        '#description' => $this->t(
+          'Path to the schema definition file. Relative to webroot.'
+        ),
+      ]
     ];
     return $form;
   }
@@ -244,6 +247,17 @@ class DirectableSchema extends ComposableSchema {
 
   public function getExtensions() {
     return parent::getExtensions();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getConfiguration() {
+    return $this->configuration;
+  }
+
+  public function setConfiguration(array $configuration):void {
+    parent::setConfiguration($configuration);
   }
 
 }
