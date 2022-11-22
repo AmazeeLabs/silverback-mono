@@ -4,10 +4,8 @@ namespace Drupal\silverback_gatsby;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\graphql_directives\Plugin\GraphQL\Schema\DirectableSchema;
-use Drupal\silverback_gatsby\GraphQL\ComposableSchema;
 use Drupal\silverback_gatsby\Plugin\GraphQL\SchemaExtension\SilverbackGatsbySchemaExtension;
 use Drupal\user\Entity\User;
-use GraphQL\Language\Parser;
 
 /**
  * Class GatsbyUpdateHandler
