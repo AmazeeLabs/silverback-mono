@@ -93,13 +93,9 @@ class DirectableSchema extends ComposableSchema {
    */
   public function getSchemaDefinition() {
     $file = $this->configuration['schema_definition'];
-    if (!file_exists($file)) {
-      throw new \Exception(sprintf('Schema definition file %s does not exist.', $file));
-    }
-
     return implode("\n", [
       $this->directivePrinter->printDirectives(),
-      file_get_contents($file),
+      file_exists($file) ? file_get_contents($file) : parent::getSchemaDefinition(),
     ]);
   }
 
