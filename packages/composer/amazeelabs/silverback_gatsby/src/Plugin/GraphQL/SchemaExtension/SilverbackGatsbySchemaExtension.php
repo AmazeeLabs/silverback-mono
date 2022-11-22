@@ -12,10 +12,7 @@ use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
-use Drupal\graphql\Plugin\GraphQL\SchemaExtension\SdlSchemaExtensionPluginBase;
 use Drupal\graphql_directives\DirectableSchemaExtensionPluginBase;
-use Drupal\silverback_gatsby\GraphQL\DirectiveProviderExtensionInterface;
-use Drupal\silverback_gatsby\GraphQL\ParentAwareSchemaExtensionInterface;
 use Drupal\silverback_gatsby\Plugin\FeedInterface;
 use Drupal\silverback_gatsby\Plugin\Gatsby\Feed\MenuFeed;
 use Drupal\typed_data\Exception\LogicException;
@@ -24,7 +21,6 @@ use GraphQL\Language\AST\ListValueNode;
 use GraphQL\Language\AST\ObjectTypeDefinitionNode;
 use GraphQL\Language\AST\StringValueNode;
 use GraphQL\Language\AST\UnionTypeDefinitionNode;
-use GraphQL\Language\Parser;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
