@@ -15,10 +15,17 @@ use Drupal\graphql\Plugin\GraphQL\Schema\ComposableSchema;
 use Drupal\graphql\Plugin\SchemaExtensionPluginManager;
 use Drupal\graphql_directives\DirectableSchemaExtensionPluginBase;
 use Drupal\graphql_directives\DirectivePrinter;
+use GraphQL\Language\AST\BooleanValueNode;
+use GraphQL\Language\AST\FloatValueNode;
 use GraphQL\Language\AST\InterfaceTypeDefinitionNode;
+use GraphQL\Language\AST\IntValueNode;
+use GraphQL\Language\AST\ListValueNode;
 use GraphQL\Language\AST\NodeList;
 use GraphQL\Language\AST\ObjectTypeDefinitionNode;
+use GraphQL\Language\AST\ObjectValueNode;
+use GraphQL\Language\AST\StringValueNode;
 use GraphQL\Language\AST\UnionTypeDefinitionNode;
+use GraphQL\Language\AST\ValueNode;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -108,7 +115,18 @@ class DirectableSchema extends ComposableSchema {
     $config = [];
     if ($arguments) {
       foreach ($arguments as $argument) {
-        $config[$argument->name->value] = $argument->value->value;
+        if ($argument->value instanceof ListValueNode) {
+          $config[$argument->name->value] = array_filter(array_map(
+            fn ($node) => !(
+              $node->value instanceof ObjectValueNode ||
+              $node->value instanceof ListValueNode
+            ) ? $node->value : null,
+            iterator_to_array($argument->value->values->getIterator())
+          ));
+        }
+        else if (!$argument->value instanceof ObjectValueNode) {
+          $config[$argument->name->value] = $argument->value->value;
+        }
       }
     }
     return $config;
