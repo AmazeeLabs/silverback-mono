@@ -33,11 +33,111 @@ Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Prop".
 """
 directive @prop(key: String!) on FIELD_DEFINITION | UNION | INTERFACE
 
-type Schema {
+schema {
   query: Query
+  mutation: Mutation
+}
+
+type Mutation {
+  getRandomInt(randomInt: Int!): Int!
 }
 
 type Query
+
+type Image @entity(type: "media", bundle: "image") {
+  url: String!
+  alt: String! @resolveProperty(path: "field_media_image.0.alt")
+}
+
+type Tag @entity(type: "taxonomy_term", bundle: "tag") {
+  title: String! @resolveProperty(path: "name.value")
+}
+
+type Page @entity(type: "node", bundle: "page") {
+  path: String! @isPath @resolveEntityPath
+  title: String! @resolveProperty(path: "title.value")
+  body: String @resolveProperty(path: "field_body.0.processed")
+  paragraphs: [PageParagraphs!]! @resolveEntityReferenceRevisions(field: "field_paragraphs", single: false)
+}
+
+union PageParagraphs = ParagraphText | ParagraphReferences
+
+type ParagraphText {
+  text: String @resolveProperty(path: "field_text.0.value")
+}
+
+type ParagraphReferences {
+  references: [Article]! @resolveEntityReference(field: "field_references", single: false)
+  singleReference: GutenbergPage @resolveEntityReference(field: "field_single_reference", single: true)
+}
+
+type GutenbergPage @entity(type: "node", bundle: "gutenberg_page") {
+  path: String! @isPath @resolveEntityPath
+  title: String! @resolveProperty(path: "title.value")
+  body: [RootBlock!]! @resolveEditorBlocks(path: "body.value", ignore: ["custom\/root", "core\/columns"])
+}
+
+type Webform @entity(type: "webform", access: false) {
+  path: String! @isPath @resolveEntityPath
+  url: String!
+  title: String! @resolveProperty(path: "title")
+}
+
+type Article @entity(type: "node", bundle: "article") {
+  path: String! @isPath @resolveEntityPath
+  title: String! @resolveProperty(path: "title.value")
+  body: String @resolveProperty(path: "field_body.0.processed")
+  tags: [Tag]! @resolveEntityReference(field: "field_tags", single: false)
+  image: Image @resolveEntityReference(field: "field_image", single: true)
+  template: String @isTemplate
+}
+
+union RootBlock = BlockTwoColumns | BlockHtmlList | BlockHtmlParagraph | BlockHtmlQuote | BlockImage | BlockTeaser
+
+union ContentBlock = BlockHtmlList | BlockHtmlParagraph | BlockHtmlQuote | BlockImage | BlockTeaser
+
+type BlockTwoColumns @editorBlock(type: "custom\/two-columns") {
+  children: [BlockColumn!]! @resolveEditorBlockAttribute(name: "children")
+}
+
+type BlockColumn @editorBlock(type: "core\/column") {
+  children: [ContentBlock!]! @resolveEditorBlockAttribute(name: "children")
+}
+
+type BlockHtmlParagraph @editorBlock(type: "core\/paragraph") {
+  html: String! @resolveEditorBlockAttribute(name: "markup")
+}
+
+type BlockHtmlList @editorBlock(type: "core\/list") {
+  html: String! @resolveEditorBlockAttribute(name: "markup")
+}
+
+type BlockHtmlQuote @editorBlock(type: "core\/quote") {
+  html: String! @resolveEditorBlockAttribute(name: "markup")
+}
+
+type BlockImage @editorBlock(type: "drupalmedia\/drupal-media-entity") {
+  caption: String! @resolveEditorBlockAttribute(name: "caption")
+  image: Image @resolveEditorBlockAttribute(name: "media")
+}
+
+type BlockTeaser @editorBlock(type: "custom\/teaser") {
+  image: Image @resolveEditorBlockAttribute(name: "media")
+  title: String! @resolveEditorBlockAttribute(name: "title")
+  subtitle: String! @resolveEditorBlockAttribute(name: "subtitle")
+  url: String! @resolveEditorBlockAttribute(name: "url")
+}
+
+type MenuItem {
+  label: String!
+  url: String!
+}
+
+type MainMenu @menu(menu_id: "main", item_type: "MenuItem")
+
+type FirstLevelMainMenu @menu(menu_id: "main", item_type: "MenuItem", max_level: 1)
+
+type GatsbyStringTranslation @stringTranslation(contextPrefix: "gatsby")
 
 type Feed {
   typeName: String! @prop(key: "typeName")
@@ -78,35 +178,29 @@ directive @resolveEntityReferenceRevisions(field: String!, single: Boolean!) on 
 
 """
 Annotate a type to correspond to a editor block (e.g. Gutenberg)
-"""
-directive @editorBlock(
-  """
+
+type:
   The block ID within the CMS.
-  """
-  type: String!
- on OBJECT
+"""
+directive @editorBlock(type: String!) on OBJECT
 
 """
 Parse field content using the editor block parser.
-"""
-directive @resolveEditorBlocks(
-  """
+
+path:
   The property path to resolve the HTML content blog within the current entity.
-  """
-  path: String!
-  """
+
+ignore:
   List of block types that don't contribute to the document and will be ignored.
   If an ignored block has children, they are flattened into the list of blocks.
   "core/group" is ignored by default.
-  """
-  ignore: [String!]
-  """
+
+aggregate:
   List of block types that are treated like plain HTML without attributes, just
   as "core/paragraph". Sequences of these blocks will be aggregated into a
   single instance of "core/paragraph".
-  """
-  aggregate: [String!]
- on FIELD_DEFINITION
+"""
+directive @resolveEditorBlocks(path: String!, ignore: [String!], aggregate: [String!]) on FIELD_DEFINITION
 
 """
 Resolve an attribute value on a block.
@@ -120,46 +214,36 @@ directive @resolveEditorBlockAttribute(name: String!) on FIELD_DEFINITION
 
 directive @entity(type: String!, bundle: String, access: Boolean) on OBJECT
 
-directive @menu(
-  """
+"""
+Directive for the "MenuFeed" plugin.
+
+menu_id:
   The internal menu id.
-  """
-  menu_id: String
-  """
+
+menu_ids:
   Internal menu id's. The first one the current user has access to will be
   picked.
-  """
-  menu_ids: [String!]
-  """
-  GraphQL type for menu items.
-  
-  **DEPRECATED**: Explicitly define Menu item types with `resolveMenu*`
-  directives instead.
-  """
-  item_type: String
-  """
+
+max_level:
   The maximum level to be fetched.
   This can be used to optimizing caching. Most of the time only one or two
   levels of menus are immediately visible on the page. By declaring multiple
   types, we can generate different cache buckets, so a new menu item on a low
   level does not require a full rebuild of every page.
-  """
-  max_level: Int
- on OBJECT
+"""
+directive @menu(menu_id: String, menu_ids: [String!], item_type: String, max_level: Int) on OBJECT
 
 """
 Resolve menu items in a menu.
-"""
-directive @resolveMenuItems(
-  """
+
+max_level:
   The maximum level to be fetched.
   This can be used to optimizing caching. Most of the time only one or two
   levels of menus are immediately visible on the page. By declaring multiple
   types, we can generate different cache buckets, so a new menu item on a low
   level does not require a full rebuild of every page.
-  """
-  max_level: Int
- on FIELD_DEFINITION
+"""
+directive @resolveMenuItems(max_level: Int) on FIELD_DEFINITION
 
 """
 Resolve the menu items id.

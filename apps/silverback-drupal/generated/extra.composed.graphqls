@@ -33,8 +33,10 @@ Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Prop".
 """
 directive @prop(key: String!) on FIELD_DEFINITION | UNION | INTERFACE
 
-type Schema {
+schema {
   query: Query
 }
 
-type Query
+type Query {
+  extraField: String!
+}
