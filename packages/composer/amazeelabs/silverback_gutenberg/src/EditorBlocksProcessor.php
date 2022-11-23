@@ -1,5 +1,5 @@
 <?php
- namespace Drupal\silverback_gatsby;
+ namespace Drupal\silverback_gutenberg;
 
 class EditorBlocksProcessor {
 

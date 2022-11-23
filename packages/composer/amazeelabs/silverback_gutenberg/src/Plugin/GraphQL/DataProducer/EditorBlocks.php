@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer;
+namespace Drupal\silverback_gutenberg\Plugin\GraphQL\DataProducer;
 
 use Drupal\Core\Annotation\ContextDefinition;
 use Drupal\Core\Annotation\Translation;
@@ -13,7 +13,7 @@ use Drupal\Core\TypedData\TypedDataTrait;
 use Drupal\graphql\GraphQL\Execution\FieldContext;
 use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
 use Drupal\gutenberg\Parser\BlockParser;
-use Drupal\silverback_gatsby\EditorBlocksProcessor;
+use Drupal\silverback_gutenberg\EditorBlocksProcessor;
 use Drupal\silverback_gutenberg\LinkProcessor;
 use Drupal\typed_data\DataFetcherTrait;
 use Drupal\typed_data\Exception\InvalidArgumentException;

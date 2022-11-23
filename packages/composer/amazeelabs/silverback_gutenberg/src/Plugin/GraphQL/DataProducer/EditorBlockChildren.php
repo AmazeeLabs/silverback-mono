@@ -1,10 +1,10 @@
 <?php
 
-namespace Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer;
+namespace Drupal\silverback_gutenberg\Plugin\GraphQL\DataProducer;
 
 use Drupal\graphql\GraphQL\Execution\FieldContext;
 use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
-use Drupal\silverback_gatsby\EditorBlocksProcessor;
+use Drupal\silverback_gutenberg\EditorBlocksProcessor;
 
 
 /**
