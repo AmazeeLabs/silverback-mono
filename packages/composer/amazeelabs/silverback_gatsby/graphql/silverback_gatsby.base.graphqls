@@ -52,33 +52,35 @@ directive @resolveEntityReferenceRevisions(
 
 """
 Annotate a type to correspond to a editor block (e.g. Gutenberg)
+
+type:
+  The block ID within the CMS.
+
 """
 directive @editorBlock(
-  """
-  The block ID within the CMS.
-  """
   type: String!
 ) on OBJECT
 
 """
 Parse field content using the editor block parser.
-"""
-directive @resolveEditorBlocks(
-  """
+
+path:
   The property path to resolve the HTML content blog within the current entity.
-  """
-  path: String!
-  """
+
+ignore:
   List of block types that don't contribute to the document and will be ignored.
   If an ignored block has children, they are flattened into the list of blocks.
   "core/group" is ignored by default.
-  """
-  ignore: [String!]
-  """
+
+aggregate:
   List of block types that are treated like plain HTML without attributes, just
   as "core/paragraph". Sequences of these blocks will be aggregated into a
   single instance of "core/paragraph".
-  """
+
+"""
+directive @resolveEditorBlocks(
+  path: String!
+  ignore: [String!]
   aggregate: [String!]
 ) on FIELD_DEFINITION
 
@@ -102,49 +104,41 @@ directive @entity(
   access: Boolean
 ) on OBJECT
 
-# Directive for the "MenuFeed" plugin.
-directive @menu(
-  """
-  The internal menu id.
-  """
-  menu_id: String
+"""
+Directive for the "MenuFeed" plugin.
 
-  """
+menu_id:
+  The internal menu id.
+
+menu_ids:
   Internal menu id's. The first one the current user has access to will be
   picked.
-  """
-  menu_ids: [String!]
 
-  """
-  GraphQL type for menu items.
-
-  **DEPRECATED**: Explicitly define Menu item types with `resolveMenu*`
-  directives instead.
-  """
-  item_type: String
-
-  """
+max_level:
   The maximum level to be fetched.
   This can be used to optimizing caching. Most of the time only one or two
   levels of menus are immediately visible on the page. By declaring multiple
   types, we can generate different cache buckets, so a new menu item on a low
   level does not require a full rebuild of every page.
-
-  """
+"""
+directive @menu(
+  menu_id: String
+  menu_ids: [String!]
+  item_type: String
   max_level: Int
 ) on OBJECT
 
 """
 Resolve menu items in a menu.
-"""
-directive @resolveMenuItems(
-  """
+
+max_level:
   The maximum level to be fetched.
   This can be used to optimizing caching. Most of the time only one or two
   levels of menus are immediately visible on the page. By declaring multiple
   types, we can generate different cache buckets, so a new menu item on a low
   level does not require a full rebuild of every page.
-  """
+"""
+directive @resolveMenuItems(
   max_level: Int
 ) on FIELD_DEFINITION
 
