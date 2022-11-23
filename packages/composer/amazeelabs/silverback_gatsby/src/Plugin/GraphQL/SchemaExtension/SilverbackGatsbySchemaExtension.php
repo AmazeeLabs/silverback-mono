@@ -289,7 +289,6 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
   protected function registerDirectableResolvers(DocumentNode $ast, ResolverRegistryInterface $registry): void {
     $builder = new ResolverBuilder();
     $this->addFieldResolvers($ast, $registry, $builder);
-    $this->addTypeResolvers($ast, $registry, $builder);
     $this->addOriginalTypenameResolvers($ast, $registry, $builder);
   }
 
@@ -324,60 +323,6 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
         $registry->addFieldResolver($definition->name->value, '_original_typename', $builder->fromValue($definition->name->value));
       }
     }
-  }
-
-  /**
-   * Collect and build type resolvers from the AST.
-   *
-   * @param \Drupal\graphql\GraphQL\ResolverRegistry $registry
-   * @param \Drupal\graphql\GraphQL\ResolverBuilder $builder
-   *
-   * @return void
-   */
-  protected function addTypeResolvers(DocumentNode $ast, ResolverRegistry $registry, ResolverBuilder $builder) {
-    $editorBlockTypes = [];
-    foreach ($ast->definitions->getIterator() as $definition) {
-      if ($definition instanceof ObjectTypeDefinitionNode && $definition->directives) {
-        foreach($definition->directives->getIterator() as $directive) {
-          if ($directive->name->value === 'editorBlock') {
-            foreach ($directive->arguments->getIterator() as $argument) {
-              if ($argument->name->value === 'type') {
-                $editorBlockTypes[$definition->name->value] = $argument->value->value;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    $editorBlockUnions = [];
-
-    foreach ($ast->definitions->getIterator() as $definition) {
-      if ($definition instanceof UnionTypeDefinitionNode) {
-        $union = $definition->name->value;
-        $editorBlockUnions[$union] = [];
-        $unionTypes = [];
-        foreach ($definition->types->getIterator() as $type) {
-          $unionType = $type->name->value;
-          $unionTypes[] = $unionType;
-          if (array_key_exists($unionType, $editorBlockTypes)) {
-            $editorBlockUnions[$union][$editorBlockTypes[$unionType]] = $unionType;
-          }
-        }
-        if (count($editorBlockUnions[$union]) !== 0 && $unionTypes !== array_values($editorBlockUnions[$union])) {
-          throw new LogicException('Block unions have to consist of @editorBlock types only.');
-        }
-      }
-    }
-
-    foreach($editorBlockUnions as $unionType => $typeMap) {
-      if (count($typeMap) > 0)  {
-        $registry->addTypeResolver($unionType, function ($block) use ($unionType, $typeMap) {
-          return $typeMap[$block['blockName']];
-        });
-      }
-    }
-
   }
 
   /**
@@ -462,6 +407,44 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
     };
     foreach ($this->getResolveDirectives($ast) as $path => $definition) {
       switch ($definition['name']) {
+
+//        case 'resolveEntityPath':
+//          $addResolver($path, $builder->compose(
+//            $builder->produce('entity_url')->map('entity', $builder->fromParent()),
+//            $builder->produce('url_path')->map('url', $builder->fromParent()),
+//            $builder->callback(
+//              // TODO: port this as a separate directive?
+//              function (string $path) {
+//
+//                // Gatsby expects raw paths. Not encoded.
+//                $path = rawurldecode($path);
+//
+//                // Some paths may ruin Gatsby.
+//                // See https://github.com/gatsbyjs/gatsby/discussions/36345#discussioncomment-3364844
+//                $original = $path;
+//                $bannedCharacters = ['%', '?', '#', '\\', '"'];
+//                foreach ($bannedCharacters as $character) {
+//                  if (strpos($path, $character) !== FALSE) {
+//                    $path = str_replace($character, '', $path);
+//                    $this->logger->warning("Found entity with '{$character}' character in its path alias. The character will be removed from the Gatsby page path. This can lead to broken links. Please update the entity path alias. Original path alias: '{$original}'.");
+//                  }
+//                }
+//                $dotsOnlyRegex = '/^\.+$/';
+//                $pathSegments = explode('/', $path);
+//                $pathSegmentsFiltered = array_filter(
+//                  $pathSegments,
+//                  fn (string $segment) => !preg_match($dotsOnlyRegex, $segment)
+//                );
+//                if (count($pathSegments) !== count($pathSegmentsFiltered)) {
+//                  $path = implode('/', $pathSegmentsFiltered);
+//                  $this->logger->warning("Found entity with dots-only path segment(s) in its path alias. These segments will be removed from the Gatsby page path. This can lead to broken links. Please update the entity path alias. Original path alias: '{$original}'.");
+//                }
+//
+//                return $path;
+//              }
+//            )
+//          ));
+//          break;
 
         case 'resolveEditorBlocks':
           $addResolver($path, $builder->produce('editor_blocks', [
