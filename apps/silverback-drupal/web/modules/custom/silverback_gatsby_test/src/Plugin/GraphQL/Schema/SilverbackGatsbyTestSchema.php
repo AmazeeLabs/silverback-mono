@@ -28,9 +28,6 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
       $registry->addFieldResolver($type, $field, $resolver);
     };
 
-    $registry->addTypeResolver('RootBlock', fn($value) => $value['__type']);
-    $registry->addTypeResolver('ContentBlock', fn($value) => $value['__type']);
-
     $registry->addTypeResolver('PageParagraphs', function (EntityInterface $value) {
       switch ($value->bundle()) {
         case 'text':
