@@ -18,20 +18,20 @@ Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Value".
 directive @value(json: String!) on FIELD_DEFINITION | UNION | INTERFACE
 
 """
-Seek a specific element in a list.
-
-Provided by the "graphql_directives" module.
-Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Seek".
-"""
-directive @seek(pos: Int!) on FIELD_DEFINITION | UNION | INTERFACE
-
-"""
 Retrieve an object or map property.
 
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Prop".
 """
 directive @prop(key: String!) on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Seek a specific element in a list.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Seek".
+"""
+directive @seek(pos: Int!) on FIELD_DEFINITION | UNION | INTERFACE
 
 schema {
   query: Query

@@ -12,18 +12,25 @@ class DirectivePrinterTest extends UnitTestCase {
     $directiveManager->getDefinitions()->willReturn($plugins);
     $printer = new DirectivePrinter($directiveManager->reveal());
     $builtin = [
-      '"""',
-      'Apply all directives on the right to output on the left.',
-      '"""',
-      'directive @map on FIELD_DEFINITION',
-      '"""',
-      'Mark a type as member of a generic.',
-      'The id argument contains a string that has to match the generics resolution.',
-      '"""',
-      'directive @type(id: String!) on OBJECT',
+      implode("\n", [
+        '"""',
+        'Apply all directives on the right to output on the left.',
+        '"""',
+        'directive @map on FIELD_DEFINITION'
+      ]),
+
+      implode("\n", [
+        '"""',
+        'Mark a type as member of a generic.',
+        'The id argument contains a string that has to match the generics resolution.',
+        '"""',
+        'directive @type(id: String!) on OBJECT'
+      ]),
     ];
+    $builtin[] = implode("\n", $lines);
+    asort($builtin);
     $this->assertEquals(
-      implode("\n", array_merge($builtin, $lines)),
+      implode("\n", $builtin),
       $printer->printDirectives()
     );
   }
@@ -80,8 +87,8 @@ class DirectivePrinterTest extends UnitTestCase {
         'id' => 'todo',
       ],
     ], [
-      'directive @value(json: String!, function: String) on FIELD_DEFINITION | UNION | INTERFACE',
       'directive @todo on FIELD_DEFINITION | UNION | INTERFACE',
+      'directive @value(json: String!, function: String) on FIELD_DEFINITION | UNION | INTERFACE',
     ]);
   }
 
