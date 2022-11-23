@@ -235,16 +235,6 @@ class DirectableSchema extends ComposableSchema {
   /**
    * {@inheritdoc}
    */
-  public function defaultConfiguration() {
-    return [
-      'schema_definition' => 'schema.graphqls',
-      'extensions' => [],
-    ];
-  }
-
-  /**
-   *
-   */
   public function getSchemaDocument(array $extensions = []) {
     $document = parent::getSchemaDocument($extensions);
     foreach($extensions as $extension) {
@@ -255,19 +245,18 @@ class DirectableSchema extends ComposableSchema {
     return $document;
   }
 
-  public function getExtensions() {
-    return parent::getExtensions();
+  /**
+   * {@inheritdoc}
+   */
+  public function getExtensionDocument(array $extensions = []) {
+    return parent::getExtensionDocument($extensions);
   }
 
-//  /**
-//   * {@inheritdoc}
-//   */
-//  public function getConfiguration() {
-//    return $this->configuration;
-//  }
-//
-  public function setConfiguration(array $configuration):void {
-    parent::setConfiguration($configuration);
+  /**
+   * {@inheritdoc}
+   */
+  public function getExtensions() {
+    return parent::getExtensions();
   }
 
 }
