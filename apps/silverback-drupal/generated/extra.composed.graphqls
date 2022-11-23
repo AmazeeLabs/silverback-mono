@@ -40,3 +40,4 @@ schema {
 type Query {
   extraField: String!
 }
+
