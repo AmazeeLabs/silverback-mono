@@ -28,7 +28,7 @@ class EditorBlocks extends PluginBase implements DirectiveInterface {
       'type' => $builder->callback(
         fn(EntityInterface $entity) => $entity->getTypedData()->getDataDefinition()->getDataType()
       ),
-      'ignored' => $builder->fromValue($arguments['ignore'] ?? []),
+      'ignored' => $builder->fromValue($arguments['ignored'] ?? []),
       'aggregated' => $builder->fromValue($arguments['aggregated'] ?? ['core/paragraph'])
     ]);
   }
