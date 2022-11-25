@@ -257,6 +257,18 @@ type Post {
 }
 ```
 
+### `@resolveProperty`
+
+Retrieve a property of an entity by its `path` argument.
+
+```graphql
+type Post {
+  body: String @resolveProperty(path: "body.value")
+}
+```
+
+````
+
 ## Extending
 
 To add custom directives, create a module and add new Plugins in the
@@ -289,7 +301,7 @@ class EchoDirective extends PluginBase implements DirectiveInterface {
     return $builder->fromValue($arguments['input']);
   }
 }
-```
+````
 
 ## Schema Extensions
 

@@ -2,6 +2,8 @@
 
 namespace Drupal\Tests\graphql_directives\Kernel;
 
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\graphql\Entity\Server;
 use Drupal\node\Entity\NodeType;
 use Drupal\Tests\graphql\Kernel\GraphQLTestBase;
@@ -10,9 +12,11 @@ use Drupal\Tests\node\Traits\NodeCreationTrait;
 
 class EntityTest extends GraphQLTestBase {
   use NodeCreationTrait;
+  use ContentTypeCreationTrait;
 
   public static $modules = [
     'filter',
+    'text',
     'graphql_directives'
   ];
 
@@ -50,6 +54,20 @@ class EntityTest extends GraphQLTestBase {
       'translatable' => TRUE,
     ]);
     $postType->save();
+
+    FieldStorageConfig::create([
+      'field_name' => 'body',
+      'entity_type' => 'node',
+      'type' => 'text_long',
+      'cardinality' => 1,
+    ])->save();
+
+    FieldConfig::create([
+      'field_name' => 'body',
+      'entity_type' => 'node',
+      'bundle' => 'post',
+      'label' => 'Body',
+    ])->save();
 
     $this->container->get('content_translation.manager')->setEnabled(
       'node',
@@ -238,6 +256,22 @@ class EntityTest extends GraphQLTestBase {
           ['title' => 'test'],
           ['title' => 'test fr'],
         ],
+      ]
+    ], $metadata);
+  }
+
+  public function testProperty() {
+    $node = $this->createNode([
+      'type' => 'post',
+      'title' => 'test',
+      'body' => 'body content',
+    ]);
+    $node->save();
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheableDependency($node);
+    $this->assertResults('query { static { body } }', [], [
+      'static' => [
+        'body' => 'body content'
       ]
     ], $metadata);
   }
