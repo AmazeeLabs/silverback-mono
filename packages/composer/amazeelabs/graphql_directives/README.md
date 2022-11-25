@@ -230,6 +230,33 @@ type Post {
 }
 ```
 
+### `@resolveEntityTranslation`
+
+Retrieve as specific translation of an entity, defined by the `lang` (dynamic)
+argument.
+
+```graphql
+type Query {
+  post(id: String!, lang: String!): Post
+    @loadEntity(type: "node", id: "$id")
+    @resolveEntityTranslation(lang: "$lang")
+}
+```
+
+### `@resolveEntityTranslations`
+
+Retrieve all translations of an entity.
+
+```graphql
+type Query {
+  post(id: String!): Post @loadEntity(type: "node", id: "$id")
+}
+
+type Post {
+  translations: [Post!]! @resolveEntityTranslations
+}
+```
+
 ## Extending
 
 To add custom directives, create a module and add new Plugins in the

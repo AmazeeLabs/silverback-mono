@@ -9,7 +9,6 @@ use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
 use Drupal\Tests\node\Traits\NodeCreationTrait;
 
 class EntityTest extends GraphQLTestBase {
-  use ContentTypeCreationTrait;
   use NodeCreationTrait;
 
   public static $modules = [
@@ -51,6 +50,12 @@ class EntityTest extends GraphQLTestBase {
       'translatable' => TRUE,
     ]);
     $postType->save();
+
+    $this->container->get('content_translation.manager')->setEnabled(
+      'node',
+      'post',
+      TRUE
+    );
   }
 
   public function testStaticId() {
@@ -189,6 +194,50 @@ class EntityTest extends GraphQLTestBase {
     $this->assertResults('query { static { language } }', [], [
       'static' => [
         'language' => 'fr'
+      ]
+    ], $metadata);
+  }
+
+  public function testTranslation() {
+    $node = $this->createNode([
+      'type' => 'post',
+      'title' => 'test',
+      'langcode' => 'en',
+    ]);
+    $node->save();
+    $fr = $node->addTranslation('fr', ['title' => 'test fr']);
+    $fr->save();
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheableDependency($node);
+    $metadata->addCacheContexts(['static:language:fr']);
+    $this->assertResults('query { static { title translation { title } } }', [], [
+      'static' => [
+        'title' => 'test',
+        'translation' => [
+          'title' => 'test fr'
+        ],
+      ]
+    ], $metadata);
+  }
+
+  public function testTranslations() {
+    $node = $this->createNode([
+      'type' => 'post',
+      'title' => 'test',
+      'langcode' => 'en',
+    ]);
+    $node->save();
+    $fr = $node->addTranslation('fr', ['title' => 'test fr']);
+    $fr->save();
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheableDependency($node);
+    $metadata->addCacheContexts(['static:language:fr', 'static:language:en']);
+    $this->assertResults('query { static { translations { title } } }', [], [
+      'static' => [
+        'translations' => [
+          ['title' => 'test'],
+          ['title' => 'test fr'],
+        ],
       ]
     ], $metadata);
   }
