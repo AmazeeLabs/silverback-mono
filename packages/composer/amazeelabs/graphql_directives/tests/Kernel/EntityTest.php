@@ -116,4 +116,63 @@ class EntityTest extends GraphQLTestBase {
     ], $metadata);
   }
 
+  public function testType() {
+    $node = $this->createNode(['type' => 'post', 'title' => 'test']);
+    $node->save();
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheableDependency($node);
+    $this->assertResults('query { static { type } }', [], [
+      'static' => [
+        'type' => 'node'
+      ]
+    ], $metadata);
+  }
+
+  public function testBundle() {
+    $node = $this->createNode(['type' => 'post', 'title' => 'test']);
+    $node->save();
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheableDependency($node);
+    $this->assertResults('query { static { bundle } }', [], [
+      'static' => [
+        'bundle' => 'post'
+      ]
+    ], $metadata);
+  }
+
+  public function testId() {
+    $node = $this->createNode(['type' => 'post', 'title' => 'test']);
+    $node->save();
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheableDependency($node);
+    $this->assertResults('query { static { id } }', [], [
+      'static' => [
+        'id' => $node->id()
+      ]
+    ], $metadata);
+  }
+
+  public function testUuid() {
+    $node = $this->createNode(['type' => 'post', 'title' => 'test']);
+    $node->save();
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheableDependency($node);
+    $this->assertResults('query { static { uuid } }', [], [
+      'static' => [
+        'uuid' => $node->uuid()
+      ]
+    ], $metadata);
+  }
+
+  public function testPath() {
+    $node = $this->createNode(['type' => 'post', 'title' => 'test']);
+    $node->save();
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheableDependency($node);
+    $this->assertResults('query { static { path } }', [], [
+      'static' => [
+        'path' => '/node/1'
+      ]
+    ], $metadata);
+  }
 }

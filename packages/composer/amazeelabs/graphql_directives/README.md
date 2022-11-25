@@ -207,9 +207,17 @@ type Query {
 }
 ```
 
-### `@entityLabel`
+### `@resolveEntity[...]`
 
-Retrieve the label of the current entity.
+Retrieve various simple properties of an entity. The following directives are
+supported:
+
+- `@resolveEntityId`
+- `@resolveEntityUuid`
+- `@resolveEntityType`
+- `@resolveEntityBundle`
+- `@resolveEntityLabel`
+- `@resolveEntityPath`
 
 ```graphql
 type Query {
@@ -217,7 +225,7 @@ type Query {
 }
 
 type Post {
-  title: String! @entityLabel
+  title: String! @resolveEntityLabel
 }
 ```
 

@@ -7,11 +7,11 @@ type Query {
 }
 
 type Post {
-# type: String! @resolveEntityType
-# bundle: String! @resolveEntityBundle
-# id: ID! @resolveEntityId
-# uuid: ID! @resolveEntityUuid
-# path: String! @resolveEntityPath
+  type: String! @resolveEntityType
+  bundle: String! @resolveEntityBundle
+  id: ID! @resolveEntityId
+  uuid: ID! @resolveEntityUuid
+  path: String! @resolveEntityPath
   title: String! @resolveEntityLabel
 # language: ID! @resolveEntityLanguage
 # body: String! @resolveProperty(path: "body.value")
