@@ -28,18 +28,6 @@ directive @template on FIELD_DEFINITION
 # Directives for automatic resolvers.
 ################################################################################
 
-directive @resolveEntityPath on FIELD_DEFINITION
-
-directive @resolveProperty(
-  path: String!
-) on FIELD_DEFINITION
-"""
-DEPRECATED, use @resolveProperty
-"""
-directive @property(
-  path: String!
-) on FIELD_DEFINITION
-
 directive @resolveEntityReference(
   field: String!
   single: Boolean!
