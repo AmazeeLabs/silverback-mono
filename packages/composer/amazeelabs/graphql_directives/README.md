@@ -218,6 +218,7 @@ supported:
 - `@resolveEntityBundle`
 - `@resolveEntityLabel`
 - `@resolveEntityPath`
+- `@resolveEntityLanguage`
 
 ```graphql
 type Query {

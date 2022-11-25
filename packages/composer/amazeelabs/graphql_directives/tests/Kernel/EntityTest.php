@@ -48,6 +48,7 @@ class EntityTest extends GraphQLTestBase {
     $postType = NodeType::create([
       'type' => 'post',
       'name' => 'Post',
+      'translatable' => TRUE,
     ]);
     $postType->save();
   }
@@ -172,6 +173,22 @@ class EntityTest extends GraphQLTestBase {
     $this->assertResults('query { static { path } }', [], [
       'static' => [
         'path' => '/node/1'
+      ]
+    ], $metadata);
+  }
+
+  public function testLanguage() {
+    $node = $this->createNode([
+      'type' => 'post',
+      'title' => 'test',
+      'langcode' => 'fr',
+    ]);
+    $node->save();
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheableDependency($node);
+    $this->assertResults('query { static { language } }', [], [
+      'static' => [
+        'language' => 'fr'
       ]
     ], $metadata);
   }

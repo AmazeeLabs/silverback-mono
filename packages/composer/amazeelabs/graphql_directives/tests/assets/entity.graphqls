@@ -13,7 +13,7 @@ type Post {
   uuid: ID! @resolveEntityUuid
   path: String! @resolveEntityPath
   title: String! @resolveEntityLabel
-# language: ID! @resolveEntityLanguage
+  language: ID! @resolveEntityLanguage
 # body: String! @resolveProperty(path: "body.value")
 # translations: [Post!]! @resolveEntityTranslations
 # translation: Post @resolveEntityTranslation(language: "fr")
