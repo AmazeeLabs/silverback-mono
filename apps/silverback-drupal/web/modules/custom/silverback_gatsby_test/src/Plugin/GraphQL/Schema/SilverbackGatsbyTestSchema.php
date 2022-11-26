@@ -21,7 +21,7 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
 
   public function getResolverRegistry(): ResolverRegistryInterface {
     $builder = new ResolverBuilder();
-    $registry = new ResolverRegistry();
+    $registry = parent::getResolverRegistry();
 
     $addResolver = function(string $path, ResolverInterface $resolver) use ($registry) {
       [$type, $field] = explode('.', $path);

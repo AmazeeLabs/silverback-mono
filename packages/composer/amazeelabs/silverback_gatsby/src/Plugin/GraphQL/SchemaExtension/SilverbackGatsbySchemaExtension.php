@@ -217,9 +217,7 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
           ];
           if (in_array($fieldDirective->name->value, $list, TRUE)) {
             $graphQlPath = $definition->name->value . '.' . $field->name->value;
-            $name = $fieldDirective->name->value === 'property'
-              ? 'resolveProperty'
-              : $fieldDirective->name->value;
+            $name = $fieldDirective->name->value;
             $this->resolvers[$graphQlPath] = [
               'name' => $name,
               'arguments' => [],
