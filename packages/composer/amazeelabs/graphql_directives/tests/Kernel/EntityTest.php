@@ -2,6 +2,7 @@
 
 namespace Drupal\Tests\graphql_directives\Kernel;
 
+use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\graphql\Entity\Server;
@@ -9,19 +10,32 @@ use Drupal\node\Entity\NodeType;
 use Drupal\Tests\graphql\Kernel\GraphQLTestBase;
 use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
 use Drupal\Tests\node\Traits\NodeCreationTrait;
+use Drupal\Tests\Traits\Core\PathAliasTestTrait;
 
 class EntityTest extends GraphQLTestBase {
   use NodeCreationTrait;
   use ContentTypeCreationTrait;
+  use PathAliasTestTrait;
 
   public static $modules = [
+    'path_alias',
     'filter',
     'text',
     'graphql_directives'
   ];
 
+  public function register(ContainerBuilder $container) {
+    parent::register($container);
+
+    // Restore AliasPathProcessor tags which are removed in the parent method.
+    $container->getDefinition('path_alias.path_processor')
+      ->addTag('path_processor_inbound', ['priority' => 100])
+      ->addTag('path_processor_outbound', ['priority' => 300]);
+  }
+
   protected function setUp(): void {
     parent::setUp();
+    $this->installEntitySchema('path_alias');
     $this->installConfig('graphql_directives');
     $this->installConfig('filter');
 
@@ -196,6 +210,35 @@ class EntityTest extends GraphQLTestBase {
     $this->assertResults('query { static { path } }', [], [
       'static' => [
         'path' => '/node/1'
+      ]
+    ], $metadata);
+  }
+
+  public function testPathAlias() {
+    $node = $this->createNode(['type' => 'post', 'title' => 'test']);
+    $node->save();
+    $this->createPathAlias('/node/1', '/test');
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheableDependency($node);
+    $this->assertResults('query { static { path } }', [], [
+      'static' => [
+        'path' => '/test'
+      ]
+    ], $metadata);
+  }
+
+  public function testPathSanitization() {
+    $node = $this->createNode([
+      'type' => 'post',
+      'title' => 'test',
+    ]);
+    $node->save();
+    $this->createPathAlias('/node/1', '/?test/./foo');
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheableDependency($node);
+    $this->assertResults('query { static { path } }', [], [
+      'static' => [
+        'path' => '/test/foo'
       ]
     ], $metadata);
   }

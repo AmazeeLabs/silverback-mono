@@ -465,44 +465,6 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
     foreach ($this->getResolveDirectives($ast) as $path => $definition) {
       switch ($definition['name']) {
 
-//        case 'resolveEntityPath':
-//          $addResolver($path, $builder->compose(
-//            $builder->produce('entity_url')->map('entity', $builder->fromParent()),
-//            $builder->produce('url_path')->map('url', $builder->fromParent()),
-//            $builder->callback(
-//              // TODO: port this as a separate directive?
-//              function (string $path) {
-//
-//                // Gatsby expects raw paths. Not encoded.
-//                $path = rawurldecode($path);
-//
-//                // Some paths may ruin Gatsby.
-//                // See https://github.com/gatsbyjs/gatsby/discussions/36345#discussioncomment-3364844
-//                $original = $path;
-//                $bannedCharacters = ['%', '?', '#', '\\', '"'];
-//                foreach ($bannedCharacters as $character) {
-//                  if (strpos($path, $character) !== FALSE) {
-//                    $path = str_replace($character, '', $path);
-//                    $this->logger->warning("Found entity with '{$character}' character in its path alias. The character will be removed from the Gatsby page path. This can lead to broken links. Please update the entity path alias. Original path alias: '{$original}'.");
-//                  }
-//                }
-//                $dotsOnlyRegex = '/^\.+$/';
-//                $pathSegments = explode('/', $path);
-//                $pathSegmentsFiltered = array_filter(
-//                  $pathSegments,
-//                  fn (string $segment) => !preg_match($dotsOnlyRegex, $segment)
-//                );
-//                if (count($pathSegments) !== count($pathSegmentsFiltered)) {
-//                  $path = implode('/', $pathSegmentsFiltered);
-//                  $this->logger->warning("Found entity with dots-only path segment(s) in its path alias. These segments will be removed from the Gatsby page path. This can lead to broken links. Please update the entity path alias. Original path alias: '{$original}'.");
-//                }
-//
-//                return $path;
-//              }
-//            )
-//          ));
-//          break;
-
         case 'resolveEditorBlocks':
           $addResolver($path, $builder->produce('editor_blocks', [
             'path' => $builder->fromValue($definition['arguments']['path']),
