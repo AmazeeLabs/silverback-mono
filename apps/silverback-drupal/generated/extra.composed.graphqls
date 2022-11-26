@@ -1,4 +1,10 @@
 """
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Arg".
+"""
+directive @arg(name: String!) on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
 Provided by the "silverback_gutenberg" module.
 Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockChildren".
 """
@@ -28,6 +34,14 @@ Apply all directives on the right to output on the left.
 directive @map on FIELD_DEFINITION
 
 """
+Load a given entity by it's path or type and id or uuid
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityLoad".
+"""
+directive @loadEntity(route: String, type: String, uuid: String, id: String) on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
 Mark a type as member of a generic.
 The id argument contains a string that has to match the generics resolution.
 """
@@ -50,6 +64,38 @@ Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Value".
 directive @value(json: String!) on FIELD_DEFINITION | UNION | INTERFACE
 
 """
+Pull a specific typed-data property from an entity.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityProperty".
+"""
+directive @resolveProperty(path: String!) on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Resolve a path to an Url object.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Route".
+"""
+directive @route(path: String!) on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Retrieve a specific translation of an entity.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityTranslation".
+"""
+directive @resolveEntityTranslation(lang: String!) on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Retrieve all translations of an entity.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityTranslations".
+"""
+directive @resolveEntityTranslations on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
 Retrieve an editor block attribute.
 
 Provided by the "silverback_gutenberg" module.
@@ -58,12 +104,68 @@ Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlock
 directive @resolveEditorBlockAttribute(key: String!, plainText: Boolean) on FIELD_DEFINITION | UNION | INTERFACE
 
 """
+Retrieve an entities bundle.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityBundle".
+"""
+directive @resolveEntityBundle on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Retrieve an entities id.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityId".
+"""
+directive @resolveEntityId on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Retrieve an entities label.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityLabel".
+"""
+directive @resolveEntityLabel on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Retrieve an entities type id.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityType".
+"""
+directive @resolveEntityType on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Retrieve an entities url path.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityPath".
+"""
+directive @resolveEntityPath on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Retrieve an entities uuid.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityUuid".
+"""
+directive @resolveEntityUuid on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
 Retrieve an object or map property.
 
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Prop".
 """
 directive @prop(key: String!) on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Retrieve the language of an entity.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityLanguage".
+"""
+directive @resolveEntityLanguage on FIELD_DEFINITION | UNION | INTERFACE
 
 """
 Seek a specific element in a list.
