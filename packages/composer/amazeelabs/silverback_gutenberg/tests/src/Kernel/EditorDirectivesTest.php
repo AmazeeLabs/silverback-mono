@@ -82,6 +82,7 @@ class EditorDirectivesTest extends GraphQLTestBase {
       'schema_configuration' => [
         'directable' => [
           'schema_definition' => __DIR__ . '/../../graphql/editor.graphqls',
+          'extensions' => [],
         ]
       ]
     ]);
