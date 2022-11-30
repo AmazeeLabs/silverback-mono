@@ -8,14 +8,16 @@ use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\graphql\Entity\Server;
 use Drupal\node\Entity\NodeType;
 use Drupal\Tests\graphql\Kernel\GraphQLTestBase;
+use Drupal\Tests\graphql_directives\Traits\GraphQLDirectivesTestTrait;
 use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
 use Drupal\Tests\node\Traits\NodeCreationTrait;
 use Drupal\Tests\Traits\Core\PathAliasTestTrait;
 
-class EntityTest extends GraphQLTestBase {
+class EntitiesTest extends GraphQLTestBase {
   use NodeCreationTrait;
   use ContentTypeCreationTrait;
   use PathAliasTestTrait;
+  use GraphQLDirectivesTestTrait;
 
   public static $modules = [
     'path_alias',
@@ -38,29 +40,7 @@ class EntityTest extends GraphQLTestBase {
     $this->installEntitySchema('path_alias');
     $this->installConfig('graphql_directives');
     $this->installConfig('filter');
-
-    $path = \Drupal::moduleHandler()->getModule('graphql_directives')->getPath();
-    $directives = $this->container->get('graphql_directives.printer')
-      ->printDirectives();
-
-    file_put_contents(
-      $path . '/tests/assets/directives.graphqls',
-      $directives
-    );
-
-    $this->server = Server::create([
-      'status' => true,
-      'name' => 'entity_test',
-      'label' => 'Entity Test',
-      'endpoint'=> '/graphql/entity-test',
-      'schema' => 'directable',
-      'schema_configuration'=> [
-        'directable' => [
-          'schema_definition' => __DIR__ . '/../assets/entity.graphqls',
-          'extensions' => []
-        ],
-      ],
-    ]);
+    $this->setupDirectableSchema(__DIR__ . '/../../assets/entities');
 
     $postType = NodeType::create([
       'type' => 'post',

@@ -4,8 +4,10 @@ namespace Drupal\Tests\graphql_directives\Kernel;
 
 use Drupal\graphql\Entity\Server;
 use Drupal\Tests\graphql\Kernel\GraphQLTestBase;
+use Drupal\Tests\graphql_directives\Traits\GraphQLDirectivesTestTrait;
 
-class DirectableSchemaTest extends GraphQLTestBase {
+class UtilitiesTest extends GraphQLTestBase {
+  use GraphQLDirectivesTestTrait;
 
   public static $modules = [
     'graphql_directives',
@@ -15,29 +17,7 @@ class DirectableSchemaTest extends GraphQLTestBase {
   protected function setUp(): void {
     parent::setUp();
     $this->installConfig('graphql_directives');
-
-    $path = \Drupal::moduleHandler()->getModule('graphql_directives')->getPath();
-    $directives = $this->container->get('graphql_directives.printer')
-      ->printDirectives();
-
-    file_put_contents(
-      $path . '/tests/assets/directives.graphqls',
-      $directives
-    );
-
-    $this->server = Server::create([
-      'status' => true,
-      'name' => 'directives_test',
-      'label' => 'Directives Test',
-      'endpoint'=> '/graphql/directives-test',
-      'schema' => 'directable',
-      'schema_configuration'=> [
-        'directable' => [
-          'schema_definition' => __DIR__ . '/../assets/schema.graphqls',
-          'extensions' => ['test_directable' => 'test_directable']
-        ],
-      ],
-    ]);
+    $this->setupDirectableSchema(__DIR__ . '/../../assets/utilities', ['test_directable']);
   }
 
   function testSchemaLoading() {
