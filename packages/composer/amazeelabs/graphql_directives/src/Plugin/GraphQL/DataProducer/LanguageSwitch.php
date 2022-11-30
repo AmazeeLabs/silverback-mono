@@ -1,30 +1,31 @@
 <?php
 
-namespace Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer;
+namespace Drupal\graphql_directives\Plugin\GraphQL\DataProducer;
 
 use Drupal\Core\DependencyInjection\DependencySerializationTrait;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\Translator\TranslatorInterface;
+use Drupal\Core\TypedData\TranslatableInterface;
 use Drupal\graphql\EventSubscriber\CurrentLanguageResetTrait;
 use Drupal\graphql\GraphQL\Execution\FieldContext;
 use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
 use Drupal\language\LanguageNegotiatorInterface;
+use GraphQL\Deferred;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * TODO: This should be supported by the GraphQL module.
- *
  * @DataProducer(
  *   id = "language_switch",
  *   name = @Translation("Switch language"),
  *   consumes = {
- *     "language" = @ContextDefinition("string",
- *       label = @Translation("Language"),
- *       required = TRUE,
- *     ),
- *   },
+ *     "language" = @ContextDefinition("any",
+ *       label = @Translation("Language or translatable object"),
+ *       required = TRUE
+ *     )
+ *   }
  * )
  */
 class LanguageSwitch extends DataProducerPluginBase implements ContainerFactoryPluginInterface {
@@ -64,8 +65,13 @@ class LanguageSwitch extends DataProducerPluginBase implements ContainerFactoryP
     $this->currentUser = $currentUser;
   }
 
-  public function resolve(string $language, FieldContext $fieldContext) {
-    $fieldContext->setContextLanguage($language);
+  public function resolve($language, FieldContext $fieldContext) {
+    if ($language instanceof TranslatableInterface || $language instanceof EntityInterface) {
+      $fieldContext->setContextLanguage($language->language()->getId());
+    }
+    if (is_string($language)) {
+      $fieldContext->setContextLanguage($language);
+    }
     $this->resetLanguageContext();
   }
 

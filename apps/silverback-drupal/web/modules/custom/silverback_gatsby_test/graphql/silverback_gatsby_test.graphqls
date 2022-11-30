@@ -22,26 +22,31 @@ type Page @entity(type: "node", bundle: "page") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
   body: String @resolveProperty(path: "field_body.0.processed")
-  paragraphs: [PageParagraphs!]! @resolveEntityReferenceRevisions(field: "field_paragraphs", single: false)
+  paragraphs: [PageParagraphs!]!
+    @resolveEntityReferenceRevisions(field: "field_paragraphs", single: false)
 }
 
-union PageParagraphs =
-  | ParagraphText
-  | ParagraphReferences
+union PageParagraphs = ParagraphText | ParagraphReferences
 
 type ParagraphText {
   text: String @resolveProperty(path: "field_text.0.value")
 }
 
 type ParagraphReferences {
-  references: [Article]! @resolveEntityReference(field: "field_references", single: false)
-  singleReference: GutenbergPage @resolveEntityReference(field: "field_single_reference", single: true)
+  references: [Article]!
+    @resolveEntityReference(field: "field_references", single: false)
+  singleReference: GutenbergPage
+    @resolveEntityReference(field: "field_single_reference", single: true)
 }
 
 type GutenbergPage @entity(type: "node", bundle: "gutenberg_page") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
-  body: [RootBlock!]! @resolveEditorBlocks(path: "body.value", ignored: ["custom/root", "core/columns"])
+  body: [RootBlock!]!
+    @resolveEditorBlocks(
+      path: "body.value"
+      ignored: ["custom/root", "core/columns"]
+    )
 }
 
 type Webform @entity(type: "webform", access: false) {
@@ -60,7 +65,7 @@ type Article @entity(type: "node", bundle: "article") {
 }
 
 union RootBlock @resolveEditorBlockType =
-  | BlockTwoColumns
+    BlockTwoColumns
   | BlockHtmlList
   | BlockHtmlParagraph
   | BlockHtmlQuote
@@ -68,7 +73,7 @@ union RootBlock @resolveEditorBlockType =
   | BlockTeaser
 
 union ContentBlock @resolveEditorBlockType =
-  | BlockHtmlList
+    BlockHtmlList
   | BlockHtmlParagraph
   | BlockHtmlQuote
   | BlockImage
@@ -106,14 +111,19 @@ type BlockTeaser @type(id: "custom/teaser") {
   url: String! @resolveEditorBlockAttribute(key: "url")
 }
 
-
 type MenuItem {
-  label: String!
-  url: String!
+  id: String! @resolveMenuItemId
+  parent: String @resolveMenuItemParentId
+  label: String! @resolveMenuItemLabel
+  url: String! @resolveMenuItemUrl
 }
 
-type MainMenu @menu(menu_id: "main", item_type: "MenuItem")
+type MainMenu @menu(menu_id: "main") {
+  items: [MenuItem!]! @lang @resolveMenuItems
+}
 
-type FirstLevelMainMenu @menu(menu_id: "main", item_type: "MenuItem", max_level: 1)
+type FirstLevelMainMenu @menu(menu_id: "main", max_level: 1) {
+  items: [MenuItem!]! @lang @resolveMenuItems(max_level: 1)
+}
 
 type GatsbyStringTranslation @stringTranslation(contextPrefix: "gatsby")

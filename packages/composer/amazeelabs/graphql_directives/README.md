@@ -270,7 +270,46 @@ type Post {
 }
 ```
 
-````
+### `@lang`
+
+Switch the current execution language for the remaining subtree below the
+current field. Accepts either a `code` argument (dynamic) or, if omitted, uses
+the parent value. If the latter is a string, it will be used as-is, if its an
+instance of `TranslatableInteface`, the language is derived from there.
+
+```graphql
+type Query {
+  post(id: String!): Post @loadEntity(type: "node", id: "$id") @lang
+}
+```
+
+### `@resolveMenuItems`
+
+Retrieve all items of a menu entity. Accepts an optional `max_level` argument
+that caps the maximum number of menu levels. The tree is flattened to a list, to
+avoid the necessity of nested fragments. The `@resolveMenuItemId` and
+`@resolveMenuItemParentId` directives should be used to reconstruct the tree in
+the consumer. The list of menu items is also filtered by language, respecting
+the current execution context language, as it can be controlled by `@lang`.
+
+```graphql
+type Query {
+  menu: Limited! @loadEntity(type: "menu", id: "main", operation: "view label")
+}
+
+type Menu {
+  items: [MenuItem!]! @resolveMenuItems(max_level: 2)
+}
+```
+
+### `@resolveMenuItem[...]`
+
+Various menu item properties.
+
+- `@resolveMenuItemId`
+- `@resolveMenuItemParentId`
+- `@resolveMenuItemLabel`
+- `@resolveMenuItemUrl`
 
 ## Extending
 
@@ -304,7 +343,7 @@ class EchoDirective extends PluginBase implements DirectiveInterface {
     return $builder->fromValue($arguments['input']);
   }
 }
-````
+```
 
 ## Schema Extensions
 
