@@ -298,7 +298,7 @@ type Query {
 }
 
 type Menu {
-  items: [MenuItem!]! @resolveMenuItems(max_level: 2)
+  items: [MenuItem!]! @lang(code: "fr") @resolveMenuItems(max_level: 2)
 }
 ```
 
