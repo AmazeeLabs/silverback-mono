@@ -5,6 +5,42 @@ Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Arg".
 directive @arg(name: String!) on FIELD_DEFINITION | UNION | INTERFACE
 
 """
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Lang".
+"""
+directive @lang(code: String) on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\MenuItemId".
+"""
+directive @resolveMenuItemId on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\MenuItemLabel".
+"""
+directive @resolveMenuItemLabel on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\MenuItemParentId".
+"""
+directive @resolveMenuItemParentId on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\MenuItemUrl".
+"""
+directive @resolveMenuItemUrl on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\MenuItems".
+"""
+directive @resolveMenuItems(max_level: Int) on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
 Provided by the "silverback_gutenberg" module.
 Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockChildren".
 """
@@ -39,7 +75,7 @@ Load a given entity by it's path or type and id or uuid
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityLoad".
 """
-directive @loadEntity(route: String, type: String, uuid: String, id: String) on FIELD_DEFINITION | UNION | INTERFACE
+directive @loadEntity(route: String, type: String, uuid: String, id: String, operation: String) on FIELD_DEFINITION | UNION | INTERFACE
 
 """
 Mark a type as member of a generic.
@@ -271,13 +307,19 @@ type BlockTeaser @type(id: "custom\/teaser") {
 }
 
 type MenuItem {
-  label: String!
-  url: String!
+  id: String! @resolveMenuItemId
+  parent: String @resolveMenuItemParentId
+  label: String! @resolveMenuItemLabel
+  url: String! @resolveMenuItemUrl
 }
 
-type MainMenu @menu(menu_id: "main", item_type: "MenuItem")
+type MainMenu @menu(menu_id: "main") {
+  items: [MenuItem!]! @lang @resolveMenuItems
+}
 
-type FirstLevelMainMenu @menu(menu_id: "main", item_type: "MenuItem", max_level: 1)
+type FirstLevelMainMenu @menu(menu_id: "main", max_level: 1) {
+  items: [MenuItem!]! @lang @resolveMenuItems(max_level: 1)
+}
 
 type GatsbyStringTranslation @stringTranslation(contextPrefix: "gatsby")
 
@@ -329,38 +371,6 @@ max_level:
   level does not require a full rebuild of every page.
 """
 directive @menu(menu_id: String, menu_ids: [String!], item_type: String, max_level: Int) on OBJECT
-
-"""
-Resolve menu items in a menu.
-
-max_level:
-  The maximum level to be fetched.
-  This can be used to optimizing caching. Most of the time only one or two
-  levels of menus are immediately visible on the page. By declaring multiple
-  types, we can generate different cache buckets, so a new menu item on a low
-  level does not require a full rebuild of every page.
-"""
-directive @resolveMenuItems(max_level: Int) on FIELD_DEFINITION
-
-"""
-Resolve the menu items id.
-"""
-directive @resolveMenuItemId on FIELD_DEFINITION
-
-"""
-Resolve the menu item parents id.
-"""
-directive @resolveMenuItemParentId on FIELD_DEFINITION
-
-"""
-Resolve a menu items label.
-"""
-directive @resolveMenuItemLabel on FIELD_DEFINITION
-
-"""
-Resolve the Url from within a menu item.
-"""
-directive @resolveMenuItemUrl on FIELD_DEFINITION
 
 directive @stringTranslation(contextPrefix: String) on OBJECT
 
@@ -572,15 +582,6 @@ extend type MainMenu {
   translations: [MainMenu!]!
 }
 
-extend type MainMenu {
-  items: [MenuItem!]!
-}
-
-extend type MenuItem {
-  id: String!
-  parent: String!
-}
-
 extend type Query {
   loadFirstLevelMainMenu(id: String!): FirstLevelMainMenu
   queryFirstLevelMainMenus(offset: Int, limit: Int): [FirstLevelMainMenu]!
@@ -592,15 +593,6 @@ extend type FirstLevelMainMenu {
   defaultTranslation: Boolean!
   langcode: String!
   translations: [FirstLevelMainMenu!]!
-}
-
-extend type FirstLevelMainMenu {
-  items: [MenuItem!]!
-}
-
-extend type MenuItem {
-  id: String!
-  parent: String!
 }
 
 extend type Query {
