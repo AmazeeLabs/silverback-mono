@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@2.3.4...@amazeelabs/react-framework-bridge@2.3.5) (2022-12-09)
+
+### Bug Fixes
+
+- **react:** do not bundle formik and react-intl into framework bridge
+  ([80bb5dc](https://github.com/AmazeeLabs/silverback-mono/commit/80bb5dcb57420348baa8b8a1b4796ead9c8a852d))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.3.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@2.3.3...@amazeelabs/react-framework-bridge@2.3.4) (2022-12-09)
 
 ### Bug Fixes
