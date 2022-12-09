@@ -57,7 +57,9 @@
     "rehype-slug": "^5.1.0",
     "unified": "^10.1.2",
     "unist-util-modify-children": "^3.0.0",
-    "unist-util-visit": "^4.1.1"
+    "unist-util-visit": "^4.1.1",
+    "formik": "2.2.9",
+    "react-intl": "6.2.1"
   },
   "peerDependencies": {
     "@storybook/addon-actions": ">=6.5.13",
@@ -81,13 +83,11 @@
     "@vitejs/plugin-react": "2.2.0",
     "esbuild": "0.15.13",
     "eslint": "8.26.0",
-    "formik": "2.2.9",
     "gatsby": "4.24.6",
     "gatsby-plugin-image": "2.24.0",
     "jsdom": "20.0.2",
     "lint-staged": "13.0.3",
     "prettier": "2.7.1",
-    "react-intl": "6.2.1",
     "rollup": "2.79.1",
     "rollup-plugin-dts": "4.2.3",
     "rollup-plugin-esbuild": "4.10.1",
