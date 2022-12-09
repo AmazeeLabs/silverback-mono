@@ -15,6 +15,14 @@
     "./storybook": {
       "import": "./dist/storybook.js",
       "require": "./dist/storybook.cjs"
+    },
+    "./react-intl": {
+      "import": "./dist/react-intl.js",
+      "require": "./dist/react-intl.cjs"
+    },
+    "./formik": {
+      "import": "./dist/formik.js",
+      "require": "./dist/formik.cjs"
     }
   },
   "typesVersions": {
@@ -53,12 +61,10 @@
   },
   "peerDependencies": {
     "@storybook/addon-actions": ">=6.5.13",
-    "formik": ">=2.2.9",
     "gatsby": ">=4.24.6",
     "gatsby-plugin-image": ">=2.24.0",
     "react": ">=18.2.0",
     "react-dom": ">=18.2.0",
-    "react-intl": "*",
     "yup": ">=0.32.11"
   },
   "devDependencies": {
@@ -94,10 +100,12 @@
   },
   "scripts": {
     "prepare": "yarn build",
-    "build": "yarn build:index && yarn build:gatsby && yarn build:storybook",
+    "build": "yarn build:index && yarn build:gatsby && yarn build:storybook && yarn build:react-intl && yarn build:formik",
     "build:index": "ENTRYPOINT=index vite build",
     "build:gatsby": "ENTRYPOINT=gatsby vite build",
     "build:storybook": "ENTRYPOINT=storybook vite build",
+    "build:formik": "ENTRYPOINT=formik vite build",
+    "build:react-intl": "ENTRYPOINT=react-intl vite build",
     "dev": "vite build --watch",
     "precommit": "lint-staged",
     "test": "yarn test:static && yarn test:unit && yarn test:integration",
