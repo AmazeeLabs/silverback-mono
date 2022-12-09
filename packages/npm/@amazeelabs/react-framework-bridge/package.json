@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/react-framework-bridge",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "description": "Bridge code to implement framework independent react components.",
   "type": "module",
   "exports": {
