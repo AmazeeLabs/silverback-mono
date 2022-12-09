@@ -30,6 +30,12 @@
       "index": [
         "./dist/index.d.ts"
       ],
+      "formik": [
+        "./dist/formik.d.ts"
+      ],
+      "react-intl": [
+        "./dist/react-intl.d.ts"
+      ],
       "storybook": [
         "./dist/storybook.d.ts"
       ],
