@@ -13,7 +13,7 @@ module.exports.onPostBootstrap = ({ store, reporter }, options) => {
   const dest = options.dest || defaultLocation;
   new Promise((resolve, reject) => {
     const { schema } = store.getState();
-    graphql(schema, getIntrospectionQuery())
+    graphql({schema, source: getIntrospectionQuery()})
       .then((res) => {
         const dir = path.dirname(dest);
         if (!fs.existsSync(dir)) {
