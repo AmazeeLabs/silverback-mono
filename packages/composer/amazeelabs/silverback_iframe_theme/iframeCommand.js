@@ -36,16 +36,21 @@
 
   // Pass the iframe command to the parent iframe.
   if (drupalSettings.iframeCommand) {
-    waitForParentIframe(function (parentIFrame) {
-      var command = drupalSettings.iframeCommand;
-      if (command.action === "redirect") {
-        command = $.extend(true, {}, command, {
-          path: removeIframeFromUrl(command.path),
+    var iframeCommands = !Array.isArray(drupalSettings.iframeCommand) ? new Array(drupalSettings.iframeCommand) : drupalSettings.iframeCommand;
+    if (iframeCommands.length > 0) {
+      waitForParentIframe(function (parentIFrame) {
+        iframeCommands.forEach(function(iframeCommand) {
+          var command = iframeCommand;
+          if (command.action === "redirect") {
+            command = $.extend(true, {}, command, {
+              path: removeIframeFromUrl(command.path),
+            });
+          }
+          parentIFrame.sendMessage(command, "*");
         });
-      }
-      parentIFrame.sendMessage(command, "*");
-    });
-    return;
+      });
+      return;
+    }
   }
 
   // Fallback behavior: get the redirect/messages from the page content.

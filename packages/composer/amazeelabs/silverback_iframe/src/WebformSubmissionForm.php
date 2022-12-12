@@ -16,14 +16,28 @@ class WebformSubmissionForm extends Original {
 
     // Pass the message to frontend.
     $request = \Drupal::request();
+    $form['#attached']['drupalSettings']['iframeCommand'] = [];
     if ($request->query->has('iframe_message')) {
-      $form['#attached']['drupalSettings']['iframeCommand'] = [
+      $form['#attached']['drupalSettings']['iframeCommand'][] = [
         'action' => 'displayMessages',
         'messages' => [$request->query->get('iframe_message')],
       ];
       $request->query->remove('iframe_message');
     }
     $form['#cache']['contexts'][] = 'url.query_args';
+
+    // @todo: there is one case which is not handled here: if the form fails
+    // validation, then the scroll command is not triggered. This is a bit
+    // trickier to implement, maybe we can do this by adding a custom form
+    // validation callback where we can check if the form already failed
+    // validation, and if yes then alter somehow the iframeCommand drupal js
+    // setting.
+    if ($form_state->isRebuilding()) {
+      $form['#attached']['drupalSettings']['iframeCommand'][] = [
+        'action' => 'scroll',
+        'scroll' => 'top',
+      ];
+    }
 
     return $form;
   }

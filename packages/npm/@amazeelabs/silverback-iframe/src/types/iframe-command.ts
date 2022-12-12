@@ -11,16 +11,23 @@ export type IframeCommandRedirect = {
 export type IframeCommandOther = {
   action: 'replaceWithMessages' | 'displayMessages';
   messages: Array<string>;
+  scroll?: string;
 };
+
+export type IframeCommandScroll = {
+  action: 'scroll';
+  scroll: string;
+}
 
 export type IframeCommand =
   | IframeCommandGetBaseUrl
   | IframeCommandRedirect
-  | IframeCommandOther;
+  | IframeCommandOther
+  | IframeCommandScroll;
 
 export const isIframeCommand = (variable: any): variable is IframeCommand => {
   if (typeof variable === 'object' && typeof variable.action === 'string') {
-    if (variable.action === 'getBaseUrl') {
+    if (['getBaseUrl', 'scroll'].includes(variable.action)) {
       return true;
     }
     if (
