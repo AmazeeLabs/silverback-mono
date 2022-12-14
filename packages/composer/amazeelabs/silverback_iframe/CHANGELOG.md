@@ -1,68 +1,52 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_iframe@1.2.0...@-amazeelabs/silverback_iframe@1.2.1) (2022-07-19)
-
-
-### Bug Fixes
-
-* fix webform redirect url check ([710318c](https://github.com/AmazeeLabs/silverback-mono/commit/710318c97dea7c7b024fe710c7797c9984e832db))
-
-
-
-
-
-# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_iframe@1.1.4...@-amazeelabs/silverback_iframe@1.2.0) (2022-04-25)
-
+# [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_iframe@1.2.1...@-amazeelabs/silverback_iframe@1.3.0) (2022-12-14)
 
 ### Features
 
-* introduce limit_webform_confirmation_options setting ([9ee3ae7](https://github.com/AmazeeLabs/silverback-mono/commit/9ee3ae77d548c506d6c1907401248d30b6c06e86))
+- implemented a scroll command and use it when webforms are rebuilding (in a
+  multistep forms)
+  ([1c5d393](https://github.com/AmazeeLabs/silverback-mono/commit/1c5d393494544507c39fb9f1ebe300042c95a957))
 
-
-
-
-
-## [1.1.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_iframe@1.1.3...@-amazeelabs/silverback_iframe@1.1.4) (2022-01-20)
-
+## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_iframe@1.2.0...@-amazeelabs/silverback_iframe@1.2.1) (2022-07-19)
 
 ### Bug Fixes
 
-* restore fallback behavior for webforms ([fc2eae3](https://github.com/AmazeeLabs/silverback-mono/commit/fc2eae34a49a06749d603763d1a66d0123ba1c6a))
+- fix webform redirect url check
+  ([710318c](https://github.com/AmazeeLabs/silverback-mono/commit/710318c97dea7c7b024fe710c7797c9984e832db))
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_iframe@1.1.4...@-amazeelabs/silverback_iframe@1.2.0) (2022-04-25)
 
+### Features
 
+- introduce limit_webform_confirmation_options setting
+  ([9ee3ae7](https://github.com/AmazeeLabs/silverback-mono/commit/9ee3ae77d548c506d6c1907401248d30b6c06e86))
 
+## [1.1.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_iframe@1.1.3...@-amazeelabs/silverback_iframe@1.1.4) (2022-01-20)
+
+### Bug Fixes
+
+- restore fallback behavior for webforms
+  ([fc2eae3](https://github.com/AmazeeLabs/silverback-mono/commit/fc2eae34a49a06749d603763d1a66d0123ba1c6a))
 
 ## [1.1.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_iframe@1.1.2...@-amazeelabs/silverback_iframe@1.1.3) (2021-12-27)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_iframe
 
-
-
-
-
 ## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_iframe@1.1.1...@-amazeelabs/silverback_iframe@1.1.2) (2021-10-11)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_iframe
-
-
-
-
 
 ## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_iframe@1.1.0...@-amazeelabs/silverback_iframe@1.1.1) (2021-09-07)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_iframe
 
-
-
-
-
 # 1.1.0 (2021-09-06)
-
 
 ### Features
 
-* Silverback Iframe solution ([2e7d599](https://github.com/AmazeeLabs/silverback-mono/commit/2e7d599c774341404081fcc0dc5001c9caaa0fa0))
+- Silverback Iframe solution
+  ([2e7d599](https://github.com/AmazeeLabs/silverback-mono/commit/2e7d599c774341404081fcc0dc5001c9caaa0fa0))
