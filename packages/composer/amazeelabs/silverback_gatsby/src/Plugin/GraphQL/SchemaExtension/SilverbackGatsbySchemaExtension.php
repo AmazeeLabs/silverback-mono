@@ -187,49 +187,6 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
   }
 
   /**
-   * @see SilverbackGatsbySchemaExtension::$resolvers
-   */
-  protected function getResolveDirectives(DocumentNode $ast): array {
-    if (isset($this->resolvers)) {
-      return $this->resolvers;
-    }
-    $this->resolvers = [];
-    foreach ($ast->definitions->getIterator() as $definition) {
-      if (!($definition instanceof ObjectTypeDefinitionNode)) {
-        continue;
-      }
-      foreach ($definition->fields as $field) {
-        foreach ($field->directives as $fieldDirective) {
-          $list = [];
-          if (in_array($fieldDirective->name->value, $list, TRUE)) {
-            $graphQlPath = $definition->name->value . '.' . $field->name->value;
-            $name = $fieldDirective->name->value;
-            $this->resolvers[$graphQlPath] = [
-              'name' => $name,
-              'arguments' => [],
-            ];
-            foreach ($fieldDirective->arguments->getIterator() as $arg) {
-              /** @var \GraphQL\Language\AST\ArgumentNode $arg */
-              if ($arg->value instanceof ListValueNode) {
-                $this->resolvers[$graphQlPath]['arguments'][$arg->name->value] = [];
-                foreach ($arg->value->values->getIterator() as $value) {
-                  if ($value instanceof StringValueNode) {
-                    $this->resolvers[$graphQlPath]['arguments'][$arg->name->value][] = $value->value;
-                  }
-                }
-              }
-              else {
-                $this->resolvers[$graphQlPath]['arguments'][$arg->name->value] = $arg->value->value;
-              }
-            }
-          }
-        }
-      }
-    }
-    return $this->resolvers;
-  }
-
-  /**
    * Build the automatic schema definition for a given Feed.
    */
   protected function getSchemaDefinitions(DocumentNode $ast, FeedInterface $feed) : string {
