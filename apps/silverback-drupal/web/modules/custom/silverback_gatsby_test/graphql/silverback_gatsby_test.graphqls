@@ -23,7 +23,7 @@ type Page @entity(type: "node", bundle: "page") {
   title: String! @resolveProperty(path: "title.value")
   body: String @resolveProperty(path: "field_body.0.processed")
   paragraphs: [PageParagraphs!]!
-    @resolveEntityReferenceRevisions(field: "field_paragraphs", single: false)
+    @resolveEntityReferenceRevisions(field: "field_paragraphs")
 }
 
 union PageParagraphs = ParagraphText | ParagraphReferences
@@ -33,10 +33,10 @@ type ParagraphText {
 }
 
 type ParagraphReferences {
-  references: [Article]!
-    @resolveEntityReference(field: "field_references", single: false)
+  references: [Article]! @resolveEntityReference(field: "field_references")
   singleReference: GutenbergPage
-    @resolveEntityReference(field: "field_single_reference", single: true)
+    @resolveEntityReference(field: "field_single_reference")
+    @seek(pos: 0)
 }
 
 type GutenbergPage @entity(type: "node", bundle: "gutenberg_page") {
@@ -59,8 +59,8 @@ type Article @entity(type: "node", bundle: "article") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
   body: String @resolveProperty(path: "field_body.0.processed")
-  tags: [Tag]! @resolveEntityReference(field: "field_tags", single: false)
-  image: Image @resolveEntityReference(field: "field_image", single: true)
+  tags: [Tag]! @resolveEntityReference(field: "field_tags")
+  image: Image @resolveEntityReference(field: "field_image") @seek(pos: 0)
   template: String @isTemplate
 }
 
