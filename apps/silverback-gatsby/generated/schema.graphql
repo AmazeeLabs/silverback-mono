@@ -671,11 +671,11 @@ type DrupalMainMenu implements Node {
   remoteTypeName: String!
   translations: [DrupalMainMenu!]!
   remoteId: String!
+  items: [DrupalMenuItem!]!
   _original_typename: String!
   drupalId: String!
   defaultTranslation: Boolean!
   langcode: String!
-  items: [DrupalMenuItem!]!
   translation(langcode: String!): DrupalMainMenu!
   id: ID!
   parent: Node
@@ -685,22 +685,22 @@ type DrupalMainMenu implements Node {
 
 type DrupalMenuItem {
   remoteTypeName: String!
+  id: String!
+  parent: String
   label: String!
   url: String!
   _original_typename: String!
-  id: String!
-  parent: String!
 }
 
 type DrupalFirstLevelMainMenu implements Node {
   remoteTypeName: String!
   translations: [DrupalFirstLevelMainMenu!]!
   remoteId: String!
+  items: [DrupalMenuItem!]!
   _original_typename: String!
   drupalId: String!
   defaultTranslation: Boolean!
   langcode: String!
-  items: [DrupalMenuItem!]!
   translation(langcode: String!): DrupalFirstLevelMainMenu!
   id: ID!
   parent: Node
@@ -758,9 +758,9 @@ type Query {
   allDrupalGutenbergPage(filter: DrupalGutenbergPageFilterInput, sort: DrupalGutenbergPageSortInput, skip: Int, limit: Int): DrupalGutenbergPageConnection!
   drupalWebform(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, path: StringQueryOperatorInput, url: StringQueryOperatorInput, title: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalWebform
   allDrupalWebform(filter: DrupalWebformFilterInput, sort: DrupalWebformSortInput, skip: Int, limit: Int): DrupalWebformConnection!
-  drupalMainMenu(remoteTypeName: StringQueryOperatorInput, translations: DrupalMainMenuFilterListInput, remoteId: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, items: DrupalMenuItemFilterListInput, translation: DrupalMainMenuFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalMainMenu
+  drupalMainMenu(remoteTypeName: StringQueryOperatorInput, translations: DrupalMainMenuFilterListInput, remoteId: StringQueryOperatorInput, items: DrupalMenuItemFilterListInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, translation: DrupalMainMenuFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalMainMenu
   allDrupalMainMenu(filter: DrupalMainMenuFilterInput, sort: DrupalMainMenuSortInput, skip: Int, limit: Int): DrupalMainMenuConnection!
-  drupalFirstLevelMainMenu(remoteTypeName: StringQueryOperatorInput, translations: DrupalFirstLevelMainMenuFilterListInput, remoteId: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, items: DrupalMenuItemFilterListInput, translation: DrupalFirstLevelMainMenuFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalFirstLevelMainMenu
+  drupalFirstLevelMainMenu(remoteTypeName: StringQueryOperatorInput, translations: DrupalFirstLevelMainMenuFilterListInput, remoteId: StringQueryOperatorInput, items: DrupalMenuItemFilterListInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, translation: DrupalFirstLevelMainMenuFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalFirstLevelMainMenu
   allDrupalFirstLevelMainMenu(filter: DrupalFirstLevelMainMenuFilterInput, sort: DrupalFirstLevelMainMenuSortInput, skip: Int, limit: Int): DrupalFirstLevelMainMenuConnection!
   drupalGatsbyStringTranslation(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, source: StringQueryOperatorInput, context: StringQueryOperatorInput, translations: DrupalGatsbyStringTranslationTranslationFilterListInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalGatsbyStringTranslation
   allDrupalGatsbyStringTranslation(filter: DrupalGatsbyStringTranslationFilterInput, sort: DrupalGatsbyStringTranslationSortInput, skip: Int, limit: Int): DrupalGatsbyStringTranslationConnection!
@@ -5294,11 +5294,11 @@ input DrupalMainMenuFilterInput {
   remoteTypeName: StringQueryOperatorInput
   translations: DrupalMainMenuFilterListInput
   remoteId: StringQueryOperatorInput
+  items: DrupalMenuItemFilterListInput
   _original_typename: StringQueryOperatorInput
   drupalId: StringQueryOperatorInput
   defaultTranslation: BooleanQueryOperatorInput
   langcode: StringQueryOperatorInput
-  items: DrupalMenuItemFilterListInput
   translation: DrupalMainMenuFilterInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
@@ -5312,11 +5312,11 @@ input DrupalMenuItemFilterListInput {
 
 input DrupalMenuItemFilterInput {
   remoteTypeName: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+  parent: StringQueryOperatorInput
   label: StringQueryOperatorInput
   url: StringQueryOperatorInput
   _original_typename: StringQueryOperatorInput
-  id: StringQueryOperatorInput
-  parent: StringQueryOperatorInput
 }
 
 type DrupalMainMenuConnection {
@@ -5347,33 +5347,33 @@ enum DrupalMainMenuFieldsEnum {
   translations___translations___translations___remoteTypeName
   translations___translations___translations___translations
   translations___translations___translations___remoteId
+  translations___translations___translations___items
   translations___translations___translations____original_typename
   translations___translations___translations___drupalId
   translations___translations___translations___defaultTranslation
   translations___translations___translations___langcode
-  translations___translations___translations___items
   translations___translations___translations___id
   translations___translations___translations___children
   translations___translations___remoteId
+  translations___translations___items
+  translations___translations___items___remoteTypeName
+  translations___translations___items___id
+  translations___translations___items___parent
+  translations___translations___items___label
+  translations___translations___items___url
+  translations___translations___items____original_typename
   translations___translations____original_typename
   translations___translations___drupalId
   translations___translations___defaultTranslation
   translations___translations___langcode
-  translations___translations___items
-  translations___translations___items___remoteTypeName
-  translations___translations___items___label
-  translations___translations___items___url
-  translations___translations___items____original_typename
-  translations___translations___items___id
-  translations___translations___items___parent
   translations___translations___translation___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translation___translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translation___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translations___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translation____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translation___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translations___translations___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translation___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translation___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___id
@@ -5392,49 +5392,49 @@ enum DrupalMainMenuFieldsEnum {
   translations___translations___internal___type
   translations___translations___internal___contentFilePath
   translations___remoteId
+  translations___items
+  translations___items___remoteTypeName
+  translations___items___id
+  translations___items___parent
+  translations___items___label
+  translations___items___url
+  translations___items____original_typename
   translations____original_typename
   translations___drupalId
   translations___defaultTranslation
   translations___langcode
-  translations___items
-  translations___items___remoteTypeName
-  translations___items___label
-  translations___items___url
-  translations___items____original_typename
-  translations___items___id
-  translations___items___parent
   translations___translation___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations___translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___translations___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translations___translation___translations___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___items___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___items___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___items___parent @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___items___label @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___items___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___items____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translations___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translations___translation___items___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translations___translation___items___label @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translations___translation___items___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translations___translation___items____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translations___translation___items___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translations___translation___items___parent @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation___translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translations___translation___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -5494,17 +5494,17 @@ enum DrupalMainMenuFieldsEnum {
   translations___internal___type
   translations___internal___contentFilePath
   remoteId
+  items
+  items___remoteTypeName
+  items___id
+  items___parent
+  items___label
+  items___url
+  items____original_typename
   _original_typename
   drupalId
   defaultTranslation
   langcode
-  items
-  items___remoteTypeName
-  items___label
-  items___url
-  items____original_typename
-  items___id
-  items___parent
   translation___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -5512,33 +5512,33 @@ enum DrupalMainMenuFieldsEnum {
   translation___translations___translations___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translations___translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translations___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___translations___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translations____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translations___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translations___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translations___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translations___translations___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translations___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translations___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___items___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___items___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___items___parent @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___items___label @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___items___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___items____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translations___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translations___items___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translations___items___label @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translations___items___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translations___items____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translations___items___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translations___items___parent @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation___translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translations___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -5557,49 +5557,49 @@ enum DrupalMainMenuFieldsEnum {
   translation___translations___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___items___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___items___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___items___parent @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___items___label @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___items___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___items____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___items___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___items___label @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___items___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___items____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___items___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___items___parent @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations___translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___translations___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translation___translations___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___items___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___items___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___items___parent @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___items___label @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___items___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___items____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translation___items___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translation___items___label @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translation___items___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translation___items____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translation___items___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translation___items___parent @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation___translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translation___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -5780,11 +5780,11 @@ input DrupalFirstLevelMainMenuFilterInput {
   remoteTypeName: StringQueryOperatorInput
   translations: DrupalFirstLevelMainMenuFilterListInput
   remoteId: StringQueryOperatorInput
+  items: DrupalMenuItemFilterListInput
   _original_typename: StringQueryOperatorInput
   drupalId: StringQueryOperatorInput
   defaultTranslation: BooleanQueryOperatorInput
   langcode: StringQueryOperatorInput
-  items: DrupalMenuItemFilterListInput
   translation: DrupalFirstLevelMainMenuFilterInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
@@ -5820,33 +5820,33 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   translations___translations___translations___remoteTypeName
   translations___translations___translations___translations
   translations___translations___translations___remoteId
+  translations___translations___translations___items
   translations___translations___translations____original_typename
   translations___translations___translations___drupalId
   translations___translations___translations___defaultTranslation
   translations___translations___translations___langcode
-  translations___translations___translations___items
   translations___translations___translations___id
   translations___translations___translations___children
   translations___translations___remoteId
+  translations___translations___items
+  translations___translations___items___remoteTypeName
+  translations___translations___items___id
+  translations___translations___items___parent
+  translations___translations___items___label
+  translations___translations___items___url
+  translations___translations___items____original_typename
   translations___translations____original_typename
   translations___translations___drupalId
   translations___translations___defaultTranslation
   translations___translations___langcode
-  translations___translations___items
-  translations___translations___items___remoteTypeName
-  translations___translations___items___label
-  translations___translations___items___url
-  translations___translations___items____original_typename
-  translations___translations___items___id
-  translations___translations___items___parent
   translations___translations___translation___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translation___translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translation___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translations___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translation____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translation___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translations___translations___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translation___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___translation___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translations___id
@@ -5865,49 +5865,49 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   translations___translations___internal___type
   translations___translations___internal___contentFilePath
   translations___remoteId
+  translations___items
+  translations___items___remoteTypeName
+  translations___items___id
+  translations___items___parent
+  translations___items___label
+  translations___items___url
+  translations___items____original_typename
   translations____original_typename
   translations___drupalId
   translations___defaultTranslation
   translations___langcode
-  translations___items
-  translations___items___remoteTypeName
-  translations___items___label
-  translations___items___url
-  translations___items____original_typename
-  translations___items___id
-  translations___items___parent
   translations___translation___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations___translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___translations___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translations___translation___translations___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translations___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___items___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___items___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___items___parent @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___items___label @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___items___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___items____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translations___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translations___translation___items___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translations___translation___items___label @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translations___translation___items___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translations___translation___items____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translations___translation___items___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translations___translation___items___parent @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation___translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translations___translation___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___translation___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -5967,17 +5967,17 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   translations___internal___type
   translations___internal___contentFilePath
   remoteId
+  items
+  items___remoteTypeName
+  items___id
+  items___parent
+  items___label
+  items___url
+  items____original_typename
   _original_typename
   drupalId
   defaultTranslation
   langcode
-  items
-  items___remoteTypeName
-  items___label
-  items___url
-  items____original_typename
-  items___id
-  items___parent
   translation___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -5985,33 +5985,33 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   translation___translations___translations___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translations___translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translations___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___translations___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translations____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translations___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translations___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translations___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translations___translations___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translations___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translations___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___items___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___items___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___items___parent @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___items___label @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___items___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___items____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translations___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translations___items___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translations___items___label @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translations___items___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translations___items____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translations___items___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translations___items___parent @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation___translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translations___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___translation___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -6030,49 +6030,49 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   translation___translations___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___items___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___items___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___items___parent @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___items___label @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___items___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___items____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___items___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___items___label @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___items___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___items____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___items___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___items___parent @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations___translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___translations___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translation___translations___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translations___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___items___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___items___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___items___parent @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___items___label @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___items___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___items____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translation___items___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translation___items___label @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translation___items___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translation___items____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translation___items___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translation___items___parent @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation___translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation___defaultTranslation @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation___langcode @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  translation___translation___translation___items @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___translation___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")

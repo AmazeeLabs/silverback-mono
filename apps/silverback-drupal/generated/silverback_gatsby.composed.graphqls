@@ -6,6 +6,18 @@ directive @arg(name: String!) on FIELD_DEFINITION | UNION | INTERFACE
 
 """
 Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityReference".
+"""
+directive @resolveEntityReference(field: String!) on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityReferenceRevisions".
+"""
+directive @resolveEntityReferenceRevisions(field: String!) on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Lang".
 """
 directive @lang(code: String) on FIELD_DEFINITION | UNION | INTERFACE
@@ -235,7 +247,7 @@ type Page @entity(type: "node", bundle: "page") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
   body: String @resolveProperty(path: "field_body.0.processed")
-  paragraphs: [PageParagraphs!]! @resolveEntityReferenceRevisions(field: "field_paragraphs", single: false)
+  paragraphs: [PageParagraphs!]! @resolveEntityReferenceRevisions(field: "field_paragraphs")
 }
 
 union PageParagraphs = ParagraphText | ParagraphReferences
@@ -245,8 +257,8 @@ type ParagraphText {
 }
 
 type ParagraphReferences {
-  references: [Article]! @resolveEntityReference(field: "field_references", single: false)
-  singleReference: GutenbergPage @resolveEntityReference(field: "field_single_reference", single: true)
+  references: [Article]! @resolveEntityReference(field: "field_references")
+  singleReference: GutenbergPage @resolveEntityReference(field: "field_single_reference") @seek(pos: 0)
 }
 
 type GutenbergPage @entity(type: "node", bundle: "gutenberg_page") {
@@ -265,8 +277,8 @@ type Article @entity(type: "node", bundle: "article") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
   body: String @resolveProperty(path: "field_body.0.processed")
-  tags: [Tag]! @resolveEntityReference(field: "field_tags", single: false)
-  image: Image @resolveEntityReference(field: "field_image", single: true)
+  tags: [Tag]! @resolveEntityReference(field: "field_tags")
+  image: Image @resolveEntityReference(field: "field_image") @seek(pos: 0)
   template: String @isTemplate
 }
 
@@ -346,10 +358,6 @@ directive @isTemplate on FIELD_DEFINITION
 DEPRECATED, use @isTemplate
 """
 directive @template on FIELD_DEFINITION
-
-directive @resolveEntityReference(field: String!, single: Boolean!) on FIELD_DEFINITION
-
-directive @resolveEntityReferenceRevisions(field: String!, single: Boolean!) on FIELD_DEFINITION
 
 directive @entity(type: String!, bundle: String, access: Boolean) on OBJECT
 
