@@ -384,7 +384,7 @@ $$('mkdir .lagoon');
 
 ```dockerfile
 # |-> .lagoon/cli.Dockerfile
-FROM uselagoon/php-8.1-cli-drupal as builder
+FROM uselagoon/php-8.2-cli-drupal as builder
 
 RUN apk add --no-cache git imagemagick icu-dev && \
   docker-php-ext-install intl && \
@@ -419,7 +419,7 @@ ENV WEBROOT=/app/apps/cms/web
 ARG CLI_IMAGE
 FROM ${CLI_IMAGE} as cli
 
-FROM uselagoon/php-8.1-fpm
+FROM uselagoon/php-8.2-fpm
 RUN apk add --no-cache git imagemagick icu-dev && \
   docker-php-ext-install intl && \
   docker-php-ext-enable intl

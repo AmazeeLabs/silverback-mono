@@ -1302,7 +1302,7 @@ runs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.1'
+        php-version: '8.2'
 
     - uses: pnpm/action-setup@v2.2.4
       name: Install pnpm
