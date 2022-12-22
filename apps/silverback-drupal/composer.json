@@ -36,7 +36,7 @@
         "drupal/admin_toolbar": "3.2.1",
         "drupal/config_split": "1.9.0",
         "drupal/core": "9.4.8",
-        "drupal/core-composer-scaffold": "9.4.8",
+        "drupal/core-composer-scaffold": "10.0.0",
         "drupal/core-dev": "9.4.8",
         "drupal/core-recommended": "9.4.8",
         "drupal/cypress": "@dev",
