@@ -25,6 +25,7 @@ class DirectivePrinter {
 
     $map = new DirectiveDefinitionNode([
       'name' => new NameNode(['value' => 'map']),
+      'repeatable' => TRUE,
       'description' => new StringValueNode(['value' => implode("\n", [
           'Apply all directives on the right to output on the left.'
         ]), 'block' => TRUE]),
@@ -36,6 +37,7 @@ class DirectivePrinter {
 
     $type = new DirectiveDefinitionNode([
       'name' => new NameNode(['value' => 'type']),
+      'repeatable' => TRUE,
       'description' => new StringValueNode(['value' => implode("\n", [
         'Mark a type as member of a generic.',
         'The id argument contains a string that has to match the generics resolution.'
@@ -85,6 +87,7 @@ class DirectivePrinter {
 
       $dir = new DirectiveDefinitionNode([
         'name' => new NameNode(['value' => $definition['id']]),
+        'repeatable' => TRUE,
         'description' => count($description)
           ? new StringValueNode(['value' => implode("\n", $description), 'block' => TRUE])
           : NULL,
