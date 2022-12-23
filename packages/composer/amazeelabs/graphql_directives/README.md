@@ -54,6 +54,28 @@ type Query {
 }
 ```
 
+### Default values
+
+The default directive can be used to catch `NULL` values anywhere in the chain.
+If any directive to left emits `NULL`, the result of directives to the right
+will be applied. If there are no directives to the right, it attempts to find an
+appropriate default value like `''`, `0`, `[]`, `false` or `{}`, based on the
+assigned GraphQL type. A `@default` directive on an optional field (no `!` in
+the return type) has no effect.
+
+```graphql
+type Query {
+  # This will emit `''`.
+  string: String! @default
+  # This will emit `0`.
+  int: Int! @default
+  # This will emit `[]`.
+  list: [String!]! @default
+  # This will emit `bar`
+  manual: String! @default @value(json: "\"bar\"")
+}
+```
+
 ### Type resolution
 
 Directives can also be used to resolve the runtime types of unions and

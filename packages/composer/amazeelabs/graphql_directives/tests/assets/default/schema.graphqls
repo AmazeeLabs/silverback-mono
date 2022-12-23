@@ -1,0 +1,17 @@
+type Query {
+  optional: String @default
+  string: String! @default
+  int: Int! @default
+  float: Float! @default
+  boolean: Boolean! @default
+  list: [String]! @default
+  object: Object! @default
+  manual: String! @default @value(json: "\"foo\"")
+}
+
+type Object {
+  chain: String! @default @prop(key: "foo") @default @value(json: "\"bar\"")
+  prop: String! @prop(key: "foo") @default
+  optional: String @default
+  mandatory: String! @default
+}

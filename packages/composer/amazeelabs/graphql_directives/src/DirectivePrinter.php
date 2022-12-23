@@ -23,6 +23,20 @@ class DirectivePrinter {
   public function printDirectives() {
     $definitions = $this->directiveManager->getDefinitions();
 
+    $default = new DirectiveDefinitionNode([
+      'name' => new NameNode(['value' => 'default']),
+      'repeatable' => TRUE,
+      'description' => new StringValueNode(['value' => implode("\n", [
+        'Provide an automatic or manual default value.'
+      ]), 'block' => TRUE]),
+      'arguments' => new NodeList([]),
+      'locations' => new NodeList([
+        new NameNode(['value' => DirectiveLocation::FIELD_DEFINITION]),
+        new NameNode(['value' => DirectiveLocation::UNION]),
+        new NameNode(['value' => DirectiveLocation::IFACE]),
+      ]),
+    ]);
+
     $map = new DirectiveDefinitionNode([
       'name' => new NameNode(['value' => 'map']),
       'repeatable' => TRUE,
@@ -54,6 +68,7 @@ class DirectivePrinter {
     ]);
 
     $directives = [
+      Printer::doPrint($default),
       Printer::doPrint($map),
       Printer::doPrint($type),
     ];

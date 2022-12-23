@@ -26,6 +26,12 @@ class DirectivePrinterTest extends UnitTestCase {
         '"""',
         'directive @type(id: String!) repeatable on OBJECT'
       ]),
+      implode("\n", [
+        '"""',
+        'Provide an automatic or manual default value.',
+        '"""',
+        'directive @default repeatable on FIELD_DEFINITION | UNION | INTERFACE'
+      ]),
     ];
     $builtin[] = implode("\n", $lines);
     asort($builtin);
