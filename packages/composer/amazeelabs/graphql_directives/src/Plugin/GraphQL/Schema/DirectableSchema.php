@@ -15,17 +15,16 @@ use Drupal\graphql\Plugin\GraphQL\Schema\ComposableSchema;
 use Drupal\graphql\Plugin\SchemaExtensionPluginManager;
 use Drupal\graphql_directives\DirectableSchemaExtensionPluginBase;
 use Drupal\graphql_directives\DirectivePrinter;
-use GraphQL\Language\AST\BooleanValueNode;
-use GraphQL\Language\AST\FloatValueNode;
 use GraphQL\Language\AST\InterfaceTypeDefinitionNode;
-use GraphQL\Language\AST\IntValueNode;
 use GraphQL\Language\AST\ListValueNode;
+use GraphQL\Language\AST\NamedTypeNode;
+use GraphQL\Language\AST\ListTypeNode;
 use GraphQL\Language\AST\NodeList;
+use GraphQL\Language\AST\NonNullTypeNode;
 use GraphQL\Language\AST\ObjectTypeDefinitionNode;
 use GraphQL\Language\AST\ObjectValueNode;
-use GraphQL\Language\AST\StringValueNode;
+use GraphQL\Language\AST\ScalarTypeDefinitionNode;
 use GraphQL\Language\AST\UnionTypeDefinitionNode;
-use GraphQL\Language\AST\ValueNode;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -134,18 +133,31 @@ class DirectableSchema extends ComposableSchema {
 
   protected function buildResolverFromDirectives(
     NodeList $directives,
-    ResolverBuilder $builder
+    ResolverBuilder $builder,
+    $automaticDefaultValue
   ): ResolverInterface {
-    /** @var \Drupal\graphql\GraphQL\Resolver\Composite[] $composites */
+    /**
+     * @var array{
+     *   type: string,
+     *   length: int,
+     *   composite: \Drupal\graphql\GraphQL\Resolver\Composite
+     * }[] $composites
+     */
     $composites = [];
     $composite = new Composite([]);
+    $count = 0;
 
     // Stack composites of directives on top of each other.
     foreach ($directives as $directive) {
 
-      // If the directive is "map" start a new stack entry.
-      if ($directive->name->value === 'map') {
-        $composites[] = $composite;
+      // If the directive is "map" or "default" start a new stack entry.
+      if (in_array($directive->name->value, ['map', 'default'])) {
+        $composites[] = [
+          'type' => $directive->name->value,
+          'length' => $count,
+          'composite' => $composite,
+        ];
+        $count = 0;
         $composite = new Composite([]);
         continue;
       }
@@ -159,14 +171,32 @@ class DirectableSchema extends ComposableSchema {
           $builder,
           $parameters
         ));
+        $count++;
       }
     }
 
     // Fold the stack of composites, but adding each composite as a mapped
-    // resolver to its parent in the stack.
+    // resolver to its parent in the stack. Keep default value chain segments
+    // separated and chain them the other way around afterwards.
+    $defaultChain = [];
     while($parent = array_pop($composites)) {
-      $parent->add($builder->map($composite));
-      $composite = $parent;
+      if($parent['type'] === 'map') {
+        $parent['composite']->add($builder->map($composite));
+      }
+      if ($parent['type'] === 'default') {
+        if ($count === 0) {
+          $defaultChain[] = $builder->fromValue($automaticDefaultValue);
+        }
+        else {
+          $defaultChain[] = $composite;
+        }
+      }
+      $count = $parent['length'];
+      $composite = $parent['composite'];
+    }
+
+    while($default = array_shift($defaultChain)) {
+      $composite = $builder->defaultValue($composite, $default);
     }
 
     return $composite;
@@ -177,6 +207,13 @@ class DirectableSchema extends ComposableSchema {
     $extensions = $this->getExtensions();
     $builder = new ResolverBuilder();
     $document = $this->getSchemaDocument($extensions);
+
+    $scalars = ['String', 'Float', 'Int', 'Boolean'];
+    foreach ($document->definitions as $definition) {
+      if ($definition instanceof ScalarTypeDefinitionNode) {
+        $scalars[] = $definition->name->value;
+      }
+    }
 
     foreach ($document->definitions as $definition) {
       if ($definition instanceof ObjectTypeDefinitionNode) {
@@ -191,10 +228,40 @@ class DirectableSchema extends ComposableSchema {
         }
         foreach($definition->fields as $field) {
           if ($field->directives) {
+            $defaultValue = NULL;
+            if ($field->type instanceof NonNullTypeNode) {
+              $type = $field->type->type;
+              if ($type instanceof ListTypeNode) {
+                $defaultValue = [];
+              }
+              if ($type instanceof NamedTypeNode) {
+                if (!in_array($type->name->value, $scalars)) {
+                  $defaultValue = [];
+                }
+                else {
+                  if ($type->name->value === 'Int') {
+                    $defaultValue = 0;
+                  }
+                  else if ($type->name->value === 'Float') {
+                    $defaultValue = 0.0;
+                  }
+                  else if ($type->name->value === 'Boolean') {
+                    $defaultValue = 0.0;
+                  }
+                  else {
+                    $defaultValue = '';
+                  }
+                }
+              }
+            }
             $registry->addFieldResolver(
               $definition->name->value,
               $field->name->value,
-              $this->buildResolverFromDirectives($field->directives, $builder)
+              $this->buildResolverFromDirectives(
+                $field->directives,
+                $builder,
+                $defaultValue
+              )
             );
           }
         }
@@ -206,7 +273,7 @@ class DirectableSchema extends ComposableSchema {
         $definition instanceof UnionTypeDefinitionNode
       ) {
         if ($definition->directives) {
-          $this->typeResolvers[$definition->name->value] = $this->buildResolverFromDirectives($definition->directives, $builder);
+          $this->typeResolvers[$definition->name->value] = $this->buildResolverFromDirectives($definition->directives, $builder, NULL);
           $registry->addTypeResolver(
             $definition->name->value,
             function ($value, $context, $info) use ($definition, $builder) {

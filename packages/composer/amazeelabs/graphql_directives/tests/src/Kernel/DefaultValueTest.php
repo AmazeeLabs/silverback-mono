@@ -42,7 +42,7 @@ class DefaultValueTest extends GraphQLTestBase {
   }
 
   public function testDefaultObject() {
-    $this->assertResults('{ object { prop, optional, mandatory }', [], ['object' => [
+    $this->assertResults('{ object { prop, optional, mandatory } }', [], ['object' => [
       'prop' => '',
       'optional' => NULL,
       'mandatory' => '',
@@ -54,7 +54,7 @@ class DefaultValueTest extends GraphQLTestBase {
   }
 
   public function testChainedDefaults() {
-    $this->assertResults('{ object { chained } }', [], [
+    $this->assertResults('{ object { chain } }', [], [
       'object' => [
         'chain' => 'bar'
       ]

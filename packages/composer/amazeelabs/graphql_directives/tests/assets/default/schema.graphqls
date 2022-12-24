@@ -10,8 +10,13 @@ type Query {
 }
 
 type Object {
-  chain: String! @default @prop(key: "foo") @default @value(json: "\"bar\"")
+  chain: String!
+    @value(json: "null")
+    @default
+    @prop(key: "foo")
+    @default
+    @value(json: "\"bar\"")
   prop: String! @prop(key: "foo") @default
-  optional: String @default
-  mandatory: String! @default
+  optional: String @prop(key: "optional") @default
+  mandatory: String! @prop(key: "mandatory") @default
 }
