@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@2.3.6...@amazeelabs/react-framework-bridge@2.3.7) (2022-12-27)
+
+### Bug Fixes
+
+- do not add `target="_blank"` to `javascript:` links
+  ([d05c278](https://github.com/AmazeeLabs/silverback-mono/commit/d05c2780db8564b3c83c087e8d358a530271a3f8))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.3.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@2.3.5...@amazeelabs/react-framework-bridge@2.3.6) (2022-12-09)
 
 ### Bug Fixes
