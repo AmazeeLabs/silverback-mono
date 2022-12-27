@@ -1,0 +1,10 @@
+silverback_cloudinary.cloudinary.*:
+  type: config_entity
+  label: 'Cloudinary instance config'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'

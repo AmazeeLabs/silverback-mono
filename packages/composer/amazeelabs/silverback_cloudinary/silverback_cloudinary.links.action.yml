@@ -1,0 +1,5 @@
+entity.cloudinary.add_form:
+  route_name: 'entity.cloudinary.add_form'
+  title: 'Add Cloudinary instance'
+  appears_on:
+    - entity.cloudinary.collection
