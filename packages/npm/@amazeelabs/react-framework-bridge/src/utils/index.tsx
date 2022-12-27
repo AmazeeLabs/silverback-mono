@@ -20,6 +20,7 @@ export const isInternalTarget = (target?: string) =>
   typeof target === 'undefined' || target === '' || target === '_self';
 
 export const isRelative = (url?: string) =>
+  url?.startsWith('javascript:') ||
   url?.startsWith('#') ||
   url?.startsWith('?') ||
   Boolean(url?.match(/^\/(?!\/)/));
