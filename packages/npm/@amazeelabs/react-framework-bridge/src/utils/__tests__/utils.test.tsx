@@ -40,6 +40,9 @@ describe('isRelative', () => {
   it('returns false for a mailto: url', () => {
     expect(isRelative('mailto:development@amazeelabs.com')).toBeFalsy();
   });
+  it('returns true for a javascript: url', () => {
+    expect(isRelative('javascript:alert(1)')).toBeTruthy();
+  });
 });
 
 const nav = vi.fn();
