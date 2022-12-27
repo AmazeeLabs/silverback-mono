@@ -5,7 +5,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import esbuild from 'rollup-plugin-esbuild';
 import litcss from 'rollup-plugin-lit-css';
 
-import packageJson from './package.json';
+import packageJson from './package.json' assert { type: 'json' };
 
 export default [
   {
