@@ -3,30 +3,9 @@
 namespace Drupal\silverback_cloudinary\Form;
 
 use Drupal\Core\Entity\EntityForm;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class CloudinaryForm extends EntityForm {
-
-  /**
-   * Constructs an CloudinaryForm object.
-   *
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
-   *   The entityTypeManager.
-   */
-  public function __construct(EntityTypeManagerInterface $entityTypeManager) {
-    $this->entityTypeManager = $entityTypeManager;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('entity_type.manager')
-    );
-  }
 
   /**
    * {@inheritdoc}
@@ -34,6 +13,7 @@ class CloudinaryForm extends EntityForm {
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
 
+    /* @var \Drupal\silverback_cloudinary\CloudinaryInterface $cloudinary */
     $cloudinary = $this->entity;
 
     $form['label'] = [
@@ -52,6 +32,34 @@ class CloudinaryForm extends EntityForm {
       ],
       '#disabled' => !$cloudinary->isNew(),
     ];
+    $form['is_default'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Default instance'),
+      '#default_value' => $cloudinary->isDefault(),
+    ];
+
+    $form['cloud_name'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Cloud name'),
+      '#description' => $this->t('The cloud name you can find on your cloudinary dashboard.'),
+      '#default_value' => $cloudinary->getCloudName(),
+      '#required' => TRUE,
+    ];
+
+    $form['api_key'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('API Key'),
+      '#description' => $this->t('The API Key you can find on your cloudinary dashboard.'),
+      '#default_value' => $cloudinary->getApiKey(),
+      '#required' => TRUE,
+    ];
+    $form['api_secret'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('API Secret'),
+      '#description' => $this->t('The API Secret you can find on your cloudinary dashboard.'),
+      '#default_value' => $cloudinary->getApiSecret(),
+      '#required' => TRUE,
+    ];
 
     return $form;
   }
@@ -60,6 +68,7 @@ class CloudinaryForm extends EntityForm {
    * {@inheritdoc}
    */
   public function save(array $form, FormStateInterface $form_state) {
+    /* @var \Drupal\silverback_cloudinary\CloudinaryInterface $cloudinary */
     $cloudinary = $this->entity;
     $status = $cloudinary->save();
 
@@ -72,6 +81,14 @@ class CloudinaryForm extends EntityForm {
       $this->messenger()->addMessage($this->t('The %label Cloudinary instance has been updated.', [
         '%label' => $cloudinary->label(),
       ]));
+    }
+
+    // Update the default instance.
+    if ($cloudinary->isDefault()) {
+      $cloudinary->setDefault(FALSE);
+    }
+    if (!empty($form_state->getValue('is_default'))) {
+      $cloudinary->setDefault();
     }
 
     $form_state->setRedirect('entity.cloudinary.collection');
