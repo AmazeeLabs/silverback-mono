@@ -86,12 +86,15 @@
 
     // Package-specific rules.
     {
-      // We are not ready for ESM yet. Disable major updates of some packages.
       packageNames: [
+        // We are not ready for ESM yet. Disable major updates of some packages.
         "p-queue",
         "strip-ansi",
         "chalk",
         "zx",
+        // Developers did a complete rewrite and were to busy to write upgrade
+        // notes for version 4.
+        "tslog",
       ],
       updateTypes: ["major"],
       enabled: false,
