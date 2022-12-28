@@ -1,5 +1,0 @@
-entity.cloudinary.collection:
-  title: 'Cloudinary'
-  parent: system.admin_config_services
-  description: 'Configure Cloudinary instances.'
-  route_name: entity.cloudinary.collection
