@@ -128,7 +128,11 @@ export type OperationVariables<TQueryID extends OperationId<any, any>> =
   ];
 
   const visitor = new OperationIdVisitor(schema, [], config, {}, documents);
-  const visitorResult = oldVisit(allAst, { leave: visitor });
+  const visitorResult = oldVisit(allAst, {
+    // TODO: Remove @ts-ignore once the issue is fixed.
+    // @ts-ignore Looks like graphql v16 is not fully supported yet: https://github.com/dotansimha/graphql-code-generator/issues/7519
+    leave: visitor,
+  });
   return [
     ...document,
     ...visitorResult.definitions.filter((def: any) => typeof def === 'string'),
