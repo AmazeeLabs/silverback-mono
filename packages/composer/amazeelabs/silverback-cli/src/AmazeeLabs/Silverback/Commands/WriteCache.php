@@ -2,7 +2,6 @@
 
 namespace AmazeeLabs\Silverback\Commands;
 
-use Alchemy\Zippy\Zippy;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -18,7 +17,6 @@ class WriteCache extends SilverbackCommand {
     parent::execute($input, $output);
     $public = 'web/sites/default/files';
     $zipCache = Setup::zipCache();
-    $zippy = Zippy::load();
     $zipCacheExists = $this->fileSystem->exists($zipCache);
     if ($zipCacheExists) {
       $output->writeln("<info>Updating $zipCache...</>");
@@ -27,8 +25,11 @@ class WriteCache extends SilverbackCommand {
     else {
       $output->writeln("<info>Creating $zipCache...</>");
     }
-    $zippy->create($zipCache, ['files' => $public], TRUE);
+    $zipFile = new \PhpZip\ZipFile();
+    $zipFile->addDirRecursive($public, 'files')
+      ->saveAsFile($zipCache);
     $output->writeln("<info>Cache has been written.</>");
+
     return 0;
   }
 

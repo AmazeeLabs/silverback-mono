@@ -2,7 +2,6 @@
 
 namespace AmazeeLabs\Silverback\Commands;
 
-use Alchemy\Zippy\Zippy;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -41,7 +40,6 @@ EOD
     $private = 'web/sites/default/files/private';
     $zipCache = self::zipCache();
     $drush = './vendor/bin/drush';
-    $zippy = Zippy::load();
 
     $this->cleanDir($public);
 
@@ -57,8 +55,9 @@ EOD
 
     if ($installFromCache) {
       $output->writeln("<info>Restoring from $zipCache...</>");
-      $cache = $zippy->open($zipCache);
-      $cache->extract('web/sites/default');
+      $zipFile = new \PhpZip\ZipFile();
+      $zipFile->openFile($zipCache)
+        ->extractTo('web/sites/default');
     }
     else {
       $output->writeln('<info>Installing from scratch' . ($configExists ? ' using existing config' : '') . '.</>');
@@ -97,10 +96,13 @@ EOD
       else {
         $output->writeln("<info>Creating $zipCache...</>");
       }
-      $zippy->create($zipCache, ['files' => $public], TRUE);
+      $zipFile = new \PhpZip\ZipFile();
+      $zipFile->addDirRecursive($public, 'files')
+        ->saveAsFile($zipCache);
     }
 
     $output->writeln("<info>Setup complete.</>");
+
     return 0;
   }
 

@@ -65,6 +65,8 @@ class SilverbackCommand extends Command {
     }
     // TODO: scan upwards and detect root directory?
     $this->rootDirectory = getcwd();
+
+    return 0;
   }
 
   protected function copyDir($source, $destination) {
