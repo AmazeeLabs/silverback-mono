@@ -1,6 +1,6 @@
 import { format } from '@redtea/format-axios-error';
 import { kill } from 'cross-port-killer';
-import { check, waitUntilUsed } from 'tcp-port-used';
+import { check, waitUntilUsedOnHost } from 'tcp-port-used';
 import { sleep } from 'zx';
 
 import { EnvVars } from './types';
@@ -10,7 +10,7 @@ export const port = {
     const ports = typeof port === 'number' ? [port] : port;
     let wait = false;
     for (const current of ports) {
-      if (await check(current)) {
+      if (await check(current, 'localhost')) {
         await kill(current);
         wait = true;
       }
@@ -20,7 +20,9 @@ export const port = {
       await sleep(1000);
     }
   },
-  waitUntilUsed,
+  waitUntilUsed: (port: number, retryTimeMs?: number, timeOutMs?: number) => {
+    return waitUntilUsedOnHost(port, 'localhost', retryTimeMs, timeOutMs);
+  },
 };
 
 export const log = (message: string) => {
