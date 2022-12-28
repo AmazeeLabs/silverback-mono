@@ -13,6 +13,7 @@
     "@redtea/format-axios-error": "^2.1.0",
     "axios": "^1.2.0",
     "cross-port-killer": "^1.4.0",
+    "strip-ansi": "6.0.1",
     "tcp-port-used": "^1.0.2",
     "zx": "^4.3.0"
   },

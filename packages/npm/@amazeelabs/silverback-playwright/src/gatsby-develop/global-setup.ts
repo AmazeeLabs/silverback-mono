@@ -1,3 +1,4 @@
+import stripAnsi from 'strip-ansi';
 import { $, cd, nothrow } from 'zx';
 
 import { getConfig } from '../config';
@@ -27,7 +28,7 @@ export default async function globalSetup() {
   await new Promise<void>((resolve) => {
     const event = 'data';
     const listener = (chunk: any) => {
-      const string: string = chunk.toString();
+      const string: string = stripAnsi(chunk.toString());
       if (string.includes(gatsby.baseUrl)) {
         process.stdout.removeListener(event, listener);
         resolve();
