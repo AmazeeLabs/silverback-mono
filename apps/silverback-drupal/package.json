@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "prepare": "if php -v && [[ -z $LAGOON ]]; then composer install && SB_SETUP=1 yarn setup && yarn snapshot-create && yarn schema:export; fi",
-    "start": "source .envrc && cd web && php -S 127.0.0.1:8888 .ht.router.php",
+    "start": "source .envrc && cd web && php -S localhost:8888 .ht.router.php",
     "start:silent": "yarn start > /tmp/drupal.log 2>&1",
     "login": "source .envrc && drush uli",
     "setup": "source .envrc && silverback setup && yarn content:import",
