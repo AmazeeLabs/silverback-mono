@@ -19,6 +19,8 @@ class Teardown extends SilverbackCommand {
       $this->cleanDir('web/sites/default/files');
     }
     $output->writeln("<info>Deleted the current site.</>");
+
+    return 0;
   }
 
 }

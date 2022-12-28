@@ -34,6 +34,8 @@ class SnapshotCreate extends SnapshotBase {
 
     $this->copyDir('web/sites/default/files', $path);
     $output->writeln("</info>The snapshot has been saved to $path.</>");
+
+    return 0;
   }
 
 }
