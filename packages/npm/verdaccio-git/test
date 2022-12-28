@@ -49,14 +49,14 @@ function retry {
 
 echo "starting local git daemon"
 git daemon --verbose --export-all --base-path="$BASEDIR/.test/remote" --reuseaddr --enable=receive-pack &
-retry nc -z 127.0.0.1 9418
+retry nc -z localhost 9418
 echo "git daemon operational"
 
-git clone git://127.0.0.1:9418/test.git .test/packages/test
+git clone git://localhost:9418/test.git .test/packages/test
 cd "$BASEDIR/.test/packages/test"
 echo "{\"name\": \"test\", \"version\": \"1.0.0\", \"publishConfig\": {\"repository\": \"git://localhost:9418/test.git\", \"branch\": \"master\"}}" >> package.json
 git add package.json
-echo "//127.0.0.1:4873/:_authToken=\"foo\"" >> .npmrc
+echo "//localhost:4873/:_authToken=\"foo\"" >> .npmrc
 git add .npmrc
 echo "{}" >> composer.json
 git add composer.json
@@ -78,7 +78,7 @@ echo "Verdaccio operational"
 
 echo "Cloning module"
 cd "$BASEDIR/.test/packages"
-git clone git://127.0.0.1:9418/test.git
+git clone git://localhost:9418/test.git
 
 cd test
 
@@ -106,11 +106,11 @@ echo "Changing dotfile"
 echo "foo=baz" > .env
 
 echo "Publishing module"
-npm publish --registry http://127.0.0.1:4873
+npm publish --registry http://localhost:4873
 
 echo "Cloning module"
 cd "$BASEDIR/.test/packages"
-git clone git://127.0.0.1:9418/test.git foo
+git clone git://localhost:9418/test.git foo
 cd foo
 
 if [ "$(jq -r .version < package.json)" == '1.0.1' ]; then
