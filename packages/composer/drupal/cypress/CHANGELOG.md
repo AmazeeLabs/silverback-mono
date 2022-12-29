@@ -1,7 +1,11 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.3.72](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.3.71...@-drupal/cypress@2.3.72) (2022-12-29)
+
+**Note:** Version bump only for package @-drupal/cypress
 
 ## [2.3.71](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.3.70...@-drupal/cypress@2.3.71) (2022-11-03)
 
@@ -103,7 +107,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- downgrade Drush to version 10 ([84a60b4](https://github.com/AmazeeLabs/silverback-mono/commit/84a60b41ed14061353947a4d4b50adc815340310))
+- downgrade Drush to version 10
+  ([84a60b4](https://github.com/AmazeeLabs/silverback-mono/commit/84a60b41ed14061353947a4d4b50adc815340310))
 
 ## [2.3.46](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.3.45...@-drupal/cypress@2.3.46) (2022-02-17)
 
@@ -237,7 +242,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **ci:** clean up composer versioning ([78ede23](https://github.com/AmazeeLabs/silverback-mono/commit/78ede2332f74143b2f5b819f662629cf39ad3102))
+- **ci:** clean up composer versioning
+  ([78ede23](https://github.com/AmazeeLabs/silverback-mono/commit/78ede2332f74143b2f5b819f662629cf39ad3102))
 
 ## [2.3.13](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.3.12...@-drupal/cypress@2.3.13) (2021-07-12)
 
@@ -247,7 +253,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **cypress:** always use logger through the function interface ([535fdcf](https://github.com/AmazeeLabs/silverback-mono/commit/535fdcfb6934c1434c5a009ea40a54b29c0b9115))
+- **cypress:** always use logger through the function interface
+  ([535fdcf](https://github.com/AmazeeLabs/silverback-mono/commit/535fdcfb6934c1434c5a009ea40a54b29c0b9115))
 
 ## [2.3.11](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.3.10...@-drupal/cypress@2.3.11) (2021-06-28)
 
@@ -289,7 +296,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **cypress:** adjust tests to align with changes in cypress-screenplay ([c694f5b](https://github.com/AmazeeLabs/silverback-mono/commit/c694f5b547951b0e7350fc923cd36ff6728e18c7))
+- **cypress:** adjust tests to align with changes in cypress-screenplay
+  ([c694f5b](https://github.com/AmazeeLabs/silverback-mono/commit/c694f5b547951b0e7350fc923cd36ff6728e18c7))
 
 ## [2.3.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.3.0...@-drupal/cypress@2.3.1) (2021-03-01)
 
@@ -299,7 +307,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-- extract test_session from cypress module ([20798f6](https://github.com/AmazeeLabs/silverback-mono/commit/20798f605b1a1ff1dd8651d8123c5cbfc490105f))
+- extract test_session from cypress module
+  ([20798f6](https://github.com/AmazeeLabs/silverback-mono/commit/20798f605b1a1ff1dd8651d8123c5cbfc490105f))
 
 ## [2.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.2.1...@-drupal/cypress@2.2.2) (2021-02-22)
 
@@ -313,7 +322,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-- **drupal/cypress:** enable testing callbacks via environment variable ([f6474be](https://github.com/AmazeeLabs/silverback-mono/commit/f6474beda17dcf919f37e8f081ee39274359191c))
+- **drupal/cypress:** enable testing callbacks via environment variable
+  ([f6474be](https://github.com/AmazeeLabs/silverback-mono/commit/f6474beda17dcf919f37e8f081ee39274359191c))
 
 ## [2.1.20](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.1.19...@-drupal/cypress@2.1.20) (2021-02-11)
 
@@ -331,15 +341,22 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **deps:** update dependency cypress-file-upload to v5 ([cbb02ee](https://github.com/AmazeeLabs/silverback-mono/commit/cbb02eedbfaf37c3612c697502ccd7fa29f561ed))
+- **deps:** update dependency cypress-file-upload to v5
+  ([cbb02ee](https://github.com/AmazeeLabs/silverback-mono/commit/cbb02eedbfaf37c3612c697502ccd7fa29f561ed))
 
 ## [2.1.16](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.1.15...@-drupal/cypress@2.1.16) (2020-12-22)
 
 ### Bug Fixes
 
-- let browserify know node_modules location ([a7150b5](https://github.com/AmazeeLabs/silverback-mono/commit/a7150b58a3fbb0e26409bff671751ae46277f5c6)), closes [/github.com/cypress-io/code-coverage/issues/299#issuecomment-748933046](https://github.com//github.com/cypress-io/code-coverage/issues/299/issues/issuecomment-748933046)
-- make it work after SA-CORE-2020-008 ([d53511e](https://github.com/AmazeeLabs/silverback-mono/commit/d53511e97743d0a401947b165058a75fb83ce5be)), closes [#545](https://github.com/AmazeeLabs/silverback-mono/issues/545)
-- make phpstan happy ([1d50724](https://github.com/AmazeeLabs/silverback-mono/commit/1d507243d48717d8ca649954fb13b7dc64d9ded0))
+- let browserify know node_modules location
+  ([a7150b5](https://github.com/AmazeeLabs/silverback-mono/commit/a7150b58a3fbb0e26409bff671751ae46277f5c6)),
+  closes
+  [/github.com/cypress-io/code-coverage/issues/299#issuecomment-748933046](https://github.com//github.com/cypress-io/code-coverage/issues/299/issues/issuecomment-748933046)
+- make it work after SA-CORE-2020-008
+  ([d53511e](https://github.com/AmazeeLabs/silverback-mono/commit/d53511e97743d0a401947b165058a75fb83ce5be)),
+  closes [#545](https://github.com/AmazeeLabs/silverback-mono/issues/545)
+- make phpstan happy
+  ([1d50724](https://github.com/AmazeeLabs/silverback-mono/commit/1d507243d48717d8ca649954fb13b7dc64d9ded0))
 
 ## [2.1.15](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.1.14...@-drupal/cypress@2.1.15) (2020-12-16)
 
@@ -361,7 +378,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- restore $args ([40c4d29](https://github.com/AmazeeLabs/silverback-mono/commit/40c4d2990f3f87f5184acbe105d5fd635e2a1fee))
+- restore $args
+  ([40c4d29](https://github.com/AmazeeLabs/silverback-mono/commit/40c4d2990f3f87f5184acbe105d5fd635e2a1fee))
 
 ## [2.1.10](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.1.9...@-drupal/cypress@2.1.10) (2020-12-01)
 
@@ -407,7 +425,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-- **drupal/cypress:** enable use of the screenplay pattern ([d5734b1](https://github.com/AmazeeLabs/silverback-mono/commit/d5734b10f5b50f0f15ac00330ce180b2c3f36eba))
+- **drupal/cypress:** enable use of the screenplay pattern
+  ([d5734b1](https://github.com/AmazeeLabs/silverback-mono/commit/d5734b10f5b50f0f15ac00330ce180b2c3f36eba))
 
 ## [2.0.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@2.0.3...@-drupal/cypress@2.0.4) (2020-09-21)
 
@@ -429,7 +448,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **drupal/cypress:** tag new major version for drupal.org ([65e6958](https://github.com/AmazeeLabs/silverback-mono/commit/65e6958111e48f52cbabe98e9874af742e7aa175))
+- **drupal/cypress:** tag new major version for drupal.org
+  ([65e6958](https://github.com/AmazeeLabs/silverback-mono/commit/65e6958111e48f52cbabe98e9874af742e7aa175))
 
 ### BREAKING CHANGES
 
@@ -439,7 +459,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-- **drupal/cypress:** added cypress-screenplay library ([b769a97](https://github.com/AmazeeLabs/silverback-mono/commit/b769a976d73f355ebd3ed55e9842ac840e86a8a1))
+- **drupal/cypress:** added cypress-screenplay library
+  ([b769a97](https://github.com/AmazeeLabs/silverback-mono/commit/b769a976d73f355ebd3ed55e9842ac840e86a8a1))
 
 ## [1.0.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/cypress@1.0.3...@-drupal/cypress@1.0.4) (2020-09-15)
 
@@ -457,6 +478,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **drupal/cypress:** auto-update dependencies ([d57ac11](https://github.com/AmazeeLabs/silverback-mono/commit/d57ac11a0b0dabb57c88ca50dc4c8fc4cf6fda26))
-- **drupal/cypress:** fixed Drupal 9 compatibility ([58ef26e](https://github.com/AmazeeLabs/silverback-mono/commit/58ef26e4c3db05f49485720beb2046970a04f961))
-- **silverback-cli:** ensure .env exists before starting processes ([37fcf19](https://github.com/AmazeeLabs/silverback-mono/commit/37fcf19c8c3acb97d2247a739aa5469fb79e5e5f))
+- **drupal/cypress:** auto-update dependencies
+  ([d57ac11](https://github.com/AmazeeLabs/silverback-mono/commit/d57ac11a0b0dabb57c88ca50dc4c8fc4cf6fda26))
+- **drupal/cypress:** fixed Drupal 9 compatibility
+  ([58ef26e](https://github.com/AmazeeLabs/silverback-mono/commit/58ef26e4c3db05f49485720beb2046970a04f961))
+- **silverback-cli:** ensure .env exists before starting processes
+  ([37fcf19](https://github.com/AmazeeLabs/silverback-mono/commit/37fcf19c8c3acb97d2247a739aa5469fb79e5e5f))

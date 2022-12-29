@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.58](https://github.com/AmazeeLabs/silverback-mono/compare/gatsby-plugin-build-monitor@1.0.57...gatsby-plugin-build-monitor@1.0.58) (2022-12-29)
+
+**Note:** Version bump only for package gatsby-plugin-build-monitor
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.0.57](https://github.com/AmazeeLabs/silverback-mono/compare/gatsby-plugin-build-monitor@1.0.56...gatsby-plugin-build-monitor@1.0.57) (2022-12-29)
 
 **Note:** Version bump only for package gatsby-plugin-build-monitor

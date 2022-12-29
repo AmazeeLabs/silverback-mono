@@ -1,17 +1,17 @@
 {
   "name": "@-amazeelabs/silverback-persisted-queries",
-  "version": "1.1.110",
+  "version": "1.1.111",
   "description": "e2e tests for Silverback persisted queries.",
   "author": "Amazee Labs",
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@-amazeelabs/silverback-gastby": "^1.2.174",
-    "@amazeelabs/silverback-graphql-persisted": "^1.1.11"
+    "@-amazeelabs/silverback-gastby": "^1.2.175",
+    "@amazeelabs/silverback-graphql-persisted": "^1.1.12"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.36",
-    "@amazeelabs/jest-preset": "^1.3.40",
+    "@amazeelabs/eslint-config": "^1.4.37",
+    "@amazeelabs/jest-preset": "^1.3.41",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@types/jest": "29.2.4",
     "eslint": "8.30.0",
