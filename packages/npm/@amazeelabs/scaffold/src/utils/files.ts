@@ -1,4 +1,3 @@
-import chalk from 'chalk';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -10,9 +9,9 @@ export function installConfigFiles(sourcePath: string, targetPath: string) {
     );
 
   console.log(
-    `${chalk.yellow(
-      '[@amazeelabs/scaffold]:',
-    )} Installing configuration files (${Object.values(files).join(', ')})`,
+    `[@amazeelabs/scaffold]: Installing configuration files (${Object.values(
+      files,
+    ).join(', ')})`,
   );
 
   files.forEach((file) => {

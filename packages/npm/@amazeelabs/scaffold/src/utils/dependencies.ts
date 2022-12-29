@@ -1,5 +1,3 @@
-import chalk from 'chalk';
-
 import eslintConfig from '../../../eslint-config/package.json';
 import jestPreset from '../../../jest-preset/package.json';
 import prettierConfig from '../../../prettier-config/package.json';
@@ -20,11 +18,9 @@ export function installDependencies(targetPath: string) {
   };
 
   console.log(
-    `${chalk.yellow(
-      '[@amazeelabs/scaffold]:',
-    )} Adding devDependencies (${Object.keys(dependenciesToInstall).join(
-      ', ',
-    )})`,
+    `[@amazeelabs/scaffold]: Adding devDependencies (${Object.keys(
+      dependenciesToInstall,
+    ).join(', ')})`,
   );
 
   writePackageInfo(targetPath, {
