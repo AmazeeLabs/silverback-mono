@@ -26,7 +26,7 @@
         "amazeelabs/silverback_cdn_redirect": "@dev",
         "amazeelabs/silverback_external_preview": "@dev",
         "amazeelabs/silverback_gatsby": "@dev",
-        "amazeelabs/silverback_graphql_persisted": "1.1.2",
+        "amazeelabs/silverback_graphql_persisted": "@dev",
         "amazeelabs/silverback_gutenberg": "@dev",
         "amazeelabs/silverback_iframe": "@dev",
         "amazeelabs/silverback_iframe_theme": "@dev",
