@@ -1,5 +1,3 @@
-import chalk from 'chalk';
-
 import { readPackageInfo, writePackageInfo } from './helpers';
 
 export function installScripts(targetPath: string) {
@@ -17,9 +15,9 @@ export function installScripts(targetPath: string) {
   };
 
   console.log(
-    `${chalk.yellow(
-      '[@amazeelabs/scaffold]:',
-    )} Adjusting scripts (${Object.keys(sourceScripts).join(', ')})`,
+    `[@amazeelabs/scaffold]: Adjusting scripts (${Object.keys(
+      sourceScripts,
+    ).join(', ')})`,
   );
 
   writePackageInfo(targetPath, {
