@@ -11,7 +11,7 @@
     "patches": {}
   },
   "require": {
-    "cweagans/composer-patches": "^1.7.2",
+    "cweagans/composer-patches": "^1.7.3",
     "drupal/gutenberg": "^2.5"
   }
 }
