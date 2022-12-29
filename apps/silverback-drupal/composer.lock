@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cdf92ca438297e346849e99b0c615da7",
+    "content-hash": "2d81b8c450c44d89ab110263e670ebfc",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -76,11 +76,11 @@
         },
         {
             "name": "amazeelabs/default-content",
-            "version": "1.2.4",
+            "version": "1.2.5",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/default-content",
-                "reference": "3f231efe76bc9ec6c0d41ad37a8dcb80426b61d2"
+                "reference": "61036e300a411850ad057edb01f42130458c4dfe"
             },
             "require": {
                 "amazeelabs/proxy-default-content": "^1.1.4"
@@ -101,11 +101,11 @@
         },
         {
             "name": "amazeelabs/proxy-default-content",
-            "version": "1.1.4",
+            "version": "1.1.5",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-default-content",
-                "reference": "1fe425ba3d607e07725dcdbe63a6beb4ce864c17"
+                "reference": "7a65898ffc8c8c8a8500230a65f08de276c9d32a"
             },
             "require": {
                 "cweagans/composer-patches": "^1.7.3",
@@ -132,11 +132,11 @@
         },
         {
             "name": "amazeelabs/proxy-drupal-core",
-            "version": "1.1.8",
+            "version": "1.1.9",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-drupal-core",
-                "reference": "fa18d4b30f5c2665bcc8c6881ad15b505fd37db9"
+                "reference": "781d23fdb3205432e45e22e81d82e41a36cefd4e"
             },
             "require": {
                 "cweagans/composer-patches": "^1.7.3",
@@ -164,11 +164,11 @@
         },
         {
             "name": "amazeelabs/proxy-gutenberg",
-            "version": "1.1.14",
+            "version": "1.1.15",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-gutenberg",
-                "reference": "61883a2f4901f0a8b76451e1a2cefe72175bbd1c"
+                "reference": "689cdc7cf7ef5d26e7d875b16f7eca692944f43b"
             },
             "require": {
                 "cweagans/composer-patches": "^1.7.3",
@@ -191,11 +191,11 @@
         },
         {
             "name": "amazeelabs/silverback-cli",
-            "version": "2.9.0",
+            "version": "2.9.1",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback-cli",
-                "reference": "05fee10b8fd5ecae821cb15ecd4e3f93fcb0eb26"
+                "reference": "dbe84139eb3775642057d6f6c3eff0ccea402729"
             },
             "require": {
                 "drush/drush": ">=10.6.2",
@@ -318,11 +318,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "1.6.9",
+            "version": "1.6.10",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "14825d953ebb9266b73b9ccae7708361472357f9"
+                "reference": "1c7bd6f4a9fea407ded97429d10b8680015a54c7"
             },
             "require": {
                 "drupal/gutenberg": "^2.4"
@@ -3107,11 +3107,11 @@
         },
         {
             "name": "drupal/cypress",
-            "version": "2.3.71",
+            "version": "2.3.72",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/cypress",
-                "reference": "dffbf9d9f1f7f523b631605560ca54acd0c3d193"
+                "reference": "03128ca6789923798591fa62ff9e2136f754fd9f"
             },
             "require": {
                 "alchemy/zippy": "^1.0.0",
@@ -3354,11 +3354,11 @@
         },
         {
             "name": "drupal/gatsby_build_monitor",
-            "version": "1.4.44",
+            "version": "1.4.45",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/gatsby_build_monitor",
-                "reference": "ea4696310aacf68c00b7c0d54069f4ed22a58fe9"
+                "reference": "5535bc662aeb26d7f2741ed1a1fd657e8d2004c6"
             },
             "require": {
                 "justinrainbow/json-schema": "^5.2.12"
@@ -3707,11 +3707,11 @@
         },
         {
             "name": "drupal/test_session",
-            "version": "1.2.47",
+            "version": "1.2.48",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/test_session",
-                "reference": "92ab97993c746f1eb82db379ad4a653ffe63eb04"
+                "reference": "d6c9137124c937defd2c8c4864be03805c0d1517"
             },
             "type": "drupal-module",
             "license": [
@@ -4109,16 +4109,16 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "3.2.1",
+            "version": "3.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "f88dcf4b14af14a98ad96b14b2b317969eab6715"
+                "reference": "1ac0be80b32ea829009257934ecfd5ab20f24ba5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/f88dcf4b14af14a98ad96b14b2b317969eab6715",
-                "reference": "f88dcf4b14af14a98ad96b14b2b317969eab6715",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/1ac0be80b32ea829009257934ecfd5ab20f24ba5",
+                "reference": "1ac0be80b32ea829009257934ecfd5ab20f24ba5",
                 "shasum": ""
             },
             "require": {
@@ -4165,7 +4165,7 @@
             ],
             "support": {
                 "issues": "https://github.com/egulias/EmailValidator/issues",
-                "source": "https://github.com/egulias/EmailValidator/tree/3.2.1"
+                "source": "https://github.com/egulias/EmailValidator/tree/3.2.2"
             },
             "funding": [
                 {
@@ -4173,7 +4173,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-06-18T20:57:19+00:00"
+            "time": "2022-12-29T21:07:24+00:00"
         },
         {
             "name": "enlightn/security-checker",
@@ -12101,5 +12101,8 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
+    "platform-overrides": {
+        "php": "8.1.13"
+    },
     "plugin-api-version": "2.3.0"
 }
