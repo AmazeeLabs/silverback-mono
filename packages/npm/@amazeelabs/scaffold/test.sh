@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -ex
 
 # Clean up any leftover test directory from previous failed runs.
 rm -rf test
