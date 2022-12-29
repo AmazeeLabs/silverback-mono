@@ -26,6 +26,10 @@ test('@drupal-only test gutenberg media entity usage', async ({ page }) => {
     'form.media-library-views-form article.media-library-item__preview-wrapper img[alt="Mountain"]',
   );
   await page.click('div.ui-dialog-buttonset button:text-is("Insert")');
+  // Wait until the image appears in the editor.
+  await expect(
+    await page.locator('figure.wp-block-drupalmedia-drupal-media-entity img'),
+  ).toBeVisible();
 
   // Add a title and save the node.
   await page.click('[aria-label="Settings"]');
