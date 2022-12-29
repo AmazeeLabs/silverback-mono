@@ -14,7 +14,7 @@
     "clear": "source .envrc && drush cr",
     "test:integration": "yarn snapshot-restore && start-server-and-test start:silent 8888 schema:test",
     "schema:export": "source .envrc && drush silverback-gatsby:schema-export",
-    "schema:test": "yarn jest --testMatch '<rootDir>/generated/__tests__/test-queries.js'",
+    "schema:test": "yarn jest --modulePathIgnorePatterns '^((?!generated).)*$' --testMatch '<rootDir>/generated/__tests__/test-queries.js'",
     "schema:update": "yarn schema:test -u",
     "content:export": "source .envrc && drush php-script web/modules/custom/silverback_default_content/export.php",
     "content:import": "source .envrc && drush php-script web/modules/custom/silverback_default_content/import.php"
