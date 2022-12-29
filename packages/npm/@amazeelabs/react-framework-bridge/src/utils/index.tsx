@@ -9,6 +9,7 @@ import rehypeParse from 'rehype-parse';
 import rehypeReact from 'rehype-react';
 import rehypeSlug from 'rehype-slug';
 import { Plugin, unified } from 'unified';
+import type { Parent } from 'unist';
 import { modifyChildren } from 'unist-util-modify-children';
 import { visit } from 'unist-util-visit';
 
@@ -78,7 +79,7 @@ const rehypeTailwindLists: Plugin = () => (tree) => {
   visit(
     tree,
     'element',
-    modifyChildren((node) => {
+    modifyChildren<Parent>((node) => {
       if (isElement(node, 'li')) {
         node.children = [
           {
