@@ -1,7 +1,9 @@
 //import { cloudinary } from 'cloudinary';
 
-import { Cloudinary, Transformation } from '@cloudinary/url-gen';
+import { CloudinaryImage, Transformation } from '@cloudinary/url-gen';
 import { fill, scale } from '@cloudinary/url-gen/actions/resize';
+import CryptoJS from 'crypto-js';
+import sha1 from 'crypto-js/sha1';
 
 type ResponsiveImageConfig = {
   width: number;
@@ -190,16 +192,28 @@ const getCloudinaryImageUrl = (
   originalImage: string,
   config?: {width?: number, height?: number, transform?: string}
 ): string => {
-  const cld = new Cloudinary({
-    cloud: {
-      cloudName: 'ddj1ybv54',
-      apiKey: '219736568324247',
-      apiSecret: 'PsDMMn1fMdm2lj9TlJMICX25KEA'
+  // @todo: these needs to be recevied from outside, and probably stored as
+  // env variables.
+  const cloudName = 'ddj1ybv54';
+  const apiKey = '219736568324247';
+  const apiSecret = 'PsDMMn1fMdm2lj9TlJMICX25KEA';
+  const image = new CloudinaryImage(
+    originalImage,
+    {
+      cloudName: cloudName,
+      apiKey: apiKey,
+      apiSecret: apiSecret,
     },
-  });
-  const image = cld.image(originalImage);
+    {
+      // Even though we have this parameter available, it has no effect. We keep
+      // it here for future references, maybe in future releases the sign url
+      // feature will be implemented. Until then, we sign the delivery URL
+      // ourselves, using the instructions from
+      // https://cloudinary.com/documentation/advanced_url_delivery_options#generating_delivery_url_signatures
+      //signUrl: true
+    }
+  );
   image.setDeliveryType('fetch');
-  image.sign();
   image.format('auto');
   if (typeof config?.width !== 'undefined' || typeof config?.height !== 'undefined') {
     // If both, width and height, are provided, then we resize the image.
@@ -212,8 +226,16 @@ const getCloudinaryImageUrl = (
   if (typeof config?.transform !== 'undefined') {
     const tranformation = new Transformation();
     tranformation.addTransformation(config.transform);
-    image.transformation = tranformation;
+    image.addTransformation(tranformation);
   };
+
+  // There is no utility right now to sign a delivery image (even though there
+  // is a sign() method on the CloudinaryImage class, which does... nothing; it
+  // just returns the current object), so we do it here using the instructions
+  // from https://cloudinary.com/documentation/advanced_url_delivery_options#generating_delivery_url_signatures
+  const toSign = [image.transformation.toString(), originalImage].join('/');
+  const digest = sha1(`${toSign}${apiSecret}`).toString(CryptoJS.enc.Base64url);
+  image.setSignature(digest.substring(0,8));
 
   return image.toURL();
 }
