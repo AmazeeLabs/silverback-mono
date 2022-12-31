@@ -49,6 +49,14 @@ export const resolveResponsiveImage = (
   if (typeof config === 'undefined') {
     return responsiveImage;
   }
+
+  // Also, if the cloudinary env variables are not set, just return the original
+  // image.
+  if (typeof process.env.CLOUDINARY_API_SECRET === 'undefined' ||
+      typeof process.env.CLOUDINARY_API_KEY === 'undefined' ||
+      typeof process.env.CLOUDINARY_CLOUDNAME === 'undefined') {
+    return responsiveImage;
+  }
   const width = config.width;
   const height = config.height || undefined;
   const transform = config.transform || undefined;
@@ -192,11 +200,9 @@ const getCloudinaryImageUrl = (
   originalImage: string,
   config?: {width?: number, height?: number, transform?: string}
 ): string => {
-  // @todo: these needs to be recevied from outside, and probably stored as
-  // env variables.
-  const cloudName = 'ddj1ybv54';
-  const apiKey = '219736568324247';
-  const apiSecret = 'PsDMMn1fMdm2lj9TlJMICX25KEA';
+  const cloudName = process.env.CLOUDINARY_CLOUDNAME;
+  const apiKey = process.env.CLOUDINARY_API_KEY;
+  const apiSecret = process.env.CLOUDINARY_API_SECRET;
   const image = new CloudinaryImage(
     originalImage,
     {
