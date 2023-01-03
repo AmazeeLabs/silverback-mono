@@ -1,3 +1,0 @@
-extend type Query {
-  heroImage(config: ResponsiveImageConfig): ResponsiveImage
-}

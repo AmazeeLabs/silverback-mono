@@ -19,11 +19,5 @@ class SilverbackCloudinarySchemaExtension extends SdlSchemaExtensionPluginBase {
    * {@inheritDoc}
    */
   public function registerResolvers(ResolverRegistryInterface $registry) {
-    $builder = new ResolverBuilder();
-    $registry->addFieldResolver('Query', 'heroImage',
-      $builder->produce('responsive_image')
-      ->map('image', $builder->fromValue('https://cms.nuklearforum.ch/sites/default/files/2022-12/Weihnachtsbild.jpg'))
-      ->map('config', $builder->fromArgument('config'))
-    );
   }
 }
