@@ -9,9 +9,9 @@ type Query {
     @value(json: "[{\"x\": \"a\"},{\"x\": \"b\"}]")
     @map
     @prop(key: "x")
-  union: [TestUnion!]!
+  union: [TestUnion]!
     @value(json: "[{\"type\": \"a\", \"y\":\"A\"},{\"type\": \"b\", \"z\":\"B\"}]")
-  interface: [TestInterface!]!
+  interface: [TestInterface]!
     @value(json: "[{\"type\": \"a\", \"y\":\"A\"},{\"type\": \"b\", \"z\":\"B\"}]")
 }
 

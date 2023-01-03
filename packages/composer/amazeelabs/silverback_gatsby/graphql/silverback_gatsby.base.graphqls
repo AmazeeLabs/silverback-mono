@@ -1,11 +1,11 @@
 type Feed {
-  typeName: String! @prop(key: "typeName")
-  translatable: Boolean! @prop(key: "translatable")
-  singleFieldName: String! @prop(key: "singleFieldName")
-  listFieldName: String! @prop(key: "listFieldName")
-  changes(lastBuild: Int, currentBuild: Int): [String!]! @prop(key: "changes")
-  pathFieldName: String @prop(key: "pathFieldName")
-  templateFieldName: String @prop(key: "templateFieldName")
+  typeName: String!
+  translatable: Boolean!
+  singleFieldName: String!
+  listFieldName: String!
+  changes(lastBuild: Int, currentBuild: Int): [String!]!
+  pathFieldName: String
+  templateFieldName: String
 }
 
 ################################################################################

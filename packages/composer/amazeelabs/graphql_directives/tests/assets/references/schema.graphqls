@@ -6,6 +6,6 @@ type Query {
 
 type Article {
   title: String! @resolveEntityLabel
-  references: [Article!]! @resolveEntityReference(field: "references")
-  revisions: [Article!]! @resolveEntityReferenceRevisions(field: "revisions")
+  references: [Article]! @resolveEntityReference(field: "references")
+  revisions: [Article]! @resolveEntityReferenceRevisions(field: "revisions")
 }

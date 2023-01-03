@@ -27,12 +27,13 @@ class DirectivePrinter {
       'name' => new NameNode(['value' => 'default']),
       'repeatable' => TRUE,
       'description' => new StringValueNode(['value' => implode("\n", [
-        'Provide an automatic or manual default value.'
+        'Provide a default value for a given type.'
       ]), 'block' => TRUE]),
       'arguments' => new NodeList([]),
       'locations' => new NodeList([
-        new NameNode(['value' => DirectiveLocation::FIELD_DEFINITION]),
         new NameNode(['value' => DirectiveLocation::UNION]),
+        new NameNode(['value' => DirectiveLocation::SCALAR]),
+        new NameNode(['value' => DirectiveLocation::OBJECT]),
         new NameNode(['value' => DirectiveLocation::IFACE]),
       ]),
     ]);
@@ -109,8 +110,10 @@ class DirectivePrinter {
         'arguments' => new NodeList($arguments),
         'locations' => new NodeList([
           new NameNode(['value' => DirectiveLocation::FIELD_DEFINITION]),
+          new NameNode(['value' => DirectiveLocation::SCALAR]),
           new NameNode(['value' => DirectiveLocation::UNION]),
           new NameNode(['value' => DirectiveLocation::IFACE]),
+          new NameNode(['value' => DirectiveLocation::OBJECT]),
         ]),
       ]);
       $directives[] = Printer::doPrint($dir);

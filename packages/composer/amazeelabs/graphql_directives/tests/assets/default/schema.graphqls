@@ -1,22 +1,21 @@
+scalar Manual @default @value(json: "\"foo\"")
+
 type Query {
-  optional: String @default
-  string: String! @default
-  int: Int! @default
-  float: Float! @default
-  boolean: Boolean! @default
-  list: [String]! @default
-  object: Object! @default
-  manual: String! @default @value(json: "\"foo\"")
+  optional: String
+  string: String!
+  int: Int!
+  float: Float!
+  boolean: Boolean!
+  list: [String]!
+  listItem: [String!]! @value(json: "[null]")
+  manual: Manual!
+  object: Object!
 }
 
-type Object {
-  chain: String!
-    @value(json: "null")
-    @default
-    @prop(key: "foo")
-    @default
-    @value(json: "\"bar\"")
-  prop: String! @prop(key: "foo") @default
-  optional: String @prop(key: "optional") @default
-  mandatory: String! @prop(key: "mandatory") @default
+
+type Object @default @value(json: "{\"magic\": \"its magic\"}") {
+  magic: String!
+  prop: String! @prop(key: "magic")
+  optional: String
+  mandatory: String!
 }

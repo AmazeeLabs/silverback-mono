@@ -28,9 +28,9 @@ class DirectivePrinterTest extends UnitTestCase {
       ]),
       implode("\n", [
         '"""',
-        'Provide an automatic or manual default value.',
+        'Provide a default value for a given type.',
         '"""',
-        'directive @default repeatable on FIELD_DEFINITION | UNION | INTERFACE'
+        'directive @default repeatable on UNION | SCALAR | OBJECT | INTERFACE'
       ]),
     ];
     $builtin[] = implode("\n", $lines);
@@ -47,7 +47,7 @@ class DirectivePrinterTest extends UnitTestCase {
         'id' => 'todo',
       ],
     ], [
-      'directive @todo repeatable on FIELD_DEFINITION | UNION | INTERFACE',
+      'directive @todo repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT',
     ]);
   }
 
@@ -61,7 +61,7 @@ class DirectivePrinterTest extends UnitTestCase {
       '"""',
       'Mark a field as not implemented.',
       '"""',
-      'directive @todo repeatable on FIELD_DEFINITION | UNION | INTERFACE',
+      'directive @todo repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT',
     ]);
   }
 
@@ -76,7 +76,7 @@ class DirectivePrinterTest extends UnitTestCase {
         ],
       ],
     ], [
-      'directive @value(json: String!, function: String) repeatable on FIELD_DEFINITION | UNION | INTERFACE',
+      'directive @value(json: String!, function: String) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT',
     ]);
   }
 
@@ -93,8 +93,8 @@ class DirectivePrinterTest extends UnitTestCase {
         'id' => 'todo',
       ],
     ], [
-      'directive @todo repeatable on FIELD_DEFINITION | UNION | INTERFACE',
-      'directive @value(json: String!, function: String) repeatable on FIELD_DEFINITION | UNION | INTERFACE',
+      'directive @todo repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT',
+      'directive @value(json: String!, function: String) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT',
     ]);
   }
 
@@ -117,7 +117,7 @@ class DirectivePrinterTest extends UnitTestCase {
       'Provided by the "graphql_directives" module.',
       'Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Value".',
       '"""',
-      'directive @value(json: String!, function: String) repeatable on FIELD_DEFINITION | UNION | INTERFACE',
+      'directive @value(json: String!, function: String) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT',
     ]);
   }
 }

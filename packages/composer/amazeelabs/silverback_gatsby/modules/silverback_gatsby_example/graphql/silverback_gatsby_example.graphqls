@@ -28,12 +28,12 @@ type MenuItem {
 All menu items, for the sitemap or being post-loaded.
 """
 type MainMenu @menu(menu_ids: ["access_denied", "main"]) {
-  items: [MenuItem!]! @resolveMenuItems
+  items: [MenuItem]! @resolveMenuItems
 }
 
 """
 Menu items up to level 2, to be rendered directly into the page layout.
 """
 type VisibleMainMenu @menu(menu_ids: ["access_denied", "main"], max_level: 2) {
-  items: [MenuItem!]! @resolveMenuItems
+  items: [MenuItem]! @resolveMenuItems
 }

@@ -1,11 +1,11 @@
 type Query {
-  en: Page! @loadEntity(type: "node", id: "1")
-  de: Page! @loadEntity(type: "node", id: "1") @resolveEntityTranslation(lang: "de")
+  en: Page @loadEntity(type: "node", id: "1")
+  de: Page @loadEntity(type: "node", id: "1") @resolveEntityTranslation(lang: "de")
 }
 
 type Page {
   title: String! @resolveProperty(path: "title.value")
-  content: [Blocks!]! @resolveEditorBlocks(path: "body.value", aggregated: ["core/paragraph", "core/list"])
+  content: [Blocks]! @resolveEditorBlocks(path: "body.value", aggregated: ["core/paragraph", "core/list"])
 }
 
 union Blocks @resolveEditorBlockType =
@@ -31,5 +31,5 @@ type Image {
 }
 
 type Columns @type(id: "custom/columns") {
-  columns: [ColumnBlocks!]! @resolveEditorBlockChildren
+  columns: [ColumnBlocks]! @resolveEditorBlockChildren
 }
