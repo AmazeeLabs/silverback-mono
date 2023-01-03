@@ -15,8 +15,12 @@ query_complexity: null
 schema_configuration:
   silverback_gatsby_test:
     extensions:
+      silverback_cloudinary: silverback_cloudinary
       silverback_gatsby: silverback_gatsby
+    build_trigger_on_save: ''
     build_webhook: 'http://localhost:9001/__rebuild'
+    update_webhook: ''
+    build_url: ''
     user: 7822b516-48e8-48e8-a7f6-5e23ad20ee3b
     role: ''
 persisted_queries_settings:

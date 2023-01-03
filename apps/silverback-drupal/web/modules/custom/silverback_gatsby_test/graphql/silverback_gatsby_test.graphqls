@@ -42,6 +42,7 @@ type GutenbergPage @entity(type: "node", bundle: "gutenberg_page") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
   body: [RootBlock!]! @resolveEditorBlocks(path: "body.value", ignore: ["custom/root", "core/columns"])
+  anotherResponsiveImage(config: ResponsiveImageConfig): ResponsiveImage
 }
 
 type Webform @entity(type: "webform", access: false) {
@@ -56,6 +57,7 @@ type Article @entity(type: "node", bundle: "article") {
   body: String @resolveProperty(path: "field_body.0.processed")
   tags: [Tag]! @resolveEntityReference(field: "field_tags", single: false)
   image: Image @resolveEntityReference(field: "field_image", single: true)
+  responsiveImage(config: ResponsiveImageConfig): ResponsiveImage
   template: String @isTemplate
 }
 

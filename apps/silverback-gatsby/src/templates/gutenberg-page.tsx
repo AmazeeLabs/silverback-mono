@@ -26,7 +26,24 @@ export const query = graphql`
         ...BlockImage
         ...BlockTeaser
       }
+      anotherResponsiveImage(config: {variants:[{media: "(max-width: 160px)", width: 160}, {width: 450, height: 250, media: "(max-width: 460px)", transform: "bo_40px_solid_brown,co_rgb:20a020,e_colorize:50,o_60", sizes: [[180, 160], [440, 420]]}], width: 880, sizes: [[220, 210], [550, 530]], transform: "bo_40px_solid_brown,co_rgb:20a020,e_colorize:50,o_60"}) {
+        src
+        width
+        height
+        sizes
+        srcset
+        sources {
+          ...ResponsiveImageGutenbergSource
+        }
+      }
     }
+  }
+  fragment ResponsiveImageGutenbergSource on DrupalResponsiveImageSource {
+    media
+    srcset
+    width
+    height
+    sizes
   }
   fragment BlockHtmlParagraph on DrupalBlockHtmlParagraph {
     html
@@ -82,6 +99,7 @@ const GutenbergPage: React.FC<
         <tr>
           <Row>Title</Row>
           <Row>Body</Row>
+          <Row>Responsive image</Row>
           <Row>Other languages</Row>
         </tr>
         <tr>
@@ -103,6 +121,13 @@ const GutenbergPage: React.FC<
                   throw new UnreachableCaseError(block);
               }
             })}
+          </Row>
+          <Row>
+            {page.anotherResponsiveImage?.src && <img
+              src={page.anotherResponsiveImage.src}
+              srcSet={page.anotherResponsiveImage.srcset}
+              sizes={page.anotherResponsiveImage.sizes}
+              />}
           </Row>
           <Row>
             <ul>

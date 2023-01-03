@@ -36,7 +36,24 @@ export const query = graphql`
           ...ImageSharpFixed
         }
       }
+      responsiveImage(config: {variants:[{media: "(max-width: 160px)", width: 160}, {width: 450, height: 250, media: "(max-width: 460px)", transform: "bo_40px_solid_brown,co_rgb:20a020,e_colorize:50,o_20", sizes: [[180, 160], [440, 420]]}], width: 650, height: 320, sizes: [[220, 210], [550, 530]], transform: "bo_40px_solid_brown,co_rgb:20a020,e_colorize:50,o_10"}) {
+        src
+        width
+        height
+        sizes
+        srcset
+        sources {
+          ... ResponsiveImageArticleSource
+        }
+      }
     }
+  }
+  fragment ResponsiveImageArticleSource on DrupalResponsiveImageSource {
+    media
+    srcset
+    width
+    height
+    sizes
   }
 `;
 
@@ -58,7 +75,6 @@ const Article: React.FC<
     }
   }
   const intl = useIntl();
-
   return (
     <StandardLayout locationState={location.state}>
       <Link to="/">To frontpage</Link>
@@ -96,6 +112,13 @@ const Article: React.FC<
           <Row>
             {
               intl.formatMessage({
+                defaultMessage: 'Responsive image',
+              })
+            }
+          </Row>
+          <Row>
+            {
+              intl.formatMessage({
                 defaultMessage: 'Other languages',
               })
             }
@@ -117,6 +140,13 @@ const Article: React.FC<
               />
             )}
           </td>
+          <Row>
+            {article.responsiveImage?.src && <img
+              src={article.responsiveImage.src}
+              srcSet={article.responsiveImage.srcset}
+              sizes={article.responsiveImage.sizes}
+            /> }
+          </Row>
           <Row>
             <ul>
               {localizations

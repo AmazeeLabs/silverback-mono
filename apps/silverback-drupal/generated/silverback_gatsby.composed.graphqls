@@ -164,6 +164,7 @@ type GutenbergPage @entity(type: "node", bundle: "gutenberg_page") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
   body: [RootBlock!]! @resolveEditorBlocks(path: "body.value", ignore: ["custom/root", "core/columns"])
+  anotherResponsiveImage(config: ResponsiveImageConfig): ResponsiveImage
 }
 
 type Webform @entity(type: "webform", access: false) {
@@ -178,6 +179,7 @@ type Article @entity(type: "node", bundle: "article") {
   body: String @resolveProperty(path: "field_body.0.processed")
   tags: [Tag]! @resolveEntityReference(field: "field_tags", single: false)
   image: Image @resolveEntityReference(field: "field_image", single: true)
+  responsiveImage(config: ResponsiveImageConfig): ResponsiveImage
   template: String @isTemplate
 }
 
@@ -228,6 +230,55 @@ type MainMenu @menu(menu_id: "main", item_type: "MenuItem")
 type FirstLevelMainMenu @menu(menu_id: "main", item_type: "MenuItem", max_level: 1)
 
 type GatsbyStringTranslation @stringTranslation(contextPrefix: "gatsby")
+
+input ResponsiveImageVariant {
+  # Media query that determines when this variant should be used.
+  media: String!
+  # Default image dimensions. If height is omitted, the image is scaled, but
+  # not cropped.
+  width: Int!
+  height: Int
+  # A list of screen width / image width tuples that translate to a
+  # max-width and an image width that should be up until that screen width.
+  #
+  # Example:
+  # sizes: [
+  #  [400, 390] -> up until 400px screen width, use the 390px image
+  #  [800, 780] -> up until 800px screen width, use the 780px image
+  # ]
+  sizes: [[Int!]!]
+  # Additional cloudinary transformations.
+  # https://cloudinary.com/blog/on_the_fly_image_manipulations_secured_with_signed_urls
+  transform: String
+}
+
+input ResponsiveImageConfig {
+  # See above.
+  width: Int!
+  height: Int
+  sizes: [[Int!]!]
+  transform: String
+  # An array of responsive image variants.
+  variants: [ResponsiveImageVariant!]
+}
+
+type ResponsiveImageSource {
+  media: String
+  srcset: String
+  sizes: String
+  width: Int
+  height: Int
+}
+
+type ResponsiveImage {
+  src: String
+  srcset: String
+  sizes: String
+  width: Int
+  height: Int
+  sources: [ResponsiveImageSource]
+}
+
 
 type Feed {
   typeName: String!

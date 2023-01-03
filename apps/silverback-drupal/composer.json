@@ -24,6 +24,7 @@
         "amazeelabs/proxy-gutenberg": "@dev",
         "amazeelabs/silverback-cli": "@dev",
         "amazeelabs/silverback_cdn_redirect": "@dev",
+        "amazeelabs/silverback_cloudinary": "@dev",
         "amazeelabs/silverback_external_preview": "@dev",
         "amazeelabs/silverback_gatsby": "@dev",
         "amazeelabs/silverback_graphql_persisted": "1.1.2",

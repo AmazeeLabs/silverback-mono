@@ -65,7 +65,7 @@ Other parts:
 Drupal:
 
 - `composer require amazeelabs/silverback_cloudinary`
-- Make sure you have the CLOUDINARY_URL env variable set as instructed on the [Cloudinary dashboard](https://console.cloudinary.com/console)
+- Make sure you have the CLOUDINARY_URL env variable set as instructed on the [Cloudinary dashboard](https://console.cloudinary.com/console) (testing credentials: CLOUDINARY_URL=cloudinary://219736568324247:PsDMMn1fMdm2lj9TlJMICX25KEA@ddj1ybv54)
 - `drush en silverback_cloudinary`
 - Enable the schema extension on each of the graphql servers: /admin/config/graphql (by editing each of the server)
 
