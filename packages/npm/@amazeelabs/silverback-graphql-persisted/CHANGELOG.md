@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/silverback-graphql-persisted@1.1.12...@amazeelabs/silverback-graphql-persisted@1.2.0) (2023-01-04)
+
+### Features
+
+- allow forcing POST requests
+  ([6631716](https://github.com/AmazeeLabs/silverback-mono/commit/6631716390cecb908685643039c6a4261da848c6))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.12](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/silverback-graphql-persisted@1.1.11...@amazeelabs/silverback-graphql-persisted@1.1.12) (2022-12-29)
 
 **Note:** Version bump only for package @amazeelabs/silverback-graphql-persisted
