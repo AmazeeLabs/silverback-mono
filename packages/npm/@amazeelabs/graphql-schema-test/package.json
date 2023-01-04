@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "axios": "^1.2.2",
-    "jest-specific-snapshot": "^6.0.0",
+    "jest-specific-snapshot": "^7.0.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
