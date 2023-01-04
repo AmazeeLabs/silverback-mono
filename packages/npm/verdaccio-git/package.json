@@ -15,7 +15,7 @@
     "@verdaccio/local-storage": "^10.3.1",
     "@verdaccio/streams": "^10.2.0",
     "file-system": "^2.2.2",
-    "fs-extra": "^10.1.0",
+    "fs-extra": "^11.1.0",
     "simple-git": "^3.15.1",
     "sync-directory": "^5.1.9",
     "tar": "^6.1.13"
