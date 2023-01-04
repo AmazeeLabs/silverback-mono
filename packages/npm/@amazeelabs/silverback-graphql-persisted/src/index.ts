@@ -57,12 +57,13 @@ export function persistedFetcher<TData, TVariables>(
   queryMap: QueryMap,
   query: string,
   variables?: TVariables,
+  forcePostRequest?: boolean,
 ) {
   const { queryType, queryId } = getQueryData(query, queryMap);
   return async (): Promise<TData> => {
     const params = { id: queryId, variables };
     let res;
-    if (queryType === 'mutation') {
+    if (queryType === 'mutation' || forcePostRequest) {
       res = await fetch(endpoint, {
         method: 'POST',
         ...{ credentials: 'include' },
