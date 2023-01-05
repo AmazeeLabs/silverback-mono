@@ -76,11 +76,11 @@
         },
         {
             "name": "amazeelabs/default-content",
-            "version": "1.2.5",
+            "version": "1.2.6",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/default-content",
-                "reference": "40faea7f81ea3bc08780df4b09e5e677ca6fe43e"
+                "reference": "b696b337a172e6d7a033ca7fda5a2d37e5c7e36a"
             },
             "require": {
                 "amazeelabs/proxy-default-content": "^1.1.5"
@@ -318,11 +318,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "1.6.10",
+            "version": "1.6.11",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "1c7bd6f4a9fea407ded97429d10b8680015a54c7"
+                "reference": "92fcef8fa617114add1d21012164a1e9b13d1309"
             },
             "require": {
                 "drupal/gutenberg": "^2.4"
@@ -3107,11 +3107,11 @@
         },
         {
             "name": "drupal/cypress",
-            "version": "2.3.73",
+            "version": "2.3.74",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/cypress",
-                "reference": "c8a8aafff841572066637244766ca7453cbac34d"
+                "reference": "917117d061e0ecd4ac09aedad19836aa55eaf041"
             },
             "require": {
                 "alchemy/zippy": "^1.0.0",
@@ -3354,11 +3354,11 @@
         },
         {
             "name": "drupal/gatsby_build_monitor",
-            "version": "1.4.45",
+            "version": "1.4.46",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/gatsby_build_monitor",
-                "reference": "5535bc662aeb26d7f2741ed1a1fd657e8d2004c6"
+                "reference": "070547a8a68d3b15629feb7e933f7c4354ae23ec"
             },
             "require": {
                 "justinrainbow/json-schema": "^5.2.12"
@@ -3707,11 +3707,11 @@
         },
         {
             "name": "drupal/test_session",
-            "version": "1.2.48",
+            "version": "1.2.49",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/test_session",
-                "reference": "d6c9137124c937defd2c8c4864be03805c0d1517"
+                "reference": "52145492bd00a3213ce9ae1cd0bc799b4704359c"
             },
             "type": "drupal-module",
             "license": [
