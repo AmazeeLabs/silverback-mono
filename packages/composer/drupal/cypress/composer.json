@@ -17,6 +17,12 @@
       }
     }
   },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  ],
   "require": {
     "ext-json": "*",
     "alchemy/zippy": "^1.0.0",

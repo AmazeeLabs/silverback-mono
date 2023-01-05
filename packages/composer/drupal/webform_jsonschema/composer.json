@@ -12,6 +12,12 @@
     "issues": "https://www.drupal.org/project/issues/webform_jsonschema",
     "source": "http://cgit.drupalcode.org/webform_jsonschema"
   },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  ],
   "require": {
     "drupal/webform": "^5 || ^6"
   },
