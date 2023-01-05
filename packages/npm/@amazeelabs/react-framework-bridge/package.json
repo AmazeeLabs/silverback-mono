@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/react-framework-bridge",
-  "version": "2.3.9",
+  "version": "2.3.10",
   "description": "Bridge code to implement framework independent react components.",
   "type": "module",
   "exports": {
@@ -76,7 +76,7 @@
     "yup": ">=0.32.11"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.37",
+    "@amazeelabs/eslint-config": "^1.4.38",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@rollup/plugin-commonjs": "23.0.7",
     "@rollup/plugin-multi-entry": "6.0.0",
