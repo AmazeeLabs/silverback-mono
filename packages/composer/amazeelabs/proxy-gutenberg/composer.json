@@ -10,6 +10,12 @@
     "composer-exit-on-patch-failure": true,
     "patches": {}
   },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  ],
   "require": {
     "cweagans/composer-patches": "^1.7.3",
     "drupal/gutenberg": "^2.5"

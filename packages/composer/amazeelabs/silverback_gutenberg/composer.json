@@ -5,6 +5,12 @@
   "description": "Adjusts Gutenberg for Amazee Labs needs.",
   "homepage": "https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/composer/amazeelabs/silverback_gutenberg#readme",
   "license": "GPL-2.0+",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  ],
   "require": {
     "drupal/gutenberg": "^2.4"
   }
