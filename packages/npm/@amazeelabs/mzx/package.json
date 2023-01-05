@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/mzx",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Executable markdown recipes.",
   "main": "dist/index.js",
   "bin": "./cli.js",
