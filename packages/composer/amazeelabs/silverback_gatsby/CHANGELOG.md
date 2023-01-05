@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.28.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.28.0...@-amazeelabs/silverback_gatsby@1.28.1) (2023-01-05)
+
+### Bug Fixes
+
+- make user cookie live same time as drupal session
+  ([213f617](https://github.com/AmazeeLabs/silverback-mono/commit/213f6172ec681c0f6983fb1fe0fbd8e0b5ea5f2b))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.28.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.27.0...@-amazeelabs/silverback_gatsby@1.28.0) (2022-10-24)
 
 ### Features
