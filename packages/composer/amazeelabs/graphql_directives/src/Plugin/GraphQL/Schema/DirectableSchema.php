@@ -7,25 +7,14 @@ use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\graphql\GraphQL\Execution\FieldContext;
-use Drupal\graphql\GraphQL\Resolver\Composite;
-use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\Plugin\GraphQL\Schema\ComposableSchema;
 use Drupal\graphql\Plugin\SchemaExtensionPluginManager;
 use Drupal\graphql_directives\DirectableSchemaExtensionPluginBase;
+use Drupal\graphql_directives\DirectiveInterpreter;
 use Drupal\graphql_directives\DirectivePrinter;
-use GraphQL\Language\AST\BooleanValueNode;
-use GraphQL\Language\AST\FloatValueNode;
-use GraphQL\Language\AST\InterfaceTypeDefinitionNode;
-use GraphQL\Language\AST\IntValueNode;
-use GraphQL\Language\AST\ListValueNode;
-use GraphQL\Language\AST\NodeList;
 use GraphQL\Language\AST\ObjectTypeDefinitionNode;
-use GraphQL\Language\AST\ObjectValueNode;
-use GraphQL\Language\AST\StringValueNode;
-use GraphQL\Language\AST\UnionTypeDefinitionNode;
-use GraphQL\Language\AST\ValueNode;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -106,72 +95,6 @@ class DirectableSchema extends ComposableSchema {
     ]);
   }
 
-  /**
-   * @param ?\GraphQL\Language\AST\NodeList $arguments
-   *
-   * @return array
-   */
-  protected function argumentsToParameters(?NodeList $arguments): array {
-    $config = [];
-    if ($arguments) {
-      foreach ($arguments as $argument) {
-        if ($argument->value instanceof ListValueNode) {
-          $config[$argument->name->value] = array_filter(array_map(
-            fn ($node) => !(
-              $node->value instanceof ObjectValueNode ||
-              $node->value instanceof ListValueNode
-            ) ? $node->value : null,
-            iterator_to_array($argument->value->values->getIterator())
-          ));
-        }
-        else if (!$argument->value instanceof ObjectValueNode) {
-          $config[$argument->name->value] = $argument->value->value;
-        }
-      }
-    }
-    return $config;
-  }
-
-  protected function buildResolverFromDirectives(
-    NodeList $directives,
-    ResolverBuilder $builder
-  ): ResolverInterface {
-    /** @var \Drupal\graphql\GraphQL\Resolver\Composite[] $composites */
-    $composites = [];
-    $composite = new Composite([]);
-
-    // Stack composites of directives on top of each other.
-    foreach ($directives as $directive) {
-
-      // If the directive is "map" start a new stack entry.
-      if ($directive->name->value === 'map') {
-        $composites[] = $composite;
-        $composite = new Composite([]);
-        continue;
-      }
-
-      // If the directive is implemented, add it to the current composite.
-      if ($this->directiveManager->hasDefinition($directive->name->value)) {
-        $plugin = $this->directiveManager
-          ->createInstance($directive->name->value);
-        $parameters = $this->argumentsToParameters($directive->arguments);
-        $composite->add($plugin->buildResolver(
-          $builder,
-          $parameters
-        ));
-      }
-    }
-
-    // Fold the stack of composites, but adding each composite as a mapped
-    // resolver to its parent in the stack.
-    while($parent = array_pop($composites)) {
-      $parent->add($builder->map($composite));
-      $composite = $parent;
-    }
-
-    return $composite;
-  }
-
   public function getResolverRegistry() {
     $registry = new ResolverRegistry();
     $extensions = $this->getExtensions();
@@ -189,34 +112,24 @@ class DirectableSchema extends ComposableSchema {
             }
           }
         }
-        foreach($definition->fields as $field) {
-          if ($field->directives) {
-            $registry->addFieldResolver(
-              $definition->name->value,
-              $field->name->value,
-              $this->buildResolverFromDirectives($field->directives, $builder)
-            );
-          }
-        }
       }
+    }
 
-      if (
-        $definition instanceof InterfaceTypeDefinitionNode
-        ||
-        $definition instanceof UnionTypeDefinitionNode
-      ) {
-        if ($definition->directives) {
-          $this->typeResolvers[$definition->name->value] = $this->buildResolverFromDirectives($definition->directives, $builder);
-          $registry->addTypeResolver(
-            $definition->name->value,
-            function ($value, $context, $info) use ($definition, $builder) {
-              $id = $this->typeResolvers[$definition->name->value]
-                ->resolve($value, [], $context, $info, new FieldContext($context, $info));
-              return $this->typeMap[$id];
-            }
-          );
-        }
+    $interpreter = new DirectiveInterpreter($document, $builder, $this->directiveManager);
+    $interpreter->interpret();
+    foreach($interpreter->getFieldResolvers() as $type => $fields) {
+      foreach($fields as $field => $resolver) {
+        $registry->addFieldResolver($type, $field, $resolver);
       }
+    }
+
+    foreach($interpreter->getTypeResolvers() as $type => $resolver) {
+      $registry->addTypeResolver(
+        $type,
+        function ($value, $context, $info) use ($resolver) {
+          $id = $resolver->resolve($value, [], $context, $info, new FieldContext($context, $info));
+          return $this->typeMap[$id];
+        });
     }
     return $registry;
   }

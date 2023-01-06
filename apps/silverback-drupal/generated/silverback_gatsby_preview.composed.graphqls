@@ -2,84 +2,84 @@
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Arg".
 """
-directive @arg(name: String!) on FIELD_DEFINITION | UNION | INTERFACE
+directive @arg(name: String!) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityReference".
 """
-directive @resolveEntityReference(field: String!) on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveEntityReference(field: String!) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityReferenceRevisions".
 """
-directive @resolveEntityReferenceRevisions(field: String!) on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveEntityReferenceRevisions(field: String!) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Lang".
 """
-directive @lang(code: String) on FIELD_DEFINITION | UNION | INTERFACE
+directive @lang(code: String) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\MenuItemId".
 """
-directive @resolveMenuItemId on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveMenuItemId repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\MenuItemLabel".
 """
-directive @resolveMenuItemLabel on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveMenuItemLabel repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\MenuItemParentId".
 """
-directive @resolveMenuItemParentId on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveMenuItemParentId repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\MenuItemUrl".
 """
-directive @resolveMenuItemUrl on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveMenuItemUrl repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\MenuItems".
 """
-directive @resolveMenuItems(max_level: Int) on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveMenuItems(max_level: Int) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Provided by the "silverback_gutenberg" module.
 Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockChildren".
 """
-directive @resolveEditorBlockChildren on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveEditorBlockChildren repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Provided by the "silverback_gutenberg" module.
 Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockMarkup".
 """
-directive @resolveEditorBlockMarkup on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveEditorBlockMarkup repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Provided by the "silverback_gutenberg" module.
 Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockMedia".
 """
-directive @resolveEditorBlockMedia on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveEditorBlockMedia repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Provided by the "silverback_gutenberg" module.
 Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockType".
 """
-directive @resolveEditorBlockType on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveEditorBlockType repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Apply all directives on the right to output on the left.
 """
-directive @map on FIELD_DEFINITION
+directive @map repeatable on FIELD_DEFINITION
 
 """
 Load a given entity by it's path or type and id or uuid
@@ -87,13 +87,13 @@ Load a given entity by it's path or type and id or uuid
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityLoad".
 """
-directive @loadEntity(route: String, type: String, uuid: String, id: String, operation: String) on FIELD_DEFINITION | UNION | INTERFACE
+directive @loadEntity(route: String, type: String, uuid: String, id: String, operation: String) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Mark a type as member of a generic.
 The id argument contains a string that has to match the generics resolution.
 """
-directive @type(id: String!) on OBJECT
+directive @type(id: String!) repeatable on OBJECT
 
 """
 Parse a gutenberg document into block data.
@@ -101,7 +101,12 @@ Parse a gutenberg document into block data.
 Provided by the "silverback_gutenberg" module.
 Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlocks".
 """
-directive @resolveEditorBlocks(path: String!, ignored: [String!], aggregated: [String!]) on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveEditorBlocks(path: String!, ignored: [String!], aggregated: [String!]) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Provide a default value for a given type.
+"""
+directive @default repeatable on UNION | SCALAR | OBJECT | INTERFACE
 
 """
 Provide a static value as JSON string.
@@ -109,7 +114,7 @@ Provide a static value as JSON string.
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Value".
 """
-directive @value(json: String!) on FIELD_DEFINITION | UNION | INTERFACE
+directive @value(json: String!) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Pull a specific typed-data property from an entity.
@@ -117,7 +122,7 @@ Pull a specific typed-data property from an entity.
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityProperty".
 """
-directive @resolveProperty(path: String!) on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveProperty(path: String!) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Resolve a path to an Url object.
@@ -125,7 +130,7 @@ Resolve a path to an Url object.
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Route".
 """
-directive @route(path: String!) on FIELD_DEFINITION | UNION | INTERFACE
+directive @route(path: String!) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Retrieve a specific translation of an entity.
@@ -133,7 +138,7 @@ Retrieve a specific translation of an entity.
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityTranslation".
 """
-directive @resolveEntityTranslation(lang: String!) on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveEntityTranslation(lang: String!) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Retrieve all translations of an entity.
@@ -141,7 +146,7 @@ Retrieve all translations of an entity.
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityTranslations".
 """
-directive @resolveEntityTranslations on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveEntityTranslations repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Retrieve an editor block attribute.
@@ -149,7 +154,7 @@ Retrieve an editor block attribute.
 Provided by the "silverback_gutenberg" module.
 Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockAttribute".
 """
-directive @resolveEditorBlockAttribute(key: String!, plainText: Boolean) on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveEditorBlockAttribute(key: String!, plainText: Boolean) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Retrieve an entities bundle.
@@ -157,7 +162,7 @@ Retrieve an entities bundle.
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityBundle".
 """
-directive @resolveEntityBundle on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveEntityBundle repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Retrieve an entities id.
@@ -165,7 +170,7 @@ Retrieve an entities id.
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityId".
 """
-directive @resolveEntityId on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveEntityId repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Retrieve an entities label.
@@ -173,7 +178,7 @@ Retrieve an entities label.
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityLabel".
 """
-directive @resolveEntityLabel on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveEntityLabel repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Retrieve an entities type id.
@@ -181,7 +186,7 @@ Retrieve an entities type id.
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityType".
 """
-directive @resolveEntityType on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveEntityType repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Retrieve an entities url path.
@@ -189,7 +194,7 @@ Retrieve an entities url path.
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityPath".
 """
-directive @resolveEntityPath on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveEntityPath repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Retrieve an entities uuid.
@@ -197,7 +202,7 @@ Retrieve an entities uuid.
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityUuid".
 """
-directive @resolveEntityUuid on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveEntityUuid repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Retrieve an object or map property.
@@ -205,7 +210,7 @@ Retrieve an object or map property.
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Prop".
 """
-directive @prop(key: String!) on FIELD_DEFINITION | UNION | INTERFACE
+directive @prop(key: String!) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Retrieve the language of an entity.
@@ -213,7 +218,7 @@ Retrieve the language of an entity.
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityLanguage".
 """
-directive @resolveEntityLanguage on FIELD_DEFINITION | UNION | INTERFACE
+directive @resolveEntityLanguage repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
 Seek a specific element in a list.
@@ -221,7 +226,7 @@ Seek a specific element in a list.
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Seek".
 """
-directive @seek(pos: Int!) on FIELD_DEFINITION | UNION | INTERFACE
+directive @seek(pos: Int!) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 schema {
   query: Query
@@ -247,7 +252,7 @@ type Page @entity(type: "node", bundle: "page") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
   body: String @resolveProperty(path: "field_body.0.processed")
-  paragraphs: [PageParagraphs!]! @resolveEntityReferenceRevisions(field: "field_paragraphs")
+  paragraphs: [PageParagraphs]! @resolveEntityReferenceRevisions(field: "field_paragraphs")
 }
 
 union PageParagraphs = ParagraphText | ParagraphReferences
@@ -264,7 +269,7 @@ type ParagraphReferences {
 type GutenbergPage @entity(type: "node", bundle: "gutenberg_page") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
-  body: [RootBlock!]! @resolveEditorBlocks(path: "body.value", ignored: ["custom\/root", "core\/columns"])
+  body: [RootBlock]! @resolveEditorBlocks(path: "body.value", ignored: ["custom\/root", "core\/columns"])
 }
 
 type Webform @entity(type: "webform", access: false) {
@@ -287,11 +292,11 @@ union RootBlock @resolveEditorBlockType = BlockTwoColumns | BlockHtmlList | Bloc
 union ContentBlock @resolveEditorBlockType = BlockHtmlList | BlockHtmlParagraph | BlockHtmlQuote | BlockImage | BlockTeaser
 
 type BlockTwoColumns @type(id: "custom\/two-columns") {
-  children: [BlockColumn!]! @resolveEditorBlockChildren
+  children: [BlockColumn]! @resolveEditorBlockChildren
 }
 
 type BlockColumn @type(id: "core\/column") {
-  children: [ContentBlock!]! @resolveEditorBlockChildren
+  children: [ContentBlock]! @resolveEditorBlockChildren
 }
 
 type BlockHtmlParagraph @type(id: "core\/paragraph") {
@@ -326,23 +331,23 @@ type MenuItem {
 }
 
 type MainMenu @menu(menu_id: "main") {
-  items: [MenuItem!]! @lang @resolveMenuItems
+  items: [MenuItem]! @lang @resolveMenuItems
 }
 
 type FirstLevelMainMenu @menu(menu_id: "main", max_level: 1) {
-  items: [MenuItem!]! @lang @resolveMenuItems(max_level: 1)
+  items: [MenuItem]! @lang @resolveMenuItems(max_level: 1)
 }
 
 type GatsbyStringTranslation @stringTranslation(contextPrefix: "gatsby")
 
 type Feed {
-  typeName: String! @prop(key: "typeName")
-  translatable: Boolean! @prop(key: "translatable")
-  singleFieldName: String! @prop(key: "singleFieldName")
-  listFieldName: String! @prop(key: "listFieldName")
-  changes(lastBuild: Int, currentBuild: Int): [String!]! @prop(key: "changes")
-  pathFieldName: String @prop(key: "pathFieldName")
-  templateFieldName: String @prop(key: "templateFieldName")
+  typeName: String!
+  translatable: Boolean!
+  singleFieldName: String!
+  listFieldName: String!
+  changes(lastBuild: Int, currentBuild: Int): [String!]!
+  pathFieldName: String
+  templateFieldName: String
 }
 
 directive @isPath on FIELD_DEFINITION

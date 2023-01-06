@@ -87,7 +87,7 @@ const GutenbergPage: React.FC<
         <tr>
           <Row>{page.title}</Row>
           <Row className="gutenberg-body">
-            {page.body.map((block) => {
+            {page.body?.map((block) => {
               switch (block.__typename) {
                 case 'DrupalBlockHtmlParagraph':
                 case 'DrupalBlockHtmlList':

@@ -529,7 +529,7 @@ type DrupalPage implements Node {
   path: String!
   title: String!
   body: String
-  paragraphs: [DrupalPageParagraphs!]!
+  paragraphs: [DrupalPageParagraphs!]
   _original_typename: String!
   drupalId: String!
   defaultTranslation: Boolean!
@@ -597,7 +597,7 @@ type DrupalGutenbergPage implements Node {
   translations: [DrupalGutenbergPage!]!
   path: String!
   title: String!
-  body: [DrupalRootBlock!]!
+  body: [DrupalRootBlock!]
   _original_typename: String!
   drupalId: String!
   defaultTranslation: Boolean!
@@ -612,7 +612,7 @@ type DrupalGutenbergPage implements Node {
 union DrupalRootBlock = DrupalBlockTwoColumns | DrupalBlockHtmlList | DrupalBlockHtmlParagraph | DrupalBlockHtmlQuote | DrupalBlockImage | DrupalBlockTeaser
 
 type DrupalBlockTwoColumns {
-  children: [DrupalBlockColumn!]!
+  children: [DrupalBlockColumn!]
   _original_typename: String!
 }
 
@@ -647,7 +647,7 @@ type DrupalBlockTeaser {
 
 type DrupalBlockColumn {
   remoteTypeName: String!
-  children: [DrupalContentBlock!]!
+  children: [DrupalContentBlock!]
   _original_typename: String!
 }
 
@@ -671,7 +671,7 @@ type DrupalMainMenu implements Node {
   remoteTypeName: String!
   translations: [DrupalMainMenu!]!
   remoteId: String!
-  items: [DrupalMenuItem!]!
+  items: [DrupalMenuItem!]
   _original_typename: String!
   drupalId: String!
   defaultTranslation: Boolean!
@@ -696,7 +696,7 @@ type DrupalFirstLevelMainMenu implements Node {
   remoteTypeName: String!
   translations: [DrupalFirstLevelMainMenu!]!
   remoteId: String!
-  items: [DrupalMenuItem!]!
+  items: [DrupalMenuItem!]
   _original_typename: String!
   drupalId: String!
   defaultTranslation: Boolean!

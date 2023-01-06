@@ -1,21 +1,21 @@
 type Query {
-  menu: Menu! @loadEntity(type: "menu", id: "main", operation: "view label")
-  limited: Limited!
+  menu: Menu @loadEntity(type: "menu", id: "main", operation: "view label")
+  limited: Limited
     @loadEntity(type: "menu", id: "main", operation: "view label")
-  de: Menu!
+  de: Menu
     @loadEntity(type: "menu", id: "main", operation: "view label")
     @lang(code: "de")
-  fr: Menu!
+  fr: Menu
     @loadEntity(type: "menu", id: "main", operation: "view label")
     @lang(code: "fr")
 }
 
 type Menu {
-  items: [MenuItem!]! @resolveMenuItems
+  items: [MenuItem]! @resolveMenuItems
 }
 
 type Limited {
-  items: [MenuItem!]! @resolveMenuItems(max_level: 2)
+  items: [MenuItem]! @resolveMenuItems(max_level: 2)
 }
 
 type MenuItem {

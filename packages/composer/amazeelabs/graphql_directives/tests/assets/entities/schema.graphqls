@@ -16,5 +16,5 @@ type Post {
   language: ID! @resolveEntityLanguage
   body: String! @resolveProperty(path: "body.value")
   translation: Post @resolveEntityTranslation(lang: "fr")
-  translations: [Post!]! @resolveEntityTranslations
+  translations: [Post]! @resolveEntityTranslations
 }
