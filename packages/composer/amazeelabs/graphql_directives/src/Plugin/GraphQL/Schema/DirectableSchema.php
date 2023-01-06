@@ -13,6 +13,7 @@ use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\Plugin\GraphQL\Schema\ComposableSchema;
 use Drupal\graphql\Plugin\SchemaExtensionPluginManager;
+use Drupal\graphql_directives\DirectableSchemaExtensionPluginBase;
 use Drupal\graphql_directives\DirectivePrinter;
 use GraphQL\Language\AST\InterfaceTypeDefinitionNode;
 use GraphQL\Language\AST\NodeList;
@@ -226,6 +227,19 @@ class DirectableSchema extends ComposableSchema {
       'schema_definition' => 'schema.graphqls',
       'extensions' => [],
     ];
+  }
+
+  /**
+   *
+   */
+  public function getSchemaDocument(array $extensions = []) {
+    $document = parent::getSchemaDocument($extensions);
+    foreach($extensions as $extension) {
+      if ($extension instanceof DirectableSchemaExtensionPluginBase) {
+        $extension->setParentAst($document);
+      }
+    }
+    return $document;
   }
 
 }

@@ -32,3 +32,7 @@ type B implements TestInterface @type(id: "b") {
   type: String! @prop(key: "type")
   z: String! @prop(key: "z")
 }
+
+type Article @test_directable {
+  title: String! @prop(key: "title")
+}
