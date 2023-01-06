@@ -8,6 +8,16 @@ automatically send incremental updates to Gatsby.
 [gatsby-source-silverback]:
   https://www.npmjs.com/package/@amazeelabs/gatsby-source-silverback
 
+
+## BREAKING CHANGES
+
+In version 2, a couple of breaking changes have been introduced due to the new dependency on the
+`graphql_directives` module.
+
+* `@resolveEntityReference` and `@resolveEntityReferenceRevisions` do not support the `single` parameter any more. They can be chained with `@seek` instead.
+* Gutenberg directives moved to the `silverback_gutenberg` module and changed in naming and parameters. Refer to the generated directives for more information.
+* New default value handling requires either nullable custom type invocations, or `@default` directives on them. Refer to the `graphql_directives` module for more information.
+
 ## Getting started
 
 First, simply install and enable the module.
@@ -17,75 +27,37 @@ composer require amazeelabs/silverback_gatsby
 drush en -y silverback_gatsby
 ```
 
-Now create a [new GraphQL schema plugin][plugin] and make sure to use
-`\Drupal\silverback_gatsby\GraphQL\ComposableSchema` as its base class. Use the
-`@entity` directive to relate a GraphQL type to a Drupal entity type and bundle.
+Create a GraphQL folder at the root of your project. This will contain all the schema definitions.
+To improve IDE support, you can export all the schema definitions in a single file:
 
-[plugin]:
-  https://drupal-graphql.gitbook.io/graphql/v/8.x-4.x/getting-started/custom-schema
+```shell
+drush graphql:directives > graphql/directives.graphqls
+```
+
+It is advised to ignore this file in version control and rather re-create it when needed.
+
+Now you can start to create the project schema defintion and fill in resolvers by using the directives provided.
 
 ```graphql
 schema {
   query: Query
 }
 
-type Query
+type Query {
+  page(id: String!): Page @loadEntity(type: "node", id: "$id")
+}
 
 type Page @entity(type: "node", bundle: "page") {
-  path: String!
-  title: String!
-  body: String
+  path: String! @resolveEntityPath
+  title: String! @resolveEntityLabel
+  body: String @resolveProperty(path: "body.value")
 }
 ```
 
-Even if the schema does not provide root-level fields, you need to declare an
-empty `Query` type. The schema extension will automatically extend it with the
-GraphQL fields necessary for Gatsby to fetch this type. The directive will also
-tell Drupal to send incremental updates to Gatsby whenever an entity of this
-type changes. All you have to take care of in your own schema implementation are
-the fields that you specifically defined.
-
-```php
-<?php
-namespace Drupal\silverback_gatsby_example\Plugin\GraphQL\Schema;
-use Drupal\graphql\GraphQL\ResolverBuilder;
-use Drupal\graphql\GraphQL\ResolverRegistry;
-use Drupal\graphql\GraphQL\ResolverRegistryInterface;
-use Drupal\silverback_gatsby\GraphQL\ComposableSchema;
-
-/**
- * @Schema(
- *   id = "silverback_gatsby_example",
- *   name = "Silverback Gatsby Example Schema",
- * )
- */
-class SilverbackGatsbyExampleSchema extends ComposableSchema {
-
-  public function getResolverRegistry(): ResolverRegistryInterface {
-    $builder = new ResolverBuilder();
-    $registry = new ResolverRegistry();
-
-    $registry->addFieldResolver('Page', 'path',
-      $builder->compose(
-        $builder->produce('entity_url')->map('entity', $builder->fromParent()),
-        $builder->produce('url_path')->map('url', $builder->fromParent())
-      )
-    );
-    $registry->addFieldResolver('Page', 'title',
-      $builder->produce('entity_label')->map('entity', $builder->fromParent())
-    );
-
-    return $registry;
-  }
-}
-
-```
-
-Now you can create a new GraphQL server in Drupal based on your schema plugin.
-Just make sure to tick the checkbox to enable the _Silverback Gatsby_ extension.
-The _Explorer_ or _Voyager_ screens should show root level fields for loading
-and querying our type (`loadPage`, `queryPages`) that you should be able to test
-now.
+Now create a new GraphQL server configuration, use the `Directable` schema plugin
+and make sure to enable the "Silverback Gatsby" extension. The _Explorer_ or _Voyager_ screens should
+show root level fields for loading and querying our type (`loadPage`, `queryPages`) that you
+should be able to test now.
 
 ## Automatic creation of Gatsby pages
 
