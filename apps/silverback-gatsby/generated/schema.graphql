@@ -225,6 +225,7 @@ type Internal {
   mediaType: String
   owner: String!
   type: String!
+  contentFilePath: String
 }
 
 """
@@ -899,6 +900,7 @@ input InternalFilterInput {
   mediaType: StringQueryOperatorInput
   owner: StringQueryOperatorInput
   type: StringQueryOperatorInput
+  contentFilePath: StringQueryOperatorInput
 }
 
 input BooleanQueryOperatorInput {
@@ -1020,6 +1022,7 @@ enum FileFieldsEnum {
   childrenImageSharp___parent___internal___mediaType
   childrenImageSharp___parent___internal___owner
   childrenImageSharp___parent___internal___type
+  childrenImageSharp___parent___internal___contentFilePath
   childrenImageSharp___children
   childrenImageSharp___children___id
   childrenImageSharp___children___parent___id
@@ -1035,6 +1038,7 @@ enum FileFieldsEnum {
   childrenImageSharp___children___internal___mediaType
   childrenImageSharp___children___internal___owner
   childrenImageSharp___children___internal___type
+  childrenImageSharp___children___internal___contentFilePath
   childrenImageSharp___internal___content
   childrenImageSharp___internal___contentDigest
   childrenImageSharp___internal___description
@@ -1043,6 +1047,7 @@ enum FileFieldsEnum {
   childrenImageSharp___internal___mediaType
   childrenImageSharp___internal___owner
   childrenImageSharp___internal___type
+  childrenImageSharp___internal___contentFilePath
   childImageSharp___fixed___base64 @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childImageSharp___fixed___tracedSVG @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childImageSharp___fixed___aspectRatio @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1090,6 +1095,7 @@ enum FileFieldsEnum {
   childImageSharp___parent___internal___mediaType
   childImageSharp___parent___internal___owner
   childImageSharp___parent___internal___type
+  childImageSharp___parent___internal___contentFilePath
   childImageSharp___children
   childImageSharp___children___id
   childImageSharp___children___parent___id
@@ -1105,6 +1111,7 @@ enum FileFieldsEnum {
   childImageSharp___children___internal___mediaType
   childImageSharp___children___internal___owner
   childImageSharp___children___internal___type
+  childImageSharp___children___internal___contentFilePath
   childImageSharp___internal___content
   childImageSharp___internal___contentDigest
   childImageSharp___internal___description
@@ -1113,6 +1120,7 @@ enum FileFieldsEnum {
   childImageSharp___internal___mediaType
   childImageSharp___internal___owner
   childImageSharp___internal___type
+  childImageSharp___internal___contentFilePath
   id
   parent___id
   parent___parent___id
@@ -1129,6 +1137,7 @@ enum FileFieldsEnum {
   parent___parent___internal___mediaType
   parent___parent___internal___owner
   parent___parent___internal___type
+  parent___parent___internal___contentFilePath
   parent___children
   parent___children___id
   parent___children___parent___id
@@ -1144,6 +1153,7 @@ enum FileFieldsEnum {
   parent___children___internal___mediaType
   parent___children___internal___owner
   parent___children___internal___type
+  parent___children___internal___contentFilePath
   parent___internal___content
   parent___internal___contentDigest
   parent___internal___description
@@ -1152,6 +1162,7 @@ enum FileFieldsEnum {
   parent___internal___mediaType
   parent___internal___owner
   parent___internal___type
+  parent___internal___contentFilePath
   children
   children___id
   children___parent___id
@@ -1168,6 +1179,7 @@ enum FileFieldsEnum {
   children___parent___internal___mediaType
   children___parent___internal___owner
   children___parent___internal___type
+  children___parent___internal___contentFilePath
   children___children
   children___children___id
   children___children___parent___id
@@ -1183,6 +1195,7 @@ enum FileFieldsEnum {
   children___children___internal___mediaType
   children___children___internal___owner
   children___children___internal___type
+  children___children___internal___contentFilePath
   children___internal___content
   children___internal___contentDigest
   children___internal___description
@@ -1191,6 +1204,7 @@ enum FileFieldsEnum {
   children___internal___mediaType
   children___internal___owner
   children___internal___type
+  children___internal___contentFilePath
   internal___content
   internal___contentDigest
   internal___description
@@ -1199,6 +1213,7 @@ enum FileFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
+  internal___contentFilePath
 }
 
 type FileGroupConnection {
@@ -1335,6 +1350,7 @@ enum DirectoryFieldsEnum {
   parent___parent___internal___mediaType
   parent___parent___internal___owner
   parent___parent___internal___type
+  parent___parent___internal___contentFilePath
   parent___children
   parent___children___id
   parent___children___parent___id
@@ -1350,6 +1366,7 @@ enum DirectoryFieldsEnum {
   parent___children___internal___mediaType
   parent___children___internal___owner
   parent___children___internal___type
+  parent___children___internal___contentFilePath
   parent___internal___content
   parent___internal___contentDigest
   parent___internal___description
@@ -1358,6 +1375,7 @@ enum DirectoryFieldsEnum {
   parent___internal___mediaType
   parent___internal___owner
   parent___internal___type
+  parent___internal___contentFilePath
   children
   children___id
   children___parent___id
@@ -1374,6 +1392,7 @@ enum DirectoryFieldsEnum {
   children___parent___internal___mediaType
   children___parent___internal___owner
   children___parent___internal___type
+  children___parent___internal___contentFilePath
   children___children
   children___children___id
   children___children___parent___id
@@ -1389,6 +1408,7 @@ enum DirectoryFieldsEnum {
   children___children___internal___mediaType
   children___children___internal___owner
   children___children___internal___type
+  children___children___internal___contentFilePath
   children___internal___content
   children___internal___contentDigest
   children___internal___description
@@ -1397,6 +1417,7 @@ enum DirectoryFieldsEnum {
   children___internal___mediaType
   children___internal___owner
   children___internal___type
+  children___internal___contentFilePath
   internal___content
   internal___contentDigest
   internal___description
@@ -1405,6 +1426,7 @@ enum DirectoryFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
+  internal___contentFilePath
 }
 
 type DirectoryGroupConnection {
@@ -1514,6 +1536,7 @@ enum SiteFieldsEnum {
   parent___parent___internal___mediaType
   parent___parent___internal___owner
   parent___parent___internal___type
+  parent___parent___internal___contentFilePath
   parent___children
   parent___children___id
   parent___children___parent___id
@@ -1529,6 +1552,7 @@ enum SiteFieldsEnum {
   parent___children___internal___mediaType
   parent___children___internal___owner
   parent___children___internal___type
+  parent___children___internal___contentFilePath
   parent___internal___content
   parent___internal___contentDigest
   parent___internal___description
@@ -1537,6 +1561,7 @@ enum SiteFieldsEnum {
   parent___internal___mediaType
   parent___internal___owner
   parent___internal___type
+  parent___internal___contentFilePath
   children
   children___id
   children___parent___id
@@ -1553,6 +1578,7 @@ enum SiteFieldsEnum {
   children___parent___internal___mediaType
   children___parent___internal___owner
   children___parent___internal___type
+  children___parent___internal___contentFilePath
   children___children
   children___children___id
   children___children___parent___id
@@ -1568,6 +1594,7 @@ enum SiteFieldsEnum {
   children___children___internal___mediaType
   children___children___internal___owner
   children___children___internal___type
+  children___children___internal___contentFilePath
   children___internal___content
   children___internal___contentDigest
   children___internal___description
@@ -1576,6 +1603,7 @@ enum SiteFieldsEnum {
   children___internal___mediaType
   children___internal___owner
   children___internal___type
+  children___internal___contentFilePath
   internal___content
   internal___contentDigest
   internal___description
@@ -1584,6 +1612,7 @@ enum SiteFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
+  internal___contentFilePath
 }
 
 type SiteGroupConnection {
@@ -1661,6 +1690,7 @@ enum SiteFunctionFieldsEnum {
   parent___parent___internal___mediaType
   parent___parent___internal___owner
   parent___parent___internal___type
+  parent___parent___internal___contentFilePath
   parent___children
   parent___children___id
   parent___children___parent___id
@@ -1676,6 +1706,7 @@ enum SiteFunctionFieldsEnum {
   parent___children___internal___mediaType
   parent___children___internal___owner
   parent___children___internal___type
+  parent___children___internal___contentFilePath
   parent___internal___content
   parent___internal___contentDigest
   parent___internal___description
@@ -1684,6 +1715,7 @@ enum SiteFunctionFieldsEnum {
   parent___internal___mediaType
   parent___internal___owner
   parent___internal___type
+  parent___internal___contentFilePath
   children
   children___id
   children___parent___id
@@ -1700,6 +1732,7 @@ enum SiteFunctionFieldsEnum {
   children___parent___internal___mediaType
   children___parent___internal___owner
   children___parent___internal___type
+  children___parent___internal___contentFilePath
   children___children
   children___children___id
   children___children___parent___id
@@ -1715,6 +1748,7 @@ enum SiteFunctionFieldsEnum {
   children___children___internal___mediaType
   children___children___internal___owner
   children___children___internal___type
+  children___children___internal___contentFilePath
   children___internal___content
   children___internal___contentDigest
   children___internal___description
@@ -1723,6 +1757,7 @@ enum SiteFunctionFieldsEnum {
   children___internal___mediaType
   children___internal___owner
   children___internal___type
+  children___internal___contentFilePath
   internal___content
   internal___contentDigest
   internal___description
@@ -1731,6 +1766,7 @@ enum SiteFunctionFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
+  internal___contentFilePath
 }
 
 type SiteFunctionGroupConnection {
@@ -1840,6 +1876,7 @@ enum SitePageFieldsEnum {
   pluginCreator___parent___internal___mediaType
   pluginCreator___parent___internal___owner
   pluginCreator___parent___internal___type
+  pluginCreator___parent___internal___contentFilePath
   pluginCreator___children
   pluginCreator___children___id
   pluginCreator___children___parent___id
@@ -1855,6 +1892,7 @@ enum SitePageFieldsEnum {
   pluginCreator___children___internal___mediaType
   pluginCreator___children___internal___owner
   pluginCreator___children___internal___type
+  pluginCreator___children___internal___contentFilePath
   pluginCreator___internal___content
   pluginCreator___internal___contentDigest
   pluginCreator___internal___description
@@ -1863,6 +1901,7 @@ enum SitePageFieldsEnum {
   pluginCreator___internal___mediaType
   pluginCreator___internal___owner
   pluginCreator___internal___type
+  pluginCreator___internal___contentFilePath
   id
   parent___id
   parent___parent___id
@@ -1879,6 +1918,7 @@ enum SitePageFieldsEnum {
   parent___parent___internal___mediaType
   parent___parent___internal___owner
   parent___parent___internal___type
+  parent___parent___internal___contentFilePath
   parent___children
   parent___children___id
   parent___children___parent___id
@@ -1894,6 +1934,7 @@ enum SitePageFieldsEnum {
   parent___children___internal___mediaType
   parent___children___internal___owner
   parent___children___internal___type
+  parent___children___internal___contentFilePath
   parent___internal___content
   parent___internal___contentDigest
   parent___internal___description
@@ -1902,6 +1943,7 @@ enum SitePageFieldsEnum {
   parent___internal___mediaType
   parent___internal___owner
   parent___internal___type
+  parent___internal___contentFilePath
   children
   children___id
   children___parent___id
@@ -1918,6 +1960,7 @@ enum SitePageFieldsEnum {
   children___parent___internal___mediaType
   children___parent___internal___owner
   children___parent___internal___type
+  children___parent___internal___contentFilePath
   children___children
   children___children___id
   children___children___parent___id
@@ -1933,6 +1976,7 @@ enum SitePageFieldsEnum {
   children___children___internal___mediaType
   children___children___internal___owner
   children___children___internal___type
+  children___children___internal___contentFilePath
   children___internal___content
   children___internal___contentDigest
   children___internal___description
@@ -1941,6 +1985,7 @@ enum SitePageFieldsEnum {
   children___internal___mediaType
   children___internal___owner
   children___internal___type
+  children___internal___contentFilePath
   internal___content
   internal___contentDigest
   internal___description
@@ -1949,6 +1994,7 @@ enum SitePageFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
+  internal___contentFilePath
 }
 
 type SitePageGroupConnection {
@@ -2028,6 +2074,7 @@ enum SitePluginFieldsEnum {
   parent___parent___internal___mediaType
   parent___parent___internal___owner
   parent___parent___internal___type
+  parent___parent___internal___contentFilePath
   parent___children
   parent___children___id
   parent___children___parent___id
@@ -2043,6 +2090,7 @@ enum SitePluginFieldsEnum {
   parent___children___internal___mediaType
   parent___children___internal___owner
   parent___children___internal___type
+  parent___children___internal___contentFilePath
   parent___internal___content
   parent___internal___contentDigest
   parent___internal___description
@@ -2051,6 +2099,7 @@ enum SitePluginFieldsEnum {
   parent___internal___mediaType
   parent___internal___owner
   parent___internal___type
+  parent___internal___contentFilePath
   children
   children___id
   children___parent___id
@@ -2067,6 +2116,7 @@ enum SitePluginFieldsEnum {
   children___parent___internal___mediaType
   children___parent___internal___owner
   children___parent___internal___type
+  children___parent___internal___contentFilePath
   children___children
   children___children___id
   children___children___parent___id
@@ -2082,6 +2132,7 @@ enum SitePluginFieldsEnum {
   children___children___internal___mediaType
   children___children___internal___owner
   children___children___internal___type
+  children___children___internal___contentFilePath
   children___internal___content
   children___internal___contentDigest
   children___internal___description
@@ -2090,6 +2141,7 @@ enum SitePluginFieldsEnum {
   children___internal___mediaType
   children___internal___owner
   children___internal___type
+  children___internal___contentFilePath
   internal___content
   internal___contentDigest
   internal___description
@@ -2098,6 +2150,7 @@ enum SitePluginFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
+  internal___contentFilePath
 }
 
 type SitePluginGroupConnection {
@@ -2155,6 +2208,7 @@ enum SiteBuildMetadataFieldsEnum {
   parent___parent___internal___mediaType
   parent___parent___internal___owner
   parent___parent___internal___type
+  parent___parent___internal___contentFilePath
   parent___children
   parent___children___id
   parent___children___parent___id
@@ -2170,6 +2224,7 @@ enum SiteBuildMetadataFieldsEnum {
   parent___children___internal___mediaType
   parent___children___internal___owner
   parent___children___internal___type
+  parent___children___internal___contentFilePath
   parent___internal___content
   parent___internal___contentDigest
   parent___internal___description
@@ -2178,6 +2233,7 @@ enum SiteBuildMetadataFieldsEnum {
   parent___internal___mediaType
   parent___internal___owner
   parent___internal___type
+  parent___internal___contentFilePath
   children
   children___id
   children___parent___id
@@ -2194,6 +2250,7 @@ enum SiteBuildMetadataFieldsEnum {
   children___parent___internal___mediaType
   children___parent___internal___owner
   children___parent___internal___type
+  children___parent___internal___contentFilePath
   children___children
   children___children___id
   children___children___parent___id
@@ -2209,6 +2266,7 @@ enum SiteBuildMetadataFieldsEnum {
   children___children___internal___mediaType
   children___children___internal___owner
   children___children___internal___type
+  children___children___internal___contentFilePath
   children___internal___content
   children___internal___contentDigest
   children___internal___description
@@ -2217,6 +2275,7 @@ enum SiteBuildMetadataFieldsEnum {
   children___internal___mediaType
   children___internal___owner
   children___internal___type
+  children___internal___contentFilePath
   internal___content
   internal___contentDigest
   internal___description
@@ -2225,6 +2284,7 @@ enum SiteBuildMetadataFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
+  internal___contentFilePath
 }
 
 type SiteBuildMetadataGroupConnection {
@@ -2343,6 +2403,7 @@ enum DrupalImageFieldsEnum {
   translations___translations___internal___mediaType
   translations___translations___internal___owner
   translations___translations___internal___type
+  translations___translations___internal___contentFilePath
   translations___remoteId
   translations___url
   translations___alt
@@ -2395,6 +2456,7 @@ enum DrupalImageFieldsEnum {
   translations___translation___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___id
   translations___parent___id
   translations___parent___parent___id
@@ -2410,6 +2472,7 @@ enum DrupalImageFieldsEnum {
   translations___parent___internal___mediaType
   translations___parent___internal___owner
   translations___parent___internal___type
+  translations___parent___internal___contentFilePath
   translations___children
   translations___children___id
   translations___children___parent___id
@@ -2425,6 +2488,7 @@ enum DrupalImageFieldsEnum {
   translations___children___internal___mediaType
   translations___children___internal___owner
   translations___children___internal___type
+  translations___children___internal___contentFilePath
   translations___internal___content
   translations___internal___contentDigest
   translations___internal___description
@@ -2433,6 +2497,7 @@ enum DrupalImageFieldsEnum {
   translations___internal___mediaType
   translations___internal___owner
   translations___internal___type
+  translations___internal___contentFilePath
   remoteId
   url
   alt
@@ -2487,6 +2552,7 @@ enum DrupalImageFieldsEnum {
   translation___translations___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___alt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -2539,6 +2605,7 @@ enum DrupalImageFieldsEnum {
   translation___translation___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -2554,6 +2621,7 @@ enum DrupalImageFieldsEnum {
   translation___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___parent___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -2569,6 +2637,7 @@ enum DrupalImageFieldsEnum {
   translation___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___children___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -2577,6 +2646,7 @@ enum DrupalImageFieldsEnum {
   translation___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   id
   parent___id
   parent___parent___id
@@ -2593,6 +2663,7 @@ enum DrupalImageFieldsEnum {
   parent___parent___internal___mediaType
   parent___parent___internal___owner
   parent___parent___internal___type
+  parent___parent___internal___contentFilePath
   parent___children
   parent___children___id
   parent___children___parent___id
@@ -2608,6 +2679,7 @@ enum DrupalImageFieldsEnum {
   parent___children___internal___mediaType
   parent___children___internal___owner
   parent___children___internal___type
+  parent___children___internal___contentFilePath
   parent___internal___content
   parent___internal___contentDigest
   parent___internal___description
@@ -2616,6 +2688,7 @@ enum DrupalImageFieldsEnum {
   parent___internal___mediaType
   parent___internal___owner
   parent___internal___type
+  parent___internal___contentFilePath
   children
   children___id
   children___parent___id
@@ -2632,6 +2705,7 @@ enum DrupalImageFieldsEnum {
   children___parent___internal___mediaType
   children___parent___internal___owner
   children___parent___internal___type
+  children___parent___internal___contentFilePath
   children___children
   children___children___id
   children___children___parent___id
@@ -2647,6 +2721,7 @@ enum DrupalImageFieldsEnum {
   children___children___internal___mediaType
   children___children___internal___owner
   children___children___internal___type
+  children___children___internal___contentFilePath
   children___internal___content
   children___internal___contentDigest
   children___internal___description
@@ -2655,6 +2730,7 @@ enum DrupalImageFieldsEnum {
   children___internal___mediaType
   children___internal___owner
   children___internal___type
+  children___internal___contentFilePath
   internal___content
   internal___contentDigest
   internal___description
@@ -2663,6 +2739,7 @@ enum DrupalImageFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
+  internal___contentFilePath
 }
 
 type DrupalImageGroupConnection {
@@ -2724,6 +2801,7 @@ enum DrupalTagFieldsEnum {
   parent___parent___internal___mediaType
   parent___parent___internal___owner
   parent___parent___internal___type
+  parent___parent___internal___contentFilePath
   parent___children
   parent___children___id
   parent___children___parent___id
@@ -2739,6 +2817,7 @@ enum DrupalTagFieldsEnum {
   parent___children___internal___mediaType
   parent___children___internal___owner
   parent___children___internal___type
+  parent___children___internal___contentFilePath
   parent___internal___content
   parent___internal___contentDigest
   parent___internal___description
@@ -2747,6 +2826,7 @@ enum DrupalTagFieldsEnum {
   parent___internal___mediaType
   parent___internal___owner
   parent___internal___type
+  parent___internal___contentFilePath
   children
   children___id
   children___parent___id
@@ -2763,6 +2843,7 @@ enum DrupalTagFieldsEnum {
   children___parent___internal___mediaType
   children___parent___internal___owner
   children___parent___internal___type
+  children___parent___internal___contentFilePath
   children___children
   children___children___id
   children___children___parent___id
@@ -2778,6 +2859,7 @@ enum DrupalTagFieldsEnum {
   children___children___internal___mediaType
   children___children___internal___owner
   children___children___internal___type
+  children___children___internal___contentFilePath
   children___internal___content
   children___internal___contentDigest
   children___internal___description
@@ -2786,6 +2868,7 @@ enum DrupalTagFieldsEnum {
   children___internal___mediaType
   children___internal___owner
   children___internal___type
+  children___internal___contentFilePath
   internal___content
   internal___contentDigest
   internal___description
@@ -2794,6 +2877,7 @@ enum DrupalTagFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
+  internal___contentFilePath
 }
 
 type DrupalTagGroupConnection {
@@ -2946,6 +3030,7 @@ enum DrupalPageFieldsEnum {
   translations___translations___internal___mediaType
   translations___translations___internal___owner
   translations___translations___internal___type
+  translations___translations___internal___contentFilePath
   translations___remoteId
   translations___path
   translations___title
@@ -3013,6 +3098,7 @@ enum DrupalPageFieldsEnum {
   translations___translation___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___childrenImagesFromHtml
   translations___childrenImagesFromHtml___urlOriginal
   translations___childrenImagesFromHtml___urlAbsolute
@@ -3030,6 +3116,7 @@ enum DrupalPageFieldsEnum {
   translations___childrenImagesFromHtml___internal___mediaType
   translations___childrenImagesFromHtml___internal___owner
   translations___childrenImagesFromHtml___internal___type
+  translations___childrenImagesFromHtml___internal___contentFilePath
   translations___childImagesFromHtml___urlOriginal
   translations___childImagesFromHtml___urlAbsolute
   translations___childImagesFromHtml___id
@@ -3046,6 +3133,7 @@ enum DrupalPageFieldsEnum {
   translations___childImagesFromHtml___internal___mediaType
   translations___childImagesFromHtml___internal___owner
   translations___childImagesFromHtml___internal___type
+  translations___childImagesFromHtml___internal___contentFilePath
   translations___id
   translations___parent___id
   translations___parent___parent___id
@@ -3061,6 +3149,7 @@ enum DrupalPageFieldsEnum {
   translations___parent___internal___mediaType
   translations___parent___internal___owner
   translations___parent___internal___type
+  translations___parent___internal___contentFilePath
   translations___children
   translations___children___id
   translations___children___parent___id
@@ -3076,6 +3165,7 @@ enum DrupalPageFieldsEnum {
   translations___children___internal___mediaType
   translations___children___internal___owner
   translations___children___internal___type
+  translations___children___internal___contentFilePath
   translations___internal___content
   translations___internal___contentDigest
   translations___internal___description
@@ -3084,6 +3174,7 @@ enum DrupalPageFieldsEnum {
   translations___internal___mediaType
   translations___internal___owner
   translations___internal___type
+  translations___internal___contentFilePath
   remoteId
   path
   title
@@ -3153,6 +3244,7 @@ enum DrupalPageFieldsEnum {
   translation___translations___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___path @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -3220,6 +3312,7 @@ enum DrupalPageFieldsEnum {
   translation___translation___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___childrenImagesFromHtml @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___childrenImagesFromHtml___urlOriginal @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___childrenImagesFromHtml___urlAbsolute @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -3237,6 +3330,7 @@ enum DrupalPageFieldsEnum {
   translation___childrenImagesFromHtml___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___childrenImagesFromHtml___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___childrenImagesFromHtml___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___childrenImagesFromHtml___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___childImagesFromHtml___urlOriginal @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___childImagesFromHtml___urlAbsolute @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___childImagesFromHtml___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -3253,6 +3347,7 @@ enum DrupalPageFieldsEnum {
   translation___childImagesFromHtml___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___childImagesFromHtml___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___childImagesFromHtml___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___childImagesFromHtml___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -3268,6 +3363,7 @@ enum DrupalPageFieldsEnum {
   translation___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___parent___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -3283,6 +3379,7 @@ enum DrupalPageFieldsEnum {
   translation___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___children___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -3291,6 +3388,7 @@ enum DrupalPageFieldsEnum {
   translation___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childrenImagesFromHtml
   childrenImagesFromHtml___urlOriginal
   childrenImagesFromHtml___urlAbsolute
@@ -3309,6 +3407,7 @@ enum DrupalPageFieldsEnum {
   childrenImagesFromHtml___parent___internal___mediaType
   childrenImagesFromHtml___parent___internal___owner
   childrenImagesFromHtml___parent___internal___type
+  childrenImagesFromHtml___parent___internal___contentFilePath
   childrenImagesFromHtml___children
   childrenImagesFromHtml___children___id
   childrenImagesFromHtml___children___parent___id
@@ -3324,6 +3423,7 @@ enum DrupalPageFieldsEnum {
   childrenImagesFromHtml___children___internal___mediaType
   childrenImagesFromHtml___children___internal___owner
   childrenImagesFromHtml___children___internal___type
+  childrenImagesFromHtml___children___internal___contentFilePath
   childrenImagesFromHtml___internal___content
   childrenImagesFromHtml___internal___contentDigest
   childrenImagesFromHtml___internal___description
@@ -3332,6 +3432,7 @@ enum DrupalPageFieldsEnum {
   childrenImagesFromHtml___internal___mediaType
   childrenImagesFromHtml___internal___owner
   childrenImagesFromHtml___internal___type
+  childrenImagesFromHtml___internal___contentFilePath
   childImagesFromHtml___urlOriginal
   childImagesFromHtml___urlAbsolute
   childImagesFromHtml___id
@@ -3349,6 +3450,7 @@ enum DrupalPageFieldsEnum {
   childImagesFromHtml___parent___internal___mediaType
   childImagesFromHtml___parent___internal___owner
   childImagesFromHtml___parent___internal___type
+  childImagesFromHtml___parent___internal___contentFilePath
   childImagesFromHtml___children
   childImagesFromHtml___children___id
   childImagesFromHtml___children___parent___id
@@ -3364,6 +3466,7 @@ enum DrupalPageFieldsEnum {
   childImagesFromHtml___children___internal___mediaType
   childImagesFromHtml___children___internal___owner
   childImagesFromHtml___children___internal___type
+  childImagesFromHtml___children___internal___contentFilePath
   childImagesFromHtml___internal___content
   childImagesFromHtml___internal___contentDigest
   childImagesFromHtml___internal___description
@@ -3372,6 +3475,7 @@ enum DrupalPageFieldsEnum {
   childImagesFromHtml___internal___mediaType
   childImagesFromHtml___internal___owner
   childImagesFromHtml___internal___type
+  childImagesFromHtml___internal___contentFilePath
   id
   parent___id
   parent___parent___id
@@ -3388,6 +3492,7 @@ enum DrupalPageFieldsEnum {
   parent___parent___internal___mediaType
   parent___parent___internal___owner
   parent___parent___internal___type
+  parent___parent___internal___contentFilePath
   parent___children
   parent___children___id
   parent___children___parent___id
@@ -3403,6 +3508,7 @@ enum DrupalPageFieldsEnum {
   parent___children___internal___mediaType
   parent___children___internal___owner
   parent___children___internal___type
+  parent___children___internal___contentFilePath
   parent___internal___content
   parent___internal___contentDigest
   parent___internal___description
@@ -3411,6 +3517,7 @@ enum DrupalPageFieldsEnum {
   parent___internal___mediaType
   parent___internal___owner
   parent___internal___type
+  parent___internal___contentFilePath
   children
   children___id
   children___parent___id
@@ -3427,6 +3534,7 @@ enum DrupalPageFieldsEnum {
   children___parent___internal___mediaType
   children___parent___internal___owner
   children___parent___internal___type
+  children___parent___internal___contentFilePath
   children___children
   children___children___id
   children___children___parent___id
@@ -3442,6 +3550,7 @@ enum DrupalPageFieldsEnum {
   children___children___internal___mediaType
   children___children___internal___owner
   children___children___internal___type
+  children___children___internal___contentFilePath
   children___internal___content
   children___internal___contentDigest
   children___internal___description
@@ -3450,6 +3559,7 @@ enum DrupalPageFieldsEnum {
   children___internal___mediaType
   children___internal___owner
   children___internal___type
+  children___internal___contentFilePath
   internal___content
   internal___contentDigest
   internal___description
@@ -3458,6 +3568,7 @@ enum DrupalPageFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
+  internal___contentFilePath
 }
 
 type DrupalPageGroupConnection {
@@ -3618,6 +3729,7 @@ enum DrupalArticleFieldsEnum {
   translations___translations___internal___mediaType
   translations___translations___internal___owner
   translations___translations___internal___type
+  translations___translations___internal___contentFilePath
   translations___path
   translations___title
   translations___body
@@ -3641,6 +3753,7 @@ enum DrupalArticleFieldsEnum {
   translations___tags___internal___mediaType
   translations___tags___internal___owner
   translations___tags___internal___type
+  translations___tags___internal___contentFilePath
   translations___image___remoteTypeName
   translations___image___translations
   translations___image___translations___remoteTypeName
@@ -3686,6 +3799,7 @@ enum DrupalArticleFieldsEnum {
   translations___image___internal___mediaType
   translations___image___internal___owner
   translations___image___internal___type
+  translations___image___internal___contentFilePath
   translations___template
   translations____original_typename
   translations___drupalId
@@ -3774,6 +3888,7 @@ enum DrupalArticleFieldsEnum {
   translations___translation___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___childrenImagesFromHtml
   translations___childrenImagesFromHtml___urlOriginal
   translations___childrenImagesFromHtml___urlAbsolute
@@ -3791,6 +3906,7 @@ enum DrupalArticleFieldsEnum {
   translations___childrenImagesFromHtml___internal___mediaType
   translations___childrenImagesFromHtml___internal___owner
   translations___childrenImagesFromHtml___internal___type
+  translations___childrenImagesFromHtml___internal___contentFilePath
   translations___childImagesFromHtml___urlOriginal
   translations___childImagesFromHtml___urlAbsolute
   translations___childImagesFromHtml___id
@@ -3807,6 +3923,7 @@ enum DrupalArticleFieldsEnum {
   translations___childImagesFromHtml___internal___mediaType
   translations___childImagesFromHtml___internal___owner
   translations___childImagesFromHtml___internal___type
+  translations___childImagesFromHtml___internal___contentFilePath
   translations___id
   translations___parent___id
   translations___parent___parent___id
@@ -3822,6 +3939,7 @@ enum DrupalArticleFieldsEnum {
   translations___parent___internal___mediaType
   translations___parent___internal___owner
   translations___parent___internal___type
+  translations___parent___internal___contentFilePath
   translations___children
   translations___children___id
   translations___children___parent___id
@@ -3837,6 +3955,7 @@ enum DrupalArticleFieldsEnum {
   translations___children___internal___mediaType
   translations___children___internal___owner
   translations___children___internal___type
+  translations___children___internal___contentFilePath
   translations___internal___content
   translations___internal___contentDigest
   translations___internal___description
@@ -3845,6 +3964,7 @@ enum DrupalArticleFieldsEnum {
   translations___internal___mediaType
   translations___internal___owner
   translations___internal___type
+  translations___internal___contentFilePath
   path
   title
   body
@@ -3869,6 +3989,7 @@ enum DrupalArticleFieldsEnum {
   tags___parent___internal___mediaType
   tags___parent___internal___owner
   tags___parent___internal___type
+  tags___parent___internal___contentFilePath
   tags___children
   tags___children___id
   tags___children___parent___id
@@ -3884,6 +4005,7 @@ enum DrupalArticleFieldsEnum {
   tags___children___internal___mediaType
   tags___children___internal___owner
   tags___children___internal___type
+  tags___children___internal___contentFilePath
   tags___internal___content
   tags___internal___contentDigest
   tags___internal___description
@@ -3892,6 +4014,7 @@ enum DrupalArticleFieldsEnum {
   tags___internal___mediaType
   tags___internal___owner
   tags___internal___type
+  tags___internal___contentFilePath
   image___remoteTypeName
   image___translations
   image___translations___remoteTypeName
@@ -3939,6 +4062,7 @@ enum DrupalArticleFieldsEnum {
   image___translations___internal___mediaType
   image___translations___internal___owner
   image___translations___internal___type
+  image___translations___internal___contentFilePath
   image___remoteId
   image___url
   image___alt
@@ -3991,6 +4115,7 @@ enum DrupalArticleFieldsEnum {
   image___translation___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   image___translation___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   image___translation___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  image___translation___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   image___id
   image___parent___id
   image___parent___parent___id
@@ -4006,6 +4131,7 @@ enum DrupalArticleFieldsEnum {
   image___parent___internal___mediaType
   image___parent___internal___owner
   image___parent___internal___type
+  image___parent___internal___contentFilePath
   image___children
   image___children___id
   image___children___parent___id
@@ -4021,6 +4147,7 @@ enum DrupalArticleFieldsEnum {
   image___children___internal___mediaType
   image___children___internal___owner
   image___children___internal___type
+  image___children___internal___contentFilePath
   image___internal___content
   image___internal___contentDigest
   image___internal___description
@@ -4029,6 +4156,7 @@ enum DrupalArticleFieldsEnum {
   image___internal___mediaType
   image___internal___owner
   image___internal___type
+  image___internal___contentFilePath
   template
   _original_typename
   drupalId
@@ -4120,6 +4248,7 @@ enum DrupalArticleFieldsEnum {
   translation___translations___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___path @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___body @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -4143,6 +4272,7 @@ enum DrupalArticleFieldsEnum {
   translation___tags___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___tags___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___tags___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___tags___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___image___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___image___translations @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___image___translations___remoteTypeName @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -4188,6 +4318,7 @@ enum DrupalArticleFieldsEnum {
   translation___image___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___image___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___image___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___image___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___template @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -4276,6 +4407,7 @@ enum DrupalArticleFieldsEnum {
   translation___translation___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___childrenImagesFromHtml @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___childrenImagesFromHtml___urlOriginal @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___childrenImagesFromHtml___urlAbsolute @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -4293,6 +4425,7 @@ enum DrupalArticleFieldsEnum {
   translation___childrenImagesFromHtml___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___childrenImagesFromHtml___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___childrenImagesFromHtml___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___childrenImagesFromHtml___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___childImagesFromHtml___urlOriginal @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___childImagesFromHtml___urlAbsolute @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___childImagesFromHtml___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -4309,6 +4442,7 @@ enum DrupalArticleFieldsEnum {
   translation___childImagesFromHtml___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___childImagesFromHtml___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___childImagesFromHtml___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___childImagesFromHtml___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -4324,6 +4458,7 @@ enum DrupalArticleFieldsEnum {
   translation___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___parent___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -4339,6 +4474,7 @@ enum DrupalArticleFieldsEnum {
   translation___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___children___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -4347,6 +4483,7 @@ enum DrupalArticleFieldsEnum {
   translation___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childrenImagesFromHtml
   childrenImagesFromHtml___urlOriginal
   childrenImagesFromHtml___urlAbsolute
@@ -4365,6 +4502,7 @@ enum DrupalArticleFieldsEnum {
   childrenImagesFromHtml___parent___internal___mediaType
   childrenImagesFromHtml___parent___internal___owner
   childrenImagesFromHtml___parent___internal___type
+  childrenImagesFromHtml___parent___internal___contentFilePath
   childrenImagesFromHtml___children
   childrenImagesFromHtml___children___id
   childrenImagesFromHtml___children___parent___id
@@ -4380,6 +4518,7 @@ enum DrupalArticleFieldsEnum {
   childrenImagesFromHtml___children___internal___mediaType
   childrenImagesFromHtml___children___internal___owner
   childrenImagesFromHtml___children___internal___type
+  childrenImagesFromHtml___children___internal___contentFilePath
   childrenImagesFromHtml___internal___content
   childrenImagesFromHtml___internal___contentDigest
   childrenImagesFromHtml___internal___description
@@ -4388,6 +4527,7 @@ enum DrupalArticleFieldsEnum {
   childrenImagesFromHtml___internal___mediaType
   childrenImagesFromHtml___internal___owner
   childrenImagesFromHtml___internal___type
+  childrenImagesFromHtml___internal___contentFilePath
   childImagesFromHtml___urlOriginal
   childImagesFromHtml___urlAbsolute
   childImagesFromHtml___id
@@ -4405,6 +4545,7 @@ enum DrupalArticleFieldsEnum {
   childImagesFromHtml___parent___internal___mediaType
   childImagesFromHtml___parent___internal___owner
   childImagesFromHtml___parent___internal___type
+  childImagesFromHtml___parent___internal___contentFilePath
   childImagesFromHtml___children
   childImagesFromHtml___children___id
   childImagesFromHtml___children___parent___id
@@ -4420,6 +4561,7 @@ enum DrupalArticleFieldsEnum {
   childImagesFromHtml___children___internal___mediaType
   childImagesFromHtml___children___internal___owner
   childImagesFromHtml___children___internal___type
+  childImagesFromHtml___children___internal___contentFilePath
   childImagesFromHtml___internal___content
   childImagesFromHtml___internal___contentDigest
   childImagesFromHtml___internal___description
@@ -4428,6 +4570,7 @@ enum DrupalArticleFieldsEnum {
   childImagesFromHtml___internal___mediaType
   childImagesFromHtml___internal___owner
   childImagesFromHtml___internal___type
+  childImagesFromHtml___internal___contentFilePath
   id
   parent___id
   parent___parent___id
@@ -4444,6 +4587,7 @@ enum DrupalArticleFieldsEnum {
   parent___parent___internal___mediaType
   parent___parent___internal___owner
   parent___parent___internal___type
+  parent___parent___internal___contentFilePath
   parent___children
   parent___children___id
   parent___children___parent___id
@@ -4459,6 +4603,7 @@ enum DrupalArticleFieldsEnum {
   parent___children___internal___mediaType
   parent___children___internal___owner
   parent___children___internal___type
+  parent___children___internal___contentFilePath
   parent___internal___content
   parent___internal___contentDigest
   parent___internal___description
@@ -4467,6 +4612,7 @@ enum DrupalArticleFieldsEnum {
   parent___internal___mediaType
   parent___internal___owner
   parent___internal___type
+  parent___internal___contentFilePath
   children
   children___id
   children___parent___id
@@ -4483,6 +4629,7 @@ enum DrupalArticleFieldsEnum {
   children___parent___internal___mediaType
   children___parent___internal___owner
   children___parent___internal___type
+  children___parent___internal___contentFilePath
   children___children
   children___children___id
   children___children___parent___id
@@ -4498,6 +4645,7 @@ enum DrupalArticleFieldsEnum {
   children___children___internal___mediaType
   children___children___internal___owner
   children___children___internal___type
+  children___children___internal___contentFilePath
   children___internal___content
   children___internal___contentDigest
   children___internal___description
@@ -4506,6 +4654,7 @@ enum DrupalArticleFieldsEnum {
   children___internal___mediaType
   children___internal___owner
   children___internal___type
+  children___internal___contentFilePath
   internal___content
   internal___contentDigest
   internal___description
@@ -4514,6 +4663,7 @@ enum DrupalArticleFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
+  internal___contentFilePath
 }
 
 type DrupalArticleGroupConnection {
@@ -4626,6 +4776,7 @@ enum DrupalGutenbergPageFieldsEnum {
   translations___translations___internal___mediaType
   translations___translations___internal___owner
   translations___translations___internal___type
+  translations___translations___internal___contentFilePath
   translations___path
   translations___title
   translations____original_typename
@@ -4677,6 +4828,7 @@ enum DrupalGutenbergPageFieldsEnum {
   translations___translation___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___id
   translations___parent___id
   translations___parent___parent___id
@@ -4692,6 +4844,7 @@ enum DrupalGutenbergPageFieldsEnum {
   translations___parent___internal___mediaType
   translations___parent___internal___owner
   translations___parent___internal___type
+  translations___parent___internal___contentFilePath
   translations___children
   translations___children___id
   translations___children___parent___id
@@ -4707,6 +4860,7 @@ enum DrupalGutenbergPageFieldsEnum {
   translations___children___internal___mediaType
   translations___children___internal___owner
   translations___children___internal___type
+  translations___children___internal___contentFilePath
   translations___internal___content
   translations___internal___contentDigest
   translations___internal___description
@@ -4715,6 +4869,7 @@ enum DrupalGutenbergPageFieldsEnum {
   translations___internal___mediaType
   translations___internal___owner
   translations___internal___type
+  translations___internal___contentFilePath
   path
   title
   _original_typename
@@ -4769,6 +4924,7 @@ enum DrupalGutenbergPageFieldsEnum {
   translation___translations___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___path @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -4820,6 +4976,7 @@ enum DrupalGutenbergPageFieldsEnum {
   translation___translation___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -4835,6 +4992,7 @@ enum DrupalGutenbergPageFieldsEnum {
   translation___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___parent___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -4850,6 +5008,7 @@ enum DrupalGutenbergPageFieldsEnum {
   translation___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___children___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -4858,6 +5017,7 @@ enum DrupalGutenbergPageFieldsEnum {
   translation___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   id
   parent___id
   parent___parent___id
@@ -4874,6 +5034,7 @@ enum DrupalGutenbergPageFieldsEnum {
   parent___parent___internal___mediaType
   parent___parent___internal___owner
   parent___parent___internal___type
+  parent___parent___internal___contentFilePath
   parent___children
   parent___children___id
   parent___children___parent___id
@@ -4889,6 +5050,7 @@ enum DrupalGutenbergPageFieldsEnum {
   parent___children___internal___mediaType
   parent___children___internal___owner
   parent___children___internal___type
+  parent___children___internal___contentFilePath
   parent___internal___content
   parent___internal___contentDigest
   parent___internal___description
@@ -4897,6 +5059,7 @@ enum DrupalGutenbergPageFieldsEnum {
   parent___internal___mediaType
   parent___internal___owner
   parent___internal___type
+  parent___internal___contentFilePath
   children
   children___id
   children___parent___id
@@ -4913,6 +5076,7 @@ enum DrupalGutenbergPageFieldsEnum {
   children___parent___internal___mediaType
   children___parent___internal___owner
   children___parent___internal___type
+  children___parent___internal___contentFilePath
   children___children
   children___children___id
   children___children___parent___id
@@ -4928,6 +5092,7 @@ enum DrupalGutenbergPageFieldsEnum {
   children___children___internal___mediaType
   children___children___internal___owner
   children___children___internal___type
+  children___children___internal___contentFilePath
   children___internal___content
   children___internal___contentDigest
   children___internal___description
@@ -4936,6 +5101,7 @@ enum DrupalGutenbergPageFieldsEnum {
   children___internal___mediaType
   children___internal___owner
   children___internal___type
+  children___internal___contentFilePath
   internal___content
   internal___contentDigest
   internal___description
@@ -4944,6 +5110,7 @@ enum DrupalGutenbergPageFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
+  internal___contentFilePath
 }
 
 type DrupalGutenbergPageGroupConnection {
@@ -5007,6 +5174,7 @@ enum DrupalWebformFieldsEnum {
   parent___parent___internal___mediaType
   parent___parent___internal___owner
   parent___parent___internal___type
+  parent___parent___internal___contentFilePath
   parent___children
   parent___children___id
   parent___children___parent___id
@@ -5022,6 +5190,7 @@ enum DrupalWebformFieldsEnum {
   parent___children___internal___mediaType
   parent___children___internal___owner
   parent___children___internal___type
+  parent___children___internal___contentFilePath
   parent___internal___content
   parent___internal___contentDigest
   parent___internal___description
@@ -5030,6 +5199,7 @@ enum DrupalWebformFieldsEnum {
   parent___internal___mediaType
   parent___internal___owner
   parent___internal___type
+  parent___internal___contentFilePath
   children
   children___id
   children___parent___id
@@ -5046,6 +5216,7 @@ enum DrupalWebformFieldsEnum {
   children___parent___internal___mediaType
   children___parent___internal___owner
   children___parent___internal___type
+  children___parent___internal___contentFilePath
   children___children
   children___children___id
   children___children___parent___id
@@ -5061,6 +5232,7 @@ enum DrupalWebformFieldsEnum {
   children___children___internal___mediaType
   children___children___internal___owner
   children___children___internal___type
+  children___children___internal___contentFilePath
   children___internal___content
   children___internal___contentDigest
   children___internal___description
@@ -5069,6 +5241,7 @@ enum DrupalWebformFieldsEnum {
   children___internal___mediaType
   children___internal___owner
   children___internal___type
+  children___internal___contentFilePath
   internal___content
   internal___contentDigest
   internal___description
@@ -5077,6 +5250,7 @@ enum DrupalWebformFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
+  internal___contentFilePath
 }
 
 type DrupalWebformGroupConnection {
@@ -5216,6 +5390,7 @@ enum DrupalMainMenuFieldsEnum {
   translations___translations___internal___mediaType
   translations___translations___internal___owner
   translations___translations___internal___type
+  translations___translations___internal___contentFilePath
   translations___remoteId
   translations____original_typename
   translations___drupalId
@@ -5276,6 +5451,7 @@ enum DrupalMainMenuFieldsEnum {
   translations___translation___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___id
   translations___parent___id
   translations___parent___parent___id
@@ -5291,6 +5467,7 @@ enum DrupalMainMenuFieldsEnum {
   translations___parent___internal___mediaType
   translations___parent___internal___owner
   translations___parent___internal___type
+  translations___parent___internal___contentFilePath
   translations___children
   translations___children___id
   translations___children___parent___id
@@ -5306,6 +5483,7 @@ enum DrupalMainMenuFieldsEnum {
   translations___children___internal___mediaType
   translations___children___internal___owner
   translations___children___internal___type
+  translations___children___internal___contentFilePath
   translations___internal___content
   translations___internal___contentDigest
   translations___internal___description
@@ -5314,6 +5492,7 @@ enum DrupalMainMenuFieldsEnum {
   translations___internal___mediaType
   translations___internal___owner
   translations___internal___type
+  translations___internal___contentFilePath
   remoteId
   _original_typename
   drupalId
@@ -5376,6 +5555,7 @@ enum DrupalMainMenuFieldsEnum {
   translation___translations___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -5436,6 +5616,7 @@ enum DrupalMainMenuFieldsEnum {
   translation___translation___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -5451,6 +5632,7 @@ enum DrupalMainMenuFieldsEnum {
   translation___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___parent___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -5466,6 +5648,7 @@ enum DrupalMainMenuFieldsEnum {
   translation___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___children___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -5474,6 +5657,7 @@ enum DrupalMainMenuFieldsEnum {
   translation___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   id
   parent___id
   parent___parent___id
@@ -5490,6 +5674,7 @@ enum DrupalMainMenuFieldsEnum {
   parent___parent___internal___mediaType
   parent___parent___internal___owner
   parent___parent___internal___type
+  parent___parent___internal___contentFilePath
   parent___children
   parent___children___id
   parent___children___parent___id
@@ -5505,6 +5690,7 @@ enum DrupalMainMenuFieldsEnum {
   parent___children___internal___mediaType
   parent___children___internal___owner
   parent___children___internal___type
+  parent___children___internal___contentFilePath
   parent___internal___content
   parent___internal___contentDigest
   parent___internal___description
@@ -5513,6 +5699,7 @@ enum DrupalMainMenuFieldsEnum {
   parent___internal___mediaType
   parent___internal___owner
   parent___internal___type
+  parent___internal___contentFilePath
   children
   children___id
   children___parent___id
@@ -5529,6 +5716,7 @@ enum DrupalMainMenuFieldsEnum {
   children___parent___internal___mediaType
   children___parent___internal___owner
   children___parent___internal___type
+  children___parent___internal___contentFilePath
   children___children
   children___children___id
   children___children___parent___id
@@ -5544,6 +5732,7 @@ enum DrupalMainMenuFieldsEnum {
   children___children___internal___mediaType
   children___children___internal___owner
   children___children___internal___type
+  children___children___internal___contentFilePath
   children___internal___content
   children___internal___contentDigest
   children___internal___description
@@ -5552,6 +5741,7 @@ enum DrupalMainMenuFieldsEnum {
   children___internal___mediaType
   children___internal___owner
   children___internal___type
+  children___internal___contentFilePath
   internal___content
   internal___contentDigest
   internal___description
@@ -5560,6 +5750,7 @@ enum DrupalMainMenuFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
+  internal___contentFilePath
 }
 
 type DrupalMainMenuGroupConnection {
@@ -5672,6 +5863,7 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   translations___translations___internal___mediaType
   translations___translations___internal___owner
   translations___translations___internal___type
+  translations___translations___internal___contentFilePath
   translations___remoteId
   translations____original_typename
   translations___drupalId
@@ -5732,6 +5924,7 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   translations___translation___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___translation___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translations___translation___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translations___id
   translations___parent___id
   translations___parent___parent___id
@@ -5747,6 +5940,7 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   translations___parent___internal___mediaType
   translations___parent___internal___owner
   translations___parent___internal___type
+  translations___parent___internal___contentFilePath
   translations___children
   translations___children___id
   translations___children___parent___id
@@ -5762,6 +5956,7 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   translations___children___internal___mediaType
   translations___children___internal___owner
   translations___children___internal___type
+  translations___children___internal___contentFilePath
   translations___internal___content
   translations___internal___contentDigest
   translations___internal___description
@@ -5770,6 +5965,7 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   translations___internal___mediaType
   translations___internal___owner
   translations___internal___type
+  translations___internal___contentFilePath
   remoteId
   _original_typename
   drupalId
@@ -5832,6 +6028,7 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   translation___translations___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translations___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translations___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___remoteId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation____original_typename @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___drupalId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -5892,6 +6089,7 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   translation___translation___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___translation___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___translation___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -5907,6 +6105,7 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   translation___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___parent___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -5922,6 +6121,7 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   translation___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___children___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -5930,6 +6130,7 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   translation___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   translation___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  translation___internal___contentFilePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   id
   parent___id
   parent___parent___id
@@ -5946,6 +6147,7 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   parent___parent___internal___mediaType
   parent___parent___internal___owner
   parent___parent___internal___type
+  parent___parent___internal___contentFilePath
   parent___children
   parent___children___id
   parent___children___parent___id
@@ -5961,6 +6163,7 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   parent___children___internal___mediaType
   parent___children___internal___owner
   parent___children___internal___type
+  parent___children___internal___contentFilePath
   parent___internal___content
   parent___internal___contentDigest
   parent___internal___description
@@ -5969,6 +6172,7 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   parent___internal___mediaType
   parent___internal___owner
   parent___internal___type
+  parent___internal___contentFilePath
   children
   children___id
   children___parent___id
@@ -5985,6 +6189,7 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   children___parent___internal___mediaType
   children___parent___internal___owner
   children___parent___internal___type
+  children___parent___internal___contentFilePath
   children___children
   children___children___id
   children___children___parent___id
@@ -6000,6 +6205,7 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   children___children___internal___mediaType
   children___children___internal___owner
   children___children___internal___type
+  children___children___internal___contentFilePath
   children___internal___content
   children___internal___contentDigest
   children___internal___description
@@ -6008,6 +6214,7 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   children___internal___mediaType
   children___internal___owner
   children___internal___type
+  children___internal___contentFilePath
   internal___content
   internal___contentDigest
   internal___description
@@ -6016,6 +6223,7 @@ enum DrupalFirstLevelMainMenuFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
+  internal___contentFilePath
 }
 
 type DrupalFirstLevelMainMenuGroupConnection {
@@ -6096,6 +6304,7 @@ enum DrupalGatsbyStringTranslationFieldsEnum {
   parent___parent___internal___mediaType
   parent___parent___internal___owner
   parent___parent___internal___type
+  parent___parent___internal___contentFilePath
   parent___children
   parent___children___id
   parent___children___parent___id
@@ -6111,6 +6320,7 @@ enum DrupalGatsbyStringTranslationFieldsEnum {
   parent___children___internal___mediaType
   parent___children___internal___owner
   parent___children___internal___type
+  parent___children___internal___contentFilePath
   parent___internal___content
   parent___internal___contentDigest
   parent___internal___description
@@ -6119,6 +6329,7 @@ enum DrupalGatsbyStringTranslationFieldsEnum {
   parent___internal___mediaType
   parent___internal___owner
   parent___internal___type
+  parent___internal___contentFilePath
   children
   children___id
   children___parent___id
@@ -6135,6 +6346,7 @@ enum DrupalGatsbyStringTranslationFieldsEnum {
   children___parent___internal___mediaType
   children___parent___internal___owner
   children___parent___internal___type
+  children___parent___internal___contentFilePath
   children___children
   children___children___id
   children___children___parent___id
@@ -6150,6 +6362,7 @@ enum DrupalGatsbyStringTranslationFieldsEnum {
   children___children___internal___mediaType
   children___children___internal___owner
   children___children___internal___type
+  children___children___internal___contentFilePath
   children___internal___content
   children___internal___contentDigest
   children___internal___description
@@ -6158,6 +6371,7 @@ enum DrupalGatsbyStringTranslationFieldsEnum {
   children___internal___mediaType
   children___internal___owner
   children___internal___type
+  children___internal___contentFilePath
   internal___content
   internal___contentDigest
   internal___description
@@ -6166,6 +6380,7 @@ enum DrupalGatsbyStringTranslationFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
+  internal___contentFilePath
 }
 
 type DrupalGatsbyStringTranslationGroupConnection {
@@ -6238,6 +6453,7 @@ enum ImagesFromHtmlFieldsEnum {
   parent___parent___internal___mediaType
   parent___parent___internal___owner
   parent___parent___internal___type
+  parent___parent___internal___contentFilePath
   parent___children
   parent___children___id
   parent___children___parent___id
@@ -6253,6 +6469,7 @@ enum ImagesFromHtmlFieldsEnum {
   parent___children___internal___mediaType
   parent___children___internal___owner
   parent___children___internal___type
+  parent___children___internal___contentFilePath
   parent___internal___content
   parent___internal___contentDigest
   parent___internal___description
@@ -6261,6 +6478,7 @@ enum ImagesFromHtmlFieldsEnum {
   parent___internal___mediaType
   parent___internal___owner
   parent___internal___type
+  parent___internal___contentFilePath
   children
   children___id
   children___parent___id
@@ -6277,6 +6495,7 @@ enum ImagesFromHtmlFieldsEnum {
   children___parent___internal___mediaType
   children___parent___internal___owner
   children___parent___internal___type
+  children___parent___internal___contentFilePath
   children___children
   children___children___id
   children___children___parent___id
@@ -6292,6 +6511,7 @@ enum ImagesFromHtmlFieldsEnum {
   children___children___internal___mediaType
   children___children___internal___owner
   children___children___internal___type
+  children___children___internal___contentFilePath
   children___internal___content
   children___internal___contentDigest
   children___internal___description
@@ -6300,6 +6520,7 @@ enum ImagesFromHtmlFieldsEnum {
   children___internal___mediaType
   children___internal___owner
   children___internal___type
+  children___internal___contentFilePath
   internal___content
   internal___contentDigest
   internal___description
@@ -6308,6 +6529,7 @@ enum ImagesFromHtmlFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
+  internal___contentFilePath
 }
 
 type ImagesFromHtmlGroupConnection {
@@ -6396,6 +6618,7 @@ enum ImageSharpFieldsEnum {
   parent___parent___internal___mediaType
   parent___parent___internal___owner
   parent___parent___internal___type
+  parent___parent___internal___contentFilePath
   parent___children
   parent___children___id
   parent___children___parent___id
@@ -6411,6 +6634,7 @@ enum ImageSharpFieldsEnum {
   parent___children___internal___mediaType
   parent___children___internal___owner
   parent___children___internal___type
+  parent___children___internal___contentFilePath
   parent___internal___content
   parent___internal___contentDigest
   parent___internal___description
@@ -6419,6 +6643,7 @@ enum ImageSharpFieldsEnum {
   parent___internal___mediaType
   parent___internal___owner
   parent___internal___type
+  parent___internal___contentFilePath
   children
   children___id
   children___parent___id
@@ -6435,6 +6660,7 @@ enum ImageSharpFieldsEnum {
   children___parent___internal___mediaType
   children___parent___internal___owner
   children___parent___internal___type
+  children___parent___internal___contentFilePath
   children___children
   children___children___id
   children___children___parent___id
@@ -6450,6 +6676,7 @@ enum ImageSharpFieldsEnum {
   children___children___internal___mediaType
   children___children___internal___owner
   children___children___internal___type
+  children___children___internal___contentFilePath
   children___internal___content
   children___internal___contentDigest
   children___internal___description
@@ -6458,6 +6685,7 @@ enum ImageSharpFieldsEnum {
   children___internal___mediaType
   children___internal___owner
   children___internal___type
+  children___internal___contentFilePath
   internal___content
   internal___contentDigest
   internal___description
@@ -6466,6 +6694,7 @@ enum ImageSharpFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
+  internal___contentFilePath
 }
 
 type ImageSharpGroupConnection {
