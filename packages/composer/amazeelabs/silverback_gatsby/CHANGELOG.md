@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.28.1...@-amazeelabs/silverback_gatsby@2.0.0) (2023-01-06)
+
+### Bug Fixes
+
+- **gatsby:** base silverback_gatsby off graphql_directives
+  ([f8006f0](https://github.com/AmazeeLabs/silverback-mono/commit/f8006f0a2b684b14fca4581dd1a3e6e7646d37f7))
+- **graphql:** append extension document to printed schema
+  ([d0ec3ca](https://github.com/AmazeeLabs/silverback-mono/commit/d0ec3ca4b312fc5c9317ee3ccbd251b48873064b))
+- **graphql:** avoid block comments on directive arguments
+  ([f38a8e9](https://github.com/AmazeeLabs/silverback-mono/commit/f38a8e9318c84edb2e504bb8a6f2ccf0dfacc95c))
+- **graphql:** fix conflict resolution regression
+  ([8a88fbe](https://github.com/AmazeeLabs/silverback-mono/commit/8a88fbeebe79c676cf7090aafe3ddba379527266))
+- **graphql:** remove remaining invocation of deprecated
+  "[@property](https://github.com/property)"
+  ([23fee18](https://github.com/AmazeeLabs/silverback-mono/commit/23fee1839e13cabdea3f8e0246be045797d7752c))
+- **graphql:** remove wrong version restriction
+  ([20d62b3](https://github.com/AmazeeLabs/silverback-mono/commit/20d62b34bea30c7e439d0673183efe2813556908))
+- **graphql:** schema export with directable schema
+  ([a79ba9d](https://github.com/AmazeeLabs/silverback-mono/commit/a79ba9df883cc05900ba9e9ad962f5b58b2330ce))
+
+### Code Refactoring
+
+- **graphql:** deprecate ComposableSchema
+  ([e04d3eb](https://github.com/AmazeeLabs/silverback-mono/commit/e04d3eb0f3486215a5dd344bc5a22309606690e5))
+- **graphql:** replace editor block directives with plugins
+  ([e40c941](https://github.com/AmazeeLabs/silverback-mono/commit/e40c941289286449d68035b283fa51cb0933cd42))
+- **graphql:** streamline default value behaviour
+  ([81c9bff](https://github.com/AmazeeLabs/silverback-mono/commit/81c9bffebd6b6bdc4dd5a53b21387e462ebc44fc))
+
+### Features
+
+- **graphql:** extract directive plugins for entity references
+  ([fdad8fd](https://github.com/AmazeeLabs/silverback-mono/commit/fdad8fde3678a43d4af3d87e62fc2a9ed23dcff3))
+
+### BREAKING CHANGES
+
+- **graphql:** GraphQL field return types of custom types require either a
+  @default definition, or have to be nullable.
+- **graphql:** gutenberg directives have changed
+- **graphql:** composable schemas need a configured schema definition
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.28.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@1.28.0...@-amazeelabs/silverback_gatsby@1.28.1) (2023-01-05)
 
 ### Bug Fixes

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.6.12...@-amazeelabs/silverback_gutenberg@2.0.0) (2023-01-06)
+
+### Bug Fixes
+
+- **graphql:** argument name typo
+  ([41fcfb7](https://github.com/AmazeeLabs/silverback-mono/commit/41fcfb7e35fdf85ac6a98f9173fe93bfb9cfff79))
+- **graphql:** extensions config key is required
+  ([bdd3806](https://github.com/AmazeeLabs/silverback-mono/commit/bdd3806d99b91ba1bb58c18dbc6e52604263aa23))
+
+### Code Refactoring
+
+- **graphql:** replace editor block directives with plugins
+  ([e40c941](https://github.com/AmazeeLabs/silverback-mono/commit/e40c941289286449d68035b283fa51cb0933cd42))
+- **graphql:** streamline default value behaviour
+  ([81c9bff](https://github.com/AmazeeLabs/silverback-mono/commit/81c9bffebd6b6bdc4dd5a53b21387e462ebc44fc))
+
+### BREAKING CHANGES
+
+- **graphql:** GraphQL field return types of custom types require either a
+  @default definition, or have to be nullable.
+- **graphql:** gutenberg directives have changed
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.6.12](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@1.6.11...@-amazeelabs/silverback_gutenberg@1.6.12) (2023-01-05)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gutenberg

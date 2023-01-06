@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.2.183...@-amazeelabs/silverback-gastby@2.0.0) (2023-01-06)
+
+### Bug Fixes
+
+- **tests:** menu tree typing in test website
+  ([f3339bb](https://github.com/AmazeeLabs/silverback-mono/commit/f3339bb043b2bcb3ca9d239dba7704c5c683eed9))
+
+### Code Refactoring
+
+- **graphql:** streamline default value behaviour
+  ([81c9bff](https://github.com/AmazeeLabs/silverback-mono/commit/81c9bffebd6b6bdc4dd5a53b21387e462ebc44fc))
+
+### BREAKING CHANGES
+
+- **graphql:** GraphQL field return types of custom types require either a
+  @default definition, or have to be nullable.
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.2.183](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@1.2.182...@-amazeelabs/silverback-gastby@1.2.183) (2023-01-05)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-gastby

@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.15.18...@-amazeelabs/silverback-drupal@2.0.0) (2023-01-06)
+
+### Bug Fixes
+
+- **graphql:** adapt to breaking changes in entity resolution
+  ([91ee94c](https://github.com/AmazeeLabs/silverback-mono/commit/91ee94cd3ad850aa4b14058b2c56c5e6cbcd5bf6))
+- **graphql:** schema export with directable schema
+  ([a79ba9d](https://github.com/AmazeeLabs/silverback-mono/commit/a79ba9df883cc05900ba9e9ad962f5b58b2330ce))
+- **graphql:** sort printed directives to achieve deterministic output
+  ([02f2324](https://github.com/AmazeeLabs/silverback-mono/commit/02f2324ccf7e2a35c1140c06bcd5690d0ae56dac))
+
+### Code Refactoring
+
+- **graphql:** streamline default value behaviour
+  ([81c9bff](https://github.com/AmazeeLabs/silverback-mono/commit/81c9bffebd6b6bdc4dd5a53b21387e462ebc44fc))
+
+### BREAKING CHANGES
+
+- **graphql:** GraphQL field return types of custom types require either a
+  @default definition, or have to be nullable.
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.15.18](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@1.15.17...@-amazeelabs/silverback-drupal@1.15.18) (2023-01-05)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
