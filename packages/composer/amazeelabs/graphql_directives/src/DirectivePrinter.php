@@ -7,6 +7,7 @@ use GraphQL\Language\AST\DirectiveDefinitionNode;
 use GraphQL\Language\AST\InputValueDefinitionNode;
 use GraphQL\Language\AST\NameNode;
 use GraphQL\Language\AST\NodeList;
+use GraphQL\Language\AST\StringValueNode;
 use GraphQL\Language\DirectiveLocation;
 use GraphQL\Language\Printer;
 use GraphQL\Language\Parser;
@@ -34,8 +35,27 @@ class DirectivePrinter {
         }
       }
 
+      $description = isset($definition['description'])
+        ? [$definition['description']]
+        : [];
+
+      if (isset($definition['provider']) || isset($definition['class'])) {
+        $description[] = '';
+      }
+
+      if (isset($definition['provider'])) {
+        $description[] = sprintf('Provided by the "%s" module.', $definition['provider']);
+      }
+
+      if (isset($definition['class'])) {
+        $description[] = sprintf('Implemented in "%s".', $definition['class']);
+      }
+
       $dir = new DirectiveDefinitionNode([
         'name' => new NameNode(['value' => $definition['id']]),
+        'description' => count($description)
+          ? new StringValueNode(['value' => implode("\n", $description), 'block' => TRUE])
+          : NULL,
         'arguments' => new NodeList($arguments),
         'locations' => new NodeList([
           new NameNode(['value' => DirectiveLocation::FIELD_DEFINITION]),
