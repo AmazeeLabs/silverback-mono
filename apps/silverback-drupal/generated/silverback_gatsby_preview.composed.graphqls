@@ -5,6 +5,30 @@ Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Arg".
 directive @arg(name: String!) on FIELD_DEFINITION | UNION | INTERFACE
 
 """
+Provided by the "silverback_gutenberg" module.
+Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockChildren".
+"""
+directive @resolveEditorBlockChildren on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Provided by the "silverback_gutenberg" module.
+Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockMarkup".
+"""
+directive @resolveEditorBlockMarkup on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Provided by the "silverback_gutenberg" module.
+Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockMedia".
+"""
+directive @resolveEditorBlockMedia on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Provided by the "silverback_gutenberg" module.
+Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockType".
+"""
+directive @resolveEditorBlockType on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
 Apply all directives on the right to output on the left.
 """
 directive @map on FIELD_DEFINITION
@@ -22,6 +46,14 @@ Mark a type as member of a generic.
 The id argument contains a string that has to match the generics resolution.
 """
 directive @type(id: String!) on OBJECT
+
+"""
+Parse a gutenberg document into block data.
+
+Provided by the "silverback_gutenberg" module.
+Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlocks".
+"""
+directive @resolveEditorBlocks(path: String!, ignored: [String!], aggregated: [String!]) on FIELD_DEFINITION | UNION | INTERFACE
 
 """
 Provide a static value as JSON string.
@@ -62,6 +94,14 @@ Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityTranslations".
 """
 directive @resolveEntityTranslations on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Retrieve an editor block attribute.
+
+Provided by the "silverback_gutenberg" module.
+Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockAttribute".
+"""
+directive @resolveEditorBlockAttribute(key: String!, plainText: Boolean) on FIELD_DEFINITION | UNION | INTERFACE
 
 """
 Retrieve an entities bundle.
@@ -176,7 +216,7 @@ type ParagraphReferences {
 type GutenbergPage @entity(type: "node", bundle: "gutenberg_page") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
-  body: [RootBlock!]! @resolveEditorBlocks(path: "body.value", ignore: ["custom\/root", "core\/columns"])
+  body: [RootBlock!]! @resolveEditorBlocks(path: "body.value", ignored: ["custom\/root", "core\/columns"])
 }
 
 type Webform @entity(type: "webform", access: false) {
@@ -194,40 +234,40 @@ type Article @entity(type: "node", bundle: "article") {
   template: String @isTemplate
 }
 
-union RootBlock = BlockTwoColumns | BlockHtmlList | BlockHtmlParagraph | BlockHtmlQuote | BlockImage | BlockTeaser
+union RootBlock @resolveEditorBlockType = BlockTwoColumns | BlockHtmlList | BlockHtmlParagraph | BlockHtmlQuote | BlockImage | BlockTeaser
 
-union ContentBlock = BlockHtmlList | BlockHtmlParagraph | BlockHtmlQuote | BlockImage | BlockTeaser
+union ContentBlock @resolveEditorBlockType = BlockHtmlList | BlockHtmlParagraph | BlockHtmlQuote | BlockImage | BlockTeaser
 
-type BlockTwoColumns @editorBlock(type: "custom\/two-columns") {
-  children: [BlockColumn!]! @resolveEditorBlockAttribute(name: "children")
+type BlockTwoColumns @type(id: "custom\/two-columns") {
+  children: [BlockColumn!]! @resolveEditorBlockChildren
 }
 
-type BlockColumn @editorBlock(type: "core\/column") {
-  children: [ContentBlock!]! @resolveEditorBlockAttribute(name: "children")
+type BlockColumn @type(id: "core\/column") {
+  children: [ContentBlock!]! @resolveEditorBlockChildren
 }
 
-type BlockHtmlParagraph @editorBlock(type: "core\/paragraph") {
-  html: String! @resolveEditorBlockAttribute(name: "markup")
+type BlockHtmlParagraph @type(id: "core\/paragraph") {
+  html: String! @resolveEditorBlockMarkup
 }
 
-type BlockHtmlList @editorBlock(type: "core\/list") {
-  html: String! @resolveEditorBlockAttribute(name: "markup")
+type BlockHtmlList @type(id: "core\/list") {
+  html: String! @resolveEditorBlockMarkup
 }
 
-type BlockHtmlQuote @editorBlock(type: "core\/quote") {
-  html: String! @resolveEditorBlockAttribute(name: "markup")
+type BlockHtmlQuote @type(id: "core\/quote") {
+  html: String! @resolveEditorBlockMarkup
 }
 
-type BlockImage @editorBlock(type: "drupalmedia\/drupal-media-entity") {
-  caption: String! @resolveEditorBlockAttribute(name: "caption")
-  image: Image @resolveEditorBlockAttribute(name: "media")
+type BlockImage @type(id: "drupalmedia\/drupal-media-entity") {
+  caption: String! @resolveEditorBlockAttribute(key: "caption")
+  image: Image @resolveEditorBlockMedia
 }
 
-type BlockTeaser @editorBlock(type: "custom\/teaser") {
-  image: Image @resolveEditorBlockAttribute(name: "media")
-  title: String! @resolveEditorBlockAttribute(name: "title")
-  subtitle: String! @resolveEditorBlockAttribute(name: "subtitle")
-  url: String! @resolveEditorBlockAttribute(name: "url")
+type BlockTeaser @type(id: "custom\/teaser") {
+  image: Image @resolveEditorBlockMedia
+  title: String! @resolveEditorBlockAttribute(key: "title")
+  subtitle: String! @resolveEditorBlockAttribute(key: "subtitle")
+  url: String! @resolveEditorBlockAttribute(key: "url")
 }
 
 type MenuItem {
@@ -268,42 +308,6 @@ directive @template on FIELD_DEFINITION
 directive @resolveEntityReference(field: String!, single: Boolean!) on FIELD_DEFINITION
 
 directive @resolveEntityReferenceRevisions(field: String!, single: Boolean!) on FIELD_DEFINITION
-
-"""
-Annotate a type to correspond to a editor block (e.g. Gutenberg)
-
-type:
-  The block ID within the CMS.
-"""
-directive @editorBlock(type: String!) on OBJECT
-
-"""
-Parse field content using the editor block parser.
-
-path:
-  The property path to resolve the HTML content blog within the current entity.
-
-ignore:
-  List of block types that don't contribute to the document and will be ignored.
-  If an ignored block has children, they are flattened into the list of blocks.
-  "core/group" is ignored by default.
-
-aggregate:
-  List of block types that are treated like plain HTML without attributes, just
-  as "core/paragraph". Sequences of these blocks will be aggregated into a
-  single instance of "core/paragraph".
-"""
-directive @resolveEditorBlocks(path: String!, ignore: [String!], aggregate: [String!]) on FIELD_DEFINITION
-
-"""
-Resolve an attribute value on a block.
-
-* "markup": resolve the blocks inner html content as string
-* "children": resolves the blocks inner blocks as array of blocks
-* "media": a media item, related to that block
-* ... anything else will resolve the blocks attribute as string
-"""
-directive @resolveEditorBlockAttribute(name: String!) on FIELD_DEFINITION
 
 directive @entity(type: String!, bundle: String, access: Boolean) on OBJECT
 

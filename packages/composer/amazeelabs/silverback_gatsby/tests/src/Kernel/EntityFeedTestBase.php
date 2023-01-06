@@ -11,7 +11,14 @@ abstract class EntityFeedTestBase extends GraphQLTestBase {
 
   protected $strictConfigSchema = FALSE;
 
-  public static $modules = ['text', 'graphql_directives', 'silverback_gatsby', 'silverback_gatsby_example'];
+  public static $modules = [
+    'text',
+    'path_alias',
+    'graphql_directives',
+    'silverback_gatsby',
+    'silverback_gutenberg',
+    'silverback_gatsby_example',
+  ];
 
   /**
    * A GraphQL server instance triggering updates for a public build server.

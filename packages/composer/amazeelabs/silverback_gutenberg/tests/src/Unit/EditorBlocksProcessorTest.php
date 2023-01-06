@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\silverback_gatsby\Tests\Unit;
+namespace Drupal\silverback_gutenberg\Tests\Unit;
 
-use Drupal\silverback_gatsby\EditorBlocksProcessor;
+use Drupal\silverback_gutenberg\EditorBlocksProcessor;
 use Drupal\Tests\UnitTestCase;
 
 class EditorBlocksProcessorTest extends UnitTestCase {

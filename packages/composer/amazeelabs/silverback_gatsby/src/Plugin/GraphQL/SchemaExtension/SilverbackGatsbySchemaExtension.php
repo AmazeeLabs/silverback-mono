@@ -289,7 +289,6 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
   protected function registerDirectableResolvers(DocumentNode $ast, ResolverRegistryInterface $registry): void {
     $builder = new ResolverBuilder();
     $this->addFieldResolvers($ast, $registry, $builder);
-    $this->addTypeResolvers($ast, $registry, $builder);
     $this->addOriginalTypenameResolvers($ast, $registry, $builder);
   }
 
@@ -324,60 +323,6 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
         $registry->addFieldResolver($definition->name->value, '_original_typename', $builder->fromValue($definition->name->value));
       }
     }
-  }
-
-  /**
-   * Collect and build type resolvers from the AST.
-   *
-   * @param \Drupal\graphql\GraphQL\ResolverRegistry $registry
-   * @param \Drupal\graphql\GraphQL\ResolverBuilder $builder
-   *
-   * @return void
-   */
-  protected function addTypeResolvers(DocumentNode $ast, ResolverRegistry $registry, ResolverBuilder $builder) {
-    $editorBlockTypes = [];
-    foreach ($ast->definitions->getIterator() as $definition) {
-      if ($definition instanceof ObjectTypeDefinitionNode && $definition->directives) {
-        foreach($definition->directives->getIterator() as $directive) {
-          if ($directive->name->value === 'editorBlock') {
-            foreach ($directive->arguments->getIterator() as $argument) {
-              if ($argument->name->value === 'type') {
-                $editorBlockTypes[$definition->name->value] = $argument->value->value;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    $editorBlockUnions = [];
-
-    foreach ($ast->definitions->getIterator() as $definition) {
-      if ($definition instanceof UnionTypeDefinitionNode) {
-        $union = $definition->name->value;
-        $editorBlockUnions[$union] = [];
-        $unionTypes = [];
-        foreach ($definition->types->getIterator() as $type) {
-          $unionType = $type->name->value;
-          $unionTypes[] = $unionType;
-          if (array_key_exists($unionType, $editorBlockTypes)) {
-            $editorBlockUnions[$union][$editorBlockTypes[$unionType]] = $unionType;
-          }
-        }
-        if (count($editorBlockUnions[$union]) !== 0 && $unionTypes !== array_values($editorBlockUnions[$union])) {
-          throw new LogicException('Block unions have to consist of @editorBlock types only.');
-        }
-      }
-    }
-
-    foreach($editorBlockUnions as $unionType => $typeMap) {
-      if (count($typeMap) > 0)  {
-        $registry->addTypeResolver($unionType, function ($block) use ($unionType, $typeMap) {
-          return $typeMap[$block['blockName']];
-        });
-      }
-    }
-
   }
 
   /**
@@ -462,45 +407,6 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
     };
     foreach ($this->getResolveDirectives($ast) as $path => $definition) {
       switch ($definition['name']) {
-
-        case 'resolveEditorBlocks':
-          $addResolver($path, $builder->produce('editor_blocks', [
-            'path' => $builder->fromValue($definition['arguments']['path']),
-            'entity' => $builder->fromParent(),
-            'type' => $builder->callback(
-              fn(EntityInterface $entity) => $entity->getTypedData()->getDataDefinition()->getDataType()
-            ),
-            'ignored' => $builder->fromValue($definition['arguments']['ignore'] ?? []),
-            'aggregated' => $builder->fromValue($definition['arguments']['aggregate'] ?? ['core/paragraph'])
-          ]));
-          break;
-
-        case 'resolveEditorBlockAttribute':
-          switch ($definition['arguments']['name']) {
-            case 'markup':
-              $addResolver($path, $builder->produce('editor_block_html')
-                ->map('block', $builder->fromParent())
-              );
-              break;
-            case 'media':
-              $addResolver($path, $builder->produce('editor_block_media')
-                ->map('block', $builder->fromParent())
-              );
-              break;
-            case 'children':
-              $addResolver($path, $builder->produce('editor_block_children')
-                ->map('block', $builder->fromParent())
-              );
-              break;
-            default:
-              $addResolver($path, $builder->produce('editor_block_attribute')
-                ->map('block', $builder->fromParent())
-                ->map('name', $builder->fromValue($definition['arguments']['name']))
-                ->map('plainText', $builder->fromValue($definition['arguments']['plainText'] ?? true))
-              );
-              break;
-          }
-          break;
 
         case 'resolveEntityReference':
           $resolverMultiple = $builder->defaultValue(

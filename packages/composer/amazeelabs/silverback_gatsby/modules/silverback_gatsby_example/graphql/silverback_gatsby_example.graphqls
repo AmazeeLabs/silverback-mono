@@ -9,27 +9,6 @@ union WithPath = Page | Post
 type Page @entity(type: "node", bundle: "page") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
-  content: [Blocks!]! @resolveEditorBlocks(path: "body.value", aggregate: ["core/paragraph", "core/list"])
-}
-
-union Blocks = Text | Figure | Columns
-union ColumnBlocks = Text | Figure
-
-type Text @editorBlock(type: "core/paragraph") {
-  content: String @resolveEditorBlockAttribute(name: "markup")
-}
-
-type Figure @editorBlock(type: "custom/figure") {
-  caption: String @resolveEditorBlockAttribute(name: "caption")
-  image: Image @resolveEditorBlockAttribute(name: "media")
-}
-
-type Image {
-  alt: String @resolveProperty(path: "field_media_image.alt")
-}
-
-type Columns @editorBlock(type: "custom/columns") {
-  columns: [ColumnBlocks!]! @resolveEditorBlockAttribute(name: "children")
 }
 
 type Post @entity(type: "node", bundle: "blog") {

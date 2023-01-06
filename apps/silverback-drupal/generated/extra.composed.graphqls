@@ -5,6 +5,30 @@ Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Arg".
 directive @arg(name: String!) on FIELD_DEFINITION | UNION | INTERFACE
 
 """
+Provided by the "silverback_gutenberg" module.
+Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockChildren".
+"""
+directive @resolveEditorBlockChildren on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Provided by the "silverback_gutenberg" module.
+Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockMarkup".
+"""
+directive @resolveEditorBlockMarkup on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Provided by the "silverback_gutenberg" module.
+Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockMedia".
+"""
+directive @resolveEditorBlockMedia on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Provided by the "silverback_gutenberg" module.
+Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockType".
+"""
+directive @resolveEditorBlockType on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
 Apply all directives on the right to output on the left.
 """
 directive @map on FIELD_DEFINITION
@@ -22,6 +46,14 @@ Mark a type as member of a generic.
 The id argument contains a string that has to match the generics resolution.
 """
 directive @type(id: String!) on OBJECT
+
+"""
+Parse a gutenberg document into block data.
+
+Provided by the "silverback_gutenberg" module.
+Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlocks".
+"""
+directive @resolveEditorBlocks(path: String!, ignored: [String!], aggregated: [String!]) on FIELD_DEFINITION | UNION | INTERFACE
 
 """
 Provide a static value as JSON string.
@@ -62,6 +94,14 @@ Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityTranslations".
 """
 directive @resolveEntityTranslations on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Retrieve an editor block attribute.
+
+Provided by the "silverback_gutenberg" module.
+Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockAttribute".
+"""
+directive @resolveEditorBlockAttribute(key: String!, plainText: Boolean) on FIELD_DEFINITION | UNION | INTERFACE
 
 """
 Retrieve an entities bundle.

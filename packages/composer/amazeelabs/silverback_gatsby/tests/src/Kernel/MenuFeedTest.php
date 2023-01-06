@@ -13,7 +13,13 @@ class MenuFeedTest extends GraphQLTestBase {
   protected $strictConfigSchema = FALSE;
   protected $itemCount;
 
-  public static $modules = ['graphql_directives', 'silverback_gatsby', 'silverback_gatsby_example'];
+  public static $modules = [
+    'path_alias',
+    'graphql_directives',
+    'silverback_gatsby',
+    'silverback_gutenberg',
+    'silverback_gatsby_example',
+  ];
 
   protected function setUp(): void {
     parent::setUp();
