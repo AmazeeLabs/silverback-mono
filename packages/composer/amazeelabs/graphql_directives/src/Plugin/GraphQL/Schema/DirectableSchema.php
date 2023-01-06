@@ -121,8 +121,21 @@ class DirectableSchema extends ComposableSchema {
       if ($definition instanceof ObjectTypeDefinitionNode) {
         foreach($definition->fields as $field) {
           if ($field->directives) {
+            /** @var \Drupal\graphql\GraphQL\Resolver\Composite[] $composites */
+            $composites = [];
             $composite = new Composite([]);
+
+            // Stack composites of directives on top of each other.
             foreach ($field->directives as $directive) {
+
+              // If the directive is "map" start a new stack entry.
+              if ($directive->name->value === 'map') {
+                $composites[] = $composite;
+                $composite = new Composite([]);
+                continue;
+              }
+
+              // If the directive is implemented, add it to the current composite.
               if ($this->directiveManager->hasDefinition($directive->name->value)) {
                 $plugin = $this->directiveManager
                   ->createInstance($directive->name->value);
@@ -133,6 +146,14 @@ class DirectableSchema extends ComposableSchema {
                   ));
               }
             }
+
+            // Fold the stack of composites, but adding each composite as a mapped
+            // resolver to its parent in the stack.
+            while($parent = array_pop($composites)) {
+              $parent->add($builder->map($composite));
+              $composite = $parent;
+            }
+
             $registry->addFieldResolver(
               $definition->name->value,
               $field->name->value,

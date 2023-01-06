@@ -37,6 +37,21 @@ type Query {
 }
 ```
 
+### Mapping
+
+The `@map` directive allows to map over the output of its left neighbour and
+apply all directives on the right side to each item.
+
+```graphql
+type Query {
+  # This will emit ["a", "b"].
+  map: [String!]!
+    @value(json: "[{\"x\": \"a\"},{\"x\": \"b\"}]")
+    @map
+    @prop(key: "x")
+}
+```
+
 ## Directives
 
 ### `@value`
@@ -59,6 +74,32 @@ position.
 type Query {
   # This will emit "three".
   list: String! @value(json: "[\"one\", \"two\", \"three\"]") @seek(pos: 2)
+}
+```
+
+### `@prop`
+
+Extracts a property from an object or map. The `key` argument marks the target key.
+
+```graphql
+type Query {
+  # This will emit "bar".
+  prop: String! @value(json: "{\"foo\": \"bar\"}") @prop(key: "foo")
+}
+```
+
+### `@map`
+
+Iterate over the current result list and apply the following directives to each
+item.
+
+```graphql
+type Query {
+  # This will emit ["a", "b"].
+  map: [String!]!
+    @value(json: "[{\"x\": \"a\"},{\"x\": \"b\"}]")
+    @map
+    @prop(key: "x")
 }
 ```
 

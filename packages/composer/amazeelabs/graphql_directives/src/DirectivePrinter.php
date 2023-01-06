@@ -22,7 +22,18 @@ class DirectivePrinter {
 
   public function printDirectives() {
     $definitions = $this->directiveManager->getDefinitions();
-    $directives = [];
+
+    $map = new DirectiveDefinitionNode([
+      'name' => new NameNode(['value' => 'map']),
+      'description' => new StringValueNode(['value' => implode("\n", [
+          'Apply all directives on the right to output on the left.'
+        ]), 'block' => TRUE]),
+      'arguments' => new NodeList([]),
+      'locations' => new NodeList([
+        new NameNode(['value' => DirectiveLocation::FIELD_DEFINITION]),
+      ]),
+    ]);
+    $directives = [Printer::doPrint($map)];
     foreach ($definitions as $definition) {
 
       $arguments = [];
