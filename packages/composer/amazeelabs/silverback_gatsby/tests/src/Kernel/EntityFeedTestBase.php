@@ -11,7 +11,7 @@ abstract class EntityFeedTestBase extends GraphQLTestBase {
 
   protected $strictConfigSchema = FALSE;
 
-  public static $modules = ['text', 'silverback_gatsby', 'silverback_gatsby_example'];
+  public static $modules = ['text', 'graphql_directives', 'silverback_gatsby', 'silverback_gatsby_example'];
 
   /**
    * A GraphQL server instance triggering updates for a public build server.
@@ -58,14 +58,15 @@ abstract class EntityFeedTestBase extends GraphQLTestBase {
 
     $userPreview = $this->createUser(['bypass node access']);
     $this->serverPreview = Server::create([
-      'schema' => 'silverback_gatsby_example',
+      'schema' => 'directable',
       'name' => 'silverback_gatsby_preview',
       'endpoint' => '/gatsby-preview',
       'schema_configuration' => [
-        'silverback_gatsby_example' => [
+        'directable' => [
           'extensions' => [
             'silverback_gatsby' => 'silverback_gatsby'
           ],
+          'schema_definition' => __DIR__ . '/../../../modules/silverback_gatsby_example/graphql/silverback_gatsby_example.graphqls',
           'build_webhook' => 'http://localhost:8001/__refresh',
           'update_webhook' => 'http://localhost:8001/__update',
           'user' => $userPreview->uuid(),
@@ -76,14 +77,15 @@ abstract class EntityFeedTestBase extends GraphQLTestBase {
 
     $userBuild = $this->createUser(['access content']);
     $this->serverBuild = Server::create([
-      'schema' => 'silverback_gatsby_example',
+      'schema' => 'directable',
       'name' => 'silverback_gatsby_build',
       'endpoint' => '/gatsby',
       'schema_configuration' => [
-        'silverback_gatsby_example' => [
+        'directable' => [
           'extensions' => [
             'silverback_gatsby' => 'silverback_gatsby'
           ],
+          'schema_definition' => __DIR__ . '/../../../modules/silverback_gatsby_example/graphql/silverback_gatsby_example.graphqls',
           'build_webhook' => 'http://localhost:8000/__rebuild',
           'user' => $userBuild->uuid(),
         ]
@@ -93,14 +95,15 @@ abstract class EntityFeedTestBase extends GraphQLTestBase {
 
     $userPublic = $this->createUser(['access content']);
     $this->serverPublic = Server::create([
-      'schema' => 'silverback_gatsby_example',
+      'schema' => 'directable',
       'name' => 'silverback_gatsby_public',
       'endpoint' => '/gatsby-public',
       'schema_configuration' => [
-        'silverback_gatsby_example' => [
+        'directable' => [
           'extensions' => [
             'silverback_gatsby' => 'silverback_gatsby'
           ],
+          'schema_definition' => __DIR__ . '/../../../modules/silverback_gatsby_example/graphql/silverback_gatsby_example.graphqls',
           'user' => $userPublic->uuid(),
         ]
       ]

@@ -35,7 +35,7 @@ type Columns @editorBlock(type: "custom/columns") {
 type Post @entity(type: "node", bundle: "blog") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
-  template: String @template
+  template: String @template @layout
 }
 
 type MenuItem {

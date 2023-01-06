@@ -80,6 +80,19 @@ class Build extends EntityForm {
     array $form,
     FormStateInterface $form_state
   ) {
+    /** @var \Drupal\graphql\Entity\ServerInterface $server */
+    $server = $this->entity;
+    $schema = $server->get('schema');
+    $enabled = (bool) $this->entity->get('schema_configuration')[$schema]['extensions']['silverback_gatsby'];
+    if (!$enabled) {
+      $form['message'] = [
+        '#type' => 'html_tag',
+        '#tag' => 'p',
+        '#value' => $this->t('The Gatsby extension is not enabled for this schema.'),
+      ];
+      return $form;
+    }
+
     $form = parent::buildForm($form, $form_state);
 
     $form['trigger_build'] = [
@@ -92,9 +105,7 @@ class Build extends EntityForm {
       '#suffix' => '<span class="gatsby-build-message"></span>',
     ];
 
-    /** @var \Drupal\graphql\Entity\ServerInterface $server */
-    $server = $this->entity;
-    $schema = $server->get('schema');
+
     $form['actions']['#access'] = $this->currentUser->hasPermission('administer graphql configuration');
     $form['schema_configuration'] = [
       '#type' => 'container',
@@ -107,15 +118,78 @@ class Build extends EntityForm {
     /** @var \Drupal\graphql\Plugin\SchemaPluginInterface $instance */
     $instance = $schema ? $this->schemaManager->createInstance($schema) : NULL;
     if ($instance instanceof PluginFormInterface && $instance instanceof ConfigurableInterface) {
-      $instance->setConfiguration($server->get('schema_configuration')[$schema] ?? []);
+      $configuration = $server->get('schema_configuration');
       $form['schema_configuration'][$schema] = [
         '#type' => 'fieldset',
         '#title' => $this->t('Build configuration'),
         '#tree' => TRUE,
       ];
-      $form['schema_configuration'][$schema] += $instance->buildConfigurationForm([], $form_state);
+
+      $buildSettings['build_trigger_on_save'] = [
+        '#type' => 'checkbox',
+        '#required' => FALSE,
+        '#title' => $this->t('Trigger a build on entity save.'),
+        '#description' => $this->t('If not checked, make sure to have an alternate build method (cron, manual).'),
+        '#default_value' => $configuration[$schema]['build_trigger_on_save'] ?? '',
+      ];
+      $buildSettings['build_webhook'] = [
+        '#type' => 'textfield',
+        '#required' => FALSE,
+        '#title' => $this->t('Build webhook'),
+        '#description' => $this->t('A webhook that will be notified when content changes relevant to this server happen.'),
+        '#default_value' => $configuration[$schema]['build_webhook'] ?? '',
+      ];
+      $buildSettings['update_webhook'] = [
+        '#type' => 'textfield',
+        '#required' => FALSE,
+        '#title' => $this->t('Update webhook'),
+        '#description' => $this->t('A webhook to notify clients about realtime data updates.'),
+        '#default_value' => $configuration[$schema]['update_webhook'] ?? '',
+      ];
+      $buildSettings['build_url'] = [
+        '#type' => 'url',
+        '#required' => FALSE,
+        '#title' => $this->t('Build url'),
+        '#description' => $this->t('The frontend url that is the result of the build. With the scheme and without a trailing slash (https://www.example.com).'),
+        '#default_value' => $configuration[$schema]['build_url'] ?? '',
+      ];
+
+      /** @var \Drupal\graphql\Form\ServerForm $formObject */
+      $formObject = $form_state->getFormObject();
+      /** @var \Drupal\graphql\Entity\Server $server */
+      $server = $formObject->getEntity();
+
+      $buildSettings['user'] = [
+        '#type' => 'select',
+        '#options' => ['' => $this->t('- None -')],
+        '#title' => $this->t('Notification user'),
+        '#description' => $this->t('Only changes visible to this user will trigger build updates.'),
+        '#default_value' => $configuration[$schema]['user'] ?? '',
+        '#states'=> [
+          'required' => [
+            ':input[name="schema_configuration[' . $server->schema . '][extensions][silverback_gatsby]"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+      $users = [];
+      /** @var \Drupal\user\UserInterface $user */
+      foreach ($this->entityTypeManager->getStorage('user')->loadMultiple() as $user) {
+        $users[$user->uuid()] = $user->getAccountName() === '' ? 'Anonymous' : $user->getAccountName();
+      }
+      natcasesort($users);
+      $buildSettings['user']['#options'] += $users;
+      $form['schema_configuration'][$schema] += $buildSettings;
     }
     return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function buildEntity(array $form, FormStateInterface $form_state) {
+    $entity = clone $this->entity;
+    $entity->schema_configuration[$entity->schema] += $form_state->getValue('schema_configuration')[$entity->schema];
+    return $entity;
   }
 
   /**
@@ -134,21 +208,6 @@ class Build extends EntityForm {
     $buildMessage = $this->buildTrigger->triggerLatestBuild($this->entity->id());
     $response->addCommand(new HtmlCommand('.gatsby-build-message', $buildMessage));
     return $response;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function submitForm(array &$form, FormStateInterface $form_state): void {
-    parent::submitForm($form, $form_state);
-    $server = $this->entity;
-    $schema = $server->get('schema');
-    /** @var \Drupal\graphql\Plugin\SchemaPluginInterface $instance */
-    $instance = $this->schemaManager->createInstance($schema);
-    if ($instance instanceof PluginFormInterface && $instance instanceof ConfigurableInterface) {
-      $state = SubformState::createForSubform($form['schema_configuration'][$schema], $form, $form_state);
-      $instance->submitConfigurationForm($form['schema_configuration'][$schema], $state);
-    }
   }
 
   /**

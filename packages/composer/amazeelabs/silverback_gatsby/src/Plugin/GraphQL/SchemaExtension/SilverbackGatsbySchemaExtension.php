@@ -12,9 +12,7 @@ use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
-use Drupal\graphql\Plugin\GraphQL\SchemaExtension\SdlSchemaExtensionPluginBase;
-use Drupal\silverback_gatsby\GraphQL\DirectiveProviderExtensionInterface;
-use Drupal\silverback_gatsby\GraphQL\ParentAwareSchemaExtensionInterface;
+use Drupal\graphql_directives\DirectableSchemaExtensionPluginBase;
 use Drupal\silverback_gatsby\Plugin\FeedInterface;
 use Drupal\silverback_gatsby\Plugin\Gatsby\Feed\MenuFeed;
 use Drupal\typed_data\Exception\LogicException;
@@ -23,7 +21,6 @@ use GraphQL\Language\AST\ListValueNode;
 use GraphQL\Language\AST\ObjectTypeDefinitionNode;
 use GraphQL\Language\AST\StringValueNode;
 use GraphQL\Language\AST\UnionTypeDefinitionNode;
-use GraphQL\Language\Parser;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -36,15 +33,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   description = "Schema extension providing default resolvers for Gatsby."
  * )
  */
-class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
-  implements ParentAwareSchemaExtensionInterface, DirectiveProviderExtensionInterface {
-
-  /**
-   * The parent schema's AST.
-   *
-   * @var \GraphQL\Language\AST\DocumentNode
-   */
-  protected DocumentNode $parentAst;
+class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBase {
 
   /**
    * The list of feeds that are used by the parent schema.
@@ -122,15 +111,6 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
 
   /**
    * {@inheritDoc}
-   *
-   * @throws \GraphQL\Error\SyntaxError
-   */
-  public function setParentSchemaDefinition(string $definition) {
-    $this->parentAst = Parser::parse($definition);
-  }
-
-  /**
-   * {@inheritDoc}
    */
   public function getDirectiveDefinitions(): string {
     $feeds = $this->feedManager->getDefinitions();
@@ -150,10 +130,10 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
    * @return \Drupal\silverback_gatsby\Plugin\FeedInterface[]
    * @throws \Drupal\Component\Plugin\Exception\PluginException
    */
-  public function getFeeds(): array {
+  public function getFeeds(DocumentNode $ast): array {
     if (count($this->feeds) === 0) {
       // Search for object type definitions ...
-      foreach ($this->parentAst->definitions->getIterator() as $definition) {
+      foreach ($ast->definitions->getIterator() as $definition) {
         // ... that have directives.
         if ($definition instanceof ObjectTypeDefinitionNode && $definition->directives) {
           // Create feed instances for all directives that are know to the
@@ -213,12 +193,12 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
   /**
    * @see SilverbackGatsbySchemaExtension::$resolvers
    */
-  protected function getResolveDirectives(): array {
+  protected function getResolveDirectives(DocumentNode $ast): array {
     if (isset($this->resolvers)) {
       return $this->resolvers;
     }
     $this->resolvers = [];
-    foreach ($this->parentAst->definitions->getIterator() as $definition) {
+    foreach ($ast->definitions->getIterator() as $definition) {
       if (!($definition instanceof ObjectTypeDefinitionNode)) {
         continue;
       }
@@ -271,7 +251,7 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
   /**
    * Build the automatic schema definition for a given Feed.
    */
-  protected function getSchemaDefinitions(FeedInterface $feed) : string {
+  protected function getSchemaDefinitions(DocumentNode $ast, FeedInterface $feed) : string {
     $typeName = $feed->getTypeName();
     $singleFieldName = $feed->getSingleFieldName();
     $listFieldName = $feed->getListFieldName();
@@ -299,31 +279,25 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
       $schema[] = "}";
     }
 
-    $schema[] = $feed->getExtensionDefinition($this->parentAst);
+    $schema[] = $feed->getExtensionDefinition($ast);
 
     return implode("\n", $schema);
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  public function getExtensionDefinition() {
+  protected function getDirectableExtensionDefinition(DocumentNode $ast): string {
     // Collect all active feeds and prepend their definitions to the schema.
-    $schema = array_map(fn (FeedInterface $feed) => $this->getSchemaDefinitions($feed), $this->getFeeds());
-    array_unshift($schema, parent::getExtensionDefinition());
-    array_unshift($schema, $this->getOriginalTypenameDefinitions());
+    $schema = array_map(fn (FeedInterface $feed) => $this->getSchemaDefinitions($ast, $feed), $this->getFeeds($ast));
+    array_unshift($schema, $this->getOriginalTypenameDefinitions($ast));
     return implode("\n", $schema);
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  public function registerResolvers(ResolverRegistryInterface $registry) {
+  protected function registerDirectableResolvers(DocumentNode $ast, ResolverRegistryInterface $registry): void {
     $builder = new ResolverBuilder();
-    $this->addFieldResolvers($registry, $builder);
-    $this->addTypeResolvers($registry, $builder);
-    $this->addOriginalTypenameResolvers($registry, $builder);
+    $this->addFieldResolvers($ast, $registry, $builder);
+    $this->addTypeResolvers($ast, $registry, $builder);
+    $this->addOriginalTypenameResolvers($ast, $registry, $builder);
   }
+
 
   /**
    * Attach a _original_typename field to every type.
@@ -333,9 +307,9 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
    *
    * @return string
    */
-  protected function getOriginalTypenameDefinitions() {
+  protected function getOriginalTypenameDefinitions(DocumentNode $ast): string {
     $types = [];
-    foreach ($this->parentAst->definitions->getIterator() as $definition) {
+    foreach ($ast->definitions->getIterator() as $definition) {
       if ($definition instanceof ObjectTypeDefinitionNode) {
         $name = $definition->name->value;
         $types[] = "extend type {$name} { _original_typename: String! }";
@@ -349,8 +323,8 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
    *
    * @return void
    */
-  protected function addOriginalTypenameResolvers(ResolverRegistry $registry, ResolverBuilder $builder) {
-    foreach ($this->parentAst->definitions->getIterator() as $definition) {
+  protected function addOriginalTypenameResolvers(DocumentNode $ast, ResolverRegistry $registry, ResolverBuilder $builder) {
+    foreach ($ast->definitions->getIterator() as $definition) {
       if ($definition instanceof ObjectTypeDefinitionNode) {
         $registry->addFieldResolver($definition->name->value, '_original_typename', $builder->fromValue($definition->name->value));
       }
@@ -365,9 +339,9 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
    *
    * @return void
    */
-  protected function addTypeResolvers(ResolverRegistry $registry, ResolverBuilder $builder) {
+  protected function addTypeResolvers(DocumentNode $ast, ResolverRegistry $registry, ResolverBuilder $builder) {
     $editorBlockTypes = [];
-    foreach ($this->parentAst->definitions->getIterator() as $definition) {
+    foreach ($ast->definitions->getIterator() as $definition) {
       if ($definition instanceof ObjectTypeDefinitionNode && $definition->directives) {
         foreach($definition->directives->getIterator() as $directive) {
           if ($directive->name->value === 'editorBlock') {
@@ -383,7 +357,7 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
 
     $editorBlockUnions = [];
 
-    foreach ($this->parentAst->definitions->getIterator() as $definition) {
+    foreach ($ast->definitions->getIterator() as $definition) {
       if ($definition instanceof UnionTypeDefinitionNode) {
         $union = $definition->name->value;
         $editorBlockUnions[$union] = [];
@@ -414,12 +388,12 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
   /**
    * Implement field resolvers for this extension.
    */
-  protected function addFieldResolvers(ResolverRegistry $registry, ResolverBuilder $builder) {
+  protected function addFieldResolvers(DocumentNode $ast, ResolverRegistry $registry, ResolverBuilder $builder) {
 
     $registry->addFieldResolver(
       'Query',
       'drupalFeedInfo',
-      $builder->fromValue(array_map(fn (FeedInterface $feed) => $feed->info(), $this->getFeeds()))
+      $builder->fromValue(array_map(fn (FeedInterface $feed) => $feed->info(), $this->getFeeds($ast)))
     );
     $registry->addFieldResolver(
       'Query',
@@ -446,7 +420,7 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
       ));
     }));
 
-    foreach($this->getFeeds() as $feed) {
+    foreach($this->getFeeds($ast) as $feed) {
 
       $idResolver = $feed->resolveId();
       $langcodeResolver = $feed->resolveLangcode();
@@ -491,7 +465,7 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
       [$type, $field] = explode('.', $path);
       $registry->addFieldResolver($type, $field, $resolver);
     };
-    foreach ($this->getResolveDirectives() as $path => $definition) {
+    foreach ($this->getResolveDirectives($ast) as $path => $definition) {
       switch ($definition['name']) {
 
         case 'resolveEntityPath':
@@ -622,7 +596,7 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
         case 'resolveMenuItems':
           [$type,] = explode('.', $path);
           /** @var MenuFeed $menuFeed */
-          $menuFeeds = array_filter($this->getFeeds(), function (FeedInterface $feed) use ($type) {
+          $menuFeeds = array_filter($this->getFeeds($ast), function (FeedInterface $feed) use ($type) {
             return $feed instanceof MenuFeed && $feed->getTypeName() === $type;
           });
           $menuFeed = array_pop($menuFeeds);

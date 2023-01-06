@@ -91,15 +91,11 @@ class DirectableSchema extends ComposableSchema {
    *
    * @throws \Exception
    */
-  protected function getSchemaDefinition() {
+  public function getSchemaDefinition() {
     $file = $this->configuration['schema_definition'];
-    if (!file_exists($file)) {
-      throw new \Exception(sprintf('Schema definition file %s does not exist.', $file));
-    }
-
     return implode("\n", [
       $this->directivePrinter->printDirectives(),
-      file_get_contents($file),
+      file_exists($file) ? file_get_contents($file) : parent::getSchemaDefinition(),
     ]);
   }
 
@@ -208,10 +204,27 @@ class DirectableSchema extends ComposableSchema {
   }
 
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
-    $form['schema_definition'] = [
+    $extensions = $this->extensionManager->getDefinitions();
+
+    $form[$this->pluginId]['extensions'] = [
+      '#type' => 'checkboxes',
+      '#required' => FALSE,
+      '#title' => $this->t('Enabled extensions'),
+      '#options' => [],
+      '#default_value' => $this->configuration[$this->pluginId]['extensions'] ?? [],
+    ];
+
+    foreach ($extensions as $key => $extension) {
+      $form[$this->pluginId]['extensions']['#options'][$key] = $extension['name'] ?? $extension['id'];
+
+      if (!empty($extension['description'])) {
+        $form[$this->pluginId]['extensions'][$key]['#description'] = $extension['description'];
+      }
+    }
+    $form[$this->pluginId]['schema_definition'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Schema definition'),
-      '#default_value' => $this->configuration['schema_definition'],
+      '#default_value' => $this->configuration[$this->pluginId]['schema_definition'],
       '#description' => $this->t(
         'Path to the schema definition file. Relative to webroot.'
       ),
@@ -222,16 +235,6 @@ class DirectableSchema extends ComposableSchema {
   /**
    * {@inheritdoc}
    */
-  public function defaultConfiguration() {
-    return [
-      'schema_definition' => 'schema.graphqls',
-      'extensions' => [],
-    ];
-  }
-
-  /**
-   *
-   */
   public function getSchemaDocument(array $extensions = []) {
     $document = parent::getSchemaDocument($extensions);
     foreach($extensions as $extension) {
@@ -240,6 +243,20 @@ class DirectableSchema extends ComposableSchema {
       }
     }
     return $document;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getExtensionDocument(array $extensions = []) {
+    return parent::getExtensionDocument($extensions);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getExtensions() {
+    return parent::getExtensions();
   }
 
 }

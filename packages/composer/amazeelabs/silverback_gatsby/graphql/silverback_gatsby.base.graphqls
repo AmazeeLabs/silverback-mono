@@ -1,11 +1,11 @@
 type Feed {
-  typeName: String!
-  translatable: Boolean!
-  singleFieldName: String!
-  listFieldName: String!
-  changes(lastBuild: Int, currentBuild: Int): [String!]!
-  pathFieldName: String
-  templateFieldName: String
+  typeName: String! @prop(key: "typeName")
+  translatable: Boolean! @prop(key: "translatable")
+  singleFieldName: String! @prop(key: "singleFieldName")
+  listFieldName: String! @prop(key: "listFieldName")
+  changes(lastBuild: Int, currentBuild: Int): [String!]! @prop(key: "changes")
+  pathFieldName: String @prop(key: "pathFieldName")
+  templateFieldName: String @prop(key: "templateFieldName")
 }
 
 ################################################################################
@@ -49,3 +49,120 @@ directive @resolveEntityReferenceRevisions(
   field: String!
   single: Boolean!
 ) on FIELD_DEFINITION
+
+"""
+Annotate a type to correspond to a editor block (e.g. Gutenberg)
+
+type:
+  The block ID within the CMS.
+
+"""
+directive @editorBlock(
+  type: String!
+) on OBJECT
+
+"""
+Parse field content using the editor block parser.
+
+path:
+  The property path to resolve the HTML content blog within the current entity.
+
+ignore:
+  List of block types that don't contribute to the document and will be ignored.
+  If an ignored block has children, they are flattened into the list of blocks.
+  "core/group" is ignored by default.
+
+aggregate:
+  List of block types that are treated like plain HTML without attributes, just
+  as "core/paragraph". Sequences of these blocks will be aggregated into a
+  single instance of "core/paragraph".
+
+"""
+directive @resolveEditorBlocks(
+  path: String!
+  ignore: [String!]
+  aggregate: [String!]
+) on FIELD_DEFINITION
+
+"""
+Resolve an attribute value on a block.
+
+* "markup": resolve the blocks inner html content as string
+* "children": resolves the blocks inner blocks as array of blocks
+* "media": a media item, related to that block
+* ... anything else will resolve the blocks attribute as string
+"""
+directive @resolveEditorBlockAttribute(
+  name: String!
+) on FIELD_DEFINITION
+
+
+# Directive for the "EntityFeed" plugin.
+directive @entity(
+  type: String!
+  bundle: String
+  access: Boolean
+) on OBJECT
+
+"""
+Directive for the "MenuFeed" plugin.
+
+menu_id:
+  The internal menu id.
+
+menu_ids:
+  Internal menu id's. The first one the current user has access to will be
+  picked.
+
+max_level:
+  The maximum level to be fetched.
+  This can be used to optimizing caching. Most of the time only one or two
+  levels of menus are immediately visible on the page. By declaring multiple
+  types, we can generate different cache buckets, so a new menu item on a low
+  level does not require a full rebuild of every page.
+"""
+directive @menu(
+  menu_id: String
+  menu_ids: [String!]
+  item_type: String
+  max_level: Int
+) on OBJECT
+
+"""
+Resolve menu items in a menu.
+
+max_level:
+  The maximum level to be fetched.
+  This can be used to optimizing caching. Most of the time only one or two
+  levels of menus are immediately visible on the page. By declaring multiple
+  types, we can generate different cache buckets, so a new menu item on a low
+  level does not require a full rebuild of every page.
+"""
+directive @resolveMenuItems(
+  max_level: Int
+) on FIELD_DEFINITION
+
+"""
+Resolve the menu items id.
+"""
+directive @resolveMenuItemId on FIELD_DEFINITION
+
+"""
+Resolve the menu item parents id.
+"""
+directive @resolveMenuItemParentId on FIELD_DEFINITION
+
+"""
+Resolve a menu items label.
+"""
+directive @resolveMenuItemLabel on FIELD_DEFINITION
+
+"""
+Resolve the Url from within a menu item.
+"""
+directive @resolveMenuItemUrl on FIELD_DEFINITION
+
+# Directive for the "StringTranslationFeed" plugin.
+directive @stringTranslation(
+  contextPrefix: String
+) on OBJECT

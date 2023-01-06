@@ -25,6 +25,7 @@ class GatsbyUpdateTriggerTest extends KernelTestBase {
     'node',
     'graphql',
     'content_translation',
+    'graphql_directives',
     'silverback_gatsby',
     'silverback_gatsby_example',
     'menu_link_content',
@@ -52,14 +53,15 @@ class GatsbyUpdateTriggerTest extends KernelTestBase {
     $this->trigger = $this->container->get('silverback_gatsby.update_trigger');
 
     Server::create([
-      'schema' => 'silverback_gatsby_example',
+      'schema' => 'directable',
       'name' => 'foo',
       'endpoint' => '/foo',
       'schema_configuration' => [
-        'silverback_gatsby_example' => [
+        'directable' => [
           'extensions' => [
             'silverback_gatsby' => 'silverback_gatsby'
           ],
+          'schema_definition' => __DIR__ . '/../../../modules/silverback_gatsby_example/graphql/silverback_gatsby_example.graphqls',
           'build_webhook' => 'http://localhost:8000/__refresh',
           'update_webhook' => 'http://localhost:8000/__update'
         ]
@@ -67,14 +69,15 @@ class GatsbyUpdateTriggerTest extends KernelTestBase {
     ])->save();
 
     Server::create([
-      'schema' => 'silverback_gatsby_example',
+      'schema' => 'directable',
       'name' => 'bar',
       'endpoint' => '/bar',
       'schema_configuration' => [
-        'silverback_gatsby_example' => [
+        'directable' => [
           'extensions' => [
             'silverback_gatsby' => 'silverback_gatsby'
           ],
+          'schema_definition' => __DIR__ . '/../../../modules/silverback_gatsby_example/graphql/silverback_gatsby_example.graphqls',
           'build_webhook' => 'http://localhost:9000/__refresh',
           'update_webhook' => 'http://localhost:9000/__update',
         ]

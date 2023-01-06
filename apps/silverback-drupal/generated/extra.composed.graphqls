@@ -1,3 +1,38 @@
+"""
+Apply all directives on the right to output on the left.
+"""
+directive @map on FIELD_DEFINITION
+
+"""
+Mark a type as member of a generic.
+The id argument contains a string that has to match the generics resolution.
+"""
+directive @type(id: String!) on OBJECT
+
+"""
+Provide a static value as JSON string.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Value".
+"""
+directive @value(json: String!) on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Retrieve an object or map property.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Prop".
+"""
+directive @prop(key: String!) on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Seek a specific element in a list.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Seek".
+"""
+directive @seek(pos: Int!) on FIELD_DEFINITION | UNION | INTERFACE
+
 schema {
   query: Query
 }
@@ -5,3 +40,4 @@ schema {
 type Query {
   extraField: String!
 }
+

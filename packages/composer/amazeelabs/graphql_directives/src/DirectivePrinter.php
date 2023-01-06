@@ -97,6 +97,7 @@ class DirectivePrinter {
       ]);
       $directives[] = Printer::doPrint($dir);
     }
+    asort($directives);
     return implode("\n", $directives);
   }
 }
