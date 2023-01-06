@@ -6,6 +6,7 @@ use Drupal\Component\Plugin\PluginManagerInterface;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\graphql\GraphQL\Resolver\Composite;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\Plugin\GraphQL\Schema\ComposableSchema;
@@ -120,22 +121,23 @@ class DirectableSchema extends ComposableSchema {
       if ($definition instanceof ObjectTypeDefinitionNode) {
         foreach($definition->fields as $field) {
           if ($field->directives) {
+            $composite = new Composite([]);
             foreach ($field->directives as $directive) {
               if ($this->directiveManager->hasDefinition($directive->name->value)) {
                 $plugin = $this->directiveManager
                   ->createInstance($directive->name->value);
                 $parameters = $this->argumentsToParameters($directive->arguments);
-
-                $registry->addFieldResolver(
-                  $definition->name->value,
-                  $field->name->value,
-                  $plugin->buildResolver(
+                $composite->add($plugin->buildResolver(
                     $builder,
                     $parameters
-                  )
-                );
+                  ));
               }
             }
+            $registry->addFieldResolver(
+              $definition->name->value,
+              $field->name->value,
+              $composite
+            );
           }
         }
       }

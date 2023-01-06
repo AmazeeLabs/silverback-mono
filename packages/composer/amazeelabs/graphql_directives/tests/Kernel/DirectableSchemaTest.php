@@ -37,4 +37,8 @@ class DirectableSchemaTest extends GraphQLTestBase {
   function testSchemaLoading() {
     $this->assertResults('{ foo }', [], ['foo' => 'bar']);
   }
+
+  function testSeekDirective() {
+    $this->assertResults('{ seek }', [], ['seek' => 'two']);
+  }
 }

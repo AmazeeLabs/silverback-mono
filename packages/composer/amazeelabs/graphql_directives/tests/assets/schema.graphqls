@@ -3,4 +3,5 @@ directive @unknown on FIELD_DEFINITION
 type Query {
   foo: String! @value(json: "\"bar\"")
   bar: String @unknown
+  seek: String! @value(json: "[\"one\", \"two\"]") @seek(pos: 1)
 }
