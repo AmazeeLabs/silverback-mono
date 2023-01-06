@@ -311,6 +311,22 @@ Various menu item properties.
 - `@resolveMenuItemLabel`
 - `@resolveMenuItemUrl`
 
+### `@resolveEntityReference` & `@resolveEntityReferenceRevisions`
+
+Resolve referenced entities attached to a given `field`. Will attempt to
+retrieve translations matching the current host entity.
+
+```graphql
+type Query {
+  post(id: String!): Post @loadEntity(type: "node", id: "$id") @lang
+}
+
+type Post {
+  title: String! @resolveEntityLabel
+  related: [Post!]! @resolveEntityReference(field: "field_related")
+}
+```
+
 ## Extending
 
 To add custom directives, create a module and add new Plugins in the

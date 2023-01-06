@@ -16,7 +16,7 @@ export const query = graphql`
 
 type TreeInput = {
   id: string;
-  parent: string;
+  parent?: string;
   label: string;
   url: string;
 };

@@ -5,7 +5,6 @@ namespace Drupal\Tests\graphql_directives\Kernel;
 use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
-use Drupal\graphql\Entity\Server;
 use Drupal\node\Entity\NodeType;
 use Drupal\Tests\graphql\Kernel\GraphQLTestBase;
 use Drupal\Tests\graphql_directives\Traits\GraphQLDirectivesTestTrait;

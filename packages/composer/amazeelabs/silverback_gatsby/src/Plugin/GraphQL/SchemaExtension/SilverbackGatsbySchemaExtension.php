@@ -187,52 +187,6 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
   }
 
   /**
-   * @see SilverbackGatsbySchemaExtension::$resolvers
-   */
-  protected function getResolveDirectives(DocumentNode $ast): array {
-    if (isset($this->resolvers)) {
-      return $this->resolvers;
-    }
-    $this->resolvers = [];
-    foreach ($ast->definitions->getIterator() as $definition) {
-      if (!($definition instanceof ObjectTypeDefinitionNode)) {
-        continue;
-      }
-      foreach ($definition->fields as $field) {
-        foreach ($field->directives as $fieldDirective) {
-          $list = [
-            'resolveEntityReference',
-            'resolveEntityReferenceRevisions',
-          ];
-          if (in_array($fieldDirective->name->value, $list, TRUE)) {
-            $graphQlPath = $definition->name->value . '.' . $field->name->value;
-            $name = $fieldDirective->name->value;
-            $this->resolvers[$graphQlPath] = [
-              'name' => $name,
-              'arguments' => [],
-            ];
-            foreach ($fieldDirective->arguments->getIterator() as $arg) {
-              /** @var \GraphQL\Language\AST\ArgumentNode $arg */
-              if ($arg->value instanceof ListValueNode) {
-                $this->resolvers[$graphQlPath]['arguments'][$arg->name->value] = [];
-                foreach ($arg->value->values->getIterator() as $value) {
-                  if ($value instanceof StringValueNode) {
-                    $this->resolvers[$graphQlPath]['arguments'][$arg->name->value][] = $value->value;
-                  }
-                }
-              }
-              else {
-                $this->resolvers[$graphQlPath]['arguments'][$arg->name->value] = $arg->value->value;
-              }
-            }
-          }
-        }
-      }
-    }
-    return $this->resolvers;
-  }
-
-  /**
    * Build the automatic schema definition for a given Feed.
    */
   protected function getSchemaDefinitions(DocumentNode $ast, FeedInterface $feed) : string {
@@ -394,49 +348,6 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
       [$type, $field] = explode('.', $path);
       $registry->addFieldResolver($type, $field, $resolver);
     };
-    foreach ($this->getResolveDirectives($ast) as $path => $definition) {
-      switch ($definition['name']) {
-
-        case 'resolveEntityReference':
-          $resolverMultiple = $builder->defaultValue(
-            $builder->produce('entity_reference')
-              ->map('entity', $builder->fromParent())
-              ->map('language', $builder->callback(
-                fn(TranslatableInterface $value) => $value->language()->getId()
-              ))
-              ->map('field', $builder->fromValue($definition['arguments']['field'])),
-            $builder->fromValue([])
-          );
-          if ($definition['arguments']['single']) {
-            $addResolver($path, $builder->compose(
-              $resolverMultiple,
-              $builder->callback(fn(array $values) => reset($values) ?: NULL)
-            ));
-          }
-          else {
-            $addResolver($path, $resolverMultiple);
-          }
-          break;
-
-        case 'resolveEntityReferenceRevisions':
-          $resolverMultiple = $builder->defaultValue(
-            $builder->produce('entity_reference_revisions')
-              ->map('entity', $builder->fromParent())
-              ->map('field', $builder->fromValue($definition['arguments']['field'])),
-            $builder->fromValue([])
-          );
-          if ($definition['arguments']['single']) {
-            $addResolver($path, $builder->compose(
-              $resolverMultiple,
-              $builder->callback(fn(array $values) => reset($values) ?: NULL)
-            ));
-          }
-          else {
-            $addResolver($path, $resolverMultiple);
-          }
-          break;
-      }
-    }
 
     $currentUser = $builder->produce('current_user_entity');
     $addResolver('Query.currentUser', $currentUser);

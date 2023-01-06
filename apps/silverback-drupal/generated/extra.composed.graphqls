@@ -6,6 +6,18 @@ directive @arg(name: String!) on FIELD_DEFINITION | UNION | INTERFACE
 
 """
 Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityReference".
+"""
+directive @resolveEntityReference(field: String!) on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityReferenceRevisions".
+"""
+directive @resolveEntityReferenceRevisions(field: String!) on FIELD_DEFINITION | UNION | INTERFACE
+
+"""
+Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Lang".
 """
 directive @lang(code: String) on FIELD_DEFINITION | UNION | INTERFACE

@@ -24,20 +24,6 @@ DEPRECATED, use @isTemplate
 """
 directive @template on FIELD_DEFINITION
 
-################################################################################
-# Directives for automatic resolvers.
-################################################################################
-
-directive @resolveEntityReference(
-  field: String!
-  single: Boolean!
-) on FIELD_DEFINITION
-
-directive @resolveEntityReferenceRevisions(
-  field: String!
-  single: Boolean!
-) on FIELD_DEFINITION
-
 # Directive for the "EntityFeed" plugin.
 directive @entity(type: String!, bundle: String, access: Boolean) on OBJECT
 
