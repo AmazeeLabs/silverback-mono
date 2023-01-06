@@ -16,6 +16,11 @@ class DirectivePrinterTest extends UnitTestCase {
       'Apply all directives on the right to output on the left.',
       '"""',
       'directive @map on FIELD_DEFINITION',
+      '"""',
+      'Mark a type as member of a generic.',
+      'The id argument contains a string that has to match the generics resolution.',
+      '"""',
+      'directive @type(id: String!) on OBJECT',
     ];
     $this->assertEquals(
       implode("\n", array_merge($builtin, $lines)),
@@ -29,7 +34,7 @@ class DirectivePrinterTest extends UnitTestCase {
         'id' => 'todo',
       ],
     ], [
-      'directive @todo on FIELD_DEFINITION',
+      'directive @todo on FIELD_DEFINITION | UNION | INTERFACE',
     ]);
   }
 
@@ -43,7 +48,7 @@ class DirectivePrinterTest extends UnitTestCase {
       '"""',
       'Mark a field as not implemented.',
       '"""',
-      'directive @todo on FIELD_DEFINITION',
+      'directive @todo on FIELD_DEFINITION | UNION | INTERFACE',
     ]);
   }
 
@@ -58,7 +63,7 @@ class DirectivePrinterTest extends UnitTestCase {
         ],
       ],
     ], [
-      'directive @value(json: String!, function: String) on FIELD_DEFINITION',
+      'directive @value(json: String!, function: String) on FIELD_DEFINITION | UNION | INTERFACE',
     ]);
   }
 
@@ -75,8 +80,8 @@ class DirectivePrinterTest extends UnitTestCase {
         'id' => 'todo',
       ],
     ], [
-      'directive @value(json: String!, function: String) on FIELD_DEFINITION',
-      'directive @todo on FIELD_DEFINITION',
+      'directive @value(json: String!, function: String) on FIELD_DEFINITION | UNION | INTERFACE',
+      'directive @todo on FIELD_DEFINITION | UNION | INTERFACE',
     ]);
   }
 
@@ -99,7 +104,7 @@ class DirectivePrinterTest extends UnitTestCase {
       'Provided by the "graphql_directives" module.',
       'Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Value".',
       '"""',
-      'directive @value(json: String!, function: String) on FIELD_DEFINITION',
+      'directive @value(json: String!, function: String) on FIELD_DEFINITION | UNION | INTERFACE',
     ]);
   }
 }
