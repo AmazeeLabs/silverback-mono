@@ -4,6 +4,7 @@ namespace Drupal\silverback_gatsby\Plugin\Gatsby\Feed;
 
 use Drupal\content_translation\ContentTranslationManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Menu\MenuLinkTreeElement;
@@ -16,12 +17,12 @@ use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
-use Drupal\menu_link_content\Entity\MenuLinkContent;
+use Drupal\graphql_directives\Plugin\GraphQL\DataProducer\FilterMenuItems;
 use Drupal\silverback_gatsby\Annotation\GatsbyFeed;
 use Drupal\silverback_gatsby\Plugin\FeedBase;
 use Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer\GatsbyBuildId;
-use Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer\GatsbyMenuLinks;
 use Drupal\system\Entity\Menu;
+use GraphQL\Deferred;
 use GraphQL\Language\AST\DocumentNode;
 use GraphQL\Type\Definition\ResolveInfo;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -187,7 +188,7 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
     }
 
     $tree = $this->menuLinkTree->load($relevantMenu->id(), $params);
-    $items = GatsbyMenuLinks::flatten($tree, -1);
+    $items = FilterMenuItems::flatten($tree, -1);
 
     $ids = [$context];
     $match = count(array_filter($items, function (MenuLinkTreeElement $item) use ($ids) {
@@ -257,8 +258,7 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
    */
   public function resolveLangcode(): ResolverInterface {
     return $this->builder->callback(
-      fn(Menu $value, $args, $context, $info, FieldContext $fieldContext) =>
-      $value->__language ?? $this->languageManager->getCurrentLanguage()->getId()
+      fn(Menu $value) => $value->language()->getId()
     );
   }
 
@@ -278,54 +278,9 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
     return $this->builder->compose($this->builder->callback(function (Menu $menu) {
       return array_map(function (LanguageInterface $lang) use ($menu) {
         $clone = clone $menu;
-        $clone->__language = $lang->getId();
+        $clone->set('langcode', $lang->getId());
         return $clone;
       }, $this->languageManager->getLanguages());
     }));
-  }
-
-  public function getExtensionDefinition(DocumentNode $parentAst): string {
-    $typeName = $this->typeName;
-    $itemTypeName = $this->item_type;
-    if (!$itemTypeName) {
-      return '';
-    }
-    $def = [];
-    $def[] = "extend type $typeName {";
-    $def[] = "  items: [$itemTypeName!]!";
-    $def[] = "}";
-    $def[] = "extend type $itemTypeName {";
-    $def[] = "  id: String!";
-    $def[] = "  parent: String!";
-    $def[] = "}";
-    return implode("\n", $def);
-  }
-
-  public function addExtensionResolvers(
-    ResolverRegistryInterface $registry,
-    ResolverBuilder $builder
-  ): void {
-    if ($this->item_type) {
-      $registry->addFieldResolver($this->typeName, 'items', $builder->compose(
-        $builder->tap($builder->produce('language_switch')
-          ->map('language', $builder->callback(
-            function ($menu) {
-              return $menu->__language ?? $this->languageManager->getCurrentLanguage()->getId();
-            }
-          ))
-        ),
-        $builder->produce('menu_links')->map('menu', $builder->fromParent()),
-        $builder->produce('gatsby_menu_links')
-          ->map('items', $builder->fromParent())
-          ->map('max_level', $builder->fromValue($this->max_level))
-        ,
-      ));
-      $registry->addFieldResolver($this->item_type, 'id', $builder->callback(
-        fn (MenuLinkTreeElement $element) => $element->link->getPluginId()
-      ));
-      $registry->addFieldResolver($this->item_type, 'parent', $builder->callback(
-        fn (MenuLinkTreeElement $element) => $element->link->getParent()
-      ));
-    }
   }
 }

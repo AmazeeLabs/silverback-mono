@@ -1,5 +1,5 @@
 {
-  "name": "GraphQL Directives - Gutenberg",
+  "name": "Directives Test - Entities",
   "schemaPath": "./schema.graphqls",
   "includes": ["./directives.graphqls"]
 }

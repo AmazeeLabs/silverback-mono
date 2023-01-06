@@ -25,6 +25,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/npm/verdaccio-git/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/silverback-playwright/dist" />
       <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/graphql-schema-test/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/graphql_directives" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/silverback_graphql_persisted" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/silverback_translations" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/silverback_cdn_redirect" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

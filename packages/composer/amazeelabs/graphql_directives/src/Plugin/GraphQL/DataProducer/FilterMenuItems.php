@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer;
+namespace Drupal\graphql_directives\Plugin\GraphQL\DataProducer;
 
 use Drupal\Core\Menu\InaccessibleMenuLink;
 use Drupal\Core\Menu\MenuLinkTreeElement;
@@ -10,9 +10,9 @@ use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
 
 /**
  * @DataProducer(
- *   id = "gatsby_menu_links",
- *   name = @Translation("Gatsby menu links"),
- *   description = @Translation("Sparses a menu tree by language and flattens it for Gatsby."),
+ *   id = "filter_menu_items",
+ *   name = @Translation("Filter menu links"),
+ *   description = @Translation("Sparses a menu tree by language and flattens it for GraphQL."),
  *   produces = @ContextDefinition("any",
  *     label = @Translation("Menu link"),
  *     multiple = TRUE
@@ -23,12 +23,12 @@ use Drupal\menu_link_content\Plugin\Menu\MenuLinkContent;
  *       multiple = TRUE
  *     ),
  *     "max_level" = @ContextDefinition("integer",
- *       label = @Translation("Maximum depth")
+ *       label = @Translation("Maximum menu depth fetched")
  *     )
  *   }
  * )
  */
-class GatsbyMenuLinks extends DataProducerPluginBase {
+class FilterMenuItems extends DataProducerPluginBase {
 
   /**
    * Filter the menu tree based on the current langauge.

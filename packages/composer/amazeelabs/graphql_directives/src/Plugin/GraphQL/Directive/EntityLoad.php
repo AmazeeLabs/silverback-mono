@@ -15,7 +15,8 @@ use Drupal\graphql_directives\DirectiveInterface;
  *     "route" = "String",
  *     "type" = "String",
  *     "uuid" = "String",
- *     "id" = "String"
+ *     "id" = "String",
+ *     "operation" = "String"
  *   }
  * )
  */
@@ -43,11 +44,13 @@ class EntityLoad extends PluginBase implements DirectiveInterface {
     if (isset($arguments['uuid'])) {
       return $builder->produce('entity_load_by_uuid')
         ->map('type', $builder->fromValue($arguments['type']))
+        ->map('access_operation', $builder->fromValue($arguments['operation'] ?? 'view'))
         ->map('uuid', $this->argumentResolver($arguments['uuid'], $builder));
     }
     else {
       return $builder->produce('entity_load')
         ->map('type', $builder->fromValue($arguments['type']))
+        ->map('access_operation', $builder->fromValue($arguments['operation'] ?? 'view'))
         ->map('id', $this->argumentResolver($arguments['id'], $builder));
     }
   }

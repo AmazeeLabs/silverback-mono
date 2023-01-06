@@ -10,12 +10,14 @@ use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
 use Drupal\silverback_gutenberg\BlockSerializer;
 use Drupal\Tests\graphql\Kernel\GraphQLTestBase;
+use Drupal\Tests\graphql_directives\Traits\GraphQLDirectivesTestTrait;
 use Drupal\Tests\media\Traits\MediaTypeCreationTrait;
 use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
 use Drupal\Tests\node\Traits\NodeCreationTrait;
 use Drupal\Tests\TestFileCreationTrait;
 
 class EditorDirectivesTest extends GraphQLTestBase {
+  use GraphQLDirectivesTestTrait;
   public static $modules = [
     'graphql_directives',
     'text',
@@ -30,10 +32,6 @@ class EditorDirectivesTest extends GraphQLTestBase {
   use NodeCreationTrait;
   use MediaTypeCreationTrait;
   use TestFileCreationTrait;
-
-  public function getQueryFromFile($queryFile) {
-    return file_get_contents(__DIR__ . '/../../graphql/queries/' . $queryFile);
-  }
 
   protected function setUp(): void {
     parent::setUp();
@@ -78,22 +76,7 @@ class EditorDirectivesTest extends GraphQLTestBase {
       'label' => 'Body',
     ])->save();
 
-    $this->createTestServer('directable', '/editor-test', [
-      'schema_configuration' => [
-        'directable' => [
-          'schema_definition' => __DIR__ . '/../../graphql/editor.graphqls',
-          'extensions' => [],
-        ]
-      ]
-    ]);
-
-    $directives = $this->container->get('graphql_directives.printer')
-      ->printDirectives();
-
-    file_put_contents(
-      __DIR__ . '/../../graphql/directives.graphqls',
-      $directives
-    );
+    $this->setupDirectableSchema(__DIR__ . '/../../graphql');
   }
 
   function testEditorBlockResolution() {
