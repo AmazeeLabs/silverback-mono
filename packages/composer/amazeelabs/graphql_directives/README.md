@@ -65,6 +65,7 @@ default value is determined by the type, e.g. `0` for `Int`, `false` for
 For custom types, interface, unions or scalars, the `@default` directive can be
 used to start a directive chain that generates a default value.
 
+
 ```graphql
 scalar MyScalar @default @value(json: "\"bar\"")
 
