@@ -57,13 +57,13 @@ type Query {
 ### Default values
 
 Since Drupal's data structures can't guarantee integrity, the graphql schema
-will enforce default values as much as possible. Whenever a type is annotated as
-non-nullable, it attempts to apply a default value if the value is `null`. The
+will enforce default values as much as possible. Whenever a type is used in a non-nullable position (no `!` at the end
+), it attempts to apply a default value if the value is `null`. The
 default value is determined by the type, e.g. `0` for `Int`, `false` for
 `Boolean`, `""` for `String` and `[]` for list types like `[String!]!`.
 
 For custom types, interface, unions or scalars, the `@default` directive can be
-used to start a directive chain that defines a default value.
+used to start a directive chain that generates a default value.
 
 ```graphql
 scalar MyScalar @default @value(json: "\"bar\"")
