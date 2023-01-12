@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.56](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-iframe-tests@1.1.55...@-amazeelabs/silverback-iframe-tests@1.1.56) (2023-01-12)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-iframe-tests
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.55](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-iframe-tests@1.1.54...@-amazeelabs/silverback-iframe-tests@1.1.55) (2023-01-05)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-iframe-tests

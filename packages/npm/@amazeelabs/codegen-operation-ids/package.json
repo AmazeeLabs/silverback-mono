@@ -1,7 +1,7 @@
 {
   "name": "@amazeelabs/codegen-operation-ids",
   "private": false,
-  "version": "0.1.8",
+  "version": "0.1.9",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -29,7 +29,7 @@
     "graphql": "> 14"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.38",
+    "@amazeelabs/eslint-config": "^1.4.39",
     "@amazeelabs/prettier-config": "^1.1.1",
     "@graphql-codegen/cli": "2.16.4",
     "@graphql-codegen/typescript": "2.8.7",
