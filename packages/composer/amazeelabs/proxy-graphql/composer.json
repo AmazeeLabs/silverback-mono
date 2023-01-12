@@ -18,6 +18,6 @@
   ],
   "require": {
     "cweagans/composer-patches": "^1.7.3",
-    "drupal/graphql": "^4.2"
+    "drupal/graphql": "^4.4.0"
   }
 }

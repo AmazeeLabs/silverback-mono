@@ -26,7 +26,7 @@
   "require": {
     "ext-json": "*",
     "alchemy/zippy": "^1.0.0",
-    "drupal/test_session": "^1.0.0",
+    "drupal/test_session": "^1.2.10",
     "drush/drush": ">=10.6.2"
   }
 }
