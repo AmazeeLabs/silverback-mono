@@ -23,6 +23,6 @@ use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
 class GatsbyExtractLangcode extends DataProducerPluginBase {
 
   public function resolve(string $id) {
-    return explode(':', $id)[1];
+    return explode(':', $id)[1] ?? NULL;
   }
 }
