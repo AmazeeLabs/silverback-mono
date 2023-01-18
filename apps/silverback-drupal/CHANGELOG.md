@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.0.2...@-amazeelabs/silverback-drupal@2.1.0) (2023-01-18)
+
+### Features
+
+- new graphql snapshot testing
+  ([321fa49](https://github.com/AmazeeLabs/silverback-mono/commit/321fa49e6bcdb6bd8d73b5c06dee5c2c61fc6a28))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.0.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.0.1...@-amazeelabs/silverback-drupal@2.0.2) (2023-01-12)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
