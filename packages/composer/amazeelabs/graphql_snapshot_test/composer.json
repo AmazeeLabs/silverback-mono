@@ -1,0 +1,9 @@
+{
+  "name": "amazeelabs/graphql_snapshot_test",
+  "description": "Drush commands for GraphQL snapshot testing.",
+  "type": "drupal-drush",
+  "require": {
+    "drupal/graphql": ">= 4"
+  },
+  "version": "1.0.0"
+}

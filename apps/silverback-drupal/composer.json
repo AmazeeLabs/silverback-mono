@@ -21,6 +21,7 @@
     "require": {
         "amazeelabs/default-content": "@dev",
         "amazeelabs/graphql_directives": "@dev",
+        "amazeelabs/graphql_snapshot_test": "@dev",
         "amazeelabs/proxy-drupal-core": "@dev",
         "amazeelabs/proxy-gutenberg": "@dev",
         "amazeelabs/silverback-cli": "@dev",
@@ -105,6 +106,9 @@
         "enable-patching": true,
         "composer-exit-on-patch-failure": true,
         "patches": {
+            "drush/drush": {
+                "Follow symlinks when discovering commands (drush-ops/drush/pull/4351)": "https://github.com/drush-ops/drush/commit/fc055aab18598509d96385dfebdf43a22a5fb7b5.patch"
+            },
             "drupal/core": {
                 "Add string context and location filters to the translate interface": "https://www.drupal.org/files/issues/2022-08-01/2123543-9.4.x-74.patch"
             }

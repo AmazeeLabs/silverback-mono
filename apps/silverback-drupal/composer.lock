@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e685328ac82cfa7fcf759fa86c7f575d",
+    "content-hash": "8c8ab32fb52cf2f2a8e5a060ede2e236",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -120,6 +120,23 @@
             ],
             "description": "Directive based GraphQL schemas for Drupal.",
             "homepage": "https://silverback.netlify.app",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "amazeelabs/graphql_snapshot_test",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/composer/amazeelabs/graphql_snapshot_test",
+                "reference": "ba23f60d2cbf6dc4c63985b79cf195e657b3ae86"
+            },
+            "require": {
+                "drupal/graphql": ">= 4"
+            },
+            "type": "drupal-drush",
+            "description": "Drush commands for GraphQL snapshot testing.",
             "transport-options": {
                 "relative": true
             }
@@ -12104,6 +12121,7 @@
     "stability-flags": {
         "amazeelabs/default-content": 20,
         "amazeelabs/graphql_directives": 20,
+        "amazeelabs/graphql_snapshot_test": 20,
         "amazeelabs/proxy-drupal-core": 20,
         "amazeelabs/proxy-gutenberg": 20,
         "amazeelabs/silverback-cli": 20,
