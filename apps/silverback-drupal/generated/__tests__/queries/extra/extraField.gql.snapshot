@@ -1,24 +1,14 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`extra/extraField.gql 1`] = `
 {
-  "Gatsby Build & Gatsby Preview": {
-    "code": 200,
-    "data": {
-      "errors": [
-        {
-          "message": "Cannot query field \\"extraField\\" on type \\"Query\\"."
+    "silverback_gatsby & silverback_gatsby_preview": {
+        "errors": [
+            {
+                "message": "Cannot query field \"extraField\" on type \"Query\"."
+            }
+        ]
+    },
+    "extra": {
+        "data": {
+            "extraField": "Extra value"
         }
-      ]
     }
-  },
-  "Extra": {
-    "code": 200,
-    "data": {
-      "data": {
-        "extraField": "Extra value"
-      }
-    }
-  }
 }
-`;

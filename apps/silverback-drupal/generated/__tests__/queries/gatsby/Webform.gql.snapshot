@@ -1,31 +1,21 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`gatsby/Webform.gql 1`] = `
 {
-  "Gatsby Build & Gatsby Preview": {
-    "code": 200,
-    "data": {
-      "data": {
-        "loadWebform": {
-          "__typename": "Webform",
-          "id": "for_testing_confirmation_options",
-          "drupalId": "for_testing_confirmation_options",
-          "url": "http://localhost:8888/en/form/for-testing-confirmation-options",
-          "title": "For testing confirmation options",
-          "path": "/en/form/for-testing-confirmation-options"
+    "silverback_gatsby & silverback_gatsby_preview": {
+        "data": {
+            "loadWebform": {
+                "__typename": "Webform",
+                "id": "for_testing_confirmation_options",
+                "drupalId": "for_testing_confirmation_options",
+                "url": "http://localhost:8888/en/form/for-testing-confirmation-options",
+                "title": "For testing confirmation options",
+                "path": "/en/form/for-testing-confirmation-options"
+            }
         }
-      }
+    },
+    "extra": {
+        "errors": [
+            {
+                "message": "Type \"Webform\" not found in document."
+            }
+        ]
     }
-  },
-  "Extra": {
-    "code": 200,
-    "data": {
-      "errors": [
-        {
-          "message": "Type \\"Webform\\" not found in document."
-        }
-      ]
-    }
-  }
 }
-`;
