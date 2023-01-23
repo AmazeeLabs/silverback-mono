@@ -178,11 +178,11 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-drupal-core",
-                "reference": "781d23fdb3205432e45e22e81d82e41a36cefd4e"
+                "reference": "f34ab058158d551c17d1429fbe600a0867f10234"
             },
             "require": {
                 "cweagans/composer-patches": "^1.7.3",
-                "drupal/core-recommended": "^9"
+                "drupal/core-recommended": "^9 || ^10"
             },
             "type": "library",
             "extra": {
@@ -3571,46 +3571,9 @@
                 "shasum": "ea906de39a552bcdd9355907b4498f65603b38d3"
             },
             "require": {
-                "drupal/core": "^8 || ^9"
+                "drupal/core": "^8 || ^9 || ^10"
             },
-            "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "2.0.1",
-                    "datestamp": "1642497672",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "ganeshsurya11",
-                    "homepage": "https://www.drupal.org/user/3526791"
-                },
-                {
-                    "name": "mstef",
-                    "homepage": "https://www.drupal.org/user/107190"
-                },
-                {
-                    "name": "perfectcu.be",
-                    "homepage": "https://www.drupal.org/user/2442008"
-                },
-                {
-                    "name": "Rajeshreeputra",
-                    "homepage": "https://www.drupal.org/user/3418561"
-                }
-            ],
-            "description": "Provides an authentication provider based on per-user API keys.",
-            "homepage": "https://www.drupal.org/project/key_auth",
-            "support": {
-                "source": "https://git.drupalcode.org/project/key_auth"
-            }
+            "type": "drupal-module"
         },
         {
             "name": "drupal/paragraphs",
