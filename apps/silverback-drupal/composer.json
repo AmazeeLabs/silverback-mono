@@ -86,7 +86,6 @@
         "drupal/core-composer-scaffold": "9.5.1",
         "drupal/core-dev": "9.5.1",
         "drupal/core-recommended": "9.5.1",
-        "drupal/cypress": "@dev",
         "drupal/default_content": "2.0.0-alpha2",
         "drupal/entity_usage": "2.0.0-beta7",
         "drupal/gatsby_build_monitor": "@dev",
@@ -158,11 +157,5 @@
                 "Add string context and location filters to the translate interface": "https://www.drupal.org/files/issues/2022-08-01/2123543-9.4.x-74.patch"
             }
         }
-    },
-    "scripts": {
-        "run-tests": [
-            "if [ -d web/modules/custom ]; then phpunit web/modules/custom; fi",
-            "yarn install && CYPRESS_TAGS=@COMPLETED cypress run"
-        ]
     }
 }
