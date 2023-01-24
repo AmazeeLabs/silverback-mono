@@ -18,10 +18,7 @@ schema_configuration:
       silverback_gatsby: silverback_gatsby
     build_webhook: 'http://localhost:9001/__rebuild'
     user: 7822b516-48e8-48e8-a7f6-5e23ad20ee3b
-    schema_definition: modules/custom/silverback_gatsby_test/graphql/silverback_gatsby_test.graphqls
-    build_trigger_on_save: 1
-    update_webhook: ''
-    build_url: ''
+    role: ''
 persisted_queries_settings:
   silverback_graphql_persisted:
     weight: 0
