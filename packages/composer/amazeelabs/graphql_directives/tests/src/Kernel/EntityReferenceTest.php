@@ -18,7 +18,6 @@ class EntityReferenceTest extends GraphQLTestBase {
     'graphql_directives',
     'node',
     'field',
-    'entity_reference',
     'entity_reference_revisions',
   ];
 

@@ -49,7 +49,7 @@ class DirectiveInterpreterTest extends UnitTestCase {
 
   protected PluginManagerInterface $directiveManager;
 
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
     $this->directiveManager = $this->createMock(PluginManagerInterface::class);
 
