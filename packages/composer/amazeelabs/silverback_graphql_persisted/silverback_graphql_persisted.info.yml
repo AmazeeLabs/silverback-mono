@@ -2,6 +2,6 @@ name: Silverback GraphQL persisted queries
 type: module
 description: 'Persisted queries plugin for GraphQL v4.'
 package: Silverback
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^8 || ^9 || ^10
 dependencies:
   - graphql:graphql (>=8.x-4.0)
