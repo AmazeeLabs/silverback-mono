@@ -16,7 +16,9 @@ schema_configuration:
   silverback_gatsby_test_extra:
     extensions:
       silverback_gatsby: 0
-    schema_definition: modules/custom/silverback_gatsby_test/graphql/silverback_gatsby_test_extra.graphqls
+    build_webhook: ''
+    user: ''
+    role: ''
 persisted_queries_settings:
   silverback_graphql_persisted:
     weight: 0

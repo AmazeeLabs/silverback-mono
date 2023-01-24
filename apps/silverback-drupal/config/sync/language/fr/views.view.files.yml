@@ -58,7 +58,7 @@ display:
           expose:
             label: État
   page_1:
-    display_title: 'Vue d''ensemble des fichiers'
+    display_title: "Vue d'ensemble des fichiers"
     display_options:
       menu:
         title: Fichiers
@@ -70,11 +70,11 @@ display:
         entity_label:
           label: Entité
         type:
-          label: 'Type d''entité'
+          label: "Type d'entité"
         module:
           label: 'Enregistrement du module'
         count:
-          label: 'Nombre d''utilisations'
+          label: "Nombre d'utilisations"
       pager:
         options:
           tags:
@@ -88,4 +88,4 @@ display:
         fid:
           exception:
             title: Tout
-          title: 'Information d''utilisation du fichier {{ arguments.fid }}'
+          title: "Information d'utilisation du fichier {{ arguments.fid }}"
