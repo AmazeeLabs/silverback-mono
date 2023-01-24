@@ -121,7 +121,9 @@ abstract class Import extends Base {
 
       // Delete entities not existing in the exported content.
       $uuidKey = \Drupal::entityTypeManager()->getDefinition($entityType)->getKey('uuid') ?: 'uuid';
-      $query = \Drupal::entityQuery($entityType)->condition($uuidKey, array_keys($data), 'NOT IN');
+      $query = \Drupal::entityQuery($entityType)
+        ->accessCheck(FALSE)
+        ->condition($uuidKey, array_keys($data), 'NOT IN');
       if ($entityType === 'user') {
         $query->condition('uid', [0, 1], 'NOT IN');
       }
