@@ -162,7 +162,7 @@ const confirmationOptions = [
   'url_message',
   'none',
 ] as const;
-type ConfirmationOption = typeof confirmationOptions[number];
+type ConfirmationOption = (typeof confirmationOptions)[number];
 
 const setConfirmationOption = async (
   page: PlaywrightTestArgs['page'],
@@ -184,20 +184,20 @@ const setConfirmationOption = async (
   if (options?.addMessage === true) {
     const editorFrame = (await (
       await page.waitForSelector(
-        '.form-item--confirmation-message-value .cke_wysiwyg_frame',
+        '.form-item--confirmation-message-value-value .cke_wysiwyg_frame',
       )
     )?.contentFrame())!;
     // Filling with an empty string helps Playwright do the things right.
     await editorFrame.fill('body', '');
     await editorFrame.fill('body', 'Test message with ');
     await page.click(
-      '.form-item--confirmation-message-value .cke_button__bold',
+      '.form-item--confirmation-message-value-value .cke_button__bold',
     );
     await page.keyboard.type('some bold text.');
   }
   if (typeof options?.addMessage === 'string') {
     await page.click('a[role="button"]:has-text("Source")');
-    await page.fill('#cke_1_contents div textarea', options.addMessage);
+    await page.fill('#cke_1_contents textarea', options.addMessage);
   }
 
   if (options?.setRedirectUrl) {
