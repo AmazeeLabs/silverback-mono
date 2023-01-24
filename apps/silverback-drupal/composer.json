@@ -11,6 +11,7 @@
     "repositories": [
         {
             "type": "package",
+            "👉TODO": "Remove once key_auth is Drupal 10 compatible.",
             "package": {
                 "name": "drupal/key_auth",
                 "version": "2.0.1",
@@ -33,6 +34,7 @@
         },
         {
             "type": "package",
+            "👉TODO": "Remove once typed_data is Drupal 10 compatible.",
             "package": {
                 "name": "drupal/typed_data",
                 "version": "1.0.0-beta1",
