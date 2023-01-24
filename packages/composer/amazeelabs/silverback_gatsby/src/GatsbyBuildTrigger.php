@@ -8,7 +8,6 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\graphql\Entity\ServerInterface;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
 
 class GatsbyBuildTrigger implements GatsbyBuildTriggerInterface {
 
@@ -149,7 +148,7 @@ class GatsbyBuildTrigger implements GatsbyBuildTriggerInterface {
         ) {
           _gatsby_build_monitor_state('building');
         }
-      } catch (RequestException $exc) {
+      } catch (\Exception $exc) {
         $this->messenger->addError('Could not send build notification to server "' . $url . '".');
         $this->messenger->addError($exc->getMessage());
       }
