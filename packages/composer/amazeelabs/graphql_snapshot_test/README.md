@@ -1,3 +1,12 @@
+# ⚠️ DEPRECATED
+
+We compared this module with
+[@amazeelabs/graphql-schema-test](https://www.npmjs.com/package/@amazeelabs/graphql-schema-test)
+and found no reason to use it:
+
+- there was a lot of headache with the Domain module
+- tests ran with `@amazeelabs/graphql-schema-test` take almost same time
+
 # Drupal GraphQL Snapshot Testing
 
 A Drush command that runs GraphQL queries against configured GraphQL servers and
