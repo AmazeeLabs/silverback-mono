@@ -1,9 +1,3 @@
-# ⚠️ DEPRECATED
-
-👉 Use
-[amazeelabs/graphql_snapshot_test](https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/composer/amazeelabs/graphql_snapshot_test)
-instead. It is faster and easier to use.
-
 # GraphQL Schema Test
 
 The package takes a set of `.gql` files, runs them against each endpoint defined
