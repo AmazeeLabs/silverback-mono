@@ -4,15 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "12c3e822488b1c60d12512e9bd6eb235",
+    "content-hash": "822f177cc64b82e8bf68dd257ba5b21e",
     "packages": [
         {
             "name": "amazeelabs/default-content",
-            "version": "1.2.6",
+            "version": "1.2.7",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/default-content",
-                "reference": "b696b337a172e6d7a033ca7fda5a2d37e5c7e36a"
+                "reference": "d4a3aac3c794442320ec8f11955aafd7d5628174"
             },
             "require": {
                 "amazeelabs/proxy-default-content": "^1.1.5"
@@ -33,11 +33,11 @@
         },
         {
             "name": "amazeelabs/graphql_directives",
-            "version": "2.0.2",
+            "version": "2.0.3",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/graphql_directives",
-                "reference": "246ace5f0ff3e54efe88926e5cbc969b29b706c1"
+                "reference": "ee2e620f4bdd09a850cc18c5b7ea32ed119ab067"
             },
             "type": "drupal-module",
             "extra": {
@@ -52,23 +52,6 @@
             ],
             "description": "Directive based GraphQL schemas for Drupal.",
             "homepage": "https://silverback.netlify.app",
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
-            "name": "amazeelabs/graphql_snapshot_test",
-            "version": "1.1.0",
-            "dist": {
-                "type": "path",
-                "url": "../../packages/composer/amazeelabs/graphql_snapshot_test",
-                "reference": "9b95179951af0a70e3021b15c8a1b4a966f4cba0"
-            },
-            "require": {
-                "drupal/graphql": ">= 4"
-            },
-            "type": "drupal-drush",
-            "description": "Drush commands for GraphQL snapshot testing.",
             "transport-options": {
                 "relative": true
             }
@@ -106,11 +89,11 @@
         },
         {
             "name": "amazeelabs/proxy-drupal-core",
-            "version": "1.1.9",
+            "version": "1.1.10",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-drupal-core",
-                "reference": "f34ab058158d551c17d1429fbe600a0867f10234"
+                "reference": "a46d965087e5478f5a3973e7f1713186780df9f8"
             },
             "require": {
                 "cweagans/composer-patches": "^1.7.3",
@@ -214,11 +197,11 @@
         },
         {
             "name": "amazeelabs/silverback_cdn_redirect",
-            "version": "2.2.1",
+            "version": "2.2.2",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_cdn_redirect",
-                "reference": "38a82fa80f0dff82ba3366d7a477b5a2973d4437"
+                "reference": "65445cf9d11bd17ed0e1c15b6c65822b5476a217"
             },
             "type": "drupal-module",
             "license": [
@@ -232,11 +215,11 @@
         },
         {
             "name": "amazeelabs/silverback_external_preview",
-            "version": "1.3.2",
+            "version": "1.3.3",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_external_preview",
-                "reference": "eec01d0c692d29851a68b3fae04a012a3cbe8696"
+                "reference": "3e451e5dd3dae1b845029df97971d704c1cbbfea"
             },
             "type": "drupal-module",
             "license": [
@@ -250,11 +233,11 @@
         },
         {
             "name": "amazeelabs/silverback_gatsby",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gatsby",
-                "reference": "b8fd8fcd59bb0d558345ae299455ec629545646b"
+                "reference": "825bfad02643dc84a09d7c240b08cc25eca11818"
             },
             "type": "drupal-module",
             "extra": {
@@ -275,11 +258,11 @@
         },
         {
             "name": "amazeelabs/silverback_graphql_persisted",
-            "version": "1.1.2",
+            "version": "1.1.3",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_graphql_persisted",
-                "reference": "cdbb6c0f4d3669f197c61988bab49a025198c674"
+                "reference": "ac2978f1ac67a4c9f93a01e31f528f22eecea1ff"
             },
             "type": "drupal-module",
             "license": [
@@ -292,11 +275,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "083004a9fa9950e9a004e27ef8776ad0bc66ecda"
+                "reference": "2ea0761b2dca23a492194530c6a68240695ea593"
             },
             "require": {
                 "drupal/gutenberg": "^2.6.0"
@@ -313,11 +296,11 @@
         },
         {
             "name": "amazeelabs/silverback_iframe",
-            "version": "1.3.0",
+            "version": "1.3.1",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_iframe",
-                "reference": "60fc3ddc9d35a4c5a9547c48bce101a0d2917672"
+                "reference": "3310ee073a2350085b85766c70247a0fdb1e1f99"
             },
             "type": "drupal-module",
             "license": [
@@ -331,11 +314,11 @@
         },
         {
             "name": "amazeelabs/silverback_iframe_theme",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_iframe_theme",
-                "reference": "619255e54c4c7802d6e616fc2383c5e7e68a9c45"
+                "reference": "d2ee7e1a72bc78ac341c34e2df1689e3ae5714a6"
             },
             "type": "drupal-theme",
             "license": [
@@ -349,11 +332,11 @@
         },
         {
             "name": "amazeelabs/silverback_translations",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_translations",
-                "reference": "04deaa5424cd047eb0617107bc07447951d73002"
+                "reference": "5cf3ab4b5e5655469af4b28597f4ead78960b41e"
             },
             "type": "drupal-module",
             "license": [
@@ -3301,11 +3284,11 @@
         },
         {
             "name": "drupal/gatsby_build_monitor",
-            "version": "1.4.47",
+            "version": "1.4.48",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/gatsby_build_monitor",
-                "reference": "5c70d0460c7c84f7ccb2fb780be4892d295d4e25"
+                "reference": "a9165d01cb360f04a3d3540fcba2f68c6a8d9714"
             },
             "require": {
                 "justinrainbow/json-schema": "^5.2.12"
@@ -3669,11 +3652,11 @@
         },
         {
             "name": "drupal/test_session",
-            "version": "1.2.50",
+            "version": "1.2.51",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/test_session",
-                "reference": "1bce662281ebc04536c8009c420ba3674b7ee6e1"
+                "reference": "a17d354109fd484f40ab75811fc452de73ac26c4"
             },
             "type": "drupal-module",
             "license": [
@@ -11853,7 +11836,6 @@
     "stability-flags": {
         "amazeelabs/default-content": 20,
         "amazeelabs/graphql_directives": 20,
-        "amazeelabs/graphql_snapshot_test": 20,
         "amazeelabs/proxy-drupal-core": 20,
         "amazeelabs/proxy-gutenberg": 20,
         "amazeelabs/silverback-cli": 20,

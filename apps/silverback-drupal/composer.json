@@ -68,7 +68,6 @@
     "require": {
         "amazeelabs/default-content": "@dev",
         "amazeelabs/graphql_directives": "@dev",
-        "amazeelabs/graphql_snapshot_test": "@dev",
         "amazeelabs/proxy-drupal-core": "@dev",
         "amazeelabs/proxy-gutenberg": "@dev",
         "amazeelabs/silverback-cli": "@dev",
@@ -157,9 +156,6 @@
         "patches": {
             "drupal/key_auth": {
                 "Drupal 10 compatibility": "https://www.drupal.org/files/issues/2022-04-14/3272203-4-fix-missing-accesscheck-calls.patch"
-            },
-            "drush/drush": {
-                "Follow symlinks when discovering commands (drush-ops/drush/pull/4351)": "https://github.com/drush-ops/drush/commit/fc055aab18598509d96385dfebdf43a22a5fb7b5.patch"
             },
             "drupal/core": {
                 "Add string context and location filters to the translate interface": "https://www.drupal.org/files/issues/2023-01-23/2123543-10.0.x-79.patch"
