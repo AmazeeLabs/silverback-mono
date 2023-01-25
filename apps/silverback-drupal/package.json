@@ -1,6 +1,6 @@
 {
   "name": "@-amazeelabs/silverback-drupal",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -21,7 +21,7 @@
     "content:import": "source .envrc && drush php-script web/modules/custom/silverback_default_content/import.php"
   },
   "dependencies": {
-    "@-amazeelabs/graphql_snapshot_test": "^1.1.0",
+    "@-amazeelabs/graphql_snapshot_test": "^1.1.1",
     "@-amazeelabs/silverback-cli": "^2.9.1",
     "@-amazeelabs/silverback_gatsby": "^2.0.2",
     "@-drupal/cypress": "^2.3.78",
