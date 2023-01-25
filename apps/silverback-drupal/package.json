@@ -7,26 +7,31 @@
     "prepare": "if php -v && [[ -z $LAGOON ]]; then composer install && SB_SETUP=1 yarn setup && yarn snapshot-create && yarn schema:export && yarn prepare:directives; fi",
     "prepare:directives": "rm -f web/modules/custom/silverback_gatsby_test/graphql/directives.graphqls && source .envrc && drush graphql:directives > web/modules/custom/silverback_gatsby_test/graphql/directives.graphqls",
     "start": "source .envrc && cd web && php -S localhost:8888 .ht.router.php",
+    "start:silent": "yarn start > /tmp/drupal.log 2>&1",
     "login": "source .envrc && drush uli",
     "setup": "source .envrc && silverback setup && yarn content:import",
     "update-install-cache": "source .envrc && silverback setup --profile=minimal && drush cex -y",
     "snapshot-create": "source .envrc && silverback snapshot-create test -y",
     "snapshot-restore": "source .envrc && silverback snapshot-restore test",
     "clear": "source .envrc && drush cr",
-    "test:integration": "yarn snapshot-restore && yarn schema:test",
+    "test:integration": "yarn snapshot-restore && start-server-and-test start:silent 8888 schema:test",
     "schema:export": "source .envrc && drush silverback-gatsby:schema-export",
-    "schema:test": "source .envrc && drush graphql:snapshot:test ../generated --servers=silverback_gatsby,silverback_gatsby_preview,extra --verbose",
-    "schema:test:update": "yarn schema:test --update",
+    "schema:test": "yarn jest --modulePathIgnorePatterns '^((?!generated).)*$' --testMatch '<rootDir>/generated/__tests__/test-queries.js'",
+    "schema:update": "yarn schema:test -u",
     "content:export": "source .envrc && drush php-script web/modules/custom/silverback_default_content/export.php",
     "content:import": "source .envrc && drush php-script web/modules/custom/silverback_default_content/import.php"
   },
   "dependencies": {
-    "@-amazeelabs/graphql_snapshot_test": "^1.1.1",
     "@-amazeelabs/silverback-cli": "^2.9.1",
     "@-amazeelabs/silverback_gatsby": "^2.0.2",
     "@-drupal/cypress": "^2.3.78",
     "@-drupal/gatsby_build_monitor": "^1.4.48",
     "@-silverback-drupal-config/webform": "^1.0.6",
     "@-silverback-drupal/gutenberg_custom_blocks": "^1.0.57"
+  },
+  "devDependencies": {
+    "@amazeelabs/graphql-schema-test": "^1.1.29",
+    "jest": "29.3.1",
+    "start-server-and-test": "1.15.2"
   }
 }
