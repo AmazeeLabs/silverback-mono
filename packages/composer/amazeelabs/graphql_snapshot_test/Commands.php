@@ -44,6 +44,8 @@ class Commands extends DrushCommands {
     /** @var \Drupal\Core\Session\AccountSwitcherInterface $accountSwitcher */
     $accountSwitcher = \Drupal::service('account_switcher');
 
+    $update = !empty($options['update']);
+
     $serversNames = $options['servers'] ? explode(',', $options['servers']) : NULL;
     /** @var \Drupal\graphql\Entity\Server[] $servers */
     $servers = \Drupal::entityTypeManager()->getStorage('graphql_server')->loadMultiple($serversNames);
@@ -100,7 +102,7 @@ class Commands extends DrushCommands {
         }
       }
       $json = json_encode($results, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-      if (!$this->processSnapshots($file, $json, $options['update'])) {
+      if (!$this->processSnapshots($file, $json, $update)) {
         $failed = TRUE;
       }
     }
@@ -110,7 +112,7 @@ class Commands extends DrushCommands {
       return 1;
     }
 
-    if ($options['update']) {
+    if ($update) {
       $this->logger()->success('Snapshots updated.');
     }
     else {
