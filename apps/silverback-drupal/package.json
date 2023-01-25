@@ -9,6 +9,7 @@
     "start": "source .envrc && cd web && php -S localhost:8888 .ht.router.php",
     "login": "source .envrc && drush uli",
     "setup": "source .envrc && silverback setup && yarn content:import",
+    "update-install-cache": "source .envrc && silverback setup --profile=minimal && drush cex -y",
     "snapshot-create": "source .envrc && silverback snapshot-create test -y",
     "snapshot-restore": "source .envrc && silverback snapshot-restore test",
     "clear": "source .envrc && drush cr",
