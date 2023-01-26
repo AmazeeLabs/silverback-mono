@@ -87,10 +87,10 @@ function silverback_gutenberg_silverback_gutenberg_link_processor_block_attrs_al
  * Implements hook_entity_bundle_field_info_alter().
  */
 function silverback_gutenberg_entity_bundle_field_info_alter(&$fields, EntityTypeInterface $entity_type, $bundle) {
-  // @todo add configurable bundles based on a list that fetches CT
-  //   that have Gutenberg enabled.
   if ($entity_type->id() === 'node') {
-    if (isset($fields['body'])) {
+    $gutenberg_config = \Drupal::service('config.factory')->getEditable('gutenberg.settings');
+    $is_gutenberg_enabled = $gutenberg_config->get($bundle . '_enable_full');
+    if (isset($fields['body']) && $is_gutenberg_enabled) {
       $fields['body']->addConstraint('Gutenberg', []);
     }
   }
