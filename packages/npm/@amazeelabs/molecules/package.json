@@ -21,7 +21,7 @@
     "test:ui": "vitest --ui",
     "storybook": "NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6007 --ci",
     "build-storybook": "NODE_OPTIONS=--openssl-legacy-provider build-storybook",
-    "deploy": "pnpm build-storybook && pnpm netlify deploy -a $NETLIFY_AUTH_TOKEN -d storybook-static -p -s amazeelabs-molecules"
+    "deploy": "exit 0; pnpm build-storybook && pnpm netlify deploy -a $NETLIFY_AUTH_TOKEN -d storybook-static -p -s amazeelabs-molecules"
   },
   "peerDependencies": {
     "react": ">=18.2.0",
