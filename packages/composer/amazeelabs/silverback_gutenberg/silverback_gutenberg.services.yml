@@ -2,3 +2,9 @@ services:
   Drupal\silverback_gutenberg\LinkProcessor:
     class: Drupal\silverback_gutenberg\LinkProcessor
     arguments: ['@path_alias.manager', '@config.factory', '@request_stack', '@module_handler', '@entity.repository', '@entity_type.manager']
+  plugin.manager.gutenberg_validator:
+    class: Drupal\silverback_gutenberg\GutenbergValidation\GutenbergValidatorManager
+    parent: default_plugin_manager
+  plugin.manager.gutenberg_validator_rule:
+    class: Drupal\silverback_gutenberg\GutenbergValidation\GutenbergValidatorRuleManager
+    parent: default_plugin_manager

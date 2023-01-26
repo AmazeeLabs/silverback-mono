@@ -115,3 +115,53 @@ Next, GraphQL resolvers which parse Gutenberg code should call
 `LinkProcessor::processLinks` before parsing the blocks. See
 [`DataProducer/Gutenberg.php`](../../../../apps/silverback-drupal/web/modules/custom/silverback_gatsby_test/src/Plugin/GraphQL/DataProducer/Gutenberg.php)
 for an example.
+
+## Validation
+
+Custom validator plugins can be created in
+`src/Plugin/Validation/GutenbergValidator`
+
+Example, to validate that a title is required, given that
+
+- the block name is `custom/title`
+- the field attribute is `text`
+
+```php
+<?php
+
+namespace Drupal\custom_gutenberg\Plugin\Validation\GutenbergValidator;
+
+use Drupal\silverback_gutenberg\GutenbergValidation\GutenbergValidatorBase;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+
+/**
+ * @GutenbergValidator(
+ *   id="title_validator",
+ *   label = @Translation("Title validator")
+ * )
+ */
+class TitleValidator extends GutenbergValidatorBase {
+
+  use StringTranslationTrait;
+
+  /**
+   * {@inheritDoc}
+   */
+  public function applies(array $block) {
+    return $block['blockName'] === 'custom/title';
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function validatedFields($block = []) {
+    return [
+      'text' => [
+        'field_label' => $this->t('Title'),
+        'rules' => ['required']
+      ],
+    ];
+  }
+
+}
+```
