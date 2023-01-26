@@ -11,7 +11,6 @@ export function installScripts(targetPath: string) {
     'test:unit': 'jest --passWithNoTests',
     'test:integration': 'exit 0',
     'test:watch': 'jest --watch',
-    test: 'yarn test:static && yarn test:unit && yarn test:integration',
   };
 
   console.log(

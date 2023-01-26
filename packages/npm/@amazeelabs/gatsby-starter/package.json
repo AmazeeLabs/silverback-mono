@@ -35,19 +35,14 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
     "develop": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "update-schema": "GATSBY_UPDATE_SCHEMA_SNAPSHOT=true gatsby build",
     "codegen": "graphql-codegen --config codegen.yml",
-    "prepare": "yarn codegen",
+    "build": "pnpm codegen",
     "precommit": "lint-staged",
-    "test": "yarn test:static && yarn test:unit && yarn test:integration",
     "watch": "jest --watch",
-    "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
-    "test:unit": "jest --passWithNoTests",
-    "test:integration": "if [ -f test.sh ]; then ./test.sh; fi",
     "test:watch": "jest --watch"
   },
   "publishConfig": {

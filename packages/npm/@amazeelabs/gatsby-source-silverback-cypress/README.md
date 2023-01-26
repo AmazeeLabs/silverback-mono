@@ -1,3 +1,5 @@
+# ⚠️ DEPRECATED
+
 # Cypress utils for `@amazeelabs/gatsby-source-silverback`
 
 Adds `cy.waitForCypress` command.

@@ -9,12 +9,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      # yarn.lock
-      - name: Yarn Lock Changes
-        uses: Simek/yarn-lock-changes@main
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          collapsibleThreshold: 1
+      # pnpm-lock.yaml
+      # TODO: Find a solution for getting pnpm-lock.yaml changes.
 
       # composer.lock
       - name: Generate composer diff
@@ -27,8 +23,6 @@ jobs:
         if: ${{ steps.composer_diff.outputs.composer_diff }}
         with:
           header: composer-diff
-          # Make the message look similar to the one produced by
-          # Simek/yarn-lock-changes.
           message: |
             ## `composer.lock` changes
             

@@ -8,7 +8,7 @@ import { tags, TestType, testTypes } from './test-types';
 import { port } from './utils';
 
 if (process.argv.includes('help') || process.argv.includes('--help')) {
-  console.log(`Usage: yarn sp-test [flags]
+  console.log(`Usage: pnpm sp-test [flags]
   Flags:
     -v, --verbose    Spam a lot
     -h, --headed     Run tests in headed browser (default: headless)
@@ -49,7 +49,7 @@ const runTests = async (type: TestType) => {
     `--config '${__dirname}/playwright.config.js'`,
     '--list',
   ].join(' ');
-  const listProcess = $`${envVarsString} yarn playwright test ${listFlags}`;
+  const listProcess = $`${envVarsString} pnpm playwright test ${listFlags}`;
   if ((await listProcess.exitCode) === 0) {
     const globalSetup = (await import(`./${type}/global-setup`)).default;
     console.log('Preparing environment...');
@@ -68,7 +68,7 @@ const runTests = async (type: TestType) => {
     // eslint-disable-next-line no-constant-condition
     while (true) {
       const runProcess =
-        $`${envVarsString} yarn playwright test ${runFlags}`.pipe(
+        $`${envVarsString} pnpm playwright test ${runFlags}`.pipe(
           process.stdout,
         );
       if ((await runProcess.exitCode) === 0) {
@@ -96,7 +96,7 @@ const runTests = async (type: TestType) => {
 
 void (async function () {
   // Ensure browser is installed.
-  await $`yarn playwright install chromium`;
+  await $`pnpm playwright install chromium`;
 
   for (const type of testTypes) {
     await runTests(type);

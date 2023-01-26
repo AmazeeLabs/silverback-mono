@@ -15,6 +15,7 @@ export const siteMetadata = {
 };
 
 export const plugins = [
+  'gatsby-plugin-pnpm',
   {
     resolve: 'gatsby-source-filesystem',
     options: {

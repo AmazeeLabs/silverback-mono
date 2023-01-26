@@ -2,7 +2,7 @@
 set -ex
 
 rm -rf /tmp/recipes_test
-yarn prepare
+pnpm build
 
 DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 cd /tmp
@@ -20,11 +20,11 @@ echo 'TestLayout' | LOG=silly node "$DIR/dist/index.js" new-layout
 echo 'TestAtom' | LOG=silly node "$DIR/dist/index.js" new-atom
 cd /tmp/recipes_test/
 
-yarn install
+pnpm install
 
-yarn test:static:all
-yarn test:unit:all
-yarn test:integration:all
+pnpm test:static:all
+pnpm test:unit:all
+pnpm test:integration:all
 
 docker-compose up --detach --build
 docker-compose down -v --rmi all --remove-orphans

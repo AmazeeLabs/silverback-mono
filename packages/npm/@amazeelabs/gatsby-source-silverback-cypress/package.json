@@ -14,8 +14,6 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "prepare": "tsc --outDir . --declaration",
-    "test:unit": "jest --passWithNoTests",
     "watch": "jest --watch"
   },
   "devDependencies": {

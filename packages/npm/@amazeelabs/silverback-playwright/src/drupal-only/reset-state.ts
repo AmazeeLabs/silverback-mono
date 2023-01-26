@@ -10,7 +10,7 @@ export default async function resetState() {
 
   const { drupal } = getConfig();
   cd(drupal.path);
-  await $`yarn snapshot-restore`;
+  await $`pnpm snapshot-restore`;
 
   log('drupal-only resetState end');
 }

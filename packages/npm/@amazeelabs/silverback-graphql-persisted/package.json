@@ -18,12 +18,10 @@
     "typescript": "4.9.4"
   },
   "scripts": {
-    "prepare": "rm -rf dist && tsc",
+    "build": "rm -rf dist && tsc",
     "precommit": "lint-staged",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "jest --passWithNoTests",
-    "test:integration": "exit 0",
-    "test:watch": "jest --watch",
-    "test": "yarn test:static && yarn test:unit && yarn test:integration"
+    "test:watch": "jest --watch"
   }
 }

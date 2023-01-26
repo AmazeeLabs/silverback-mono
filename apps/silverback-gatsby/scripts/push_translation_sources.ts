@@ -14,7 +14,7 @@ const pushTranslationSources = async (translationSourcesPath) => {
 
   if (!existsSync(translationSourcesPath)) {
     console.warn(
-      'Warning: the translations sources file does not exist. Please make sure you specify a valid path and make sure you run the translations:extract yarn command before.',
+      'Warning: the translations sources file does not exist. Please make sure you specify a valid path and make sure you run the translations:extract pnpm command before.',
     );
     return;
   }

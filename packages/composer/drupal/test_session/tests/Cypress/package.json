@@ -3,16 +3,14 @@
   "version": "1.1.62",
   "private": true,
   "scripts": {
-    "test": "yarn test:static && yarn test:unit && yarn test:integration",
     "watch": "jest --watch",
     "cypress:prepare": "./scripts/setup.sh && ./scripts/start.sh 'true'",
-    "cypress:run": "yarn cypress:prepare && yarn cypress run",
-    "cypress:open": "yarn cypress:prepare && yarn cypress open",
-    "prepare": "exit 0",
+    "cypress:run": "pnpm cypress:prepare && pnpm cypress run",
+    "cypress:open": "pnpm cypress:prepare && pnpm cypress open",
     "precommit": "lint-staged",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "jest --passWithNoTests",
-    "test:integration": "yarn cypress:run",
+    "test:integration": "pnpm cypress:run",
     "test:watch": "jest --watch"
   },
   "devDependencies": {

@@ -13,13 +13,13 @@ The Silverback repository is set up as a monorepo managed with [Lerna]. To work
 with it, make sure these four tools are available in your environment:
 
 - [nodejs]
-- [yarn]
+- [pnpm]
 - a [php] interpreter [meeting Drupal's requirements][php_requirements]
 - [composer]
 
 [php]: https://www.php.net/
 [nodejs]: https://nodejs.org/en/
-[yarn]: https://yarnpkg.com/
+[pnpm]: https://pnpm.io/
 [composer]: https://getcomposer.org/
 [php_requirements]:
   https://www.drupal.org/docs/system-requirements/php-requirements
@@ -31,7 +31,7 @@ Lerna.
 ```shell script
 git clone git@github.com:AmazeeLabs/silverback-mono.git
 cd silverback-mono
-yarn
+pnpm i && pnpm build
 ```
 
 ## Directory structure
@@ -73,7 +73,7 @@ Add favicon to meta component
 If you are not sure, run the following, and answer to the best of your knowledge.
 
 ```
-yarn commit
+pnpm commit
 ```
 
 [conventional commits]: https://www.conventionalcommits.org/en/v1.0.0/
@@ -120,10 +120,6 @@ that is started during the release process.
 _All_ packages and applications have to contain a `package.json` file that may
 contain three lifecycle hooks:
 
-1. `prepare` will run after `yarn` and is used to kick of other processes to
-   bring the monorepo into an _modifiable_ state. The most prominent example is
-   a `composer install` in `apps/silverback-drupal` that will make sure all
-   composer dependencies are installed.
 2. `prepublish` is executed before tests are run, or a package is sent to any
    registry, npm as well as git, drupal.org or packagist. After this lifecycle
    hook the package should be in an _executable_ state. It's a good point to
@@ -262,7 +258,7 @@ identical to packages. There are only two differences:
 1. Applications should have set `private` to `true` at the root level of their
    `package.json` to make sure they are not accidentally published to npm.
    Unless they are consciously released, to another git repository for example.
-2. While lockfiles (composer.lock, yarn.lock) make no sense for packages, they
+2. While lockfiles (composer.lock, pnpm-lock.yaml) make no sense for packages, they
    should be added and committed for applications.
 
 Dependency management and lifecycles work exactly the same as for packages.

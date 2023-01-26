@@ -14,13 +14,11 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "prepare": "tsc --outDir . --declaration",
-    "test": "yarn test:static && yarn test:unit && yarn test:integration",
+    "build": "tsc --outDir . --declaration",
     "watch": "jest --watch",
     "precommit": "lint-staged",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "jest --passWithNoTests",
-    "test:integration": "exit 0",
     "test:watch": "jest --watch"
   },
   "devDependencies": {

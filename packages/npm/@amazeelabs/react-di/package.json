@@ -20,13 +20,8 @@
     "typescript": "4.9.4"
   },
   "scripts": {
-    "prepare": "exit 0",
     "precommit": "lint-staged",
-    "test": "yarn test:static && yarn test:unit && yarn test:integration",
     "watch": "jest --watch",
-    "test:static": "exit 0",
-    "test:unit": "exit 0",
-    "test:integration": "exit 0",
     "test:watch": "jest --watch"
   },
   "dependencies": {

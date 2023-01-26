@@ -35,9 +35,7 @@
     "gatsby-plugin-image": "^3.4.0"
   },
   "scripts": {
-    "prepare": "exit 0",
     "precommit": "lint-staged",
-    "test:unit": "exit 0",
     "watch": "jest --watch"
   },
   "license": "MIT",

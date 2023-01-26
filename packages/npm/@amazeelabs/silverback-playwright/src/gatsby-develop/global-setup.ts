@@ -15,10 +15,10 @@ export default async function globalSetup() {
 
   cd(gatsby.path);
   await port.killIfUsed(gatsby.allPorts);
-  await $`yarn clean`;
+  await $`pnpm clean`;
   // Load env vars right before starting Gatsby so that it sees them.
   const process = nothrow(
-    $`source .envrc && DRUPAL_GRAPHQL_PATH=${gatsby.drupal.graphQlEndpoint} DRUPAL_AUTH_KEY=${gatsby.drupal.authKey} yarn develop`,
+    $`source .envrc && DRUPAL_GRAPHQL_PATH=${gatsby.drupal.graphQlEndpoint} DRUPAL_AUTH_KEY=${gatsby.drupal.authKey} pnpm develop`,
   );
 
   // Wait until Gatsby outputs

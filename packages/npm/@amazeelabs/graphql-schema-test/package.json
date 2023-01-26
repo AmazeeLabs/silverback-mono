@@ -27,18 +27,18 @@
     "@amazeelabs/prettier-config": "^1.1.1",
     "@types/jest": "29.2.5",
     "@types/jest-specific-snapshot": "0.5.6",
+    "@types/lodash": "^4.14.191",
+    "@types/node": "16.18.11",
     "eslint": "8.31.0",
     "jest": "29.3.1",
     "prettier": "2.8.2",
     "typescript": "4.9.4"
   },
   "scripts": {
-    "prepare": "rm -rf dist && tsc",
+    "build": "rm -rf dist && tsc",
     "precommit": "lint-staged",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "jest --passWithNoTests",
-    "test:integration": "exit 0",
-    "test:watch": "jest --watch",
-    "test": "yarn test:static && yarn test:unit && yarn test:integration"
+    "test:watch": "jest --watch"
   }
 }

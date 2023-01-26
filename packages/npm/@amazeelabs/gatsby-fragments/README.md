@@ -16,7 +16,7 @@ and the frontend (Gatsby) for use cases like instant preview.
 3. Convert possibly existing Gatsby GraphQL Drupal `.ts` fragment files to vendor agnostic `.gql` files
 4. Gitignore the generated `*.fragment.ts` files from this common directory
 5. Setup the `generate` fragments script in Gatsby package.json. Example: `"generate-fragments": "node gatsby-fragments generate --path './src/fragments/commons' && eslint \"./src/fragments/commons/**/*.fragment.ts\" --fix && prettier --write \"./src/fragments/commons/**/*.fragment.ts\"",`
-6. This script could be added to the `codegen` one, but it needs to be executed first, so generated fragments can then be used by codegen. Example: `"codegen": "yarn generate-fragments && graphql-codegen --config codegen.yml"`
+6. This script could be added to the `codegen` one, but it needs to be executed first, so generated fragments can then be used by codegen. Example: `"codegen": "pnpm generate-fragments && graphql-codegen --config codegen.yml"`
 8. Fragments in the common directory can now be executed by both Gatsby and Drupal GraphQL
 
 ### Step 3. example:

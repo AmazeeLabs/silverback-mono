@@ -28,4 +28,4 @@ sleep 1
 
 echo "Starting server"
 sleep 1
-CI=true yarn serve -p 3002 "test/public"
+CI=true pnpm serve -p 3002 "test/public"

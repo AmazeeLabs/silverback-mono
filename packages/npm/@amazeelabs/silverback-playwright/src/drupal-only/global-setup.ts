@@ -12,14 +12,14 @@ export default async function globalSetup() {
   cd(drupal.path);
 
   if (fs.existsSync(`${drupal.path}/.silverback-snapshots/test`)) {
-    await $`yarn snapshot-restore`;
+    await $`pnpm snapshot-restore`;
   } else {
-    await $`yarn setup`;
-    await $`yarn snapshot-create`;
+    await $`pnpm run setup`;
+    await $`pnpm snapshot-create`;
   }
 
   await port.killIfUsed(drupal.port);
-  nothrow($`TEST_SESSION_ENABLED=true yarn start`);
+  nothrow($`TEST_SESSION_ENABLED=true pnpm start`);
   await port.waitUntilUsed(drupal.port);
 
   log('drupal-only globalSetup end');
