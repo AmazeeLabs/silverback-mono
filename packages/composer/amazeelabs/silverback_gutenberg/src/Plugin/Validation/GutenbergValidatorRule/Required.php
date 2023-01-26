@@ -20,7 +20,7 @@ class Required implements GutenbergValidatorRuleInterface {
    * {@inheritDoc}
    */
   public function validate($value, $fieldLabel) {
-    if (empty($value)) {
+    if (empty($value) || $value === '_none') {
       return $this->t($this->requiredMessage, ['%field' => $fieldLabel]);
     }
     return TRUE;
