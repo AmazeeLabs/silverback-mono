@@ -64,6 +64,11 @@ class GutenbergValidator extends ConstraintValidator implements ContainerInjecti
    * {@inheritDoc}
    */
   public function validate($value, Constraint $constraint) {
+    // If the field is empty, we don't need to validate it.
+    // Delegate to Drupal.
+    if (empty($value->getValue())) {
+      return;
+    }
     $content = $value->getValue()[0]['value'];
     $parser = new BlockParser();
     $blocks = $parser->parse($content);
