@@ -121,10 +121,10 @@ for an example.
 Custom validator plugins can be created in
 `src/Plugin/Validation/GutenbergValidator`
 
-Example, to validate that a title is required, given that
+Example, to validate an email field that is also required.
 
-- the block name is `custom/title`
-- the field attribute is `text`
+- the block name is `custom/my-block`
+- the field attribute is `email` and the label `Email`
 
 ```php
 <?php
@@ -136,11 +136,11 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * @GutenbergValidator(
- *   id="title_validator",
- *   label = @Translation("Title validator")
+ *   id="my_block_validator",
+ *   label = @Translation("My block validator")
  * )
  */
-class TitleValidator extends GutenbergValidatorBase {
+class MyBlockValidator extends GutenbergValidatorBase {
 
   use StringTranslationTrait;
 
@@ -148,7 +148,7 @@ class TitleValidator extends GutenbergValidatorBase {
    * {@inheritDoc}
    */
   public function applies(array $block) {
-    return $block['blockName'] === 'custom/title';
+    return $block['blockName'] === 'custom/my-block';
   }
 
   /**
@@ -156,9 +156,9 @@ class TitleValidator extends GutenbergValidatorBase {
    */
   public function validatedFields($block = []) {
     return [
-      'text' => [
-        'field_label' => $this->t('Title'),
-        'rules' => ['required']
+      'email' => [
+        'field_label' => $this->t('Email'),
+        'rules' => ['required', 'email'],
       ],
     ];
   }
