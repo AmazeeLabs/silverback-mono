@@ -8,16 +8,6 @@ jobs:
     name: Release
     runs-on: ubuntu-20.04
     steps:
-      - name: Git mail
-        run: git config --global user.email "kitt@amazee.com"
-
-      - name: Git username
-        run: git config --global user.name "K.I.T.T."
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: "8.1"
 
       - uses: webfactory/ssh-agent@v0.7.0
         with:
@@ -28,43 +18,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Read .nvmrc
-        run: echo "##[set-output name=NODE_VERSION;]$(cat .nvmrc| grep -oE '[0-9]+(\.[0-9]+)?(\.[0-9]+)?' | head -1)"
-        id: node_version
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "${{ steps.node_version.outputs.NODE_VERSION }}"
-
-      - name: Tell yarn to use bash
-        run: yarn config set script-shell /bin/bash
-
-      - name: Get Yarn cache directory
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - name: Get Yarn version hash
-        id: yarn-version
-        run: echo "::set-output name=hash::$(yarn --version | shasum | cut -d' ' -f1)"
-      - name: Get Composer cache directory
-        id: composer-cache
-        run: |
-          echo "::set-output name=dir::$(composer global config cache-files-dir)"
-      - name: Get Composer version hash
-        id: composer-version
-        run: |
-          echo "::set-output name=hash::$(composer --version | shasum | cut -d' ' -f1)"
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-dependencies
-        with:
-          path: |
-            ${{ steps.yarn-cache.outputs.dir }}
-            ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash }}-composer-${{ steps.composer-version.outputs.hash }}-github_run_id-${{ github.run_id }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash }}-composer-${{ steps.composer-version.outputs.hash }}-
+      - name: Commons
+        uses: ./.github/actions/commons
 
       - name: Create .npmrc
         run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
@@ -82,22 +37,25 @@ jobs:
         run: npm -v
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm i
+
+      - name: Build packages
+        run: pnpm build
 
       - name: Add drupal.org ssh key
         run: ssh-keyscan git.drupal.org >> ~/.ssh/known_hosts
 
       - name: Run static tests
-        run: yarn test:static
+        run: pnpm test:static
 
       - name: Run unit tests
-        run: yarn test:unit
+        run: pnpm test:unit
 
       - name: Run integration tests
-        run: yarn test:integration
+        run: pnpm test:integration
 
       - name: Start verdaccio
-        run: yarn git-registry &
+        run: pnpm git-registry &
 
       - name: Wait a moment
         run: sleep 5
@@ -105,10 +63,10 @@ jobs:
       - name: Deploy
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        run: yarn lerna run deploy --since
+        run: pnpm lerna run deploy --since
 
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: yarn lerna publish -y
+        run: pnpm lerna publish -y

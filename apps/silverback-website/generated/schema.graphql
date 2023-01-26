@@ -216,6 +216,7 @@ type Internal {
   mediaType: String
   owner: String!
   type: String!
+  contentFilePath: String
 }
 
 """
@@ -408,12 +409,92 @@ type SiteSiteMetadata {
   author: String
 }
 
+type SiteFunction implements Node {
+  functionRoute: String!
+  pluginName: String!
+  originalAbsoluteFilePath: String!
+  originalRelativeFilePath: String!
+  relativeCompiledFilePath: String!
+  absoluteCompiledFilePath: String!
+  matchPath: String
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+}
+
 type SitePage implements Node {
   path: String!
   component: String!
   internalComponentName: String!
   componentChunkName: String!
   matchPath: String
+  pageContext: JSON
+  pluginCreator: SitePlugin
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type SitePlugin implements Node {
+  resolve: String
+  name: String
+  version: String
+  nodeAPIs: [String]
+  browserAPIs: [String]
+  ssrAPIs: [String]
+  pluginFilepath: String
+  pluginOptions: JSON
+  packageJson: JSON
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+}
+
+type SiteBuildMetadata implements Node {
+  buildTime(
+    """
+    Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    """
+    formatString: String
+
+    """Returns a string generated with Moment.js' `fromNow` function"""
+    fromNow: Boolean
+
+    """
+    Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    """
+    difference: String
+
+    """Configures the locale Moment.js will use to format the date."""
+    locale: String
+  ): Date
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+}
+
+type Mdx implements Node {
+  excerpt(pruneLength: Int = 140, truncate: Boolean = false): String!
+  tableOfContents(maxDepth: Int): JSON
+  rawBody: String!
+  fileAbsolutePath: String!
+  frontmatter: MdxFrontmatter
+  slug: String
+  body: String!
+  headings(depth: HeadingsMdx): [MdxHeadingMdx]
+  html: String
+  mdxAST: JSON
+  timeToRead: Int
+  wordCount: MdxWordCount
   id: ID!
   parent: Node
   children: [Node!]!
@@ -447,147 +528,23 @@ type MdxWordCount {
   words: Int
 }
 
-type Mdx implements Node {
-  rawBody: String!
-  fileAbsolutePath: String!
-  frontmatter: MdxFrontmatter
-  slug: String
-  body: String!
-  excerpt(pruneLength: Int = 140, truncate: Boolean = false): String!
-  headings(depth: HeadingsMdx): [MdxHeadingMdx]
-  html: String
-  mdxAST: JSON
-  tableOfContents(maxDepth: Int): JSON
-  timeToRead: Int
-  wordCount: MdxWordCount
-  id: ID!
-  parent: Node
-  children: [Node!]!
-  internal: Internal!
-}
-
-"""
-The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-"""
-scalar JSON
-
-type SiteBuildMetadata implements Node {
-  id: ID!
-  parent: Node
-  children: [Node!]!
-  internal: Internal!
-  buildTime(
-    """
-    Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
-    """
-    formatString: String
-
-    """Returns a string generated with Moment.js' `fromNow` function"""
-    fromNow: Boolean
-
-    """
-    Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
-    """
-    difference: String
-
-    """Configures the locale Moment.js will use to format the date."""
-    locale: String
-  ): Date
-}
-
-type SitePlugin implements Node {
-  id: ID!
-  parent: Node
-  children: [Node!]!
-  internal: Internal!
-  resolve: String
-  name: String
-  version: String
-  pluginOptions: SitePluginPluginOptions
-  nodeAPIs: [String]
-  browserAPIs: [String]
-  ssrAPIs: [String]
-  pluginFilepath: String
-  packageJson: SitePluginPackageJson
-}
-
-type SitePluginPluginOptions {
-  base64Width: Int
-  stripMetadata: Boolean
-  defaultQuality: Int
-  failOnError: Boolean
-  maxWidth: Int
-  linkImagesToOriginal: Boolean
-  showCaptions: Boolean
-  markdownCaptions: Boolean
-  sizeByPixelDensity: Boolean
-  backgroundColor: String
-  quality: Int
-  withWebp: Boolean
-  tracedSVG: Boolean
-  loading: String
-  disableBgImageOnAlpha: Boolean
-  disableBgImage: Boolean
-  extensions: [String]
-  lessBabel: Boolean
-  mediaTypes: [String]
-  root: String
-  path: String
-  exclude: SitePluginPluginOptionsExclude
-  name: String
-  pathCheck: Boolean
-  allExtensions: Boolean
-  isTSX: Boolean
-  jsxPragma: String
-}
-
-type SitePluginPluginOptionsExclude {
-  plugins: [String]
-}
-
-type SitePluginPackageJson {
-  name: String
-  description: String
-  version: String
-  main: String
-  author: String
-  license: String
-  dependencies: [SitePluginPackageJsonDependencies]
-  devDependencies: [SitePluginPackageJsonDevDependencies]
-  peerDependencies: [SitePluginPackageJsonPeerDependencies]
-  keywords: [String]
-}
-
-type SitePluginPackageJsonDependencies {
-  name: String
-  version: String
-}
-
-type SitePluginPackageJsonDevDependencies {
-  name: String
-  version: String
-}
-
-type SitePluginPackageJsonPeerDependencies {
-  name: String
-  version: String
-}
-
 type Query {
   file(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, publicURL: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): File
-  allFile(filter: FileFilterInput, sort: FileSortInput, skip: Int, limit: Int): FileConnection!
+  allFile(filter: FileFilterInput, sort: [FileSortInput], skip: Int, limit: Int): FileConnection!
   directory(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Directory
-  allDirectory(filter: DirectoryFilterInput, sort: DirectorySortInput, skip: Int, limit: Int): DirectoryConnection!
+  allDirectory(filter: DirectoryFilterInput, sort: [DirectorySortInput], skip: Int, limit: Int): DirectoryConnection!
   site(buildTime: DateQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
-  allSite(filter: SiteFilterInput, sort: SiteSortInput, skip: Int, limit: Int): SiteConnection!
-  sitePage(path: StringQueryOperatorInput, component: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SitePage
-  allSitePage(filter: SitePageFilterInput, sort: SitePageSortInput, skip: Int, limit: Int): SitePageConnection!
-  mdx(rawBody: StringQueryOperatorInput, fileAbsolutePath: StringQueryOperatorInput, frontmatter: MdxFrontmatterFilterInput, slug: StringQueryOperatorInput, body: StringQueryOperatorInput, excerpt: StringQueryOperatorInput, headings: MdxHeadingMdxFilterListInput, html: StringQueryOperatorInput, mdxAST: JSONQueryOperatorInput, tableOfContents: JSONQueryOperatorInput, timeToRead: IntQueryOperatorInput, wordCount: MdxWordCountFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Mdx
-  allMdx(filter: MdxFilterInput, sort: MdxSortInput, skip: Int, limit: Int): MdxConnection!
-  siteBuildMetadata(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, buildTime: DateQueryOperatorInput): SiteBuildMetadata
-  allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, sort: SiteBuildMetadataSortInput, skip: Int, limit: Int): SiteBuildMetadataConnection!
-  sitePlugin(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, resolve: StringQueryOperatorInput, name: StringQueryOperatorInput, version: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, nodeAPIs: StringQueryOperatorInput, browserAPIs: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, pluginFilepath: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput): SitePlugin
-  allSitePlugin(filter: SitePluginFilterInput, sort: SitePluginSortInput, skip: Int, limit: Int): SitePluginConnection!
+  allSite(filter: SiteFilterInput, sort: [SiteSortInput], skip: Int, limit: Int): SiteConnection!
+  siteFunction(functionRoute: StringQueryOperatorInput, pluginName: StringQueryOperatorInput, originalAbsoluteFilePath: StringQueryOperatorInput, originalRelativeFilePath: StringQueryOperatorInput, relativeCompiledFilePath: StringQueryOperatorInput, absoluteCompiledFilePath: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SiteFunction
+  allSiteFunction(filter: SiteFunctionFilterInput, sort: [SiteFunctionSortInput], skip: Int, limit: Int): SiteFunctionConnection!
+  sitePage(path: StringQueryOperatorInput, component: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, pageContext: JSONQueryOperatorInput, pluginCreator: SitePluginFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SitePage
+  allSitePage(filter: SitePageFilterInput, sort: [SitePageSortInput], skip: Int, limit: Int): SitePageConnection!
+  sitePlugin(resolve: StringQueryOperatorInput, name: StringQueryOperatorInput, version: StringQueryOperatorInput, nodeAPIs: StringQueryOperatorInput, browserAPIs: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, pluginFilepath: StringQueryOperatorInput, pluginOptions: JSONQueryOperatorInput, packageJson: JSONQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SitePlugin
+  allSitePlugin(filter: SitePluginFilterInput, sort: [SitePluginSortInput], skip: Int, limit: Int): SitePluginConnection!
+  siteBuildMetadata(buildTime: DateQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SiteBuildMetadata
+  allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, sort: [SiteBuildMetadataSortInput], skip: Int, limit: Int): SiteBuildMetadataConnection!
+  mdx(excerpt: StringQueryOperatorInput, tableOfContents: JSONQueryOperatorInput, rawBody: StringQueryOperatorInput, fileAbsolutePath: StringQueryOperatorInput, frontmatter: MdxFrontmatterFilterInput, slug: StringQueryOperatorInput, body: StringQueryOperatorInput, headings: MdxHeadingMdxFilterListInput, html: StringQueryOperatorInput, mdxAST: JSONQueryOperatorInput, timeToRead: IntQueryOperatorInput, wordCount: MdxWordCountFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Mdx
+  allMdx(filter: MdxFilterInput, sort: [MdxSortInput], skip: Int, limit: Int): MdxConnection!
 }
 
 input StringQueryOperatorInput {
@@ -652,6 +609,7 @@ input InternalFilterInput {
   mediaType: StringQueryOperatorInput
   owner: StringQueryOperatorInput
   type: StringQueryOperatorInput
+  contentFilePath: StringQueryOperatorInput
 }
 
 input BooleanQueryOperatorInput {
@@ -666,8 +624,11 @@ type FileConnection {
   edges: [FileEdge!]!
   nodes: [File!]!
   pageInfo: PageInfo!
-  distinct(field: FileFieldsEnum!): [String!]!
-  group(skip: Int, limit: Int, field: FileFieldsEnum!): [FileGroupConnection!]!
+  distinct(field: FileFieldSelector!): [String!]!
+  max(field: FileFieldSelector!): Float
+  min(field: FileFieldSelector!): Float
+  sum(field: FileFieldSelector!): Float
+  group(skip: Int, limit: Int, field: FileFieldSelector!): [FileGroupConnection!]!
 }
 
 type FileEdge {
@@ -686,127 +647,68 @@ type PageInfo {
   totalCount: Int!
 }
 
-enum FileFieldsEnum {
-  sourceInstanceName
-  absolutePath
-  relativePath
-  extension
-  size
-  prettySize
-  modifiedTime
-  accessTime
-  changeTime
-  birthTime
-  root
-  dir
-  base
-  ext
-  name
-  relativeDirectory
-  dev
-  mode
-  nlink
-  uid
-  gid
-  rdev
-  ino
-  atimeMs
-  mtimeMs
-  ctimeMs
-  atime
-  mtime
-  ctime
-  birthtime
-  birthtimeMs
-  blksize
-  blocks
-  publicURL
-  id
-  parent___id
-  parent___parent___id
-  parent___parent___parent___id
-  parent___parent___parent___children
-  parent___parent___children
-  parent___parent___children___id
-  parent___parent___children___children
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___children
-  parent___children___id
-  parent___children___parent___id
-  parent___children___parent___children
-  parent___children___children
-  parent___children___children___id
-  parent___children___children___children
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  children
-  children___id
-  children___parent___id
-  children___parent___parent___id
-  children___parent___parent___children
-  children___parent___children
-  children___parent___children___id
-  children___parent___children___children
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___children
-  children___children___id
-  children___children___parent___id
-  children___children___parent___children
-  children___children___children
-  children___children___children___id
-  children___children___children___children
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
+input FileFieldSelector {
+  sourceInstanceName: FieldSelectorEnum
+  absolutePath: FieldSelectorEnum
+  relativePath: FieldSelectorEnum
+  extension: FieldSelectorEnum
+  size: FieldSelectorEnum
+  prettySize: FieldSelectorEnum
+  modifiedTime: FieldSelectorEnum
+  accessTime: FieldSelectorEnum
+  changeTime: FieldSelectorEnum
+  birthTime: FieldSelectorEnum
+  root: FieldSelectorEnum
+  dir: FieldSelectorEnum
+  base: FieldSelectorEnum
+  ext: FieldSelectorEnum
+  name: FieldSelectorEnum
+  relativeDirectory: FieldSelectorEnum
+  dev: FieldSelectorEnum
+  mode: FieldSelectorEnum
+  nlink: FieldSelectorEnum
+  uid: FieldSelectorEnum
+  gid: FieldSelectorEnum
+  rdev: FieldSelectorEnum
+  ino: FieldSelectorEnum
+  atimeMs: FieldSelectorEnum
+  mtimeMs: FieldSelectorEnum
+  ctimeMs: FieldSelectorEnum
+  atime: FieldSelectorEnum
+  mtime: FieldSelectorEnum
+  ctime: FieldSelectorEnum
+  birthtime: FieldSelectorEnum
+  birthtimeMs: FieldSelectorEnum
+  blksize: FieldSelectorEnum
+  blocks: FieldSelectorEnum
+  publicURL: FieldSelectorEnum
+  id: FieldSelectorEnum
+  parent: NodeFieldSelector
+  children: NodeFieldSelector
+  internal: InternalFieldSelector
+}
+
+enum FieldSelectorEnum {
+  SELECT
+}
+
+input NodeFieldSelector {
+  id: FieldSelectorEnum
+  parent: NodeFieldSelector
+  children: NodeFieldSelector
+  internal: InternalFieldSelector
+}
+
+input InternalFieldSelector {
+  content: FieldSelectorEnum
+  contentDigest: FieldSelectorEnum
+  description: FieldSelectorEnum
+  fieldOwners: FieldSelectorEnum
+  ignoreType: FieldSelectorEnum
+  mediaType: FieldSelectorEnum
+  owner: FieldSelectorEnum
+  type: FieldSelectorEnum
+  contentFilePath: FieldSelectorEnum
 }
 
 type FileGroupConnection {
@@ -814,6 +716,11 @@ type FileGroupConnection {
   edges: [FileEdge!]!
   nodes: [File!]!
   pageInfo: PageInfo!
+  distinct(field: FileFieldSelector!): [String!]!
+  max(field: FileFieldSelector!): Float
+  min(field: FileFieldSelector!): Float
+  sum(field: FileFieldSelector!): Float
+  group(skip: Int, limit: Int, field: FileFieldSelector!): [FileGroupConnection!]!
   field: String!
   fieldValue: String
 }
@@ -860,8 +767,44 @@ input FileFilterInput {
 }
 
 input FileSortInput {
-  fields: [FileFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
+  sourceInstanceName: SortOrderEnum
+  absolutePath: SortOrderEnum
+  relativePath: SortOrderEnum
+  extension: SortOrderEnum
+  size: SortOrderEnum
+  prettySize: SortOrderEnum
+  modifiedTime: SortOrderEnum
+  accessTime: SortOrderEnum
+  changeTime: SortOrderEnum
+  birthTime: SortOrderEnum
+  root: SortOrderEnum
+  dir: SortOrderEnum
+  base: SortOrderEnum
+  ext: SortOrderEnum
+  name: SortOrderEnum
+  relativeDirectory: SortOrderEnum
+  dev: SortOrderEnum
+  mode: SortOrderEnum
+  nlink: SortOrderEnum
+  uid: SortOrderEnum
+  gid: SortOrderEnum
+  rdev: SortOrderEnum
+  ino: SortOrderEnum
+  atimeMs: SortOrderEnum
+  mtimeMs: SortOrderEnum
+  ctimeMs: SortOrderEnum
+  atime: SortOrderEnum
+  mtime: SortOrderEnum
+  ctime: SortOrderEnum
+  birthtime: SortOrderEnum
+  birthtimeMs: SortOrderEnum
+  blksize: SortOrderEnum
+  blocks: SortOrderEnum
+  publicURL: SortOrderEnum
+  id: SortOrderEnum
+  parent: NodeSortInput
+  children: NodeSortInput
+  internal: InternalSortInput
 }
 
 enum SortOrderEnum {
@@ -869,13 +812,35 @@ enum SortOrderEnum {
   DESC
 }
 
+input NodeSortInput {
+  id: SortOrderEnum
+  parent: NodeSortInput
+  children: NodeSortInput
+  internal: InternalSortInput
+}
+
+input InternalSortInput {
+  content: SortOrderEnum
+  contentDigest: SortOrderEnum
+  description: SortOrderEnum
+  fieldOwners: SortOrderEnum
+  ignoreType: SortOrderEnum
+  mediaType: SortOrderEnum
+  owner: SortOrderEnum
+  type: SortOrderEnum
+  contentFilePath: SortOrderEnum
+}
+
 type DirectoryConnection {
   totalCount: Int!
   edges: [DirectoryEdge!]!
   nodes: [Directory!]!
   pageInfo: PageInfo!
-  distinct(field: DirectoryFieldsEnum!): [String!]!
-  group(skip: Int, limit: Int, field: DirectoryFieldsEnum!): [DirectoryGroupConnection!]!
+  distinct(field: DirectoryFieldSelector!): [String!]!
+  max(field: DirectoryFieldSelector!): Float
+  min(field: DirectoryFieldSelector!): Float
+  sum(field: DirectoryFieldSelector!): Float
+  group(skip: Int, limit: Int, field: DirectoryFieldSelector!): [DirectoryGroupConnection!]!
 }
 
 type DirectoryEdge {
@@ -884,126 +849,44 @@ type DirectoryEdge {
   previous: Directory
 }
 
-enum DirectoryFieldsEnum {
-  sourceInstanceName
-  absolutePath
-  relativePath
-  extension
-  size
-  prettySize
-  modifiedTime
-  accessTime
-  changeTime
-  birthTime
-  root
-  dir
-  base
-  ext
-  name
-  relativeDirectory
-  dev
-  mode
-  nlink
-  uid
-  gid
-  rdev
-  ino
-  atimeMs
-  mtimeMs
-  ctimeMs
-  atime
-  mtime
-  ctime
-  birthtime
-  birthtimeMs
-  blksize
-  blocks
-  id
-  parent___id
-  parent___parent___id
-  parent___parent___parent___id
-  parent___parent___parent___children
-  parent___parent___children
-  parent___parent___children___id
-  parent___parent___children___children
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___children
-  parent___children___id
-  parent___children___parent___id
-  parent___children___parent___children
-  parent___children___children
-  parent___children___children___id
-  parent___children___children___children
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  children
-  children___id
-  children___parent___id
-  children___parent___parent___id
-  children___parent___parent___children
-  children___parent___children
-  children___parent___children___id
-  children___parent___children___children
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___children
-  children___children___id
-  children___children___parent___id
-  children___children___parent___children
-  children___children___children
-  children___children___children___id
-  children___children___children___children
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
+input DirectoryFieldSelector {
+  sourceInstanceName: FieldSelectorEnum
+  absolutePath: FieldSelectorEnum
+  relativePath: FieldSelectorEnum
+  extension: FieldSelectorEnum
+  size: FieldSelectorEnum
+  prettySize: FieldSelectorEnum
+  modifiedTime: FieldSelectorEnum
+  accessTime: FieldSelectorEnum
+  changeTime: FieldSelectorEnum
+  birthTime: FieldSelectorEnum
+  root: FieldSelectorEnum
+  dir: FieldSelectorEnum
+  base: FieldSelectorEnum
+  ext: FieldSelectorEnum
+  name: FieldSelectorEnum
+  relativeDirectory: FieldSelectorEnum
+  dev: FieldSelectorEnum
+  mode: FieldSelectorEnum
+  nlink: FieldSelectorEnum
+  uid: FieldSelectorEnum
+  gid: FieldSelectorEnum
+  rdev: FieldSelectorEnum
+  ino: FieldSelectorEnum
+  atimeMs: FieldSelectorEnum
+  mtimeMs: FieldSelectorEnum
+  ctimeMs: FieldSelectorEnum
+  atime: FieldSelectorEnum
+  mtime: FieldSelectorEnum
+  ctime: FieldSelectorEnum
+  birthtime: FieldSelectorEnum
+  birthtimeMs: FieldSelectorEnum
+  blksize: FieldSelectorEnum
+  blocks: FieldSelectorEnum
+  id: FieldSelectorEnum
+  parent: NodeFieldSelector
+  children: NodeFieldSelector
+  internal: InternalFieldSelector
 }
 
 type DirectoryGroupConnection {
@@ -1011,6 +894,11 @@ type DirectoryGroupConnection {
   edges: [DirectoryEdge!]!
   nodes: [Directory!]!
   pageInfo: PageInfo!
+  distinct(field: DirectoryFieldSelector!): [String!]!
+  max(field: DirectoryFieldSelector!): Float
+  min(field: DirectoryFieldSelector!): Float
+  sum(field: DirectoryFieldSelector!): Float
+  group(skip: Int, limit: Int, field: DirectoryFieldSelector!): [DirectoryGroupConnection!]!
   field: String!
   fieldValue: String
 }
@@ -1056,8 +944,43 @@ input DirectoryFilterInput {
 }
 
 input DirectorySortInput {
-  fields: [DirectoryFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
+  sourceInstanceName: SortOrderEnum
+  absolutePath: SortOrderEnum
+  relativePath: SortOrderEnum
+  extension: SortOrderEnum
+  size: SortOrderEnum
+  prettySize: SortOrderEnum
+  modifiedTime: SortOrderEnum
+  accessTime: SortOrderEnum
+  changeTime: SortOrderEnum
+  birthTime: SortOrderEnum
+  root: SortOrderEnum
+  dir: SortOrderEnum
+  base: SortOrderEnum
+  ext: SortOrderEnum
+  name: SortOrderEnum
+  relativeDirectory: SortOrderEnum
+  dev: SortOrderEnum
+  mode: SortOrderEnum
+  nlink: SortOrderEnum
+  uid: SortOrderEnum
+  gid: SortOrderEnum
+  rdev: SortOrderEnum
+  ino: SortOrderEnum
+  atimeMs: SortOrderEnum
+  mtimeMs: SortOrderEnum
+  ctimeMs: SortOrderEnum
+  atime: SortOrderEnum
+  mtime: SortOrderEnum
+  ctime: SortOrderEnum
+  birthtime: SortOrderEnum
+  birthtimeMs: SortOrderEnum
+  blksize: SortOrderEnum
+  blocks: SortOrderEnum
+  id: SortOrderEnum
+  parent: NodeSortInput
+  children: NodeSortInput
+  internal: InternalSortInput
 }
 
 input SiteSiteMetadataFilterInput {
@@ -1071,8 +994,11 @@ type SiteConnection {
   edges: [SiteEdge!]!
   nodes: [Site!]!
   pageInfo: PageInfo!
-  distinct(field: SiteFieldsEnum!): [String!]!
-  group(skip: Int, limit: Int, field: SiteFieldsEnum!): [SiteGroupConnection!]!
+  distinct(field: SiteFieldSelector!): [String!]!
+  max(field: SiteFieldSelector!): Float
+  min(field: SiteFieldSelector!): Float
+  sum(field: SiteFieldSelector!): Float
+  group(skip: Int, limit: Int, field: SiteFieldSelector!): [SiteGroupConnection!]!
 }
 
 type SiteEdge {
@@ -1081,99 +1007,21 @@ type SiteEdge {
   previous: Site
 }
 
-enum SiteFieldsEnum {
-  buildTime
-  siteMetadata___title
-  siteMetadata___description
-  siteMetadata___author
-  polyfill
-  pathPrefix
-  id
-  parent___id
-  parent___parent___id
-  parent___parent___parent___id
-  parent___parent___parent___children
-  parent___parent___children
-  parent___parent___children___id
-  parent___parent___children___children
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___children
-  parent___children___id
-  parent___children___parent___id
-  parent___children___parent___children
-  parent___children___children
-  parent___children___children___id
-  parent___children___children___children
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  children
-  children___id
-  children___parent___id
-  children___parent___parent___id
-  children___parent___parent___children
-  children___parent___children
-  children___parent___children___id
-  children___parent___children___children
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___children
-  children___children___id
-  children___children___parent___id
-  children___children___parent___children
-  children___children___children
-  children___children___children___id
-  children___children___children___children
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
+input SiteFieldSelector {
+  buildTime: FieldSelectorEnum
+  siteMetadata: SiteSiteMetadataFieldSelector
+  polyfill: FieldSelectorEnum
+  pathPrefix: FieldSelectorEnum
+  id: FieldSelectorEnum
+  parent: NodeFieldSelector
+  children: NodeFieldSelector
+  internal: InternalFieldSelector
+}
+
+input SiteSiteMetadataFieldSelector {
+  title: FieldSelectorEnum
+  description: FieldSelectorEnum
+  author: FieldSelectorEnum
 }
 
 type SiteGroupConnection {
@@ -1181,6 +1029,11 @@ type SiteGroupConnection {
   edges: [SiteEdge!]!
   nodes: [Site!]!
   pageInfo: PageInfo!
+  distinct(field: SiteFieldSelector!): [String!]!
+  max(field: SiteFieldSelector!): Float
+  min(field: SiteFieldSelector!): Float
+  sum(field: SiteFieldSelector!): Float
+  group(skip: Int, limit: Int, field: SiteFieldSelector!): [SiteGroupConnection!]!
   field: String!
   fieldValue: String
 }
@@ -1197,8 +1050,119 @@ input SiteFilterInput {
 }
 
 input SiteSortInput {
-  fields: [SiteFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
+  buildTime: SortOrderEnum
+  siteMetadata: SiteSiteMetadataSortInput
+  polyfill: SortOrderEnum
+  pathPrefix: SortOrderEnum
+  id: SortOrderEnum
+  parent: NodeSortInput
+  children: NodeSortInput
+  internal: InternalSortInput
+}
+
+input SiteSiteMetadataSortInput {
+  title: SortOrderEnum
+  description: SortOrderEnum
+  author: SortOrderEnum
+}
+
+type SiteFunctionConnection {
+  totalCount: Int!
+  edges: [SiteFunctionEdge!]!
+  nodes: [SiteFunction!]!
+  pageInfo: PageInfo!
+  distinct(field: SiteFunctionFieldSelector!): [String!]!
+  max(field: SiteFunctionFieldSelector!): Float
+  min(field: SiteFunctionFieldSelector!): Float
+  sum(field: SiteFunctionFieldSelector!): Float
+  group(skip: Int, limit: Int, field: SiteFunctionFieldSelector!): [SiteFunctionGroupConnection!]!
+}
+
+type SiteFunctionEdge {
+  next: SiteFunction
+  node: SiteFunction!
+  previous: SiteFunction
+}
+
+input SiteFunctionFieldSelector {
+  functionRoute: FieldSelectorEnum
+  pluginName: FieldSelectorEnum
+  originalAbsoluteFilePath: FieldSelectorEnum
+  originalRelativeFilePath: FieldSelectorEnum
+  relativeCompiledFilePath: FieldSelectorEnum
+  absoluteCompiledFilePath: FieldSelectorEnum
+  matchPath: FieldSelectorEnum
+  id: FieldSelectorEnum
+  parent: NodeFieldSelector
+  children: NodeFieldSelector
+  internal: InternalFieldSelector
+}
+
+type SiteFunctionGroupConnection {
+  totalCount: Int!
+  edges: [SiteFunctionEdge!]!
+  nodes: [SiteFunction!]!
+  pageInfo: PageInfo!
+  distinct(field: SiteFunctionFieldSelector!): [String!]!
+  max(field: SiteFunctionFieldSelector!): Float
+  min(field: SiteFunctionFieldSelector!): Float
+  sum(field: SiteFunctionFieldSelector!): Float
+  group(skip: Int, limit: Int, field: SiteFunctionFieldSelector!): [SiteFunctionGroupConnection!]!
+  field: String!
+  fieldValue: String
+}
+
+input SiteFunctionFilterInput {
+  functionRoute: StringQueryOperatorInput
+  pluginName: StringQueryOperatorInput
+  originalAbsoluteFilePath: StringQueryOperatorInput
+  originalRelativeFilePath: StringQueryOperatorInput
+  relativeCompiledFilePath: StringQueryOperatorInput
+  absoluteCompiledFilePath: StringQueryOperatorInput
+  matchPath: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+input SiteFunctionSortInput {
+  functionRoute: SortOrderEnum
+  pluginName: SortOrderEnum
+  originalAbsoluteFilePath: SortOrderEnum
+  originalRelativeFilePath: SortOrderEnum
+  relativeCompiledFilePath: SortOrderEnum
+  absoluteCompiledFilePath: SortOrderEnum
+  matchPath: SortOrderEnum
+  id: SortOrderEnum
+  parent: NodeSortInput
+  children: NodeSortInput
+  internal: InternalSortInput
+}
+
+input JSONQueryOperatorInput {
+  eq: JSON
+  ne: JSON
+  in: [JSON]
+  nin: [JSON]
+  regex: JSON
+  glob: JSON
+}
+
+input SitePluginFilterInput {
+  resolve: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+  version: StringQueryOperatorInput
+  nodeAPIs: StringQueryOperatorInput
+  browserAPIs: StringQueryOperatorInput
+  ssrAPIs: StringQueryOperatorInput
+  pluginFilepath: StringQueryOperatorInput
+  pluginOptions: JSONQueryOperatorInput
+  packageJson: JSONQueryOperatorInput
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
 }
 
 type SitePageConnection {
@@ -1206,8 +1170,11 @@ type SitePageConnection {
   edges: [SitePageEdge!]!
   nodes: [SitePage!]!
   pageInfo: PageInfo!
-  distinct(field: SitePageFieldsEnum!): [String!]!
-  group(skip: Int, limit: Int, field: SitePageFieldsEnum!): [SitePageGroupConnection!]!
+  distinct(field: SitePageFieldSelector!): [String!]!
+  max(field: SitePageFieldSelector!): Float
+  min(field: SitePageFieldSelector!): Float
+  sum(field: SitePageFieldSelector!): Float
+  group(skip: Int, limit: Int, field: SitePageFieldSelector!): [SitePageGroupConnection!]!
 }
 
 type SitePageEdge {
@@ -1216,98 +1183,34 @@ type SitePageEdge {
   previous: SitePage
 }
 
-enum SitePageFieldsEnum {
-  path
-  component
-  internalComponentName
-  componentChunkName
-  matchPath
-  id
-  parent___id
-  parent___parent___id
-  parent___parent___parent___id
-  parent___parent___parent___children
-  parent___parent___children
-  parent___parent___children___id
-  parent___parent___children___children
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___children
-  parent___children___id
-  parent___children___parent___id
-  parent___children___parent___children
-  parent___children___children
-  parent___children___children___id
-  parent___children___children___children
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  children
-  children___id
-  children___parent___id
-  children___parent___parent___id
-  children___parent___parent___children
-  children___parent___children
-  children___parent___children___id
-  children___parent___children___children
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___children
-  children___children___id
-  children___children___parent___id
-  children___children___parent___children
-  children___children___children
-  children___children___children___id
-  children___children___children___children
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
+input SitePageFieldSelector {
+  path: FieldSelectorEnum
+  component: FieldSelectorEnum
+  internalComponentName: FieldSelectorEnum
+  componentChunkName: FieldSelectorEnum
+  matchPath: FieldSelectorEnum
+  pageContext: FieldSelectorEnum
+  pluginCreator: SitePluginFieldSelector
+  id: FieldSelectorEnum
+  parent: NodeFieldSelector
+  children: NodeFieldSelector
+  internal: InternalFieldSelector
+}
+
+input SitePluginFieldSelector {
+  resolve: FieldSelectorEnum
+  name: FieldSelectorEnum
+  version: FieldSelectorEnum
+  nodeAPIs: FieldSelectorEnum
+  browserAPIs: FieldSelectorEnum
+  ssrAPIs: FieldSelectorEnum
+  pluginFilepath: FieldSelectorEnum
+  pluginOptions: FieldSelectorEnum
+  packageJson: FieldSelectorEnum
+  id: FieldSelectorEnum
+  parent: NodeFieldSelector
+  children: NodeFieldSelector
+  internal: InternalFieldSelector
 }
 
 type SitePageGroupConnection {
@@ -1315,6 +1218,11 @@ type SitePageGroupConnection {
   edges: [SitePageEdge!]!
   nodes: [SitePage!]!
   pageInfo: PageInfo!
+  distinct(field: SitePageFieldSelector!): [String!]!
+  max(field: SitePageFieldSelector!): Float
+  min(field: SitePageFieldSelector!): Float
+  sum(field: SitePageFieldSelector!): Float
+  group(skip: Int, limit: Int, field: SitePageFieldSelector!): [SitePageGroupConnection!]!
   field: String!
   fieldValue: String
 }
@@ -1325,6 +1233,8 @@ input SitePageFilterInput {
   internalComponentName: StringQueryOperatorInput
   componentChunkName: StringQueryOperatorInput
   matchPath: StringQueryOperatorInput
+  pageContext: JSONQueryOperatorInput
+  pluginCreator: SitePluginFilterInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
   children: NodeFilterListInput
@@ -1332,8 +1242,121 @@ input SitePageFilterInput {
 }
 
 input SitePageSortInput {
-  fields: [SitePageFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
+  path: SortOrderEnum
+  component: SortOrderEnum
+  internalComponentName: SortOrderEnum
+  componentChunkName: SortOrderEnum
+  matchPath: SortOrderEnum
+  pageContext: SortOrderEnum
+  pluginCreator: SitePluginSortInput
+  id: SortOrderEnum
+  parent: NodeSortInput
+  children: NodeSortInput
+  internal: InternalSortInput
+}
+
+input SitePluginSortInput {
+  resolve: SortOrderEnum
+  name: SortOrderEnum
+  version: SortOrderEnum
+  nodeAPIs: SortOrderEnum
+  browserAPIs: SortOrderEnum
+  ssrAPIs: SortOrderEnum
+  pluginFilepath: SortOrderEnum
+  pluginOptions: SortOrderEnum
+  packageJson: SortOrderEnum
+  id: SortOrderEnum
+  parent: NodeSortInput
+  children: NodeSortInput
+  internal: InternalSortInput
+}
+
+type SitePluginConnection {
+  totalCount: Int!
+  edges: [SitePluginEdge!]!
+  nodes: [SitePlugin!]!
+  pageInfo: PageInfo!
+  distinct(field: SitePluginFieldSelector!): [String!]!
+  max(field: SitePluginFieldSelector!): Float
+  min(field: SitePluginFieldSelector!): Float
+  sum(field: SitePluginFieldSelector!): Float
+  group(skip: Int, limit: Int, field: SitePluginFieldSelector!): [SitePluginGroupConnection!]!
+}
+
+type SitePluginEdge {
+  next: SitePlugin
+  node: SitePlugin!
+  previous: SitePlugin
+}
+
+type SitePluginGroupConnection {
+  totalCount: Int!
+  edges: [SitePluginEdge!]!
+  nodes: [SitePlugin!]!
+  pageInfo: PageInfo!
+  distinct(field: SitePluginFieldSelector!): [String!]!
+  max(field: SitePluginFieldSelector!): Float
+  min(field: SitePluginFieldSelector!): Float
+  sum(field: SitePluginFieldSelector!): Float
+  group(skip: Int, limit: Int, field: SitePluginFieldSelector!): [SitePluginGroupConnection!]!
+  field: String!
+  fieldValue: String
+}
+
+type SiteBuildMetadataConnection {
+  totalCount: Int!
+  edges: [SiteBuildMetadataEdge!]!
+  nodes: [SiteBuildMetadata!]!
+  pageInfo: PageInfo!
+  distinct(field: SiteBuildMetadataFieldSelector!): [String!]!
+  max(field: SiteBuildMetadataFieldSelector!): Float
+  min(field: SiteBuildMetadataFieldSelector!): Float
+  sum(field: SiteBuildMetadataFieldSelector!): Float
+  group(skip: Int, limit: Int, field: SiteBuildMetadataFieldSelector!): [SiteBuildMetadataGroupConnection!]!
+}
+
+type SiteBuildMetadataEdge {
+  next: SiteBuildMetadata
+  node: SiteBuildMetadata!
+  previous: SiteBuildMetadata
+}
+
+input SiteBuildMetadataFieldSelector {
+  buildTime: FieldSelectorEnum
+  id: FieldSelectorEnum
+  parent: NodeFieldSelector
+  children: NodeFieldSelector
+  internal: InternalFieldSelector
+}
+
+type SiteBuildMetadataGroupConnection {
+  totalCount: Int!
+  edges: [SiteBuildMetadataEdge!]!
+  nodes: [SiteBuildMetadata!]!
+  pageInfo: PageInfo!
+  distinct(field: SiteBuildMetadataFieldSelector!): [String!]!
+  max(field: SiteBuildMetadataFieldSelector!): Float
+  min(field: SiteBuildMetadataFieldSelector!): Float
+  sum(field: SiteBuildMetadataFieldSelector!): Float
+  group(skip: Int, limit: Int, field: SiteBuildMetadataFieldSelector!): [SiteBuildMetadataGroupConnection!]!
+  field: String!
+  fieldValue: String
+}
+
+input SiteBuildMetadataFilterInput {
+  buildTime: DateQueryOperatorInput
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+input SiteBuildMetadataSortInput {
+  buildTime: SortOrderEnum
+  id: SortOrderEnum
+  parent: NodeSortInput
+  children: NodeSortInput
+  internal: InternalSortInput
 }
 
 input MdxFrontmatterFilterInput {
@@ -1352,15 +1375,6 @@ input MdxHeadingMdxFilterInput {
   depth: IntQueryOperatorInput
 }
 
-input JSONQueryOperatorInput {
-  eq: JSON
-  ne: JSON
-  in: [JSON]
-  nin: [JSON]
-  regex: JSON
-  glob: JSON
-}
-
 input MdxWordCountFilterInput {
   paragraphs: IntQueryOperatorInput
   sentences: IntQueryOperatorInput
@@ -1372,8 +1386,11 @@ type MdxConnection {
   edges: [MdxEdge!]!
   nodes: [Mdx!]!
   pageInfo: PageInfo!
-  distinct(field: MdxFieldsEnum!): [String!]!
-  group(skip: Int, limit: Int, field: MdxFieldsEnum!): [MdxGroupConnection!]!
+  distinct(field: MdxFieldSelector!): [String!]!
+  max(field: MdxFieldSelector!): Float
+  min(field: MdxFieldSelector!): Float
+  sum(field: MdxFieldSelector!): Float
+  group(skip: Int, limit: Int, field: MdxFieldSelector!): [MdxGroupConnection!]!
 }
 
 type MdxEdge {
@@ -1382,112 +1399,41 @@ type MdxEdge {
   previous: Mdx
 }
 
-enum MdxFieldsEnum {
-  rawBody
-  fileAbsolutePath
-  frontmatter___title
-  frontmatter___path
-  frontmatter___nav
-  frontmatter___position
-  slug
-  body
-  excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  headings @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  headings___value @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  headings___depth @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  html @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  mdxAST @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  tableOfContents @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  timeToRead @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  wordCount___paragraphs @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  wordCount___sentences @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  wordCount___words @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___parent___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  children___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+input MdxFieldSelector {
+  excerpt: FieldSelectorEnum
+  tableOfContents: FieldSelectorEnum
+  rawBody: FieldSelectorEnum
+  fileAbsolutePath: FieldSelectorEnum
+  frontmatter: MdxFrontmatterFieldSelector
+  slug: FieldSelectorEnum
+  body: FieldSelectorEnum
+  headings: MdxHeadingMdxFieldSelector
+  html: FieldSelectorEnum
+  mdxAST: FieldSelectorEnum
+  timeToRead: FieldSelectorEnum
+  wordCount: MdxWordCountFieldSelector
+  id: FieldSelectorEnum
+  parent: NodeFieldSelector
+  children: NodeFieldSelector
+  internal: InternalFieldSelector
+}
+
+input MdxFrontmatterFieldSelector {
+  title: FieldSelectorEnum
+  path: FieldSelectorEnum
+  nav: FieldSelectorEnum
+  position: FieldSelectorEnum
+}
+
+input MdxHeadingMdxFieldSelector {
+  value: FieldSelectorEnum
+  depth: FieldSelectorEnum
+}
+
+input MdxWordCountFieldSelector {
+  paragraphs: FieldSelectorEnum
+  sentences: FieldSelectorEnum
+  words: FieldSelectorEnum
 }
 
 type MdxGroupConnection {
@@ -1495,21 +1441,26 @@ type MdxGroupConnection {
   edges: [MdxEdge!]!
   nodes: [Mdx!]!
   pageInfo: PageInfo!
+  distinct(field: MdxFieldSelector!): [String!]!
+  max(field: MdxFieldSelector!): Float
+  min(field: MdxFieldSelector!): Float
+  sum(field: MdxFieldSelector!): Float
+  group(skip: Int, limit: Int, field: MdxFieldSelector!): [MdxGroupConnection!]!
   field: String!
   fieldValue: String
 }
 
 input MdxFilterInput {
+  excerpt: StringQueryOperatorInput
+  tableOfContents: JSONQueryOperatorInput
   rawBody: StringQueryOperatorInput
   fileAbsolutePath: StringQueryOperatorInput
   frontmatter: MdxFrontmatterFilterInput
   slug: StringQueryOperatorInput
   body: StringQueryOperatorInput
-  excerpt: StringQueryOperatorInput
   headings: MdxHeadingMdxFilterListInput
   html: StringQueryOperatorInput
   mdxAST: JSONQueryOperatorInput
-  tableOfContents: JSONQueryOperatorInput
   timeToRead: IntQueryOperatorInput
   wordCount: MdxWordCountFilterInput
   id: StringQueryOperatorInput
@@ -1519,391 +1470,38 @@ input MdxFilterInput {
 }
 
 input MdxSortInput {
-  fields: [MdxFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
+  excerpt: SortOrderEnum
+  tableOfContents: SortOrderEnum
+  rawBody: SortOrderEnum
+  fileAbsolutePath: SortOrderEnum
+  frontmatter: MdxFrontmatterSortInput
+  slug: SortOrderEnum
+  body: SortOrderEnum
+  headings: MdxHeadingMdxSortInput
+  html: SortOrderEnum
+  mdxAST: SortOrderEnum
+  timeToRead: SortOrderEnum
+  wordCount: MdxWordCountSortInput
+  id: SortOrderEnum
+  parent: NodeSortInput
+  children: NodeSortInput
+  internal: InternalSortInput
 }
 
-type SiteBuildMetadataConnection {
-  totalCount: Int!
-  edges: [SiteBuildMetadataEdge!]!
-  nodes: [SiteBuildMetadata!]!
-  pageInfo: PageInfo!
-  distinct(field: SiteBuildMetadataFieldsEnum!): [String!]!
-  group(skip: Int, limit: Int, field: SiteBuildMetadataFieldsEnum!): [SiteBuildMetadataGroupConnection!]!
+input MdxFrontmatterSortInput {
+  title: SortOrderEnum
+  path: SortOrderEnum
+  nav: SortOrderEnum
+  position: SortOrderEnum
 }
 
-type SiteBuildMetadataEdge {
-  next: SiteBuildMetadata
-  node: SiteBuildMetadata!
-  previous: SiteBuildMetadata
+input MdxHeadingMdxSortInput {
+  value: SortOrderEnum
+  depth: SortOrderEnum
 }
 
-enum SiteBuildMetadataFieldsEnum {
-  id
-  parent___id
-  parent___parent___id
-  parent___parent___parent___id
-  parent___parent___parent___children
-  parent___parent___children
-  parent___parent___children___id
-  parent___parent___children___children
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___children
-  parent___children___id
-  parent___children___parent___id
-  parent___children___parent___children
-  parent___children___children
-  parent___children___children___id
-  parent___children___children___children
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  children
-  children___id
-  children___parent___id
-  children___parent___parent___id
-  children___parent___parent___children
-  children___parent___children
-  children___parent___children___id
-  children___parent___children___children
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___children
-  children___children___id
-  children___children___parent___id
-  children___children___parent___children
-  children___children___children
-  children___children___children___id
-  children___children___children___children
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-  buildTime
-}
-
-type SiteBuildMetadataGroupConnection {
-  totalCount: Int!
-  edges: [SiteBuildMetadataEdge!]!
-  nodes: [SiteBuildMetadata!]!
-  pageInfo: PageInfo!
-  field: String!
-  fieldValue: String
-}
-
-input SiteBuildMetadataFilterInput {
-  id: StringQueryOperatorInput
-  parent: NodeFilterInput
-  children: NodeFilterListInput
-  internal: InternalFilterInput
-  buildTime: DateQueryOperatorInput
-}
-
-input SiteBuildMetadataSortInput {
-  fields: [SiteBuildMetadataFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
-}
-
-input SitePluginPluginOptionsFilterInput {
-  base64Width: IntQueryOperatorInput
-  stripMetadata: BooleanQueryOperatorInput
-  defaultQuality: IntQueryOperatorInput
-  failOnError: BooleanQueryOperatorInput
-  maxWidth: IntQueryOperatorInput
-  linkImagesToOriginal: BooleanQueryOperatorInput
-  showCaptions: BooleanQueryOperatorInput
-  markdownCaptions: BooleanQueryOperatorInput
-  sizeByPixelDensity: BooleanQueryOperatorInput
-  backgroundColor: StringQueryOperatorInput
-  quality: IntQueryOperatorInput
-  withWebp: BooleanQueryOperatorInput
-  tracedSVG: BooleanQueryOperatorInput
-  loading: StringQueryOperatorInput
-  disableBgImageOnAlpha: BooleanQueryOperatorInput
-  disableBgImage: BooleanQueryOperatorInput
-  extensions: StringQueryOperatorInput
-  lessBabel: BooleanQueryOperatorInput
-  mediaTypes: StringQueryOperatorInput
-  root: StringQueryOperatorInput
-  path: StringQueryOperatorInput
-  exclude: SitePluginPluginOptionsExcludeFilterInput
-  name: StringQueryOperatorInput
-  pathCheck: BooleanQueryOperatorInput
-  allExtensions: BooleanQueryOperatorInput
-  isTSX: BooleanQueryOperatorInput
-  jsxPragma: StringQueryOperatorInput
-}
-
-input SitePluginPluginOptionsExcludeFilterInput {
-  plugins: StringQueryOperatorInput
-}
-
-input SitePluginPackageJsonFilterInput {
-  name: StringQueryOperatorInput
-  description: StringQueryOperatorInput
-  version: StringQueryOperatorInput
-  main: StringQueryOperatorInput
-  author: StringQueryOperatorInput
-  license: StringQueryOperatorInput
-  dependencies: SitePluginPackageJsonDependenciesFilterListInput
-  devDependencies: SitePluginPackageJsonDevDependenciesFilterListInput
-  peerDependencies: SitePluginPackageJsonPeerDependenciesFilterListInput
-  keywords: StringQueryOperatorInput
-}
-
-input SitePluginPackageJsonDependenciesFilterListInput {
-  elemMatch: SitePluginPackageJsonDependenciesFilterInput
-}
-
-input SitePluginPackageJsonDependenciesFilterInput {
-  name: StringQueryOperatorInput
-  version: StringQueryOperatorInput
-}
-
-input SitePluginPackageJsonDevDependenciesFilterListInput {
-  elemMatch: SitePluginPackageJsonDevDependenciesFilterInput
-}
-
-input SitePluginPackageJsonDevDependenciesFilterInput {
-  name: StringQueryOperatorInput
-  version: StringQueryOperatorInput
-}
-
-input SitePluginPackageJsonPeerDependenciesFilterListInput {
-  elemMatch: SitePluginPackageJsonPeerDependenciesFilterInput
-}
-
-input SitePluginPackageJsonPeerDependenciesFilterInput {
-  name: StringQueryOperatorInput
-  version: StringQueryOperatorInput
-}
-
-type SitePluginConnection {
-  totalCount: Int!
-  edges: [SitePluginEdge!]!
-  nodes: [SitePlugin!]!
-  pageInfo: PageInfo!
-  distinct(field: SitePluginFieldsEnum!): [String!]!
-  group(skip: Int, limit: Int, field: SitePluginFieldsEnum!): [SitePluginGroupConnection!]!
-}
-
-type SitePluginEdge {
-  next: SitePlugin
-  node: SitePlugin!
-  previous: SitePlugin
-}
-
-enum SitePluginFieldsEnum {
-  id
-  parent___id
-  parent___parent___id
-  parent___parent___parent___id
-  parent___parent___parent___children
-  parent___parent___children
-  parent___parent___children___id
-  parent___parent___children___children
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___children
-  parent___children___id
-  parent___children___parent___id
-  parent___children___parent___children
-  parent___children___children
-  parent___children___children___id
-  parent___children___children___children
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  children
-  children___id
-  children___parent___id
-  children___parent___parent___id
-  children___parent___parent___children
-  children___parent___children
-  children___parent___children___id
-  children___parent___children___children
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___children
-  children___children___id
-  children___children___parent___id
-  children___children___parent___children
-  children___children___children
-  children___children___children___id
-  children___children___children___children
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-  resolve
-  name
-  version
-  pluginOptions___base64Width
-  pluginOptions___stripMetadata
-  pluginOptions___defaultQuality
-  pluginOptions___failOnError
-  pluginOptions___maxWidth
-  pluginOptions___linkImagesToOriginal
-  pluginOptions___showCaptions
-  pluginOptions___markdownCaptions
-  pluginOptions___sizeByPixelDensity
-  pluginOptions___backgroundColor
-  pluginOptions___quality
-  pluginOptions___withWebp
-  pluginOptions___tracedSVG
-  pluginOptions___loading
-  pluginOptions___disableBgImageOnAlpha
-  pluginOptions___disableBgImage
-  pluginOptions___extensions
-  pluginOptions___lessBabel
-  pluginOptions___mediaTypes
-  pluginOptions___root
-  pluginOptions___path
-  pluginOptions___exclude___plugins
-  pluginOptions___name
-  pluginOptions___pathCheck
-  pluginOptions___allExtensions
-  pluginOptions___isTSX
-  pluginOptions___jsxPragma
-  nodeAPIs
-  browserAPIs
-  ssrAPIs
-  pluginFilepath
-  packageJson___name
-  packageJson___description
-  packageJson___version
-  packageJson___main
-  packageJson___author
-  packageJson___license
-  packageJson___dependencies
-  packageJson___dependencies___name
-  packageJson___dependencies___version
-  packageJson___devDependencies
-  packageJson___devDependencies___name
-  packageJson___devDependencies___version
-  packageJson___peerDependencies
-  packageJson___peerDependencies___name
-  packageJson___peerDependencies___version
-  packageJson___keywords
-}
-
-type SitePluginGroupConnection {
-  totalCount: Int!
-  edges: [SitePluginEdge!]!
-  nodes: [SitePlugin!]!
-  pageInfo: PageInfo!
-  field: String!
-  fieldValue: String
-}
-
-input SitePluginFilterInput {
-  id: StringQueryOperatorInput
-  parent: NodeFilterInput
-  children: NodeFilterListInput
-  internal: InternalFilterInput
-  resolve: StringQueryOperatorInput
-  name: StringQueryOperatorInput
-  version: StringQueryOperatorInput
-  pluginOptions: SitePluginPluginOptionsFilterInput
-  nodeAPIs: StringQueryOperatorInput
-  browserAPIs: StringQueryOperatorInput
-  ssrAPIs: StringQueryOperatorInput
-  pluginFilepath: StringQueryOperatorInput
-  packageJson: SitePluginPackageJsonFilterInput
-}
-
-input SitePluginSortInput {
-  fields: [SitePluginFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
+input MdxWordCountSortInput {
+  paragraphs: SortOrderEnum
+  sentences: SortOrderEnum
+  words: SortOrderEnum
 }

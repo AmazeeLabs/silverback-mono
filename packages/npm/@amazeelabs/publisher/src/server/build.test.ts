@@ -34,7 +34,7 @@ type BuildTestInput = {
 };
 
 function runBuildService(helpers: RunHelpers, input: BuildTestInput) {
-  ShellMock.add('yarn build', helpers.cold(input.buildMarbles, outputChunks));
+  ShellMock.add('pnpm build', helpers.cold(input.buildMarbles, outputChunks));
 
   const fakeCommands$ = helpers.hot(input.eventMarbles, payloads);
 
@@ -42,7 +42,7 @@ function runBuildService(helpers: RunHelpers, input: BuildTestInput) {
 
   return fakeCommands$.pipe(
     BuildService({
-      buildCommand: 'yarn build',
+      buildCommand: 'pnpm build',
       buildRetries: 1,
       buildBufferTime: 1,
     }),
@@ -94,7 +94,7 @@ function testBuildSpawns(input: BuildTestInput) {
     runBuildService(helpers, input).subscribe();
     helpers.expectObservable(spawns$.pipe(takeUntil(testSpan$))).toBe(
       input.spawnMarbles,
-      mapValues(input.payloads, (v) => ({ cmd: 'yarn build', payload: v })),
+      mapValues(input.payloads, (v) => ({ cmd: 'pnpm build', payload: v })),
     );
   });
 }

@@ -71,7 +71,7 @@ rm -rf .test/packages/test
 
 cd "$BASEDIR"
 
-yarn verdaccio -c config.yml &
+pnpm verdaccio -c config.yml &
 
 retry curl --silent --head http://localhost:4873
 echo "Verdaccio operational"

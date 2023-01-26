@@ -20,13 +20,12 @@
   },
   "scripts": {
     "precommit": "lint-staged",
-    "prepare": "rollup -c rollup.config.ts --configPlugin typescript",
+    "build": "rollup -c rollup.config.ts --configPlugin typescript",
     "watch": "jest --watch",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "jest --passWithNoTests",
     "test:integration": "./test.sh",
-    "test:watch": "jest --watch",
-    "test": "yarn test:static && yarn test:unit && yarn test:integration"
+    "test:watch": "jest --watch"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "^1.4.39",

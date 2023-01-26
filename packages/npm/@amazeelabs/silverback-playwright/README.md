@@ -8,12 +8,12 @@ At the moment it can be used only with Silverback monorepo packages.
 
 In your package:
 
-- Add this package with `yarn add @amazeelabs/silverback-playwright --dev`
+- Add this package with `pnpm add @amazeelabs/silverback-playwright -D`
 - Add `test-results` to `.gitignore`
 - Create `playwright-tests` directory
   - Create `config.json` (see `Config` type in [`src/types/ts`](./src/types.ts))
   - Create some test files following `*.spec.ts` name pattern
-- Run `yarn sp-test`
+- Run `pnpm sp-test`
 
 (Consider making tests a separate package. In this case you can depend it on
 several other packages without ruining their dependencies.)
@@ -125,7 +125,7 @@ To record traces, run the tests with `--trace` (`-t`) flag.
 To see the traces, go to your package dir and run
 
 ```
-yarn playwright show-trace ./test-results/path/to/trace.zip
+pnpm playwright show-trace ./test-results/path/to/trace.zip
 ```
 
 ## Tips

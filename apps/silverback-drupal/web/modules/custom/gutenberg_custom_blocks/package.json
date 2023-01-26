@@ -3,15 +3,11 @@
   "version": "1.0.57",
   "private": true,
   "scripts": {
-    "start": "yarn drupal-js-build --css && yarn drupal-js-build watch --css",
-    "build": "yarn drupal-js-build --css && yarn drupal-gutenberg-translations",
-    "prepare": "yarn build",
+    "start": "pnpm drupal-js-build --css && pnpm drupal-js-build watch --css",
+    "build": "pnpm drupal-js-build --css && pnpm drupal-gutenberg-translations",
     "precommit": "lint-staged",
-    "test": "yarn test:static && yarn test:unit && yarn test:integration",
     "watch": "jest --watch",
-    "test:static": "exit 0",
     "test:unit": "jest --passWithNoTests",
-    "test:integration": "if [ -f test.sh ]; then ./test.sh; fi",
     "test:watch": "jest --watch"
   },
   "dependencies": {

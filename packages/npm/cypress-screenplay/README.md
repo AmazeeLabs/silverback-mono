@@ -19,7 +19,7 @@ driven workflow.
 ## Installation
 
 ```shell script
-yarn add -D cypress-screenplay
+pnpm add -D cypress-screenplay
 ```
 
 ## Usage

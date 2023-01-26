@@ -25,14 +25,11 @@
     "@amazeelabs/sync-composer-version": "^1.1.2"
   },
   "scripts": {
-    "prepare": "exit 0",
     "precommit": "lint-staged",
-    "test": "yarn test:static && yarn test:unit && yarn test:integration",
     "watch": "jest --watch",
     "version": "sync-composer-version",
     "test:static": "eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "jest --passWithNoTests",
-    "test:integration": "if [ -f test.sh ]; then ./test.sh; fi",
     "test:watch": "jest --watch"
   }
 }

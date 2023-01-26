@@ -6,19 +6,13 @@ Automated recipes for recurring tasks.
 
 NPM: `npm install -g @amazeelabs/recipes`
 
-Yarn: `yarn global add @amazeelabs/recipes`
-
 ## Upgrade
 
 If installed with NPM: `npm update -g @amazeelabs/recipes`
 
-If installed with Yarn: `yarn global upgrade @amazeelabs/recipes`
-
 ## Usage
 
 If installed with NPM: `amazee-recipes`
-
-If installed with Yarn: `yarn exec amazee-recipes`
 
 ## Contributing recipes
 
@@ -185,4 +179,4 @@ const { message } = $$.prompts({
 ## How to test recipes
 
 Manual testing is possible with
-`yarn prepare && LOG=silly node ./dist/index.js my-recipe`.
+`pnpm build && LOG=silly node ./dist/index.js my-recipe`.

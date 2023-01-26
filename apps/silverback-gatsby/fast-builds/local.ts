@@ -1,17 +1,17 @@
 import { execSync, spawn } from 'child_process';
 
-console.log('Killing `yarn serve`');
+console.log('Killing `pnpm serve`');
 try {
   execSync('pkill -f ":9000" || true', { stdio: 'inherit' });
 } catch (e) {
   // This is fine.
 }
 
-console.log('Running `yarn build`');
-execSync('yarn build', { stdio: 'inherit' });
+console.log('Running `pnpm build:gatsby`');
+execSync('pnpm build:gatsby', { stdio: 'inherit' });
 
-console.log('Running `yarn serve`');
-const child = spawn('yarn serve', {
+console.log('Running `pnpm serve`');
+const child = spawn('pnpm serve', {
   detached: true,
   cwd: process.cwd(),
   env: process.env,

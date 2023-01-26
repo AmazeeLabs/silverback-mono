@@ -37,6 +37,7 @@
     "mock-fs": "5.2.0",
     "prettier": "2.8.2",
     "standard-version": "9.5.0",
+    "typescript": "4.9.4",
     "verdaccio": "5.19.1"
   },
   "keywords": [
@@ -60,8 +61,8 @@
     }
   },
   "scripts": {
-    "prepare": "tsc",
-    "pretest": "tsc && yarn lint && yarn formatting",
+    "build": "tsc",
+    "pretest": "tsc && pnpm lint && pnpm formatting",
     "test:unit": "jest --coverage",
     "test:integration": "./test",
     "lint": "eslint '*/**.ts'",

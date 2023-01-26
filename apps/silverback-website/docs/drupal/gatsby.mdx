@@ -98,7 +98,7 @@ cd ../..
 
 cd apps/silverback-gatsby
 direnv allow
-yarn codegen
+pnpm codegen
 ```
 
 To run Drupal (from `apps/silverback-drupal`):
@@ -109,13 +109,13 @@ To run Drupal (from `apps/silverback-drupal`):
 To run Gatsby (from `apps/silverback-gatsby`):
 
 - Preview:
-  - `yarn develop`
+  - `pnpm develop`
   - Visit [http://localhost:8000/](http://localhost:8000/) to see the site
   - Visit
     [http://localhost:8000/\_\_\_graphql](http://localhost:8000/___graphql) to
     see the GraphQL schema
 - Site:
-  - `yarn fast-builds:serve:local`
+  - `pnpm fast-builds:serve:local`
   - Visit [http://localhost:9000/](http://localhost:9000/)
 
 It is not possible to run Gatsby Preview and Gatsby Site in parallel from the

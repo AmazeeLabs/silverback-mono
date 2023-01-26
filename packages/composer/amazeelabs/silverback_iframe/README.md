@@ -29,5 +29,5 @@ Drupal:
 
 React frontend:
 
-- `yarn add @amazeelabs/silverback-iframe`
+- `pnpm add @amazeelabs/silverback-iframe`
 - use `SilverbackIframe` component

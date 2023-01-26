@@ -1,35 +1,21 @@
 {
   "name": "silverback",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/composer/*/*",
-      "packages/npm/*",
-      "packages/npm/*/*",
-      "packages/tests/*",
-      "apps/*",
-      "apps/silverback-drupal/config/*",
-      "apps/silverback-drupal/web/modules/custom/*",
-      "packages/composer/drupal/test_session/tests/Cypress"
-    ],
-    "nohoist": [
-      "**/webpack",
-      "**/react-refresh-webpack-plugin",
-      "**/drupal-gutenberg-translations/typescript"
-    ]
-  },
   "scripts": {
-    "commit": "yarn git-cz",
-    "test:static": "yarn lerna run test:static --since",
-    "test:static:all": "yarn lerna run test:static",
-    "test:unit": "yarn lerna run test:unit --since",
-    "test:unit:all": "yarn lerna run test:unit",
-    "test:integration": "yarn lerna run test:integration --stream --concurrency=1 --since",
-    "test:integration:all": "yarn lerna run test:integration --stream --concurrency=1",
-    "git-registry": "yarn verdaccio -c config.yml",
+    "build": "pnpm -r build",
+    "commit": "pnpm git-cz",
+    "test:static": "pnpm lerna run test:static --since",
+    "test:static:all": "pnpm lerna run test:static",
+    "test:unit": "pnpm lerna run test:unit --since",
+    "test:unit:all": "pnpm lerna run test:unit",
+    "test:integration": "pnpm lerna run test:integration --stream --concurrency=1 --since",
+    "test:integration:all": "pnpm lerna run test:integration --stream --concurrency=1",
+    "git-registry": "pnpm verdaccio -c config.yml",
     "make-local-bins-available-in-monorepo": "rm -rf packages/npm/@amazeelabs/silverback-playwright/dist && mkdir -p packages/npm/@amazeelabs/silverback-playwright/dist/src && echo '' > packages/npm/@amazeelabs/silverback-playwright/dist/src/test-package.js",
-    "preinstall": "yarn make-local-bins-available-in-monorepo",
-    "postinstall": "lerna run prepare && husky install && rm -rf node_modules/@-*"
+    "kill-php-deps": "pnpm -r --shell-mode exec 'for DIR in ls node_modules/@-*; do rm -rf $DIR; done' # Remove internal PHP dependencies from node_modules. Otherwise Drupal tests are either failing or running crazy slow.",
+    "prepare": "pnpm kill-php-deps",
+    "pnpm:devPreinstall": "pnpm make-local-bins-available-in-monorepo",
+    "postinstall": "husky install"
   },
   "devDependencies": {
     "@commitlint/cli": "17.4.1",
