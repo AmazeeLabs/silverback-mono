@@ -36,6 +36,6 @@
   "dependencies": {
     "fetch-retry-ts": "^1.1.25",
     "gatsby-graphql-source-toolkit": "^2.0.3",
-    "node-fetch": "^2"
+    "node-fetch": "^3"
   }
 }
