@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.14.9](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.14.8...@amazeelabs/publisher@0.14.9) (2023-01-30)
+
+**Note:** Version bump only for package @amazeelabs/publisher
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [0.14.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@0.14.7...@amazeelabs/publisher@0.14.8) (2023-01-12)
 
 **Note:** Version bump only for package @amazeelabs/publisher

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.13](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.9.12...@amazeelabs/gatsby-source-silverback@1.9.13) (2023-01-30)
+
+### Bug Fixes
+
+- **gatsby:** broken x-forwarded-proto
+  ([cc7ba70](https://github.com/AmazeeLabs/silverback-mono/commit/cc7ba7030525715440a9b11985b7eb2573694220))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.9.12](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.9.11...@amazeelabs/gatsby-source-silverback@1.9.12) (2023-01-12)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-source-silverback

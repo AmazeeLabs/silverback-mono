@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.32](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/graphql-schema-test@1.1.31...@amazeelabs/graphql-schema-test@1.1.32) (2023-01-30)
+
+**Note:** Version bump only for package @amazeelabs/graphql-schema-test
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.31](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/graphql-schema-test@1.1.30...@amazeelabs/graphql-schema-test@1.1.31) (2023-01-25)
 
 ### Reverts

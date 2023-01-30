@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.13](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@2.3.12...@amazeelabs/react-framework-bridge@2.3.13) (2023-01-30)
+
+**Note:** Version bump only for package @amazeelabs/react-framework-bridge
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.3.12](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-framework-bridge@2.3.11...@amazeelabs/react-framework-bridge@2.3.12) (2023-01-12)
 
 **Note:** Version bump only for package @amazeelabs/react-framework-bridge
