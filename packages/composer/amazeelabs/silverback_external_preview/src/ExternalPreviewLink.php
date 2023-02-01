@@ -2,6 +2,7 @@
 
 namespace Drupal\silverback_external_preview;
 
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityPublishedInterface;
 use Drupal\Core\Entity\RevisionableStorageInterface;
@@ -16,10 +17,6 @@ use Drupal\path_alias\AliasManager;
 class ExternalPreviewLink {
 
   use StringTranslationTrait;
-
-  const PREVIEW_ENV_VARNAME = 'EXTERNAL_PREVIEW_BASE_URL';
-
-  const LIVE_ENV_VARNAME = 'EXTERNAL_PREVIEW_LIVE_BASE_URL';
 
   /**
    * The consumer preview links.
@@ -46,18 +43,27 @@ class ExternalPreviewLink {
   /** @var \Drupal\Core\Language\LanguageManager */
   protected $languageManager;
 
+  /** @var string */
+  protected $previewHost;
+
+  /** @var string */
+  protected $liveHost;
   /**
    * Controller constructor.
    *
    * @param \Drupal\path_alias\AliasManager
    *   The consumer preview links.
    */
-  public function __construct(AliasManager $pathAliasManager, $entityTypeManager, $tempstore, $moduleHandler, $languageManager) {
+  public function __construct(AliasManager $pathAliasManager, $entityTypeManager, $tempstore, $moduleHandler, $languageManager, ConfigFactoryInterface $configFactory) {
+    $moduleConfig = $configFactory->get('silverback_external_preview.settings');
+
     $this->pathAliasManager = $pathAliasManager;
     $this->entityTypeManager = $entityTypeManager;
     $this->tempstore = $tempstore;
     $this->moduleHandler = $moduleHandler;
     $this->languageManager = $languageManager;
+    $this->previewHost = $moduleConfig->get('preview_host');
+    $this->liveHost = $moduleConfig->get('live_host');
   }
 
 
@@ -71,7 +77,7 @@ class ExternalPreviewLink {
   public function getPreviewUrl(
     RouteMatchInterface $routeMatch
   ) {
-    return $this->getExternalUrl($routeMatch, self::PREVIEW_ENV_VARNAME);
+    return $this->getExternalUrl($routeMatch, $this->previewHost);
   }
 
   /**
@@ -84,7 +90,7 @@ class ExternalPreviewLink {
   public function getLiveUrl(
     RouteMatchInterface $routeMatch
   ) {
-    return $this->getExternalUrl($routeMatch, self::LIVE_ENV_VARNAME);
+    return $this->getExternalUrl($routeMatch, $this->liveHost);
   }
 
   /*
@@ -94,11 +100,11 @@ class ExternalPreviewLink {
    * @throws \Exception
    */
   public function getPreviewBaseUrl() {
-    if (getenv(self::PREVIEW_ENV_VARNAME)) {
-      return rtrim(getenv(self::PREVIEW_ENV_VARNAME), '/');
+    if ($this->previewHost) {
+      return rtrim($this->previewHost, '/');
     }
     else {
-      throw new \Exception(self::PREVIEW_ENV_VARNAME  . ' environment variable is not set.');
+      throw new \Exception('preview_host config is not set.');
     }
   }
 
@@ -109,16 +115,16 @@ class ExternalPreviewLink {
    * @throws \Exception
    */
   public function getLiveBaseUrl() {
-    if (getenv(self::LIVE_ENV_VARNAME)) {
-      return rtrim(getenv(self::LIVE_ENV_VARNAME), '/');
+    if ($this->liveHost) {
+      return rtrim($this->liveHost, '/');
     }
     else {
-      throw new \Exception(self::LIVE_ENV_VARNAME  . ' environment variable is not set.');
+      throw new \Exception('live_host config is not set.');
     }
   }
 
   /**
-   * Used to create a external Url object for a given path.
+   * Used to create an external Url object for a given path.
    *
    * @param string $path
    * @param string $external_url_type
@@ -146,9 +152,9 @@ class ExternalPreviewLink {
       return $this->getRevisionPreviewUrl($entity);
     }
     else {
-      $base_url = $external_url_type === 'preview' ? $this->getPreviewBaseUrl() : $this->getLiveBaseUrl();
       $path = $entity->toUrl('canonical')->toString(TRUE)->getGeneratedUrl();
-      $url_object = Url::fromUri($base_url . $path, $this->getUrlOptions($external_url_type, $entity));
+      $base_url = $external_url_type === 'preview' ? $this->getPreviewBaseUrl() . '/__preview/' . $entity->bundle() : $this->getLiveBaseUrl() . $path;
+      $url_object = Url::fromUri($base_url, $this->getUrlOptions($external_url_type, $entity));
       // Allow for altering the url object via a hook.
       $this->moduleHandler->alter('silverback_external_preview_entity_url', $entity, $url_object);
       return $url_object;
@@ -163,10 +169,7 @@ class ExternalPreviewLink {
     return Url::fromUri(
       $this->buildEntityPreviewUri($entity),
       [
-        'query' => [
-          'id' => $entity->id(),
-          'preview' => '1',
-        ]
+        'query' => $this->buildPreviewQuery($entity)
       ]
     );
   }
@@ -203,36 +206,33 @@ class ExternalPreviewLink {
     return Url::fromUri(
       $this->buildEntityPreviewUri($entity),
       [
-        'query' => [
-          'id' => $entity->id(),
-          'revision' => $revision_id,
-          'preview' => '1',
-        ]
+        'query' => $this->buildPreviewQuery($entity, $revision_id)
       ]
     );
   }
 
   private function buildEntityPreviewUri(ContentEntityInterface $entity) {
+    //all preview displays should go to [external_preview_host]/__preview/[bundle machine name]?nid=1&rid=1&lang=en
     $uri_parts = [ $this->getPreviewBaseUrl() ];
-    if ($entity->isTranslatable()) {
-      $uri_parts[] = $entity->language()->getId();
-    }
     $uri_parts[] = '__preview';
     $uri_parts[] = $entity->bundle();
     return implode('/', $uri_parts);
   }
 
   private function getUrlOptions($external_url_type = 'preview', ContentEntityInterface $entity = NULL) {
-    $result = [
-      'language' => $entity instanceof ContentEntityInterface ? $entity->language() : $this->languageManager->getCurrentLanguage(),
-      'external_url_type' => $external_url_type,
-    ];
+    $result = [];
     if ($external_url_type === 'preview') {
-      $result['query'] = [
-        'preview' => 1,
-      ];
+      $result['query'] = $this->buildPreviewQuery($entity);
     }
     return $result;
+  }
+
+  private function buildPreviewQuery(ContentEntityInterface $entity, $revision_id = NULL) {
+    return [
+      'nid' => $entity->id(),
+      'rid' => $revision_id ?? $entity->getRevisionId(),
+      'lang' => $entity instanceof ContentEntityInterface && $entity->isTranslatable() ? $entity->language()->getId() : $this->languageManager->getCurrentLanguage()->getId(),
+    ];
   }
 
   /**
@@ -244,8 +244,8 @@ class ExternalPreviewLink {
    * @return \Drupal\Core\Url|null
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    */
-  protected function getExternalUrl(RouteMatchInterface $route, string $envVarName) {
-    if ($base_url = getenv($envVarName)) {
+  protected function getExternalUrl(RouteMatchInterface $route, string | null $base_url) {
+    if ($base_url) {
       $url_object = &drupal_static(__FUNCTION__, NULL);
       if (!empty($url_object)) {
         return $url_object;
@@ -256,13 +256,9 @@ class ExternalPreviewLink {
       // "/admin/structure/types/manage/foo/fields/node.foo.field_bar"):
       // No link template 'edit-form' found for the 'field_config' entity type
       if ($entity instanceof ContentEntityInterface) {
-        $alias = $this->pathAliasManager->getAliasByPath($entity->toUrl()
-          ->toString());
 
-        $url = $base_url . $alias;
-        $external_url_type = self::PREVIEW_ENV_VARNAME ? 'preview' : 'live';
-        $options = $this->getUrlOptions($external_url_type, $entity);
-        $url_object = Url::fromUri($url, $options);
+        $external_url_type = $base_url === $this->previewHost ? 'preview' : 'live';
+        $url_object = $this->createPreviewUrlFromEntity($entity, $external_url_type);
         $id = $this->getEntityTempStoreId($entity);
         // Make this accessible via admin path
         $tempstore = $this->tempstore->get('silverback_external_preview');
