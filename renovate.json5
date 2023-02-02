@@ -4,6 +4,12 @@
     "helpers:disableTypesNodeMajor",
   ],
 
+  hostRules: [
+    {
+      timeout: 120000,
+    },
+  ],
+
   // Manually control versions for
   ignorePaths: [
     // Images in Lagoon Dockerfiles
