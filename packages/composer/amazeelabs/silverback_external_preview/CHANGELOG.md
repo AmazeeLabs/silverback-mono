@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_external_preview@1.3.4...@-amazeelabs/silverback_external_preview@2.0.0) (2023-02-02)
+
+- feat(silverback_external_preview)!: update preview links to use new
+  \_\_preview path on the frontend
+  ([fd22061](https://github.com/AmazeeLabs/silverback-mono/commit/fd220614f89e8c1fe1297119de4881c52521b559))
+
+### BREAKING CHANGES
+
+- preview and live hosts are Drupal config settings, rather than ENV vars.
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.3.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_external_preview@1.3.3...@-amazeelabs/silverback_external_preview@1.3.4) (2023-01-30)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_external_preview
