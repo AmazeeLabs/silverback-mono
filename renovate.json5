@@ -10,6 +10,9 @@
     "apps/silverback-drupal/lagoon/**",
     // Node.js
     ".nvmrc",
+    // Exclude docs as we are getting the timeout error on @docusaurus/core
+    // package too often.
+    "docs/**",
   ],
 
   // This changes the behaviour of "stabilityDays"
