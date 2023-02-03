@@ -55,7 +55,7 @@
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
     "@vitejs/plugin-react": "3.1.0",
-    "@vitest/ui": "0.28.3",
+    "@vitest/ui": "0.27.1",
     "babel-loader": "9.1.2",
     "eslint": "8.33.0",
     "eslint-plugin-promise": "6.1.1",
@@ -74,7 +74,7 @@
     "vite": "4.1.1",
     "vite-imagetools": "4.0.18",
     "vite-plugin-dts": "1.7.2",
-    "vitest": "0.28.3",
+    "vitest": "0.27.1",
     "zustand": "^4.3.1"
   },
   "dependencies": {
