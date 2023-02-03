@@ -19,12 +19,12 @@
   },
   "devDependencies": {
     "@amazeelabs/prettier-config": "workspace:^1.1.1",
-    "@commitlint/cli": "17.4.1",
-    "@commitlint/config-conventional": "17.4.0",
-    "commitizen": "4.2.6",
+    "@commitlint/cli": "17.4.2",
+    "@commitlint/config-conventional": "17.4.2",
+    "commitizen": "4.3.0",
     "husky": "8.0.3",
-    "lerna": "6.4.0",
-    "verdaccio": "5.19.1",
+    "lerna": "6.4.1",
+    "verdaccio": "5.20.1",
     "verdaccio-git": ">= 0.0.1"
   },
   "commitlint": {
@@ -44,7 +44,7 @@
     }
   },
   "dependencies": {
-    "prettier": "2.8.2"
+    "prettier": "2.8.3"
   },
   "resolutions": {
     "@graphql-tools/load": "^7"
