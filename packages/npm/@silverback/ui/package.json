@@ -1,6 +1,6 @@
 {
   "name": "@silverback/ui",
-  "version": "1.0.51",
+  "version": "1.0.52",
   "main": "index.js",
   "license": "MIT",
   "private": true,
