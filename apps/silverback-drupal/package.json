@@ -30,7 +30,7 @@
     "@-silverback-drupal/gutenberg_custom_blocks": "^1.0.59"
   },
   "devDependencies": {
-    "@amazeelabs/graphql-schema-test": "^1.1.33",
+    "@amazeelabs/graphql-schema-test": "1.1.33",
     "jest": "29.4.1",
     "start-server-and-test": "1.15.3"
   }

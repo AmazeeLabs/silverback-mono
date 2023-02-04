@@ -4,15 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c1af37aa6b2350f885a2cb4ab8d2d8a5",
+    "content-hash": "b4a320b200be96064f48fcfeaf580273",
     "packages": [
         {
             "name": "amazeelabs/default-content",
-            "version": "1.2.8",
+            "version": "1.2.9",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/default-content",
-                "reference": "5d85091e03b5587636e9116338e0be05d864eeca"
+                "reference": "56f65fb0e9b4ed68897360763dfbba5d390e8af7"
             },
             "require": {
                 "amazeelabs/proxy-default-content": "^1.1.6"
@@ -275,11 +275,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "2.0.3",
+            "version": "2.0.4",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "eb5a8b83c3da9c890f9afed769a88fbd3568702e"
+                "reference": "65a85fbf2bc1125c61072649f6bb24594837d847"
             },
             "require": {
                 "drupal/gutenberg": "^2.6.0"
@@ -3285,11 +3285,11 @@
         },
         {
             "name": "drupal/gatsby_build_monitor",
-            "version": "1.4.49",
+            "version": "1.4.50",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/gatsby_build_monitor",
-                "reference": "9b2997c7b4b3700b7c79952f7aca0f8ca74103f4"
+                "reference": "8ba659ec777db4c7f7fc2cb30813a2daa8107d93"
             },
             "require": {
                 "justinrainbow/json-schema": "^5.2.12"
@@ -3653,11 +3653,11 @@
         },
         {
             "name": "drupal/test_session",
-            "version": "1.2.52",
+            "version": "1.2.53",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/test_session",
-                "reference": "9801a1f6d0ba705faaaaa2e87c321ac9301af1a8"
+                "reference": "1b0dccb73c7c78edcaf54c28c081294841e1ef31"
             },
             "type": "drupal-module",
             "license": [
@@ -6479,16 +6479,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.6.0",
+            "version": "9.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "70fc8be1d0b9fad56a199a4df5f9cfabfc246f84"
+                "reference": "1a461cabfbd5b464f5d41c49a9959c63b4ecd2d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/70fc8be1d0b9fad56a199a4df5f9cfabfc246f84",
-                "reference": "70fc8be1d0b9fad56a199a4df5f9cfabfc246f84",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1a461cabfbd5b464f5d41c49a9959c63b4ecd2d1",
+                "reference": "1a461cabfbd5b464f5d41c49a9959c63b4ecd2d1",
                 "shasum": ""
             },
             "require": {
@@ -6561,7 +6561,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.0"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.2"
             },
             "funding": [
                 {
@@ -6577,7 +6577,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-03T07:32:24+00:00"
+            "time": "2023-02-04T06:59:53+00:00"
         },
         {
             "name": "psr/cache",
