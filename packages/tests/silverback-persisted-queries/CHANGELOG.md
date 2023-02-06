@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.132](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-persisted-queries@1.1.131...@-amazeelabs/silverback-persisted-queries@1.1.132) (2023-02-06)
+
+**Note:** Version bump only for package
+@-amazeelabs/silverback-persisted-queries
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.131](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-persisted-queries@1.1.130...@-amazeelabs/silverback-persisted-queries@1.1.131) (2023-02-04)
 
 **Note:** Version bump only for package

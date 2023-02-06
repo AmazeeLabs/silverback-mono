@@ -30,7 +30,7 @@ importers:
   apps/silverback-drupal:
     specifiers:
       '@-amazeelabs/silverback-cli': ^2.9.2
-      '@-amazeelabs/silverback_gatsby': ^2.0.3
+      '@-amazeelabs/silverback_gatsby': ^2.0.4
       '@-drupal/cypress': ^2.3.81
       '@-drupal/gatsby_build_monitor': ^1.4.51
       '@-silverback-drupal-config/webform': ^1.0.6
@@ -82,7 +82,7 @@ importers:
 
   apps/silverback-gatsby:
     specifiers:
-      '@-amazeelabs/silverback-drupal': ^2.1.7
+      '@-amazeelabs/silverback-drupal': ^2.1.8
       '@amazeelabs/codegen-operation-ids': ^0.1.12
       '@amazeelabs/eslint-config': 1.4.40
       '@amazeelabs/gatsby-source-silverback': ^1.9.15
@@ -1671,7 +1671,7 @@ importers:
 
   packages/tests/silverback-gatsby:
     specifiers:
-      '@-amazeelabs/silverback_gatsby': ^2.0.3
+      '@-amazeelabs/silverback_gatsby': ^2.0.4
       '@amazeelabs/eslint-config': 1.4.40
       '@amazeelabs/gatsby-source-silverback': ^1.9.15
       '@amazeelabs/jest-preset': 1.3.44
@@ -1702,7 +1702,7 @@ importers:
 
   packages/tests/silverback-gutenberg:
     specifiers:
-      '@-amazeelabs/silverback-drupal': ^2.1.7
+      '@-amazeelabs/silverback-drupal': ^2.1.8
       '@-amazeelabs/silverback_gutenberg': ^2.0.5
       '@amazeelabs/eslint-config': 1.4.40
       '@amazeelabs/jest-preset': 1.3.44
@@ -1774,7 +1774,7 @@ importers:
 
   packages/tests/silverback-persisted-queries:
     specifiers:
-      '@-amazeelabs/silverback-gastby': ^2.0.11
+      '@-amazeelabs/silverback-gastby': ^2.0.12
       '@amazeelabs/eslint-config': 1.4.40
       '@amazeelabs/jest-preset': 1.3.44
       '@amazeelabs/prettier-config': 1.1.1
@@ -6173,7 +6173,7 @@ packages:
     dependencies:
       '@formatjs/icu-messageformat-parser': 2.2.0
       '@types/json-stable-stringify': 1.0.34
-      '@types/node': 16.18.11
+      '@types/node': 17.0.45
       chalk: 4.1.2
       json-stable-stringify: 1.0.2
       tslib: 2.5.0
@@ -16014,7 +16014,7 @@ packages:
         integrity: sha512-TPBqmR/HRYI3eC2E5hmiivIzv+bidAfXofM+sbonAGvyDhySGw9/PQZFt2BLOrjUUR++4eJVpx6KnLQK1Fk9tA==,
       }
     dependencies:
-      '@types/node': 16.18.11
+      '@types/node': 18.11.18
       '@types/qs': 6.9.7
       '@types/range-parser': 1.2.4
     dev: true
@@ -16453,7 +16453,6 @@ packages:
       {
         integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==,
       }
-    dev: false
 
   /@types/node/18.11.18:
     resolution:
@@ -16644,7 +16643,7 @@ packages:
       }
     dependencies:
       '@types/mime': 3.0.1
-      '@types/node': 16.18.11
+      '@types/node': 18.11.18
     dev: true
 
   /@types/sharp/0.31.1:
