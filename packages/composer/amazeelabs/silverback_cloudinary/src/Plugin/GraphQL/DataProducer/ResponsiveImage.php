@@ -39,7 +39,7 @@ class ResponsiveImage extends DataProducerPluginBase {
     }
     // The image width and height in the response should be the same as the ones
     // sent as parameters.
-    // @todo: Unless the width sent is bigger that the width of the original
+    // @todo: Unless the width sent is bigger than the width of the original
     // image, since we should not scale up. TBD what to do in this case.
     $width = $config['width'] ?? NULL;
     $height = $config['height'] ?? NULL;
