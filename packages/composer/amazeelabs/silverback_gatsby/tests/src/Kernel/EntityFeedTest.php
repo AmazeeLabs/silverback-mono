@@ -369,6 +369,60 @@ class EntityFeedTest extends EntityFeedTestBase {
     ], $metadata);
   }
 
+  public function testUnpublishedRevision() {
+    $node = Node::create([
+      'type' => 'blog',
+      'title' => 'Revision 1',
+      'status' => 0,
+    ]);
+    $node->save();
+    $node->setNewRevision();
+    $node->set('title', 'Revision 2');
+    $node->set('status', 1);
+    $node->save();
+
+    $query = $this->getQueryFromFile('revisionable.gql');
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheTags(['node:1']);
+    $this->assertResults($query, [], [
+      'a' => null,
+      'b' => [
+        'title' => 'Revision 2',
+      ],
+    ], $metadata);
+  }
+
+  public function testUnpublishedMultilingualRevisionable() {
+    $node = Node::create([
+      'type' => 'page',
+      'title' => 'Revision 1',
+      'status' => 0,
+    ]);
+    $node->save();
+    $node->setNewRevision();
+    $translation = $node->addTranslation('de', ['title' => 'Revision 1 German', 'status' => 1]);
+    $translation->save();
+
+
+    $translation->set('title', 'Revision 2 German (Draft)');
+    $translation->set('status', 0);
+    $translation->setNewRevision();
+    $translation->save();
+
+    $query = $this->getQueryFromFile('revisionable-translatable.gql');
+    $metadata = $this->defaultCacheMetaData();
+    $metadata->addCacheTags(['node:1']);
+    $metadata->addCacheContexts(['static:language:de']);
+    $this->assertResults($query, [], [
+      'a' => null,
+      'b' => null,
+      'c' => [
+        'title' => 'Revision 1 German',
+      ],
+      'd' => null,
+    ], $metadata);
+  }
+
   public function testLoadById() {
     $node = Node::create([
       'type' => 'page',
