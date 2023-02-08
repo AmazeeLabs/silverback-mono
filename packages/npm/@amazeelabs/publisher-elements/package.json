@@ -2,7 +2,6 @@
   "name": "@amazeelabs/publisher-elements",
   "version": "0.0.0",
   "license": "MIT",
-  "type": "module",
   "main": "dist/elements.es.js",
   "exports": {
     ".": "./dist/elements.es.js"
@@ -18,6 +17,7 @@
   "scripts": {
     "develop": "pnpm dev:ui",
     "dev:ui": "vite",
+    "dev:server": "cd test && nodemon --watch",
     "build:ui": "tsc && vite build",
     "build:tailwind:watch": "tailwind -w -i tailwind.css -o tailwind.build.css",
     "build:tailwind": "tailwind -i tailwind.css -o tailwind.build.css",
