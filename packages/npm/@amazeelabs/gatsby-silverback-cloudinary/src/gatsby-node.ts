@@ -4,7 +4,7 @@ import {
   GatsbyNode
 } from 'gatsby';
 
-import { resolveResponsiveImage } from './index';
+import { resolveResponsiveImage } from './responsive_image';
 
 export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] =
   (args: CreateSchemaCustomizationArgs) => {
