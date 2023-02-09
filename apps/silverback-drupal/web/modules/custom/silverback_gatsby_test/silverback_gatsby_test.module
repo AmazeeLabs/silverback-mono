@@ -1,12 +1,23 @@
 <?php
 
-use Drupal\silverback_gatsby_test\Entity\Server;
-
 /**
- * Implements hook_entity_type_build().
+ * Implements hook_graphql_snapshot_test_results_alter().
  */
-function silverback_gatsby_test_entity_type_build(&$entity_types) {
-  if (isset($entity_types['graphql_server'])) {
-    $entity_types['graphql_server']->setClass(Server::class);
+function silverback_gatsby_test_graphql_snapshot_test_results_alter(&$results): void {
+  _silverback_gatsby_test_mask_results($results);
+}
+
+function _silverback_gatsby_test_mask_results(&$result): void {
+  if (is_array($result)) {
+    if (
+      isset($result['__typename']) &&
+      $result['__typename'] === 'Image' &&
+      isset($result['url']) &&
+      is_string($result['url'])
+    ) {
+      $result['url'] = preg_replace('~/files/\d+-\d+/~', '/files/[date]/', $result['url']);
+    }
+
+    array_walk($result, '_silverback_gatsby_test_mask_results');
   }
 }

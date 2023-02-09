@@ -11,7 +11,7 @@ const statusCallback: NetlifyStatusCallback = ({ type, msg, phase }) => {
 
 console.log('Building...');
 try {
-  execSync('yarn build', { stdio: 'inherit' });
+  execSync('pnpm build:gatsby', { stdio: 'inherit' });
 } catch (e) {
   console.error('Failed to build.', e);
 }

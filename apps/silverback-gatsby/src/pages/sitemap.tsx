@@ -16,7 +16,7 @@ export const query = graphql`
 
 type TreeInput = {
   id: string;
-  parent: string;
+  parent?: string;
   label: string;
   url: string;
 };
@@ -51,7 +51,7 @@ const Sitemap: React.FC<PageProps<SitemapQuery>> = ({ data }) => (
   <div>
     <h1>Sitemap</h1>
     {data.drupalMainMenu && (
-      <RenderTree items={buildTree(data.drupalMainMenu.items)} />
+      <RenderTree items={buildTree(data.drupalMainMenu.items || [])} />
     )}
   </div>
 );

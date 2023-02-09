@@ -1,0 +1,54 @@
+name: 'Commons'
+description: 'Commons for all workflows'
+runs:
+  using: 'composite'
+  steps:
+
+    - name: Git mail
+      run: git config --global user.email "kitt@amazee.com"
+      shell: bash
+
+    - name: Git username
+      run: git config --global user.name "K.I.T.T."
+      shell: bash
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+
+    - name: Read .nvmrc
+      run: |
+        echo "##[set-output name=NODE_VERSION;]$(cat .nvmrc| grep -oE '[0-9]+(\.[0-9]+)?(\.[0-9]+)?' | head -1)"
+      shell: bash
+      id: node_version
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: |
+          ${{ steps.node_version.outputs.NODE_VERSION }}
+
+    - name: Install pnpm
+      run: npm install -g pnpm
+      shell: bash
+    - name: Tell pnpm to use Bash
+      run: pnpm config set script-shell /bin/bash
+      shell: bash
+
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: /tmp/cache
+        key: cache
+    - name: Set composer cache dir
+      run: composer config --global cache-files-dir /tmp/cache/composer
+      shell: bash
+    - name: Set pnpm cache dir
+      run: pnpm config set store-dir /tmp/cache/pnpm
+      shell: bash
+    - name: Set Playwright browsers dir
+      run: echo "PLAYWRIGHT_BROWSERS_PATH=/tmp/cache/playwright-browsers" >> $GITHUB_ENV
+      shell: bash
+    - name: Set Cypress cache dir
+      run: echo "CYPRESS_CACHE_FOLDER=/tmp/cache/cypress-binary" >> $GITHUB_ENV
+      shell: bash

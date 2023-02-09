@@ -8,8 +8,11 @@ fragment MenuItem on MenuItem {
 
 {
   queryMainMenus(offset: 0, limit: 100) {
-    items {
-      ...MenuItem
+    translations {
+      langcode
+      items {
+        ...MenuItem
+      }
     }
   }
 }

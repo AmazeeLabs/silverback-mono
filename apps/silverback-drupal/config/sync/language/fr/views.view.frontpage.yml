@@ -1,5 +1,5 @@
-label: 'Page d''accueil'
-description: 'Tout le contenu promu en page d''accueil.'
+label: "Page d'accueil"
+description: "Tout le contenu promu en page d'accueil."
 display:
   default:
     display_title: 'Par défaut'
@@ -24,7 +24,7 @@ display:
           sort_desc_label: Desc
       empty:
         area_text_custom:
-          content: 'Aucun contenu de page d''accueil n''a été créé pour l''instant. Suivre le <a href="https://www.drupal.org/fr/docs/user_guide/fr/index.html">Guide utilisateur</a> pour démarrer la construction de votre site.'
+          content: "Aucun contenu de page d'accueil n'a été créé pour l'instant. Suivre le <a href=\"https://www.drupal.org/fr/docs/user_guide/fr/index.html\">Guide utilisateur</a> pour démarrer la construction de votre site."
         title:
           title: 'Bienvenue !'
   feed_1:

@@ -1,10 +1,13 @@
 # Silverback external preview
-Provides a UI to preview pages (published and draft) on an external website - usually a Gatsby or NextJS frontend.
 
-## Environment variables
+Provides a UI to preview pages (published and draft) on an external website -
+usually a Gatsby or NextJS frontend.
 
-```EXTERNAL_PREVIEW_BASE_URL```
-The preview base URL of the website e.g. https://localhost:8000
+## Drupal config
 
-```EXTERNAL_PREVIEW_LIVE_BASE_URL```
-The live base URL of the website e.g. https://localhost:9000
+- Enable the module
+- Set the settings, for example:
+  ```
+  drush cset silverback_external_preview.settings preview_host http://localhost:8000
+  drush cset silverback_external_preview.settings live_host http://localhost:9000
+  ```

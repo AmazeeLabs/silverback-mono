@@ -30,7 +30,7 @@ fast with the blazing fast app generator for React.
 
     ```shell
     cd my-project/
-    yarn develop
+    pnpm develop
     ```
 
 3.  **Open the source code and start editing!**

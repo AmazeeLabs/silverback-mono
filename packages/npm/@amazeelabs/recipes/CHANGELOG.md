@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.15.19](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.15.18...@amazeelabs/recipes@1.15.19) (2023-02-04)
+
+**Note:** Version bump only for package @amazeelabs/recipes
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.15.18](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.15.17...@amazeelabs/recipes@1.15.18) (2023-02-04)
+
+**Note:** Version bump only for package @amazeelabs/recipes
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.15.17](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.15.16...@amazeelabs/recipes@1.15.17) (2023-01-30)
+
+**Note:** Version bump only for package @amazeelabs/recipes
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.15.16](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.15.15...@amazeelabs/recipes@1.15.16) (2023-01-12)
+
+**Note:** Version bump only for package @amazeelabs/recipes
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.15.15](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.15.14...@amazeelabs/recipes@1.15.15) (2023-01-05)
+
+**Note:** Version bump only for package @amazeelabs/recipes
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.15.14](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.15.13...@amazeelabs/recipes@1.15.14) (2022-12-29)
+
+**Note:** Version bump only for package @amazeelabs/recipes
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.15.13](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/recipes@1.15.12...@amazeelabs/recipes@1.15.13) (2022-11-03)
 
 **Note:** Version bump only for package @amazeelabs/recipes

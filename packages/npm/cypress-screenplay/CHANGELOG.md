@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.60](https://github.com/AmazeeLabs/silverback-mono/compare/cypress-screenplay@0.5.59...cypress-screenplay@0.5.60) (2023-02-04)
+
+**Note:** Version bump only for package cypress-screenplay
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.5.59](https://github.com/AmazeeLabs/silverback-mono/compare/cypress-screenplay@0.5.58...cypress-screenplay@0.5.59) (2023-02-04)
+
+**Note:** Version bump only for package cypress-screenplay
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.5.58](https://github.com/AmazeeLabs/silverback-mono/compare/cypress-screenplay@0.5.57...cypress-screenplay@0.5.58) (2023-01-30)
+
+**Note:** Version bump only for package cypress-screenplay
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.5.57](https://github.com/AmazeeLabs/silverback-mono/compare/cypress-screenplay@0.5.56...cypress-screenplay@0.5.57) (2023-01-12)
+
+**Note:** Version bump only for package cypress-screenplay
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.5.56](https://github.com/AmazeeLabs/silverback-mono/compare/cypress-screenplay@0.5.55...cypress-screenplay@0.5.56) (2023-01-05)
+
+**Note:** Version bump only for package cypress-screenplay
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.5.55](https://github.com/AmazeeLabs/silverback-mono/compare/cypress-screenplay@0.5.54...cypress-screenplay@0.5.55) (2023-01-05)
+
+**Note:** Version bump only for package cypress-screenplay
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [0.5.54](https://github.com/AmazeeLabs/silverback-mono/compare/cypress-screenplay@0.5.53...cypress-screenplay@0.5.54) (2022-12-29)
+
+**Note:** Version bump only for package cypress-screenplay
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [0.5.53](https://github.com/AmazeeLabs/silverback-mono/compare/cypress-screenplay@0.5.52...cypress-screenplay@0.5.53) (2022-11-03)
 
 **Note:** Version bump only for package cypress-screenplay

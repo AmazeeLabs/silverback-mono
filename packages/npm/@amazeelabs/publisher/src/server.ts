@@ -35,11 +35,11 @@ const explorerSync = cosmiconfigSync('publisher');
 const loadedConfig = explorerSync.search();
 
 const config = {
-  cleanCommand: 'yarn clean',
-  startCommand: 'yarn start',
+  cleanCommand: 'pnpm clean',
+  startCommand: 'pnpm start',
   startRetries: 3,
   readyPattern: /http:\/\/.*?:3000/,
-  buildCommand: 'yarn build',
+  buildCommand: 'pnpm build',
   buildBufferTime: 500,
   buildRetries: 3,
   gatewayPort: 3001,

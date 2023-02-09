@@ -19,8 +19,7 @@ test('@gatsby-both links open in parent frame, using parent frame base url, with
   expect(
     [
       `${gatsby.baseUrl}/en/article/with-everything`,
-      // For some reason, we have a trailing slash ih the URL in gatsby-build
-      // mode. Would be nice to deal with it, but currently it is not critical.
+      // We may have a trailing slash in the URL.
       `${gatsby.baseUrl}/en/article/with-everything/`,
     ].includes(page.url()),
   ).toBeTruthy();

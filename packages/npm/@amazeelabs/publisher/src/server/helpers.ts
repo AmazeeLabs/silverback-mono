@@ -17,7 +17,7 @@ export const stdoutChunk = (msg: string) =>
 /**
  * Static registry of mocked shell commands.
  *
- * Maps a shell command (e.g. `yarn start`) to a output stream defined by the
+ * Maps a shell command (e.g. `pnpm start`) to a output stream defined by the
  * test.
  */
 export class ShellMock {

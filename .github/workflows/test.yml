@@ -1,90 +1,46 @@
 name: Test
 on:
-  pull_request:
-    branches:
-      - development
+  - pull_request
+
 jobs:
-  test:
-    name: Test
-    runs-on: ubuntu-20.04
+
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
     steps:
-      - name: Git mail
-        run: git config --global user.email "kitt@amazee.com"
-
-      - name: Git username
-        run: git config --global user.name "K.I.T.T."
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.1'
 
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
-      - name: Read .nvmrc
-        run: echo "##[set-output name=NODE_VERSION;]$(cat .nvmrc| grep -oE '[0-9]+(\.[0-9]+)?(\.[0-9]+)?' | head -1)"
-        id: node_version
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "${{ steps.node_version.outputs.NODE_VERSION }}"
-
-      - name: Tell yarn to use bash
-        run: yarn config set script-shell /bin/bash
-
-      - name: Get Yarn cache directory
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - name: Get Yarn version hash
-        id: yarn-version
-        run: echo "::set-output name=hash::$(yarn --version | shasum | cut -d' ' -f1)"
-      - name: Get Composer cache directory
-        id: composer-cache
-        run: |
-          echo "::set-output name=dir::$(composer global config cache-files-dir)"
-      - name: Get Composer version hash
-        id: composer-version
-        run: |
-          echo "::set-output name=hash::$(composer --version | shasum | cut -d' ' -f1)"
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-dependencies
-        with:
-          path: |
-            ${{ steps.yarn-cache.outputs.dir }}
-            ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash }}-composer-${{ steps.composer-version.outputs.hash }}-github_run_id-${{ github.run_id }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-${{ steps.yarn-version.outputs.hash }}-composer-${{ steps.composer-version.outputs.hash }}-
+      - name: Commons
+        uses: ./.github/actions/commons
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm i
+
+      - name: Build packages
+        run: pnpm build
 
       - name: Run static tests
         if: startsWith(github.head_ref, 'test-all/') == false
-        run: yarn test:static
+        run: pnpm test:static
       - name: Run all static tests
         if: startsWith(github.head_ref, 'test-all/') == true
-        run: yarn test:static:all
+        run: pnpm test:static:all
 
       - name: Run unit tests
         if: startsWith(github.head_ref, 'test-all/') == false
-        run: yarn test:unit
+        run: pnpm test:unit
       - name: Run all unit tests
         if: startsWith(github.head_ref, 'test-all/') == true
-        run: yarn test:unit:all
+        run: pnpm test:unit:all
 
       - name: Run integration tests
         if: startsWith(github.head_ref, 'test-all/') == false
-        run: yarn test:integration
+        run: pnpm test:integration
       - name: Run all integration tests
         if: startsWith(github.head_ref, 'test-all/') == true
-        run: yarn test:integration:all
+        run: pnpm test:integration:all
 
       - name: Gatsby log
         run: cat /tmp/gatsby.log || true
@@ -95,12 +51,77 @@ jobs:
 
       - name: Check for uncommitted changes
         run: |
-          if [[ $(git status --porcelain) ]]
+          if [[ $(git status --porcelain -- ':!.npmrc') ]]
           then
-            echo "Error: Found uncommitted changes. Lerna publish will fail."
-            git status --porcelain
+            >&2 echo "Error: Found uncommitted changes. Lerna publish will fail."
+            git status --porcelain -- ':!.npmrc'
             git diff
             false
           else
             echo "Success: Found no uncommitted changes"
+          fi
+
+  drupal_updates:
+    name: Check for forgotten config changes
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout BASE
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.base.ref }}
+
+      - name: Commons
+        uses: ./.github/actions/commons
+
+      - name: Install dependencies
+        run: pnpm i
+
+      - name: Build packages
+        run: pnpm build
+
+      - name: Checkout HEAD
+        run: git checkout ${{ github.event.pull_request.head.ref }}
+
+      - name: Check if there are config changes after Drupal updates
+        run: |
+          set -e
+          cd apps/silverback-drupal
+          source .envrc
+          set -x
+          # Delete vendor dir to avoid potential issues with `composer install`.
+          rm -rf vendor
+          composer install
+          output=$(drush -y updb --cache-clear=0 2>&1)
+          if echo $output | grep -q 'No pending updates'
+          then
+            echo "No drupal updates found."
+            exit 0
+          fi
+          drush -y cr
+          drush -y cex
+          cd -
+          # Check Git changes ignoring the config translations.
+          if [[ $(git status --porcelain -- apps/silverback-drupal/config ':!apps/silverback-drupal/config/sync/language') ]]
+          then
+            set +x
+            >&2 echo '⬇️ ⬇️ ⬇️ ⬇️ ⬇️️'
+            >&2 echo 'WARNING: Found uncommitted Drupal config changes after applying Drupal database updates.'
+            >&2 echo ''
+            >&2 echo 'If this check failed due to a Drupal database update which changed the Drupal config:'
+            >&2 echo '  - Checkout this branch locally'
+            >&2 echo '  - Switch to Drupal directory'
+            >&2 echo '  - Run `composer i && silverback setup --no-config-import && drush cex -y`'
+            >&2 echo '  - Review the config changes'
+            >&2 echo '  - Commit and push'
+            >&2 echo ''
+            >&2 echo 'Also, you can ignore this failure if you are really sure that everything is all right.'
+            >&2 echo '⬇️ ⬇️ ⬇️ ⬇️ ⬇️️️️'
+            set -x
+            git status --porcelain -- apps/silverback-drupal/config ':!apps/silverback-drupal/config/sync/language'
+            git diff -- apps/silverback-drupal/config ':!apps/silverback-drupal/config/sync/language'
+            false
+          else
+            echo 'Success: Found no new config changes.'
           fi

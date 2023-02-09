@@ -21,6 +21,7 @@ module:
   filter: 0
   gatsby_build_monitor: 0
   graphql: 0
+  graphql_directives: 0
   gutenberg: 0
   gutenberg_custom: 0
   gutenberg_custom_blocks: 0

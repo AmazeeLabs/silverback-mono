@@ -6,24 +6,17 @@ use Drupal\Component\Plugin\PluginManagerInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
-use Drupal\Core\Menu\MenuLinkTreeElement;
 use Drupal\graphql\GraphQL\Execution\ResolveContext;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
-use Drupal\graphql\Plugin\GraphQL\SchemaExtension\SdlSchemaExtensionPluginBase;
-use Drupal\silverback_gatsby\GraphQL\DirectiveProviderExtensionInterface;
-use Drupal\silverback_gatsby\GraphQL\ParentAwareSchemaExtensionInterface;
+use Drupal\graphql_directives\DirectableSchemaExtensionPluginBase;
 use Drupal\silverback_gatsby\Plugin\FeedInterface;
-use Drupal\silverback_gatsby\Plugin\Gatsby\Feed\MenuFeed;
-use Drupal\typed_data\Exception\LogicException;
 use GraphQL\Language\AST\DocumentNode;
 use GraphQL\Language\AST\ListValueNode;
 use GraphQL\Language\AST\ObjectTypeDefinitionNode;
 use GraphQL\Language\AST\StringValueNode;
-use GraphQL\Language\AST\UnionTypeDefinitionNode;
-use GraphQL\Language\Parser;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -36,15 +29,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   description = "Schema extension providing default resolvers for Gatsby."
  * )
  */
-class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
-  implements ParentAwareSchemaExtensionInterface, DirectiveProviderExtensionInterface {
-
-  /**
-   * The parent schema's AST.
-   *
-   * @var \GraphQL\Language\AST\DocumentNode
-   */
-  protected DocumentNode $parentAst;
+class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBase {
 
   /**
    * The list of feeds that are used by the parent schema.
@@ -122,15 +107,6 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
 
   /**
    * {@inheritDoc}
-   *
-   * @throws \GraphQL\Error\SyntaxError
-   */
-  public function setParentSchemaDefinition(string $definition) {
-    $this->parentAst = Parser::parse($definition);
-  }
-
-  /**
-   * {@inheritDoc}
    */
   public function getDirectiveDefinitions(): string {
     $feeds = $this->feedManager->getDefinitions();
@@ -150,10 +126,10 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
    * @return \Drupal\silverback_gatsby\Plugin\FeedInterface[]
    * @throws \Drupal\Component\Plugin\Exception\PluginException
    */
-  public function getFeeds(): array {
+  public function getFeeds(DocumentNode $ast): array {
     if (count($this->feeds) === 0) {
       // Search for object type definitions ...
-      foreach ($this->parentAst->definitions->getIterator() as $definition) {
+      foreach ($ast->definitions->getIterator() as $definition) {
         // ... that have directives.
         if ($definition instanceof ObjectTypeDefinitionNode && $definition->directives) {
           // Create feed instances for all directives that are know to the
@@ -211,67 +187,9 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
   }
 
   /**
-   * @see SilverbackGatsbySchemaExtension::$resolvers
-   */
-  protected function getResolveDirectives(): array {
-    if (isset($this->resolvers)) {
-      return $this->resolvers;
-    }
-    $this->resolvers = [];
-    foreach ($this->parentAst->definitions->getIterator() as $definition) {
-      if (!($definition instanceof ObjectTypeDefinitionNode)) {
-        continue;
-      }
-      foreach ($definition->fields as $field) {
-        foreach ($field->directives as $fieldDirective) {
-          $list = [
-            'resolveEntityPath',
-            'resolveProperty',
-            'property',
-            'resolveEntityReference',
-            'resolveEntityReferenceRevisions',
-            'resolveMenuItems',
-            'resolveMenuItemId',
-            'resolveMenuItemParentId',
-            'resolveMenuItemLabel',
-            'resolveMenuItemUrl',
-            'resolveEditorBlocks',
-            'resolveEditorBlockAttribute'
-          ];
-          if (in_array($fieldDirective->name->value, $list, TRUE)) {
-            $graphQlPath = $definition->name->value . '.' . $field->name->value;
-            $name = $fieldDirective->name->value === 'property'
-              ? 'resolveProperty'
-              : $fieldDirective->name->value;
-            $this->resolvers[$graphQlPath] = [
-              'name' => $name,
-              'arguments' => [],
-            ];
-            foreach ($fieldDirective->arguments->getIterator() as $arg) {
-              /** @var \GraphQL\Language\AST\ArgumentNode $arg */
-              if ($arg->value instanceof ListValueNode) {
-                $this->resolvers[$graphQlPath]['arguments'][$arg->name->value] = [];
-                foreach ($arg->value->values->getIterator() as $value) {
-                  if ($value instanceof StringValueNode) {
-                    $this->resolvers[$graphQlPath]['arguments'][$arg->name->value][] = $value->value;
-                  }
-                }
-              }
-              else {
-                $this->resolvers[$graphQlPath]['arguments'][$arg->name->value] = $arg->value->value;
-              }
-            }
-          }
-        }
-      }
-    }
-    return $this->resolvers;
-  }
-
-  /**
    * Build the automatic schema definition for a given Feed.
    */
-  protected function getSchemaDefinitions(FeedInterface $feed) : string {
+  protected function getSchemaDefinitions(DocumentNode $ast, FeedInterface $feed) : string {
     $typeName = $feed->getTypeName();
     $singleFieldName = $feed->getSingleFieldName();
     $listFieldName = $feed->getListFieldName();
@@ -299,31 +217,24 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
       $schema[] = "}";
     }
 
-    $schema[] = $feed->getExtensionDefinition($this->parentAst);
+    $schema[] = $feed->getExtensionDefinition($ast);
 
     return implode("\n", $schema);
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  public function getExtensionDefinition() {
+  protected function getDirectableExtensionDefinition(DocumentNode $ast): string {
     // Collect all active feeds and prepend their definitions to the schema.
-    $schema = array_map(fn (FeedInterface $feed) => $this->getSchemaDefinitions($feed), $this->getFeeds());
-    array_unshift($schema, parent::getExtensionDefinition());
-    array_unshift($schema, $this->getOriginalTypenameDefinitions());
+    $schema = array_map(fn (FeedInterface $feed) => $this->getSchemaDefinitions($ast, $feed), $this->getFeeds($ast));
+    array_unshift($schema, $this->getOriginalTypenameDefinitions($ast));
     return implode("\n", $schema);
   }
 
-  /**
-   * {@inheritDoc}
-   */
-  public function registerResolvers(ResolverRegistryInterface $registry) {
+  protected function registerDirectableResolvers(DocumentNode $ast, ResolverRegistryInterface $registry): void {
     $builder = new ResolverBuilder();
-    $this->addFieldResolvers($registry, $builder);
-    $this->addTypeResolvers($registry, $builder);
-    $this->addOriginalTypenameResolvers($registry, $builder);
+    $this->addFieldResolvers($ast, $registry, $builder);
+    $this->addOriginalTypenameResolvers($ast, $registry, $builder);
   }
+
 
   /**
    * Attach a _original_typename field to every type.
@@ -333,9 +244,9 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
    *
    * @return string
    */
-  protected function getOriginalTypenameDefinitions() {
+  protected function getOriginalTypenameDefinitions(DocumentNode $ast): string {
     $types = [];
-    foreach ($this->parentAst->definitions->getIterator() as $definition) {
+    foreach ($ast->definitions->getIterator() as $definition) {
       if ($definition instanceof ObjectTypeDefinitionNode) {
         $name = $definition->name->value;
         $types[] = "extend type {$name} { _original_typename: String! }";
@@ -349,8 +260,8 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
    *
    * @return void
    */
-  protected function addOriginalTypenameResolvers(ResolverRegistry $registry, ResolverBuilder $builder) {
-    foreach ($this->parentAst->definitions->getIterator() as $definition) {
+  protected function addOriginalTypenameResolvers(DocumentNode $ast, ResolverRegistry $registry, ResolverBuilder $builder) {
+    foreach ($ast->definitions->getIterator() as $definition) {
       if ($definition instanceof ObjectTypeDefinitionNode) {
         $registry->addFieldResolver($definition->name->value, '_original_typename', $builder->fromValue($definition->name->value));
       }
@@ -358,68 +269,14 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
   }
 
   /**
-   * Collect and build type resolvers from the AST.
-   *
-   * @param \Drupal\graphql\GraphQL\ResolverRegistry $registry
-   * @param \Drupal\graphql\GraphQL\ResolverBuilder $builder
-   *
-   * @return void
-   */
-  protected function addTypeResolvers(ResolverRegistry $registry, ResolverBuilder $builder) {
-    $editorBlockTypes = [];
-    foreach ($this->parentAst->definitions->getIterator() as $definition) {
-      if ($definition instanceof ObjectTypeDefinitionNode && $definition->directives) {
-        foreach($definition->directives->getIterator() as $directive) {
-          if ($directive->name->value === 'editorBlock') {
-            foreach ($directive->arguments->getIterator() as $argument) {
-              if ($argument->name->value === 'type') {
-                $editorBlockTypes[$definition->name->value] = $argument->value->value;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    $editorBlockUnions = [];
-
-    foreach ($this->parentAst->definitions->getIterator() as $definition) {
-      if ($definition instanceof UnionTypeDefinitionNode) {
-        $union = $definition->name->value;
-        $editorBlockUnions[$union] = [];
-        $unionTypes = [];
-        foreach ($definition->types->getIterator() as $type) {
-          $unionType = $type->name->value;
-          $unionTypes[] = $unionType;
-          if (array_key_exists($unionType, $editorBlockTypes)) {
-            $editorBlockUnions[$union][$editorBlockTypes[$unionType]] = $unionType;
-          }
-        }
-        if (count($editorBlockUnions[$union]) !== 0 && $unionTypes !== array_values($editorBlockUnions[$union])) {
-          throw new LogicException('Block unions have to consist of @editorBlock types only.');
-        }
-      }
-    }
-
-    foreach($editorBlockUnions as $unionType => $typeMap) {
-      if (count($typeMap) > 0)  {
-        $registry->addTypeResolver($unionType, function ($block) use ($unionType, $typeMap) {
-          return $typeMap[$block['blockName']];
-        });
-      }
-    }
-
-  }
-
-  /**
    * Implement field resolvers for this extension.
    */
-  protected function addFieldResolvers(ResolverRegistry $registry, ResolverBuilder $builder) {
+  protected function addFieldResolvers(DocumentNode $ast, ResolverRegistry $registry, ResolverBuilder $builder) {
 
     $registry->addFieldResolver(
       'Query',
       'drupalFeedInfo',
-      $builder->fromValue(array_map(fn (FeedInterface $feed) => $feed->info(), $this->getFeeds()))
+      $builder->fromValue(array_map(fn (FeedInterface $feed) => $feed->info(), $this->getFeeds($ast)))
     );
     $registry->addFieldResolver(
       'Query',
@@ -446,7 +303,7 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
       ));
     }));
 
-    foreach($this->getFeeds() as $feed) {
+    foreach($this->getFeeds($ast) as $feed) {
 
       $idResolver = $feed->resolveId();
       $langcodeResolver = $feed->resolveLangcode();
@@ -491,189 +348,6 @@ class SilverbackGatsbySchemaExtension extends SdlSchemaExtensionPluginBase
       [$type, $field] = explode('.', $path);
       $registry->addFieldResolver($type, $field, $resolver);
     };
-    foreach ($this->getResolveDirectives() as $path => $definition) {
-      switch ($definition['name']) {
-
-        case 'resolveEntityPath':
-          $addResolver($path, $builder->compose(
-            $builder->produce('entity_url')->map('entity', $builder->fromParent()),
-            $builder->produce('url_path')->map('url', $builder->fromParent()),
-            $builder->callback(
-              function (string $path) {
-
-                // Gatsby expects raw paths. Not encoded.
-                $path = rawurldecode($path);
-
-                // Some paths may ruin Gatsby.
-                // See https://github.com/gatsbyjs/gatsby/discussions/36345#discussioncomment-3364844
-                $original = $path;
-                $bannedCharacters = ['%', '?', '#', '\\', '"'];
-                foreach ($bannedCharacters as $character) {
-                  if (strpos($path, $character) !== FALSE) {
-                    $path = str_replace($character, '', $path);
-                    $this->logger->warning("Found entity with '{$character}' character in its path alias. The character will be removed from the Gatsby page path. This can lead to broken links. Please update the entity path alias. Original path alias: '{$original}'.");
-                  }
-                }
-                $dotsOnlyRegex = '/^\.+$/';
-                $pathSegments = explode('/', $path);
-                $pathSegmentsFiltered = array_filter(
-                  $pathSegments,
-                  fn (string $segment) => !preg_match($dotsOnlyRegex, $segment)
-                );
-                if (count($pathSegments) !== count($pathSegmentsFiltered)) {
-                  $path = implode('/', $pathSegmentsFiltered);
-                  $this->logger->warning("Found entity with dots-only path segment(s) in its path alias. These segments will be removed from the Gatsby page path. This can lead to broken links. Please update the entity path alias. Original path alias: '{$original}'.");
-                }
-
-                return $path;
-              }
-            )
-          ));
-          break;
-
-        case 'resolveProperty':
-          $addResolver($path, $builder->produce('property_path', [
-            'path' => $builder->fromValue($definition['arguments']['path']),
-            'value' => $builder->fromParent(),
-            'type' => $builder->callback(
-              fn(EntityInterface $entity) => $entity->getTypedData()->getDataDefinition()->getDataType()
-            ),
-          ]));
-          break;
-
-        case 'resolveEditorBlocks':
-          $addResolver($path, $builder->produce('editor_blocks', [
-            'path' => $builder->fromValue($definition['arguments']['path']),
-            'entity' => $builder->fromParent(),
-            'type' => $builder->callback(
-              fn(EntityInterface $entity) => $entity->getTypedData()->getDataDefinition()->getDataType()
-            ),
-            'ignored' => $builder->fromValue($definition['arguments']['ignore'] ?? []),
-            'aggregated' => $builder->fromValue($definition['arguments']['aggregate'] ?? ['core/paragraph'])
-          ]));
-          break;
-
-        case 'resolveEditorBlockAttribute':
-          switch ($definition['arguments']['name']) {
-            case 'markup':
-              $addResolver($path, $builder->produce('editor_block_html')
-                ->map('block', $builder->fromParent())
-              );
-              break;
-            case 'media':
-              $addResolver($path, $builder->produce('editor_block_media')
-                ->map('block', $builder->fromParent())
-              );
-              break;
-            case 'children':
-              $addResolver($path, $builder->produce('editor_block_children')
-                ->map('block', $builder->fromParent())
-              );
-              break;
-            default:
-              $addResolver($path, $builder->produce('editor_block_attribute')
-                ->map('block', $builder->fromParent())
-                ->map('name', $builder->fromValue($definition['arguments']['name']))
-                ->map('plainText', $builder->fromValue($definition['arguments']['plainText'] ?? true))
-              );
-              break;
-          }
-          break;
-
-        case 'resolveEntityReference':
-          $resolverMultiple = $builder->defaultValue(
-            $builder->produce('entity_reference')
-              ->map('entity', $builder->fromParent())
-              ->map('language', $builder->callback(
-                fn(TranslatableInterface $value) => $value->language()->getId()
-              ))
-              ->map('field', $builder->fromValue($definition['arguments']['field'])),
-            $builder->fromValue([])
-          );
-          if ($definition['arguments']['single']) {
-            $addResolver($path, $builder->compose(
-              $resolverMultiple,
-              $builder->callback(fn(array $values) => reset($values) ?: NULL)
-            ));
-          }
-          else {
-            $addResolver($path, $resolverMultiple);
-          }
-          break;
-
-        case 'resolveEntityReferenceRevisions':
-          $resolverMultiple = $builder->defaultValue(
-            $builder->produce('entity_reference_revisions')
-              ->map('entity', $builder->fromParent())
-              ->map('field', $builder->fromValue($definition['arguments']['field'])),
-            $builder->fromValue([])
-          );
-          if ($definition['arguments']['single']) {
-            $addResolver($path, $builder->compose(
-              $resolverMultiple,
-              $builder->callback(fn(array $values) => reset($values) ?: NULL)
-            ));
-          }
-          else {
-            $addResolver($path, $resolverMultiple);
-          }
-          break;
-
-        case 'resolveMenuItems':
-          [$type,] = explode('.', $path);
-          /** @var MenuFeed $menuFeed */
-          $menuFeeds = array_filter($this->getFeeds(), function (FeedInterface $feed) use ($type) {
-            return $feed instanceof MenuFeed && $feed->getTypeName() === $type;
-          });
-          $menuFeed = array_pop($menuFeeds);
-          if (!$menuFeed) {
-            throw new \Exception('@resolveMenuItems has to be attached to a @menu feed type.');
-          }
-          $addResolver($path, $builder->compose(
-            $builder->tap($builder->produce('language_switch')
-              ->map('language', $builder->callback(
-                function ($menu) {
-                  return $menu->__language ?? \Drupal::service('language_manager')->getCurrentLanguage()->getId();
-                }
-              ))
-            ),
-            $builder->produce('menu_links')->map('menu', $builder->fromParent()),
-            $builder->produce('gatsby_menu_links')
-              ->map('items', $builder->fromParent())
-              ->map('max_level', $builder->fromValue($menuFeed->getMaxLevel()))
-            ,
-          ));
-          break;
-
-        case 'resolveMenuItemId':
-          $addResolver($path, $builder->callback(
-            fn (MenuLinkTreeElement $element) => $element->link->getPluginId()
-          ));
-          break;
-
-        case 'resolveMenuItemParentId':
-          $addResolver($path, $builder->callback(
-            fn (MenuLinkTreeElement $element) => $element->link->getParent()
-          ));
-          break;
-
-        case 'resolveMenuItemLabel':
-          $addResolver($path, $builder->compose(
-            $builder->produce('menu_tree_link')->map('element', $builder->fromParent()),
-            $builder->produce('menu_link_label')->map('link', $builder->fromParent()),
-          ));
-          break;
-
-        case 'resolveMenuItemUrl':
-          $addResolver($path, $builder->compose(
-            $builder->produce('menu_tree_link')->map('element', $builder->fromParent()),
-            $builder->produce('menu_link_url')->map('link', $builder->fromParent()),
-            $builder->produce('url_path')->map('url', $builder->fromParent()),
-          ));
-          break;
-
-      }
-    }
 
     $currentUser = $builder->produce('current_user_entity');
     $addResolver('Query.currentUser', $currentUser);

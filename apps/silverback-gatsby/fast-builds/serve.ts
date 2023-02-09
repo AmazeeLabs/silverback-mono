@@ -28,7 +28,7 @@ const buildAndDeploy = async () => {
 
   const outputFile = tmp.tmpNameSync();
   try {
-    execSync(`yarn fast-builds:run:${script} 2>&1 | tee ${outputFile}`, {
+    execSync(`pnpm fast-builds:run:${script} 2>&1 | tee ${outputFile}`, {
       stdio: 'inherit',
     });
   } catch (e) {

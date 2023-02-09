@@ -6,9 +6,9 @@ dependencies:
     - block_content.type.reusable_block
     - field.storage.block_content.body
   module:
-    - block_content
-    - text
-    - user
+    0: block_content
+    2: user
+    3: gutenberg
   enforced:
     module:
       - gutenberg
@@ -198,8 +198,10 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: text_default
-          settings: {  }
+          type: gutenberg_text
+          settings:
+            format: gutenberg
+            content_only: false
           group_column: value
           group_columns: {  }
           group_rows: true

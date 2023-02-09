@@ -1,7 +1,65 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.2.54](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/test_session@1.2.53...@-drupal/test_session@1.2.54) (2023-02-04)
+
+**Note:** Version bump only for package @-drupal/test_session
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.2.53](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/test_session@1.2.52...@-drupal/test_session@1.2.53) (2023-02-04)
+
+**Note:** Version bump only for package @-drupal/test_session
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.2.52](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/test_session@1.2.51...@-drupal/test_session@1.2.52) (2023-01-30)
+
+**Note:** Version bump only for package @-drupal/test_session
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.2.51](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/test_session@1.2.50...@-drupal/test_session@1.2.51) (2023-01-24)
+
+**Note:** Version bump only for package @-drupal/test_session
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.2.50](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/test_session@1.2.49...@-drupal/test_session@1.2.50) (2023-01-12)
+
+**Note:** Version bump only for package @-drupal/test_session
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.2.49](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/test_session@1.2.48...@-drupal/test_session@1.2.49) (2023-01-05)
+
+**Note:** Version bump only for package @-drupal/test_session
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.2.48](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/test_session@1.2.47...@-drupal/test_session@1.2.48) (2022-12-29)
+
+**Note:** Version bump only for package @-drupal/test_session
 
 ## [1.2.47](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/test_session@1.2.46...@-drupal/test_session@1.2.47) (2022-11-03)
 
@@ -159,7 +217,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- downgrade eslint to v7 to avoid problems with plugins that don't support it ([3d70eae](https://github.com/AmazeeLabs/silverback-mono/commit/3d70eae96f6129a5c68c705c4cc0f801cd0d472d))
+- downgrade eslint to v7 to avoid problems with plugins that don't support it
+  ([3d70eae](https://github.com/AmazeeLabs/silverback-mono/commit/3d70eae96f6129a5c68c705c4cc0f801cd0d472d))
 
 ## [1.2.8](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/test_session@1.2.7...@-drupal/test_session@1.2.8) (2021-10-16)
 
@@ -173,7 +232,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- allow jest to pass without tests ([ebac315](https://github.com/AmazeeLabs/silverback-mono/commit/ebac3151b0bf7b530c480b213f8538ceec221fe4))
+- allow jest to pass without tests
+  ([ebac315](https://github.com/AmazeeLabs/silverback-mono/commit/ebac3151b0bf7b530c480b213f8538ceec221fe4))
 
 ## [1.2.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/test_session@1.2.4...@-drupal/test_session@1.2.5) (2021-10-13)
 
@@ -199,7 +259,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-- allow setting session params with GET requests ([5272f35](https://github.com/AmazeeLabs/silverback-mono/commit/5272f355889daa9af28135ed4f53d3b9efccbe94))
+- allow setting session params with GET requests
+  ([5272f35](https://github.com/AmazeeLabs/silverback-mono/commit/5272f355889daa9af28135ed4f53d3b9efccbe94))
 
 ## [1.1.10](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/test_session@1.1.9...@-drupal/test_session@1.1.10) (2021-08-17)
 
@@ -229,7 +290,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- bring tests back! ([7d04fd1](https://github.com/AmazeeLabs/silverback-mono/commit/7d04fd1de8f544a6c10ccf642df5acf04acf4d6d))
+- bring tests back!
+  ([7d04fd1](https://github.com/AmazeeLabs/silverback-mono/commit/7d04fd1de8f544a6c10ccf642df5acf04acf4d6d))
 
 ## [1.1.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/test_session@1.1.2...@-drupal/test_session@1.1.3) (2021-03-09)
 
@@ -247,4 +309,5 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-- extract test_session from cypress module ([20798f6](https://github.com/AmazeeLabs/silverback-mono/commit/20798f605b1a1ff1dd8651d8123c5cbfc490105f))
+- extract test_session from cypress module
+  ([20798f6](https://github.com/AmazeeLabs/silverback-mono/commit/20798f605b1a1ff1dd8651d8123c5cbfc490105f))

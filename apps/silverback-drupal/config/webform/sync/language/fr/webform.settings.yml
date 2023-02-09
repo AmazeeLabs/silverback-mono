@@ -1,7 +1,7 @@
 settings:
-  default_form_open_message: 'Ce formulaire n''est actuellement pas ouvert aux soumissions.'
+  default_form_open_message: "Ce formulaire n'est actuellement pas ouvert aux soumissions."
   default_form_close_message: 'Désolé... Ce formulaire est clos aux nouvelles soumissions.'
-  default_form_exception_message: 'Il est impossible d''afficher ce webform. Veuillez contacter l''administrateur du site.'
+  default_form_exception_message: "Il est impossible d'afficher ce webform. Veuillez contacter l'administrateur du site."
   default_submit_button_label: Soumettre
   default_reset_button_label: Réinitialiser
   default_delete_button_label: Supprimer

@@ -41,11 +41,11 @@ test('@drupal-only only allowed confirmation types are listed in the webform con
       `${drupal.baseUrl}/en/admin/structure/webform/manage/for_testing_confirmation_options/settings/confirmation`,
     );
     return Promise.all(
-      (
-        await page.$$('input[name="confirmation_type"]')
-      ).map((option) => option.getAttribute('value')),
+      (await page.$$('input[name="confirmation_type"]')).map((option) =>
+        option.getAttribute('value'),
+      ),
     );
-  }
+  };
 
   await drupalLogin(page);
 
@@ -90,10 +90,15 @@ test('@gatsby-both confirmation type: url', async ({ page }) => {
   await submitWebform(page);
   await page.waitForNavigation();
 
-  expect(page.url()).toBe(
-    // It's important to ensure that we are redirected to Gatsby, not to Drupal.
-    `${gatsby.baseUrl}/en/article/with-everything`,
-  );
+  expect(
+    [
+      // It's important to ensure that we are redirected to Gatsby, not to
+      // Drupal.
+      `${gatsby.baseUrl}/en/article/with-everything`,
+      // We may have a trailing slash in the URL.
+      `${gatsby.baseUrl}/en/article/with-everything/`,
+    ].includes(page.url()),
+  ).toBeTruthy();
 });
 
 test('@gatsby-both confirmation type: url_message', async ({ page }) => {
@@ -107,10 +112,15 @@ test('@gatsby-both confirmation type: url_message', async ({ page }) => {
   expect(await page.innerHTML('.status-messages-inner')).toContain(
     'Test message with&nbsp;<strong>some bold text.</strong>',
   );
-  expect(page.url()).toBe(
-    // It's important to ensure that we are redirected to Gatsby, not to Drupal.
-    `${gatsby.baseUrl}/en/article/other`,
-  );
+  expect(
+    [
+      // It's important to ensure that we are redirected to Gatsby, not to
+      // Drupal.
+      `${gatsby.baseUrl}/en/article/other`,
+      // We may have a trailing slash in the URL.
+      `${gatsby.baseUrl}/en/article/other/`,
+    ].includes(page.url()),
+  ).toBeTruthy();
 });
 
 test('@gatsby-both confirmation type: none', async ({ page }) => {
@@ -134,10 +144,15 @@ test('@gatsby-both confirmation type: message with fallback', async ({
   expect(await page.innerHTML('.status-messages-inner')).toContain(
     'The contact form has been submitted',
   );
-  expect(page.url()).toBe(
-    // It's important to ensure that we are redirected to Gatsby, not to Drupal.
-    `${gatsby.baseUrl}/en/article/other`,
-  );
+  expect(
+    [
+      // It's important to ensure that we are redirected to Gatsby, not to
+      // Drupal.
+      `${gatsby.baseUrl}/en/article/other`,
+      // We may have a trailing slash in the URL.
+      `${gatsby.baseUrl}/en/article/other/`,
+    ].includes(page.url()),
+  ).toBeTruthy();
 });
 
 const confirmationOptions = [
@@ -147,7 +162,7 @@ const confirmationOptions = [
   'url_message',
   'none',
 ] as const;
-type ConfirmationOption = typeof confirmationOptions[number];
+type ConfirmationOption = (typeof confirmationOptions)[number];
 
 const setConfirmationOption = async (
   page: PlaywrightTestArgs['page'],
@@ -169,20 +184,20 @@ const setConfirmationOption = async (
   if (options?.addMessage === true) {
     const editorFrame = (await (
       await page.waitForSelector(
-        '.form-item--confirmation-message-value .cke_wysiwyg_frame',
+        '.form-item--confirmation-message-value-value .cke_wysiwyg_frame',
       )
     )?.contentFrame())!;
     // Filling with an empty string helps Playwright do the things right.
     await editorFrame.fill('body', '');
     await editorFrame.fill('body', 'Test message with ');
     await page.click(
-      '.form-item--confirmation-message-value .cke_button__bold',
+      '.form-item--confirmation-message-value-value .cke_button__bold',
     );
     await page.keyboard.type('some bold text.');
   }
   if (typeof options?.addMessage === 'string') {
     await page.click('a[role="button"]:has-text("Source")');
-    await page.fill('#cke_1_contents div textarea', options.addMessage);
+    await page.fill('#cke_1_contents textarea', options.addMessage);
   }
 
   if (options?.setRedirectUrl) {

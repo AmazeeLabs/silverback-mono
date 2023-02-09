@@ -4,7 +4,7 @@
   "description": "Cypress E2E testing helpers",
   "license": "GPL-2.0-or-later",
   "minimum-stability": "dev",
-  "version": "2.3.71",
+  "version": "2.3.81",
   "extra": {
     "patches": {
       "drupal/core": {
@@ -17,13 +17,16 @@
       }
     }
   },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  ],
   "require": {
     "ext-json": "*",
     "alchemy/zippy": "^1.0.0",
-    "drupal/test_session": "^1.0.0",
+    "drupal/test_session": "^1.2.10",
     "drush/drush": ">=10.6.2"
-  },
-  "require-dev": {
-    "drupal/cypress-dev": "*"
   }
 }

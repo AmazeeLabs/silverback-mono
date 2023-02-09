@@ -59,8 +59,7 @@ function install_silverback_and_test {
     cp -n "$1/web/sites/default/default.settings.php" "$1/web/sites/default/settings.php" || true
   fi
 
-  # alchemy/zippy is added here to avoid issues with minimum-stability.
-  composer require amazeelabs/silverback-cli:@dev alchemy/zippy:@dev
+  composer require amazeelabs/silverback-cli:@dev
 
   source .envrc
   if ./vendor/bin/silverback setup; then

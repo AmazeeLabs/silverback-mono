@@ -4,6 +4,7 @@ namespace Drupal\Tests\silverback_gatsby\Traits;
 
 use GuzzleHttp\Client;
 use Prophecy\Argument;
+use Psr\Http\Message\ResponseInterface;
 
 trait NotificationCheckTrait {
 
@@ -14,6 +15,8 @@ trait NotificationCheckTrait {
 
   protected function setupClientProphecy() {
     $this->clientProphecy = $this->prophesize(Client::class);
+    $this->clientProphecy->post(Argument::any(), Argument::any())
+      ->willReturn($this->prophesize(ResponseInterface::class)->reveal());
     $this->container->set('http_client', $this->clientProphecy->reveal());
   }
 

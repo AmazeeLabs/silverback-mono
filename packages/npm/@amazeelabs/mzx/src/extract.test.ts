@@ -34,10 +34,10 @@ describe('extractCodeBlocks', () => {
         '```shell',
         'mkdir test',
         'cd test',
-        'yarn init -y',
+        'pnpm init -y',
         '```',
       ],
-      ['await $`mkdir test`;', 'await $`cd test`;', 'await $`yarn init -y`;'],
+      ['await $`mkdir test`;', 'await $`cd test`;', 'await $`pnpm init -y`;'],
     );
   });
 

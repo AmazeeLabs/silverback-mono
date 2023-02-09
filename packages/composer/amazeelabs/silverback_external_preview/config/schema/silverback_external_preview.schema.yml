@@ -1,0 +1,10 @@
+silverback_external_preview.settings:
+  type: config_object
+  label: 'External preview settings'
+  mapping:
+    preview_host:
+      type: string
+      label: 'Base URL of the preview frontend. Must have no trailing slash.'
+    live_host:
+      type: string
+      label: 'Base URL of the live frontend. Must have no trailing slash.'

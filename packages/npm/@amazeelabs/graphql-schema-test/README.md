@@ -9,7 +9,7 @@ a test runner.
 Add the package to a project:
 
 ```
-yarn add --dev @amazeelabs/graphql-schema-test jest
+pnpm add -D @amazeelabs/graphql-schema-test jest
 ```
 
 Create a Jest test file:
@@ -33,7 +33,7 @@ function myOptionalSerializer(responses) {
 Run tests:
 
 ```
-yarn jest --testMatch '<rootDir>/path/to/my/test/file.js'
+pnpm jest --testMatch '<rootDir>/path/to/my/test/file.js'
 ```
 
 For an example, see

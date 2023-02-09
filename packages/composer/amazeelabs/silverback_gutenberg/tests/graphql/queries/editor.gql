@@ -1,0 +1,25 @@
+fragment Page on Page {
+  title
+  content {
+    __typename
+    ... on Text {
+      content
+    }
+    ... on Figure {
+      caption
+      image {
+        alt
+      }
+    }
+    ... on Columns {
+      columns {
+        __typename
+      }
+    }
+  }
+}
+
+query {
+  en { ...Page }
+  de { ...Page }
+}

@@ -1,124 +1,232 @@
-# Directive for the "EntityFeed" plugin.
-directive @entity(
-  type: String!
-  bundle: String
-  access: Boolean
-) on OBJECT
-
-# Directive for the "MenuFeed" plugin.
-directive @menu(
-  """
-  The internal menu id.
-  """
-  menu_id: String
-
-  """
-  Internal menu id's. The first one the current user has access to will be
-  picked.
-  """
-  menu_ids: [String!]
-
-  """
-  GraphQL type for menu items.
-
-  **DEPRECATED**: Explicitly define Menu item types with `resolveMenu*`
-  directives instead.
-  """
-  item_type: String
-
-  """
-  The maximum level to be fetched.
-  This can be used to optimizing caching. Most of the time only one or two
-  levels of menus are immediately visible on the page. By declaring multiple
-  types, we can generate different cache buckets, so a new menu item on a low
-  level does not require a full rebuild of every page.
-
-  """
-  max_level: Int
-) on OBJECT
+"""
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Arg".
+"""
+directive @arg(name: String!) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
-Resolve menu items in a menu.
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityReference".
 """
-directive @resolveMenuItems(
-  """
-  The maximum level to be fetched.
-  This can be used to optimizing caching. Most of the time only one or two
-  levels of menus are immediately visible on the page. By declaring multiple
-  types, we can generate different cache buckets, so a new menu item on a low
-  level does not require a full rebuild of every page.
-  """
-  max_level: Int
-) on FIELD_DEFINITION
+directive @resolveEntityReference(field: String!) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
-Resolve the menu items id.
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityReferenceRevisions".
 """
-directive @resolveMenuItemId on FIELD_DEFINITION
+directive @resolveEntityReferenceRevisions(field: String!) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
-Resolve the menu item parents id.
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Lang".
 """
-directive @resolveMenuItemParentId on FIELD_DEFINITION
+directive @lang(code: String) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
-Resolve a menu items label.
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\MenuItemId".
 """
-directive @resolveMenuItemLabel on FIELD_DEFINITION
+directive @resolveMenuItemId repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
-Resolve the Url from within a menu item.
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\MenuItemLabel".
 """
-directive @resolveMenuItemUrl on FIELD_DEFINITION
-
-# Directive for the "StringTranslationFeed" plugin.
-directive @stringTranslation(
-  contextPrefix: String
-) on OBJECT
+directive @resolveMenuItemLabel repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
-Annotate a type to correspond to a editor block (e.g. Gutenberg)
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\MenuItemParentId".
 """
-directive @editorBlock(
-  """
-  The block ID within the CMS.
-  """
-  type: String!
-) on OBJECT
+directive @resolveMenuItemParentId repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
-Parse field content using the editor block parser.
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\MenuItemUrl".
 """
-directive @resolveEditorBlocks(
-  """
-  The property path to resolve the HTML content blog within the current entity.
-  """
-  path: String!
-  """
-  List of block types that don't contribute to the document and will be ignored.
-  If an ignored block has children, they are flattened into the list of blocks.
-  "core/group" is ignored by default.
-  """
-  ignore: [String!]
-  """
-  List of block types that are treated like plain HTML without attributes, just
-  as "core/paragraph". Sequences of these blocks will be aggregated into a
-  single instance of "core/paragraph".
-  """
-  aggregate: [String!]
-) on FIELD_DEFINITION
+directive @resolveMenuItemUrl repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 """
-Resolve an attribute value on a block.
-
-* "markup": resolve the blocks inner html content as string
-* "children": resolves the blocks inner blocks as array of blocks
-* "media": a media item, related to that block
-* ... anything else will resolve the blocks attribute as string
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\MenuItems".
 """
-directive @resolveEditorBlockAttribute(
-  name: String!
-) on FIELD_DEFINITION
+directive @resolveMenuItems(max_level: Int) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Provided by the "silverback_gutenberg" module.
+Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockChildren".
+"""
+directive @resolveEditorBlockChildren repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Provided by the "silverback_gutenberg" module.
+Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockMarkup".
+"""
+directive @resolveEditorBlockMarkup repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Provided by the "silverback_gutenberg" module.
+Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockMedia".
+"""
+directive @resolveEditorBlockMedia repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Provided by the "silverback_gutenberg" module.
+Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockType".
+"""
+directive @resolveEditorBlockType repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Apply all directives on the right to output on the left.
+"""
+directive @map repeatable on FIELD_DEFINITION
+
+"""
+Load a given entity by it's path or type and id or uuid
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityLoad".
+"""
+directive @loadEntity(route: String, type: String, uuid: String, id: String, operation: String) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Mark a type as member of a generic.
+The id argument contains a string that has to match the generics resolution.
+"""
+directive @type(id: String!) repeatable on OBJECT
+
+"""
+Parse a gutenberg document into block data.
+
+Provided by the "silverback_gutenberg" module.
+Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlocks".
+"""
+directive @resolveEditorBlocks(path: String!, ignored: [String!], aggregated: [String!]) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Provide a default value for a given type.
+"""
+directive @default repeatable on UNION | SCALAR | OBJECT | INTERFACE
+
+"""
+Provide a static value as JSON string.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Value".
+"""
+directive @value(json: String!) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Pull a specific typed-data property from an entity.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityProperty".
+"""
+directive @resolveProperty(path: String!) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Resolve a path to an Url object.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Route".
+"""
+directive @route(path: String!) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Retrieve a specific translation of an entity.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityTranslation".
+"""
+directive @resolveEntityTranslation(lang: String!) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Retrieve all translations of an entity.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityTranslations".
+"""
+directive @resolveEntityTranslations repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Retrieve an editor block attribute.
+
+Provided by the "silverback_gutenberg" module.
+Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockAttribute".
+"""
+directive @resolveEditorBlockAttribute(key: String!, plainText: Boolean) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Retrieve an entities bundle.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityBundle".
+"""
+directive @resolveEntityBundle repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Retrieve an entities id.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityId".
+"""
+directive @resolveEntityId repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Retrieve an entities label.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityLabel".
+"""
+directive @resolveEntityLabel repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Retrieve an entities type id.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityType".
+"""
+directive @resolveEntityType repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Retrieve an entities url path.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityPath".
+"""
+directive @resolveEntityPath repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Retrieve an entities uuid.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityUuid".
+"""
+directive @resolveEntityUuid repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Retrieve an object or map property.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Prop".
+"""
+directive @prop(key: String!) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Retrieve the language of an entity.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityLanguage".
+"""
+directive @resolveEntityLanguage repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
+Seek a specific element in a list.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Seek".
+"""
+directive @seek(pos: Int!) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
 
 schema {
   query: Query
@@ -144,27 +252,29 @@ type Page @entity(type: "node", bundle: "page") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
   body: String @resolveProperty(path: "field_body.0.processed")
-  paragraphs: [PageParagraphs!]! @resolveEntityReferenceRevisions(field: "field_paragraphs", single: false)
+  paragraphs: [PageParagraphs]! @resolveEntityReferenceRevisions(field: "field_paragraphs")
 }
 
-union PageParagraphs =
-  | ParagraphText
-  | ParagraphReferences
+union PageParagraphs = ParagraphText | ParagraphReferences
 
 type ParagraphText {
   text: String @resolveProperty(path: "field_text.0.value")
 }
 
 type ParagraphReferences {
-  references: [Article]! @resolveEntityReference(field: "field_references", single: false)
-  singleReference: GutenbergPage @resolveEntityReference(field: "field_single_reference", single: true)
+  references: [Article]! @resolveEntityReference(field: "field_references")
+  singleReference: GutenbergPage @resolveEntityReference(field: "field_single_reference") @seek(pos: 0)
 }
 
 type GutenbergPage @entity(type: "node", bundle: "gutenberg_page") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
+<<<<<<< HEAD
   body: [RootBlock!]! @resolveEditorBlocks(path: "body.value", ignore: ["custom/root", "core/columns"])
   anotherResponsiveImage(config: ResponsiveImageConfig): ResponsiveImage
+=======
+  body: [RootBlock]! @resolveEditorBlocks(path: "body.value", ignored: ["custom\/root", "core\/columns"])
+>>>>>>> development
 }
 
 type Webform @entity(type: "webform", access: false) {
@@ -177,57 +287,67 @@ type Article @entity(type: "node", bundle: "article") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
   body: String @resolveProperty(path: "field_body.0.processed")
+<<<<<<< HEAD
   tags: [Tag]! @resolveEntityReference(field: "field_tags", single: false)
   image: Image @resolveEntityReference(field: "field_image", single: true)
   responsiveImage(config: ResponsiveImageConfig): ResponsiveImage
+=======
+  tags: [Tag]! @resolveEntityReference(field: "field_tags")
+  image: Image @resolveEntityReference(field: "field_image") @seek(pos: 0)
+>>>>>>> development
   template: String @isTemplate
 }
 
-union RootBlock = BlockTwoColumns |  BlockHtmlList | BlockHtmlParagraph | BlockHtmlQuote | BlockImage | BlockTeaser
+union RootBlock @resolveEditorBlockType = BlockTwoColumns | BlockHtmlList | BlockHtmlParagraph | BlockHtmlQuote | BlockImage | BlockTeaser
 
-union ContentBlock = BlockHtmlList | BlockHtmlParagraph | BlockHtmlQuote | BlockImage | BlockTeaser
+union ContentBlock @resolveEditorBlockType = BlockHtmlList | BlockHtmlParagraph | BlockHtmlQuote | BlockImage | BlockTeaser
 
-type BlockTwoColumns @editorBlock(type: "custom/two-columns") {
-  children: [BlockColumn!]! @resolveEditorBlockAttribute(name: "children")
+type BlockTwoColumns @type(id: "custom\/two-columns") {
+  children: [BlockColumn]! @resolveEditorBlockChildren
 }
 
-type BlockColumn @editorBlock(type: "core/column") {
-  children: [ContentBlock!]! @resolveEditorBlockAttribute(name: "children")
+type BlockColumn @type(id: "core\/column") {
+  children: [ContentBlock]! @resolveEditorBlockChildren
 }
 
-type BlockHtmlParagraph @editorBlock(type: "core/paragraph") {
-  html: String! @resolveEditorBlockAttribute(name: "markup")
+type BlockHtmlParagraph @type(id: "core\/paragraph") {
+  html: String! @resolveEditorBlockMarkup
 }
 
-type BlockHtmlList @editorBlock(type: "core/list") {
-  html: String! @resolveEditorBlockAttribute(name: "markup")
+type BlockHtmlList @type(id: "core\/list") {
+  html: String! @resolveEditorBlockMarkup
 }
 
-type BlockHtmlQuote @editorBlock(type: "core/quote") {
-  html: String! @resolveEditorBlockAttribute(name: "markup")
+type BlockHtmlQuote @type(id: "core\/quote") {
+  html: String! @resolveEditorBlockMarkup
 }
 
-type BlockImage @editorBlock(type: "drupalmedia/drupal-media-entity") {
-  caption: String! @resolveEditorBlockAttribute(name: "caption")
-  image: Image @resolveEditorBlockAttribute(name: "media")
+type BlockImage @type(id: "drupalmedia\/drupal-media-entity") {
+  caption: String! @resolveEditorBlockAttribute(key: "caption")
+  image: Image @resolveEditorBlockMedia
 }
 
-type BlockTeaser @editorBlock(type: "custom/teaser") {
-  image: Image @resolveEditorBlockAttribute(name: "media")
-  title: String! @resolveEditorBlockAttribute(name: "title")
-  subtitle: String! @resolveEditorBlockAttribute(name: "subtitle")
-  url: String! @resolveEditorBlockAttribute(name: "url")
+type BlockTeaser @type(id: "custom\/teaser") {
+  image: Image @resolveEditorBlockMedia
+  title: String! @resolveEditorBlockAttribute(key: "title")
+  subtitle: String! @resolveEditorBlockAttribute(key: "subtitle")
+  url: String! @resolveEditorBlockAttribute(key: "url")
 }
-
 
 type MenuItem {
-  label: String!
-  url: String!
+  id: String! @resolveMenuItemId
+  parent: String @resolveMenuItemParentId
+  label: String! @resolveMenuItemLabel
+  url: String! @resolveMenuItemUrl
 }
 
-type MainMenu @menu(menu_id: "main", item_type: "MenuItem")
+type MainMenu @menu(menu_id: "main") {
+  items: [MenuItem]! @lang @resolveMenuItems
+}
 
-type FirstLevelMainMenu @menu(menu_id: "main", item_type: "MenuItem", max_level: 1)
+type FirstLevelMainMenu @menu(menu_id: "main", max_level: 1) {
+  items: [MenuItem]! @lang @resolveMenuItems(max_level: 1)
+}
 
 type GatsbyStringTranslation @stringTranslation(contextPrefix: "gatsby")
 
@@ -290,69 +410,43 @@ type Feed {
   templateFieldName: String
 }
 
-################################################################################
-# Directives for the automatic Gatsby pages creation.
-################################################################################
-
 directive @isPath on FIELD_DEFINITION
+
 """
 DEPRECATED, use @isPath
 """
 directive @path on FIELD_DEFINITION
 
 directive @isTemplate on FIELD_DEFINITION
+
 """
 DEPRECATED, use @isTemplate
 """
 directive @template on FIELD_DEFINITION
 
-################################################################################
-# Directives for automatic resolvers.
-################################################################################
+directive @entity(type: String!, bundle: String, access: Boolean) on OBJECT
 
-directive @resolveEntityPath on FIELD_DEFINITION
-
-directive @resolveProperty(
-  path: String!
-) on FIELD_DEFINITION
 """
-DEPRECATED, use @resolveProperty
+Directive for the "MenuFeed" plugin.
+
+menu_id:
+  The internal menu id.
+
+menu_ids:
+  Internal menu id's. The first one the current user has access to will be
+  picked.
+
+max_level:
+  The maximum level to be fetched.
+  This can be used to optimizing caching. Most of the time only one or two
+  levels of menus are immediately visible on the page. By declaring multiple
+  types, we can generate different cache buckets, so a new menu item on a low
+  level does not require a full rebuild of every page.
 """
-directive @property(
-  path: String!
-) on FIELD_DEFINITION
+directive @menu(menu_id: String, menu_ids: [String!], item_type: String, max_level: Int) on OBJECT
 
-directive @resolveEntityReference(
-  field: String!
-  single: Boolean!
-) on FIELD_DEFINITION
+directive @stringTranslation(contextPrefix: String) on OBJECT
 
-directive @resolveEntityReferenceRevisions(
-  field: String!
-  single: Boolean!
-) on FIELD_DEFINITION
-
-extend type Mutation { _original_typename: String! }
-extend type Query { _original_typename: String! }
-extend type Image { _original_typename: String! }
-extend type Tag { _original_typename: String! }
-extend type Page { _original_typename: String! }
-extend type ParagraphText { _original_typename: String! }
-extend type ParagraphReferences { _original_typename: String! }
-extend type GutenbergPage { _original_typename: String! }
-extend type Webform { _original_typename: String! }
-extend type Article { _original_typename: String! }
-extend type BlockTwoColumns { _original_typename: String! }
-extend type BlockColumn { _original_typename: String! }
-extend type BlockHtmlParagraph { _original_typename: String! }
-extend type BlockHtmlList { _original_typename: String! }
-extend type BlockHtmlQuote { _original_typename: String! }
-extend type BlockImage { _original_typename: String! }
-extend type BlockTeaser { _original_typename: String! }
-extend type MenuItem { _original_typename: String! }
-extend type MainMenu { _original_typename: String! }
-extend type FirstLevelMainMenu { _original_typename: String! }
-extend type GatsbyStringTranslation { _original_typename: String! }
 extend type Query {
   drupalBuildId: Int!
   drupalFeedInfo: [Feed!]!
@@ -364,10 +458,99 @@ type User {
   name: String
 }
 
+extend type Mutation {
+  _original_typename: String!
+}
+
+extend type Query {
+  _original_typename: String!
+}
+
+extend type Image {
+  _original_typename: String!
+}
+
+extend type Tag {
+  _original_typename: String!
+}
+
+extend type Page {
+  _original_typename: String!
+}
+
+extend type ParagraphText {
+  _original_typename: String!
+}
+
+extend type ParagraphReferences {
+  _original_typename: String!
+}
+
+extend type GutenbergPage {
+  _original_typename: String!
+}
+
+extend type Webform {
+  _original_typename: String!
+}
+
+extend type Article {
+  _original_typename: String!
+}
+
+extend type BlockTwoColumns {
+  _original_typename: String!
+}
+
+extend type BlockColumn {
+  _original_typename: String!
+}
+
+extend type BlockHtmlParagraph {
+  _original_typename: String!
+}
+
+extend type BlockHtmlList {
+  _original_typename: String!
+}
+
+extend type BlockHtmlQuote {
+  _original_typename: String!
+}
+
+extend type BlockImage {
+  _original_typename: String!
+}
+
+extend type BlockTeaser {
+  _original_typename: String!
+}
+
+extend type MenuItem {
+  _original_typename: String!
+}
+
+extend type MainMenu {
+  _original_typename: String!
+}
+
+extend type FirstLevelMainMenu {
+  _original_typename: String!
+}
+
+extend type GatsbyStringTranslation {
+  _original_typename: String!
+}
+
+extend type Feed {
+  _original_typename: String!
+}
+
 extend type Query {
   loadImage(id: String!): Image
   queryImages(offset: Int, limit: Int): [Image]!
 }
+
 extend type Image {
   id: String!
   drupalId: String!
@@ -376,21 +559,29 @@ extend type Image {
   translations: [Image!]!
 }
 
-extend type Query { loadImageRevision(id: String!, revision: String!) : Image }
+extend type Query {
+  loadImageRevision(id: String!, revision: String!): Image
+}
+
 extend type Query {
   loadTag(id: String!): Tag
   queryTags(offset: Int, limit: Int): [Tag]!
 }
+
 extend type Tag {
   id: String!
   drupalId: String!
 }
 
-extend type Query { loadTagRevision(id: String!, revision: String!) : Tag }
+extend type Query {
+  loadTagRevision(id: String!, revision: String!): Tag
+}
+
 extend type Query {
   loadPage(id: String!): Page
   queryPages(offset: Int, limit: Int): [Page]!
 }
+
 extend type Page {
   id: String!
   drupalId: String!
@@ -399,11 +590,15 @@ extend type Page {
   translations: [Page!]!
 }
 
-extend type Query { loadPageRevision(id: String!, revision: String!) : Page }
+extend type Query {
+  loadPageRevision(id: String!, revision: String!): Page
+}
+
 extend type Query {
   loadGutenbergPage(id: String!): GutenbergPage
   queryGutenbergPages(offset: Int, limit: Int): [GutenbergPage]!
 }
+
 extend type GutenbergPage {
   id: String!
   drupalId: String!
@@ -412,21 +607,29 @@ extend type GutenbergPage {
   translations: [GutenbergPage!]!
 }
 
-extend type Query { loadGutenbergPageRevision(id: String!, revision: String!) : GutenbergPage }
+extend type Query {
+  loadGutenbergPageRevision(id: String!, revision: String!): GutenbergPage
+}
+
 extend type Query {
   loadWebform(id: String!): Webform
   queryWebforms(offset: Int, limit: Int): [Webform]!
 }
+
 extend type Webform {
   id: String!
   drupalId: String!
 }
 
-extend type Query { loadWebformRevision(id: String!, revision: String!) : Webform }
+extend type Query {
+  loadWebformRevision(id: String!, revision: String!): Webform
+}
+
 extend type Query {
   loadArticle(id: String!): Article
   queryArticles(offset: Int, limit: Int): [Article]!
 }
+
 extend type Article {
   id: String!
   drupalId: String!
@@ -435,11 +638,15 @@ extend type Article {
   translations: [Article!]!
 }
 
-extend type Query { loadArticleRevision(id: String!, revision: String!) : Article }
+extend type Query {
+  loadArticleRevision(id: String!, revision: String!): Article
+}
+
 extend type Query {
   loadMainMenu(id: String!): MainMenu
   queryMainMenus(offset: Int, limit: Int): [MainMenu]!
 }
+
 extend type MainMenu {
   id: String!
   drupalId: String!
@@ -447,17 +654,12 @@ extend type MainMenu {
   langcode: String!
   translations: [MainMenu!]!
 }
-extend type MainMenu {
-  items: [MenuItem!]!
-}
-extend type MenuItem {
-  id: String!
-  parent: String!
-}
+
 extend type Query {
   loadFirstLevelMainMenu(id: String!): FirstLevelMainMenu
   queryFirstLevelMainMenus(offset: Int, limit: Int): [FirstLevelMainMenu]!
 }
+
 extend type FirstLevelMainMenu {
   id: String!
   drupalId: String!
@@ -465,26 +667,23 @@ extend type FirstLevelMainMenu {
   langcode: String!
   translations: [FirstLevelMainMenu!]!
 }
-extend type FirstLevelMainMenu {
-  items: [MenuItem!]!
-}
-extend type MenuItem {
-  id: String!
-  parent: String!
-}
+
 extend type Query {
   loadGatsbyStringTranslation(id: String!): GatsbyStringTranslation
   queryGatsbyStringTranslations(offset: Int, limit: Int): [GatsbyStringTranslation]!
 }
+
 extend type GatsbyStringTranslation {
   id: String!
   drupalId: String!
 }
+
 extend type GatsbyStringTranslation {
   source: String!
   context: String
   translations: [GatsbyStringTranslationTranslation]
 }
+
 type GatsbyStringTranslationTranslation {
   id: String!
   source: String!

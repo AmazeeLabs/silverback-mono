@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/gatsby-source-silverback",
-  "version": "1.9.8",
+  "version": "1.9.15",
   "description": "Source data from a Silverback GraphQL schema.",
   "main": "index.js",
   "types": "types.d.ts",
@@ -11,30 +11,31 @@
     "access": "public"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.36",
-    "@amazeelabs/jest-preset": "^1.3.40",
-    "@amazeelabs/prettier-config": "^1.1.1",
-    "@types/jest": "29.2.1",
-    "eslint": "8.26.0",
-    "gatsby": "4.24.6",
-    "jest": "29.2.2",
-    "lint-staged": "13.0.3",
-    "prettier": "2.7.1",
+    "@amazeelabs/eslint-config": "1.4.40",
+    "@amazeelabs/jest-preset": "1.3.44",
+    "@amazeelabs/prettier-config": "1.1.1",
+    "@types/jest": "29.4.0",
+    "@types/node-fetch": "2.6.2",
+    "@types/react": "18.0.27",
+    "eslint": "8.33.0",
+    "gatsby": "5.5.0",
+    "jest": "29.4.1",
+    "lint-staged": "13.1.0",
+    "prettier": "2.8.3",
     "react": "18.2.0",
-    "typescript": "4.8.4"
+    "typescript": "4.9.5"
   },
   "scripts": {
-    "prepare": "tsc",
+    "build": "tsc",
     "precommit": "lint-staged",
-    "test": "yarn test:static && yarn test:unit && yarn test:integration",
     "watch": "jest --watch",
     "test:static": "tsc --noEmit && eslint \"src/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "jest --passWithNoTests",
-    "test:integration": "if [ -f test.sh ]; then ./test.sh; fi",
     "test:watch": "jest --watch"
   },
   "dependencies": {
     "fetch-retry-ts": "^1.1.25",
-    "gatsby-graphql-source-toolkit": "^2.0.3"
+    "gatsby-graphql-source-toolkit": "^2.0.3",
+    "node-fetch": "^2"
   }
 }

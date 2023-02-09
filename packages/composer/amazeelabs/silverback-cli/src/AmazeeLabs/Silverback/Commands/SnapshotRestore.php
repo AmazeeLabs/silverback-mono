@@ -34,6 +34,8 @@ class SnapshotRestore extends SnapshotBase {
     $this->fileSystem->remove('web/sites/default/files');
     $this->copyDir($snapshotDirectory, 'web/sites/default/files');
     $output->writeln("<info>The snapshot has been restored from $snapshotDirectory.</>");
+
+    return 0;
   }
 
 }

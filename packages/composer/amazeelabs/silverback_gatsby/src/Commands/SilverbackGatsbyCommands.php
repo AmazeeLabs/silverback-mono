@@ -7,6 +7,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\silverback_gatsby\GatsbyBuildTriggerInterface;
 use Drupal\silverback_gatsby\GraphQL\ComposableSchema;
 use Drush\Commands\DrushCommands;
+use GraphQL\Language\Printer;
 
 /**
  * A Drush commandfile.
@@ -63,12 +64,13 @@ class SilverbackGatsbyCommands extends DrushCommands {
         '%id' => $server->id(),
         '%path' => $path,
       ]));
-      $definition = [$schema->getSchemaDefinition()];
-      foreach ($schema->getExtensions() as $extension) {
-        $definition[] = $extension->getBaseDefinition();
-        $definition[] = $extension->getExtensionDefinition();
-      }
-      file_put_contents($path, implode("\n", $definition));
+      $extensions = $schema->getExtensions();
+      $schemaDocument = $schema->getSchemaDocument($extensions);
+      $extensionDocument = $schema->getExtensionDocument($extensions);
+      file_put_contents($path, implode("\n", [
+        Printer::doPrint($schemaDocument),
+        Printer::doPrint($extensionDocument),
+      ]));
     }
   }
 

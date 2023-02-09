@@ -7,7 +7,7 @@ Exports the current Gatsby schema to a `*.graphql` file.
 Install
 
 ```bash
-yarn add gatsby-plugin-schema-export
+pnpm add gatsby-plugin-schema-export
 ```
 
 ### Without options

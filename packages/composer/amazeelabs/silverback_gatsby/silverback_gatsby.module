@@ -73,6 +73,20 @@ function silverback_gatsby_user_login(UserInterface $account) {
   // authenticated, so it can make additional requests based on that information.
   $opts = \Drupal::getContainer()->getParameter('session.storage.options');
   if (isset($opts['cookie_domain'])) {
-    setcookie('drupal_user', $account->id(), 0, '/', $opts['cookie_domain'], false, false);
+    $expires = isset($opts['cookie_lifetime'])
+      ? \Drupal::time()->getRequestTime() + $opts['cookie_lifetime']
+      : 0;
+    setcookie('drupal_user', $account->id(), $expires, '/', $opts['cookie_domain'], false, false);
   }
+}
+
+/**
+ * Implements hook_user_logout().
+ */
+function silverback_gatsby_user_logout() {
+  // Unset the frontend user-indicator cookie.
+  unset($_COOKIE['drupal_user']);
+  $opts = \Drupal::getContainer()->getParameter('session.storage.options');
+  $expires = \Drupal::time()->getRequestTime() - 3600;
+  setcookie('drupal_user', '', $expires, '/', $opts['cookie_domain'] ?? '', false, false);
 }

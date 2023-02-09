@@ -8,7 +8,7 @@ test.beforeAll(async () => {
 const doTest = async (page: Page, path: string) => {
   await page.goto(gatsby.baseUrl + path);
   // Give it time to fetch data.
-  await page.waitForTimeout(1_000);
+  await page.waitForTimeout(2_000);
 
   // There should be 2 pages fetched with a query.
   await expect(page.locator('#pages-count')).toContainText('2');

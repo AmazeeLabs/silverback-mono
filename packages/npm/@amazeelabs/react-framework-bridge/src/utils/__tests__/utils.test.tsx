@@ -3,6 +3,7 @@ import { isElement } from 'hast-util-is-element';
 import React, { useEffect, useState } from 'react';
 import { act } from 'react-dom/test-utils';
 import { Plugin } from 'unified';
+import { Parent } from 'unist';
 import { modifyChildren } from 'unist-util-modify-children';
 import { visit } from 'unist-util-visit';
 import { describe, expect, it, vi } from 'vitest';
@@ -39,6 +40,9 @@ describe('isRelative', () => {
   });
   it('returns false for a mailto: url', () => {
     expect(isRelative('mailto:development@amazeelabs.com')).toBeFalsy();
+  });
+  it('returns true for a javascript: url', () => {
+    expect(isRelative('javascript:alert(1)')).toBeTruthy();
   });
 });
 
@@ -263,7 +267,7 @@ describe('buildHtmlBuilder', () => {
       visit(
         tree,
         'element',
-        modifyChildren((node) => {
+        modifyChildren<Parent>((node) => {
           if (
             isElement(node, 'p') &&
             node.children.length === 1 &&

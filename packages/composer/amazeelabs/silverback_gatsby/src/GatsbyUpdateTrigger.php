@@ -5,7 +5,6 @@ namespace Drupal\silverback_gatsby;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Messenger\MessengerInterface;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
 
 class GatsbyUpdateTrigger implements GatsbyUpdateTriggerInterface {
 
@@ -60,7 +59,7 @@ class GatsbyUpdateTrigger implements GatsbyUpdateTriggerInterface {
           // It can happen that a request hangs for too long time.
           'timeout' => 2,
         ]);
-      } catch (RequestException $exc) {
+      } catch (\Exception $exc) {
         $this->messenger->addError('Could not send build notification to server "' . $url . '".');
         $this->messenger->addError($exc->getMessage());
       }

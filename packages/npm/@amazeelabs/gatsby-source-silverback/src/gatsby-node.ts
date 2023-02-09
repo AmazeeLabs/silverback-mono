@@ -37,7 +37,7 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   });
 
 const getForwardedHeaders = (url: URL) => ({
-  'X-Forwarded-Proto': url.protocol,
+  'X-Forwarded-Proto': url.protocol === 'https:' ? 'https' : 'http',
   'X-Forwarded-Host': url.hostname,
   'X-Forwarded-Port': url.port,
 });

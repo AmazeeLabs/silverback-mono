@@ -25,6 +25,18 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/npm/verdaccio-git/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/silverback-playwright/dist" />
       <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/graphql-schema-test/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/graphql_directives" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/silverback_graphql_persisted" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/silverback_translations" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/silverback_cdn_redirect" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/molecules/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/silverback-graphql-persisted/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/react-framework-bridge/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/publisher/build" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/publisher/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/mzx/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/molecules/storybook-static" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/codegen-operation-ids/dist" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

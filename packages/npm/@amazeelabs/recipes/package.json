@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/recipes",
-  "version": "1.15.13",
+  "version": "1.15.19",
   "description": "Executable recipes to setup and extend Amazee Labs projects.",
   "main": "dist/index.js",
   "license": "MIT",
@@ -23,31 +23,29 @@
     "update-notifier": "^6.0.2"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.36",
-    "@amazeelabs/jest-preset": "^1.3.40",
-    "@amazeelabs/prettier-config": "^1.1.1",
+    "@amazeelabs/eslint-config": "1.4.40",
+    "@amazeelabs/jest-preset": "1.3.44",
+    "@amazeelabs/prettier-config": "1.1.1",
     "@types/chalk": "2.2.0",
     "@types/deasync": "0.1.2",
-    "@types/jest": "29.2.1",
+    "@types/jest": "29.4.0",
     "@types/js-yaml": "4.0.5",
     "@types/nunjucks": "3.2.1",
-    "@types/prompts": "2.4.1",
+    "@types/prompts": "2.4.2",
     "@types/semver": "7.3.13",
     "@types/update-notifier": "6.0.1",
-    "eslint": "8.26.0",
-    "jest": "29.2.2",
-    "lint-staged": "13.0.3",
-    "prettier": "2.7.1",
-    "typescript": "4.8.4"
+    "eslint": "8.33.0",
+    "jest": "29.4.1",
+    "lint-staged": "13.1.0",
+    "prettier": "2.8.3",
+    "typescript": "4.9.5"
   },
   "scripts": {
-    "prepare": "./prepare.sh",
+    "build": "./prepare.sh",
     "precommit": "lint-staged",
-    "test": "yarn test:static && yarn test:unit && yarn test:integration",
     "watch": "jest --watch",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "jest --passWithNoTests",
-    "test:integration": "if [ -f test.sh ]; then ./test.sh; fi",
     "test:manual": "./test-manual.sh",
     "test:watch": "jest --watch"
   }

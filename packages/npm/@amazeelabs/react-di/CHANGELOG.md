@@ -3,6 +3,60 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.80](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-di@1.0.79...@amazeelabs/react-di@1.0.80) (2023-02-04)
+
+**Note:** Version bump only for package @amazeelabs/react-di
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.0.79](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-di@1.0.78...@amazeelabs/react-di@1.0.79) (2023-02-04)
+
+**Note:** Version bump only for package @amazeelabs/react-di
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.0.78](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-di@1.0.77...@amazeelabs/react-di@1.0.78) (2023-01-30)
+
+**Note:** Version bump only for package @amazeelabs/react-di
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.0.77](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-di@1.0.76...@amazeelabs/react-di@1.0.77) (2023-01-12)
+
+**Note:** Version bump only for package @amazeelabs/react-di
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.0.76](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-di@1.0.75...@amazeelabs/react-di@1.0.76) (2023-01-05)
+
+**Note:** Version bump only for package @amazeelabs/react-di
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.0.75](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-di@1.0.74...@amazeelabs/react-di@1.0.75) (2022-12-29)
+
+**Note:** Version bump only for package @amazeelabs/react-di
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.0.74](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-di@1.0.73...@amazeelabs/react-di@1.0.74) (2022-11-03)
 
 **Note:** Version bump only for package @amazeelabs/react-di

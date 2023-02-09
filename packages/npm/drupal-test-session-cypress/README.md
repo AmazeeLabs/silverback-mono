@@ -8,7 +8,7 @@ Extends Cypress API to make it easier to utilize Drupal's
 Add the package
 
 ```shell
-yarn add --dev drupal-test-session-cypress
+pnpm add -D drupal-test-session-cypress
 ```
 
 Require it from the Cypress `support/index.js` (or `.ts`)

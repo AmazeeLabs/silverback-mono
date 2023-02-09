@@ -21,15 +21,12 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
 
   public function getResolverRegistry(): ResolverRegistryInterface {
     $builder = new ResolverBuilder();
-    $registry = new ResolverRegistry();
+    $registry = parent::getResolverRegistry();
 
     $addResolver = function(string $path, ResolverInterface $resolver) use ($registry) {
       [$type, $field] = explode('.', $path);
       $registry->addFieldResolver($type, $field, $resolver);
     };
-
-    $registry->addTypeResolver('RootBlock', fn($value) => $value['__type']);
-    $registry->addTypeResolver('ContentBlock', fn($value) => $value['__type']);
 
     $registry->addTypeResolver('PageParagraphs', function (EntityInterface $value) {
       switch ($value->bundle()) {

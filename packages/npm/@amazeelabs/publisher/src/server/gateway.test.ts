@@ -41,7 +41,7 @@ function runGatewayService(helpers: RunHelpers, config: GatewayTestInput) {
   const t = helpers.time('-|');
 
   ShellMock.add(
-    'yarn start',
+    'pnpm start',
     concat(
       helpers.cold(config.startMarbles, outputChunks),
       /#$/.test(config.startMarbles)
@@ -52,7 +52,7 @@ function runGatewayService(helpers: RunHelpers, config: GatewayTestInput) {
           ),
     ),
   );
-  ShellMock.add('yarn clean', helpers.cold(config.cleanMarbles, outputChunks));
+  ShellMock.add('pnpm clean', helpers.cold(config.cleanMarbles, outputChunks));
 
   const fakeCommands$ = helpers.hot<GatewayCommands>(config.eventMarbles, {
     s: 'start',
@@ -62,8 +62,8 @@ function runGatewayService(helpers: RunHelpers, config: GatewayTestInput) {
   const testSpan$ = interval(t * 20).pipe(take(1), share());
   return fakeCommands$.pipe(
     GatewayService({
-      startCommand: 'yarn start',
-      cleanCommand: 'yarn clean',
+      startCommand: 'pnpm start',
+      cleanCommand: 'pnpm clean',
       startRetries: 1,
       readyPattern: /startup step 3/,
     }),
@@ -106,11 +106,11 @@ function testGatewaySpawns(input: GatewayTestInput) {
       .expectObservable(spawns$.pipe(takeUntil(testSpan$)))
       .toBe(input.spawnMarbles, {
         s: {
-          cmd: 'yarn start',
+          cmd: 'pnpm start',
           payload: undefined,
         },
         c: {
-          cmd: 'yarn clean',
+          cmd: 'pnpm clean',
           payload: undefined,
         },
       });

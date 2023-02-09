@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.65](https://github.com/AmazeeLabs/silverback-mono/compare/@-test_session/cypress-tests@1.1.64...@-test_session/cypress-tests@1.1.65) (2023-02-04)
+
+**Note:** Version bump only for package @-test_session/cypress-tests
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.1.64](https://github.com/AmazeeLabs/silverback-mono/compare/@-test_session/cypress-tests@1.1.63...@-test_session/cypress-tests@1.1.64) (2023-02-04)
+
+**Note:** Version bump only for package @-test_session/cypress-tests
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.1.63](https://github.com/AmazeeLabs/silverback-mono/compare/@-test_session/cypress-tests@1.1.62...@-test_session/cypress-tests@1.1.63) (2023-01-30)
+
+**Note:** Version bump only for package @-test_session/cypress-tests
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.1.62](https://github.com/AmazeeLabs/silverback-mono/compare/@-test_session/cypress-tests@1.1.61...@-test_session/cypress-tests@1.1.62) (2023-01-24)
+
+**Note:** Version bump only for package @-test_session/cypress-tests
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.1.61](https://github.com/AmazeeLabs/silverback-mono/compare/@-test_session/cypress-tests@1.1.60...@-test_session/cypress-tests@1.1.61) (2023-01-12)
+
+**Note:** Version bump only for package @-test_session/cypress-tests
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.1.60](https://github.com/AmazeeLabs/silverback-mono/compare/@-test_session/cypress-tests@1.1.59...@-test_session/cypress-tests@1.1.60) (2023-01-05)
+
+**Note:** Version bump only for package @-test_session/cypress-tests
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.1.59](https://github.com/AmazeeLabs/silverback-mono/compare/@-test_session/cypress-tests@1.1.58...@-test_session/cypress-tests@1.1.59) (2022-12-29)
+
+**Note:** Version bump only for package @-test_session/cypress-tests
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.58](https://github.com/AmazeeLabs/silverback-mono/compare/@-test_session/cypress-tests@1.1.57...@-test_session/cypress-tests@1.1.58) (2022-11-03)
 
 **Note:** Version bump only for package @-test_session/cypress-tests

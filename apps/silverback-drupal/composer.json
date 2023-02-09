@@ -10,6 +10,53 @@
     },
     "repositories": [
         {
+            "type": "package",
+            "👉TODO": "Remove once key_auth is Drupal 10 compatible.",
+            "package": {
+                "name": "drupal/key_auth",
+                "version": "2.0.1",
+                "require": {
+                    "drupal/core": "^8 || ^9 || ^10"
+                },
+                "source": {
+                    "type": "git",
+                    "url": "https://git.drupalcode.org/project/key_auth.git",
+                    "reference": "2.0.1"
+                },
+                "dist": {
+                    "type": "zip",
+                    "url": "https://ftp.drupal.org/files/projects/key_auth-2.0.1.zip",
+                    "reference": "2.0.1",
+                    "shasum": "ea906de39a552bcdd9355907b4498f65603b38d3"
+                },
+                "type": "drupal-module"
+            }
+        },
+        {
+            "type": "package",
+            "👉TODO": "Remove once typed_data is Drupal 10 compatible.",
+            "package": {
+                "name": "drupal/typed_data",
+                "version": "1.0.0-beta1",
+                "require": {
+                    "drupal/core": "^8.8.2 || ^9 || ^10"
+                },
+                "source": {
+                    "type": "git",
+                    "url": "https://git.drupalcode.org/project/typed_data.git",
+                    "reference": "8.x-1.0-beta1"
+                },
+                "dist": {
+                    "type": "zip",
+                    "url": "https://ftp.drupal.org/files/projects/typed_data-8.x-1.0-beta1.zip",
+                    "reference": "8.x-1.0-beta1",
+                    "shasum": "73d079f29c7a5679e0db3e28ae888e8cce2f1335"
+                },
+                "type": "drupal-module",
+                "minimum-stability": "dev"
+            }
+        },
+        {
             "type": "path",
             "url": "../../packages/composer/*/*"
         },
@@ -20,6 +67,7 @@
     ],
     "require": {
         "amazeelabs/default-content": "@dev",
+        "amazeelabs/graphql_directives": "@dev",
         "amazeelabs/proxy-drupal-core": "@dev",
         "amazeelabs/proxy-gutenberg": "@dev",
         "amazeelabs/silverback-cli": "@dev",
@@ -27,44 +75,49 @@
         "amazeelabs/silverback_cloudinary": "@dev",
         "amazeelabs/silverback_external_preview": "@dev",
         "amazeelabs/silverback_gatsby": "@dev",
-        "amazeelabs/silverback_graphql_persisted": "1.1.2",
+        "amazeelabs/silverback_graphql_persisted": "@dev",
         "amazeelabs/silverback_gutenberg": "@dev",
         "amazeelabs/silverback_iframe": "@dev",
         "amazeelabs/silverback_iframe_theme": "@dev",
         "amazeelabs/silverback_translations": "@dev",
         "composer/installers": "2.2.0",
-        "cweagans/composer-patches": "1.7.2",
-        "drupal/admin_toolbar": "3.2.1",
+        "cweagans/composer-patches": "1.7.3",
+        "drupal/admin_toolbar": "3.3.0",
+        "drupal/ckeditor": "1.0.1",
         "drupal/config_split": "1.9.0",
-        "drupal/core": "9.4.8",
-        "drupal/core-composer-scaffold": "9.4.8",
-        "drupal/core-dev": "9.4.8",
-        "drupal/core-recommended": "9.4.8",
-        "drupal/cypress": "@dev",
+        "drupal/core": "10.0.3",
+        "drupal/core-composer-scaffold": "10.0.3",
+        "drupal/core-dev": "10.0.3",
+        "drupal/core-recommended": "10.0.3",
         "drupal/default_content": "2.0.0-alpha2",
-        "drupal/entity_usage": "2.0.0-beta7",
+        "drupal/entity_usage": "2.0.0-beta8",
         "drupal/gatsby_build_monitor": "@dev",
         "drupal/graphql": "4.4.0",
-        "drupal/gutenberg": "2.5.0",
+        "drupal/gutenberg": "2.6.0",
+        "drupal/hal": "2.0.1",
         "drupal/key_auth": "2.0.1",
         "drupal/paragraphs": "1.15.0",
         "drupal/redirect": "1.8.0",
         "drupal/test_session": "@dev",
-        "drupal/webform": "6.1.3",
+        "drupal/typed_data": "1.0.0-beta1",
+        "drupal/webform": "6.2.0-beta5",
         "phpspec/prophecy-phpunit": "2.0.1"
     },
     "conflict": {
         "drupal/drupal": "*"
     },
-    "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
+        "platform": {
+            "php": "8.1.13"
+        },
         "sort-packages": true,
         "allow-plugins": {
             "composer/installers": true,
             "cweagans/composer-patches": true,
             "drupal/core-composer-scaffold": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true
         }
     },
     "extra": {
@@ -102,15 +155,12 @@
         "enable-patching": true,
         "composer-exit-on-patch-failure": true,
         "patches": {
+            "drupal/key_auth": {
+                "Drupal 10 compatibility": "https://www.drupal.org/files/issues/2022-04-14/3272203-4-fix-missing-accesscheck-calls.patch"
+            },
             "drupal/core": {
-                "Add string context and location filters to the translate interface": "https://www.drupal.org/files/issues/2022-08-01/2123543-9.4.x-74.patch"
+                "Add string context and location filters to the translate interface": "https://www.drupal.org/files/issues/2023-01-23/2123543-10.0.x-79.patch"
             }
         }
-    },
-    "scripts": {
-        "run-tests": [
-            "if [ -d web/modules/custom ]; then phpunit web/modules/custom; fi",
-            "yarn install && CYPRESS_TAGS=@COMPLETED cypress run"
-        ]
     }
 }

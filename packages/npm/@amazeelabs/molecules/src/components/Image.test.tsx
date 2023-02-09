@@ -42,7 +42,7 @@ describe('Image', () => {
             style="position: relative; padding-bottom: 75%;"
           >
             <picture
-              style="position: absolute; top: 0; left: 0; bottom: 0; right: 0;"
+              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
             >
               <img
                 alt="Alt text"
@@ -77,7 +77,7 @@ describe('Image', () => {
             style="position: relative; height: 100%;"
           >
             <picture
-              style="position: absolute; top: 0; left: 0; bottom: 0; right: 0;"
+              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
             >
               <img
                 alt="Alt text"
@@ -129,7 +129,7 @@ describe('Image', () => {
             style="position: relative; padding-bottom: 75%;"
           >
             <picture
-              style="position: absolute; top: 0; left: 0; bottom: 0; right: 0;"
+              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
             >
               <img
                 alt="Alt text"
@@ -180,7 +180,7 @@ describe('Image', () => {
               </div>
             </div>
             <picture
-              style="position: absolute; top: 0; left: 0; bottom: 0; right: 0;"
+              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
             >
               <img
                 alt="Alt text"
@@ -232,7 +232,7 @@ describe('Image', () => {
               </div>
             </div>
             <picture
-              style="position: absolute; top: 0; left: 0; bottom: 0; right: 0;"
+              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
             >
               <img
                 alt="Alt text"
@@ -280,7 +280,7 @@ describe('Image', () => {
               </div>
             </div>
             <picture
-              style="position: absolute; top: 0; left: 0; bottom: 0; right: 0;"
+              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
             >
               <img
                 alt="Alt text"
@@ -328,7 +328,7 @@ describe('Image', () => {
               </div>
             </div>
             <picture
-              style="position: absolute; top: 0; left: 0; bottom: 0; right: 0;"
+              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
             >
               <img
                 alt="Alt text"
@@ -373,7 +373,7 @@ describe('Image', () => {
               </div>
             </div>
             <picture
-              style="position: absolute; top: 0; left: 0; bottom: 0; right: 0;"
+              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
             >
               <img
                 alt="Alt text"
@@ -418,7 +418,7 @@ describe('Image', () => {
               </div>
             </div>
             <picture
-              style="position: absolute; top: 0; left: 0; bottom: 0; right: 0;"
+              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
             >
               <img
                 alt="Alt text"
@@ -457,7 +457,7 @@ describe('Image', () => {
             style="position: relative; padding-bottom: 75%;"
           >
             <picture
-              style="position: absolute; top: 0; left: 0; bottom: 0; right: 0;"
+              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
             >
               <source
                 sizes="(max-width: 400px) 100vw, 400px"
@@ -505,7 +505,7 @@ describe('Image', () => {
             style="position: relative; padding-bottom: 75%;"
           >
             <picture
-              style="position: absolute; top: 0; left: 0; bottom: 0; right: 0;"
+              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
             >
               <source
                 media="(min-width: 800px)"

@@ -1,0 +1,15 @@
+graphql.schema.directable:
+  type: mapping
+  label: 'Directable schema'
+  mapping:
+    directable:
+      type: mapping
+      mapping:
+        schema_definition:
+          label: Schema definition
+          type: string
+        extensions:
+          label: Enabled extensions
+          type: sequence
+          sequence:
+            type: string
