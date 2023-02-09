@@ -71,12 +71,12 @@ class ResponsiveImage extends DataProducerPluginBase {
           // srcset, the path to the image to display.
           $source['srcset'] = $this->getCloudinaryImageUrl($image, ['width' => $variantWidth, 'height' => $variantHeight, 'transform' => $variantTransform]);
         }
-        $sources[] = $source;
+        $sources[] = array_filter($source);
       }
       $return['sources'] = $sources;
     }
 
-    return $return;
+    return array_filter($return);
   }
 
   /**
@@ -170,6 +170,10 @@ class ResponsiveImage extends DataProducerPluginBase {
    */
   protected function getCloudinaryImageUrl($originalUrl, array $config = []) {
     $image = (new ImageTag($originalUrl));
+    // We do not want the additional '_a" query parameter on the urls. If we
+    // do not set it to FALSE, every image url will have a additional '_a' query
+    // parameter, see Cloudinary\Asset\Analytics for its implementation.
+    $image->setUrlConfig('analytics', FALSE);
     $image->deliveryType(DeliveryType::FETCH);
     // All the image URLs will be signed and have the f_auto transformation so
     // that they are delivered in the appropriate format (webp, avif, etc.)
