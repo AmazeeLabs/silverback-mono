@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "noEmit": false,
-    "target": "ES6",
     "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
@@ -10,7 +9,8 @@
     "resolveJsonModule": false,
     "jsx": "react",
     "outDir": ".",
-    "rootDir": "src"
+    "rootDir": "src",
+    "target": "ES2017"
   },
   "exclude": ["node_modules", "playwright-tests"],
   "$schema": "https://json.schemastore.org/tsconfig",

@@ -1,4 +1,4 @@
-import {resolveResponsiveImage} from "./responsive_image";
+import {resolveResponsiveImage} from "../index";
 
 describe('resolveResponsiveImage()', () => {
   process.env.CLOUDINARY_API_SECRET = 'test';

@@ -1,0 +1,1 @@
+export * from './resolvers/responsive_image';

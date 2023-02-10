@@ -3,38 +3,7 @@ import { fill, scale } from '@cloudinary/url-gen/actions/resize';
 import CryptoJS from 'crypto-js';
 import sha1 from 'crypto-js/sha1';
 
-type ResponsiveImageConfig = {
-    width: number;
-    height?: number;
-    sizes?: Array<Array<number>>;
-    transform?: string;
-    variants?: Array<ResponsiveImageVariant>;
-}
-
-type ResponsiveImageVariant = {
-    media: string;
-    width: number;
-    height?: number;
-    sizes?: Array<Array<number>>;
-    transform?: string;
-}
-
-type ResponsiveImage = {
-    src: string;
-    srcset?: string;
-    sizes?: string;
-    width?: number;
-    height?: number;
-    sources?: Array<ResponsiveImageSource>
-}
-
-type ResponsiveImageSource = {
-    media: string;
-    width: number;
-    height?: number;
-    srcset: string;
-    sizes?: string;
-}
+import { ResponsiveImage, ResponsiveImageConfig, ResponsiveImageSource } from '../types/responsive_image';
 
 export const resolveResponsiveImage = (
     originalImage: string, config?: ResponsiveImageConfig
