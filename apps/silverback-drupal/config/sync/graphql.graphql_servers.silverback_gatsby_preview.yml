@@ -15,7 +15,6 @@ query_complexity: null
 schema_configuration:
   silverback_gatsby_test:
     extensions:
-      silverback_cloudinary: silverback_cloudinary
       silverback_gatsby: silverback_gatsby
     build_trigger_on_save: 1
     build_webhook: 'http://localhost:8000/__refresh'

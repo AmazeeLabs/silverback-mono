@@ -64,13 +64,19 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
         }),
         $builder->produce('responsive_image')
           ->map('image', $builder->fromParent())
-          ->map('config', $builder->fromArgument('config'))
+          ->map('width', $builder->fromArgument('width'))
+          ->map('height', $builder->fromArgument('height'))
+          ->map('sizes', $builder->fromArgument('sizes'))
+          ->map('transform', $builder->fromArgument('transform'))
       )
     );
     $addResolver('GutenbergPage.anotherResponsiveImage',
       $builder->produce('responsive_image')
         ->map('image', $builder->fromValue('https://dummyimage.com/1000x500/807e08/182196.jpg'))
-        ->map('config', $builder->fromArgument('config'))
+        ->map('width', $builder->fromArgument('width'))
+        ->map('height', $builder->fromArgument('height'))
+        ->map('sizes', $builder->fromArgument('sizes'))
+        ->map('transform', $builder->fromArgument('transform'))
     );
 
     $addResolver('Image.url', $imageUrl);

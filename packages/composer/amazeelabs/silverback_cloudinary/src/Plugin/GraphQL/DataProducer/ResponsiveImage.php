@@ -5,6 +5,7 @@ namespace Drupal\silverback_cloudinary\Plugin\GraphQL\DataProducer;
 use Cloudinary\Asset\DeliveryType;
 use Cloudinary\Tag\ImageTag;
 use Cloudinary\Transformation\Resize;
+use Drupal\Component\Serialization\Json;
 use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
 
 /**
@@ -14,69 +15,55 @@ use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
  *   id = "responsive_image",
  *   name = @Translation("Responsive image"),
  *   description = @Translation("Resolver for responsive images using the cloudinary service."),
- *   produces = @ContextDefinition("any",
- *     label = @Translation("The responsive image details")
+ *   produces = @ContextDefinition("string",
+ *     label = @Translation("The responsive image details, encoded as in a json string")
  *   ),
  *   consumes = {
  *     "image" = @ContextDefinition("string",
  *       label = @Translation("The public url of the original image")
  *     ),
- *     "config" = @ContextDefinition("any",
- *       label = @Translation("The responsive image config object"),
+ *     "width" = @ContextDefinition("integer",
+ *       label = @Translation("The width of the generated image"),
+ *       required = FALSE
+ *     ),
+ *     "height" = @ContextDefinition("integer",
+ *       label = @Translation("The width of the generated image"),
+ *       required = FALSE
+ *     ),
+ *     "sizes" = @ContextDefinition("any",
+ *       label = @Translation("Additional sizes for the generated image, specified as an array of touples"),
+ *       required = FALSE,
+ *       multiple = TRUE
+ *     ),
+ *     "transform" = @ContextDefinition("string",
+ *       label = @Translation("An arbitrary cloudinary transformation string"),
  *       required = FALSE
  *     ),
  *   }
  * )
  */
 class ResponsiveImage extends DataProducerPluginBase {
-  public function resolve($image, $config = NULL) {
+  public function resolve($image, $width = NULL, $height = NULL, $sizes = NULL, $transform = NULL) {
     $return = [
       'src' => $image
     ];
-    // If no config object is given, we just return the original image url.
-    if (empty($config)) {
-      return $return;
+    // If no width is given, we just return the original image url.
+    if (empty($width)) {
+      return Json::encode($return);
     }
     // The image width and height in the response should be the same as the ones
     // sent as parameters.
     // @todo: Unless the width sent is bigger than the width of the original
     // image, since we should not scale up. TBD what to do in this case.
-    $width = $config['width'] ?? NULL;
-    $height = $config['height'] ?? NULL;
-    $transform = $config['transform'] ?? NULL;
     $return['width'] = $width;
     $return['height'] = $height;
-    if (!empty($config['sizes'])) {
-      $return['sizes'] = $this->buildSizesString($config['sizes'], $width);
-      $return['srcset'] = $this->buildSrcSetString($image, $config['sizes'], ['width' => $width, 'height' => $height], $transform);
+    if (!empty($sizes)) {
+      $return['sizes'] = $this->buildSizesString($sizes, $width);
+      $return['srcset'] = $this->buildSrcSetString($image, $sizes, ['width' => $width, 'height' => $height], $transform);
     }
-
     $return['src'] = $this->getCloudinaryImageUrl($image, ['width' => $width, 'height' => $height, 'transform' => $transform]);
-    if (!empty($config['variants'])) {
-      $sources = [];
-      foreach ($config['variants'] as $variant) {
-        $variantWidth = $variant['width'] ?? NULL;
-        $variantHeight = $variant['height'] ?? NULL;
-        $variantTransform = $variant['transform'] ?? NULL;
-        $source = [
-          'media' => $variant['media'],
-          'width' => $variantWidth,
-          'height' => $variantHeight,
-        ];
-        if (!empty($variant['sizes'])) {
-          $source['sizes'] = $this->buildSizesString($variant['sizes'], $variantWidth);
-          $source['srcset'] = $this->buildSrcSetString($image, $variant['sizes'], ['width' => $variantWidth, 'height' => $variantHeight], $variantTransform);
-        } else {
-          // If we have no sizes defined, then we just put one single url in the
-          // srcset, the path to the image to display.
-          $source['srcset'] = $this->getCloudinaryImageUrl($image, ['width' => $variantWidth, 'height' => $variantHeight, 'transform' => $variantTransform]);
-        }
-        $sources[] = array_filter($source);
-      }
-      $return['sources'] = $sources;
-    }
 
-    return array_filter($return);
+    return Json::encode(array_filter($return));
   }
 
   /**
