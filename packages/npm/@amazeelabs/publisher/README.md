@@ -1,5 +1,27 @@
 # Publisher
 
+## Installation
+
+```
+pnpm add @amazeelabs/publisher
+```
+
+Create `publisher.config.ts` file in the root of your project:
+
+```ts
+import { defineConfig } from '@amazeelabs/publisher';
+
+export default defineConfig({
+  // ...
+});
+```
+
+## Usage
+
+```
+pnpm publisher --help
+```
+
 ## Slack notifications
 
 To be notified in case of failure.

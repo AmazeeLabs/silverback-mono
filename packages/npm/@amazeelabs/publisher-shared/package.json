@@ -1,0 +1,21 @@
+{
+  "name": "@amazeelabs/publisher-shared",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "./dist/exports.js",
+  "types": "./dist/exports.d.ts",
+  "scripts": {
+    "build": "rollup -c rollup.config.ts --configPlugin typescript",
+    "watch": "pnpm build --watch",
+    "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix"
+  },
+  "devDependencies": {
+    "@amazeelabs/eslint-config": "workspace:^1.4.40",
+    "@amazeelabs/jest-preset": "workspace:^1.3.44",
+    "@amazeelabs/prettier-config": "workspace:^1.1.1",
+    "rollup": "3.12.1",
+    "rollup-plugin-dts": "5.1.1",
+    "rollup-plugin-esbuild": "5.0.0",
+    "typescript": "4.9.5"
+  }
+}
