@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@2.0.5...@-amazeelabs/silverback_gutenberg@2.1.0) (2023-02-14)
+
+### Bug Fixes
+
+- do not validate empty field
+  ([0cce910](https://github.com/AmazeeLabs/silverback-mono/commit/0cce9103b4b1dbdb1725ae66f30b1fa36a92c251))
+- no need for editable config
+  ([4e7a7ce](https://github.com/AmazeeLabs/silverback-mono/commit/4e7a7ce8caf039cf76fbe4017a32bc2e194b454c))
+
+### Features
+
+- add \_none as empty value
+  ([b77a82c](https://github.com/AmazeeLabs/silverback-mono/commit/b77a82c4a82f25b855907c43021924e7a3e7f904))
+- add validator to gutenberg enabled node types
+  ([067a698](https://github.com/AmazeeLabs/silverback-mono/commit/067a698705c71e98630a68a968bb06c3031f7c60))
+- email validator, better documentation
+  ([a127da8](https://github.com/AmazeeLabs/silverback-mono/commit/a127da8510688a858ac30fa68d3d248340f68d71))
+- gutenberg validation
+  ([d931882](https://github.com/AmazeeLabs/silverback-mono/commit/d9318825c2fe454b5e4009211cf05b6c871d12df))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.0.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@2.0.4...@-amazeelabs/silverback_gutenberg@2.0.5) (2023-02-04)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gutenberg
