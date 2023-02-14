@@ -1,0 +1,40 @@
+{
+  "name": "@amazeelabs/publisher-elements",
+  "version": "1.0.0",
+  "license": "MIT",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "rollup -c rollup.config.ts --configPlugin typescript",
+    "watch": "pnpm build --watch",
+    "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "devDependencies": {
+    "@amazeelabs/eslint-config": "1.4.40",
+    "@amazeelabs/prettier-config": "1.1.1",
+    "@amazeelabs/publisher-shared": "workspace:^1.0.0",
+    "@babel/core": "^7.21.0",
+    "@rollup/plugin-node-resolve": "15.0.1",
+    "@storybook/addon-actions": "^6.5.16",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/builder-webpack5": "^6.5.16",
+    "@storybook/manager-webpack5": "^6.5.16",
+    "@storybook/web-components": "^6.5.16",
+    "babel-loader": "^8.3.0",
+    "clsx": "1.2.1",
+    "eslint": "8.33.0",
+    "lit": "2.6.1",
+    "lit-html": "^2.6.1",
+    "prettier": "2.8.3",
+    "rollup": "3.12.1",
+    "rollup-plugin-esbuild": "5.0.0",
+    "rollup-plugin-lit-css": "4.0.1",
+    "rxjs": "7.8.0",
+    "typescript": "4.9.5"
+  }
+}

@@ -37,6 +37,12 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/mzx/dist" />
       <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/molecules/storybook-static" />
       <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/codegen-operation-ids/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/publisher/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/publisher/.cache" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/publisher-temp/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/publisher/test" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/publisher-elements/storybook-static" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/publisher-elements/dist" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
