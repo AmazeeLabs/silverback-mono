@@ -46,6 +46,22 @@ fragment Hero on Page {
 ```
 and the response you get should contain all the data needed for you to build the necessary tags for displaying the image.
 
+Apart from the data producer, there is also a directive called _responsiveImage_ which you can use directly in the graphql schema. So the above code could become:
+```graphql
+fragment Hero on Page {
+  heroImage(
+    # Display a 1600/800 header image by default.
+    width: 1600,
+    height: 800,
+    sizes: [
+      # For screens smaller than 800px, scale down to 780px width.
+      [800, 780]
+    ],
+    transform: "co_rgb:000000,e_colorize:60"
+  ) @responsiveImage(width: "$width", height: "$height", sizes: "$sizes", transform: "$transform")
+}
+```
+
 Other parts:
 
 - [Gatsby plugin](../../../npm/@amazeelabs/gatsby-silverback-cloudinary)

@@ -569,7 +569,7 @@ type DrupalArticle implements Node {
   path: String!
   title: String!
   body: String
-  responsiveImage(config: ResponsiveImageConfig): DrupalResponsiveImage
+  responsiveImage(width: Int, height: Int, sizes: [[Int!]!], transform: String): JSON
   tags: [DrupalTag!]
   image: DrupalImage
   template: String
@@ -598,7 +598,7 @@ type DrupalGutenbergPage implements Node {
   translations: [DrupalGutenbergPage!]!
   path: String!
   title: String!
-  anotherResponsiveImage(config: ResponsiveImageConfig): DrupalResponsiveImage
+  anotherResponsiveImage(width: Int, height: Int, sizes: [[Int!]!], transform: String): JSON
   body: [DrupalRootBlock!]
   _original_typename: String!
   drupalId: String!
@@ -609,27 +609,6 @@ type DrupalGutenbergPage implements Node {
   parent: Node
   children: [Node!]!
   internal: Internal!
-}
-
-type DrupalResponsiveImage {
-  remoteTypeName: String!
-  src: String
-  srcset: String
-  sizes: String
-  width: Int
-  height: Int
-  sources: [DrupalResponsiveImageSource]
-  _original_typename: String!
-}
-
-type DrupalResponsiveImageSource {
-  remoteTypeName: String!
-  media: String
-  srcset: String
-  sizes: String
-  width: Int
-  height: Int
-  _original_typename: String!
 }
 
 union DrupalRootBlock = DrupalBlockTwoColumns | DrupalBlockHtmlList | DrupalBlockHtmlParagraph | DrupalBlockHtmlQuote | DrupalBlockImage | DrupalBlockTeaser
@@ -775,9 +754,9 @@ type Query {
   allDrupalTag(filter: DrupalTagFilterInput, sort: [DrupalTagSortInput], skip: Int, limit: Int): DrupalTagConnection!
   drupalPage(remoteTypeName: StringQueryOperatorInput, translations: DrupalPageFilterListInput, remoteId: StringQueryOperatorInput, path: StringQueryOperatorInput, title: StringQueryOperatorInput, body: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, translation: DrupalPageFilterInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalPage
   allDrupalPage(filter: DrupalPageFilterInput, sort: [DrupalPageSortInput], skip: Int, limit: Int): DrupalPageConnection!
-  drupalArticle(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalArticleFilterListInput, path: StringQueryOperatorInput, title: StringQueryOperatorInput, body: StringQueryOperatorInput, responsiveImage: DrupalResponsiveImageFilterInput, tags: DrupalTagFilterListInput, image: DrupalImageFilterInput, template: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, translation: DrupalArticleFilterInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalArticle
+  drupalArticle(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalArticleFilterListInput, path: StringQueryOperatorInput, title: StringQueryOperatorInput, body: StringQueryOperatorInput, responsiveImage: JSONQueryOperatorInput, tags: DrupalTagFilterListInput, image: DrupalImageFilterInput, template: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, translation: DrupalArticleFilterInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalArticle
   allDrupalArticle(filter: DrupalArticleFilterInput, sort: [DrupalArticleSortInput], skip: Int, limit: Int): DrupalArticleConnection!
-  drupalGutenbergPage(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalGutenbergPageFilterListInput, path: StringQueryOperatorInput, title: StringQueryOperatorInput, anotherResponsiveImage: DrupalResponsiveImageFilterInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, translation: DrupalGutenbergPageFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalGutenbergPage
+  drupalGutenbergPage(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalGutenbergPageFilterListInput, path: StringQueryOperatorInput, title: StringQueryOperatorInput, anotherResponsiveImage: JSONQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, translation: DrupalGutenbergPageFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalGutenbergPage
   allDrupalGutenbergPage(filter: DrupalGutenbergPageFilterInput, sort: [DrupalGutenbergPageSortInput], skip: Int, limit: Int): DrupalGutenbergPageConnection!
   drupalWebform(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, path: StringQueryOperatorInput, url: StringQueryOperatorInput, title: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalWebform
   allDrupalWebform(filter: DrupalWebformFilterInput, sort: [DrupalWebformSortInput], skip: Int, limit: Int): DrupalWebformConnection!
@@ -2088,7 +2067,7 @@ input DrupalArticleFilterInput {
   path: StringQueryOperatorInput
   title: StringQueryOperatorInput
   body: StringQueryOperatorInput
-  responsiveImage: DrupalResponsiveImageFilterInput
+  responsiveImage: JSONQueryOperatorInput
   tags: DrupalTagFilterListInput
   image: DrupalImageFilterInput
   template: StringQueryOperatorInput
@@ -2103,31 +2082,6 @@ input DrupalArticleFilterInput {
   parent: NodeFilterInput
   children: NodeFilterListInput
   internal: InternalFilterInput
-}
-
-input DrupalResponsiveImageFilterInput {
-  remoteTypeName: StringQueryOperatorInput
-  src: StringQueryOperatorInput
-  srcset: StringQueryOperatorInput
-  sizes: StringQueryOperatorInput
-  width: IntQueryOperatorInput
-  height: IntQueryOperatorInput
-  sources: DrupalResponsiveImageSourceFilterListInput
-  _original_typename: StringQueryOperatorInput
-}
-
-input DrupalResponsiveImageSourceFilterListInput {
-  elemMatch: DrupalResponsiveImageSourceFilterInput
-}
-
-input DrupalResponsiveImageSourceFilterInput {
-  remoteTypeName: StringQueryOperatorInput
-  media: StringQueryOperatorInput
-  srcset: StringQueryOperatorInput
-  sizes: StringQueryOperatorInput
-  width: IntQueryOperatorInput
-  height: IntQueryOperatorInput
-  _original_typename: StringQueryOperatorInput
 }
 
 input DrupalTagFilterListInput {
@@ -2159,7 +2113,7 @@ input DrupalArticleFieldSelector {
   path: FieldSelectorEnum
   title: FieldSelectorEnum
   body: FieldSelectorEnum
-  responsiveImage: DrupalResponsiveImageFieldSelector
+  responsiveImage: FieldSelectorEnum
   tags: DrupalTagFieldSelector
   image: DrupalImageFieldSelector
   template: FieldSelectorEnum
@@ -2174,27 +2128,6 @@ input DrupalArticleFieldSelector {
   parent: NodeFieldSelector
   children: NodeFieldSelector
   internal: InternalFieldSelector
-}
-
-input DrupalResponsiveImageFieldSelector {
-  remoteTypeName: FieldSelectorEnum
-  src: FieldSelectorEnum
-  srcset: FieldSelectorEnum
-  sizes: FieldSelectorEnum
-  width: FieldSelectorEnum
-  height: FieldSelectorEnum
-  sources: DrupalResponsiveImageSourceFieldSelector
-  _original_typename: FieldSelectorEnum
-}
-
-input DrupalResponsiveImageSourceFieldSelector {
-  remoteTypeName: FieldSelectorEnum
-  media: FieldSelectorEnum
-  srcset: FieldSelectorEnum
-  sizes: FieldSelectorEnum
-  width: FieldSelectorEnum
-  height: FieldSelectorEnum
-  _original_typename: FieldSelectorEnum
 }
 
 type DrupalArticleGroupConnection {
@@ -2218,7 +2151,7 @@ input DrupalArticleSortInput {
   path: SortOrderEnum
   title: SortOrderEnum
   body: SortOrderEnum
-  responsiveImage: DrupalResponsiveImageSortInput
+  responsiveImage: SortOrderEnum
   tags: DrupalTagSortInput
   image: DrupalImageSortInput
   template: SortOrderEnum
@@ -2235,27 +2168,6 @@ input DrupalArticleSortInput {
   internal: InternalSortInput
 }
 
-input DrupalResponsiveImageSortInput {
-  remoteTypeName: SortOrderEnum
-  src: SortOrderEnum
-  srcset: SortOrderEnum
-  sizes: SortOrderEnum
-  width: SortOrderEnum
-  height: SortOrderEnum
-  sources: DrupalResponsiveImageSourceSortInput
-  _original_typename: SortOrderEnum
-}
-
-input DrupalResponsiveImageSourceSortInput {
-  remoteTypeName: SortOrderEnum
-  media: SortOrderEnum
-  srcset: SortOrderEnum
-  sizes: SortOrderEnum
-  width: SortOrderEnum
-  height: SortOrderEnum
-  _original_typename: SortOrderEnum
-}
-
 input DrupalGutenbergPageFilterListInput {
   elemMatch: DrupalGutenbergPageFilterInput
 }
@@ -2266,7 +2178,7 @@ input DrupalGutenbergPageFilterInput {
   translations: DrupalGutenbergPageFilterListInput
   path: StringQueryOperatorInput
   title: StringQueryOperatorInput
-  anotherResponsiveImage: DrupalResponsiveImageFilterInput
+  anotherResponsiveImage: JSONQueryOperatorInput
   _original_typename: StringQueryOperatorInput
   drupalId: StringQueryOperatorInput
   defaultTranslation: BooleanQueryOperatorInput
@@ -2302,7 +2214,7 @@ input DrupalGutenbergPageFieldSelector {
   translations: DrupalGutenbergPageFieldSelector
   path: FieldSelectorEnum
   title: FieldSelectorEnum
-  anotherResponsiveImage: DrupalResponsiveImageFieldSelector
+  anotherResponsiveImage: FieldSelectorEnum
   _original_typename: FieldSelectorEnum
   drupalId: FieldSelectorEnum
   defaultTranslation: FieldSelectorEnum
@@ -2334,7 +2246,7 @@ input DrupalGutenbergPageSortInput {
   translations: DrupalGutenbergPageSortInput
   path: SortOrderEnum
   title: SortOrderEnum
-  anotherResponsiveImage: DrupalResponsiveImageSortInput
+  anotherResponsiveImage: SortOrderEnum
   _original_typename: SortOrderEnum
   drupalId: SortOrderEnum
   defaultTranslation: SortOrderEnum
@@ -2783,22 +2695,6 @@ type ImageSharpGroupConnection {
   group(skip: Int, limit: Int, field: ImageSharpFieldSelector!): [ImageSharpGroupConnection!]!
   field: String!
   fieldValue: String
-}
-
-input ResponsiveImageVariant {
-  media: String
-  width: Int
-  height: Int
-  sizes: [[Int!]!]
-  transform: String
-}
-
-input ResponsiveImageConfig {
-  width: Int
-  height: Int
-  sizes: [[Int!]!]
-  transform: String
-  variants: [ResponsiveImageVariant!]
 }
 
 type ImagesFromHtml implements Node {

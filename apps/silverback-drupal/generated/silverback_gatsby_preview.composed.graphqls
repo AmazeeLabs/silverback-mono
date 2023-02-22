@@ -82,6 +82,14 @@ Apply all directives on the right to output on the left.
 directive @map repeatable on FIELD_DEFINITION
 
 """
+Directive for the responsive_image data producer.
+
+Provided by the "silverback_cloudinary" module.
+Implemented in "Drupal\silverback_cloudinary\Plugin\GraphQL\Directive\ResponsiveImage".
+"""
+directive @responsiveImage(width: Int, height: Int, sizes: [[Int!]!], transform: String) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
 Load a given entity by it's path or type and id or uuid
 
 Provided by the "graphql_directives" module.
@@ -233,6 +241,8 @@ schema {
   mutation: Mutation
 }
 
+scalar ResponsiveImage
+
 type Mutation {
   getRandomInt(randomInt: Int!): Int!
 }
@@ -269,7 +279,7 @@ type ParagraphReferences {
 type GutenbergPage @entity(type: "node", bundle: "gutenberg_page") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
-  anotherResponsiveImage(config: ResponsiveImageConfig): ResponsiveImage
+  anotherResponsiveImage(width: Int, height: Int, sizes: [[Int!]!], transform: String): ResponsiveImage
   body: [RootBlock]! @resolveEditorBlocks(path: "body.value", ignored: ["custom\/root", "core\/columns"])
 }
 
@@ -283,7 +293,7 @@ type Article @entity(type: "node", bundle: "article") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
   body: String @resolveProperty(path: "field_body.0.processed")
-  responsiveImage(config: ResponsiveImageConfig): ResponsiveImage
+  responsiveImage(width: Int, height: Int, sizes: [[Int!]!], transform: String): ResponsiveImage
   tags: [Tag]! @resolveEntityReference(field: "field_tags")
   image: Image @resolveEntityReference(field: "field_image") @seek(pos: 0)
   template: String @isTemplate
@@ -341,39 +351,6 @@ type FirstLevelMainMenu @menu(menu_id: "main", max_level: 1) {
 }
 
 type GatsbyStringTranslation @stringTranslation(contextPrefix: "gatsby")
-
-input ResponsiveImageVariant {
-  media: String!
-  width: Int!
-  height: Int
-  sizes: [[Int!]!]
-  transform: String
-}
-
-input ResponsiveImageConfig {
-  width: Int!
-  height: Int
-  sizes: [[Int!]!]
-  transform: String
-  variants: [ResponsiveImageVariant!]
-}
-
-type ResponsiveImageSource {
-  media: String
-  srcset: String
-  sizes: String
-  width: Int
-  height: Int
-}
-
-type ResponsiveImage {
-  src: String
-  srcset: String
-  sizes: String
-  width: Int
-  height: Int
-  sources: [ResponsiveImageSource]
-}
 
 type Feed {
   typeName: String!
@@ -514,14 +491,6 @@ extend type FirstLevelMainMenu {
 }
 
 extend type GatsbyStringTranslation {
-  _original_typename: String!
-}
-
-extend type ResponsiveImageSource {
-  _original_typename: String!
-}
-
-extend type ResponsiveImage {
   _original_typename: String!
 }
 

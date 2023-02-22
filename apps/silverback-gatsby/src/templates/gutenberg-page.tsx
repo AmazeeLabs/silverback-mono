@@ -9,6 +9,7 @@ import { BlockTwoColumns } from '../components/content-blocks/two-columns';
 import { languages } from '../constants/languages';
 import { StandardLayout } from '../layouts/StandardLayout';
 import { LocationState } from '../types/LocationState';
+import { ResponsiveImage } from '../util/ResponsiveImage';
 import { Row } from '../util/Row';
 import { UnreachableCaseError } from '../util/types';
 
@@ -26,24 +27,8 @@ export const query = graphql`
         ...BlockImage
         ...BlockTeaser
       }
-      anotherResponsiveImage(config: {variants:[{media: "(max-width: 160px)", width: 160}, {width: 450, height: 250, media: "(max-width: 460px)", transform: "bo_40px_solid_brown,co_rgb:20a020,e_colorize:50,o_60", sizes: [[180, 160], [440, 420]]}], width: 880, sizes: [[220, 210], [550, 530]], transform: "bo_40px_solid_brown,co_rgb:20a020,e_colorize:50,o_60"}) {
-        src
-        width
-        height
-        sizes
-        srcset
-        sources {
-          ...ResponsiveImageGutenbergSource
-        }
-      }
+      anotherResponsiveImage(width: 880, sizes: [[220, 210], [550, 530]], transform: "bo_40px_solid_brown,co_rgb:20a020,e_colorize:50,o_60")
     }
-  }
-  fragment ResponsiveImageGutenbergSource on DrupalResponsiveImageSource {
-    media
-    srcset
-    width
-    height
-    sizes
   }
   fragment BlockHtmlParagraph on DrupalBlockHtmlParagraph {
     html
@@ -123,11 +108,7 @@ const GutenbergPage: React.FC<
             })}
           </Row>
           <Row>
-            {page.anotherResponsiveImage?.src && <img
-              src={page.anotherResponsiveImage.src}
-              srcSet={page.anotherResponsiveImage.srcset}
-              sizes={page.anotherResponsiveImage.sizes}
-              />}
+            {page.anotherResponsiveImage && <ResponsiveImage responsiveImageData={page.anotherResponsiveImage} />}
           </Row>
           <Row>
             <ul>

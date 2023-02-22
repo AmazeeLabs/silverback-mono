@@ -7,59 +7,17 @@ import {
 import { resolveResponsiveImage } from './index';
 
 export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] =
-  async (args: CreateSchemaCustomizationArgs) => {
+  async (args: CreateSchemaCustomizationArgs, options) => {
+    const responsiveImageResultType = options.responsiveImageResultType || 'ResponsiveImage';
+    const responsiveImageFields = options.responsiveImageFields || [];
+    const reporter = args.reporter;
     // The resolver will need these credentials, so let's check here if we have
     // them defined.
     if (typeof process.env.CLOUDINARY_API_SECRET === 'undefined' ||
         typeof process.env.CLOUDINARY_API_KEY === 'undefined' ||
         typeof process.env.CLOUDINARY_CLOUDNAME === 'undefined') {
-        args.reporter.error('Cloudinary credentials are not defined! You will not be able to use the service. The original image(s) will be used instead.');
+          reporter.error('Cloudinary credentials are not defined! You will not be able to use the service. The original image(s) will be used instead.');
     }
-    args.actions.createTypes([
-      args.schema.buildInputObjectType({
-        name: 'ResponsiveImageVariant',
-        fields: {
-          media: {
-            type: 'String',
-            isRequired: true,
-          },
-          width: {
-            type: 'Int',
-            isRequired: true,
-          },
-          height: {
-            type: 'Int',
-          },
-          sizes: {
-            type: '[[Int!]!]',
-          },
-          transform: {
-            type: 'String',
-          }
-        },
-      }),
-      args.schema.buildInputObjectType({
-        name: 'ResponsiveImageConfig',
-        fields: {
-          width: {
-            type: 'Int',
-            isRequired: true,
-          },
-          height: {
-            type: 'Int',
-          },
-          sizes: {
-            type: '[[Int!]!]',
-          },
-          transform: {
-            type: 'String',
-          },
-          variants: {
-            type: '[ResponsiveImageVariant!]'
-          }
-        },
-      }),
-    ]);
     // For every field which is of type DrupalResponsiveImage, we need to add the
     // config parameter, because right now that parameter is not added by
     // gatsby-graphql-source-toolkit. So, besides adding the resolver for the
@@ -77,22 +35,42 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       }
       const fieldsObject = schemaType.typeOrTypeDef.config.fields;
       Object.entries(fieldsObject).map(([fieldKey, ]) => {
-        if (fieldsObject[fieldKey].type === 'DrupalResponsiveImage' || fieldsObject[fieldKey].type === 'DrupalResponsiveImage!') {
+        const fullFieldName = `${schemaType.typeOrTypeDef.config.name}.${fieldKey}`;
+        if (fieldsObject[fieldKey].type === responsiveImageResultType ||
+           fieldsObject[fieldKey].type === `${responsiveImageResultType}!` ||
+           // @ts-ignore
+           responsiveImageFields.includes(fullFieldName)) {
           responsiveImages.push(args.schema.buildObjectType({
             name: schemaType.typeOrTypeDef.config.name,
             fields: {
               [fieldKey]: {
                 type: fieldsObject[fieldKey].type,
                 args: {
-                  config: {
-                    type: 'ResponsiveImageConfig',
+                  width: {
+                    type: 'Int',
+                  },
+                  height: {
+                    type: 'Int',
+                  },
+                  sizes: {
+                    type: '[[Int!]!]',
+                  },
+                  transform: {
+                    type: 'String',
                   },
                 },
                 resolve: (
                   source,
                   args,
                 ) => {
-                  return resolveResponsiveImage(source[fieldKey].src, args.config);
+                  try {
+                    const imageData = JSON.parse(source[fieldKey]);
+                    return resolveResponsiveImage(imageData.src, {width: args.width, height: args.height, sizes: args.sizes, transform: args.transform});
+                  } catch (e) {
+                    // @ts-ignore
+                    reporter.error(e);
+                    return JSON.stringify({});
+                  }
                 },
               },
             },

@@ -12,7 +12,7 @@
     "rootDir": "src",
     "target": "ES2017"
   },
-  "exclude": ["node_modules", "playwright-tests"],
+  "exclude": ["node_modules", "playwright-tests", "src/tests", "vite.config.ts"],
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Recommended"
 }

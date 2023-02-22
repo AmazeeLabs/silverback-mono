@@ -3,18 +3,18 @@ import { fill, scale } from '@cloudinary/url-gen/actions/resize';
 import CryptoJS from 'crypto-js';
 import sha1 from 'crypto-js/sha1';
 
-import { ResponsiveImage, ResponsiveImageConfig, ResponsiveImageSource } from '../types/responsive_image';
+import { ResponsiveImage, ResponsiveImageConfig } from '../types/responsive_image';
 
 export const resolveResponsiveImage = (
     originalImage: string, config?: ResponsiveImageConfig
-): ResponsiveImage => {
+): string => {
     const responsiveImage: ResponsiveImage = {
         src: originalImage
     };
 
     // If no config object is given, we just return the original image url.
     if (typeof config === 'undefined') {
-        return responsiveImage;
+        return JSON.stringify(responsiveImage);
     }
 
     // Also, if the cloudinary env variables are not set, just return the original
@@ -22,7 +22,7 @@ export const resolveResponsiveImage = (
     if (typeof process.env.CLOUDINARY_API_SECRET === 'undefined' ||
         typeof process.env.CLOUDINARY_API_KEY === 'undefined' ||
         typeof process.env.CLOUDINARY_CLOUDNAME === 'undefined') {
-        return responsiveImage;
+        return JSON.stringify(responsiveImage);
     }
     const width = config.width;
     const height = config.height || undefined;
@@ -41,33 +41,8 @@ export const resolveResponsiveImage = (
     }
     responsiveImage.src = getCloudinaryImageUrl(originalImage, {width: width, height: height, transform: transform});
 
-    if (typeof config.variants !== 'undefined') {
-        const sources: Array<ResponsiveImageSource> = [];
-        config.variants.map((variant) => {
-            const variantWidth = variant.width;
-            const variantHeight = variant.height || undefined;
-            const variantTransform = variant.transform || undefined;
 
-            const source: ResponsiveImageSource  = {
-                media: variant.media,
-                width: variantWidth,
-                srcset: '',
-            };
-            if (variantHeight) {
-                source.height = variantHeight;
-            }
-            if (typeof variant.sizes !== 'undefined') {
-                source.sizes = buildSizesString(variant.sizes, variantWidth);
-                source.srcset = buildSrcSetString(originalImage, variant.sizes, {width: variantWidth, height: variantHeight}, variantTransform);
-            } else {
-                source.srcset = getCloudinaryImageUrl(originalImage, {width: variantWidth, height: variantHeight, transform: variantTransform})
-            }
-            sources.push(source);
-        });
-        responsiveImage.sources = sources;
-    }
-
-    return responsiveImage;
+    return JSON.stringify(responsiveImage);
 }
 
 /**

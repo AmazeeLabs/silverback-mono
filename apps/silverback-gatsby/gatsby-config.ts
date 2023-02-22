@@ -33,6 +33,13 @@ export const plugins = [
   },
   {
     resolve: '@amazeelabs/gatsby-silverback-cloudinary',
+    options: {
+      responsiveImageResultType: 'ResponsiveImage',
+      responsiveImageFields: [
+        'DrupalGutenbergPage.anotherResponsiveImage',
+        'DrupalArticle.responsiveImage',
+      ],
+    }
   },
   '@amazeelabs/gatsby-theme-core',
   ...(process.env.SCHEMA_UPDATE === 'true'
