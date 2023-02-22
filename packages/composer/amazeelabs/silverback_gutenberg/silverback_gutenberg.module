@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\Core\Asset\AttachedAssetsInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\NodeInterface;
 use Drupal\silverback_gutenberg\Utils;
@@ -79,5 +80,18 @@ function silverback_gutenberg_node_presave(NodeInterface $node) {
 function silverback_gutenberg_silverback_gutenberg_link_processor_block_attrs_alter(array &$attributes, array $context) {
   if ($context['blockName'] === 'drupalmedia/drupal-media-entity' && isset($attributes['caption'])) {
     $attributes['caption'] = $context['processLinksCallback']($attributes['caption']);
+  }
+}
+
+/**
+ * Implements hook_entity_bundle_field_info_alter().
+ */
+function silverback_gutenberg_entity_bundle_field_info_alter(&$fields, EntityTypeInterface $entity_type, $bundle) {
+  if ($entity_type->id() === 'node') {
+    $gutenberg_config = \Drupal::config('gutenberg.settings');
+    $is_gutenberg_enabled = $gutenberg_config->get($bundle . '_enable_full');
+    if (isset($fields['body']) && $is_gutenberg_enabled) {
+      $fields['body']->addConstraint('Gutenberg', []);
+    }
   }
 }
