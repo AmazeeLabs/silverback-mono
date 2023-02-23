@@ -1,57 +1,36 @@
+import { ApplicationState } from '@amazeelabs/publisher-shared';
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { delay, of } from 'rxjs';
-
-import { BuildState, GatewayState, StatusUpdate } from '../states';
 
 export default {
   title: 'Floating Status',
 } as Meta;
 
-export const Starting: StoryObj<StatusUpdate> = {
+export const Starting: StoryObj<{ state: ApplicationState }> = {
   render: (args) =>
     html` <publisher-floater
-      ><publisher-status .socket=${of(args).pipe(delay(200))}
+      ><publisher-status .socket=${of(args.state).pipe(delay(200))}
     /></publisher-floater>`,
-  args: {
-    gateway: GatewayState.Starting,
-    builder: BuildState.Init,
-    queue: [],
-  },
+  args: { state: ApplicationState.Starting },
 };
 
-export const Running: StoryObj<StatusUpdate> = {
+export const Running: StoryObj<{ state: ApplicationState }> = {
   ...Starting,
-  args: {
-    gateway: GatewayState.Ready,
-    builder: BuildState.Running,
-    queue: [],
-  },
+  args: { state: ApplicationState.Updating },
 };
 
-export const Finished: StoryObj<StatusUpdate> = {
+export const Finished: StoryObj<{ state: ApplicationState }> = {
   ...Starting,
-  args: {
-    gateway: GatewayState.Ready,
-    builder: BuildState.Finished,
-    queue: [],
-  },
+  args: { state: ApplicationState.Ready },
 };
 
-export const Error: StoryObj<StatusUpdate> = {
+export const Error: StoryObj<{ state: ApplicationState }> = {
   ...Starting,
-  args: {
-    gateway: GatewayState.Ready,
-    builder: BuildState.Failed,
-    queue: [],
-  },
+  args: { state: ApplicationState.Error },
 };
 
-export const Fatal: StoryObj<StatusUpdate> = {
+export const Fatal: StoryObj<{ state: ApplicationState }> = {
   ...Starting,
-  args: {
-    gateway: GatewayState.Error,
-    builder: BuildState.Failed,
-    queue: [],
-  },
+  args: { state: ApplicationState.Fatal },
 };

@@ -1,7 +1,7 @@
-import {OrganismStory,} from '@amazeelabs/react-framework-bridge/storybook';
-import {Meta} from '@storybook/react';
+import { ApplicationState } from '@amazeelabs/publisher-shared';
+import { OrganismStory } from '@amazeelabs/react-framework-bridge/storybook';
+import { Meta } from '@storybook/react';
 
-import {GatewayState} from "../states";
 import Status from './Status';
 
 export default {
@@ -13,16 +13,16 @@ export default {
 
 export const Init: OrganismStory<typeof Status> = {
   args: {
-    gateway: GatewayState.Init
+    status: null,
   },
 };
 export const Error: OrganismStory<typeof Status> = {
   args: {
-    gateway: GatewayState.Error
+    status: ApplicationState.Error,
   },
 };
 export const Ready: OrganismStory<typeof Status> = {
   args: {
-    gateway: GatewayState.Ready
+    status: ApplicationState.Ready,
   },
 };

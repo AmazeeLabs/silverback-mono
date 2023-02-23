@@ -1,14 +1,8 @@
+import { ApplicationState } from '@amazeelabs/publisher-shared';
 import { html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { distinctUntilChanged, map, Observable } from 'rxjs';
 
-import {
-  ApplicationState,
-  BuildState,
-  GatewayState,
-  mapStatusUpdateToApplicationState,
-  StatusUpdate,
-} from '../states';
 import { WebsocketElement } from './WebsocketElement';
 
 export class StatusEvent extends CustomEvent<ApplicationState> {
@@ -23,19 +17,17 @@ export class StatusEvent extends CustomEvent<ApplicationState> {
 
 export function statusEvents() {
   return function (
-    updates$: Observable<StatusUpdate>,
+    updates$: Observable<ApplicationState>,
   ): Observable<StatusEvent> {
     return updates$.pipe(
-      map(({ gateway, builder }) => ({ gateway, builder })),
       distinctUntilChanged(),
-      map(mapStatusUpdateToApplicationState),
       map((state) => new StatusEvent(state)),
     );
   };
 }
 
 @customElement('publisher-status')
-export class Status extends WebsocketElement<StatusUpdate> {
+export class Status extends WebsocketElement<ApplicationState> {
   @state() status: ApplicationState = ApplicationState.Starting;
   path = '/___status/updates';
   @property({ type: String }) labelStarting: String = 'Starting ...';
@@ -45,11 +37,7 @@ export class Status extends WebsocketElement<StatusUpdate> {
   @property({ type: String }) labelUpdating: String = 'Updating ...';
 
   constructor() {
-    super({
-      gateway: GatewayState.Init,
-      builder: BuildState.Init,
-      queue: [],
-    });
+    super(ApplicationState.Starting);
   }
 
   connectedCallback() {

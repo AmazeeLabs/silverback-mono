@@ -1,8 +1,10 @@
-import bodyParser from 'body-parser';
-import colors from 'colors';
 import cors from 'cors';
-import { cosmiconfigSync } from 'cosmiconfig';
-import express, { NextFunction, Request, Response } from 'express';
+import express, {
+  NextFunction,
+  Request,
+  RequestHandler,
+  Response,
+} from 'express';
 import basicAuth from 'express-basic-auth';
 import expressWs from 'express-ws';
 import {
@@ -10,217 +12,135 @@ import {
   responseInterceptor,
 } from 'http-proxy-middleware';
 import { createHttpTerminator } from 'http-terminator';
-import morgan from 'morgan';
-import * as path from 'path';
+import { HttpTerminator } from 'http-terminator/src/types';
+import path, { dirname } from 'path';
 import referrerPolicy from 'referrer-policy';
-import { filter, shareReplay, Subject } from 'rxjs';
-import { DataTypes, Sequelize } from 'sequelize';
+import { shareReplay, Subject } from 'rxjs';
+import { fileURLToPath } from 'url';
 
-import { BuildService, isBuildState } from './server/build';
-import {
-  GatewayCommands,
-  GatewayService,
-  isGatewayState,
-} from './server/gateway';
-import { buildReport, gatewayReport } from './server/history';
-import {
-  buildStatusLogs,
-  gatewayStatusLogs,
-  statusUpdates,
-} from './server/logging';
-import { buildStateNotify, gatewayStateNotify } from './server/notify';
-import { GatewayState } from './states';
+import { core } from './core/core';
+import { getConfig } from './core/tools/config';
+import { getDatabase } from './core/tools/database';
+import { stateNotify } from './notify';
 
-const explorerSync = cosmiconfigSync('publisher');
-const loadedConfig = explorerSync.search();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-const config = {
-  cleanCommand: 'pnpm clean',
-  startCommand: 'pnpm start',
-  startRetries: 3,
-  readyPattern: /http:\/\/.*?:3000/,
-  buildCommand: 'pnpm build',
-  buildBufferTime: 500,
-  buildRetries: 3,
-  gatewayPort: 3001,
-  applicationPort: 3000,
-  logStorage: {
-    dialect: 'sqlite',
-    storage: '/tmp/publisher.db',
-  },
-  proxy: [],
-  ...(loadedConfig?.config || {}),
-};
+const runServer = async (): Promise<HttpTerminator> => {
+  const ews = expressWs(express());
+  const { app } = ews;
 
-const sequelize = new Sequelize({
-  logging: false,
-  ...config.logStorage,
-});
-console.log(config.logStorage);
+  // Basic Authentication
+  const authMiddleware = ((): RequestHandler => {
+    const credentials = getConfig().basicAuth;
+    return credentials
+      ? basicAuth({
+          users: { [credentials.username]: credentials.password },
+          challenge: true,
+        })
+      : (req: Request, res: Response, next: NextFunction): void => next();
+  })();
 
-const Build = sequelize.define('Build', {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  startedAt: {
-    type: DataTypes.BIGINT,
-  },
-  finishedAt: {
-    type: DataTypes.BIGINT,
-  },
-  success: {
-    type: DataTypes.BOOLEAN,
-  },
-  type: {
-    type: DataTypes.STRING,
-  },
-  logs: {
-    type: DataTypes.TEXT,
-  },
-});
+  // Allow cross-origin requests
+  // @TODO see if we need to lock this down
+  // Default config:
+  //{
+  //   "origin": "*",
+  //   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  //   "preflightContinue": false,
+  //   "optionsSuccessStatus": 204
+  // }
+  app.use(cors({ ...(getConfig().corsOptions ?? {}) }));
 
-async function initialize() {
-  await sequelize.authenticate();
-  await sequelize.sync({ alter: true });
-  gatewayCommands$.next('start');
-}
+  // Chromium based browsers employ strict-origin-when-cross-origin if no Referrer Policy set
+  // @TODO see if we need to lock this down
+  app.use(referrerPolicy());
 
-const ews = expressWs(express());
-const { app } = ews;
-app.use(morgan('dev'));
-app.use(bodyParser.json());
-
-const gatewayCommands$ = new Subject<GatewayCommands>();
-const buildEvents$ = new Subject<{}>();
-
-const gateway$ = gatewayCommands$.pipe(
-  GatewayService(config),
-  shareReplay(500),
-);
-
-app.locals.isReady = false;
-
-// Basic Authentication
-const authMiddleware = config.basicAuth
-  ? basicAuth({
-      users: { [config.basicAuth.username]: config.basicAuth.password },
-      challenge: true,
-    })
-  : (req: Request, res: Response, next: NextFunction) => next();
-
-// Allow cross-origin requests
-// @TODO see if we need to lock this down
-// Default config:
-//{
-//   "origin": "*",
-//   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-//   "preflightContinue": false,
-//   "optionsSuccessStatus": 204
-// }
-app.use(cors({ ...(config.corsOptions ?? {}) }));
-
-// Chromium based browsers employ strict-origin-when-cross-origin if no Referrer Policy set
-// @TODO see if we need to lock this down
-app.use(referrerPolicy());
-
-app.use(function (req, res, next) {
-  res.set('Cache-control', 'no-cache');
-  next();
-});
-
-gateway$.pipe(filter(isGatewayState)).subscribe((state) => {
-  app.locals.isReady = state === GatewayState.Ready;
-  gatewayStateNotify(state);
-});
-
-gateway$.pipe(gatewayReport()).subscribe(async (data) => {
-  await Build.build(data).save();
-});
-
-const builder$ = buildEvents$.pipe(BuildService(config), shareReplay(100));
-builder$.pipe(buildReport()).subscribe(async (data) => {
-  await Build.build(data).save();
-});
-
-builder$.pipe(filter(isBuildState)).subscribe(async (state) => {
-  buildStateNotify(state);
-});
-
-const updates$ = new Subject();
-
-app.post('/___status/update', (req, res) => {
-  updates$.next(req.body);
-  res.json(true);
-});
-
-app.ws('/___status/changes', (ws) => {
-  const sub = updates$.subscribe((data) => {
-    ws.send(JSON.stringify(data));
+  app.use((req, res, next) => {
+    res.set('Cache-control', 'no-cache');
+    next();
   });
 
-  ws.on('close', sub.unsubscribe);
-});
-
-app.post('/___status/build', (req, res) => {
-  if (req.app.locals.isReady) {
-    buildEvents$.next(req.body);
-  }
-  res.json(false);
-});
-
-app.post('/___status/clean', (req, res) => {
-  gatewayCommands$.next('clean');
-  res.json(true);
-});
-
-app.use('/___status/gateway/logs', authMiddleware);
-app.ws('/___status/gateway/logs', (ws) => {
-  const sub = gatewayStatusLogs(gateway$).subscribe((data) => {
-    ws.send(data.chunk);
-  });
-  ws.on('close', sub.unsubscribe);
-});
-
-app.use('/___status/builder/logs', authMiddleware);
-app.ws('/___status/builder/logs', (ws) => {
-  const sub = buildStatusLogs(builder$).subscribe((data) => {
-    ws.send(data.chunk);
-  });
-  ws.on('close', sub.unsubscribe);
-});
-
-app.ws('/___status/updates', (ws) => {
-  const sub = statusUpdates(gateway$, builder$).subscribe((data) => {
-    ws.send(JSON.stringify(data));
+  core.state.applicationState$.subscribe((state) => {
+    stateNotify(state);
   });
 
-  ws.on('close', sub.unsubscribe);
-});
-
-app.get('/___status/history', async (req, res) => {
-  const result = await Build.findAll({
-    order: [['id', 'DESC']],
+  const updates$ = new Subject();
+  app.post('/___status/update', (req, res) => {
+    updates$.next(req.body);
+    res.json(true);
   });
-  res.json(result);
-});
+  app.ws('/___status/changes', (ws) => {
+    const sub = updates$.subscribe((data) => {
+      ws.send(JSON.stringify(data));
+    });
+    ws.on('close', sub.unsubscribe);
+  });
 
-app.get('/___status/history/:id', async (req, res) => {
-  const result = await Build.findByPk(req.params.id);
-  res.json(result);
-});
+  app.post('/___status/build', (req, res) => {
+    core.build();
+    res.send();
+  });
 
-app.use(
-  '/___status/elements.js',
-  express.static(path.resolve(__dirname, '../dist/elements.js')),
-);
+  app.post('/___status/clean', (req, res) => {
+    core.clean();
+    res.send();
+  });
 
-app.use('/___status', authMiddleware);
-app.use('/___status', express.static(path.resolve(__dirname, '../dist')));
+  const outputWithReplay$ = core.output$.pipe(shareReplay(500));
+  outputWithReplay$.subscribe().unsubscribe(); // Make shareReplay work immediately.
+  app.use('/___status/logs', authMiddleware);
+  app.ws('/___status/logs', (ws) => {
+    const sub = outputWithReplay$.subscribe((chunk) => {
+      ws.send(chunk);
+    });
+    ws.on('close', sub.unsubscribe);
+  });
 
-config.proxy.forEach(
-  ({ prefix, target }: { prefix: string; target: string }) => {
+  const applicationStateWithReplay$ = core.state.applicationState$.pipe(
+    shareReplay(1),
+  );
+  applicationStateWithReplay$.subscribe().unsubscribe(); // Make shareReplay work immediately.
+  app.ws('/___status/updates', (ws) => {
+    const sub = applicationStateWithReplay$.subscribe((state) => {
+      ws.send(JSON.stringify(state));
+    });
+    ws.on('close', sub.unsubscribe);
+  });
+
+  app.get('/___status/history', async (req, res) => {
+    const { Build } = await getDatabase();
+    const result = await Build.findAll({
+      order: [['id', 'DESC']],
+    });
+    res.json(result);
+  });
+
+  app.get('/___status/history/:id', async (req, res) => {
+    const { Build } = await getDatabase();
+    const result = await Build.findByPk(req.params.id);
+    res.json(result);
+  });
+
+  app.use(
+    '/___status/elements.js',
+    express.static(
+      path.resolve(
+        __dirname,
+        '../node_modules/@amazeelabs/publisher-elements/dist/elements.js',
+      ),
+    ),
+  );
+
+  app.use('/___status', authMiddleware);
+  app.use(
+    '/___status',
+    express.static(
+      path.resolve(__dirname, '../node_modules/@amazeelabs/publisher-ui/dist'),
+    ),
+  );
+
+  getConfig().proxy?.forEach(({ prefix, target }) => {
     app.use(
       prefix,
       authMiddleware,
@@ -229,56 +149,50 @@ config.proxy.forEach(
         changeOrigin: true,
       }),
     );
-  },
-);
-
-app.get('*', (req, res, next) => {
-  if (!req.app.locals.isReady) {
-    if (req.accepts('text/html')) {
-      res.redirect(302, `/___status/status.html?dest=${req.originalUrl}`);
-    } else {
-      res.status(404);
-    }
-    res.end();
-  }
-  next();
-});
-
-app.use(
-  '/',
-  authMiddleware,
-  createProxyMiddleware(() => app.locals.isReady, {
-    target: `http://127.0.0.1:${config.applicationPort}`,
-    selfHandleResponse: true,
-    onProxyRes: responseInterceptor(async (responseBuffer, proxyRes) => {
-      if (!proxyRes.headers['content-type']?.includes('text/html')) {
-        return responseBuffer;
-      }
-      const response = responseBuffer.toString('utf8');
-      return response
-        .replace(
-          '</head>',
-          '<script src="/___status/elements.js"></script></head>',
-        )
-        .replace(
-          '</body>',
-          '<publisher-floater><publisher-status /></publisher-floater></body>',
-        );
-    }),
-  }),
-);
-
-const server = app.listen(config.gatewayPort);
-const terminator = createHttpTerminator({ server });
-const sub = gateway$.subscribe();
-
-initialize().catch(console.error);
-
-process.on('SIGINT', function () {
-  console.log(colors.bgMagenta('⏱ Stopping publisher service.'));
-  sub.unsubscribe();
-  return terminator.terminate().then(() => {
-    console.log(colors.bgCyan('🛑 Publisher service stopped.'));
-    return process.exit();
   });
-});
+
+  app.get('*', (req, res, next) => {
+    if (!req.app.locals.isReady) {
+      if (req.accepts('text/html')) {
+        res.redirect(302, `/___status/status.html?dest=${req.originalUrl}`);
+      } else {
+        res.status(404);
+      }
+      res.end();
+    }
+    next();
+  });
+
+  app.use(
+    '/',
+    authMiddleware,
+    createProxyMiddleware(() => app.locals.isReady, {
+      target: `http://127.0.0.1:${getConfig().commands.serve.port}`,
+      selfHandleResponse: true,
+      onProxyRes: responseInterceptor(async (responseBuffer, proxyRes) => {
+        if (!proxyRes.headers['content-type']?.includes('text/html')) {
+          return responseBuffer;
+        }
+        const response = responseBuffer.toString('utf8');
+        return response
+          .replace(
+            '</head>',
+            '<script src="/___status/elements.js"></script></head>',
+          )
+          .replace(
+            '</body>',
+            '<publisher-floater><publisher-status /></publisher-floater></body>',
+          );
+      }),
+    }),
+  );
+
+  const host = '0.0.0.0';
+  const port = getConfig().gatewayPort;
+  const server = await app.listen({ host, port });
+  const terminator = createHttpTerminator({ server });
+  console.log(`Server started on http://${host}:${port}`);
+  return terminator;
+};
+
+export { runServer };

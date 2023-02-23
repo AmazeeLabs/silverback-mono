@@ -1,7 +1,6 @@
 import { LitElement } from 'lit';
 import { property, state } from 'lit/decorators.js';
-import { isArray, isString } from 'lodash';
-import { from, Observable, of, SubscriptionLike } from 'rxjs';
+import { Observable, of, SubscriptionLike } from 'rxjs';
 import { webSocket } from 'rxjs/webSocket';
 
 export function websocketUrl(path: string, url?: string) {
@@ -14,7 +13,7 @@ export class WebsocketElement<T> extends LitElement {
   private _observable?: Observable<T>;
   protected subscriptions: Array<SubscriptionLike> = [];
 
-  @property() socket?: string | Array<T> | Observable<T>;
+  @property() socket?: Observable<T> | null;
   @property({ attribute: true }) path?: string;
   @property({ attribute: true }) url?: string;
 
@@ -22,20 +21,17 @@ export class WebsocketElement<T> extends LitElement {
 
   constructor(initialValue: T) {
     super();
-    this.socket = of(initialValue);
     this.currentValue = initialValue;
   }
 
   protected get observable(): Observable<T> {
     if (!this._observable) {
-      if (this.path) {
+      if (this.socket) {
+        this._observable = this.socket;
+      } else if (this.path) {
         this._observable = webSocket(websocketUrl(this.path, this.url));
-      } else if (isString(this.socket)) {
-        this._observable = webSocket(this.socket);
-      } else if (isArray(this.socket)) {
-        this._observable = from(this.socket);
       } else {
-        this._observable = this.socket as Observable<T>;
+        this._observable = of(this.currentValue);
       }
     }
     return this._observable;

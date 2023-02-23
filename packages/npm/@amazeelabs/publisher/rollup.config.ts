@@ -1,42 +1,26 @@
-import alias from '@rollup/plugin-alias';
-import commonjs from '@rollup/plugin-commonjs';
-import json from '@rollup/plugin-json';
-import resolve from '@rollup/plugin-node-resolve';
+import { defineConfig } from 'rollup';
+import dts from 'rollup-plugin-dts';
 import esbuild from 'rollup-plugin-esbuild';
-import litcss from 'rollup-plugin-lit-css';
+import shebang from 'rollup-plugin-preserve-shebang';
 
-import packageJson from './package.json' assert { type: 'json' };
-
-export default [
+export default defineConfig([
   {
-    input: `src/server.ts`,
+    input: 'src/cli.ts',
     output: {
-      file: `build/server.js`,
-      format: 'cjs',
+      file: 'dist/cli.js',
     },
-    external: Object.keys(packageJson.dependencies),
-    plugins: [
-      json(),
-      commonjs({
-        ignoreDynamicRequires: true,
-      }),
-      esbuild(),
-      resolve({ preferBuiltins: true }),
-    ],
+    plugins: [esbuild(), shebang()],
   },
   {
-    input: `src/elements.ts`,
+    input: 'src/exports.ts',
     output: {
-      file: `dist/elements.js`,
-      format: 'iife',
+      file: 'dist/exports.js',
     },
-    plugins: [
-      alias({
-        entries: [{ find: 'lodash', replacement: 'lodash-es' }],
-      }),
-      litcss(),
-      esbuild(),
-      resolve(),
-    ],
+    plugins: [esbuild()],
   },
-];
+  {
+    input: './src/exports.ts',
+    output: [{ file: 'dist/exports.d.ts', format: 'es' }],
+    plugins: [dts()],
+  },
+]);
