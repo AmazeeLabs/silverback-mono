@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "noEmit": false,
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": false,
+    "jsx": "react",
+    "outDir": ".",
+    "rootDir": "src",
+    "target": "ES2017"
+  },
+  "exclude": ["node_modules", "playwright-tests", "src/tests"],
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Recommended"
+}

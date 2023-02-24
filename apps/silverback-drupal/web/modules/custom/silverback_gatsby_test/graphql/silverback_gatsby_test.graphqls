@@ -3,6 +3,8 @@ schema {
   mutation: Mutation
 }
 
+scalar ResponsiveImage
+
 type Mutation {
   getRandomInt(randomInt: Int!): Int!
 }
@@ -42,6 +44,7 @@ type ParagraphReferences {
 type GutenbergPage @entity(type: "node", bundle: "gutenberg_page") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
+  anotherResponsiveImage(width: Int, height: Int, sizes: [[Int!]!], transform: String): ResponsiveImage
   body: [RootBlock]!
     @resolveEditorBlocks(
       path: "body.value"
@@ -59,6 +62,7 @@ type Article @entity(type: "node", bundle: "article") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
   body: String @resolveProperty(path: "field_body.0.processed")
+  responsiveImage(width: Int, height: Int, sizes: [[Int!]!], transform: String): ResponsiveImage
   tags: [Tag]! @resolveEntityReference(field: "field_tags")
   image: Image @resolveEntityReference(field: "field_image") @seek(pos: 0)
   template: String @isTemplate

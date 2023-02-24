@@ -57,6 +57,28 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
 
     $addResolver('Article.template', $articleTemplate);
 
+    $addResolver('Article.responsiveImage',
+      $builder->compose(
+        $builder->callback(function ($value) {
+          return 'https://dummyimage.com/1000x500/078232/fff.jpg';
+        }),
+        $builder->produce('responsive_image')
+          ->map('image', $builder->fromParent())
+          ->map('width', $builder->fromArgument('width'))
+          ->map('height', $builder->fromArgument('height'))
+          ->map('sizes', $builder->fromArgument('sizes'))
+          ->map('transform', $builder->fromArgument('transform'))
+      )
+    );
+    $addResolver('GutenbergPage.anotherResponsiveImage',
+      $builder->produce('responsive_image')
+        ->map('image', $builder->fromValue('https://dummyimage.com/1000x500/807e08/182196.jpg'))
+        ->map('width', $builder->fromArgument('width'))
+        ->map('height', $builder->fromArgument('height'))
+        ->map('sizes', $builder->fromArgument('sizes'))
+        ->map('transform', $builder->fromArgument('transform'))
+    );
+
     $addResolver('Image.url', $imageUrl);
 
     $addResolver('MenuItem.label', $builder->compose(

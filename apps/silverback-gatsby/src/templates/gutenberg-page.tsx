@@ -9,6 +9,7 @@ import { BlockTwoColumns } from '../components/content-blocks/two-columns';
 import { languages } from '../constants/languages';
 import { StandardLayout } from '../layouts/StandardLayout';
 import { LocationState } from '../types/LocationState';
+import { ResponsiveImage } from '../util/ResponsiveImage';
 import { Row } from '../util/Row';
 import { UnreachableCaseError } from '../util/types';
 
@@ -26,6 +27,7 @@ export const query = graphql`
         ...BlockImage
         ...BlockTeaser
       }
+      anotherResponsiveImage(width: 880, sizes: [[220, 210], [550, 530]], transform: "bo_40px_solid_brown,co_rgb:20a020,e_colorize:50,o_60")
     }
   }
   fragment BlockHtmlParagraph on DrupalBlockHtmlParagraph {
@@ -82,6 +84,7 @@ const GutenbergPage: React.FC<
         <tr>
           <Row>Title</Row>
           <Row>Body</Row>
+          <Row>Responsive image</Row>
           <Row>Other languages</Row>
         </tr>
         <tr>
@@ -103,6 +106,9 @@ const GutenbergPage: React.FC<
                   throw new UnreachableCaseError(block);
               }
             })}
+          </Row>
+          <Row>
+            {page.anotherResponsiveImage && <ResponsiveImage responsiveImageData={page.anotherResponsiveImage} />}
           </Row>
           <Row>
             <ul>

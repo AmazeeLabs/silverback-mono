@@ -31,6 +31,16 @@ export const plugins = [
       auth_key: process.env.DRUPAL_AUTH_KEY,
     },
   },
+  {
+    resolve: '@amazeelabs/gatsby-silverback-cloudinary',
+    options: {
+      responsiveImageResultType: 'ResponsiveImage',
+      responsiveImageFields: [
+        'DrupalGutenbergPage.anotherResponsiveImage',
+        'DrupalArticle.responsiveImage',
+      ],
+    }
+  },
   '@amazeelabs/gatsby-theme-core',
   ...(process.env.SCHEMA_UPDATE === 'true'
     ? ['gatsby-plugin-schema-export']

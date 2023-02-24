@@ -82,6 +82,14 @@ Apply all directives on the right to output on the left.
 directive @map repeatable on FIELD_DEFINITION
 
 """
+Directive for the responsive_image data producer.
+
+Provided by the "silverback_cloudinary" module.
+Implemented in "Drupal\silverback_cloudinary\Plugin\GraphQL\Directive\ResponsiveImage".
+"""
+directive @responsiveImage(width: Int, height: Int, sizes: [[Int!]!], transform: String) repeatable on FIELD_DEFINITION | SCALAR | UNION | INTERFACE | OBJECT
+
+"""
 Load a given entity by it's path or type and id or uuid
 
 Provided by the "graphql_directives" module.

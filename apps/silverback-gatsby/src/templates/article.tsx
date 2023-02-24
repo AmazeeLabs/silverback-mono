@@ -11,6 +11,7 @@ import {
 import { languages } from '../constants/languages';
 import { StandardLayout } from '../layouts/StandardLayout';
 import { LocationState } from '../types/LocationState';
+import { ResponsiveImage } from '../util/ResponsiveImage';
 import { Row } from '../util/Row';
 
 export const query = graphql`
@@ -36,6 +37,7 @@ export const query = graphql`
           ...ImageSharpFixed
         }
       }
+      responsiveImage(width: 650, height: 320, sizes: [[220, 210], [550, 530]], transform: "bo_40px_solid_brown,co_rgb:20a020,e_colorize:50,o_10")
     }
   }
 `;
@@ -57,8 +59,8 @@ const Article: React.FC<
       });
     }
   }
-  const intl = useIntl();
 
+  const intl = useIntl();
   return (
     <StandardLayout locationState={location.state}>
       <Link to="/">To frontpage</Link>
@@ -96,6 +98,13 @@ const Article: React.FC<
           <Row>
             {
               intl.formatMessage({
+                defaultMessage: 'Responsive image',
+              })
+            }
+          </Row>
+          <Row>
+            {
+              intl.formatMessage({
                 defaultMessage: 'Other languages',
               })
             }
@@ -117,6 +126,9 @@ const Article: React.FC<
               />
             )}
           </td>
+          <Row>
+            {article.responsiveImage && <ResponsiveImage responsiveImageData={article.responsiveImage} />}
+          </Row>
           <Row>
             <ul>
               {localizations

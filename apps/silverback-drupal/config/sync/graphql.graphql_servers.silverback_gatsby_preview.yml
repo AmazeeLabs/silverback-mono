@@ -16,12 +16,12 @@ schema_configuration:
   silverback_gatsby_test:
     extensions:
       silverback_gatsby: silverback_gatsby
+    build_trigger_on_save: 1
     build_webhook: 'http://localhost:8000/__refresh'
+    build_url: ''
+    update_webhook: ''
     user: e6bbb44c-6dcf-44aa-8d41-67b920e233b9
     schema_definition: modules/custom/silverback_gatsby_test/graphql/silverback_gatsby_test.graphqls
-    build_trigger_on_save: 1
-    update_webhook: ''
-    build_url: ''
 persisted_queries_settings:
   silverback_graphql_persisted:
     weight: 0
