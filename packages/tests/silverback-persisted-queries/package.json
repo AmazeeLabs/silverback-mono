@@ -1,12 +1,12 @@
 {
   "name": "@-amazeelabs/silverback-persisted-queries",
-  "version": "1.1.133",
+  "version": "1.1.134",
   "description": "e2e tests for Silverback persisted queries.",
   "author": "Amazee Labs",
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@-amazeelabs/silverback-gastby": "^2.0.13",
+    "@-amazeelabs/silverback-gastby": "^2.0.14",
     "@amazeelabs/silverback-graphql-persisted": "^1.2.6"
   },
   "devDependencies": {
