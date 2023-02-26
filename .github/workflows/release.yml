@@ -60,6 +60,9 @@ jobs:
       - name: Wait a moment
         run: sleep 5
 
+      - name: Check for git diff
+        run: git diff --exit-code
+
       - name: Deploy
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
