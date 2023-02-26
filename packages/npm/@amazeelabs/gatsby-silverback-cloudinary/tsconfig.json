@@ -10,7 +10,9 @@
     "jsx": "react",
     "outDir": ".",
     "rootDir": "src",
-    "target": "ES2017"
+    "target": "ES2017",
+    "declaration": true,
+    "declarationDir": "."
   },
   "exclude": ["node_modules", "playwright-tests", "src/tests"],
   "$schema": "https://json.schemastore.org/tsconfig",
