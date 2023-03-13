@@ -2,6 +2,9 @@
   "name": "@amazeelabs/publisher",
   "version": "2.0.1",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/exports.js",
   "types": "./dist/exports.d.ts",
   "bin": "./dist/cli.js",
