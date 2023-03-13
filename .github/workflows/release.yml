@@ -37,7 +37,7 @@ jobs:
         run: npm -v
 
       - name: Install dependencies
-        run: pnpm i
+        run: pnpm i --frozen-lockfile
 
       - name: Build packages
         run: pnpm build
