@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/publisher-elements",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "type": "module",
   "publishConfig": {
@@ -16,7 +16,7 @@
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.40",
     "@amazeelabs/prettier-config": "1.1.1",
-    "@amazeelabs/publisher-shared": "workspace:^2.0.0",
+    "@amazeelabs/publisher-shared": "workspace:^2.0.1",
     "@babel/core": "^7.21.0",
     "@rollup/plugin-node-resolve": "15.0.1",
     "@storybook/addon-actions": "^6.5.16",

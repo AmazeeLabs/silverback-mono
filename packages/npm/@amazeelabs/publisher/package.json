@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/publisher",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "type": "module",
   "main": "./dist/exports.js",
   "types": "./dist/exports.d.ts",
@@ -15,9 +15,9 @@
     "test:integration": "exit 0"
   },
   "dependencies": {
-    "@amazeelabs/publisher-elements": "workspace:^2.0.0",
-    "@amazeelabs/publisher-shared": "workspace:^2.0.0",
-    "@amazeelabs/publisher-ui": "workspace:^2.0.0",
+    "@amazeelabs/publisher-elements": "workspace:^2.0.1",
+    "@amazeelabs/publisher-shared": "workspace:^2.0.1",
+    "@amazeelabs/publisher-ui": "workspace:^2.0.1",
     "@slack/webhook": "^6.1.0",
     "cors": "^2.8.5",
     "express": "4.18.2",
