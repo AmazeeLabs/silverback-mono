@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.0.7...@amazeelabs/publisher@2.0.8) (2023-03-14)
+
+### Bug Fixes
+
+- clean should remove the saved builds
+  ([e2ec093](https://github.com/AmazeeLabs/silverback-mono/commit/e2ec0938645cea5df6615e688683f6b417db70c0))
+- clean should remove the saved builds
+  ([5daef1c](https://github.com/AmazeeLabs/silverback-mono/commit/5daef1cc41d789fecc835938f17aed45fc2a7fb8))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.0.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.0.6...@amazeelabs/publisher@2.0.7) (2023-03-14)
 
 **Note:** Version bump only for package @amazeelabs/publisher
