@@ -12,10 +12,10 @@ export const cleanRunTask: TaskJob = async (controller) => {
     cancelled = true;
   });
 
-  const config = getConfig().persistentBuilds;
-  if (config) {
+  const persistentBuilds = getConfig().persistentBuilds;
+  if (persistentBuilds) {
     core.output$.next('Removing saved builds', 'info');
-    const savedBuildsPath = path.resolve(config.saveTo);
+    const savedBuildsPath = path.resolve(persistentBuilds.saveTo);
     try {
       fs.removeSync(savedBuildsPath);
     } catch (e) {
@@ -23,9 +23,6 @@ export const cleanRunTask: TaskJob = async (controller) => {
       return false;
     }
     core.output$.next('Removed saved builds', 'info');
-  }
-  if (cancelled) {
-    return false;
   }
 
   const process = run({ command: getConfig().commands.clean, controller });
