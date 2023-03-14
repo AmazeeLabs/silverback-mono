@@ -57,6 +57,7 @@ $$.file('composer.json', (json) => ({
   ...json,
   config: {
     ...json.config,
+    'optimize-autoloader': true,
     'allow-plugins': {
       'composer/installers': true,
       'cweagans/composer-patches': true,
