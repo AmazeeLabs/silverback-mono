@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.0.8...@amazeelabs/publisher@2.1.0) (2023-03-14)
+
+### Features
+
+- add timestamps to logs
+  ([43d20b2](https://github.com/AmazeeLabs/silverback-mono/commit/43d20b2ee6576fb09b8e34be03e82d7fc48ee6bc))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.0.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.0.7...@amazeelabs/publisher@2.0.8) (2023-03-14)
 
 ### Bug Fixes
