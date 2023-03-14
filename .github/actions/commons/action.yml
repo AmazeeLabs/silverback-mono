@@ -29,7 +29,8 @@ runs:
           ${{ steps.node_version.outputs.NODE_VERSION }}
 
     - name: Install pnpm
-      run: npm install -g pnpm
+      # TODO: Remove version when https://github.com/pnpm/pnpm/issues/6213 is fixed.
+      run: npm install -g pnpm@7.29.1
       shell: bash
     - name: Tell pnpm to use Bash
       run: pnpm config set script-shell /bin/bash
