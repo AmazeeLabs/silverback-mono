@@ -71,6 +71,7 @@ test('buildRunTask stops the build queue', async () => {
 });
 
 test('successful builds are saved to database', async () => {
+  const date = '\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}';
   setConfig(defaultConfig);
   await buildTask()(new TaskController());
   await buildTask()(new TaskController());
@@ -80,28 +81,36 @@ test('successful builds are saved to database', async () => {
     finishedAt: expect.any(Number),
     success: true,
     type: 'full',
-    logs: `ℹ️ Starting command: "echo "build""
-build
-✅ Command exited: "echo "build""
-ℹ️ Starting command: "echo "serve"; while true; do sleep 86400; done"
-serve
-ℹ️ Starting command: "echo "deploy""
-deploy
-✅ Command exited: "echo "deploy""
-`,
+    logs: expect.stringMatching(
+      new RegExp(
+        `${date} ℹ️ Starting command: "echo "build""
+${date} build
+${date} ✅ Command exited: "echo "build""
+${date} ℹ️ Starting command: "echo "serve"; while true; do sleep 86400; done"
+${date} serve
+${date} ℹ️ Starting command: "echo "deploy""
+${date} deploy
+${date} ✅ Command exited: "echo "deploy""`,
+        's',
+      ),
+    ),
   });
   expect(saveBuildInfo).toHaveBeenNthCalledWith(2, {
     startedAt: expect.any(Number),
     finishedAt: expect.any(Number),
     success: true,
     type: 'incremental',
-    logs: `ℹ️ Starting command: "echo "build""
-build
-✅ Command exited: "echo "build""
-ℹ️ Starting command: "echo "deploy""
-deploy
-✅ Command exited: "echo "deploy""
-`,
+    logs: expect.stringMatching(
+      new RegExp(
+        `${date} ℹ️ Starting command: "echo "build""
+${date} build
+${date} ✅ Command exited: "echo "build""
+${date} ℹ️ Starting command: "echo "deploy""
+${date} deploy
+${date} ✅ Command exited: "echo "deploy""`,
+        's',
+      ),
+    ),
   });
 });
 

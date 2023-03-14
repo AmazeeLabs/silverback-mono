@@ -15,7 +15,12 @@ export const buildTask: (options?: { skipInitialBuild?: boolean }) => TaskJob =
     const startedAt = Date.now();
     const output: Array<string> = [];
     const outputSubscription = core.output$.subscribe((chunk) => {
-      output.push(chunk);
+      output.push(
+        `${new Date()
+          .toISOString()
+          .substring(0, 19)
+          .replace('T', ' ')} ${chunk}`,
+      );
     });
     const saveBuildLogs = (): void => {
       saveBuildInfo({

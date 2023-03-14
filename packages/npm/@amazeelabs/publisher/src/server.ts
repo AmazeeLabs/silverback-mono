@@ -16,7 +16,7 @@ import { createHttpTerminator } from 'http-terminator';
 import { HttpTerminator } from 'http-terminator/src/types';
 import path, { dirname } from 'path';
 import referrerPolicy from 'referrer-policy';
-import { shareReplay, Subject } from 'rxjs';
+import { map, shareReplay, Subject } from 'rxjs';
 import { fileURLToPath } from 'url';
 
 import { core } from './core/core';
@@ -91,7 +91,11 @@ const runServer = async (): Promise<HttpTerminator> => {
     res.send();
   });
 
-  const outputWithReplay$ = core.output$.pipe(shareReplay(500));
+  const outputWithReplay$ = core.output$
+    .pipe(
+      map((chunk) => `${new Date().toISOString().substring(11, 19)} ${chunk}`),
+    )
+    .pipe(shareReplay(500));
   outputWithReplay$.subscribe().unsubscribe(); // Make shareReplay work immediately.
   app.use('/___status/logs', authMiddleware);
   app.ws('/___status/logs', (ws) => {
