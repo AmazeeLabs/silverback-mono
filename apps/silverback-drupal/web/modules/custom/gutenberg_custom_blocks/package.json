@@ -11,7 +11,6 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
-    "babel-preset-env": "^1.7.0",
     "drupal-gutenberg-translations": "1.1.0",
     "drupal-js-build": "https://github.com/AmazeeLabs/drupal-js-build"
   },
