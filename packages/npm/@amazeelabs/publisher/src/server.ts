@@ -1,3 +1,4 @@
+import { ApplicationState } from '@amazeelabs/publisher-shared';
 import cors from 'cors';
 import express, {
   NextFunction,
@@ -29,6 +30,8 @@ const __dirname = dirname(__filename);
 const runServer = async (): Promise<HttpTerminator> => {
   const ews = expressWs(express());
   const { app } = ews;
+
+  app.locals.isReady = false;
 
   // Basic Authentication
   const authMiddleware = ((): RequestHandler => {
@@ -62,6 +65,7 @@ const runServer = async (): Promise<HttpTerminator> => {
   });
 
   core.state.applicationState$.subscribe((state) => {
+    app.locals.isReady = state === ApplicationState.Ready;
     stateNotify(state);
   });
 
