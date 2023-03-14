@@ -14,7 +14,8 @@ export default defineConfig([
   {
     input: 'src/exports.ts',
     output: {
-      file: 'dist/exports.js',
+      file: 'dist/exports.cjs',
+      format: 'cjs',
     },
     plugins: [esbuild()],
   },
