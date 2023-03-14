@@ -32,6 +32,7 @@
     "rxjs": "7.8.0",
     "sequelize": "^6.28.0",
     "sqlite3": "^5.1.4",
+    "strip-ansi": "6.0.1",
     "ts-import": "4.0.0-beta.10",
     "zustand": "4.3.2",
     "zx": "^7.1.1"

@@ -1,3 +1,4 @@
+import stripAnsi from 'strip-ansi';
 import { $ } from 'zx';
 
 import { core } from '../core';
@@ -6,6 +7,7 @@ import { TaskController } from './queue';
 
 $.quote = (s): string => s;
 $.verbose = false;
+$.env.CI = 'true';
 
 type Result = {
   exitCode: number | null;
@@ -48,7 +50,10 @@ export const run = (options: {
   const output = new OutputSubject();
   process.stdout.addListener('data', (chunk) => {
     setOutputTimeout();
-    const string = `${chunk}`;
+    const string = stripAnsi(`${chunk}`);
+    if (['\n', ''].includes(string.trim())) {
+      return;
+    }
     output.next(string);
     core.output$.next(string);
   });
