@@ -125,19 +125,14 @@ const runServer = async (): Promise<HttpTerminator> => {
   app.use(
     '/___status/elements.js',
     express.static(
-      path.resolve(
-        __dirname,
-        '../node_modules/@amazeelabs/publisher-elements/dist/elements.js',
-      ),
+      path.resolve(__dirname, '../../publisher-elements/dist/elements.js'),
     ),
   );
 
   app.use('/___status', authMiddleware);
   app.use(
     '/___status',
-    express.static(
-      path.resolve(__dirname, '../node_modules/@amazeelabs/publisher-ui/dist'),
-    ),
+    express.static(path.resolve(__dirname, '../../publisher-ui/dist')),
   );
 
   getConfig().proxy?.forEach(({ prefix, target }) => {
