@@ -7,8 +7,8 @@
   "private": true,
   "dependencies": {
     "@-amazeelabs/silverback_gatsby": "^2.0.4",
-    "@amazeelabs/gatsby-source-silverback": "^1.9.15",
-    "@amazeelabs/silverback-playwright": "^1.6.50"
+    "@amazeelabs/gatsby-source-silverback": "1.9.15",
+    "@amazeelabs/silverback-playwright": "1.6.50"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.40",
