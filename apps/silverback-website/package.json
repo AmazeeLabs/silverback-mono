@@ -4,8 +4,8 @@
   "version": "0.16.19",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
-    "@amazeelabs/gatsby-theme-core": "^0.6.71",
-    "@amazeelabs/react-di": "^1.0.80",
+    "@amazeelabs/gatsby-theme-core": "0.6.71",
+    "@amazeelabs/react-di": "1.0.80",
     "@mdx-js/mdx": "2.2.1",
     "@mdx-js/react": "2.2.1",
     "@tailwindcss/typography": "0.5.9",

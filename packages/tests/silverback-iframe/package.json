@@ -9,8 +9,8 @@
     "@-amazeelabs/silverback_iframe": "^1.3.2",
     "@-amazeelabs/silverback_iframe_theme": "^1.2.2",
     "@-silverback-drupal-config/webform": "^1.0.6",
-    "@amazeelabs/silverback-iframe": "^1.2.6",
-    "@amazeelabs/silverback-playwright": "^1.6.50"
+    "@amazeelabs/silverback-iframe": "1.2.6",
+    "@amazeelabs/silverback-playwright": "1.6.50"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.40",

@@ -8,7 +8,7 @@
   "dependencies": {
     "@-amazeelabs/silverback-drupal": "^2.1.9",
     "@-amazeelabs/silverback_gutenberg": "^2.1.0",
-    "@amazeelabs/silverback-playwright": "^1.6.50"
+    "@amazeelabs/silverback-playwright": "1.6.50"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.40",

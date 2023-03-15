@@ -7,7 +7,7 @@
   "private": true,
   "dependencies": {
     "@-amazeelabs/silverback-gastby": "^2.0.15",
-    "@amazeelabs/silverback-graphql-persisted": "^1.2.6"
+    "@amazeelabs/silverback-graphql-persisted": "1.2.6"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.40",
