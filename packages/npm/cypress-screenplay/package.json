@@ -37,7 +37,7 @@
     "mocha": "10.2.0",
     "mocha-typescript": "1.1.17",
     "prettier": "2.8.3",
-    "semantic-release": "19.0.5",
+    "semantic-release": "20.1.0",
     "sinon": "15.0.1",
     "ts-loader": "9.4.2",
     "ts-node": "10.9.1",

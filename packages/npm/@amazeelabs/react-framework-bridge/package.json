@@ -75,12 +75,12 @@
     "gatsby-plugin-image": ">=3.5.0",
     "react": ">=18.2.0",
     "react-dom": ">=18.2.0",
-    "yup": ">=0.32.11"
+    "yup": ">=1.0.0"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.40",
     "@amazeelabs/prettier-config": "1.1.1",
-    "@rollup/plugin-commonjs": "23.0.7",
+    "@rollup/plugin-commonjs": "24.0.1",
     "@rollup/plugin-multi-entry": "6.0.0",
     "@rollup/plugin-node-resolve": "15.0.1",
     "@storybook/csf": "0.0.2--canary.4566f4d.1",
@@ -99,7 +99,7 @@
     "eslint": "8.33.0",
     "gatsby": "5.5.0",
     "gatsby-plugin-image": "3.5.0",
-    "jsdom": "20.0.3",
+    "jsdom": "21.1.0",
     "lint-staged": "13.1.0",
     "prettier": "2.8.3",
     "react": "18.2.0",
