@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.10](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.1.9...@-amazeelabs/silverback-drupal@2.1.10) (2023-03-15)
+
+### Reverts
+
+- Revert "chore: add a missing dependency"
+  ([aa78462](https://github.com/AmazeeLabs/silverback-mono/commit/aa78462b42962a60b852d71b5aa6a878da15c980))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.1.9](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.1.8...@-amazeelabs/silverback-drupal@2.1.9) (2023-02-24)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
