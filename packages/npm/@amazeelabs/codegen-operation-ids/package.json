@@ -19,8 +19,8 @@
     "test:unit": "vitest run --passWithNoTests"
   },
   "dependencies": {
-    "@graphql-codegen/plugin-helpers": "^3.1.2",
-    "@graphql-codegen/visitor-plugin-common": "^2.13.8"
+    "@graphql-codegen/plugin-helpers": "^4.0.0",
+    "@graphql-codegen/visitor-plugin-common": "^3.0.0"
   },
   "peerDependencies": {
     "graphql": "> 14"
@@ -28,9 +28,9 @@
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.40",
     "@amazeelabs/prettier-config": "1.1.1",
-    "@graphql-codegen/cli": "2.16.5",
-    "@graphql-codegen/typescript": "2.8.8",
-    "@graphql-codegen/typescript-operations": "2.5.13",
+    "@graphql-codegen/cli": "3.0.0",
+    "@graphql-codegen/typescript": "3.0.0",
+    "@graphql-codegen/typescript-operations": "3.0.0",
     "change-case-all": "1.0.15",
     "eslint": "8.33.0",
     "graphql": "16.6.0",
