@@ -1,5 +1,23 @@
+# Node
 node_modules
 .npmrc
 
+# JetBrains
+**/.idea/workspace.xml
+**/.idea/tasks.xml
+**/.idea/shelf
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# macOS files
+.DS_Store
+
 # Local Netlify folder
 .netlify
+
