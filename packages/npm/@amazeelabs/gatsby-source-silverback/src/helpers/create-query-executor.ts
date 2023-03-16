@@ -4,6 +4,7 @@ import { writeFileSync } from 'fs';
 import { wrapQueryExecutorWithQueue } from 'gatsby-graphql-source-toolkit';
 import { IQueryExecutor } from 'gatsby-graphql-source-toolkit/dist/types';
 import fetch, { RequestInit } from 'node-fetch';
+import timeoutSignal from 'timeout-signal';
 import { inspect } from 'util';
 
 import { Options } from '../utils';
@@ -28,7 +29,7 @@ export const createQueryExecutor = (
         : {}),
       ...(options?.auth_key ? { 'api-key': options.auth_key } : {}),
     },
-    timeout: 60_000,
+    signal: timeoutSignal(60_000),
   });
   return wrapQueryExecutorWithQueue(executor, {
     concurrency: options.query_concurrency || 10,
@@ -71,7 +72,7 @@ export function createNetworkQueryExecutor(
           `Full query: ${logQuery(query)}\n`,
       );
     }
-    const result = await response.json();
+    const result: any = await response.json();
 
     if (result.data && result.errors?.length) {
       console.warn(
