@@ -617,7 +617,6 @@ importers:
       '@amazeelabs/jest-preset': 1.3.44
       '@amazeelabs/prettier-config': 1.1.1
       '@types/jest': 29.4.0
-      '@types/node-fetch': 2.6.2
       '@types/react': 18.0.27
       eslint: 8.33.0
       fetch-retry-ts: ^1.1.25
@@ -628,17 +627,18 @@ importers:
       node-fetch: ^3.3.0
       prettier: 2.8.3
       react: 18.2.0
+      timeout-signal: ^2.0.0
       typescript: 4.9.5
     dependencies:
       fetch-retry-ts: 1.1.25
       gatsby-graphql-source-toolkit: 2.0.3_gatsby@5.5.0
       node-fetch: 3.3.0
+      timeout-signal: 2.0.0
     devDependencies:
       '@amazeelabs/eslint-config': link:../eslint-config
       '@amazeelabs/jest-preset': link:../jest-preset
       '@amazeelabs/prettier-config': link:../prettier-config
       '@types/jest': 29.4.0
-      '@types/node-fetch': 2.6.2
       '@types/react': 18.0.27
       eslint: 8.33.0
       gatsby: 5.5.0_j5ip3o3v6sktjzl5cxtjyfbuo4
@@ -6420,7 +6420,6 @@ packages:
       invariant: 2.2.4
       prop-types: 15.8.1
       react: 18.2.0
-    dev: true
 
   /@gatsbyjs/webpack-hot-middleware/2.25.3:
     resolution: {integrity: sha512-ul17OZ8Dlw+ATRbnuU+kwxuAlq9lKbYz/2uBS1FLCdgoPTF1H2heP7HbUbgfMZbfRQNcCG2rMscMnr32ritCDw==}
@@ -18822,7 +18821,7 @@ packages:
       '@babel/core': 7.20.12
       '@babel/runtime': 7.20.13
       '@babel/types': 7.21.3
-      gatsby: 5.5.0_ygqkwb4gg3aean7xjfdauovyqq
+      gatsby: 5.5.0_j5ip3o3v6sktjzl5cxtjyfbuo4
       gatsby-core-utils: 4.7.0
 
   /babel-plugin-remove-graphql-queries/5.7.0_l2n6wvgbyjurxqo7bdiy2yztsm:
@@ -18835,7 +18834,7 @@ packages:
       '@babel/core': 7.21.3
       '@babel/runtime': 7.20.13
       '@babel/types': 7.21.3
-      gatsby: 5.5.0_ygqkwb4gg3aean7xjfdauovyqq
+      gatsby: 5.5.0_j5ip3o3v6sktjzl5cxtjyfbuo4
       gatsby-core-utils: 4.7.0
 
   /babel-plugin-remove-graphql-queries/5.7.0_ntvzdwefwtyxodxl7rn2i2zcz4:
@@ -26467,7 +26466,7 @@ packages:
     dependencies:
       '@types/node-fetch': 2.6.2
       fs-extra: 9.1.0
-      gatsby: 5.5.0_ygqkwb4gg3aean7xjfdauovyqq
+      gatsby: 5.5.0_j5ip3o3v6sktjzl5cxtjyfbuo4
       lodash: 4.17.21
       node-fetch: 2.6.9
       p-queue: 6.6.2
@@ -26525,7 +26524,6 @@ packages:
       gatsby-page-utils: 3.7.0
       prop-types: 15.8.1
       react: 18.2.0
-    dev: true
 
   /gatsby-link/5.5.0_uxzdzcrcylloub4rxar25ny6ra:
     resolution: {integrity: sha512-3Blh7I+JE7o81XYM3AxqW/udFSS1aissxYEE9jUSfoGWevrvpSSg5ZGz+1XapI99Y4bYMpx7sUcjS2f6OycReQ==}
@@ -26746,7 +26744,7 @@ packages:
       chokidar: 3.5.3
       fs-exists-cached: 1.0.0
       fs-extra: 11.1.0
-      gatsby: 5.5.0_ygqkwb4gg3aean7xjfdauovyqq
+      gatsby: 5.5.0_j5ip3o3v6sktjzl5cxtjyfbuo4
       gatsby-core-utils: 4.7.0
       gatsby-page-utils: 3.7.0
       gatsby-plugin-utils: 4.7.0_pafsmpcyfa3g3fzn6iwhqotvby
@@ -26864,7 +26862,7 @@ packages:
       '@babel/preset-typescript': 7.18.6_@babel+core@7.21.3
       '@babel/runtime': 7.20.13
       babel-plugin-remove-graphql-queries: 5.7.0_l2n6wvgbyjurxqo7bdiy2yztsm
-      gatsby: 5.5.0_ygqkwb4gg3aean7xjfdauovyqq
+      gatsby: 5.5.0_j5ip3o3v6sktjzl5cxtjyfbuo4
     transitivePeerDependencies:
       - supports-color
 
@@ -26932,7 +26930,7 @@ packages:
       '@babel/runtime': 7.20.13
       fastq: 1.15.0
       fs-extra: 11.1.0
-      gatsby: 5.5.0_ygqkwb4gg3aean7xjfdauovyqq
+      gatsby: 5.5.0_j5ip3o3v6sktjzl5cxtjyfbuo4
       gatsby-core-utils: 4.7.0
       gatsby-sharp: 1.7.0
       graphql: 16.6.0
@@ -26951,7 +26949,7 @@ packages:
       '@babel/runtime': 7.20.13
       fastq: 1.15.0
       fs-extra: 11.1.0
-      gatsby: 5.5.0_ygqkwb4gg3aean7xjfdauovyqq
+      gatsby: 5.5.0_j5ip3o3v6sktjzl5cxtjyfbuo4
       gatsby-core-utils: 4.7.0
       gatsby-sharp: 1.7.0
       graphql: 16.6.0
@@ -27005,7 +27003,6 @@ packages:
       '@gatsbyjs/reach-router': 2.0.1_react@18.2.0
       prop-types: 15.8.1
       react: 18.2.0
-    dev: true
 
   /gatsby-react-router-scroll/6.5.0_uxzdzcrcylloub4rxar25ny6ra:
     resolution: {integrity: sha512-waXjQdMvANl30IBnN8P/yNQJfp0qhV3pbUiL5Ufz+Wru/HQHyYO7NCQknkwoKr5nbYaqirkbJVVPV9pxEZe2vQ==}
@@ -27101,7 +27098,6 @@ packages:
     dependencies:
       '@gatsbyjs/reach-router': 2.0.1_react@18.2.0
       react: 18.2.0
-    dev: true
 
   /gatsby-script/2.5.0_uxzdzcrcylloub4rxar25ny6ra:
     resolution: {integrity: sha512-3yRsDDeDObylwZGcGQhAuNiywwyIVgFWfAHy/eB0gd2bEwfRfyO4Zf2iQopxxmgk/0AEf3L92FB2bvQNPRCRKA==}
@@ -27125,15 +27121,6 @@ packages:
     dependencies:
       '@gatsbyjs/reach-router': 2.0.1
     dev: true
-
-  /gatsby-sharp/1.5.0:
-    resolution: {integrity: sha512-+/lksp7lpd732COWY92E5rmRdZjI2BGS68p3FTndOXH/g0/R67JMGWOFiY7Ayal33EETcBmkYpFyGl8hnZ7S3Q==}
-    engines: {node: '>=18.0.0'}
-    requiresBuild: true
-    dependencies:
-      '@types/sharp': 0.31.1
-      sharp: 0.31.3
-    optional: true
 
   /gatsby-sharp/1.7.0:
     resolution: {integrity: sha512-a7arQkNZ+T+g2ZoOsiDEMuMHpELTlOfdm5DyKNGrdI19WhVBvU9ix4utxp/I58/e7NNdEG/eSaYk3Qz/ueEilQ==}
@@ -27438,7 +27425,7 @@ packages:
       xstate: 4.35.4
       yaml-loader: 0.8.0
     optionalDependencies:
-      gatsby-sharp: 1.5.0
+      gatsby-sharp: 1.7.0
     transitivePeerDependencies:
       - '@swc/core'
       - '@types/webpack'
@@ -27463,7 +27450,6 @@ packages:
       - webpack-dev-server
       - webpack-hot-middleware
       - webpack-plugin-serve
-    dev: true
 
   /gatsby/5.5.0_typescript@4.9.5:
     resolution: {integrity: sha512-sSdLS80riRk+8arSO4QVY3uz4Di0hVkEudtrraKRhQCYE3LEzK8be0IVsoQclvZ6x8e1ep4AZa6TmRq0QVDqPA==}
@@ -27639,7 +27625,7 @@ packages:
       xstate: 4.35.4
       yaml-loader: 0.8.0
     optionalDependencies:
-      gatsby-sharp: 1.5.0
+      gatsby-sharp: 1.7.0
     transitivePeerDependencies:
       - '@swc/core'
       - '@types/webpack'
@@ -27842,7 +27828,7 @@ packages:
       xstate: 4.35.4
       yaml-loader: 0.8.0
     optionalDependencies:
-      gatsby-sharp: 1.5.0
+      gatsby-sharp: 1.7.0
     transitivePeerDependencies:
       - '@swc/core'
       - '@types/webpack'
@@ -28045,7 +28031,7 @@ packages:
       xstate: 4.35.4
       yaml-loader: 0.8.0
     optionalDependencies:
-      gatsby-sharp: 1.5.0
+      gatsby-sharp: 1.7.0
     transitivePeerDependencies:
       - '@swc/core'
       - '@types/webpack'
@@ -41579,6 +41565,11 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /timeout-signal/2.0.0:
+    resolution: {integrity: sha512-YBGpG4bWsHoPvofT6y/5iqulfXIiIErl5B0LdtHT1mGXDFTAhhRrbUpTvBgYbovr+3cKblya2WAOcpoy90XguA==}
+    engines: {node: '>=16'}
+    dev: false
+
   /timers-browserify/1.4.2:
     resolution: {integrity: sha512-PIxwAupJZiYU4JmVZYwXp9FKsHMXb5h0ZEFyuXTAn8WLHOlcij+FEcbrvDsom1o5dr1YggEtFbECvGCW2sT53Q==}
     engines: {node: '>=0.6.0'}
@@ -41824,7 +41815,6 @@ packages:
 
   /trim/0.0.1:
     resolution: {integrity: sha512-YzQV+TZg4AxpKxaTHK3c3D+kRDCGVEE7LemdlQZoQXn0iennk10RsIoY6ikzAqJTc9Xjl9C1/waHom/J86ziAQ==}
-    deprecated: Use String.prototype.trim() instead
 
   /triple-beam/1.3.0:
     resolution: {integrity: sha512-XrHUvV5HpdLmIj4uVMxHggLbFSZYIn7HEWsqePZcI50pco+MPqJ50wMGY794X7AOOhxOBAjbkqfAbEe/QMp2Lw==}
