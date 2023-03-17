@@ -34,7 +34,6 @@ export const buildSaveTask: TaskJob = async (controller) => {
     const target = path.resolve(saveTo, dirName);
     try {
       fs.copySync(source, target, {
-        recursive: true,
         overwrite: true,
       });
     } catch (e) {
