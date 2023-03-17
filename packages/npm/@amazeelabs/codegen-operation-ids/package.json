@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@graphql-codegen/plugin-helpers": "^4.0.0",
-    "@graphql-codegen/visitor-plugin-common": "^3.0.0"
+    "@graphql-codegen/visitor-plugin-common": "^3.0.2"
   },
   "peerDependencies": {
     "graphql": "> 14"
@@ -28,16 +28,16 @@
   "devDependencies": {
     "@amazeelabs/eslint-config": "^1.4.41",
     "@amazeelabs/prettier-config": "1.1.1",
-    "@graphql-codegen/cli": "3.0.0",
-    "@graphql-codegen/typescript": "3.0.0",
-    "@graphql-codegen/typescript-operations": "3.0.0",
+    "@graphql-codegen/cli": "3.2.2",
+    "@graphql-codegen/typescript": "3.0.2",
+    "@graphql-codegen/typescript-operations": "3.0.2",
     "change-case-all": "1.0.15",
-    "eslint": "8.33.0",
+    "eslint": "8.36.0",
     "graphql": "16.6.0",
-    "lint-staged": "13.1.0",
-    "prettier": "2.8.3",
+    "lint-staged": "13.2.0",
+    "prettier": "2.8.4",
     "typescript": "4.9.5",
-    "vite": "4.1.1",
-    "vitest": "0.27.1"
+    "vite": "4.2.0",
+    "vitest": "0.29.3"
   }
 }
