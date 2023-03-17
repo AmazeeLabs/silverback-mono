@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/silverback-graphql-persisted@1.2.6...@amazeelabs/silverback-graphql-persisted@1.2.7) (2023-03-17)
+
+**Note:** Version bump only for package @amazeelabs/silverback-graphql-persisted
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.2.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/silverback-graphql-persisted@1.2.5...@amazeelabs/silverback-graphql-persisted@1.2.6) (2023-02-04)
 
 **Note:** Version bump only for package @amazeelabs/silverback-graphql-persisted

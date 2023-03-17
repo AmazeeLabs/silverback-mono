@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/gatsby-silverback-cloudinary",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "index.js",
   "types": "index.d.ts",
   "license": "MIT",
@@ -8,7 +8,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "1.4.40",
+    "@amazeelabs/eslint-config": "^1.4.41",
     "@amazeelabs/prettier-config": "1.1.1",
     "@types/crypto-js": "4.1.1",
     "@types/node": "16.18.11",

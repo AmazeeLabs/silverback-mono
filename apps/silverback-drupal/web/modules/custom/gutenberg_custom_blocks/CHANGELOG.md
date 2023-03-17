@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.61](https://github.com/AmazeeLabs/silverback-mono/compare/@-silverback-drupal/gutenberg_custom_blocks@1.0.60...@-silverback-drupal/gutenberg_custom_blocks@1.0.61) (2023-03-17)
+
+### Reverts
+
+- Revert "chore: add a missing dependency"
+  ([aa78462](https://github.com/AmazeeLabs/silverback-mono/commit/aa78462b42962a60b852d71b5aa6a878da15c980))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.0.60](https://github.com/AmazeeLabs/silverback-mono/compare/@-silverback-drupal/gutenberg_custom_blocks@1.0.59...@-silverback-drupal/gutenberg_custom_blocks@1.0.60) (2023-02-04)
 
 **Note:** Version bump only for package
