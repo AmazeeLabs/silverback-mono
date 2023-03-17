@@ -37,7 +37,6 @@ export const buildLoadTask: TaskJob = async (controller) => {
     }
     try {
       await fs.copy(source, target, {
-        recursive: true,
         overwrite: true,
       });
     } catch (e) {
