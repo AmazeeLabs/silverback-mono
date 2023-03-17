@@ -616,6 +616,7 @@ importers:
       '@amazeelabs/eslint-config': 1.4.40
       '@amazeelabs/jest-preset': 1.3.44
       '@amazeelabs/prettier-config': 1.1.1
+      '@rollup/plugin-node-resolve': 15.0.1
       '@types/jest': 29.4.0
       '@types/react': 18.0.27
       eslint: 8.33.0
@@ -627,6 +628,8 @@ importers:
       node-fetch: ^3.3.0
       prettier: 2.8.3
       react: 18.2.0
+      rollup: 3.12.1
+      rollup-plugin-esbuild: 5.0.0
       timeout-signal: ^2.0.0
       typescript: 4.9.5
     dependencies:
@@ -638,6 +641,7 @@ importers:
       '@amazeelabs/eslint-config': link:../eslint-config
       '@amazeelabs/jest-preset': link:../jest-preset
       '@amazeelabs/prettier-config': link:../prettier-config
+      '@rollup/plugin-node-resolve': 15.0.1_rollup@3.12.1
       '@types/jest': 29.4.0
       '@types/react': 18.0.27
       eslint: 8.33.0
@@ -646,6 +650,8 @@ importers:
       lint-staged: 13.1.0
       prettier: 2.8.3
       react: 18.2.0
+      rollup: 3.12.1
+      rollup-plugin-esbuild: 5.0.0_rollup@3.12.1
       typescript: 4.9.5
 
   packages/npm/@amazeelabs/gatsby-source-silverback-cypress:

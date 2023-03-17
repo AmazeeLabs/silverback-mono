@@ -102,7 +102,7 @@ export const createPages = async (
         );
         args.actions.createPage({
           path,
-          component: require.resolve(`${__dirname}/../templates/stub.js`),
+          component: require.resolve(`${__dirname}/templates/stub.js`),
           context: { ...context, expectedTemplatePath: templatePath },
         });
       }
