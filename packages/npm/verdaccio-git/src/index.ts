@@ -31,9 +31,13 @@ export default class GitDataBase extends LocalDataBase {
    * TODO: Find out why this is necessary. Using parent constructor fails due to undefined logger.
    *
    * @param config
+   * @param configWithLogger
    */
-  public constructor(config: Config) {
-    super(config, config.logger);
+  public constructor(config: Config, configWithLogger: Config) {
+    // The parent constructor type states that the second argument is a Logger,
+    // but it is actually another Config instance. Yet the first Config argument
+    // has no logger property, but the second one does. 🤯
+    super(config, configWithLogger.logger);
   }
 
   /**
