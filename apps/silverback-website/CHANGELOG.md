@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.23](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.16.22...silverback-website@0.16.23) (2023-03-18)
+
+**Note:** Version bump only for package silverback-website
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [0.16.22](https://github.com/AmazeeLabs/silverback-mono/compare/silverback-website@0.16.21...silverback-website@0.16.22) (2023-03-18)
 
 **Note:** Version bump only for package silverback-website

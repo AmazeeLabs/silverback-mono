@@ -1,6 +1,6 @@
 {
   "name": "@-drupal/test_session",
-  "version": "1.2.57",
+  "version": "1.2.58",
   "description": "Helpers for Drupal E2E testing.",
   "publishConfig": {
     "access": "public",
@@ -12,7 +12,7 @@
   "license": "GPL-2.0-or-later",
   "devDependencies": {
     "@amazeelabs/sync-composer-version": "^1.1.3",
-    "drupal-test-session-cypress": "1.1.61"
+    "drupal-test-session-cypress": "^1.1.62"
   },
   "scripts": {
     "version": "sync-composer-version"
