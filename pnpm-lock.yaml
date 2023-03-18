@@ -15,7 +15,7 @@ importers:
       lerna: 6.5.1
       prettier: 2.8.4
       verdaccio: 5.22.1
-      verdaccio-git: 0.1.76
+      verdaccio-git: workspace:^0.1.77
     dependencies:
       prettier: 2.8.4
     devDependencies:
@@ -26,7 +26,7 @@ importers:
       husky: 8.0.3
       lerna: 6.5.1
       verdaccio: 5.22.1
-      verdaccio-git: 0.1.76
+      verdaccio-git: link:packages/npm/verdaccio-git
 
   apps/silverback-drupal:
     specifiers:
@@ -7120,9 +7120,11 @@ packages:
       debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /@kwsites/promise-deferred/1.1.1:
     resolution: {integrity: sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw==}
+    dev: false
 
   /@lerna/child-process/6.5.1:
     resolution: {integrity: sha512-QfyleXSD9slh4qM54wDaqKVPvtUH1NJMgsFc9BabqSHO1Ttpandv1EAvTCN9Lu73RbCX3LJpn+BfJmnjHbjCyw==}
@@ -23330,6 +23332,7 @@ packages:
     resolution: {integrity: sha512-g9p6bZV3HlSUM35QPvFWiP/PckDVe5jLPDhx6PfMuy06o+htesJTyDu7zRdXnOm3BY8pXmxb+QY5qIcsoWMGNg==}
     dependencies:
       utils-extend: 1.0.8
+    dev: false
 
   /file-system-cache/1.1.0:
     resolution: {integrity: sha512-IzF5MBq+5CR0jXx5RxPe4BICl/oEhBSXKaL9fLhAXrIfIUS77Hr4vzrYyqYMHN6uTt+BOqi3fDCTjjEBCjERKw==}
@@ -23350,6 +23353,7 @@ packages:
     dependencies:
       file-match: 1.0.2
       utils-extend: 1.0.8
+    dev: false
 
   /file-type/11.1.0:
     resolution: {integrity: sha512-rM0UO7Qm9K7TWTtA6AShI/t7H5BPjDeGVDaNyg9BjHAj3PysKy7+8C8D137R88jnR3rFJZQB/tFgydl5sN5m7g==}
@@ -35854,6 +35858,7 @@ packages:
       call-me-maybe: 1.0.2
       es6-promise: 4.2.8
       glob-to-regexp: 0.3.0
+    dev: false
 
   /readdir-glob/1.1.2:
     resolution: {integrity: sha512-6RLVvwJtVwEDfPdn6X6Ille4/lxGl0ATOY4FN/B9nxQcgOazvvI0nodiD19ScKq0PvA/29VpaOQML36o5IzZWA==}
@@ -37275,6 +37280,7 @@ packages:
       debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /simple-swizzle/0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
@@ -38533,6 +38539,7 @@ packages:
       fs-extra: 7.0.1
       is-absolute: 1.0.0
       readdir-enhanced: 1.5.2
+    dev: false
 
   /synchronous-promise/2.0.17:
     resolution: {integrity: sha512-AsS729u2RHUfEra9xJrE39peJcc2stq2+poBXX8bcM08Y6g9j/i/PUzwNQqkaJde7Ntg1TO7bSREbR5sdosQ+g==}
@@ -40188,6 +40195,7 @@ packages:
 
   /utils-extend/1.0.8:
     resolution: {integrity: sha512-+VzQieEAijyCFGqnGAWIy7Em1dFGdgf1w+orKwmTWHyaGL19aw9Oq5e5ZZaxgcS777AkPYEsbgWqpz5E6KniPg==}
+    dev: false
 
   /utils-merge/1.0.1:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
@@ -40282,22 +40290,6 @@ packages:
       node-fetch: 2.6.7
     transitivePeerDependencies:
       - encoding
-      - supports-color
-    dev: true
-
-  /verdaccio-git/0.1.76:
-    resolution: {integrity: sha512-VIX3EeR3kaewVpumSj+yfwsP13A3JavaOsUJ2nXuD8CYoBo6wbHR/axmfyxUKC/8nW6PLCeTeSTQAikwp7G37Q==}
-    engines: {node: '>=10'}
-    dependencies:
-      '@verdaccio/commons-api': 10.2.0
-      '@verdaccio/local-storage': 10.3.1
-      '@verdaccio/streams': 10.2.0
-      file-system: 2.2.2
-      fs-extra: 11.1.0
-      simple-git: 3.17.0
-      sync-directory: 5.1.9
-      tar: 6.1.13
-    transitivePeerDependencies:
       - supports-color
     dev: true
 
