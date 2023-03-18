@@ -1,6 +1,6 @@
 {
   "name": "verdaccio-git",
-  "version": "0.1.76",
+  "version": "0.1.77",
   "description": "Publish packages to git repositories.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -21,7 +21,7 @@
     "tar": "^6.1.13"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "workspace:^1.4.41",
+    "@amazeelabs/eslint-config": "workspace:^1.4.42",
     "@babel/preset-env": "7.20.2",
     "@babel/preset-typescript": "7.21.0",
     "@tsconfig/recommended": "1.0.2",

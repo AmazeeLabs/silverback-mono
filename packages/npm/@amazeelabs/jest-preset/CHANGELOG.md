@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.45](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/jest-preset@1.3.44...@amazeelabs/jest-preset@1.3.45) (2023-03-18)
+
+**Note:** Version bump only for package @amazeelabs/jest-preset
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.3.44](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/jest-preset@1.3.43...@amazeelabs/jest-preset@1.3.44) (2023-02-04)
 
 **Note:** Version bump only for package @amazeelabs/jest-preset

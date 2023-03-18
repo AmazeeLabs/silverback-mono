@@ -26,17 +26,17 @@ importers:
       husky: 8.0.3
       lerna: 6.5.1
       verdaccio: 5.22.1
-      verdaccio-git: link:packages/npm/verdaccio-git
+      verdaccio-git: 0.1.76
 
   apps/silverback-drupal:
     specifiers:
       '@-amazeelabs/silverback-cli': ^2.9.2
       '@-amazeelabs/silverback_gatsby': ^2.0.4
-      '@-drupal/cypress': ^2.3.83
-      '@-drupal/gatsby_build_monitor': ^1.4.52
+      '@-drupal/cypress': ^2.3.84
+      '@-drupal/gatsby_build_monitor': ^1.4.53
       '@-silverback-drupal-config/webform': ^1.0.6
-      '@-silverback-drupal/gutenberg_custom_blocks': ^1.0.61
-      '@amazeelabs/graphql-schema-test': ^1.1.35
+      '@-silverback-drupal/gutenberg_custom_blocks': ^1.0.62
+      '@amazeelabs/graphql-schema-test': ^1.1.36
       jest: 29.5.0
       start-server-and-test: 1.15.4
     dependencies:
@@ -56,9 +56,9 @@ importers:
 
   apps/silverback-drupal/web/modules/custom/gutenberg_custom_blocks:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
       '@types/jest': 29.5.0
       drupal-gutenberg-translations: 1.1.0
       drupal-js-build: https://github.com/AmazeeLabs/drupal-js-build
@@ -83,16 +83,16 @@ importers:
 
   apps/silverback-gatsby:
     specifiers:
-      '@-amazeelabs/silverback-drupal': ^2.1.11
-      '@amazeelabs/codegen-operation-ids': ^0.1.13
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/gatsby-silverback-cloudinary': ^1.0.5
-      '@amazeelabs/gatsby-source-silverback': ^1.9.16
-      '@amazeelabs/gatsby-theme-core': ^0.6.72
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
-      '@amazeelabs/silverback-graphql-persisted': ^1.2.7
-      '@amazeelabs/silverback-iframe': ^1.2.7
+      '@-amazeelabs/silverback-drupal': ^2.1.12
+      '@amazeelabs/codegen-operation-ids': ^0.1.14
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/gatsby-silverback-cloudinary': ^1.0.6
+      '@amazeelabs/gatsby-source-silverback': ^1.9.17
+      '@amazeelabs/gatsby-theme-core': ^0.6.73
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
+      '@amazeelabs/silverback-graphql-persisted': ^1.2.8
+      '@amazeelabs/silverback-iframe': ^1.2.8
       '@formatjs/cli': 6.0.4
       '@graphql-codegen/cli': 3.2.2
       '@graphql-codegen/typescript': 3.0.2
@@ -194,11 +194,11 @@ importers:
 
   apps/silverback-website:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/gatsby-theme-core': ^0.6.72
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
-      '@amazeelabs/react-di': ^1.0.81
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/gatsby-theme-core': ^0.6.73
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
+      '@amazeelabs/react-di': ^1.0.82
       '@graphql-codegen/cli': 3.2.2
       '@graphql-codegen/typescript': 3.0.2
       '@graphql-codegen/typescript-operations': 3.0.2
@@ -359,9 +359,9 @@ importers:
 
   packages/composer/amazeelabs/silverback_gutenberg:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
       '@amazeelabs/sync-composer-version': ^1.1.3
       '@types/jest': 29.5.0
       eslint: 8.36.0
@@ -408,8 +408,8 @@ importers:
       cypress: 9.7.0
       cypress-cucumber-preprocessor: 4.3.1
       cypress-file-upload: 5.0.8
-      cypress-screenplay: ^0.5.61
-      drupal-test-session-cypress: ^1.1.60
+      cypress-screenplay: ^0.5.62
+      drupal-test-session-cypress: ^1.1.61
     dependencies:
       '@testing-library/cypress': 9.0.0_cypress@9.7.0
       cypress: 9.7.0
@@ -422,9 +422,9 @@ importers:
 
   packages/composer/drupal/gatsby_build_monitor:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
       '@amazeelabs/sync-composer-version': ^1.1.3
       '@types/jest': 29.5.0
       eslint: 8.36.0
@@ -448,17 +448,17 @@ importers:
   packages/composer/drupal/test_session:
     specifiers:
       '@amazeelabs/sync-composer-version': ^1.1.3
-      drupal-test-session-cypress: ^1.1.60
+      drupal-test-session-cypress: ^1.1.61
     devDependencies:
       '@amazeelabs/sync-composer-version': link:../../../npm/@amazeelabs/sync-composer-version
       drupal-test-session-cypress: link:../../../npm/drupal-test-session-cypress
 
   packages/composer/drupal/test_session/tests/Cypress:
     specifiers:
-      '@-drupal/test_session': ^1.2.56
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
+      '@-drupal/test_session': ^1.2.57
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
       '@types/jest': 29.5.0
       '@types/node': 16.18.16
       cypress: 9.7.0
@@ -487,8 +487,8 @@ importers:
 
   packages/npm/@amazeelabs/codegen-operation-ids:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/prettier-config': 1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/prettier-config': ^1.1.2
       '@graphql-codegen/cli': 3.2.2
       '@graphql-codegen/plugin-helpers': ^4.0.0
       '@graphql-codegen/typescript': 3.0.2
@@ -546,9 +546,9 @@ importers:
 
   packages/npm/@amazeelabs/gatsby-fragments:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
       '@rollup/plugin-commonjs': 24.0.1
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-typescript': 11.0.0
@@ -584,8 +584,8 @@ importers:
 
   packages/npm/@amazeelabs/gatsby-silverback-cloudinary:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/prettier-config': 1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/prettier-config': ^1.1.2
       '@cloudinary/url-gen': ^1.9.2
       '@types/crypto-js': 4.1.1
       '@types/node': 16.18.16
@@ -613,9 +613,9 @@ importers:
 
   packages/npm/@amazeelabs/gatsby-source-silverback:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
       '@rollup/plugin-node-resolve': 15.0.1
       '@types/jest': 29.5.0
       '@types/react': 18.0.28
@@ -656,7 +656,7 @@ importers:
 
   packages/npm/@amazeelabs/gatsby-source-silverback-cypress:
     specifiers:
-      '@amazeelabs/jest-preset': 1.3.44
+      '@amazeelabs/jest-preset': ^1.3.45
       cypress: 9.7.0
       typescript: 4.9.5
     devDependencies:
@@ -666,9 +666,9 @@ importers:
 
   packages/npm/@amazeelabs/gatsby-starter:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
       '@graphql-codegen/cli': 3.2.2
       '@graphql-codegen/typescript': 3.0.2
       '@graphql-codegen/typescript-operations': 3.0.2
@@ -715,10 +715,10 @@ importers:
 
   packages/npm/@amazeelabs/gatsby-theme-core:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
-      '@amazeelabs/react-di': ^1.0.81
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
+      '@amazeelabs/react-di': ^1.0.82
       '@types/jest': 29.5.0
       '@types/node': 16.18.16
       eslint: 8.36.0
@@ -754,9 +754,9 @@ importers:
 
   packages/npm/@amazeelabs/graphql-schema-test:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
       '@types/jest': 29.5.0
       '@types/jest-specific-snapshot': 0.5.6
       '@types/lodash': 4.14.191
@@ -809,9 +809,9 @@ importers:
 
   packages/npm/@amazeelabs/molecules:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
       '@babel/core': 7.21.3
       '@headlessui/react': ^1.7.13
       '@mdx-js/react': 2.3.0
@@ -914,8 +914,8 @@ importers:
 
   packages/npm/@amazeelabs/mzx:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/prettier-config': 1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/prettier-config': ^1.1.2
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-typescript': 11.0.0
       '@types/diff': 5.0.2
@@ -970,12 +970,12 @@ importers:
 
   packages/npm/@amazeelabs/publisher:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
-      '@amazeelabs/publisher-elements': workspace:^2.0.4
-      '@amazeelabs/publisher-shared': workspace:^2.0.3
-      '@amazeelabs/publisher-ui': workspace:^2.0.4
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
+      '@amazeelabs/publisher-elements': workspace:^2.0.5
+      '@amazeelabs/publisher-shared': workspace:^2.0.4
+      '@amazeelabs/publisher-ui': workspace:^2.0.5
       '@slack/webhook': ^6.1.0
       '@types/cors': 2.8.13
       '@types/express': 4.17.17
@@ -1047,9 +1047,9 @@ importers:
 
   packages/npm/@amazeelabs/publisher-elements:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/prettier-config': 1.1.1
-      '@amazeelabs/publisher-shared': workspace:^2.0.3
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/prettier-config': ^1.1.2
+      '@amazeelabs/publisher-shared': workspace:^2.0.4
       '@babel/core': 7.21.3
       '@rollup/plugin-node-resolve': 15.0.1
       '@storybook/addon-actions': 6.5.16
@@ -1095,9 +1095,9 @@ importers:
 
   packages/npm/@amazeelabs/publisher-shared:
     specifiers:
-      '@amazeelabs/eslint-config': workspace:^1.4.41
-      '@amazeelabs/jest-preset': workspace:^1.3.44
-      '@amazeelabs/prettier-config': workspace:^1.1.1
+      '@amazeelabs/eslint-config': workspace:^1.4.42
+      '@amazeelabs/jest-preset': workspace:^1.3.45
+      '@amazeelabs/prettier-config': workspace:^1.1.2
       rollup: 3.19.1
       rollup-plugin-dts: 5.2.0
       rollup-plugin-esbuild: 5.0.0
@@ -1113,10 +1113,10 @@ importers:
 
   packages/npm/@amazeelabs/publisher-ui:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/prettier-config': 1.1.1
-      '@amazeelabs/publisher-shared': workspace:^2.0.3
-      '@amazeelabs/react-framework-bridge': workspace:^2.3.16
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/prettier-config': ^1.1.2
+      '@amazeelabs/publisher-shared': workspace:^2.0.4
+      '@amazeelabs/react-framework-bridge': workspace:^2.3.17
       '@babel/core': 7.21.3
       '@headlessui/react': 1.7.13
       '@react-rxjs/core': 0.10.4
@@ -1185,9 +1185,9 @@ importers:
 
   packages/npm/@amazeelabs/react-di:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': ^1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
       '@types/jest': 29.5.0
       eslint: 8.36.0
       jest: 29.5.0
@@ -1208,8 +1208,8 @@ importers:
 
   packages/npm/@amazeelabs/react-framework-bridge:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/prettier-config': 1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/prettier-config': ^1.1.2
       '@rollup/plugin-commonjs': 24.0.1
       '@rollup/plugin-multi-entry': 6.0.0
       '@rollup/plugin-node-resolve': 15.0.1
@@ -1311,9 +1311,9 @@ importers:
 
   packages/npm/@amazeelabs/recipes:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': ^1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
       '@types/chalk': 2.2.0
       '@types/deasync': 0.1.2
       '@types/jest': 29.5.0
@@ -1364,9 +1364,9 @@ importers:
 
   packages/npm/@amazeelabs/scaffold:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
       '@rollup/plugin-commonjs': 24.0.1
       '@rollup/plugin-json': 6.0.0
       '@rollup/plugin-node-resolve': 15.0.1
@@ -1406,9 +1406,9 @@ importers:
 
   packages/npm/@amazeelabs/silverback-graphql-persisted:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
       '@types/jest': 29.5.0
       eslint: 8.36.0
       jest: 29.5.0
@@ -1426,9 +1426,9 @@ importers:
 
   packages/npm/@amazeelabs/silverback-iframe:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': ^1.3.44
-      '@amazeelabs/prettier-config': ^1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
       '@types/jest': 29.5.0
       '@types/react': 18.0.28
       eslint: 8.36.0
@@ -1455,9 +1455,9 @@ importers:
 
   packages/npm/@amazeelabs/silverback-playwright:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
       '@playwright/test': ^1.31.2
       '@redtea/format-axios-error': ^2.1.1
       '@types/jest': 29.5.0
@@ -1501,9 +1501,9 @@ importers:
 
   packages/npm/@amazeelabs/ui:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
       '@babel/core': 7.21.3
       '@storybook/addon-a11y': 6.5.16
       '@storybook/addon-actions': 6.5.16
@@ -1549,9 +1549,9 @@ importers:
 
   packages/npm/@silverback/ui:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
       '@babel/core': 7.21.3
       '@reach/router': 1.3.4
       '@storybook/addon-actions': 6.5.16
@@ -1610,9 +1610,9 @@ importers:
 
   packages/npm/cypress-screenplay:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
       '@tsconfig/recommended': 1.0.2
       '@types/jest': 29.5.0
       '@types/mocha': 10.0.1
@@ -1654,9 +1654,9 @@ importers:
 
   packages/npm/drupal-test-session-cypress:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
       '@types/jest': 29.5.0
       cypress: 9.7.0
       eslint: 8.36.0
@@ -1676,9 +1676,9 @@ importers:
 
   packages/npm/gatsby-plugin-build-monitor:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
       '@types/jest': 29.5.0
       '@types/node': 16.18.16
       axios: ^1.3.4
@@ -1706,7 +1706,7 @@ importers:
 
   packages/npm/verdaccio-git:
     specifiers:
-      '@amazeelabs/eslint-config': workspace:^1.4.41
+      '@amazeelabs/eslint-config': workspace:^1.4.42
       '@babel/preset-env': 7.20.2
       '@babel/preset-typescript': 7.21.0
       '@tsconfig/recommended': 1.0.2
@@ -1766,11 +1766,11 @@ importers:
   packages/tests/silverback-gatsby:
     specifiers:
       '@-amazeelabs/silverback_gatsby': ^2.0.4
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/gatsby-source-silverback': ^1.9.16
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
-      '@amazeelabs/silverback-playwright': ^1.6.51
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/gatsby-source-silverback': ^1.9.17
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
+      '@amazeelabs/silverback-playwright': ^1.6.52
       '@playwright/test': 1.31.2
       '@types/jest': 29.5.0
       eslint: 8.36.0
@@ -1796,12 +1796,12 @@ importers:
 
   packages/tests/silverback-gutenberg:
     specifiers:
-      '@-amazeelabs/silverback-drupal': ^2.1.11
-      '@-amazeelabs/silverback_gutenberg': ^2.1.1
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
-      '@amazeelabs/silverback-playwright': ^1.6.51
+      '@-amazeelabs/silverback-drupal': ^2.1.12
+      '@-amazeelabs/silverback_gutenberg': ^2.1.2
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
+      '@amazeelabs/silverback-playwright': ^1.6.52
       '@playwright/test': 1.31.2
       '@types/jest': 29.5.0
       eslint: 8.36.0
@@ -1834,11 +1834,11 @@ importers:
       '@-amazeelabs/silverback_iframe': ^1.3.2
       '@-amazeelabs/silverback_iframe_theme': ^1.2.2
       '@-silverback-drupal-config/webform': ^1.0.6
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
-      '@amazeelabs/silverback-iframe': ^1.2.7
-      '@amazeelabs/silverback-playwright': ^1.6.51
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
+      '@amazeelabs/silverback-iframe': ^1.2.8
+      '@amazeelabs/silverback-playwright': ^1.6.52
       '@playwright/test': 1.31.2
       '@types/jest': 29.5.0
       eslint: 8.36.0
@@ -1868,12 +1868,12 @@ importers:
 
   packages/tests/silverback-persisted-queries:
     specifiers:
-      '@-amazeelabs/silverback-gastby': ^2.0.17
-      '@amazeelabs/eslint-config': ^1.4.41
-      '@amazeelabs/jest-preset': 1.3.44
-      '@amazeelabs/prettier-config': 1.1.1
-      '@amazeelabs/silverback-graphql-persisted': ^1.2.7
-      '@amazeelabs/silverback-playwright': workspace:^1.6.51
+      '@-amazeelabs/silverback-gastby': ^2.0.18
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/jest-preset': ^1.3.45
+      '@amazeelabs/prettier-config': ^1.1.2
+      '@amazeelabs/silverback-graphql-persisted': ^1.2.8
+      '@amazeelabs/silverback-playwright': workspace:^1.6.52
       '@playwright/test': 1.31.2
       '@types/jest': 29.5.0
       eslint: 8.36.0
@@ -7120,11 +7120,9 @@ packages:
       debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
-    dev: false
 
   /@kwsites/promise-deferred/1.1.1:
     resolution: {integrity: sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw==}
-    dev: false
 
   /@lerna/child-process/6.5.1:
     resolution: {integrity: sha512-QfyleXSD9slh4qM54wDaqKVPvtUH1NJMgsFc9BabqSHO1Ttpandv1EAvTCN9Lu73RbCX3LJpn+BfJmnjHbjCyw==}
@@ -11175,7 +11173,7 @@ packages:
       '@storybook/ui': 6.5.16_biqbaboplfbrettd7655fr4n2y
       airbnb-js-shims: 2.2.1
       ansi-to-html: 0.6.15
-      core-js: 3.27.2
+      core-js: 3.28.0
       global: 4.4.0
       lodash: 4.17.21
       qs: 6.11.1
@@ -11212,7 +11210,7 @@ packages:
       '@storybook/ui': 6.5.16
       airbnb-js-shims: 2.2.1
       ansi-to-html: 0.6.15
-      core-js: 3.27.2
+      core-js: 3.28.0
       global: 4.4.0
       lodash: 4.17.21
       qs: 6.11.1
@@ -11247,7 +11245,7 @@ packages:
       '@storybook/ui': 6.5.16_wcqkhtmu7mswc6yz4uyexck3ty
       airbnb-js-shims: 2.2.1
       ansi-to-html: 0.6.15
-      core-js: 3.27.2
+      core-js: 3.28.0
       global: 4.4.0
       lodash: 4.17.21
       qs: 6.11.1
@@ -11283,7 +11281,7 @@ packages:
       '@storybook/ui': 6.5.16_wcqkhtmu7mswc6yz4uyexck3ty
       airbnb-js-shims: 2.2.1
       ansi-to-html: 0.6.15
-      core-js: 3.27.2
+      core-js: 3.28.0
       global: 4.4.0
       lodash: 4.17.21
       qs: 6.11.1
@@ -11320,7 +11318,7 @@ packages:
       '@storybook/ui': 6.5.16_biqbaboplfbrettd7655fr4n2y
       airbnb-js-shims: 2.2.1
       ansi-to-html: 0.6.15
-      core-js: 3.27.2
+      core-js: 3.28.0
       global: 4.4.0
       lodash: 4.17.21
       qs: 6.11.1
@@ -12894,7 +12892,7 @@ packages:
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@storybook/client-logger': 6.5.16
-      core-js: 3.27.2
+      core-js: 3.28.0
       memoizerific: 1.11.3
       qs: 6.11.1
       regenerator-runtime: 0.13.11
@@ -12907,7 +12905,7 @@ packages:
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@storybook/client-logger': 6.5.16
-      core-js: 3.27.2
+      core-js: 3.28.0
       memoizerific: 1.11.3
       qs: 6.11.1
       react: 18.2.0
@@ -12922,7 +12920,7 @@ packages:
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@storybook/client-logger': 6.5.16
-      core-js: 3.27.2
+      core-js: 3.28.0
       memoizerific: 1.11.3
       qs: 6.11.1
       react: 16.14.0
@@ -13198,7 +13196,7 @@ packages:
       '@storybook/router': 6.5.16
       '@storybook/semver': 7.3.2
       '@storybook/theming': 6.5.16
-      core-js: 3.27.2
+      core-js: 3.28.0
       memoizerific: 1.11.3
       qs: 6.11.1
       regenerator-runtime: 0.13.11
@@ -13220,7 +13218,7 @@ packages:
       '@storybook/router': 6.5.16_biqbaboplfbrettd7655fr4n2y
       '@storybook/semver': 7.3.2
       '@storybook/theming': 6.5.16_biqbaboplfbrettd7655fr4n2y
-      core-js: 3.27.2
+      core-js: 3.28.0
       memoizerific: 1.11.3
       qs: 6.11.1
       react: 18.2.0
@@ -13244,7 +13242,7 @@ packages:
       '@storybook/router': 6.5.16_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/semver': 7.3.2
       '@storybook/theming': 6.5.16_wcqkhtmu7mswc6yz4uyexck3ty
-      core-js: 3.27.2
+      core-js: 3.28.0
       memoizerific: 1.11.3
       qs: 6.11.1
       react: 16.14.0
@@ -23332,7 +23330,6 @@ packages:
     resolution: {integrity: sha512-g9p6bZV3HlSUM35QPvFWiP/PckDVe5jLPDhx6PfMuy06o+htesJTyDu7zRdXnOm3BY8pXmxb+QY5qIcsoWMGNg==}
     dependencies:
       utils-extend: 1.0.8
-    dev: false
 
   /file-system-cache/1.1.0:
     resolution: {integrity: sha512-IzF5MBq+5CR0jXx5RxPe4BICl/oEhBSXKaL9fLhAXrIfIUS77Hr4vzrYyqYMHN6uTt+BOqi3fDCTjjEBCjERKw==}
@@ -23353,7 +23350,6 @@ packages:
     dependencies:
       file-match: 1.0.2
       utils-extend: 1.0.8
-    dev: false
 
   /file-type/11.1.0:
     resolution: {integrity: sha512-rM0UO7Qm9K7TWTtA6AShI/t7H5BPjDeGVDaNyg9BjHAj3PysKy7+8C8D137R88jnR3rFJZQB/tFgydl5sN5m7g==}
@@ -35858,7 +35854,6 @@ packages:
       call-me-maybe: 1.0.2
       es6-promise: 4.2.8
       glob-to-regexp: 0.3.0
-    dev: false
 
   /readdir-glob/1.1.2:
     resolution: {integrity: sha512-6RLVvwJtVwEDfPdn6X6Ille4/lxGl0ATOY4FN/B9nxQcgOazvvI0nodiD19ScKq0PvA/29VpaOQML36o5IzZWA==}
@@ -37280,7 +37275,6 @@ packages:
       debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
-    dev: false
 
   /simple-swizzle/0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
@@ -38539,7 +38533,6 @@ packages:
       fs-extra: 7.0.1
       is-absolute: 1.0.0
       readdir-enhanced: 1.5.2
-    dev: false
 
   /synchronous-promise/2.0.17:
     resolution: {integrity: sha512-AsS729u2RHUfEra9xJrE39peJcc2stq2+poBXX8bcM08Y6g9j/i/PUzwNQqkaJde7Ntg1TO7bSREbR5sdosQ+g==}
@@ -40195,7 +40188,6 @@ packages:
 
   /utils-extend/1.0.8:
     resolution: {integrity: sha512-+VzQieEAijyCFGqnGAWIy7Em1dFGdgf1w+orKwmTWHyaGL19aw9Oq5e5ZZaxgcS777AkPYEsbgWqpz5E6KniPg==}
-    dev: false
 
   /utils-merge/1.0.1:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
@@ -40290,6 +40282,22 @@ packages:
       node-fetch: 2.6.7
     transitivePeerDependencies:
       - encoding
+      - supports-color
+    dev: true
+
+  /verdaccio-git/0.1.76:
+    resolution: {integrity: sha512-VIX3EeR3kaewVpumSj+yfwsP13A3JavaOsUJ2nXuD8CYoBo6wbHR/axmfyxUKC/8nW6PLCeTeSTQAikwp7G37Q==}
+    engines: {node: '>=10'}
+    dependencies:
+      '@verdaccio/commons-api': 10.2.0
+      '@verdaccio/local-storage': 10.3.1
+      '@verdaccio/streams': 10.2.0
+      file-system: 2.2.2
+      fs-extra: 11.1.0
+      simple-git: 3.17.0
+      sync-directory: 5.1.9
+      tar: 6.1.13
+    transitivePeerDependencies:
       - supports-color
     dev: true
 

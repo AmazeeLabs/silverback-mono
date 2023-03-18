@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/publisher-shared",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "type": "module",
   "publishConfig": {
     "access": "public"
@@ -13,9 +13,9 @@
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "workspace:^1.4.41",
-    "@amazeelabs/jest-preset": "workspace:^1.3.44",
-    "@amazeelabs/prettier-config": "workspace:^1.1.1",
+    "@amazeelabs/eslint-config": "workspace:^1.4.42",
+    "@amazeelabs/jest-preset": "workspace:^1.3.45",
+    "@amazeelabs/prettier-config": "workspace:^1.1.2",
     "rollup": "3.19.1",
     "rollup-plugin-dts": "5.2.0",
     "rollup-plugin-esbuild": "5.0.0",

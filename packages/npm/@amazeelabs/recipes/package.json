@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/recipes",
-  "version": "1.15.20",
+  "version": "1.15.21",
   "description": "Executable recipes to setup and extend Amazee Labs projects.",
   "main": "dist/index.js",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "amazee-recipes": "./dist/index.js"
   },
   "dependencies": {
-    "@amazeelabs/prettier-config": "^1.1.1",
+    "@amazeelabs/prettier-config": "^1.1.2",
     "chalk": "^4.1.2",
     "deasync": "^0.1.28",
     "js-yaml": "^4.1.0",
@@ -23,8 +23,8 @@
     "update-notifier": "^6.0.2"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.41",
-    "@amazeelabs/jest-preset": "1.3.44",
+    "@amazeelabs/eslint-config": "^1.4.42",
+    "@amazeelabs/jest-preset": "^1.3.45",
     "@amazeelabs/prettier-config": "1.1.1",
     "@types/chalk": "2.2.0",
     "@types/deasync": "0.1.2",
