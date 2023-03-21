@@ -485,6 +485,25 @@ importers:
     devDependencies:
       '@amazeelabs/sync-composer-version': link:../../../npm/@amazeelabs/sync-composer-version
 
+  packages/npm/@amazeelabs/bridge:
+    specifiers:
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/prettier-config': ^1.1.2
+      '@swc/cli': ^0.1.57
+      '@swc/core': ^1.3.23
+      '@types/react': ^18.0.28
+      typescript: ^4.9.5
+      vitest: ^0.27.1
+    optionalDependencies:
+      '@types/react': 18.0.28
+      typescript: 4.9.5
+      vitest: 0.27.3
+    devDependencies:
+      '@amazeelabs/eslint-config': link:../eslint-config
+      '@amazeelabs/prettier-config': link:../prettier-config
+      '@swc/cli': 0.1.62_@swc+core@1.3.41
+      '@swc/core': 1.3.41
+
   packages/npm/@amazeelabs/codegen-gatsby-fragments:
     specifiers:
       '@amazeelabs/eslint-config': ^1.4.42
@@ -1453,6 +1472,48 @@ importers:
       rollup: 3.19.1
       ts-jest: 29.0.5_doipufordlnvh5g4adbwayvyvy
       typescript: 4.9.5
+
+  packages/npm/@amazeelabs/scalars:
+    specifiers:
+      '@amazeelabs/bridge': workspace:*
+      '@amazeelabs/eslint-config': ^1.4.42
+      '@amazeelabs/prettier-config': ^1.1.2
+      '@swc/cli': ^0.1.57
+      '@swc/core': ^1.3.23
+      '@types/hast': ^2.3.4
+      '@types/react': ^18.0.28
+      eslint: ^8.36.0
+      hast-util-select: ^5.0.5
+      prettier: ^2.8.4
+      query-string: ^8.1.0
+      rehype-parse: ^8.0.4
+      rehype-react: ^7.1.2
+      rehype-slug: ^5.1.0
+      remeda: ^1.6.0
+      typescript: ^4.9.5
+      unified: ^10.1.2
+      vitest: ^0.27.1
+    dependencies:
+      '@amazeelabs/bridge': link:../bridge
+      hast-util-select: 5.0.5
+      query-string: 8.1.0
+      rehype-parse: 8.0.4
+      rehype-react: 7.1.2_@types+react@18.0.28
+      rehype-slug: 5.1.0
+      remeda: 1.9.1
+      unified: 10.1.2
+    optionalDependencies:
+      '@amazeelabs/eslint-config': link:../eslint-config
+      '@amazeelabs/prettier-config': link:../prettier-config
+      '@types/hast': 2.3.4
+      '@types/react': 18.0.28
+      eslint: 8.36.0
+      prettier: 2.8.4
+      typescript: 4.9.5
+      vitest: 0.27.3
+    devDependencies:
+      '@swc/cli': 0.1.62_@swc+core@1.3.41
+      '@swc/core': 1.3.41
 
   packages/npm/@amazeelabs/silverback-graphql-persisted:
     specifiers:
@@ -5176,7 +5237,6 @@ packages:
     dependencies:
       eslint: 8.36.0
       eslint-visitor-keys: 3.3.0
-    dev: true
 
   /@eslint-community/regexpp/4.4.0:
     resolution: {integrity: sha512-A9983Q0LnDGdLPjxyXQ00sbV+K+O+ko2Dr+CZigbHWtX9pNfxlaBkMR8X1CztI73zuEyEBXTVjx7CE+/VSwDiQ==}
@@ -5230,12 +5290,10 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /@eslint/js/8.36.0:
     resolution: {integrity: sha512-lxJ9R5ygVm8ZWgYdUweoq5ownDlJ4upvoWmO4eLxBYHdMo+vZ/Rx0EN6MbKWDJOSUGrqJy2Gt+Dyv/VKml0fjg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    dev: true
 
   /@fal-works/esbuild-plugin-global-externals/2.1.2:
     resolution: {integrity: sha512-cEee/Z+I12mZcFJshKcCqC8tuX5hG3s+d+9nZ3LabqKF1vKdF41B92pJVCBggjAGORAeOzyyDDKrZwIkLffeOQ==}
@@ -6605,7 +6663,6 @@ packages:
       minimatch: 3.1.2
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /@humanwhocodes/config-array/0.5.0:
     resolution: {integrity: sha512-FagtKFz74XrTl7y6HCzQpwDfXP0yhxe9lHLD1UZxjvZIcbyRz8zTFF/yYNfSfzU414eDwZ1SrO0Qvtyf+wFMQg==}
@@ -6631,7 +6688,6 @@ packages:
   /@humanwhocodes/module-importer/1.0.1:
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
     engines: {node: '>=12.22'}
-    dev: true
 
   /@humanwhocodes/momoa/2.0.4:
     resolution: {integrity: sha512-RE815I4arJFtt+FVeU1Tgp9/Xvecacji8w/V6XtXsWWH/wz/eNkNbhb+ny/+PlVZjV0rxQpRSQKNKE3lcktHEA==}
@@ -20403,6 +20459,11 @@ packages:
     resolution: {integrity: sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==}
     engines: {node: '>=0.10'}
 
+  /decode-uri-component/0.4.1:
+    resolution: {integrity: sha512-+8VxcR21HhTy8nOt6jf20w0c9CADrw1O8d+VZ/YzzCt4bJ3uBjw+D1q2osAB8RnpwwaeYBxy0HyKQxD5JBMuuQ==}
+    engines: {node: '>=14.16'}
+    dev: false
+
   /decompress-response/3.3.0:
     resolution: {integrity: sha512-BzRPQuY1ip+qDonAOz42gRm/pg9F768C+npV/4JOsxRC2sq+Rlk+Q4ZCAsOhnIaMrgarILY+RMUIvMmmX1qAEA==}
     engines: {node: '>=4'}
@@ -22161,7 +22222,6 @@ packages:
     dependencies:
       esrecurse: 4.3.0
       estraverse: 5.3.0
-    dev: true
 
   /eslint-utils/2.1.0:
     resolution: {integrity: sha512-w94dQYoauyvlDc43XnGB8lU3Zt713vNChgt4EWwhXAP2XkBvndfxF0AgIqKOOasjPIPzj9JqgwkwbCYD0/V3Zg==}
@@ -22358,7 +22418,6 @@ packages:
       text-table: 0.2.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /eslint/8.4.1:
     resolution: {integrity: sha512-TxU/p7LB1KxQ6+7aztTnO7K0i+h0tDi81YRY9VzB6Id71kNz+fFYnf5HD5UOQmxkzcoa0TlVZf9dpMtUv0GpWg==}
@@ -22439,7 +22498,6 @@ packages:
       acorn: 8.8.2
       acorn-jsx: 5.3.2_acorn@8.8.2
       eslint-visitor-keys: 3.3.0
-    dev: true
 
   /esprima/4.0.1:
     resolution: {integrity: sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==}
@@ -23423,7 +23481,6 @@ packages:
   /filter-obj/5.1.0:
     resolution: {integrity: sha512-qWeTREPoT7I0bifpPUXtxkZJ1XJzxWtfoWWkdVGqa+eCr3SHW/Ocp89o8vLvbUuQnadybJpjOKu4V+RwO6sGng==}
     engines: {node: '>=14.16'}
-    dev: true
 
   /finalhandler/1.2.0:
     resolution: {integrity: sha512-5uXcUVftlQMFnWC9qu/svkWv3GTd2PfUhK/3PLkYNAe7FbqJMt3515HaxE6eRL74GdsriiwujiawdaB1BpEISg==}
@@ -29168,7 +29225,6 @@ packages:
 
   /js-sdsl/4.3.0:
     resolution: {integrity: sha512-mifzlm2+5nZ+lEcLJMoBK0/IH/bDg8XnJfd/Wq6IP+xoCjLZsTOnV2QpxlVbX9bMnkl5PdEjNtBJ9Cj1NjifhQ==}
-    dev: true
 
   /js-sha3/0.8.0:
     resolution: {integrity: sha512-gF1cRrHhIzNfToc802P800N8PpXS+evLLXfsVpowqmAFR9uwbi89WvXg2QspOmXL8QL86J4T1EpFu+yUkwJY3Q==}
@@ -35048,6 +35104,15 @@ packages:
       split-on-first: 1.1.0
       strict-uri-encode: 2.0.0
 
+  /query-string/8.1.0:
+    resolution: {integrity: sha512-BFQeWxJOZxZGix7y+SByG3F36dA0AbTy9o6pSmKFcFz7DAj0re9Frkty3saBn3nHo3D0oZJ/+rx3r8H8r8Jbpw==}
+    engines: {node: '>=14.16'}
+    dependencies:
+      decode-uri-component: 0.4.1
+      filter-obj: 5.1.0
+      split-on-first: 3.0.0
+    dev: false
+
   /querystring-es3/0.2.1:
     resolution: {integrity: sha512-773xhDQnZBMFobEiztv8LIl70ch5MSF/jUQVlhwFyBILqq96anmoctVIYz+ZRp0qbCKATTn6ev02M3r7Ga5vqA==}
     engines: {node: '>=0.4.x'}
@@ -36119,6 +36184,10 @@ packages:
       remark-parse: 6.0.3
       remark-stringify: 6.0.4
       unified: 7.1.0
+    dev: false
+
+  /remeda/1.9.1:
+    resolution: {integrity: sha512-n8vx5dg27jRCUYlM7RXQ9MbJCspb18/9wmrRTLKNNECivtAZBuxok0Ei6yV0jcFsnKLr8Y6oiuLyDXU1jt5UKw==}
     dev: false
 
   /remedial/1.0.8:
@@ -37453,6 +37522,11 @@ packages:
   /split-on-first/1.1.0:
     resolution: {integrity: sha512-43ZssAJaMusuKWL8sKUBQXHWOpq8d6CfN/u1p4gUzfJkM05C8rxTmYrkIPTXapZpORA6LkkzcUulJ8FqA7Uudw==}
     engines: {node: '>=6'}
+
+  /split-on-first/3.0.0:
+    resolution: {integrity: sha512-qxQJTx2ryR0Dw0ITYyekNQWpz6f8dGd7vffGNflQQ3Iqj9NJ6qiZ7ELpZsJ/QBhIVAiDfXdag3+Gp8RvWa62AA==}
+    engines: {node: '>=12'}
+    dev: false
 
   /split-string/3.1.0:
     resolution: {integrity: sha512-NzNVhJDYpwceVVii8/Hu6DKfD2G+NrQHlS/V/qgv763EYudVwEcMQNxd2lh+0VrUByXN/oJkl5grOhYWvQUYiw==}
