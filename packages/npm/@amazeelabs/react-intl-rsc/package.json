@@ -6,6 +6,9 @@
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "rm -rf build && swc ./src -d ./build && tsc --emitDeclarationOnly",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
