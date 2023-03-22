@@ -19,8 +19,8 @@
     "test:unit": "vitest run --passWithNoTests",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
-    "storybook": "NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6007 --ci",
-    "build-storybook": "NODE_OPTIONS=--openssl-legacy-provider build-storybook",
+    "storybook": "NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6007 --ci # TODO: Remove node options when upgraded to Storybook 7.",
+    "build-storybook": "NODE_OPTIONS=--openssl-legacy-provider build-storybook # TODO: Remove node options when upgraded to Storybook 7.",
     "deploy": "pnpm build-storybook && pnpm netlify deploy -a $NETLIFY_AUTH_TOKEN -d storybook-static -p -s amazeelabs-molecules"
   },
   "peerDependencies": {
