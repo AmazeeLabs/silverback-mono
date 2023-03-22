@@ -8,7 +8,11 @@
   "extra": {
     "enable-patching": true,
     "composer-exit-on-patch-failure": true,
-    "patches": {}
+    "patches": {
+      "drupal/gutenberg": {
+        "#3213528 Integrate Linkit": "https://www.drupal.org/files/issues/2021-09-22/gutenberg-integrate_linkit-5.patch"
+      }
+    }
   },
   "repositories": [
     {
