@@ -1908,7 +1908,7 @@ importers:
   packages/tests/silverback-gutenberg:
     specifiers:
       '@-amazeelabs/silverback-drupal': ^2.1.14
-      '@-amazeelabs/silverback_gutenberg': ^2.1.3
+      '@-amazeelabs/silverback_gutenberg': ^2.1.4
       '@amazeelabs/eslint-config': 1.4.42
       '@amazeelabs/jest-preset': 1.3.45
       '@amazeelabs/prettier-config': 1.1.2
@@ -39163,6 +39163,7 @@ packages:
 
   /trim/0.0.1:
     resolution: {integrity: sha512-YzQV+TZg4AxpKxaTHK3c3D+kRDCGVEE7LemdlQZoQXn0iennk10RsIoY6ikzAqJTc9Xjl9C1/waHom/J86ziAQ==}
+    deprecated: Use String.prototype.trim() instead
 
   /triple-beam/1.3.0:
     resolution: {integrity: sha512-XrHUvV5HpdLmIj4uVMxHggLbFSZYIn7HEWsqePZcI50pco+MPqJ50wMGY794X7AOOhxOBAjbkqfAbEe/QMp2Lw==}
