@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f78848254304e6026f19d8ad72630d1",
+    "content-hash": "57900f0a785f19cc49601175fdd9c201",
     "packages": [
         {
             "name": "amazeelabs/default-content",
@@ -125,7 +125,7 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-gutenberg",
-                "reference": "212712a7a59d755fceeb887849ca706923691c0a"
+                "reference": "b194c75f0a59f6f93c7bb4ab84979bd1448e1a95"
             },
             "require": {
                 "cweagans/composer-patches": "^1.7.3",
@@ -135,7 +135,11 @@
             "extra": {
                 "enable-patching": true,
                 "composer-exit-on-patch-failure": true,
-                "patches": []
+                "patches": {
+                    "drupal/gutenberg": {
+                        "#3213528 Integrate Linkit": "https://www.drupal.org/files/issues/2021-09-22/gutenberg-integrate_linkit-5.patch"
+                    }
+                }
             },
             "license": [
                 "GPL-2.0+"
@@ -303,11 +307,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "2.1.3",
+            "version": "2.1.4",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "393f9b11161fe950f5d10e05d64c8710d2780d16"
+                "reference": "a1321046277b5b132ef1639c4638326687b0e747"
             },
             "require": {
                 "drupal/gutenberg": "^2.7.0"
@@ -3714,6 +3718,65 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/key_auth",
                 "issues": "https://www.drupal.org/project/issues/key_auth"
+            }
+        },
+        {
+            "name": "drupal/linkit",
+            "version": "6.0.0-beta4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/linkit.git",
+                "reference": "6.0.0-beta4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/linkit-6.0.0-beta4.zip",
+                "reference": "6.0.0-beta4",
+                "shasum": "94274f0af2315ca91d9be8fc4e5103c9566860f0"
+            },
+            "require": {
+                "drupal/core": "^9.4 || ^10"
+            },
+            "require-dev": {
+                "drupal/ckeditor": "*",
+                "drupal/imce": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "6.0.0-beta4",
+                    "datestamp": "1678030708",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Emil Stjerneman",
+                    "homepage": "https://stjerneman.com",
+                    "email": "emil@stjerneman.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "johnwebdev",
+                    "homepage": "https://www.drupal.org/user/3331569"
+                },
+                {
+                    "name": "mark_fullmer",
+                    "homepage": "https://www.drupal.org/user/2612816"
+                }
+            ],
+            "description": "Linkit - Enriched linking experience",
+            "homepage": "http://drupal.org/project/linkit",
+            "support": {
+                "source": "http://cgit.drupalcode.org/linkit",
+                "issues": "http://drupal.org/project/linkit"
             }
         },
         {
@@ -12206,6 +12269,7 @@
         "drupal/default_content": 15,
         "drupal/entity_usage": 10,
         "drupal/gatsby_build_monitor": 20,
+        "drupal/linkit": 10,
         "drupal/test_session": 20,
         "drupal/typed_data": 10,
         "drupal/webform": 10
