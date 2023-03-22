@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.1.14...@-amazeelabs/silverback-drupal@2.2.0) (2023-03-22)
+
+### Features
+
+- linkit integration for gutenberg
+  ([8affb8b](https://github.com/AmazeeLabs/silverback-mono/commit/8affb8b86182f66ae86de819ed4f7e6c7abfb085))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.1.14](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.1.13...@-amazeelabs/silverback-drupal@2.1.14) (2023-03-18)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
