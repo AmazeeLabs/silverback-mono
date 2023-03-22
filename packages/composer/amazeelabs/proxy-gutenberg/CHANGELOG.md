@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-gutenberg@1.1.19...@-amazeelabs/proxy-gutenberg@1.2.0) (2023-03-22)
+
+### Features
+
+- linkit integration for gutenberg
+  ([bc65ef1](https://github.com/AmazeeLabs/silverback-mono/commit/bc65ef190ca32a8f944f3949c0a502ce0d7911c1))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.19](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-gutenberg@1.1.18...@-amazeelabs/proxy-gutenberg@1.1.19) (2023-03-18)
 
 **Note:** Version bump only for package @-amazeelabs/proxy-gutenberg
