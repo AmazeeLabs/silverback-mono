@@ -2,15 +2,15 @@ import { Transition } from '@headlessui/react';
 import React, { PropsWithChildren, useEffect, useRef } from 'react';
 
 function HeightTransition({
-                            beforeEnter,
-                            afterEnter,
-                            beforeLeave,
-                            afterLeave,
-                            children,
-                            show,
-                            duration,
-                            delay,
-                          }: PropsWithChildren<{
+  beforeEnter,
+  afterEnter,
+  beforeLeave,
+  afterLeave,
+  children,
+  show,
+  duration,
+  delay,
+}: PropsWithChildren<{
   show?: boolean;
   duration: number;
   delay: number;
@@ -67,13 +67,13 @@ function HeightTransition({
 }
 
 export default function Collapsible({
-                                      children,
-                                      show,
-                                      fadeDuration,
-                                      scaleDuration,
-                                      delay,
-                                      ...rest
-                                    }: PropsWithChildren<{
+  children,
+  show,
+  fadeDuration,
+  scaleDuration,
+  delay,
+  ...rest
+}: PropsWithChildren<{
   show: boolean;
   beforeEnter?: () => void;
   afterEnter?: () => void;

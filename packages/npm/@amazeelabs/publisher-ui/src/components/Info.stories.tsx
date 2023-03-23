@@ -1,6 +1,4 @@
-import {
-  OrganismStory,
-} from '@amazeelabs/react-framework-bridge/storybook';
+import { OrganismStory } from '@amazeelabs/react-framework-bridge/storybook';
 import { Meta } from '@storybook/react';
 
 import Info from './Info';
