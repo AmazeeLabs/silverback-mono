@@ -7,7 +7,7 @@ importers:
 
   .:
     specifiers:
-      '@amazeelabs/prettier-config': workspace:^1.1.1
+      '@amazeelabs/prettier-config': workspace:*
       '@commitlint/cli': 17.4.4
       '@commitlint/config-conventional': 17.4.4
       commitizen: 4.3.0
@@ -15,7 +15,7 @@ importers:
       lerna: 6.5.1
       prettier: 2.8.4
       verdaccio: 5.22.1
-      verdaccio-git: workspace:^0.1.77
+      verdaccio-git: workspace:*
     dependencies:
       prettier: 2.8.4
     devDependencies:
@@ -30,13 +30,13 @@ importers:
 
   apps/silverback-drupal:
     specifiers:
-      '@-amazeelabs/silverback-cli': ^2.9.2
-      '@-amazeelabs/silverback_gatsby': ^2.0.4
-      '@-drupal/cypress': ^2.3.87
-      '@-drupal/gatsby_build_monitor': ^1.4.56
-      '@-silverback-drupal-config/webform': ^1.0.6
-      '@-silverback-drupal/gutenberg_custom_blocks': ^1.0.65
-      '@amazeelabs/graphql-schema-test': ^1.1.39
+      '@-amazeelabs/silverback-cli': workspace:*
+      '@-amazeelabs/silverback_gatsby': workspace:*
+      '@-drupal/cypress': workspace:*
+      '@-drupal/gatsby_build_monitor': workspace:*
+      '@-silverback-drupal-config/webform': workspace:*
+      '@-silverback-drupal/gutenberg_custom_blocks': workspace:*
+      '@amazeelabs/graphql-schema-test': workspace:*
       jest: 29.5.0
       start-server-and-test: 1.15.4
     dependencies:
@@ -83,16 +83,16 @@ importers:
 
   apps/silverback-gatsby:
     specifiers:
-      '@-amazeelabs/silverback-drupal': ^2.2.2
-      '@amazeelabs/codegen-operation-ids': 0.1.15
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/gatsby-silverback-cloudinary': 1.0.7
-      '@amazeelabs/gatsby-source-silverback': ^1.9.20
-      '@amazeelabs/gatsby-theme-core': ^0.6.76
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
-      '@amazeelabs/silverback-graphql-persisted': ^1.2.11
-      '@amazeelabs/silverback-iframe': 1.2.9
+      '@-amazeelabs/silverback-drupal': workspace:*
+      '@amazeelabs/codegen-operation-ids': workspace:*
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/gatsby-silverback-cloudinary': workspace:*
+      '@amazeelabs/gatsby-source-silverback': workspace:*
+      '@amazeelabs/gatsby-theme-core': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
+      '@amazeelabs/silverback-graphql-persisted': workspace:*
+      '@amazeelabs/silverback-iframe': workspace:*
       '@formatjs/cli': 6.0.4
       '@graphql-codegen/cli': 3.2.2
       '@graphql-codegen/typescript': 3.0.2
@@ -115,7 +115,7 @@ importers:
       gatsby-image: 3.11.0
       gatsby-plugin-pnpm: 1.2.10
       gatsby-plugin-remote-images: 3.6.5
-      gatsby-plugin-schema-export: 1.1.31
+      gatsby-plugin-schema-export: workspace:*
       gatsby-plugin-sharp: 5.7.0
       gatsby-source-filesystem: 5.7.0
       gatsby-transformer-sharp: 5.7.0
@@ -194,11 +194,11 @@ importers:
 
   apps/silverback-website:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/gatsby-theme-core': ^0.6.76
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
-      '@amazeelabs/react-di': ^1.0.85
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/gatsby-theme-core': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
+      '@amazeelabs/react-di': workspace:*
       '@graphql-codegen/cli': 3.2.2
       '@graphql-codegen/typescript': 3.0.2
       '@graphql-codegen/typescript-operations': 3.0.2
@@ -219,7 +219,7 @@ importers:
       gatsby: 5.7.0
       gatsby-plugin-mdx: 5.7.0
       gatsby-plugin-postcss: 6.7.0
-      gatsby-plugin-schema-export: 1.1.31
+      gatsby-plugin-schema-export: workspace:*
       gatsby-plugin-schema-snapshot: 4.7.0
       gatsby-plugin-sharp: 5.7.0
       gatsby-remark-autolink-headers: 6.7.0
@@ -281,88 +281,88 @@ importers:
 
   packages/composer/amazeelabs/default-content:
     specifiers:
-      '@amazeelabs/sync-composer-version': ^1.1.3
+      '@amazeelabs/sync-composer-version': workspace:*
     devDependencies:
       '@amazeelabs/sync-composer-version': link:../../../npm/@amazeelabs/sync-composer-version
 
   packages/composer/amazeelabs/graphql_directives:
     specifiers:
-      '@amazeelabs/sync-composer-version': ^1.1.3
+      '@amazeelabs/sync-composer-version': workspace:*
     devDependencies:
       '@amazeelabs/sync-composer-version': link:../../../npm/@amazeelabs/sync-composer-version
 
   packages/composer/amazeelabs/graphql_snapshot_test:
     specifiers:
-      '@amazeelabs/sync-composer-version': ^1.1.3
+      '@amazeelabs/sync-composer-version': workspace:*
     devDependencies:
       '@amazeelabs/sync-composer-version': link:../../../npm/@amazeelabs/sync-composer-version
 
   packages/composer/amazeelabs/proxy-default-content:
     specifiers:
-      '@amazeelabs/sync-composer-version': ^1.1.3
+      '@amazeelabs/sync-composer-version': workspace:*
     devDependencies:
       '@amazeelabs/sync-composer-version': link:../../../npm/@amazeelabs/sync-composer-version
 
   packages/composer/amazeelabs/proxy-drupal-core:
     specifiers:
-      '@amazeelabs/sync-composer-version': ^1.1.3
+      '@amazeelabs/sync-composer-version': workspace:*
     devDependencies:
       '@amazeelabs/sync-composer-version': link:../../../npm/@amazeelabs/sync-composer-version
 
   packages/composer/amazeelabs/proxy-graphql:
     specifiers:
-      '@amazeelabs/sync-composer-version': ^1.1.3
+      '@amazeelabs/sync-composer-version': workspace:*
     devDependencies:
       '@amazeelabs/sync-composer-version': link:../../../npm/@amazeelabs/sync-composer-version
 
   packages/composer/amazeelabs/proxy-gutenberg:
     specifiers:
-      '@amazeelabs/sync-composer-version': ^1.1.3
+      '@amazeelabs/sync-composer-version': workspace:*
     devDependencies:
       '@amazeelabs/sync-composer-version': link:../../../npm/@amazeelabs/sync-composer-version
 
   packages/composer/amazeelabs/silverback-cli:
     specifiers:
-      '@amazeelabs/sync-composer-version': ^1.1.3
+      '@amazeelabs/sync-composer-version': workspace:*
     devDependencies:
       '@amazeelabs/sync-composer-version': link:../../../npm/@amazeelabs/sync-composer-version
 
   packages/composer/amazeelabs/silverback_cdn_redirect:
     specifiers:
-      '@amazeelabs/sync-composer-version': ^1.1.3
+      '@amazeelabs/sync-composer-version': workspace:*
     devDependencies:
       '@amazeelabs/sync-composer-version': link:../../../npm/@amazeelabs/sync-composer-version
 
   packages/composer/amazeelabs/silverback_cloudinary:
     specifiers:
-      '@amazeelabs/sync-composer-version': ^1.1.2
+      '@amazeelabs/sync-composer-version': workspace:*
     devDependencies:
       '@amazeelabs/sync-composer-version': link:../../../npm/@amazeelabs/sync-composer-version
 
   packages/composer/amazeelabs/silverback_external_preview:
     specifiers:
-      '@amazeelabs/sync-composer-version': ^1.1.3
+      '@amazeelabs/sync-composer-version': workspace:*
     devDependencies:
       '@amazeelabs/sync-composer-version': link:../../../npm/@amazeelabs/sync-composer-version
 
   packages/composer/amazeelabs/silverback_gatsby:
     specifiers:
-      '@amazeelabs/sync-composer-version': ^1.1.3
+      '@amazeelabs/sync-composer-version': workspace:*
     devDependencies:
       '@amazeelabs/sync-composer-version': link:../../../npm/@amazeelabs/sync-composer-version
 
   packages/composer/amazeelabs/silverback_graphql_persisted:
     specifiers:
-      '@amazeelabs/sync-composer-version': ^1.1.3
+      '@amazeelabs/sync-composer-version': workspace:*
     devDependencies:
       '@amazeelabs/sync-composer-version': link:../../../npm/@amazeelabs/sync-composer-version
 
   packages/composer/amazeelabs/silverback_gutenberg:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
-      '@amazeelabs/sync-composer-version': ^1.1.3
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
+      '@amazeelabs/sync-composer-version': workspace:*
       '@types/jest': 29.5.0
       eslint: 8.36.0
       jest: 29.5.0
@@ -385,31 +385,31 @@ importers:
 
   packages/composer/amazeelabs/silverback_iframe:
     specifiers:
-      '@amazeelabs/sync-composer-version': ^1.1.3
+      '@amazeelabs/sync-composer-version': workspace:*
     devDependencies:
       '@amazeelabs/sync-composer-version': link:../../../npm/@amazeelabs/sync-composer-version
 
   packages/composer/amazeelabs/silverback_iframe_theme:
     specifiers:
-      '@amazeelabs/sync-composer-version': ^1.1.3
+      '@amazeelabs/sync-composer-version': workspace:*
     devDependencies:
       '@amazeelabs/sync-composer-version': link:../../../npm/@amazeelabs/sync-composer-version
 
   packages/composer/amazeelabs/silverback_translations:
     specifiers:
-      '@amazeelabs/sync-composer-version': ^1.1.3
+      '@amazeelabs/sync-composer-version': workspace:*
     devDependencies:
       '@amazeelabs/sync-composer-version': link:../../../npm/@amazeelabs/sync-composer-version
 
   packages/composer/drupal/cypress:
     specifiers:
-      '@amazeelabs/sync-composer-version': ^1.1.3
+      '@amazeelabs/sync-composer-version': workspace:*
       '@testing-library/cypress': 9.0.0
       cypress: 9.7.0
       cypress-cucumber-preprocessor: 4.3.1
       cypress-file-upload: 5.0.8
-      cypress-screenplay: ^0.5.65
-      drupal-test-session-cypress: ^1.1.64
+      cypress-screenplay: workspace:*
+      drupal-test-session-cypress: workspace:*
     dependencies:
       '@testing-library/cypress': 9.0.0_cypress@9.7.0
       cypress: 9.7.0
@@ -422,10 +422,10 @@ importers:
 
   packages/composer/drupal/gatsby_build_monitor:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
-      '@amazeelabs/sync-composer-version': ^1.1.3
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
+      '@amazeelabs/sync-composer-version': workspace:*
       '@types/jest': 29.5.0
       eslint: 8.36.0
       jest: 29.5.0
@@ -447,8 +447,8 @@ importers:
 
   packages/composer/drupal/test_session:
     specifiers:
-      '@amazeelabs/sync-composer-version': ^1.1.3
-      drupal-test-session-cypress: ^1.1.64
+      '@amazeelabs/sync-composer-version': workspace:*
+      drupal-test-session-cypress: workspace:*
     devDependencies:
       '@amazeelabs/sync-composer-version': link:../../../npm/@amazeelabs/sync-composer-version
       drupal-test-session-cypress: link:../../../npm/drupal-test-session-cypress
@@ -481,14 +481,14 @@ importers:
 
   packages/composer/drupal/webform_jsonschema:
     specifiers:
-      '@amazeelabs/sync-composer-version': ^1.1.3
+      '@amazeelabs/sync-composer-version': workspace:*
     devDependencies:
       '@amazeelabs/sync-composer-version': link:../../../npm/@amazeelabs/sync-composer-version
 
   packages/npm/@amazeelabs/bridge:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/prettier-config': 1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@swc/cli': 0.1.62
       '@swc/core': 1.3.42
       '@types/react': ^18.0.28
@@ -506,8 +506,8 @@ importers:
 
   packages/npm/@amazeelabs/codegen-gatsby-fragments:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/prettier-config': 1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@graphql-codegen/plugin-helpers': ^4.0.0
       '@swc/cli': 0.1.62
       '@swc/core': 1.3.42
@@ -532,8 +532,8 @@ importers:
 
   packages/npm/@amazeelabs/codegen-operation-ids:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/prettier-config': 1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@graphql-codegen/cli': 3.2.2
       '@graphql-codegen/plugin-helpers': ^4.0.0
       '@graphql-codegen/typescript': 3.0.2
@@ -591,9 +591,9 @@ importers:
 
   packages/npm/@amazeelabs/gatsby-fragments:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@rollup/plugin-commonjs': 24.0.1
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-typescript': 11.0.0
@@ -629,8 +629,8 @@ importers:
 
   packages/npm/@amazeelabs/gatsby-silverback-cloudinary:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/prettier-config': 1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@cloudinary/url-gen': ^1.9.2
       '@types/crypto-js': 4.1.1
       '@types/node': 16.18.16
@@ -658,9 +658,9 @@ importers:
 
   packages/npm/@amazeelabs/gatsby-source-silverback:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@rollup/plugin-node-resolve': 15.0.1
       '@types/jest': 29.5.0
       '@types/react': 18.0.28
@@ -701,7 +701,7 @@ importers:
 
   packages/npm/@amazeelabs/gatsby-source-silverback-cypress:
     specifiers:
-      '@amazeelabs/jest-preset': 1.3.46
+      '@amazeelabs/jest-preset': workspace:*
       cypress: 9.7.0
       typescript: 4.9.5
     devDependencies:
@@ -711,9 +711,9 @@ importers:
 
   packages/npm/@amazeelabs/gatsby-starter:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@graphql-codegen/cli': 3.2.2
       '@graphql-codegen/typescript': 3.0.2
       '@graphql-codegen/typescript-operations': 3.0.2
@@ -723,7 +723,7 @@ importers:
       dotenv: ^16.0.3
       eslint: 8.36.0
       gatsby: ^5.7.0
-      gatsby-plugin-schema-export: ^1.1.31
+      gatsby-plugin-schema-export: workspace:*
       gatsby-source-filesystem: 5.7.0
       husky: 8.0.3
       jest: 29.5.0
@@ -760,9 +760,9 @@ importers:
 
   packages/npm/@amazeelabs/gatsby-theme-core:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@amazeelabs/react-di': ^1.0.85
       '@types/jest': 29.5.0
       '@types/node': 16.18.16
@@ -799,9 +799,9 @@ importers:
 
   packages/npm/@amazeelabs/graphql-schema-test:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@types/jest': 29.5.0
       '@types/jest-specific-snapshot': 0.5.6
       '@types/lodash': 4.14.191
@@ -854,9 +854,9 @@ importers:
 
   packages/npm/@amazeelabs/molecules:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@babel/core': 7.21.3
       '@headlessui/react': ^1.7.13
       '@mdx-js/react': 2.3.0
@@ -959,8 +959,8 @@ importers:
 
   packages/npm/@amazeelabs/mzx:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/prettier-config': 1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@rollup/plugin-node-resolve': 15.0.1
       '@rollup/plugin-typescript': 11.0.0
       '@types/diff': 5.0.2
@@ -1015,12 +1015,12 @@ importers:
 
   packages/npm/@amazeelabs/publisher:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
-      '@amazeelabs/publisher-elements': workspace:^2.0.7
-      '@amazeelabs/publisher-shared': workspace:^2.0.5
-      '@amazeelabs/publisher-ui': workspace:^2.0.7
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
+      '@amazeelabs/publisher-elements': workspace:*
+      '@amazeelabs/publisher-shared': workspace:*
+      '@amazeelabs/publisher-ui': workspace:*
       '@slack/webhook': ^6.1.0
       '@types/cors': 2.8.13
       '@types/express': 4.17.17
@@ -1092,9 +1092,9 @@ importers:
 
   packages/npm/@amazeelabs/publisher-elements:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/prettier-config': 1.1.2
-      '@amazeelabs/publisher-shared': workspace:^2.0.5
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
+      '@amazeelabs/publisher-shared': workspace:*
       '@babel/core': 7.21.3
       '@rollup/plugin-node-resolve': 15.0.1
       '@storybook/addon-actions': 6.5.16
@@ -1140,9 +1140,9 @@ importers:
 
   packages/npm/@amazeelabs/publisher-shared:
     specifiers:
-      '@amazeelabs/eslint-config': workspace:^1.4.42
-      '@amazeelabs/jest-preset': workspace:^1.3.46
-      '@amazeelabs/prettier-config': workspace:^1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       rollup: 3.19.1
       rollup-plugin-dts: 5.2.0
       rollup-plugin-esbuild: 5.0.0
@@ -1158,10 +1158,10 @@ importers:
 
   packages/npm/@amazeelabs/publisher-ui:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/prettier-config': 1.1.2
-      '@amazeelabs/publisher-shared': workspace:^2.0.5
-      '@amazeelabs/react-framework-bridge': workspace:^2.3.17
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
+      '@amazeelabs/publisher-shared': workspace:*
+      '@amazeelabs/react-framework-bridge': workspace:*
       '@babel/core': 7.21.3
       '@headlessui/react': 1.7.13
       '@react-rxjs/core': 0.10.4
@@ -1230,20 +1230,19 @@ importers:
 
   packages/npm/@amazeelabs/react-di:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': ^1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@types/jest': 29.5.0
       eslint: 8.36.0
       jest: 29.5.0
       lint-staged: 13.2.0
       prettier: 2.8.4
       typescript: 4.9.5
-    dependencies:
-      '@amazeelabs/eslint-config': link:../eslint-config
-      '@amazeelabs/prettier-config': link:../prettier-config
     devDependencies:
+      '@amazeelabs/eslint-config': link:../eslint-config
       '@amazeelabs/jest-preset': link:../jest-preset
+      '@amazeelabs/prettier-config': link:../prettier-config
       '@types/jest': 29.5.0
       eslint: 8.36.0
       jest: 29.5.0
@@ -1253,8 +1252,8 @@ importers:
 
   packages/npm/@amazeelabs/react-framework-bridge:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.42
-      '@amazeelabs/prettier-config': ^1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@rollup/plugin-commonjs': 24.0.1
       '@rollup/plugin-multi-entry': 6.0.0
       '@rollup/plugin-node-resolve': 15.0.1
@@ -1356,8 +1355,8 @@ importers:
 
   packages/npm/@amazeelabs/react-intl-rsc:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/prettier-config': 1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@swc/cli': 0.1.62
       '@swc/core': 1.3.42
       '@types/react': ^18.0.28
@@ -1380,9 +1379,9 @@ importers:
 
   packages/npm/@amazeelabs/recipes:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': ^1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@types/chalk': 2.2.0
       '@types/deasync': 0.1.2
       '@types/jest': 29.5.0
@@ -1405,7 +1404,6 @@ importers:
       typescript: 4.9.5
       update-notifier: ^6.0.2
     dependencies:
-      '@amazeelabs/prettier-config': link:../prettier-config
       chalk: 4.1.2
       deasync: 0.1.28
       js-yaml: 4.1.0
@@ -1417,6 +1415,7 @@ importers:
     devDependencies:
       '@amazeelabs/eslint-config': link:../eslint-config
       '@amazeelabs/jest-preset': link:../jest-preset
+      '@amazeelabs/prettier-config': link:../prettier-config
       '@types/chalk': 2.2.0
       '@types/deasync': 0.1.2
       '@types/jest': 29.5.0
@@ -1433,9 +1432,9 @@ importers:
 
   packages/npm/@amazeelabs/scaffold:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@rollup/plugin-commonjs': 24.0.1
       '@rollup/plugin-json': 6.0.0
       '@rollup/plugin-node-resolve': 15.0.1
@@ -1476,8 +1475,8 @@ importers:
   packages/npm/@amazeelabs/scalars:
     specifiers:
       '@amazeelabs/bridge': workspace:*
-      '@amazeelabs/eslint-config': ^1.4.42
-      '@amazeelabs/prettier-config': ^1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@swc/cli': 0.1.62
       '@swc/core': 1.3.42
       '@types/hast': ^2.3.4
@@ -1517,9 +1516,9 @@ importers:
 
   packages/npm/@amazeelabs/silverback-graphql-persisted:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@types/jest': 29.5.0
       eslint: 8.36.0
       jest: 29.5.0
@@ -1537,9 +1536,9 @@ importers:
 
   packages/npm/@amazeelabs/silverback-iframe:
     specifiers:
-      '@amazeelabs/eslint-config': ^1.4.42
-      '@amazeelabs/jest-preset': ^1.3.46
-      '@amazeelabs/prettier-config': ^1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@types/jest': 29.5.0
       '@types/react': 18.0.28
       eslint: 8.36.0
@@ -1550,11 +1549,11 @@ importers:
       react: 18.2.0
       typescript: 4.9.5
     dependencies:
+      iframe-resizer-react: 1.1.0_react@18.2.0
+    devDependencies:
       '@amazeelabs/eslint-config': link:../eslint-config
       '@amazeelabs/jest-preset': link:../jest-preset
       '@amazeelabs/prettier-config': link:../prettier-config
-      iframe-resizer-react: 1.1.0_react@18.2.0
-    devDependencies:
       '@types/jest': 29.5.0
       '@types/react': 18.0.28
       eslint: 8.36.0
@@ -1566,9 +1565,9 @@ importers:
 
   packages/npm/@amazeelabs/silverback-playwright:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@playwright/test': ^1.31.2
       '@redtea/format-axios-error': ^2.1.1
       '@types/jest': 29.5.0
@@ -1612,9 +1611,9 @@ importers:
 
   packages/npm/@amazeelabs/ui:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@babel/core': 7.21.3
       '@storybook/addon-a11y': 6.5.16
       '@storybook/addon-actions': 6.5.16
@@ -1660,9 +1659,9 @@ importers:
 
   packages/npm/@silverback/ui:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@babel/core': 7.21.3
       '@reach/router': 1.3.4
       '@storybook/addon-actions': 6.5.16
@@ -1721,9 +1720,9 @@ importers:
 
   packages/npm/cypress-screenplay:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@tsconfig/recommended': 1.0.2
       '@types/jest': 29.5.0
       '@types/mocha': 10.0.1
@@ -1765,9 +1764,9 @@ importers:
 
   packages/npm/drupal-test-session-cypress:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@types/jest': 29.5.0
       cypress: 9.7.0
       eslint: 8.36.0
@@ -1787,9 +1786,9 @@ importers:
 
   packages/npm/gatsby-plugin-build-monitor:
     specifiers:
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
       '@types/jest': 29.5.0
       '@types/node': 16.18.16
       axios: ^1.3.4
@@ -1817,7 +1816,7 @@ importers:
 
   packages/npm/verdaccio-git:
     specifiers:
-      '@amazeelabs/eslint-config': workspace:^1.4.42
+      '@amazeelabs/eslint-config': workspace:*
       '@babel/preset-env': 7.20.2
       '@babel/preset-typescript': 7.21.0
       '@tsconfig/recommended': 1.0.2
@@ -1876,12 +1875,12 @@ importers:
 
   packages/tests/silverback-gatsby:
     specifiers:
-      '@-amazeelabs/silverback_gatsby': ^2.0.4
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/gatsby-source-silverback': ^1.9.20
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
-      '@amazeelabs/silverback-playwright': ^1.6.55
+      '@-amazeelabs/silverback_gatsby': workspace:*
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/gatsby-source-silverback': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
+      '@amazeelabs/silverback-playwright': workspace:*
       '@playwright/test': 1.31.2
       '@types/jest': 29.5.0
       eslint: 8.36.0
@@ -1889,14 +1888,13 @@ importers:
       lint-staged: 13.2.0
       prettier: 2.8.4
       typescript: 4.9.5
-    dependencies:
-      '@-amazeelabs/silverback_gatsby': link:../../composer/amazeelabs/silverback_gatsby
-      '@amazeelabs/gatsby-source-silverback': link:../../npm/@amazeelabs/gatsby-source-silverback
-      '@amazeelabs/silverback-playwright': link:../../npm/@amazeelabs/silverback-playwright
     devDependencies:
+      '@-amazeelabs/silverback_gatsby': link:../../composer/amazeelabs/silverback_gatsby
       '@amazeelabs/eslint-config': link:../../npm/@amazeelabs/eslint-config
+      '@amazeelabs/gatsby-source-silverback': link:../../npm/@amazeelabs/gatsby-source-silverback
       '@amazeelabs/jest-preset': link:../../npm/@amazeelabs/jest-preset
       '@amazeelabs/prettier-config': link:../../npm/@amazeelabs/prettier-config
+      '@amazeelabs/silverback-playwright': link:../../npm/@amazeelabs/silverback-playwright
       '@playwright/test': 1.31.2
       '@types/jest': 29.5.0
       eslint: 8.36.0
@@ -1907,12 +1905,12 @@ importers:
 
   packages/tests/silverback-gutenberg:
     specifiers:
-      '@-amazeelabs/silverback-drupal': ^2.2.2
-      '@-amazeelabs/silverback_gutenberg': ^2.2.1
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
-      '@amazeelabs/silverback-playwright': ^1.6.55
+      '@-amazeelabs/silverback-drupal': workspace:*
+      '@-amazeelabs/silverback_gutenberg': workspace:*
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
+      '@amazeelabs/silverback-playwright': workspace:*
       '@playwright/test': 1.31.2
       '@types/jest': 29.5.0
       eslint: 8.36.0
@@ -1922,14 +1920,13 @@ importers:
       ts-jest: 29.0.5
       typescript: 4.9.5
       zx: 4.3.0
-    dependencies:
+    devDependencies:
       '@-amazeelabs/silverback-drupal': link:../../../apps/silverback-drupal
       '@-amazeelabs/silverback_gutenberg': link:../../composer/amazeelabs/silverback_gutenberg
-      '@amazeelabs/silverback-playwright': link:../../npm/@amazeelabs/silverback-playwright
-    devDependencies:
       '@amazeelabs/eslint-config': link:../../npm/@amazeelabs/eslint-config
       '@amazeelabs/jest-preset': link:../../npm/@amazeelabs/jest-preset
       '@amazeelabs/prettier-config': link:../../npm/@amazeelabs/prettier-config
+      '@amazeelabs/silverback-playwright': link:../../npm/@amazeelabs/silverback-playwright
       '@playwright/test': 1.31.2
       '@types/jest': 29.5.0
       eslint: 8.36.0
@@ -1942,14 +1939,14 @@ importers:
 
   packages/tests/silverback-iframe:
     specifiers:
-      '@-amazeelabs/silverback_iframe': ^1.3.2
-      '@-amazeelabs/silverback_iframe_theme': ^1.2.2
-      '@-silverback-drupal-config/webform': ^1.0.6
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
-      '@amazeelabs/silverback-iframe': 1.2.9
-      '@amazeelabs/silverback-playwright': ^1.6.55
+      '@-amazeelabs/silverback_iframe': workspace:*
+      '@-amazeelabs/silverback_iframe_theme': workspace:*
+      '@-silverback-drupal-config/webform': workspace:*
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
+      '@amazeelabs/silverback-iframe': workspace:*
+      '@amazeelabs/silverback-playwright': workspace:*
       '@playwright/test': 1.31.2
       '@types/jest': 29.5.0
       eslint: 8.36.0
@@ -1958,16 +1955,15 @@ importers:
       prettier: 2.8.4
       typescript: 4.9.5
       zx: 4.3.0
-    dependencies:
+    devDependencies:
       '@-amazeelabs/silverback_iframe': link:../../composer/amazeelabs/silverback_iframe
       '@-amazeelabs/silverback_iframe_theme': link:../../composer/amazeelabs/silverback_iframe_theme
       '@-silverback-drupal-config/webform': link:../../../apps/silverback-drupal/config/webform
-      '@amazeelabs/silverback-iframe': link:../../npm/@amazeelabs/silverback-iframe
-      '@amazeelabs/silverback-playwright': link:../../npm/@amazeelabs/silverback-playwright
-    devDependencies:
       '@amazeelabs/eslint-config': link:../../npm/@amazeelabs/eslint-config
       '@amazeelabs/jest-preset': link:../../npm/@amazeelabs/jest-preset
       '@amazeelabs/prettier-config': link:../../npm/@amazeelabs/prettier-config
+      '@amazeelabs/silverback-iframe': link:../../npm/@amazeelabs/silverback-iframe
+      '@amazeelabs/silverback-playwright': link:../../npm/@amazeelabs/silverback-playwright
       '@playwright/test': 1.31.2
       '@types/jest': 29.5.0
       eslint: 8.36.0
@@ -1979,12 +1975,12 @@ importers:
 
   packages/tests/silverback-persisted-queries:
     specifiers:
-      '@-amazeelabs/silverback-gastby': ^2.0.23
-      '@amazeelabs/eslint-config': 1.4.42
-      '@amazeelabs/jest-preset': 1.3.46
-      '@amazeelabs/prettier-config': 1.1.2
-      '@amazeelabs/silverback-graphql-persisted': ^1.2.11
-      '@amazeelabs/silverback-playwright': workspace:^1.6.55
+      '@-amazeelabs/silverback-gastby': workspace:*
+      '@amazeelabs/eslint-config': workspace:*
+      '@amazeelabs/jest-preset': workspace:*
+      '@amazeelabs/prettier-config': workspace:*
+      '@amazeelabs/silverback-graphql-persisted': workspace:*
+      '@amazeelabs/silverback-playwright': workspace:*
       '@playwright/test': 1.31.2
       '@types/jest': 29.5.0
       eslint: 8.36.0
@@ -1992,13 +1988,12 @@ importers:
       lint-staged: 13.2.0
       prettier: 2.8.4
       typescript: 4.9.5
-    dependencies:
-      '@-amazeelabs/silverback-gastby': link:../../../apps/silverback-gatsby
-      '@amazeelabs/silverback-graphql-persisted': link:../../npm/@amazeelabs/silverback-graphql-persisted
     devDependencies:
+      '@-amazeelabs/silverback-gastby': link:../../../apps/silverback-gatsby
       '@amazeelabs/eslint-config': link:../../npm/@amazeelabs/eslint-config
       '@amazeelabs/jest-preset': link:../../npm/@amazeelabs/jest-preset
       '@amazeelabs/prettier-config': link:../../npm/@amazeelabs/prettier-config
+      '@amazeelabs/silverback-graphql-persisted': link:../../npm/@amazeelabs/silverback-graphql-persisted
       '@amazeelabs/silverback-playwright': link:../../npm/@amazeelabs/silverback-playwright
       '@playwright/test': 1.31.2
       '@types/jest': 29.5.0

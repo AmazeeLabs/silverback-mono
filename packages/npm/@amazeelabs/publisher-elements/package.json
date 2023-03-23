@@ -14,9 +14,9 @@
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "1.4.42",
-    "@amazeelabs/prettier-config": "1.1.2",
-    "@amazeelabs/publisher-shared": "workspace:^2.0.5",
+    "@amazeelabs/eslint-config": "workspace:*",
+    "@amazeelabs/prettier-config": "workspace:*",
+    "@amazeelabs/publisher-shared": "workspace:*",
     "@babel/core": "7.21.3",
     "@rollup/plugin-node-resolve": "15.0.1",
     "@storybook/addon-actions": "6.5.16",

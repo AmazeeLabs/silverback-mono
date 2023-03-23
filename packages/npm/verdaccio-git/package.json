@@ -21,7 +21,7 @@
     "tar": "^6.1.13"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "workspace:^1.4.42",
+    "@amazeelabs/eslint-config": "workspace:*",
     "@babel/preset-env": "7.20.2",
     "@babel/preset-typescript": "7.21.0",
     "@tsconfig/recommended": "1.0.2",

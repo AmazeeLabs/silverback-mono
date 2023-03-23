@@ -7,7 +7,7 @@
     "test:unit": "cd ../../../../apps/silverback-drupal && vendor/phpunit/phpunit/phpunit web/modules/contrib/silverback_cloudinary"
   },
   "devDependencies": {
-    "@amazeelabs/sync-composer-version": "^1.1.2"
+    "@amazeelabs/sync-composer-version": "workspace:*"
   },
   "author": "Amazee Labs <development@amazeelabs.com>",
   "publishConfig": {

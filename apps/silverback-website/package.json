@@ -4,8 +4,8 @@
   "version": "0.16.25",
   "author": "Amazee Labs <developers@amazeelabs.com>",
   "dependencies": {
-    "@amazeelabs/gatsby-theme-core": "^0.6.76",
-    "@amazeelabs/react-di": "^1.0.85",
+    "@amazeelabs/gatsby-theme-core": "workspace:*",
+    "@amazeelabs/react-di": "workspace:*",
     "@mdx-js/mdx": "2.3.0",
     "@mdx-js/react": "2.3.0",
     "@tailwindcss/typography": "0.5.9",
@@ -14,7 +14,7 @@
     "gatsby": "5.7.0",
     "gatsby-plugin-mdx": "5.7.0",
     "gatsby-plugin-postcss": "6.7.0",
-    "gatsby-plugin-schema-export": "1.1.31",
+    "gatsby-plugin-schema-export": "workspace:*",
     "gatsby-plugin-schema-snapshot": "4.7.0",
     "gatsby-plugin-sharp": "5.7.0",
     "gatsby-remark-autolink-headers": "6.7.0",
@@ -29,9 +29,9 @@
     "typescript": "4.9.5"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "1.4.42",
-    "@amazeelabs/jest-preset": "1.3.46",
-    "@amazeelabs/prettier-config": "1.1.2",
+    "@amazeelabs/eslint-config": "workspace:*",
+    "@amazeelabs/jest-preset": "workspace:*",
+    "@amazeelabs/prettier-config": "workspace:*",
     "@graphql-codegen/cli": "3.2.2",
     "@graphql-codegen/typescript": "3.0.2",
     "@graphql-codegen/typescript-operations": "3.0.2",

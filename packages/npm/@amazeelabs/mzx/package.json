@@ -21,8 +21,8 @@
     "zx": "^7.2.1"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "1.4.42",
-    "@amazeelabs/prettier-config": "1.1.2",
+    "@amazeelabs/eslint-config": "workspace:*",
+    "@amazeelabs/prettier-config": "workspace:*",
     "@rollup/plugin-node-resolve": "15.0.1",
     "@rollup/plugin-typescript": "11.0.0",
     "@types/diff": "5.0.2",

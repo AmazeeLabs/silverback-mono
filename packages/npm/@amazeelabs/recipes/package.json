@@ -12,7 +12,6 @@
     "amazee-recipes": "./dist/index.js"
   },
   "dependencies": {
-    "@amazeelabs/prettier-config": "^1.1.2",
     "chalk": "^4.1.2",
     "deasync": "^0.1.28",
     "js-yaml": "^4.1.0",
@@ -23,9 +22,9 @@
     "update-notifier": "^6.0.2"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "1.4.42",
-    "@amazeelabs/jest-preset": "1.3.46",
-    "@amazeelabs/prettier-config": "1.1.1",
+    "@amazeelabs/eslint-config": "workspace:*",
+    "@amazeelabs/jest-preset": "workspace:*",
+    "@amazeelabs/prettier-config": "workspace:*",
     "@types/chalk": "2.2.0",
     "@types/deasync": "0.1.2",
     "@types/jest": "29.5.0",

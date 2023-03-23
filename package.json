@@ -18,14 +18,14 @@
     "postinstall": "husky install"
   },
   "devDependencies": {
-    "@amazeelabs/prettier-config": "workspace:^1.1.1",
+    "@amazeelabs/prettier-config": "workspace:*",
     "@commitlint/cli": "17.4.4",
     "@commitlint/config-conventional": "17.4.4",
     "commitizen": "4.3.0",
     "husky": "8.0.3",
     "lerna": "6.5.1",
     "verdaccio": "5.22.1",
-    "verdaccio-git": "workspace:^0.1.77"
+    "verdaccio-git": "workspace:*"
   },
   "commitlint": {
     "extends": [
