@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.9.22](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.9.21...@amazeelabs/gatsby-source-silverback@1.9.22) (2023-03-23)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-source-silverback
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.9.21](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.9.20...@amazeelabs/gatsby-source-silverback@1.9.21) (2023-03-23)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-source-silverback

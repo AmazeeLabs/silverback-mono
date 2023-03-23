@@ -1,6 +1,6 @@
 {
   "name": "@-test_session/cypress-tests",
-  "version": "1.1.73",
+  "version": "1.1.74",
   "private": true,
   "scripts": {
     "watch": "jest --watch",
