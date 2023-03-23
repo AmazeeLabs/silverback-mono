@@ -22,15 +22,15 @@
     "content:import": "source .envrc && drush php-script web/modules/custom/silverback_default_content/import.php"
   },
   "dependencies": {
-    "@-amazeelabs/silverback-cli": "^2.9.2",
-    "@-amazeelabs/silverback_gatsby": "^2.0.4",
-    "@-drupal/cypress": "^2.3.87",
-    "@-drupal/gatsby_build_monitor": "^1.4.56",
-    "@-silverback-drupal-config/webform": "^1.0.6",
-    "@-silverback-drupal/gutenberg_custom_blocks": "^1.0.65"
+    "@-amazeelabs/silverback-cli": "workspace:*",
+    "@-amazeelabs/silverback_gatsby": "workspace:*",
+    "@-drupal/cypress": "workspace:*",
+    "@-drupal/gatsby_build_monitor": "workspace:*",
+    "@-silverback-drupal-config/webform": "workspace:*",
+    "@-silverback-drupal/gutenberg_custom_blocks": "workspace:*"
   },
   "devDependencies": {
-    "@amazeelabs/graphql-schema-test": "^1.1.39",
+    "@amazeelabs/graphql-schema-test": "workspace:*",
     "jest": "29.5.0",
     "start-server-and-test": "1.15.4"
   }

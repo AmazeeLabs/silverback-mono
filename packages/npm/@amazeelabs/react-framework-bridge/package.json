@@ -78,8 +78,8 @@
     "yup": ">=1.0.2"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "^1.4.42",
-    "@amazeelabs/prettier-config": "^1.1.2",
+    "@amazeelabs/eslint-config": "workspace:*",
+    "@amazeelabs/prettier-config": "workspace:*",
     "@rollup/plugin-commonjs": "24.0.1",
     "@rollup/plugin-multi-entry": "6.0.0",
     "@rollup/plugin-node-resolve": "15.0.1",

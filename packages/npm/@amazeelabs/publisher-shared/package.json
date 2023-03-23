@@ -13,9 +13,9 @@
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "workspace:^1.4.42",
-    "@amazeelabs/jest-preset": "workspace:^1.3.46",
-    "@amazeelabs/prettier-config": "workspace:^1.1.2",
+    "@amazeelabs/eslint-config": "workspace:*",
+    "@amazeelabs/jest-preset": "workspace:*",
+    "@amazeelabs/prettier-config": "workspace:*",
     "rollup": "3.19.1",
     "rollup-plugin-dts": "5.2.0",
     "rollup-plugin-esbuild": "5.0.0",
