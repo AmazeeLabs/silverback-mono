@@ -20,7 +20,7 @@
     "rehype-parse": "^8.0.4",
     "rehype-react": "^7.1.2",
     "rehype-slug": "^5.1.0",
-    "remeda": "^1.6.0",
+    "remeda": "^1.9.1",
     "unified": "^10.1.2"
   },
   "optionalDependencies": {
@@ -29,9 +29,9 @@
     "@types/hast": "^2.3.4",
     "@types/react": "^18.0.28",
     "eslint": "^8.36.0",
-    "prettier": "^2.8.4",
+    "prettier": "^2.8.6",
     "typescript": "^4.9.5",
-    "vitest": "^0.27.1"
+    "vitest": "^0.29.7"
   },
   "peerDependencies": {
     "react": "^18.2.0"

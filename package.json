@@ -19,12 +19,12 @@
   },
   "devDependencies": {
     "@amazeelabs/prettier-config": "workspace:*",
-    "@commitlint/cli": "17.4.4",
+    "@commitlint/cli": "17.5.0",
     "@commitlint/config-conventional": "17.4.4",
     "commitizen": "4.3.0",
     "husky": "8.0.3",
     "lerna": "6.5.1",
-    "verdaccio": "5.22.1",
+    "verdaccio": "5.23.1",
     "verdaccio-git": "workspace:*"
   },
   "commitlint": {
@@ -44,7 +44,7 @@
     }
   },
   "dependencies": {
-    "prettier": "2.8.4"
+    "prettier": "2.8.6"
   },
   "resolutions": {
     "@graphql-tools/load": "^7.8.13"
