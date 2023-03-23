@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.29](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-fragments@1.1.28...@amazeelabs/gatsby-fragments@1.1.29) (2023-03-23)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-fragments
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.28](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-fragments@1.1.27...@amazeelabs/gatsby-fragments@1.1.28) (2023-03-18)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-fragments
