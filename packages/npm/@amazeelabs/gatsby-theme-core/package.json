@@ -9,7 +9,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@amazeelabs/react-di": "^1.0.86"
+    "@amazeelabs/react-di": "workspace:*"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "workspace:*",
