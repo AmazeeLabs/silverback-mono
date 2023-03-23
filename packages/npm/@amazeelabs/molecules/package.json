@@ -50,7 +50,7 @@
     "@storybook/preview-web": "6.5.16",
     "@storybook/react": "6.5.16",
     "@storybook/testing-library": "0.0.13",
-    "@testing-library/react": "13.4.0",
+    "@testing-library/react": "14.0.0",
     "@types/lodash": "4.14.191",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
