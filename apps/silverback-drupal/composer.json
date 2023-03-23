@@ -73,7 +73,7 @@
         "drupal/gutenberg": "2.7.0",
         "drupal/hal": "2.0.1",
         "drupal/key_auth": "2.1.0",
-        "drupal/linkit": "^6.0.0-beta4",
+        "drupal/linkit": "6.0.0-beta4",
         "drupal/paragraphs": "1.15.0",
         "drupal/redirect": "1.8.0",
         "drupal/test_session": "@dev",

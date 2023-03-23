@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "57900f0a785f19cc49601175fdd9c201",
+    "content-hash": "94e4c191f9f89776e98986b008f68f59",
     "packages": [
         {
             "name": "amazeelabs/default-content",
@@ -121,11 +121,11 @@
         },
         {
             "name": "amazeelabs/proxy-gutenberg",
-            "version": "1.1.19",
+            "version": "1.2.0",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-gutenberg",
-                "reference": "b194c75f0a59f6f93c7bb4ab84979bd1448e1a95"
+                "reference": "52d80c61787cacc9c55f0b7c04e6bc9ccf8b4124"
             },
             "require": {
                 "cweagans/composer-patches": "^1.7.3",
@@ -307,11 +307,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "2.1.4",
+            "version": "2.2.0",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "a1321046277b5b132ef1639c4638326687b0e747"
+                "reference": "d422a71f79c16fd046f4c49933d2525356a70f4f"
             },
             "require": {
                 "drupal/gutenberg": "^2.7.0"
@@ -3444,11 +3444,11 @@
         },
         {
             "name": "drupal/gatsby_build_monitor",
-            "version": "1.4.54",
+            "version": "1.4.55",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/gatsby_build_monitor",
-                "reference": "09e576862fe7f6e866eb3e384944797d69ad04a7"
+                "reference": "c715479e115541888871393c9da7db2160b8f958"
             },
             "require": {
                 "justinrainbow/json-schema": "^5.2.12"
@@ -3913,11 +3913,11 @@
         },
         {
             "name": "drupal/test_session",
-            "version": "1.2.58",
+            "version": "1.2.59",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/test_session",
-                "reference": "3ee9cafcad60c0f4027435a9106f096d7ebbaecb"
+                "reference": "381fef5cc67ceea06a8633512b8e8a9a2c08db5e"
             },
             "type": "drupal-module",
             "license": [
