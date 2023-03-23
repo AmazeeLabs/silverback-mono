@@ -45,17 +45,17 @@
     "@types/express": "4.17.17",
     "@types/express-ws": "3.0.1",
     "@types/jest": "29.5.0",
-    "@types/node": "16.18.16",
+    "@types/node": "16.18.18",
     "esbuild": "0.17.12",
     "eslint": "8.36.0",
-    "nodemon": "2.0.21",
-    "prettier": "2.8.4",
-    "rollup": "3.19.1",
-    "rollup-plugin-dts": "5.2.0",
+    "nodemon": "2.0.22",
+    "prettier": "2.8.6",
+    "rollup": "3.20.1",
+    "rollup-plugin-dts": "5.3.0",
     "rollup-plugin-esbuild": "5.0.0",
     "rollup-plugin-preserve-shebang": "1.0.1",
     "typescript": "4.9.5",
-    "vitest": "0.29.3"
+    "vitest": "0.29.7"
   },
   "engines": {
     "node": ">=16"

@@ -17,7 +17,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "react-intl": "^6.3.1"
+    "react-intl": "^6.3.2"
   },
   "optionalDependencies": {
     "@types/react": "^18.0.28",
