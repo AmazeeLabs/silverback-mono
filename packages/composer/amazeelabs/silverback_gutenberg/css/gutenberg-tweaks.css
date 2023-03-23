@@ -15,3 +15,9 @@ with cypress tests.*/
 .components-modal__screen-overlay {
   display: none !important;
 }
+
+/* Make the link suggestions box wider (for real world page titles) */
+.components-popover__content div.block-editor-link-control {
+  width: 600px;
+  max-width: 600px;
+}
