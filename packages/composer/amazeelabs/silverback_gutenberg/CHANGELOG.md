@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@2.1.5...@-amazeelabs/silverback_gutenberg@2.2.0) (2023-03-23)
+
+### Features
+
+- wider link suggestions box
+  ([d8b66ab](https://github.com/AmazeeLabs/silverback-mono/commit/d8b66abd8167eb9b8df49bcdc22782f5a125c972))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.1.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@2.1.4...@-amazeelabs/silverback_gutenberg@2.1.5) (2023-03-23)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gutenberg
