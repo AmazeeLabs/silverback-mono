@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/codegen-gatsby-fragments@1.1.2...@amazeelabs/codegen-gatsby-fragments@1.1.3) (2023-03-23)
+
+**Note:** Version bump only for package @amazeelabs/codegen-gatsby-fragments
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/codegen-gatsby-fragments@1.1.1...@amazeelabs/codegen-gatsby-fragments@1.1.2) (2023-03-23)
 
 **Note:** Version bump only for package @amazeelabs/codegen-gatsby-fragments

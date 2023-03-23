@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_external_preview@2.0.0...@-amazeelabs/silverback_external_preview@2.0.1) (2023-03-23)
+
+**Note:** Version bump only for package @-amazeelabs/silverback_external_preview
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [2.0.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_external_preview@1.3.4...@-amazeelabs/silverback_external_preview@2.0.0) (2023-02-02)
 
 - feat(silverback_external_preview)!: update preview links to use new

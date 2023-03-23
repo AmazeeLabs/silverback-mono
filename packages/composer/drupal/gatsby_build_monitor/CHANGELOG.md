@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.57](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/gatsby_build_monitor@1.4.56...@-drupal/gatsby_build_monitor@1.4.57) (2023-03-23)
+
+**Note:** Version bump only for package @-drupal/gatsby_build_monitor
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.4.56](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/gatsby_build_monitor@1.4.55...@-drupal/gatsby_build_monitor@1.4.56) (2023-03-23)
 
 **Note:** Version bump only for package @-drupal/gatsby_build_monitor
