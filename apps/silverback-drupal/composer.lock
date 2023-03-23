@@ -4,18 +4,18 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94e4c191f9f89776e98986b008f68f59",
+    "content-hash": "fe1d2d1aae783bf6d35c5c5319b99687",
     "packages": [
         {
             "name": "amazeelabs/default-content",
-            "version": "1.2.9",
+            "version": "1.2.10",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/default-content",
-                "reference": "56f65fb0e9b4ed68897360763dfbba5d390e8af7"
+                "reference": "6655a0092d7db6609938abcffda0e15661ebc73e"
             },
             "require": {
-                "amazeelabs/proxy-default-content": "^1.1.6"
+                "amazeelabs/proxy-default-content": "^1.1.7"
             },
             "type": "package",
             "autoload": {
@@ -33,11 +33,11 @@
         },
         {
             "name": "amazeelabs/graphql_directives",
-            "version": "2.0.4",
+            "version": "2.0.5",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/graphql_directives",
-                "reference": "a38a80b6079aa8844b7406f60095c35f3f438d07"
+                "reference": "589b4ef1c517836430a1f55625bfad6af6a734f9"
             },
             "type": "drupal-module",
             "extra": {
@@ -58,11 +58,11 @@
         },
         {
             "name": "amazeelabs/proxy-default-content",
-            "version": "1.1.6",
+            "version": "1.1.7",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-default-content",
-                "reference": "92ce5aa894e66bdfd2cfeef4c56626c580d53a02"
+                "reference": "9d1d6f2172215ec7e5a8d4837dbe0bb4c5e23e77"
             },
             "require": {
                 "cweagans/composer-patches": "^1.7.3",
@@ -89,11 +89,11 @@
         },
         {
             "name": "amazeelabs/proxy-drupal-core",
-            "version": "1.1.11",
+            "version": "1.1.12",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-drupal-core",
-                "reference": "5461335ffd840574a6460e8bdf96d83efd1898ee"
+                "reference": "ec7ce2f13a9aa0691f57b612b76ec4fe6ea58f59"
             },
             "require": {
                 "cweagans/composer-patches": "^1.7.3",
@@ -121,11 +121,11 @@
         },
         {
             "name": "amazeelabs/proxy-gutenberg",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-gutenberg",
-                "reference": "52d80c61787cacc9c55f0b7c04e6bc9ccf8b4124"
+                "reference": "1457f9b2553c744e0eb668d754cf1e9efa52b482"
             },
             "require": {
                 "cweagans/composer-patches": "^1.7.3",
@@ -152,11 +152,11 @@
         },
         {
             "name": "amazeelabs/silverback-cli",
-            "version": "2.9.2",
+            "version": "2.9.3",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback-cli",
-                "reference": "26c49c22ce7d3323474226c06d9c29dabe84b6c7"
+                "reference": "95e5ffb09d8ce0d98a1792522455594937ba152b"
             },
             "require": {
                 "drush/drush": ">=10.6.2",
@@ -201,11 +201,11 @@
         },
         {
             "name": "amazeelabs/silverback_cdn_redirect",
-            "version": "2.2.3",
+            "version": "2.2.4",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_cdn_redirect",
-                "reference": "23fac0bab6622d056143bbf699140048ccfc95b9"
+                "reference": "44aa5a4316ebd05aa43c0da75a1b5d80432e520e"
             },
             "type": "drupal-module",
             "license": [
@@ -219,11 +219,11 @@
         },
         {
             "name": "amazeelabs/silverback_cloudinary",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_cloudinary",
-                "reference": "3934509040009388c259f85df3ccd2d3a3ce201b"
+                "reference": "9c908e37a09bafdc25afcc820b396f53861cb91d"
             },
             "require": {
                 "cloudinary/cloudinary_php": "^2"
@@ -247,11 +247,11 @@
         },
         {
             "name": "amazeelabs/silverback_external_preview",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_external_preview",
-                "reference": "81f31bde335f1219fea24e1b6a545edec8320c66"
+                "reference": "4137c1c6134b94d5f90cc86d7bf76db5a8be3a7a"
             },
             "type": "drupal-module",
             "license": [
@@ -265,11 +265,11 @@
         },
         {
             "name": "amazeelabs/silverback_gatsby",
-            "version": "2.0.4",
+            "version": "2.0.5",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gatsby",
-                "reference": "f0465bfee419328613fee265fee0a70b6c689497"
+                "reference": "1952f051fe4bea452cdf098f53015efbde853da9"
             },
             "type": "drupal-module",
             "extra": {
@@ -290,11 +290,11 @@
         },
         {
             "name": "amazeelabs/silverback_graphql_persisted",
-            "version": "1.1.4",
+            "version": "1.1.5",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_graphql_persisted",
-                "reference": "3dbe668fa590e50c96511f1f76126d787cb72389"
+                "reference": "dc309eb70cea06b33bbf49d768e77be07fd93a5c"
             },
             "type": "drupal-module",
             "license": [
@@ -307,11 +307,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "2.2.0",
+            "version": "2.2.2",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "d422a71f79c16fd046f4c49933d2525356a70f4f"
+                "reference": "bdb0e634c35628a3e72ed73d86ed81a7a267e65a"
             },
             "require": {
                 "drupal/gutenberg": "^2.7.0"
@@ -328,11 +328,11 @@
         },
         {
             "name": "amazeelabs/silverback_iframe",
-            "version": "1.3.2",
+            "version": "1.3.3",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_iframe",
-                "reference": "02ca0ca3034edcbcf5fe81825d2506d74adcb386"
+                "reference": "d2fd601eee7792722a8027979c65e45a1e3a8481"
             },
             "type": "drupal-module",
             "license": [
@@ -346,11 +346,11 @@
         },
         {
             "name": "amazeelabs/silverback_iframe_theme",
-            "version": "1.2.2",
+            "version": "1.2.3",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_iframe_theme",
-                "reference": "549fe1062a631b1697fbd8428c40592b5cb701c0"
+                "reference": "d896c97997cce0bbae22b8720e94dadc0f2154d5"
             },
             "type": "drupal-theme",
             "license": [
@@ -364,11 +364,11 @@
         },
         {
             "name": "amazeelabs/silverback_translations",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_translations",
-                "reference": "eb0220f8d0628b73278ba048bff6bef1cf2d3e01"
+                "reference": "93f0280309ff120110b65c2488d27b2410d2a8e4"
             },
             "type": "drupal-module",
             "license": [
@@ -3444,11 +3444,11 @@
         },
         {
             "name": "drupal/gatsby_build_monitor",
-            "version": "1.4.55",
+            "version": "1.4.57",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/gatsby_build_monitor",
-                "reference": "c715479e115541888871393c9da7db2160b8f958"
+                "reference": "be3c83ca28f8a35523c799517c0147981a75e162"
             },
             "require": {
                 "justinrainbow/json-schema": "^5.2.12"
@@ -3913,11 +3913,11 @@
         },
         {
             "name": "drupal/test_session",
-            "version": "1.2.59",
+            "version": "1.2.61",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/test_session",
-                "reference": "381fef5cc67ceea06a8633512b8e8a9a2c08db5e"
+                "reference": "bab3994bb0e25050d9ef558c55e8c65beae6ba7d"
             },
             "type": "drupal-module",
             "license": [
@@ -3930,22 +3930,57 @@
         },
         {
             "name": "drupal/typed_data",
-            "version": "1.0.0-beta1",
+            "version": "1.0.0-beta2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/typed_data.git",
-                "reference": "8.x-1.0-beta1"
+                "reference": "8.x-1.0-beta2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/typed_data-8.x-1.0-beta1.zip",
-                "reference": "8.x-1.0-beta1",
-                "shasum": "73d079f29c7a5679e0db3e28ae888e8cce2f1335"
+                "url": "https://ftp.drupal.org/files/projects/typed_data-8.x-1.0-beta2.zip",
+                "reference": "8.x-1.0-beta2",
+                "shasum": "e0aa651b129d8dcd765ca49cba8682ebe09e6e73"
             },
             "require": {
-                "drupal/core": "^8.8.2 || ^9 || ^10"
+                "drupal/core": "^9.1 || ^10"
             },
-            "type": "drupal-module"
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0-beta2",
+                    "datestamp": "1679429196",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": ">=9"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "fago",
+                    "homepage": "https://www.drupal.org/user/16747"
+                },
+                {
+                    "name": "TR",
+                    "homepage": "https://www.drupal.org/user/202830"
+                }
+            ],
+            "description": "Extends the core Typed Data API with new APIs and features.",
+            "homepage": "https://www.drupal.org/project/typed_data",
+            "support": {
+                "source": "https://git.drupalcode.org/project/typed_data",
+                "issues": "https://www.drupal.org/project/issues/typed_data"
+            }
         },
         {
             "name": "drupal/webform",
