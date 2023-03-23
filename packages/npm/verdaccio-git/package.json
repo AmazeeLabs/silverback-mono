@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@verdaccio/commons-api": "^10.2.0",
-    "@verdaccio/local-storage": "^10.3.2",
+    "@verdaccio/local-storage": "10.3.1",
     "@verdaccio/streams": "^10.2.0",
     "file-system": "^2.2.2",
     "fs-extra": "^11.1.1",

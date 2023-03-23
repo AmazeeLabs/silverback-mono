@@ -1828,7 +1828,7 @@ importers:
       '@types/tar': 6.1.4
       '@typescript-eslint/eslint-plugin': 5.56.0
       '@verdaccio/commons-api': ^10.2.0
-      '@verdaccio/local-storage': ^10.3.2
+      '@verdaccio/local-storage': 10.3.1
       '@verdaccio/streams': ^10.2.0
       '@verdaccio/types': 10.8.0
       eslint: 8.36.0
@@ -1845,7 +1845,7 @@ importers:
       verdaccio: 5.23.1
     dependencies:
       '@verdaccio/commons-api': 10.2.0
-      '@verdaccio/local-storage': 10.3.2
+      '@verdaccio/local-storage': 10.3.1
       '@verdaccio/streams': 10.2.0
       file-system: 2.2.2
       fs-extra: 11.1.1
@@ -14952,23 +14952,6 @@ packages:
       mkdirp: 1.0.4
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /@verdaccio/local-storage/10.3.2:
-    resolution: {integrity: sha512-Meb4TNPh/D1E2UR3a7X9om5YnYoRfckidtpEDTkijJ4IWo448G5Izoowj/bgttz/g2yW37ynqY+KCCIlz8z6aw==}
-    engines: {node: '>=8'}
-    dependencies:
-      '@verdaccio/commons-api': 10.2.0
-      '@verdaccio/file-locking': 10.3.0
-      '@verdaccio/streams': 10.2.0
-      async: 3.2.4
-      debug: 4.3.4
-      lodash: 4.17.21
-      lowdb: 1.0.0
-      mkdirp: 1.0.4
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
 
   /@verdaccio/logger-7/6.0.0-6-next.12:
     resolution: {integrity: sha512-L+HrcTZIJlve/FKyTrtAFwwHpt9f3Umwm6XbUAgbJxNbmQxdo5g1THLMMhbgJhGODOAJCtmf1UToKzhFopGxMg==}
