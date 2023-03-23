@@ -7,12 +7,12 @@
   "private": true,
   "dependencies": {
     "@-amazeelabs/silverback_gatsby": "^2.0.4",
-    "@amazeelabs/gatsby-source-silverback": "^1.9.19",
-    "@amazeelabs/silverback-playwright": "^1.6.54"
+    "@amazeelabs/gatsby-source-silverback": "1.9.19",
+    "@amazeelabs/silverback-playwright": "1.6.54"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.42",
-    "@amazeelabs/jest-preset": "^1.3.46",
+    "@amazeelabs/jest-preset": "1.3.46",
     "@amazeelabs/prettier-config": "1.1.2",
     "@playwright/test": "1.31.2",
     "@types/jest": "29.5.0",
