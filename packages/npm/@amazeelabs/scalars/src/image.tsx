@@ -5,28 +5,37 @@ export type ImageSource = string & {
   _opaque: typeof ImageSource;
 };
 
+type ImageSourceStructure = {
+  src: string;
+  srcset: string;
+  sizes: string;
+  width: number;
+  height: number;
+  sources: Array<{
+    media: string;
+    src: string;
+    srcset: string;
+    width: number;
+    height: number;
+  }>;
+};
+
 export function Image({
   source,
   priority,
   alt,
-  width,
-  height,
   ...props
 }: {
-  width: number;
-  height: number;
   source: ImageSource;
   alt: string;
   priority?: boolean;
   className?: string;
 }) {
-  const imageData = JSON.parse(source);
+  const imageData = JSON.parse(source) as ImageSourceStructure;
   return (
     <img
       decoding={priority ? 'sync' : 'async'}
       loading={priority ? 'eager' : 'lazy'}
-      width={width > 0 ? width : undefined}
-      height={height > 0 ? height : undefined}
       {...imageData}
       alt={alt}
       {...props}
