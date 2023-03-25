@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.1.4...@amazeelabs/scalars@1.1.5) (2023-03-25)
+
+### Bug Fixes
+
+- **scalars:** wrong react prop name for srcSet
+  ([2d1be44](https://github.com/AmazeeLabs/silverback-mono/commit/2d1be440ae760970397764a07d9d79983fd972f4))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.1.3...@amazeelabs/scalars@1.1.4) (2023-03-25)
 
 **Note:** Version bump only for package @amazeelabs/scalars
