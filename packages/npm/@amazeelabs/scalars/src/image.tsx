@@ -31,11 +31,12 @@ export function Image({
   priority?: boolean;
   className?: string;
 }) {
-  const imageData = JSON.parse(source) as ImageSourceStructure;
+  const { srcset, ...imageData } = JSON.parse(source) as ImageSourceStructure;
   return (
     <img
       decoding={priority ? 'sync' : 'async'}
       loading={priority ? 'eager' : 'lazy'}
+      srcSet={srcset}
       {...imageData}
       alt={alt}
       {...props}
