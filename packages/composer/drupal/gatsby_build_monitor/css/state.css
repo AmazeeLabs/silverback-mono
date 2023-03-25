@@ -1,0 +1,10 @@
+.monitor-progress-border {
+  margin-top: 5px;
+  border: 1px solid grey;
+  width: 100px;
+}
+
+.monitor-progress-bar {
+  height: 24px;
+  background-color: green;
+}

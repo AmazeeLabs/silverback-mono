@@ -34,7 +34,6 @@ class Controller {
         // "building" from gatsby-plugin-build-monitor.
         return Response::create();
       }
-
       _gatsby_build_monitor_state($payload->status);
       if ($payload->status === 'idle' && $payload->buildStats) {
         $this->saveBuildStats($payload->buildStats);
@@ -92,6 +91,8 @@ class Controller {
     return JsonResponse::create([
       'state' => _gatsby_build_monitor_state(),
       'timestamp' => \Drupal::state()->get('gatsby_build_monitor.state_updated'),
+      'averageBuildDuration' => \Drupal::state()->get('gatsby_build_monitor.average_build_duration'),
+      'currentTime' => \Drupal::time()->getCurrentTime(),
     ]);
   }
 

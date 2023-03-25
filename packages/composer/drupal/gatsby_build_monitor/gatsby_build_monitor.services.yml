@@ -1,0 +1,4 @@
+services:
+  gatsby_build_monitor.stats:
+    class: Drupal\gatsby_build_monitor\BuildMonitorStats
+    arguments: ["@database"]
