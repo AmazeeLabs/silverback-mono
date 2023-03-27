@@ -10,7 +10,7 @@
     "composer-exit-on-patch-failure": true,
     "patches": {
       "drupal/gutenberg": {
-        "#3213528 Integrate Linkit": "https://www.drupal.org/files/issues/2021-09-22/gutenberg-integrate_linkit-5.patch"
+        "#3213528 Integrate Linkit": "https://www.drupal.org/files/issues/2023-03-27/3213528-9.patch"
       }
     }
   },
