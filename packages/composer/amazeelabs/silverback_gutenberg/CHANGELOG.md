@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@2.2.5...@-amazeelabs/silverback_gutenberg@2.2.6) (2023-03-27)
+
+### Bug Fixes
+
+- **drupal:** no ignored blocks
+  ([d8d816f](https://github.com/AmazeeLabs/silverback-mono/commit/d8d816f1ce3689a36feaf58ada342dfd915736b9))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.2.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@2.2.4...@-amazeelabs/silverback_gutenberg@2.2.5) (2023-03-27)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gutenberg
