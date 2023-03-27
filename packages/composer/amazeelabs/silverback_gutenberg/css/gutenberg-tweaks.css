@@ -21,3 +21,8 @@ with cypress tests.*/
   width: 600px;
   max-width: 600px;
 }
+
+/* Do not trim the link suggestions. */
+.block-editor-link-control__search-item span.block-editor-link-control__search-item-title {
+  white-space: normal;
+}
