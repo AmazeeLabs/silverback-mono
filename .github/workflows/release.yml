@@ -21,7 +21,7 @@ jobs:
       - name: Commons
         uses: ./.github/actions/commons
 
-      - name: Create .npmrc
+      - name: Configure NPM token
         run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
 
       - name: Add auth token for 127.0.0.1
