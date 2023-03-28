@@ -189,6 +189,11 @@ const getCloudinaryImageUrl = (
   const cloudName = credentials.cloudname;
   const apiKey = credentials.key;
   const apiSecret = credentials.secret;
+  if (cloudName === 'test') {
+    return `https://placehold.co/${config?.width}x${
+      config?.height || (config?.width || 1000) * 0.75
+    }/${apiKey}/${apiSecret}`;
+  }
   const image = new CloudinaryImage(
     originalImage,
     {

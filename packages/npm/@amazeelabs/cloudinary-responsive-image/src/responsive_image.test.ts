@@ -102,4 +102,64 @@ describe('buildResponsiveImage()', () => {
       ].join(', '),
     });
   });
+
+  it('retrieves a placeholder image when the cloudname is "test"', () => {
+    const result = JSON.parse(
+      buildResponsiveImage(
+        {
+          cloudname: 'test',
+          key: '000',
+          secret: 'FFF',
+        },
+        imageUrl,
+        {
+          width: 1600,
+          height: 1200,
+          sizes: [
+            [800, 780],
+            [1200, 1100],
+          ],
+        },
+      ),
+    );
+    expect(result).toStrictEqual({
+      src: `https://placehold.co/1600x1200/000/FFF`,
+      width: 1600,
+      height: 1200,
+      sizes: '(max-width: 800px) 780px, (max-width: 1200px) 1100px, 1600px',
+      srcset: [
+        `https://placehold.co/780x585/000/FFF 780w`,
+        `https://placehold.co/1100x825/000/FFF 1100w`,
+      ].join(', '),
+    });
+  });
+
+  it('retrieves a placeholder with ratio 4:3 when there is no height', () => {
+    const result = JSON.parse(
+      buildResponsiveImage(
+        {
+          cloudname: 'test',
+          key: '000',
+          secret: 'FFF',
+        },
+        imageUrl,
+        {
+          width: 1600,
+          sizes: [
+            [800, 780],
+            [1200, 1100],
+          ],
+        },
+      ),
+    );
+    expect(result).toStrictEqual({
+      src: `https://placehold.co/1600x1200/000/FFF`,
+      width: 1600,
+      sizes: '(max-width: 800px) 780px, (max-width: 1200px) 1100px, 1600px',
+      srcset: [
+        `https://placehold.co/780x585/000/FFF 780w`,
+        `https://placehold.co/1100x825/000/FFF 1100w`,
+      ].join(', '),
+    });
+  });
 });
