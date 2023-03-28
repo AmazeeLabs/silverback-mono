@@ -683,22 +683,22 @@ importers:
         specifier: workspace:*
         version: link:../prettier-config
       '@types/crypto-js':
-        specifier: ^4.1.1
+        specifier: 4.1.1
         version: 4.1.1
       eslint:
-        specifier: ^8.36.0
+        specifier: 8.36.0
         version: 8.36.0
       prettier:
-        specifier: ^2.8.6
-        version: 2.8.6
+        specifier: 2.8.7
+        version: 2.8.7
       tsup:
-        specifier: ^6.7.0
+        specifier: 6.7.0
         version: 6.7.0(ts-node@10.9.1)(typescript@4.9.5)
       typescript:
         specifier: 4.9.5
         version: 4.9.5
       vitest:
-        specifier: ^0.29.7
+        specifier: 0.29.7
         version: 0.29.7(@vitest/ui@0.29.7)(happy-dom@8.9.0)
 
   packages/npm/@amazeelabs/codegen-gatsby-fragments:
@@ -9839,7 +9839,7 @@ packages:
       globby: 11.1.0
       jscodeshift: 0.14.0(@babel/preset-env@7.20.2)
       leven: 3.1.0
-      prettier: 2.8.6
+      prettier: 2.8.7
       prompts: 2.4.2
       puppeteer-core: 2.1.1
       read-pkg-up: 7.0.1
@@ -9973,7 +9973,7 @@ packages:
       globby: 11.1.0
       jscodeshift: 0.14.0(@babel/preset-env@7.20.2)
       lodash: 4.17.21
-      prettier: 2.8.6
+      prettier: 2.8.7
       recast: 0.23.1
     transitivePeerDependencies:
       - supports-color
@@ -27363,7 +27363,7 @@ packages:
     resolution: {integrity: sha512-gUD/epcRms75Cw8RT1pUdHugZYM5ce64ucs2GEISABwkRsOQr0q2wm/MV2TKThycIe5e0ytRweW2RZxclogCdQ==}
     engines: {node: '>=8'}
     dependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       parse-json: 5.2.0
       strip-bom: 4.0.0
       type-fest: 0.6.0
@@ -29582,7 +29582,7 @@ packages:
     dependencies:
       env-paths: 2.2.1
       glob: 7.2.3
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       make-fetch-happen: 10.2.1
       nopt: 6.0.0
       npmlog: 6.0.2
@@ -29643,7 +29643,7 @@ packages:
     resolution: {integrity: sha512-fe5rFjPqkWQb4CLfsOf10fZAJvImfLpcVx+Nqbozaj6PBoAEjyEK1HZGCGvQNyre2HdL1HnZG6mxBf2UHSzr/w==}
     engines: {node: '>=12'}
     dependencies:
-      '@babel/parser': 7.16.8
+      '@babel/parser': 7.21.3
     dev: true
 
   /node-stream-zip@1.15.0:
@@ -31927,6 +31927,12 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
+  /prettier@2.8.7:
+    resolution: {integrity: sha512-yPngTo3aXUUmyuTjeTUT75txrf+aMh9FiD7q9ZE/i6r0bPb22g4FsE6Y338PQX1bmfy08i9QQCB7/rcUAVntfw==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
+    dev: true
+
   /pretty-bytes@5.6.0:
     resolution: {integrity: sha512-FFw039TmrBqFK8ma/7OL3sDz/VytdtJr044/QUJtH0wK9lb9jLq9tJyIxUwtQJHwar2BqtiA4iCWSwo9JLkzFg==}
     engines: {node: '>=6'}
@@ -32941,7 +32947,7 @@ packages:
     dependencies:
       debuglog: 1.0.1
       dezalgo: 1.0.4
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       once: 1.4.0
     dev: true
 
@@ -38428,7 +38434,7 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       detect-indent: 5.0.0
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       make-dir: 2.1.0
       pify: 4.0.1
       sort-keys: 2.0.0
