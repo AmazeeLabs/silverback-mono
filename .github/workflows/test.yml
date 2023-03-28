@@ -53,10 +53,10 @@ jobs:
 
       - name: Check for uncommitted changes
         run: |
-          if [[ $(git status --porcelain -- ':!.npmrc') ]]
+          if [[ $(git status --porcelain) ]]
           then
             >&2 echo "Error: Found uncommitted changes. Lerna publish will fail."
-            git status --porcelain -- ':!.npmrc'
+            git status --porcelain
             git diff
             false
           else
