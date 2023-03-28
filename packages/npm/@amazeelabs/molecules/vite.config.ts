@@ -12,6 +12,7 @@ export default defineConfig({
     react({
       jsxRuntime: 'classic',
     }),
+    // @ts-ignore Some types collision after pnpm v8 upgrade.
     dts(),
   ],
   build: {
