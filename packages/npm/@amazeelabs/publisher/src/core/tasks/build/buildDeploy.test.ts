@@ -70,16 +70,23 @@ test('deploy continues after few failing attempts', async () => {
 });
 
 test('a cancelled deploy results in the error state', async () => {
-  setConfig(defaultConfig);
+  setConfig({
+    ...defaultConfig,
+    commands: {
+      ...defaultConfig.commands,
+      deploy: 'sleep 10',
+    },
+  });
   const controller = new TaskController();
   const resolved = buildDeployTask(controller);
   controller.cancel();
   await resolved;
   expect(output).toStrictEqual([
-    'ℹ️ Starting command: "echo "deploy""\n',
-    'ℹ️ Killing command: "echo "deploy""\n',
-    'deploy\n',
-    '✅ Command exited: "echo "deploy""\n',
+    'ℹ️ Starting command: "sleep 10"\n',
+    'ℹ️ Killing command: "sleep 10"\n',
+    expect.stringMatching(
+      /^❌ Command exited with ((null)|(\d+)): "sleep 10"\n$/,
+    ),
   ]);
   expect(core.state.getDeployJobState()).toBe('Error');
 });
