@@ -12,13 +12,8 @@
 
   // Manually control versions for
   ignorePaths: [
-    // Images in Lagoon Dockerfiles
-    "apps/silverback-drupal/lagoon/**",
     // Node.js
     ".nvmrc",
-    // Exclude docs as we are getting the timeout error on @docusaurus/core
-    // package too often.
-    "docs/**",
   ],
 
   // This changes the behaviour of "stabilityDays"
@@ -90,32 +85,6 @@
     },
 
     // Package-specific rules.
-    {
-      packageNames: [
-        // We are not ready for ESM yet. Disable major updates of some packages.
-        "p-queue",
-        "strip-ansi",
-        "chalk",
-        "zx",
-        // Developers did a complete rewrite and were to busy to write upgrade
-        // notes for version 4.
-        "tslog",
-      ],
-      updateTypes: ["major"],
-      enabled: false,
-    },
-    {
-      packageNames: [
-        // Lagoon's drupal_integrations module does not support Drush 11 yet. So
-        // we stay on Drush 10 for now.
-        // TODO: Remove once https://github.com/amazeeio/drupal-integrations/issues/7 is resolved.
-        "drush/drush",
-        // Cypress is not in use anymore, so we disable major updates.
-        "cypress",
-      ],
-      updateTypes: ["major"],
-      enabled: false,
-    },
     {
       // Because @amazeelabs/react-framework-bridge is going to be deprecated
       // soon, we disable updates for it.
