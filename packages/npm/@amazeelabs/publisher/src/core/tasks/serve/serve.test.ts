@@ -32,16 +32,17 @@ test('serve can timeout', async () => {
       serve: {
         command: 'echo "serve"; while true; do sleep 86400; done',
         readyPattern: 'BAD PATTERN',
-        readyTimeout: 10,
+        readyTimeout: 500,
         port: 3001,
       },
     },
   });
   await serveStartTask(new TaskController());
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   expect(output).toStrictEqual([
     'ℹ️ Starting command: "echo "serve"; while true; do sleep 86400; done"\n',
     'serve\n',
-    '⚠️ Could not find the serve ready pattern in 10ms\n',
+    '⚠️ Could not find the serve ready pattern in 500ms\n',
   ]);
   expect(core.serveProcess).not.toBe(null);
 });
