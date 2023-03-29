@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fe1d2d1aae783bf6d35c5c5319b99687",
+    "content-hash": "a9ab241ad43f97f816700c2106d974ef",
     "packages": [
         {
             "name": "amazeelabs/default-content",
@@ -121,11 +121,11 @@
         },
         {
             "name": "amazeelabs/proxy-gutenberg",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-gutenberg",
-                "reference": "1457f9b2553c744e0eb668d754cf1e9efa52b482"
+                "reference": "6787d692b2d7b9b235843c9247a59f840b59be3f"
             },
             "require": {
                 "cweagans/composer-patches": "^1.7.3",
@@ -137,7 +137,7 @@
                 "composer-exit-on-patch-failure": true,
                 "patches": {
                     "drupal/gutenberg": {
-                        "#3213528 Integrate Linkit": "https://www.drupal.org/files/issues/2021-09-22/gutenberg-integrate_linkit-5.patch"
+                        "#3213528 Integrate Linkit": "https://www.drupal.org/files/issues/2023-03-27/3213528-9.patch"
                     }
                 }
             },
@@ -307,11 +307,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "2.2.3",
+            "version": "2.2.6",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "5364b9371f49bedefdc3b2e7222cf9db77a2ec0e"
+                "reference": "673e2ce67e3df8c406c9677ddbd1811a96de4b3f"
             },
             "require": {
                 "drupal/gutenberg": "^2.7.0"
@@ -3440,26 +3440,6 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/entity_usage",
                 "issues": "http://drupal.org/project/issues/entity_usage"
-            }
-        },
-        {
-            "name": "drupal/gatsby_build_monitor",
-            "version": "1.4.58",
-            "dist": {
-                "type": "path",
-                "url": "../../packages/composer/drupal/gatsby_build_monitor",
-                "reference": "28c04bad00fa5555f8dfb892076e2f26458258da"
-            },
-            "require": {
-                "justinrainbow/json-schema": "^5.2.12"
-            },
-            "type": "drupal-module",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "Gatsby build monitor for the Toolbar",
-            "transport-options": {
-                "relative": true
             }
         },
         {
@@ -12303,7 +12283,6 @@
         "amazeelabs/silverback_translations": 20,
         "drupal/default_content": 15,
         "drupal/entity_usage": 10,
-        "drupal/gatsby_build_monitor": 20,
         "drupal/linkit": 10,
         "drupal/test_session": 20,
         "drupal/typed_data": 10,

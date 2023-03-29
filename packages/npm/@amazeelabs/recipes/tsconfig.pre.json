@@ -1,9 +1,0 @@
-{
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "sourceMap": true,
-    "outDir": "dist",
-    "jsx": "react"
-  },
-  "exclude": ["recipes", "tmp"]
-}

@@ -11,8 +11,7 @@
   "author": "Amazee Labs",
   "license": "GPL-2.0-or-later",
   "devDependencies": {
-    "@amazeelabs/sync-composer-version": "workspace:*",
-    "drupal-test-session-cypress": "workspace:*"
+    "@amazeelabs/sync-composer-version": "workspace:*"
   },
   "scripts": {
     "version": "sync-composer-version"

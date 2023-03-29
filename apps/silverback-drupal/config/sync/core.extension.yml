@@ -19,7 +19,6 @@ module:
   field_ui: 0
   file: 0
   filter: 0
-  gatsby_build_monitor: 0
   graphql: 0
   graphql_directives: 0
   gutenberg: 0

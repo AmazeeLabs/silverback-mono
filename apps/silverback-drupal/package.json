@@ -24,8 +24,6 @@
   "dependencies": {
     "@-amazeelabs/silverback-cli": "workspace:*",
     "@-amazeelabs/silverback_gatsby": "workspace:*",
-    "@-drupal/cypress": "workspace:*",
-    "@-drupal/gatsby_build_monitor": "workspace:*",
     "@-silverback-drupal-config/webform": "workspace:*",
     "@-silverback-drupal/gutenberg_custom_blocks": "workspace:*"
   },

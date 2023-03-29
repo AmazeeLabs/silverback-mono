@@ -1,3 +1,7 @@
+# ⚠️ The package is deprecated ⚠️
+
+We do not upgrade its dependencies anymore. See Renovate config.
+
 # React Framework Bridge
 
 This module provides helper functions that allow to separate React component

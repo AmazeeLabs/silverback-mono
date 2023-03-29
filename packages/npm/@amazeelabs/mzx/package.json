@@ -21,8 +21,8 @@
     "zx": "^7.2.1"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "workspace:*",
-    "@amazeelabs/prettier-config": "workspace:*",
+    "@amazeelabs/eslint-config": "1.4.43",
+    "@amazeelabs/prettier-config": "1.1.3",
     "@rollup/plugin-node-resolve": "15.0.1",
     "@rollup/plugin-typescript": "11.0.0",
     "@types/diff": "5.0.2",
@@ -41,7 +41,6 @@
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -c rollup.config.js --watch",
-    "precommit": "lint-staged",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "vitest run --passWithNoTests",
     "test:integration": "PROJECT_NAME=test_project ./cli.js run test.md",

@@ -41,7 +41,6 @@ export const plugins = [
       ],
     }
   },
-  '@amazeelabs/gatsby-theme-core',
   ...(process.env.SCHEMA_UPDATE === 'true'
     ? ['gatsby-plugin-schema-export']
     : []),
