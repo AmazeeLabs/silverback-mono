@@ -1,1 +1,0 @@
-# Amazee Gatsby Theme

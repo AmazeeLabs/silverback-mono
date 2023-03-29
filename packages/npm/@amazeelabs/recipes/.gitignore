@@ -1,4 +1,0 @@
-recipes/*.ts
-dist
-tmp
-yarn-error.log

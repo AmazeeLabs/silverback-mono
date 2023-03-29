@@ -6,4 +6,3 @@ packages:
   - "apps/*"
   - "apps/silverback-drupal/config/*"
   - "apps/silverback-drupal/web/modules/custom/*"
-  - "packages/composer/drupal/test_session/tests/Cypress"

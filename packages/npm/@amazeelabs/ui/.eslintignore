@@ -1,8 +1,0 @@
-.github
-.cache
-.vscode
-.idea
-CHANGELOG.md
-package.json
-package-lock.json
-public
