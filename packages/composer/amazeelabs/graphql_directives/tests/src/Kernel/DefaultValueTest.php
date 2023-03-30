@@ -53,6 +53,10 @@ class DefaultValueTest extends GraphQLTestBase {
     ]]);
   }
 
+  public function testDefaultEnum() {
+    $this->assertResults('{ locale }', [], ['locale' => 'DE']);
+  }
+
   public function testManualDefault() {
     $this->assertResults('{ manual }', [], ['manual' => 'foo']);
   }
