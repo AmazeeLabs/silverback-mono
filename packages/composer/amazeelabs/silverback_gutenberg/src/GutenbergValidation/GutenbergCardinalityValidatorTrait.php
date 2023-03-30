@@ -2,6 +2,8 @@
 
 namespace Drupal\silverback_gutenberg\GutenbergValidation;
 
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+
 /**
  * Cardinality validator helper.
  */
@@ -50,7 +52,7 @@ trait GutenbergCardinalityValidatorTrait {
    *
    * @return array
    */
-  public function validateCardinality(array $block, array $expected_children) {
+  public function validateCardinality(array $block, array $expected_children): array {
     // Nothing to validate.
     if (empty($expected_children)) {
       return [
@@ -136,7 +138,7 @@ trait GutenbergCardinalityValidatorTrait {
    *
    * @return array|void
    */
-  private function validateEmptyInnerBlocks (array $expected_children) {
+  private function validateEmptyInnerBlocks (array $expected_children): array {
     $missingBlocksMessages = [];
     foreach ($expected_children as $child) {
       if ($child['min'] > 0) {
@@ -167,7 +169,7 @@ trait GutenbergCardinalityValidatorTrait {
    *
    * @return array
    */
-  private function validateAnyInnerBlocks(array $inner_blocks, array $expected_children) {
+  private function validateAnyInnerBlocks(array $inner_blocks, array $expected_children): array {
     $min = $expected_children['min'];
     $max = $expected_children['max'];
     $count = count($inner_blocks['innerBlocks']);
@@ -200,7 +202,7 @@ trait GutenbergCardinalityValidatorTrait {
     ];
   }
 
-  private function getExpectedQuantityErrorMessage(array $child_block): string {
+  private function getExpectedQuantityErrorMessage(array $child_block): string|TranslatableMarkup {
     $messageParams = [
       '%label' => $child_block['blockLabel'],
       '@min' => $child_block['min'],
