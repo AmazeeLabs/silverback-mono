@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/graphql_directives@2.0.6...@-amazeelabs/graphql_directives@2.0.7) (2023-03-30)
+
+### Bug Fixes
+
+- support directives on enums
+  ([55c84a4](https://github.com/AmazeeLabs/silverback-mono/commit/55c84a42511d89bd36101a0d721d19ba8d386f6a))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.0.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/graphql_directives@2.0.5...@-amazeelabs/graphql_directives@2.0.6) (2023-03-30)
 
 ### Bug Fixes
