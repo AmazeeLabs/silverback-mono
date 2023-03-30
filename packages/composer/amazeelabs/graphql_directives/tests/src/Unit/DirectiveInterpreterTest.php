@@ -366,6 +366,16 @@ class DirectiveInterpreterTest extends UnitTestCase {
     ]);
   }
 
+  public function testDefaultEnumType() {
+    $this->assertResolvers('enum Locale @default @d { EN DE } type Query { locale: Locale! @r }', [
+      'Query' => [
+        'locale' => $this->builder->defaultValue(
+          $this->builder->produce('r'),
+          $this->builder->produce('d'),
+        ),
+      ],
+    ]);
+  }
 
   public function testOptionalMap() {
     $this->assertResolvers('type Query { a: [String] @a @map @b }', [
