@@ -100,7 +100,7 @@ trait GutenbergCardinalityValidatorTrait {
       if ($countInnerBlockInstances[$child['blockName']] < $child['min']) {
         return [
           'is_valid' => FALSE,
-          'message' => \Drupal::translation()->formatPlural($child['max'],
+          'message' => \Drupal::translation()->formatPlural($child['min'],
             '%label: at least @min block is required.',
             '%label: at least @min blocks are required.',
             [
@@ -176,7 +176,7 @@ trait GutenbergCardinalityValidatorTrait {
     if ($count < $min) {
       return [
         'is_valid' => FALSE,
-        'message' => \Drupal::translation()->formatPlural($max,
+        'message' => \Drupal::translation()->formatPlural($min,
           'At least @min block is required.',
           'At least @min blocks are required.',
           [
