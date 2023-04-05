@@ -3,23 +3,19 @@
  * Implements hook_library_info_build().
  */
 function silverback_publisher_monitor_library_info_build() {
-  $libraries = [];
-  if ($url = getenv('PUBLISHER_URL')) {
-    $libraries = [
-      'indicator' => [
-        'js' => [
-          "${$url}/___status/elements.js" => [],
-        ],
-        'css' => [
-          'theme' => [
-            'css/indicator.css' => [],
-          ],
+  $url = getenv('PUBLISHER_URL') || 'http://localhost:8000';
+  return [
+    'indicator' => [
+      'js' => [
+        "${$url}/___status/elements.js" => [],
+      ],
+      'css' => [
+        'theme' => [
+          'css/indicator.css' => [],
         ],
       ],
-    ];
-  }
-
-  return $libraries;
+    ],
+  ];
 }
 
 function silverback_publisher_monitor_page_attachments(&$variables) {
