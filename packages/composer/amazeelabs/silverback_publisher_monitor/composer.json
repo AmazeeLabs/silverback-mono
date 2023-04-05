@@ -1,0 +1,8 @@
+{
+  "name": "amazeelabs/silverback_publisher_monitor",
+  "type": "drupal-module",
+  "version": "2.0.5",
+  "description": "Publisher status indicator for drupal.",
+  "homepage": "https://silverback.netlify.app",
+  "license": "GPL-2.0+"
+}

@@ -1,0 +1,6 @@
+name: Silverback Publisher monitor
+type: module
+description: 'Adds a build indicator to show the status of Publisher builds'
+package: Silverback
+core: 8.x
+core_version_requirement: ^8 || ^9
