@@ -1,0 +1,58 @@
+<?php
+/**
+ * Implements hook_library_info_build().
+ */
+function silverback_publisher_monitor_library_info_build() {
+  $libraries = [];
+  if ($url = getenv('PUBLISHER_URL')) {
+    $libraries = [
+      'indicator' => [
+        'js' => [
+          "${$url}/___status/elements.js" => [],
+        ],
+        'css' => [
+          'theme' => [
+            'css/indicator.css' => [],
+          ],
+        ],
+      ],
+    ];
+  }
+
+  return $libraries;
+}
+
+function silverback_publisher_monitor_page_attachments(&$variables) {
+  $variables['#attached']['library'][] = 'silverback_publisher_monitor/indicator';
+}
+
+/**
+ * Implements hook_toolbar().
+ */
+function silverback_publisher_monitor_toolbar() {
+  $items = [];
+
+  $items['silverback_publisher_monitor'] = [
+    '#type' => 'toolbar_item',
+    'tab' => [
+      '#type' => 'html_tag',
+      '#tag' => 'publisher-status',
+      '#cache' => [
+        'max-age' => 0,
+      ],
+      '#attributes' => [
+        'url' => getenv('PUBLISHER_BASE_URL'),
+        'labelStarting' => t('Starting build'),
+        'labelReady' => t('Website is up-to-date'),
+        'labelError' => t('Fatal Error'),
+        'labelUpdating' => t('Website is updating'),
+      ],
+    ],
+    '#wrapper_attributes' => [
+      'class' => ['silverback-publisher-indicator-tab'],
+    ],
+    '#weight' => 2000,
+  ];
+
+  return $items;
+}

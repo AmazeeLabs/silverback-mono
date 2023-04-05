@@ -1,0 +1,18 @@
+{
+  "name": "@-amazeelabs/silverback_publisher_monitor",
+  "version": "2.0.5",
+  "main": "index.js",
+  "scripts": {
+    "version": "sync-composer-version"
+  },
+  "devDependencies": {
+    "@amazeelabs/sync-composer-version": "workspace:*"
+  },
+  "author": "Amazee Labs <development@amazeelabs.com>",
+  "publishConfig": {
+    "access": "public",
+    "registry": "http://localhost:4873",
+    "repository": "git@github.com:AmazeeLabs/silverback_publisher_monitor.git",
+    "branch": "main"
+  }
+}
