@@ -1,13 +1,24 @@
 <?php
+
+/**
+ * Retrieve the url publisher is available at.
+ * Defaults to http://localhost:8000.
+ *
+ * @return string
+ */
+function publisher_url() {
+  return getenv('PUBLISHER_URL') ?: 'http://localhost:8000';
+}
+
 /**
  * Implements hook_library_info_build().
  */
 function silverback_publisher_monitor_library_info_build() {
-  $url = getenv('PUBLISHER_URL') || 'http://localhost:8000';
+  $url = publisher_url();
   return [
     'indicator' => [
       'js' => [
-        "${$url}/___status/elements.js" => [],
+        "$url/___status/elements.js" => ['type' => 'external'],
       ],
       'css' => [
         'theme' => [
@@ -37,7 +48,7 @@ function silverback_publisher_monitor_toolbar() {
         'max-age' => 0,
       ],
       '#attributes' => [
-        'url' => getenv('PUBLISHER_BASE_URL'),
+        'url' => publisher_url(),
         'labelStarting' => t('Starting build'),
         'labelReady' => t('Website is up-to-date'),
         'labelError' => t('Fatal Error'),
