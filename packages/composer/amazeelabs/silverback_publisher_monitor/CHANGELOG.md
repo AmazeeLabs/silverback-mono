@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_publisher_monitor@2.2.0...@-amazeelabs/silverback_publisher_monitor@2.2.1) (2023-04-06)
+
+### Bug Fixes
+
+- broken publisher url handling
+  ([ee717cd](https://github.com/AmazeeLabs/silverback-mono/commit/ee717cd4c8692da3e6e4c924b5d93c24879afe2c))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [2.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_publisher_monitor@2.1.0...@-amazeelabs/silverback_publisher_monitor@2.2.0) (2023-04-05)
 
 ### Features
