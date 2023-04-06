@@ -34,7 +34,7 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
     auth_key: Joi.string().optional(),
     query_concurrency: Joi.number().optional().min(1),
     paginator_page_size: Joi.number().optional().min(2),
-    type_prefix: Joi.string().optional(),
+    type_prefix: Joi.string().allow('').optional(),
   });
 
 const getForwardedHeaders = (url: URL) => ({
