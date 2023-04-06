@@ -12,7 +12,7 @@ import {
   ISourcingConfig,
 } from 'gatsby-graphql-source-toolkit/dist/types';
 
-import { Options } from '../utils';
+import { Options, typePrefix } from '../utils';
 import { drupalFeeds as drupalFeedsFetcher } from './drupal-feeds';
 import { createLimitOffsetPaginationAdapter } from './pagination-adapter';
 
@@ -112,8 +112,7 @@ export const createSourcingConfig = async (
     schema,
     execute,
     paginationAdapters: [LimitOffsetTranslatable],
-    gatsbyTypePrefix:
-      typeof options.type_prefix === 'string' ? options.type_prefix : 'Drupal',
+    gatsbyTypePrefix: typePrefix(options),
     gatsbyNodeDefs: buildNodeDefinitions({ gatsbyNodeTypes, documents }),
   };
 };
