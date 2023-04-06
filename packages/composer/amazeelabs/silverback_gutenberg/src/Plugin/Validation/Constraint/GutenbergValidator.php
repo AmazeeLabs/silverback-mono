@@ -106,7 +106,7 @@ class GutenbergValidator extends ConstraintValidator implements ContainerInjecti
    * Validates a set of Gutenberg blocks (and their inner blocks) against a set
    * of validator plugins.
    *
-   * @param $block
+   * @param array $blocks
    * @param array $plugins
    */
   public function validateBlocks(array $blocks, array $plugins, array $breadcrumbs = []) {

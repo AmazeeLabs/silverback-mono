@@ -15,6 +15,6 @@ interface GutenbergValidatorRuleInterface {
    *
    * @return bool
    */
-  public function validate($value, $fieldLabel);
+  public function validate($value, $fieldLabel): bool;
 
 }

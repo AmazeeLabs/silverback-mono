@@ -10,14 +10,14 @@ abstract class GutenbergValidatorBase implements GutenbergValidatorInterface {
   /**
    * {@inheritDoc}
    */
-  public function validateContent($block) {
+  public function validateContent(array $block = []): array {
     return [];
   }
 
   /**
    * {@inheritDoc}
    */
-  public function validatedFields($block = []) {
+  public function validatedFields(array $block = []): array {
     return [];
   }
 

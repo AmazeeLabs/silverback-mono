@@ -16,7 +16,7 @@ interface GutenbergValidatorInterface {
    *
    * @return bool
    */
-  public function applies(array $block);
+  public function applies(array $block): bool;
 
   /**
    * Returns an array with the validation rules for each field that should be
@@ -41,7 +41,7 @@ interface GutenbergValidatorInterface {
    *
    * @return array
    */
-  public function validatedFields(array $block = []);
+  public function validatedFields(array $block = []): array;
 
   /**
    * Validates the content of a block. Useful in case the validator should
@@ -53,13 +53,13 @@ interface GutenbergValidatorInterface {
    * Example:
    * @code
    * array(
-   *   'is_valid' => TRUE,
+   *   'is_valid' => FALSE,
    *   'message' => 'Field name is not valid'
    * );
    * @endcode
    *
    * @return array
    */
-  public function validateContent($block);
+  public function validateContent(array $block = []): array;
 
 }
