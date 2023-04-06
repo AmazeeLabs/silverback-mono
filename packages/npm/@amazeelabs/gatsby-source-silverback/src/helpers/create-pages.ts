@@ -2,7 +2,7 @@ import fs from 'fs';
 import { CreatePagesArgs, PluginOptions } from 'gatsby';
 
 import { SilverbackPageContext } from '../../types';
-import { validOptions } from '../utils';
+import { typePrefix, validOptions } from '../utils';
 import { createQueryExecutor } from './create-query-executor';
 import { drupalFeeds } from './drupal-feeds';
 
@@ -35,7 +35,7 @@ export const createPages = async (
       };
     }>(`
           query {
-            list: allDrupal${feed.typeName} {
+            list: all${typePrefix(options)}${feed.typeName} {
               nodes {
                 typeName: __typename
                 id

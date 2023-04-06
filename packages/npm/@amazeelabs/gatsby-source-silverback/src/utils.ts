@@ -22,3 +22,6 @@ export type Options = {
 export const validOptions = (options: {
   [key: string]: any;
 }): options is Options => options.drupal_url && options.graphql_path;
+
+export const typePrefix = (options: Options) =>
+  typeof options.type_prefix === 'string' ? options.type_prefix : 'Drupal';

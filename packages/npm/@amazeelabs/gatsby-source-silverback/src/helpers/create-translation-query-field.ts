@@ -1,11 +1,13 @@
 import { CreateSchemaCustomizationArgs } from 'gatsby';
 import { IQueryExecutor } from 'gatsby-graphql-source-toolkit/dist/types';
 
+import { Options, typePrefix } from '../utils';
 import { drupalFeeds } from './drupal-feeds';
 
 export const createTranslationQueryField = async (
   { actions, schema }: CreateSchemaCustomizationArgs,
   execute: IQueryExecutor,
+  options: Options,
 ) => {
   // Attach new fields to all translatable Drupal types.
   // - translation: retrieve a specific translation
@@ -14,10 +16,10 @@ export const createTranslationQueryField = async (
       .filter((feed) => feed.translatable)
       .map((feed) =>
         schema.buildObjectType({
-          name: `Drupal${feed.typeName}`,
+          name: `${typePrefix(options)}${feed.typeName}`,
           fields: {
             translation: {
-              type: `Drupal${feed.typeName}!`,
+              type: `${typePrefix(options)}${feed.typeName}!`,
               args: {
                 langcode: {
                   type: 'String!',
