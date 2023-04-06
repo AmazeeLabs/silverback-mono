@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@2.2.7...@-amazeelabs/silverback_gutenberg@2.3.0) (2023-04-06)
+
+### Bug Fixes
+
+- use min for formatPlural
+  ([65e0669](https://github.com/AmazeeLabs/silverback-mono/commit/65e0669ebf0aec5a67df10a9556a704159424ffb))
+
+### Features
+
+- gutenberg blocks cardinality validator
+  ([c327f86](https://github.com/AmazeeLabs/silverback-mono/commit/c327f868af494c6716a692bbc1e16bc147dd41a9))
+- prefix Gutenberg blocks validator violation message with breadcrumbs or block
+  name
+  ([ced922a](https://github.com/AmazeeLabs/silverback-mono/commit/ced922a9a996b9e57d6ce524a28b6dd4f1ea80b4))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.2.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@2.2.6...@-amazeelabs/silverback_gutenberg@2.2.7) (2023-03-29)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gutenberg
