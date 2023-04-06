@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.10.0...@amazeelabs/gatsby-source-silverback@1.10.1) (2023-04-06)
+
+### Bug Fixes
+
+- allow empty string
+  ([089dae4](https://github.com/AmazeeLabs/silverback-mono/commit/089dae4030b92e92d756bdddbc6dd106295cd09d))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.10.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.9.23...@amazeelabs/gatsby-source-silverback@1.10.0) (2023-04-06)
 
 ### Features
