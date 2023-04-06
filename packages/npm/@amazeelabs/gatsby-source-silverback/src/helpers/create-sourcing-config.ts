@@ -112,7 +112,8 @@ export const createSourcingConfig = async (
     schema,
     execute,
     paginationAdapters: [LimitOffsetTranslatable],
-    gatsbyTypePrefix: 'Drupal',
+    gatsbyTypePrefix:
+      typeof options.type_prefix === 'string' ? options.type_prefix : 'Drupal',
     gatsbyNodeDefs: buildNodeDefinitions({ gatsbyNodeTypes, documents }),
   };
 };

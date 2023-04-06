@@ -52,6 +52,8 @@ The following configuration options are supported:
   in parallel. Defaults to 10.
 - `paginator_page_size` **(optional)**: How many entities to fetch in a single
   GraphQL query. Defaults to 100.
+- `type_prefix` **(optional)**: A prefix to be added to all generated GraphQL
+  types. Defaults to `Drupal`.
 
 The optional credential parameters can be used to enable different workflows. On
 production, they can be omitted to make sure Drupal handles these requests
