@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.10.1...@amazeelabs/gatsby-source-silverback@1.10.2) (2023-04-06)
+
+### Bug Fixes
+
+- consider configurable type prefix in queries
+  ([ccb9960](https://github.com/AmazeeLabs/silverback-mono/commit/ccb9960fee8457324d9db6b4bb50559f088ad53a))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.10.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.10.0...@amazeelabs/gatsby-source-silverback@1.10.1) (2023-04-06)
 
 ### Bug Fixes
