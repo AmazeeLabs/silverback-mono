@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.10.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.9.23...@amazeelabs/gatsby-source-silverback@1.10.0) (2023-04-06)
+
+### Features
+
+- make type prefix configurable
+  ([2229007](https://github.com/AmazeeLabs/silverback-mono/commit/2229007054842909c69267ec56b5052f7b4eadab))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.9.23](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.9.22...@amazeelabs/gatsby-source-silverback@1.9.23) (2023-03-29)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-source-silverback
