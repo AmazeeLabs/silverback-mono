@@ -1,4 +1,8 @@
 services:
+  Drupal\silverback_gutenberg\Routing\RouteSubscriber:
+    class: Drupal\silverback_gutenberg\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }
   Drupal\silverback_gutenberg\LinkProcessor:
     class: Drupal\silverback_gutenberg\LinkProcessor
     arguments: ['@path_alias.manager', '@config.factory', '@request_stack', '@module_handler', '@entity.repository', '@entity_type.manager']
