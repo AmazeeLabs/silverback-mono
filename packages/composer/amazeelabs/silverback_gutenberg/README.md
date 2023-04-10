@@ -300,3 +300,11 @@ registerBlockType('custom/my-block', {
   },
 });
 ```
+
+## Linkit integration
+
+To enable the integration:
+
+- enable the linkit module
+- create a linkit profile with `gutenberg` machine name
+- add `Silverback:` prefixed matchers to the profile
