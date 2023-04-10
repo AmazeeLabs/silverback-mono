@@ -36,10 +36,14 @@ runs:
       shell: bash
 
     - name: Cache dependencies
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: /tmp/cache
-        key: cache
+        key: |
+          cache-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          cache-${{ hashFiles('**/pnpm-lock.yaml') }}-
+          cache-
     - name: Set composer cache dir
       run: composer config --global cache-files-dir /tmp/cache/composer
       shell: bash
