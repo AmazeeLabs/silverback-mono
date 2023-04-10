@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/test_session-tests@1.0.2...@-drupal/test_session-tests@1.0.3) (2023-04-10)
+
+**Note:** Version bump only for package @-drupal/test_session-tests
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.0.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/test_session-tests@1.0.1...@-drupal/test_session-tests@1.0.2) (2023-03-30)
 
 **Note:** Version bump only for package @-drupal/test_session-tests

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gutenberg-tests@1.2.13...@-amazeelabs/silverback-gutenberg-tests@1.3.0) (2023-04-10)
+
+### Features
+
+- complete gutenberg-linkit integration (without patches)
+  ([6eb9c19](https://github.com/AmazeeLabs/silverback-mono/commit/6eb9c19ba7fc97783be686ec4a9c10e7b959fe7f))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.2.13](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gutenberg-tests@1.2.12...@-amazeelabs/silverback-gutenberg-tests@1.2.13) (2023-04-06)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-gutenberg-tests
