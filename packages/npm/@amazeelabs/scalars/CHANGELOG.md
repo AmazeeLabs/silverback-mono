@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.1.6...@amazeelabs/scalars@1.1.7) (2023-04-11)
+
+### Bug Fixes
+
+- **react:** declare all shared react packages as side-effect free
+  ([0958cd0](https://github.com/AmazeeLabs/silverback-mono/commit/0958cd06c857b2163f4104e301e18ff326d7ff75))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.1.5...@amazeelabs/scalars@1.1.6) (2023-03-29)
 
 **Note:** Version bump only for package @amazeelabs/scalars
