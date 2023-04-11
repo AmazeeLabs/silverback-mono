@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.0.5...@-amazeelabs/silverback_gatsby@2.0.6) (2023-04-11)
+
+### Bug Fixes
+
+- support schemas extending DirectableSchema directly
+  ([d338ea7](https://github.com/AmazeeLabs/silverback-mono/commit/d338ea78674886d903d03ae21936e6352e4d06f6))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.0.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.0.4...@-amazeelabs/silverback_gatsby@2.0.5) (2023-03-23)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gatsby
