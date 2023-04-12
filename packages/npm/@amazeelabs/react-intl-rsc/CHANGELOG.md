@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-intl-rsc@1.1.7...@amazeelabs/react-intl-rsc@1.1.8) (2023-04-12)
+
+### Bug Fixes
+
+- react-intl-rsc actually has side effects
+  ([15d6d6e](https://github.com/AmazeeLabs/silverback-mono/commit/15d6d6e0cb42eb63c404574210f26dd54953ff86))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-intl-rsc@1.1.6...@amazeelabs/react-intl-rsc@1.1.7) (2023-04-11)
 
 ### Bug Fixes
