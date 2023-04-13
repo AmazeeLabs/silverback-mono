@@ -17,7 +17,7 @@ export const cleanRunTask: TaskJob = async (controller) => {
     core.output$.next('Removing saved builds', 'info');
     const savedBuildsPath = path.resolve(persistentBuilds.saveTo);
     try {
-      fs.removeSync(savedBuildsPath);
+      await fs.remove(savedBuildsPath);
     } catch (e) {
       core.output$.next(`Failed to remove ${savedBuildsPath}`, 'error');
       return false;
