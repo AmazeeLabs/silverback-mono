@@ -33,7 +33,7 @@ export const buildSaveTask: TaskJob = async (controller) => {
     }
     const target = path.resolve(saveTo, dirName);
     try {
-      fs.copySync(source, target, {
+      await fs.copy(source, target, {
         overwrite: true,
       });
     } catch (e) {
