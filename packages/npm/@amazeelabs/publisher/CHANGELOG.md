@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.1.10...@amazeelabs/publisher@2.1.11) (2023-04-13)
+
+### Bug Fixes
+
+- do not block server when copying/removing files
+  ([d2c9069](https://github.com/AmazeeLabs/silverback-mono/commit/d2c906999c52604b0dcb35a107c39da92abb3bbf))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.1.10](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.1.9...@amazeelabs/publisher@2.1.10) (2023-03-29)
 
 **Note:** Version bump only for package @amazeelabs/publisher
