@@ -1,0 +1,5 @@
+services:
+  fix_graphql_caching_subscriber:
+    class: Drupal\silverback_graphql_persisted\EventSubscriber\FixGraphQLCachingSubscriber
+    tags:
+      - { name: event_subscriber }
