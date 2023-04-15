@@ -1,6 +1,9 @@
 {
   "name": "silverback",
   "private": true,
+  "engines": {
+    "pnpm": "8"
+  },
   "scripts": {
     "build": "pnpm -r build",
     "commit": "pnpm git-cz",
