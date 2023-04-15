@@ -305,6 +305,31 @@ registerBlockType('custom/my-block', {
 
 To enable the integration:
 
-- enable the linkit module
-- create a linkit profile with `gutenberg` machine name
-- add `Silverback:` prefixed matchers to the profile
+- Enable the linkit module and create a linkit profile with `gutenberg` machine
+  name
+    <details>
+      <summary>This brings</summary>
+
+  - Basic linkit integration
+  - Improved suggestion labels (e.g. `Content: Page`, `Media: PDF` instead of
+    `page`, `pdf`)
+
+  </details>
+
+- Add `Silverback:` prefixed matchers to the profile
+  <details> <summary>How they differ from the default linkit matchers</summary>
+
+  - Suggestions order is done by the position of the search string in the label.
+    For example, if you search for "best", the order will be:
+    - _Best_ in class
+    - The _best_ choice
+    - Always choose _best_
+  - Improved display of translated content. By default, linkit searches through
+    all content translations but displays suggestions in the current language.
+    Which can be confusing. The Silverback matchers changes this a bit. If the
+    displayed item does not contain the prompt, a translation containing the
+    prompt will be added in the brackets. For example, if you search for "gift"
+    with the English UI, the suggestions will look like this:
+    - _Gift_ for a friend
+    - Poison for an enemy (_Gift_ für einen Feind)
+    </details>
