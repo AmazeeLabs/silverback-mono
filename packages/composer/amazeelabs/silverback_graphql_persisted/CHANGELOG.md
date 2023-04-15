@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_graphql_persisted@1.1.5...@-amazeelabs/silverback_graphql_persisted@1.1.6) (2023-04-15)
+
+### Bug Fixes
+
+- **graphql:** temporary fix for GET-based GraphQL queries
+  ([255ae41](https://github.com/AmazeeLabs/silverback-mono/commit/255ae419d5ea0ab29bb96a7a7b5256a893a01be2))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_graphql_persisted@1.1.4...@-amazeelabs/silverback_graphql_persisted@1.1.5) (2023-03-23)
 
 **Note:** Version bump only for package
