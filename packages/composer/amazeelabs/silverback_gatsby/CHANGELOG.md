@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.0.6...@-amazeelabs/silverback_gatsby@2.1.0) (2023-04-15)
+
+### Features
+
+- **graphql:** directive for fetching an entity based on id, revision or route
+  ([07637e7](https://github.com/AmazeeLabs/silverback-mono/commit/07637e77be4d1c90e6bd00ddb8a23ea35ccdbb41))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.0.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.0.5...@-amazeelabs/silverback_gatsby@2.0.6) (2023-04-11)
 
 ### Bug Fixes
