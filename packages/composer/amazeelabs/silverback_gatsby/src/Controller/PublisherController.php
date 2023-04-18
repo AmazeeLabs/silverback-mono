@@ -5,13 +5,10 @@ namespace Drupal\silverback_gatsby\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-/**
- * Checks if the current user has access to Publisher.
- */
 class PublisherController extends ControllerBase {
 
   /**
-   * Processes a GET or POST request.
+   * Checks if the current user has access to Publisher.
    */
   public function authenticate() {
     /** @var \Drupal\Core\Session\AccountProxyInterface $user */
