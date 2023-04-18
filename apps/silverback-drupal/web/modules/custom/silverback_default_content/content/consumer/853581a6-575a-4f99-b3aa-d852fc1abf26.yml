@@ -1,0 +1,35 @@
+_meta:
+  version: '1.0'
+  entity_type: consumer
+  uuid: 853581a6-575a-4f99-b3aa-d852fc1abf26
+  default_langcode: en
+default:
+  owner_id:
+    -
+      target_id: 1
+  client_id:
+    -
+      value: publisher
+  label:
+    -
+      value: Publisher
+  third_party:
+    -
+      value: true
+  is_default:
+    -
+      value: false
+  secret:
+    -
+      value: $S$EecyhsCicCQW235odZJTADHHUeLbeo74gST.L5LgpF8H1KgBwmnx
+      existing: ''
+      pre_hashed: false
+  confidential:
+    -
+      value: true
+  roles:
+    -
+      target_id: publisher
+  pkce:
+    -
+      value: false
