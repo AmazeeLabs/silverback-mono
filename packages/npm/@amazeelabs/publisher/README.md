@@ -35,15 +35,15 @@ Prerequisite: OAuth2 server, like
 [Drupal](../../../../apps/silverback-drupal/README.md#authentication).
 
 Add environment variables corresponding to the server: `OAUTH2_CLIENT_ID`,
-`OAUTH2_CLIENT_SECRET`, `OAUTH2_TOKEN_HOST`
+`OAUTH2_CLIENT_SECRET`, `OAUTH2_TOKEN_HOST`, `OAUTH2_TOKEN_PATH`
 
 ```typescript
 export default defineConfig({
   oAuth2: {
     clientId: process.env.OAUTH2_CLIENT_ID || 'publisher',
     clientSecret: process.env.OAUTH2_CLIENT_SECRET || 'publisher',
-    tokenHost:
-      process.env.OAUTH2_TOKEN_HOST || 'http://localhost:8888/oauth/token',
+    tokenHost: process.env.OAUTH2_TOKEN_HOST || 'http://localhost:8888',
+    tokenPath: process.env.OAUTH2_TOKEN_PATH || '/oauth/token',
     grantType: OAuth2GrantTypes.ResourceOwnerPassword,
   },
 });
