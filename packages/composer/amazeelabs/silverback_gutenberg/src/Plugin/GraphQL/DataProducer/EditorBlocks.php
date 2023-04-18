@@ -81,6 +81,7 @@ class EditorBlocks extends DataProducerPluginBase {
     $bubbleable = new BubbleableMetadata();
     $fetcher = $this->getDataFetcher();
 
+    $html = '';
     try {
       $html = $fetcher->fetchDataByPropertyPath($value, $path, $bubbleable)->getValue();
     }
