@@ -34,6 +34,13 @@ describe('parseCloudinaryUrl', () => {
       )!.src,
     ).toBe('https://example.com/landscape.jpg');
   });
+  it('extracts no transform', () => {
+    expect(
+      parseCloudinaryUrl(
+        'https://res.cloudinary.com/debug/image/fetch/abc/f_auto//landscape.jpg',
+      )!.src,
+    ).toBe('/landscape.jpg');
+  });
   it('extracts a single transform', () => {
     expect(
       parseCloudinaryUrl(
