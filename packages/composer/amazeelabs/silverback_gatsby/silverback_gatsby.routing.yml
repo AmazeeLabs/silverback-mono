@@ -8,3 +8,15 @@ entity.graphql_server.build_form:
     _permission: 'administer graphql configuration+trigger a gatsby build'
   options:
     _admin_route: TRUE
+
+publisher.authenticate:
+  path: '/publisher/authenticate'
+  defaults:
+    _controller: '\Drupal\silverback_gatsby\Controller\PublisherController::authenticate'
+  methods: [ POST ]
+  requirements:
+    _role: 'authenticated'
+    _format: 'json'
+  options:
+    _auth: [ 'oauth2' ]
+    no_cache: TRUE

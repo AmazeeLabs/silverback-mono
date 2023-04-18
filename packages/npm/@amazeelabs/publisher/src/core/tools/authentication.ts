@@ -3,12 +3,13 @@ import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { ModuleOptions, ResourceOwnerPassword } from 'simple-oauth2';
 import basicAuth from 'express-basic-auth';
 import { getConfig, OAuth2GrantTypes } from './config';
+import fetch from 'node-fetch';
 
 /**
  * Middleware to handle OAuth2 challenge.
  *
  * Displays a challenge to the user to enter a username and password
- * to get an access token.
+ * to get an access token and authenticate to Publisher.
  */
 const oAuth2ChallengeMiddleware: RequestHandler = ((): RequestHandler => {
   return async (req: Request, res: Response, next: NextFunction) => {
@@ -24,6 +25,7 @@ const oAuth2ChallengeMiddleware: RequestHandler = ((): RequestHandler => {
       },
       auth: {
         tokenHost: oAuth2Config?.tokenHost || '',
+        tokenPath: oAuth2Config?.tokenPath || '',
       },
     };
 
@@ -45,29 +47,57 @@ const oAuth2ChallengeMiddleware: RequestHandler = ((): RequestHandler => {
 
     // Grant type: password.
     const oAuth2Client = new ResourceOwnerPassword(oAuth2ModuleOptions);
+    let errorMessage: string | null = null;
+
     if (wwwLogin && wwwPassword) {
       const tokenParams = {
         username: wwwLogin,
         password: wwwPassword,
+        scope: 'publisher',
       };
 
       try {
         console.log('Trying to get the Access Token...');
         const accessToken = await oAuth2Client.getToken(tokenParams);
         if (accessToken) {
-          console.log('Got Access Token');
-          return next();
+          console.log('Access Token retrieved.');
+          const publisherAuthentication = await fetch(
+            `${oAuth2ModuleOptions.auth.tokenHost}/publisher/authenticate`,
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${accessToken.token.access_token}`,
+              },
+            },
+          );
+
+          if (publisherAuthentication.status === 200) {
+            console.log('Publisher authentication succeeded.');
+            return next();
+          } else if (
+            publisherAuthentication.status === 403 ||
+            publisherAuthentication.status === 401
+          ) {
+            errorMessage = 'Publisher authentication failed.';
+          } else if (publisherAuthentication.status === 500) {
+            errorMessage = 'Internal server error.';
+          } else {
+            errorMessage = 'Unknown error.';
+          }
         }
       } catch (data) {
-        // @todo improve DX, print the error on the frontend.
-        // Can fail with 401 (wrong environment variables/configuration)
-        // or 403 (wrong credentials).
-        console.error('OAuth2 Error', data);
+        errorMessage = 'OAuth2 authentication failed.';
       }
     }
 
     res.set('WWW-Authenticate', 'Basic realm="401"');
-    res.status(401).send('Authentication required.');
+    if (errorMessage) {
+      console.error(errorMessage);
+      res.status(401).send(errorMessage);
+    } else {
+      res.status(401).send('Authentication required.');
+    }
   };
 })();
 

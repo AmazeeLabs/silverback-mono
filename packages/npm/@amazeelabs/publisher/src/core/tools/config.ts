@@ -100,6 +100,7 @@ export type PublisherConfig = {
     clientId: string;
     clientSecret: string;
     tokenHost: string;
+    tokenPath: string;
     // Only ResourceOwnerPassword is supported in the first version.
     grantType: OAuth2GrantTypes;
   };

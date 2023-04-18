@@ -6,6 +6,6 @@ refresh_token_expiration: 1209600
 token_cron_batch_size: 0
 public_key: ../keys/public.key
 private_key: ../keys/private.key
-remember_clients: true
+remember_clients: false
 use_implicit: false
 disable_openid_connect: false

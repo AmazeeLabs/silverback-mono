@@ -1,9 +1,12 @@
 uuid: fe13f7b9-0da3-4091-bb08-7abf2230d294
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - silverback_gatsby
 id: publisher
 label: Publisher
 weight: -8
 is_admin: null
-permissions: {  }
+permissions:
+  - 'access publisher'

@@ -947,6 +947,9 @@ importers:
       http-terminator:
         specifier: 3.2.0
         version: 3.2.0
+      node-fetch:
+        specifier: ^3.3.1
+        version: 3.3.1
       referrer-policy:
         specifier: ^1.2.0
         version: 1.2.0

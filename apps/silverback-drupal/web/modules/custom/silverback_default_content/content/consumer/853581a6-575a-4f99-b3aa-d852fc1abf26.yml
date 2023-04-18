@@ -21,15 +21,12 @@ default:
       value: false
   secret:
     -
-      value: $S$EecyhsCicCQW235odZJTADHHUeLbeo74gST.L5LgpF8H1KgBwmnx
+      value: $S$EEjgEZkyQEKxjLgbfPPInFBsOXXkp9eppL4HYEyO6x0xf2i3AOfd
       existing: ''
       pre_hashed: false
   confidential:
     -
       value: true
-  roles:
-    -
-      target_id: publisher
   pkce:
     -
       value: false

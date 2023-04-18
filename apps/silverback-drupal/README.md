@@ -65,7 +65,7 @@ The scopes are
 #### Configuration
 
 - Create a Role for each scope and assign the relevant permissions
-- Create a Consumer for each scope and assign the corresponding Role
+- Create a Consumer for each scope
   - Publisher do not need to have a specific User set
   - Gatsby Preview and Gatsby Build are using a pre-defined user
 - Create Users and assign corresponding roles
