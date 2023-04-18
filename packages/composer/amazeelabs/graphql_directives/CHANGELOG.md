@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/graphql_directives@2.0.7...@-amazeelabs/graphql_directives@2.1.0) (2023-04-18)
+
+### Features
+
+- **graphql:** directive for extracting the public url of an image
+  ([db5bf7f](https://github.com/AmazeeLabs/silverback-mono/commit/db5bf7f3f5b6368a33a333ac9922281fec44fdb1))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.0.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/graphql_directives@2.0.6...@-amazeelabs/graphql_directives@2.0.7) (2023-03-30)
 
 ### Bug Fixes

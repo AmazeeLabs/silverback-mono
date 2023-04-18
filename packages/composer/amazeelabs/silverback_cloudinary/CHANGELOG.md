@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cloudinary@1.1.2...@-amazeelabs/silverback_cloudinary@1.2.0) (2023-04-18)
+
+### Features
+
+- **graphql:** allow to pass field arguments for responsive image processing
+  ([2b49b22](https://github.com/AmazeeLabs/silverback-mono/commit/2b49b22eb735131bb6a399e6dabc790ca9108564))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cloudinary@1.1.1...@-amazeelabs/silverback_cloudinary@1.1.2) (2023-04-17)
 
 ### Bug Fixes
