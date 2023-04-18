@@ -20,6 +20,8 @@
 
 # Ignore .env files as they are personal
 /.env
+# Ignore keys, used for authentication
+/keys/
 
 # Ignore modules and themes checkout out into sites/default for local development.
 /web/modules/development

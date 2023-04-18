@@ -10,7 +10,7 @@ dependencies:
     - system
 id: gatsby_build
 label: 'Gatsby Build'
-weight: 3
+weight: -6
 is_admin: null
 permissions:
   - 'access content'

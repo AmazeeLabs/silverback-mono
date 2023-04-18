@@ -9,6 +9,7 @@ module:
   ckeditor: 0
   config_filter: 0
   config_split: 0
+  consumers: 0
   dblog: 0
   default_content: 0
   dynamic_page_cache: 0
@@ -48,6 +49,7 @@ module:
   silverback_gutenberg: 0
   silverback_iframe: 0
   silverback_translations: 0
+  simple_oauth: 0
   sqlite: 0
   system: 0
   taxonomy: 0
