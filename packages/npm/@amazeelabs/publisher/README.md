@@ -22,6 +22,38 @@ export default defineConfig({
 pnpm publisher --help
 ```
 
+## Authentication
+
+Can be configured in `publisher.config.ts`
+
+If several authentication methods are configured, OAuth2 will be favoured. If
+there is no configuration, access to the routes will be granted.
+
+### OAuth2
+
+```typescript
+export default defineConfig({
+  oAuth2: {
+    clientId: process.env.OAUTH2_CLIENT_ID || 'publisher',
+    clientSecret: process.env.OAUTH2_CLIENT_SECRET || 'publisher',
+    tokenHost:
+      process.env.OAUTH2_TOKEN_HOST || 'http://localhost:8888/oauth/token',
+    grantType: OAuth2GrantTypes.ResourceOwnerPassword,
+  },
+});
+```
+
+### Basic Auth
+
+```typescript
+export default defineConfig({
+  basicAuth: {
+    username: process.env.BASIC_AUTH_USERNAME || 'publisher',
+    password: process.env.BASIC_AUTH_PASSWORD || 'publisher',
+  },
+});
+```
+
 ## Slack notifications
 
 To be notified in case of failure.

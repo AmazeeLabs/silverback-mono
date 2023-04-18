@@ -20,6 +20,7 @@ import { map, shareReplay, Subject } from 'rxjs';
 import { fileURLToPath } from 'url';
 
 import { core } from './core/core';
+import { getAuthenticationMiddleware } from './core/tools/authentication';
 import { getConfig } from './core/tools/config';
 import { getDatabase } from './core/tools/database';
 import { stateNotify } from './notify';
@@ -33,16 +34,8 @@ const runServer = async (): Promise<HttpTerminator> => {
 
   app.locals.isReady = false;
 
-  // Basic Authentication
-  const authMiddleware = ((): RequestHandler => {
-    const credentials = getConfig().basicAuth;
-    return credentials
-      ? basicAuth({
-          users: { [credentials.username]: credentials.password },
-          challenge: true,
-        })
-      : (req: Request, res: Response, next: NextFunction): void => next();
-  })();
+  // Authentication middleware based on the configuration.
+  const authMiddleware = getAuthenticationMiddleware;
 
   // Allow cross-origin requests
   // @TODO see if we need to lock this down

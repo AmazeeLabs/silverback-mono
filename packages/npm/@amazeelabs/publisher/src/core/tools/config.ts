@@ -94,6 +94,16 @@ export type PublisherConfig = {
     password: string;
   };
   /**
+   * Enables OAuth2.
+   */
+  oAuth2?: {
+    clientId: string;
+    clientSecret: string;
+    tokenHost: string;
+    // Only ResourceOwnerPassword is supported in the first version.
+    grantType: OAuth2GrantTypes;
+  };
+  /**
    * Specific CORS settings.
    *
    * If omitted, publisher will allow all origins.
@@ -122,6 +132,12 @@ export type PublisherConfig = {
     target: string;
   }>;
 };
+
+export enum OAuth2GrantTypes {
+  AuthorizationCode,
+  ClientCredentials,
+  ResourceOwnerPassword,
+}
 
 let _config: PublisherConfig | null = null;
 
