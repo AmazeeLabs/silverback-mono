@@ -31,6 +31,12 @@ there is no configuration, access to the routes will be granted.
 
 ### OAuth2
 
+Prerequisite: OAuth2 server, like
+[Drupal](../../../../apps/silverback-drupal/README.md#authentication).
+
+Add environment variables corresponding to the server: `OAUTH2_CLIENT_ID`,
+`OAUTH2_CLIENT_SECRET`, `OAUTH2_TOKEN_HOST`
+
 ```typescript
 export default defineConfig({
   oAuth2: {

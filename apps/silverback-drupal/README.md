@@ -49,3 +49,26 @@ to v4. We found that v4 is better because:
 ### Gatsby part
 
 See [apps/silverback-gatsby](../silverback-gatsby).
+
+### Authentication server
+
+Based on OAuth2.
+
+The scopes are
+
+- [Publisher access](../../packages/npm/@amazeelabs/publisher/README.md#oauth2)
+  with Drupal credentials
+- Gatsby Preview (instant preview) - WIP
+- Gatsby Build (sourcing) - WIP
+- Frontend users, other APIs, ... (project specific)
+
+#### Configuration
+
+- Create a Role for each scope and assign the relevant permissions
+- Create a Consumer for each scope and assign the corresponding Role
+  - Publisher do not need to have a specific User set
+  - Gatsby Preview and Gatsby Build are using a pre-defined user
+- Create Users and assign corresponding roles
+- Generate keys `/admin/config/people/simple_oauth`
+- Drupal hash salt needs to be at least 32 characters long - make sure to
+  override `DRUPAL_HASH_SALT` env variable.
