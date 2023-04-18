@@ -87,7 +87,7 @@ Directive for the responsive_image data producer.
 Provided by the "silverback_cloudinary" module.
 Implemented in "Drupal\silverback_cloudinary\Plugin\GraphQL\Directive\ResponsiveImage".
 """
-directive @responsiveImage(width: Int, height: Int, sizes: [[Int!]!], transform: String) repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
+directive @responsiveImage(width: String, height: String, sizes: String, transform: String) repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
 
 """
 Fetch an entity or entity revision based on id, rid or route
@@ -219,6 +219,14 @@ Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\EntityUuid".
 """
 directive @resolveEntityUuid repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
+
+"""
+Retrieve an images public url.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\ImageUrl".
+"""
+directive @imageUrl repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
 
 """
 Retrieve an object or map property.
