@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/cloudinary-responsive-image@1.2.1...@amazeelabs/cloudinary-responsive-image@1.2.2) (2023-04-18)
+
+### Bug Fixes
+
+- **cloudinary:** handle arbitrary number of transforms in cloudinary mocks
+  ([63ecfc7](https://github.com/AmazeeLabs/silverback-mono/commit/63ecfc792d7b5a09867a71c48fa91f2d6ab6ce7b))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/cloudinary-responsive-image@1.2.0...@amazeelabs/cloudinary-responsive-image@1.2.1) (2023-03-29)
 
 **Note:** Version bump only for package @amazeelabs/cloudinary-responsive-image
