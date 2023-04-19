@@ -1,17 +1,12 @@
 import { buildResponsiveImage } from '@amazeelabs/cloudinary-responsive-image';
 
-import {
-  ResponsiveImage,
-  ResponsiveImageConfig,
-} from '../types/responsive_image';
+import { ResponsiveImageConfig } from '../types/responsive_image';
 
 export const resolveResponsiveImage = (
   originalImage: string,
   config?: ResponsiveImageConfig,
 ): string => {
-  const responsiveImage: ResponsiveImage = {
-    src: originalImage,
-  };
+  const responsiveImage = JSON.parse(originalImage);
 
   // If no config object is given, we just return the original image url.
   if (typeof config === 'undefined') {
@@ -33,7 +28,7 @@ export const resolveResponsiveImage = (
       key: process.env.CLOUDINARY_API_KEY,
       cloudname: process.env.CLOUDINARY_CLOUDNAME,
     },
-    JSON.parse(originalImage),
+    responsiveImage,
     config,
   );
 };
