@@ -48,11 +48,16 @@ export const run = (options: {
   process.stdout?.on('data', (chunk) => {
     setOutputTimeout();
     const string = stripAnsi(`${chunk}`);
-    if (['\n', ''].includes(string.trim())) {
+    if (string.trim() === '') {
       return;
     }
-    output.next(string);
-    core.output$.next(string);
+
+    // Not sure why, maybe because of stripAnsi, but sometimes there are two
+    // newlines at the end of the "gatsby build" chunk.
+    const cleaned = string.replace(/\n{2}$/, '\n');
+
+    output.next(cleaned);
+    core.output$.next(cleaned);
   });
 
   let killSignal: null | NodeJS.Signals = null;
