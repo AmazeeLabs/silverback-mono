@@ -26,17 +26,18 @@ type CloudinaryCredentials = {
 
 export const buildResponsiveImage = (
   credentials: CloudinaryCredentials,
-  originalImage: string,
+  originalImage: { src: string; width: number; height: number },
   config?: ResponsiveImageConfig,
 ): string => {
   const responsiveImage: ResponsiveImage = {
-    src: originalImage,
+    ...originalImage,
   };
 
   // If no config object is given, we just return the original image url.
   if (typeof config === 'undefined') {
     return JSON.stringify(responsiveImage);
   }
+  const ratio = originalImage.height / originalImage.width;
 
   const width = config.width;
   const height = config.height || undefined;
@@ -48,18 +49,20 @@ export const buildResponsiveImage = (
   responsiveImage.width = width;
   if (height) {
     responsiveImage.height = height;
+  } else {
+    responsiveImage.height = Math.round(width * ratio);
   }
   if (typeof config.sizes !== 'undefined') {
     responsiveImage.sizes = buildSizesString(config.sizes, width);
     responsiveImage.srcset = buildSrcSetString(
       credentials,
-      originalImage,
+      originalImage.src,
       config.sizes,
       { width: width, height: height },
       transform,
     );
   }
-  responsiveImage.src = getCloudinaryImageUrl(credentials, originalImage, {
+  responsiveImage.src = getCloudinaryImageUrl(credentials, originalImage.src, {
     width: width,
     height: height,
     transform: transform,

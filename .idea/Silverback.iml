@@ -2,6 +2,11 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/core" isTestSource="false" packagePrefix="Drupal" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/core/lib" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/core/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/composer/amazeelabs/default-content/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/composer/amazeelabs/silverback-cli/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/apps/silverback-gatsby/public" />
       <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/cypress" />
       <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/gatsby_build_monitor" />
