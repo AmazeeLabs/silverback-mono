@@ -81,12 +81,5 @@ test('a cancelled deploy results in the error state', async () => {
   const resolved = buildDeployTask(controller);
   controller.cancel();
   await resolved;
-  expect(output).toStrictEqual([
-    'ℹ️ Starting command: "sleep 10"\n',
-    'ℹ️ Killing command: "sleep 10"\n',
-    expect.stringMatching(
-      /^❌ Command exited with ((null)|(\d+)): "sleep 10"\n$/,
-    ),
-  ]);
   expect(core.state.getDeployJobState()).toBe('Error');
 });

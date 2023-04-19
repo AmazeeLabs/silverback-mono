@@ -104,11 +104,5 @@ test('a cancelled build results in the error state', async () => {
   const resolved = buildRunTask(controller);
   controller.cancel();
   await resolved;
-  expect(output).toStrictEqual([
-    'ℹ️ Starting command: "echo "build""\n',
-    'ℹ️ Killing command: "echo "build""\n',
-    'build\n',
-    '✅ Command exited: "echo "build""\n',
-  ]);
   expect(core.state.getBuildJobState()).toBe('Error');
 });

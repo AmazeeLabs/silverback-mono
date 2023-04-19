@@ -146,6 +146,6 @@ test('outputTimeout is exceeded', async () => {
     'ℹ️ Starting command: "sleep 0.3"\n',
     '⚠️ Killing command due to the output timeout (100ms): "sleep 0.3"\n',
     'ℹ️ Killing command: "sleep 0.3"\n',
-    '❌ Command exited with null: "sleep 0.3"\n',
+    '✅ Command killed with SIGINT signal: "sleep 0.3"\n',
   ]);
 });
