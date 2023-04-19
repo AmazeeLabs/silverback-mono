@@ -1,10 +1,10 @@
 import { spawn } from 'child_process';
 import stripAnsi from 'strip-ansi';
-import terminate from 'terminate/promise';
 
 import { core } from '../core';
 import { OutputSubject } from './output';
 import { TaskController } from './queue';
+import { terminate } from './terminate';
 
 type Result = {
   exitCode: number | null;
