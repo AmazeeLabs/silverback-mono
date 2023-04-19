@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.14](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.1.13...@amazeelabs/publisher@2.1.14) (2023-04-19)
+
+### Bug Fixes
+
+- get rid of double newlines in the output
+  ([598f587](https://github.com/AmazeeLabs/silverback-mono/commit/598f58745a54f08809070dab7c9423bbb1236c76))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.1.13](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.1.12...@amazeelabs/publisher@2.1.13) (2023-04-19)
 
 ### Bug Fixes
