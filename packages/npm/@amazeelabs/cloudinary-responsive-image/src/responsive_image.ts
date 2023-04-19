@@ -39,7 +39,7 @@ export const buildResponsiveImage = (
   }
   const ratio = originalImage.height / originalImage.width;
 
-  const width = config.width;
+  const width = config.width || originalImage.width;
   const height = config.height || undefined;
   const transform = config.transform || undefined;
   // The image width and height in the response should be the same as the ones
