@@ -1,9 +1,9 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
-
-import { ModuleOptions, ResourceOwnerPassword } from 'simple-oauth2';
 import basicAuth from 'express-basic-auth';
-import { getConfig, OAuth2GrantTypes } from './config';
 import fetch from 'node-fetch';
+import { ModuleOptions, ResourceOwnerPassword } from 'simple-oauth2';
+
+import { getConfig, OAuth2GrantTypes } from './config';
 
 /**
  * Middleware to handle OAuth2 challenge.

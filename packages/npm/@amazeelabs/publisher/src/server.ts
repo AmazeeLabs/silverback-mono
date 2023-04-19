@@ -1,12 +1,6 @@
 import { ApplicationState } from '@amazeelabs/publisher-shared';
 import cors from 'cors';
-import express, {
-  NextFunction,
-  Request,
-  RequestHandler,
-  Response,
-} from 'express';
-import basicAuth from 'express-basic-auth';
+import express from 'express';
 import expressWs from 'express-ws';
 import {
   createProxyMiddleware,
