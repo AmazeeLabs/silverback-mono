@@ -56,9 +56,7 @@ test('serve can be restarted', async () => {
     'ℹ️ Starting command: "echo "serve"; while true; do sleep 86400; done"\n',
     'serve\n',
     'ℹ️ Killing command: "echo "serve"; while true; do sleep 86400; done"\n',
-    expect.stringMatching(
-      /^❌ Command exited with ((null)|(\d+)): "echo "serve"; while true; do sleep 86400; done"\n$/,
-    ),
+    '✅ Command killed with SIGINT signal: "echo "serve"; while true; do sleep 86400; done"\n',
     'ℹ️ Starting command: "echo "serve"; while true; do sleep 86400; done"\n',
     'serve\n',
   ]);
@@ -110,8 +108,6 @@ test('serve task can be cancelled while starting', async () => {
     'ℹ️ Starting command: "echo "starting"; sleep 2; echo "started"; while true; do sleep 86400; done"\n',
     'starting\n',
     'ℹ️ Killing command: "echo "starting"; sleep 2; echo "started"; while true; do sleep 86400; done"\n',
-    expect.stringMatching(
-      /^❌ Command exited with ((null)|(\d+)): "echo "starting"; sleep 2; echo "started"; while true; do sleep 86400; done"\n$/,
-    ),
+    '✅ Command killed with SIGINT signal: "echo "starting"; sleep 2; echo "started"; while true; do sleep 86400; done"\n',
   ]);
 });

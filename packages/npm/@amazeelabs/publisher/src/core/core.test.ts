@@ -45,7 +45,7 @@ test('start() should run the build task', async () => {
 
 test('skipInitialBuild option', async () => {
   setConfig(defaultConfig);
-  await core.start({ skipInitialBuild: true });
+  core.start({ skipInitialBuild: true });
   await core.queue.whenIdle;
   expect(output).toStrictEqual([
     'ℹ️ Starting command: "echo "serve"; while true; do sleep 86400; done"\n',
@@ -94,9 +94,7 @@ test('clean() restarts the build', async () => {
     'ℹ️ Starting command: "echo "build starting"; sleep 1; echo "build done""\n',
     'build starting\n',
     'ℹ️ Killing command: "echo "build starting"; sleep 1; echo "build done""\n',
-    expect.stringMatching(
-      /^❌ Command exited with ((null)|(\d+)): "echo "build starting"; sleep 1; echo "build done""\n$/,
-    ),
+    '✅ Command killed with SIGINT signal: "echo "build starting"; sleep 1; echo "build done""\n',
     'ℹ️ Starting command: "echo "clean""\n',
     'clean\n',
     '✅ Command exited: "echo "clean""\n',

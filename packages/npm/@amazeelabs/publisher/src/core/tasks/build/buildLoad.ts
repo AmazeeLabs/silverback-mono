@@ -1,4 +1,5 @@
-import { fs, path } from 'zx';
+import fs from 'fs-extra';
+import path from 'path';
 
 import { core } from '../../core';
 import { getConfig } from '../../tools/config';
