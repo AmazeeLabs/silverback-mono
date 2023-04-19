@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.1.0...@-amazeelabs/silverback_gatsby@2.1.1) (2023-04-19)
+
+### Bug Fixes
+
+- **cloudinary:** retain original image proportions
+  ([e166f29](https://github.com/AmazeeLabs/silverback-mono/commit/e166f29abd769a8ba41ac9c3ffefe04ba67964cd))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [2.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.0.6...@-amazeelabs/silverback_gatsby@2.1.0) (2023-04-15)
 
 ### Features

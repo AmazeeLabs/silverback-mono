@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.3.3...@-amazeelabs/silverback-drupal@2.3.4) (2023-04-19)
+
+### Bug Fixes
+
+- **cloudinary:** retain original image proportions
+  ([e166f29](https://github.com/AmazeeLabs/silverback-mono/commit/e166f29abd769a8ba41ac9c3ffefe04ba67964cd))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.3.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.3.2...@-amazeelabs/silverback-drupal@2.3.3) (2023-04-18)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
