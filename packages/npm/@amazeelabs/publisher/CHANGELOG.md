@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.13](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.1.12...@amazeelabs/publisher@2.1.13) (2023-04-19)
+
+### Bug Fixes
+
+- fix "terminate/promise" import
+  ([dcc2448](https://github.com/AmazeeLabs/silverback-mono/commit/dcc2448fec7bf72b50f2bdf20fac6935d964a119))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.1.12](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.1.11...@amazeelabs/publisher@2.1.12) (2023-04-19)
 
 ### Bug Fixes
