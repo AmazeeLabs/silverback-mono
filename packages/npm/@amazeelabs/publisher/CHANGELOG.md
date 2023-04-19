@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.12](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.1.11...@amazeelabs/publisher@2.1.12) (2023-04-19)
+
+### Bug Fixes
+
+- get rid of zx as it does not work reliably
+  ([7f2fd89](https://github.com/AmazeeLabs/silverback-mono/commit/7f2fd89e503c6b6914760096a166127b1e179684))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.1.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.1.10...@amazeelabs/publisher@2.1.11) (2023-04-13)
 
 ### Bug Fixes
