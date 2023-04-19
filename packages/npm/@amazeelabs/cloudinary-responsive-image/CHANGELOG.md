@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/cloudinary-responsive-image@1.2.3...@amazeelabs/cloudinary-responsive-image@1.2.4) (2023-04-19)
+
+### Bug Fixes
+
+- **cloudinary:** cloudinary gatsby plugin fixes
+  ([e9dd326](https://github.com/AmazeeLabs/silverback-mono/commit/e9dd3266b41f3fdf7f6c1fe9488382748c968853))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.2.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/cloudinary-responsive-image@1.2.2...@amazeelabs/cloudinary-responsive-image@1.2.3) (2023-04-19)
 
 ### Bug Fixes
