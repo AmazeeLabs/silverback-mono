@@ -33,7 +33,7 @@ export const resolveResponsiveImage = (
       key: process.env.CLOUDINARY_API_KEY,
       cloudname: process.env.CLOUDINARY_CLOUDNAME,
     },
-    originalImage,
+    JSON.parse(originalImage),
     config,
   );
 };
