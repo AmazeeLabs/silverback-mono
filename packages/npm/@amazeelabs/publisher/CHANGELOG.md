@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.15](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.1.14...@amazeelabs/publisher@2.1.15) (2023-04-20)
+
+### Bug Fixes
+
+- switch shell to sh as bash isn't available on lagoon
+  ([8a5fd2d](https://github.com/AmazeeLabs/silverback-mono/commit/8a5fd2d02aaa949e7f12315e040c4eabf5c9fdcf))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.1.14](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.1.13...@amazeelabs/publisher@2.1.14) (2023-04-19)
 
 ### Bug Fixes
