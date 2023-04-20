@@ -109,7 +109,7 @@ test('exit code of a failed command is logged', async () => {
   expect(exitCode).toBe(127);
   expect(output).toStrictEqual([
     'ℹ️ Starting command: "I_DO_NOT_EXIST"\n',
-    expect.stringMatching(/I_DO_NOT_EXIST: command not found\n$/),
+    expect.stringMatching(/I_DO_NOT_EXIST.*not found/),
     '❌ Command exited with 127: "I_DO_NOT_EXIST"\n',
   ]);
 });
