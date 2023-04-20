@@ -22,7 +22,7 @@ export const run = (options: {
   outputTimeout?: number;
 }): Process => {
   core.output$.next(`Starting command: "${options.command}"`, 'info');
-  const process = spawn(`( ${options.command} ) 2>&1`, { shell: '/bin/bash' });
+  const process = spawn(`( ${options.command} ) 2>&1`, { shell: '/bin/sh' });
 
   let outputTimeout: NodeJS.Timeout | undefined;
   const setOutputTimeout = (stop = false): void => {
