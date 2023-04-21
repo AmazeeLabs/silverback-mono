@@ -15,7 +15,7 @@
     "@types/node": "16.18.18",
     "eslint": "8.36.0",
     "prettier": "2.8.6",
-    "typescript": "4.9.5"
+    "typescript": "5.0.2"
   },
   "scripts": {
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
