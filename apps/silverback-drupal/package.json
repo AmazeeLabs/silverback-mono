@@ -14,7 +14,7 @@
     "snapshot-create": "source .envrc && silverback snapshot-create test -y",
     "snapshot-restore": "source .envrc && silverback snapshot-restore test",
     "clear": "source .envrc && drush cr",
-    "test:integration": "pnpm snapshot-restore && start-server-and-test start:silent 8888 schema:test",
+    "test:integration": "pnpm snapshot-restore && start-server-and-test start:silent localhost:8888 schema:test",
     "schema:export": "source .envrc && drush silverback-gatsby:schema-export",
     "schema:test": "pnpm jest --modulePathIgnorePatterns '^((?!generated).)*$' --testMatch '<rootDir>/generated/__tests__/test-queries.js'",
     "schema:update": "pnpm schema:test -u",
