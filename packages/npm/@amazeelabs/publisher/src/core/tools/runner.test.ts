@@ -107,11 +107,15 @@ test('exit code of a failed command is logged', async () => {
   });
   const { exitCode } = await process.result;
   expect(exitCode).toBe(127);
-  expect(output).toStrictEqual([
-    'ℹ️ Starting command: "I_DO_NOT_EXIST"\n',
-    expect.stringMatching(/I_DO_NOT_EXIST.*not found/),
+  // Depending on the OS, the error message can be different. Also, the amount
+  // of error message lines can differ.
+  expect(output.at(0)).toStrictEqual('ℹ️ Starting command: "I_DO_NOT_EXIST"\n');
+  expect(
+    output.find((line) => line.match(/I_DO_NOT_EXIST.*not found/)),
+  ).toBeTruthy();
+  expect(output.at(-1)).toStrictEqual(
     '❌ Command exited with 127: "I_DO_NOT_EXIST"\n',
-  ]);
+  );
 });
 
 test('outputTimeout is not exceeded', async () => {
