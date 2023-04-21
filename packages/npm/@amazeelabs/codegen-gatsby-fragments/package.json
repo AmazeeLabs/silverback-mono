@@ -18,7 +18,7 @@
   },
   "optionalDependencies": {
     "@graphql-codegen/plugin-helpers": "^4.0.0",
-    "typescript": "^4.9.5",
+    "typescript": "^5.0.2",
     "vitest": "^0.29.7"
   },
   "keywords": [],
@@ -30,6 +30,6 @@
     "@swc/core": "1.3.42",
     "eslint": "8.36.0",
     "prettier": "2.8.6",
-    "typescript": "4.9.5"
+    "typescript": "5.0.2"
   }
 }
