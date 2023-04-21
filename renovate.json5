@@ -86,9 +86,11 @@
 
     // Package-specific rules.
     {
-      // Because @amazeelabs/react-framework-bridge is going to be deprecated
-      // soon, we disable updates for it.
-      matchPaths: ["packages/npm/@amazeelabs/react-framework-bridge/**"],
+      matchPaths: [
+        // Deprecated packages.
+        "packages/npm/@amazeelabs/react-framework-bridge/**",
+        "packages/npm/@amazeelabs/silverback-playwright/**",
+      ],
       enabled: false,
     }
   ],

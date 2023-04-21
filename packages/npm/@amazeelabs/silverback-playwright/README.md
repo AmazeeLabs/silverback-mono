@@ -1,3 +1,9 @@
+# ⚠️ Deprecated
+
+We will switch to Turborepo+Playwright same as we did in
+[silverback-template](https://github.com/AmazeeLabs/silverback-template). This
+package will be removed afterward.
+
 # Silverback Playwright
 
 Playwright tests runner for Silverback setups.
