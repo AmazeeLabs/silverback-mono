@@ -4,6 +4,7 @@ status: true
 dependencies:
   module:
     - graphql
+    - simple_oauth
 _core:
   default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
 id: authenticated
@@ -14,3 +15,4 @@ permissions:
   - 'execute extra persisted graphql requests'
   - 'execute silverback_gatsby persisted graphql requests'
   - 'execute silverback_gatsby_preview persisted graphql requests'
+  - 'grant simple_oauth codes'
