@@ -92,7 +92,20 @@
         "packages/npm/@amazeelabs/silverback-playwright/**",
       ],
       enabled: false,
-    }
+    },
+    {
+      // Disable major updates of packages turned into ESM.
+      // TODO: Remove this rule once we get rid of fast-builds.
+      matchPaths: [
+        "apps/silverback-gatsby/**",
+      ],
+      packageNames: [
+        "p-queue",
+        "strip-ansi",
+      ],
+      updateTypes: ["major"],
+      enabled: false,
+    },
   ],
 
   lockFileMaintenance: {
