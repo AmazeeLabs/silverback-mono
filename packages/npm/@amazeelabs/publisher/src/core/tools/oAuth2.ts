@@ -52,7 +52,7 @@ export const oAuth2AuthCodeMiddleware: RequestHandler = ((): RequestHandler => {
           );
       }
     } else {
-      res.cookie('origin', req.path).redirect('/auth');
+      res.cookie('origin', req.path).redirect('/oauth');
     }
   };
 })();

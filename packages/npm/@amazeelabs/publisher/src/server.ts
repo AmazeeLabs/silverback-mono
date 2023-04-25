@@ -161,7 +161,7 @@ const runServer = async (): Promise<HttpTerminator> => {
   // OAuth2 routes
   // ---------------------------------------------------------------------------
   // Redirects to authentication provider.
-  app.get('/auth', (req, res) => {
+  app.get('/oauth', (req, res) => {
     if (!oAuth2AuthorizationCodeClient) {
       throw new Error('Missing OAuth2 client.');
     }
@@ -172,24 +172,8 @@ const runServer = async (): Promise<HttpTerminator> => {
     res.redirect(authorizationUri);
   });
 
-  // Removes the session.
-  app.get('/logout', async (req, res) => {
-    const accessToken = getPersistedAccessToken(req);
-    if (!accessToken) {
-      return res.status(401).send('No token found.');
-    }
-
-    // Requires this Drupal patch
-    // https://www.drupal.org/project/simple_oauth/issues/2945273
-    // await accessToken.revokeAll();
-    req.session.destroy(function (err) {
-      console.log('Remove session', err);
-    });
-    res.redirect('/');
-  });
-
   // Callback from authentication provider.
-  app.get('/auth/callback', async (req, res) => {
+  app.get('/oauth/callback', async (req, res) => {
     const oAuth2Config = getConfig().oAuth2;
     if (!oAuth2Config) {
       throw new Error('Missing OAuth2 configuration.');
@@ -231,6 +215,22 @@ const runServer = async (): Promise<HttpTerminator> => {
           .json(`Authentication failed with error: ${error.message}`)
       );
     }
+  });
+
+  // Removes the session.
+  app.get('/oauth/logout', async (req, res) => {
+    const accessToken = getPersistedAccessToken(req);
+    if (!accessToken) {
+      return res.status(401).send('No token found.');
+    }
+
+    // Requires this Drupal patch
+    // https://www.drupal.org/project/simple_oauth/issues/2945273
+    // await accessToken.revokeAll();
+    req.session.destroy(function (err) {
+      console.log('Remove session', err);
+    });
+    res.redirect('/');
   });
 
   app.get('*', (req, res, next) => {
