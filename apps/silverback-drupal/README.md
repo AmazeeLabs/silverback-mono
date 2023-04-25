@@ -62,13 +62,30 @@ The scopes are
 - Gatsby Build (sourcing) - WIP
 - Frontend users, other APIs, ... (project specific)
 
-#### Configuration
+#### Generic configuration
 
 - Create a Role for each scope and assign the relevant permissions
 - Create a Consumer for each scope
-  - Publisher do not need to have a specific User set
+  - Publisher does not need to have a specific user set
   - Gatsby Preview and Gatsby Build are using a pre-defined user
-- Create Users and assign corresponding roles
 - Generate keys `/admin/config/people/simple_oauth`
 - Drupal hash salt needs to be at least 32 characters long - make sure to
   override `DRUPAL_HASH_SALT` env variable.
+
+#### Publisher configuration
+
+_Consumer_
+
+- Client ID: `publisher`
+- Client secret: the one configured in Publisher
+- User: none
+- Is confidential: `true`
+- Is this consumer third party: `true`
+- If using `Authorization Code` grant type, for the Publisher consumer, set the
+  redirect uri to `[publisher_base_url]/oauth/callback`
+- Scopes: `Publisher`
+
+_Roles/permissions_
+
+Add the `Grant OAuth2 codes` and `Access Publisher` permissions to relevant
+roles (editors, ...)
