@@ -1,4 +1,4 @@
-import { AuthorizationCode, ResourceOwnerPassword } from 'simple-oauth2';
+import { OAuth2GrantTypes } from './oAuth2GrantTypes';
 
 export type PublisherConfig = {
   /**
@@ -139,11 +139,6 @@ export type PublisherConfig = {
     target: string;
   }>;
 };
-
-enum OAuth2GrantTypes {
-  AuthorizationCode,
-  ResourceOwnerPassword,
-}
 
 let _config: PublisherConfig | null = null;
 

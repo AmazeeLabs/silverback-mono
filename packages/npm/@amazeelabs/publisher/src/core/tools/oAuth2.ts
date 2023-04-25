@@ -33,11 +33,6 @@ export const ACCESS_TOKEN_EXPIRATION_TIME = 300;
 const ENCRYPTION_KEY =
   process.env.ENCRYPTION_KEY || crypto.randomBytes(32).toString('hex');
 
-export enum OAuth2GrantTypes {
-  AuthorizationCode,
-  ResourceOwnerPassword,
-}
-
 /**
  * Returns the Authorization Code middleware.
  *

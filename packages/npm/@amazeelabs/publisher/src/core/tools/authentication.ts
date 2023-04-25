@@ -4,9 +4,9 @@ import basicAuth from 'express-basic-auth';
 import { getConfig } from './config';
 import {
   oAuth2AuthCodeMiddleware,
-  OAuth2GrantTypes,
   oAuth2ResourceOwnerPasswordMiddleware,
 } from './oAuth2';
+import { OAuth2GrantTypes } from './oAuth2GrantTypes';
 
 /**
  * Returns the Express authentication middleware based on the configuration.
