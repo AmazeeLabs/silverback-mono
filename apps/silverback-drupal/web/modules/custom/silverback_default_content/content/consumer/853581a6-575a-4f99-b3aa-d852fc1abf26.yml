@@ -21,12 +21,18 @@ default:
       value: false
   secret:
     -
-      value: $S$EEjgEZkyQEKxjLgbfPPInFBsOXXkp9eppL4HYEyO6x0xf2i3AOfd
+      value: $S$EiU1sw9l5HjS7TNLxhIZ7n4pn/2p0BgXpOb5hOt19YUfwp4IfJ1s
       existing: ''
       pre_hashed: false
   confidential:
     -
       value: true
+  roles:
+    -
+      target_id: publisher
+  redirect:
+    -
+      value: 'http://localhost:7777/oauth/callback'
   pkce:
     -
       value: false
