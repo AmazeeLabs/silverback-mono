@@ -1,4 +1,4 @@
-import { OAuth2GrantTypes } from './oAuth2';
+import { AuthorizationCode, ResourceOwnerPassword } from 'simple-oauth2';
 
 export type PublisherConfig = {
   /**
@@ -104,11 +104,11 @@ export type PublisherConfig = {
     scope: string;
     tokenHost: string;
     tokenPath: string;
+    grantType: OAuth2GrantTypes;
     // Use for Authorization Code grant type only.
     authorizePath?: string;
     sessionSecret?: string;
     environmentType?: string; // 'development' | 'production';
-    grantType: OAuth2GrantTypes;
   };
   /**
    * Specific CORS settings.
@@ -139,6 +139,11 @@ export type PublisherConfig = {
     target: string;
   }>;
 };
+
+enum OAuth2GrantTypes {
+  AuthorizationCode,
+  ResourceOwnerPassword,
+}
 
 let _config: PublisherConfig | null = null;
 
