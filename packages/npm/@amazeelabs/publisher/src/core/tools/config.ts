@@ -1,3 +1,5 @@
+import { OAuth2GrantTypes } from './oAuth2';
+
 export type PublisherConfig = {
   /**
    * Port on which the publisher server will be running.
@@ -99,9 +101,13 @@ export type PublisherConfig = {
   oAuth2?: {
     clientId: string;
     clientSecret: string;
+    scope: string;
     tokenHost: string;
     tokenPath: string;
-    // Only ResourceOwnerPassword is supported in the first version.
+    // Use for Authorization Code grant type only.
+    authorizePath?: string;
+    sessionSecret?: string;
+    environmentType?: string; // 'development' | 'production';
     grantType: OAuth2GrantTypes;
   };
   /**
@@ -133,12 +139,6 @@ export type PublisherConfig = {
     target: string;
   }>;
 };
-
-export enum OAuth2GrantTypes {
-  AuthorizationCode,
-  ClientCredentials,
-  ResourceOwnerPassword,
-}
 
 let _config: PublisherConfig | null = null;
 

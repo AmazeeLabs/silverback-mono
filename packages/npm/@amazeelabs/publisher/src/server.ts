@@ -14,20 +14,36 @@ import { map, shareReplay, Subject } from 'rxjs';
 import { fileURLToPath } from 'url';
 
 import { core } from './core/core';
-import { getAuthenticationMiddleware } from './core/tools/authentication';
+import {
+  getAuthenticationMiddleware,
+  isSessionRequired,
+} from './core/tools/authentication';
 import { getConfig } from './core/tools/config';
 import { getDatabase } from './core/tools/database';
+import {
+  getOAuth2AuthorizeUrl,
+  getPersistedAccessToken,
+  initializeSession,
+  oAuth2AuthorizationCodeClient,
+  persistAccessToken,
+  stateMatches,
+} from './core/tools/oAuth2';
 import { stateNotify } from './notify';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const runServer = async (): Promise<HttpTerminator> => {
-  const ews = expressWs(express());
-  const { app } = ews;
+  const expressServer = express();
+  const expressWsInstance = expressWs(expressServer);
+  const { app } = expressWsInstance;
 
   app.locals.isReady = false;
 
+  // A session is only needed for OAuth2 Authorization Code grant type.
+  if (isSessionRequired()) {
+    initializeSession(expressServer);
+  }
   // Authentication middleware based on the configuration.
   const authMiddleware = getAuthenticationMiddleware;
 
@@ -139,6 +155,82 @@ const runServer = async (): Promise<HttpTerminator> => {
         changeOrigin: true,
       }),
     );
+  });
+
+  // ---------------------------------------------------------------------------
+  // OAuth2 routes
+  // ---------------------------------------------------------------------------
+  // Redirects to authentication provider.
+  app.get('/auth', (req, res) => {
+    if (!oAuth2AuthorizationCodeClient) {
+      throw new Error('Missing OAuth2 client.');
+    }
+    const authorizationUri = getOAuth2AuthorizeUrl(
+      oAuth2AuthorizationCodeClient,
+      req,
+    );
+    res.redirect(authorizationUri);
+  });
+
+  // Removes the session.
+  app.get('/logout', async (req, res) => {
+    const accessToken = getPersistedAccessToken(req);
+    if (!accessToken) {
+      return res.status(401).send('No token found.');
+    }
+
+    // Requires this Drupal patch
+    // https://www.drupal.org/project/simple_oauth/issues/2945273
+    // await accessToken.revokeAll();
+    req.session.destroy(function (err) {
+      console.log('Remove session', err);
+    });
+    res.redirect('/');
+  });
+
+  // Callback from authentication provider.
+  app.get('/auth/callback', async (req, res) => {
+    const oAuth2Config = getConfig().oAuth2;
+    if (!oAuth2Config) {
+      throw new Error('Missing OAuth2 configuration.');
+    }
+
+    if (!oAuth2AuthorizationCodeClient) {
+      throw new Error('Missing OAuth2 client.');
+    }
+
+    // Check if the state matches.
+    if (!stateMatches(req)) {
+      return res.status(500).json('State does not match.');
+    }
+
+    const { code } = req.query;
+    const options = {
+      code,
+      scope: oAuth2Config.scope,
+      // Do not include redirect_uri, makes Drupal simple_oauth fail.
+      // Returns 400 Bad Request.
+      //redirect_uri: 'http://127.0.0.1:7777/callback',
+    };
+
+    try {
+      // @ts-ignore due to missing redirect_uri.
+      const accessToken = await oAuth2AuthorizationCodeClient.getToken(options);
+      persistAccessToken(accessToken, req);
+
+      if (req.cookies.origin) {
+        res.redirect(req.cookies.origin);
+      } else {
+        res.redirect('/');
+      }
+    } catch (error) {
+      return (
+        res
+          .status(500)
+          // @ts-ignore
+          .json(`Authentication failed with error: ${error.message}`)
+      );
+    }
   });
 
   app.get('*', (req, res, next) => {
