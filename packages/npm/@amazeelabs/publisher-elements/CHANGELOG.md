@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher-elements@2.0.10...@amazeelabs/publisher-elements@2.0.11) (2023-04-26)
+
+**Note:** Version bump only for package @amazeelabs/publisher-elements
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.0.10](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher-elements@2.0.9...@amazeelabs/publisher-elements@2.0.10) (2023-03-29)
 
 **Note:** Version bump only for package @amazeelabs/publisher-elements

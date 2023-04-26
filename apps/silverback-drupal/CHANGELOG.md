@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.3.5...@-amazeelabs/silverback-drupal@2.3.6) (2023-04-26)
+
+### Reverts
+
+- Revert "test: adjust test script"
+  ([9404fe8](https://github.com/AmazeeLabs/silverback-mono/commit/9404fe824657dff66c48536254b92bba546b9ea8))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.3.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.3.4...@-amazeelabs/silverback-drupal@2.3.5) (2023-04-21)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
