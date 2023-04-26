@@ -86,10 +86,16 @@
 
     // Package-specific rules.
     {
+      // Deprecated packages.
       matchPaths: [
-        // Deprecated packages.
         "packages/npm/@amazeelabs/react-framework-bridge/**",
+        // Deprecated test framework and all tests using it.
         "packages/npm/@amazeelabs/silverback-playwright/**",
+        "packages/tests/silverback-gatsby/**",
+        "packages/tests/silverback-gutenberg/**",
+        "packages/tests/silverback-iframe/**",
+        "packages/tests/silverback-persisted-queries/**",
+        "packages/tests/test-session/**",
       ],
       enabled: false,
     },
