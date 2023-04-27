@@ -10,7 +10,7 @@
     "start:silent": "pnpm start > /tmp/drupal.log 2>&1",
     "login": "source .envrc && drush uli",
     "setup": "source .envrc && silverback setup && pnpm content:import",
-    "update-install-cache": "source .envrc && silverback setup --profile=minimal && drush cex -y",
+    "update-install-cache": "source .envrc && SB_SETUP=1 silverback setup --profile=minimal && drush cex -y",
     "snapshot-create": "source .envrc && silverback snapshot-create test -y",
     "snapshot-restore": "source .envrc && silverback snapshot-restore test",
     "clear": "source .envrc && drush cr",

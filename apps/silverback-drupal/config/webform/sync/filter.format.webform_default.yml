@@ -1,0 +1,17 @@
+uuid: 2750cce7-3546-4608-9d95-0b865406c908
+langcode: en
+status: true
+dependencies:
+  module:
+    - webform
+name: 'Webform (Default) - DO NOT EDIT'
+format: webform_default
+weight: 100
+filters:
+  gutenberg:
+    id: gutenberg
+    provider: gutenberg
+    status: false
+    weight: 0
+    settings:
+      processor_settings: {  }
