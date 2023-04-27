@@ -25,8 +25,4 @@ export default defineConfig({
     },
   },
   databaseUrl: './test/database.sqlite',
-  persistentBuilds: {
-    buildPaths: ['./test/build-public', './test/build-cache'],
-    saveTo: './test/persisted-store',
-  },
 });

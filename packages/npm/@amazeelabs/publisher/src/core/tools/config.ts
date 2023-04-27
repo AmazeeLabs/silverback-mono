@@ -70,7 +70,7 @@ export type PublisherConfig = {
    */
   databaseUrl: string;
   /**
-   * Enables persistent builds.
+   * Enables persistent builds. DEPRECATED: It slows down incremental builds.
    */
   persistentBuilds?: {
     /**
