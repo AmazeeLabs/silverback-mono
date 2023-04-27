@@ -1,7 +1,6 @@
 import '../../tailwind.css';
 
 import { ApplicationState, BuildModel } from '@amazeelabs/publisher-shared';
-import { OrganismProps } from '@amazeelabs/react-framework-bridge';
 import { Dialog, Disclosure, Transition } from '@headlessui/react';
 import { bind } from '@react-rxjs/core';
 import clsx from 'clsx';
@@ -24,7 +23,7 @@ const build$ = ajax({
 
 function History({
   historyItems,
-}: OrganismProps<{
+}: {
   historyItems: Array<{
     id: number;
     startedAt: number;
@@ -32,7 +31,7 @@ function History({
     success: boolean;
     type: string;
   }>;
-}>) {
+}) {
   return (
     <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -283,9 +282,9 @@ function scrollToBuildHistory() {
 
 export default function Info({
   historyItems,
-}: OrganismProps<{
+}: {
   historyItems: ComponentProps<typeof History>['historyItems'];
-}>) {
+}) {
   const logsSocket = createWebsocketUrl('/___status/logs');
   const [followLog, setFollowLog] = useState(true);
   return (

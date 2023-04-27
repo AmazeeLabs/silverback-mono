@@ -1,5 +1,4 @@
-import { OrganismStory } from '@amazeelabs/react-framework-bridge/storybook';
-import { Meta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import Info from './Info';
 
@@ -48,7 +47,7 @@ const HistoryItems = [
   },
 ];
 
-export const ExampleInfo: OrganismStory<typeof Info> = {
+export const ExampleInfo: StoryObj<typeof Info> = {
   args: {
     historyItems: HistoryItems,
   },

@@ -1,6 +1,5 @@
 import { ApplicationState } from '@amazeelabs/publisher-shared';
-import { OrganismStory } from '@amazeelabs/react-framework-bridge/storybook';
-import { Meta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 
 import Status from './Status';
 
@@ -11,17 +10,17 @@ export default {
   },
 } as Meta;
 
-export const Init: OrganismStory<typeof Status> = {
+export const Init: StoryObj<typeof Status> = {
   args: {
     status: null,
   },
 };
-export const Error: OrganismStory<typeof Status> = {
+export const Error: StoryObj<typeof Status> = {
   args: {
     status: ApplicationState.Error,
   },
 };
-export const Ready: OrganismStory<typeof Status> = {
+export const Ready: StoryObj<typeof Status> = {
   args: {
     status: ApplicationState.Ready,
   },
