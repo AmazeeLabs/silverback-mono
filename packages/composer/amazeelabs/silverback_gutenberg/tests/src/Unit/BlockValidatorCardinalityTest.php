@@ -197,7 +197,139 @@ class BlockValidatorCardinalityTest extends UnitTestCase {
   }
 
   public function testSpecificBlockTypeMultipleMinimumAndMaximum() {
-    // @todo implement
+    $expectedChildren = [
+      [
+        'blockName' => 'core/paragraph',
+        'blockLabel' => t('Paragraph'),
+        'min' => 1,
+        'max' => 2,
+      ],
+      [
+        'blockName' => 'core/list',
+        'blockLabel' => t('List'),
+        'min' => 1,
+        'max' => 2,
+      ],
+    ];
+
+    $validBlock1 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/list',
+        ],
+      ],
+    ];
+    $validBlock2 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/list',
+        ],
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/list',
+        ],
+      ],
+    ];
+    $invalidBlock1 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/gallery',
+        ],
+        [
+          'blockName' => 'core/list',
+        ],
+      ],
+    ];
+    $invalidBlock2 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+      ],
+    ];
+    $invalidBlock3 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/image',
+        ],
+      ],
+    ];
+    $invalidBlock4 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [],
+    ];
+
+    $this->assertEquals(
+      $this->validateCardinality($validBlock1, $expectedChildren),
+      [
+        'is_valid' => TRUE,
+        'message' => '',
+      ]
+    );
+    $this->assertEquals(
+      $this->validateCardinality($validBlock2, $expectedChildren),
+      [
+        'is_valid' => TRUE,
+        'message' => '',
+      ]
+    );
+
+    $messageParams = [
+      '%label' => $expectedChildren[0]['blockLabel'],
+      '@min' => $expectedChildren[0]['min'],
+      '@max' => $expectedChildren[0]['max'],
+    ];
+    $result = t('%label: there should be between @min and @max blocks.', $messageParams);
+    $this->assertEquals(
+      $this->validateCardinality($invalidBlock1, $expectedChildren),
+      [
+        'is_valid' => FALSE,
+        'message' => $result,
+      ]
+    );
+    $messageParams = [
+      '%label' => $expectedChildren[1]['blockLabel'],
+      '@min' => $expectedChildren[1]['min'],
+      '@max' => $expectedChildren[1]['max'],
+    ];
+    $result = t('%label: there should be between @min and @max blocks.', $messageParams);
+    $this->assertEquals(
+      $this->validateCardinality($invalidBlock2, $expectedChildren),
+      [
+        'is_valid' => FALSE,
+        'message' => $result,
+      ]
+    );
+    $this->assertEquals(
+      $this->validateCardinality($invalidBlock3, $expectedChildren),
+      [
+        'is_valid' => FALSE,
+        'message' => $result,
+      ]
+    );
+    $this->assertEquals(
+      $this->validateCardinality($invalidBlock4, $expectedChildren),
+      [
+        'is_valid' => FALSE,
+        'message' => 'Required blocks are missing. <em class="placeholder">Paragraph</em>: there should be between 1 and 2 blocks. <em class="placeholder">List</em>: there should be between 1 and 2 blocks.',
+      ]
+    );
   }
 
   public function testAnyBlockTypeMinimumAndMaximum() {
