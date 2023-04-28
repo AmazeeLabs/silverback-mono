@@ -141,6 +141,20 @@ class BlockValidatorCardinalityTest extends UnitTestCase {
     ];
     $invalidBlock3 = [
       'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/paragraph',
+        ],
+      ],
+    ];
+    $invalidBlock4 = [
+      'blockName' => 'core/column',
       'innerBlocks' => [],
     ];
 
@@ -186,9 +200,16 @@ class BlockValidatorCardinalityTest extends UnitTestCase {
         'message' => $result,
       ]
     );
-
     $this->assertEquals(
       $this->validateCardinality($invalidBlock3, $expectedChildren),
+      [
+        'is_valid' => FALSE,
+        'message' => '<em class="placeholder">Paragraph</em>: at most 2 blocks are allowed.',
+      ]
+    );
+
+    $this->assertEquals(
+      $this->validateCardinality($invalidBlock4, $expectedChildren),
       [
         'is_valid' => FALSE,
         'message' => 'Required blocks are missing. <em class="placeholder">Paragraph</em>: there should be between 1 and 2 blocks.',
@@ -272,6 +293,29 @@ class BlockValidatorCardinalityTest extends UnitTestCase {
     ];
     $invalidBlock4 = [
       'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/list',
+        ],
+        [
+          'blockName' => 'core/list',
+        ],
+        [
+          'blockName' => 'core/list',
+        ],
+      ],
+    ];
+    $invalidBlock5 = [
+      'blockName' => 'core/column',
       'innerBlocks' => [],
     ];
 
@@ -327,25 +371,419 @@ class BlockValidatorCardinalityTest extends UnitTestCase {
       $this->validateCardinality($invalidBlock4, $expectedChildren),
       [
         'is_valid' => FALSE,
+        'message' => '<em class="placeholder">Paragraph</em>: at most 2 blocks are allowed.',
+        // @todo improve: error message could mention both block types on the same validation.
+        //'message' => '<em class="placeholder">Paragraph</em>: at most 2 blocks are allowed. <em class="placeholder">List</em>: at most 2 blocks are allowed.',
+      ]
+    );
+    $this->assertEquals(
+      $this->validateCardinality($invalidBlock5, $expectedChildren),
+      [
+        'is_valid' => FALSE,
         'message' => 'Required blocks are missing. <em class="placeholder">Paragraph</em>: there should be between 1 and 2 blocks. <em class="placeholder">List</em>: there should be between 1 and 2 blocks.',
       ]
     );
   }
 
   public function testAnyBlockTypeMinimumAndMaximum() {
-    // @todo implement
+    $expectedChildren = [
+      'validationType' => GutenbergCardinalityValidatorInterface::CARDINALITY_ANY,
+      'min' => 1,
+      'max' => 2,
+    ];
+
+    $validBlock1 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/list',
+        ],
+      ],
+    ];
+    $validBlock2 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/list',
+        ],
+      ],
+    ];
+    $invalidBlock1 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/list',
+        ],
+        [
+          'blockName' => 'core/list',
+        ],
+      ],
+    ];
+
+    $this->assertEquals(
+      $this->validateCardinality($validBlock1, $expectedChildren),
+      [
+        'is_valid' => TRUE,
+        'message' => '',
+      ]
+    );
+    $this->assertEquals(
+      $this->validateCardinality($validBlock2, $expectedChildren),
+      [
+        'is_valid' => TRUE,
+        'message' => '',
+      ]
+    );
+
+    $this->assertEquals(
+      $this->validateCardinality($invalidBlock1, $expectedChildren),
+      [
+        'is_valid' => FALSE,
+        'message' => 'At most 2 blocks are allowed.',
+      ]
+    );
   }
 
   public function testSpecificBlockTypeSingleExactMatch() {
-    // @todo implement
+    $expectedChildren = [
+      [
+        'blockName' => 'core/paragraph',
+        'blockLabel' => t('Paragraph'),
+        'min' => 2,
+        'max' => 2,
+      ],
+    ];
+
+    $validBlock = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/paragraph',
+        ],
+      ],
+    ];
+    $invalidBlock1 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+      ],
+    ];
+    $invalidBlock2 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/list',
+        ],
+      ],
+    ];
+    $invalidBlock3 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/gallery',
+        ],
+        [
+          'blockName' => 'core/list',
+        ],
+      ],
+    ];
+    $invalidBlock4 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/paragraph',
+        ],
+      ],
+    ];
+
+    $this->assertEquals(
+      $this->validateCardinality($validBlock, $expectedChildren),
+      [
+        'is_valid' => TRUE,
+        'message' => '',
+      ]
+    );
+
+    $this->assertEquals(
+      $this->validateCardinality($invalidBlock1, $expectedChildren),
+      [
+        'is_valid' => FALSE,
+        'message' => '<em class="placeholder">Paragraph</em>: at least 2 blocks are required.',
+      ]
+    );
+    $this->assertEquals(
+      $this->validateCardinality($invalidBlock2, $expectedChildren),
+      [
+        'is_valid' => FALSE,
+        'message' => '<em class="placeholder">Paragraph</em>: at least 2 blocks are required.',
+      ]
+    );
+    $this->assertEquals(
+      $this->validateCardinality($invalidBlock3, $expectedChildren),
+      [
+        'is_valid' => FALSE,
+        'message' => '<em class="placeholder">Paragraph</em>: there should be exactly 2 blocks.',
+      ]
+    );
+    $this->assertEquals(
+      $this->validateCardinality($invalidBlock4, $expectedChildren),
+      [
+        'is_valid' => FALSE,
+        'message' => '<em class="placeholder">Paragraph</em>: at most 2 blocks are allowed.',
+      ]
+    );
   }
 
   public function testSpecificBlockTypeMultipleExactMatch() {
-    // @todo implement
+    $expectedChildren = [
+      [
+        'blockName' => 'core/paragraph',
+        'blockLabel' => t('Paragraph'),
+        'min' => 2,
+        'max' => 2,
+      ],
+      [
+        'blockName' => 'core/list',
+        'blockLabel' => t('List'),
+        'min' => 1,
+        'max' => 1,
+      ],
+    ];
+
+    $validBlock = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/list',
+        ],
+      ],
+    ];
+    $invalidBlock1 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+      ],
+    ];
+    $invalidBlock2 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/list',
+        ],
+      ],
+    ];
+    $invalidBlock3 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/gallery',
+        ],
+        [
+          'blockName' => 'core/list',
+        ],
+      ],
+    ];
+    $invalidBlock4 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/list',
+        ],
+      ],
+    ];
+    $invalidBlock5 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/paragraph',
+        ],
+      ],
+    ];
+
+    $this->assertEquals(
+      $this->validateCardinality($validBlock, $expectedChildren),
+      [
+        'is_valid' => TRUE,
+        'message' => '',
+      ]
+    );
+
+    // @todo improve: error message could mention both block types on the same validation.
+    $this->assertEquals(
+      $this->validateCardinality($invalidBlock1, $expectedChildren),
+      [
+        'is_valid' => FALSE,
+        'message' => '<em class="placeholder">Paragraph</em>: at least 2 blocks are required.',
+      ]
+    );
+    $this->assertEquals(
+      $this->validateCardinality($invalidBlock2, $expectedChildren),
+      [
+        'is_valid' => FALSE,
+        'message' => '<em class="placeholder">Paragraph</em>: at least 2 blocks are required.',
+      ]
+    );
+    $this->assertEquals(
+      $this->validateCardinality($invalidBlock3, $expectedChildren),
+      [
+        'is_valid' => FALSE,
+        'message' => '<em class="placeholder">Paragraph</em>: there should be exactly 2 blocks.',
+      ]
+    );
+    $this->assertEquals(
+      $this->validateCardinality($invalidBlock4, $expectedChildren),
+      [
+        'is_valid' => FALSE,
+        'message' => '<em class="placeholder">Paragraph</em>: at most 2 blocks are allowed.',
+      ]
+    );
+    $this->assertEquals(
+      $this->validateCardinality($invalidBlock5, $expectedChildren),
+      [
+        'is_valid' => FALSE,
+        'message' => '<em class="placeholder">List</em>: there should be exactly 1 block.',
+      ]
+    );
   }
 
   public function testAnyBlockTypeExactMatch() {
-    // @todo implement
+    $expectedChildren = [
+      'validationType' => GutenbergCardinalityValidatorInterface::CARDINALITY_ANY,
+      'min' => 2,
+      'max' => 2,
+    ];
+
+    $validBlock1 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/list',
+        ],
+      ],
+    ];
+    $validBlock2 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/paragraph',
+        ],
+      ],
+    ];
+    $invalidBlock1 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+      ],
+    ];
+    $invalidBlock2 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [
+        [
+          'blockName' => 'core/paragraph',
+        ],
+        [
+          'blockName' => 'core/list',
+        ],
+        [
+          'blockName' => 'core/paragraph',
+        ],
+      ],
+    ];
+    $invalidBlock3 = [
+      'blockName' => 'core/column',
+      'innerBlocks' => [],
+    ];
+
+    $this->assertEquals(
+      $this->validateCardinality($validBlock1, $expectedChildren),
+      [
+        'is_valid' => TRUE,
+        'message' => '',
+      ]
+    );
+    $this->assertEquals(
+      $this->validateCardinality($validBlock2, $expectedChildren),
+      [
+        'is_valid' => TRUE,
+        'message' => '',
+      ]
+    );
+
+    $this->assertEquals(
+      $this->validateCardinality($invalidBlock1, $expectedChildren),
+      [
+        'is_valid' => FALSE,
+        'message' => 'At least 2 blocks are required.',
+      ]
+    );
+    $this->assertEquals(
+      $this->validateCardinality($invalidBlock2, $expectedChildren),
+      [
+        'is_valid' => FALSE,
+        'message' => 'At most 2 blocks are allowed.',
+      ]
+    );
+    $this->assertEquals(
+      $this->validateCardinality($invalidBlock3, $expectedChildren),
+      [
+        'is_valid' => FALSE,
+        'message' => 'At least 2 blocks are required.',
+      ]
+    );
   }
 
   public function testSpecificBlockTypeSingleNoMinimumWithMaximum() {
