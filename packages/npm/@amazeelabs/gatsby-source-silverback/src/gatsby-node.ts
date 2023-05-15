@@ -41,6 +41,9 @@ const getForwardedHeaders = (url: URL) => ({
   'X-Forwarded-Proto': url.protocol === 'https:' ? 'https' : 'http',
   'X-Forwarded-Host': url.hostname,
   'X-Forwarded-Port': url.port,
+  'SLB-Forwarded-Proto': url.protocol === 'https:' ? 'https' : 'http',
+  'SLB-Forwarded-Host': url.hostname,
+  'SLB-Forwarded-Port': url.port,
 });
 
 export const sourceNodes: GatsbyNode['sourceNodes'] = async (
