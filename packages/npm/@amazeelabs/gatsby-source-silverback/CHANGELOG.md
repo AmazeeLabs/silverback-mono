@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.10.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.10.4...@amazeelabs/gatsby-source-silverback@1.10.5) (2023-05-15)
+
+### Bug Fixes
+
+- allow to use custom SLB-Forwarded-\* headers
+  ([8a45285](https://github.com/AmazeeLabs/silverback-mono/commit/8a45285b6c52d18367210cb8d2ffabeee20208d6))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.10.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.10.3...@amazeelabs/gatsby-source-silverback@1.10.4) (2023-04-28)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-source-silverback
