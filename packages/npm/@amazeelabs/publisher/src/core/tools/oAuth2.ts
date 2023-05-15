@@ -176,15 +176,15 @@ export const initializeSession = (server: Express): void => {
     config.cookie.secure = true; // serve secure cookies
   }
 
-  // @todo check why.
-  // @ts-ignore
   server.use(session(config));
 };
 
-export let oAuth2AuthorizationCodeClient: AuthorizationCode | null = null;
-const oAuth2Config = getConfig().oAuth2;
-if (oAuth2Config) {
-  oAuth2AuthorizationCodeClient = new AuthorizationCode({
+export const oAuth2AuthorizationCodeClient = (): AuthorizationCode | null => {
+  const oAuth2Config = getConfig().oAuth2;
+  if (!oAuth2Config) {
+    return null;
+  }
+  return new AuthorizationCode({
     client: {
       id: oAuth2Config.clientId,
       secret: oAuth2Config.clientSecret,
@@ -195,14 +195,15 @@ if (oAuth2Config) {
       authorizePath: oAuth2Config.authorizePath,
     },
   });
-}
+};
 
 export const persistAccessToken = (token: AccessToken, req: Request): void => {
   req.session.tokenString = encrypt(JSON.stringify(token));
 };
 
 export const getPersistedAccessToken = (req: Request): AccessToken | null => {
-  if (!oAuth2AuthorizationCodeClient) {
+  const client = oAuth2AuthorizationCodeClient();
+  if (!client) {
     throw new Error('Missing OAuth2 client.');
   }
   if (req.session.tokenString) {
@@ -210,9 +211,7 @@ export const getPersistedAccessToken = (req: Request): AccessToken | null => {
     if (!decryptedToken) {
       throw new Error('Failed to decrypt token.');
     }
-    return oAuth2AuthorizationCodeClient.createToken(
-      JSON.parse(decryptedToken),
-    );
+    return client.createToken(JSON.parse(decryptedToken));
   } else {
     return null;
   }

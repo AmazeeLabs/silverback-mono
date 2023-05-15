@@ -1,7 +1,7 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import basicAuth from 'express-basic-auth';
 
-import { getConfig } from './config';
+import { getConfig, PublisherConfig } from './config';
 import {
   oAuth2AuthCodeMiddleware,
   oAuth2ResourceOwnerPasswordMiddleware,
@@ -14,9 +14,11 @@ import { OAuth2GrantTypes } from './oAuth2GrantTypes';
  * Favours OAuth2, then Basic Auth, then falling back to no auth
  * if not configured (= grant access).
  */
-export const getAuthenticationMiddleware: RequestHandler =
+export const getAuthenticationMiddleware = (
+  config: PublisherConfig,
+): RequestHandler =>
   ((): RequestHandler => {
-    const oAuth2Config = getConfig().oAuth2;
+    const oAuth2Config = config.oAuth2;
     if (oAuth2Config) {
       if (oAuth2Config.grantType === OAuth2GrantTypes.AuthorizationCode) {
         return oAuth2AuthCodeMiddleware;

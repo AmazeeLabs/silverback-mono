@@ -45,7 +45,7 @@ const runServer = async (): Promise<HttpTerminator> => {
     initializeSession(expressServer);
   }
   // Authentication middleware based on the configuration.
-  const authMiddleware = getAuthenticationMiddleware;
+  const authMiddleware = getAuthenticationMiddleware(getConfig());
 
   // Allow cross-origin requests
   // @TODO see if we need to lock this down
@@ -162,13 +162,11 @@ const runServer = async (): Promise<HttpTerminator> => {
   // ---------------------------------------------------------------------------
   // Redirects to authentication provider.
   app.get('/oauth', (req, res) => {
-    if (!oAuth2AuthorizationCodeClient) {
+    const client = oAuth2AuthorizationCodeClient();
+    if (!client) {
       throw new Error('Missing OAuth2 client.');
     }
-    const authorizationUri = getOAuth2AuthorizeUrl(
-      oAuth2AuthorizationCodeClient,
-      req,
-    );
+    const authorizationUri = getOAuth2AuthorizeUrl(client, req);
     res.redirect(authorizationUri);
   });
 
