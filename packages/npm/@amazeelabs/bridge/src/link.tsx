@@ -23,7 +23,7 @@ type Location = {
    */
   pathname: string;
   /**
-   * The query string, including '#' if not empty.
+   * The query string, including '?' if not empty.
    */
   search: string;
   /**
