@@ -1,3 +1,5 @@
+export { useLocation } from '@amazeelabs/bridge';
+
 export type { Url } from './link';
 export type { ImageSource } from './image';
 export type { Markup } from './html';
