@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge@1.1.7...@amazeelabs/bridge@1.2.0) (2023-05-16)
+
+### Bug Fixes
+
+- **react:** missing bridge export
+  ([c711f84](https://github.com/AmazeeLabs/silverback-mono/commit/c711f84c1fb5a6b4508971342b89c4c7fc9e76e1))
+
+### Features
+
+- **react:** useLocation hook in bridge
+  ([94be53d](https://github.com/AmazeeLabs/silverback-mono/commit/94be53d4c1c1982b7375007fbf68c38b3f326b14))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge@1.1.6...@amazeelabs/bridge@1.1.7) (2023-04-28)
 
 **Note:** Version bump only for package @amazeelabs/bridge
