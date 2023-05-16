@@ -1,1 +1,1 @@
-export { Link, navigate } from './link';
+export { Link, navigate, useLocation } from './link';
