@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { overrideUrlParameters } from './link';
+import { overrideUrlParameters } from './';
 
 describe('overrideUrlParameters', () => {
   it('works with an absolute url', () => {
