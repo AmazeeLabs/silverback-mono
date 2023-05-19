@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.2.0...@amazeelabs/scalars@1.2.1) (2023-05-19)
+
+### Bug Fixes
+
+- **react:** bundle bridge and scalars
+  ([d27d8f1](https://github.com/AmazeeLabs/silverback-mono/commit/d27d8f1da10469ac644e18a3a10d0248832842ae))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.1.9...@amazeelabs/scalars@1.2.0) (2023-05-16)
 
 ### Features
