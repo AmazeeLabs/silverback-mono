@@ -190,7 +190,6 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
     $listFieldName = $feed->getListFieldName();
     $feed->
     $schema = [
-      $this-getDirectiveDefinitions(),
       "extend type Query {",
       "  $singleFieldName(id: String!): $typeName",
       "  $listFieldName(offset: Int, limit: Int): [$typeName]!",
@@ -221,8 +220,10 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
 
   protected function getDirectableExtensionDefinition(DocumentNode $ast): string {
     // Collect all active feeds and prepend their definitions to the schema.
+
     $schema = array_map(fn (FeedInterface $feed) => $this->getSchemaDefinitions($ast, $feed), $this->getFeeds($ast));
     array_unshift($schema, $this->getOriginalTypenameDefinitions($ast));
+    array_unshift($schema, $this-getDirectiveDefinitions());
     return implode("\n", $schema);
   }
 
