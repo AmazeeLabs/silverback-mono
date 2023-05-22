@@ -107,6 +107,13 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
     $this->logger = $logger;
   }
 
+  public function getBaseDefinition() {
+    return implode("\n", [
+      $this->getDirectiveDefinitions(),
+      parent::getBaseDefinition(),
+    ]);
+  }
+
   /**
    * {@inheritDoc}
    */
@@ -220,13 +227,10 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
     return implode("\n", $schema);
   }
 
-  protected function getDirectableExtensionDefinition(DocumentNode $ast): string
-  {
+  protected function getDirectableExtensionDefinition(DocumentNode $ast): string {
     // Collect all active feeds and prepend their definitions to the schema.
-
     $schema = array_map(fn(FeedInterface $feed) => $this->getSchemaDefinitions($ast, $feed), $this->getFeeds($ast));
     array_unshift($schema, $this->getOriginalTypenameDefinitions($ast));
-    array_unshift($schema, $this->getDirectiveDefinitions());
     return implode("\n", $schema);
   }
 
