@@ -434,6 +434,12 @@ type User {
   name: String
 }
 
+directive @entity(type: String!, bundle: String, access: Boolean) on OBJECT
+
+directive @menu(menu_id: String, menu_ids: [String!], item_type: String, max_level: Int) on OBJECT
+
+directive @stringTranslation(contextPrefix: String) on OBJECT
+
 extend type Mutation {
   _original_typename: String!
 }
