@@ -1,0 +1,6 @@
+# Directive for the "EntityFeed" plugin.
+directive @entity(
+  type: String!
+  bundle: String
+  access: Boolean
+) on OBJECT

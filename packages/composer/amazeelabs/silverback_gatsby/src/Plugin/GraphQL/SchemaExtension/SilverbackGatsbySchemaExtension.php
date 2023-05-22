@@ -112,11 +112,6 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
     $feeds = $this->feedManager->getDefinitions();
     uasort($feeds, fn ($a, $b) => strnatcasecmp($a['id'], $b['id']));
     $directives = array_map(fn ($def) => $def['directive'], $feeds);
-
-    $module = \Drupal::moduleHandler()->getModule('silverback_gatsby');
-    $path = 'graphql/editor_block.directive.graphqls';
-    $file = $module->getPath() . '/' . $path;
-    $directives[] = file_get_contents($file);
     return implode("\n", $directives);
   }
 
@@ -193,7 +188,9 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
     $typeName = $feed->getTypeName();
     $singleFieldName = $feed->getSingleFieldName();
     $listFieldName = $feed->getListFieldName();
+    $feed->
     $schema = [
+      $this-getDirectiveDefinitions(),
       "extend type Query {",
       "  $singleFieldName(id: String!): $typeName",
       "  $listFieldName(offset: Int, limit: Int): [$typeName]!",
