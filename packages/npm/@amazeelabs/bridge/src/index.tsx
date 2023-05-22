@@ -32,6 +32,6 @@ type Location = {
     hash: string;
 }
 
-export function useLocation(): Location {
+export function useLocation(): Location | undefined {
     return window.location;
 }
