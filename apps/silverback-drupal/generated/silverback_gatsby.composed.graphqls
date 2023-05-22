@@ -376,6 +376,12 @@ type FirstLevelMainMenu @menu(menu_id: "main", max_level: 1) {
 
 type GatsbyStringTranslation @stringTranslation(contextPrefix: "gatsby")
 
+directive @entity(type: String!, bundle: String, access: Boolean) on OBJECT
+
+directive @menu(menu_id: String, menu_ids: [String!], item_type: String, max_level: Int) on OBJECT
+
+directive @stringTranslation(contextPrefix: String) on OBJECT
+
 type Feed {
   typeName: String!
   translatable: Boolean!
@@ -400,29 +406,6 @@ DEPRECATED, use @isTemplate
 """
 directive @template on FIELD_DEFINITION
 
-directive @entity(type: String!, bundle: String, access: Boolean) on OBJECT
-
-"""
-Directive for the "MenuFeed" plugin.
-
-menu_id:
-  The internal menu id.
-
-menu_ids:
-  Internal menu id's. The first one the current user has access to will be
-  picked.
-
-max_level:
-  The maximum level to be fetched.
-  This can be used to optimizing caching. Most of the time only one or two
-  levels of menus are immediately visible on the page. By declaring multiple
-  types, we can generate different cache buckets, so a new menu item on a low
-  level does not require a full rebuild of every page.
-"""
-directive @menu(menu_id: String, menu_ids: [String!], item_type: String, max_level: Int) on OBJECT
-
-directive @stringTranslation(contextPrefix: String) on OBJECT
-
 extend type Query {
   drupalBuildId: Int!
   drupalFeedInfo: [Feed!]!
@@ -433,12 +416,6 @@ type User {
   id: String
   name: String
 }
-
-directive @entity(type: String!, bundle: String, access: Boolean) on OBJECT
-
-directive @menu(menu_id: String, menu_ids: [String!], item_type: String, max_level: Int) on OBJECT
-
-directive @stringTranslation(contextPrefix: String) on OBJECT
 
 extend type Mutation {
   _original_typename: String!
