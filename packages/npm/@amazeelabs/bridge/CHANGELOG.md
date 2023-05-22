@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge@1.2.1...@amazeelabs/bridge@1.2.2) (2023-05-22)
+
+### Bug Fixes
+
+- location is undefined during gatsby render
+  ([da0573b](https://github.com/AmazeeLabs/silverback-mono/commit/da0573bd6cc4fb0f1415b2507ad018de2d76a3d3))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge@1.2.0...@amazeelabs/bridge@1.2.1) (2023-05-19)
 
 ### Bug Fixes
