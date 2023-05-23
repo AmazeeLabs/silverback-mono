@@ -109,6 +109,37 @@ describe('buildResponsiveImage()', () => {
     });
   });
 
+  it('returns the original image url when cloudname is "local"', () => {
+    const result = JSON.parse(
+      buildResponsiveImage(
+        {
+          cloudname: 'local',
+          key: '000',
+          secret: 'FFF',
+        },
+        imageProps,
+        {
+          width: 1600,
+          height: 1200,
+          sizes: [
+            [800, 780],
+            [1200, 1100],
+          ],
+        },
+      ),
+    );
+    expect(result).toStrictEqual({
+      src: `${imageProps.src}`,
+      width: 1600,
+      height: 1200,
+      sizes: '(max-width: 800px) 780px, (max-width: 1200px) 1100px, 1600px',
+      srcset: [
+        `${imageProps.src} 780w`,
+        `${imageProps.src} 1100w`,
+      ].join(', '),
+    });
+  });
+
   it('retrieves a placeholder image when the cloudname is "test"', () => {
     const result = JSON.parse(
       buildResponsiveImage(

@@ -197,6 +197,9 @@ const getCloudinaryImageUrl = (
       config?.height || (config?.width || 1000) * 0.75
     }/${apiKey}/${apiSecret}`;
   }
+  if (cloudName === 'local') {
+    return originalImage;
+  }
   const image = new CloudinaryImage(
     originalImage,
     {

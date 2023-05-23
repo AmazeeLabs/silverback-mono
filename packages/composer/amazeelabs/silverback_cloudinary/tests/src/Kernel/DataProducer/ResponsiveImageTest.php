@@ -25,8 +25,7 @@ class ResponsiveImageTest extends GraphQLTestBase {
    * @covers \Drupal\silverback_cloudinary\Plugin\GraphQL\DataProducer\ResponsiveImage::resolve
    * @dataProvider responsiveImageProvider
    */
-  public function testResponsiveImage($image, $expected, $width = NULL, $height = NULL, $sizes = NULL, $transform = NULL): void
-  {
+  public function testResponsiveImage($image, $expected, $width = NULL, $height = NULL, $sizes = NULL, $transform = NULL): void {
     $result = $this->executeDataProducer('responsive_image', [
       'image' => $image,
       'width' => $width,
