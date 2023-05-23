@@ -82,7 +82,7 @@ class ResponsiveImage extends DataProducerPluginBase {
     if (empty($sizes)) {
       return '';
     }
-    $sizeEntries = array_reduce($sizes, function($carry, $sizesElement) {
+    $sizeEntries = array_reduce($sizes, function ($carry, $sizesElement) {
       // Each size must have exactly 2 elements.
       if (count($sizesElement) !== 2) {
         return $carry;
@@ -118,7 +118,7 @@ class ResponsiveImage extends DataProducerPluginBase {
     if (empty($sizes)) {
       return '';
     }
-    $srcSetEntries = array_reduce($sizes, function($carry, $sizesElement) use ($defaultDimensions, $originalUrl, $transform) {
+    $srcSetEntries = array_reduce($sizes, function ($carry, $sizesElement) use ($defaultDimensions, $originalUrl, $transform) {
       // Each size must have exactly 2 elements.
       if (count($sizesElement) !== 2) {
         return $carry;
@@ -155,6 +155,11 @@ class ResponsiveImage extends DataProducerPluginBase {
    * @return string
    */
   protected function getCloudinaryImageUrl($originalUrl, array $config = []) {
+    // If the cloud name is "local" return the original image.
+    // For local testing.
+    if (strpos(getenv('CLOUDINARY_URL'), '@local')) {
+      return $originalUrl;
+    }
     $image = (new ImageTag($originalUrl));
     // We do not want the additional '_a" query parameter on the urls. If we
     // do not set it to FALSE, every image url will have a additional '_a' query

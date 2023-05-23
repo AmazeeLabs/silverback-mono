@@ -1,6 +1,7 @@
 <?php
 
 namespace Drupal\silverback_cloudinary\Plugin\GraphQL\Directive;
+
 use Drupal\Core\Plugin\PluginBase;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
