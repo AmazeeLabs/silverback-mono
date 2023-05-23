@@ -23,33 +23,3 @@ directive @isTemplate on FIELD_DEFINITION
 DEPRECATED, use @isTemplate
 """
 directive @template on FIELD_DEFINITION
-
-# Directive for the "EntityFeed" plugin.
-directive @entity(type: String!, bundle: String, access: Boolean) on OBJECT
-
-"""
-Directive for the "MenuFeed" plugin.
-
-menu_id:
-  The internal menu id.
-
-menu_ids:
-  Internal menu id's. The first one the current user has access to will be
-  picked.
-
-max_level:
-  The maximum level to be fetched.
-  This can be used to optimizing caching. Most of the time only one or two
-  levels of menus are immediately visible on the page. By declaring multiple
-  types, we can generate different cache buckets, so a new menu item on a low
-  level does not require a full rebuild of every page.
-"""
-directive @menu(
-  menu_id: String
-  menu_ids: [String!]
-  item_type: String
-  max_level: Int
-) on OBJECT
-
-# Directive for the "StringTranslationFeed" plugin.
-directive @stringTranslation(contextPrefix: String) on OBJECT
