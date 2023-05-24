@@ -14,8 +14,9 @@ function silverback_external_preview_toolbar() {
   $toolbar_items = [];
   /** @var \Drupal\silverback_external_preview\ExternalPreviewLink $externalPreviewLink */
   $externalPreviewLink = Drupal::service('silverback_external_preview.external_preview_link');
+  $externalPreviewSettings = \Drupal::configFactory()->get('silverback_external_preview.settings');
   $currentUser = \Drupal::currentUser();
-  if (getenv('EXTERNAL_PREVIEW_BASE_URL') && $currentUser->hasPermission('use external preview')) {
+  if ($externalPreviewSettings->get('preview_host') && $externalPreviewSettings->get('live_host') && $currentUser->hasPermission('use external preview')) {
     $routeMatch = Drupal::routeMatch();
     /* @var $url Url */
     $url = $externalPreviewLink->getPreviewUrl($routeMatch);
