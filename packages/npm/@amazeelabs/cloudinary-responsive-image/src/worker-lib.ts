@@ -56,3 +56,54 @@ export function drawDimensions(
     imageRatio < containerRatio ? containerWidth / imageRatio : containerHeight;
   return [drawWidth, drawHeight];
 }
+
+export async function mockCloudinaryImage(
+  cloudinaryUrl: string,
+): Promise<Blob | undefined> {
+  const info = parseCloudinaryUrl(cloudinaryUrl);
+  if (!info) {
+    return undefined;
+  }
+  const bitmap = await createImageBitmap(await (await fetch(info.src)).blob());
+  const imageRatio = bitmap.width / bitmap.height;
+  const containerWidth = info.width || bitmap.width;
+  const containerHeight = info.height || containerWidth / imageRatio;
+  const canvas = new OffscreenCanvas(containerWidth, containerHeight);
+  const ctx = canvas.getContext('2d') as unknown as CanvasRenderingContext2D;
+  const [drawWidth, drawHeight] = drawDimensions(
+    bitmap.width,
+    bitmap.height,
+    info.width,
+    info.height,
+  );
+  ctx.drawImage(
+    bitmap,
+    (containerWidth - drawWidth) / 2,
+    (containerHeight - drawHeight) / 2,
+    drawWidth,
+    drawHeight,
+  );
+  if (info.debug) {
+    const indicatorHeight = 50;
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    ctx.fillRect(20, 20, containerWidth - 40, indicatorHeight);
+    ctx.fillStyle = 'white';
+    ctx.font = '20px Arial';
+    ctx.textBaseline = 'middle';
+    ctx.textAlign = 'center';
+    ctx.fillText(
+      `${containerWidth} x ${containerHeight}`,
+      containerWidth / 2,
+      22 + indicatorHeight / 2,
+      containerWidth - 20,
+    );
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([5, 5]);
+    ctx.beginPath();
+    ctx.rect(5, 5, containerWidth - 10, containerHeight - 10);
+    ctx.stroke();
+  }
+
+  return await canvas.convertToBlob();
+}
