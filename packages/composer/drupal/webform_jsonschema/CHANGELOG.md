@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/webform_jsonschema@2.0.6...@-drupal/webform_jsonschema@2.0.7) (2023-03-23)
+
+**Note:** Version bump only for package @-drupal/webform_jsonschema
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.0.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-drupal/webform_jsonschema@2.0.5...@-drupal/webform_jsonschema@2.0.6) (2023-01-30)
 
 **Note:** Version bump only for package @-drupal/webform_jsonschema

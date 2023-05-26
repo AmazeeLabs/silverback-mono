@@ -106,29 +106,30 @@ class GutenbergValidator extends ConstraintValidator implements ContainerInjecti
    * Validates a set of Gutenberg blocks (and their inner blocks) against a set
    * of validator plugins.
    *
-   * @param $block
+   * @param array $blocks
    * @param array $plugins
    */
-  public function validateBlocks(array $blocks, array $plugins) {
+  public function validateBlocks(array $blocks, array $plugins, array $breadcrumbs = []) {
     // @todo: we have here a pretty big nesting level, would be nice to find a
     //   solution to reduce it.
-    array_walk($blocks, function($block) use ($plugins) {
-      array_walk($plugins, function(GutenbergValidatorInterface $plugin) use ($block, $plugins) {
+    array_walk($blocks, function($block) use ($plugins, $breadcrumbs) {
+      array_walk($plugins, function(GutenbergValidatorInterface $plugin) use ($block, $plugins, $breadcrumbs) {
         // Check if the block has inner blocks, and validate them as well.
         if (!empty($block['innerBlocks'])) {
-          $this->validateBlocks($block['innerBlocks'], [$plugin]);
+          $breadcrumbs[] = $block['blockName'];
+          $this->validateBlocks($block['innerBlocks'], [$plugin], $breadcrumbs);
         }
         if (!$plugin->applies($block)) {
           return;
         }
         $validatedFields = $plugin->validatedFields($block);
         if (!empty($validatedFields)) {
-          array_walk($validatedFields, function($validatedField, $attrName) use ($block) {
+          array_walk($validatedFields, function($validatedField, $attrName) use ($block, $breadcrumbs) {
             if (empty($validatedField['rules'])) {
               return;
             }
             $attrValue = $block['attrs'][$attrName] ?? NULL;
-            array_walk($validatedField['rules'], function($validationRulePluginId) use ($attrValue, $attrName, $block, $validatedField) {
+            array_walk($validatedField['rules'], function($validationRulePluginId) use ($attrValue, $attrName, $block, $validatedField, $breadcrumbs) {
               try {
                 $rulePlugin = $this->validatorRuleManager->createInstance($validationRulePluginId);
               } catch (PluginNotFoundException | PluginException $e) {
@@ -140,11 +141,17 @@ class GutenbergValidator extends ConstraintValidator implements ContainerInjecti
               if ($validationMessage === TRUE) {
                 return;
               }
+              $breadcrumbs[] = $block['blockName'];
+              $breadcrumbLabels = array_map(function($blockName) {
+                $blockNameParts = explode('/', $blockName);
+                return ucfirst(str_replace('-', ' ', end($blockNameParts)));
+              }, $breadcrumbs);
+              $breadcrumbsLabel = implode(' > ', $breadcrumbLabels);
               $this->violations[] = [
                 'attribute' => $attrName,
                 'blockName' => $block['blockName'],
                 'rule' => $validationRulePluginId,
-                'message' => $validationMessage,
+                'message' => $breadcrumbsLabel . ': ' . $validationMessage,
               ];
             });
           });

@@ -11,6 +11,8 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Commons
         uses: ./.github/actions/commons
@@ -51,10 +53,10 @@ jobs:
 
       - name: Check for uncommitted changes
         run: |
-          if [[ $(git status --porcelain -- ':!.npmrc') ]]
+          if [[ $(git status --porcelain) ]]
           then
             >&2 echo "Error: Found uncommitted changes. Lerna publish will fail."
-            git status --porcelain -- ':!.npmrc'
+            git status --porcelain
             git diff
             false
           else

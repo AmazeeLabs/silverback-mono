@@ -1,5 +1,2 @@
 gatsby-node.js
-*.js
-!.eslintrc.js
-test-results
-yarn-error.log
+templates

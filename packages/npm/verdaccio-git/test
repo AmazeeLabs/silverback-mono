@@ -28,7 +28,7 @@ mkdir .test
 mkdir .test/packages
 mkdir .test/remote
 
-git init --bare .test/remote/test.git
+git init --bare .test/remote/test.git --initial-branch=master
 
 function retry {
   local n=1

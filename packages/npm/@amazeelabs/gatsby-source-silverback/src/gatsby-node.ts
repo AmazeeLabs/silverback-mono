@@ -20,7 +20,7 @@ import { createSourcingConfig } from './helpers/create-sourcing-config';
 import { createTranslationQueryField } from './helpers/create-translation-query-field';
 import { drupalFeeds } from './helpers/drupal-feeds';
 import { fetchNodeChanges } from './helpers/fetch-node-changes';
-import { Options, validOptions } from './utils';
+import { Options, typePrefix, validOptions } from './utils';
 
 export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   Joi,
@@ -34,12 +34,16 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
     auth_key: Joi.string().optional(),
     query_concurrency: Joi.number().optional().min(1),
     paginator_page_size: Joi.number().optional().min(2),
+    type_prefix: Joi.string().allow('').optional(),
   });
 
 const getForwardedHeaders = (url: URL) => ({
   'X-Forwarded-Proto': url.protocol === 'https:' ? 'https' : 'http',
   'X-Forwarded-Host': url.hostname,
   'X-Forwarded-Port': url.port,
+  'SLB-Forwarded-Proto': url.protocol === 'https:' ? 'https' : 'http',
+  'SLB-Forwarded-Host': url.hostname,
+  'SLB-Forwarded-Port': url.port,
 });
 
 export const sourceNodes: GatsbyNode['sourceNodes'] = async (
@@ -94,7 +98,9 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
     gatsbyApi.reporter.info(`ℹ️ clearing all nodes.`);
     const feeds = await drupalFeeds(executor);
     for (const feed of feeds) {
-      const nodes = gatsbyApi.getNodesByType(`Drupal${feed.typeName}`);
+      const nodes = gatsbyApi.getNodesByType(
+        `${typePrefix(options)}${feed.typeName}`,
+      );
       const events: Array<INodeDeleteEvent> = nodes.map((node) => ({
         remoteTypeName: feed.typeName,
         eventName: 'DELETE',
@@ -142,7 +148,11 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
     const config = await createSourcingConfig(args, executor, options);
     await createToolkitSchemaCustomization(config);
 
-    await createTranslationQueryField(args, createQueryExecutor(options));
+    await createTranslationQueryField(
+      args,
+      createQueryExecutor(options),
+      options,
+    );
     args.actions.createTypes(`
     type Query {
       drupalBuildId: Int!

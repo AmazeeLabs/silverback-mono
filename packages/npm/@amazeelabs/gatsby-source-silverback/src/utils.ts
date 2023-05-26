@@ -15,8 +15,13 @@ export type Options = {
   query_concurrency?: number;
   // How many entities to fetch in a single GraphQL query. Defaults to 100.
   paginator_page_size?: number;
+  // The prefix to use for all Gatsby node types. Defaults to "Drupal".
+  type_prefix?: string;
 };
 
 export const validOptions = (options: {
   [key: string]: any;
 }): options is Options => options.drupal_url && options.graphql_path;
+
+export const typePrefix = (options: Options) =>
+  typeof options.type_prefix === 'string' ? options.type_prefix : 'Drupal';

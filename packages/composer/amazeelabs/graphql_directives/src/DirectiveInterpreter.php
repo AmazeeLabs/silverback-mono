@@ -8,6 +8,7 @@ use Drupal\graphql\GraphQL\ResolverBuilder;
 use GraphQL\Language\AST\ArgumentNode;
 use GraphQL\Language\AST\DirectiveNode;
 use GraphQL\Language\AST\DocumentNode;
+use GraphQL\Language\AST\EnumTypeDefinitionNode;
 use GraphQL\Language\AST\FieldDefinitionNode;
 use GraphQL\Language\AST\InterfaceTypeDefinitionNode;
 use GraphQL\Language\AST\ListTypeNode;
@@ -83,7 +84,7 @@ class DirectiveInterpreter {
   public function interpret() {
     // First pass, collect all type and default resolvers.
     foreach ($this->document->definitions as $definition) {
-      if ($definition instanceof ObjectTypeDefinitionNode) {
+      if ($definition instanceof ObjectTypeDefinitionNode || $definition instanceof EnumTypeDefinitionNode) {
         if ($resolver = $this->buildDefaultResolver($definition->directives)) {
           $this->defaultValueMap[$definition->name->value] = $resolver;
         }

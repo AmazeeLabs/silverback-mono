@@ -4,8 +4,8 @@ namespace Drupal\silverback_gatsby\Commands;
 
 use Drupal\Component\Plugin\PluginManagerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\graphql_directives\Plugin\GraphQL\Schema\DirectableSchema;
 use Drupal\silverback_gatsby\GatsbyBuildTriggerInterface;
-use Drupal\silverback_gatsby\GraphQL\ComposableSchema;
 use Drush\Commands\DrushCommands;
 use GraphQL\Language\Printer;
 
@@ -56,7 +56,7 @@ class SilverbackGatsbyCommands extends DrushCommands {
       $config = $server->get('schema_configuration');
       /** @var \Drupal\graphql\Plugin\SchemaPluginInterface $schema */
       $schema = $this->schemaPluginManager->createInstance($server->schema, $config[$server->schema]);
-      if (!$schema instanceof ComposableSchema) {
+      if (!$schema instanceof DirectableSchema) {
         continue;
       }
       $path = $folder . '/' . $server->id() . '.composed.graphqls';

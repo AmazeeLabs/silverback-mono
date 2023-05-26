@@ -29,7 +29,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   description = "Schema extension providing default resolvers for Gatsby."
  * )
  */
-class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBase {
+class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBase
+{
 
   /**
    * The list of feeds that are used by the parent schema.
@@ -73,7 +74,8 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
    *
    * @codeCoverageIgnore
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition)
+  {
     return new static(
       $configuration,
       $plugin_id,
@@ -105,18 +107,21 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
     $this->logger = $logger;
   }
 
+  public function getBaseDefinition() {
+    return implode("\n", [
+      $this->getDirectiveDefinitions(),
+      parent::getBaseDefinition(),
+    ]);
+  }
+
   /**
    * {@inheritDoc}
    */
-  public function getDirectiveDefinitions(): string {
+  public function getDirectiveDefinitions(): string
+  {
     $feeds = $this->feedManager->getDefinitions();
-    uasort($feeds, fn ($a, $b) => strnatcasecmp($a['id'], $b['id']));
-    $directives = array_map(fn ($def) => $def['directive'], $feeds);
-
-    $module = \Drupal::moduleHandler()->getModule('silverback_gatsby');
-    $path = 'graphql/editor_block.directive.graphqls';
-    $file = $module->getPath() . '/' . $path;
-    $directives[] = file_get_contents($file);
+    uasort($feeds, fn($a, $b) => strnatcasecmp($a['id'], $b['id']));
+    $directives = array_map(fn($def) => $def['directive'], $feeds);
     return implode("\n", $directives);
   }
 
@@ -126,7 +131,8 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
    * @return \Drupal\silverback_gatsby\Plugin\FeedInterface[]
    * @throws \Drupal\Component\Plugin\Exception\PluginException
    */
-  public function getFeeds(DocumentNode $ast): array {
+  public function getFeeds(DocumentNode $ast): array
+  {
     if (count($this->feeds) === 0) {
       // Search for object type definitions ...
       foreach ($ast->definitions->getIterator() as $definition) {
@@ -152,13 +158,12 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
               if ($arg->value instanceof ListValueNode) {
                 // If it's a list value, turn it into an array of values.
                 $config[$arg->name->value] = [];
-                for($i = 0; $i < $arg->value->values->count(); $i++) {
+                for ($i = 0; $i < $arg->value->values->count(); $i++) {
                   if ($arg->value->values[$i] instanceof StringValueNode) {
                     $config[$arg->name->value][] = $arg->value->values[$i]->value;
                   }
                 }
-              }
-              else {
+              } else {
                 $config[$arg->name->value] = $arg->value->value;
               }
             }
@@ -189,7 +194,8 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
   /**
    * Build the automatic schema definition for a given Feed.
    */
-  protected function getSchemaDefinitions(DocumentNode $ast, FeedInterface $feed) : string {
+  protected function getSchemaDefinitions(DocumentNode $ast, FeedInterface $feed): string
+  {
     $typeName = $feed->getTypeName();
     $singleFieldName = $feed->getSingleFieldName();
     $listFieldName = $feed->getListFieldName();
@@ -199,7 +205,7 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
       "  $listFieldName(offset: Int, limit: Int): [$typeName]!",
     ];
 
-    $schema [] = "}";
+    $schema[] = "}";
 
     if ($feed->isTranslatable()) {
       $schema[] = "extend type $typeName {";
@@ -209,8 +215,7 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
       $schema[] = "  langcode: String!";
       $schema[] = "  translations: [$typeName!]!";
       $schema[] = "}";
-    }
-    else {
+    } else {
       $schema[] = "extend type $typeName {";
       $schema[] = "  id: String!";
       $schema[] = "  drupalId: String!";
@@ -224,12 +229,13 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
 
   protected function getDirectableExtensionDefinition(DocumentNode $ast): string {
     // Collect all active feeds and prepend their definitions to the schema.
-    $schema = array_map(fn (FeedInterface $feed) => $this->getSchemaDefinitions($ast, $feed), $this->getFeeds($ast));
+    $schema = array_map(fn(FeedInterface $feed) => $this->getSchemaDefinitions($ast, $feed), $this->getFeeds($ast));
     array_unshift($schema, $this->getOriginalTypenameDefinitions($ast));
     return implode("\n", $schema);
   }
 
-  protected function registerDirectableResolvers(DocumentNode $ast, ResolverRegistryInterface $registry): void {
+  protected function registerDirectableResolvers(DocumentNode $ast, ResolverRegistryInterface $registry): void
+  {
     $builder = new ResolverBuilder();
     $this->addFieldResolvers($ast, $registry, $builder);
     $this->addOriginalTypenameResolvers($ast, $registry, $builder);
@@ -244,7 +250,8 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
    *
    * @return string
    */
-  protected function getOriginalTypenameDefinitions(DocumentNode $ast): string {
+  protected function getOriginalTypenameDefinitions(DocumentNode $ast): string
+  {
     $types = [];
     foreach ($ast->definitions->getIterator() as $definition) {
       if ($definition instanceof ObjectTypeDefinitionNode) {
@@ -260,7 +267,8 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
    *
    * @return void
    */
-  protected function addOriginalTypenameResolvers(DocumentNode $ast, ResolverRegistry $registry, ResolverBuilder $builder) {
+  protected function addOriginalTypenameResolvers(DocumentNode $ast, ResolverRegistry $registry, ResolverBuilder $builder)
+  {
     foreach ($ast->definitions->getIterator() as $definition) {
       if ($definition instanceof ObjectTypeDefinitionNode) {
         $registry->addFieldResolver($definition->name->value, '_original_typename', $builder->fromValue($definition->name->value));
@@ -271,12 +279,13 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
   /**
    * Implement field resolvers for this extension.
    */
-  protected function addFieldResolvers(DocumentNode $ast, ResolverRegistry $registry, ResolverBuilder $builder) {
+  protected function addFieldResolvers(DocumentNode $ast, ResolverRegistry $registry, ResolverBuilder $builder)
+  {
 
     $registry->addFieldResolver(
       'Query',
       'drupalFeedInfo',
-      $builder->fromValue(array_map(fn (FeedInterface $feed) => $feed->info(), $this->getFeeds($ast)))
+      $builder->fromValue(array_map(fn(FeedInterface $feed) => $feed->info(), $this->getFeeds($ast)))
     );
     $registry->addFieldResolver(
       'Query',
@@ -295,37 +304,48 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
       $context->mergeCacheMaxAge(0);
       /** @var \Drupal\silverback_gatsby\GatsbyUpdateTrackerInterface $tracker */
       $tracker = \Drupal::service('silverback_gatsby.update_tracker');
-      return array_map(fn ($change) => $change->id, array_filter(
-        isset($args['lastBuild']) && isset($args['currentBuild'])
+      return array_map(
+        fn($change) => $change->id,
+        array_filter(
+          isset($args['lastBuild']) && isset($args['currentBuild'])
           ? $tracker->diff($args['lastBuild'], $args['currentBuild'], $context->getServer()->id())
           : [],
-        fn ($change) => $change->type === $value['typeName']
-      ));
+          fn($change) => $change->type === $value['typeName']
+        )
+      );
     }));
 
-    foreach($this->getFeeds($ast) as $feed) {
+    foreach ($this->getFeeds($ast) as $feed) {
 
       $idResolver = $feed->resolveId();
       $langcodeResolver = $feed->resolveLangcode();
 
-      $registry->addFieldResolver('Query', $feed->getListFieldName(), $feed->resolveItems(
-        $builder->fromArgument('limit'),
-        $builder->fromArgument('offset'),
-      ));
+      $registry->addFieldResolver(
+        'Query', $feed->getListFieldName(),
+        $feed->resolveItems(
+          $builder->fromArgument('limit'),
+          $builder->fromArgument('offset'),
+        )
+      );
 
       $typeName = $feed->getTypeName();
       $registry->addFieldResolver($typeName, 'drupalId', $idResolver);
       $feed->addExtensionResolvers($registry, $builder);
 
       if ($feed->isTranslatable()) {
-        $registry->addFieldResolver('Query', $feed->getSingleFieldName(), $feed->resolveItem(
-          $builder->produce('gatsby_extract_id')
-            ->map('id', $builder->fromArgument('id')),
-          $builder->produce('gatsby_extract_langcode')
-            ->map('id', $builder->fromArgument('id')),
-        ));
+        $registry->addFieldResolver(
+          'Query', $feed->getSingleFieldName(),
+          $feed->resolveItem(
+            $builder->produce('gatsby_extract_id')
+              ->map('id', $builder->fromArgument('id')),
+            $builder->produce('gatsby_extract_langcode')
+              ->map('id', $builder->fromArgument('id')),
+          )
+        );
 
-        $registry->addFieldResolver($typeName, 'id',
+        $registry->addFieldResolver(
+          $typeName,
+          'id',
           $builder->produce('gatsby_build_id')
             ->map('id', $idResolver)
             ->map('langcode', $langcodeResolver)
@@ -334,17 +354,19 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
         $registry->addFieldResolver($typeName, 'langcode', $langcodeResolver);
         $registry->addFieldResolver($typeName, 'defaultTranslation', $feed->resolveDefaultTranslation());
         $registry->addFieldResolver($typeName, 'translations', $feed->resolveTranslations());
-      }
-      else {
-        $registry->addFieldResolver('Query', $feed->getSingleFieldName(), $feed->resolveItem(
-          $builder->fromArgument('id'))
+      } else {
+        $registry->addFieldResolver(
+          'Query', $feed->getSingleFieldName(),
+          $feed->resolveItem(
+            $builder->fromArgument('id')
+          )
         );
 
         $registry->addFieldResolver($typeName, 'id', $idResolver);
       }
     }
 
-    $addResolver = function(string $path, ResolverInterface $resolver) use ($registry) {
+    $addResolver = function (string $path, ResolverInterface $resolver) use ($registry) {
       [$type, $field] = explode('.', $path);
       $registry->addFieldResolver($type, $field, $resolver);
     };

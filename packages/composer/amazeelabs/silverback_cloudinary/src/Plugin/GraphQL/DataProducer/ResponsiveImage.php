@@ -44,24 +44,23 @@ use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
  */
 class ResponsiveImage extends DataProducerPluginBase {
   public function resolve($image, $width = NULL, $height = NULL, $sizes = NULL, $transform = NULL) {
-    $return = [
-      'src' => $image
-    ];
+    $return = $image;
     // If no width is given, we just return the original image url.
     if (empty($width)) {
       return Json::encode($return);
     }
+    $ratio = $image['height'] / $image['width'];
     // The image width and height in the response should be the same as the ones
     // sent as parameters.
     // @todo: Unless the width sent is bigger than the width of the original
     // image, since we should not scale up. TBD what to do in this case.
     $return['width'] = $width;
-    $return['height'] = $height;
+    $return['height'] = $height ?: round($width * $ratio);
     if (!empty($sizes)) {
       $return['sizes'] = $this->buildSizesString($sizes, $width);
-      $return['srcset'] = $this->buildSrcSetString($image, $sizes, ['width' => $width, 'height' => $height], $transform);
+      $return['srcset'] = $this->buildSrcSetString($image['src'], $sizes, ['width' => $width, 'height' => $height], $transform);
     }
-    $return['src'] = $this->getCloudinaryImageUrl($image, ['width' => $width, 'height' => $height, 'transform' => $transform]);
+    $return['src'] = $this->getCloudinaryImageUrl($image['src'], ['width' => $width, 'height' => $height, 'transform' => $transform]);
 
     return Json::encode(array_filter($return));
   }
@@ -83,7 +82,7 @@ class ResponsiveImage extends DataProducerPluginBase {
     if (empty($sizes)) {
       return '';
     }
-    $sizeEntries = array_reduce($sizes, function($carry, $sizesElement) {
+    $sizeEntries = array_reduce($sizes, function ($carry, $sizesElement) {
       // Each size must have exactly 2 elements.
       if (count($sizesElement) !== 2) {
         return $carry;
@@ -119,7 +118,7 @@ class ResponsiveImage extends DataProducerPluginBase {
     if (empty($sizes)) {
       return '';
     }
-    $srcSetEntries = array_reduce($sizes, function($carry, $sizesElement) use ($defaultDimensions, $originalUrl, $transform) {
+    $srcSetEntries = array_reduce($sizes, function ($carry, $sizesElement) use ($defaultDimensions, $originalUrl, $transform) {
       // Each size must have exactly 2 elements.
       if (count($sizesElement) !== 2) {
         return $carry;
@@ -156,6 +155,11 @@ class ResponsiveImage extends DataProducerPluginBase {
    * @return string
    */
   protected function getCloudinaryImageUrl($originalUrl, array $config = []) {
+    // If the cloud name is "local" return the original image.
+    // For local testing.
+    if (strpos(getenv('CLOUDINARY_URL'), '@local')) {
+      return $originalUrl;
+    }
     $image = (new ImageTag($originalUrl));
     // We do not want the additional '_a" query parameter on the urls. If we
     // do not set it to FALSE, every image url will have a additional '_a' query

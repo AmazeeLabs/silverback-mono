@@ -24,6 +24,16 @@ describe('extractCodeBlocks', () => {
       ],
       ['await $`pwd`'],
     );
+    assertCodeBlocks(
+      [
+        '# Hello there, i am a executable script',
+        '',
+        '```ts',
+        'await $`pwd`',
+        '```',
+      ],
+      ['await $`pwd`'],
+    );
   });
 
   it('turns shell script blocks into zx shell commands', () => {

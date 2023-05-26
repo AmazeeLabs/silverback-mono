@@ -1,28 +1,21 @@
 {
   "name": "@-silverback-drupal/gutenberg_custom_blocks",
-  "version": "1.0.60",
+  "version": "1.0.70",
   "private": true,
   "scripts": {
     "start": "pnpm drupal-js-build --css && pnpm drupal-js-build watch --css",
-    "build": "pnpm drupal-js-build --css && pnpm drupal-gutenberg-translations",
-    "precommit": "lint-staged",
-    "watch": "jest --watch",
-    "test:unit": "jest --passWithNoTests",
-    "test:watch": "jest --watch"
+    "build": "pnpm drupal-js-build --css && pnpm drupal-gutenberg-translations"
   },
   "dependencies": {
     "drupal-gutenberg-translations": "1.1.0",
     "drupal-js-build": "https://github.com/AmazeeLabs/drupal-js-build"
   },
   "devDependencies": {
-    "@amazeelabs/eslint-config": "1.4.40",
-    "@amazeelabs/jest-preset": "1.3.44",
-    "@amazeelabs/prettier-config": "1.1.1",
-    "@types/jest": "29.4.0",
-    "eslint": "8.33.0",
-    "jest": "29.4.1",
-    "lint-staged": "13.1.0",
-    "prettier": "2.8.3",
-    "typescript": "4.9.5"
+    "@amazeelabs/eslint-config": "1.4.43",
+    "@amazeelabs/prettier-config": "1.1.3",
+    "@types/jest": "29.5.1",
+    "eslint": "8.39.0",
+    "prettier": "2.8.8",
+    "typescript": "5.0.4"
   }
 }

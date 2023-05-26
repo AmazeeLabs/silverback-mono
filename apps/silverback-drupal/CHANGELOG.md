@@ -3,6 +3,267 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.12](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.3.11...@-amazeelabs/silverback-drupal@2.3.12) (2023-05-23)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.3.11](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.3.10...@-amazeelabs/silverback-drupal@2.3.11) (2023-05-15)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.3.10](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.3.9...@-amazeelabs/silverback-drupal@2.3.10) (2023-05-10)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.3.9](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.3.8...@-amazeelabs/silverback-drupal@2.3.9) (2023-04-28)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.3.8](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.3.7...@-amazeelabs/silverback-drupal@2.3.8) (2023-04-28)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.3.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.3.6...@-amazeelabs/silverback-drupal@2.3.7) (2023-04-27)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.3.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.3.5...@-amazeelabs/silverback-drupal@2.3.6) (2023-04-26)
+
+### Reverts
+
+- Revert "test: adjust test script"
+  ([9404fe8](https://github.com/AmazeeLabs/silverback-mono/commit/9404fe824657dff66c48536254b92bba546b9ea8))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.3.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.3.4...@-amazeelabs/silverback-drupal@2.3.5) (2023-04-21)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.3.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.3.3...@-amazeelabs/silverback-drupal@2.3.4) (2023-04-19)
+
+### Bug Fixes
+
+- **cloudinary:** retain original image proportions
+  ([e166f29](https://github.com/AmazeeLabs/silverback-mono/commit/e166f29abd769a8ba41ac9c3ffefe04ba67964cd))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.3.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.3.2...@-amazeelabs/silverback-drupal@2.3.3) (2023-04-18)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.3.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.3.1...@-amazeelabs/silverback-drupal@2.3.2) (2023-04-15)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.3.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.3.0...@-amazeelabs/silverback-drupal@2.3.1) (2023-04-11)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.2.8...@-amazeelabs/silverback-drupal@2.3.0) (2023-04-10)
+
+### Features
+
+- complete gutenberg-linkit integration (without patches)
+  ([6eb9c19](https://github.com/AmazeeLabs/silverback-mono/commit/6eb9c19ba7fc97783be686ec4a9c10e7b959fe7f))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.2.8](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.2.7...@-amazeelabs/silverback-drupal@2.2.8) (2023-03-30)
+
+### Bug Fixes
+
+- support directives on enums
+  ([55c84a4](https://github.com/AmazeeLabs/silverback-mono/commit/55c84a42511d89bd36101a0d721d19ba8d386f6a))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.2.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.2.6...@-amazeelabs/silverback-drupal@2.2.7) (2023-03-29)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.2.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.2.5...@-amazeelabs/silverback-drupal@2.2.6) (2023-03-23)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.2.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.2.4...@-amazeelabs/silverback-drupal@2.2.5) (2023-03-23)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.2.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.2.3...@-amazeelabs/silverback-drupal@2.2.4) (2023-03-23)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.2.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.2.2...@-amazeelabs/silverback-drupal@2.2.3) (2023-03-23)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.2.1...@-amazeelabs/silverback-drupal@2.2.2) (2023-03-23)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.2.0...@-amazeelabs/silverback-drupal@2.2.1) (2023-03-23)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.1.14...@-amazeelabs/silverback-drupal@2.2.0) (2023-03-22)
+
+### Features
+
+- linkit integration for gutenberg
+  ([8affb8b](https://github.com/AmazeeLabs/silverback-mono/commit/8affb8b86182f66ae86de819ed4f7e6c7abfb085))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.1.14](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.1.13...@-amazeelabs/silverback-drupal@2.1.14) (2023-03-18)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.1.13](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.1.12...@-amazeelabs/silverback-drupal@2.1.13) (2023-03-18)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.1.12](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.1.11...@-amazeelabs/silverback-drupal@2.1.12) (2023-03-18)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.1.11](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.1.10...@-amazeelabs/silverback-drupal@2.1.11) (2023-03-17)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.1.10](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.1.9...@-amazeelabs/silverback-drupal@2.1.10) (2023-03-15)
+
+### Reverts
+
+- Revert "chore: add a missing dependency"
+  ([aa78462](https://github.com/AmazeeLabs/silverback-mono/commit/aa78462b42962a60b852d71b5aa6a878da15c980))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.1.9](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.1.8...@-amazeelabs/silverback-drupal@2.1.9) (2023-02-24)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal

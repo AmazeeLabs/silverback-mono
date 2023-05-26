@@ -15,6 +15,7 @@
     "declarationDir": "."
   },
   "exclude": ["node_modules", "playwright-tests", "src/tests"],
+  "include": ["src"],
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Recommended"
 }

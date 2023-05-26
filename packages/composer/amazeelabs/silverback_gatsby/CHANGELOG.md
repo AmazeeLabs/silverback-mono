@@ -3,6 +3,81 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.1.3...@-amazeelabs/silverback_gatsby@2.1.4) (2023-05-23)
+
+**Note:** Version bump only for package @-amazeelabs/silverback_gatsby
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.1.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.1.2...@-amazeelabs/silverback_gatsby@2.1.3) (2023-05-15)
+
+### Bug Fixes
+
+- allow to use custom SLB-Forwarded-\* headers
+  ([8a45285](https://github.com/AmazeeLabs/silverback-mono/commit/8a45285b6c52d18367210cb8d2ffabeee20208d6))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.1.1...@-amazeelabs/silverback_gatsby@2.1.2) (2023-05-10)
+
+**Note:** Version bump only for package @-amazeelabs/silverback_gatsby
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.1.0...@-amazeelabs/silverback_gatsby@2.1.1) (2023-04-19)
+
+### Bug Fixes
+
+- **cloudinary:** retain original image proportions
+  ([e166f29](https://github.com/AmazeeLabs/silverback-mono/commit/e166f29abd769a8ba41ac9c3ffefe04ba67964cd))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.0.6...@-amazeelabs/silverback_gatsby@2.1.0) (2023-04-15)
+
+### Features
+
+- **graphql:** directive for fetching an entity based on id, revision or route
+  ([07637e7](https://github.com/AmazeeLabs/silverback-mono/commit/07637e77be4d1c90e6bd00ddb8a23ea35ccdbb41))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.0.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.0.5...@-amazeelabs/silverback_gatsby@2.0.6) (2023-04-11)
+
+### Bug Fixes
+
+- support schemas extending DirectableSchema directly
+  ([d338ea7](https://github.com/AmazeeLabs/silverback-mono/commit/d338ea78674886d903d03ae21936e6352e4d06f6))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.0.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.0.4...@-amazeelabs/silverback_gatsby@2.0.5) (2023-03-23)
+
+**Note:** Version bump only for package @-amazeelabs/silverback_gatsby
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.0.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.0.3...@-amazeelabs/silverback_gatsby@2.0.4) (2023-02-06)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gatsby

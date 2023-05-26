@@ -1,5 +1,5 @@
+_local
 node_modules
-.npmrc
 
 # Local Netlify folder
 .netlify

@@ -216,6 +216,16 @@ class LinkProcessorTest extends MediaKernelTestBase {
           ],
         ],
       ],
+      'corrupted' => [
+        'inbound' => [
+          '///C:/en/surfaceinfrastructure' => '///C:/en/surfaceinfrastructure',
+        ],
+        'outbound' => [
+          '///C:/en/surfaceinfrastructure' => [
+            'en' => '///C:/en/surfaceinfrastructure',
+          ],
+        ],
+      ],
     ];
 
     foreach ($cases as $name => $directions) {

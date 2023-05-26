@@ -121,7 +121,9 @@ for an example.
 Custom validator plugins can be created in
 `src/Plugin/Validation/GutenbergValidator`
 
-Example, to validate an email field that is also required.
+### Field level validation
+
+Example: to validate that an email is valid and required.
 
 - the block name is `custom/my-block`
 - the field attribute is `email` and the label `Email`
@@ -154,7 +156,7 @@ class MyBlockValidator extends GutenbergValidatorBase {
   /**
    * {@inheritDoc}
    */
-  public function validatedFields($block = []) {
+  public function validatedFields(array $block = []) {
     return [
       'email' => [
         'field_label' => $this->t('Email'),
@@ -165,3 +167,169 @@ class MyBlockValidator extends GutenbergValidatorBase {
 
 }
 ```
+
+### Block level validation
+
+Perform custom block validation logic then return the result.
+
+```php
+public function validateContent(array $block) {
+  $isValid = TRUE;
+
+  // Custom validation logic.
+  // (...)
+
+  if (!$isValid) {
+    return [
+      'is_valid' => FALSE,
+      'message' => 'Message',
+    ];
+  }
+
+  // Passes validation.
+  return [
+    'is_valid' => TRUE,
+    'message' => '',
+  ];
+}
+```
+
+### Cardinality validation
+
+#### Backend
+
+Uses the `validateContent()` method as a wrapper, with the cardinality validator
+trait.
+
+```php
+use GutenbergCardinalityValidatorTrait;
+```
+
+Validate a given block type for inner blocks.
+
+```php
+public function validateContent(array $block) {
+  $expectedChildren = [
+    [
+      'blockName' => 'custom/teaser',
+      'blockLabel' => $this->t('Teaser'),
+      'min' => 1,
+      'max' => 2,
+    ],
+  ];
+  return $this->validateCardinality($block, $expectedChildren);
+}
+```
+
+Validate any kind of block type for inner blocks.
+
+```php
+public function validateContent(array $block) {
+  $expectedChildren = [
+    'validationType' => GutenbergCardinalityValidatorInterface::CARDINALITY_ANY,
+    'min' => 0,
+    'max' => 1,
+  ];
+  return $this->validateCardinality($block, $expectedChildren);
+}
+```
+
+Validate a minimum with no maximum.
+
+```php
+public function validateContent(array $block) {
+  $expectedChildren = [
+    [
+      'blockName' => 'custom/teaser',
+      'blockLabel' => $this->t('Teaser'),
+      'min' => 1,
+      'max' => GutenbergCardinalityValidatorInterface::CARDINALITY_UNLIMITED,
+    ],
+  ];
+  return $this->validateCardinality($block, $expectedChildren);
+}
+```
+
+#### Client side alternative
+
+Client side cardinality validation can also be done in custom blocks with this
+pattern.
+
+- use `getBlockCount`
+- remove the `InnerBlocks` appender when the limit is reached
+
+```tsx
+/* global Drupal */
+import { registerBlockType } from 'wordpress__blocks';
+import { InnerBlocks } from 'wordpress__block-editor';
+import { useSelect } from 'wordpress__data';
+
+// @ts-ignore
+const __ = Drupal.t;
+
+const MAX_BLOCKS: number = 1;
+
+registerBlockType('custom/my-block', {
+  title: __('My Block'),
+  icon: 'location',
+  category: 'layout',
+  attributes: {},
+  edit: (props) => {
+    const { blockCount } = useSelect((select) => ({
+      blockCount: select('core/block-editor').getBlockCount(props.clientId),
+    }));
+    return (
+      <div>
+        <InnerBlocks
+          templateLock={false}
+          renderAppender={() => {
+            if (blockCount >= MAX_BLOCKS) {
+              return null;
+            } else {
+              return <InnerBlocks.ButtonBlockAppender />;
+            }
+          }}
+          allowedBlocks={['core/block']}
+          template={[]}
+        />
+      </div>
+    );
+  },
+  save: () => {
+    return <InnerBlocks.Content />;
+  },
+});
+```
+
+## Linkit integration
+
+To enable the integration:
+
+- Enable the linkit module and create a linkit profile with `gutenberg` machine
+  name
+    <details>
+      <summary>This brings</summary>
+
+  - Basic linkit integration
+  - Improved suggestion labels (e.g. `Content: Page`, `Media: PDF` instead of
+    `page`, `pdf`)
+
+  </details>
+
+- Add `Silverback:` prefixed matchers to the profile
+  <details> <summary>How they differ from the default linkit matchers</summary>
+
+  - Suggestions order is done by the position of the search string in the label.
+    For example, if you search for "best", the order will be:
+    - _Best_ in class
+    - The _best_ choice
+    - Always choose _best_
+  - Improved display of translated content. By default, linkit searches through
+    all content translations but displays suggestions in the current language.
+    Which can be confusing. The Silverback matchers changes this a bit. If the
+    displayed item does not contain the prompt, a translation containing the
+    prompt will be added in the brackets. For example, if you search for "gift"
+    with the English UI, the suggestions will look like this:
+    - _Gift_ for a friend
+    - Poison for an enemy (_Gift_ für einen Feind)
+    </details>

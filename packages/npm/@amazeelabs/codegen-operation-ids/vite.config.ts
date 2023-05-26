@@ -6,7 +6,9 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   test: {
     deps: {
-      inline: true,
+      inline:
+        // TODO: Replace with true once https://github.com/vitest-dev/vitest/issues/2806 is fixed.
+        [/^(?!.*vitest).*$/],
     },
   },
   define: {

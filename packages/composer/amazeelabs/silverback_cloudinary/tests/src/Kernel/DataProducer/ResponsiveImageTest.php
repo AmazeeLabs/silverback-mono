@@ -25,8 +25,7 @@ class ResponsiveImageTest extends GraphQLTestBase {
    * @covers \Drupal\silverback_cloudinary\Plugin\GraphQL\DataProducer\ResponsiveImage::resolve
    * @dataProvider responsiveImageProvider
    */
-  public function testResponsiveImage($image, $expected, $width = NULL, $height = NULL, $sizes = NULL, $transform = NULL): void
-  {
+  public function testResponsiveImage($image, $expected, $width = NULL, $height = NULL, $sizes = NULL, $transform = NULL): void {
     $result = $this->executeDataProducer('responsive_image', [
       'image' => $image,
       'width' => $width,
@@ -47,21 +46,22 @@ class ResponsiveImageTest extends GraphQLTestBase {
     return [
       // Case 1. No config parameter sent.
       [
-        'image' => $image,
-        'expected' => ['src' => $image]
+        'image' => ['src' => $image, 'width' => 100, 'height' => 100],
+        'expected' => ['src' => $image, 'width' => 100, 'height' => 100]
       ],
       // Case 2. Only ask for a width (so just scale the image).
       [
-        'image' => $image,
+        'image' => ['src' => $image, 'width' => 1000, 'height' => 500],
         'expected' => [
           'width' => 600,
+          'height' => 300,
           'src' => $cloudinaryFetchUrl . '/s--mMcf9g3W--/f_auto/c_scale,w_600/' . $image,
         ],
         'width' => 600,
       ],
       // Case 3. Ask for a width and height.
       [
-        'image' => $image,
+        'image' => ['src' => $image, 'width' => 1000, 'height' => 1000],
         'expected' => [
           'width' => 600,
           'height' => 400,
@@ -72,7 +72,7 @@ class ResponsiveImageTest extends GraphQLTestBase {
       ],
       // Case 4. Ask for a custom transformation.
       [
-        'image' => $image,
+        'image' => ['src' => $image, 'width' => 1000, 'height' => 1000],
         'expected' => [
           'width' => 600,
           'height' => 400,
@@ -85,10 +85,11 @@ class ResponsiveImageTest extends GraphQLTestBase {
       ],
       // Case 5. Ask for sizes.
       [
-        'image' => $image,
+        'image' => ['src' => $image, 'width' => 2000, 'height' => 1600],
         'expected' => [
           'src' => $cloudinaryFetchUrl . '/s--aDf84wZ---/f_auto/c_scale,w_1600/' . $image,
           'width' => 1600,
+          'height' => 1280,
           'sizes' => '(max-width: 800px) 780px, (max-width: 1200px) 1100px, 1600px',
           'srcset' => implode(', ', [
             $cloudinaryFetchUrl . '/s--9R_Nlnad--/f_auto/c_scale,w_780/' . $image . ' 780w',
@@ -105,7 +106,7 @@ class ResponsiveImageTest extends GraphQLTestBase {
       // Case 6. A complete test, with height calculation, sizes and custom
       // transformations.
       [
-        'image' => $image,
+        'image' => ['src' => $image, 'width' => 2000, 'height' => 1600],
         'expected' => [
           'src' => $cloudinaryFetchUrl . '/s--HajkvDOl--/f_auto/c_fill,h_1200,w_1600/co_rgb:000000,e_colorize:90/' . $image,
           'width' => 1600,

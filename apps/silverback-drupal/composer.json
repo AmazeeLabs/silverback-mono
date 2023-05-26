@@ -10,53 +10,6 @@
     },
     "repositories": [
         {
-            "type": "package",
-            "👉TODO": "Remove once key_auth is Drupal 10 compatible.",
-            "package": {
-                "name": "drupal/key_auth",
-                "version": "2.0.1",
-                "require": {
-                    "drupal/core": "^8 || ^9 || ^10"
-                },
-                "source": {
-                    "type": "git",
-                    "url": "https://git.drupalcode.org/project/key_auth.git",
-                    "reference": "2.0.1"
-                },
-                "dist": {
-                    "type": "zip",
-                    "url": "https://ftp.drupal.org/files/projects/key_auth-2.0.1.zip",
-                    "reference": "2.0.1",
-                    "shasum": "ea906de39a552bcdd9355907b4498f65603b38d3"
-                },
-                "type": "drupal-module"
-            }
-        },
-        {
-            "type": "package",
-            "👉TODO": "Remove once typed_data is Drupal 10 compatible.",
-            "package": {
-                "name": "drupal/typed_data",
-                "version": "1.0.0-beta1",
-                "require": {
-                    "drupal/core": "^8.8.2 || ^9 || ^10"
-                },
-                "source": {
-                    "type": "git",
-                    "url": "https://git.drupalcode.org/project/typed_data.git",
-                    "reference": "8.x-1.0-beta1"
-                },
-                "dist": {
-                    "type": "zip",
-                    "url": "https://ftp.drupal.org/files/projects/typed_data-8.x-1.0-beta1.zip",
-                    "reference": "8.x-1.0-beta1",
-                    "shasum": "73d079f29c7a5679e0db3e28ae888e8cce2f1335"
-                },
-                "type": "drupal-module",
-                "minimum-stability": "dev"
-            }
-        },
-        {
             "type": "path",
             "url": "../../packages/composer/*/*"
         },
@@ -85,23 +38,23 @@
         "drupal/admin_toolbar": "3.3.0",
         "drupal/ckeditor": "1.0.1",
         "drupal/config_split": "1.9.0",
-        "drupal/core": "10.0.3",
-        "drupal/core-composer-scaffold": "10.0.3",
-        "drupal/core-dev": "10.0.3",
-        "drupal/core-recommended": "10.0.3",
+        "drupal/core": "10.0.8",
+        "drupal/core-composer-scaffold": "10.0.8",
+        "drupal/core-dev": "10.0.8",
+        "drupal/core-recommended": "10.0.8",
         "drupal/default_content": "2.0.0-alpha2",
-        "drupal/entity_usage": "2.0.0-beta8",
-        "drupal/gatsby_build_monitor": "@dev",
-        "drupal/graphql": "4.4.0",
-        "drupal/gutenberg": "2.6.0",
+        "drupal/entity_usage": "2.0.0-beta11",
+        "drupal/graphql": "4.5.0",
+        "drupal/gutenberg": "2.7.0",
         "drupal/hal": "2.0.1",
-        "drupal/key_auth": "2.0.1",
+        "drupal/key_auth": "2.1.0",
+        "drupal/linkit": "6.0.0-rc1",
         "drupal/paragraphs": "1.15.0",
         "drupal/redirect": "1.8.0",
         "drupal/test_session": "@dev",
-        "drupal/typed_data": "1.0.0-beta1",
+        "drupal/typed_data": "1.0.0-beta2",
         "drupal/webform": "6.2.0-beta5",
-        "phpspec/prophecy-phpunit": "2.0.1"
+        "phpspec/prophecy-phpunit": "2.0.2"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -155,9 +108,6 @@
         "enable-patching": true,
         "composer-exit-on-patch-failure": true,
         "patches": {
-            "drupal/key_auth": {
-                "Drupal 10 compatibility": "https://www.drupal.org/files/issues/2022-04-14/3272203-4-fix-missing-accesscheck-calls.patch"
-            },
             "drupal/core": {
                 "Add string context and location filters to the translate interface": "https://www.drupal.org/files/issues/2023-01-23/2123543-10.0.x-79.patch"
             }

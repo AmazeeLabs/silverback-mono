@@ -29,7 +29,7 @@ export function preprocess(input: Array<CodeBlock>) {
       }
 
       // A typescript block is returned as-is to be executed.
-      if (block.lang === `typescript`) {
+      if (block.lang === `typescript` || block.lang === `ts`) {
         return block;
       }
 

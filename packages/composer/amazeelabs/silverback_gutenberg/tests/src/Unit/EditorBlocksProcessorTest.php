@@ -14,6 +14,29 @@ class EditorBlocksProcessorTest extends UnitTestCase {
     );
   }
 
+  public function testNoIgnoredBlocks() {
+    $input = [
+      [
+        'blockName' => 'custom/a',
+      ],
+      [
+        'blockName' => 'custom/b',
+      ],
+    ];
+    $expected = [
+      [
+        'blockName' => 'custom/a',
+      ],
+      [
+        'blockName' => 'custom/b',
+      ],
+    ];
+    $this->assertEquals(
+      $expected,
+      EditorBlocksProcessor::processsIgnoredBlocks($input, NULL),
+    );
+  }
+
   public function testNoTransientBlocks() {
     $input = [
       [

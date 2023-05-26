@@ -1,7 +1,4 @@
 node_modules
-.DS_Store
 dist
-dist-ssr
-build
-*.local
-tailwind.build.css
+.cache
+test

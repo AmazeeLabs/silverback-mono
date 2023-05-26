@@ -24,7 +24,6 @@ display:
             offset_label: Décalage
       fields:
         sid:
-          label: '#'
           separator: ', '
         in_draft:
           label: Brouillon
@@ -61,7 +60,6 @@ display:
         webform_submission_bulk_form:
           action_title: Action
         sid:
-          label: '#'
           separator: ', '
         in_draft:
           label: Brouillon
@@ -101,7 +99,6 @@ display:
         webform_submission_bulk_form:
           action_title: Action
         sid:
-          label: '#'
           separator: ', '
         in_draft:
           label: Brouillon
@@ -143,7 +140,6 @@ display:
       display_description: 'Évaluer les soumissions.'
       fields:
         sid:
-          label: '#'
           separator: ', '
         in_draft:
           label: Brouillon

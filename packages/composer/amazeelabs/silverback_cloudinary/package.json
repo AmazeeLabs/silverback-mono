@@ -1,13 +1,13 @@
 {
   "name": "@-amazeelabs/silverback_cloudinary",
-  "version": "1.1.0",
+  "version": "1.2.2",
   "main": "index.js",
   "scripts": {
     "version": "sync-composer-version",
     "test:unit": "cd ../../../../apps/silverback-drupal && vendor/phpunit/phpunit/phpunit web/modules/contrib/silverback_cloudinary"
   },
   "devDependencies": {
-    "@amazeelabs/sync-composer-version": "^1.1.2"
+    "@amazeelabs/sync-composer-version": "workspace:*"
   },
   "author": "Amazee Labs <development@amazeelabs.com>",
   "publishConfig": {

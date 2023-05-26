@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
 
-      - uses: webfactory/ssh-agent@v0.7.0
+      - uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.SSL_PRIVATE }}
 
@@ -21,17 +21,17 @@ jobs:
       - name: Commons
         uses: ./.github/actions/commons
 
-      - name: Create .npmrc
-        run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" >> .npmrc
+      - name: Configure NPM token
+        run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" >> ~/.npmrc
 
       - name: Add auth token for 127.0.0.1
-        run: echo "//127.0.0.1:4873/:_authToken=foo" >> .npmrc
+        run: echo "//127.0.0.1:4873/:_authToken=foo" >> ~/.npmrc
 
       - name: Add auth token for localhost
-        run: echo "//localhost:4873/:_authToken=foo" >> .npmrc
+        run: echo "//localhost:4873/:_authToken=foo" >> ~/.npmrc
 
       - name: Debug npmrc
-        run: cat .npmrc
+        run: cat ~/.npmrc
 
       - name: Npm version
         run: npm -v
