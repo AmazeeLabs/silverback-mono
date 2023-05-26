@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/cloudinary-responsive-image",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "type": "commonjs",
   "main": "build/index.js",
   "module": "build/index.mjs",
