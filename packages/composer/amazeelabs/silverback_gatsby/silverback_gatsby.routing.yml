@@ -8,3 +8,9 @@ entity.graphql_server.build_form:
     _permission: 'administer graphql configuration+trigger a gatsby build'
   options:
     _admin_route: TRUE
+silverback_gatsby.build:
+  path: '/silverback_gatsby/ajax/build'
+  defaults:
+    _controller: '\Drupal\silverback_gatsby\Controller\BuildController::build'
+  requirements:
+    _permission: 'trigger a gatsby build'
