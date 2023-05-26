@@ -6,6 +6,10 @@
   right: 1px;
 }
 
+.silverback-publisher-indicator-tab .dropbutton__item .ajax-progress {
+  display: none;
+}
+
 .silverback-publisher-indicator-tab .dropbutton__toggle {
   height: 36px !important;
   margin-top: -1.5px;
