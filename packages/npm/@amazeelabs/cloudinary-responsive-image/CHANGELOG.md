@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.10](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/cloudinary-responsive-image@1.2.9...@amazeelabs/cloudinary-responsive-image@1.2.10) (2023-05-26)
+
+### Bug Fixes
+
+- **cloudinary:** ignored requests don't need to be piped
+  ([00b6256](https://github.com/AmazeeLabs/silverback-mono/commit/00b62560adaa40d7d50c95d96a87178cf0682231))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.2.9](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/cloudinary-responsive-image@1.2.8...@amazeelabs/cloudinary-responsive-image@1.2.9) (2023-05-25)
 
 ### Bug Fixes
