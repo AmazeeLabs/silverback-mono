@@ -9,6 +9,7 @@ self.addEventListener('fetch', async (event) => {
   assertFetchEvent(event);
   const info = parseCloudinaryUrl(event.request.url);
   if (!info) {
+    // No need to handle this request.
     return;
   }
   event.respondWith(
