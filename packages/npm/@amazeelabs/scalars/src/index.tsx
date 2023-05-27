@@ -1,6 +1,6 @@
 import {
   Link as LinkComponent,
-  navigate as navigateFunction,
+  useLocation as useLocationHook,
 } from '@amazeelabs/bridge';
 import type { Element } from 'hast';
 import { selectAll } from 'hast-util-select';
@@ -17,8 +17,6 @@ import rehypeReact from 'rehype-react';
 import rehypeSlug from 'rehype-slug';
 import { omit } from 'remeda';
 import { Pluggable, Plugin, unified } from 'unified';
-
-export { useLocation } from '@amazeelabs/bridge';
 
 declare const Url: unique symbol;
 export type Url = string & {
@@ -43,12 +41,13 @@ export function overrideUrlParameters(
   url: string,
   query?: StringifiableRecord,
   fragment?: string,
-): string {
+): Url {
   if (url[0] === '/') {
-    return overrideUrlParameters(`relative://${url}`, query, fragment).replace(
-      'relative://',
-      '',
-    );
+    return overrideUrlParameters(
+      `relative://${url}` as Url,
+      query,
+      fragment,
+    ).replace('relative://', '') as Url;
   }
   const parsed = qs.parseUrl(url);
   return qs.stringifyUrl(
@@ -61,7 +60,7 @@ export function overrideUrlParameters(
     {
       skipNull: true,
     },
-  );
+  ) as Url;
 }
 
 export type LinkProps = Omit<
@@ -76,16 +75,17 @@ export function Link({ href, query, fragment, ...props }: LinkProps) {
   return <LinkComponent href={target} {...props} />;
 }
 
-export function navigate(
-  href: Url,
-  config: {
-    query?: StringifiableRecord;
-    fragment?: string;
-    transition?: string;
-    reverse?: boolean;
-  },
-) {
-  navigateFunction(overrideUrlParameters(href, config.query, config.fragment));
+export function useLocation() {
+  const location = useLocationHook();
+  if (!location) {
+    return undefined;
+  }
+  return {
+    ...location,
+    navigate: (url: Url, query?: StringifiableRecord, fragment?: string) => {
+      location.navigate(overrideUrlParameters(url, query, fragment));
+    },
+  };
 }
 
 declare const ImageSource: unique symbol;
