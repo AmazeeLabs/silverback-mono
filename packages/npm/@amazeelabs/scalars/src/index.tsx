@@ -28,61 +28,90 @@ type LinkOverrideProps = {
   hash?: string;
 };
 
-type LinkTransitionProps = {
-  transition?: string;
-  reverse?: boolean;
-};
-
 type LinkDisplayProps = {
   activeClassName?: string;
 };
 
+function isUrl(input: any): input is Url {
+  return typeof input === 'string';
+}
+
 export function overrideUrlParameters(
-  url: string,
+  url: Url | Omit<Location, 'navigate'>,
   search?: StringifiableRecord,
   hash?: string,
 ): Url {
-  if (url[0] === '/') {
+  if (isUrl(url)) {
+    if (url[0] === '/') {
+      return overrideUrlParameters(
+        `relative://${url}` as Url,
+        search,
+        hash,
+      ).replace('relative://', '') as Url;
+    }
+    const parsed = qs.parseUrl(url);
+    return qs.stringifyUrl(
+      {
+        url: parsed.url,
+        fragmentIdentifier:
+          typeof hash === 'undefined' ? parsed.fragmentIdentifier : hash,
+        query: { ...parsed.query, ...search },
+      },
+      {
+        skipNull: true,
+      },
+    ) as Url;
+  } else {
     return overrideUrlParameters(
-      `relative://${url}` as Url,
+      `${url.pathname}${url.search ? `?${url.search}` : ''}${
+        url.hash ? `#${url.hash}` : ''
+      }` as Url,
       search,
       hash,
-    ).replace('relative://', '') as Url;
+    ) as Url;
   }
-  const parsed = qs.parseUrl(url);
-  return qs.stringifyUrl(
-    {
-      url: parsed.url,
-      fragmentIdentifier:
-        typeof hash === 'undefined' ? parsed.fragmentIdentifier : hash,
-      query: { ...parsed.query, ...search },
-    },
-    {
-      skipNull: true,
-    },
-  ) as Url;
 }
 
 export type LinkProps = Omit<
   DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>,
   'href'
-> & { href: Url } & LinkOverrideProps &
-  LinkTransitionProps &
+> & { href: Url | Omit<Location, 'navigate'> } & LinkOverrideProps &
   LinkDisplayProps;
 
 export function Link({ href, search, hash, ...props }: LinkProps) {
-  const target = overrideUrlParameters(href, search, hash);
-  return <LinkComponent href={target} {...props} />;
+  return (
+    <LinkComponent
+      href={overrideUrlParameters(href, search, hash)}
+      {...props}
+    />
+  );
 }
 
-export function useLocation() {
+export type Location = {
+  pathname: string;
+  search?: URLSearchParams;
+  hash?: string;
+  navigate: (
+    url: Url | Location,
+    search?: StringifiableRecord,
+    hash?: string,
+  ) => void;
+};
+
+export function useLocation(): Location | undefined {
   const location = useLocationHook();
   if (!location) {
     return undefined;
   }
   return {
-    ...location,
-    navigate: (url: Url, search?: StringifiableRecord, hash?: string) => {
+    pathname: location.pathname,
+    search: location.search ? new URLSearchParams(location.search) : undefined,
+    hash: location.hash === '' ? undefined : location.hash.slice(1),
+    navigate: (
+      url: Location | Url,
+      search?: StringifiableRecord,
+      hash?: string,
+    ) => {
       location.navigate(overrideUrlParameters(url, search, hash));
     },
   };
