@@ -13,37 +13,37 @@ describe('overrideUrlParameters', () => {
     expect(overrideUrlParameters('/foo', {}, '')).toBe('/foo');
   });
 
-  it('allows to add query arguments', () => {
+  it('allows to add search parameters', () => {
     expect(overrideUrlParameters('/foo', { a: 'x' }, '')).toBe('/foo?a=x');
   });
 
-  it('allows to remove query arguments', () => {
+  it('allows to remove search parameters', () => {
     expect(overrideUrlParameters('/foo?a=x', { a: null }, '')).toBe('/foo');
   });
 
-  it('allows to override query arguments', () => {
+  it('allows to override search parameters', () => {
     expect(overrideUrlParameters('/foo?a=x', { a: 'y' }, '')).toBe('/foo?a=y');
   });
 
-  it('leaves query arguments that are not overridden', () => {
+  it('leaves search parameters that are not overridden', () => {
     expect(overrideUrlParameters('/foo?a=x&b=x', { b: 'y' }, '')).toBe(
       '/foo?a=x&b=y',
     );
   });
 
-  it('allows to add a fragment', () => {
+  it('allows to add a hash', () => {
     expect(overrideUrlParameters('/foo', {}, 'bar')).toBe('/foo#bar');
   });
 
-  it('allows to override a fragment', () => {
+  it('allows to override a hash', () => {
     expect(overrideUrlParameters('/foo#bar', {}, 'baz')).toBe('/foo#baz');
   });
 
-  it('allows to remove a fragment', () => {
+  it('allows to remove a hash', () => {
     expect(overrideUrlParameters('/foo#bar', {}, '')).toBe('/foo');
   });
 
-  it('leaves the fragment when overriding query arguments', () => {
+  it('leaves the hash when overriding search parameters', () => {
     expect(overrideUrlParameters('/foo?a=x#bar', { b: 'y' }, 'bar')).toBe(
       '/foo?a=x&b=y#bar',
     );

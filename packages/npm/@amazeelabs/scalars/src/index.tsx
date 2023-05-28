@@ -24,8 +24,8 @@ export type Url = string & {
 };
 
 type LinkOverrideProps = {
-  query?: StringifiableRecord;
-  fragment?: string;
+  search?: StringifiableRecord;
+  hash?: string;
 };
 
 type LinkTransitionProps = {
@@ -39,14 +39,14 @@ type LinkDisplayProps = {
 
 export function overrideUrlParameters(
   url: string,
-  query?: StringifiableRecord,
-  fragment?: string,
+  search?: StringifiableRecord,
+  hash?: string,
 ): Url {
   if (url[0] === '/') {
     return overrideUrlParameters(
       `relative://${url}` as Url,
-      query,
-      fragment,
+      search,
+      hash,
     ).replace('relative://', '') as Url;
   }
   const parsed = qs.parseUrl(url);
@@ -54,8 +54,8 @@ export function overrideUrlParameters(
     {
       url: parsed.url,
       fragmentIdentifier:
-        typeof fragment === 'undefined' ? parsed.fragmentIdentifier : fragment,
-      query: { ...parsed.query, ...query },
+        typeof hash === 'undefined' ? parsed.fragmentIdentifier : hash,
+      query: { ...parsed.query, ...search },
     },
     {
       skipNull: true,
@@ -70,8 +70,8 @@ export type LinkProps = Omit<
   LinkTransitionProps &
   LinkDisplayProps;
 
-export function Link({ href, query, fragment, ...props }: LinkProps) {
-  const target = overrideUrlParameters(href, query, fragment);
+export function Link({ href, search, hash, ...props }: LinkProps) {
+  const target = overrideUrlParameters(href, search, hash);
   return <LinkComponent href={target} {...props} />;
 }
 
@@ -82,8 +82,8 @@ export function useLocation() {
   }
   return {
     ...location,
-    navigate: (url: Url, query?: StringifiableRecord, fragment?: string) => {
-      location.navigate(overrideUrlParameters(url, query, fragment));
+    navigate: (url: Url, search?: StringifiableRecord, hash?: string) => {
+      location.navigate(overrideUrlParameters(url, search, hash));
     },
   };
 }
