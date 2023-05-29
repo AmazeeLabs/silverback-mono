@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/scalars",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Common primitive type definitions.",
   "type": "module",
   "main": "./build/index.js",

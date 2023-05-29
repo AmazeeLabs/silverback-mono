@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge@1.2.3...@amazeelabs/bridge@1.2.4) (2023-05-29)
+
+### Bug Fixes
+
+- **react:** dummy LocationProvider component
+  ([a2b07bc](https://github.com/AmazeeLabs/silverback-mono/commit/a2b07bc406ff75a31fc6499752fc9fe2eedc3cfa))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.2.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge@1.2.2...@amazeelabs/bridge@1.2.3) (2023-05-27)
 
 **Note:** Version bump only for package @amazeelabs/bridge
