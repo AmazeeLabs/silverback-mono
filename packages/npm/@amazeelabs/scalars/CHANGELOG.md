@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.2.7...@amazeelabs/scalars@1.2.8) (2023-05-29)
+
+### Bug Fixes
+
+- **react:** handle potentially undefined location properties
+  ([f3d25fe](https://github.com/AmazeeLabs/silverback-mono/commit/f3d25fe089c1e5ee48f32cc4d608bb0dff54a5f4))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.2.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.2.6...@amazeelabs/scalars@1.2.7) (2023-05-29)
 
 ### Bug Fixes
