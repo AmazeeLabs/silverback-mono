@@ -106,9 +106,9 @@ export function useLocation(): Location | undefined {
     return undefined;
   }
   return {
-    pathname: location.pathname,
+    pathname: location.pathname || '/',
     search: location.search ? new URLSearchParams(location.search) : undefined,
-    hash: location.hash === '' ? undefined : location.hash.slice(1),
+    hash: location.hash === '' ? undefined : location.hash?.slice(1),
     navigate: (
       url: Location | Url,
       search?: StringifiableRecord,
