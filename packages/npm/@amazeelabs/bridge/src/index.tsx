@@ -1,4 +1,8 @@
-import React, { AnchorHTMLAttributes, DetailedHTMLProps } from 'react';
+import React, {
+  AnchorHTMLAttributes,
+  DetailedHTMLProps,
+  PropsWithChildren,
+} from 'react';
 
 export function Link(
   props: DetailedHTMLProps<
@@ -32,6 +36,10 @@ export type Location = {
    */
   navigate: (to: string) => void;
 };
+
+export function LocationProvider({ children }: PropsWithChildren) {
+  return <>{children}</>;
+}
 
 export function useLocation(): Location | undefined {
   return {
