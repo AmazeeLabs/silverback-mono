@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.2.6...@amazeelabs/scalars@1.2.7) (2023-05-29)
+
+### Bug Fixes
+
+- **react:** re-export LocationProvider through @amazeelabs/scalars
+  ([57c4af1](https://github.com/AmazeeLabs/silverback-mono/commit/57c4af1797d050eb36dfe51e92a5a18b3cb0f189))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.2.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.2.5...@amazeelabs/scalars@1.2.6) (2023-05-29)
 
 **Note:** Version bump only for package @amazeelabs/scalars
