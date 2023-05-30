@@ -37,7 +37,7 @@ export type Location = {
   navigate: (to: string) => void;
 };
 
-export function LocationProvider({ children }: PropsWithChildren) {
+export function LocationProvider({ children }: PropsWithChildren<Partial<Omit<Location, 'navigate'>>>) {
   return <>{children}</>;
 }
 
