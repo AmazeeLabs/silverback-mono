@@ -7,6 +7,17 @@
   "types": "./build/index.d.ts",
   "private": false,
   "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./build/index.js"
+    },
+    "./gatsby": {
+      "import": "./build/gatsby.js"
+    },
+    "./storybook": {
+      "import": "./build/storybook.js"
+    }
+  },
   "publishConfig": {
     "access": "public"
   },

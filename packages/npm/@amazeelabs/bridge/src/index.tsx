@@ -41,7 +41,7 @@ export function LocationProvider({ children }: PropsWithChildren<Partial<Omit<Lo
   return <>{children}</>;
 }
 
-export function useLocation(): Location | undefined {
+export function useLocation(): Location {
   return {
     ...window.location,
     navigate(to: string) {
