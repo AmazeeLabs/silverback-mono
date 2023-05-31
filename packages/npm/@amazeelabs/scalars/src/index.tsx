@@ -90,11 +90,18 @@ export function Link({ href, search, hash, ...props }: LinkProps) {
   );
 }
 
-export function useLocation() {
+export function useLocation(): [
+  LocationType,
+  (
+    url: LocationType | Url,
+    search?: StringifiableRecord,
+    hash?: string,
+  ) => void,
+] {
   const [location, navigate] = useLocationHook();
   return [
     location,
-    (url: LocationType | Url, search?: StringifiableRecord, hash?: string) => {
+    (url, search, hash) => {
       navigate(overrideUrlParameters(url, search, hash));
     },
   ];
