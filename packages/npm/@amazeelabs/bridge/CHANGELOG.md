@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge@1.3.0...@amazeelabs/bridge@1.4.0) (2023-05-31)
+
+### Features
+
+- **react:** default bridge implementations for storybook and gatsby
+  ([3bbd468](https://github.com/AmazeeLabs/silverback-mono/commit/3bbd468f2944c291cfaa14f7399fcdce74caac79))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge@1.2.5...@amazeelabs/bridge@1.3.0) (2023-05-30)
 
 ### Features
