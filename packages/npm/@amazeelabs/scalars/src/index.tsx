@@ -1,5 +1,6 @@
 import {
   Link as LinkComponent,
+  LocationType,
   useLocation as useLocationHook,
 } from '@amazeelabs/bridge';
 import type { Element } from 'hast';
@@ -39,7 +40,7 @@ function isUrl(input: any): input is Url {
 }
 
 export function overrideUrlParameters(
-  url: Url | Omit<Location, 'navigate'>,
+  url: Url | LocationType,
   search?: StringifiableRecord,
   hash?: string,
 ): Url {
@@ -77,7 +78,7 @@ export function overrideUrlParameters(
 export type LinkProps = Omit<
   DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>,
   'href'
-> & { href: Url | Omit<Location, 'navigate'> } & LinkOverrideProps &
+> & { href: Url | LocationType } & LinkOverrideProps &
   LinkDisplayProps;
 
 export function Link({ href, search, hash, ...props }: LinkProps) {
@@ -89,34 +90,14 @@ export function Link({ href, search, hash, ...props }: LinkProps) {
   );
 }
 
-export type Location = {
-  pathname: string;
-  search?: URLSearchParams;
-  hash?: string;
-  navigate: (
-    url: Url | Location,
-    search?: StringifiableRecord,
-    hash?: string,
-  ) => void;
-};
-
-export function useLocation(): Location | undefined {
-  const location = useLocationHook();
-  if (!location) {
-    return undefined;
-  }
-  return {
-    pathname: location.pathname || '/',
-    search: location.search ? new URLSearchParams(location.search) : undefined,
-    hash: location.hash === '' ? undefined : location.hash?.slice(1),
-    navigate: (
-      url: Location | Url,
-      search?: StringifiableRecord,
-      hash?: string,
-    ) => {
-      location.navigate(overrideUrlParameters(url, search, hash));
+export function useLocation() {
+  const [location, navigate] = useLocationHook();
+  return [
+    location,
+    (url: LocationType | Url, search?: StringifiableRecord, hash?: string) => {
+      navigate(overrideUrlParameters(url, search, hash));
     },
-  };
+  ];
 }
 
 declare const ImageSource: unique symbol;

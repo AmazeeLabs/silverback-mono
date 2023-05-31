@@ -1,51 +1,46 @@
 import React, {
   AnchorHTMLAttributes,
   DetailedHTMLProps,
+  JSXElementConstructor,
   PropsWithChildren,
 } from 'react';
 
-export function Link(
-  props: DetailedHTMLProps<
-    AnchorHTMLAttributes<HTMLAnchorElement>,
-    HTMLAnchorElement
-  >,
-) {
-  return (
-    <a href={props.href} className={props.className}>
-      {props.children}
-    </a>
-  );
-}
+export type LocationType = Pick<
+  URL,
+  'hash' | 'pathname' | 'search' | 'searchParams'
+>;
 
-export type Location = {
-  /**
-   * The url path.
-   */
-  pathname?: string;
-  /**
-   * The query string, including '?' if not empty.
-   */
-  search?: string;
-  /**
-   * The current hash, including '#' if not empty.
-   */
-  hash?: string;
+export type LocationProviderType = JSXElementConstructor<
+  PropsWithChildren<{
+    currentLocation?: LocationType;
+  }>
+>;
 
-  /**
-   * Change the location to a given url.
-   */
-  navigate: (to: string) => void;
+export type LinkType = JSXElementConstructor<
+  Omit<
+    DetailedHTMLProps<
+      AnchorHTMLAttributes<HTMLAnchorElement>,
+      HTMLAnchorElement
+    >,
+    'ref'
+  >
+>;
+
+export type useLocationType = () => [LocationType, (url: string) => void];
+
+export const Link: LinkType = (props) => {
+  return <a {...props}>{props.children}</a>;
 };
 
-export function LocationProvider({ children }: PropsWithChildren<Partial<Omit<Location, 'navigate'>>>) {
+export const LocationProvider: LocationProviderType = ({ children }) => {
   return <>{children}</>;
-}
+};
 
-export function useLocation(): Location {
-  return {
-    ...window.location,
-    navigate(to: string) {
+export const useLocation: useLocationType = () => {
+  return [
+    new URL(window.location.href),
+    (to: string) => {
       window.location.href = to;
     },
-  };
-}
+  ];
+};
