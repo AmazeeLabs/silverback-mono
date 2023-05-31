@@ -60,11 +60,7 @@ describe('overrideUrlParameters', () => {
   it('allows to use a Location object', () => {
     expect(
       overrideUrlParameters(
-        {
-          pathname: '/foo',
-          search: new URLSearchParams('?a=x'),
-          hash: 'bar',
-        },
+        new URL('https://example.com/foo?a=x#bar'),
         { b: 'y' },
         'baz',
       ),
