@@ -13,7 +13,8 @@ export const Link: LinkType &
 };
 
 export const useLocation: useLocationType = () => {
-  return [new URL(gatsbyUseLocation().href), gatsbyNavigate];
+  const location = gatsbyUseLocation();
+  return [new URL(location.href || location.pathname, 'relative:/'), gatsbyNavigate];
 };
 
 export const LocationProvider: LocationProviderType = ({ children }) => {
