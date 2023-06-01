@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge-gatsby@1.1.0...@amazeelabs/bridge-gatsby@1.1.1) (2023-06-01)
+
+### Bug Fixes
+
+- **react:** fall back to pathname during SSG
+  ([f54731a](https://github.com/AmazeeLabs/silverback-mono/commit/f54731a46c9ff8e29f53c5115987739fa9e0fe67))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # 1.1.0 (2023-05-31)
 
 ### Features
