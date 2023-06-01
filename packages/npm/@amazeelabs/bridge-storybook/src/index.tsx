@@ -5,23 +5,23 @@ import type {
   useLocationType,
 } from '@amazeelabs/bridge';
 import { action } from '@storybook/addon-actions';
-import React, { createContext, useContext } from 'react';
-import { createStore, StoreApi, useStore } from 'zustand';
+import React, { createContext, useContext, useState } from 'react';
 
-const LocationContext = createContext<StoreApi<LocationType> | undefined>(
-  undefined,
-);
+const LocationContext = createContext<
+  | {
+      location: LocationType;
+      setLocation: (location: LocationType) => void;
+    }
+  | undefined
+>(undefined);
 
 export const LocationProvider: LocationProviderType = ({
   children,
-  currentLocation,
+  currentLocation = new URL('/', 'relative:/'),
 }) => {
+  const [location, setLocation] = useState(currentLocation);
   return (
-    <LocationContext.Provider
-      value={createStore<LocationType>(
-        () => currentLocation || new URL('/', 'relative:/'),
-      )}
-    >
+    <LocationContext.Provider value={{ location, setLocation }}>
       {children}
     </LocationContext.Provider>
   );
@@ -35,13 +35,13 @@ export const useLocation: useLocationType = () => {
     );
   }
   return [
-    useStore(context),
+    context.location,
     (target) => {
       if (!target) {
         action('navigate')('invalid target');
       } else {
         action('navigate')(target);
-        context.setState(() => new URL(target, 'relative:/'));
+        context.setLocation(new URL(target, 'relative:/'));
       }
     },
   ];

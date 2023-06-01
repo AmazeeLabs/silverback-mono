@@ -447,9 +447,6 @@ importers:
       react:
         specifier: '>=18'
         version: 18.2.0
-      zustand:
-        specifier: '>=4'
-        version: 4.3.7(react@18.2.0)
     optionalDependencies:
       '@types/react':
         specifier: ^18.2.0
