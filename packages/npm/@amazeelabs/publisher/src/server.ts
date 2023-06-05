@@ -177,7 +177,8 @@ const runServer = async (): Promise<HttpTerminator> => {
       throw new Error('Missing OAuth2 configuration.');
     }
 
-    if (!oAuth2AuthorizationCodeClient) {
+    const client = oAuth2AuthorizationCodeClient();
+    if (!client) {
       throw new Error('Missing OAuth2 client.');
     }
 
@@ -196,8 +197,8 @@ const runServer = async (): Promise<HttpTerminator> => {
     };
 
     try {
-      // @ts-ignore due to missing redirect_uri.
-      const accessToken = await oAuth2AuthorizationCodeClient.getToken(options);
+      // @ts-ignore options due to missing redirect_uri.
+      const accessToken = await client.getToken(options);
       persistAccessToken(accessToken, req);
 
       if (req.cookies.origin) {
