@@ -1,0 +1,46 @@
+raw_redirect.list:
+  path: '/admin/config/search/raw_redirect'
+  defaults:
+    _entity_list: 'raw_redirect'
+    _title: 'Raw URL redirects'
+  requirements:
+    _permission: 'administer raw redirects'
+
+entity.raw_redirect.canonical:
+  path: '/admin/config/search/raw_redirect/edit/{raw_redirect}'
+  defaults:
+    _entity_form: 'raw_redirect.edit'
+    _title: 'Edit raw URL redirect'
+  requirements:
+    _entity_access: 'raw_redirect.update'
+
+raw_redirect.add:
+  path: '/admin/config/search/raw_redirect/add'
+  defaults:
+    _entity_form: 'raw_redirect.default'
+    _title: 'Add raw URL redirect'
+  requirements:
+    _entity_create_access: 'raw_redirect'
+
+entity.raw_redirect.edit_form:
+  path: '/admin/config/search/raw_redirect/edit/{raw_redirect}'
+  defaults:
+    _entity_form: 'raw_redirect.edit'
+    _title: 'Edit raw URL redirect'
+  requirements:
+    _entity_access: 'raw_redirect.update'
+
+entity.raw_redirect.delete_form:
+  path: '/admin/config/search/raw_redirect/delete/{raw_redirect}'
+  defaults:
+    _entity_form: 'raw_redirect.delete'
+    _title: 'Delete raw URL redirect'
+  requirements:
+    _entity_access: 'raw_redirect.delete'
+
+entity.raw_redirect.multiple_delete_confirm:
+  path: '/admin/config/search/redirect/delete'
+  defaults:
+    _form: '\Drupal\silverback_raw_redirect\Form\RawRedirectDeleteMultipleForm'
+  requirements:
+    _permission: 'administer redirects'

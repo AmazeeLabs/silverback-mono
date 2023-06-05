@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "becc041ab1d55b4f4e47a67cfe7b33c3",
+    "content-hash": "0b13fb12a583fdf1cad8b9ed95b50d82",
     "packages": [
         {
             "name": "amazeelabs/default-content",
@@ -215,11 +215,11 @@
         },
         {
             "name": "amazeelabs/silverback_cloudinary",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_cloudinary",
-                "reference": "69a55a0225944a28f30c7f086790a50b98d29398"
+                "reference": "e4f7611c8683094fc82840f37f76b6cd2c5757b1"
             },
             "require": {
                 "cloudinary/cloudinary_php": "^2"
@@ -243,11 +243,11 @@
         },
         {
             "name": "amazeelabs/silverback_external_preview",
-            "version": "2.0.1",
+            "version": "2.0.3",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_external_preview",
-                "reference": "4137c1c6134b94d5f90cc86d7bf76db5a8be3a7a"
+                "reference": "459bd8a8043575ec3d8ed54cb73c1a9c07ac2637"
             },
             "type": "drupal-module",
             "license": [
@@ -261,11 +261,11 @@
         },
         {
             "name": "amazeelabs/silverback_gatsby",
-            "version": "2.1.1",
+            "version": "2.1.4",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gatsby",
-                "reference": "668b02cceeb389137d954103654309b69c8c4658"
+                "reference": "f78bd49f118a1f0002211aff8d2f99ba48ff971e"
             },
             "type": "drupal-module",
             "extra": {
@@ -303,11 +303,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "2.4.4",
+            "version": "2.4.5",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "bffc705c138db5aa9bd3f8658e6e2eca14f92f62"
+                "reference": "502710661b6fc20e5d5157c0d8a6579909738324"
             },
             "require": {
                 "drupal/gutenberg": "^2.7.0"
@@ -354,6 +354,24 @@
             ],
             "description": "Theme for amazeelabs/silverback_iframe module.",
             "homepage": "https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/composer/amazeelabs/silverback_iframe_theme#readme",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "amazeelabs/silverback_raw_redirect",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/composer/amazeelabs/silverback_raw_redirect",
+                "reference": "65e2976d9048bb2add74954b30400ca62622de54"
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Allows creating raw (absolute) redirects and export them for various hosting providers (like Netlify).",
+            "homepage": "https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/composer/amazeelabs/silverback_raw_redirect#readme",
             "transport-options": {
                 "relative": true
             }
@@ -12328,6 +12346,7 @@
         "amazeelabs/silverback_gutenberg": 20,
         "amazeelabs/silverback_iframe": 20,
         "amazeelabs/silverback_iframe_theme": 20,
+        "amazeelabs/silverback_raw_redirect": 20,
         "amazeelabs/silverback_translations": 20,
         "drupal/default_content": 15,
         "drupal/entity_usage": 10,

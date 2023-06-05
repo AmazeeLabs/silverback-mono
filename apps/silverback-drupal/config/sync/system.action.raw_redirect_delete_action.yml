@@ -1,0 +1,16 @@
+uuid: ae6f7799-18da-449e-bb88-f3846b7d105f
+langcode: en
+status: true
+dependencies:
+  module:
+    - silverback_raw_redirect
+  enforced:
+    module:
+      - silverback_raw_redirect
+_core:
+  default_config_hash: 8uTe4uV-VJXvKTiYv1bWg5sf2GmYOHEAAETFY8TAB54
+id: raw_redirect_delete_action
+label: 'Delete raw redirect'
+type: raw_redirect
+plugin: raw_redirect_delete_action
+configuration: {  }

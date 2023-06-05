@@ -1,0 +1,12 @@
+raw_redirect.list:
+  title: 'Raw URL redirects'
+  parent: system.admin_config_search
+  description: 'Administer raw URL redirects that can be exported as redirects for third party hosting platforms.'
+  route_name: raw_redirect.list
+  menu_name: admin
+
+raw_redirect.add:
+  title: 'Add raw redirect'
+  parent: raw_redirect.list
+  route_name: raw_redirect.add
+  menu_name: admin

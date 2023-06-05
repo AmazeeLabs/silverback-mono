@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - silverback_raw_redirect
+  module:
+    - silverback_raw_redirect
+id: raw_redirect_delete_action
+label: 'Delete raw redirect'
+type: raw_redirect
+plugin: raw_redirect_delete_action
+configuration: {  }

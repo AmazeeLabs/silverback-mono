@@ -1,0 +1,8 @@
+{
+  "name": "amazeelabs/silverback_raw_redirect",
+  "type": "drupal-module",
+  "version": "1.0.0",
+  "description": "Allows creating raw (absolute) redirects and export them for various hosting providers (like Netlify).",
+  "homepage": "https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/composer/amazeelabs/silverback_raw_redirect#readme",
+  "license": "GPL-2.0+"
+}
