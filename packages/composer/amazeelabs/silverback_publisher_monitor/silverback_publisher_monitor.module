@@ -40,6 +40,7 @@ function silverback_publisher_monitor_page_attachments(&$variables) {
  */
 function silverback_publisher_monitor_toolbar() {
   $items = [];
+  $currentUser = \Drupal::currentUser();
 
   $statusElement = [
     '#type' => 'html_tag',
@@ -66,6 +67,7 @@ function silverback_publisher_monitor_toolbar() {
         'class' => ['use-ajax'],
       ],
     ],
+    '#access' => $currentUser->hasPermission('trigger a gatsby build'),
   ];
 
   $logsLink = [
@@ -77,6 +79,7 @@ function silverback_publisher_monitor_toolbar() {
         'target' => '_blank',
       ],
     ],
+    '#access' => $currentUser->hasPermission('access publisher'),
   ];
 
   $dropButton = [
