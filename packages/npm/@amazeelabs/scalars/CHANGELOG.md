@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.2.10...@amazeelabs/scalars@1.2.11) (2023-05-31)
+
+### Bug Fixes
+
+- **react:** useLocation return type
+  ([b6f90d5](https://github.com/AmazeeLabs/silverback-mono/commit/b6f90d57bbfc122f71c1acc316abc81917e80071))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.2.10](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.2.9...@amazeelabs/scalars@1.2.10) (2023-05-31)
+
+**Note:** Version bump only for package @amazeelabs/scalars
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.2.9](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.2.8...@amazeelabs/scalars@1.2.9) (2023-05-30)
+
+**Note:** Version bump only for package @amazeelabs/scalars
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.2.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.2.7...@amazeelabs/scalars@1.2.8) (2023-05-29)
 
 ### Bug Fixes

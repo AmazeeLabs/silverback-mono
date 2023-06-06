@@ -1,0 +1,65 @@
+import type {
+  LinkType,
+  LocationProviderType,
+  LocationType,
+  useLocationType,
+} from '@amazeelabs/bridge';
+import { action } from '@storybook/addon-actions';
+import React, { createContext, useContext, useState } from 'react';
+
+const LocationContext = createContext<
+  | {
+      location: LocationType;
+      setLocation: (location: LocationType) => void;
+    }
+  | undefined
+>(undefined);
+
+export const LocationProvider: LocationProviderType = ({
+  children,
+  currentLocation = new URL('/', 'relative:/'),
+}) => {
+  const [location, setLocation] = useState(currentLocation);
+  return (
+    <LocationContext.Provider value={{ location, setLocation }}>
+      {children}
+    </LocationContext.Provider>
+  );
+};
+
+export const useLocation: useLocationType = () => {
+  const context = useContext(LocationContext);
+  if (!context) {
+    throw new Error(
+      'LocationProvider not found. Please add it to preview.tsx.',
+    );
+  }
+  return [
+    context.location,
+    (target) => {
+      if (!target) {
+        action('navigate')('invalid target');
+      } else {
+        action('navigate')(target);
+        context.setLocation(new URL(target, 'relative:/'));
+      }
+    },
+  ];
+};
+
+export const Link: LinkType = (props) => {
+  const [, navigate] = useLocation();
+  return (
+    <a
+      {...props}
+      onClick={(ev) => {
+        ev.preventDefault();
+        if (props.href) {
+          navigate(props.href);
+        }
+      }}
+    >
+      {props.children}
+    </a>
+  );
+};

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.1.4...@-amazeelabs/silverback_gatsby@2.1.5) (2023-06-02)
+
+### Bug Fixes
+
+- **gatsby:** ignore reverse proxy when generating session names
+  ([b106e55](https://github.com/AmazeeLabs/silverback-mono/commit/b106e55529eda056f1b4322d288e47c414c76fad))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.1.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.1.3...@-amazeelabs/silverback_gatsby@2.1.4) (2023-05-23)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gatsby
