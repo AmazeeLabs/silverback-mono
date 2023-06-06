@@ -529,7 +529,7 @@ type DrupalPage implements Node {
   path: String!
   title: String!
   body: String
-  paragraphs: [DrupalPageParagraphs!]
+  paragraphs: [DrupalPageParagraphs]!
   _original_typename: String!
   drupalId: String!
   defaultTranslation: Boolean!
@@ -557,7 +557,7 @@ type DrupalParagraphText {
 }
 
 type DrupalParagraphReferences {
-  references: [DrupalArticle!]
+  references: [DrupalArticle]!
   singleReference: DrupalGutenbergPage
   _original_typename: String!
 }
@@ -570,7 +570,7 @@ type DrupalArticle implements Node {
   title: String!
   body: String
   responsiveImage(width: Int, height: Int, sizes: [[Int!]!], transform: String): JSON
-  tags: [DrupalTag!]
+  tags: [DrupalTag]!
   image: DrupalImage
   template: String
   _original_typename: String!
@@ -599,7 +599,7 @@ type DrupalGutenbergPage implements Node {
   path: String!
   title: String!
   anotherResponsiveImage(width: Int, height: Int, sizes: [[Int!]!], transform: String): JSON
-  body: [DrupalRootBlock!]
+  body: [DrupalRootBlock]!
   _original_typename: String!
   drupalId: String!
   defaultTranslation: Boolean!
@@ -614,7 +614,7 @@ type DrupalGutenbergPage implements Node {
 union DrupalRootBlock = DrupalBlockTwoColumns | DrupalBlockHtmlList | DrupalBlockHtmlParagraph | DrupalBlockHtmlQuote | DrupalBlockImage | DrupalBlockTeaser
 
 type DrupalBlockTwoColumns {
-  children: [DrupalBlockColumn!]
+  children: [DrupalBlockColumn]!
   _original_typename: String!
 }
 
@@ -649,7 +649,7 @@ type DrupalBlockTeaser {
 
 type DrupalBlockColumn {
   remoteTypeName: String!
-  children: [DrupalContentBlock!]
+  children: [DrupalContentBlock]!
   _original_typename: String!
 }
 
@@ -673,7 +673,7 @@ type DrupalMainMenu implements Node {
   remoteTypeName: String!
   translations: [DrupalMainMenu!]!
   remoteId: String!
-  items: [DrupalMenuItem!]
+  items: [DrupalMenuItem]!
   _original_typename: String!
   drupalId: String!
   defaultTranslation: Boolean!
@@ -698,7 +698,7 @@ type DrupalFirstLevelMainMenu implements Node {
   remoteTypeName: String!
   translations: [DrupalFirstLevelMainMenu!]!
   remoteId: String!
-  items: [DrupalMenuItem!]
+  items: [DrupalMenuItem]!
   _original_typename: String!
   drupalId: String!
   defaultTranslation: Boolean!
@@ -730,6 +730,21 @@ type DrupalGatsbyStringTranslationTranslation {
   source: String!
   langcode: String!
   translation: String!
+}
+
+type DrupalRawRedirect implements Node {
+  remoteTypeName: String!
+  remoteId: String!
+  source: String!
+  destination: String!
+  statusCode: Int!
+  force: Boolean!
+  _original_typename: String!
+  drupalId: String!
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
 }
 
 type Query {
@@ -766,6 +781,8 @@ type Query {
   allDrupalFirstLevelMainMenu(filter: DrupalFirstLevelMainMenuFilterInput, sort: [DrupalFirstLevelMainMenuSortInput], skip: Int, limit: Int): DrupalFirstLevelMainMenuConnection!
   drupalGatsbyStringTranslation(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, source: StringQueryOperatorInput, context: StringQueryOperatorInput, translations: DrupalGatsbyStringTranslationTranslationFilterListInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalGatsbyStringTranslation
   allDrupalGatsbyStringTranslation(filter: DrupalGatsbyStringTranslationFilterInput, sort: [DrupalGatsbyStringTranslationSortInput], skip: Int, limit: Int): DrupalGatsbyStringTranslationConnection!
+  drupalRawRedirect(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, source: StringQueryOperatorInput, destination: StringQueryOperatorInput, statusCode: IntQueryOperatorInput, force: BooleanQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalRawRedirect
+  allDrupalRawRedirect(filter: DrupalRawRedirectFilterInput, sort: [DrupalRawRedirectSortInput], skip: Int, limit: Int): DrupalRawRedirectConnection!
   imagesFromHtml(urlOriginal: StringQueryOperatorInput, urlAbsolute: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImagesFromHtml
   allImagesFromHtml(filter: ImagesFromHtmlFilterInput, sort: [ImagesFromHtmlSortInput], skip: Int, limit: Int): ImagesFromHtmlConnection!
   imageSharp(fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: GatsbyImageDataQueryOperatorInput, original: ImageSharpOriginalFilterInput, resize: ImageSharpResizeFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImageSharp
@@ -2631,6 +2648,83 @@ input DrupalGatsbyStringTranslationTranslationSortInput {
   source: SortOrderEnum
   langcode: SortOrderEnum
   translation: SortOrderEnum
+}
+
+type DrupalRawRedirectConnection {
+  totalCount: Int!
+  edges: [DrupalRawRedirectEdge!]!
+  nodes: [DrupalRawRedirect!]!
+  pageInfo: PageInfo!
+  distinct(field: DrupalRawRedirectFieldSelector!): [String!]!
+  max(field: DrupalRawRedirectFieldSelector!): Float
+  min(field: DrupalRawRedirectFieldSelector!): Float
+  sum(field: DrupalRawRedirectFieldSelector!): Float
+  group(skip: Int, limit: Int, field: DrupalRawRedirectFieldSelector!): [DrupalRawRedirectGroupConnection!]!
+}
+
+type DrupalRawRedirectEdge {
+  next: DrupalRawRedirect
+  node: DrupalRawRedirect!
+  previous: DrupalRawRedirect
+}
+
+input DrupalRawRedirectFieldSelector {
+  remoteTypeName: FieldSelectorEnum
+  remoteId: FieldSelectorEnum
+  source: FieldSelectorEnum
+  destination: FieldSelectorEnum
+  statusCode: FieldSelectorEnum
+  force: FieldSelectorEnum
+  _original_typename: FieldSelectorEnum
+  drupalId: FieldSelectorEnum
+  id: FieldSelectorEnum
+  parent: NodeFieldSelector
+  children: NodeFieldSelector
+  internal: InternalFieldSelector
+}
+
+type DrupalRawRedirectGroupConnection {
+  totalCount: Int!
+  edges: [DrupalRawRedirectEdge!]!
+  nodes: [DrupalRawRedirect!]!
+  pageInfo: PageInfo!
+  distinct(field: DrupalRawRedirectFieldSelector!): [String!]!
+  max(field: DrupalRawRedirectFieldSelector!): Float
+  min(field: DrupalRawRedirectFieldSelector!): Float
+  sum(field: DrupalRawRedirectFieldSelector!): Float
+  group(skip: Int, limit: Int, field: DrupalRawRedirectFieldSelector!): [DrupalRawRedirectGroupConnection!]!
+  field: String!
+  fieldValue: String
+}
+
+input DrupalRawRedirectFilterInput {
+  remoteTypeName: StringQueryOperatorInput
+  remoteId: StringQueryOperatorInput
+  source: StringQueryOperatorInput
+  destination: StringQueryOperatorInput
+  statusCode: IntQueryOperatorInput
+  force: BooleanQueryOperatorInput
+  _original_typename: StringQueryOperatorInput
+  drupalId: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+input DrupalRawRedirectSortInput {
+  remoteTypeName: SortOrderEnum
+  remoteId: SortOrderEnum
+  source: SortOrderEnum
+  destination: SortOrderEnum
+  statusCode: SortOrderEnum
+  force: SortOrderEnum
+  _original_typename: SortOrderEnum
+  drupalId: SortOrderEnum
+  id: SortOrderEnum
+  parent: NodeSortInput
+  children: NodeSortInput
+  internal: InternalSortInput
 }
 
 type ImagesFromHtmlConnection {

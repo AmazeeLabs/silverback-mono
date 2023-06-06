@@ -16,6 +16,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *   label = @Translation("Raw Redirect"),
  *   handlers = {
  *     "list_builder" = "Drupal\silverback_raw_redirect\Entity\RawRedirectListBuilder",
+ *     "access" = "Drupal\silverback_raw_redirect\RawRdirectAccessControlHandler",
  *     "form" = {
  *       "default" = "Drupal\silverback_raw_redirect\Form\RawRedirectForm",
  *       "delete" = "Drupal\silverback_raw_redirect\Form\RawRedirectDeleteForm",
@@ -110,12 +111,12 @@ class RawRedirect extends ContentEntityBase implements RawRedirectInterface {
   /**
    * {@inheritDoc}
    */
-  /*public function preSave(EntityStorageInterface $storage) {
+  public function preSave(EntityStorageInterface $storage) {
     parent::preSave($storage);
     // On every save, update the value of the editey_by field with the current
     // user's ID.
     $this->set('edited_by', static::getCurrentUserId());
-  }*/
+  }
 
   /**
    * {@inheritDoc}

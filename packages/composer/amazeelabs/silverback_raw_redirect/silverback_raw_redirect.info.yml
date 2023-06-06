@@ -1,6 +1,6 @@
 name: Silverback Raw Redirect
 type: module
-description: 'Allows creating raw (absolute) redirects and export them for various hosting providers (like Netlify).'
+description: 'Allows creating raw (absolute) redirect entities that can be afterwards exposed via graphql.'
 package: Silverback
 core: 8.x
 core_version_requirement: ^8 || ^9 || ^10

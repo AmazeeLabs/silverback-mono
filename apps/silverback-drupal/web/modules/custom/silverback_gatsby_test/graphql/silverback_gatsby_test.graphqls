@@ -131,3 +131,10 @@ type FirstLevelMainMenu @menu(menu_id: "main", max_level: 1) {
 }
 
 type GatsbyStringTranslation @stringTranslation(contextPrefix: "gatsby")
+
+type RawRedirect @entity(type: "raw_redirect") {
+  source: String! @resolveProperty(path: "redirect_source.value")
+  destination: String! @resolveProperty(path: "redirect_destination.value")
+  statusCode: Int! @resolveProperty(path: "status_code.value")
+  force: Boolean! @resolveProperty(path: "force.value")
+}
