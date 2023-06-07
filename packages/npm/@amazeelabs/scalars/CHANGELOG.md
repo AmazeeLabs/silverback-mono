@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.2.11...@amazeelabs/scalars@1.3.0) (2023-06-07)
+
+### Features
+
+- **scalars:** add external link handling
+  ([9de1782](https://github.com/AmazeeLabs/silverback-mono/commit/9de1782de60eac64054325c87288910fddb1ee23))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.2.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.2.10...@amazeelabs/scalars@1.2.11) (2023-05-31)
 
 ### Bug Fixes
