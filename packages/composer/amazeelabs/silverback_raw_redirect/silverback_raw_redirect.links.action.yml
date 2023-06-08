@@ -1,5 +1,0 @@
-raw_redirect.add:
-  route_name: raw_redirect.add
-  title: 'Add raw redirect'
-  appears_on:
-    - 'raw_redirect.list'

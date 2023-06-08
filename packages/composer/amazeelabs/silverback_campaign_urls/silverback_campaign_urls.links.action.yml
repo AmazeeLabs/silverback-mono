@@ -1,0 +1,5 @@
+campaign_url.add:
+  route_name: campaign_url.add
+  title: 'Add campaign url'
+  appears_on:
+    - 'campaign_url.list'

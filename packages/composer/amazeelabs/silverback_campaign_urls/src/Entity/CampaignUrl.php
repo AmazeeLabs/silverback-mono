@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\silverback_raw_redirect\Entity;
+namespace Drupal\silverback_campaign_urls\Entity;
 
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
@@ -9,45 +9,44 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 
 /**
- * The raw redirect entity class.
+ * The campaign URL entity class.
  *
  * @ContentEntityType(
- *   id = "raw_redirect",
- *   label = @Translation("Raw Redirect"),
+ *   id = "campaign_url",
+ *   label = @Translation("Campaign URL"),
  *   handlers = {
- *     "list_builder" = "Drupal\silverback_raw_redirect\Entity\RawRedirectListBuilder",
- *     "access" = "Drupal\silverback_raw_redirect\RawRdirectAccessControlHandler",
+ *     "list_builder" = "Drupal\silverback_campaign_urls\Entity\CampaignUrlListBuilder",
+ *     "access" = "Drupal\silverback_campaign_urls\CampaignUrlAccessControlHandler",
  *     "form" = {
- *       "default" = "Drupal\silverback_raw_redirect\Form\RawRedirectForm",
- *       "delete" = "Drupal\silverback_raw_redirect\Form\RawRedirectDeleteForm",
- *       "edit" = "Drupal\silverback_raw_redirect\Form\RawRedirectForm"
+ *       "default" = "Drupal\silverback_campaign_urls\Form\CampaignUrlForm",
+ *       "delete" = "Drupal\silverback_campaign_urls\Form\CampaignUrlDeleteForm",
+ *       "edit" = "Drupal\silverback_campaign_urls\Form\CampaignUrlForm"
  *     },
  *     "views_data" = "Drupal\views\EntityViewsData"
  *   },
- *   base_table = "raw_redirect",
+ *   base_table = "campaign_url",
  *   translatable = FALSE,
- *   admin_permission = "administer raw redirects",
+ *   admin_permission = "administer campaign urls",
  *   entity_keys = {
- *     "id" = "rid",
- *     "label" = "redirect_source",
- *     "uuid" = "uuid"
+ *     "id" = "cid",
+ *     "label" = "campaign_url_source",
  *   },
  *   links = {
- *     "canonical" = "/admin/config/search/raw_redirect/edit/{raw_redirect}",
- *     "delete-form" = "/admin/config/search/raw_redirect/delete/{raw_redirect}",
- *     "edit-form" = "/admin/config/search/raw_redirect/edit/{raw_redirect}",
+ *     "canonical" = "/admin/config/search/campaign_url/edit/{campaign_url}",
+ *     "delete-form" = "/admin/config/search/campaign_url/delete/{campaign_url}",
+ *     "edit-form" = "/admin/config/search/campaign_url/edit/{campaign_url}",
  *   }
  * )
  */
-class RawRedirect extends ContentEntityBase implements RawRedirectInterface {
+class CampaignUrl extends ContentEntityBase implements CampaignUrlInterface {
   use EntityChangedTrait;
 
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 
-    $fields['redirect_source'] = BaseFieldDefinition::create('string')
+    $fields['campaign_url_source'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Source'))
-      ->setDescription(t('Please provide the source path for this redirect. Usually, this is either a relative URL (starting with /) or an absolute path. But it can be basically any arbitrary source path that your specific hosting provider can understand.'))
+      ->setDescription(t('Please provide the source path for this campaign URL. Usually, this is either a relative URL (starting with /) or an absolute path. But it can be basically any arbitrary source path that your specific hosting provider can understand.'))
       ->setRequired(TRUE)
       ->setSetting('max_length', 1024)
       ->setDisplayOptions('form', [
@@ -56,7 +55,7 @@ class RawRedirect extends ContentEntityBase implements RawRedirectInterface {
       ])
       ->setDisplayConfigurable('form', TRUE);
 
-    $fields['redirect_destination'] = BaseFieldDefinition::create('string')
+    $fields['campaign_url_destination'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Destination'))
       ->setDescription(t('Same as <em>Source</em>, this is usually a relative or absolute URL. But it can be any destination path that the hosting provider can understand.'))
       ->setRequired(TRUE)
@@ -69,7 +68,7 @@ class RawRedirect extends ContentEntityBase implements RawRedirectInterface {
 
     $fields['status_code'] = BaseFieldDefinition::create('integer')
       ->setLabel(t('Status code'))
-      ->setDescription(t('The redirect status code.'))
+      ->setDescription(t('The campaign url redirect status code.'))
       ->setDefaultValue(301);
 
     $fields['force'] = BaseFieldDefinition::create('boolean')
@@ -86,25 +85,25 @@ class RawRedirect extends ContentEntityBase implements RawRedirectInterface {
 
     $fields['author'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Author'))
-      ->setDescription(t('The user ID of the redirect author.'))
-      ->setDefaultValueCallback('\Drupal\silverback_raw_redirect\Entity\RawRedirect::getCurrentUserId')
+      ->setDescription(t('The user ID of the campaign URl author.'))
+      ->setDefaultValueCallback('\Drupal\silverback_campaign_urls\Entity\CampaignUrl::getCurrentUserId')
       ->setSettings(array(
         'target_type' => 'user',
       ));
     $fields['edited_by'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Edited by'))
-      ->setDescription(t('The user ID of the last person who edited the redirect.'))
-      ->setDefaultValueCallback('\Drupal\silverback_raw_redirect\Entity\RawRedirect::getCurrentUserId')
+      ->setDescription(t('The user ID of the last person who edited the campaign URL.'))
+      ->setDefaultValueCallback('\Drupal\silverback_campaign_urls\Entity\CampaignUrl::getCurrentUserId')
       ->setSettings(array(
         'target_type' => 'user',
       ));
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))
-      ->setDescription(t('The date when the redirect was created.'));
+      ->setDescription(t('The date when the campaign URL was created.'));
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(t('Updated'))
-      ->setDescription(t('The date when the redirect was last updated.'));
+      ->setDescription(t('The date when the campaign URL was last updated.'));
     return $fields;
   }
 
@@ -131,7 +130,7 @@ class RawRedirect extends ContentEntityBase implements RawRedirectInterface {
   /**
    * {@inheritDoc}
    */
-  public function isForcedRedirect() {
+  public function isCampaignRedirectForced() {
     if ($this->get('force')->isEmpty()) {
       return FALSE;
     }
@@ -142,7 +141,14 @@ class RawRedirect extends ContentEntityBase implements RawRedirectInterface {
    * {@inheritDoc}
    */
   public function getSource() {
-    return $this->get('redirect_source')->getValue()[0]['value'];
+    return $this->get('campaign_url_source')->getValue()[0]['value'];
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public function getDestination() {
+    return $this->get('campaign_url_destination')->getValue()[0]['value'];
   }
 
   /**

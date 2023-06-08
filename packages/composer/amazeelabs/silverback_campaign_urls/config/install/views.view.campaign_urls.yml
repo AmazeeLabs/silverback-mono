@@ -2,15 +2,15 @@ langcode: en
 status: true
 dependencies:
   module:
-    - silverback_raw_redirect
+    - silverback_campaign_urls
     - user
-id: raw_redirects
-label: 'Raw redirects'
+id: campaign_urls
+label: 'Campaign urls'
 module: views
 description: ''
 tag: ''
-base_table: raw_redirect
-base_field: rid
+base_table: campaign_url
+base_field: cid
 display:
   default:
     id: default
@@ -18,16 +18,16 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Raw redirects'
+      title: 'Campaign urls'
       fields:
-        raw_redirect_bulk_form:
-          id: raw_redirect_bulk_form
-          table: raw_redirect
-          field: raw_redirect_bulk_form
+        campaign_url_bulk_form:
+          id: campaign_url_bulk_form
+          table: campaign_url
+          field: campaign_url_bulk_form
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: raw_redirect
+          entity_type: campaign_url
           plugin_id: bulk_form
           label: 'Bulk update'
           exclude: false
@@ -73,15 +73,15 @@ display:
           action_title: Action
           include_exclude: exclude
           selected_actions: {  }
-        redirect_source:
-          id: redirect_source
-          table: raw_redirect
-          field: redirect_source
+        campaign_url_source:
+          id: campaign_url_source
+          table: campaign_url
+          field: campaign_url_source
           relationship: none
           group_type: group
           admin_label: ''
           entity_type: null
-          entity_field: redirect_source
+          entity_field: campaign_url_source
           plugin_id: field
           label: Source
           exclude: false
@@ -137,15 +137,15 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-        redirect_destination:
-          id: redirect_destination
-          table: raw_redirect
-          field: redirect_destination
+        campaign_url_destination:
+          id: campaign_url_destination
+          table: campaign_url
+          field: campaign_url_destination
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: raw_redirect
-          entity_field: redirect_destination
+          entity_type: campaign_url
+          entity_field: campaign_url_destination
           plugin_id: field
           label: Destination
           exclude: false
@@ -204,12 +204,12 @@ display:
           field_api_classes: false
         status_code:
           id: status_code
-          table: raw_redirect
+          table: campaign_url
           field: status_code
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: raw_redirect
+          entity_type: campaign_url
           entity_field: status_code
           plugin_id: field
           label: 'Status code'
@@ -270,12 +270,12 @@ display:
           field_api_classes: false
         force:
           id: force
-          table: raw_redirect
+          table: campaign_url
           field: force
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: raw_redirect
+          entity_type: campaign_url
           entity_field: force
           plugin_id: field
           label: 'Force redirect'
@@ -337,12 +337,12 @@ display:
           field_api_classes: false
         created:
           id: created
-          table: raw_redirect
+          table: campaign_url
           field: created
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: raw_redirect
+          entity_type: campaign_url
           entity_field: created
           plugin_id: field
           label: Created
@@ -404,12 +404,12 @@ display:
           field_api_classes: false
         changed:
           id: changed
-          table: raw_redirect
+          table: campaign_url
           field: changed
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: raw_redirect
+          entity_type: campaign_url
           entity_field: changed
           plugin_id: field
           label: Updated
@@ -471,12 +471,12 @@ display:
           field_api_classes: false
         operations:
           id: operations
-          table: raw_redirect
+          table: campaign_url
           field: operations
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: raw_redirect
+          entity_type: campaign_url
           plugin_id: entity_operations
           label: Operations
           exclude: false
@@ -554,7 +554,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'administer raw redirects'
+          perm: 'administer campaign urls'
       cache:
         type: tag
         options: {  }
@@ -569,35 +569,35 @@ display:
           plugin_id: text
           empty: true
           content:
-            value: 'There are no raw redirects to be displayed.'
+            value: 'There are no campaign urls to be displayed.'
             format: rich
           tokenize: false
       sorts: {  }
       arguments: {  }
       filters:
-        redirect_source:
-          id: redirect_source
-          table: raw_redirect
-          field: redirect_source
+        campaign_url_source:
+          id: campaign_url_source
+          table: campaign_url
+          field: campaign_url_source
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: raw_redirect
-          entity_field: redirect_source
+          entity_type: campaign_url
+          entity_field: campaign_url_source
           plugin_id: string
           operator: contains
           value: ''
           group: 1
           exposed: true
           expose:
-            operator_id: redirect_source_op
+            operator_id: campaign_url_source_op
             label: Source
             description: ''
             use_operator: false
-            operator: redirect_source_op
+            operator: campaign_url_source_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: redirect_source
+            identifier: campaign_url_source
             required: false
             remember: false
             multiple: false
@@ -619,29 +619,29 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        redirect_destination:
-          id: redirect_destination
-          table: raw_redirect
-          field: redirect_destination
+        campaign_url_destination:
+          id: campaign_url_destination
+          table: campaign_url
+          field: campaign_url_destination
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: raw_redirect
-          entity_field: redirect_destination
+          entity_type: campaign_url
+          entity_field: campaign_url_destination
           plugin_id: string
           operator: contains
           value: ''
           group: 1
           exposed: true
           expose:
-            operator_id: redirect_destination_op
+            operator_id: campaign_url_destination_op
             label: Destination
             description: ''
             use_operator: false
-            operator: redirect_destination_op
+            operator: campaign_url_destination_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: redirect_destination
+            identifier: campaign_url_destination
             required: false
             remember: false
             multiple: false
@@ -670,9 +670,9 @@ display:
           row_class: ''
           default_row_class: true
           columns:
-            raw_redirect_bulk_form: raw_redirect_bulk_form
-            redirect_source: redirect_source
-            redirect_destination: redirect_destination
+            campaign_url_bulk_form: campaign_url_bulk_form
+            campaign_url_source: campaign_url_source
+            campaign_url_destination: campaign_url_destination
             status_code: status_code
             force: force
             created: created
@@ -680,19 +680,19 @@ display:
             operations: operations
           default: created
           info:
-            raw_redirect_bulk_form:
+            campaign_url_bulk_form:
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            redirect_source:
+            campaign_url_source:
               sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            redirect_destination:
+            campaign_url_destination:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -761,14 +761,14 @@ display:
         - url.query_args
         - user.permissions
       tags: {  }
-  page_raw_redirects:
-    id: page_raw_redirects
+  page_campaign_urls:
+    id: page_campaign_urls
     display_title: Page
     display_plugin: page
     position: 1
     display_options:
       display_extenders: {  }
-      path: admin/config/search/raw_redirect
+      path: admin/config/search/campaign_url
     cache_metadata:
       max-age: 0
       contexts:

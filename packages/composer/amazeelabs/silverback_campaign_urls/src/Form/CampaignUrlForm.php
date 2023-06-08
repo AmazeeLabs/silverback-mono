@@ -1,19 +1,19 @@
 <?php
 
-namespace Drupal\silverback_raw_redirect\Form;
+namespace Drupal\silverback_campaign_urls\Form;
 
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
 
-class RawRedirectForm extends ContentEntityForm {
+class CampaignUrlForm extends ContentEntityForm {
 
   /**
    * {@inheritdoc}
    */
   public function save(array $form, FormStateInterface $form_state) {
     parent::save($form, $form_state);
-    $this->messenger()->addMessage(t('The redirect has been saved.'));
-    $form_state->setRedirect('raw_redirect.list');
+    $this->messenger()->addMessage(t('The campaign URL has been saved.'));
+    $form_state->setRedirect('campaign_url.list');
   }
 
   /**
@@ -21,9 +21,9 @@ class RawRedirectForm extends ContentEntityForm {
    */
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
-    /** @var \Drupal\silverback_raw_redirect\Entity\RawRedirect $redirect */
-    $redirect = $this->entity;
-    $defaultCode = $redirect->getStatusCode() ? $redirect->getStatusCode() : 301;
+    /** @var \Drupal\silverback_campaign_urls\Entity\CampaignUrl $campaignUrl */
+    $campaignUrl = $this->entity;
+    $defaultCode = $campaignUrl->getStatusCode() ? $campaignUrl->getStatusCode() : 301;
     $form['status_code'] = [
       '#type' => 'select',
       '#title' => $this->t('Redirect status'),

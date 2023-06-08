@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\silverback_raw_redirect\Plugin\Action;
+namespace Drupal\silverback_campaign_urls\Plugin\Action;
 
 use Drupal\Core\Action\ActionBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -9,16 +9,16 @@ use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Redirects to a raw redirect deletion form.
+ * Redirects to a campaign URL deletion form.
  *
  * @Action(
- *   id = "raw_redirect_delete_action",
- *   label = @Translation("Delete redirect"),
- *   type = "raw_redirect",
- *   confirm_form_route_name = "entity.raw_redirect.multiple_delete_confirm"
+ *   id = "campaign_url_delete_action",
+ *   label = @Translation("Delete campaign URL"),
+ *   type = "campaign_url",
+ *   confirm_form_route_name = "entity.campaign_url.multiple_delete_confirm"
  * )
  */
-class DeleteRawRedirect extends ActionBase implements ContainerFactoryPluginInterface {
+class DeleteCampaignUrl extends ActionBase implements ContainerFactoryPluginInterface {
 
   /**
    * The tempstore object.
@@ -35,7 +35,7 @@ class DeleteRawRedirect extends ActionBase implements ContainerFactoryPluginInte
   protected $currentUser;
 
   /**
-   * Constructs a new DeleteRedirect object.
+   * Constructs a new DeleteCampaignUrl object.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -50,7 +50,7 @@ class DeleteRawRedirect extends ActionBase implements ContainerFactoryPluginInte
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, PrivateTempStoreFactory $temp_store_factory, AccountInterface $current_user) {
     $this->currentUser = $current_user;
-    $this->privateTempStore = $temp_store_factory->get('raw_redirect_multiple_delete_confirm');
+    $this->privateTempStore = $temp_store_factory->get('campaign_url_multiple_delete_confirm');
 
     parent::__construct($configuration, $plugin_id, $plugin_definition);
   }

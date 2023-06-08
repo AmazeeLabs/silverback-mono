@@ -1,11 +1,11 @@
 <?php
 
-namespace Drupal\silverback_raw_redirect\Entity;
+namespace Drupal\silverback_campaign_urls\Entity;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
 
-class RawRedirectListBuilder extends EntityListBuilder {
+class CampaignUrlListBuilder extends EntityListBuilder {
 
   /**
    * {@inheritdoc}
@@ -24,13 +24,13 @@ class RawRedirectListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    if (!$entity instanceof RawRedirect) {
+    if (!$entity instanceof CampaignUrl) {
       return parent::buildRow($entity);
     }
-    $row['source'] = $entity->get('redirect_source')->getValue()[0]['value'];
-    $row['destination'] = $entity->get('redirect_destination')->getValue()[0]['value'];
-    $row['status_code'] = $entity->get('status_code')->getValue()[0]['value'];
-    $row['force'] = $entity->isForcedRedirect() ? $this->t('Yes') : $this->t('No');
+    $row['source'] = $entity->getSource();
+    $row['destination'] = $entity->getDestination();
+    $row['status_code'] = $entity->getStatusCode();
+    $row['force'] = $entity->isCampaignRedirectForced() ? $this->t('Yes') : $this->t('No');
 
     return $row + parent::buildRow($entity);
   }

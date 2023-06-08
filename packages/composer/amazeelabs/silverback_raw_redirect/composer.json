@@ -1,8 +1,0 @@
-{
-  "name": "amazeelabs/silverback_raw_redirect",
-  "type": "drupal-module",
-  "version": "1.0.0",
-  "description": "Allows creating raw (absolute) redirect entities that can be afterwards exposed via graphql.",
-  "homepage": "https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/composer/amazeelabs/silverback_raw_redirect#readme",
-  "license": "GPL-2.0+"
-}

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\silverback_raw_redirect\Form;
+namespace Drupal\silverback_campaign_urls\Form;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\ConfirmFormBase;
@@ -13,16 +13,16 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\TranslationInterface;
 
 /**
- * Provides a redirect deletion confirmation form.
+ * Provides a campaign URL deletion confirmation form.
  */
-class RawRedirectDeleteMultipleForm extends ConfirmFormBase {
+class CampaignUrlDeleteMultipleForm extends ConfirmFormBase {
 
   /**
-   * The array of redirects to delete.
+   * The array of campaign URLs to delete.
    *
    * @var string[][]
    */
-  protected $redirects = [];
+  protected $campaignURLs = [];
 
   /**
    * The private tempstore factory.
@@ -32,11 +32,11 @@ class RawRedirectDeleteMultipleForm extends ConfirmFormBase {
   protected $privateTempStoreFactory;
 
   /**
-   * The redirect storage.
+   * The campaign URL storage.
    *
    * @var \Drupal\Core\Entity\EntityStorageInterface
    */
-  protected $redirectStorage;
+  protected $campaignUrlStorage;
 
   /**
    * The current user.
@@ -46,7 +46,7 @@ class RawRedirectDeleteMultipleForm extends ConfirmFormBase {
   protected $currentUser;
 
   /**
-   * Constructs a RedirectDeleteMultiple form object.
+   * Constructs a CampaignUrlDeleteMultipleForm object.
    *
    * @param \Drupal\Core\TempStore\PrivateTempStoreFactory $temp_store_factory
    *   The tempstore factory.
@@ -57,9 +57,14 @@ class RawRedirectDeleteMultipleForm extends ConfirmFormBase {
    * @param \Drupal\Core\StringTranslation\TranslationInterface $string_translation
    *   The String translation.
    */
-  public function __construct(PrivateTempStoreFactory $temp_store_factory, EntityTypeManagerInterface $entity_type_manager, AccountInterface $account, TranslationInterface $string_translation) {
+  public function __construct(
+    PrivateTempStoreFactory $temp_store_factory,
+    EntityTypeManagerInterface $entity_type_manager,
+    AccountInterface $account,
+    TranslationInterface $string_translation
+  ) {
     $this->privateTempStoreFactory = $temp_store_factory;
-    $this->redirectStorage = $entity_type_manager->getStorage('raw_redirect');
+    $this->campaignUrlStorage = $entity_type_manager->getStorage('campaign_url');
     $this->currentUser = $account;
     $this->setStringTranslation($string_translation);
   }
@@ -80,21 +85,21 @@ class RawRedirectDeleteMultipleForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'raw_redirect_multiple_delete_confirm';
+    return 'campaign_url_multiple_delete_confirm';
   }
 
   /**
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return $this->formatPlural(count($this->redirects), 'Are you sure you want to delete this raw redirect?', 'Are you sure you want to delete these raw redirects?');
+    return $this->formatPlural(count($this->campaignURLs), 'Are you sure you want to delete this campaign URL?', 'Are you sure you want to delete these campaign URLs?');
   }
 
   /**
    * {@inheritdoc}
    */
   public function getCancelUrl() {
-    return new Url('raw_redirect.list');
+    return new Url('campaign_url.list');
   }
 
   /**
@@ -108,16 +113,16 @@ class RawRedirectDeleteMultipleForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $this->redirects = $this->privateTempStoreFactory->get('raw_redirect_multiple_delete_confirm')->get($this->currentUser->id());
-    if (empty($this->redirects)) {
+    $this->campaignURLs = $this->privateTempStoreFactory->get('campaign_url_multiple_delete_confirm')->get($this->currentUser->id());
+    if (empty($this->campaignURLs)) {
       return new RedirectResponse($this->getCancelUrl()->setAbsolute()->toString());
     }
 
-    $form['redirects'] = [
+    $form['campaign_urls'] = [
       '#theme' => 'item_list',
-      '#items' => array_map(function ($redirect) {
-        return $redirect->label();
-      }, $this->redirects),
+      '#items' => array_map(function ($campaignURL) {
+        return $campaignURL->label();
+      }, $this->campaignURLs),
     ];
     return parent::buildForm($form, $form_state);
   }
@@ -127,14 +132,14 @@ class RawRedirectDeleteMultipleForm extends ConfirmFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
 
-    if ($form_state->getValue('confirm') && !empty($this->redirects)) {
-      $this->redirectStorage->delete($this->redirects);
-      $this->privateTempStoreFactory->get('raw_redirect_multiple_delete_confirm')->delete($this->currentUser->id());
-      $count = count($this->redirects);
-      $this->logger('raw_redirect')->notice('Deleted @count raw redirects.', ['@count' => $count]);
-      $this->messenger()->addMessage($this->stringTranslation->formatPlural($count, 'Deleted 1 raw redirect.', 'Deleted @count raw redirects.'));
+    if ($form_state->getValue('confirm') && !empty($this->campaignURLs)) {
+      $this->campaignUrlStorage->delete($this->campaignURLs);
+      $this->privateTempStoreFactory->get('campaign_url_multiple_delete_confirm')->delete($this->currentUser->id());
+      $count = count($this->campaignURLs);
+      $this->logger('campaign_url')->notice('Deleted @count campaign URLs.', ['@count' => $count]);
+      $this->messenger()->addMessage($this->stringTranslation->formatPlural($count, 'Deleted 1 campaign URL.', 'Deleted @count campaign URLs.'));
     }
-    $form_state->setRedirect('raw_redirect.list');
+    $form_state->setRedirect('campaign_url.list');
   }
 
 }

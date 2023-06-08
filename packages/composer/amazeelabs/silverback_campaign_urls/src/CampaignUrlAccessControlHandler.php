@@ -1,13 +1,13 @@
 <?php
 
-namespace Drupal\silverback_raw_redirect;
+namespace Drupal\silverback_campaign_urls;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityAccessControlHandler;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Session\AccountInterface;
 
-class RawRdirectAccessControlHandler extends EntityAccessControlHandler {
+class CampaignUrlAccessControlHandler extends EntityAccessControlHandler {
 
   /**
    * {@inheritDoc}
@@ -18,7 +18,8 @@ class RawRdirectAccessControlHandler extends EntityAccessControlHandler {
       $operation = 'view';
     }
     // Everyone with the "access content" permission should be able to view
-    // these redirects, otherwise they won't be accessible via graphql.
+    // the campaign URLs (redirects), otherwise they won't be accessible via
+    // graphql.
     if ($operation === 'view' && $account->hasPermission('access content')) {
       $result = AccessResult::allowed()->cachePerPermissions();
       return $return_as_object ? $result : $result->isAllowed();
