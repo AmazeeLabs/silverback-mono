@@ -3,4 +3,6 @@ type: module
 description: 'Allows creating campaign url entities that can be afterwards exposed via graphql, as redirects.'
 package: Silverback
 core: 8.x
+dependencies:
+  - graphql_directives:graphql_directives
 core_version_requirement: ^8 || ^9 || ^10
