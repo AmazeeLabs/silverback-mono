@@ -219,6 +219,7 @@ const getCloudinaryImageUrl = (
   );
   image.setDeliveryType('fetch');
   image.format('auto');
+  image.quality('auto');
   if (
     typeof config?.width !== 'undefined' ||
     typeof config?.height !== 'undefined'
@@ -228,7 +229,7 @@ const getCloudinaryImageUrl = (
       typeof config?.width !== 'undefined' &&
       typeof config?.height !== 'undefined'
     ) {
-      image.resize(fill(config.width, config.height));
+      image.resize(fill(config.width, config.height).gravity('auto'));
     } else {
       image.resize(scale(config.width, config.height));
     }
