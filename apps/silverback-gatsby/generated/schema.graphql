@@ -732,7 +732,7 @@ type DrupalGatsbyStringTranslationTranslation {
   translation: String!
 }
 
-type DrupalRawRedirect implements Node {
+type DrupalCampaignUrl implements Node {
   remoteTypeName: String!
   remoteId: String!
   source: String!
@@ -781,8 +781,8 @@ type Query {
   allDrupalFirstLevelMainMenu(filter: DrupalFirstLevelMainMenuFilterInput, sort: [DrupalFirstLevelMainMenuSortInput], skip: Int, limit: Int): DrupalFirstLevelMainMenuConnection!
   drupalGatsbyStringTranslation(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, source: StringQueryOperatorInput, context: StringQueryOperatorInput, translations: DrupalGatsbyStringTranslationTranslationFilterListInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalGatsbyStringTranslation
   allDrupalGatsbyStringTranslation(filter: DrupalGatsbyStringTranslationFilterInput, sort: [DrupalGatsbyStringTranslationSortInput], skip: Int, limit: Int): DrupalGatsbyStringTranslationConnection!
-  drupalRawRedirect(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, source: StringQueryOperatorInput, destination: StringQueryOperatorInput, statusCode: IntQueryOperatorInput, force: BooleanQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalRawRedirect
-  allDrupalRawRedirect(filter: DrupalRawRedirectFilterInput, sort: [DrupalRawRedirectSortInput], skip: Int, limit: Int): DrupalRawRedirectConnection!
+  drupalCampaignUrl(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, source: StringQueryOperatorInput, destination: StringQueryOperatorInput, statusCode: IntQueryOperatorInput, force: BooleanQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalCampaignUrl
+  allDrupalCampaignUrl(filter: DrupalCampaignUrlFilterInput, sort: [DrupalCampaignUrlSortInput], skip: Int, limit: Int): DrupalCampaignUrlConnection!
   imagesFromHtml(urlOriginal: StringQueryOperatorInput, urlAbsolute: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImagesFromHtml
   allImagesFromHtml(filter: ImagesFromHtmlFilterInput, sort: [ImagesFromHtmlSortInput], skip: Int, limit: Int): ImagesFromHtmlConnection!
   imageSharp(fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: GatsbyImageDataQueryOperatorInput, original: ImageSharpOriginalFilterInput, resize: ImageSharpResizeFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImageSharp
@@ -2650,25 +2650,25 @@ input DrupalGatsbyStringTranslationTranslationSortInput {
   translation: SortOrderEnum
 }
 
-type DrupalRawRedirectConnection {
+type DrupalCampaignUrlConnection {
   totalCount: Int!
-  edges: [DrupalRawRedirectEdge!]!
-  nodes: [DrupalRawRedirect!]!
+  edges: [DrupalCampaignUrlEdge!]!
+  nodes: [DrupalCampaignUrl!]!
   pageInfo: PageInfo!
-  distinct(field: DrupalRawRedirectFieldSelector!): [String!]!
-  max(field: DrupalRawRedirectFieldSelector!): Float
-  min(field: DrupalRawRedirectFieldSelector!): Float
-  sum(field: DrupalRawRedirectFieldSelector!): Float
-  group(skip: Int, limit: Int, field: DrupalRawRedirectFieldSelector!): [DrupalRawRedirectGroupConnection!]!
+  distinct(field: DrupalCampaignUrlFieldSelector!): [String!]!
+  max(field: DrupalCampaignUrlFieldSelector!): Float
+  min(field: DrupalCampaignUrlFieldSelector!): Float
+  sum(field: DrupalCampaignUrlFieldSelector!): Float
+  group(skip: Int, limit: Int, field: DrupalCampaignUrlFieldSelector!): [DrupalCampaignUrlGroupConnection!]!
 }
 
-type DrupalRawRedirectEdge {
-  next: DrupalRawRedirect
-  node: DrupalRawRedirect!
-  previous: DrupalRawRedirect
+type DrupalCampaignUrlEdge {
+  next: DrupalCampaignUrl
+  node: DrupalCampaignUrl!
+  previous: DrupalCampaignUrl
 }
 
-input DrupalRawRedirectFieldSelector {
+input DrupalCampaignUrlFieldSelector {
   remoteTypeName: FieldSelectorEnum
   remoteId: FieldSelectorEnum
   source: FieldSelectorEnum
@@ -2683,21 +2683,21 @@ input DrupalRawRedirectFieldSelector {
   internal: InternalFieldSelector
 }
 
-type DrupalRawRedirectGroupConnection {
+type DrupalCampaignUrlGroupConnection {
   totalCount: Int!
-  edges: [DrupalRawRedirectEdge!]!
-  nodes: [DrupalRawRedirect!]!
+  edges: [DrupalCampaignUrlEdge!]!
+  nodes: [DrupalCampaignUrl!]!
   pageInfo: PageInfo!
-  distinct(field: DrupalRawRedirectFieldSelector!): [String!]!
-  max(field: DrupalRawRedirectFieldSelector!): Float
-  min(field: DrupalRawRedirectFieldSelector!): Float
-  sum(field: DrupalRawRedirectFieldSelector!): Float
-  group(skip: Int, limit: Int, field: DrupalRawRedirectFieldSelector!): [DrupalRawRedirectGroupConnection!]!
+  distinct(field: DrupalCampaignUrlFieldSelector!): [String!]!
+  max(field: DrupalCampaignUrlFieldSelector!): Float
+  min(field: DrupalCampaignUrlFieldSelector!): Float
+  sum(field: DrupalCampaignUrlFieldSelector!): Float
+  group(skip: Int, limit: Int, field: DrupalCampaignUrlFieldSelector!): [DrupalCampaignUrlGroupConnection!]!
   field: String!
   fieldValue: String
 }
 
-input DrupalRawRedirectFilterInput {
+input DrupalCampaignUrlFilterInput {
   remoteTypeName: StringQueryOperatorInput
   remoteId: StringQueryOperatorInput
   source: StringQueryOperatorInput
@@ -2712,7 +2712,7 @@ input DrupalRawRedirectFilterInput {
   internal: InternalFilterInput
 }
 
-input DrupalRawRedirectSortInput {
+input DrupalCampaignUrlSortInput {
   remoteTypeName: SortOrderEnum
   remoteId: SortOrderEnum
   source: SortOrderEnum

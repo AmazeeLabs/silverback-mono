@@ -353,7 +353,7 @@ importers:
         specifier: workspace:*
         version: link:../../../npm/@amazeelabs/sync-composer-version
 
-  packages/composer/amazeelabs/silverback_raw_redirect:
+  packages/composer/amazeelabs/silverback_campaign_urls:
     devDependencies:
       '@amazeelabs/sync-composer-version':
         specifier: workspace:*
