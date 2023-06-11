@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\Core\Url;
+
 /**
  * Retrieve the url publisher is available at.
  * Defaults to http://localhost:8000.
@@ -38,25 +40,90 @@ function silverback_publisher_monitor_page_attachments(&$variables) {
  */
 function silverback_publisher_monitor_toolbar() {
   $items = [];
+  $currentUser = \Drupal::currentUser();
+  $hasTriggerBuildPermission = $currentUser->hasPermission('trigger a gatsby build');
+  $hasAccessPublisherPermission = $currentUser->hasPermission('access publisher');
+
+  $statusElement = [
+    '#type' => 'html_tag',
+    '#tag' => 'publisher-status',
+    '#cache' => [
+      'max-age' => 0,
+    ],
+    '#attributes' => [
+      'class' => 'toolbar-item',
+      'url' => publisher_url(),
+      'labelStarting' => t('Starting build'),
+      'labelReady' => t('Website is up-to-date'),
+      'labelError' => t('Fatal Error'),
+      'labelUpdating' => t('Website is updating'),
+    ],
+  ];
+
+  // Fallback to the status element if no permissions are set.
+  // As we don't want to have a drop button without any links.
+  $tab = [$statusElement];
+  $wrapperClass = 'silverback-publisher-indicator-tab';
+
+  if ($hasTriggerBuildPermission || $hasAccessPublisherPermission) {
+    $buildLink = [
+      '#type' => 'link',
+      '#title' => t('Queue Gatsby build'),
+      '#url' => Url::fromRoute('silverback_gatsby.build'),
+      '#options' => [
+        'attributes' => [
+          'class' => ['use-ajax'],
+        ],
+      ],
+      '#access' => $hasTriggerBuildPermission,
+    ];
+
+    $logsLink = [
+      '#type' => 'link',
+      '#title' => t('Publisher logs'),
+      '#url' => Url::fromUri(publisher_url() . '/___status'),
+      '#options' => [
+        'attributes' => [
+          'target' => '_blank',
+        ],
+      ],
+      '#access' => $hasAccessPublisherPermission,
+    ];
+
+    $dropButton = [
+      '#type' => 'dropbutton',
+      '#dropbutton_type' => 'small',
+      '#links' => [
+        'status' => [
+          // Placeholder to render html_tag element.
+          // Could be replaced by a websocker integration with Drupal
+          // instead of getting the status element from Publisher.
+          'title' => $statusElement,
+        ],
+        // Default #links children does not support options,
+        // so prepare a link render array and use the title
+        // as a placeholder.
+        // We could do some more advanced overrides or introduce
+        // a new type that extends dropbutton, but keeping
+        // it simple for now.
+        'build' => [
+          'title' => $buildLink,
+        ],
+        'logs' => [
+          'title' => $logsLink,
+        ],
+      ],
+    ];
+
+    $tab = $dropButton;
+    $wrapperClass = 'silverback-publisher-drop-button';
+  }
 
   $items['silverback_publisher_monitor'] = [
     '#type' => 'toolbar_item',
-    'tab' => [
-      '#type' => 'html_tag',
-      '#tag' => 'publisher-status',
-      '#cache' => [
-        'max-age' => 0,
-      ],
-      '#attributes' => [
-        'url' => publisher_url(),
-        'labelStarting' => t('Starting build'),
-        'labelReady' => t('Website is up-to-date'),
-        'labelError' => t('Fatal Error'),
-        'labelUpdating' => t('Website is updating'),
-      ],
-    ],
+    'tab' => $tab,
     '#wrapper_attributes' => [
-      'class' => ['silverback-publisher-indicator-tab'],
+      'class' => [$wrapperClass],
     ],
     '#weight' => 2000,
   ];

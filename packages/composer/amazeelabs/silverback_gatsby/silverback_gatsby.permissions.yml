@@ -1,2 +1,4 @@
 trigger a gatsby build:
   title: 'Trigger a Gatsby Build'
+access publisher:
+  title: 'Access Publisher'

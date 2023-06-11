@@ -81,13 +81,42 @@ export type LinkProps = Omit<
 > & { href: Url | LocationType } & LinkOverrideProps &
   LinkDisplayProps;
 
-export function Link({ href, search, hash, ...props }: LinkProps) {
-  return (
-    <LinkComponent
-      href={overrideUrlParameters(href, search, hash)}
-      {...props}
-    />
-  );
+const isInternalTarget = (target?: string) =>
+  typeof target === 'undefined' || target === '' || target === '_self';
+
+const isRelative = (url?: Url | LocationType) =>
+  // If a location object is passed, it's always internal, since it's
+  // created by `useLocation`.
+  isLocation(url) ||
+  url?.startsWith('javascript:') ||
+  url?.startsWith('#') ||
+  url?.startsWith('?') ||
+  Boolean(url?.match(/^\/(?!\/)/));
+
+const isLocation = (input?: Url | LocationType): input is LocationType =>
+  typeof input !== 'string';
+
+export function Link({ href, search, hash, target, ...props }: LinkProps) {
+  if (isInternalTarget(target) && isRelative(href)) {
+    return (
+      <LinkComponent
+        href={overrideUrlParameters(href, search, hash)}
+        target={target}
+        {...props}
+      />
+    );
+  } else {
+    return (
+      <a
+        target={target || '_blank'}
+        rel={props.rel || (isRelative(href) ? undefined : 'noreferrer')}
+        href={overrideUrlParameters(href, search, hash)}
+        {...props}
+      >
+        {props.children}
+      </a>
+    );
+  }
 }
 
 export function useLocation(): [
