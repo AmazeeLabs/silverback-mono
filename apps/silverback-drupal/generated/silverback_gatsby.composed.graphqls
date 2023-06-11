@@ -376,9 +376,9 @@ type FirstLevelMainMenu @menu(menu_id: "main", max_level: 1) {
 
 type GatsbyStringTranslation @stringTranslation(contextPrefix: "gatsby")
 
-type RawRedirect @entity(type: "raw_redirect") {
-  source: String! @resolveProperty(path: "redirect_source.value")
-  destination: String! @resolveProperty(path: "redirect_destination.value")
+type CampaignUrl @entity(type: "campaign_url") {
+  source: String! @resolveProperty(path: "campaign_url_source.value")
+  destination: String! @resolveProperty(path: "campaign_url_destination.value")
   statusCode: Int! @resolveProperty(path: "status_code.value")
   force: Boolean! @resolveProperty(path: "force.value")
 }
@@ -508,7 +508,7 @@ extend type GatsbyStringTranslation {
   _original_typename: String!
 }
 
-extend type RawRedirect {
+extend type CampaignUrl {
   _original_typename: String!
 }
 
@@ -662,15 +662,15 @@ type GatsbyStringTranslationTranslation {
 }
 
 extend type Query {
-  loadRawRedirect(id: String!): RawRedirect
-  queryRawRedirects(offset: Int, limit: Int): [RawRedirect]!
+  loadCampaignUrl(id: String!): CampaignUrl
+  queryCampaignUrls(offset: Int, limit: Int): [CampaignUrl]!
 }
 
-extend type RawRedirect {
+extend type CampaignUrl {
   id: String!
   drupalId: String!
 }
 
 extend type Query {
-  loadRawRedirectRevision(id: String!, revision: String!): RawRedirect
+  loadCampaignUrlRevision(id: String!, revision: String!): CampaignUrl
 }
