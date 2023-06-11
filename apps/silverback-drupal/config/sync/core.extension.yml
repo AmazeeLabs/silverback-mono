@@ -40,6 +40,7 @@ module:
   path: 0
   path_alias: 0
   serialization: 0
+  silverback_campaign_urls: 0
   silverback_cloudinary: 0
   silverback_external_preview: 0
   silverback_gatsby: 0
@@ -47,7 +48,6 @@ module:
   silverback_graphql_persisted: 0
   silverback_gutenberg: 0
   silverback_iframe: 0
-  silverback_raw_redirect: 0
   silverback_translations: 0
   sqlite: 0
   system: 0
