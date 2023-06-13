@@ -1,5 +1,9 @@
 lockfileVersion: '6.1'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 overrides:
   '@graphql-tools/load': ^7.8.14
 
@@ -281,6 +285,12 @@ importers:
         specifier: workspace:*
         version: link:../../../npm/@amazeelabs/sync-composer-version
 
+  packages/composer/amazeelabs/silverback_campaign_urls:
+    devDependencies:
+      '@amazeelabs/sync-composer-version':
+        specifier: workspace:*
+        version: link:../../../npm/@amazeelabs/sync-composer-version
+
   packages/composer/amazeelabs/silverback_cdn_redirect:
     devDependencies:
       '@amazeelabs/sync-composer-version':
@@ -348,12 +358,6 @@ importers:
         version: link:../../../npm/@amazeelabs/sync-composer-version
 
   packages/composer/amazeelabs/silverback_publisher_monitor:
-    devDependencies:
-      '@amazeelabs/sync-composer-version':
-        specifier: workspace:*
-        version: link:../../../npm/@amazeelabs/sync-composer-version
-
-  packages/composer/amazeelabs/silverback_campaign_urls:
     devDependencies:
       '@amazeelabs/sync-composer-version':
         specifier: workspace:*
@@ -34098,7 +34102,3 @@ packages:
       - eslint-import-resolver-webpack
       - supports-color
     dev: false
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false

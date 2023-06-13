@@ -1,6 +1,6 @@
 {
   "name": "@-amazeelabs/silverback-gutenberg-tests",
-  "version": "1.3.18",
+  "version": "1.3.19",
   "description": "e2e tests for Silverback Gutenberg.",
   "author": "Amazee Labs",
   "license": "MIT",

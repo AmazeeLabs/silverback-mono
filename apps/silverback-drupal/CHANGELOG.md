@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.3.14...@-amazeelabs/silverback-drupal@2.4.0) (2023-06-13)
+
+### Bug Fixes
+
+- revert drupal extensions config
+  ([1321917](https://github.com/AmazeeLabs/silverback-mono/commit/1321917e098b94676a0b178e8d73f981cde850e2))
+- silverback gatsby schema export
+  ([246420d](https://github.com/AmazeeLabs/silverback-mono/commit/246420d5e3c585283642a7f1262ad90a11fe1664))
+
+### Features
+
+- added the silverback_raw_redirect module
+  ([f839985](https://github.com/AmazeeLabs/silverback-mono/commit/f83998576242c199cd4f68ac3bde3c9e2723cdd5))
+- example on how to retrieve the raw redirects in gatsby
+  ([b32c222](https://github.com/AmazeeLabs/silverback-mono/commit/b32c2223f2daad334038b24fcbe6fc9c6d63a8eb))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.3.14](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.3.13...@-amazeelabs/silverback-drupal@2.3.14) (2023-06-08)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
