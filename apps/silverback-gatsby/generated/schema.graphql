@@ -732,6 +732,21 @@ type DrupalGatsbyStringTranslationTranslation {
   translation: String!
 }
 
+type DrupalCampaignUrl implements Node {
+  remoteTypeName: String!
+  remoteId: String!
+  source: String!
+  destination: String!
+  statusCode: Int!
+  force: Boolean!
+  _original_typename: String!
+  drupalId: String!
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+}
+
 type Query {
   drupalBuildId: Int!
   file(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, url: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, childrenImageSharp: ImageSharpFilterListInput, childImageSharp: ImageSharpFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): File
@@ -766,6 +781,8 @@ type Query {
   allDrupalFirstLevelMainMenu(filter: DrupalFirstLevelMainMenuFilterInput, sort: [DrupalFirstLevelMainMenuSortInput], skip: Int, limit: Int): DrupalFirstLevelMainMenuConnection!
   drupalGatsbyStringTranslation(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, source: StringQueryOperatorInput, context: StringQueryOperatorInput, translations: DrupalGatsbyStringTranslationTranslationFilterListInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalGatsbyStringTranslation
   allDrupalGatsbyStringTranslation(filter: DrupalGatsbyStringTranslationFilterInput, sort: [DrupalGatsbyStringTranslationSortInput], skip: Int, limit: Int): DrupalGatsbyStringTranslationConnection!
+  drupalCampaignUrl(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, source: StringQueryOperatorInput, destination: StringQueryOperatorInput, statusCode: IntQueryOperatorInput, force: BooleanQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalCampaignUrl
+  allDrupalCampaignUrl(filter: DrupalCampaignUrlFilterInput, sort: [DrupalCampaignUrlSortInput], skip: Int, limit: Int): DrupalCampaignUrlConnection!
   imagesFromHtml(urlOriginal: StringQueryOperatorInput, urlAbsolute: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImagesFromHtml
   allImagesFromHtml(filter: ImagesFromHtmlFilterInput, sort: [ImagesFromHtmlSortInput], skip: Int, limit: Int): ImagesFromHtmlConnection!
   imageSharp(fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: GatsbyImageDataQueryOperatorInput, original: ImageSharpOriginalFilterInput, resize: ImageSharpResizeFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImageSharp
@@ -2631,6 +2648,83 @@ input DrupalGatsbyStringTranslationTranslationSortInput {
   source: SortOrderEnum
   langcode: SortOrderEnum
   translation: SortOrderEnum
+}
+
+type DrupalCampaignUrlConnection {
+  totalCount: Int!
+  edges: [DrupalCampaignUrlEdge!]!
+  nodes: [DrupalCampaignUrl!]!
+  pageInfo: PageInfo!
+  distinct(field: DrupalCampaignUrlFieldSelector!): [String!]!
+  max(field: DrupalCampaignUrlFieldSelector!): Float
+  min(field: DrupalCampaignUrlFieldSelector!): Float
+  sum(field: DrupalCampaignUrlFieldSelector!): Float
+  group(skip: Int, limit: Int, field: DrupalCampaignUrlFieldSelector!): [DrupalCampaignUrlGroupConnection!]!
+}
+
+type DrupalCampaignUrlEdge {
+  next: DrupalCampaignUrl
+  node: DrupalCampaignUrl!
+  previous: DrupalCampaignUrl
+}
+
+input DrupalCampaignUrlFieldSelector {
+  remoteTypeName: FieldSelectorEnum
+  remoteId: FieldSelectorEnum
+  source: FieldSelectorEnum
+  destination: FieldSelectorEnum
+  statusCode: FieldSelectorEnum
+  force: FieldSelectorEnum
+  _original_typename: FieldSelectorEnum
+  drupalId: FieldSelectorEnum
+  id: FieldSelectorEnum
+  parent: NodeFieldSelector
+  children: NodeFieldSelector
+  internal: InternalFieldSelector
+}
+
+type DrupalCampaignUrlGroupConnection {
+  totalCount: Int!
+  edges: [DrupalCampaignUrlEdge!]!
+  nodes: [DrupalCampaignUrl!]!
+  pageInfo: PageInfo!
+  distinct(field: DrupalCampaignUrlFieldSelector!): [String!]!
+  max(field: DrupalCampaignUrlFieldSelector!): Float
+  min(field: DrupalCampaignUrlFieldSelector!): Float
+  sum(field: DrupalCampaignUrlFieldSelector!): Float
+  group(skip: Int, limit: Int, field: DrupalCampaignUrlFieldSelector!): [DrupalCampaignUrlGroupConnection!]!
+  field: String!
+  fieldValue: String
+}
+
+input DrupalCampaignUrlFilterInput {
+  remoteTypeName: StringQueryOperatorInput
+  remoteId: StringQueryOperatorInput
+  source: StringQueryOperatorInput
+  destination: StringQueryOperatorInput
+  statusCode: IntQueryOperatorInput
+  force: BooleanQueryOperatorInput
+  _original_typename: StringQueryOperatorInput
+  drupalId: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+input DrupalCampaignUrlSortInput {
+  remoteTypeName: SortOrderEnum
+  remoteId: SortOrderEnum
+  source: SortOrderEnum
+  destination: SortOrderEnum
+  statusCode: SortOrderEnum
+  force: SortOrderEnum
+  _original_typename: SortOrderEnum
+  drupalId: SortOrderEnum
+  id: SortOrderEnum
+  parent: NodeSortInput
+  children: NodeSortInput
+  internal: InternalSortInput
 }
 
 type ImagesFromHtmlConnection {

@@ -376,6 +376,13 @@ type FirstLevelMainMenu @menu(menu_id: "main", max_level: 1) {
 
 type GatsbyStringTranslation @stringTranslation(contextPrefix: "gatsby")
 
+type CampaignUrl @entity(type: "campaign_url") {
+  source: String! @resolveProperty(path: "campaign_url_source.value")
+  destination: String! @resolveProperty(path: "campaign_url_destination.value")
+  statusCode: Int! @resolveProperty(path: "status_code.value")
+  force: Boolean! @resolveProperty(path: "force.value")
+}
+
 directive @entity(type: String!, bundle: String, access: Boolean) on OBJECT
 
 directive @menu(menu_id: String, menu_ids: [String!], item_type: String, max_level: Int) on OBJECT
@@ -498,6 +505,10 @@ extend type FirstLevelMainMenu {
 }
 
 extend type GatsbyStringTranslation {
+  _original_typename: String!
+}
+
+extend type CampaignUrl {
   _original_typename: String!
 }
 
@@ -648,4 +659,18 @@ type GatsbyStringTranslationTranslation {
   source: String!
   langcode: String!
   translation: String!
+}
+
+extend type Query {
+  loadCampaignUrl(id: String!): CampaignUrl
+  queryCampaignUrls(offset: Int, limit: Int): [CampaignUrl]!
+}
+
+extend type CampaignUrl {
+  id: String!
+  drupalId: String!
+}
+
+extend type Query {
+  loadCampaignUrlRevision(id: String!, revision: String!): CampaignUrl
 }

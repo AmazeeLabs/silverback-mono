@@ -81,4 +81,10 @@ export const plugins = [
 
   'gatsby-transformer-sharp',
   'gatsby-plugin-sharp',
+  {
+    resolve: 'gatsby-plugin-netlify',
+    options: {
+      mergeSecurityHeaders: false,
+    },
+  },
 ];

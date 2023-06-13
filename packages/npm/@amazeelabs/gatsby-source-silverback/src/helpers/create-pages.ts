@@ -6,6 +6,52 @@ import { typePrefix, validOptions } from '../utils';
 import { createQueryExecutor } from './create-query-executor';
 import { drupalFeeds } from './drupal-feeds';
 
+const createCampaignRedirects = async (
+  args: CreatePagesArgs,
+  options: PluginOptions,
+) => {
+  if (!validOptions(options)) {
+    return;
+  }
+  const { data, errors } = await args.graphql<{
+    list: {
+      nodes: Array<{
+        source: string;
+        destination: string;
+        statusCode: number;
+        force: boolean;
+      }>;
+    };
+  }>(`
+    query {
+      list: all${typePrefix(options)}CampaignUrl {
+        nodes {
+          source
+          destination
+          statusCode
+          force
+        }
+      }
+    }
+  `);
+  if (!data) {
+    console.error('errors', errors);
+    throw new Error(
+      `Cannot fetch campaign url fields from Gatsby.`,
+    );
+  }
+
+  data.list.nodes.forEach((node) => {
+    args.actions.createRedirect({
+      fromPath: node.source,
+      toPath: node.destination,
+      isPermanent: true,
+      force: node.force,
+      statusCode: node.statusCode,
+    });
+  });
+}
+
 export const createPages = async (
   args: CreatePagesArgs,
   options: PluginOptions,
@@ -16,6 +62,13 @@ export const createPages = async (
   const executor = createQueryExecutor(options);
   const feeds = await drupalFeeds(executor);
   for (const feed of feeds) {
+    // For campaign urls, we actually just want to create redirects instead of
+    // actual pages.
+    if (feed.typeName === 'CampaignUrl') {
+      createCampaignRedirects(args, options);
+      continue;
+    }
+
     if (!feed.pathFieldName) {
       continue;
     }

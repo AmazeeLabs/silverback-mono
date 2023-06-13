@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "becc041ab1d55b4f4e47a67cfe7b33c3",
+    "content-hash": "4994ca60167ed7fe9a45bcfb25844eb3",
     "packages": [
         {
             "name": "amazeelabs/default-content",
@@ -196,6 +196,24 @@
             }
         },
         {
+            "name": "amazeelabs/silverback_campaign_urls",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "../../packages/composer/amazeelabs/silverback_campaign_urls",
+                "reference": "8025ad5373d55eba18961259b2931c9283c88a3a"
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Allows creating campaign url entities that can be afterwards exposed via graphql, as redirects.",
+            "homepage": "https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/composer/amazeelabs/silverback_campaign_urls#readme",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
             "name": "amazeelabs/silverback_cdn_redirect",
             "version": "2.2.4",
             "dist": {
@@ -215,11 +233,11 @@
         },
         {
             "name": "amazeelabs/silverback_cloudinary",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_cloudinary",
-                "reference": "69a55a0225944a28f30c7f086790a50b98d29398"
+                "reference": "e4f7611c8683094fc82840f37f76b6cd2c5757b1"
             },
             "require": {
                 "cloudinary/cloudinary_php": "^2"
@@ -243,11 +261,11 @@
         },
         {
             "name": "amazeelabs/silverback_external_preview",
-            "version": "2.0.1",
+            "version": "2.0.3",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_external_preview",
-                "reference": "4137c1c6134b94d5f90cc86d7bf76db5a8be3a7a"
+                "reference": "459bd8a8043575ec3d8ed54cb73c1a9c07ac2637"
             },
             "type": "drupal-module",
             "license": [
@@ -261,11 +279,11 @@
         },
         {
             "name": "amazeelabs/silverback_gatsby",
-            "version": "2.1.1",
+            "version": "2.1.5",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gatsby",
-                "reference": "668b02cceeb389137d954103654309b69c8c4658"
+                "reference": "d4d13d27598be8444c75b8a357e443f4dfe65358"
             },
             "type": "drupal-module",
             "extra": {
@@ -303,11 +321,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "2.4.4",
+            "version": "2.4.5",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "bffc705c138db5aa9bd3f8658e6e2eca14f92f62"
+                "reference": "502710661b6fc20e5d5157c0d8a6579909738324"
             },
             "require": {
                 "drupal/gutenberg": "^2.7.0"
@@ -12320,6 +12338,7 @@
         "amazeelabs/proxy-drupal-core": 20,
         "amazeelabs/proxy-gutenberg": 20,
         "amazeelabs/silverback-cli": 20,
+        "amazeelabs/silverback_campaign_urls": 20,
         "amazeelabs/silverback_cdn_redirect": 20,
         "amazeelabs/silverback_cloudinary": 20,
         "amazeelabs/silverback_external_preview": 20,
