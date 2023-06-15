@@ -11,7 +11,7 @@ archive: false
 id: for_testing_confirmation_options
 title: 'For testing confirmation options'
 description: ''
-category: ''
+categories: {  }
 elements: |-
   optional_text_field:
     '#type': textfield
@@ -104,6 +104,8 @@ settings:
   wizard_toggle: false
   wizard_toggle_show_label: ''
   wizard_toggle_hide_label: ''
+  wizard_page_type: container
+  wizard_page_title_tag: h2
   preview: 0
   preview_label: ''
   preview_title: ''
