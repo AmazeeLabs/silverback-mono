@@ -30,6 +30,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *   entity_keys = {
  *     "id" = "cid",
  *     "label" = "campaign_url_source",
+ *     "uuid" = "uuid",
  *   },
  *   links = {
  *     "canonical" = "/admin/config/search/campaign_url/edit/{campaign_url}",
