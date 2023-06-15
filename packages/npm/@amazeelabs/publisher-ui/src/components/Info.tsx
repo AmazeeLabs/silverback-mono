@@ -264,7 +264,6 @@ function BuildButton() {
 
 export function AppStatus() {
   const labels: { [Property in ApplicationState]: string } = {
-    [ApplicationState.Starting]: 'Initializing',
     [ApplicationState.Error]: 'Error',
     [ApplicationState.Ready]: 'Ready',
     [ApplicationState.Starting]: 'Starting',
