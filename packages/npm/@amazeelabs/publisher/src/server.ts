@@ -164,7 +164,7 @@ const runServer = async (): Promise<HttpTerminator> => {
   );
 
   // Fallback route for login. Is used if there is no origin cookie.
-  app.get('/login', async (req, res) => {
+  app.get('/oauth/login', async (req, res) => {
     if (await isAuthenticated(req)) {
       const accessPublisher = await hasPublisherAccess(req);
       if (accessPublisher) {
@@ -226,7 +226,7 @@ const runServer = async (): Promise<HttpTerminator> => {
       if (req.cookies.origin) {
         res.redirect(req.cookies.origin);
       } else {
-        res.redirect('/login');
+        res.redirect('/oauth/login');
       }
     } catch (error) {
       console.error(error);
@@ -252,7 +252,7 @@ const runServer = async (): Promise<HttpTerminator> => {
     req.session.destroy(function (err) {
       console.log('Remove session', err);
     });
-    res.redirect('/login');
+    res.redirect('/oauth/login');
   });
 
   app.get('*', (req, res, next) => {
