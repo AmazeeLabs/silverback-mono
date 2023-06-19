@@ -23,7 +23,9 @@ import { getDatabase } from './core/tools/database';
 import {
   getOAuth2AuthorizeUrl,
   getPersistedAccessToken,
+  hasPublisherAccess,
   initializeSession,
+  isAuthenticated,
   oAuth2AuthorizationCodeClient,
   persistAccessToken,
   stateMatches,
@@ -140,12 +142,6 @@ const runServer = async (): Promise<HttpTerminator> => {
     ),
   );
 
-  app.use('/___status', authMiddleware);
-  app.use(
-    '/___status',
-    express.static(path.resolve(__dirname, '../../publisher-ui/dist')),
-  );
-
   getConfig().proxy?.forEach(({ prefix, target }) => {
     app.use(
       prefix,
@@ -160,6 +156,31 @@ const runServer = async (): Promise<HttpTerminator> => {
   // ---------------------------------------------------------------------------
   // OAuth2 routes
   // ---------------------------------------------------------------------------
+
+  app.use('/___status', authMiddleware);
+  app.use(
+    '/___status',
+    express.static(path.resolve(__dirname, '../../publisher-ui/dist')),
+  );
+
+  // Fallback route for login. Is used if there is no origin cookie.
+  app.get('/login', async (req, res) => {
+    if (await isAuthenticated(req)) {
+      const accessPublisher = await hasPublisherAccess(req);
+      if (accessPublisher) {
+        res.send(
+          'Publisher access is granted. <a href="/___status/">View status</a>',
+        );
+      } else {
+        res.send(
+          'Publisher access is not granted. Contact your site administrator. <a href="/oauth/logout">Log out</a>',
+        );
+      }
+    } else {
+      res.cookie('origin', req.path).send('<a href="/oauth">Log in</a>');
+    }
+  });
+
   // Redirects to authentication provider.
   app.get('/oauth', (req, res) => {
     const client = oAuth2AuthorizationCodeClient();
@@ -199,14 +220,16 @@ const runServer = async (): Promise<HttpTerminator> => {
     try {
       // @ts-ignore options due to missing redirect_uri.
       const accessToken = await client.getToken(options);
+      console.log('/oauth/callback accessToken', accessToken);
       persistAccessToken(accessToken, req);
 
       if (req.cookies.origin) {
         res.redirect(req.cookies.origin);
       } else {
-        res.redirect('/');
+        res.redirect('/login');
       }
     } catch (error) {
+      console.error(error);
       return (
         res
           .status(500)
@@ -229,7 +252,7 @@ const runServer = async (): Promise<HttpTerminator> => {
     req.session.destroy(function (err) {
       console.log('Remove session', err);
     });
-    res.redirect('/');
+    res.redirect('/login');
   });
 
   app.get('*', (req, res, next) => {
@@ -246,7 +269,7 @@ const runServer = async (): Promise<HttpTerminator> => {
 
   app.use(
     '/',
-    authMiddleware,
+    //authMiddleware,
     createProxyMiddleware(() => app.locals.isReady, {
       target: `http://127.0.0.1:${getConfig().commands.serve.port}`,
       selfHandleResponse: true,
