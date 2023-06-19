@@ -18,6 +18,12 @@ export const getAuthenticationMiddleware = (
   config: PublisherConfig,
 ): RequestHandler =>
   ((): RequestHandler => {
+    const skipAuthentication =
+      process.env.PUBLISHER_SKIP_AUTHENTICATION === 'true';
+    if (skipAuthentication) {
+      return (req: Request, res: Response, next: NextFunction): void => next();
+    }
+
     const oAuth2Config = config.oAuth2;
     if (oAuth2Config) {
       if (oAuth2Config.grantType === OAuth2GrantTypes.AuthorizationCode) {

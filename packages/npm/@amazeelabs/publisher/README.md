@@ -29,6 +29,13 @@ Can be configured in `publisher.config.ts`
 If several authentication methods are configured, OAuth2 will be favoured. If
 there is no configuration, access to all routes will be granted.
 
+For local development environments, to override configuration and skip
+authentication, use
+
+```bash
+PUBLISHER_SKIP_AUTHENTICATION=true
+```
+
 ### OAuth2
 
 Prerequisite: OAuth2 server, like
