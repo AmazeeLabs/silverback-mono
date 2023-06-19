@@ -62,20 +62,50 @@ The scopes are
 - Gatsby Build (sourcing) - WIP
 - Frontend users, other APIs, ... (project specific)
 
-#### Generic configuration
+#### Install on existing projects
+
+If you are not using the
+[Silverback template](https://github.com/AmazeeLabs/silverback-template) or if
+Simple OAuth is not installed yet, follow these steps.
+
+- `composer require drupal/simple_oauth`
+- `drush en simple_oauth && drush cex`
+
+Add these patches in composer.json
+
+```json
+"drupal/simple_oauth": {
+  "LogicException: leaked metadata was detected": "https://www.drupal.org/files/issues/2023-01-17/logic_exception_leaked_metadata_was_detected-3334329-02.patch",
+  "Revoke token": "https://www.drupal.org/files/issues/2021-10-30/simple_oauth-permit_logout_and_revoke_tokens-2945273-34.patch"
+}
+```
+
+##### Generic configuration
 
 - Create a Role for each scope and assign the relevant permissions
-- Create a Consumer for each scope
+- Create a Consumer for each scope (see below)
   - Publisher does not need to have a specific user set
-  - Gatsby Preview and Gatsby Build are using a pre-defined user
+  - Gatsby Preview and Gatsby Build should use a pre-defined user
+  - The `default` Consumer can be deleted
 - Generate keys `/admin/config/people/simple_oauth`
+  - Create a directory outside the docroot `mkdir keys`
+  - Click on "Generate keys" and set `../keys/` as the directory name
+  - Click save
+  - It could be gitignored but then have to be generated on the environment and
+    persisted between deployments
 - Drupal hash salt needs to be at least 32 characters long - make sure to
-  override `DRUPAL_HASH_SALT` env variable.
+  override `DRUPAL_HASH_SALT` env variable. An uuid is 36 chars long and can be
+  used for that.
 
-#### Publisher configuration
+##### Publisher specific configuration
+
+Create the Publisher Role and the Publisher Consumer.
 
 _Consumer_
 
+You can remove the default Consumer entity in /admin/config/services/consumer
+
+- Label: `Publisher`
 - Client ID: `publisher`
 - Client secret: the one configured in Publisher
 - User: none
