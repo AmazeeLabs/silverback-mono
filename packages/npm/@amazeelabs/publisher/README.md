@@ -27,7 +27,7 @@ pnpm publisher --help
 Can be configured in `publisher.config.ts`
 
 If several authentication methods are configured, OAuth2 will be favoured. If
-there is no configuration, access to the routes will be granted.
+there is no configuration, access to all routes will be granted.
 
 ### OAuth2
 
