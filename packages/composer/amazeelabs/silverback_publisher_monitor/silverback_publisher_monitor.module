@@ -16,11 +16,10 @@ function publisher_url() {
  * Implements hook_library_info_build().
  */
 function silverback_publisher_monitor_library_info_build() {
-  $url = publisher_url();
   return [
-    'indicator' => [
+    'ws_indicator' => [
       'js' => [
-        "$url/___status/elements.js" => ['type' => 'external'],
+        'js/ws-indicator.js' => [],
       ],
       'css' => [
         'theme' => [
@@ -32,7 +31,12 @@ function silverback_publisher_monitor_library_info_build() {
 }
 
 function silverback_publisher_monitor_page_attachments(&$variables) {
-  $variables['#attached']['library'][] = 'silverback_publisher_monitor/indicator';
+  $websocketUrl = publisher_url();
+  $websocketUrl = str_replace('http://', 'ws://', $websocketUrl);
+  $websocketUrl = str_replace('https://', 'wss://', $websocketUrl);
+  $websocketUrl = $websocketUrl  . '/___status/updates';
+  $variables['#attached']['library'][] = 'silverback_publisher_monitor/ws_indicator';
+  $variables['#attached']['drupalSettings']['publisherUpdateWebsocketUrl'] = $websocketUrl;
 }
 
 /**
@@ -45,18 +49,16 @@ function silverback_publisher_monitor_toolbar() {
   $hasAccessPublisherPermission = $currentUser->hasPermission('access publisher');
 
   $statusElement = [
-    '#type' => 'html_tag',
-    '#tag' => 'publisher-status',
+    '#type' => 'link',
+    '#title' => t('Publisher status'),
+    '#url' => Url::fromRoute('<current>'),
+    '#options' => [
+      'attributes' => [
+        'class' => ['silverback-publisher__monitor-indicator'],
+      ],
+    ],
     '#cache' => [
       'max-age' => 0,
-    ],
-    '#attributes' => [
-      'class' => 'toolbar-item',
-      'url' => publisher_url(),
-      'labelStarting' => t('Starting build'),
-      'labelReady' => t('Website is up-to-date'),
-      'labelError' => t('Fatal Error'),
-      'labelUpdating' => t('Website is updating'),
     ],
   ];
 
@@ -95,9 +97,6 @@ function silverback_publisher_monitor_toolbar() {
       '#dropbutton_type' => 'small',
       '#links' => [
         'status' => [
-          // Placeholder to render html_tag element.
-          // Could be replaced by a websocker integration with Drupal
-          // instead of getting the status element from Publisher.
           'title' => $statusElement,
         ],
         // Default #links children does not support options,
