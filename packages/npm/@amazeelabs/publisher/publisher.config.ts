@@ -1,5 +1,4 @@
 import type { PublisherConfig } from './src/core/tools/config';
-import { OAuth2GrantTypes } from './src/core/tools/oAuth2GrantTypes';
 
 // Do not use the exported `defineConfig` here, as internal imports break
 // ts-import process.
