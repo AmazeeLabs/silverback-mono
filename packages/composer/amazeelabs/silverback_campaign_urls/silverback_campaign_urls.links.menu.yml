@@ -1,0 +1,12 @@
+campaign_url.list:
+  title: 'Campaign URLs'
+  parent: system.admin_config_search
+  description: 'Administer campaign URLs'
+  route_name: campaign_url.list
+  menu_name: admin
+
+campaign_url.add:
+  title: 'Add campaign url'
+  parent: campaign_url.list
+  route_name: campaign_url.add
+  menu_name: admin

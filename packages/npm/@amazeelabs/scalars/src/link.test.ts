@@ -1,51 +1,69 @@
 import { describe, expect, it } from 'vitest';
 
-import { overrideUrlParameters } from './link';
+import { overrideUrlParameters, Url } from './';
 
 describe('overrideUrlParameters', () => {
   it('works with an absolute url', () => {
-    expect(overrideUrlParameters('https://example.com', {}, '')).toBe(
+    expect(overrideUrlParameters('https://example.com' as Url, {}, '')).toBe(
       'https://example.com',
     );
   });
 
   it('works with a relative url', () => {
-    expect(overrideUrlParameters('/foo', {}, '')).toBe('/foo');
+    expect(overrideUrlParameters('/foo' as Url, {}, '')).toBe('/foo');
   });
 
-  it('allows to add query arguments', () => {
-    expect(overrideUrlParameters('/foo', { a: 'x' }, '')).toBe('/foo?a=x');
+  it('allows to add search parameters', () => {
+    expect(overrideUrlParameters('/foo' as Url, { a: 'x' }, '')).toBe(
+      '/foo?a=x',
+    );
   });
 
-  it('allows to remove query arguments', () => {
-    expect(overrideUrlParameters('/foo?a=x', { a: null }, '')).toBe('/foo');
+  it('allows to remove search parameters', () => {
+    expect(overrideUrlParameters('/foo?a=x' as Url, { a: null }, '')).toBe(
+      '/foo',
+    );
   });
 
-  it('allows to override query arguments', () => {
-    expect(overrideUrlParameters('/foo?a=x', { a: 'y' }, '')).toBe('/foo?a=y');
+  it('allows to override search parameters', () => {
+    expect(overrideUrlParameters('/foo?a=x' as Url, { a: 'y' }, '')).toBe(
+      '/foo?a=y',
+    );
   });
 
-  it('leaves query arguments that are not overridden', () => {
-    expect(overrideUrlParameters('/foo?a=x&b=x', { b: 'y' }, '')).toBe(
+  it('leaves search parameters that are not overridden', () => {
+    expect(overrideUrlParameters('/foo?a=x&b=x' as Url, { b: 'y' }, '')).toBe(
       '/foo?a=x&b=y',
     );
   });
 
-  it('allows to add a fragment', () => {
-    expect(overrideUrlParameters('/foo', {}, 'bar')).toBe('/foo#bar');
+  it('allows to add a hash', () => {
+    expect(overrideUrlParameters('/foo' as Url, {}, 'bar')).toBe('/foo#bar');
   });
 
-  it('allows to override a fragment', () => {
-    expect(overrideUrlParameters('/foo#bar', {}, 'baz')).toBe('/foo#baz');
-  });
-
-  it('allows to remove a fragment', () => {
-    expect(overrideUrlParameters('/foo#bar', {}, '')).toBe('/foo');
-  });
-
-  it('leaves the fragment when overriding query arguments', () => {
-    expect(overrideUrlParameters('/foo?a=x#bar', { b: 'y' }, 'bar')).toBe(
-      '/foo?a=x&b=y#bar',
+  it('allows to override a hash', () => {
+    expect(overrideUrlParameters('/foo#bar' as Url, {}, 'baz')).toBe(
+      '/foo#baz',
     );
+  });
+
+  it('allows to remove a hash', () => {
+    expect(overrideUrlParameters('/foo#bar' as Url, {}, '')).toBe('/foo');
+  });
+
+  it('leaves the hash when overriding search parameters', () => {
+    expect(
+      overrideUrlParameters('/foo?a=x#bar' as Url, { b: 'y' }, 'bar'),
+    ).toBe('/foo?a=x&b=y#bar');
+  });
+
+  it('allows to use a Location object', () => {
+    expect(
+      overrideUrlParameters(
+        new URL('https://example.com/foo?a=x#bar'),
+        { b: 'y' },
+        'baz',
+      ),
+    ).toEqual('/foo?a=x&b=y#baz');
   });
 });

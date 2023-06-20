@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_publisher_monitor@2.2.1...@-amazeelabs/silverback_publisher_monitor@2.3.0) (2023-06-08)
+
+### Features
+
+- **SLB-170:** publisher status button improvement
+  ([#1362](https://github.com/AmazeeLabs/silverback-mono/issues/1362))
+  ([182737c](https://github.com/AmazeeLabs/silverback-mono/commit/182737cf00651f39e0c12e2de913fcb64bc94d47))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_publisher_monitor@2.2.0...@-amazeelabs/silverback_publisher_monitor@2.2.1) (2023-04-06)
 
 ### Bug Fixes

@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_external_preview@2.0.2...@-amazeelabs/silverback_external_preview@2.0.3) (2023-05-30)
+
+### Bug Fixes
+
+- catch the UndefinedLinkTemplateException when generating the preview link
+  ([3aaac4d](https://github.com/AmazeeLabs/silverback-mono/commit/3aaac4d3abe4683933d2506774fd34f1135d4309))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.0.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_external_preview@2.0.1...@-amazeelabs/silverback_external_preview@2.0.2) (2023-05-25)
+
+### Bug Fixes
+
+- remove the deprecated EXTERNAL_PREVIEW_BASE_URL env var check
+  ([9af4e6c](https://github.com/AmazeeLabs/silverback-mono/commit/9af4e6cf2316f95d82270b33820eafbf64b91549))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.0.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_external_preview@2.0.0...@-amazeelabs/silverback_external_preview@2.0.1) (2023-03-23)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_external_preview

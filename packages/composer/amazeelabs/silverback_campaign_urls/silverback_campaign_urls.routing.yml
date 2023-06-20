@@ -1,0 +1,46 @@
+campaign_url.list:
+  path: '/admin/config/search/campaign_url'
+  defaults:
+    _entity_list: 'campaign_url'
+    _title: 'Campaign URLs'
+  requirements:
+    _permission: 'administer campaign urls'
+
+entity.campaign_url.canonical:
+  path: '/admin/config/search/campaign_url/edit/{campaign_url}'
+  defaults:
+    _entity_form: 'campaign_url.edit'
+    _title: 'Edit campaign URL'
+  requirements:
+    _entity_access: 'campaign_url.update'
+
+campaign_url.add:
+  path: '/admin/config/search/campaign_url/add'
+  defaults:
+    _entity_form: 'campaign_url.default'
+    _title: 'Add campaign URL'
+  requirements:
+    _entity_create_access: 'campaign_url'
+
+entity.campaign_url.edit_form:
+  path: '/admin/config/search/campaign_url/edit/{campaign_url}'
+  defaults:
+    _entity_form: 'campaign_url.edit'
+    _title: 'Edit campaign URL'
+  requirements:
+    _entity_access: 'campaign_url.update'
+
+entity.campaign_url.delete_form:
+  path: '/admin/config/search/campaign_url/delete/{campaign_url}'
+  defaults:
+    _entity_form: 'campaign_url.delete'
+    _title: 'Delete campaign URL'
+  requirements:
+    _entity_access: 'campaign_url.delete'
+
+entity.campaign_url.multiple_delete_confirm:
+  path: '/admin/config/search/campaign_url/delete'
+  defaults:
+    _form: '\Drupal\silverback_campaign_urls\Form\CampaignUrlDeleteMultipleForm'
+  requirements:
+    _permission: 'administer campaign urls'

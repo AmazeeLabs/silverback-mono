@@ -89,6 +89,26 @@ class GatsbyBuildTrigger implements GatsbyBuildTriggerInterface {
   }
 
   /**
+   * {@inheritDoc}
+   */
+  public function triggerDefaultServerLatestBuild() : TranslatableMarkup {
+    $servers = $this->entityTypeManager->getStorage('graphql_server')->loadMultiple();
+    $silverbackGatsbyServers = array_filter($servers, function (ServerInterface $server) {
+      $configuration = $server->get('schema_configuration')[$server->get('schema')];
+      return !empty($configuration['extensions']['silverback_gatsby']);
+    });
+    $silverbackGatsbyServer = reset($silverbackGatsbyServers);
+
+    if ($silverbackGatsbyServer instanceof ServerInterface) {
+      return $this->triggerLatestBuild($silverbackGatsbyServer->id());
+    }
+
+    $message = $this->t('No default server found.');
+    $this->messenger->addError($message);
+    return $message;
+  }
+
+  /**
    * Check on the frontend if the latest build already occurred.
    *
    * If the build url is not configured, presume false so the build

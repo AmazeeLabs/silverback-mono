@@ -18,7 +18,7 @@ class Email implements GutenbergValidatorRuleInterface {
   /**
    * {@inheritDoc}
    */
-  public function validate($value, $fieldLabel) {
+  public function validate($value, $fieldLabel): bool|string {
     if (!empty($value) && !\Drupal::service('email.validator')->isValid($value)) {
       return $this->t('%field is not valid.', ['%field' => $fieldLabel]);
     }

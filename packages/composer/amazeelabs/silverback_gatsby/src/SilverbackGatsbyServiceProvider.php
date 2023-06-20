@@ -31,5 +31,13 @@ class SilverbackGatsbyServiceProvider extends ServiceProviderBase {
       $definitions['silverback_gatsby.locale.storage'] = $localeDecoratorDefinition;
       $container->addDefinitions($definitions);
     }
+
+
+    // Swap the session configuration service with a custom one.
+    if ($container->hasDefinition('session_configuration')) {
+      $definition = $container->getDefinition('session_configuration');
+      $definition->setClass('Drupal\silverback_gatsby\SilverbackGatsbySessionConfiguration');
+    }
+
   }
 }

@@ -25,8 +25,7 @@ class ResponsiveImageTest extends GraphQLTestBase {
    * @covers \Drupal\silverback_cloudinary\Plugin\GraphQL\DataProducer\ResponsiveImage::resolve
    * @dataProvider responsiveImageProvider
    */
-  public function testResponsiveImage($image, $expected, $width = NULL, $height = NULL, $sizes = NULL, $transform = NULL): void
-  {
+  public function testResponsiveImage($image, $expected, $width = NULL, $height = NULL, $sizes = NULL, $transform = NULL): void {
     $result = $this->executeDataProducer('responsive_image', [
       'image' => $image,
       'width' => $width,
@@ -56,7 +55,7 @@ class ResponsiveImageTest extends GraphQLTestBase {
         'expected' => [
           'width' => 600,
           'height' => 300,
-          'src' => $cloudinaryFetchUrl . '/s--mMcf9g3W--/f_auto/c_scale,w_600/' . $image,
+          'src' => $cloudinaryFetchUrl . '/s--1SSv3TAe--/f_auto/q_auto/c_scale,w_600/' . $image,
         ],
         'width' => 600,
       ],
@@ -66,7 +65,7 @@ class ResponsiveImageTest extends GraphQLTestBase {
         'expected' => [
           'width' => 600,
           'height' => 400,
-          'src' => $cloudinaryFetchUrl . '/s--QmPjqg1S--/f_auto/c_fill,h_400,w_600/' . $image,
+          'src' => $cloudinaryFetchUrl . '/s--oQnrp4QO--/f_auto/q_auto/c_fill,g_auto,h_400,w_600/' . $image,
         ],
         'width' => 600,
         'height' => 400,
@@ -77,7 +76,7 @@ class ResponsiveImageTest extends GraphQLTestBase {
         'expected' => [
           'width' => 600,
           'height' => 400,
-          'src' => $cloudinaryFetchUrl . '/s--qWenXwR1--/f_auto/c_fill,h_400,w_600/c_lfill,h_150,w_150/' . $image
+          'src' => $cloudinaryFetchUrl . '/s--iBYmBJnf--/f_auto/q_auto/c_fill,g_auto,h_400,w_600/c_lfill,h_150,w_150/' . $image
         ],
         'width' => 600,
         'height' => 400,
@@ -88,13 +87,13 @@ class ResponsiveImageTest extends GraphQLTestBase {
       [
         'image' => ['src' => $image, 'width' => 2000, 'height' => 1600],
         'expected' => [
-          'src' => $cloudinaryFetchUrl . '/s--aDf84wZ---/f_auto/c_scale,w_1600/' . $image,
+          'src' => $cloudinaryFetchUrl . '/s--do7-bAD9--/f_auto/q_auto/c_scale,w_1600/' . $image,
           'width' => 1600,
           'height' => 1280,
           'sizes' => '(max-width: 800px) 780px, (max-width: 1200px) 1100px, 1600px',
           'srcset' => implode(', ', [
-            $cloudinaryFetchUrl . '/s--9R_Nlnad--/f_auto/c_scale,w_780/' . $image . ' 780w',
-            $cloudinaryFetchUrl . '/s--tNMhIIt8--/f_auto/c_scale,w_1100/' . $image . ' 1100w',
+            $cloudinaryFetchUrl . '/s--MZkCHWuY--/f_auto/q_auto/c_scale,w_780/' . $image . ' 780w',
+            $cloudinaryFetchUrl . '/s--xlf_u2mA--/f_auto/q_auto/c_scale,w_1100/' . $image . ' 1100w',
           ])
         ],
         'width' => 1600,
@@ -109,13 +108,13 @@ class ResponsiveImageTest extends GraphQLTestBase {
       [
         'image' => ['src' => $image, 'width' => 2000, 'height' => 1600],
         'expected' => [
-          'src' => $cloudinaryFetchUrl . '/s--HajkvDOl--/f_auto/c_fill,h_1200,w_1600/co_rgb:000000,e_colorize:90/' . $image,
+          'src' => $cloudinaryFetchUrl . '/s--PYehk6Pp--/f_auto/q_auto/c_fill,g_auto,h_1200,w_1600/co_rgb:000000,e_colorize:90/' . $image,
           'width' => 1600,
           'height' => 1200,
           'sizes' => '(max-width: 800px) 780px, (max-width: 1200px) 1100px, 1600px',
           'srcset' => implode(', ', [
-            $cloudinaryFetchUrl . '/s--LrbguHed--/f_auto/c_fill,h_585,w_780/co_rgb:000000,e_colorize:90/' . $image . ' 780w',
-            $cloudinaryFetchUrl . '/s--NrLexxyx--/f_auto/c_fill,h_825,w_1100/co_rgb:000000,e_colorize:90/' . $image . ' 1100w',
+            $cloudinaryFetchUrl . '/s--0q-v7sf8--/f_auto/q_auto/c_fill,g_auto,h_585,w_780/co_rgb:000000,e_colorize:90/' . $image . ' 780w',
+            $cloudinaryFetchUrl . '/s--1PnC9sUX--/f_auto/q_auto/c_fill,g_auto,h_825,w_1100/co_rgb:000000,e_colorize:90/' . $image . ' 1100w',
           ]),
         ],
         'width' => 1600,

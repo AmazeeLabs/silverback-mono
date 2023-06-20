@@ -1,0 +1,8 @@
+{
+  "name": "amazeelabs/silverback_campaign_urls",
+  "type": "drupal-module",
+  "version": "1.0.2",
+  "description": "Allows creating campaign url entities that can be afterwards exposed via graphql, as redirects.",
+  "homepage": "https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/composer/amazeelabs/silverback_campaign_urls#readme",
+  "license": "GPL-2.0+"
+}

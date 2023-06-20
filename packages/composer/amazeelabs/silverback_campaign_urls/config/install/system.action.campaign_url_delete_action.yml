@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - silverback_campaign_urls
+  module:
+    - silverback_campaign_urls
+id: campaign_url_delete_action
+label: 'Delete campaign url'
+type: campaign_url
+plugin: campaign_url_delete_action
+configuration: {  }

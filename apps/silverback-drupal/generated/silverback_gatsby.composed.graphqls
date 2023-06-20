@@ -376,6 +376,19 @@ type FirstLevelMainMenu @menu(menu_id: "main", max_level: 1) {
 
 type GatsbyStringTranslation @stringTranslation(contextPrefix: "gatsby")
 
+type CampaignUrl @entity(type: "campaign_url") {
+  source: String! @resolveProperty(path: "campaign_url_source.value")
+  destination: String! @resolveProperty(path: "campaign_url_destination.value")
+  statusCode: Int! @resolveProperty(path: "status_code.value")
+  force: Boolean! @resolveProperty(path: "force.value")
+}
+
+directive @entity(type: String!, bundle: String, access: Boolean) on OBJECT
+
+directive @menu(menu_id: String, menu_ids: [String!], item_type: String, max_level: Int) on OBJECT
+
+directive @stringTranslation(contextPrefix: String) on OBJECT
+
 type Feed {
   typeName: String!
   translatable: Boolean!
@@ -399,29 +412,6 @@ directive @isTemplate on FIELD_DEFINITION
 DEPRECATED, use @isTemplate
 """
 directive @template on FIELD_DEFINITION
-
-directive @entity(type: String!, bundle: String, access: Boolean) on OBJECT
-
-"""
-Directive for the "MenuFeed" plugin.
-
-menu_id:
-  The internal menu id.
-
-menu_ids:
-  Internal menu id's. The first one the current user has access to will be
-  picked.
-
-max_level:
-  The maximum level to be fetched.
-  This can be used to optimizing caching. Most of the time only one or two
-  levels of menus are immediately visible on the page. By declaring multiple
-  types, we can generate different cache buckets, so a new menu item on a low
-  level does not require a full rebuild of every page.
-"""
-directive @menu(menu_id: String, menu_ids: [String!], item_type: String, max_level: Int) on OBJECT
-
-directive @stringTranslation(contextPrefix: String) on OBJECT
 
 extend type Query {
   drupalBuildId: Int!
@@ -515,6 +505,10 @@ extend type FirstLevelMainMenu {
 }
 
 extend type GatsbyStringTranslation {
+  _original_typename: String!
+}
+
+extend type CampaignUrl {
   _original_typename: String!
 }
 
@@ -665,4 +659,18 @@ type GatsbyStringTranslationTranslation {
   source: String!
   langcode: String!
   translation: String!
+}
+
+extend type Query {
+  loadCampaignUrl(id: String!): CampaignUrl
+  queryCampaignUrls(offset: Int, limit: Int): [CampaignUrl]!
+}
+
+extend type CampaignUrl {
+  id: String!
+  drupalId: String!
+}
+
+extend type Query {
+  loadCampaignUrlRevision(id: String!, revision: String!): CampaignUrl
 }

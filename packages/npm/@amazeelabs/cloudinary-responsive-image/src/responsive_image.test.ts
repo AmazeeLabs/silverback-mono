@@ -15,7 +15,6 @@ describe('buildResponsiveImage()', () => {
     height: 1200,
   };
 
-  const cloudinaryFetchUrl = 'https://res.cloudinary.com/demo/image/fetch';
   it('asks for the original image', () => {
     const result = JSON.parse(buildResponsiveImage(credentials, imageProps));
     expect(result).toStrictEqual(imageProps);
@@ -27,11 +26,13 @@ describe('buildResponsiveImage()', () => {
         width: 600,
       }),
     );
-    expect(result).toStrictEqual({
-      src: `${cloudinaryFetchUrl}/s--mMcf9g3W--/f_auto/c_scale,w_600/${imageProps.src}`,
-      width: 600,
-      height: 450,
-    });
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "height": 450,
+        "src": "https://res.cloudinary.com/demo/image/fetch/s--1SSv3TAe--/f_auto/q_auto/c_scale,w_600/http://www.example.com/test_image.png",
+        "width": 600,
+      }
+    `);
   });
 
   it('asks for a width and height', () => {
@@ -41,11 +42,13 @@ describe('buildResponsiveImage()', () => {
         height: 400,
       }),
     );
-    expect(result).toStrictEqual({
-      src: `${cloudinaryFetchUrl}/s--QmPjqg1S--/f_auto/c_fill,h_400,w_600/${imageProps.src}`,
-      width: 600,
-      height: 400,
-    });
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "height": 400,
+        "src": "https://res.cloudinary.com/demo/image/fetch/s--oQnrp4QO--/f_auto/q_auto/c_fill,g_auto,h_400,w_600/http://www.example.com/test_image.png",
+        "width": 600,
+      }
+    `);
   });
 
   it('asks for a custom transformation', () => {
@@ -56,11 +59,13 @@ describe('buildResponsiveImage()', () => {
         transform: 'c_lfill,h_150,w_150',
       }),
     );
-    expect(result).toStrictEqual({
-      src: `${cloudinaryFetchUrl}/s--qWenXwR1--/f_auto/c_fill,h_400,w_600/c_lfill,h_150,w_150/${imageProps.src}`,
-      width: 600,
-      height: 400,
-    });
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "height": 400,
+        "src": "https://res.cloudinary.com/demo/image/fetch/s--iBYmBJnf--/f_auto/q_auto/c_fill,g_auto,h_400,w_600/c_lfill,h_150,w_150/http://www.example.com/test_image.png",
+        "width": 600,
+      }
+    `);
   });
 
   it('asks for sizes', () => {
@@ -73,16 +78,15 @@ describe('buildResponsiveImage()', () => {
         ],
       }),
     );
-    expect(result).toStrictEqual({
-      src: `${cloudinaryFetchUrl}/s--aDf84wZ---/f_auto/c_scale,w_1600/${imageProps.src}`,
-      width: 1600,
-      height: 1200,
-      sizes: '(max-width: 800px) 780px, (max-width: 1200px) 1100px, 1600px',
-      srcset: [
-        `${cloudinaryFetchUrl}/s--9R_Nlnad--/f_auto/c_scale,w_780/${imageProps.src} 780w`,
-        `${cloudinaryFetchUrl}/s--tNMhIIt8--/f_auto/c_scale,w_1100/${imageProps.src} 1100w`,
-      ].join(', '),
-    });
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "height": 1200,
+        "sizes": "(max-width: 800px) 780px, (max-width: 1200px) 1100px, 1600px",
+        "src": "https://res.cloudinary.com/demo/image/fetch/s--do7-bAD9--/f_auto/q_auto/c_scale,w_1600/http://www.example.com/test_image.png",
+        "srcset": "https://res.cloudinary.com/demo/image/fetch/s--MZkCHWuY--/f_auto/q_auto/c_scale,w_780/http://www.example.com/test_image.png 780w, https://res.cloudinary.com/demo/image/fetch/s--xlf_u2mA--/f_auto/q_auto/c_scale,w_1100/http://www.example.com/test_image.png 1100w",
+        "width": 1600,
+      }
+    `);
   });
 
   it('asks for a complete test, with height calculation and custom transformations', () => {
@@ -97,16 +101,45 @@ describe('buildResponsiveImage()', () => {
         transform: 'co_rgb:000000,e_colorize:90',
       }),
     );
-    expect(result).toStrictEqual({
-      src: `${cloudinaryFetchUrl}/s--HajkvDOl--/f_auto/c_fill,h_1200,w_1600/co_rgb:000000,e_colorize:90/${imageProps.src}`,
-      width: 1600,
-      height: 1200,
-      sizes: '(max-width: 800px) 780px, (max-width: 1200px) 1100px, 1600px',
-      srcset: [
-        `${cloudinaryFetchUrl}/s--LrbguHed--/f_auto/c_fill,h_585,w_780/co_rgb:000000,e_colorize:90/${imageProps.src} 780w`,
-        `${cloudinaryFetchUrl}/s--NrLexxyx--/f_auto/c_fill,h_825,w_1100/co_rgb:000000,e_colorize:90/${imageProps.src} 1100w`,
-      ].join(', '),
-    });
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "height": 1200,
+        "sizes": "(max-width: 800px) 780px, (max-width: 1200px) 1100px, 1600px",
+        "src": "https://res.cloudinary.com/demo/image/fetch/s--PYehk6Pp--/f_auto/q_auto/c_fill,g_auto,h_1200,w_1600/co_rgb:000000,e_colorize:90/http://www.example.com/test_image.png",
+        "srcset": "https://res.cloudinary.com/demo/image/fetch/s--0q-v7sf8--/f_auto/q_auto/c_fill,g_auto,h_585,w_780/co_rgb:000000,e_colorize:90/http://www.example.com/test_image.png 780w, https://res.cloudinary.com/demo/image/fetch/s--1PnC9sUX--/f_auto/q_auto/c_fill,g_auto,h_825,w_1100/co_rgb:000000,e_colorize:90/http://www.example.com/test_image.png 1100w",
+        "width": 1600,
+      }
+    `);
+  });
+
+  it('returns the original image url when cloudname is "local"', () => {
+    const result = JSON.parse(
+      buildResponsiveImage(
+        {
+          cloudname: 'local',
+          key: '000',
+          secret: 'FFF',
+        },
+        imageProps,
+        {
+          width: 1600,
+          height: 1200,
+          sizes: [
+            [800, 780],
+            [1200, 1100],
+          ],
+        },
+      ),
+    );
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "height": 1200,
+        "sizes": "(max-width: 800px) 780px, (max-width: 1200px) 1100px, 1600px",
+        "src": "http://www.example.com/test_image.png",
+        "srcset": "http://www.example.com/test_image.png 780w, http://www.example.com/test_image.png 1100w",
+        "width": 1600,
+      }
+    `);
   });
 
   it('retrieves a placeholder image when the cloudname is "test"', () => {
@@ -128,16 +161,15 @@ describe('buildResponsiveImage()', () => {
         },
       ),
     );
-    expect(result).toStrictEqual({
-      src: `https://placehold.co/1600x1200/000/FFF`,
-      width: 1600,
-      height: 1200,
-      sizes: '(max-width: 800px) 780px, (max-width: 1200px) 1100px, 1600px',
-      srcset: [
-        `https://placehold.co/780x585/000/FFF 780w`,
-        `https://placehold.co/1100x825/000/FFF 1100w`,
-      ].join(', '),
-    });
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "height": 1200,
+        "sizes": "(max-width: 800px) 780px, (max-width: 1200px) 1100px, 1600px",
+        "src": "https://placehold.co/1600x1200/000/FFF",
+        "srcset": "https://placehold.co/780x585/000/FFF 780w, https://placehold.co/1100x825/000/FFF 1100w",
+        "width": 1600,
+      }
+    `);
   });
 
   it('retrieves a placeholder with ratio 4:3 when there is no height', () => {
@@ -158,15 +190,14 @@ describe('buildResponsiveImage()', () => {
         },
       ),
     );
-    expect(result).toStrictEqual({
-      src: `https://placehold.co/1600x1200/000/FFF`,
-      width: 1600,
-      height: 1200,
-      sizes: '(max-width: 800px) 780px, (max-width: 1200px) 1100px, 1600px',
-      srcset: [
-        `https://placehold.co/780x585/000/FFF 780w`,
-        `https://placehold.co/1100x825/000/FFF 1100w`,
-      ].join(', '),
-    });
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "height": 1200,
+        "sizes": "(max-width: 800px) 780px, (max-width: 1200px) 1100px, 1600px",
+        "src": "https://placehold.co/1600x1200/000/FFF",
+        "srcset": "https://placehold.co/780x585/000/FFF 780w, https://placehold.co/1100x825/000/FFF 1100w",
+        "width": 1600,
+      }
+    `);
   });
 });

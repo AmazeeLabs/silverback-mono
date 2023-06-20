@@ -4,6 +4,7 @@ namespace Drupal\silverback_cloudinary\Plugin\GraphQL\DataProducer;
 
 use Cloudinary\Asset\DeliveryType;
 use Cloudinary\Tag\ImageTag;
+use Cloudinary\Transformation\Gravity;
 use Cloudinary\Transformation\Resize;
 use Drupal\Component\Serialization\Json;
 use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
@@ -82,7 +83,7 @@ class ResponsiveImage extends DataProducerPluginBase {
     if (empty($sizes)) {
       return '';
     }
-    $sizeEntries = array_reduce($sizes, function($carry, $sizesElement) {
+    $sizeEntries = array_reduce($sizes, function ($carry, $sizesElement) {
       // Each size must have exactly 2 elements.
       if (count($sizesElement) !== 2) {
         return $carry;
@@ -118,7 +119,7 @@ class ResponsiveImage extends DataProducerPluginBase {
     if (empty($sizes)) {
       return '';
     }
-    $srcSetEntries = array_reduce($sizes, function($carry, $sizesElement) use ($defaultDimensions, $originalUrl, $transform) {
+    $srcSetEntries = array_reduce($sizes, function ($carry, $sizesElement) use ($defaultDimensions, $originalUrl, $transform) {
       // Each size must have exactly 2 elements.
       if (count($sizesElement) !== 2) {
         return $carry;
@@ -155,6 +156,11 @@ class ResponsiveImage extends DataProducerPluginBase {
    * @return string
    */
   protected function getCloudinaryImageUrl($originalUrl, array $config = []) {
+    // If the cloud name is "local" return the original image.
+    // For local testing.
+    if (strpos(getenv('CLOUDINARY_URL'), '@local')) {
+      return $originalUrl;
+    }
     $image = (new ImageTag($originalUrl));
     // We do not want the additional '_a" query parameter on the urls. If we
     // do not set it to FALSE, every image url will have a additional '_a' query
@@ -165,12 +171,13 @@ class ResponsiveImage extends DataProducerPluginBase {
     // that they are delivered in the appropriate format (webp, avif, etc.)
     $image->signUrl(TRUE);
     $image->format('auto');
+    $image->quality('auto');
     $width = $config['width'] ?? NULL;
     $height = $config['height'] ?? NULL;
     if (!empty($width) || !empty($height)) {
       // If both, width and height, are provided, then we resize the image.
       if (!empty($width) && !empty($height)) {
-        $image->resize(Resize::fill($width, $height));
+        $image->resize(Resize::fill($width, $height)->gravity(Gravity::auto()));
       }
       // Otherwise, if only one of them is provided, we scale it.
       else {

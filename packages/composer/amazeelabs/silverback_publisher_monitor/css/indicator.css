@@ -2,10 +2,35 @@
   float: right !important;
   margin-top: -2px;
   background: #f5f5f5;
-
 }
 
 .silverback-publisher-indicator-tab .toolbar-item {
   display: block;
   color: #565656 !important;
+}
+
+.silverback-publisher-drop-button {
+  float: right !important;
+  z-index: 1000;
+  position: relative;
+  top: 3px;
+  right: 1px;
+}
+
+.silverback-publisher-drop-button .dropbutton__item .ajax-progress {
+  display: none;
+}
+
+.silverback-publisher-drop-button .dropbutton__toggle {
+  height: 36px !important;
+  margin-top: -1.5px;
+}
+
+.silverback-publisher-drop-button .dropbutton-action {
+  margin-right: 15px !important;
+}
+
+.silverback-publisher-drop-button .dropbutton__item .toolbar-item {
+  color: #565656 !important;
+  margin-top: -17px;
 }

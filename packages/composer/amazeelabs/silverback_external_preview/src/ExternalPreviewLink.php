@@ -4,7 +4,9 @@ namespace Drupal\silverback_external_preview;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityMalformedException;
 use Drupal\Core\Entity\EntityPublishedInterface;
+use Drupal\Core\Entity\Exception\UndefinedLinkTemplateException;
 use Drupal\Core\Entity\RevisionableStorageInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
@@ -152,12 +154,16 @@ class ExternalPreviewLink {
       return $this->getRevisionPreviewUrl($entity);
     }
     else {
-      $path = $entity->toUrl('canonical')->toString(TRUE)->getGeneratedUrl();
-      $base_url = $external_url_type === 'preview' ? $this->getPreviewBaseUrl() . '/__preview/' . $entity->bundle() : $this->getLiveBaseUrl() . $path;
-      $url_object = Url::fromUri($base_url, $this->getUrlOptions($external_url_type, $entity));
-      // Allow for altering the url object via a hook.
-      $this->moduleHandler->alter('silverback_external_preview_entity_url', $entity, $url_object);
-      return $url_object;
+      try {
+        $path = $entity->toUrl('canonical')->toString(TRUE)->getGeneratedUrl();
+        $base_url = $external_url_type === 'preview' ? $this->getPreviewBaseUrl() . '/__preview/' . $entity->bundle() : $this->getLiveBaseUrl() . $path;
+        $url_object = Url::fromUri($base_url, $this->getUrlOptions($external_url_type, $entity));
+        // Allow for altering the url object via a hook.
+        $this->moduleHandler->alter('silverback_external_preview_entity_url', $entity, $url_object);
+        return $url_object;
+      } catch (UndefinedLinkTemplateException|EntityMalformedException $e) {
+        return NULL;
+      }
     }
   }
 
