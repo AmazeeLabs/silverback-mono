@@ -575,29 +575,27 @@ display:
       sorts: {  }
       arguments: {  }
       filters:
-        campaign_url_source:
-          id: campaign_url_source
-          table: campaign_url
-          field: campaign_url_source
+        combine:
+          id: combine
+          table: views
+          field: combine
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: campaign_url
-          entity_field: campaign_url_source
-          plugin_id: string
+          plugin_id: combine
           operator: contains
           value: ''
           group: 1
           exposed: true
           expose:
-            operator_id: campaign_url_source_op
-            label: Source
+            operator_id: combine_op
+            label: 'Campaign URL'
             description: ''
             use_operator: false
-            operator: campaign_url_source_op
+            operator: combine_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: campaign_url_source
+            identifier: combine
             required: false
             remember: false
             multiple: false
@@ -619,50 +617,9 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-        campaign_url_destination:
-          id: campaign_url_destination
-          table: campaign_url
-          field: campaign_url_destination
-          relationship: none
-          group_type: group
-          admin_label: ''
-          entity_type: campaign_url
-          entity_field: campaign_url_destination
-          plugin_id: string
-          operator: contains
-          value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: campaign_url_destination_op
-            label: Destination
-            description: ''
-            use_operator: false
-            operator: campaign_url_destination_op
-            operator_limit_selection: false
-            operator_list: {  }
-            identifier: campaign_url_destination
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              gatsby_preview: '0'
-              gatsby_build: '0'
-            placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
+          fields:
+            campaign_url_source: campaign_url_source
+            campaign_url_destination: campaign_url_destination
       style:
         type: table
         options:
