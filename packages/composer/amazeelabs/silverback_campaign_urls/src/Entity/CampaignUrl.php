@@ -36,6 +36,9 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *     "canonical" = "/admin/config/search/campaign_url/edit/{campaign_url}",
  *     "delete-form" = "/admin/config/search/campaign_url/delete/{campaign_url}",
  *     "edit-form" = "/admin/config/search/campaign_url/edit/{campaign_url}",
+ *   },
+ *   constraints = {
+ *     "UniqueCampaignUrlSource" = {}
  *   }
  * )
  */
@@ -47,7 +50,7 @@ class CampaignUrl extends ContentEntityBase implements CampaignUrlInterface {
 
     $fields['campaign_url_source'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Source'))
-      ->setDescription(t('Please provide the source path for this campaign URL. Usually, this is either a relative URL (starting with /) or an absolute path. But it can be basically any arbitrary source path that your specific hosting provider can understand.'))
+      ->setDescription(t('Please provide the source path for this campaign URL. You can enter an internal path (starting with "/") or an external URL such as http://example.com. However, it can be any arbitrary source path that your hosting provider understands.'))
       ->setRequired(TRUE)
       ->setSetting('max_length', 1024)
       ->setDisplayOptions('form', [
@@ -58,7 +61,7 @@ class CampaignUrl extends ContentEntityBase implements CampaignUrlInterface {
 
     $fields['campaign_url_destination'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Destination'))
-      ->setDescription(t('Same as <em>Source</em>, this is usually a relative or absolute URL. But it can be any destination path that the hosting provider can understand.'))
+      ->setDescription(t('Same as <em>Source</em>, you can enter an internal path (starting with "/") or an external URL such as http://example.com. However, it can be any destination path that your hosting provider understands.'))
       ->setRequired(TRUE)
       ->setSetting('max_length', 1024)
       ->setDisplayOptions('form', [

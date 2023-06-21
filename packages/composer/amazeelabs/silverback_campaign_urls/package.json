@@ -13,6 +13,7 @@
     "@amazeelabs/sync-composer-version": "workspace:*"
   },
   "scripts": {
+    "test:unit": "cd ../../../../apps/silverback-drupal && vendor/phpunit/phpunit/phpunit web/modules/contrib/silverback_campaign_urls",
     "version": "sync-composer-version"
   }
 }
