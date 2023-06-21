@@ -26,7 +26,7 @@ class CampaignUrlValidationTest extends EntityKernelTestBase {
       'campaign_url_destination' => '/campaign_destination',
     ]);
     $violations = $campaign->validate();
-    $this->assertCount(0, $violations, 'No violations when validating a the first campaign url.');
+    $this->assertCount(0, $violations, 'No violations when validating the first campaign url.');
     $campaign->save();
 
     $secondCampaign = CampaignUrl::create([
@@ -34,7 +34,7 @@ class CampaignUrlValidationTest extends EntityKernelTestBase {
       'campaign_url_destination' => '/second_campaign_destination',
     ]);
     $violations = $secondCampaign->validate();
-    $this->assertCount(0, $violations, 'No violations when validating a the second campaign url.');
+    $this->assertCount(0, $violations, 'No violations when validating the second campaign url.');
     $secondCampaign->save();
 
     $thirdCampaign = CampaignUrl::create([
