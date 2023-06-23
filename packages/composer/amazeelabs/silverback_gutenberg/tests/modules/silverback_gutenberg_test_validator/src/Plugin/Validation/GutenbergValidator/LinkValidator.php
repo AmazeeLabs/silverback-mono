@@ -6,14 +6,14 @@ use Drupal\silverback_gutenberg\GutenbergValidation\GutenbergValidatorBase;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
- * Validate test plugin to check if a title and url attribute exists.
+ * Validate test plugin to check if a linkUrl and linkLabel attribute exists.
  *
  * @GutenbergValidator(
- *   id="teaser_validator",
- *   label = @Translation("Teaser"),
+ *   id="link_validator",
+ *   label = @Translation("Link URL"),
  * )
  */
-class TeaserValidator extends GutenbergValidatorBase {
+class LinkValidator extends GutenbergValidatorBase {
 
   use StringTranslationTrait;
 
@@ -21,7 +21,7 @@ class TeaserValidator extends GutenbergValidatorBase {
    * {@inheritDoc}
    */
   public function applies(array $block): bool {
-    return $block['blockName'] === 'custom/teaser';
+    return $block['blockName'] === 'custom/link';
   }
 
   /**
@@ -29,12 +29,12 @@ class TeaserValidator extends GutenbergValidatorBase {
    */
   public function validatedFields($block = []): array {
     return [
-      'title' => [
-        'field_label' => $this->t('Title'),
+      'linkUrl' => [
+        'field_label' => $this->t('Link URL'),
         'rules' => ['required']
       ],
-      'url' => [
-        'field_label' => $this->t('Link URL'),
+      'linkLabel' => [
+        'field_label' => $this->t('Link Label'),
         'rules' => ['required']
       ],
     ];
