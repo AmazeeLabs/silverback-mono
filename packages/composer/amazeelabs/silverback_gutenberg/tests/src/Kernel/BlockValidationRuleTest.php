@@ -150,7 +150,7 @@ class BlockValidationRuleTest extends KernelTestBase {
             'attribute' => 'linkUrl',
             'blockName' => 'custom/link',
             'rule' => 'required',
-            'message' => 'Link: <em class="placeholder">Link URL</em> field is required.',
+            'message' => '<span class="block-validation-error" data-block-instance="1" data-block-type="custom/link">Link: <em class="placeholder">Link URL</em> field is required.</span>',
           ],
         ]
       ],
@@ -161,7 +161,7 @@ class BlockValidationRuleTest extends KernelTestBase {
             'attribute' => 'linkLabel',
             'blockName' => 'custom/link',
             'rule' => 'required',
-            'message' => 'Link: <em class="placeholder">Link Label</em> field is required.',
+            'message' => '<span class="block-validation-error" data-block-instance="1" data-block-type="custom/link">Link: <em class="placeholder">Link Label</em> field is required.</span>'
           ],
         ]
       ],
@@ -172,13 +172,13 @@ class BlockValidationRuleTest extends KernelTestBase {
             'attribute' => 'linkUrl',
             'blockName' => 'custom/link',
             'rule' => 'required',
-            'message' => 'Link: <em class="placeholder">Link URL</em> field is required.',
+            'message' => '<span class="block-validation-error" data-block-instance="1" data-block-type="custom/link">Link: <em class="placeholder">Link URL</em> field is required.</span>',
           ],
           [
             'attribute' => 'linkLabel',
             'blockName' => 'custom/link',
             'rule' => 'required',
-            'message' => 'Link: <em class="placeholder">Link Label</em> field is required.',
+            'message' => '<span class="block-validation-error" data-block-instance="1" data-block-type="custom/link">Link: <em class="placeholder">Link Label</em> field is required.</span>'
           ],
         ]
       ]
