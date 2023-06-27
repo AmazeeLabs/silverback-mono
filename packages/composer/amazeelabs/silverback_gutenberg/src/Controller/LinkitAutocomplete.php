@@ -12,7 +12,10 @@ use Symfony\Component\HttpFoundation\Request;
 class LinkitAutocomplete extends SearchController {
 
   public function search(Request $request): JsonResponse {
-    $linkitProfileId = 'gutenberg';
+    // As we're limited on changes we can make to the Gutenberg plugin, we're
+    // using the subtype to identify the linkit profile to use. With it defaulting
+    // to a linkit profile with id gutenberg..
+    $linkitProfileId = (string) $request->query->get('subtype') ?? 'gutenberg';
 
     if (
       !\Drupal::moduleHandler()->moduleExists('linkit') ||
