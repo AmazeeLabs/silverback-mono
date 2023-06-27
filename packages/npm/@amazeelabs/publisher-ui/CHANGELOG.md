@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher-ui@2.0.16...@amazeelabs/publisher-ui@2.1.0) (2023-06-27)
+
+### Features
+
+- **publisher:** authenticate Publisher with Drupal
+  ([#1339](https://github.com/AmazeeLabs/silverback-mono/issues/1339))
+  ([1564f91](https://github.com/AmazeeLabs/silverback-mono/commit/1564f914fe7232047599a62a553bbd8b890395d2))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.0.16](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher-ui@2.0.15...@amazeelabs/publisher-ui@2.0.16) (2023-06-15)
 
 **Note:** Version bump only for package @amazeelabs/publisher-ui
