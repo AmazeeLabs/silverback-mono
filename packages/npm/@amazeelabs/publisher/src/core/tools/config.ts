@@ -1,3 +1,5 @@
+import { OAuth2GrantTypes } from './oAuth2GrantTypes';
+
 export type PublisherConfig = {
   /**
    * Port on which the publisher server will be running.
@@ -92,6 +94,21 @@ export type PublisherConfig = {
   basicAuth?: {
     username: string;
     password: string;
+  };
+  /**
+   * Enables OAuth2.
+   */
+  oAuth2?: {
+    clientId: string;
+    clientSecret: string;
+    scope: string;
+    tokenHost: string;
+    tokenPath: string;
+    grantType: OAuth2GrantTypes;
+    // Use for Authorization Code grant type only.
+    authorizePath?: string;
+    sessionSecret?: string;
+    environmentType?: string; // 'development' | 'production';
   };
   /**
    * Specific CORS settings.

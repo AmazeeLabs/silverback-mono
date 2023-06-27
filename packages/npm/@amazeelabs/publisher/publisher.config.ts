@@ -8,6 +8,25 @@ const defineConfig = (config: PublisherConfig): PublisherConfig => config;
 
 export default defineConfig({
   publisherPort: 3000,
+  basicAuth: {
+    username: 'test',
+    password: 'test',
+  },
+  // When several authentication methods are configured,
+  // oAuth2 takes precedence.
+  oAuth2: {
+    clientId: process.env.OAUTH2_CLIENT_ID || 'publisher',
+    clientSecret: process.env.OAUTH2_CLIENT_ID || 'publisher',
+    scope: process.env.OAUTH2_SCOPE || 'publisher',
+    tokenHost: process.env.OAUTH2_TOKEN_HOST || 'http://localhost:8888',
+    tokenPath: process.env.OAUTH2_TOKEN_PATH || '/oauth/token',
+    authorizePath:
+      process.env.OAUTH2_AUTHORIZE_PATH ||
+      '/oauth/authorize?response_type=code',
+    sessionSecret: process.env.OAUTH2_SESSION_SECRET || 'banana',
+    environmentType: process.env.OAUTH2_ENVIRONMENT_TYPE || 'development',
+    grantType: 0, // AuthorizationCode
+  },
   commands: {
     clean:
       'echo "clean starting"; sleep 1; echo "cleaned 50%"; sleep 1; echo "clean done"',

@@ -14,3 +14,15 @@ silverback_gatsby.build:
     _controller: '\Drupal\silverback_gatsby\Controller\BuildController::build'
   requirements:
     _permission: 'trigger a gatsby build'
+publisher.access:
+  path: '/publisher/access'
+  defaults:
+    _controller: '\Drupal\silverback_gatsby\Controller\PublisherController::hasAccess'
+  methods: [ POST ]
+  requirements:
+    # Required for the refresh token.
+    _access: 'TRUE'
+    _format: 'json'
+  options:
+    _auth: [ 'oauth2' ]
+    no_cache: TRUE

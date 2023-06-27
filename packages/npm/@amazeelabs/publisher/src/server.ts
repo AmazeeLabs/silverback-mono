@@ -1,12 +1,6 @@
 import { ApplicationState } from '@amazeelabs/publisher-shared';
 import cors from 'cors';
-import express, {
-  NextFunction,
-  Request,
-  RequestHandler,
-  Response,
-} from 'express';
-import basicAuth from 'express-basic-auth';
+import express from 'express';
 import expressWs from 'express-ws';
 import {
   createProxyMiddleware,
@@ -20,29 +14,40 @@ import { map, shareReplay, Subject } from 'rxjs';
 import { fileURLToPath } from 'url';
 
 import { core } from './core/core';
+import {
+  getAuthenticationMiddleware,
+  isSessionRequired,
+} from './core/tools/authentication';
 import { getConfig } from './core/tools/config';
 import { getDatabase } from './core/tools/database';
+import {
+  getOAuth2AuthorizeUrl,
+  getPersistedAccessToken,
+  hasPublisherAccess,
+  initializeSession,
+  isAuthenticated,
+  oAuth2AuthorizationCodeClient,
+  persistAccessToken,
+  stateMatches,
+} from './core/tools/oAuth2';
 import { stateNotify } from './notify';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const runServer = async (): Promise<HttpTerminator> => {
-  const ews = expressWs(express());
-  const { app } = ews;
+  const expressServer = express();
+  const expressWsInstance = expressWs(expressServer);
+  const { app } = expressWsInstance;
 
   app.locals.isReady = false;
 
-  // Basic Authentication
-  const authMiddleware = ((): RequestHandler => {
-    const credentials = getConfig().basicAuth;
-    return credentials
-      ? basicAuth({
-          users: { [credentials.username]: credentials.password },
-          challenge: true,
-        })
-      : (req: Request, res: Response, next: NextFunction): void => next();
-  })();
+  // A session is only needed for OAuth2 Authorization Code grant type.
+  if (isSessionRequired()) {
+    initializeSession(expressServer);
+  }
+  // Authentication middleware based on the configuration.
+  const authMiddleware = getAuthenticationMiddleware(getConfig());
 
   // Allow cross-origin requests
   // @TODO see if we need to lock this down
@@ -137,12 +142,6 @@ const runServer = async (): Promise<HttpTerminator> => {
     ),
   );
 
-  app.use('/___status', authMiddleware);
-  app.use(
-    '/___status',
-    express.static(path.resolve(__dirname, '../../publisher-ui/dist')),
-  );
-
   getConfig().proxy?.forEach(({ prefix, target }) => {
     app.use(
       prefix,
@@ -152,6 +151,108 @@ const runServer = async (): Promise<HttpTerminator> => {
         changeOrigin: true,
       }),
     );
+  });
+
+  // ---------------------------------------------------------------------------
+  // OAuth2 routes
+  // ---------------------------------------------------------------------------
+
+  app.use('/___status', authMiddleware);
+  app.use(
+    '/___status',
+    express.static(path.resolve(__dirname, '../../publisher-ui/dist')),
+  );
+
+  // Fallback route for login. Is used if there is no origin cookie.
+  app.get('/oauth/login', async (req, res) => {
+    if (await isAuthenticated(req)) {
+      const accessPublisher = await hasPublisherAccess(req);
+      if (accessPublisher) {
+        res.send(
+          'Publisher access is granted. <a href="/___status/">View status</a>',
+        );
+      } else {
+        res.send(
+          'Publisher access is not granted. Contact your site administrator. <a href="/oauth/logout">Log out</a>',
+        );
+      }
+    } else {
+      res.cookie('origin', req.path).send('<a href="/oauth">Log in</a>');
+    }
+  });
+
+  // Redirects to authentication provider.
+  app.get('/oauth', (req, res) => {
+    const client = oAuth2AuthorizationCodeClient();
+    if (!client) {
+      throw new Error('Missing OAuth2 client.');
+    }
+    const authorizationUri = getOAuth2AuthorizeUrl(client, req);
+    res.redirect(authorizationUri);
+  });
+
+  // Callback from authentication provider.
+  app.get('/oauth/callback', async (req, res) => {
+    const oAuth2Config = getConfig().oAuth2;
+    if (!oAuth2Config) {
+      throw new Error('Missing OAuth2 configuration.');
+    }
+
+    const client = oAuth2AuthorizationCodeClient();
+    if (!client) {
+      throw new Error('Missing OAuth2 client.');
+    }
+
+    // Check if the state matches.
+    if (!stateMatches(req)) {
+      return res.status(500).json('State does not match.');
+    }
+
+    const { code } = req.query;
+    const options = {
+      code,
+      scope: oAuth2Config.scope,
+      // Do not include redirect_uri, makes Drupal simple_oauth fail.
+      // Returns 400 Bad Request.
+      //redirect_uri: 'http://127.0.0.1:7777/callback',
+    };
+
+    try {
+      // @ts-ignore options due to missing redirect_uri.
+      const accessToken = await client.getToken(options);
+      console.log('/oauth/callback accessToken', accessToken);
+      persistAccessToken(accessToken, req);
+
+      if (req.cookies.origin) {
+        res.redirect(req.cookies.origin);
+      } else {
+        res.redirect('/oauth/login');
+      }
+    } catch (error) {
+      console.error(error);
+      return (
+        res
+          .status(500)
+          // @ts-ignore
+          .json(`Authentication failed with error: ${error.message}`)
+      );
+    }
+  });
+
+  // Removes the session.
+  app.get('/oauth/logout', async (req, res) => {
+    const accessToken = getPersistedAccessToken(req);
+    if (!accessToken) {
+      return res.status(401).send('No token found.');
+    }
+
+    // Requires this Drupal patch
+    // https://www.drupal.org/project/simple_oauth/issues/2945273
+    // await accessToken.revokeAll();
+    req.session.destroy(function (err) {
+      console.log('Remove session', err);
+    });
+    res.redirect('/oauth/login');
   });
 
   app.get('*', (req, res, next) => {
@@ -168,7 +269,7 @@ const runServer = async (): Promise<HttpTerminator> => {
 
   app.use(
     '/',
-    authMiddleware,
+    //authMiddleware,
     createProxyMiddleware(() => app.locals.isReady, {
       target: `http://127.0.0.1:${getConfig().commands.serve.port}`,
       selfHandleResponse: true,
