@@ -3,7 +3,15 @@ import clsx from 'clsx';
 import { css, html, LitElement } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 
-import { StatusEvent } from './Status';
+export class StatusEvent extends CustomEvent<ApplicationState> {
+  constructor(state: ApplicationState) {
+    super('publisher-status', {
+      detail: state,
+      bubbles: true,
+      composed: true,
+    });
+  }
+}
 
 @customElement('publisher-floater')
 export class Floater extends LitElement {

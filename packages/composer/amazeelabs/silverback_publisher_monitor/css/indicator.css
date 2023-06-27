@@ -1,14 +1,6 @@
-.silverback-publisher-indicator-tab {
-  float: right !important;
-  margin-top: -2px;
-  background: #f5f5f5;
-}
-
-.silverback-publisher-indicator-tab .toolbar-item {
-  display: block;
-  color: #565656 !important;
-}
-
+/**
+ * Publisher drop button styles.
+ */
 .silverback-publisher-drop-button {
   float: right !important;
   z-index: 1000;
@@ -16,7 +8,36 @@
   top: 3px;
   right: 1px;
 }
+.silverback-publisher-drop-button .icon {
+  width: 1.25em;
+  height: 1.25em;
+  margin-right: 0.75em;
+}
+.silverback-publisher-drop-button .wrapper {
+  display: flex;
+  align-items: center;
+}
+.silverback-publisher-drop-button .transparent {
+  opacity: 0.25;
+}
+.silverback-publisher-drop-button .spinning {
+  animation: spin 1s linear infinite;
+  -webkit-animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
+/**
+ * Drupal specific overrides to make the drop button fit in the toolbar.
+ */
 .silverback-publisher-drop-button .dropbutton__item .ajax-progress {
   display: none;
 }
@@ -33,4 +54,14 @@
 .silverback-publisher-drop-button .dropbutton__item .toolbar-item {
   color: #565656 !important;
   margin-top: -17px;
+}
+
+.silverback-publisher-drop-button .silverback-publisher__monitor-indicator {
+  margin-top: -14px !important;
+  height: 36px;
+}
+
+.silverback-publisher-drop-button .toolbar-item:hover,
+.silverback-publisher-drop-button .toolbar-item:focus {
+  text-decoration: none !important;
 }
