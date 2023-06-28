@@ -330,6 +330,31 @@ To enable the integration:
     displayed item does not contain the prompt, a translation containing the
     prompt will be added in the brackets. For example, if you search for "gift"
     with the English UI, the suggestions will look like this:
+
     - _Gift_ for a friend
     - Poison for an enemy (_Gift_ für einen Feind)
     </details>
+
+  - To use a different profile when using the LinkControl component, add the
+    machine name of the profile to the `subtype` query parameter in the
+    component prop `suggestionsQuery` like below, where the custom linkit
+    profile is called `customer`.
+
+  ```
+  <DrupalLinkControl
+    searchInputPlaceholder={__('Target page')}
+    value={{
+      url: props.attributes.linkUrl,
+    }}
+    settings={[]}
+    suggestionsQuery={{
+      // Use the custom linkit profile called customer.
+      subtype: 'customer',
+    }}
+    onChange={(link) => {
+      props.setAttributes({
+        linkUrl: link.url,
+      });
+    }}
+  />
+  ```
