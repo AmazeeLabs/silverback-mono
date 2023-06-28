@@ -1,4 +1,4 @@
-type CampaignUrl @entity(type: "campaign_url") {
+type CampaignUrl @entity(type: "campaign_url", bundle: "campaign_url") {
   source: String! @resolveProperty(path: "campaign_url_source.value")
   destination: String! @resolveProperty(path: "campaign_url_destination.value")
   statusCode: Int! @resolveProperty(path: "status_code.value")

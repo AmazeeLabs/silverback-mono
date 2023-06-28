@@ -50,7 +50,7 @@ class CampaignUrl extends ContentEntityBase implements CampaignUrlInterface {
 
     $fields['campaign_url_source'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Source'))
-      ->setDescription(t('Please provide the source path for this campaign URL. You can enter an internal path (starting with "/") or an external URL such as http://example.com. However, it can be any arbitrary source path that your hosting provider understands.'))
+      ->setDescription(t('Please provide the source path for this campaign URL. You can enter an internal path (starting with "/") or an external URL such as https://example.com. However, it can be any arbitrary source path that your hosting provider understands.'))
       ->setRequired(TRUE)
       ->setSetting('max_length', 1024)
       ->setDisplayOptions('form', [
@@ -61,7 +61,7 @@ class CampaignUrl extends ContentEntityBase implements CampaignUrlInterface {
 
     $fields['campaign_url_destination'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Destination'))
-      ->setDescription(t('Same as <em>Source</em>, you can enter an internal path (starting with "/") or an external URL such as http://example.com. However, it can be any destination path that your hosting provider understands.'))
+      ->setDescription(t('Same as <em>Source</em>, you can enter an internal path (starting with "/") or an external URL such as https://example.com. However, it can be any destination path that your hosting provider understands. If the site is multilingual, the language parameter has to be in the path (e.g.: <em>/en/test</em>)'))
       ->setRequired(TRUE)
       ->setSetting('max_length', 1024)
       ->setDisplayOptions('form', [
