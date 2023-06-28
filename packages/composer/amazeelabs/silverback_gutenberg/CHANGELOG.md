@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@2.4.6...@-amazeelabs/silverback_gutenberg@2.4.7) (2023-06-28)
+
+### Bug Fixes
+
+- allow for linkit profiles to be added in Gutenberg LinkControl search
+  ([1051065](https://github.com/AmazeeLabs/silverback-mono/commit/1051065031b67695f6b17a8625e5c8894dedaa25))
+
+### Reverts
+
+- Revert "feat: allow for linkit profile to be defined in LinkControl subtype
+  query parameter"
+  ([721818f](https://github.com/AmazeeLabs/silverback-mono/commit/721818ffd60508ae9e233f501bf3e9fb777f6a94))
+- Revert "chore: update docs for linkit profile integration"
+  ([a25e887](https://github.com/AmazeeLabs/silverback-mono/commit/a25e8870170f33e6349f6c057a3f53c114a5ce62))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.4.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@2.4.5...@-amazeelabs/silverback_gutenberg@2.4.6) (2023-06-15)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gutenberg
