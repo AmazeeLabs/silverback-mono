@@ -1,6 +1,6 @@
 {
   "name": "@-drupal/test_session-tests",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "e2e tests for test_session module.",
   "author": "Amazee Labs",
   "license": "MIT",
