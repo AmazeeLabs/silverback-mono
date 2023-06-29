@@ -31,6 +31,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *     "id" = "cid",
  *     "label" = "campaign_url_source",
  *     "uuid" = "uuid",
+ *     "bundle" = "type",
  *   },
  *   links = {
  *     "canonical" = "/admin/config/search/campaign_url/edit/{campaign_url}",
@@ -109,6 +110,15 @@ class CampaignUrl extends ContentEntityBase implements CampaignUrlInterface {
       ->setLabel(t('Updated'))
       ->setDescription(t('The date when the campaign URL was last updated.'));
     return $fields;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function preCreate(EntityStorageInterface $storage, array &$values) {
+    $values += [
+      'type' => 'campaign_url',
+    ];
   }
 
   /**
