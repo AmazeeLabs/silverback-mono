@@ -38,6 +38,14 @@
 /**
  * Drupal specific overrides to make the drop button fit in the toolbar.
  */
+.silverback-publisher-drop-button .dropbutton-wrapper {
+  box-shadow: none;
+}
+
+.silverback-publisher-drop-button .dropbutton-widget {
+  background: transparent;
+}
+
 .silverback-publisher-drop-button .dropbutton__item .ajax-progress {
   display: none;
 }

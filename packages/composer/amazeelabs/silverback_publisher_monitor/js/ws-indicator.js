@@ -92,6 +92,17 @@
           <div>${message}</div>
         </div>`;
         $indicator.html(output);
+
+        // Make sure to remove any inline style that could be added
+        // by another process. This is needed as the color gets
+        // overwritten with white color.
+        $indicator.removeAttr('style');
+        $dropButton = $('.silverback-publisher-drop-button .dropbutton');
+        $dropButton.removeAttr('style');
+        $dropButtonAction = $(
+          '.silverback-publisher-drop-button .dropbutton-action a',
+        );
+        $dropButtonAction.removeAttr('style');
       };
     },
   };
