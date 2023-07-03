@@ -31,3 +31,9 @@ with cypress tests.*/
 .block-editor-link-control__search-item .block-editor-link-control__search-item-type {
   white-space: pre;
 }
+
+/* Validator */
+.block-editor-block-list__layout .not-valid {
+  filter: drop-shadow(2px 2px 5px #cc1818);
+  background: white;
+}

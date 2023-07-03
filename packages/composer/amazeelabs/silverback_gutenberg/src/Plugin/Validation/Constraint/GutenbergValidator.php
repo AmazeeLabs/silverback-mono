@@ -25,6 +25,13 @@ class GutenbergValidator extends ConstraintValidator implements ContainerInjecti
   protected $violations = [];
 
   /**
+   * Flat representation of the blocks to track validation errors.
+   *
+   * @var array $blocksList
+   */
+  protected $blocksList = [];
+
+  /**
    * Validator manager service plugin.
    *
    * @var \Drupal\silverback_gutenberg\GutenbergValidation\GutenbergValidatorManager
@@ -109,11 +116,21 @@ class GutenbergValidator extends ConstraintValidator implements ContainerInjecti
    * @param array $blocks
    * @param array $plugins
    */
-  public function validateBlocks(array $blocks, array $plugins, array $breadcrumbs = []) {
+  public function validateBlocks(array &$blocks, array $plugins, array $breadcrumbs = []) {
     // @todo: we have here a pretty big nesting level, would be nice to find a
     //   solution to reduce it.
-    array_walk($blocks, function($block) use ($plugins, $breadcrumbs) {
-      array_walk($plugins, function(GutenbergValidatorInterface $plugin) use ($block, $plugins, $breadcrumbs) {
+    array_walk($blocks, function(&$block) use ($plugins, $breadcrumbs) {
+      array_walk($plugins, function(GutenbergValidatorInterface $plugin) use (&$block, $plugins, $breadcrumbs) {
+        // There are several recursion levels, so make sure to get a flat list
+        // of blocks, and mark the blocks that are already processed, so we don't
+        // end up with duplicates.
+        // This marker can then be reused to know which block instance
+        // is not valid.
+        if (empty($block['validator_id'])) {
+          $block['validator_id'] = uniqid();
+          $this->blocksList[$block['validator_id']] = $block['blockName'];
+        }
+
         // Check if the block has inner blocks, and validate them as well.
         if (!empty($block['innerBlocks'])) {
           $breadcrumbs[] = $block['blockName'];
@@ -147,11 +164,14 @@ class GutenbergValidator extends ConstraintValidator implements ContainerInjecti
                 return ucfirst(str_replace('-', ' ', end($blockNameParts)));
               }, $breadcrumbs);
               $breadcrumbsLabel = implode(' > ', $breadcrumbLabels);
+              $instanceId = $this->getInvalidInstanceId($block['validator_id'], $block['blockName']);
+              $message = '<span class="block-validation-error" data-block-instance="'. $instanceId .'" data-block-type="'. $block['blockName'] .'">';
+              $message .= $breadcrumbsLabel . ': ' . $validationMessage . '</span>';
               $this->violations[] = [
                 'attribute' => $attrName,
                 'blockName' => $block['blockName'],
                 'rule' => $validationRulePluginId,
-                'message' => $breadcrumbsLabel . ': ' . $validationMessage,
+                'message' =>  $message,
               ];
             });
           });
@@ -160,15 +180,31 @@ class GutenbergValidator extends ConstraintValidator implements ContainerInjecti
         // validation logic in the validator plugin itself.
         $validateContent = $plugin->validateContent($block);
         if (!empty($validateContent) && $validateContent['is_valid'] !== TRUE) {
+          $instanceId = $this->getInvalidInstanceId($block['validator_id'], $block['blockName']);
+          $message = '<span class="block-validation-error" data-block-instance="'. $instanceId .'" data-block-type="'. $block['blockName'] .'">';
+          $message .= $validateContent['message'] . '</span>';
           $this->violations[] = [
             'attribute' => 'block_content',
             'blockName' => $block['blockName'],
             'rule' => 'block_content',
-            'message' => $validateContent['message'],
+            'message' => $message,
           ];
         }
       });
     });
+  }
+
+  private function getInvalidInstanceId($validator_id, $block_name) {
+    $result = 0;
+    foreach($this->blocksList as $key => $value) {
+      if ($value === $block_name) {
+        $result++;
+      }
+      if ($key === $validator_id) {
+        break;
+      }
+    }
+    return $result;
   }
 
 }
