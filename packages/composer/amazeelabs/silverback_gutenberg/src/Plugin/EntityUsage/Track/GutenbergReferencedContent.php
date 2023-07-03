@@ -11,24 +11,25 @@ use Drupal\Core\Path\PathValidatorInterface;
 use Drupal\Core\StreamWrapper\StreamWrapperInterface;
 use Drupal\entity_usage\EntityUsageInterface;
 use Drupal\entity_usage\EntityUsageTrackBase;
-use Drupal\silverback_gutenberg\LinkedContentExtractor;
+use Drupal\gutenberg\Parser\BlockParser;
+use Drupal\silverback_gutenberg\ReferencedContentExtractor;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Tracks usage of linked content in Gutenberg editor.
+ * Tracks usage of referenced content in Gutenberg editor.
  *
  * @EntityUsageTrack(
- *   id = "gutenberg_linked_content",
- *   label = @Translation("Linked content in Gutenberg"),
- *   description = @Translation("Tracks linked content entities in Gutenberg."),
+ *   id = "gutenberg_referenced_content",
+ *   label = @Translation("Referenced content in Gutenberg"),
+ *   description = @Translation("Tracks referenced content entities in Gutenberg."),
  *   field_types = {"text", "text_long", "text_with_summary"},
  * )
  */
-class GutenbergLinkedContent extends EntityUsageTrackBase {
+class GutenbergReferencedContent extends EntityUsageTrackBase {
   use GutenbergContentTrackTrait;
 
-  /* @var \Drupal\silverback_gutenberg\LinkedContentExtractor */
-  protected $linkedContentExtractor;
+  /* @var \Drupal\silverback_gutenberg\ReferencedContentExtractor */
+  protected $referencedContentExtractor;
 
   public function __construct(
     array $configuration,
@@ -41,10 +42,10 @@ class GutenbergLinkedContent extends EntityUsageTrackBase {
     EntityRepositoryInterface $entity_repository,
     PathValidatorInterface $path_validator,
     StreamWrapperInterface $public_stream,
-    LinkedContentExtractor $linked_content_extractor
+    ReferencedContentExtractor $referenced_content_extractor
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $usage_service, $entity_type_manager, $entity_field_manager, $config_factory, $entity_repository, $path_validator, $public_stream);
-    $this->linkedContentExtractor = $linked_content_extractor;
+    $this->referencedContentExtractor = $referenced_content_extractor;
   }
 
   /**
@@ -62,7 +63,7 @@ class GutenbergLinkedContent extends EntityUsageTrackBase {
       $container->get('entity.repository'),
       $container->get('path.validator'),
       $container->get('stream_wrapper.public'),
-      $container->get('silverback_gutenberg.linked_content_extractor')
+      $container->get('silverback_gutenberg.referenced_content_extractor')
     );
   }
 
@@ -74,7 +75,11 @@ class GutenbergLinkedContent extends EntityUsageTrackBase {
     if (empty($itemValue['value'])) {
       return [];
     }
-    $references = $this->linkedContentExtractor->getTargetEntities($itemValue['value']);
+    $text = $itemValue['value'];
+    $blockParser = new BlockParser();
+    $blocks = $blockParser->parse($text);
+    $references = $this->referencedContentExtractor->getTargetEntities($blocks);
+
     if (empty($references)) {
       return [];
     }

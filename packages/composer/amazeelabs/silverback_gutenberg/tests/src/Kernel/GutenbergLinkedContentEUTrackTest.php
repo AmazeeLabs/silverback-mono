@@ -64,10 +64,6 @@ class GutenbergLinkedContentEUTrackTest extends KernelTestBase {
       'name' => 'user1',
     ]);
     $this->targetUsers[0]->save();
-    $this->targetUsers[1] = User::create([
-      'name' => 'user2',
-    ]);
-    $this->targetUsers[1]->save();
 
     $this->linkedContentPlugin = \Drupal::service('plugin.manager.entity_usage.track')->createInstance('gutenberg_linked_content');
   }
