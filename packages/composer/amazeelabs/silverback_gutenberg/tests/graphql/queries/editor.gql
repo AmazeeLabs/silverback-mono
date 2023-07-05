@@ -10,6 +10,7 @@ fragment Page on Page {
       image {
         alt
       }
+      imageAlt
     }
     ... on Columns {
       columns {
@@ -20,6 +21,10 @@ fragment Page on Page {
 }
 
 query {
-  en { ...Page }
-  de { ...Page }
+  en {
+    ...Page
+  }
+  de {
+    ...Page
+  }
 }
