@@ -25,6 +25,9 @@ type Text @type(id: "core/paragraph") {
 type Figure @type(id: "custom/figure") {
   caption: String @resolveEditorBlockAttribute(key: "caption")
   image: Image @resolveEditorBlockMedia
+  imageAlt: String
+    @resolveEditorBlockMedia
+    @resolveProperty(path: "field_media_image.alt")
 }
 
 type Image {
