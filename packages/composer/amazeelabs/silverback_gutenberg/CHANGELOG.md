@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@2.5.0...@-amazeelabs/silverback_gutenberg@2.5.1) (2023-07-10)
+
+### Bug Fixes
+
+- **gutenberg:** use entity buffer for gutenberg media loading
+  ([238a83b](https://github.com/AmazeeLabs/silverback-mono/commit/238a83b66b93044990ef19eb1242b1bf6135f04d))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [2.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@2.4.8...@-amazeelabs/silverback_gutenberg@2.5.0) (2023-07-03)
 
 ### Features
