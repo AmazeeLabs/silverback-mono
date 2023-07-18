@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@2.5.1...@-amazeelabs/silverback_gutenberg@2.5.2) (2023-07-18)
+
+### Bug Fixes
+
+- passing NULL as operation causes fatal error on some setups
+  ([8d3e350](https://github.com/AmazeeLabs/silverback-mono/commit/8d3e350e917af97bcf353bc98ce564f101ec2d54))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.5.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@2.5.0...@-amazeelabs/silverback_gutenberg@2.5.1) (2023-07-10)
 
 ### Bug Fixes
