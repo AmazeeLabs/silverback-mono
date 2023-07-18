@@ -146,7 +146,7 @@ class EditorBlockMedia extends DataProducerPluginBase implements ContainerFactor
       // Check if the passed user (or current user if none is passed) has access
       // to the entity, if not return NULL.
       /** @var \Drupal\Core\Access\AccessResultInterface $accessResult */
-      $accessResult = $entity->access(NULL, NULL, TRUE);
+      $accessResult = $entity->access('view', NULL, TRUE);
       $context->addCacheableDependency($accessResult);
       if ($accessResult->isForbidden()) {
         return NULL;
