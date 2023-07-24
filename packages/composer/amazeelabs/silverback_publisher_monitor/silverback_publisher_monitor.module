@@ -69,6 +69,9 @@ function silverback_publisher_monitor_toolbar() {
 
   if ($hasTriggerBuildPermission || $hasAccessPublisherPermission) {
     try {
+      /* @var \Drupal\Core\Routing\RouteProviderInterface $routeProvider */
+      $routeProvider = \Drupal::service('router.route_provider');
+      $routeProvider->getRouteByName('silverback_gatsby.build');
       $buildUrl = Url::fromRoute('silverback_gatsby.build');
     } catch (\Throwable $e) {
       // Backwards compatibility for older versions of silverback_gatsby.
