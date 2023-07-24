@@ -68,10 +68,17 @@ function silverback_publisher_monitor_toolbar() {
   $wrapperClass = 'silverback-publisher-indicator-tab';
 
   if ($hasTriggerBuildPermission || $hasAccessPublisherPermission) {
+    try {
+      $buildUrl = Url::fromRoute('silverback_gatsby.build');
+    } catch (\Throwable $e) {
+      // Backwards compatibility for older versions of silverback_gatsby.
+      $buildUrl = Url::fromUserInput('#');
+      $hasTriggerBuildPermission = FALSE;
+    }
     $buildLink = [
       '#type' => 'link',
       '#title' => t('Queue Gatsby build'),
-      '#url' => Url::fromRoute('silverback_gatsby.build'),
+      '#url' => $buildUrl,
       '#options' => [
         'attributes' => [
           'class' => ['use-ajax'],
