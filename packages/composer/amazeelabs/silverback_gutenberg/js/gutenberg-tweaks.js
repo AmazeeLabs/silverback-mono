@@ -73,5 +73,73 @@
         }
       });
     },
+
+    // Validators: highlight the relevant blocks and scroll to the first error.
+    function () {
+      const { select, subscribe } = wp.data;
+
+      const closeListener = subscribe(() => {
+        const isReady = select('core/editor').__unstableIsEditorReady();
+        if (!isReady) {
+          // Editor not ready.
+          return;
+        }
+        // Close the listener as soon as we know we are ready to avoid an infinite loop.
+        closeListener();
+
+        // It seems that, even with this listener, we still need a timeout.
+        window.setTimeout(function () {
+          // Get all the validation errors based on the messages.
+          const validationErrors = {};
+          Array.from(
+            document.getElementsByClassName('block-validation-error'),
+          ).forEach(function (item) {
+            const blockType = item.getAttribute('data-block-type');
+            const blockInstance = parseInt(
+              item.getAttribute('data-block-instance'),
+            );
+            if (!(blockType in validationErrors)) {
+              validationErrors[blockType] = [];
+            }
+            validationErrors[blockType].push(blockInstance);
+          });
+
+          const blockTypeInstances = {};
+          let firstErrorBlockId = null;
+
+          // Append invalid class to the relevant blocks.
+          Array.from(document.getElementsByClassName('wp-block')).forEach(
+            function (item) {
+              const blockType = item.getAttribute('data-type');
+              if (!(blockType in blockTypeInstances)) {
+                blockTypeInstances[blockType] = [];
+              }
+              blockTypeInstances[blockType].push(item);
+              if (blockType in validationErrors) {
+                const blockId = item.getAttribute('data-block');
+                const blockInstanceId = blockTypeInstances[blockType].length;
+                if (validationErrors[blockType].includes(blockInstanceId)) {
+                  // Somehow, altering the item directly causes issues with
+                  // the block editor. So we use jQuery instead.
+                  $('div[data-block="' + blockId + '"]').addClass('not-valid');
+                  if (firstErrorBlockId === null) {
+                    firstErrorBlockId = blockId;
+                  }
+                }
+              }
+            },
+          );
+
+          // Scroll to the first error.
+          if (firstErrorBlockId !== null) {
+            document
+              .querySelector('div[data-block="' + firstErrorBlockId + '"]')
+              .scrollIntoView({
+                behavior: 'smooth',
+              });
+          }
+        }, 1000);
+      });
+    },
   );
 })(jQuery);

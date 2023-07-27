@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@2.5.1...@-amazeelabs/silverback_gutenberg@2.5.2) (2023-07-18)
+
+### Bug Fixes
+
+- passing NULL as operation causes fatal error on some setups
+  ([8d3e350](https://github.com/AmazeeLabs/silverback-mono/commit/8d3e350e917af97bcf353bc98ce564f101ec2d54))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.5.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@2.5.0...@-amazeelabs/silverback_gutenberg@2.5.1) (2023-07-10)
+
+### Bug Fixes
+
+- **gutenberg:** use entity buffer for gutenberg media loading
+  ([238a83b](https://github.com/AmazeeLabs/silverback-mono/commit/238a83b66b93044990ef19eb1242b1bf6135f04d))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@2.4.8...@-amazeelabs/silverback_gutenberg@2.5.0) (2023-07-03)
+
+### Features
+
+- highlight invalid gutenberg blocks and scroll to the first error
+  ([#1381](https://github.com/AmazeeLabs/silverback-mono/issues/1381))
+  ([8baa910](https://github.com/AmazeeLabs/silverback-mono/commit/8baa910b9a63a92eaf064e6f5691bf674664148b))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.4.8](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@2.4.7...@-amazeelabs/silverback_gutenberg@2.4.8) (2023-06-28)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gutenberg

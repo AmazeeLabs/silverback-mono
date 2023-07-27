@@ -124,7 +124,7 @@ class EditorDirectivesTest extends GraphQLTestBase {
       [
         'blockName' => 'core/group',
         'attrs' => [],
-        'innerContent' => [null, null],
+        'innerContent' => [null, null, null],
         'innerBlocks' => [
           [
             'blockName' => 'custom/figure',
@@ -134,7 +134,17 @@ class EditorDirectivesTest extends GraphQLTestBase {
               'mediaEntityIds' => [$media->id()],
             ],
             'innerBlocks' => [],
-          ], [
+          ],
+          [
+            'blockName' => 'custom/figure',
+            'innerContent' => [],
+            'attrs' => [
+              'caption' => 'This image does not exist',
+              'mediaEntityIds' => ['666'],
+            ],
+            'innerBlocks' => [],
+          ],
+          [
             'blockName' => 'custom/columns',
             'innerContent' => [null, null],
             'attrs' => [],
@@ -175,7 +185,7 @@ class EditorDirectivesTest extends GraphQLTestBase {
     $query = $this->getQueryFromFile('editor.gql');
     $metadata = $this->defaultCacheMetaData();
     $metadata->addCacheContexts(['static:language:de']);
-    $metadata->addCacheTags(['node:1', 'media:1']);
+    $metadata->addCacheTags(['node:1', 'media:1', 'media_list']);
     $this->assertResults($query, ['id' => '1:en'], [
       'en' => [
         'title' => 'Editor test',
@@ -190,6 +200,13 @@ class EditorDirectivesTest extends GraphQLTestBase {
             'image' => [
               'alt' => 'Screaming hairy armadillo'
             ],
+            'imageAlt' => 'Screaming hairy armadillo'
+          ],
+          [
+            '__typename' => 'Figure',
+            'caption' => 'This image does not exist',
+            'image' => NULL,
+            'imageAlt' => NULL,
           ],
           [
             '__typename' => 'Columns',
@@ -214,6 +231,13 @@ class EditorDirectivesTest extends GraphQLTestBase {
             'image' => [
               'alt' => 'Screaming hairy armadillo DE'
             ],
+            'imageAlt' => 'Screaming hairy armadillo DE'
+          ],
+          [
+            '__typename' => 'Figure',
+            'caption' => 'This image does not exist',
+            'image' => NULL,
+            'imageAlt' => NULL,
           ],
           [
             '__typename' => 'Columns',

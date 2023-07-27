@@ -6,5 +6,6 @@ tsconfig.json
 tsconfig.node.json
 vite.config.ts
 .storybook
+storybook-static
 src
 static
