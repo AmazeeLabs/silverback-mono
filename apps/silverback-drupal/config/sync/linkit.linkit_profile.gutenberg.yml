@@ -27,6 +27,6 @@ matchers:
       metadata: ''
       bundles: {  }
       group_by_bundle: 0
-      substitution_type: null
+      substitution_type: canonical
       limit: '100'
     weight: 0

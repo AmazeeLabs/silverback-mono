@@ -31,6 +31,8 @@ track_enabled_plugins:
   - entity_embed
   - html_link
   - block_field
+  - gutenberg_linked_content
+  - gutenberg_referenced_content
   - gutenberg_media_embed
 track_enabled_base_fields: false
 site_domains: {  }
