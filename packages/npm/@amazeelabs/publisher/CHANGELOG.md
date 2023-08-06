@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.2.1...@amazeelabs/publisher@2.3.0) (2023-08-06)
+
+### Features
+
+- make publisher host configurable
+  ([e143287](https://github.com/AmazeeLabs/silverback-mono/commit/e1432878606d481a97926037ba973651bf3befa8))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.2.0...@amazeelabs/publisher@2.2.1) (2023-06-27)
 
 **Note:** Version bump only for package @amazeelabs/publisher
