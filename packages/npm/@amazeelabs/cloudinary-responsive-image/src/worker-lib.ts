@@ -1,10 +1,10 @@
 export function parseCloudinaryUrl(url: string) {
   const prefix = 'https://res.cloudinary.com/';
   const config = url.substring(prefix.length);
-  let pos = config.indexOf('/http') + 1;
-  if (pos === 0) {
-    pos = config.indexOf('//') + 1;
-  }
+  const pos =
+    config.indexOf('/http') + 1 ||
+    config.indexOf('/blob:http') + 1 ||
+    config.indexOf('//') + 1;
   const source = config.substring(pos);
   const match =
     /(?<cloudname>.*?)\/image\/fetch\/.*?\/f_auto\/?(?<transform>.*)/.exec(
@@ -31,6 +31,7 @@ export function parseCloudinaryUrl(url: string) {
   }
   return {
     debug: match.groups!.cloudname === 'debug',
+    applies: ['debug', 'demo'].includes(match.groups!.cloudname),
     src: source as string,
     transform: match.groups!.transform as string,
     width,

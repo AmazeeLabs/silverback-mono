@@ -20,6 +20,25 @@ describe('parseCloudinaryUrl', () => {
       )!.debug,
     ).toBeFalsy();
   });
+  it('returns applies=true if the cloudname is "debug" or "demo"', () => {
+    expect(
+      parseCloudinaryUrl(
+        'https://res.cloudinary.com/demo/image/fetch/abc/f_auto/w_500/r_max//landscape.jpg',
+      )!.applies,
+    ).toBeTruthy();
+    expect(
+      parseCloudinaryUrl(
+        'https://res.cloudinary.com/debug/image/fetch/abc/f_auto/w_500/r_max//landscape.jpg',
+      )!.applies,
+    ).toBeTruthy();
+  });
+  it('returns applies=false if the cloudname is anything else', () => {
+    expect(
+      parseCloudinaryUrl(
+        'https://res.cloudinary.com/anythingelse/image/fetch/abc/f_auto/w_500/r_max//landscape.jpg',
+      )!.applies,
+    ).toBeFalsy();
+  });
   it('extracts a relative image source', () => {
     expect(
       parseCloudinaryUrl(
@@ -33,6 +52,13 @@ describe('parseCloudinaryUrl', () => {
         'https://res.cloudinary.com/debug/image/fetch/abc/f_auto/w_500/r_max/https://example.com/landscape.jpg',
       )!.src,
     ).toBe('https://example.com/landscape.jpg');
+  });
+  it('extracts a decap image source', () => {
+    expect(
+      parseCloudinaryUrl(
+        'https://res.cloudinary.com/debug/image/fetch/abc/f_auto/w_500/r_max/blob:http://localhost:5173/b003e521-e6cf-4ee0-a33e-fbf542e64e57',
+      )!.src,
+    ).toBe('blob:http://localhost:5173/b003e521-e6cf-4ee0-a33e-fbf542e64e57');
   });
   it('extracts no transform', () => {
     expect(
