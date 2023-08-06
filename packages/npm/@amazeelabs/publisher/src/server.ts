@@ -291,7 +291,7 @@ const runServer = async (): Promise<HttpTerminator> => {
     }),
   );
 
-  const host = '0.0.0.0';
+  const host = getConfig().publisherHost || '0.0.0.0';
   const port = getConfig().publisherPort;
   const server = await app.listen({ host, port });
   const terminator = createHttpTerminator({ server });

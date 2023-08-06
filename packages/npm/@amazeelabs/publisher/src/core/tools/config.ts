@@ -6,6 +6,12 @@ export type PublisherConfig = {
    */
   publisherPort: number;
   /**
+   * Host on which the publisher server will be running.
+   *
+   * Default: "0.0.0.0"
+   */
+  publisherHost?: string;
+  /**
    * Commands to be executed in bash by the publisher.
    */
   commands: {
