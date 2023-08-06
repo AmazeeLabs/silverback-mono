@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/cloudinary-responsive-image@1.3.1...@amazeelabs/cloudinary-responsive-image@1.3.2) (2023-08-06)
+
+### Bug Fixes
+
+- **cloudinary:** properly handle decap image urls in mock worker
+  ([4e3358a](https://github.com/AmazeeLabs/silverback-mono/commit/4e3358ad6f67c15e61b351989149d292edfb9ead))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.3.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/cloudinary-responsive-image@1.3.0...@amazeelabs/cloudinary-responsive-image@1.3.1) (2023-06-15)
 
 **Note:** Version bump only for package @amazeelabs/cloudinary-responsive-image
