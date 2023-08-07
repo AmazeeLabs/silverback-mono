@@ -196,6 +196,7 @@ class LinkProcessor {
       $link->setAttribute('href', $this->processUrl($href, $direction, $language, $metadata));
       if ($direction === 'inbound' && isset($metadata['uuid']) && $link->hasAttribute('data-id')) {
         $link->setAttribute('data-id', $metadata['uuid']);
+        $link->setAttribute('data-entity-type', $metadata['entity_type']);
       }
       if ($direction === 'outbound' && isset($metadata['id']) && $link->hasAttribute('data-id')) {
         $link->setAttribute('data-id', $metadata['id']);
@@ -319,7 +320,7 @@ class LinkProcessor {
           $uuid = $this->getUuid($entityType, $id);
           if ($uuid) {
             $parts['path'] = preg_replace($pattern, '${1}' . $uuid . '${3}', $parts['path']);
-            $metadata['entity_Type'] = $entityType;
+            $metadata['entity_type'] = $entityType;
             $metadata['id'] = $id;
             $metadata['uuid'] = $uuid;
           }

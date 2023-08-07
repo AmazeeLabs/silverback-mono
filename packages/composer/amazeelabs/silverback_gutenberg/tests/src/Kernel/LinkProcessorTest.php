@@ -99,7 +99,8 @@ class LinkProcessorTest extends MediaKernelTestBase {
 
     $currentHost = \Drupal::request()->getHttpHost();
     $currentPort = \Drupal::request()->getPort();
-
+    $standaloneMediaUrl = $this->config('media.settings')->get('standalone_url');
+    $mediaCanonicalSuffix = $standaloneMediaUrl ? '' : '/edit';
     $cases = [
       'absolute' => [
         'inbound' => [
@@ -170,17 +171,17 @@ class LinkProcessorTest extends MediaKernelTestBase {
       ],
       'media' => [
         'inbound' => [
-          '/media/' . $media->id() . '/edit' => '/media/' . $media->uuid() . '/edit',
-          '/de/media/' . $media->id() . '/edit' => '/media/' . $media->uuid() . '/edit',
+          '/media/' . $media->id() . $mediaCanonicalSuffix => '/media/' . $media->uuid() . $mediaCanonicalSuffix,
+          '/de/media/' . $media->id() . $mediaCanonicalSuffix => '/media/' . $media->uuid() . $mediaCanonicalSuffix,
         ],
         'outbound' => [
-          '/media/' . $media->id() . '/edit' => [
-            'en' => '/media/' . $media->id() . '/edit',
-            'de' => '/de/media/' . $media->id() . '/edit',
+          '/media/' . $media->id() . $mediaCanonicalSuffix => [
+            'en' => '/media/' . $media->id() . $mediaCanonicalSuffix,
+            'de' => '/de/media/' . $media->id() . $mediaCanonicalSuffix,
           ],
-          '/media/' . $media->uuid() . '/edit' => [
-            'en' => '/media/' . $media->id() . '/edit',
-            'de' => '/de/media/' . $media->id() . '/edit',
+          '/media/' . $media->uuid() . $mediaCanonicalSuffix => [
+            'en' => '/media/' . $media->id() . $mediaCanonicalSuffix,
+            'de' => '/de/media/' . $media->id() . $mediaCanonicalSuffix,
           ],
         ],
       ],

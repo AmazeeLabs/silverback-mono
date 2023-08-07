@@ -12,3 +12,7 @@ services:
   plugin.manager.gutenberg_validator_rule:
     class: Drupal\silverback_gutenberg\GutenbergValidation\GutenbergValidatorRuleManager
     parent: default_plugin_manager
+  silverback_gutenberg.linked_content_extractor:
+    class: \Drupal\silverback_gutenberg\LinkedContentExtractor
+  silverback_gutenberg.referenced_content_extractor:
+    class: \Drupal\silverback_gutenberg\ReferencedContentExtractor
