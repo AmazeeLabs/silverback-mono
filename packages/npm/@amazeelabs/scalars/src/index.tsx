@@ -12,6 +12,8 @@ import React, {
   createElement,
   DetailedHTMLProps,
   Fragment,
+  ImgHTMLAttributes,
+  useEffect,
 } from 'react';
 import rehypeParse from 'rehype-parse';
 import rehypeReact from 'rehype-react';
@@ -156,6 +158,13 @@ type ImageSourceStructure = {
   }>;
 };
 
+function isMockedImage(src: string) {
+  return (
+    src.startsWith('https://res.cloudinary.com/debug') ||
+    src.startsWith('https://res.cloudinary.com/demo')
+  );
+}
+
 export function Image({
   source,
   priority,
@@ -167,12 +176,17 @@ export function Image({
   priority?: boolean;
   className?: string;
 }) {
-  const { srcset, ...imageData } = JSON.parse(source) as ImageSourceStructure;
+  const { src, srcset, ...imageData } = JSON.parse(
+    source,
+  ) as ImageSourceStructure;
+  const Img = isMockedImage(src) ? DelayedImage : ImmediateImage;
+
   return (
-    <img
+    <Img
       decoding={priority ? 'sync' : 'async'}
       loading={priority ? 'eager' : 'lazy'}
       srcSet={srcset}
+      src={src}
       {...imageData}
       // Set object fit to "cover", to never
       // distort an image, even if the width
@@ -184,6 +198,28 @@ export function Image({
       {...props}
     />
   );
+}
+
+type ImgProps = DetailedHTMLProps<
+  ImgHTMLAttributes<HTMLImageElement>,
+  HTMLImageElement
+>;
+
+function ImmediateImage(props: ImgProps) {
+  return <img {...props} />;
+}
+
+function DelayedImage({ src, srcSet, ...props }: ImgProps) {
+  const [delayed, setDelayed] = React.useState<
+    Pick<ImgProps, 'src' | 'srcSet'>
+  >({
+    src: 'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==',
+    srcSet: undefined,
+  });
+  useEffect(() => {
+    setDelayed({ src, srcSet });
+  }, [src, srcSet]);
+  return <img {...delayed} {...props} />;
 }
 
 declare const Timestamp: unique symbol;
