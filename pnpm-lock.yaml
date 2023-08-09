@@ -1372,6 +1372,9 @@ importers:
       '@amazeelabs/bridge':
         specifier: workspace:*
         version: link:../bridge
+      '@amazeelabs/cloudinary-responsive-image':
+        specifier: workspace:*
+        version: link:../cloudinary-responsive-image
       hast-util-select:
         specifier: ^5.0.5
         version: 5.0.5
@@ -8435,7 +8438,7 @@ packages:
       react-refresh: 0.14.0
       schema-utils: 3.1.2
       source-map: 0.7.4
-      webpack: 5.81.0(esbuild@0.18.2)
+      webpack: 5.81.0(esbuild@0.17.19)
 
   /@pnpm/config.env-replace@1.1.0:
     resolution: {integrity: sha512-htyl8TWnKL7K/ESFa1oW2UB5lVDxuF5DpM7tBi6Hu2LNL3mWkIzNLG6N4zoCUP1lCKNxWy/3iu8mS8MvToGd6w==}
@@ -13219,7 +13222,7 @@ packages:
       loader-utils: 2.0.4
       make-dir: 3.1.0
       schema-utils: 2.7.1
-      webpack: 5.81.0(esbuild@0.18.2)
+      webpack: 5.81.0(esbuild@0.17.19)
 
   /babel-loader@9.1.2(@babel/core@7.22.5)(webpack@5.81.0):
     resolution: {integrity: sha512-mN14niXW43tddohGl8HPu5yfQq70iUThvFL/4QzESA7GcZoC0eVOhvWdQ8+3UlSjaDE9MVtsW9mxDY07W7VpVA==}
@@ -16292,7 +16295,7 @@ packages:
       postcss-value-parser: 4.2.0
       schema-utils: 3.1.2
       semver: 7.5.1
-      webpack: 5.81.0(esbuild@0.18.2)
+      webpack: 5.81.0(esbuild@0.17.19)
 
   /css-loader@6.8.1(webpack@5.81.0):
     resolution: {integrity: sha512-xDAXtEVGlD0gJ07iclwWVkLoZOpEvAWaSyf6W18S2pOC//K8+qUDIx8IIT3D+HjnmkJPQeesOPv5aiUaJsCM2g==}
@@ -16331,7 +16334,7 @@ packages:
       schema-utils: 3.1.2
       serialize-javascript: 5.0.1
       source-map: 0.6.1
-      webpack: 5.81.0(esbuild@0.18.2)
+      webpack: 5.81.0(esbuild@0.17.19)
 
   /css-select@4.3.0:
     resolution: {integrity: sha512-wPpOYtnsVontu2mODhA19JrqWxNsfdatRKd64kmpRbQgh1KtItko5sTnEpPdpSaJszTOhEMlF/RPz28qj4HqhQ==}
@@ -17812,7 +17815,7 @@ packages:
       eslint-import-resolver-webpack:
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 5.59.1(eslint@8.36.0)(typescript@5.0.2)
+      '@typescript-eslint/parser': 5.59.1(eslint@8.36.0)(typescript@4.9.5)
       debug: 3.2.7(supports-color@5.5.0)
       eslint: 8.36.0
       eslint-import-resolver-node: 0.3.7
@@ -17868,7 +17871,7 @@ packages:
       '@typescript-eslint/parser':
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 5.59.1(eslint@8.36.0)(typescript@5.0.2)
+      '@typescript-eslint/parser': 5.59.1(eslint@8.36.0)(typescript@4.9.5)
       array-includes: 3.1.6
       array.prototype.flat: 1.3.1
       array.prototype.flatmap: 1.3.1
@@ -18146,7 +18149,7 @@ packages:
       micromatch: 4.0.5
       normalize-path: 3.0.0
       schema-utils: 3.1.2
-      webpack: 5.81.0(esbuild@0.18.2)
+      webpack: 5.81.0(esbuild@0.17.19)
 
   /eslint@4.19.1:
     resolution: {integrity: sha512-bT3/1x1EbZB7phzYu7vCr1v3ONuzDtX8WjuM9c0iYxe+cq+pwcKEoQjl7zd3RpC6YOLgnSy3cTN58M2jcoPDIQ==}
@@ -19053,7 +19056,7 @@ packages:
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.1.2
-      webpack: 5.81.0(esbuild@0.18.2)
+      webpack: 5.81.0(esbuild@0.17.19)
 
   /file-match@1.0.2:
     resolution: {integrity: sha512-g9p6bZV3HlSUM35QPvFWiP/PckDVe5jLPDhx6PfMuy06o+htesJTyDu7zRdXnOm3BY8pXmxb+QY5qIcsoWMGNg==}
@@ -19425,7 +19428,7 @@ packages:
       semver: 7.5.1
       tapable: 1.1.3
       typescript: 5.1.3
-      webpack: 5.81.0(esbuild@0.18.2)
+      webpack: 5.81.0(esbuild@0.17.19)
 
   /fork-ts-checker-webpack-plugin@6.5.3(eslint@8.42.0)(typescript@5.1.3)(webpack@4.46.0):
     resolution: {integrity: sha512-SbH/l9ikmMWycd5puHJKTkZJKddF4iRLyW3DeZ08HTI7NGyLS38MXd/KGgeWumQO7YNQbW2u/NtPT2YowbPaGQ==}
@@ -20740,13 +20743,13 @@ packages:
       string-similarity: 1.2.2
       strip-ansi: 6.0.1
       style-loader: 2.0.0(webpack@5.81.0)
-      terser-webpack-plugin: 5.3.7(esbuild@0.18.2)(webpack@5.81.0)
+      terser-webpack-plugin: 5.3.7(esbuild@0.17.19)(webpack@5.81.0)
       tmp: 0.2.1
       true-case-path: 2.2.1
       type-of: 2.0.1
       url-loader: 4.1.1(file-loader@6.2.0)(webpack@5.81.0)
       uuid: 8.3.2
-      webpack: 5.81.0(esbuild@0.18.2)
+      webpack: 5.81.0(esbuild@0.17.19)
       webpack-dev-middleware: 4.3.0(webpack@5.81.0)
       webpack-merge: 5.8.0
       webpack-stats-plugin: 1.1.1
@@ -25802,7 +25805,7 @@ packages:
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.1.2
-      webpack: 5.81.0(esbuild@0.18.2)
+      webpack: 5.81.0(esbuild@0.17.19)
       webpack-sources: 1.4.3
 
   /minimalistic-assert@1.0.1:
@@ -26949,7 +26952,7 @@ packages:
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.1.2
-      webpack: 5.81.0(esbuild@0.18.2)
+      webpack: 5.81.0(esbuild@0.17.19)
 
   /nullthrows@1.1.1:
     resolution: {integrity: sha512-2vPPEi+Z7WqML2jZYddDIfy5Dqb0r2fze2zTxNNknZaFpVHU3mFB3R+DWeJWGVx0ecvttSGlJTI+WG+8Z4cDWw==}
@@ -28177,7 +28180,7 @@ packages:
       klona: 2.0.6
       postcss: 8.4.24
       semver: 7.5.1
-      webpack: 5.81.0(esbuild@0.18.2)
+      webpack: 5.81.0(esbuild@0.17.19)
 
   /postcss-markdown@0.36.0(postcss-syntax@0.36.2)(postcss@7.0.39):
     resolution: {integrity: sha512-rl7fs1r/LNSB2bWRhyZ+lM/0bwKv9fhl38/06gF6mKMo/NPnp55+K1dSTosSVjFZc0e1ppBlu+WT91ba0PMBfQ==}
@@ -29101,7 +29104,7 @@ packages:
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.1.2
-      webpack: 5.81.0(esbuild@0.18.2)
+      webpack: 5.81.0(esbuild@0.17.19)
 
   /rc@1.2.8:
     resolution: {integrity: sha512-y3bGgqKj3QBdxLbLkomlohkvsA8gdAiUQlSBJnBhfn+BPxg4bc62d8TcBW15wavDfgexCgccckhcZvywyQYPOw==}
@@ -29157,7 +29160,7 @@ packages:
       strip-ansi: 6.0.1
       text-table: 0.2.0
       typescript: 5.1.3
-      webpack: 5.81.0(esbuild@0.18.2)
+      webpack: 5.81.0(esbuild@0.17.19)
     transitivePeerDependencies:
       - eslint
       - supports-color
@@ -29330,7 +29333,7 @@ packages:
       loose-envify: 1.4.0
       neo-async: 2.6.2
       react: 18.2.0
-      webpack: 5.81.0(esbuild@0.18.2)
+      webpack: 5.81.0(esbuild@0.17.19)
 
   /react-string-replace@0.4.4:
     resolution: {integrity: sha512-FAMkhxmDpCsGTwTZg7p/2v+/GTmxAp73so3fbSvlAcBBX36ujiGRNEaM/1u+jiYQrArhns+7eE92g2pi5E5FUA==}
@@ -31722,7 +31725,7 @@ packages:
     dependencies:
       loader-utils: 2.0.4
       schema-utils: 3.1.2
-      webpack: 5.81.0(esbuild@0.18.2)
+      webpack: 5.81.0(esbuild@0.17.19)
 
   /style-loader@3.3.3(webpack@5.81.0):
     resolution: {integrity: sha512-53BiGLXAcll9maCYtZi2RCQZKa8NQQai5C4horqKyRmHj9H7QmcUyucrH+4KW/gBQbXM2AsB0axoEcFZPlfPcw==}
@@ -32266,7 +32269,6 @@ packages:
       serialize-javascript: 6.0.1
       terser: 5.17.1
       webpack: 5.81.0(esbuild@0.17.19)
-    dev: true
 
   /terser-webpack-plugin@5.3.7(esbuild@0.18.2)(webpack@5.81.0):
     resolution: {integrity: sha512-AfKwIktyP7Cu50xNjXF/6Qb5lBNzYaWpU6YfoX3uZicTx0zTy0stDDCsvjDapKsSDvOeWo5MEq4TmdBy2cNoHw==}
@@ -32629,6 +32631,7 @@ packages:
 
   /trim@0.0.1:
     resolution: {integrity: sha512-YzQV+TZg4AxpKxaTHK3c3D+kRDCGVEE7LemdlQZoQXn0iennk10RsIoY6ikzAqJTc9Xjl9C1/waHom/J86ziAQ==}
+    deprecated: Use String.prototype.trim() instead
     dev: false
 
   /triple-beam@1.3.0:
@@ -33373,7 +33376,7 @@ packages:
       loader-utils: 2.0.4
       mime-types: 2.1.35
       schema-utils: 3.1.2
-      webpack: 5.81.0(esbuild@0.18.2)
+      webpack: 5.81.0(esbuild@0.17.19)
 
   /url-parse@1.5.10:
     resolution: {integrity: sha512-WypcfiRhfeUP9vvF0j6rw0J3hrWrw6iZv3+22h6iRMJ/8z1Tj6XfLP4DsUix5MhMPnXpiHDoKyoZ/bdCkwBCiQ==}
@@ -34015,7 +34018,7 @@ packages:
       lodash.has: 4.5.2
       schema-utils: 3.1.2
       tapable: 2.2.1
-      webpack: 5.81.0(esbuild@0.18.2)
+      webpack: 5.81.0(esbuild@0.17.19)
     dev: false
 
   /webpack-dev-middleware@4.3.0(webpack@5.81.0):
@@ -34030,7 +34033,7 @@ packages:
       mime-types: 2.1.35
       range-parser: 1.2.1
       schema-utils: 3.1.2
-      webpack: 5.81.0(esbuild@0.18.2)
+      webpack: 5.81.0(esbuild@0.17.19)
 
   /webpack-dev-middleware@5.3.3(webpack@5.81.0):
     resolution: {integrity: sha512-hj5CYrY0bZLB+eTO+x/j67Pkrquiy7kWepMHmUMoPsmcUaeEnQJqFzHJOyxgWlq746/wUuA64p9ta34Kyb01pA==}
@@ -34198,7 +34201,6 @@ packages:
       - '@swc/core'
       - esbuild
       - uglify-js
-    dev: true
 
   /webpack@5.81.0(esbuild@0.18.2):
     resolution: {integrity: sha512-AAjaJ9S4hYCVODKLQTgG5p5e11hiMawBwV2v8MYLE0C/6UAGLuAF4n1qa9GOwdxnicaP+5k6M5HrLmD4+gIB8Q==}
