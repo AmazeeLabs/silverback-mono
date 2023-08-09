@@ -8,7 +8,7 @@ function assertFetchEvent(event: Event): asserts event is FetchEvent {
 self.addEventListener('fetch', async (event) => {
   assertFetchEvent(event);
   const info = parseCloudinaryUrl(event.request.url);
-  if (!info || !info.applies) {
+  if (!info || !info.debug) {
     // No need to handle this request.
     return;
   }

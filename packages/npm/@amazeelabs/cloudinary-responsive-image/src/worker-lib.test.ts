@@ -20,23 +20,18 @@ describe('parseCloudinaryUrl', () => {
       )!.debug,
     ).toBeFalsy();
   });
-  it('returns applies=true if the cloudname is "debug" or "demo"', () => {
+  it('returns demo=true if the cloudname is "demo"', () => {
     expect(
       parseCloudinaryUrl(
         'https://res.cloudinary.com/demo/image/fetch/abc/f_auto/w_500/r_max//landscape.jpg',
-      )!.applies,
-    ).toBeTruthy();
-    expect(
-      parseCloudinaryUrl(
-        'https://res.cloudinary.com/debug/image/fetch/abc/f_auto/w_500/r_max//landscape.jpg',
-      )!.applies,
+      )!.demo,
     ).toBeTruthy();
   });
   it('returns applies=false if the cloudname is anything else', () => {
     expect(
       parseCloudinaryUrl(
         'https://res.cloudinary.com/anythingelse/image/fetch/abc/f_auto/w_500/r_max//landscape.jpg',
-      )!.applies,
+      )!.demo,
     ).toBeFalsy();
   });
   it('extracts a relative image source', () => {

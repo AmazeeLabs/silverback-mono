@@ -31,7 +31,7 @@ export function parseCloudinaryUrl(url: string) {
   }
   return {
     debug: match.groups!.cloudname === 'debug',
-    applies: ['debug', 'demo'].includes(match.groups!.cloudname),
+    demo: match.groups!.cloudname === 'demo',
     src: source as string,
     transform: match.groups!.transform as string,
     width,
