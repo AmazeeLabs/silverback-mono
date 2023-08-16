@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.3.0...@amazeelabs/publisher@2.4.0) (2023-08-16)
+
+### Features
+
+- **publisher:** add custom header to prevent redirect loops
+  ([#1398](https://github.com/AmazeeLabs/silverback-mono/issues/1398))
+  ([710f5ac](https://github.com/AmazeeLabs/silverback-mono/commit/710f5ac643bd9c2c8449290c6611a9c85106370b))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [2.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.2.1...@amazeelabs/publisher@2.3.0) (2023-08-06)
 
 ### Features
