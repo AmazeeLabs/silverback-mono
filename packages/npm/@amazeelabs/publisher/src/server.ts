@@ -149,6 +149,12 @@ const runServer = async (): Promise<HttpTerminator> => {
       createProxyMiddleware({
         target,
         changeOrigin: true,
+        onProxyReq: (proxyReq) => {
+          // Add a header to identify the request as a proxy request.
+          // This can be used to prevent redirect loops when the proxy target
+          // redirects to the proxy itself.
+          proxyReq.setHeader('SLB-Publisher-Proxy', 'true');
+        },
       }),
     );
   });
