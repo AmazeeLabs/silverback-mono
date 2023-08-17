@@ -69,3 +69,11 @@ fragment ContentPage on ContentPage {
 
 After `generate`, the initial file will be set back to the original version with
 `__typename` replaced by `__typename:_original_typename`.
+
+## Development
+
+To manually test on sample fragments.
+
+```
+pnpm ./cli.cjs generate --path ./tests/fragments
+```

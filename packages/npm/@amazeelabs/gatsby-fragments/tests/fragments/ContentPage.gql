@@ -1,0 +1,9 @@
+fragment ContentPage on ContentPage {
+  __typename
+  title
+  articleReference {
+    ... on ContentArticle {
+      title
+    }
+  }
+}

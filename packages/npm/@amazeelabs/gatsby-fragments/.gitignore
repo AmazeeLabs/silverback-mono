@@ -1,2 +1,3 @@
 node_modules
 index.cjs
+tests/fragments/*.fragment.ts
