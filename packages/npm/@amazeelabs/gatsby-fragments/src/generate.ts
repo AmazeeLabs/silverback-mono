@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, writeFileSync } from 'fs';
+import { existsSync, readFileSync, unlinkSync, writeFileSync } from 'fs';
 import { sync } from 'glob';
 import path from 'path';
 
@@ -13,6 +13,13 @@ export const generate = (options: Options) => {
 
   if (!existsSync(fragmentsPath)) {
     throw `Directory "${fragmentsPath}" does not exist.`;
+  }
+
+  // Delete files first, as some .gql files may be removed
+  // and this will cause Gatsby build errors.
+  const generatedFragments = sync(`${fragmentsPath}/**/*.fragment.ts`);
+  for (const filePath of generatedFragments) {
+    unlinkSync(filePath);
   }
 
   const files = sync(`${fragmentsPath}/**/*.gql`);
