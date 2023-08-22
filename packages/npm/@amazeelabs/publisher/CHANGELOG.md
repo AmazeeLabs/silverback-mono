@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.4.0...@amazeelabs/publisher@2.4.1) (2023-08-22)
+
+### Bug Fixes
+
+- missing state does not throw
+  ([#1400](https://github.com/AmazeeLabs/silverback-mono/issues/1400))
+  ([89a3e9c](https://github.com/AmazeeLabs/silverback-mono/commit/89a3e9c511fb0824a325fb0c114c03fce706fe48))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [2.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.3.0...@amazeelabs/publisher@2.4.0) (2023-08-16)
 
 ### Features
