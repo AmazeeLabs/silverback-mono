@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-fragments@1.1.38...@amazeelabs/gatsby-fragments@1.2.0) (2023-08-22)
+
+### Features
+
+- **gatsby-fragments:** delete fragments before generating
+  ([#1399](https://github.com/AmazeeLabs/silverback-mono/issues/1399))
+  ([abf3b63](https://github.com/AmazeeLabs/silverback-mono/commit/abf3b63bf8fc2a03076b414081719a36c47a1a86))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.38](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-fragments@1.1.37...@amazeelabs/gatsby-fragments@1.1.38) (2023-06-15)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-fragments
