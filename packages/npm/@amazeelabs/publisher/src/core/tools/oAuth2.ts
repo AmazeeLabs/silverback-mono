@@ -297,11 +297,11 @@ export const persistState = (state: string, req: Request): void => {
 export const stateMatches = (req: Request): boolean => {
   const persistedState = req.session.state;
   if (persistedState === undefined) {
-    throw new Error('Missing state.');
+    return false;
   }
   const encodedState = req.query.state as string;
   if (encodedState === undefined) {
-    throw new Error('Missing state.');
+    return false;
   }
   const decodedState = Buffer.from(encodedState, 'base64').toString('ascii');
   return persistedState === decodedState;
