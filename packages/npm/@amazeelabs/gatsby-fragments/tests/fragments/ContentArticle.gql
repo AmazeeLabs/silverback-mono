@@ -1,0 +1,7 @@
+fragment ContentBlog on ContentBlog {
+  __typename
+  title
+  headerImage {
+    ...MediaImage
+  }
+}
