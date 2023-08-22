@@ -29,7 +29,6 @@ export const createQueryExecutor = (
         : {}),
       ...(options?.auth_key ? { 'api-key': options.auth_key } : {}),
     },
-    signal: timeoutSignal(60_000),
   });
   return wrapQueryExecutorWithQueue(executor, {
     concurrency: options.query_concurrency || 10,
@@ -47,6 +46,14 @@ export function createNetworkQueryExecutor(
     const { query, variables, operationName } = args;
 
     let response;
+    const timeout = 60_000;
+    const signal = timeoutSignal(timeout);
+    signal.onabort = () =>
+      console.error(
+        `Query ${operationName} aborted due to a timeout of ${timeout}ms\n` +
+          `Query variables: ${inspect(variables)}\n` +
+          `Full query: ${logQuery(query)}\n`,
+      );
     try {
       response = await fetchWithRetries(uri, {
         method: 'POST',
@@ -56,6 +63,7 @@ export function createNetworkQueryExecutor(
           'Content-Type': 'application/json',
           ...fetchOptions.headers,
         },
+        signal,
       });
     } catch (e) {
       console.error(
