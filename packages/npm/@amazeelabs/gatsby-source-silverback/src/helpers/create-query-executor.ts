@@ -65,6 +65,7 @@ export function createNetworkQueryExecutor(
         },
         signal,
       });
+      signal.onabort = null;
     } catch (e) {
       console.error(
         `Query ${operationName} failed: ${e}\n` +
