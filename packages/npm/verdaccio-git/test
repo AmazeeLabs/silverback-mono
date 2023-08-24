@@ -56,7 +56,7 @@ git clone git://localhost:9418/test.git .test/packages/test
 cd "$BASEDIR/.test/packages/test"
 echo "{\"name\": \"test\", \"version\": \"1.0.0\", \"publishConfig\": {\"repository\": \"git://localhost:9418/test.git\", \"branch\": \"master\"}}" >> package.json
 git add package.json
-echo "//localhost:4873/:_authToken=\"foo\"" >> .npmrc
+echo "//127.0.0.1:4873/:_authToken=\"foo\"" >> .npmrc
 git add .npmrc
 echo "{}" >> composer.json
 git add composer.json
@@ -71,9 +71,9 @@ rm -rf .test/packages/test
 
 cd "$BASEDIR"
 
-pnpm verdaccio -c config.yml &
+pnpm verdaccio -l 127.0.0.1:4873 -c config.yml &
 
-retry curl --silent --head http://localhost:4873
+retry curl --silent --head http://127.0.0.1:4873
 echo "Verdaccio operational"
 
 echo "Cloning module"
@@ -106,7 +106,7 @@ echo "Changing dotfile"
 echo "foo=baz" > .env
 
 echo "Publishing module"
-npm publish --registry http://localhost:4873
+npm publish --registry http://127.0.0.1:4873
 
 echo "Cloning module"
 cd "$BASEDIR/.test/packages"

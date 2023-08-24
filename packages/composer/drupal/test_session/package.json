@@ -4,7 +4,7 @@
   "description": "Helpers for Drupal E2E testing.",
   "publishConfig": {
     "access": "public",
-    "registry": "http://localhost:4873",
+    "registry": "http://127.0.0.1:4873",
     "repository": "git@git.drupal.org:project/test_session.git",
     "branch": "1.x"
   },

@@ -5,7 +5,7 @@
   "license": "GPL-2.0+",
   "publishConfig": {
     "access": "public",
-    "registry": "http://localhost:4873",
+    "registry": "http://127.0.0.1:4873",
     "repository": "git@github.com:AmazeeLabs/silverback_campaign_urls.git",
     "branch": "main"
   },
