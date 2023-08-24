@@ -45,6 +45,9 @@ function silverback_publisher_monitor_page_attachments(&$variables) {
 function silverback_publisher_monitor_toolbar() {
   $items = [];
   $currentUser = \Drupal::currentUser();
+  if (!$currentUser->hasPermission('view publisher status')) {
+    return $items;
+  }
   $hasTriggerBuildPermission = $currentUser->hasPermission('trigger a gatsby build');
   $hasAccessPublisherPermission = $currentUser->hasPermission('access publisher');
 
