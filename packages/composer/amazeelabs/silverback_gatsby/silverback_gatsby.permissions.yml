@@ -1,3 +1,5 @@
+view publisher status:
+  title: 'View Publisher status'
 trigger a gatsby build:
   title: 'Trigger a Gatsby Build'
 access publisher:
