@@ -181,8 +181,9 @@ export function Image({
       viewBox={`0 0 ${info.width || imageData.width} ${
         info.height || ratio * (info.width || imageData.width)
       }`}
+      preserveAspectRatio="xMidYMid slice"
     >
-            <title>{alt}</title>
+      <title>{alt}</title>
       <image
         href={info.src}
         width="100%"
