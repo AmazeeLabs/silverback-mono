@@ -177,6 +177,7 @@ export function Image({
     <svg
       className={props.className}
       width={info.width || imageData.width}
+      style={{maxWidth: '100%'}}
       viewBox={`0 0 ${info.width || imageData.width} ${
         info.height || ratio * (info.width || imageData.width)
       }`}
@@ -199,7 +200,7 @@ export function Image({
       // and height don't match.
       // This is the case when an image is
       // loaded unprocessed for testing.
-      style={{ objectFit: 'cover' }}
+      style={{ objectFit: 'cover', maxWidth: '100%' }}
       alt={alt}
       {...props}
     />
