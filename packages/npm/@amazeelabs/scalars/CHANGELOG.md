@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.4.4...@amazeelabs/scalars@1.4.5) (2023-08-25)
+
+### Bug Fixes
+
+- **cloudinar:** correct image sizing behaviour when mocking
+  ([4198681](https://github.com/AmazeeLabs/silverback-mono/commit/4198681cfe90be615d155c8f33d96aa3de308416))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.4.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.4.3...@amazeelabs/scalars@1.4.4) (2023-08-24)
 
 **Note:** Version bump only for package @amazeelabs/scalars
