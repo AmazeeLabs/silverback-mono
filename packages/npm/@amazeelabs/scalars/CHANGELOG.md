@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.4.5...@amazeelabs/scalars@1.4.6) (2023-08-25)
+
+### Bug Fixes
+
+- **cloudinary:** make sure real and mock images have the same max-width
+  behaviour
+  ([cc60972](https://github.com/AmazeeLabs/silverback-mono/commit/cc609721107ed622685b793946e4f40bc11cabde))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.4.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.4.4...@amazeelabs/scalars@1.4.5) (2023-08-25)
 
 ### Bug Fixes
