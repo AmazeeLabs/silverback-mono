@@ -168,20 +168,31 @@ export function Image({
   priority?: boolean;
   className?: string;
 }) {
-  const { src, srcset, ...imageData } = JSON.parse(
+  const imageData = JSON.parse(
     source,
   ) as ImageSourceStructure;
-  const info = parseCloudinaryUrl(src);
-  const srcProps = {
-    src: info?.demo ? info.src : src,
-    srcSet: info?.demo ? undefined : srcset,
-  };
-
-  return (
+  const info = parseCloudinaryUrl(imageData.src);
+  const ratio = imageData.height / imageData.width;
+  return info?.demo ? (
+    <svg
+      className={props.className}
+      width={info.width || imageData.width}
+      viewBox={`0 0 ${info.width || imageData.width} ${
+        info.height || ratio * (info.width || imageData.width)
+      }`}
+    >
+            <title>{alt}</title>
+      <image
+        href={info.src}
+        width="100%"
+        height="100%"
+        preserveAspectRatio="xMidYMid slice"
+      />
+    </svg>
+  ) : (
     <img
       decoding={priority ? 'sync' : 'async'}
       loading={priority ? 'eager' : 'lazy'}
-      {...srcProps}
       {...imageData}
       // Set object fit to "cover", to never
       // distort an image, even if the width
