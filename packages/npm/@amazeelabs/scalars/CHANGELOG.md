@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.4.6...@amazeelabs/scalars@1.4.8) (2023-08-26)
+
+### Bug Fixes
+
+- **cloudinary:** mocking aspect ratio
+  ([6f1d15a](https://github.com/AmazeeLabs/silverback-mono/commit/6f1d15aa9408c821e08c28116cfb6a7087e37cd0))
+- **cloudinary:** switch test cloud naming to "test" from "debug"
+  ([3d9ad30](https://github.com/AmazeeLabs/silverback-mono/commit/3d9ad30262332ba6231c9b0e7589e6689144ddba))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.4.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.4.5...@amazeelabs/scalars@1.4.6) (2023-08-25)
 
 ### Bug Fixes
