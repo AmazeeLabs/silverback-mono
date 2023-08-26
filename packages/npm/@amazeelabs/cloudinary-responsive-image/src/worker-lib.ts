@@ -30,7 +30,7 @@ export function parseCloudinaryUrl(url: string) {
     }
   }
   return {
-    debug: match.groups!.cloudname === 'debug',
+    test: match.groups!.cloudname === 'test',
     demo: match.groups!.cloudname === 'demo',
     src: source as string,
     transform: match.groups!.transform as string,
@@ -84,7 +84,7 @@ export async function mockCloudinaryImage(
     drawWidth,
     drawHeight,
   );
-  if (info.debug) {
+  if (info.test) {
     const indicatorHeight = 50;
     ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
     ctx.fillRect(20, 20, containerWidth - 40, indicatorHeight);
