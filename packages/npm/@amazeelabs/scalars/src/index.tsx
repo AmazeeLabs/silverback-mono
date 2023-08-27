@@ -21,7 +21,7 @@ import rehypeSlug from 'rehype-slug';
 import { omit } from 'remeda';
 import { Pluggable, Plugin, unified } from 'unified';
 
-export { LocationProvider } from '@amazeelabs/bridge';
+export { LocationProvider, ImagePlaceholderProvider } from '@amazeelabs/bridge';
 
 declare const Url: unique symbol;
 export type Url = string & {
