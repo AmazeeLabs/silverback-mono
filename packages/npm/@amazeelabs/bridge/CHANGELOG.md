@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge@1.5.0...@amazeelabs/bridge@1.5.1) (2023-08-27)
+
+### Bug Fixes
+
+- **cloudinary:** revert mock image context nonsense
+  ([1df2d60](https://github.com/AmazeeLabs/silverback-mono/commit/1df2d606f4f69e422f449fef0cbc09f649baaa59))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge@1.4.1...@amazeelabs/bridge@1.5.0) (2023-08-27)
 
 ### Features
