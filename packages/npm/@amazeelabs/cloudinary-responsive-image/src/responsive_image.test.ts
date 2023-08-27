@@ -142,11 +142,11 @@ describe('buildResponsiveImage()', () => {
     `);
   });
 
-  it('retrieves a placeholder image when the cloudname is "test"', () => {
+  it('retrieves a placeholder image when the cloudname is "placeholder"', () => {
     const result = JSON.parse(
       buildResponsiveImage(
         {
-          cloudname: 'test',
+          cloudname: 'placeholder',
           key: '000',
           secret: 'FFF',
         },
@@ -176,7 +176,7 @@ describe('buildResponsiveImage()', () => {
     const result = JSON.parse(
       buildResponsiveImage(
         {
-          cloudname: 'test',
+          cloudname: 'placeholder',
           key: '000',
           secret: 'FFF',
         },
