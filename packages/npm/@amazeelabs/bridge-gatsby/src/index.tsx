@@ -1,8 +1,6 @@
 import type {
-  ImagePlaceholderProviderType,
   LinkType,
   LocationProviderType,
-  useImagePlaceholderType,
   useLocationType,
 } from '@amazeelabs/bridge';
 import { useLocation as gatsbyUseLocation } from '@reach/router';
@@ -24,18 +22,4 @@ export const useLocation: useLocationType = () => {
 
 export const LocationProvider: LocationProviderType = ({ children }) => {
   return <>{children}</>;
-};
-
-let useImagePlaceholderValue = false;
-
-export const ImagePlaceholderProvider: ImagePlaceholderProviderType = ({
-  children,
-  useImagePlaceholder = false,
-}) => {
-  useImagePlaceholderValue = useImagePlaceholder;
-  return <>{children}</>;
-};
-
-export const useImagePlaceholder: useImagePlaceholderType = () => {
-  return useImagePlaceholderValue;
 };

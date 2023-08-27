@@ -208,7 +208,7 @@ const getCloudinaryImageUrl = (
       width * 4
     } ${
       height * 4
-    }"><rect width="100%" height="100%" fill="%23${apiKey}"></rect><text fill="%23${apiSecret}" x="50%" y="50%" style="font-family: sans-serif; font-size: 8em;font-weight:bold;text-anchor: middle; dominant-baseline: middle;">600x400</text></svg>`;
+    }"><rect width="100%" height="100%" fill="%23${apiKey}"></rect><text fill="%23${apiSecret}" x="50%" y="50%" style="font-family: sans-serif; font-size: 8em;font-weight:bold;text-anchor: middle; dominant-baseline: middle;">${width}x${height}</text></svg>`;
   }
   const image = new CloudinaryImage(
     originalImage,

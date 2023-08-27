@@ -6,18 +6,18 @@ describe('parseCloudinaryUrl', () => {
   it('returns undefined if its not a cloudinary url', () => {
     expect(parseCloudinaryUrl('https://example.com')).toBeUndefined();
   });
-  it('returns placeholder=true if the cloudname is "placeholder"', () => {
+  it('returns local=true if the cloudname is "local"', () => {
     expect(
       parseCloudinaryUrl(
-        'https://res.cloudinary.com/placeholder/image/fetch/abc/f_auto/w_500/r_max//landscape.jpg',
-      )!.placeholder,
+        'https://res.cloudinary.com/local/image/fetch/abc/f_auto/w_500/r_max//landscape.jpg',
+      )!.local,
     ).toBeTruthy();
   });
-  it('returns placeholder=false if the cloudname is anything else', () => {
+  it('returns local=false if the cloudname is anything else', () => {
     expect(
       parseCloudinaryUrl(
         'https://res.cloudinary.com/anythingelse/image/fetch/abc/f_auto/w_500/r_max//landscape.jpg',
-      )!.placeholder,
+      )!.local,
     ).toBeFalsy();
   });
   it('extracts a relative image source', () => {

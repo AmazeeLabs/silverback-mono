@@ -1,7 +1,6 @@
 import {
   Link as LinkComponent,
   LocationType,
-  useImagePlaceholder,
   useLocation as useLocationHook,
 } from '@amazeelabs/bridge';
 import { parseCloudinaryUrl } from '@amazeelabs/cloudinary-responsive-image';
@@ -21,7 +20,7 @@ import rehypeSlug from 'rehype-slug';
 import { omit } from 'remeda';
 import { Pluggable, Plugin, unified } from 'unified';
 
-export { LocationProvider, ImagePlaceholderProvider } from '@amazeelabs/bridge';
+export { LocationProvider } from '@amazeelabs/bridge';
 
 declare const Url: unique symbol;
 export type Url = string & {
@@ -172,22 +171,7 @@ export function Image({
   const imageData = JSON.parse(source) as ImageSourceStructure;
   const info = parseCloudinaryUrl(imageData.src);
   const ratio = imageData.height / imageData.width;
-  const usePlaceholder = useImagePlaceholder();
-  return !info || (info?.placeholder && usePlaceholder) ? (
-    <img
-      decoding={priority ? 'sync' : 'async'}
-      loading={priority ? 'eager' : 'lazy'}
-      {...imageData}
-      // Set object fit to "cover", to never
-      // distort an image, even if the width
-      // and height don't match.
-      // This is the case when an image is
-      // loaded unprocessed for testing.
-      style={{ objectFit: 'cover', maxWidth: '100%' }}
-      alt={alt}
-      {...props}
-    />
-  ) : (
+  return info?.local ? (
     <svg
       className={props.className}
       width={info.width || imageData.width}
@@ -205,6 +189,20 @@ export function Image({
         preserveAspectRatio="xMidYMid slice"
       />
     </svg>
+  ) : (
+    <img
+      decoding={priority ? 'sync' : 'async'}
+      loading={priority ? 'eager' : 'lazy'}
+      {...imageData}
+      // Set object fit to "cover", to never
+      // distort an image, even if the width
+      // and height don't match.
+      // This is the case when an image is
+      // loaded unprocessed for testing.
+      style={{ objectFit: 'cover', maxWidth: '100%' }}
+      alt={alt}
+      {...props}
+    />
   );
 }
 

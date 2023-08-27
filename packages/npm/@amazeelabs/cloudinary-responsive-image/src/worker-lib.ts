@@ -30,7 +30,7 @@ export function parseCloudinaryUrl(url: string) {
     }
   }
   return {
-    placeholder: match.groups!.cloudname === 'placeholder',
+    local: match.groups!.cloudname === 'local',
     src: source as string,
     transform: match.groups!.transform as string,
     width,
@@ -83,27 +83,5 @@ export async function mockCloudinaryImage(
     drawWidth,
     drawHeight,
   );
-  if (info.placeholder) {
-    const indicatorHeight = 50;
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-    ctx.fillRect(20, 20, containerWidth - 40, indicatorHeight);
-    ctx.fillStyle = 'white';
-    ctx.font = '20px Arial';
-    ctx.textBaseline = 'middle';
-    ctx.textAlign = 'center';
-    ctx.fillText(
-      `${containerWidth} x ${containerHeight}`,
-      containerWidth / 2,
-      22 + indicatorHeight / 2,
-      containerWidth - 20,
-    );
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.7)';
-    ctx.lineWidth = 2;
-    ctx.setLineDash([5, 5]);
-    ctx.beginPath();
-    ctx.rect(5, 5, containerWidth - 10, containerHeight - 10);
-    ctx.stroke();
-  }
-
   return await canvas.convertToBlob();
 }
