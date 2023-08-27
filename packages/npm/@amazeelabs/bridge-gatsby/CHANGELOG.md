@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge-gatsby@1.1.3...@amazeelabs/bridge-gatsby@1.2.0) (2023-08-27)
+
+### Features
+
+- **cloudinary:** provider-based image placeholders
+  ([02762c5](https://github.com/AmazeeLabs/silverback-mono/commit/02762c5bf5d8008598e2059bcb359806a8cb69e0))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge-gatsby@1.1.2...@amazeelabs/bridge-gatsby@1.1.3) (2023-06-16)
 
 **Note:** Version bump only for package @amazeelabs/bridge-gatsby

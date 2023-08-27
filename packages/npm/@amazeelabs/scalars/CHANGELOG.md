@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.4.8...@amazeelabs/scalars@1.5.0) (2023-08-27)
+
+### Features
+
+- **cloudinary:** provider-based image placeholders
+  ([02762c5](https://github.com/AmazeeLabs/silverback-mono/commit/02762c5bf5d8008598e2059bcb359806a8cb69e0))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.4.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.4.6...@amazeelabs/scalars@1.4.8) (2023-08-26)
 
 ### Bug Fixes
