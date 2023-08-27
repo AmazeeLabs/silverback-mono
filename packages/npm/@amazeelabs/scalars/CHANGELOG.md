@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.5.0...@amazeelabs/scalars@1.5.1) (2023-08-27)
+
+### Bug Fixes
+
+- **bridge:** missing export
+  ([c1be60f](https://github.com/AmazeeLabs/silverback-mono/commit/c1be60f5942f77195a18cb836e959ddcfb95666b))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.4.8...@amazeelabs/scalars@1.5.0) (2023-08-27)
 
 ### Features
