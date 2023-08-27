@@ -1,7 +1,9 @@
 import type {
+  ImagePlaceholderProviderType,
   LinkType,
   LocationProviderType,
   LocationType,
+  useImagePlaceholderType,
   useLocationType,
 } from '@amazeelabs/bridge';
 import { action } from '@storybook/addon-actions';
@@ -62,4 +64,21 @@ export const Link: LinkType = (props) => {
       {props.children}
     </a>
   );
+};
+
+const ImagePlaceholderContext = createContext<boolean>(true);
+
+export const ImagePlaceholderProvider: ImagePlaceholderProviderType = ({
+  children,
+  useImagePlaceholder = true,
+}) => {
+  return (
+    <ImagePlaceholderContext.Provider value={useImagePlaceholder}>
+      {children}
+    </ImagePlaceholderContext.Provider>
+  );
+};
+
+export const useImagePlaceholder: useImagePlaceholderType = () => {
+  return !!useContext(ImagePlaceholderContext);
 };

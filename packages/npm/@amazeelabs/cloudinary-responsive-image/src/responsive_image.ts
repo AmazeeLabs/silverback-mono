@@ -192,13 +192,23 @@ const getCloudinaryImageUrl = (
   const cloudName = credentials.cloudname;
   const apiKey = credentials.key;
   const apiSecret = credentials.secret;
-  if (cloudName === 'test') {
-    const width = config?.width || 1000;
-    const height = config?.height || width * 0.75;
-    return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width*4} ${height*4}"><rect width="100%" height="100%" fill="%23${apiKey}"></rect><text fill="%23${apiSecret}" x="50%" y="50%" style="font-family: sans-serif; font-size: 8em;font-weight:bold;text-anchor: middle; dominant-baseline: middle;">600x400</text></svg>`;
-  }
+  // If the cloud name is "local", then we just return the original image.
+  // This means we are using local development, or an environment where
+  // cloudinary is not configured.
   if (cloudName === 'local') {
     return originalImage;
+  }
+  // If the cloud name is "placeholder", then we return a placeholder image.
+  // It is just there to show the dimensions of the loaded image. Can be used
+  // debugging responsive image sizing.
+  if (cloudName === 'placeholder') {
+    const width = config?.width || 1000;
+    const height = config?.height || width * 0.75;
+    return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${
+      width * 4
+    } ${
+      height * 4
+    }"><rect width="100%" height="100%" fill="%23${apiKey}"></rect><text fill="%23${apiSecret}" x="50%" y="50%" style="font-family: sans-serif; font-size: 8em;font-weight:bold;text-anchor: middle; dominant-baseline: middle;">600x400</text></svg>`;
   }
   const image = new CloudinaryImage(
     originalImage,

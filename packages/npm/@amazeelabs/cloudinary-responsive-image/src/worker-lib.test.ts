@@ -6,32 +6,18 @@ describe('parseCloudinaryUrl', () => {
   it('returns undefined if its not a cloudinary url', () => {
     expect(parseCloudinaryUrl('https://example.com')).toBeUndefined();
   });
-  it('returns test=true if the cloudname is "test"', () => {
+  it('returns placeholder=true if the cloudname is "placeholder"', () => {
     expect(
       parseCloudinaryUrl(
-        'https://res.cloudinary.com/test/image/fetch/abc/f_auto/w_500/r_max//landscape.jpg',
-      )!.test,
+        'https://res.cloudinary.com/placeholder/image/fetch/abc/f_auto/w_500/r_max//landscape.jpg',
+      )!.placeholder,
     ).toBeTruthy();
   });
-  it('returns test=false if the cloudname is anything else', () => {
+  it('returns placeholder=false if the cloudname is anything else', () => {
     expect(
       parseCloudinaryUrl(
         'https://res.cloudinary.com/anythingelse/image/fetch/abc/f_auto/w_500/r_max//landscape.jpg',
-      )!.test,
-    ).toBeFalsy();
-  });
-  it('returns demo=true if the cloudname is "demo"', () => {
-    expect(
-      parseCloudinaryUrl(
-        'https://res.cloudinary.com/demo/image/fetch/abc/f_auto/w_500/r_max//landscape.jpg',
-      )!.demo,
-    ).toBeTruthy();
-  });
-  it('returns applies=false if the cloudname is anything else', () => {
-    expect(
-      parseCloudinaryUrl(
-        'https://res.cloudinary.com/anythingelse/image/fetch/abc/f_auto/w_500/r_max//landscape.jpg',
-      )!.demo,
+      )!.placeholder,
     ).toBeFalsy();
   });
   it('extracts a relative image source', () => {

@@ -1,6 +1,7 @@
 import {
   Link as LinkComponent,
   LocationType,
+  useImagePlaceholder,
   useLocation as useLocationHook,
 } from '@amazeelabs/bridge';
 import { parseCloudinaryUrl } from '@amazeelabs/cloudinary-responsive-image';
@@ -168,30 +169,11 @@ export function Image({
   priority?: boolean;
   className?: string;
 }) {
-  const imageData = JSON.parse(
-    source,
-  ) as ImageSourceStructure;
+  const imageData = JSON.parse(source) as ImageSourceStructure;
   const info = parseCloudinaryUrl(imageData.src);
   const ratio = imageData.height / imageData.width;
-  return info?.demo ? (
-    <svg
-      className={props.className}
-      width={info.width || imageData.width}
-      style={{maxWidth: '100%'}}
-      viewBox={`0 0 ${info.width || imageData.width} ${
-        info.height || ratio * (info.width || imageData.width)
-      }`}
-      preserveAspectRatio="xMidYMid slice"
-    >
-      <title>{alt}</title>
-      <image
-        href={info.src}
-        width="100%"
-        height="100%"
-        preserveAspectRatio="xMidYMid slice"
-      />
-    </svg>
-  ) : (
+  const usePlaceholder = useImagePlaceholder();
+  return !info || (info?.placeholder && usePlaceholder) ? (
     <img
       decoding={priority ? 'sync' : 'async'}
       loading={priority ? 'eager' : 'lazy'}
@@ -205,6 +187,24 @@ export function Image({
       alt={alt}
       {...props}
     />
+  ) : (
+    <svg
+      className={props.className}
+      width={info.width || imageData.width}
+      style={{ maxWidth: '100%' }}
+      viewBox={`0 0 ${info.width || imageData.width} ${
+        info.height || ratio * (info.width || imageData.width)
+      }`}
+      preserveAspectRatio="xMidYMid slice"
+    >
+      <title>{alt}</title>
+      <image
+        href={info.src}
+        width="100%"
+        height="100%"
+        preserveAspectRatio="xMidYMid slice"
+      />
+    </svg>
   );
 }
 
