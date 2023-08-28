@@ -52,6 +52,8 @@ jobs:
         run: pnpm test:integration
 
       - name: Start verdaccio
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm git-registry:with-logs &
 
       - name: Wait a moment
