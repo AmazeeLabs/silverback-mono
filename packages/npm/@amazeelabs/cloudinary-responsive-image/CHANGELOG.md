@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/cloudinary-responsive-image@1.4.1...@amazeelabs/cloudinary-responsive-image@1.4.2) (2023-08-28)
+
+### Bug Fixes
+
+- **cloudinary:** don't handle "local" in cloudinary url generation
+  ([471c2fa](https://github.com/AmazeeLabs/silverback-mono/commit/471c2faaf9a6c10b3d81c380f294908263fa0887))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.4.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/cloudinary-responsive-image@1.4.0...@amazeelabs/cloudinary-responsive-image@1.4.1) (2023-08-27)
 
 ### Bug Fixes
