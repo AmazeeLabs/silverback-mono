@@ -112,36 +112,6 @@ describe('buildResponsiveImage()', () => {
     `);
   });
 
-  it('returns the original image url when cloudname is "local"', () => {
-    const result = JSON.parse(
-      buildResponsiveImage(
-        {
-          cloudname: 'local',
-          key: '000',
-          secret: 'FFF',
-        },
-        imageProps,
-        {
-          width: 1600,
-          height: 1200,
-          sizes: [
-            [800, 780],
-            [1200, 1100],
-          ],
-        },
-      ),
-    );
-    expect(result).toMatchInlineSnapshot(`
-      {
-        "height": 1200,
-        "sizes": "(max-width: 800px) 780px, (max-width: 1200px) 1100px, 1600px",
-        "src": "http://www.example.com/test_image.png",
-        "srcset": "http://www.example.com/test_image.png 780w, http://www.example.com/test_image.png 1100w",
-        "width": 1600,
-      }
-    `);
-  });
-
   it('retrieves a placeholder image when the cloudname is "placeholder"', () => {
     const result = JSON.parse(
       buildResponsiveImage(
