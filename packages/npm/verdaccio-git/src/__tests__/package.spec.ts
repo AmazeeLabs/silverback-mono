@@ -134,7 +134,7 @@ describe('pushToGit', () => {
       logger as unknown as Logger,
     );
     expect(logger.warn).toHaveBeenCalledTimes(1);
-    expect(logger.info).toHaveBeenCalledTimes(0);
+    expect(logger.info).toHaveBeenCalledTimes(1);
     expect(composerSpy).toHaveBeenCalledTimes(0);
     // @ts-ignore https://github.com/DefinitelyTyped/DefinitelyTyped/pull/47020#issuecomment-737165941
     expect(extractSpy).toHaveBeenCalledWith({
@@ -180,7 +180,7 @@ describe('pushToGit', () => {
       logger as unknown as Logger,
     );
     expect(logger.warn).toHaveBeenCalledTimes(0);
-    expect(logger.info).toHaveBeenCalledTimes(1);
+    expect(logger.info).toHaveBeenCalledTimes(3);
     expect(git.clone).toHaveBeenCalledTimes(1);
     expect(git.clone).toHaveBeenCalledWith('foo', 'test/clone');
     expect(git.checkout).toHaveBeenCalledWith('bar');

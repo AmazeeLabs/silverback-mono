@@ -80,7 +80,7 @@ export const pushToGit = async (
   logger: Logger,
 ) => {
   const archive = `${path}/${name}`;
-  logger.debug(`[git] Extracting it to ${path}.`);
+  logger.info(`[git] Extracting it to ${path}.`);
   tar.extract({
     sync: true,
     file: archive,
@@ -90,7 +90,7 @@ export const pushToGit = async (
   const info = readJSONSync(`${path}/package/package.json`);
 
   if (isGitPackage(info)) {
-    logger.debug(
+    logger.info(
       `[git] Cloning target repository ${info.publishConfig.repository} to ${path}/clone.`,
     );
 
