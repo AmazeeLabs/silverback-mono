@@ -28,7 +28,13 @@ export const resolveResponsiveImage = (
       key: process.env.CLOUDINARY_API_KEY,
       cloudname: process.env.CLOUDINARY_CLOUDNAME,
     },
-    responsiveImage,
+    {
+      ...responsiveImage,
+      // Make sure to not send an already URI encoded string as the image src,
+      // otherwise we endup having double encoded src values, because the
+      // cloudinary SDK also encodes the URI.
+      src: decodeURI(responsiveImage.src || '')
+    },
     config,
   );
 };
