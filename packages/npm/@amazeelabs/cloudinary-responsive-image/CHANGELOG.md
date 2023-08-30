@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/cloudinary-responsive-image@1.4.3...@amazeelabs/cloudinary-responsive-image@1.5.0) (2023-08-30)
+
+### Features
+
+- **cloudinary:** emit original image when cloud name is 'test'
+  ([34f8863](https://github.com/AmazeeLabs/silverback-mono/commit/34f8863588fcea93a589989bd4f9d67084335963))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.4.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/cloudinary-responsive-image@1.4.2...@amazeelabs/cloudinary-responsive-image@1.4.3) (2023-08-28)
 
 ### Bug Fixes
