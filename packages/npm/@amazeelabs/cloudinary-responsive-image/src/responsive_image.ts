@@ -192,6 +192,14 @@ const getCloudinaryImageUrl = (
   const cloudName = credentials.cloudname;
   const apiKey = credentials.key;
   const apiSecret = credentials.secret;
+
+  // If the cloud name is "test", then we just return the original image.
+  // This means we are using local development, or an environment where
+  // cloudinary is not configured.
+  if (cloudName === 'test') {
+    return originalImage;
+  }
+
   // If the cloud name is "placeholder", then we return a placeholder image.
   // It is just there to show the dimensions of the loaded image. Can be used
   // debugging responsive image sizing.
