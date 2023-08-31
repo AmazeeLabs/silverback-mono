@@ -180,7 +180,7 @@ export function Image({
     // and height don't match.
     // This is the case when an image is
     // loaded unprocessed for testing.
-    style={{ objectFit: 'cover', maxWidth: '100%', ... (info.test? {
+    style={{ objectFit: 'cover', maxWidth: '100%', ... (info?.test? {
       backgroundImage: `url(${imageData.originalSrc})`,
       backgroundPosition: 'center',
       backgroundSize: 'cover',
