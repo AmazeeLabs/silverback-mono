@@ -30,7 +30,7 @@ export function parseCloudinaryUrl(url: string) {
     }
   }
   return {
-    local: match.groups!.cloudname === 'local',
+    test: match.groups!.cloudname === 'test',
     src: source as string,
     transform: match.groups!.transform as string,
     width,
