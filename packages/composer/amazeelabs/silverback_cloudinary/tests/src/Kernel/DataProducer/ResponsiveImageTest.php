@@ -47,7 +47,7 @@ class ResponsiveImageTest extends GraphQLTestBase {
       // Case 1. No config parameter sent.
       [
         'image' => ['src' => $image, 'width' => 100, 'height' => 100],
-        'expected' => ['src' => $image, 'width' => 100, 'height' => 100]
+        'expected' => ['originalSrc' => $image, 'src' => $image, 'width' => 100, 'height' => 100]
       ],
       // Case 2. Only ask for a width (so just scale the image).
       [
