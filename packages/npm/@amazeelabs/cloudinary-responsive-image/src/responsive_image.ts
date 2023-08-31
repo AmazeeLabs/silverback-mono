@@ -208,7 +208,9 @@ const getCloudinaryImageUrl = (
   if (cloudName === 'placeholder') {
     const width = config?.width || 1000;
     const height = config?.height || width * 0.75;
-    return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><rect x="0" y="${(height / 2) - 17}" width="100%" height="30" fill="rgba(0,0,0,0.5)"></rect><text fill="#EEE" x="50%" y="50%" style="font-family: sans-serif; font-size: 1em;font-weight:bold;text-anchor: middle; dominant-baseline: middle;">${width} x ${height}</text></svg>`;
+    return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><rect x="0" y="${
+      height / 2 - 17
+    }" width="100%" height="30" fill="rgba(0,0,0,0.5)"></rect><text fill="#EEE" x="50%" y="50%" style="font-family: sans-serif; font-size: 1em;font-weight:bold;text-anchor: middle; dominant-baseline: middle;">${width} x ${height}</text></svg>`;
   }
   const image = new CloudinaryImage(
     originalImage,
