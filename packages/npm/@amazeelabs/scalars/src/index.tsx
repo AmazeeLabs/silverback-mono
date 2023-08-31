@@ -143,6 +143,7 @@ export type ImageSource = string & {
 };
 
 type ImageSourceStructure = {
+  originalSrc: string;
   src: string;
   srcset: string;
   sizes: string;
@@ -170,40 +171,23 @@ export function Image({
 }) {
   const imageData = JSON.parse(source) as ImageSourceStructure;
   const info = parseCloudinaryUrl(imageData.src);
-  const ratio = imageData.height / imageData.width;
-  return info?.local ? (
-    <svg
-      className={props.className}
-      width={info.width || imageData.width}
-      style={{ maxWidth: '100%' }}
-      viewBox={`0 0 ${info.width || imageData.width} ${
-        info.height || ratio * (info.width || imageData.width)
-      }`}
-      preserveAspectRatio="xMidYMid slice"
-    >
-      <title>{alt}</title>
-      <image
-        href={info.src}
-        width="100%"
-        height="100%"
-        preserveAspectRatio="xMidYMid slice"
-      />
-    </svg>
-  ) : (
-    <img
-      decoding={priority ? 'sync' : 'async'}
-      loading={priority ? 'eager' : 'lazy'}
-      {...imageData}
-      // Set object fit to "cover", to never
-      // distort an image, even if the width
-      // and height don't match.
-      // This is the case when an image is
-      // loaded unprocessed for testing.
-      style={{ objectFit: 'cover', maxWidth: '100%' }}
-      alt={alt}
-      {...props}
-    />
-  );
+  return <img
+    decoding={priority ? 'sync' : 'async'}
+    loading={priority ? 'eager' : 'lazy'}
+    {...imageData}
+    // Set object fit to "cover", to never
+    // distort an image, even if the width
+    // and height don't match.
+    // This is the case when an image is
+    // loaded unprocessed for testing.
+    style={{ objectFit: 'cover', maxWidth: '100%', ... (info.test? {
+      backgroundImage: `url(${imageData.originalSrc})`,
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
+    }: {}) }}
+    alt={alt}
+    {...props}
+  />;
 }
 
 declare const Timestamp: unique symbol;
