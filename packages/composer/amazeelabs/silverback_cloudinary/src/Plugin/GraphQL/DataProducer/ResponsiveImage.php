@@ -46,6 +46,7 @@ use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
 class ResponsiveImage extends DataProducerPluginBase {
   public function resolve($image, $width = NULL, $height = NULL, $sizes = NULL, $transform = NULL) {
     $return = $image;
+    $return['originalSrc'] = $image['src'];
     // If no width is given, we just return the original image url.
     if (empty($width)) {
       return Json::encode($return);

@@ -11,6 +11,7 @@ export type ResponsiveImageConfig = {
 };
 
 export type ResponsiveImage = {
+  originalSrc: string;
   src: string;
   srcset?: string;
   sizes?: string;
@@ -31,6 +32,7 @@ export const buildResponsiveImage = (
 ): string => {
   const responsiveImage: ResponsiveImage = {
     ...originalImage,
+    originalSrc: originalImage.src,
   };
 
   // If no config object is given, we just return the original image url.
