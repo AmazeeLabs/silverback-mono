@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cloudinary@1.3.1...@-amazeelabs/silverback_cloudinary@1.4.0) (2023-09-08)
+
+### Features
+
+- **cloudinary:** include original image source in ResponsiveImage
+  ([108c4b0](https://github.com/AmazeeLabs/silverback-mono/commit/108c4b0fa7dd7e98919ce4416417154144d7c8da))
+- **cloudinary:** include original image source in ResponsiveImage
+  ([89de041](https://github.com/AmazeeLabs/silverback-mono/commit/89de041d3667e3194e8d946391c8f1fe6149a17c))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.3.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cloudinary@1.3.0...@-amazeelabs/silverback_cloudinary@1.3.1) (2023-08-24)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_cloudinary
