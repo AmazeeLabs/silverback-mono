@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.5.6...@amazeelabs/scalars@1.5.7) (2023-09-08)
+
+### Bug Fixes
+
+- **cloudinary:** mock image handling fixes
+  ([3015477](https://github.com/AmazeeLabs/silverback-mono/commit/3015477da149e4f6ece2b87084a6de71fa38c106))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.5.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.5.5...@amazeelabs/scalars@1.5.6) (2023-09-08)
 
 **Note:** Version bump only for package @amazeelabs/scalars
