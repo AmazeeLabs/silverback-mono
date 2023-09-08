@@ -169,25 +169,35 @@ export function Image({
   priority?: boolean;
   className?: string;
 }) {
-  const imageData = JSON.parse(source) as ImageSourceStructure;
+  const { originalSrc, ...imageData } = JSON.parse(
+    source,
+  ) as ImageSourceStructure;
   const info = parseCloudinaryUrl(imageData.src);
-  return <img
-    decoding={priority ? 'sync' : 'async'}
-    loading={priority ? 'eager' : 'lazy'}
-    {...imageData}
-    // Set object fit to "cover", to never
-    // distort an image, even if the width
-    // and height don't match.
-    // This is the case when an image is
-    // loaded unprocessed for testing.
-    style={{ objectFit: 'cover', maxWidth: '100%', ... (info?.test? {
-      backgroundImage: `url(${imageData.originalSrc})`,
-      backgroundPosition: 'center',
-      backgroundSize: 'cover',
-    }: {}) }}
-    alt={alt}
-    {...props}
-  />;
+  return (
+    <img
+      decoding={priority ? 'sync' : 'async'}
+      loading={priority ? 'eager' : 'lazy'}
+      {...imageData}
+      // Set object fit to "cover", to never
+      // distort an image, even if the width
+      // and height don't match.
+      // This is the case when an image is
+      // loaded unprocessed for testing.
+      style={{
+        objectFit: 'cover',
+        maxWidth: '100%',
+        ...(info?.test
+          ? {
+              backgroundImage: `url(${originalSrc})`,
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+            }
+          : {}),
+      }}
+      alt={alt}
+      {...props}
+    />
+  );
 }
 
 declare const Timestamp: unique symbol;

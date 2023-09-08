@@ -120,68 +120,7 @@ describe('buildResponsiveImage()', () => {
     `);
   });
 
-  it('retrieves a placeholder image when the cloudname is "placeholder"', () => {
-    const result = JSON.parse(
-      buildResponsiveImage(
-        {
-          cloudname: 'placeholder',
-          key: '000',
-          secret: 'FFF',
-        },
-        imageProps,
-        {
-          width: 1600,
-          height: 1200,
-          sizes: [
-            [800, 780],
-            [1200, 1100],
-          ],
-        },
-      ),
-    );
-    expect(result).toMatchInlineSnapshot(`
-      {
-        "height": 1200,
-        "originalSrc": "http://www.example.com/test_image.png",
-        "sizes": "(max-width: 800px) 780px, (max-width: 1200px) 1100px, 1600px",
-        "src": "data:image/svg+xml;utf8,<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"1600\\" height=\\"1200\\" viewBox=\\"0 0 1600 1200\\"><rect x=\\"0\\" y=\\"583\\" width=\\"100%\\" height=\\"30\\" fill=\\"rgba(0,0,0,0.5)\\"></rect><text fill=\\"#EEE\\" x=\\"50%\\" y=\\"50%\\" style=\\"font-family: sans-serif; font-size: 1em;font-weight:bold;text-anchor: middle; dominant-baseline: middle;\\">1600 x 1200</text></svg>",
-        "srcset": "data:image/svg+xml;utf8,<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"780\\" height=\\"585\\" viewBox=\\"0 0 780 585\\"><rect x=\\"0\\" y=\\"275.5\\" width=\\"100%\\" height=\\"30\\" fill=\\"rgba(0,0,0,0.5)\\"></rect><text fill=\\"#EEE\\" x=\\"50%\\" y=\\"50%\\" style=\\"font-family: sans-serif; font-size: 1em;font-weight:bold;text-anchor: middle; dominant-baseline: middle;\\">780 x 585</text></svg> 780w, data:image/svg+xml;utf8,<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"1100\\" height=\\"825\\" viewBox=\\"0 0 1100 825\\"><rect x=\\"0\\" y=\\"395.5\\" width=\\"100%\\" height=\\"30\\" fill=\\"rgba(0,0,0,0.5)\\"></rect><text fill=\\"#EEE\\" x=\\"50%\\" y=\\"50%\\" style=\\"font-family: sans-serif; font-size: 1em;font-weight:bold;text-anchor: middle; dominant-baseline: middle;\\">1100 x 825</text></svg> 1100w",
-        "width": 1600,
-      }
-    `);
-  });
-
-  it('retrieves a placeholder with ratio 4:3 when there is no height', () => {
-    const result = JSON.parse(
-      buildResponsiveImage(
-        {
-          cloudname: 'placeholder',
-          key: '000',
-          secret: 'FFF',
-        },
-        imageProps,
-        {
-          width: 1600,
-          sizes: [
-            [800, 780],
-            [1200, 1100],
-          ],
-        },
-      ),
-    );
-    expect(result).toMatchInlineSnapshot(`
-      {
-        "height": 1200,
-        "originalSrc": "http://www.example.com/test_image.png",
-        "sizes": "(max-width: 800px) 780px, (max-width: 1200px) 1100px, 1600px",
-        "src": "data:image/svg+xml;utf8,<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"1600\\" height=\\"1200\\" viewBox=\\"0 0 1600 1200\\"><rect x=\\"0\\" y=\\"583\\" width=\\"100%\\" height=\\"30\\" fill=\\"rgba(0,0,0,0.5)\\"></rect><text fill=\\"#EEE\\" x=\\"50%\\" y=\\"50%\\" style=\\"font-family: sans-serif; font-size: 1em;font-weight:bold;text-anchor: middle; dominant-baseline: middle;\\">1600 x 1200</text></svg>",
-        "srcset": "data:image/svg+xml;utf8,<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"780\\" height=\\"585\\" viewBox=\\"0 0 780 585\\"><rect x=\\"0\\" y=\\"275.5\\" width=\\"100%\\" height=\\"30\\" fill=\\"rgba(0,0,0,0.5)\\"></rect><text fill=\\"#EEE\\" x=\\"50%\\" y=\\"50%\\" style=\\"font-family: sans-serif; font-size: 1em;font-weight:bold;text-anchor: middle; dominant-baseline: middle;\\">780 x 585</text></svg> 780w, data:image/svg+xml;utf8,<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"1100\\" height=\\"825\\" viewBox=\\"0 0 1100 825\\"><rect x=\\"0\\" y=\\"395.5\\" width=\\"100%\\" height=\\"30\\" fill=\\"rgba(0,0,0,0.5)\\"></rect><text fill=\\"#EEE\\" x=\\"50%\\" y=\\"50%\\" style=\\"font-family: sans-serif; font-size: 1em;font-weight:bold;text-anchor: middle; dominant-baseline: middle;\\">1100 x 825</text></svg> 1100w",
-        "width": 1600,
-      }
-    `);
-  });
-
-  it('returns the original image url when cloudname is "test"', () => {
+  it('returns a mock image when cloudname is "test"', () => {
     const result = JSON.parse(
       buildResponsiveImage(
         {
@@ -205,8 +144,8 @@ describe('buildResponsiveImage()', () => {
         "height": 1200,
         "originalSrc": "http://www.example.com/test_image.png",
         "sizes": "(max-width: 800px) 780px, (max-width: 1200px) 1100px, 1600px",
-        "src": "http://www.example.com/test_image.png",
-        "srcset": "http://www.example.com/test_image.png 780w, http://www.example.com/test_image.png 1100w",
+        "src": "data:image/svg+xml;utf8,<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"1600\\" height=\\"1200\\" viewBox=\\"0 0 1600 1200\\"><rect x=\\"0\\" y=\\"583\\" width=\\"100%\\" height=\\"30\\" fill=\\"rgba(0,0,0,0.5)\\"></rect><text fill=\\"#EEE\\" x=\\"50%\\" y=\\"50%\\" style=\\"font-family: sans-serif; font-size: 1em;font-weight:bold;text-anchor: middle; dominant-baseline: middle;\\">1600 x 1200</text></svg>",
+        "srcset": "data:image/svg+xml;utf8,<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"780\\" height=\\"585\\" viewBox=\\"0 0 780 585\\"><rect x=\\"0\\" y=\\"275.5\\" width=\\"100%\\" height=\\"30\\" fill=\\"rgba(0,0,0,0.5)\\"></rect><text fill=\\"#EEE\\" x=\\"50%\\" y=\\"50%\\" style=\\"font-family: sans-serif; font-size: 1em;font-weight:bold;text-anchor: middle; dominant-baseline: middle;\\">780 x 585</text></svg> 780w, data:image/svg+xml;utf8,<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"1100\\" height=\\"825\\" viewBox=\\"0 0 1100 825\\"><rect x=\\"0\\" y=\\"395.5\\" width=\\"100%\\" height=\\"30\\" fill=\\"rgba(0,0,0,0.5)\\"></rect><text fill=\\"#EEE\\" x=\\"50%\\" y=\\"50%\\" style=\\"font-family: sans-serif; font-size: 1em;font-weight:bold;text-anchor: middle; dominant-baseline: middle;\\">1100 x 825</text></svg> 1100w",
         "width": 1600,
       }
     `);
