@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/cloudinary-responsive-image@1.6.2...@amazeelabs/cloudinary-responsive-image@1.6.3) (2023-09-09)
+
+### Bug Fixes
+
+- **cloudinary:** mock image overlay styling
+  ([fad651e](https://github.com/AmazeeLabs/silverback-mono/commit/fad651e19bc1204da4287b3bee05d4a488c09a25))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.6.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/cloudinary-responsive-image@1.6.1...@amazeelabs/cloudinary-responsive-image@1.6.2) (2023-09-09)
 
 ### Bug Fixes
