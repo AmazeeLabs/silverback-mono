@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.5.7...@amazeelabs/scalars@1.5.8) (2023-09-09)
+
+### Bug Fixes
+
+- **cloudinary:** detect mock images based on data url
+  ([606957f](https://github.com/AmazeeLabs/silverback-mono/commit/606957f40246a3a48c752097af3e60d71a8d0a1f))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.5.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.5.6...@amazeelabs/scalars@1.5.7) (2023-09-08)
 
 ### Bug Fixes

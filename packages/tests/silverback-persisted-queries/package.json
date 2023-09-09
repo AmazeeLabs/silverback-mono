@@ -1,6 +1,6 @@
 {
   "name": "@-amazeelabs/silverback-persisted-queries",
-  "version": "1.1.208",
+  "version": "1.1.209",
   "description": "e2e tests for Silverback persisted queries.",
   "author": "Amazee Labs",
   "license": "MIT",
