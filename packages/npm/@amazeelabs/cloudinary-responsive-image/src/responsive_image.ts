@@ -204,7 +204,7 @@ const getCloudinaryImageUrl = (
     const boxHeight = Math.floor(height / 10);
     return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><rect x="0" y="${
       height / 2 - (boxHeight / 2)
-    }" width="100%" height="30" fill="rgba(0,0,0,0.5)"></rect><text fill="rgba(255,255,255,0.8)" x="50%" y="50%" style="font-family: sans-serif;font-size: ${Math.floor(boxHeight * 0.8)};line-height: ${Math.floor(boxHeight * 0.8)};font-weight:bold;text-anchor: middle; dominant-baseline: middle;">${width} x ${height}</text></svg>`;
+    }" width="100%" height="${boxHeight}" fill="rgba(0,0,0,0.5)"></rect><text fill="rgba(255,255,255,0.8)" x="50%" y="50%" style="font-family: sans-serif;font-size: ${Math.floor(boxHeight * 0.8)};line-height: ${Math.floor(boxHeight * 0.8)};font-weight:bold;text-anchor: middle; dominant-baseline: middle;">${width} x ${height}</text></svg>`;
   }
   const image = new CloudinaryImage(
     originalImage,
