@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@amazeelabs/bridge": "workspace:*",
-    "@amazeelabs/cloudinary-responsive-image": "workspace:*",
     "hast-util-select": "^5.0.5",
     "query-string": "^8.1.0",
     "rehype-parse": "^8.0.4",

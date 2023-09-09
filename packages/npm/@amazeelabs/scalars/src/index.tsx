@@ -3,7 +3,6 @@ import {
   LocationType,
   useLocation as useLocationHook,
 } from '@amazeelabs/bridge';
-import { parseCloudinaryUrl } from '@amazeelabs/cloudinary-responsive-image';
 import type { Element } from 'hast';
 import { selectAll } from 'hast-util-select';
 import qs, { StringifiableRecord } from 'query-string';
@@ -172,7 +171,6 @@ export function Image({
   const { originalSrc, ...imageData } = JSON.parse(
     source,
   ) as ImageSourceStructure;
-  const info = parseCloudinaryUrl(imageData.src);
   return (
     <img
       decoding={priority ? 'sync' : 'async'}
@@ -186,7 +184,7 @@ export function Image({
       style={{
         objectFit: 'cover',
         maxWidth: '100%',
-        ...(info?.test
+        ...(imageData.src.startsWith('data:image/svg+xml;utf8,')
           ? {
               backgroundImage: `url(${originalSrc})`,
               backgroundPosition: 'center',
