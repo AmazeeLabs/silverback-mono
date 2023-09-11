@@ -202,7 +202,7 @@ const getCloudinaryImageUrl = (
     const width = config?.width || 1000;
     const height = config?.height || width * 0.75;
     const boxHeight = Math.floor(height / 10);
-    const debug = `<rect x="0" y="${height / 2 - (boxHeight / 2)}"width="100%" height="${boxHeight}" fill="rgba(0,0,0,0.5)"></rect><text fill="rgba(255,255,255,0.8)" x="50%" y="50%" style="font-family: sans-serif;font-size: ${Math.floor(boxHeight * 0.8)};line-height: ${Math.floor(boxHeight * 0.8)};font-weight:bold;text-anchor: middle; dominant-baseline: central;">${width} x ${height}</text>`;
+    const debug = `<rect x="0" y="${height / 2 - (boxHeight / 2)}" width="100%" height="${boxHeight}" fill="rgba(0,0,0,0.5)"></rect><text fill="rgba(255,255,255,0.8)" x="50%" y="50%" style="font-family: sans-serif;font-size: ${Math.floor(boxHeight * 0.8)};line-height: ${Math.floor(boxHeight * 0.8)};font-weight:bold;text-anchor: middle; dominant-baseline: central;">${width} x ${height}</text>`;
     return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">${cloudName === 'test' ? debug : ''}</svg>`;
   }
   const image = new CloudinaryImage(
