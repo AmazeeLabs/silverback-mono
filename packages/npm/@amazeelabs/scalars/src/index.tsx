@@ -185,7 +185,7 @@ export function Image({
       style={{
         objectFit: 'cover',
         maxWidth: '100%',
-        ...(imageData.src.startsWith('data:image/svg+xml;utf8,')
+        ...(imageData.src.startsWith('data:image/svg+xml')
           ? {
               backgroundImage: `url(${originalSrc})`,
               backgroundPosition: 'center',
