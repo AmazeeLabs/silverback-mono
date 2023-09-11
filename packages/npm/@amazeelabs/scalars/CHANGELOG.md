@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.10](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.5.9...@amazeelabs/scalars@1.5.10) (2023-09-11)
+
+### Bug Fixes
+
+- **cloudinary:** detect base64 placeholders in image component
+  ([ba5dbdb](https://github.com/AmazeeLabs/silverback-mono/commit/ba5dbdb0549062d0f1ed29c4dd9d1f936a7b7d76))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.5.9](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.5.8...@amazeelabs/scalars@1.5.9) (2023-09-11)
 
 ### Bug Fixes
