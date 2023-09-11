@@ -1375,6 +1375,9 @@ importers:
       '@amazeelabs/bridge':
         specifier: workspace:*
         version: link:../bridge
+      '@amazeelabs/cloudinary-responsive-image':
+        specifier: workspace:*
+        version: link:../cloudinary-responsive-image
       hast-util-select:
         specifier: ^5.0.5
         version: 5.0.5

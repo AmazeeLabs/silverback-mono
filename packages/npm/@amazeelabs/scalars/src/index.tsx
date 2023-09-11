@@ -157,6 +157,10 @@ type ImageSourceStructure = {
   }>;
 };
 
+export function processImageSource(source: ImageSourceStructure): ImageSourceStructure {
+  return source;
+}
+
 export function Image({
   source,
   priority,
@@ -168,9 +172,9 @@ export function Image({
   priority?: boolean;
   className?: string;
 }) {
-  const { originalSrc, srcset, ...imageData } = JSON.parse(
+  const { originalSrc, srcset, ...imageData } = processImageSource(JSON.parse(
     source,
-  ) as ImageSourceStructure;
+  ) as ImageSourceStructure);
   return (
     <img
       decoding={priority ? 'sync' : 'async'}
