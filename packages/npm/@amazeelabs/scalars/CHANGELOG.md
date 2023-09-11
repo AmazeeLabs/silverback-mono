@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.9](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.5.8...@amazeelabs/scalars@1.5.9) (2023-09-11)
+
+### Bug Fixes
+
+- **cloudinary:** invalid srcset attribute
+  ([694f168](https://github.com/AmazeeLabs/silverback-mono/commit/694f168902a0406454cbc321bfc3e9530e815ae2))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.5.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.5.7...@amazeelabs/scalars@1.5.8) (2023-09-09)
 
 ### Bug Fixes
