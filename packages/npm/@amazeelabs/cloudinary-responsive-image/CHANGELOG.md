@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/cloudinary-responsive-image@1.6.4...@amazeelabs/cloudinary-responsive-image@1.6.5) (2023-09-11)
+
+### Bug Fixes
+
+- **cloudinary:** missing space in svg code
+  ([e7435e7](https://github.com/AmazeeLabs/silverback-mono/commit/e7435e709b20f7109e6e2b0acc9f3cc794756f9d))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.6.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/cloudinary-responsive-image@1.6.3...@amazeelabs/cloudinary-responsive-image@1.6.4) (2023-09-10)
 
 ### Bug Fixes

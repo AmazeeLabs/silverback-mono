@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.44](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-silverback-cloudinary@1.0.43...@amazeelabs/gatsby-silverback-cloudinary@1.0.44) (2023-09-11)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-silverback-cloudinary
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.0.43](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-silverback-cloudinary@1.0.42...@amazeelabs/gatsby-silverback-cloudinary@1.0.43) (2023-09-10)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-silverback-cloudinary
