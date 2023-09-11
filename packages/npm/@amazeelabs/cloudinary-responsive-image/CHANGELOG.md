@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/cloudinary-responsive-image@1.6.5...@amazeelabs/cloudinary-responsive-image@1.6.6) (2023-09-11)
+
+### Bug Fixes
+
+- **cloudinary:** missing type definitions
+  ([614a984](https://github.com/AmazeeLabs/silverback-mono/commit/614a9847fcca5cffaf567a940145abc33c13c2dc))
+- **cloudinary:** use base64 svgs
+  ([53dc977](https://github.com/AmazeeLabs/silverback-mono/commit/53dc97718df1666b4c233681a7fc00782750e276))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.6.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/cloudinary-responsive-image@1.6.4...@amazeelabs/cloudinary-responsive-image@1.6.5) (2023-09-11)
 
 ### Bug Fixes
