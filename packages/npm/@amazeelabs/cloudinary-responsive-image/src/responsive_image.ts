@@ -186,6 +186,13 @@ const buildSrcSetString = (
   return srcSetEntries.join(', ');
 };
 
+function base64(content: string) {
+  if (typeof btoa === undefined) {
+    return Buffer.from(content, 'base64').toString('binary')
+  }
+  return btoa(content);
+}
+
 const getCloudinaryImageUrl = (
   credentials: CloudinaryCredentials,
   originalImage: string,
@@ -203,7 +210,8 @@ const getCloudinaryImageUrl = (
     const height = config?.height || width * 0.75;
     const boxHeight = Math.floor(height / 10);
     const debug = `<rect x="0" y="${height / 2 - (boxHeight / 2)}" width="100%" height="${boxHeight}" fill="rgba(0,0,0,0.5)"></rect><text fill="rgba(255,255,255,0.8)" x="50%" y="50%" style="font-family: sans-serif;font-size: ${Math.floor(boxHeight * 0.8)};line-height: ${Math.floor(boxHeight * 0.8)};font-weight:bold;text-anchor: middle; dominant-baseline: central;">${width} x ${height}</text>`;
-    return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">${cloudName === 'test' ? debug : ''}</svg>`;
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">${cloudName === 'test' ? debug : ''}</svg>`;
+    return `data:image/svg+xml;base64,${base64(svg)}`;
   }
   const image = new CloudinaryImage(
     originalImage,
