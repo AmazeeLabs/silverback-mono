@@ -168,7 +168,7 @@ export function Image({
   priority?: boolean;
   className?: string;
 }) {
-  const { originalSrc, ...imageData } = JSON.parse(
+  const { originalSrc, srcset, ...imageData } = JSON.parse(
     source,
   ) as ImageSourceStructure;
   return (
@@ -176,6 +176,7 @@ export function Image({
       decoding={priority ? 'sync' : 'async'}
       loading={priority ? 'eager' : 'lazy'}
       {...imageData}
+      srcSet={srcset}
       // Set object fit to "cover", to never
       // distort an image, even if the width
       // and height don't match.
