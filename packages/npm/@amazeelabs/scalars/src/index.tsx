@@ -11,7 +11,6 @@ import React, {
   ComponentType,
   createElement,
   DetailedHTMLProps,
-  Fragment,
 } from 'react';
 import rehypeParse from 'rehype-parse';
 import rehypeReact from 'rehype-react';
@@ -141,7 +140,104 @@ export type ImageSource = string & {
   _opaque: typeof ImageSource;
 };
 
-type ImageSourceStructure = {
+function base64(content: string) {
+  if (typeof btoa === undefined) {
+    return Buffer.from(content, 'base64').toString('binary');
+  }
+  return btoa(content);
+}
+
+export function parseCloudinaryUrl(url: string) {
+  const prefix = 'https://res.cloudinary.com/';
+  const config = url.substring(prefix.length);
+  const pos =
+    config.indexOf('/http') + 1 ||
+    config.indexOf('/blob:http') + 1 ||
+    config.indexOf('//') + 1;
+  const source = config.substring(pos);
+  const match =
+    /(?<cloudname>.*?)\/image\/fetch\/.*?\/f_auto\/?(?<transform>.*)/.exec(
+      config.substring(0, pos - 1),
+    );
+  if (!match) {
+    return undefined;
+  }
+  const chain = match.groups!.transform.split('/');
+  let width: number | undefined;
+  let height: number | undefined;
+  const transforms = [];
+  for (const transform of chain) {
+    for (const operation of transform.split(',')) {
+      // TODO: dimension prediction does not take chained transforms into account
+      if (operation.startsWith('w_')) {
+        width = parseInt(operation.substring(2));
+      } else if (operation.startsWith('h_')) {
+        height = parseInt(operation.substring(2));
+      } else {
+        transforms.push(operation);
+      }
+    }
+  }
+  return {
+    cloudName: match.groups!.cloudname,
+    src: source as string,
+    transform: match.groups!.transform as string,
+    width,
+    height,
+  };
+}
+
+function dummyImage(
+  mode: string,
+  config: { width: number; height: number; transform?: string },
+) {
+  const width = config.width;
+  const height = config.height;
+  const boxHeight = Math.floor(height / 10);
+  const debug = `<rect x="0" y="${
+    height / 2 - boxHeight / 2
+  }" width="100%" height="${boxHeight}" fill="rgba(0,0,0,0.5)"></rect><text fill="rgba(255,255,255,0.8)" x="50%" y="50%" style="font-family: sans-serif;font-size: ${Math.floor(
+    boxHeight * 0.8,
+  )};line-height: ${Math.floor(
+    boxHeight * 0.8,
+  )};font-weight:bold;text-anchor: middle; dominant-baseline: central;">${width} x ${height}</text>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">${
+    mode === 'test' ? debug : ''
+  }</svg>`;
+  console.log(svg);
+  return `data:image/svg+xml;base64,${base64(svg)}`;
+}
+
+function processImageSource(
+  source: ImageSourceStructure,
+): ImageSourceStructure {
+  const { src, width, height } = source;
+  const info = parseCloudinaryUrl(src);
+  if (info && ['test', 'demo'].includes(info.cloudName)) {
+    console.log(info, width, height);
+    return {
+      ...source,
+      src: dummyImage(info.cloudName, { width, height }),
+      srcset:
+        source.srcset?.replace(
+          /https:\/\/res\.cloudinary\.com\/[^\s]+/g,
+          (url) => {
+            const i = parseCloudinaryUrl(url);
+            if (i && ['test', 'demo'].includes(i.cloudName)) {
+              return dummyImage(i.cloudName, {
+                width: i.width || width,
+                height: i.height || height * (height / width),
+              });
+            }
+            return url;
+          },
+        ) || '',
+    };
+  }
+  return source;
+}
+
+export type ImageSourceStructure = {
   originalSrc: string;
   src: string;
   srcset: string;
@@ -168,9 +264,10 @@ export function Image({
   priority?: boolean;
   className?: string;
 }) {
-  const { originalSrc, srcset, ...imageData } = JSON.parse(
-    source,
-  ) as ImageSourceStructure;
+  const { originalSrc, srcset, ...imageData } = processImageSource(
+    JSON.parse(source) as ImageSourceStructure,
+  );
+  console.log(originalSrc, srcset, imageData);
   return (
     <img
       decoding={priority ? 'sync' : 'async'}
@@ -251,7 +348,7 @@ export function Html({
     .use(rehypeSlug)
     .use(plugins || [])
     .use(rehypeReact, {
-      Fragment,
+      Fragment: React.Fragment,
       createElement,
       passNode: true,
       components: {
