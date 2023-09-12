@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.46](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-silverback-cloudinary@1.0.45...@amazeelabs/gatsby-silverback-cloudinary@1.0.46) (2023-09-12)
+
+### Bug Fixes
+
+- fix images decoding
+  ([fba76ac](https://github.com/AmazeeLabs/silverback-mono/commit/fba76acc8930d6abe50f90c7e6daec0be1920549))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.0.45](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-silverback-cloudinary@1.0.44...@amazeelabs/gatsby-silverback-cloudinary@1.0.45) (2023-09-11)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-silverback-cloudinary
