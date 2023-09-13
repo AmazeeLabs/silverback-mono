@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.5.10...@amazeelabs/scalars@1.6.0) (2023-09-13)
+
+### Features
+
+- **scalars:** add cloudinary mocking capabilities
+  ([a84138f](https://github.com/AmazeeLabs/silverback-mono/commit/a84138fcf5fd0e7eacb1e1a9c02ed64d4d8c61c8))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.5.10](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.5.9...@amazeelabs/scalars@1.5.10) (2023-09-11)
 
 ### Bug Fixes
