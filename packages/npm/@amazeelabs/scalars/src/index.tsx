@@ -224,7 +224,7 @@ function processImageSource(
             if (i && ['test', 'demo'].includes(i.cloudName)) {
               return dummyImage(i.cloudName, {
                 width: i.width || width,
-                height: i.height || height * (height / width),
+                height: i.height || width * (height / width),
               });
             }
             return url;
