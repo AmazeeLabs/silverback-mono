@@ -18,6 +18,6 @@
   },
   "scripts": {
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
-    "test:integration": "sp-test"
+    "test:integration": "sp-test -v"
   }
 }
