@@ -8,7 +8,7 @@ module.exports = {
     interactionsDebugger: true,
     storyStoreV7: true,
   },
-  staticDirs: ['./static'],
+  staticDirs: ['../static'],
   stories: ['../src', '../docs'],
   addons: [
     '@storybook/addon-viewport',

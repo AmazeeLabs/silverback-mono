@@ -23,7 +23,7 @@ export default defineConfig({
             build.onResolve({ filter: /react-virtualized/ }, async () => {
               return {
                 path: path.resolve(
-                  '../../../../node_modules/.pnpm/react-lazylog@4.5.3_biqbaboplfbrettd7655fr4n2y/node_modules/react-virtualized/dist/umd/react-virtualized.js',
+                  '../../../../node_modules/.pnpm/react-lazylog@4.5.3_react-dom@18.2.0_react@18.2.0/node_modules/react-virtualized/dist/umd/react-virtualized.js',
                 ),
               };
             });
