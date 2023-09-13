@@ -7,8 +7,6 @@ import {
 } from '@amazeelabs/silverback-playwright';
 import { expect, PlaywrightTestArgs, test } from '@playwright/test';
 
-// Arbitrary change to force integration test run.
-
 test.beforeAll(async () => {
   await resetState();
 });
