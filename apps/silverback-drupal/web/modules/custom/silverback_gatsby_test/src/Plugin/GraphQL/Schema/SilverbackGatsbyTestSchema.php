@@ -23,7 +23,7 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
     $builder = new ResolverBuilder();
     $registry = parent::getResolverRegistry();
 
-    $addResolver = function(string $path, ResolverInterface $resolver) use ($registry) {
+    $addResolver = function (string $path, ResolverInterface $resolver) use ($registry) {
       [$type, $field] = explode('.', $path);
       $registry->addFieldResolver($type, $field, $resolver);
     };
@@ -51,8 +51,8 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
 
     $articleTemplate = $builder->callback(
       fn(NodeInterface $node) => $node->get('promote')->value
-        ? 'article-promoted'
-        : NULL
+      ? 'article-promoted'
+      : NULL
     );
 
     $addResolver('Article.template', $articleTemplate);
@@ -60,7 +60,7 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
     $addResolver('Article.responsiveImage',
       $builder->compose(
         $builder->callback(function ($value) {
-          return 'https://dummyimage.com/1000x500/078232/fff.jpg';
+          return ['src' => 'https://dummyimage.com/1000x500/078232/fff.jpg', 'width' => 1000, 'height' => 500];
         }),
         $builder->produce('responsive_image')
           ->map('image', $builder->fromParent())
@@ -72,7 +72,7 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
     );
     $addResolver('GutenbergPage.anotherResponsiveImage',
       $builder->produce('responsive_image')
-        ->map('image', $builder->fromValue('https://dummyimage.com/1000x500/807e08/182196.jpg'))
+        ->map('image', $builder->fromValue(['src' => 'https://dummyimage.com/1000x500/807e08/182196.jpg', 'width' => 1000, 'height' => 500]))
         ->map('width', $builder->fromArgument('width'))
         ->map('height', $builder->fromArgument('height'))
         ->map('sizes', $builder->fromArgument('sizes'))
@@ -95,11 +95,11 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
     $addResolver('Webform.url',
       $builder->compose(
         $builder->produce('entity_url')->map('entity', $builder->fromParent()),
-        $builder->callback(fn (Url $url) => $url->setAbsolute()->toString(TRUE)->getGeneratedUrl())
+        $builder->callback(fn(Url $url) => $url->setAbsolute()->toString(TRUE)->getGeneratedUrl())
       )
     );
 
-    $addResolver('Mutation.getRandomInt',$builder->callback(fn() => rand()));
+    $addResolver('Mutation.getRandomInt', $builder->callback(fn() => rand()));
 
     return $registry;
   }
