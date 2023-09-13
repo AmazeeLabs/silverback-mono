@@ -204,7 +204,6 @@ function dummyImage(
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">${
     mode === 'test' ? debug : ''
   }</svg>`;
-  console.log(svg);
   return `data:image/svg+xml;base64,${base64(svg)}`;
 }
 
@@ -214,7 +213,6 @@ function processImageSource(
   const { src, width, height } = source;
   const info = parseCloudinaryUrl(src);
   if (info && ['test', 'demo'].includes(info.cloudName)) {
-    console.log(info, width, height);
     return {
       ...source,
       src: dummyImage(info.cloudName, { width, height }),
@@ -267,7 +265,6 @@ export function Image({
   const { originalSrc, srcset, ...imageData } = processImageSource(
     JSON.parse(source) as ImageSourceStructure,
   );
-  console.log(originalSrc, srcset, imageData);
   return (
     <img
       decoding={priority ? 'sync' : 'async'}
