@@ -7,8 +7,16 @@ module.exports = {
       black: '#000000',
       yellow: {
         400: '#FFE669',
-        500: '#ffcc4f',
+        500: '#fde900',
         600: '#DBA82B',
+      },
+      turquoise: {
+        500: '#00a29a',
+        600: '#008a83',
+      },
+      purple: {
+        500: '#951b81',
+        600: '#7f176e',
       },
       blue: {
         500: '#60839b',
@@ -30,7 +38,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      alt: ['filson-pro', 'sans-serif'],
+      alt: 'LexendGiga, Verdana, sans-serif',
     },
     extend: {},
   },

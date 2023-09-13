@@ -54,7 +54,7 @@ export default function Status({
                 enableBackground="new 0 0 0 0"
                 className={'w-20 absolute left-8 right-0 top-7 mx-auto'}
               >
-                <rect x="20" y="50" width="3" height="14" fill="#60839b">
+                <rect x="20" y="50" width="3" height="14" fill="#00a29a">
                   <animateTransform
                     attributeType="xml"
                     attributeName="transform"
@@ -65,7 +65,7 @@ export default function Status({
                     repeatCount="indefinite"
                   ></animateTransform>
                 </rect>
-                <rect x="30" y="50" width="3" height="14" fill="#60839b">
+                <rect x="30" y="50" width="3" height="14" fill="#00a29a">
                   <animateTransform
                     attributeType="xml"
                     attributeName="transform"
@@ -76,7 +76,7 @@ export default function Status({
                     repeatCount="indefinite"
                   ></animateTransform>
                 </rect>
-                <rect x="40" y="50" width="3" height="14" fill="#60839b">
+                <rect x="40" y="50" width="3" height="14" fill="#00a29a">
                   <animateTransform
                     attributeType="xml"
                     attributeName="transform"
@@ -163,7 +163,7 @@ export default function Status({
             })}
           >
             {inProgress ? (
-              <div className="h-[3px] bg-blue-500 animate-bounce"></div>
+              <div className="h-[3px] bg-turquoise-500 animate-bounce"></div>
             ) : null}
           </div>
         </div>
