@@ -271,6 +271,7 @@ export function Image({
       loading={priority ? 'eager' : 'lazy'}
       {...imageData}
       srcSet={srcset}
+      data-src={originalSrc}
       // Set object fit to "cover", to never
       // distort an image, even if the width
       // and height don't match.
