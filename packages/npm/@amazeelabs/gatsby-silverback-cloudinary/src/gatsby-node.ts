@@ -71,16 +71,18 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
                   },
                   resolve: (source, args) => {
                     try {
-                      return resolveResponsiveImage(source[fieldKey], {
-                        width: args.width,
-                        height: args.height,
-                        sizes: args.sizes,
-                        transform: args.transform,
-                      });
+                      return source[fieldKey]
+                        ? resolveResponsiveImage(source[fieldKey], {
+                            width: args.width,
+                            height: args.height,
+                            sizes: args.sizes,
+                            transform: args.transform,
+                          })
+                        : null;
                     } catch (e) {
                       // @ts-ignore
                       reporter.error(e);
-                      return JSON.stringify({});
+                      return null;
                     }
                   },
                 },

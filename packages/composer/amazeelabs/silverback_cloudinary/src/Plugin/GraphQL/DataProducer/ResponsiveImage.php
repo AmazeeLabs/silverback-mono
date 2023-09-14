@@ -45,6 +45,9 @@ use Drupal\graphql\Plugin\GraphQL\DataProducer\DataProducerPluginBase;
  */
 class ResponsiveImage extends DataProducerPluginBase {
   public function resolve($image, $width = NULL, $height = NULL, $sizes = NULL, $transform = NULL) {
+    if (!$image) {
+      return NULL;
+    }
     $return = $image;
     $return['originalSrc'] = $image['src'];
     // If no width is given, we just return the original image url.
@@ -64,7 +67,8 @@ class ResponsiveImage extends DataProducerPluginBase {
     }
     $return['src'] = $this->getCloudinaryImageUrl($image['src'], ['width' => $width, 'height' => $height, 'transform' => $transform]);
 
-    return Json::encode(array_filter($return));
+    $return = array_filter($return);
+    return $return ? Json::encode($return) : NULL;
   }
 
   /**
