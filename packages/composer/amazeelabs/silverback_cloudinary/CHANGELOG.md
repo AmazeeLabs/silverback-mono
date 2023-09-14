@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cloudinary@1.4.0...@-amazeelabs/silverback_cloudinary@1.4.1) (2023-09-14)
+
+### Bug Fixes
+
+- handle null values
+  ([e06170e](https://github.com/AmazeeLabs/silverback-mono/commit/e06170ead0f478fbaa4552263e8dd649b47a0dc3))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cloudinary@1.3.1...@-amazeelabs/silverback_cloudinary@1.4.0) (2023-09-08)
 
 ### Features
