@@ -17,6 +17,8 @@ export type Options = {
   paginator_page_size?: number;
   // The prefix to use for all Gatsby node types. Defaults to "Drupal".
   type_prefix?: string;
+  // Path to a graphql schema file.
+  schema_path?: string;
 };
 
 export const validOptions = (options: {

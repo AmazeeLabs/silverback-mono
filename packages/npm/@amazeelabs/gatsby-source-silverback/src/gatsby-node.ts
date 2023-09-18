@@ -14,13 +14,13 @@ import {
 } from 'gatsby-graphql-source-toolkit';
 import { INodeDeleteEvent } from 'gatsby-graphql-source-toolkit/dist/types';
 
-import { createPages as createGatsbyPages } from './helpers/create-pages';
-import { createQueryExecutor } from './helpers/create-query-executor';
-import { createSourcingConfig } from './helpers/create-sourcing-config';
-import { createTranslationQueryField } from './helpers/create-translation-query-field';
-import { drupalFeeds } from './helpers/drupal-feeds';
-import { fetchNodeChanges } from './helpers/fetch-node-changes';
-import { Options, typePrefix, validOptions } from './utils';
+import { createPages as createGatsbyPages } from './helpers/create-pages.js';
+import { createQueryExecutor } from './helpers/create-query-executor.js';
+import { createSourcingConfig } from './helpers/create-sourcing-config.js';
+import { createTranslationQueryField } from './helpers/create-translation-query-field.js';
+import { drupalFeeds } from './helpers/drupal-feeds.js';
+import { fetchNodeChanges } from './helpers/fetch-node-changes.js';
+import { Options, typePrefix, validOptions } from './utils.js';
 
 export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   Joi,

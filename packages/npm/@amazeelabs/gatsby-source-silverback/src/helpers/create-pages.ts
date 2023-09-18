@@ -1,10 +1,11 @@
 import fs from 'fs';
 import { CreatePagesArgs, PluginOptions } from 'gatsby';
+import { resolve, dirname } from 'path';
 
-import { SilverbackPageContext } from '../../types';
-import { typePrefix, validOptions } from '../utils';
-import { createQueryExecutor } from './create-query-executor';
-import { drupalFeeds } from './drupal-feeds';
+import { SilverbackPageContext } from '../../types.js';
+import { typePrefix, validOptions } from '../utils.js';
+import { createQueryExecutor } from './create-query-executor.js';
+import { drupalFeeds } from './drupal-feeds.js';
 
 const createCampaignRedirects = async (
   args: CreatePagesArgs,
@@ -36,9 +37,7 @@ const createCampaignRedirects = async (
   `);
   if (!data) {
     console.error('errors', errors);
-    throw new Error(
-      `Cannot fetch campaign url fields from Gatsby.`,
-    );
+    throw new Error(`Cannot fetch campaign url fields from Gatsby.`);
   }
 
   data.list.nodes.forEach((node) => {
@@ -50,7 +49,7 @@ const createCampaignRedirects = async (
       statusCode: node.statusCode,
     });
   });
-}
+};
 
 export const createPages = async (
   args: CreatePagesArgs,
@@ -146,7 +145,7 @@ export const createPages = async (
       if (fs.existsSync(templatePath)) {
         args.actions.createPage({
           path,
-          component: require.resolve(templatePath),
+          component: resolve(templatePath),
           context,
         });
       } else {
@@ -155,7 +154,11 @@ export const createPages = async (
         );
         args.actions.createPage({
           path,
-          component: require.resolve(`${__dirname}/templates/stub.js`),
+          component: resolve(
+            `${dirname(
+              new URL(import.meta.url).pathname,
+            )}/../templates/stub.js`,
+          ),
           context: { ...context, expectedTemplatePath: templatePath },
         });
       }

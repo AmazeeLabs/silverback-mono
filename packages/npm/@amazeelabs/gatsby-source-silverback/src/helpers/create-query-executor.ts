@@ -1,13 +1,13 @@
 import { createHash } from 'crypto';
-import fetchBuilder from 'fetch-retry-ts';
+import fetchBuilder from 'fetch-retry';
 import { writeFileSync } from 'fs';
 import { wrapQueryExecutorWithQueue } from 'gatsby-graphql-source-toolkit';
 import { IQueryExecutor } from 'gatsby-graphql-source-toolkit/dist/types';
-import fetch, { RequestInit } from 'node-fetch';
+import fetch from 'isomorphic-fetch';
 import timeoutSignal from 'timeout-signal';
 import { inspect } from 'util';
 
-import { Options } from '../utils';
+import { Options } from '../utils.js';
 
 const fetchWithRetries = fetchBuilder(fetch);
 

@@ -12,9 +12,9 @@ import {
   ISourcingConfig,
 } from 'gatsby-graphql-source-toolkit/dist/types';
 
-import { Options, typePrefix } from '../utils';
-import { drupalFeeds as drupalFeedsFetcher } from './drupal-feeds';
-import { createLimitOffsetPaginationAdapter } from './pagination-adapter';
+import { Options, typePrefix } from '../utils.js';
+import { drupalFeeds as drupalFeedsFetcher } from './drupal-feeds.js';
+import { createLimitOffsetPaginationAdapter } from './pagination-adapter.js';
 
 type UntranslatableListResultItem = {
   remoteTypeName: string;
