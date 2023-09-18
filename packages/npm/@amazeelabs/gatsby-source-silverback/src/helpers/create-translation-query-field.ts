@@ -1,8 +1,8 @@
 import { CreateSchemaCustomizationArgs } from 'gatsby';
 import { IQueryExecutor } from 'gatsby-graphql-source-toolkit/dist/types';
 
-import { Options, typePrefix } from '../utils';
-import { drupalFeeds } from './drupal-feeds';
+import { Options, typePrefix } from '../utils.js';
+import { drupalFeeds } from './drupal-feeds.js';
 
 export const createTranslationQueryField = async (
   { actions, schema }: CreateSchemaCustomizationArgs,

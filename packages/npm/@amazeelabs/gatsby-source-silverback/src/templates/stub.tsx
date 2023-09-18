@@ -1,7 +1,7 @@
 import { PageProps } from 'gatsby';
 import React from 'react';
 
-import { SilverbackPageContext } from '../../types';
+import { SilverbackPageContext } from '../../types.js';
 
 const StubTemplate = ({
   pageContext: { remoteId, typeName, expectedTemplatePath },
