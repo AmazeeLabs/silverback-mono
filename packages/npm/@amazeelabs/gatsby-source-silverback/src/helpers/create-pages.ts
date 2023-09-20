@@ -2,7 +2,7 @@ import fs from 'fs';
 import { CreatePagesArgs, PluginOptions } from 'gatsby';
 import { resolve, dirname } from 'path';
 
-import { SilverbackPageContext } from '../../types.js';
+import { SilverbackPageContext } from '../types.js';
 import { typePrefix, validOptions } from '../utils.js';
 import { createQueryExecutor } from './create-query-executor.js';
 import { drupalFeeds } from './drupal-feeds.js';

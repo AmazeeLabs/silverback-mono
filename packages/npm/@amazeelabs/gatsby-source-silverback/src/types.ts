@@ -1,3 +1,5 @@
+import { GraphQLFieldResolver } from 'graphql';
+
 export type SilverbackPageContext = {
   typeName: string;
   id: string;
@@ -8,3 +10,6 @@ export type SilverbackPageContext = {
     locale: string;
   }>;
 };
+
+export type SilverbackResolver = GraphQLFieldResolver<any, any>;
+export type SilverbackSource<T = any> = () => Array<[string, T]>;
