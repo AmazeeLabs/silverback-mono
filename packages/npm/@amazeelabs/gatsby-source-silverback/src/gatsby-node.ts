@@ -210,6 +210,20 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       if (schema) {
         const parsed = parse(schema);
         args.actions.createTypes(cleanSchema(parsed));
+
+        // Create field extensions for all directives that could confuse Gatsby.
+        const directives = schema.matchAll(/ @[a-zA-Z][a-zA-Z0-9]*/gm);
+
+        const directiveNames = new Set<string>();
+        // "default" is a gatsby internal directive and should not be added again.
+        directiveNames.add('default');
+        for (const directive of directives) {
+          const name = directive[0].substring(2);
+          if (!directiveNames.has(name)) {
+            directiveNames.add(name);
+            args.actions.createFieldExtension({ name });
+          }
+        }
       } else {
         args.reporter.error(
           `Unable to load schema from "${options.schema_configuration}".`,
