@@ -13,6 +13,8 @@ import {
   sourceNodeChanges,
 } from 'gatsby-graphql-source-toolkit';
 import { INodeDeleteEvent } from 'gatsby-graphql-source-toolkit/dist/types';
+import { parse } from 'graphql';
+import { loadConfig } from 'graphql-config';
 
 import { createPages as createGatsbyPages } from './helpers/create-pages.js';
 import { createQueryExecutor } from './helpers/create-query-executor.js';
@@ -20,6 +22,9 @@ import { createSourcingConfig } from './helpers/create-sourcing-config.js';
 import { createTranslationQueryField } from './helpers/create-translation-query-field.js';
 import { drupalFeeds } from './helpers/drupal-feeds.js';
 import { fetchNodeChanges } from './helpers/fetch-node-changes.js';
+import {
+  cleanSchema,
+} from './helpers/schema.js';
 import { Options, typePrefix, validOptions } from './utils.js';
 
 export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
@@ -35,6 +40,7 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
     query_concurrency: Joi.number().optional().min(1),
     paginator_page_size: Joi.number().optional().min(2),
     type_prefix: Joi.string().allow('').optional(),
+    schema_configuration: Joi.string().optional(),
   });
 
 const getForwardedHeaders = (url: URL) => ({
@@ -153,11 +159,27 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       createQueryExecutor(options),
       options,
     );
+
     args.actions.createTypes(`
-    type Query {
-      drupalBuildId: Int!
+      type Query {
+        drupalBuildId: Int!
+      }
+    `);
+
+    if (options.schema_configuration) {
+      const config = await loadConfig({
+        rootDir: options.schema_configuration,
+      });
+      const schema = await config?.getDefault().getSchema('string');
+      if (schema) {
+        const parsed = parse(schema);
+        args.actions.createTypes(cleanSchema(parsed));
+      } else {
+        args.reporter.error(
+          `Unable to load schema from "${options.schema_configuration}".`,
+        );
+      }
     }
-  `);
   };
 
 export const createPages: GatsbyNode['createPages'] = async (args, options) => {
