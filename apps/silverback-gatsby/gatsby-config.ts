@@ -29,6 +29,7 @@ export const plugins = [
       drupal_url: process.env.DRUPAL_BASE_URL,
       graphql_path: process.env.DRUPAL_GRAPHQL_PATH,
       auth_key: process.env.DRUPAL_AUTH_KEY,
+      schema_configuration: './',
     },
   },
   {
@@ -39,7 +40,7 @@ export const plugins = [
         'DrupalGutenbergPage.anotherResponsiveImage',
         'DrupalArticle.responsiveImage',
       ],
-    }
+    },
   },
   ...(process.env.SCHEMA_UPDATE === 'true'
     ? ['gatsby-plugin-schema-export']
