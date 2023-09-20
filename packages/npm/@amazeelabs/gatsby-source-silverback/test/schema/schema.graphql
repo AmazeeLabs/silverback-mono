@@ -1,0 +1,28 @@
+scalar Email
+
+type Query {
+  allContacts: [Contact] @resolveBy(fn: "@amazeelabs/test-source#allContacts")
+  getPerson(id: ID!): Person @resolveBy(fn: "@amazeelabs/test-source#getPerson")
+}
+
+union Person = Customer | Employee
+
+interface Contact {
+  name: String!
+  email: Email!
+}
+
+type Customer implements Contact
+  @sourceFrom(fn: "@amazeelabs/test-source#sourceCustomers") {
+  id: ID!
+  name: String!
+  email: Email!
+}
+
+type Employee implements Contact
+  @sourceFrom(fn: "@amazeelabs/test-source#sourceEmployees") {
+  id: ID!
+  role: String!
+  name: String!
+  email: Email!
+}

@@ -1,0 +1,3 @@
+schema:
+  - ./directives.graphql
+  - ./test/schema/*.graphql
