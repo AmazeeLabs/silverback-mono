@@ -24,6 +24,8 @@ import { drupalFeeds } from './helpers/drupal-feeds.js';
 import { fetchNodeChanges } from './helpers/fetch-node-changes.js';
 import {
   cleanSchema,
+  executableDirective,
+  extractSourceMapping,
 } from './helpers/schema.js';
 import { Options, typePrefix, validOptions } from './utils.js';
 
@@ -141,6 +143,40 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
 
   gatsbyApi.reporter.info(`sourced data for build ${currentBuildId}`);
   await gatsbyApi.cache.set(`LAST_BUILD_ID_TMP`, currentBuildId);
+
+  if (options.schema_configuration) {
+    const config = await loadConfig({
+      rootDir: options.schema_configuration,
+    });
+    const schema = await config?.getDefault().getSchema('string');
+    if (schema) {
+      const parsed = parse(schema);
+
+      const sources = extractSourceMapping(parsed);
+      for (const type in sources) {
+        gatsbyApi.reporter.info(
+          `Sourcing "${type}" from "${sources[type].join('#')}".`,
+        );
+        (await executableDirective(...sources[type]))().forEach(
+          ([id, node]: [string, any]) => {
+            const nodeMeta = {
+              id,
+              parent: null,
+              children: [],
+              internal: {
+                type,
+                content: JSON.stringify(node),
+                contentDigest: gatsbyApi.createContentDigest(
+                  JSON.stringify(node),
+                ),
+              },
+            };
+            gatsbyApi.actions.createNode(Object.assign({}, node, nodeMeta));
+          },
+        );
+      }
+    }
+  }
 };
 
 export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] =
