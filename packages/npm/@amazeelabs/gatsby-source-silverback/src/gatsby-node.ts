@@ -26,6 +26,7 @@ import {
   cleanSchema,
   executableDirective,
   extractInterfaces,
+  extractResolverMapping,
   extractSourceMapping,
   extractUnions,
 } from './helpers/schema.js';
@@ -268,10 +269,10 @@ export const createPages: GatsbyNode['createPages'] = async (args, options) => {
   await args.cache.set('LAST_BUILD_ID', buildId);
 };
 
-export const createResolvers: GatsbyNode['createResolvers'] = async ({
-  createResolvers,
-  cache,
-}: CreateResolversArgs) => {
+export const createResolvers: GatsbyNode['createResolvers'] = async (
+  { createResolvers, cache, reporter }: CreateResolversArgs,
+  options,
+) => {
   createResolvers({
     Query: {
       drupalBuildId: {
@@ -281,6 +282,38 @@ export const createResolvers: GatsbyNode['createResolvers'] = async ({
       },
     },
   });
+
+  if (options.schema_configuration) {
+    const config = await loadConfig({
+      rootDir: options.schema_configuration as string,
+    });
+    const schema = await config?.getDefault().getSchema('string');
+    if (schema) {
+      const parsed = parse(schema);
+      const resolvers = extractResolverMapping(parsed);
+      for (const type in resolvers) {
+        for (const field in resolvers[type]) {
+          const exec = resolvers[type][field];
+          reporter.info(
+            `Registering resolver "${exec.join('#')}" to ${type}.${field}`,
+          );
+          createResolvers({
+            [type]: {
+              [field]: {
+                resolve: async (source: any, args: any, context: any) => {
+                  return (await executableDirective(...exec))(
+                    source,
+                    args,
+                    context,
+                  );
+                },
+              },
+            },
+          });
+        }
+      }
+    }
+  }
 };
 
 export const onPostBuild: GatsbyNode['onPostBuild'] = async (args) => {
