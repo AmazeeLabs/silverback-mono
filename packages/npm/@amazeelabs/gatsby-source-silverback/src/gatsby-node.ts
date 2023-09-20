@@ -25,7 +25,9 @@ import { fetchNodeChanges } from './helpers/fetch-node-changes.js';
 import {
   cleanSchema,
   executableDirective,
+  extractInterfaces,
   extractSourceMapping,
+  extractUnions,
 } from './helpers/schema.js';
 import { Options, typePrefix, validOptions } from './utils.js';
 
@@ -224,6 +226,33 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
             args.actions.createFieldExtension({ name });
           }
         }
+        args.actions.createTypes([
+          ...extractUnions(parsed).map((name) =>
+            args.schema.buildUnionType({
+              name,
+              resolveType: ({ __typename }) => __typename,
+            }),
+          ),
+          ...extractInterfaces(parsed).map((name) =>
+            args.schema.buildInterfaceType({
+              name,
+              interfaces: ['Node'],
+              resolveType: ({ __typename }) => __typename,
+              fields: {
+                id: 'ID!',
+              },
+            }),
+          ),
+          ...Object.keys(extractSourceMapping(parsed)).map((name) =>
+            args.schema.buildObjectType({
+              name,
+              interfaces: ['Node'],
+              fields: {
+                id: 'ID!',
+              },
+            }),
+          ),
+        ]);
       } else {
         args.reporter.error(
           `Unable to load schema from "${options.schema_configuration}".`,
