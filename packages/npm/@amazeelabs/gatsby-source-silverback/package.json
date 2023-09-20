@@ -2,7 +2,8 @@
   "name": "@amazeelabs/gatsby-source-silverback",
   "version": "1.10.9",
   "description": "Source data from a Silverback GraphQL schema.",
-  "types": "types.d.ts",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "author": "Amazee Labs <development@amazeelabs.com>",
   "license": "MIT",
   "private": false,
@@ -24,7 +25,7 @@
     "vitest": "0.34.4"
   },
   "scripts": {
-    "build": "tsc",
+    "prepare": "tsc",
     "test:static": "tsc --noEmit && eslint \"src/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "vitest --run --passWithNoTests"
   },
