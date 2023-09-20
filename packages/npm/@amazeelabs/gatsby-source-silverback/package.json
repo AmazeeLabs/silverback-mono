@@ -14,6 +14,7 @@
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.43",
     "@amazeelabs/prettier-config": "1.1.3",
+    "@amazeelabs/test-source": "workspace:*",
     "@rollup/plugin-node-resolve": "15.1.0",
     "@types/isomorphic-fetch": "0.0.36",
     "@types/react": "18.2.12",
@@ -32,6 +33,8 @@
   "dependencies": {
     "fetch-retry": "^5.0.6",
     "gatsby-graphql-source-toolkit": "^2.0.4",
+    "graphql": "16.6.0",
+    "graphql-config": "5.0.2",
     "isomorphic-fetch": "3.0.0",
     "node-fetch": "^3.3.1",
     "timeout-signal": "^2.0.0"
