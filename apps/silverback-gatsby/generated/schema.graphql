@@ -1,3 +1,7 @@
+directive @sourceFrom on FIELD_DEFINITION
+
+directive @resolveBy on FIELD_DEFINITION
+
 """Add date formatting options."""
 directive @dateformat(formatString: String, locale: String, fromNow: Boolean, difference: String) on FIELD_DEFINITION
 
@@ -529,7 +533,7 @@ type DrupalPage implements Node {
   path: String!
   title: String!
   body: String
-  paragraphs: [DrupalPageParagraphs!]
+  paragraphs: [DrupalPageParagraphs]!
   _original_typename: String!
   drupalId: String!
   defaultTranslation: Boolean!
@@ -557,7 +561,7 @@ type DrupalParagraphText {
 }
 
 type DrupalParagraphReferences {
-  references: [DrupalArticle!]
+  references: [DrupalArticle]!
   singleReference: DrupalGutenbergPage
   _original_typename: String!
 }
@@ -570,7 +574,7 @@ type DrupalArticle implements Node {
   title: String!
   body: String
   responsiveImage(width: Int, height: Int, sizes: [[Int!]!], transform: String): JSON
-  tags: [DrupalTag!]
+  tags: [DrupalTag]!
   image: DrupalImage
   template: String
   _original_typename: String!
@@ -599,7 +603,7 @@ type DrupalGutenbergPage implements Node {
   path: String!
   title: String!
   anotherResponsiveImage(width: Int, height: Int, sizes: [[Int!]!], transform: String): JSON
-  body: [DrupalRootBlock!]
+  body: [DrupalRootBlock]!
   _original_typename: String!
   drupalId: String!
   defaultTranslation: Boolean!
@@ -614,7 +618,7 @@ type DrupalGutenbergPage implements Node {
 union DrupalRootBlock = DrupalBlockTwoColumns | DrupalBlockHtmlList | DrupalBlockHtmlParagraph | DrupalBlockHtmlQuote | DrupalBlockImage | DrupalBlockTeaser
 
 type DrupalBlockTwoColumns {
-  children: [DrupalBlockColumn!]
+  children: [DrupalBlockColumn]!
   _original_typename: String!
 }
 
@@ -649,7 +653,7 @@ type DrupalBlockTeaser {
 
 type DrupalBlockColumn {
   remoteTypeName: String!
-  children: [DrupalContentBlock!]
+  children: [DrupalContentBlock]!
   _original_typename: String!
 }
 
@@ -673,7 +677,7 @@ type DrupalMainMenu implements Node {
   remoteTypeName: String!
   translations: [DrupalMainMenu!]!
   remoteId: String!
-  items: [DrupalMenuItem!]
+  items: [DrupalMenuItem]!
   _original_typename: String!
   drupalId: String!
   defaultTranslation: Boolean!
@@ -698,7 +702,7 @@ type DrupalFirstLevelMainMenu implements Node {
   remoteTypeName: String!
   translations: [DrupalFirstLevelMainMenu!]!
   remoteId: String!
-  items: [DrupalMenuItem!]
+  items: [DrupalMenuItem]!
   _original_typename: String!
   drupalId: String!
   defaultTranslation: Boolean!
@@ -749,6 +753,8 @@ type DrupalCampaignUrl implements Node {
 
 type Query {
   drupalBuildId: Int!
+  allContacts: [Contact]
+  getPerson(id: ID!): Person
   file(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, url: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, childrenImageSharp: ImageSharpFilterListInput, childImageSharp: ImageSharpFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): File
   allFile(filter: FileFilterInput, sort: [FileSortInput], skip: Int, limit: Int): FileConnection!
   directory(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Directory
@@ -783,6 +789,12 @@ type Query {
   allDrupalGatsbyStringTranslation(filter: DrupalGatsbyStringTranslationFilterInput, sort: [DrupalGatsbyStringTranslationSortInput], skip: Int, limit: Int): DrupalGatsbyStringTranslationConnection!
   drupalCampaignUrl(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, source: StringQueryOperatorInput, destination: StringQueryOperatorInput, statusCode: IntQueryOperatorInput, force: BooleanQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalCampaignUrl
   allDrupalCampaignUrl(filter: DrupalCampaignUrlFilterInput, sort: [DrupalCampaignUrlSortInput], skip: Int, limit: Int): DrupalCampaignUrlConnection!
+  contact(name: StringQueryOperatorInput, email: EmailQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Contact
+  allContact(filter: ContactFilterInput, sort: [ContactSortInput], skip: Int, limit: Int): ContactConnection!
+  customer(id: StringQueryOperatorInput, name: StringQueryOperatorInput, email: EmailQueryOperatorInput, _xtypename: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Customer
+  allCustomer(filter: CustomerFilterInput, sort: [CustomerSortInput], skip: Int, limit: Int): CustomerConnection!
+  employee(id: StringQueryOperatorInput, role: StringQueryOperatorInput, name: StringQueryOperatorInput, email: EmailQueryOperatorInput, _xtypename: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Employee
+  allEmployee(filter: EmployeeFilterInput, sort: [EmployeeSortInput], skip: Int, limit: Int): EmployeeConnection!
   imagesFromHtml(urlOriginal: StringQueryOperatorInput, urlAbsolute: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImagesFromHtml
   allImagesFromHtml(filter: ImagesFromHtmlFilterInput, sort: [ImagesFromHtmlSortInput], skip: Int, limit: Int): ImagesFromHtmlConnection!
   imageSharp(fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: GatsbyImageDataQueryOperatorInput, original: ImageSharpOriginalFilterInput, resize: ImageSharpResizeFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImageSharp
@@ -2727,6 +2739,199 @@ input DrupalCampaignUrlSortInput {
   internal: InternalSortInput
 }
 
+input EmailQueryOperatorInput {
+  eq: Email
+  ne: Email
+  in: [Email]
+  nin: [Email]
+}
+
+type ContactConnection {
+  totalCount: Int!
+  edges: [ContactEdge!]!
+  nodes: [Contact!]!
+  pageInfo: PageInfo!
+  distinct(field: ContactFieldSelector!): [String!]!
+  max(field: ContactFieldSelector!): Float
+  min(field: ContactFieldSelector!): Float
+  sum(field: ContactFieldSelector!): Float
+  group(skip: Int, limit: Int, field: ContactFieldSelector!): [ContactGroupConnection!]!
+}
+
+type ContactEdge {
+  next: Contact
+  node: Contact!
+  previous: Contact
+}
+
+input ContactFieldSelector {
+  name: FieldSelectorEnum
+  email: FieldSelectorEnum
+  id: FieldSelectorEnum
+  parent: NodeFieldSelector
+  children: NodeFieldSelector
+  internal: InternalFieldSelector
+}
+
+type ContactGroupConnection {
+  totalCount: Int!
+  edges: [ContactEdge!]!
+  nodes: [Contact!]!
+  pageInfo: PageInfo!
+  distinct(field: ContactFieldSelector!): [String!]!
+  max(field: ContactFieldSelector!): Float
+  min(field: ContactFieldSelector!): Float
+  sum(field: ContactFieldSelector!): Float
+  group(skip: Int, limit: Int, field: ContactFieldSelector!): [ContactGroupConnection!]!
+  field: String!
+  fieldValue: String
+}
+
+input ContactFilterInput {
+  name: StringQueryOperatorInput
+  email: EmailQueryOperatorInput
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+input ContactSortInput {
+  name: SortOrderEnum
+  email: SortOrderEnum
+  id: SortOrderEnum
+  parent: NodeSortInput
+  children: NodeSortInput
+  internal: InternalSortInput
+}
+
+type CustomerConnection {
+  totalCount: Int!
+  edges: [CustomerEdge!]!
+  nodes: [Customer!]!
+  pageInfo: PageInfo!
+  distinct(field: CustomerFieldSelector!): [String!]!
+  max(field: CustomerFieldSelector!): Float
+  min(field: CustomerFieldSelector!): Float
+  sum(field: CustomerFieldSelector!): Float
+  group(skip: Int, limit: Int, field: CustomerFieldSelector!): [CustomerGroupConnection!]!
+}
+
+type CustomerEdge {
+  next: Customer
+  node: Customer!
+  previous: Customer
+}
+
+input CustomerFieldSelector {
+  id: FieldSelectorEnum
+  name: FieldSelectorEnum
+  email: FieldSelectorEnum
+  _xtypename: FieldSelectorEnum
+  parent: NodeFieldSelector
+  children: NodeFieldSelector
+  internal: InternalFieldSelector
+}
+
+type CustomerGroupConnection {
+  totalCount: Int!
+  edges: [CustomerEdge!]!
+  nodes: [Customer!]!
+  pageInfo: PageInfo!
+  distinct(field: CustomerFieldSelector!): [String!]!
+  max(field: CustomerFieldSelector!): Float
+  min(field: CustomerFieldSelector!): Float
+  sum(field: CustomerFieldSelector!): Float
+  group(skip: Int, limit: Int, field: CustomerFieldSelector!): [CustomerGroupConnection!]!
+  field: String!
+  fieldValue: String
+}
+
+input CustomerFilterInput {
+  id: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+  email: EmailQueryOperatorInput
+  _xtypename: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+input CustomerSortInput {
+  id: SortOrderEnum
+  name: SortOrderEnum
+  email: SortOrderEnum
+  _xtypename: SortOrderEnum
+  parent: NodeSortInput
+  children: NodeSortInput
+  internal: InternalSortInput
+}
+
+type EmployeeConnection {
+  totalCount: Int!
+  edges: [EmployeeEdge!]!
+  nodes: [Employee!]!
+  pageInfo: PageInfo!
+  distinct(field: EmployeeFieldSelector!): [String!]!
+  max(field: EmployeeFieldSelector!): Float
+  min(field: EmployeeFieldSelector!): Float
+  sum(field: EmployeeFieldSelector!): Float
+  group(skip: Int, limit: Int, field: EmployeeFieldSelector!): [EmployeeGroupConnection!]!
+}
+
+type EmployeeEdge {
+  next: Employee
+  node: Employee!
+  previous: Employee
+}
+
+input EmployeeFieldSelector {
+  id: FieldSelectorEnum
+  role: FieldSelectorEnum
+  name: FieldSelectorEnum
+  email: FieldSelectorEnum
+  _xtypename: FieldSelectorEnum
+  parent: NodeFieldSelector
+  children: NodeFieldSelector
+  internal: InternalFieldSelector
+}
+
+type EmployeeGroupConnection {
+  totalCount: Int!
+  edges: [EmployeeEdge!]!
+  nodes: [Employee!]!
+  pageInfo: PageInfo!
+  distinct(field: EmployeeFieldSelector!): [String!]!
+  max(field: EmployeeFieldSelector!): Float
+  min(field: EmployeeFieldSelector!): Float
+  sum(field: EmployeeFieldSelector!): Float
+  group(skip: Int, limit: Int, field: EmployeeFieldSelector!): [EmployeeGroupConnection!]!
+  field: String!
+  fieldValue: String
+}
+
+input EmployeeFilterInput {
+  id: StringQueryOperatorInput
+  role: StringQueryOperatorInput
+  name: StringQueryOperatorInput
+  email: EmailQueryOperatorInput
+  _xtypename: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+input EmployeeSortInput {
+  id: SortOrderEnum
+  role: SortOrderEnum
+  name: SortOrderEnum
+  email: SortOrderEnum
+  _xtypename: SortOrderEnum
+  parent: NodeSortInput
+  children: NodeSortInput
+  internal: InternalSortInput
+}
+
 type ImagesFromHtmlConnection {
   totalCount: Int!
   edges: [ImagesFromHtmlEdge!]!
@@ -2789,6 +2994,40 @@ type ImageSharpGroupConnection {
   group(skip: Int, limit: Int, field: ImageSharpFieldSelector!): [ImageSharpGroupConnection!]!
   field: String!
   fieldValue: String
+}
+
+scalar Email
+
+union Person = Customer | Employee
+
+interface Contact implements Node {
+  name: String!
+  email: Email!
+  id: ID!
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+}
+
+type Customer implements Contact & Node {
+  id: ID!
+  name: String!
+  email: Email!
+  _xtypename: String
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
+}
+
+type Employee implements Contact & Node {
+  id: ID!
+  role: String!
+  name: String!
+  email: Email!
+  _xtypename: String
+  parent: Node
+  children: [Node!]!
+  internal: Internal!
 }
 
 type ImagesFromHtml implements Node {
