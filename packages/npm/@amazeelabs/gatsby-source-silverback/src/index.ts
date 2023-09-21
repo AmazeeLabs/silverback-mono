@@ -1,1 +1,5 @@
-export type { SilverbackPageContext, SilverbackResolver } from './types.js';
+export type {
+  SilverbackPageContext,
+  SilverbackResolver,
+  SilverbackSource,
+} from './types.js';

@@ -1,5 +1,7 @@
-import type { SilverbackResolver } from '@amazeelabs/gatsby-source-silverback';
-import { SilverbackSource } from '@amazeelabs/gatsby-source-silverback/build/types.js';
+import type {
+  SilverbackResolver,
+  SilverbackSource,
+} from '@amazeelabs/gatsby-source-silverback';
 
 type Contact = {
   name: string;
