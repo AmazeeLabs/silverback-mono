@@ -103,6 +103,50 @@ type Post @entity(type: "node", bundle: "blog") {
 If the template file does not exist, the stub template will be used, and a
 warning message will be logged.
 
+## Sourcing data using directives
+
+By using directives, it is also possible to source data from external sources.
+Any GraphQL type can be annotated with the `@sourceFrom` directive, which has a
+single `fn` argument. The value of this function is a `package#function`
+identifier that will be loaded and executed during the sourcing phase. The
+function has to return a list of `id`/`value` tuples.
+
+The Graphql schema:
+
+```graphql
+type Employee @sourceFrom(fn: "@custom/cms#sourceEmployees") {
+  name: String!
+}
+```
+
+The source function:
+
+```typescript
+export function sourceEmployees() {
+  return [
+    ['john', { name: 'John Doe' }],
+    ['jane', { name: 'Jane Doe' }],
+  ];
+}
+```
+
+## Applying resolvers using directives
+
+Resolvers can be applied with directives as well. Simply add them to the
+respective field. Any unknown directives are simply ignores.
+
+### Available directives
+
+#### `@resolveBy`
+
+Loads a javascript function from a package and executes it to resolve the field.
+
+```graphql
+type Employee {
+  role @resolveBy(fn: "@custom/cms#resolveRole"): String!
+}
+```
+
 ## Build-ID's
 
 The [silverback gatsby] module keeps track of content updates sent to Gatsby
