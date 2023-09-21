@@ -6,6 +6,7 @@ import {
   ImageSet,
   renderHtml,
 } from '../../plugins/gatsby-plugin-images-from-html/render-html';
+import { isDefined } from '../util/is-defined';
 import { Row } from '../util/Row';
 
 const IndexPage: React.FC<PageProps> = () => {
@@ -146,7 +147,12 @@ const IndexPage: React.FC<PageProps> = () => {
               </Row>
               <Row>{translation.langcode}</Row>
               <Row>{translation.path}</Row>
-              <Row>{translation.tags?.map((tag) => tag.title).join(', ')}</Row>
+              <Row>
+                {translation.tags
+                  ?.filter(isDefined)
+                  .map((tag) => tag.title)
+                  .join(', ')}
+              </Row>
             </tr>
           )),
         )}
