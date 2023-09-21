@@ -1,6 +1,6 @@
 {
   "name": "@-amazeelabs/silverback_gatsby",
-  "version": "2.3.7",
+  "version": "2.3.8",
   "main": "index.js",
   "scripts": {
     "version": "sync-composer-version",
