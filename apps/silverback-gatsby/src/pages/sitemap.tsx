@@ -1,6 +1,8 @@
 import { graphql, Link, PageProps } from 'gatsby';
 import React from 'react';
 
+import { isDefined } from '../util/is-defined';
+
 export const query = graphql`
   query Sitemap {
     drupalMainMenu(langcode: { eq: "en" }) {
@@ -51,7 +53,9 @@ const Sitemap: React.FC<PageProps<SitemapQuery>> = ({ data }) => (
   <div>
     <h1>Sitemap</h1>
     {data.drupalMainMenu && (
-      <RenderTree items={buildTree(data.drupalMainMenu.items || [])} />
+      <RenderTree
+        items={buildTree(data.drupalMainMenu.items.filter(isDefined) || [])}
+      />
     )}
   </div>
 );

@@ -11,6 +11,7 @@ import {
 import { languages } from '../constants/languages';
 import { StandardLayout } from '../layouts/StandardLayout';
 import { LocationState } from '../types/LocationState';
+import { isDefined } from '../util/is-defined';
 import { ResponsiveImage } from '../util/ResponsiveImage';
 import { Row } from '../util/Row';
 
@@ -37,7 +38,12 @@ export const query = graphql`
           ...ImageSharpFixed
         }
       }
-      responsiveImage(width: 650, height: 320, sizes: [[220, 210], [550, 530]], transform: "bo_40px_solid_brown,co_rgb:20a020,e_colorize:50,o_10")
+      responsiveImage(
+        width: 650
+        height: 320
+        sizes: [[220, 210], [550, 530]]
+        transform: "bo_40px_solid_brown,co_rgb:20a020,e_colorize:50,o_10"
+      )
     }
   }
 `;
@@ -67,52 +73,45 @@ const Article: React.FC<
       <table>
         <tr>
           <Row>
-            {
-              intl.formatMessage({
-                defaultMessage: 'Title',
-                description: 'article title'
-              })
-            }
+            {intl.formatMessage({
+              defaultMessage: 'Title',
+              description: 'article title',
+            })}
           </Row>
           <Row>
-            {
-              intl.formatMessage({
-                defaultMessage: 'Tags',
-              })
-            }
+            {intl.formatMessage({
+              defaultMessage: 'Tags',
+            })}
           </Row>
           <Row>
-            {
-              intl.formatMessage({
-                defaultMessage: 'Body',
-              })
-            }
+            {intl.formatMessage({
+              defaultMessage: 'Body',
+            })}
           </Row>
           <Row>
-            {
-              intl.formatMessage({
-                defaultMessage: 'Image',
-              })
-            }
+            {intl.formatMessage({
+              defaultMessage: 'Image',
+            })}
           </Row>
           <Row>
-            {
-              intl.formatMessage({
-                defaultMessage: 'Responsive image',
-              })
-            }
+            {intl.formatMessage({
+              defaultMessage: 'Responsive image',
+            })}
           </Row>
           <Row>
-            {
-              intl.formatMessage({
-                defaultMessage: 'Other languages',
-              })
-            }
+            {intl.formatMessage({
+              defaultMessage: 'Other languages',
+            })}
           </Row>
         </tr>
         <tr>
           <Row>{article.title}</Row>
-          <Row>{article.tags?.map((tag) => tag.title).join(', ')}</Row>
+          <Row>
+            {article.tags
+              .filter(isDefined)
+              .map((tag) => tag.title)
+              .join(', ')}
+          </Row>
           <Row>
             <div className="html-from-drupal">
               {article.body && renderHtml(article.body, imageSets)}
@@ -127,7 +126,9 @@ const Article: React.FC<
             )}
           </td>
           <Row>
-            {article.responsiveImage && <ResponsiveImage responsiveImageData={article.responsiveImage} />}
+            {article.responsiveImage && (
+              <ResponsiveImage responsiveImageData={article.responsiveImage} />
+            )}
           </Row>
           <Row>
             <ul>

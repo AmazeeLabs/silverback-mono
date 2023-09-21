@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { isDefined } from '../../util/is-defined';
 import { UnreachableCaseError } from '../../util/types';
 import { BlockHtml } from './html';
 import { BlockImage } from './image';
@@ -9,9 +10,9 @@ export const BlockTwoColumns: React.FC<BlockTwoColumnsFragment> = ({
   children,
 }) => (
   <div className="columns flex">
-    {children?.map((column, index) => (
+    {children?.filter(isDefined).map((column, index) => (
       <div className="column w-1/2" key={index}>
-        {column.children?.map((block) => {
+        {column.children?.filter(isDefined).map((block) => {
           switch (block.__typename) {
             case 'DrupalBlockHtmlParagraph':
             case 'DrupalBlockHtmlList':
