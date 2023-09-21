@@ -165,5 +165,7 @@ abstract class EntityFeedTestBase extends GraphQLTestBase {
       'page',
       TRUE
     );
+
+    $this->container->get('silverback_gatsby.update_handler')->schemaCache = NULL;
   }
 }
