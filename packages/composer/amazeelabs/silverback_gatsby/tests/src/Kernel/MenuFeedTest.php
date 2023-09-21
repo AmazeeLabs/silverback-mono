@@ -49,6 +49,8 @@ class MenuFeedTest extends GraphQLTestBase {
       'id' => 'access_denied',
       'label' => 'Access denied',
     ])->save();
+
+    $this->container->get('silverback_gatsby.update_handler')->schemaCache = NULL;
   }
 
   protected function createMenuItem(string $label, string $url, MenuLinkContentInterface $parent = null, $menu = 'main') : MenuLinkContentInterface {

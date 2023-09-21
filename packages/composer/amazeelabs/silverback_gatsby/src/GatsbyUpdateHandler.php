@@ -16,6 +16,17 @@ use Drupal\user\Entity\User;
  */
 class GatsbyUpdateHandler {
 
+  /**
+   * @var array<array{
+   *    account: \Drupal\user\UserInterface,
+   *    feeds: array<\Drupal\silverback_gatsby\Plugin\FeedInterface>,
+   *    serverId: string,
+   *    trigger: bool
+   *  }>|null
+   * @internal
+   */
+  public ?array $schemaCache = NULL;
+
   protected EntityTypeManagerInterface $entityTypeManager;
   protected GatsbyUpdateTrackerInterface $gatsbyUpdateTracker;
   protected GatsbyUpdateTriggerInterface $gatsbyUpdateTrigger;
@@ -44,6 +55,51 @@ class GatsbyUpdateHandler {
    * @throws \GraphQL\Error\SyntaxError
    */
   public function handle(string $feedClassName, $context) {
+    foreach ($this->getSchemas() as $schema) {
+      foreach ($schema['feeds'] as $feed) {
+        if (
+          $feed instanceof $feedClassName
+        ) {
+          // Updates for the actual build. They should respect access
+          // permissions of the configured account.
+          if ($updates = $feed->investigateUpdate($context, $schema['account'])) {
+            foreach ($updates as $update) {
+              $this->gatsbyUpdateTracker->track(
+                $schema['serverId'],
+                $update->type,
+                $update->id,
+                $schema['trigger'],
+              );
+            }
+          }
+          // Preview change notifications should always go through.
+          if ($changes = $feed->investigateUpdate($context, null)) {
+            foreach ($changes as $change) {
+              $this->gatsbyUpdateTrigger->trigger(
+                $schema['serverId'],
+                $change
+              );
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /**
+   * @return array<array{
+   *   account: \Drupal\user\UserInterface,
+   *   feeds: array<\Drupal\silverback_gatsby\Plugin\FeedInterface>,
+   *   serverId: string,
+   *   trigger: bool
+   * }>|null
+   */
+  protected function getSchemas(): array {
+    if ($this->schemaCache !== NULL) {
+      return $this->schemaCache;
+    }
+    $this->schemaCache = [];
+
     /** @var \Drupal\graphql\Entity\ServerInterface[] $servers */
     $servers = $this->entityTypeManager
       ->getStorage('graphql_server')
@@ -61,6 +117,16 @@ class GatsbyUpdateHandler {
         }
         $schema->setConfiguration($config[$schema_id] ?? []);
 
+        /**
+         * @var array{
+         *   account: \Drupal\user\UserInterface,
+         *   feeds: array<\Drupal\silverback_gatsby\Plugin\FeedInterface>,
+         *   serverId: string,
+         *   trigger: bool
+         * } $item
+         * */
+        $item = [];
+
         if ($config[$schema_id]['user'] ?? NULL) {
           $accounts = $this->entityTypeManager->getStorage('user')->loadByProperties(['uuid' => $config[$schema_id]['user']]);
           $account = reset($accounts);
@@ -72,7 +138,7 @@ class GatsbyUpdateHandler {
                 'server' => $server->id(),
               ]);
             }
-            return;
+            return $this->schemaCache;
           }
         }
         else {
@@ -83,47 +149,33 @@ class GatsbyUpdateHandler {
             $account->addRole($config[$schema_id]['role']);
           }
         }
+        $item['account'] = $account;
+
+        $item['serverId'] = $server->id();
 
         // If the configuration is not set, assume TRUE.
         $trigger = TRUE;
         if (array_key_exists('build_trigger_on_save', $config[$schema_id])) {
           $trigger = $config[$schema_id]['build_trigger_on_save'] === 1;
         }
+        $item['trigger'] = $trigger;
+
+        $item['feeds'] = [];
         $extensions = $schema->getExtensions();
         $ast = $schema->getSchemaDocument($extensions);
         foreach ($extensions as $extension) {
           if ($extension instanceof SilverbackGatsbySchemaExtension) {
             foreach ($extension->getFeeds($ast) as $feed) {
-              if (
-                $feed instanceof $feedClassName
-              ) {
-                // Updates for the actual build. They should respect access
-                // permissions of the configured account.
-                if ($updates = $feed->investigateUpdate($context, $account)) {
-                  foreach ($updates as $update) {
-                    $this->gatsbyUpdateTracker->track(
-                      $server->id(),
-                      $update->type,
-                      $update->id,
-                      $trigger
-                    );
-                  }
-                }
-                // Preview change notifications should always go through.
-                if ($changes = $feed->investigateUpdate($context, null)) {
-                  foreach ($changes as $change) {
-                    $this->gatsbyUpdateTrigger->trigger(
-                      $server->id(),
-                      $change
-                    );
-                  }
-                }
-              }
+              $item['feeds'][] = $feed;
             }
           }
         }
+
+        $this->schemaCache[] = $item;
       }
     }
+
+    return $this->schemaCache;
   }
 
 }
