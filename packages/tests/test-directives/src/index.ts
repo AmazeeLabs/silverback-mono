@@ -1,6 +1,7 @@
 import type {
   SilverbackResolver,
   SilverbackSource,
+  registerDirective,
 } from '@amazeelabs/gatsby-source-silverback';
 
 type Contact = {
@@ -18,6 +19,11 @@ type Customer = {
   __typename: 'Customer';
   id: string;
 } & Contact;
+
+export function directives(register: registerDirective) {
+  register('echo', ({ msg }: { msg: string }) => msg);
+}
+
 export const sourceEmployees: SilverbackSource<Employee> = () => {
   return [
     [

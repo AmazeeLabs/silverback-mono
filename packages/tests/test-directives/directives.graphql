@@ -1,0 +1,1 @@
+directive @echo(msg: String!) repeatable on FIELD_DEFINITION
