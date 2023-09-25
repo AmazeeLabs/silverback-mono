@@ -18,7 +18,6 @@ type Customer = {
   __typename: 'Customer';
   id: string;
 } & Contact;
-
 export const sourceEmployees: SilverbackSource<Employee> = () => {
   return [
     [

@@ -14,7 +14,7 @@
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.43",
     "@amazeelabs/prettier-config": "1.1.3",
-    "@amazeelabs/test-source": "workspace:*",
+    "@amazeelabs/test-directives": "workspace:*",
     "@rollup/plugin-node-resolve": "15.1.0",
     "@types/isomorphic-fetch": "0.0.36",
     "@types/react": "18.2.12",
