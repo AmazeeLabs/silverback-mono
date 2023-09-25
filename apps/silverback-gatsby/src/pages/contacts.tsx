@@ -3,6 +3,9 @@ import React from 'react';
 
 export const query = graphql`
   query ContactList {
+    value
+    parent
+    argument(msg: "argument value")
     allContacts {
       __typename
       name
@@ -14,6 +17,9 @@ export const query = graphql`
 export default function Contacts(props: PageProps<ContactListQuery>) {
   return (
     <div>
+      <p>Schema value: {props.data.value}</p>
+      <p>Parent value: {props.data.parent}</p>
+      <p>Argument value: {props.data.argument}</p>
       <h1>Contacts</h1>
       <table>
         <th>
