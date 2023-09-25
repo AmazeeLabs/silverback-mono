@@ -1,0 +1,35 @@
+# Schema overrides to test attaching the @responsiveImage directive.
+scalar ResponsiveImage
+
+# Patch Gatsby types that are created by gatsby-graphql-source-toolkit.
+# In a project that is purely based on a fixed schema, this is not
+# necessary. This is just done to reuse the existing test cases.
+type DrupalGutenbergPage {
+  anotherResponsiveImage(
+    width: Int
+    height: Int
+    sizes: [[Int!]!]
+    transform: String
+  ): ResponsiveImage
+    @responsiveImage(
+      width: "$width"
+      height: "$height"
+      sizes: "$sizes"
+      transform: "$transform"
+    )
+}
+
+type DrupalArticle {
+  responsiveImage(
+    width: Int
+    height: Int
+    sizes: [[Int!]!]
+    transform: String
+  ): ResponsiveImage
+    @responsiveImage(
+      width: "$width"
+      height: "$height"
+      sizes: "$sizes"
+      transform: "$transform"
+    )
+}
