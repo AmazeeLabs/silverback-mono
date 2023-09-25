@@ -21,7 +21,7 @@ type Customer = {
 } & Contact;
 
 export function directives(register: registerDirective) {
-  register('echo', ({ msg }: { msg: string }) => msg);
+  register('echo', (_: any, { msg }: { msg: string }) => msg);
 }
 
 export const sourceEmployees: SilverbackSource<Employee> = () => {

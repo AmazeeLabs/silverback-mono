@@ -135,11 +135,11 @@ describe('executeResolver', () => {
       'value from schema',
     );
   });
-  it('passes through the parent value', async () => {
+  it('passes through the respective property of the parent value', async () => {
     const resolver = await buildResolver([['echo', { msg: '$' }]]);
-    expect(resolver('parent value', {}, undefined, null as any)).toEqual(
-      'parent value',
-    );
+    expect(
+      resolver({ p: 'parent value' }, {}, undefined, { fieldName: 'p' } as any),
+    ).toEqual('parent value');
   });
   it('passes through arguments', async () => {
     const resolver = await buildResolver([['echo', { msg: '$msg' }]]);
