@@ -30,6 +30,7 @@ export const plugins = [
       graphql_path: process.env.DRUPAL_GRAPHQL_PATH,
       auth_key: process.env.DRUPAL_AUTH_KEY,
       schema_configuration: './',
+      directive_providers: ['@amazeelabs/test-directives#directives'],
     },
   },
   {
