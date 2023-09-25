@@ -4,6 +4,7 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
+import { directives as cloudinaryDirectives } from '@amazeelabs/gatsby-silverback-cloudinary';
 import { directives as testDirectives } from '@amazeelabs/test-directives';
 import { config as dotenvConfig } from 'dotenv';
 
@@ -31,17 +32,19 @@ export const plugins = [
       graphql_path: process.env.DRUPAL_GRAPHQL_PATH,
       auth_key: process.env.DRUPAL_AUTH_KEY,
       schema_configuration: './',
-      directive_providers: [testDirectives],
+      directive_providers: [cloudinaryDirectives, testDirectives],
     },
   },
   {
     resolve: '@amazeelabs/gatsby-silverback-cloudinary',
     options: {
-      responsiveImageResultType: 'ResponsiveImage',
-      responsiveImageFields: [
-        'DrupalGutenbergPage.anotherResponsiveImage',
-        'DrupalArticle.responsiveImage',
-      ],
+      // Use a non existent type here so to ensure resolvers are
+      // are applied through the @responsiveImage directive.
+      responsiveImageResultType: 'IDontExist',
+      // responsiveImageFields: [
+      //   'DrupalGutenbergPage.anotherResponsiveImage',
+      //   'DrupalArticle.responsiveImage',
+      // ],
     },
   },
   ...(process.env.SCHEMA_UPDATE === 'true'
