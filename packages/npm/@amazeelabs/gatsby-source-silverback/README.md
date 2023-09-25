@@ -147,6 +147,46 @@ type Employee {
 }
 ```
 
+### Custom directives
+
+Other packages can provide directives to be plugged into the schema.
+
+These packages should have a `directives.graphql` file at their root and provide
+a function that calls a `registerDirective` callback that will be passed in. In
+`gatsby-config.mjs` (_note:_ it has to be ESM), load that function and pass it
+into the `directive_providers` configuration option of this Gatsby plugin.
+
+Example:
+
+```graphql
+# [my-package]/directives.graphql
+directive @echo(msg: String!) repeatable on FIELD_DEFINITION
+```
+
+```typescript
+//[my-package]/src/index.ts
+import type { registerDirective } from '@amazeelabs/gatsby-source-silverback';
+
+export function directives(register: registerDirective) {
+  register('echo', ({ msg }: { msg: string }) => msg);
+}
+```
+
+```javascript
+// gatsby-config.mjs
+import { directives } from '@amazeelabs/test-directives';
+
+export const plugins = [
+  {
+    resolve: '@amazeelabs/gatsby-source-silverback',
+    options: {
+      schema_configuration: './',
+      directive_providers: [directives],
+    },
+  },
+];
+```
+
 ## Build-ID's
 
 The [silverback gatsby] module keeps track of content updates sent to Gatsby
