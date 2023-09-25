@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "@amazeelabs/cloudinary-responsive-image": "workspace:*",
+    "@amazeelabs/gatsby-source-silverback": "workspace:*",
     "@amazeelabs/eslint-config": "1.4.43",
     "@amazeelabs/prettier-config": "1.1.3",
     "@types/node": "16.18.36",
