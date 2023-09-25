@@ -1,6 +1,6 @@
 import fs from 'fs';
 import { CreatePagesArgs, PluginOptions } from 'gatsby';
-import { resolve, dirname } from 'path';
+import { dirname, resolve } from 'path';
 
 import { SilverbackPageContext } from '../types.js';
 import { typePrefix, validOptions } from '../utils.js';
