@@ -13,7 +13,7 @@ import {
   sourceNodeChanges,
 } from 'gatsby-graphql-source-toolkit';
 import { INodeDeleteEvent } from 'gatsby-graphql-source-toolkit/dist/types';
-import { parse } from 'graphql';
+import { buildSchema } from 'graphql';
 import { loadConfig } from 'graphql-config';
 
 import { createPages as createGatsbyPages } from './helpers/create-pages.js';
@@ -23,12 +23,14 @@ import { createTranslationQueryField } from './helpers/create-translation-query-
 import { drupalFeeds } from './helpers/drupal-feeds.js';
 import { fetchNodeChanges } from './helpers/fetch-node-changes.js';
 import {
+  buildResolver,
   cleanSchema,
-  executableDirective,
   extractInterfaces,
   extractResolverMapping,
   extractSourceMapping,
   extractUnions,
+  loadFunction,
+  registerDirectiveImplementation,
 } from './helpers/schema.js';
 import { Options, typePrefix, validOptions } from './utils.js';
 
@@ -46,6 +48,7 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
     paginator_page_size: Joi.number().optional().min(2),
     type_prefix: Joi.string().allow('').optional(),
     schema_configuration: Joi.string().optional(),
+    directive_providers: Joi.array().items(Joi.string()).optional(),
   });
 
 const getForwardedHeaders = (url: URL) => ({
@@ -151,16 +154,14 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
     const config = await loadConfig({
       rootDir: options.schema_configuration,
     });
-    const schema = await config?.getDefault().getSchema('string');
-    if (schema) {
-      const parsed = parse(schema);
+    const schemaSource = await config?.getDefault().getSchema('string');
+    if (schemaSource) {
+      const schema = buildSchema(schemaSource);
 
-      const sources = extractSourceMapping(parsed);
+      const sources = extractSourceMapping(schema);
       for (const type in sources) {
-        gatsbyApi.reporter.info(
-          `Sourcing "${type}" from "${sources[type].join('#')}".`,
-        );
-        (await executableDirective(...sources[type]))().forEach(
+        gatsbyApi.reporter.info(`Sourcing "${type}" from "${sources[type]}".`);
+        (await loadFunction(sources[type]))().forEach(
           ([id, node]: [string, any]) => {
             const nodeMeta = {
               id,
@@ -209,13 +210,13 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       const config = await loadConfig({
         rootDir: options.schema_configuration,
       });
-      const schema = await config?.getDefault().getSchema('string');
-      if (schema) {
-        const parsed = parse(schema);
-        args.actions.createTypes(cleanSchema(parsed));
+      const schemaSource = await config?.getDefault().getSchema('string');
+      if (schemaSource) {
+        const schema = buildSchema(schemaSource);
+        args.actions.createTypes(cleanSchema(schemaSource));
 
         // Create field extensions for all directives that could confuse Gatsby.
-        const directives = schema.matchAll(/ @[a-zA-Z][a-zA-Z0-9]*/gm);
+        const directives = schemaSource.matchAll(/ @[a-zA-Z][a-zA-Z0-9]*/gm);
 
         const directiveNames = new Set<string>();
         // "default" is a gatsby internal directive and should not be added again.
@@ -228,13 +229,13 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           }
         }
         args.actions.createTypes([
-          ...extractUnions(parsed).map((name) =>
+          ...extractUnions(schema).map((name) =>
             args.schema.buildUnionType({
               name,
               resolveType: ({ __typename }) => __typename,
             }),
           ),
-          ...extractInterfaces(parsed).map((name) =>
+          ...extractInterfaces(schema).map((name) =>
             args.schema.buildInterfaceType({
               name,
               interfaces: ['Node'],
@@ -244,7 +245,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
               },
             }),
           ),
-          ...Object.keys(extractSourceMapping(parsed)).map((name) =>
+          ...Object.keys(extractSourceMapping(schema)).map((name) =>
             args.schema.buildObjectType({
               name,
               interfaces: ['Node'],
@@ -270,7 +271,7 @@ export const createPages: GatsbyNode['createPages'] = async (args, options) => {
 };
 
 export const createResolvers: GatsbyNode['createResolvers'] = async (
-  { createResolvers, cache, reporter }: CreateResolversArgs,
+  { createResolvers, cache }: CreateResolversArgs,
   options,
 ) => {
   createResolvers({
@@ -283,30 +284,30 @@ export const createResolvers: GatsbyNode['createResolvers'] = async (
     },
   });
 
+  if (!validOptions(options)) {
+    return;
+  }
+
   if (options.schema_configuration) {
+    if (options.directive_providers) {
+      for (const spec of options.directive_providers) {
+        (await loadFunction(spec))(registerDirectiveImplementation);
+      }
+    }
     const config = await loadConfig({
       rootDir: options.schema_configuration as string,
     });
-    const schema = await config?.getDefault().getSchema('string');
-    if (schema) {
-      const parsed = parse(schema);
+    const schemaSource = await config?.getDefault().getSchema('string');
+    if (schemaSource) {
+      const parsed = buildSchema(schemaSource);
       const resolvers = extractResolverMapping(parsed);
       for (const type in resolvers) {
         for (const field in resolvers[type]) {
-          const exec = resolvers[type][field];
-          reporter.info(
-            `Registering resolver "${exec.join('#')}" to ${type}.${field}`,
-          );
+          const resolve = await buildResolver(resolvers[type][field]);
           createResolvers({
             [type]: {
               [field]: {
-                resolve: async (source: any, args: any, context: any) => {
-                  return (await executableDirective(...exec))(
-                    source,
-                    args,
-                    context,
-                  );
-                },
+                resolve,
               },
             },
           });
