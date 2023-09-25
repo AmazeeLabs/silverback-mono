@@ -1,0 +1,6 @@
+directive @responsiveImage(
+  width: String
+  height: String
+  sizes: String
+  transform: String
+) repeatable on FIELD_DEFINITION
