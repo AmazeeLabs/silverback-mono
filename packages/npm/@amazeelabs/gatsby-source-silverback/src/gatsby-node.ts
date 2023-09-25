@@ -38,9 +38,9 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
   Joi,
 }) =>
   Joi.object<Options>({
-    drupal_url: Joi.string().uri({ allowRelative: false }).required(),
-    graphql_path: Joi.string().uri({ relativeOnly: true }).required(),
-    drupal_external_url: Joi.string().uri({ allowRelative: false }),
+    drupal_url: Joi.string().uri({ allowRelative: false }).optional(),
+    graphql_path: Joi.string().uri({ relativeOnly: true }).optional(),
+    drupal_external_url: Joi.string().uri({ allowRelative: false }).optional(),
     auth_user: Joi.string().optional(),
     auth_pass: Joi.string().optional(),
     auth_key: Joi.string().optional(),
@@ -68,87 +68,89 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
     return;
   }
 
-  const executor = createQueryExecutor({
-    ...options,
-    headers: options.drupal_external_url
-      ? getForwardedHeaders(new URL(options.drupal_external_url))
-      : undefined,
-  });
-  // TODO: Accept configuration and fragment overrides from plugin settings.
-  const config = await createSourcingConfig(gatsbyApi, executor, options);
-  const context = createSourcingContext(config);
-
-  // Source only what was changed. If there is something in cache.
-  const lastBuildId = (await gatsbyApi.cache.get(`LAST_BUILD_ID`)) || -1;
-  let currentBuildId = gatsbyApi.webhookBody?.buildId || -1;
-
-  // If the webhook did not contain a build, we attempt to fetch the
-  // latest one from drupal.
-  if (currentBuildId === -1) {
-    const info = await executor({
-      operationName: 'LatestBuildId',
-      variables: {},
-      query: `
-      query LatestBuildId {
-        drupalBuildId
-      }
-    `,
+  if (options.drupal_url) {
+    const executor = createQueryExecutor({
+      ...options,
+      headers: options.drupal_external_url
+        ? getForwardedHeaders(new URL(options.drupal_external_url))
+        : undefined,
     });
-    currentBuildId = info?.data?.drupalBuildId || -1;
-  }
+    // TODO: Accept configuration and fragment overrides from plugin settings.
+    const config = await createSourcingConfig(gatsbyApi, executor, options);
+    const context = createSourcingContext(config);
 
-  // If the current build is lower than the last one, the CMS has been reset and we
-  // need to re-fetch everything. If the two are equal, this is a manual request, in which
-  // case we also re-fetch all data. If we don't have a last build id, we can't trust any
-  // data that is stored in Gatsby and we have to re-fetch everything anyway.
-  if (
-    // Current build id is lower than the last one -> out of sync with CMS, re-fetch everything
-    currentBuildId < lastBuildId ||
-    // No information about a current build in the CMS -> re-fetch everything
-    currentBuildId === -1 ||
-    // No information about the latest build in Gatsby -> re-fetch everything
-    lastBuildId === -1
-  ) {
-    gatsbyApi.reporter.info(`ℹ️ clearing all nodes.`);
-    const feeds = await drupalFeeds(executor);
-    for (const feed of feeds) {
-      const nodes = gatsbyApi.getNodesByType(
-        `${typePrefix(options)}${feed.typeName}`,
-      );
-      const events: Array<INodeDeleteEvent> = nodes.map((node) => ({
-        remoteTypeName: feed.typeName,
-        eventName: 'DELETE',
-        remoteId: { id: node.id },
-      }));
-      deleteNodes(context, events);
+    // Source only what was changed. If there is something in cache.
+    const lastBuildId = (await gatsbyApi.cache.get(`LAST_BUILD_ID`)) || -1;
+    let currentBuildId = gatsbyApi.webhookBody?.buildId || -1;
+
+    // If the webhook did not contain a build, we attempt to fetch the
+    // latest one from drupal.
+    if (currentBuildId === -1) {
+      const info = await executor({
+        operationName: 'LatestBuildId',
+        variables: {},
+        query: `
+        query LatestBuildId {
+          drupalBuildId
+        }
+      `,
+      });
+      currentBuildId = info?.data?.drupalBuildId || -1;
     }
 
-    // If we don't have a last build or the CMS has not information about the
-    // latest build, there is no way to detect changes. We have to run a full
-    // rebuild.
-    gatsbyApi.reporter.info(`ℹ️ sourceNodes will fetch all nodes.`);
-    await sourceAllNodes(config);
-  } else {
-    gatsbyApi.reporter.info(
-      `Fetching changes between builds ${lastBuildId} and ${currentBuildId}.`,
-    );
+    // If the current build is lower than the last one, the CMS has been reset and we
+    // need to re-fetch everything. If the two are equal, this is a manual request, in which
+    // case we also re-fetch all data. If we don't have a last build id, we can't trust any
+    // data that is stored in Gatsby and we have to re-fetch everything anyway.
+    if (
+      // Current build id is lower than the last one -> out of sync with CMS, re-fetch everything
+      currentBuildId < lastBuildId ||
+      // No information about a current build in the CMS -> re-fetch everything
+      currentBuildId === -1 ||
+      // No information about the latest build in Gatsby -> re-fetch everything
+      lastBuildId === -1
+    ) {
+      gatsbyApi.reporter.info(`ℹ️ clearing all nodes.`);
+      const feeds = await drupalFeeds(executor);
+      for (const feed of feeds) {
+        const nodes = gatsbyApi.getNodesByType(
+          `${typePrefix(options)}${feed.typeName}`,
+        );
+        const events: Array<INodeDeleteEvent> = nodes.map((node) => ({
+          remoteTypeName: feed.typeName,
+          eventName: 'DELETE',
+          remoteId: { id: node.id },
+        }));
+        deleteNodes(context, events);
+      }
 
-    const nodeEvents =
-      lastBuildId && currentBuildId
-        ? await fetchNodeChanges(
-            lastBuildId,
-            currentBuildId,
-            gatsbyApi.reporter,
-            context,
-            executor,
-          )
-        : [];
+      // If we don't have a last build or the CMS has not information about the
+      // latest build, there is no way to detect changes. We have to run a full
+      // rebuild.
+      gatsbyApi.reporter.info(`ℹ️ sourceNodes will fetch all nodes.`);
+      await sourceAllNodes(config);
+    } else {
+      gatsbyApi.reporter.info(
+        `Fetching changes between builds ${lastBuildId} and ${currentBuildId}.`,
+      );
 
-    await sourceNodeChanges(config, { nodeEvents });
+      const nodeEvents =
+        lastBuildId && currentBuildId
+          ? await fetchNodeChanges(
+              lastBuildId,
+              currentBuildId,
+              gatsbyApi.reporter,
+              context,
+              executor,
+            )
+          : [];
+
+      await sourceNodeChanges(config, { nodeEvents });
+    }
+
+    gatsbyApi.reporter.info(`sourced data for build ${currentBuildId}`);
+    await gatsbyApi.cache.set(`LAST_BUILD_ID_TMP`, currentBuildId);
   }
-
-  gatsbyApi.reporter.info(`sourced data for build ${currentBuildId}`);
-  await gatsbyApi.cache.set(`LAST_BUILD_ID_TMP`, currentBuildId);
 
   if (options.schema_configuration) {
     const config = await loadConfig({
@@ -189,22 +191,24 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       return;
     }
 
-    const executor = createQueryExecutor(options);
-    // TODO: Accept configuration and fragment overrides from plugin settings.
-    const config = await createSourcingConfig(args, executor, options);
-    await createToolkitSchemaCustomization(config);
+    if (options.drupal_url) {
+      const executor = createQueryExecutor(options);
+      // TODO: Accept configuration and fragment overrides from plugin settings.
+      const config = await createSourcingConfig(args, executor, options);
+      await createToolkitSchemaCustomization(config);
 
-    await createTranslationQueryField(
-      args,
-      createQueryExecutor(options),
-      options,
-    );
+      await createTranslationQueryField(
+        args,
+        createQueryExecutor(options),
+        options,
+      );
 
-    args.actions.createTypes(`
-      type Query {
-        drupalBuildId: Int!
-      }
-    `);
+      args.actions.createTypes(`
+        type Query {
+          drupalBuildId: Int!
+        }
+      `);
+    }
 
     if (options.schema_configuration) {
       const config = await loadConfig({
@@ -264,28 +268,36 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
   };
 
 export const createPages: GatsbyNode['createPages'] = async (args, options) => {
-  await createGatsbyPages(args, options);
+  if (!validOptions(options)) {
+    return;
+  }
 
-  const buildId = await args.cache.get(`LAST_BUILD_ID_TMP`);
-  await args.cache.set('LAST_BUILD_ID', buildId);
+  if (options.drupal_url) {
+    await createGatsbyPages(args, options);
+
+    const buildId = await args.cache.get(`LAST_BUILD_ID_TMP`);
+    await args.cache.set('LAST_BUILD_ID', buildId);
+  }
 };
 
 export const createResolvers: GatsbyNode['createResolvers'] = async (
   { createResolvers, cache }: CreateResolversArgs,
   options,
 ) => {
-  createResolvers({
-    Query: {
-      drupalBuildId: {
-        async resolve() {
-          return (await cache.get(`LAST_BUILD_ID`)) || -1;
-        },
-      },
-    },
-  });
-
   if (!validOptions(options)) {
     return;
+  }
+
+  if (options.drupal_url) {
+    createResolvers({
+      Query: {
+        drupalBuildId: {
+          async resolve() {
+            return (await cache.get(`LAST_BUILD_ID`)) || -1;
+          },
+        },
+      },
+    });
   }
 
   if (options.schema_configuration) {
@@ -317,11 +329,17 @@ export const createResolvers: GatsbyNode['createResolvers'] = async (
   }
 };
 
-export const onPostBuild: GatsbyNode['onPostBuild'] = async (args) => {
-  const data = {
-    drupalBuildId: (await args.cache.get('LAST_BUILD_ID')) || -1,
-  };
-  const path = `${args.store.getState().program.directory}/public/build.json`;
-  args.reporter.info(`Writing build information to ${path}.`);
-  fs.writeFileSync(path, JSON.stringify(data, null, 2));
+export const onPostBuild: GatsbyNode['onPostBuild'] = async (args, options) => {
+  if (!validOptions(options)) {
+    return;
+  }
+
+  if (options.drupal_url) {
+    const data = {
+      drupalBuildId: (await args.cache.get('LAST_BUILD_ID')) || -1,
+    };
+    const path = `${args.store.getState().program.directory}/public/build.json`;
+    args.reporter.info(`Writing build information to ${path}.`);
+    fs.writeFileSync(path, JSON.stringify(data, null, 2));
+  }
 };

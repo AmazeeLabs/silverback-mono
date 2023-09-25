@@ -16,6 +16,9 @@ export const createQueryExecutor = (
     headers?: RequestInit['headers'];
   },
 ) => {
+  if (!options.drupal_url) {
+    throw "No Drupal Url defined. Can't instantiate query executor.";
+  }
   const url = `${new URL(options.drupal_url).origin}${options.graphql_path}`;
   const executor = createNetworkQueryExecutor(url, {
     headers: {
