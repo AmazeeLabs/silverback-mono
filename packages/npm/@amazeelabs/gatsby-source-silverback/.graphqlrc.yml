@@ -1,3 +1,4 @@
 schema:
+  - ./node_modules/@amazeelabs/test-directives/directives.graphql
   - ./directives.graphql
   - ./test/schema/*.graphql

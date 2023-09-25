@@ -1,6 +1,9 @@
 scalar Email
 
 type Query {
+  value: String @echo(msg: "value from schema")
+  argument(msg: String!): String @echo(msg: "$msg")
+  parent: String @echo(msg: "parent value") @echo(msg: "$")
   allContacts: [Contact]
     @resolveBy(fn: "@amazeelabs/test-directives#allContacts")
   getPerson(id: ID!): Person
