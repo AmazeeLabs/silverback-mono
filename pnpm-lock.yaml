@@ -246,6 +246,52 @@ importers:
         specifier: 5.1.3
         version: 5.1.3
 
+  apps/silverback-gatsby-directives:
+    dependencies:
+      '@amazeelabs/gatsby-source-silverback':
+        specifier: workspace:*
+        version: link:../../packages/npm/@amazeelabs/gatsby-source-silverback
+      '@amazeelabs/test-directives':
+        specifier: workspace:*
+        version: link:../../packages/tests/test-directives
+      gatsby:
+        specifier: 5.9.0
+        version: 5.9.0(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.3)
+      gatsby-plugin-pnpm:
+        specifier: 1.2.10
+        version: 1.2.10(gatsby@5.9.0)
+      react:
+        specifier: 18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+    devDependencies:
+      '@amazeelabs/eslint-config':
+        specifier: 1.4.43
+        version: 1.4.43(eslint@8.42.0)(tailwindcss@3.3.2)(typescript@5.1.3)
+      '@amazeelabs/prettier-config':
+        specifier: 1.1.3
+        version: 1.1.3(prettier@2.8.8)
+      '@types/node':
+        specifier: 16.18.36
+        version: 16.18.36
+      '@types/react':
+        specifier: 18.2.12
+        version: 18.2.12
+      eslint:
+        specifier: 8.42.0
+        version: 8.42.0
+      husky:
+        specifier: 8.0.3
+        version: 8.0.3
+      prettier:
+        specifier: 2.8.8
+        version: 2.8.8
+      typescript:
+        specifier: 5.1.3
+        version: 5.1.3
+
   packages/composer/amazeelabs/default-content:
     devDependencies:
       '@amazeelabs/sync-composer-version':
@@ -914,7 +960,7 @@ importers:
         version: 4.17.21
       netlify-cli:
         specifier: 15.6.0
-        version: 15.6.0(@types/node@20.6.0)
+        version: 15.6.0(@types/node@20.6.5)
       postcss:
         specifier: 8.4.24
         version: 8.4.24
@@ -938,13 +984,13 @@ importers:
         version: 5.1.3
       vite:
         specifier: 4.3.9
-        version: 4.3.9(@types/node@20.6.0)
+        version: 4.3.9(@types/node@20.6.5)
       vite-imagetools:
         specifier: 5.0.4
         version: 5.0.4
       vite-plugin-dts:
         specifier: 2.3.0
-        version: 2.3.0(@types/node@20.6.0)(vite@4.3.9)
+        version: 2.3.0(@types/node@20.6.5)(vite@4.3.9)
       vitest:
         specifier: 0.32.0
         version: 0.32.0(@vitest/ui@0.32.0)(happy-dom@9.20.3)
@@ -1697,6 +1743,30 @@ importers:
         specifier: 5.0.2
         version: 5.0.2
 
+  packages/tests/silverback-gatsby-directives:
+    devDependencies:
+      '@amazeelabs/eslint-config':
+        specifier: 1.4.43
+        version: 1.4.43(eslint@8.36.0)(tailwindcss@3.3.2)(typescript@5.0.2)
+      '@amazeelabs/prettier-config':
+        specifier: 1.1.3
+        version: 1.1.3(prettier@2.8.6)
+      '@playwright/test':
+        specifier: 1.32.0
+        version: 1.32.0
+      '@types/node':
+        specifier: 20.6.5
+        version: 20.6.5
+      eslint:
+        specifier: 8.36.0
+        version: 8.36.0
+      prettier:
+        specifier: 2.8.6
+        version: 2.8.6
+      typescript:
+        specifier: 5.0.2
+        version: 5.0.2
+
   packages/tests/silverback-gutenberg:
     devDependencies:
       '@-amazeelabs/silverback-drupal':
@@ -2036,7 +2106,7 @@ packages:
       '@babel/helper-compilation-targets': 7.22.5(@babel/core@7.21.4)
       '@babel/helper-module-transforms': 7.22.5
       '@babel/helpers': 7.22.5
-      '@babel/parser': 7.22.5
+      '@babel/parser': 7.22.16
       '@babel/template': 7.22.5
       '@babel/traverse': 7.22.5
       '@babel/types': 7.22.5
@@ -6526,7 +6596,7 @@ packages:
       magic-string: 0.27.0
       react-docgen-typescript: 2.2.2(typescript@5.1.3)
       typescript: 5.1.3
-      vite: 4.3.9(@types/node@20.6.0)
+      vite: 4.3.9(@types/node@20.6.5)
     dev: true
 
   /@jridgewell/gen-mapping@0.3.3:
@@ -6841,24 +6911,24 @@ packages:
       react: 18.2.0
     dev: true
 
-  /@microsoft/api-extractor-model@7.26.5(@types/node@20.6.0):
+  /@microsoft/api-extractor-model@7.26.5(@types/node@20.6.5):
     resolution: {integrity: sha512-sv1dF9B3AeMURTW0xubvmrX/tLFe2bpmHJBXKiqfOl2YOoLNjreIqmPHPe1vDSq9MDxAJLqvyurjOf87abVJBQ==}
     dependencies:
       '@microsoft/tsdoc': 0.14.2
       '@microsoft/tsdoc-config': 0.16.2
-      '@rushstack/node-core-library': 3.56.0(@types/node@20.6.0)
+      '@rushstack/node-core-library': 3.56.0(@types/node@20.6.5)
     transitivePeerDependencies:
       - '@types/node'
     dev: true
 
-  /@microsoft/api-extractor@7.34.5(@types/node@20.6.0):
+  /@microsoft/api-extractor@7.34.5(@types/node@20.6.5):
     resolution: {integrity: sha512-0CUMSHvJ3Tq7ZJg09vn3kwvZN41k6dbe4zcPrDpZwQKh/dXIL5oQ7hbrbrASBDlE5DSPHs+7iGYa9FGGdgyrCA==}
     hasBin: true
     dependencies:
-      '@microsoft/api-extractor-model': 7.26.5(@types/node@20.6.0)
+      '@microsoft/api-extractor-model': 7.26.5(@types/node@20.6.5)
       '@microsoft/tsdoc': 0.14.2
       '@microsoft/tsdoc-config': 0.16.2
-      '@rushstack/node-core-library': 3.56.0(@types/node@20.6.0)
+      '@rushstack/node-core-library': 3.56.0(@types/node@20.6.5)
       '@rushstack/rig-package': 0.3.18
       '@rushstack/ts-command-line': 4.13.2
       colors: 1.2.5
@@ -6983,7 +7053,7 @@ packages:
       yargs: 17.7.2
     dev: true
 
-  /@netlify/build@29.12.6(@types/node@20.6.0):
+  /@netlify/build@29.12.6(@types/node@20.6.5):
     resolution: {integrity: sha512-qTeitoi5KOxjuta5/qPyUC7d5NfqTmc6xT+EohAZKOzgz8C5Bto/hfh+jbmAlfoNnyL20MVngn1wNXKJRZVRAA==}
     engines: {node: ^14.16.0 || >=16.0.0}
     hasBin: true
@@ -7037,7 +7107,7 @@ packages:
       supports-color: 9.3.1
       terminal-link: 3.0.0
       tmp-promise: 3.0.3
-      ts-node: 10.9.1(@types/node@20.6.0)(typescript@5.2.2)
+      ts-node: 10.9.1(@types/node@20.6.5)(typescript@5.2.2)
       typescript: 5.2.2
       uuid: 9.0.0
       yargs: 17.7.2
@@ -8449,7 +8519,7 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
-      '@types/node': 20.6.0
+      '@types/node': 20.6.5
       playwright-core: 1.32.0
     optionalDependencies:
       fsevents: 2.3.2
@@ -8619,7 +8689,7 @@ packages:
       rollup: 3.25.1
     dev: true
 
-  /@rushstack/node-core-library@3.56.0(@types/node@20.6.0):
+  /@rushstack/node-core-library@3.56.0(@types/node@20.6.5):
     resolution: {integrity: sha512-HyaRfgL77I8y6HCFYkLnAUWjsniDrIHlomic570TJ/ehd+pOdrRr95APAYGFw+nVwXE4qyEUTyYMWxsOnV14VA==}
     peerDependencies:
       '@types/node': '*'
@@ -8627,7 +8697,7 @@ packages:
       '@types/node':
         optional: true
     dependencies:
-      '@types/node': 20.6.0
+      '@types/node': 20.6.5
       colors: 1.2.5
       fs-extra: 7.0.1
       import-lazy: 4.0.0
@@ -9249,7 +9319,7 @@ packages:
       remark-slug: 6.1.0
       rollup: 3.25.1
       typescript: 5.1.3
-      vite: 4.3.9(@types/node@20.6.0)
+      vite: 4.3.9(@types/node@20.6.5)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -10008,7 +10078,7 @@ packages:
       react: 18.2.0
       react-docgen: 6.0.0-alpha.3
       react-dom: 18.2.0(react@18.2.0)
-      vite: 4.3.9(@types/node@20.6.0)
+      vite: 4.3.9(@types/node@20.6.5)
     transitivePeerDependencies:
       - '@preact/preset-vite'
       - supports-color
@@ -10887,6 +10957,9 @@ packages:
   /@types/node@20.6.0:
     resolution: {integrity: sha512-najjVq5KN2vsH2U/xyh2opaSEz6cZMR2SetLIlxlj08nOcmPOemJmUK2o4kUzfLqfrWE0PIrNeE16XhYDd3nqg==}
 
+  /@types/node@20.6.5:
+    resolution: {integrity: sha512-2qGq5LAOTh9izcc0+F+dToFigBWiK1phKPt7rNhOqJSr35y8rlIBjDwGtFSgAI6MGIhjwOVNSQZVdJsZJ2uR1w==}
+
   /@types/node@8.10.66:
     resolution: {integrity: sha512-tktOkFUA4kXx2hhhrB8bIFb5TbwzS4uOhKEmwiD+NoiL0qtP2OQ9mFldbgD4dV1djrlBYP6eBuQZiWjuHUpqFw==}
 
@@ -11051,7 +11124,7 @@ packages:
   /@types/vfile@3.0.2:
     resolution: {integrity: sha512-b3nLFGaGkJ9rzOcuXRfHkZMdjsawuDD0ENL9fzTophtBg8FJHSGbH7daXkEpcwy3v7Xol3pAvsmlYyFhR4pqJw==}
     dependencies:
-      '@types/node': 20.6.0
+      '@types/node': 20.6.5
       '@types/unist': 2.0.6
       '@types/vfile-message': 2.0.0
     dev: false
@@ -11879,7 +11952,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.19.6(@babel/core@7.22.5)
       magic-string: 0.27.0
       react-refresh: 0.14.0
-      vite: 4.3.9(@types/node@20.6.0)
+      vite: 4.3.9(@types/node@20.6.5)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -11894,7 +11967,7 @@ packages:
       '@babel/plugin-transform-react-jsx-self': 7.21.0(@babel/core@7.22.5)
       '@babel/plugin-transform-react-jsx-source': 7.19.6(@babel/core@7.22.5)
       react-refresh: 0.14.0
-      vite: 4.3.9(@types/node@20.6.0)
+      vite: 4.3.9(@types/node@20.6.5)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -12425,12 +12498,12 @@ packages:
     dependencies:
       acorn: 7.4.1
 
-  /acorn-jsx@5.3.2(acorn@8.8.2):
+  /acorn-jsx@5.3.2(acorn@8.10.0):
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
-      acorn: 8.8.2
+      acorn: 8.10.0
 
   /acorn-loose@8.3.0:
     resolution: {integrity: sha512-75lAs9H19ldmW+fAbyqHdjgdCrz0pWGXKmnqFoh8PyVd1L2RIb4RzYrSjmopeqv3E1G3/Pimu6GgLlrGbrkF7w==}
@@ -18683,8 +18756,8 @@ packages:
     resolution: {integrity: sha512-7OASN1Wma5fum5SrNhFMAMJxOUAbhyfQ8dQ//PJaJbNw0URTPWqIghHWt1MmAANKhHZIYOHruW4Kw4ruUWOdGw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
-      acorn: 8.8.2
-      acorn-jsx: 5.3.2(acorn@8.8.2)
+      acorn: 8.10.0
+      acorn-jsx: 5.3.2(acorn@8.10.0)
       eslint-visitor-keys: 3.4.1
 
   /esprima@4.0.1:
@@ -21143,7 +21216,7 @@ packages:
       '@babel/core': 7.22.5
       '@babel/eslint-parser': 7.21.3(@babel/core@7.22.5)(eslint@7.32.0)
       '@babel/helper-plugin-utils': 7.22.5
-      '@babel/parser': 7.22.5
+      '@babel/parser': 7.22.16
       '@babel/runtime': 7.21.0
       '@babel/traverse': 7.22.5
       '@babel/types': 7.22.5
@@ -26842,7 +26915,7 @@ packages:
     resolution: {integrity: sha512-9iN1ka/9zmX1ZvLV9ewJYEk9h7RyRRtqdK0woXcqohu8EWIerfPUjYJPg0ULy0UqP7cslmdGc8xKDJcojlKiaw==}
     dev: true
 
-  /netlify-cli@15.6.0(@types/node@20.6.0):
+  /netlify-cli@15.6.0(@types/node@20.6.5):
     resolution: {integrity: sha512-yJ6Q8J2HtOyO3bjJRZS8OrNe3gsT/Ztsvp6kjJrUj9RFfdNkyt0BXb5i4hRXRpYsz8DXncQKZn2JeWFFawtUXQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -26850,7 +26923,7 @@ packages:
     dependencies:
       '@bugsnag/js': 7.20.2
       '@fastify/static': 6.10.2
-      '@netlify/build': 29.12.6(@types/node@20.6.0)
+      '@netlify/build': 29.12.6(@types/node@20.6.5)
       '@netlify/build-info': 7.0.7
       '@netlify/config': 20.5.1
       '@netlify/edge-bundler': 8.16.2
@@ -27191,7 +27264,7 @@ packages:
     resolution: {integrity: sha512-jn9vOIK/nfqoFCcpK89/VCVaLg1IHE6UVfDOzvqmANaJ/rWCTEdH8RZ1V278nv2jr36BJdyQXIAavBLXpzdlag==}
     engines: {node: '>=14'}
     dependencies:
-      '@babel/parser': 7.22.5
+      '@babel/parser': 7.22.16
     dev: true
 
   /node-stream-zip@1.15.0:
@@ -32321,7 +32394,7 @@ packages:
   /strip-literal@1.0.1:
     resolution: {integrity: sha512-QZTsipNpa2Ppr6v1AmJHESqJ3Uz247MUS0OjrnnZjFAvEoWqxuyFuXn2xLgMtRnijJShAa1HL0gtJyUs7u7n3Q==}
     dependencies:
-      acorn: 8.8.2
+      acorn: 8.10.0
 
   /strip-outer@1.0.1:
     resolution: {integrity: sha512-k55yxKHwaXnpYGsOzg4Vl8+tDrWylxDEpknGjhTiZB8dFRU5rTo9CAzeycivxV3s+zlTKwrs6WxMxR95n26kwg==}
@@ -33351,7 +33424,7 @@ packages:
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.3
       '@types/node': 16.18.36
-      acorn: 8.8.2
+      acorn: 8.10.0
       acorn-walk: 8.2.0
       arg: 4.1.3
       create-require: 1.1.1
@@ -33391,6 +33464,37 @@ packages:
       typescript: 5.2.2
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
+
+  /ts-node@10.9.1(@types/node@20.6.5)(typescript@5.2.2):
+    resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
+    hasBin: true
+    peerDependencies:
+      '@swc/core': '>=1.2.50'
+      '@swc/wasm': '>=1.2.50'
+      '@types/node': '*'
+      typescript: '>=2.7'
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      '@swc/wasm':
+        optional: true
+    dependencies:
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.9
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.3
+      '@types/node': 20.6.5
+      acorn: 8.10.0
+      acorn-walk: 8.2.0
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      typescript: 5.2.2
+      v8-compile-cache-lib: 3.0.1
+      yn: 3.1.1
+    dev: true
 
   /tsconfig-paths@3.14.2:
     resolution: {integrity: sha512-o/9iXgCYc5L/JxCHPe3Hvh8Q/2xm5Z+p18PESBU6Ff33695QnCHBEjcytY2q19ua7Mbl/DavtBOLq+oG0RCL+g==}
@@ -34392,23 +34496,23 @@ packages:
       - terser
     dev: true
 
-  /vite-plugin-dts@2.3.0(@types/node@20.6.0)(vite@4.3.9):
+  /vite-plugin-dts@2.3.0(@types/node@20.6.5)(vite@4.3.9):
     resolution: {integrity: sha512-WbJgGtsStgQhdm3EosYmIdTGbag5YQpZ3HXWUAPCDyoXI5qN6EY0V7NXq0lAmnv9hVQsvh0htbYcg0Or5Db9JQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: '>=2.9.0'
     dependencies:
       '@babel/parser': 7.22.5
-      '@microsoft/api-extractor': 7.34.5(@types/node@20.6.0)
+      '@microsoft/api-extractor': 7.34.5(@types/node@20.6.5)
       '@rollup/pluginutils': 5.0.2(rollup@3.25.1)
-      '@rushstack/node-core-library': 3.56.0(@types/node@20.6.0)
+      '@rushstack/node-core-library': 3.56.0(@types/node@20.6.5)
       debug: 4.3.4(supports-color@9.3.1)
       fast-glob: 3.2.12
       fs-extra: 10.1.0
       kolorist: 1.8.0
       magic-string: 0.29.0
       ts-morph: 18.0.0
-      vite: 4.3.9(@types/node@20.6.0)
+      vite: 4.3.9(@types/node@20.6.5)
     transitivePeerDependencies:
       - '@types/node'
       - rollup
@@ -34479,6 +34583,39 @@ packages:
       rollup: 3.25.1
     optionalDependencies:
       fsevents: 2.3.2
+
+  /vite@4.3.9(@types/node@20.6.5):
+    resolution: {integrity: sha512-qsTNZjO9NoJNW7KnOrgYwczm0WctJ8m/yqYAMAK9Lxt4SoySUfS5S8ia9K7JHpa3KEeMfyF8LoJ3c5NeBJy6pg==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': '>= 14'
+      less: '*'
+      sass: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      less:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+    dependencies:
+      '@types/node': 20.6.5
+      esbuild: 0.17.19
+      postcss: 8.4.24
+      rollup: 3.25.1
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
 
   /vitest@0.32.0(@vitest/ui@0.32.0)(happy-dom@9.20.3):
     resolution: {integrity: sha512-SW83o629gCqnV3BqBnTxhB10DAwzwEx3z+rqYZESehUB+eWsJxwcBQx7CKy0otuGMJTYh7qCVuUX23HkftGl/Q==}
