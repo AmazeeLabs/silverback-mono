@@ -27,7 +27,7 @@
     "vitest": "0.34.4"
   },
   "scripts": {
-    "prepare": "tsc",
+    "prepare": "tsc -p tsconfig.dist.json",
     "test:static": "tsc --noEmit && eslint \"src/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "vitest --run --passWithNoTests"
   },

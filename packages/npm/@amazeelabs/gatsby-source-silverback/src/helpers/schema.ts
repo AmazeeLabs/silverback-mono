@@ -174,16 +174,21 @@ export async function buildResolver(
       (config[0][1] as any)['fn'],
     )) as SilverbackResolver;
   }
-  return (source: any, args: Record<string, any>) => {
-    const chain = flow(
-      config.map(([name, spec]) => {
+  return ((source, args, context, info) => {
+    const fns = [
+      (parent: any) => {
+        return parent?.[info?.fieldName];
+      },
+      ...config.map(([name, spec]) => {
         return (parent: any) => {
           return directives[name](
+            parent,
             processDirectiveArguments(parent, args, spec),
           );
         };
       }),
-    );
+    ] as Array<Function>;
+    const chain = flow(fns as any);
     return chain(source);
-  };
+  }) satisfies SilverbackResolver;
 }
