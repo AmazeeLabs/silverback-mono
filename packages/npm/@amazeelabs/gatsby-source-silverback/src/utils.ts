@@ -1,10 +1,10 @@
 export type Options = {
   // The internal url of the Drupal installation, used to fetch data.
-  drupal_url: string;
+  drupal_url?: string;
   // The external url of the Drupal installation, used to set the x-forwarded headers.
   drupal_external_url?: string;
   // The Drupal GraphQL server path.
-  graphql_path: string;
+  graphql_path?: string;
   // Optional Basic Auth user.
   auth_user?: string;
   // Optional Basic Auth password.
@@ -25,7 +25,7 @@ export type Options = {
 
 export const validOptions = (options: {
   [key: string]: any;
-}): options is Options => options.drupal_url && options.graphql_path;
+}): options is Options => true;
 
 export const typePrefix = (options: Options) =>
   typeof options.type_prefix === 'string' ? options.type_prefix : 'Drupal';
