@@ -1,3 +1,4 @@
 schema:
   - ./node_modules/*/*/directives.graphql
   - ./node_modules/@amazeelabs/gatsby-source-silverback/test/schema/*.graphql
+  - ./overrides.graphql
