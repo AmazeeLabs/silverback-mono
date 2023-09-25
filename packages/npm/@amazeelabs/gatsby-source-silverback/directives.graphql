@@ -1,2 +1,2 @@
 directive @sourceFrom(fn: String) on OBJECT
-directive @resolveBy(fn: String) on FIELD_DEFINITION
+directive @resolveBy(fn: String) repeatable on FIELD_DEFINITION
