@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher-ui@2.2.0...@amazeelabs/publisher-ui@2.3.0) (2023-09-26)
+
+### Features
+
+- amend pulisher-ui popup
+  ([c780a91](https://github.com/AmazeeLabs/silverback-mono/commit/c780a910b0b46f64bd4807984bc1c1a7b8ececd3))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [2.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher-ui@2.1.0...@amazeelabs/publisher-ui@2.2.0) (2023-09-13)
 
 ### Features
