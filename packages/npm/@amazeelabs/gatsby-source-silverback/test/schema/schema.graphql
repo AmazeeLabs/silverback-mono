@@ -4,10 +4,8 @@ type Query {
   value: String @echo(msg: "value from schema")
   argument(msg: String!): String @echo(msg: "$msg")
   parent: String @echo(msg: "parent value") @echo(msg: "$")
-  allContacts: [Contact]
-    @resolveBy(fn: "@amazeelabs/test-directives#allContacts")
-  getPerson(id: ID!): Person
-    @resolveBy(fn: "@amazeelabs/test-directives#getPerson")
+  allContacts: [Contact] @gatsbyNodes(type: "Contact")
+  getPerson(id: ID!): Person @gatsbyNode(type: "Contact", id: "$id")
 }
 
 union Person = Customer | Employee
