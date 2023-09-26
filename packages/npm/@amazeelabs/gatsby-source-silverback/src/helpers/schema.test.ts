@@ -40,14 +40,8 @@ describe('extractResolverMapping', () => {
         value: [['echo', { msg: 'value from schema' }]],
         argument: [['echo', { msg: '$msg' }]],
         parent: [
-          ['echo', { msg: 'parent value' }],
+          ['resolveBy', { fn: '@amazeelabs/test-directives#parentValue' }],
           ['echo', { msg: '$' }],
-        ],
-        allContacts: [
-          ['resolveBy', { fn: '@amazeelabs/test-directives#allContacts' }],
-        ],
-        getPerson: [
-          ['resolveBy', { fn: '@amazeelabs/test-directives#getPerson' }],
         ],
       },
     });
@@ -73,9 +67,9 @@ describe('cleanSchema', () => {
       type Query {
         value: String @echo(msg: \\"value from schema\\")
         argument(msg: String!): String @echo(msg: \\"$msg\\")
-        parent: String @echo(msg: \\"parent value\\") @echo(msg: \\"$\\")
-        allContacts: [Contact] @resolveBy(fn: \\"@amazeelabs/test-directives#allContacts\\")
-        getPerson(id: ID!): Person @resolveBy(fn: \\"@amazeelabs/test-directives#getPerson\\")
+        parent: String @resolveBy(fn: \\"@amazeelabs/test-directives#parentValue\\") @echo(msg: \\"$\\")
+        allContacts: [Contact] @gatsbyNodes(type: \\"Contact\\")
+        getPerson(id: ID!): Person @gatsbyNode(type: \\"Contact\\", id: \\"$id\\")
       }
       union Person = Customer | Employee
       interface Contact {

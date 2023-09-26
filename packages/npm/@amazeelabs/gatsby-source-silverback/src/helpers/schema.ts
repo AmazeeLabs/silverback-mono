@@ -169,10 +169,13 @@ export function processDirectiveArguments(
 export async function buildResolver(
   config: Array<[string, Record<string, unknown>]>,
 ): Promise<SilverbackResolver> {
-  if (config.length === 1 && config[0][0] === 'resolveBy') {
-    return (await loadFunction(
-      (config[0][1] as any)['fn'],
-    )) as SilverbackResolver;
+  const resolvers: Record<string, Function> = {};
+  for (const [name, spec] of config) {
+    if (name === 'resolveBy') {
+      resolvers[spec['fn'] as string] = await loadFunction(
+        spec['fn'] as string,
+      );
+    }
   }
   return ((source, args, context, info) => {
     const fns = [
@@ -181,6 +184,9 @@ export async function buildResolver(
       },
       ...config.map(([name, spec]) => {
         return (parent: any) => {
+          if (name === 'resolveBy') {
+            return resolvers[spec['fn'] as string](parent, args, context, info);
+          }
           return directives[name](
             parent,
             processDirectiveArguments(parent, args, spec),

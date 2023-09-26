@@ -72,3 +72,4 @@ export const sourceCustomers: SilverbackSource<Customer> = () => {
   ];
 };
 
+export const parentValue: SilverbackResolver = () => 'parent value';
