@@ -187,6 +187,16 @@ export const plugins = [
 ];
 ```
 
+Directives can consume field parent or argument values by setting magic argument
+values. The mechanism is identical to the implementation in
+[`amazeelabs/graphql_directives`](https://github.com/AmazeeLabs/silverback-mono/blob/development/packages/composer/amazeelabs/graphql_directives/README.md#argument-handling).
+
+```graphql
+type Employee {
+  testEcho(message: "Hello world") @echo(msg: "$message"): String!
+}
+```
+
 ## Build-ID's
 
 The [silverback gatsby] module keeps track of content updates sent to Gatsby
