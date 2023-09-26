@@ -16,6 +16,7 @@ import { INodeDeleteEvent } from 'gatsby-graphql-source-toolkit/dist/types';
 import { buildSchema } from 'graphql';
 import { loadConfig } from 'graphql-config';
 
+import { directives } from './directives.js';
 import { createPages as createGatsbyPages } from './helpers/create-pages.js';
 import { createQueryExecutor } from './helpers/create-query-executor.js';
 import { createSourcingConfig } from './helpers/create-sourcing-config.js';
@@ -301,6 +302,7 @@ export const createResolvers: GatsbyNode['createResolvers'] = async (
   }
 
   if (options.schema_configuration) {
+    directives(registerDirectiveImplementation);
     if (options.directive_providers) {
       for (const spec of options.directive_providers) {
         spec(registerDirectiveImplementation);
