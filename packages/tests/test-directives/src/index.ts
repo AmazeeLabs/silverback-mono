@@ -72,23 +72,3 @@ export const sourceCustomers: SilverbackSource<Customer> = () => {
   ];
 };
 
-export const allContacts: SilverbackResolver = async (_, __, context) => {
-  return (
-    await context.nodeModel.findAll({
-      type: 'Contact',
-    })
-  ).entries;
-};
-
-export const getPerson: SilverbackResolver = async (_, args, context) => {
-  return await context.nodeModel.findOne({
-    type: 'Contact',
-    query: {
-      filter: {
-        id: {
-          eq: args.id,
-        },
-      },
-    },
-  });
-};
