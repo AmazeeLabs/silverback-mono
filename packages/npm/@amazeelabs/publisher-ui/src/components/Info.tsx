@@ -71,7 +71,7 @@ function History({
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-black bg-white">
+            <tbody className="divide-y divide-gray-800 bg-white">
               {historyItems.map((item) => {
                 const date = new Date();
 
@@ -245,14 +245,17 @@ function CleanButton() {
                   <div className="mt-4">
                     <button
                       type="button"
-                      className="button-secondary !border-gray-200"
+                      className="button-primary"
                       onClick={closeModal}
                     >
                       No, go back!
                     </button>
                     <button
-                      className={'button-primary'}
-                      onClick={() => clean$.subscribe()}
+                      className={'button-secondary'}
+                      onClick={() => {
+                        clean$.subscribe();
+                        closeModal();
+                      }}
                     >
                       Yes, do it!
                     </button>
@@ -385,7 +388,7 @@ export default function Info({
           </div>
         </div>
         <div
-          className={'mb-8 px-4 md:px-6 lg:px-10 xl:px-14 max-w-5xl mx-auto'}
+          className={'mb-8 px-4 md:px-6 lg:px-10 xl:px-14 max-w-6xl mx-auto'}
         >
           <Disclosure defaultOpen>
             {({ open }) => (
@@ -475,7 +478,7 @@ export default function Info({
             )}
           </Disclosure>
         </div>
-        <div className={'px-4 md:px-6 lg:px-10 xl:px-14 max-w-5xl mx-auto'}>
+        <div className={'px-4 md:px-6 lg:px-10 xl:px-14 max-w-6xl mx-auto'}>
           <div className={'pre-container'} id="build-history">
             <h2
               className={
@@ -484,7 +487,7 @@ export default function Info({
             >
               Build History
             </h2>
-            <div className={'bg-white py-4 pl-8 pr-6'}>
+            <div className={'bg-white py-4 pl-8 pr-6 overflow-hidden'}>
               <History historyItems={historyItems} />
             </div>
           </div>

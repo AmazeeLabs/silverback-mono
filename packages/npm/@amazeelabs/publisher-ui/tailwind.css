@@ -31,9 +31,8 @@ body {
 }
 
 .pre-container pre {
-    @apply leading-4 bg-origin-content px-2.5 text-justify mt-2 py-4;
-    background: linear-gradient(180deg, #e8edf1 0, #e8edf1 16px, #f9fafb 0);
-    background-size: 32px 32px;
+    @apply text-justify text-white mt-2 p-4 leading-[1.4] text-[13px];
+    background: rgb(44, 53, 57);
 }
 
 /* Override Lazylog styles */
