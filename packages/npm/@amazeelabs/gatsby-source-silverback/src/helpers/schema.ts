@@ -184,6 +184,8 @@ export async function buildResolver(
           return directives[name](
             parent,
             processDirectiveArguments(parent, args, spec),
+            context,
+            info,
           );
         };
       }),
