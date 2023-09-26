@@ -137,7 +137,7 @@ respective field. Any unknown directives are simply ignores.
 
 ### Available directives
 
-#### `@resolveBy`
+#### `@resolveBy(fn: String!)`
 
 Loads a javascript function from a package and executes it to resolve the field.
 
@@ -146,6 +146,15 @@ type Employee {
   role @resolveBy(fn: "@custom/cms#resolveRole"): String!
 }
 ```
+
+#### `@gatsbyNodes(type: String!)`
+
+Load all nodes of a given type or interface. Can be used for "get all" use cases
+for Gatsby's page creation.
+
+#### `@gatsbyNode(type: String!, id: String!)`
+
+Load a single Gatsby node. Mostly used for displaying a single page.
 
 ### Custom directives
 
