@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.38](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@2.1.37...@-amazeelabs/silverback-gastby@2.1.38) (2023-09-27)
+
+### Bug Fixes
+
+- **gatsby:** adjust to changes in gatsby typing bugs
+  ([b7a7b8a](https://github.com/AmazeeLabs/silverback-mono/commit/b7a7b8a311760b60e7571955e23ddd2d0d95bf2f))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.1.37](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@2.1.36...@-amazeelabs/silverback-gastby@2.1.37) (2023-09-21)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-gastby

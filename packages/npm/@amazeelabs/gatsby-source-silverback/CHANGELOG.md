@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.11.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.10.9...@amazeelabs/gatsby-source-silverback@1.11.0) (2023-09-27)
+
+### Bug Fixes
+
+- **gatsby:** adjust type definitions so unions and interfaces work as expected
+  ([16694b1](https://github.com/AmazeeLabs/silverback-mono/commit/16694b1a3f9f6a984c891e19fb55b7d4d26621ca))
+- **gatsby:** make sure gatsby does not choke on unknown directives
+  ([d77931a](https://github.com/AmazeeLabs/silverback-mono/commit/d77931a532f5747bfba10f3069fa3c00ed4c3ad4))
+
+### Features
+
+- **gatsby:** directive definitions for [@source](https://github.com/source)From
+  and [@resolve](https://github.com/resolve)By
+  ([ded0187](https://github.com/AmazeeLabs/silverback-mono/commit/ded0187c7d6d52457a5549cf2c9578329736fe95))
+- **gatsby:** export types for resolvers and page contexts
+  ([10e3c49](https://github.com/AmazeeLabs/silverback-mono/commit/10e3c499fd4bab0806923bf97fb58a9fa15de3d6))
+- **gatsby:** helper function for extracting metainformation from an annotated
+  schema
+  ([ca22b11](https://github.com/AmazeeLabs/silverback-mono/commit/ca22b1165a3dbe39fb12359e8e526ce83bc0b7cb))
+- **gatsby:** import a configurable schema
+  ([0c5f8d9](https://github.com/AmazeeLabs/silverback-mono/commit/0c5f8d93aecbb00e5e9c46e326430d5ddeeac5e6))
+- **gatsby:** register resolvers for all fields with a
+  [@resolve](https://github.com/resolve)By directive
+  ([0cf9e64](https://github.com/AmazeeLabs/silverback-mono/commit/0cf9e64c9210c45a81de77b9e28a321f655cdb2e))
+- **gatsby:** source nodes based on [@source](https://github.com/source)From
+  directive
+  ([6691923](https://github.com/AmazeeLabs/silverback-mono/commit/66919235930730d1c5158bb3fb3f7c63f7ecf09e))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.10.9](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.10.8...@amazeelabs/gatsby-source-silverback@1.10.9) (2023-08-23)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-source-silverback
