@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_iframe@1.3.4...@-amazeelabs/silverback_iframe@1.3.5) (2023-09-27)
+
+### Bug Fixes
+
+- scroll to top when using webform inline confirmation
+  ([#1421](https://github.com/AmazeeLabs/silverback-mono/issues/1421))
+  ([0fd6454](https://github.com/AmazeeLabs/silverback-mono/commit/0fd6454ec772a829d500efea11d460fa199c5558))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.3.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_iframe@1.3.3...@-amazeelabs/silverback_iframe@1.3.4) (2023-08-24)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_iframe
