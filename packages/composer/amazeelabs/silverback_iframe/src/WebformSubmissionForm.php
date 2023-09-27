@@ -105,10 +105,17 @@ class WebformSubmissionForm extends Original {
 
       case WebformInterface::CONFIRMATION_INLINE:
       default:
-        // Replace the iframe with message.
         $this->respondWithCommand([
-          'action' => 'replaceWithMessages',
-          'messages' => [$this->getMessage()],
+          // Scroll first, so we still get the iframe reference.
+          [
+            'action' => 'scroll',
+            'scroll' => 'top',
+          ],
+          // Replace the iframe with message.
+          [
+            'action' => 'replaceWithMessages',
+            'messages' => [$this->getMessage()],
+          ],
         ], $form_state);
         break;
     }
