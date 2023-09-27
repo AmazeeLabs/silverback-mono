@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.12.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.11.0...@amazeelabs/gatsby-source-silverback@1.12.0) (2023-09-27)
+
+### Bug Fixes
+
+- **gatsby:** missing type export
+  ([f936463](https://github.com/AmazeeLabs/silverback-mono/commit/f9364639d5efd1d3d2b3feee6cf10a71fa298420))
+
+### Features
+
+- add directives for loading gatsby nodes
+  ([c18b53c](https://github.com/AmazeeLabs/silverback-mono/commit/c18b53c027dcd6241c7173ee3718c3c5ec60cbb4))
+- allow third party plugins to register directive
+  ([35d8c83](https://github.com/AmazeeLabs/silverback-mono/commit/35d8c83ab744a12ea2832acdf62abe11ef47f24c))
+- use injected directives in gatsby api
+  ([8100626](https://github.com/AmazeeLabs/silverback-mono/commit/81006266265f6713370c9a027047673ec61908d9))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.11.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.10.9...@amazeelabs/gatsby-source-silverback@1.11.0) (2023-09-27)
 
 ### Bug Fixes

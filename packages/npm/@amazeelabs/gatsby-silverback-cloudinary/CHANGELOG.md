@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-silverback-cloudinary@1.0.48...@amazeelabs/gatsby-silverback-cloudinary@1.1.0) (2023-09-27)
+
+### Features
+
+- **cloudinary:** expose a [@responsive](https://github.com/responsive)Image
+  directive for gatsby
+  ([cacf4b4](https://github.com/AmazeeLabs/silverback-mono/commit/cacf4b4d66d8db781ec2c6e63a510b70347f6dab))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.0.48](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-silverback-cloudinary@1.0.47...@amazeelabs/gatsby-silverback-cloudinary@1.0.48) (2023-09-14)
 
 ### Bug Fixes
