@@ -1,5 +1,5 @@
 {
-  "name": "@amazeelabs/test-source",
+  "name": "@amazeelabs/test-directives",
   "version": "1.0.2",
   "description": "",
   "main": "build/index.js",
