@@ -118,7 +118,7 @@ export async function loadFunction(spec: string): Promise<Function> {
   try {
     const m = await import(module);
     if (!m[fn]) {
-      throw `Module "${module} has not function "${fn}".`;
+      throw `Module "${module} has no function "${fn}".`;
     }
     loaded[spec] = m[fn];
     return m[fn];
