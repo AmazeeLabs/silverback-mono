@@ -183,14 +183,12 @@ export function directives(register: registerDirective) {
 
 ```javascript
 // gatsby-config.mjs
-import { directives } from '@amazeelabs/test-directives';
-
 export const plugins = [
   {
     resolve: '@amazeelabs/gatsby-source-silverback',
     options: {
       schema_configuration: './',
-      directive_providers: [directives],
+      directive_providers: ['@amazeelabs/test-directives#directives'],
     },
   },
 ];
