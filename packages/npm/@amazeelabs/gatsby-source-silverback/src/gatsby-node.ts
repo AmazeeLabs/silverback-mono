@@ -49,7 +49,7 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
     paginator_page_size: Joi.number().optional().min(2),
     type_prefix: Joi.string().allow('').optional(),
     schema_configuration: Joi.string().optional(),
-    directive_providers: Joi.array().items(Joi.string()).optional(),
+    directive_providers: Joi.array().items(Joi.function()).optional(),
   });
 
 const getForwardedHeaders = (url: URL) => ({
@@ -305,7 +305,7 @@ export const createResolvers: GatsbyNode['createResolvers'] = async (
     directives(registerDirectiveImplementation);
     if (options.directive_providers) {
       for (const spec of options.directive_providers) {
-        (await loadFunction(spec))(registerDirectiveImplementation);
+        spec(registerDirectiveImplementation);
       }
     }
     const config = await loadConfig({
