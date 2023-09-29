@@ -4,8 +4,12 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
-import { directives as cloudinaryDirectives } from '@amazeelabs/gatsby-silverback-cloudinary';
-import { directives as testDirectives } from '@amazeelabs/test-directives';
+import { responsiveImage } from '@amazeelabs/gatsby-silverback-cloudinary';
+import {
+  echo,
+  sourceCustomers,
+  sourceEmployees,
+} from '@amazeelabs/test-directives';
 import { config as dotenvConfig } from 'dotenv';
 
 dotenvConfig({ path: `.env` });
@@ -31,8 +35,9 @@ export const plugins = [
       drupal_url: process.env.DRUPAL_BASE_URL,
       graphql_path: process.env.DRUPAL_GRAPHQL_PATH,
       auth_key: process.env.DRUPAL_AUTH_KEY,
-      schema_configuration: './',
-      directive_providers: [cloudinaryDirectives, testDirectives],
+      schema_configuration: './graphqlrc.yml',
+      directives: { echo, responsiveImage },
+      sources: { sourceCustomers, sourceEmployees },
     },
   },
   {

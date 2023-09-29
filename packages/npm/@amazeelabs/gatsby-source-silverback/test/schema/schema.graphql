@@ -3,9 +3,7 @@ scalar Email
 type Query {
   value: String @echo(msg: "value from schema")
   argument(msg: String!): String @echo(msg: "$msg")
-  parent: String
-    @resolveBy(fn: "@amazeelabs/test-directives#parentValue")
-    @echo(msg: "$")
+  parent: String @echo(msg: "parent value") @echo(msg: "$")
   allContacts: [Contact] @gatsbyNodes(type: "Contact")
   getPerson(id: ID!): Person @gatsbyNode(type: "Contact", id: "$id")
 }
@@ -17,15 +15,13 @@ interface Contact {
   email: Email!
 }
 
-type Customer implements Contact
-  @sourceFrom(fn: "@amazeelabs/test-directives#sourceCustomers") {
+type Customer implements Contact @sourceFrom(fn: "sourceCustomers") {
   id: ID!
   name: String!
   email: Email!
 }
 
-type Employee implements Contact
-  @sourceFrom(fn: "@amazeelabs/test-directives#sourceEmployees") {
+type Employee implements Contact @sourceFrom(fn: "sourceEmployees") {
   id: ID!
   role: String!
   name: String!

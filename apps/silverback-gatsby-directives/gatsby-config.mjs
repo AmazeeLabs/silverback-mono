@@ -4,7 +4,11 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
-import { directives as testDirectives } from '@amazeelabs/test-directives';
+import {
+  echo,
+  sourceCustomers,
+  sourceEmployees,
+} from '@amazeelabs/test-directives';
 
 export const siteMetadata = {
   title: 'Gatsby Starter',
@@ -17,8 +21,9 @@ export const plugins = [
   {
     resolve: '@amazeelabs/gatsby-source-silverback',
     options: {
-      schema_configuration: './',
-      directive_providers: [testDirectives],
+      schema_configuration: './graphqlrc.yml',
+      directives: { echo },
+      sources: { sourceCustomers, sourceEmployees },
     },
   },
 ];

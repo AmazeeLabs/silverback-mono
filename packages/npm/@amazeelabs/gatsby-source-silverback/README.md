@@ -107,14 +107,14 @@ warning message will be logged.
 
 By using directives, it is also possible to source data from external sources.
 Any GraphQL type can be annotated with the `@sourceFrom` directive, which has a
-single `fn` argument. The value of this function is a `package#function`
-identifier that will be loaded and executed during the sourcing phase. The
-function has to return a list of `id`/`value` tuples.
+single `fn` argument. The value of this function is a function name is
+registered in Gatsby configuration. The function has to return a list of
+`id`/`value` tuples.
 
 The Graphql schema:
 
 ```graphql
-type Employee @sourceFrom(fn: "@custom/cms#sourceEmployees") {
+type Employee @sourceFrom(fn: "sourceEmployees") {
   name: String!
 }
 ```
@@ -139,11 +139,12 @@ respective field. Any unknown directives are simply ignores.
 
 #### `@resolveBy(fn: String!)`
 
-Loads a javascript function from a package and executes it to resolve the field.
+Executes a javascript function to resolve the field. The function has to be
+registered in Gatsby configuration beforehand.
 
 ```graphql
 type Employee {
-  role @resolveBy(fn: "@custom/cms#resolveRole"): String!
+  role @resolveBy(fn: "resolveRole"): String!
 }
 ```
 

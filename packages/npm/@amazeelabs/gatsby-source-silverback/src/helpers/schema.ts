@@ -12,17 +12,6 @@ import { flow, isString } from 'lodash-es';
 
 import { SilverbackResolver } from '../types';
 
-const directives = {} as Record<string, Function>;
-
-export type registerDirective = (name: string, resolver: Function) => void;
-
-export const registerDirectiveImplementation: registerDirective = (
-  name: string,
-  resolver: Function,
-) => {
-  directives[name] = resolver;
-};
-
 /**
  * Extract Object types with @sourceFrom directives.
  *
@@ -54,7 +43,10 @@ export function extractSourceMapping(schema: GraphQLSchema) {
  *
  * Returns a nested map of type names, field names, package and function name tuples.
  */
-export function extractResolverMapping(schema: GraphQLSchema) {
+export function extractResolverMapping(
+  schema: GraphQLSchema,
+  directives: Record<string, Function>,
+) {
   const resolvers = {} as Record<
     string,
     Record<string, Array<[string, Record<string, unknown>]>>
@@ -63,7 +55,7 @@ export function extractResolverMapping(schema: GraphQLSchema) {
     if (isObjectType(type)) {
       Object.values(type.getFields()).forEach((field) => {
         field.astNode?.directives?.forEach((dir) => {
-          if (dir.name.value === 'resolveBy' || directives[dir.name.value]) {
+          if (directives[dir.name.value]) {
             const directive = schema.getDirective(dir.name.value);
             if (directive) {
               if (!resolvers[type.name]) {
@@ -105,28 +97,6 @@ export function extractInterfaces(schema: GraphQLSchema) {
     .map((type) => type.name);
 }
 
-const loaded = {} as Record<string, Function>;
-
-/**
- * Dynamically retrieve a function from a package.
- */
-export async function loadFunction(spec: string): Promise<Function> {
-  if (loaded[spec]) {
-    return loaded[spec];
-  }
-  const [module, fn] = spec.split('#');
-  try {
-    const m = await import(module);
-    if (!m[fn]) {
-      throw `Module "${module} has not function "${fn}".`;
-    }
-    loaded[spec] = m[fn];
-    return m[fn];
-  } catch (exc) {
-    throw `Module "${module}" does not exist.`;
-  }
-}
-
 /**
  * Clean up a schema string and remove everything that could confuse Gatsby.
  */
@@ -166,17 +136,10 @@ export function processDirectiveArguments(
   );
 }
 
-export async function buildResolver(
+export function buildResolver(
   config: Array<[string, Record<string, unknown>]>,
-): Promise<SilverbackResolver> {
-  const resolvers: Record<string, Function> = {};
-  for (const [name, spec] of config) {
-    if (name === 'resolveBy') {
-      resolvers[spec['fn'] as string] = await loadFunction(
-        spec['fn'] as string,
-      );
-    }
-  }
+  directives: Record<string, Function>,
+): SilverbackResolver {
   return ((source, args, context, info) => {
     const fns = [
       (parent: any) => {
@@ -184,9 +147,6 @@ export async function buildResolver(
       },
       ...config.map(([name, spec]) => {
         return (parent: any) => {
-          if (name === 'resolveBy') {
-            return resolvers[spec['fn'] as string](parent, args, context, info);
-          }
           return directives[name](
             parent,
             processDirectiveArguments(parent, args, spec),
