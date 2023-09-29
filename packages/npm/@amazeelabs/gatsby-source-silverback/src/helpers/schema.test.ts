@@ -1,4 +1,4 @@
-import { directives } from '@amazeelabs/test-directives';
+import { echo } from '@amazeelabs/test-directives';
 import { buildSchema } from 'graphql';
 import { loadConfig } from 'graphql-config';
 import { describe, expect, it } from 'vitest';
@@ -10,8 +10,6 @@ import {
   extractResolverMapping,
   extractSourceMapping,
   extractUnions,
-  loadFunction,
-  registerDirectiveImplementation,
 } from './schema.js';
 
 const schemaSource = await (await loadConfig({
@@ -22,25 +20,23 @@ const schemaSource = await (await loadConfig({
 
 const schema = buildSchema(schemaSource);
 
-directives(registerDirectiveImplementation);
-
 describe('extractSourceMapping', () => {
   it('extracts types with "sourceFrom" directives', () => {
     expect(extractSourceMapping(schema)).toEqual({
-      Customer: '@amazeelabs/test-directives#sourceCustomers',
-      Employee: '@amazeelabs/test-directives#sourceEmployees',
+      Customer: 'sourceCustomers',
+      Employee: 'sourceEmployees',
     });
   });
 });
 
 describe('extractResolverMapping', () => {
-  it('extracts types with "resolveBy" directives', () => {
-    expect(extractResolverMapping(schema)).toEqual({
+  it('extracts fields with attached directives', () => {
+    expect(extractResolverMapping(schema, { echo })).toEqual({
       Query: {
         value: [['echo', { msg: 'value from schema' }]],
         argument: [['echo', { msg: '$msg' }]],
         parent: [
-          ['resolveBy', { fn: '@amazeelabs/test-directives#parentValue' }],
+          ['echo', { msg: 'parent value' }],
           ['echo', { msg: '$' }],
         ],
       },
@@ -67,7 +63,7 @@ describe('cleanSchema', () => {
       type Query {
         value: String @echo(msg: \\"value from schema\\")
         argument(msg: String!): String @echo(msg: \\"$msg\\")
-        parent: String @resolveBy(fn: \\"@amazeelabs/test-directives#parentValue\\") @echo(msg: \\"$\\")
+        parent: String @echo(msg: \\"parent value\\") @echo(msg: \\"$\\")
         allContacts: [Contact] @gatsbyNodes(type: \\"Contact\\")
         getPerson(id: ID!): Person @gatsbyNode(type: \\"Contact\\", id: \\"$id\\")
       }
@@ -76,12 +72,12 @@ describe('cleanSchema', () => {
         name: String!
         email: Email!
       }
-      type Customer implements Contact @sourceFrom(fn: \\"@amazeelabs/test-directives#sourceCustomers\\") {
+      type Customer implements Contact @sourceFrom(fn: \\"sourceCustomers\\") {
         id: ID!
         name: String!
         email: Email!
       }
-      type Employee implements Contact @sourceFrom(fn: \\"@amazeelabs/test-directives#sourceEmployees\\") {
+      type Employee implements Contact @sourceFrom(fn: \\"sourceEmployees\\") {
         id: ID!
         role: String!
         name: String!
@@ -91,69 +87,36 @@ describe('cleanSchema', () => {
   });
 });
 
-describe('loadFunction', () => {
-  it('loads a function from a package', async () => {
-    expect(
-      (await loadFunction('@amazeelabs/test-directives#sourceCustomers'))(),
-    ).toMatchInlineSnapshot(`
-      [
-        [
-          "frank",
-          {
-            "__typename": "Customer",
-            "email": "frank@another.company",
-            "id": "frank",
-            "name": "Frank Sinatra",
-          },
-        ],
-        [
-          "elvis",
-          {
-            "__typename": "Customer",
-            "email": "elvis@another.company",
-            "id": "elvis",
-            "name": "Elvis Presley",
-          },
-        ],
-      ]
-    `);
-  });
-});
-
 describe('executeResolver', () => {
   it('executes a single resolver', async () => {
-    const resolver = await buildResolver([
-      ['echo', { msg: 'value from schema' }],
-    ]);
+    const resolver = await buildResolver(
+      [['echo', { msg: 'value from schema' }]],
+      { echo },
+    );
     expect(resolver(undefined, {}, undefined, null as any)).toEqual(
       'value from schema',
     );
   });
   it('passes through the respective property of the parent value', async () => {
-    const resolver = await buildResolver([['echo', { msg: '$' }]]);
+    const resolver = await buildResolver([['echo', { msg: '$' }]], { echo });
     expect(
       resolver({ p: 'parent value' }, {}, undefined, { fieldName: 'p' } as any),
     ).toEqual('parent value');
   });
   it('passes through arguments', async () => {
-    const resolver = await buildResolver([['echo', { msg: '$msg' }]]);
+    const resolver = await buildResolver([['echo', { msg: '$msg' }]], { echo });
     expect(
       resolver(undefined, { msg: 'argument value' }, undefined, null as any),
     ).toEqual('argument value');
   });
   it('chains directives', async () => {
-    const resolver = await buildResolver([
-      ['echo', { msg: 'my value' }],
-      ['echo', { msg: '$' }],
-    ]);
+    const resolver = await buildResolver(
+      [
+        ['echo', { msg: 'my value' }],
+        ['echo', { msg: '$' }],
+      ],
+      { echo },
+    );
     expect(resolver(undefined, {}, undefined, null as any)).toEqual('my value');
-  });
-  it('deals with resolveBy', async () => {
-    const resolver = await buildResolver([
-      ['resolveBy', { fn: '@amazeelabs/test-directives#sourceEmployees' }],
-    ]);
-    expect(
-      resolver(undefined, { id: 'john' }, undefined, null as any),
-    ).toHaveLength(2);
   });
 });

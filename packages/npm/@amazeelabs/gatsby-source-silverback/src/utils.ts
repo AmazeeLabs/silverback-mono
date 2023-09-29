@@ -19,8 +19,10 @@ export type Options = {
   type_prefix?: string;
   // Path to a graphql schema configuration file.
   schema_configuration?: string;
-  // A list of package#function tuples that will register custom directives.
-  directive_providers?: Array<Function>;
+  // A dictionary of resolver functions that will be available as directvies.
+  directives?: Record<string, Function>;
+  // A list of functions that will be available as data source.
+  sources?: Record<string, Function>;
 };
 
 export const validOptions = (options: {

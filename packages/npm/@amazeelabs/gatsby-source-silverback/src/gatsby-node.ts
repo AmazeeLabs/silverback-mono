@@ -16,7 +16,7 @@ import { INodeDeleteEvent } from 'gatsby-graphql-source-toolkit/dist/types';
 import { buildSchema } from 'graphql';
 import { loadConfig } from 'graphql-config';
 
-import { directives } from './directives.js';
+import { gatsbyNode, gatsbyNodes } from './directives.js';
 import { createPages as createGatsbyPages } from './helpers/create-pages.js';
 import { createQueryExecutor } from './helpers/create-query-executor.js';
 import { createSourcingConfig } from './helpers/create-sourcing-config.js';
@@ -30,8 +30,6 @@ import {
   extractResolverMapping,
   extractSourceMapping,
   extractUnions,
-  loadFunction,
-  registerDirectiveImplementation,
 } from './helpers/schema.js';
 import { Options, typePrefix, validOptions } from './utils.js';
 
@@ -49,7 +47,8 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
     paginator_page_size: Joi.number().optional().min(2),
     type_prefix: Joi.string().allow('').optional(),
     schema_configuration: Joi.string().optional(),
-    directive_providers: Joi.array().items(Joi.function()).optional(),
+    directives: Joi.object().pattern(Joi.string(), Joi.function()).optional(),
+    sources: Joi.object().pattern(Joi.string(), Joi.function()).optional(),
   });
 
 const getForwardedHeaders = (url: URL) => ({
@@ -155,7 +154,7 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
 
   if (options.schema_configuration) {
     const config = await loadConfig({
-      rootDir: options.schema_configuration,
+      filepath: options.schema_configuration,
     });
     const schemaSource = await config?.getDefault().getSchema('string');
     if (schemaSource) {
@@ -163,24 +162,29 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
 
       const sources = extractSourceMapping(schema);
       for (const type in sources) {
+        const resolver = options.sources?.[sources[type]];
+        if (!resolver) {
+          gatsbyApi.reporter.error(
+            `"${sources[type]}" on "${type}" is not a registered source function. Check the "sources" property of the "@amazeelabs/gatsby-source-silverback" plugin.`,
+          );
+          continue;
+        }
         gatsbyApi.reporter.info(`Sourcing "${type}" from "${sources[type]}".`);
-        (await loadFunction(sources[type]))().forEach(
-          ([id, node]: [string, any]) => {
-            const nodeMeta = {
-              id,
-              parent: null,
-              children: [],
-              internal: {
-                type,
-                content: JSON.stringify(node),
-                contentDigest: gatsbyApi.createContentDigest(
-                  JSON.stringify(node),
-                ),
-              },
-            };
-            gatsbyApi.actions.createNode(Object.assign({}, node, nodeMeta));
-          },
-        );
+        resolver().forEach(([id, node]: [string, any]) => {
+          const nodeMeta = {
+            id,
+            parent: null,
+            children: [],
+            internal: {
+              type,
+              content: JSON.stringify(node),
+              contentDigest: gatsbyApi.createContentDigest(
+                JSON.stringify(node),
+              ),
+            },
+          };
+          gatsbyApi.actions.createNode(Object.assign({}, node, nodeMeta));
+        });
       }
     }
   }
@@ -213,7 +217,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
 
     if (options.schema_configuration) {
       const config = await loadConfig({
-        rootDir: options.schema_configuration,
+        filepath: options.schema_configuration,
       });
       const schemaSource = await config?.getDefault().getSchema('string');
       if (schemaSource) {
@@ -302,22 +306,24 @@ export const createResolvers: GatsbyNode['createResolvers'] = async (
   }
 
   if (options.schema_configuration) {
-    directives(registerDirectiveImplementation);
-    if (options.directive_providers) {
-      for (const spec of options.directive_providers) {
-        spec(registerDirectiveImplementation);
-      }
-    }
+    const availableDirectives = {
+      ...(options.directives || {}),
+      gatsbyNode,
+      gatsbyNodes,
+    };
     const config = await loadConfig({
-      rootDir: options.schema_configuration as string,
+      filepath: options.schema_configuration as string,
     });
     const schemaSource = await config?.getDefault().getSchema('string');
     if (schemaSource) {
       const parsed = buildSchema(schemaSource);
-      const resolvers = extractResolverMapping(parsed);
+      const resolvers = extractResolverMapping(parsed, availableDirectives);
       for (const type in resolvers) {
         for (const field in resolvers[type]) {
-          const resolve = await buildResolver(resolvers[type][field]);
+          const resolve = buildResolver(
+            resolvers[type][field],
+            availableDirectives,
+          );
           createResolvers({
             [type]: {
               [field]: {
