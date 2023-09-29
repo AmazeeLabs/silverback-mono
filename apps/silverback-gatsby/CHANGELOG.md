@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.41](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@2.1.40...@-amazeelabs/silverback-gastby@2.1.41) (2023-09-29)
+
+### Reverts
+
+- Revert "refactor: switch back to dynamically loaded resolvers"
+  ([be21745](https://github.com/AmazeeLabs/silverback-mono/commit/be2174598d08f0f50411d0ce5e36c3dcfc1ad6c4))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.1.40](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gastby@2.1.39...@-amazeelabs/silverback-gastby@2.1.40) (2023-09-28)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-gastby

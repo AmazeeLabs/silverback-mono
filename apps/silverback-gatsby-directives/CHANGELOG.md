@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gatsby-directives@1.0.2...@-amazeelabs/silverback-gatsby-directives@1.0.3) (2023-09-29)
+
+### Reverts
+
+- Revert "refactor: switch back to dynamically loaded resolvers"
+  ([be21745](https://github.com/AmazeeLabs/silverback-mono/commit/be2174598d08f0f50411d0ce5e36c3dcfc1ad6c4))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.0.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gatsby-directives@1.0.1...@-amazeelabs/silverback-gatsby-directives@1.0.2) (2023-09-28)
 
 **Note:** Version bump only for package
