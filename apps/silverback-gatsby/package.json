@@ -10,6 +10,7 @@
     "@amazeelabs/gatsby-source-silverback": "workspace:*",
     "@amazeelabs/silverback-iframe": "workspace:*",
     "@amazeelabs/test-directives": "workspace:*",
+    "@amazeelabs/graphql-directives": "workspace:*",
     "axios": "1.4.0",
     "domhandler": "5.0.3",
     "dotenv": "16.1.4",
