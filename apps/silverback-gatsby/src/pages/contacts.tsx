@@ -5,7 +5,7 @@ export const query = graphql`
   query ContactList {
     value
     parent
-    argument(msg: "argument value")
+    argument(msg: "argument")
     allContacts {
       __typename
       name

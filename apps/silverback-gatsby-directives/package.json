@@ -7,6 +7,7 @@
   "dependencies": {
     "@amazeelabs/gatsby-source-silverback": "workspace:*",
     "@amazeelabs/test-directives": "workspace:*",
+    "@amazeelabs/graphql-directives": "workspace:*",
     "gatsby": "5.9.0",
     "gatsby-plugin-pnpm": "1.2.10",
     "react": "18.2.0",

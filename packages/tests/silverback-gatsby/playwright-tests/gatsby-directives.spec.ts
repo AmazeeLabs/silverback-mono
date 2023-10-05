@@ -8,13 +8,11 @@ test.beforeAll(async () => {
 test('@gatsby-both templates', async ({ page }) => {
   await page.goto(`${gatsby.baseUrl}/contacts`);
   await expect(
-    page.locator('p:text-is("Schema value: value from schema")'),
+    page.locator('p:text-is("Schema value: hardcoded")'),
   ).toBeVisible();
+  await expect(page.locator('p:text-is("Parent value: parent")')).toBeVisible();
   await expect(
-    page.locator('p:text-is("Parent value: parent value")'),
-  ).toBeVisible();
-  await expect(
-    page.locator('p:text-is("Argument value: argument value")'),
+    page.locator('p:text-is("Argument value: argument")'),
   ).toBeVisible();
   await expect(page.locator('td:text-is("Frank Sinatra")')).toBeVisible();
   await expect(page.locator('td:text-is("Elvis Presley")')).toBeVisible();
