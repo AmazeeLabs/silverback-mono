@@ -1,9 +1,6 @@
 scalar Email
 
 type Query {
-  value: String @echo(msg: "value from schema")
-  argument(msg: String!): String @echo(msg: "$msg")
-  parent: String @echo(msg: "parent value") @echo(msg: "$")
   allContacts: [Contact] @gatsbyNodes(type: "Contact")
   getPerson(id: ID!): Person @gatsbyNode(type: "Contact", id: "$id")
 }

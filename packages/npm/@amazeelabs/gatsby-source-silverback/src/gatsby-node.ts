@@ -1,3 +1,4 @@
+import { createResolveConfig } from '@amazeelabs/graphql-directives';
 import fs from 'fs';
 import {
   CreateResolversArgs,
@@ -24,10 +25,8 @@ import { createTranslationQueryField } from './helpers/create-translation-query-
 import { drupalFeeds } from './helpers/drupal-feeds.js';
 import { fetchNodeChanges } from './helpers/fetch-node-changes.js';
 import {
-  buildResolver,
   cleanSchema,
   extractInterfaces,
-  extractResolverMapping,
   extractSourceMapping,
   extractUnions,
 } from './helpers/schema.js';
@@ -311,28 +310,30 @@ export const createResolvers: GatsbyNode['createResolvers'] = async (
       gatsbyNode,
       gatsbyNodes,
     };
+
     const config = await loadConfig({
       filepath: options.schema_configuration as string,
     });
+
     const schemaSource = await config?.getDefault().getSchema('string');
     if (schemaSource) {
-      const parsed = buildSchema(schemaSource);
-      const resolvers = extractResolverMapping(parsed, availableDirectives);
-      for (const type in resolvers) {
-        for (const field in resolvers[type]) {
-          const resolve = buildResolver(
-            resolvers[type][field],
-            availableDirectives,
-          );
-          createResolvers({
-            [type]: {
-              [field]: {
-                resolve,
-              },
-            },
-          });
-        }
-      }
+      const resolvers = createResolveConfig(
+        buildSchema(schemaSource),
+        availableDirectives,
+      );
+      createResolvers(
+        Object.fromEntries(
+          Object.keys(resolvers).map((type) => [
+            type,
+            Object.fromEntries(
+              Object.keys(resolvers[type]).map((field) => [
+                field,
+                { resolve: resolvers[type][field] },
+              ]),
+            ),
+          ]),
+        ),
+      );
     }
   }
 };
