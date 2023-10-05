@@ -31,6 +31,7 @@
     "test:unit": "vitest --run --passWithNoTests"
   },
   "dependencies": {
+    "@amazeelabs/graphql-directives": "workspace:*",
     "fetch-retry": "^5.0.6",
     "gatsby-graphql-source-toolkit": "^2.0.4",
     "graphql": "16.6.0",
