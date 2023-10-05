@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": true,
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": false,
+    "jsx": "react",
+    "outDir": "build"
+  },
+  "include": ["src"],
+  "$schema": "https://json.schemastore.org/tsconfig"
+}

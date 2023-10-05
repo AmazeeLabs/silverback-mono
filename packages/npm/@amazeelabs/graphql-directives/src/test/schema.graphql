@@ -1,0 +1,7 @@
+directive @echo(msg: String!) repeatable on FIELD_DEFINITION
+
+type Query {
+  value: String! @echo(msg: "hardcoded")
+  argument(msg: String!): String! @echo(msg: "$msg")
+  parent: String! @echo(msg: "parent") @echo(msg: "$")
+}
