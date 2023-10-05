@@ -6,7 +6,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "prepare": "tsc"
+    "build": "tsc"
   },
   "devDependencies": {
     "@amazeelabs/gatsby-source-silverback": "workspace:*",
