@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/test-directives@1.0.4...@amazeelabs/test-directives@1.0.5) (2023-10-05)
+
+### Bug Fixes
+
+- circular dependency and build script
+  ([cad8b40](https://github.com/AmazeeLabs/silverback-mono/commit/cad8b40acc2eef365a3c6e60f3a942a03dbc0ee6))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.0.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/test-directives@1.0.3...@amazeelabs/test-directives@1.0.4) (2023-09-29)
 
 **Note:** Version bump only for package @amazeelabs/test-directives

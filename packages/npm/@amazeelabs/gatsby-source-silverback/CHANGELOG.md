@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.12.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.12.2...@amazeelabs/gatsby-source-silverback@1.12.3) (2023-10-05)
+
+### Bug Fixes
+
+- circular dependency and build script
+  ([cad8b40](https://github.com/AmazeeLabs/silverback-mono/commit/cad8b40acc2eef365a3c6e60f3a942a03dbc0ee6))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.12.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.12.1...@amazeelabs/gatsby-source-silverback@1.12.2) (2023-09-29)
 
 ### Reverts
