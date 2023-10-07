@@ -15,7 +15,7 @@ const schema = buildSchema(
 const echo: GraphQLFieldResolver<unknown, any, { msg: string }> = (
   _,
   { msg },
-) => msg;
+) => new Promise((resolve) => resolve(msg));
 
 describe('extractResolverMapping', () => {
   it('extracts fields with attached directives', () => {
@@ -37,20 +37,27 @@ describe('executeResolver', () => {
     const resolver = buildResolver([['echo', { msg: 'value from schema' }]], {
       echo,
     });
-    expect(resolver(undefined, {}, undefined, null as any)).toEqual(
+    expect(await resolver(undefined, {}, undefined, null as any)).toEqual(
       'value from schema',
     );
   });
   it('passes through the respective property of the parent value', async () => {
     const resolver = buildResolver([['echo', { msg: '$' }]], { echo });
     expect(
-      resolver({ p: 'parent value' }, {}, undefined, { fieldName: 'p' } as any),
+      await resolver({ p: 'parent value' }, {}, undefined, {
+        fieldName: 'p',
+      } as any),
     ).toEqual('parent value');
   });
   it('passes through arguments', async () => {
     const resolver = buildResolver([['echo', { msg: '$msg' }]], { echo });
     expect(
-      resolver(undefined, { msg: 'argument value' }, undefined, null as any),
+      await resolver(
+        undefined,
+        { msg: 'argument value' },
+        undefined,
+        null as any,
+      ),
     ).toEqual('argument value');
   });
   it('chains directives', async () => {
@@ -61,7 +68,9 @@ describe('executeResolver', () => {
       ],
       { echo },
     );
-    expect(resolver(undefined, {}, undefined, null as any)).toEqual('my value');
+    expect(await resolver(undefined, {}, undefined, null as any)).toEqual(
+      'my value',
+    );
   });
 });
 

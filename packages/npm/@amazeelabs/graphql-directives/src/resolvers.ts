@@ -67,16 +67,17 @@ export function buildResolver(
   config: Array<[string, Record<string, unknown>]>,
   directives: Record<string, Function>,
 ): GraphQLFieldResolver<any, any> {
-  return (source, args, context, info) => {
+  return async (source, args, context, info) => {
     const fns = [
       (parent: any) => {
         return parent?.[info?.fieldName];
       },
       ...config.map(([name, spec]) => {
-        return (parent: any) => {
+        return async (parent: any) => {
+          const value = await parent;
           return directives[name](
-            parent,
-            processDirectiveArguments(parent, args, spec),
+            value,
+            processDirectiveArguments(value, args, spec),
             context,
             info,
           );
