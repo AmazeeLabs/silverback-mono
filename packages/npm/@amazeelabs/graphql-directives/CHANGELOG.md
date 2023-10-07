@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/graphql-directives@1.1.0...@amazeelabs/graphql-directives@1.1.1) (2023-10-07)
+
+### Bug Fixes
+
+- chaining of async directives in gatsby
+  ([82277d3](https://github.com/AmazeeLabs/silverback-mono/commit/82277d30e2fff8f355e5257a96449b265520d4b5))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # 1.1.0 (2023-10-05)
 
 ### Features
