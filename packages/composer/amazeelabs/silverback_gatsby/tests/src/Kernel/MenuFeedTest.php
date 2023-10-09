@@ -160,4 +160,23 @@ class MenuFeedTest extends GraphQLTestBase {
       new GatsbyUpdate('VisibleMainMenu', 'main'),
     ], $diff);
   }
+
+  public function testTranslatableMenu() {
+    $this->container
+      ->get('content_translation.manager')
+      ->setEnabled('menu_link_content', 'menu_link_content', TRUE);
+
+    $query = $this->getQueryFromFile('multilingual-menus.gql');
+    $this->assertResults($query, [], [
+      'en' => [
+        'id' => 'main:en',
+      ],
+      'de' => [
+        'id' => 'main:de',
+      ],
+    ], $this->defaultCacheMetaData()
+      ->addCacheContexts(['languages:language_interface'])
+      ->addCacheTags(['config:system.menu.main'])
+    );
+  }
 }
