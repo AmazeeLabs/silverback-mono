@@ -56,6 +56,7 @@
         "drupal/test_session": "@dev",
         "drupal/typed_data": "1.0.0-beta2",
         "drupal/webform": "6.2.0-beta6",
+        "fenetikm/autoload-drupal": "^1.0",
         "phpspec/prophecy-phpunit": "2.0.2"
     },
     "conflict": {
@@ -72,10 +73,18 @@
             "cweagans/composer-patches": true,
             "drupal/core-composer-scaffold": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "fenetikm/autoload-drupal": true
         }
     },
     "extra": {
+        "autoload-drupal": {
+            "modules": [
+                "app/modules/contrib/",
+                "app/modules/custom/",
+                "app/core/modules/"
+            ]
+        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"

@@ -4,15 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6a8731a7cfae66197c1e52cc91941c5f",
+    "content-hash": "33837bef833ade8a797b72662c3f8e54",
     "packages": [
         {
             "name": "amazeelabs/default-content",
-            "version": "1.2.11",
+            "version": "1.2.12",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/default-content",
-                "reference": "3d42d24cbc9f2df945cc0ac5470c0ec2d1df046b"
+                "reference": "3e951df2025e63c45313081dd71f1bb61347845f"
             },
             "require": {
                 "amazeelabs/proxy-default-content": "^1.1.7"
@@ -33,11 +33,11 @@
         },
         {
             "name": "amazeelabs/graphql_directives",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/graphql_directives",
-                "reference": "e344ea6bd7bf2265431bc4cdc6d87b9a0bb14344"
+                "reference": "8365b68422b734b6408c43d1137ff23d6fa28bb9"
             },
             "type": "drupal-module",
             "extra": {
@@ -58,11 +58,11 @@
         },
         {
             "name": "amazeelabs/proxy-default-content",
-            "version": "1.1.7",
+            "version": "1.1.15",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-default-content",
-                "reference": "9d1d6f2172215ec7e5a8d4837dbe0bb4c5e23e77"
+                "reference": "8cd3616af9451f71520e953e1f4719280c8ef672"
             },
             "require": {
                 "cweagans/composer-patches": "^1.7.3",
@@ -89,11 +89,11 @@
         },
         {
             "name": "amazeelabs/proxy-drupal-core",
-            "version": "1.1.12",
+            "version": "1.1.13",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-drupal-core",
-                "reference": "ec7ce2f13a9aa0691f57b612b76ec4fe6ea58f59"
+                "reference": "160b9c3dddb64b96c0f66d7ce5b662b1b84a8f89"
             },
             "require": {
                 "cweagans/composer-patches": "^1.7.3",
@@ -121,11 +121,11 @@
         },
         {
             "name": "amazeelabs/proxy-gutenberg",
-            "version": "1.3.0",
+            "version": "1.3.1",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-gutenberg",
-                "reference": "f9f9f5403a48ef5df587b4b25ae2aea304b71fa2"
+                "reference": "0fb7030d68ace85ad9d538d8b6a11890bdaefc4a"
             },
             "require": {
                 "cweagans/composer-patches": "^1.7.3",
@@ -148,11 +148,11 @@
         },
         {
             "name": "amazeelabs/silverback-cli",
-            "version": "2.9.4",
+            "version": "2.9.5",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback-cli",
-                "reference": "7cf31717e4a0ae16886c55f066f45d8d0de3d734"
+                "reference": "67befc8ef25d354e1ddc1c472b5bdc5b2473a2ea"
             },
             "require": {
                 "drush/drush": "^10 || ^11",
@@ -197,11 +197,11 @@
         },
         {
             "name": "amazeelabs/silverback_campaign_urls",
-            "version": "1.0.2",
+            "version": "1.0.6",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_campaign_urls",
-                "reference": "b19602869f66537fe442f9494957b15def1ab1f2"
+                "reference": "693a1f7e7f8f5b9731029670ba15fd806214bca7"
             },
             "type": "drupal-module",
             "license": [
@@ -215,11 +215,11 @@
         },
         {
             "name": "amazeelabs/silverback_cdn_redirect",
-            "version": "2.2.4",
+            "version": "2.2.5",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_cdn_redirect",
-                "reference": "44aa5a4316ebd05aa43c0da75a1b5d80432e520e"
+                "reference": "a3001215e89fb633a75fa50c0e5beb8b2f036719"
             },
             "type": "drupal-module",
             "license": [
@@ -233,11 +233,11 @@
         },
         {
             "name": "amazeelabs/silverback_cloudinary",
-            "version": "1.3.0",
+            "version": "1.4.1",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_cloudinary",
-                "reference": "4df689166a03ac0ebd4f58f1c8bf0c984e66681b"
+                "reference": "00ad7072603d07842d15779bca40b437e8eb4370"
             },
             "require": {
                 "cloudinary/cloudinary_php": "^2"
@@ -261,11 +261,11 @@
         },
         {
             "name": "amazeelabs/silverback_external_preview",
-            "version": "2.0.3",
+            "version": "2.0.4",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_external_preview",
-                "reference": "459bd8a8043575ec3d8ed54cb73c1a9c07ac2637"
+                "reference": "09db49ade1d457569843b336526e78173ee9abf4"
             },
             "type": "drupal-module",
             "license": [
@@ -279,11 +279,11 @@
         },
         {
             "name": "amazeelabs/silverback_gatsby",
-            "version": "2.2.0",
+            "version": "2.3.8",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gatsby",
-                "reference": "06f1241656297429f63c56ee8deb3d7431758ada"
+                "reference": "c82bb1030d3e2d8c5d64afd727b580aaa76eea02"
             },
             "type": "drupal-module",
             "extra": {
@@ -304,11 +304,11 @@
         },
         {
             "name": "amazeelabs/silverback_graphql_persisted",
-            "version": "1.1.6",
+            "version": "1.1.7",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_graphql_persisted",
-                "reference": "eca60fe07343c72ad96f64433036d6b03d213f54"
+                "reference": "b460f6acff15cffcc88e18469ef57f56643ab74c"
             },
             "type": "drupal-module",
             "license": [
@@ -321,11 +321,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "2.4.5",
+            "version": "2.5.4",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "502710661b6fc20e5d5157c0d8a6579909738324"
+                "reference": "e2eb132fa74d4ffa0fadf8a2fdb41d8d9f4cd336"
             },
             "require": {
                 "drupal/gutenberg": "^2.7.0"
@@ -342,11 +342,11 @@
         },
         {
             "name": "amazeelabs/silverback_iframe",
-            "version": "1.3.3",
+            "version": "1.3.5",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_iframe",
-                "reference": "d2fd601eee7792722a8027979c65e45a1e3a8481"
+                "reference": "2419bc4e9e64da63a6760d6f5d9d08423d54d634"
             },
             "type": "drupal-module",
             "license": [
@@ -360,11 +360,11 @@
         },
         {
             "name": "amazeelabs/silverback_iframe_theme",
-            "version": "1.2.3",
+            "version": "1.2.4",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_iframe_theme",
-                "reference": "d896c97997cce0bbae22b8720e94dadc0f2154d5"
+                "reference": "822b280c3182659827d0a6769d06e9234c6faa9a"
             },
             "type": "drupal-theme",
             "license": [
@@ -378,11 +378,11 @@
         },
         {
             "name": "amazeelabs/silverback_translations",
-            "version": "1.0.4",
+            "version": "1.0.5",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_translations",
-                "reference": "93f0280309ff120110b65c2488d27b2410d2a8e4"
+                "reference": "d01acd954594ebb4474b0dd2c80f290005dd4a18"
             },
             "type": "drupal-module",
             "license": [
@@ -3677,6 +3677,10 @@
                     "homepage": "https://www.drupal.org/user/262198"
                 },
                 {
+                    "name": "luigisa",
+                    "homepage": "https://www.drupal.org/user/1022312"
+                },
+                {
                     "name": "pmelab",
                     "homepage": "https://www.drupal.org/user/555322"
                 }
@@ -3741,6 +3745,10 @@
                 {
                     "name": "Stephan Zeidler (szeidler)",
                     "homepage": "https://www.drupal.org/u/szeidler"
+                },
+                {
+                    "name": "roborn",
+                    "homepage": "https://www.drupal.org/user/139474"
                 },
                 {
                     "name": "szeidler",
@@ -4059,6 +4067,10 @@
                     "homepage": "https://www.drupal.org/user/53892"
                 },
                 {
+                    "name": "Kristen Pol",
+                    "homepage": "https://www.drupal.org/user/8389"
+                },
+                {
                     "name": "pifagor",
                     "homepage": "https://www.drupal.org/user/2375692"
                 }
@@ -4140,11 +4152,11 @@
         },
         {
             "name": "drupal/test_session",
-            "version": "1.2.64",
+            "version": "1.2.65",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/drupal/test_session",
-                "reference": "cb13d590c19a14f47bf71b9d2b4ba8eef6068eca"
+                "reference": "d639dbc28b9bb4705771069619dbe4c9bc0f30ad"
             },
             "type": "drupal-module",
             "license": [
@@ -4232,16 +4244,16 @@
                 "drupal/captcha": "^1 || ^2",
                 "drupal/chosen": "3.0.x-dev",
                 "drupal/ckeditor": "1.0.x-dev",
-                "drupal/clientside_validation": "^3 || ^4",
+                "drupal/clientside_validation": "*",
                 "drupal/clientside_validation_jquery": "*",
-                "drupal/devel": "5.x-dev",
+                "drupal/devel": "*",
                 "drupal/entity": "1.x-dev",
-                "drupal/entity_print": "2.x-dev",
+                "drupal/entity_print": "*",
                 "drupal/group": "1.x-dev",
                 "drupal/hal": "1 - 2",
                 "drupal/jquery_ui": "1.x-dev",
-                "drupal/jquery_ui_checkboxradio": "2.x-dev",
-                "drupal/jquery_ui_datepicker": "1.x-dev",
+                "drupal/jquery_ui_checkboxradio": "*",
+                "drupal/jquery_ui_datepicker": "*",
                 "drupal/mailsystem": "4.x-dev",
                 "drupal/metatag": "1.x-dev",
                 "drupal/paragraphs": "1.x-dev",
@@ -4249,7 +4261,7 @@
                 "drupal/smtp": "1.x-dev",
                 "drupal/styleguide": "^1 || ^2",
                 "drupal/telephone_validation": "2.x-dev",
-                "drupal/token": "1.x-dev",
+                "drupal/token": "*",
                 "drupal/variationcache": "1.x-dev",
                 "drupal/webform_access": "*",
                 "drupal/webform_attachment": "*",
@@ -7220,16 +7232,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.19",
+            "version": "1.10.38",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "af5a296ff02610c1bfb4ddfac9fd4a08657b9046"
+                "reference": "5302bb402c57f00fb3c2c015bac86e0827e4b691"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/af5a296ff02610c1bfb4ddfac9fd4a08657b9046",
-                "reference": "af5a296ff02610c1bfb4ddfac9fd4a08657b9046",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/5302bb402c57f00fb3c2c015bac86e0827e4b691",
+                "reference": "5302bb402c57f00fb3c2c015bac86e0827e4b691",
                 "shasum": ""
             },
             "require": {
@@ -7278,7 +7290,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-06-14T15:26:58+00:00"
+            "time": "2023-10-06T14:19:14+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -13087,7 +13099,52 @@
             "time": "2023-01-06T12:12:50+00:00"
         }
     ],
-    "packages-dev": [],
+    "packages-dev": [
+        {
+            "name": "fenetikm/autoload-drupal",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fenetikm/autoload-drupal.git",
+                "reference": "14c9f1c6da17c238de41d34585df061a7d5ba2f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fenetikm/autoload-drupal/zipball/14c9f1c6da17c238de41d34585df061a7d5ba2f6",
+                "reference": "14c9f1c6da17c238de41d34585df061a7d5ba2f6",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.1|^2",
+                "composer/composer": "*"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "fenetikm\\DrupalAutoloadPlugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "fenetikm\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Welford",
+                    "email": "mail@michaelwelford.com"
+                }
+            ],
+            "description": "Autoload Drupal modules into composer autoloader",
+            "support": {
+                "issues": "https://github.com/fenetikm/autoload-drupal/issues",
+                "source": "https://github.com/fenetikm/autoload-drupal/tree/1.0.0"
+            },
+            "time": "2023-01-23T21:06:34+00:00"
+        }
+    ],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
@@ -13120,5 +13177,5 @@
     "platform-overrides": {
         "php": "8.1.13"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
