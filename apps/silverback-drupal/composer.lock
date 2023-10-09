@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "33837bef833ade8a797b72662c3f8e54",
+    "content-hash": "2be8713e82cc41a92a67930ce2e52182",
     "packages": [
         {
             "name": "amazeelabs/default-content",
@@ -37,7 +37,10 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/graphql_directives",
-                "reference": "8365b68422b734b6408c43d1137ff23d6fa28bb9"
+                "reference": "d95974c65e1d83e66ea77bc62d348258be098c94"
+            },
+            "require": {
+                "webmozart/glob": "^4.6.0"
             },
             "type": "drupal-module",
             "extra": {
@@ -4608,6 +4611,50 @@
                 "source": "https://github.com/enlightn/security-checker/tree/v1.10.0"
             },
             "time": "2022-02-21T22:40:16+00:00"
+        },
+        {
+            "name": "fenetikm/autoload-drupal",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fenetikm/autoload-drupal.git",
+                "reference": "14c9f1c6da17c238de41d34585df061a7d5ba2f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fenetikm/autoload-drupal/zipball/14c9f1c6da17c238de41d34585df061a7d5ba2f6",
+                "reference": "14c9f1c6da17c238de41d34585df061a7d5ba2f6",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.1|^2",
+                "composer/composer": "*"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "fenetikm\\DrupalAutoloadPlugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "fenetikm\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Welford",
+                    "email": "mail@michaelwelford.com"
+                }
+            ],
+            "description": "Autoload Drupal modules into composer autoloader",
+            "support": {
+                "issues": "https://github.com/fenetikm/autoload-drupal/issues",
+                "source": "https://github.com/fenetikm/autoload-drupal/tree/1.0.0"
+            },
+            "time": "2023-01-23T21:06:34+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -13033,6 +13080,55 @@
             "time": "2022-06-03T18:03:27+00:00"
         },
         {
+            "name": "webmozart/glob",
+            "version": "4.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webmozarts/glob.git",
+                "reference": "3c17f7dec3d9d0e87b575026011f2e75a56ed655"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webmozarts/glob/zipball/3c17f7dec3d9d0e87b575026011f2e75a56ed655",
+                "reference": "3c17f7dec3d9d0e87b575026011f2e75a56ed655",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3 || ^8.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5",
+                "symfony/filesystem": "^5.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Webmozart\\Glob\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bernhard Schussek",
+                    "email": "bschussek@gmail.com"
+                }
+            ],
+            "description": "A PHP implementation of Ant's glob.",
+            "support": {
+                "issues": "https://github.com/webmozarts/glob/issues",
+                "source": "https://github.com/webmozarts/glob/tree/4.6.0"
+            },
+            "time": "2022-05-24T19:45:58+00:00"
+        },
+        {
             "name": "webonyx/graphql-php",
             "version": "v14.11.9",
             "source": {
@@ -13099,52 +13195,7 @@
             "time": "2023-01-06T12:12:50+00:00"
         }
     ],
-    "packages-dev": [
-        {
-            "name": "fenetikm/autoload-drupal",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/fenetikm/autoload-drupal.git",
-                "reference": "14c9f1c6da17c238de41d34585df061a7d5ba2f6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fenetikm/autoload-drupal/zipball/14c9f1c6da17c238de41d34585df061a7d5ba2f6",
-                "reference": "14c9f1c6da17c238de41d34585df061a7d5ba2f6",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.1|^2",
-                "composer/composer": "*"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "fenetikm\\DrupalAutoloadPlugin"
-            },
-            "autoload": {
-                "psr-4": {
-                    "fenetikm\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Welford",
-                    "email": "mail@michaelwelford.com"
-                }
-            ],
-            "description": "Autoload Drupal modules into composer autoloader",
-            "support": {
-                "issues": "https://github.com/fenetikm/autoload-drupal/issues",
-                "source": "https://github.com/fenetikm/autoload-drupal/tree/1.0.0"
-            },
-            "time": "2023-01-23T21:06:34+00:00"
-        }
-    ],
+    "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
