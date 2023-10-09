@@ -11,6 +11,7 @@ use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\Plugin\GraphQL\Schema\ComposableSchema;
 use Drupal\graphql\Plugin\SchemaExtensionPluginManager;
+use Drupal\graphql_directives\ConfigLoader;
 use Drupal\graphql_directives\DirectableSchemaExtensionPluginBase;
 use Drupal\graphql_directives\DirectiveInterpreter;
 use Drupal\graphql_directives\DirectivePrinter;
@@ -89,9 +90,16 @@ class DirectableSchema extends ComposableSchema {
    */
   public function getSchemaDefinition() {
     $file = $this->configuration['schema_definition'];
+    $rawSchema = false;
+    if (preg_match("/\.yml$/", $file)) {
+      $rawSchema = ConfigLoader::loadSchema(DRUPAL_ROOT.'/'.$file);
+    }
+    else if (file_exists($file)) {
+      $rawSchema = file_get_contents($file);
+    }
     return implode("\n", [
       $this->directivePrinter->printDirectives(),
-      file_exists($file) ? file_get_contents($file) : parent::getSchemaDefinition(),
+      $rawSchema ? $rawSchema : parent::getSchemaDefinition(),
     ]);
   }
 
