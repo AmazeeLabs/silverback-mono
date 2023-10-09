@@ -1,19 +1,8 @@
 query MultilingualMenus {
-  loadMainMenu(id: "main:de") {
-    items {
-      id
-      parent
-      label
-      url
-    }
-    translations {
-      langcode
-      items {
-        id
-        parent
-        label
-        url
-      }
-    }
+  en: loadMainMenu(id: "main:en") {
+    id
+  }
+  de: loadMainMenu(id: "main:de") {
+    id
   }
 }

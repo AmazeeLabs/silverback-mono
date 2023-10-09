@@ -227,9 +227,15 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
         $this->builder->context('current_menu_language', $langcode),
         $resolver,
         $this->builder->callback(function ($value, $args, ResolveContext $context, ResolveInfo $info, FieldContext $fieldContext) {
-        $value->__language = $fieldContext->getContextValue('current_menu_language');
-        return $value;
-      }));
+          $langcode = $fieldContext->getContextValue('current_menu_language');
+          if ($langcode !== $value->language()->getId()) {
+            $clone = clone $value;
+            $clone->set('langcode', $langcode);
+            return $clone;
+          }
+          return $value;
+        })
+      );
     }
     return $resolver;
   }
