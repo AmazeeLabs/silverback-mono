@@ -14,6 +14,7 @@ const doTest = async (page: Page, path: string) => {
   await expect(page.locator('#pages-count')).toContainText('2');
 
   // The random number fetched with a mutation should change every second.
+  await page.waitForTimeout(500); // For slow CI
   const rand1 = await page.innerText('#random-int');
   expect(rand1).toMatch(/^\d+$/);
   await page.waitForTimeout(2_000);
