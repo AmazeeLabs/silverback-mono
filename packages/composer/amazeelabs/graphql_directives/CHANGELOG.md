@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/graphql_directives@2.1.1...@-amazeelabs/graphql_directives@2.2.0) (2023-10-10)
+
+### Features
+
+- **graphql:** add class for loading graphql sources from config files
+  ([8e3fc79](https://github.com/AmazeeLabs/silverback-mono/commit/8e3fc7987e08d81b824b4ef1dbaca09a0cc36d83))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/graphql_directives@2.1.0...@-amazeelabs/graphql_directives@2.1.1) (2023-08-24)
 
 **Note:** Version bump only for package @-amazeelabs/graphql_directives
