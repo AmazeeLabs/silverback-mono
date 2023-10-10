@@ -1,0 +1,3 @@
+schema:
+  - web/modules/custom/silverback_gatsby_test/graphql/silverback_gatsby_test.graphqls
+  - web/modules/contrib/*/directives.graphql
