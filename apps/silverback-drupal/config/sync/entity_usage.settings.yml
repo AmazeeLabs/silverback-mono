@@ -3,6 +3,7 @@ _core:
 local_task_enabled_entity_types:
   - media
   - node
+  - taxonomy_term
 track_enabled_source_entity_types:
   - node
   - block_content
