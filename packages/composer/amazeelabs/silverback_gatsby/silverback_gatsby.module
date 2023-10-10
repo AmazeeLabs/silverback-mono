@@ -6,7 +6,22 @@ use Drupal\user\UserInterface;
 
 
 function _silverback_gatsby_entity_event(EntityInterface $entity) {
-  \Drupal::service('silverback_gatsby.update_handler')->handle(EntityFeed::class, $entity);
+  /** @var \Drupal\silverback_gatsby\GatsbyUpdateHandler $updateHandler */
+  $updateHandler = \Drupal::service('silverback_gatsby.update_handler');
+  $updateHandler->handle(EntityFeed::class, $entity);
+
+  if (\Drupal::hasService('entity_usage.usage')) {
+    /** @var \Drupal\entity_usage\EntityUsage $entityUsage */
+    $entityUsage = \Drupal::service('entity_usage.usage');
+    foreach ($entityUsage->listSources($entity) as $sourceEntityType => $sources) {
+      $entities = \Drupal::entityTypeManager()
+        ->getStorage($sourceEntityType)
+        ->loadMultiple(array_keys($sources));
+      foreach ($entities as $source) {
+        $updateHandler->handle(EntityFeed::class, $source);
+      }
+    }
+  }
 }
 
 /**
@@ -40,6 +55,18 @@ function silverback_gatsby_entity_update(EntityInterface $entity) {
  */
 function silverback_gatsby_entity_predelete(EntityInterface $entity) {
   _silverback_gatsby_entity_event($entity);
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function silverback_gatsby_module_implements_alter(&$implementations, $hook) {
+  // Act before entity_usage module.
+  if (in_array($hook, ['entity_insert', 'entity_update', 'entity_predelete'], TRUE)) {
+    $implementations = [
+      'silverback_gatsby' => $implementations['silverback_gatsby'],
+    ] + $implementations;
+  }
 }
 
 /**
