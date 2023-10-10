@@ -1,0 +1,21 @@
+"""
+Fetch an entity or entity revision based on id, rid or route
+
+Provided by the "silverback_gatsby" module.
+Implemented in "Drupal\silverback_gatsby\Plugin\GraphQL\Directive\EntityFetch".
+"""
+directive @fetchEntity(
+  type: String
+  id: String
+  rid: String
+  language: String
+  operation: String
+) repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
+
+"""
+Retrieve the properties of an image.
+
+Provided by the "silverback_gatsby" module.
+Implemented in "Drupal\silverback_gatsby\Plugin\GraphQL\Directive\ImageProps".
+"""
+directive @imageProps repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
