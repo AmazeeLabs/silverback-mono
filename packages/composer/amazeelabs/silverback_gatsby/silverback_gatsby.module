@@ -10,7 +10,7 @@ function _silverback_gatsby_entity_event(EntityInterface $entity) {
 }
 
 /**
- * Implements hook_entity_create().
+ * Implements hook_entity_insert().
  */
 function silverback_gatsby_entity_insert(EntityInterface $entity) {
   _silverback_gatsby_entity_event($entity);
