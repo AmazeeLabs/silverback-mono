@@ -1,0 +1,12 @@
+"""
+Directive for the responsive_image data producer.
+
+Provided by the "silverback_cloudinary" module.
+Implemented in "Drupal\silverback_cloudinary\Plugin\GraphQL\Directive\ResponsiveImage".
+"""
+directive @responsiveImage(
+  width: String
+  height: String
+  sizes: String
+  transform: String
+) repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
