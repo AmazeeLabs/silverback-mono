@@ -36,9 +36,9 @@ function silverback_gatsby_entity_update(EntityInterface $entity) {
 }
 
 /**
- * Implements hook_entity_delete().
+ * Implements hook_entity_predelete().
  */
-function silverback_gatsby_entity_delete(EntityInterface $entity) {
+function silverback_gatsby_entity_predelete(EntityInterface $entity) {
   _silverback_gatsby_entity_event($entity);
 }
 
