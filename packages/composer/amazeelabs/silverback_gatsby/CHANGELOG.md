@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.11](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.3.10...@-amazeelabs/silverback_gatsby@2.3.11) (2023-10-10)
+
+### Bug Fixes
+
+- use entity_usage to solve gatsby node reference issues
+  ([c53ca99](https://github.com/AmazeeLabs/silverback-mono/commit/c53ca990287f0dfb85f6c1f9ca873902be562d84))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.3.10](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.3.9...@-amazeelabs/silverback_gatsby@2.3.10) (2023-10-10)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gatsby
