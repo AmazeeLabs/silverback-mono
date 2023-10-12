@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2be8713e82cc41a92a67930ce2e52182",
+    "content-hash": "67b66a61217d0c97697b063303b9342e",
     "packages": [
         {
             "name": "amazeelabs/default-content",
@@ -33,11 +33,11 @@
         },
         {
             "name": "amazeelabs/graphql_directives",
-            "version": "2.1.1",
+            "version": "2.2.0",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/graphql_directives",
-                "reference": "d95974c65e1d83e66ea77bc62d348258be098c94"
+                "reference": "ef3652d98fc5bf814e6f698d94f2ff21c7d5e8c9"
             },
             "require": {
                 "webmozart/glob": "^4.6.0"
@@ -236,11 +236,11 @@
         },
         {
             "name": "amazeelabs/silverback_cloudinary",
-            "version": "1.4.1",
+            "version": "1.4.2",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_cloudinary",
-                "reference": "00ad7072603d07842d15779bca40b437e8eb4370"
+                "reference": "86a09f2a047c6e4bd1b26c8eb75d8cd38a579b15"
             },
             "require": {
                 "cloudinary/cloudinary_php": "^2"
@@ -282,11 +282,11 @@
         },
         {
             "name": "amazeelabs/silverback_gatsby",
-            "version": "2.3.8",
+            "version": "2.3.11",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gatsby",
-                "reference": "c82bb1030d3e2d8c5d64afd727b580aaa76eea02"
+                "reference": "643d23bdab0fc358a358baf879e5df3178eff0e6"
             },
             "type": "drupal-module",
             "extra": {
@@ -324,11 +324,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "2.5.4",
+            "version": "2.5.5",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "e2eb132fa74d4ffa0fadf8a2fdb41d8d9f4cd336"
+                "reference": "23eb0b0c65325ceb17470683b9d2014076c51e99"
             },
             "require": {
                 "drupal/gutenberg": "^2.7.0"
@@ -4151,23 +4151,6 @@
             "homepage": "https://www.drupal.org/project/simple_oauth",
             "support": {
                 "source": "https://git.drupalcode.org/project/simple_oauth"
-            }
-        },
-        {
-            "name": "drupal/test_session",
-            "version": "1.2.65",
-            "dist": {
-                "type": "path",
-                "url": "../../packages/composer/drupal/test_session",
-                "reference": "d639dbc28b9bb4705771069619dbe4c9bc0f30ad"
-            },
-            "type": "drupal-module",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "description": "Helpers for E2E testing.",
-            "transport-options": {
-                "relative": true
             }
         },
         {
@@ -13217,7 +13200,6 @@
         "drupal/default_content": 15,
         "drupal/entity_usage": 10,
         "drupal/linkit": 5,
-        "drupal/test_session": 20,
         "drupal/typed_data": 10,
         "drupal/webform": 10
     },

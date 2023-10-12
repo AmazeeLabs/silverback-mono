@@ -16,7 +16,7 @@ _finish
 # If there is no node modules directory, run yarn.
 [[ -d node_modules ]] || yarn
 
-export CYPRESS_BASE_URL=http://localhost:8888
+export CYPRESS_BASE_URL=http://127.0.0.1:8888
 export DRUPAL_CYPRESS=on
 
 # Start drush server

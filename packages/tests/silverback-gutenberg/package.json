@@ -12,6 +12,7 @@
     "@amazeelabs/prettier-config": "1.1.3",
     "@amazeelabs/silverback-playwright": "workspace:*",
     "@playwright/test": "1.32.0",
+    "@types/node": "20.8.4",
     "eslint": "8.36.0",
     "prettier": "2.8.6",
     "typescript": "5.0.2",
@@ -19,6 +20,10 @@
   },
   "scripts": {
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
-    "test:integration": "sp-test"
+    "test:integration": "pnpm test:readonly && pnpm test:mutating",
+    "test:readonly": "playwright test --pass-with-no-tests",
+    "test:mutating": "playwright test --pass-with-no-tests -c playwright.config.mutating.ts",
+    "dev": "DEBUG=pw:api pnpm test:readonly --ui",
+    "dev:mutating": "DEBUG=pw:api pnpm test:mutating --ui"
   }
 }
