@@ -18,7 +18,7 @@ export default defineConfig({
     clientId: process.env.OAUTH2_CLIENT_ID || 'publisher',
     clientSecret: process.env.OAUTH2_CLIENT_ID || 'publisher',
     scope: process.env.OAUTH2_SCOPE || 'publisher',
-    tokenHost: process.env.OAUTH2_TOKEN_HOST || 'http://localhost:8888',
+    tokenHost: process.env.OAUTH2_TOKEN_HOST || 'http://127.0.0.1:8888',
     tokenPath: process.env.OAUTH2_TOKEN_PATH || '/oauth/token',
     authorizePath:
       process.env.OAUTH2_AUTHORIZE_PATH ||

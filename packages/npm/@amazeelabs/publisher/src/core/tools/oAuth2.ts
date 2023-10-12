@@ -376,7 +376,7 @@ export const getUserInfo = async (req: Request): Promise<boolean> => {
   }
   try {
     const userInfoResponse = await fetch(
-      'http://localhost:8888/oauth/userinfo',
+      'http://127.0.0.1:8888/oauth/userinfo',
       {
         method: 'POST',
         headers: {

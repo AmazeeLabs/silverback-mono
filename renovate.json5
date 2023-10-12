@@ -85,32 +85,7 @@
     },
 
     // Package-specific rules.
-    {
-      // Deprecated packages.
-      matchPaths: [
-        // Deprecated test framework and all tests using it.
-        "packages/npm/@amazeelabs/silverback-playwright/**",
-        "packages/tests/silverback-gatsby/**",
-        "packages/tests/silverback-gutenberg/**",
-        "packages/tests/silverback-iframe/**",
-        "packages/tests/silverback-persisted-queries/**",
-        "packages/tests/test-session/**",
-      ],
-      enabled: false,
-    },
-    {
-      // Disable major updates of packages turned into ESM.
-      // TODO: Remove this rule once we get rid of fast-builds.
-      matchPaths: [
-        "apps/silverback-gatsby/**",
-      ],
-      packageNames: [
-        "p-queue",
-        "strip-ansi",
-      ],
-      updateTypes: ["major"],
-      enabled: false,
-    },
+    // [none for now]
   ],
 
   lockFileMaintenance: {

@@ -17,5 +17,4 @@ negotiation:
   language_interface:
     enabled:
       language-graphql-operation: -999
-      language-test-session: -999
       language-url: 0

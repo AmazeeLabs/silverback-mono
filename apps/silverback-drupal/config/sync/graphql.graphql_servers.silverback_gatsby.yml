@@ -20,7 +20,7 @@ schema_configuration:
     schema_definition: ../graphqlrc.yml
     build_trigger_on_save: 1
     build_url: ''
-    build_webhook: 'http://localhost:9001/__rebuild'
+    build_webhook: 'http://127.0.0.1:8000/___status/build'
     update_webhook: ''
     user: 7822b516-48e8-48e8-a7f6-5e23ad20ee3b
 persisted_queries_settings:

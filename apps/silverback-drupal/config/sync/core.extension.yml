@@ -54,7 +54,6 @@ module:
   sqlite: 0
   system: 0
   taxonomy: 0
-  test_session: 0
   text: 0
   toolbar: 0
   typed_data: 0
