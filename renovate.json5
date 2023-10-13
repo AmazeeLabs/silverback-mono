@@ -86,10 +86,23 @@
 
     // Package-specific rules.
     {
-      matchPaths: [
-        // It needs tests.
-        // rehype-react v8 does not have types, and it's not really clear how to update
-        "packages/npm/@amazeelabs/scalars/**",
+      matchPackageNames: [
+        // Something is wrong with the "unified" ecosystem.
+        // Example:
+        //   package.json dependencies updated by renovate
+        //     "remark-parse": "^10.0.2",
+        //     "unified": "^11.0.3",
+        //   ts file
+        //     import remarkParse from 'remark-parse';
+        //     import { unified } from 'unified';
+        //     unified().use(remarkParse).parse(input);
+        //                   ^ TS errors here
+        "unified",
+        "remark-*",
+        "rehype-*",
+        "mdast",
+        "hast",
+        "hast-util-select",
       ],
       enabled: false,
     }
