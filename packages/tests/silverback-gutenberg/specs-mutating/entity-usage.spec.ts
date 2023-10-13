@@ -9,7 +9,7 @@ test.beforeAll(async () => {
   await resetState();
 });
 
-test('@drupal-only test gutenberg media entity usage', async ({ page }) => {
+test('test gutenberg media entity usage', async ({ page }) => {
   await drupalLogin(page);
   await page.goto(`${drupal.baseUrl}/en/node/add/gutenberg_page`);
 

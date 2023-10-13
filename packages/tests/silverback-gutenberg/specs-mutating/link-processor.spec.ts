@@ -13,7 +13,7 @@ test.beforeAll(async () => {
   await resetState();
 });
 
-test('@gatsby-develop test LinkProcessor', async ({ page }) => {
+test('test LinkProcessor', async ({ page }) => {
   const selectFirstAutocompleteResult = async () =>
     page.click('.block-editor-link-control__search-results-wrapper button');
   const getNodeId = async () => {
