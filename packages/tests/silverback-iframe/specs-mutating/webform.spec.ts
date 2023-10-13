@@ -2,16 +2,14 @@ import {
   drupal,
   drupalLogin,
   drupalLogout,
+  drush,
   gatsby,
   resetState,
   waitForGatsby,
 } from '@amazeelabs/silverback-playwright';
 import { expect, PlaywrightTestArgs, test } from '@playwright/test';
-import { $, cd } from 'zx';
 
 import { getIframe } from '../common';
-
-$.verbose = false;
 
 test.beforeAll(async () => {
   await resetState();
@@ -20,10 +18,10 @@ test.beforeAll(async () => {
 test('the unsupported confirmation type is replaced with the default value', async ({
   page,
 }) => {
-  cd(drupal.path);
-  const result =
-    await $`source .envrc && drush cget webform.webform.for_testing_confirmation_options settings.confirmation_type --include-overridden --format=json`;
-  const confirmationType = Object.values(JSON.parse(result.stdout))[0];
+  const result = drush(
+    `cget webform.webform.for_testing_confirmation_options settings.confirmation_type --include-overridden --format=json`,
+  );
+  const confirmationType = Object.values(JSON.parse(result))[0];
   expect(confirmationType).toEqual('page');
 
   await drupalLogin(page);
@@ -53,15 +51,19 @@ test('only allowed confirmation types are listed in the webform config', async (
 
   // Case: limit_webform_confirmation_options is FALSE.
   // Can't use "drush cset" due to https://github.com/drush-ops/drush/issues/3793
-  await $`source .envrc && drush eval '\\Drupal::configFactory()->getEditable("silverback_iframe.settings")->set("limit_webform_confirmation_options", FALSE)->save();'`;
+  drush(
+    `eval '\\Drupal::configFactory()->getEditable("silverback_iframe.settings")->set("limit_webform_confirmation_options", FALSE)->save();'`,
+  );
   expect(await getOptions()).not.toEqual(confirmationOptions);
 
   // Case: limit_webform_confirmation_options is TRUE.
-  await $`source .envrc && drush -y cset silverback_iframe.settings limit_webform_confirmation_options true --input-format=yaml`;
+  drush(
+    `-y cset silverback_iframe.settings limit_webform_confirmation_options true --input-format=yaml`,
+  );
   expect(await getOptions()).toEqual(confirmationOptions);
 
   // Case: limit_webform_confirmation_options is missing.
-  await $`source .envrc && drush -y cdel silverback_iframe.settings`;
+  drush(`-y cdel silverback_iframe.settings`);
   expect(await getOptions()).toEqual(confirmationOptions);
 });
 

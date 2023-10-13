@@ -11,6 +11,12 @@ export const drupal = {
   path: '../../../apps/silverback-drupal',
 };
 
+export const drush = (cmd: string): string => {
+  return execSync(
+    `pnpm --filter "@-amazeelabs/silverback-drupal" exec -- pnpm --silent drush ${cmd}`,
+  ).toString();
+};
+
 export const waitForGatsby = async () => {
   const gatsbyStatus = async (): Promise<'building' | 'ready' | 'outdated'> => {
     let gatsbyBuildId;
@@ -27,11 +33,9 @@ export const waitForGatsby = async () => {
       return 'building';
     }
 
-    const php =
-      'echo \\Drupal::service("silverback_gatsby.update_tracker")->latestBuild("silverback_gatsby")';
-    const drupalBuildId = execSync(
-      `pnpm --filter "@-amazeelabs/silverback-drupal" exec -- pnpm --silent drush eval '${php}'`,
-    ).toString();
+    const drupalBuildId = drush(
+      `eval 'echo \\Drupal::service("silverback_gatsby.update_tracker")->latestBuild("silverback_gatsby")'`,
+    );
 
     return drupalBuildId === gatsbyBuildId ? 'ready' : 'outdated';
   };

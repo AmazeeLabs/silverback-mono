@@ -1,23 +1,19 @@
 import {
   drupal,
   drupalLogin,
+  drush,
   gatsby,
   resetState,
   waitForGatsby,
 } from '@amazeelabs/silverback-playwright';
 import { expect, test } from '@playwright/test';
 import { platform } from 'os';
-import { $, cd } from 'zx';
-
-$.verbose = false;
 
 test.beforeAll(async () => {
   await resetState();
 });
 
 test('@gatsby-develop test LinkProcessor', async ({ page }) => {
-  cd(drupal.path);
-
   const selectFirstAutocompleteResult = async () =>
     page.click('.block-editor-link-control__search-results-wrapper button');
   const getNodeId = async () => {
@@ -44,9 +40,9 @@ test('@gatsby-develop test LinkProcessor', async ({ page }) => {
   await page.click(':text-is("Save")');
 
   const targetNodeId = await getNodeId();
-  const targetNodeUuid = (
-    await $`source .envrc && drush eval 'echo \\Drupal\\node\\Entity\\Node::load(${targetNodeId})->uuid();'`
-  ).stdout;
+  const targetNodeUuid = drush(
+    `eval 'echo \\Drupal\\node\\Entity\\Node::load(${targetNodeId})->uuid();'`,
+  );
 
   await page.click('.tabs--primary :text-is("Translate")');
   await page.click(':text-is("Add"):right-of(:text-is("German"))');
@@ -99,9 +95,10 @@ test('@gatsby-develop test LinkProcessor', async ({ page }) => {
 
   // Ensure that internal URLs are stored in Drupal database.
 
-  const result =
-    await $`source .envrc && drush eval 'echo json_encode((new \\Drupal\\gutenberg\\Parser\\BlockParser())->parse(\\Drupal\\node\\Entity\\Node::load(${nodeId})->body->value));'`;
-  const blocks = JSON.parse(result.stdout);
+  const result = drush(
+    `eval 'echo json_encode((new \\Drupal\\gutenberg\\Parser\\BlockParser())->parse(\\Drupal\\node\\Entity\\Node::load(${nodeId})->body->value));'`,
+  );
+  const blocks = JSON.parse(result);
 
   expect(blocks).toHaveProperty('0.innerBlocks.0');
   const paragraphBlock = blocks[0].innerBlocks[0];
