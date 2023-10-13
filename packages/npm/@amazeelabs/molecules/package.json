@@ -20,7 +20,7 @@
     "test:ui": "vitest --ui",
     "storybook": "storybook dev -p 6007 --ci",
     "build-storybook": "storybook build",
-    "deploy": "pnpm build-storybook && pnpm netlify deploy -a $NETLIFY_AUTH_TOKEN -d storybook-static -p -s amazeelabs-molecules"
+    "deploy": "pnpm build-storybook && pnpm run --filter=@amazeelabs/molecules netlify deploy -a $NETLIFY_AUTH_TOKEN -d packages/npm/@amazeelabs/molecules/storybook-static -p -s amazeelabs-molecules"
   },
   "peerDependencies": {
     "react": ">=18.2.0",
