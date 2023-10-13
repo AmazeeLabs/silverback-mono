@@ -8,6 +8,7 @@ dependencies:
     - node.type.page
   module:
     - entity_reference_revisions
+    - silverback_external_preview
     - text
     - user
 id: node.page.default

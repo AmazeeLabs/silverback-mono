@@ -3,21 +3,33 @@ display:
     display_title: 'Par défaut'
     display_options:
       fields:
-        info:
-          label: 'Description du bloc'
+        campaign_url_bulk_form:
+          label: 'Mise à jour en masse'
+          action_title: Action
+        campaign_url_source:
+          label: Source
           separator: ', '
-        type:
-          label: 'Type de bloc'
+        campaign_url_destination:
+          separator: ', '
+        status_code:
+          separator: ', '
+        force:
+          separator: ', '
+        created:
+          label: Créé
           separator: ', '
         changed:
           label: 'Mis à jour'
+          separator: ', '
         operations:
           label: Actions
       pager:
         options:
           tags:
-            next: 'Suivant ›'
-            previous: '‹ Précédent'
+            next: ››
+            previous: ‹‹
+            first: '« Premier'
+            last: 'Dernier »'
           expose:
             items_per_page_label: 'Éléments par page'
             items_per_page_options_all_label: '- Tout -'
@@ -29,15 +41,5 @@ display:
           exposed_sorts_label: 'Trier par'
           sort_asc_label: Asc
           sort_desc_label: Desc
-      filters:
-        info:
-          expose:
-            label: 'Description du bloc'
-        type:
-          expose:
-            label: 'Type de bloc'
-  page_1:
+  page_campaign_urls:
     display_title: Page
-    display_options:
-      menu:
-        title: Blocs

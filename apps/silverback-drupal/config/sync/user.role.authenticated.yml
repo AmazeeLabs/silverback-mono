@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - file
     - graphql
     - simple_oauth
 _core:
@@ -12,6 +13,7 @@ label: 'Authenticated user'
 weight: -9
 is_admin: false
 permissions:
+  - 'delete own files'
   - 'execute extra persisted graphql requests'
   - 'execute silverback_gatsby persisted graphql requests'
   - 'execute silverback_gatsby_preview persisted graphql requests'
