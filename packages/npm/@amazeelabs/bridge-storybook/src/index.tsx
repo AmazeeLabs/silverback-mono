@@ -7,10 +7,12 @@ import type {
 import { action } from '@storybook/addon-actions';
 import React, { createContext, useContext, useState } from 'react';
 
+type SetLocation = (location: LocationType) => void;
+
 const LocationContext = createContext<
   | {
       location: LocationType;
-      setLocation: (location: LocationType) => void;
+      setLocation: SetLocation;
     }
   | undefined
 >(undefined);
