@@ -1,6 +1,6 @@
 import LocalDataBase from '@verdaccio/local-storage';
 import LocalFS from '@verdaccio/local-storage/lib/local-fs';
-import { Config, IPackageStorage, IUploadTarball } from '@verdaccio/types';
+import { Config, IUploadTarball } from '@verdaccio/types';
 import path from 'path';
 import git from 'simple-git';
 
@@ -45,7 +45,7 @@ export default class GitDataBase extends LocalDataBase {
    *
    * @inheritDoc
    */
-  public getPackageStorage(packageName: string): IPackageStorage {
+  public getPackageStorage(packageName: string): LocalFS {
     return new GitPackageStorage(
       path.join(path.resolve(this.config.path), packageName),
       this.logger.child({ sub: 'git' }),

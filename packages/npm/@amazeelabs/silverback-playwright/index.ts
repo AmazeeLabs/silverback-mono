@@ -1,5 +1,9 @@
-import { devices, expect, PlaywrightTestArgs } from '@playwright/test';
-import { PlaywrightTestConfig } from '@playwright/test/types/test';
+import {
+  devices,
+  expect,
+  PlaywrightTestArgs,
+  PlaywrightTestConfig,
+} from '@playwright/test';
 import { execSync } from 'child_process';
 
 export const gatsby = {
