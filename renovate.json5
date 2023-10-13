@@ -98,8 +98,10 @@
         //     unified().use(remarkParse).parse(input);
         //                   ^ TS errors here
         "unified",
-        "remark-*",
-        "rehype-*",
+        "remark-parse",
+        "rehype-parse",
+        "rehype-react",
+        "rehype-slug",
         "mdast",
         "hast",
         "hast-util-select",
