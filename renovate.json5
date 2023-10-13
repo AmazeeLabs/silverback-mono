@@ -85,7 +85,14 @@
     },
 
     // Package-specific rules.
-    // [none for now]
+    {
+      matchPaths: [
+        // It needs tests.
+        // rehype-react v8 does not have types, and it's not really clear how to update
+        "packages/npm/@amazeelabs/scalars/**",
+      ],
+      enabled: false,
+    }
   ],
 
   lockFileMaintenance: {
