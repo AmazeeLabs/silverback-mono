@@ -1,7 +1,6 @@
 import { defineConfig } from 'rollup';
 import dts from 'rollup-plugin-dts';
 import esbuild from 'rollup-plugin-esbuild';
-import shebang from 'rollup-plugin-preserve-shebang';
 
 export default defineConfig([
   {
@@ -9,7 +8,7 @@ export default defineConfig([
     output: {
       file: 'dist/cli.js',
     },
-    plugins: [esbuild(), shebang()],
+    plugins: [esbuild()],
   },
   {
     input: 'src/exports.ts',
