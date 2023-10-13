@@ -8,7 +8,7 @@ export default defineConfig([
     output: {
       file: 'dist/cli.js',
     },
-    plugins: [esbuild()],
+    plugins: [esbuild({ target: 'ESNext' })],
   },
   {
     input: 'src/exports.ts',
@@ -16,7 +16,7 @@ export default defineConfig([
       file: 'dist/exports.cjs',
       format: 'cjs',
     },
-    plugins: [esbuild()],
+    plugins: [esbuild({ target: 'ESNext' })],
   },
   {
     input: './src/exports.ts',
