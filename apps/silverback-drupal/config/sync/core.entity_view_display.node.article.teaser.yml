@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.article.field_tags
     - node.type.article
   module:
+    - silverback_external_preview
     - user
 id: node.article.teaser
 targetEntityType: node

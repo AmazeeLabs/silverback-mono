@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
+    - file
     - silverback_gatsby
 id: publisher
 label: Publisher
@@ -10,3 +11,4 @@ weight: -8
 is_admin: null
 permissions:
   - 'access publisher'
+  - 'delete own files'

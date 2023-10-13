@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.gutenberg_page.body
     - node.type.gutenberg_page
   module:
+    - silverback_external_preview
     - text
     - user
 id: node.gutenberg_page.teaser

@@ -3,6 +3,7 @@ langcode: de
 status: true
 dependencies:
   module:
+    - file
     - graphql
     - key_auth
     - media
@@ -17,6 +18,7 @@ permissions:
   - 'access content'
   - 'access create translation sources endpoint'
   - 'bypass node access'
+  - 'delete own files'
   - 'execute silverback_gatsby_preview arbitrary graphql requests'
   - 'use key authentication'
   - 'view media'

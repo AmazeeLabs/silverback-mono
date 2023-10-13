@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.page.field_paragraphs
     - node.type.page
   module:
+    - silverback_external_preview
     - user
 id: node.page.teaser
 targetEntityType: node

@@ -3,21 +3,33 @@ display:
     display_title: Standard
     display_options:
       fields:
-        info:
-          label: Blockbeschreibung
+        campaign_url_bulk_form:
+          label: Massenaktualisierung
+          action_title: Aktion
+        campaign_url_source:
+          label: Quelle
           separator: ', '
-        type:
-          label: Blocktyp
+        campaign_url_destination:
+          separator: ', '
+        status_code:
+          separator: ', '
+        force:
+          separator: ', '
+        created:
+          label: Erstellt
           separator: ', '
         changed:
           label: Aktualisiert
+          separator: ', '
         operations:
           label: Aktionen
       pager:
         options:
           tags:
-            next: 'Nächste Seite ›'
-            previous: '‹ Vorherige Seite'
+            next: ››
+            previous: ‹‹
+            first: '« Anfang'
+            last: 'Ende »'
           expose:
             items_per_page_label: 'Elemente pro Seite'
             items_per_page_options_all_label: '- Alle -'
@@ -29,15 +41,5 @@ display:
           exposed_sorts_label: 'Sortieren nach'
           sort_asc_label: Aufsteigend
           sort_desc_label: Absteigend
-      filters:
-        info:
-          expose:
-            label: Blockbeschreibung
-        type:
-          expose:
-            label: Blocktyp
-  page_1:
+  page_campaign_urls:
     display_title: Seite
-    display_options:
-      menu:
-        title: Blöcke
