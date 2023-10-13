@@ -7,7 +7,7 @@ import { HeightTransition } from './HeightTransition';
 export default {
   title: 'Components/HeightTransition',
   component: HeightTransition,
-} as Meta;
+} as Meta<typeof HeightTransition>;
 
 const content = (
   <div className={'text-lg bg-indigo-200 p-2'}>

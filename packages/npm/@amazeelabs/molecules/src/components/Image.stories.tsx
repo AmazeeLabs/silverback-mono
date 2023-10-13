@@ -26,7 +26,7 @@ import {
 export default {
   title: 'Components/Image',
   component: Image,
-} as Meta;
+} as Meta<typeof Image>;
 
 const Portrait = {
   original: PortraitOriginal,
