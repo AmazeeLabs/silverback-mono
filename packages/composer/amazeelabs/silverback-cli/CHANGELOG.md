@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@2.9.6...@-amazeelabs/silverback-cli@2.9.7) (2023-10-13)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-cli
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.9.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-cli@2.9.5...@-amazeelabs/silverback-cli@2.9.6) (2023-10-12)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-cli
