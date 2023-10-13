@@ -141,7 +141,7 @@ export type ImageSource = string & {
 };
 
 function base64(content: string) {
-  if (typeof btoa === undefined) {
+  if (typeof btoa === 'undefined') {
     return Buffer.from(content, 'base64').toString('binary');
   }
   return btoa(content);
