@@ -19,7 +19,7 @@
     "@amazeelabs/sync-composer-version": "workspace:*",
     "@types/jest": "29.5.2",
     "eslint": "8.42.0",
-    "prettier": "2.8.8",
+    "prettier": "3.0.3",
     "typescript": "5.1.3"
   }
 }
