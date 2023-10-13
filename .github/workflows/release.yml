@@ -76,3 +76,9 @@ jobs:
       - name: Verdaccio log
         run: cat /tmp/verdaccio.log || true
         if: always()
+      - name: Gatsby log
+        run: cat /tmp/gatsby.log || true
+        if: always()
+      - name: Drupal log
+        run: cat /tmp/drupal.log || true
+        if: always()
