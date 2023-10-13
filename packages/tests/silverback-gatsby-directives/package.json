@@ -9,11 +9,11 @@
     "@-amazeelabs/silverback-gatsby-directives": "workspace:*",
     "@amazeelabs/eslint-config": "1.4.43",
     "@amazeelabs/prettier-config": "1.1.3",
-    "@playwright/test": "1.32.0",
-    "@types/node": "20.6.5",
-    "eslint": "8.36.0",
+    "@playwright/test": "1.39.0",
+    "@types/node": "20.8.5",
+    "eslint": "8.51.0",
     "prettier": "3.0.3",
-    "typescript": "5.0.2"
+    "typescript": "5.2.2"
   },
   "scripts": {
     "serve": "pnpm run --filter @-amazeelabs/silverback-gatsby-directives serve",
