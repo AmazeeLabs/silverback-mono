@@ -27,7 +27,7 @@
     "@commitlint/config-conventional": "17.6.5",
     "commitizen": "4.3.0",
     "husky": "8.0.3",
-    "lerna": "6.6.2",
+    "lerna": "7.2.0",
     "verdaccio": "5.25.0",
     "verdaccio-git": "workspace:*"
   },
@@ -48,7 +48,7 @@
     }
   },
   "dependencies": {
-    "prettier": "2.8.8"
+    "prettier": "3.0.3"
   },
   "resolutions": {
     "@graphql-tools/load": "^8.0.0"
