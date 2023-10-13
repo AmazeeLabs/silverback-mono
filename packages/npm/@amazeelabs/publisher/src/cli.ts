@@ -1,5 +1,3 @@
-#! /usr/bin/env node
-
 import { existsSync } from 'fs';
 import { HttpTerminator } from 'http-terminator/src/types';
 import { join } from 'path';
