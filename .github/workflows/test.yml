@@ -38,7 +38,7 @@ jobs:
         run: pnpm test:unit:all
 
       - name: Install Playwright browsers
-        run: cd packages/tests/_template && pnpm playwright install
+        run: cd packages/tests/_template && pnpm playwright install chromium
 
       - name: Run integration tests
         if: startsWith(github.head_ref, 'test-all/') == false
