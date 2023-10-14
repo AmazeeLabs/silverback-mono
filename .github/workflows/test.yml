@@ -108,7 +108,7 @@ jobs:
           drush -y cex
           cd -
           # Check Git changes ignoring the config translations.
-          if [[ $(git status --porcelain -- apps/silverback-drupal/config ':!apps/silverback-drupal/config/sync/language') ]]
+          if [[ $(git status --porcelain -- apps/silverback-drupal/config ':!apps/silverback-drupal/config/sync/language' ':!apps/silverback-drupal/config/webform/sync/language') ]]
           then
             set +x
             >&2 echo '⬇️ ⬇️ ⬇️ ⬇️ ⬇️️'
@@ -124,8 +124,8 @@ jobs:
             >&2 echo 'Also, you can ignore this failure if you are really sure that everything is all right.'
             >&2 echo '⬇️ ⬇️ ⬇️ ⬇️ ⬇️️️️'
             set -x
-            git status --porcelain -- apps/silverback-drupal/config ':!apps/silverback-drupal/config/sync/language'
-            git diff -- apps/silverback-drupal/config ':!apps/silverback-drupal/config/sync/language'
+            git status --porcelain -- apps/silverback-drupal/config ':!apps/silverback-drupal/config/sync/language' ':!apps/silverback-drupal/config/webform/sync/language'
+            git diff -- apps/silverback-drupal/config ':!apps/silverback-drupal/config/sync/language' ':!apps/silverback-drupal/config/webform/sync/language'
             false
           else
             echo 'Success: Found no new config changes.'
