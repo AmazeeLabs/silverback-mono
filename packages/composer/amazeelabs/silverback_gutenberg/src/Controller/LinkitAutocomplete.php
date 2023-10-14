@@ -21,10 +21,13 @@ class LinkitAutocomplete extends SearchController {
 
     if (
       !\Drupal::moduleHandler()->moduleExists('linkit') ||
-      !\Drupal::entityTypeManager()->getStorage('linkit_profile')->load($linkitProfileId)
+      !($linkitProfile = \Drupal::entityTypeManager()->getStorage('linkit_profile')->load($linkitProfileId))
     ) {
       return parent::search($request);
     }
+
+    $linkitVersion = \Drupal::service('extension.list.module')->getExtensionInfo('linkit')['version'] ?? 0;
+    $passProfileObject = version_compare($linkitVersion, '6.1.1', '>=');
 
     $type = (string) $request->query->get('type');
     if ($type !== 'post') {
@@ -35,7 +38,7 @@ class LinkitAutocomplete extends SearchController {
     $search = (string) $request->query->get('search');
     $request->query->set('q', $search);
     $linkitController = AutocompleteController::create(\Drupal::getContainer());
-    $response = $linkitController->autocomplete($request, $linkitProfileId);
+    $response = $linkitController->autocomplete($request, $passProfileObject ? $linkitProfile : $linkitProfileId);
     $rows = Json::decode($response->getContent())['suggestions'] ?? [];
     /** @var \Drupal\linkit\SubstitutionManagerInterface $substitutionManager */
     $substitutionManager = \Drupal::service('plugin.manager.linkit.substitution');
@@ -52,7 +55,7 @@ class LinkitAutocomplete extends SearchController {
             $url = $substitutionManager
               ->createInstance($row['substitution_id'])
               ->getUrl($entity)
-              ->getGeneratedUrl();
+              ->toString();
           }
         }
       }
