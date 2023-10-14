@@ -52,10 +52,10 @@
         "drupal/linkit": "6.1.2",
         "drupal/paragraphs": "1.16.0",
         "drupal/redirect": "1.9.0",
-        "drupal/simple_oauth": "^5.2",
+        "drupal/simple_oauth": "5.2.3",
         "drupal/typed_data": "1.0.0-beta2",
         "drupal/webform": "6.2.0-rc1",
-        "fenetikm/autoload-drupal": "^1.0",
+        "fenetikm/autoload-drupal": "1.0.0",
         "phpspec/prophecy-phpunit": "2.0.2"
     },
     "conflict": {
