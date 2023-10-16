@@ -17,9 +17,9 @@ import { Row } from '../util/Row';
 
 export const query = graphql`
   query Article($remoteId: String!) {
-    drupalArticle(remoteId: { eq: $remoteId }) {
+    drupalArticle(_id: { eq: $remoteId }) {
       id
-      langcode
+      langcode:_langcode
       path
       title
       body

@@ -1,19 +1,19 @@
 fragment Image on Image {
   __typename
-  id
-  drupalId
-  langcode
-  defaultTranslation
-  translations {
-    langcode
-    defaultTranslation
+  id:_id
+  drupalId:_drupalId
+  langcode:_langcode
+  defaultTranslation:_defaultTranslation
+  translations:_translations {
+    langcode:_langcode
+    defaultTranslation:_defaultTranslation
   }
   url
   alt
 }
 
 {
-  loadImage(id: "fd3a7238-807a-483d-a703-c9b1b6b4a8e8") {
+  loadImage:_loadImage(id: "fd3a7238-807a-483d-a703-c9b1b6b4a8e8") {
     ...Image
   }
 }

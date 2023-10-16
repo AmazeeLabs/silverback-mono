@@ -16,8 +16,8 @@ import { UnreachableCaseError } from '../util/types';
 
 export const query = graphql`
   query GutenbergPage($remoteId: String!) {
-    drupalGutenbergPage(remoteId: { eq: $remoteId }) {
-      id
+    drupalGutenbergPage(_id: { eq: $remoteId }) {
+      id:_id
       title
       body {
         __typename

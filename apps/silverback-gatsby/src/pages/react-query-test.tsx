@@ -85,7 +85,7 @@ const Sitemap: React.FC = () => {
       <h1>React Query test</h1>
       <div>
         Amount of loaded pages (should be 2):{' '}
-        <span id="pages-count">{data?.queryPages.length}</span>
+        <span id="pages-count">{data?._queryPages.length}</span>
       </div>
       <div>
         Loaded random int (should change):{' '}

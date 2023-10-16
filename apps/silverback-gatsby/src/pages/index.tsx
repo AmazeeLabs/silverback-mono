@@ -19,9 +19,9 @@ const IndexPage: React.FC<PageProps> = () => {
     query IndexPage {
       allDrupalPage(filter: { title: { eq: "A page" } }) {
         nodes {
-          id
-          translations {
-            langcode
+          id:_id
+          translations:_translations {
+            langcode:_langcode
             path
             title
             body
@@ -34,11 +34,11 @@ const IndexPage: React.FC<PageProps> = () => {
           }
         }
       }
-      allDrupalArticle(filter: { defaultTranslation: { eq: true } }) {
+      allDrupalArticle(filter: { _defaultTranslation: { eq: true } }) {
         nodes {
-          id
-          translations {
-            langcode
+          id:_id
+          translations:_translations {
+            langcode:_langcode
             path
             title
             tags {
@@ -47,11 +47,11 @@ const IndexPage: React.FC<PageProps> = () => {
           }
         }
       }
-      allDrupalGutenbergPage(filter: { defaultTranslation: { eq: true } }) {
+      allDrupalGutenbergPage(filter: { _defaultTranslation: { eq: true } }) {
         nodes {
-          id
-          translations {
-            langcode
+          id:_id
+          translations:_translations {
+            langcode:_langcode
             path
             title
           }

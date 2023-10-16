@@ -40,11 +40,11 @@ async function graphqlFetch<T extends AnyOperationId>(
 const Sitemap: React.FC = () => {
   const [randomInt, setRandomInt] = useState<number>();
   const [pages, setPages] =
-    useState<OperationResult<typeof GetPagesQuery>['queryPages']>();
+    useState<OperationResult<typeof GetPagesQuery>['_queryPages']>();
   useEffect(() => {
     (async () => {
       setPages(
-        (await graphqlFetch(GetPagesQuery, { offset: 0, limit: 2 })).queryPages,
+        (await graphqlFetch(GetPagesQuery, { offset: 0, limit: 2 }))._queryPages,
       );
       const fetchRandomInt = async () => {
         setRandomInt(
