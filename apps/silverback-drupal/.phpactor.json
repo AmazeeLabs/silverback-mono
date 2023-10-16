@@ -1,0 +1,9 @@
+{
+  "language_server_phpstan.enabled": true,
+  "php_code_sniffer.enabled": true,
+  "prophecy.enabled": true,
+  "code_transform.indentation": "  ",
+  "indexer.supported_extensions": ["php", "inc", "module"],
+  "indexer.include_patterns": ["/**/*.php", "/**/*.inc", "/**/*.module"],
+  "indexer.follow_symlinks": true
+}

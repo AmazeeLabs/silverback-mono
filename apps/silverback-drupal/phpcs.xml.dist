@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="Silverback Drupal">
+  <description>PHP CodeSniffer configuration for Silverback.</description>
+  <file>.</file>
+  <arg name="extensions" value="php,module,inc,install,profile,theme"/>
+  <config name="drupal_core_version" value="9"/>
+  <rule ref="./vendor/drupal/coder/coder_sniffer/Drupal"/>
+  <rule ref="./vendor/drupal/coder/coder_sniffer/DrupalPractice"/>
+</ruleset>
