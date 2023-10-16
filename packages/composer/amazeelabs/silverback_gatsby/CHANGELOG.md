@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.3.12...@-amazeelabs/silverback_gatsby@2.4.0) (2023-10-16)
+
+### Features
+
+- **publisher:** create publisher consumer if it does not exist yet
+  ([#1439](https://github.com/AmazeeLabs/silverback-mono/issues/1439))
+  ([3a653b4](https://github.com/AmazeeLabs/silverback-mono/commit/3a653b4edd7749a4ce3de6aafbf5036436f6a003))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.3.12](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.3.11...@-amazeelabs/silverback_gatsby@2.3.12) (2023-10-12)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gatsby
