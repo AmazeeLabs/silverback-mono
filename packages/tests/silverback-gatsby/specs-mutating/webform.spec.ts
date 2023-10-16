@@ -4,15 +4,16 @@ import {
   drupalLogout,
   drush,
   gatsby,
-  resetState,
+  resetDrupalState,
   waitForGatsby,
 } from '@amazeelabs/silverback-playwright';
 import { expect, PlaywrightTestArgs, test } from '@playwright/test';
 
-import { getIframe } from '../common';
+import { getIframe } from '../../silverback-drupal/common';
 
 test.beforeAll(async () => {
-  await resetState();
+  await resetDrupalState();
+  await waitForGatsby();
 });
 
 test('the unsupported confirmation type is replaced with the default value', async ({

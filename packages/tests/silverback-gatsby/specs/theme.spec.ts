@@ -1,7 +1,7 @@
 import { drupal, gatsby } from '@amazeelabs/silverback-playwright';
 import { expect, test } from '@playwright/test';
 
-import { getIframe } from '../common';
+import { getIframe } from '../../silverback-drupal/common';
 
 test('silverback_iframe_test theme is used when iframe=true', async ({
   page,

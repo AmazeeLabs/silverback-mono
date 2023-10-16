@@ -1,12 +1,12 @@
 import {
   drupal,
   drupalLogin,
-  resetState,
+  resetDrupalState,
 } from '@amazeelabs/silverback-playwright';
 import { expect, test } from '@playwright/test';
 
 test.beforeAll(async () => {
-  await resetState();
+  await resetDrupalState();
 });
 
 test('test gutenberg media entity usage', async ({ page }) => {

@@ -17,6 +17,6 @@
   },
   "scripts": {
     "serve": "pnpm run --filter @-amazeelabs/silverback-gatsby-directives serve",
-    "test:integration": "playwright test"
+    "test:integration": "playwright install chromium && playwright test"
   }
 }

@@ -48,9 +48,6 @@ jobs:
       - name: Run unit tests
         run: pnpm test:unit
 
-      - name: Install Playwright browsers
-        run: cd packages/tests/_template && pnpm playwright install chromium
-
       - name: Run integration tests
         run: pnpm test:integration
 
