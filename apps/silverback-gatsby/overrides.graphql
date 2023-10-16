@@ -33,3 +33,13 @@ type DrupalArticle {
       transform: "$transform"
     )
 }
+
+type Page {
+  id: String!
+  title: String!
+}
+
+type Query {
+  pages: [Page] @gatsbyNodes(type: "DrupalPage")
+  page(id: ID!): Page @gatsbyNode(type: "DrupalPage", id: "$id")
+}
