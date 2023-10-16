@@ -10,8 +10,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       [
         'typeName' => 'Page',
         'translatable' => TRUE,
-        'singleFieldName' => 'loadPage',
-        'listFieldName' => 'queryPages',
+        'singleFieldName' => '_loadPage',
+        'listFieldName' => '_queryPages',
         'changes' => $changes['Page'] ?? [],
         'pathFieldName' => 'path',
         'templateFieldName' => NULL,
@@ -20,8 +20,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       [
         'typeName' => 'Post',
         'translatable' => FALSE,
-        'singleFieldName' => 'loadPost',
-        'listFieldName' => 'queryPosts',
+        'singleFieldName' => '_loadPost',
+        'listFieldName' => '_queryPosts',
         'changes' => $changes['Post'] ?? [],
         'pathFieldName' => 'path',
         'templateFieldName' => 'template',
@@ -29,8 +29,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       [
         'typeName' => 'MainMenu',
         'translatable' => FALSE,
-        'singleFieldName' => 'loadMainMenu',
-        'listFieldName' => 'queryMainMenus',
+        'singleFieldName' => '_loadMainMenu',
+        'listFieldName' => '_queryMainMenus',
         'changes' => $changes['MainMenu'] ?? [],
         'pathFieldName' => NULL,
         'templateFieldName' => NULL,
@@ -38,8 +38,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       [
         'typeName' => 'VisibleMainMenu',
         'translatable' => FALSE,
-        'singleFieldName' => 'loadVisibleMainMenu',
-        'listFieldName' => 'queryVisibleMainMenus',
+        'singleFieldName' => '_loadVisibleMainMenu',
+        'listFieldName' => '_queryVisibleMainMenus',
         'changes' => $changes['VisibleMainMenu'] ?? [],
         'pathFieldName' => NULL,
         'templateFieldName' => NULL,
@@ -51,8 +51,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     $query = $this->getQueryFromFile('feed_info.gql');
     $this->assertResults($query, [], [
       // When no build happened yet, the build ID is -1
-      'drupalBuildId' =>  -1,
-      'drupalFeedInfo' => $this->expectedFeedInfo(),
+      '_drupalBuildId' => -1,
+      '_drupalFeedInfo' => $this->expectedFeedInfo(),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
 
@@ -67,8 +67,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     $query = $this->getQueryFromFile('feed_info.gql');
     $this->assertResults($query, [], [
       // It should indicate that there has been a first build.
-      'drupalBuildId' =>  1,
-      'drupalFeedInfo' => $this->expectedFeedInfo(),
+      '_drupalBuildId' => 1,
+      '_drupalFeedInfo' => $this->expectedFeedInfo(),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
 
@@ -84,24 +84,24 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     $query = $this->getQueryFromFile('feed_info.gql');
     $this->assertResults($query, [], [
       // It should indicate that there has been a first build.
-      'drupalBuildId' =>  1,
-      'drupalFeedInfo' => $this->expectedFeedInfo(),
+      '_drupalBuildId' => 1,
+      '_drupalFeedInfo' => $this->expectedFeedInfo(),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
 
     $this->usePreviewServer();
     $query = $this->getQueryFromFile('feed_info.gql');
     $this->assertResults($query, [], [
       // It should indicate that there has been a first build.
-      'drupalBuildId' =>  2,
-      'drupalFeedInfo' => $this->expectedFeedInfo(),
+      '_drupalBuildId' => 2,
+      '_drupalFeedInfo' => $this->expectedFeedInfo(),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
 
     $this->usePublicServer();
     $query = $this->getQueryFromFile('feed_info.gql');
     $this->assertResults($query, [], [
       // It should indicate that there has been a first build.
-      'drupalBuildId' =>  -1,
-      'drupalFeedInfo' => $this->expectedFeedInfo(),
+      '_drupalBuildId' => -1,
+      '_drupalFeedInfo' => $this->expectedFeedInfo(),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
 
@@ -120,8 +120,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
 
     $query = $this->getQueryFromFile('feed_info.gql');
     $this->assertResults($query, [], [
-      'drupalBuildId' =>  2,
-      'drupalFeedInfo' => $this->expectedFeedInfo(),
+      '_drupalBuildId' => 2,
+      '_drupalFeedInfo' => $this->expectedFeedInfo(),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
 
@@ -150,8 +150,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       'lastBuild' => 1,
       'currentBuild' => 3,
     ], [
-      'drupalBuildId' =>  3,
-      'drupalFeedInfo' => $this->expectedFeedInfo([
+      '_drupalBuildId' => 3,
+      '_drupalFeedInfo' => $this->expectedFeedInfo([
         'Page' => ['1:en'],
         'Post' => ['2'],
       ]),
@@ -162,8 +162,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       'lastBuild' => 1,
       'currentBuild' => 2,
     ], [
-      'drupalBuildId' =>  3,
-      'drupalFeedInfo' => $this->expectedFeedInfo([
+      '_drupalBuildId' => 3,
+      '_drupalFeedInfo' => $this->expectedFeedInfo([
         'Page' => ['1:en'],
       ]),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
@@ -173,8 +173,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       'lastBuild' => 2,
       'currentBuild' => 3,
     ], [
-      'drupalBuildId' =>  3,
-      'drupalFeedInfo' => $this->expectedFeedInfo([
+      '_drupalBuildId' => 3,
+      '_drupalFeedInfo' => $this->expectedFeedInfo([
         'Post' => ['2'],
       ]),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
@@ -205,8 +205,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     $query = $this->getQueryFromFile('feed_info.gql');
     $this->assertResults($query, [], [
       // It should indicate that there has been a first build.
-      'drupalBuildId' =>  3,
-      'drupalFeedInfo' => $this->expectedFeedInfo(),
+      '_drupalBuildId' => 3,
+      '_drupalFeedInfo' => $this->expectedFeedInfo(),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
 
     // Preview should be on build 1 which is the initial node.
@@ -214,8 +214,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     $query = $this->getQueryFromFile('feed_info.gql');
     $this->assertResults($query, [], [
       // It should indicate that there has been a first build.
-      'drupalBuildId' =>  1,
-      'drupalFeedInfo' => $this->expectedFeedInfo(),
+      '_drupalBuildId' => 1,
+      '_drupalFeedInfo' => $this->expectedFeedInfo(),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
 
     // Publish the unpublished node.
@@ -233,8 +233,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       'currentBuild' => 5,
     ], [
       // It should indicate that there has been a first build.
-      'drupalBuildId' => 5,
-      'drupalFeedInfo' => $this->expectedFeedInfo(['Page' => ['2:en']]),
+      '_drupalBuildId' => 5,
+      '_drupalFeedInfo' => $this->expectedFeedInfo(['Page' => ['2:en']]),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
 
@@ -254,8 +254,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     $query = $this->getQueryFromFile('feed_info.gql');
     $this->assertResults($query, [], [
       // It should indicate that there has been a first build.
-      'drupalBuildId' =>  2,
-      'drupalFeedInfo' => $this->expectedFeedInfo(),
+      '_drupalBuildId' => 2,
+      '_drupalFeedInfo' => $this->expectedFeedInfo(),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
 
     // The build server is on build 1.
@@ -263,8 +263,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     $query = $this->getQueryFromFile('feed_info.gql');
     $this->assertResults($query, [], [
       // It should indicate that there has been a first build.
-      'drupalBuildId' =>  1,
-      'drupalFeedInfo' => $this->expectedFeedInfo(),
+      '_drupalBuildId' => 1,
+      '_drupalFeedInfo' => $this->expectedFeedInfo(),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
 
     // Unpublish the node.
@@ -283,8 +283,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       'currentBuild' => 3,
     ], [
       // It should indicate that there has been a first build.
-      'drupalBuildId' => 3,
-      'drupalFeedInfo' => $this->expectedFeedInfo(['Page' => ['1:en']]),
+      '_drupalBuildId' => 3,
+      '_drupalFeedInfo' => $this->expectedFeedInfo(['Page' => ['1:en']]),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
 }

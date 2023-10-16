@@ -13,7 +13,7 @@ class CurrentUserTest extends EntityFeedTestBase {
     $metadata->addCacheTags($anonymous->getCacheTags());
     $this->setCurrentUser($anonymous);
     $this->assertResults($query, [], [
-      'currentUser' => [
+      '_currentUser' => [
         'id' => '0',
         'name' => null,
       ],
@@ -28,7 +28,7 @@ class CurrentUserTest extends EntityFeedTestBase {
     $metadata->addCacheTags($testuser->getCacheTags());
     $this->setCurrentUser($testuser);
     $this->assertResults($query, [], [
-      'currentUser' => [
+      '_currentUser' => [
         'id' => $testuser->id(),
         'name' => $testuser->name->value,
       ],

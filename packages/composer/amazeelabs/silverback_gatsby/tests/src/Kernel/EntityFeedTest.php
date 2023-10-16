@@ -37,13 +37,13 @@ class EntityFeedTest extends EntityFeedTestBase {
     $metadata->addCacheContexts(['user.node_grants:view']);
     $metadata->addCacheTags(['node:1', 'node_list']);
     $this->assertResults($query, [], [
-      'loadPost' => [
+      '_loadPost' => [
         'title' => 'Test',
       ],
-      'queryPosts' => [
+      '_queryPosts' => [
         [
-          'id' => '1',
-          'drupalId' => '1',
+          '_id' => '1',
+          '_drupalId' => '1',
           'title' => 'Test',
         ],
       ],
@@ -62,17 +62,17 @@ class EntityFeedTest extends EntityFeedTestBase {
     $metadata->addCacheContexts(['user.node_grants:view', 'static:language:en']);
     $metadata->addCacheTags(['node:1', 'node_list']);
     $this->assertResults($query, ['id' => '1:en'], [
-      'loadPage' => [
+      '_loadPage' => [
         'title' => 'Test',
       ],
-      'queryPages' => [
+      '_queryPages' => [
         [
-          'id' => '1:en',
-          'drupalId' => '1',
-          'translations' => [
+          '_id' => '1:en',
+          '_drupalId' => '1',
+          '_translations' => [
             [
-              'defaultTranslation' => true,
-              'langcode' => 'en',
+              '_defaultTranslation' => true,
+              '_langcode' => 'en',
               'title' => 'Test',
             ],
           ],
@@ -94,17 +94,17 @@ class EntityFeedTest extends EntityFeedTestBase {
     $metadata->addCacheContexts(['user.node_grants:view']);
     $metadata->addCacheTags(['node:1', 'node_list']);
     $this->assertResults($query, ['id' => '1:zxx'], [
-      'loadPage' => [
+      '_loadPage' => [
         'title' => 'Test',
       ],
-      'queryPages' => [
+      '_queryPages' => [
         [
-          'id' => '1:zxx',
-          'drupalId' => '1',
-          'translations' => [
+          '_id' => '1:zxx',
+          '_drupalId' => '1',
+          '_translations' => [
             [
-              'defaultTranslation' => true,
-              'langcode' => 'zxx',
+              '_defaultTranslation' => true,
+              '_langcode' => 'zxx',
               'title' => 'Test',
             ],
           ],
@@ -126,17 +126,17 @@ class EntityFeedTest extends EntityFeedTestBase {
     $metadata->addCacheContexts(['user.node_grants:view']);
     $metadata->addCacheTags(['node:1', 'node_list']);
     $this->assertResults($query, ['id' => '1:und'], [
-      'loadPage' => [
+      '_loadPage' => [
         'title' => 'Test',
       ],
-      'queryPages' => [
+      '_queryPages' => [
         [
-          'id' => '1:und',
-          'drupalId' => '1',
-          'translations' => [
+          '_id' => '1:und',
+          '_drupalId' => '1',
+          '_translations' => [
             [
-              'defaultTranslation' => true,
-              'langcode' => 'und',
+              '_defaultTranslation' => true,
+              '_langcode' => 'und',
               'title' => 'Test',
             ],
           ],
@@ -159,8 +159,8 @@ class EntityFeedTest extends EntityFeedTestBase {
     $metadata->addCacheContexts(['user.node_grants:view']);
     $metadata->addCacheTags(['node:1', 'node_list']);
     $this->assertResults($query, ['id' => '1:en'], [
-      'loadPage' => null,
-      'queryPages' => [
+      '_loadPage' => null,
+      '_queryPages' => [
         null
       ],
     ], $metadata);
@@ -181,15 +181,15 @@ class EntityFeedTest extends EntityFeedTestBase {
     $metadata->addCacheContexts(['user.node_grants:view', 'static:language:en']);
     $metadata->addCacheTags(['node:1', 'node_list']);
     $this->assertResults($query, ['id' => '1:de'], [
-      'loadPage' => null,
-      'queryPages' => [
+      '_loadPage' => null,
+      '_queryPages' => [
         [
-          'id' => '1:en',
-          'drupalId' => '1',
-          'translations' => [
+          '_id' => '1:en',
+          '_drupalId' => '1',
+          '_translations' => [
             [
-              'defaultTranslation' => true,
-              'langcode' => 'en',
+              '_defaultTranslation' => true,
+              '_langcode' => 'en',
               'title' => 'English',
             ],
           ],
@@ -211,15 +211,15 @@ class EntityFeedTest extends EntityFeedTestBase {
     $metadata->addCacheContexts(['user.node_grants:view', 'static:language:en', 'static:language:de']);
     $metadata->addCacheTags(['node:1', 'node_list']);
     $this->assertResults($query, ['id' => '1:de'], [
-      'loadPage' => null,
-      'queryPages' => [
+      '_loadPage' => null,
+      '_queryPages' => [
         [
-          'id' => '1:en',
-          'drupalId' => '1',
-          'translations' => [
+          '_id' => '1:en',
+          '_drupalId' => '1',
+          '_translations' => [
             [
-              'defaultTranslation' => true,
-              'langcode' => 'en',
+              '_defaultTranslation' => true,
+              '_langcode' => 'en',
               'title' => 'English',
             ],
           ],
@@ -243,17 +243,17 @@ class EntityFeedTest extends EntityFeedTestBase {
     $metadata->addCacheTags(['node:1', 'node_list']);
 
     $this->assertResults($query, ['id' => '1:de'], [
-      'loadPage' => [
+      '_loadPage' => [
         "title" => "German"
       ],
-      'queryPages' => [
+      '_queryPages' => [
         [
-          'id' => '1:de',
-          'drupalId' => '1',
-          'translations' => [
+          '_id' => '1:de',
+          '_drupalId' => '1',
+          '_translations' => [
             [
-              'defaultTranslation' => false,
-              'langcode' => 'de',
+              '_defaultTranslation' => false,
+              '_langcode' => 'de',
               'title' => 'German',
             ]
           ],
@@ -265,15 +265,15 @@ class EntityFeedTest extends EntityFeedTestBase {
     $metadata->addCacheContexts(['user.node_grants:view', 'static:language:de', 'static:language:en']);
     $metadata->addCacheTags(['node:1', 'node_list']);
     $this->assertResults($query, ['id' => '1:en'], [
-      'loadPage' => null,
-      'queryPages' => [
+      '_loadPage' => null,
+      '_queryPages' => [
         [
-          'id' => '1:de',
-          'drupalId' => '1',
-          'translations' => [
+          '_id' => '1:de',
+          '_drupalId' => '1',
+          '_translations' => [
             [
-              'defaultTranslation' => false,
-              'langcode' => 'de',
+              '_defaultTranslation' => false,
+              '_langcode' => 'de',
               'title' => 'German',
             ]
           ],
@@ -433,7 +433,7 @@ class EntityFeedTest extends EntityFeedTestBase {
     $metadata->addCacheTags(['node:1']);
     $query = $this->getQueryFromFile('load-entity.gql');
     $this->assertResults($query, ['input' => '1:en'], [
-      'loadPage' => [
+      '_loadPage' => [
         'title' => 'Test page',
       ],
     ], $metadata);
@@ -449,7 +449,7 @@ class EntityFeedTest extends EntityFeedTestBase {
     $metadata->addCacheTags(['node:1']);
     $query = $this->getQueryFromFile('load-entity.gql');
     $this->assertResults($query, ['input' => $node->uuid() . ':en'], [
-      'loadPage' => [
+      '_loadPage' => [
         'title' => 'Test page',
       ],
     ], $metadata);
@@ -465,7 +465,7 @@ class EntityFeedTest extends EntityFeedTestBase {
     $metadata->addCacheTags(['node:1']);
     $query = $this->getQueryFromFile('load-entity.gql');
     $this->assertResults($query, ['input' => '/node/1:en'], [
-      'loadPage' => [
+      '_loadPage' => [
         'title' => 'Test page',
       ],
     ], $metadata);
@@ -482,7 +482,7 @@ class EntityFeedTest extends EntityFeedTestBase {
     $metadata->addCacheTags(['node:1']);
     $query = $this->getQueryFromFile('load-entity.gql');
     $this->assertResults($query, ['input' => '/test:en'], [
-      'loadPage' => [
+      '_loadPage' => [
         'title' => 'Test page',
       ],
     ], $metadata);

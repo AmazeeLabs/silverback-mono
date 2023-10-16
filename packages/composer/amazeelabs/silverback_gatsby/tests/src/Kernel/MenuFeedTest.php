@@ -53,7 +53,7 @@ class MenuFeedTest extends GraphQLTestBase {
     $this->container->get('silverback_gatsby.update_handler')->schemaCache = NULL;
   }
 
-  protected function createMenuItem(string $label, string $url, MenuLinkContentInterface $parent = null, $menu = 'main') : MenuLinkContentInterface {
+  protected function createMenuItem(string $label, string $url, MenuLinkContentInterface $parent = null, $menu = 'main'): MenuLinkContentInterface {
     $item = MenuLinkContent::create([
       'provider' => 'silverback_gatsby',
       'menu_name' => $menu,
@@ -169,17 +169,17 @@ class MenuFeedTest extends GraphQLTestBase {
     $query = $this->getQueryFromFile('multilingual-menus.gql');
     $this->assertResults($query, [], [
       'noLanguageDefined' => [
-        'id' => 'main:en',
+        '_id' => 'main:en',
       ],
       'en' => [
-        'id' => 'main:en',
+        '_id' => 'main:en',
       ],
       'de' => [
-        'id' => 'main:de',
+        '_id' => 'main:de',
       ],
     ], $this->defaultCacheMetaData()
-      ->addCacheContexts(['languages:language_interface'])
-      ->addCacheTags(['config:system.menu.main'])
+        ->addCacheContexts(['languages:language_interface'])
+        ->addCacheTags(['config:system.menu.main'])
     );
   }
 }
