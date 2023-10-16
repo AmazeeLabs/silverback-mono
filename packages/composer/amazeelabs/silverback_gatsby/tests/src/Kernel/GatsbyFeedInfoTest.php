@@ -288,4 +288,3 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       '_drupalFeedInfo' => $this->expectedFeedInfo(['Page' => [$node->uuid() . ':en']]),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
-}
