@@ -1,5 +1,5 @@
 query ($input: String!) {
-  loadPage(id: $input) {
+  _loadPage(id: $input) {
     title
   }
 }

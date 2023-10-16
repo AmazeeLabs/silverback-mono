@@ -1,10 +1,10 @@
 query {
-  regular: loadPost(id: "1") {
+  regular: _loadPost(id: "1") {
     title
     path
     template
   }
-  promoted: loadPost(id: "2") {
+  promoted: _loadPost(id: "2") {
     title
     path
     template

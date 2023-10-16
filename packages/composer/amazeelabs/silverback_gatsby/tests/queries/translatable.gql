@@ -1,13 +1,13 @@
 query ($id: String!) {
-  loadPage(id: $id) {
+  _loadPage(id: $id) {
     title
   }
-  queryPages {
-    id
-    drupalId
-    translations {
-      defaultTranslation
-      langcode
+  _queryPages {
+    _id
+    _drupalId
+    _translations {
+      _defaultTranslation
+      _langcode
       title
     }
   }

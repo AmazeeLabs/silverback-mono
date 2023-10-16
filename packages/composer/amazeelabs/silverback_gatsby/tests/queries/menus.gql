@@ -1,17 +1,17 @@
 query Menus {
-  queryMainMenus(limit: 10, offset: 0) {
+  _queryMainMenus(limit: 10, offset: 0) {
     __typename
-    id
-    drupalId
+    _id
+    _drupalId
   }
 
-  queryVisibleMainMenus(limit: 10, offset: 0) {
+  _queryVisibleMainMenus(limit: 10, offset: 0) {
     __typename
-    id
-    drupalId
+    _id
+    _drupalId
   }
 
-  loadMainMenu(id: "main") {
+  _loadMainMenu(id: "main") {
     items {
       id
       parent
@@ -20,7 +20,7 @@ query Menus {
     }
   }
 
-  loadVisibleMainMenu(id: "main") {
+  _loadVisibleMainMenu(id: "main") {
     items {
       id
       parent

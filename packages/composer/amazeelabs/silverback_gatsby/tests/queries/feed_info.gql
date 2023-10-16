@@ -1,6 +1,6 @@
 query FeedInfo($lastBuild: Int, $currentBuild: Int) {
-  drupalBuildId
-  drupalFeedInfo {
+  _drupalBuildId
+  _drupalFeedInfo {
     typeName
     translatable
     singleFieldName

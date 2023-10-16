@@ -1,5 +1,5 @@
 {
-  currentUser {
+  _currentUser {
     id
     name
   }
