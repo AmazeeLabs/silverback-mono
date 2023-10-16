@@ -64,6 +64,7 @@ jobs:
           fi
 
   drupal_updates:
+    if: startsWith(github.head_ref, 'test-all/') == true
     name: Check for forgotten config changes
     runs-on: ubuntu-latest
     steps:
