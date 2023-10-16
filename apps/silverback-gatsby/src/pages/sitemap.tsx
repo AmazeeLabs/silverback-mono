@@ -5,7 +5,7 @@ import { isDefined } from '../util/is-defined';
 
 export const query = graphql`
   query Sitemap {
-    drupalMainMenu(langcode: { eq: "en" }) {
+    drupalMainMenu(_langcode: { eq: "en" }) {
       items {
         id
         parent

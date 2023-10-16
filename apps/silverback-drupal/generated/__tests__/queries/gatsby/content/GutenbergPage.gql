@@ -1,9 +1,9 @@
 fragment GutenbergPage on GutenbergPage {
   __typename
-  id
-  drupalId
+  id:_id
+  drupalId:_drupalId
   title
-  langcode
+  langcode:_langcode
   body {
     ...BlockHtmlParagraph
     ...BlockHtmlList
@@ -25,11 +25,11 @@ fragment GutenbergPage on GutenbergPage {
 
     }
   }
-  defaultTranslation
+  defaultTranslation:_defaultTranslation
   path
-  translations {
-    langcode
-    defaultTranslation
+  translations:_translations {
+    langcode:_langcode
+    defaultTranslation:_defaultTranslation
   }
 }
 
@@ -48,14 +48,14 @@ fragment BlockHtmlQuote on BlockHtmlQuote {
 fragment BlockImage on BlockImage {
   __typename
   image {
-    id
+    id:_id
   }
   caption
 }
 fragment BlockTeaser on BlockTeaser {
   __typename
   image {
-    id
+    id:_id
   }
   title
   subtitle
@@ -64,10 +64,10 @@ fragment BlockTeaser on BlockTeaser {
 }
 
 {
-  complete: loadGutenbergPage(id: "f9778402-1375-4bc0-a550-00610ad3865d") {
+  complete: _loadGutenbergPage(id: "f9778402-1375-4bc0-a550-00610ad3865d") {
     ...GutenbergPage
   }
-  minimal: loadGutenbergPage(id: "af2bb5e4-237a-4e76-befe-e7a3d8dc699c") {
+  minimal: _loadGutenbergPage(id: "af2bb5e4-237a-4e76-befe-e7a3d8dc699c") {
     ...GutenbergPage
   }
 }

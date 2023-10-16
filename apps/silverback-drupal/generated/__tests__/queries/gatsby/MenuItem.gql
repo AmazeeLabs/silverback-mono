@@ -7,9 +7,9 @@ fragment MenuItem on MenuItem {
 }
 
 {
-  queryMainMenus(offset: 0, limit: 100) {
-    translations {
-      langcode
+  queryMainMenus:_queryMainMenus(offset: 0, limit: 100) {
+    translations:_translations {
+      langcode:_langcode
       items {
         ...MenuItem
       }

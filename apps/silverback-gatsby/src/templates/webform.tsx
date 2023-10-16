@@ -9,7 +9,7 @@ import { buildMessages } from '../util/build-messages';
 
 export const query = graphql`
   query Webform($remoteId: String!) {
-    drupalWebform(remoteId: { eq: $remoteId }) {
+    drupalWebform(_id: { eq: $remoteId }) {
       url
     }
   }

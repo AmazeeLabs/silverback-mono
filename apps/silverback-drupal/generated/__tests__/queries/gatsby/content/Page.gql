@@ -1,15 +1,15 @@
 fragment Page on Page {
   __typename
-  id
-  drupalId
+  id:_id
+  drupalId:_drupalId
   title
-  langcode
+  langcode:_langcode
   body
-  defaultTranslation
+  defaultTranslation:_defaultTranslation
   path
-  translations {
-    langcode
-    defaultTranslation
+  translations:_translations {
+    langcode:_langcode
+    defaultTranslation:_defaultTranslation
   }
   paragraphs {
     __typename
@@ -18,20 +18,20 @@ fragment Page on Page {
     }
     ... on ParagraphReferences {
       singleReference {
-        id
+        id:_id
       }
       references {
-        id
+        id:_id
       }
     }
   }
 }
 
 {
-  basic: loadPage(id: "a38bce61-3640-4799-bacf-18ccc6e74216") {
+  basic: _loadPage(id: "a38bce61-3640-4799-bacf-18ccc6e74216") {
     ...Page
   }
-  references: loadPage(id: "bb230ced-eb4d-495f-9571-50a7f6f69e67") {
+  references: _loadPage(id: "bb230ced-eb4d-495f-9571-50a7f6f69e67") {
     ...Page
   }
 }

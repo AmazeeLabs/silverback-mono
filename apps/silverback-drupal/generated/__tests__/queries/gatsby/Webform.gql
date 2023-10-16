@@ -1,14 +1,14 @@
 fragment Webform on Webform {
   __typename
-  id
-  drupalId
+  id:_id
+  drupalId:_drupalId
   url
   title
   path
 }
 
 {
-  loadWebform(id: "452a69f0-cade-443f-8ba6-46b5fe92cedd") {
+  loadWebform:_loadWebform(id: "452a69f0-cade-443f-8ba6-46b5fe92cedd") {
     ...Webform
   }
 }
