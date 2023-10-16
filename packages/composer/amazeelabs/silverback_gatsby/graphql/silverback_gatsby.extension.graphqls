@@ -1,10 +1,10 @@
 extend type Query {
-  drupalBuildId: Int!
-  drupalFeedInfo: [Feed!]!
-  currentUser: User!
+  _drupalBuildId: Int! @deprecated
+  _drupalFeedInfo: [_Feed!]! @deprecated
+  _currentUser: _User! @deprecated
 }
 
-type User {
+type _User {
   id: String
   name: String
 }

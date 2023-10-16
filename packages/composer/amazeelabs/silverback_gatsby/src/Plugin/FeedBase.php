@@ -77,12 +77,12 @@ abstract class FeedBase extends PluginBase implements FeedInterface {
     return $this->typeName;
   }
 
-  public function getSingleFieldName() : string{
-    return 'load' . $this->typeName;
+  public function getSingleFieldName(): string {
+    return '_load' . $this->typeName;
   }
 
-  public function getListFieldName() : string {
-    return 'query' . $this->typeName . 's';
+  public function getListFieldName(): string {
+    return '_query' . $this->typeName . 's';
   }
 
   public function info(): array {
