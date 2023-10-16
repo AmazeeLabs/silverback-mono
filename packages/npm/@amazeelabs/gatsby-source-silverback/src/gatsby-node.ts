@@ -171,7 +171,7 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
         gatsbyApi.reporter.info(`Sourcing "${type}" from "${sources[type]}".`);
         resolver().forEach(([id, node]: [string, any]) => {
           const nodeMeta = {
-            id,
+            id: `${type}:${id}`,
             parent: null,
             children: [],
             internal: {
@@ -182,6 +182,9 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
               ),
             },
           };
+          if (node.id) {
+            Object.assign(node, {id: `${type}:${id}`})
+          }
           gatsbyApi.actions.createNode(Object.assign({}, node, nodeMeta));
         });
       }
