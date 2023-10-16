@@ -90,7 +90,7 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
         variables: {},
         query: `
         query LatestBuildId {
-          drupalBuildId
+          drupalBuildId:_drupalBuildId
         }
       `,
       });
@@ -209,7 +209,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
 
       args.actions.createTypes(`
         type Query {
-          drupalBuildId: Int!
+          _drupalBuildId: Int!
         }
       `);
     }
@@ -290,7 +290,7 @@ export const createResolvers: GatsbyNode['createResolvers'] = async (
   if (options.drupal_url) {
     createResolvers({
       Query: {
-        drupalBuildId: {
+        _drupalBuildId: {
           async resolve() {
             return (await cache.get(`LAST_BUILD_ID`)) || -1;
           },

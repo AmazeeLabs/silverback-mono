@@ -65,7 +65,7 @@ export const createSourcingConfig = async (
             __typename
             ${
               feed.translatable
-                ? `translations {
+                ? `translations:_translations {
                      ..._${feed.typeName}Id_
                    }`
                 : `..._${feed.typeName}Id_`
@@ -79,7 +79,7 @@ export const createSourcingConfig = async (
         }
         fragment _${feed.typeName}Id_ on ${feed.typeName} {
           __typename
-          id
+          _id
         }
       `,
     });

@@ -22,7 +22,7 @@ export const drupalFeeds = async (
     operationName: 'DrupalFeedInfo',
     query: `
     query DrupalFeedInfo {
-      drupalFeedInfo {
+      drupalFeedInfo:_drupalFeedInfo {
         typeName
         translatable
         singleFieldName

@@ -90,8 +90,8 @@ export const createPages = async (
             list: all${typePrefix(options)}${feed.typeName} {
               nodes {
                 typeName: __typename
-                id
-                remoteId
+                id:_id
+                remoteId:_id
                 path: ${feed.pathFieldName}
                 ${
                   feed.templateFieldName
@@ -100,9 +100,9 @@ export const createPages = async (
                 }
                 ${
                   feed.translatable
-                    ? `localizations: translations {
+                    ? `localizations: _translations {
                          path: ${feed.pathFieldName}
-                         locale: langcode
+                         locale: _langcode
                        }`
                     : ''
                 }
