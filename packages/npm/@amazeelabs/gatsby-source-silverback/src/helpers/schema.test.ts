@@ -43,20 +43,20 @@ describe('cleanSchema', () => {
     expect(cleanSchema(schemaSource)).toMatchInlineSnapshot(`
       "scalar Email
       type Query {
-        allContacts: [Contact] @gatsbyNodes(type: \\"Contact\\")
-        getPerson(id: ID!): Person @gatsbyNode(type: \\"Contact\\", id: \\"$id\\")
+        allContacts: [Contact]
+        getPerson(id: ID!): Person
       }
       union Person = Customer | Employee
       interface Contact {
         name: String!
         email: Email!
       }
-      type Customer implements Contact @sourceFrom(fn: \\"sourceCustomers\\") {
+      type Customer implements Contact {
         id: ID!
         name: String!
         email: Email!
       }
-      type Employee implements Contact @sourceFrom(fn: \\"sourceEmployees\\") {
+      type Employee implements Contact {
         id: ID!
         role: String!
         name: String!
