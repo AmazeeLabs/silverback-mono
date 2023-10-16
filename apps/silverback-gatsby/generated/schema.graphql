@@ -497,13 +497,14 @@ type SiteBuildMetadata implements Node {
 type DrupalImage implements Node {
   remoteTypeName: String!
   translations: [DrupalImage!]!
-  remoteId: String!
+  _id: String!
   url: String!
   alt: String!
   _original_typename: String!
-  drupalId: String!
-  defaultTranslation: Boolean!
-  langcode: String!
+  _drupalId: String!
+  _defaultTranslation: Boolean!
+  _langcode: String!
+  _translations: [DrupalImage!]!
   translation(langcode: String!): DrupalImage!
   id: ID!
   parent: Node
@@ -514,10 +515,10 @@ type DrupalImage implements Node {
 
 type DrupalTag implements Node {
   remoteTypeName: String!
-  remoteId: String!
+  _id: String!
   title: String!
   _original_typename: String!
-  drupalId: String!
+  _drupalId: String!
   id: ID!
   parent: Node
   children: [Node!]!
@@ -527,15 +528,17 @@ type DrupalTag implements Node {
 type DrupalPage implements Node {
   remoteTypeName: String!
   translations: [DrupalPage!]!
+  _id: String!
   remoteId: String!
   path: String!
   title: String!
   body: String
   paragraphs: [DrupalPageParagraphs]!
   _original_typename: String!
-  drupalId: String!
-  defaultTranslation: Boolean!
-  langcode: String!
+  _drupalId: String!
+  _defaultTranslation: Boolean!
+  _langcode: String!
+  _translations: [DrupalPage!]!
   translation(langcode: String!): DrupalPage!
 
   """Returns all children nodes filtered by type ImagesFromHtml"""
@@ -566,7 +569,7 @@ type DrupalParagraphReferences {
 
 type DrupalArticle implements Node {
   remoteTypeName: String!
-  remoteId: String!
+  _id: String!
   translations: [DrupalArticle!]!
   path: String!
   title: String!
@@ -576,9 +579,10 @@ type DrupalArticle implements Node {
   image: DrupalImage
   template: String
   _original_typename: String!
-  drupalId: String!
-  defaultTranslation: Boolean!
-  langcode: String!
+  _drupalId: String!
+  _defaultTranslation: Boolean!
+  _langcode: String!
+  _translations: [DrupalArticle!]!
   translation(langcode: String!): DrupalArticle!
 
   """Returns all children nodes filtered by type ImagesFromHtml"""
@@ -596,16 +600,17 @@ type DrupalArticle implements Node {
 
 type DrupalGutenbergPage implements Node {
   remoteTypeName: String!
-  remoteId: String!
+  _id: String!
   translations: [DrupalGutenbergPage!]!
   path: String!
   title: String!
   anotherResponsiveImage(width: Int, height: Int, sizes: [[Int!]!], transform: String): ResponsiveImage
   body: [DrupalRootBlock]!
   _original_typename: String!
-  drupalId: String!
-  defaultTranslation: Boolean!
-  langcode: String!
+  _drupalId: String!
+  _defaultTranslation: Boolean!
+  _langcode: String!
+  _translations: [DrupalGutenbergPage!]!
   translation(langcode: String!): DrupalGutenbergPage!
   id: ID!
   parent: Node
@@ -659,12 +664,12 @@ union DrupalContentBlock = DrupalBlockHtmlList | DrupalBlockHtmlParagraph | Drup
 
 type DrupalWebform implements Node {
   remoteTypeName: String!
-  remoteId: String!
+  _id: String!
   path: String!
   url: String!
   title: String!
   _original_typename: String!
-  drupalId: String!
+  _drupalId: String!
   id: ID!
   parent: Node
   children: [Node!]!
@@ -674,12 +679,13 @@ type DrupalWebform implements Node {
 type DrupalMainMenu implements Node {
   remoteTypeName: String!
   translations: [DrupalMainMenu!]!
-  remoteId: String!
+  _id: String!
   items: [DrupalMenuItem]!
   _original_typename: String!
-  drupalId: String!
-  defaultTranslation: Boolean!
-  langcode: String!
+  _drupalId: String!
+  _defaultTranslation: Boolean!
+  _langcode: String!
+  _translations: [DrupalMainMenu!]!
   translation(langcode: String!): DrupalMainMenu!
   id: ID!
   parent: Node
@@ -699,12 +705,13 @@ type DrupalMenuItem {
 type DrupalFirstLevelMainMenu implements Node {
   remoteTypeName: String!
   translations: [DrupalFirstLevelMainMenu!]!
-  remoteId: String!
+  _id: String!
   items: [DrupalMenuItem]!
   _original_typename: String!
-  drupalId: String!
-  defaultTranslation: Boolean!
-  langcode: String!
+  _drupalId: String!
+  _defaultTranslation: Boolean!
+  _langcode: String!
+  _translations: [DrupalFirstLevelMainMenu!]!
   translation(langcode: String!): DrupalFirstLevelMainMenu!
   id: ID!
   parent: Node
@@ -714,9 +721,9 @@ type DrupalFirstLevelMainMenu implements Node {
 
 type DrupalGatsbyStringTranslation implements Node {
   remoteTypeName: String!
-  remoteId: String!
+  _id: String!
   _original_typename: String!
-  drupalId: String!
+  _drupalId: String!
   source: String!
   context: String
   translations: [DrupalGatsbyStringTranslationTranslation]
@@ -736,13 +743,13 @@ type DrupalGatsbyStringTranslationTranslation {
 
 type DrupalCampaignUrl implements Node {
   remoteTypeName: String!
-  remoteId: String!
+  _id: String!
   source: String!
   destination: String!
   statusCode: Int!
   force: Boolean!
   _original_typename: String!
-  drupalId: String!
+  _drupalId: String!
   id: ID!
   parent: Node
   children: [Node!]!
@@ -750,12 +757,14 @@ type DrupalCampaignUrl implements Node {
 }
 
 type Query {
-  drupalBuildId: Int!
+  _drupalBuildId: Int!
   allContacts: [Contact]
   getPerson(id: ID!): Person
   value: String!
   argument(msg: String!): String!
   parent: String!
+  pages: [Page]
+  page(id: ID!): Page
   file(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, url: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, childrenImageSharp: ImageSharpFilterListInput, childImageSharp: ImageSharpFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): File
   allFile(filter: FileFilterInput, sort: [FileSortInput], skip: Int, limit: Int): FileConnection!
   directory(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Directory
@@ -770,31 +779,31 @@ type Query {
   allSitePlugin(filter: SitePluginFilterInput, sort: [SitePluginSortInput], skip: Int, limit: Int): SitePluginConnection!
   siteBuildMetadata(buildTime: DateQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SiteBuildMetadata
   allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, sort: [SiteBuildMetadataSortInput], skip: Int, limit: Int): SiteBuildMetadataConnection!
-  drupalImage(remoteTypeName: StringQueryOperatorInput, translations: DrupalImageFilterListInput, remoteId: StringQueryOperatorInput, url: StringQueryOperatorInput, alt: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, translation: DrupalImageFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalImage
+  drupalImage(remoteTypeName: StringQueryOperatorInput, translations: DrupalImageFilterListInput, _id: StringQueryOperatorInput, url: StringQueryOperatorInput, alt: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, _drupalId: StringQueryOperatorInput, _defaultTranslation: BooleanQueryOperatorInput, _langcode: StringQueryOperatorInput, _translations: DrupalImageFilterListInput, translation: DrupalImageFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalImage
   allDrupalImage(filter: DrupalImageFilterInput, sort: [DrupalImageSortInput], skip: Int, limit: Int): DrupalImageConnection!
-  drupalTag(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, title: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalTag
+  drupalTag(remoteTypeName: StringQueryOperatorInput, _id: StringQueryOperatorInput, title: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, _drupalId: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalTag
   allDrupalTag(filter: DrupalTagFilterInput, sort: [DrupalTagSortInput], skip: Int, limit: Int): DrupalTagConnection!
-  drupalPage(remoteTypeName: StringQueryOperatorInput, translations: DrupalPageFilterListInput, remoteId: StringQueryOperatorInput, path: StringQueryOperatorInput, title: StringQueryOperatorInput, body: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, translation: DrupalPageFilterInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalPage
+  drupalPage(remoteTypeName: StringQueryOperatorInput, translations: DrupalPageFilterListInput, _id: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, path: StringQueryOperatorInput, title: StringQueryOperatorInput, body: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, _drupalId: StringQueryOperatorInput, _defaultTranslation: BooleanQueryOperatorInput, _langcode: StringQueryOperatorInput, _translations: DrupalPageFilterListInput, translation: DrupalPageFilterInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalPage
   allDrupalPage(filter: DrupalPageFilterInput, sort: [DrupalPageSortInput], skip: Int, limit: Int): DrupalPageConnection!
-  drupalArticle(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalArticleFilterListInput, path: StringQueryOperatorInput, title: StringQueryOperatorInput, body: StringQueryOperatorInput, responsiveImage: ResponsiveImageQueryOperatorInput, tags: DrupalTagFilterListInput, image: DrupalImageFilterInput, template: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, translation: DrupalArticleFilterInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalArticle
+  drupalArticle(remoteTypeName: StringQueryOperatorInput, _id: StringQueryOperatorInput, translations: DrupalArticleFilterListInput, path: StringQueryOperatorInput, title: StringQueryOperatorInput, body: StringQueryOperatorInput, responsiveImage: ResponsiveImageQueryOperatorInput, tags: DrupalTagFilterListInput, image: DrupalImageFilterInput, template: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, _drupalId: StringQueryOperatorInput, _defaultTranslation: BooleanQueryOperatorInput, _langcode: StringQueryOperatorInput, _translations: DrupalArticleFilterListInput, translation: DrupalArticleFilterInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalArticle
   allDrupalArticle(filter: DrupalArticleFilterInput, sort: [DrupalArticleSortInput], skip: Int, limit: Int): DrupalArticleConnection!
-  drupalGutenbergPage(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalGutenbergPageFilterListInput, path: StringQueryOperatorInput, title: StringQueryOperatorInput, anotherResponsiveImage: ResponsiveImageQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, translation: DrupalGutenbergPageFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalGutenbergPage
+  drupalGutenbergPage(remoteTypeName: StringQueryOperatorInput, _id: StringQueryOperatorInput, translations: DrupalGutenbergPageFilterListInput, path: StringQueryOperatorInput, title: StringQueryOperatorInput, anotherResponsiveImage: ResponsiveImageQueryOperatorInput, _original_typename: StringQueryOperatorInput, _drupalId: StringQueryOperatorInput, _defaultTranslation: BooleanQueryOperatorInput, _langcode: StringQueryOperatorInput, _translations: DrupalGutenbergPageFilterListInput, translation: DrupalGutenbergPageFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalGutenbergPage
   allDrupalGutenbergPage(filter: DrupalGutenbergPageFilterInput, sort: [DrupalGutenbergPageSortInput], skip: Int, limit: Int): DrupalGutenbergPageConnection!
-  drupalWebform(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, path: StringQueryOperatorInput, url: StringQueryOperatorInput, title: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalWebform
+  drupalWebform(remoteTypeName: StringQueryOperatorInput, _id: StringQueryOperatorInput, path: StringQueryOperatorInput, url: StringQueryOperatorInput, title: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, _drupalId: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalWebform
   allDrupalWebform(filter: DrupalWebformFilterInput, sort: [DrupalWebformSortInput], skip: Int, limit: Int): DrupalWebformConnection!
-  drupalMainMenu(remoteTypeName: StringQueryOperatorInput, translations: DrupalMainMenuFilterListInput, remoteId: StringQueryOperatorInput, items: DrupalMenuItemFilterListInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, translation: DrupalMainMenuFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalMainMenu
+  drupalMainMenu(remoteTypeName: StringQueryOperatorInput, translations: DrupalMainMenuFilterListInput, _id: StringQueryOperatorInput, items: DrupalMenuItemFilterListInput, _original_typename: StringQueryOperatorInput, _drupalId: StringQueryOperatorInput, _defaultTranslation: BooleanQueryOperatorInput, _langcode: StringQueryOperatorInput, _translations: DrupalMainMenuFilterListInput, translation: DrupalMainMenuFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalMainMenu
   allDrupalMainMenu(filter: DrupalMainMenuFilterInput, sort: [DrupalMainMenuSortInput], skip: Int, limit: Int): DrupalMainMenuConnection!
-  drupalFirstLevelMainMenu(remoteTypeName: StringQueryOperatorInput, translations: DrupalFirstLevelMainMenuFilterListInput, remoteId: StringQueryOperatorInput, items: DrupalMenuItemFilterListInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, translation: DrupalFirstLevelMainMenuFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalFirstLevelMainMenu
+  drupalFirstLevelMainMenu(remoteTypeName: StringQueryOperatorInput, translations: DrupalFirstLevelMainMenuFilterListInput, _id: StringQueryOperatorInput, items: DrupalMenuItemFilterListInput, _original_typename: StringQueryOperatorInput, _drupalId: StringQueryOperatorInput, _defaultTranslation: BooleanQueryOperatorInput, _langcode: StringQueryOperatorInput, _translations: DrupalFirstLevelMainMenuFilterListInput, translation: DrupalFirstLevelMainMenuFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalFirstLevelMainMenu
   allDrupalFirstLevelMainMenu(filter: DrupalFirstLevelMainMenuFilterInput, sort: [DrupalFirstLevelMainMenuSortInput], skip: Int, limit: Int): DrupalFirstLevelMainMenuConnection!
-  drupalGatsbyStringTranslation(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, source: StringQueryOperatorInput, context: StringQueryOperatorInput, translations: DrupalGatsbyStringTranslationTranslationFilterListInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalGatsbyStringTranslation
+  drupalGatsbyStringTranslation(remoteTypeName: StringQueryOperatorInput, _id: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, _drupalId: StringQueryOperatorInput, source: StringQueryOperatorInput, context: StringQueryOperatorInput, translations: DrupalGatsbyStringTranslationTranslationFilterListInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalGatsbyStringTranslation
   allDrupalGatsbyStringTranslation(filter: DrupalGatsbyStringTranslationFilterInput, sort: [DrupalGatsbyStringTranslationSortInput], skip: Int, limit: Int): DrupalGatsbyStringTranslationConnection!
-  drupalCampaignUrl(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, source: StringQueryOperatorInput, destination: StringQueryOperatorInput, statusCode: IntQueryOperatorInput, force: BooleanQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalCampaignUrl
+  drupalCampaignUrl(remoteTypeName: StringQueryOperatorInput, _id: StringQueryOperatorInput, source: StringQueryOperatorInput, destination: StringQueryOperatorInput, statusCode: IntQueryOperatorInput, force: BooleanQueryOperatorInput, _original_typename: StringQueryOperatorInput, _drupalId: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalCampaignUrl
   allDrupalCampaignUrl(filter: DrupalCampaignUrlFilterInput, sort: [DrupalCampaignUrlSortInput], skip: Int, limit: Int): DrupalCampaignUrlConnection!
   contact(name: StringQueryOperatorInput, email: EmailQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Contact
   allContact(filter: ContactFilterInput, sort: [ContactSortInput], skip: Int, limit: Int): ContactConnection!
-  customer(id: StringQueryOperatorInput, name: StringQueryOperatorInput, email: EmailQueryOperatorInput, _xtypename: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Customer
+  customer(id: StringQueryOperatorInput, name: StringQueryOperatorInput, email: EmailQueryOperatorInput, gatsbyId: IDQueryOperatorInput, _xtypename: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Customer
   allCustomer(filter: CustomerFilterInput, sort: [CustomerSortInput], skip: Int, limit: Int): CustomerConnection!
-  employee(id: StringQueryOperatorInput, role: StringQueryOperatorInput, name: StringQueryOperatorInput, email: EmailQueryOperatorInput, _xtypename: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Employee
+  employee(id: StringQueryOperatorInput, role: StringQueryOperatorInput, name: StringQueryOperatorInput, email: EmailQueryOperatorInput, gatsbyId: IDQueryOperatorInput, _xtypename: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Employee
   allEmployee(filter: EmployeeFilterInput, sort: [EmployeeSortInput], skip: Int, limit: Int): EmployeeConnection!
   imagesFromHtml(urlOriginal: StringQueryOperatorInput, urlAbsolute: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImagesFromHtml
   allImagesFromHtml(filter: ImagesFromHtmlFilterInput, sort: [ImagesFromHtmlSortInput], skip: Int, limit: Int): ImagesFromHtmlConnection!
@@ -1817,13 +1826,14 @@ input DrupalImageFilterListInput {
 input DrupalImageFilterInput {
   remoteTypeName: StringQueryOperatorInput
   translations: DrupalImageFilterListInput
-  remoteId: StringQueryOperatorInput
+  _id: StringQueryOperatorInput
   url: StringQueryOperatorInput
   alt: StringQueryOperatorInput
   _original_typename: StringQueryOperatorInput
-  drupalId: StringQueryOperatorInput
-  defaultTranslation: BooleanQueryOperatorInput
-  langcode: StringQueryOperatorInput
+  _drupalId: StringQueryOperatorInput
+  _defaultTranslation: BooleanQueryOperatorInput
+  _langcode: StringQueryOperatorInput
+  _translations: DrupalImageFilterListInput
   translation: DrupalImageFilterInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
@@ -1852,13 +1862,14 @@ type DrupalImageEdge {
 input DrupalImageFieldSelector {
   remoteTypeName: FieldSelectorEnum
   translations: DrupalImageFieldSelector
-  remoteId: FieldSelectorEnum
+  _id: FieldSelectorEnum
   url: FieldSelectorEnum
   alt: FieldSelectorEnum
   _original_typename: FieldSelectorEnum
-  drupalId: FieldSelectorEnum
-  defaultTranslation: FieldSelectorEnum
-  langcode: FieldSelectorEnum
+  _drupalId: FieldSelectorEnum
+  _defaultTranslation: FieldSelectorEnum
+  _langcode: FieldSelectorEnum
+  _translations: DrupalImageFieldSelector
   translation: DrupalImageFieldSelector
   id: FieldSelectorEnum
   parent: NodeFieldSelector
@@ -1883,13 +1894,14 @@ type DrupalImageGroupConnection {
 input DrupalImageSortInput {
   remoteTypeName: SortOrderEnum
   translations: DrupalImageSortInput
-  remoteId: SortOrderEnum
+  _id: SortOrderEnum
   url: SortOrderEnum
   alt: SortOrderEnum
   _original_typename: SortOrderEnum
-  drupalId: SortOrderEnum
-  defaultTranslation: SortOrderEnum
-  langcode: SortOrderEnum
+  _drupalId: SortOrderEnum
+  _defaultTranslation: SortOrderEnum
+  _langcode: SortOrderEnum
+  _translations: DrupalImageSortInput
   translation: DrupalImageSortInput
   id: SortOrderEnum
   parent: NodeSortInput
@@ -1917,10 +1929,10 @@ type DrupalTagEdge {
 
 input DrupalTagFieldSelector {
   remoteTypeName: FieldSelectorEnum
-  remoteId: FieldSelectorEnum
+  _id: FieldSelectorEnum
   title: FieldSelectorEnum
   _original_typename: FieldSelectorEnum
-  drupalId: FieldSelectorEnum
+  _drupalId: FieldSelectorEnum
   id: FieldSelectorEnum
   parent: NodeFieldSelector
   children: NodeFieldSelector
@@ -1943,10 +1955,10 @@ type DrupalTagGroupConnection {
 
 input DrupalTagFilterInput {
   remoteTypeName: StringQueryOperatorInput
-  remoteId: StringQueryOperatorInput
+  _id: StringQueryOperatorInput
   title: StringQueryOperatorInput
   _original_typename: StringQueryOperatorInput
-  drupalId: StringQueryOperatorInput
+  _drupalId: StringQueryOperatorInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
   children: NodeFilterListInput
@@ -1955,10 +1967,10 @@ input DrupalTagFilterInput {
 
 input DrupalTagSortInput {
   remoteTypeName: SortOrderEnum
-  remoteId: SortOrderEnum
+  _id: SortOrderEnum
   title: SortOrderEnum
   _original_typename: SortOrderEnum
-  drupalId: SortOrderEnum
+  _drupalId: SortOrderEnum
   id: SortOrderEnum
   parent: NodeSortInput
   children: NodeSortInput
@@ -1972,14 +1984,16 @@ input DrupalPageFilterListInput {
 input DrupalPageFilterInput {
   remoteTypeName: StringQueryOperatorInput
   translations: DrupalPageFilterListInput
+  _id: StringQueryOperatorInput
   remoteId: StringQueryOperatorInput
   path: StringQueryOperatorInput
   title: StringQueryOperatorInput
   body: StringQueryOperatorInput
   _original_typename: StringQueryOperatorInput
-  drupalId: StringQueryOperatorInput
-  defaultTranslation: BooleanQueryOperatorInput
-  langcode: StringQueryOperatorInput
+  _drupalId: StringQueryOperatorInput
+  _defaultTranslation: BooleanQueryOperatorInput
+  _langcode: StringQueryOperatorInput
+  _translations: DrupalPageFilterListInput
   translation: DrupalPageFilterInput
   childrenImagesFromHtml: ImagesFromHtmlFilterListInput
   childImagesFromHtml: ImagesFromHtmlFilterInput
@@ -2023,14 +2037,16 @@ type DrupalPageEdge {
 input DrupalPageFieldSelector {
   remoteTypeName: FieldSelectorEnum
   translations: DrupalPageFieldSelector
+  _id: FieldSelectorEnum
   remoteId: FieldSelectorEnum
   path: FieldSelectorEnum
   title: FieldSelectorEnum
   body: FieldSelectorEnum
   _original_typename: FieldSelectorEnum
-  drupalId: FieldSelectorEnum
-  defaultTranslation: FieldSelectorEnum
-  langcode: FieldSelectorEnum
+  _drupalId: FieldSelectorEnum
+  _defaultTranslation: FieldSelectorEnum
+  _langcode: FieldSelectorEnum
+  _translations: DrupalPageFieldSelector
   translation: DrupalPageFieldSelector
   childrenImagesFromHtml: ImagesFromHtmlFieldSelector
   childImagesFromHtml: ImagesFromHtmlFieldSelector
@@ -2066,14 +2082,16 @@ type DrupalPageGroupConnection {
 input DrupalPageSortInput {
   remoteTypeName: SortOrderEnum
   translations: DrupalPageSortInput
+  _id: SortOrderEnum
   remoteId: SortOrderEnum
   path: SortOrderEnum
   title: SortOrderEnum
   body: SortOrderEnum
   _original_typename: SortOrderEnum
-  drupalId: SortOrderEnum
-  defaultTranslation: SortOrderEnum
-  langcode: SortOrderEnum
+  _drupalId: SortOrderEnum
+  _defaultTranslation: SortOrderEnum
+  _langcode: SortOrderEnum
+  _translations: DrupalPageSortInput
   translation: DrupalPageSortInput
   childrenImagesFromHtml: ImagesFromHtmlSortInput
   childImagesFromHtml: ImagesFromHtmlSortInput
@@ -2098,7 +2116,7 @@ input DrupalArticleFilterListInput {
 
 input DrupalArticleFilterInput {
   remoteTypeName: StringQueryOperatorInput
-  remoteId: StringQueryOperatorInput
+  _id: StringQueryOperatorInput
   translations: DrupalArticleFilterListInput
   path: StringQueryOperatorInput
   title: StringQueryOperatorInput
@@ -2108,9 +2126,10 @@ input DrupalArticleFilterInput {
   image: DrupalImageFilterInput
   template: StringQueryOperatorInput
   _original_typename: StringQueryOperatorInput
-  drupalId: StringQueryOperatorInput
-  defaultTranslation: BooleanQueryOperatorInput
-  langcode: StringQueryOperatorInput
+  _drupalId: StringQueryOperatorInput
+  _defaultTranslation: BooleanQueryOperatorInput
+  _langcode: StringQueryOperatorInput
+  _translations: DrupalArticleFilterListInput
   translation: DrupalArticleFilterInput
   childrenImagesFromHtml: ImagesFromHtmlFilterListInput
   childImagesFromHtml: ImagesFromHtmlFilterInput
@@ -2151,7 +2170,7 @@ type DrupalArticleEdge {
 
 input DrupalArticleFieldSelector {
   remoteTypeName: FieldSelectorEnum
-  remoteId: FieldSelectorEnum
+  _id: FieldSelectorEnum
   translations: DrupalArticleFieldSelector
   path: FieldSelectorEnum
   title: FieldSelectorEnum
@@ -2161,9 +2180,10 @@ input DrupalArticleFieldSelector {
   image: DrupalImageFieldSelector
   template: FieldSelectorEnum
   _original_typename: FieldSelectorEnum
-  drupalId: FieldSelectorEnum
-  defaultTranslation: FieldSelectorEnum
-  langcode: FieldSelectorEnum
+  _drupalId: FieldSelectorEnum
+  _defaultTranslation: FieldSelectorEnum
+  _langcode: FieldSelectorEnum
+  _translations: DrupalArticleFieldSelector
   translation: DrupalArticleFieldSelector
   childrenImagesFromHtml: ImagesFromHtmlFieldSelector
   childImagesFromHtml: ImagesFromHtmlFieldSelector
@@ -2189,7 +2209,7 @@ type DrupalArticleGroupConnection {
 
 input DrupalArticleSortInput {
   remoteTypeName: SortOrderEnum
-  remoteId: SortOrderEnum
+  _id: SortOrderEnum
   translations: DrupalArticleSortInput
   path: SortOrderEnum
   title: SortOrderEnum
@@ -2199,9 +2219,10 @@ input DrupalArticleSortInput {
   image: DrupalImageSortInput
   template: SortOrderEnum
   _original_typename: SortOrderEnum
-  drupalId: SortOrderEnum
-  defaultTranslation: SortOrderEnum
-  langcode: SortOrderEnum
+  _drupalId: SortOrderEnum
+  _defaultTranslation: SortOrderEnum
+  _langcode: SortOrderEnum
+  _translations: DrupalArticleSortInput
   translation: DrupalArticleSortInput
   childrenImagesFromHtml: ImagesFromHtmlSortInput
   childImagesFromHtml: ImagesFromHtmlSortInput
@@ -2217,15 +2238,16 @@ input DrupalGutenbergPageFilterListInput {
 
 input DrupalGutenbergPageFilterInput {
   remoteTypeName: StringQueryOperatorInput
-  remoteId: StringQueryOperatorInput
+  _id: StringQueryOperatorInput
   translations: DrupalGutenbergPageFilterListInput
   path: StringQueryOperatorInput
   title: StringQueryOperatorInput
   anotherResponsiveImage: ResponsiveImageQueryOperatorInput
   _original_typename: StringQueryOperatorInput
-  drupalId: StringQueryOperatorInput
-  defaultTranslation: BooleanQueryOperatorInput
-  langcode: StringQueryOperatorInput
+  _drupalId: StringQueryOperatorInput
+  _defaultTranslation: BooleanQueryOperatorInput
+  _langcode: StringQueryOperatorInput
+  _translations: DrupalGutenbergPageFilterListInput
   translation: DrupalGutenbergPageFilterInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
@@ -2253,15 +2275,16 @@ type DrupalGutenbergPageEdge {
 
 input DrupalGutenbergPageFieldSelector {
   remoteTypeName: FieldSelectorEnum
-  remoteId: FieldSelectorEnum
+  _id: FieldSelectorEnum
   translations: DrupalGutenbergPageFieldSelector
   path: FieldSelectorEnum
   title: FieldSelectorEnum
   anotherResponsiveImage: FieldSelectorEnum
   _original_typename: FieldSelectorEnum
-  drupalId: FieldSelectorEnum
-  defaultTranslation: FieldSelectorEnum
-  langcode: FieldSelectorEnum
+  _drupalId: FieldSelectorEnum
+  _defaultTranslation: FieldSelectorEnum
+  _langcode: FieldSelectorEnum
+  _translations: DrupalGutenbergPageFieldSelector
   translation: DrupalGutenbergPageFieldSelector
   id: FieldSelectorEnum
   parent: NodeFieldSelector
@@ -2285,15 +2308,16 @@ type DrupalGutenbergPageGroupConnection {
 
 input DrupalGutenbergPageSortInput {
   remoteTypeName: SortOrderEnum
-  remoteId: SortOrderEnum
+  _id: SortOrderEnum
   translations: DrupalGutenbergPageSortInput
   path: SortOrderEnum
   title: SortOrderEnum
   anotherResponsiveImage: SortOrderEnum
   _original_typename: SortOrderEnum
-  drupalId: SortOrderEnum
-  defaultTranslation: SortOrderEnum
-  langcode: SortOrderEnum
+  _drupalId: SortOrderEnum
+  _defaultTranslation: SortOrderEnum
+  _langcode: SortOrderEnum
+  _translations: DrupalGutenbergPageSortInput
   translation: DrupalGutenbergPageSortInput
   id: SortOrderEnum
   parent: NodeSortInput
@@ -2321,12 +2345,12 @@ type DrupalWebformEdge {
 
 input DrupalWebformFieldSelector {
   remoteTypeName: FieldSelectorEnum
-  remoteId: FieldSelectorEnum
+  _id: FieldSelectorEnum
   path: FieldSelectorEnum
   url: FieldSelectorEnum
   title: FieldSelectorEnum
   _original_typename: FieldSelectorEnum
-  drupalId: FieldSelectorEnum
+  _drupalId: FieldSelectorEnum
   id: FieldSelectorEnum
   parent: NodeFieldSelector
   children: NodeFieldSelector
@@ -2349,12 +2373,12 @@ type DrupalWebformGroupConnection {
 
 input DrupalWebformFilterInput {
   remoteTypeName: StringQueryOperatorInput
-  remoteId: StringQueryOperatorInput
+  _id: StringQueryOperatorInput
   path: StringQueryOperatorInput
   url: StringQueryOperatorInput
   title: StringQueryOperatorInput
   _original_typename: StringQueryOperatorInput
-  drupalId: StringQueryOperatorInput
+  _drupalId: StringQueryOperatorInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
   children: NodeFilterListInput
@@ -2363,12 +2387,12 @@ input DrupalWebformFilterInput {
 
 input DrupalWebformSortInput {
   remoteTypeName: SortOrderEnum
-  remoteId: SortOrderEnum
+  _id: SortOrderEnum
   path: SortOrderEnum
   url: SortOrderEnum
   title: SortOrderEnum
   _original_typename: SortOrderEnum
-  drupalId: SortOrderEnum
+  _drupalId: SortOrderEnum
   id: SortOrderEnum
   parent: NodeSortInput
   children: NodeSortInput
@@ -2382,12 +2406,13 @@ input DrupalMainMenuFilterListInput {
 input DrupalMainMenuFilterInput {
   remoteTypeName: StringQueryOperatorInput
   translations: DrupalMainMenuFilterListInput
-  remoteId: StringQueryOperatorInput
+  _id: StringQueryOperatorInput
   items: DrupalMenuItemFilterListInput
   _original_typename: StringQueryOperatorInput
-  drupalId: StringQueryOperatorInput
-  defaultTranslation: BooleanQueryOperatorInput
-  langcode: StringQueryOperatorInput
+  _drupalId: StringQueryOperatorInput
+  _defaultTranslation: BooleanQueryOperatorInput
+  _langcode: StringQueryOperatorInput
+  _translations: DrupalMainMenuFilterListInput
   translation: DrupalMainMenuFilterInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
@@ -2429,12 +2454,13 @@ type DrupalMainMenuEdge {
 input DrupalMainMenuFieldSelector {
   remoteTypeName: FieldSelectorEnum
   translations: DrupalMainMenuFieldSelector
-  remoteId: FieldSelectorEnum
+  _id: FieldSelectorEnum
   items: DrupalMenuItemFieldSelector
   _original_typename: FieldSelectorEnum
-  drupalId: FieldSelectorEnum
-  defaultTranslation: FieldSelectorEnum
-  langcode: FieldSelectorEnum
+  _drupalId: FieldSelectorEnum
+  _defaultTranslation: FieldSelectorEnum
+  _langcode: FieldSelectorEnum
+  _translations: DrupalMainMenuFieldSelector
   translation: DrupalMainMenuFieldSelector
   id: FieldSelectorEnum
   parent: NodeFieldSelector
@@ -2468,12 +2494,13 @@ type DrupalMainMenuGroupConnection {
 input DrupalMainMenuSortInput {
   remoteTypeName: SortOrderEnum
   translations: DrupalMainMenuSortInput
-  remoteId: SortOrderEnum
+  _id: SortOrderEnum
   items: DrupalMenuItemSortInput
   _original_typename: SortOrderEnum
-  drupalId: SortOrderEnum
-  defaultTranslation: SortOrderEnum
-  langcode: SortOrderEnum
+  _drupalId: SortOrderEnum
+  _defaultTranslation: SortOrderEnum
+  _langcode: SortOrderEnum
+  _translations: DrupalMainMenuSortInput
   translation: DrupalMainMenuSortInput
   id: SortOrderEnum
   parent: NodeSortInput
@@ -2497,12 +2524,13 @@ input DrupalFirstLevelMainMenuFilterListInput {
 input DrupalFirstLevelMainMenuFilterInput {
   remoteTypeName: StringQueryOperatorInput
   translations: DrupalFirstLevelMainMenuFilterListInput
-  remoteId: StringQueryOperatorInput
+  _id: StringQueryOperatorInput
   items: DrupalMenuItemFilterListInput
   _original_typename: StringQueryOperatorInput
-  drupalId: StringQueryOperatorInput
-  defaultTranslation: BooleanQueryOperatorInput
-  langcode: StringQueryOperatorInput
+  _drupalId: StringQueryOperatorInput
+  _defaultTranslation: BooleanQueryOperatorInput
+  _langcode: StringQueryOperatorInput
+  _translations: DrupalFirstLevelMainMenuFilterListInput
   translation: DrupalFirstLevelMainMenuFilterInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
@@ -2531,12 +2559,13 @@ type DrupalFirstLevelMainMenuEdge {
 input DrupalFirstLevelMainMenuFieldSelector {
   remoteTypeName: FieldSelectorEnum
   translations: DrupalFirstLevelMainMenuFieldSelector
-  remoteId: FieldSelectorEnum
+  _id: FieldSelectorEnum
   items: DrupalMenuItemFieldSelector
   _original_typename: FieldSelectorEnum
-  drupalId: FieldSelectorEnum
-  defaultTranslation: FieldSelectorEnum
-  langcode: FieldSelectorEnum
+  _drupalId: FieldSelectorEnum
+  _defaultTranslation: FieldSelectorEnum
+  _langcode: FieldSelectorEnum
+  _translations: DrupalFirstLevelMainMenuFieldSelector
   translation: DrupalFirstLevelMainMenuFieldSelector
   id: FieldSelectorEnum
   parent: NodeFieldSelector
@@ -2561,12 +2590,13 @@ type DrupalFirstLevelMainMenuGroupConnection {
 input DrupalFirstLevelMainMenuSortInput {
   remoteTypeName: SortOrderEnum
   translations: DrupalFirstLevelMainMenuSortInput
-  remoteId: SortOrderEnum
+  _id: SortOrderEnum
   items: DrupalMenuItemSortInput
   _original_typename: SortOrderEnum
-  drupalId: SortOrderEnum
-  defaultTranslation: SortOrderEnum
-  langcode: SortOrderEnum
+  _drupalId: SortOrderEnum
+  _defaultTranslation: SortOrderEnum
+  _langcode: SortOrderEnum
+  _translations: DrupalFirstLevelMainMenuSortInput
   translation: DrupalFirstLevelMainMenuSortInput
   id: SortOrderEnum
   parent: NodeSortInput
@@ -2606,9 +2636,9 @@ type DrupalGatsbyStringTranslationEdge {
 
 input DrupalGatsbyStringTranslationFieldSelector {
   remoteTypeName: FieldSelectorEnum
-  remoteId: FieldSelectorEnum
+  _id: FieldSelectorEnum
   _original_typename: FieldSelectorEnum
-  drupalId: FieldSelectorEnum
+  _drupalId: FieldSelectorEnum
   source: FieldSelectorEnum
   context: FieldSelectorEnum
   translations: DrupalGatsbyStringTranslationTranslationFieldSelector
@@ -2642,9 +2672,9 @@ type DrupalGatsbyStringTranslationGroupConnection {
 
 input DrupalGatsbyStringTranslationFilterInput {
   remoteTypeName: StringQueryOperatorInput
-  remoteId: StringQueryOperatorInput
+  _id: StringQueryOperatorInput
   _original_typename: StringQueryOperatorInput
-  drupalId: StringQueryOperatorInput
+  _drupalId: StringQueryOperatorInput
   source: StringQueryOperatorInput
   context: StringQueryOperatorInput
   translations: DrupalGatsbyStringTranslationTranslationFilterListInput
@@ -2656,9 +2686,9 @@ input DrupalGatsbyStringTranslationFilterInput {
 
 input DrupalGatsbyStringTranslationSortInput {
   remoteTypeName: SortOrderEnum
-  remoteId: SortOrderEnum
+  _id: SortOrderEnum
   _original_typename: SortOrderEnum
-  drupalId: SortOrderEnum
+  _drupalId: SortOrderEnum
   source: SortOrderEnum
   context: SortOrderEnum
   translations: DrupalGatsbyStringTranslationTranslationSortInput
@@ -2696,13 +2726,13 @@ type DrupalCampaignUrlEdge {
 
 input DrupalCampaignUrlFieldSelector {
   remoteTypeName: FieldSelectorEnum
-  remoteId: FieldSelectorEnum
+  _id: FieldSelectorEnum
   source: FieldSelectorEnum
   destination: FieldSelectorEnum
   statusCode: FieldSelectorEnum
   force: FieldSelectorEnum
   _original_typename: FieldSelectorEnum
-  drupalId: FieldSelectorEnum
+  _drupalId: FieldSelectorEnum
   id: FieldSelectorEnum
   parent: NodeFieldSelector
   children: NodeFieldSelector
@@ -2725,13 +2755,13 @@ type DrupalCampaignUrlGroupConnection {
 
 input DrupalCampaignUrlFilterInput {
   remoteTypeName: StringQueryOperatorInput
-  remoteId: StringQueryOperatorInput
+  _id: StringQueryOperatorInput
   source: StringQueryOperatorInput
   destination: StringQueryOperatorInput
   statusCode: IntQueryOperatorInput
   force: BooleanQueryOperatorInput
   _original_typename: StringQueryOperatorInput
-  drupalId: StringQueryOperatorInput
+  _drupalId: StringQueryOperatorInput
   id: StringQueryOperatorInput
   parent: NodeFilterInput
   children: NodeFilterListInput
@@ -2740,13 +2770,13 @@ input DrupalCampaignUrlFilterInput {
 
 input DrupalCampaignUrlSortInput {
   remoteTypeName: SortOrderEnum
-  remoteId: SortOrderEnum
+  _id: SortOrderEnum
   source: SortOrderEnum
   destination: SortOrderEnum
   statusCode: SortOrderEnum
   force: SortOrderEnum
   _original_typename: SortOrderEnum
-  drupalId: SortOrderEnum
+  _drupalId: SortOrderEnum
   id: SortOrderEnum
   parent: NodeSortInput
   children: NodeSortInput
@@ -2819,6 +2849,13 @@ input ContactSortInput {
   internal: InternalSortInput
 }
 
+input IDQueryOperatorInput {
+  eq: ID
+  ne: ID
+  in: [ID]
+  nin: [ID]
+}
+
 type CustomerConnection {
   totalCount: Int!
   edges: [CustomerEdge!]!
@@ -2841,6 +2878,7 @@ input CustomerFieldSelector {
   id: FieldSelectorEnum
   name: FieldSelectorEnum
   email: FieldSelectorEnum
+  gatsbyId: FieldSelectorEnum
   _xtypename: FieldSelectorEnum
   parent: NodeFieldSelector
   children: NodeFieldSelector
@@ -2865,6 +2903,7 @@ input CustomerFilterInput {
   id: StringQueryOperatorInput
   name: StringQueryOperatorInput
   email: EmailQueryOperatorInput
+  gatsbyId: IDQueryOperatorInput
   _xtypename: StringQueryOperatorInput
   parent: NodeFilterInput
   children: NodeFilterListInput
@@ -2875,6 +2914,7 @@ input CustomerSortInput {
   id: SortOrderEnum
   name: SortOrderEnum
   email: SortOrderEnum
+  gatsbyId: SortOrderEnum
   _xtypename: SortOrderEnum
   parent: NodeSortInput
   children: NodeSortInput
@@ -2904,6 +2944,7 @@ input EmployeeFieldSelector {
   role: FieldSelectorEnum
   name: FieldSelectorEnum
   email: FieldSelectorEnum
+  gatsbyId: FieldSelectorEnum
   _xtypename: FieldSelectorEnum
   parent: NodeFieldSelector
   children: NodeFieldSelector
@@ -2929,6 +2970,7 @@ input EmployeeFilterInput {
   role: StringQueryOperatorInput
   name: StringQueryOperatorInput
   email: EmailQueryOperatorInput
+  gatsbyId: IDQueryOperatorInput
   _xtypename: StringQueryOperatorInput
   parent: NodeFilterInput
   children: NodeFilterListInput
@@ -2940,6 +2982,7 @@ input EmployeeSortInput {
   role: SortOrderEnum
   name: SortOrderEnum
   email: SortOrderEnum
+  gatsbyId: SortOrderEnum
   _xtypename: SortOrderEnum
   parent: NodeSortInput
   children: NodeSortInput
@@ -3027,6 +3070,7 @@ type Customer implements Contact & Node {
   id: ID!
   name: String!
   email: Email!
+  gatsbyId: ID!
   _xtypename: String
   parent: Node
   children: [Node!]!
@@ -3038,6 +3082,7 @@ type Employee implements Contact & Node {
   role: String!
   name: String!
   email: Email!
+  gatsbyId: ID!
   _xtypename: String
   parent: Node
   children: [Node!]!
@@ -3045,6 +3090,11 @@ type Employee implements Contact & Node {
 }
 
 scalar ResponsiveImage
+
+type Page {
+  id: String!
+  title: String!
+}
 
 type ImagesFromHtml implements Node {
   urlOriginal: String!
@@ -3346,4 +3396,3 @@ type ImageSharpResize {
   height: Int
   aspectRatio: Float
   originalName: String
-}
