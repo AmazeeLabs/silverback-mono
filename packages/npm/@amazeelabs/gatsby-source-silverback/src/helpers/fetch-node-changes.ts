@@ -29,7 +29,7 @@ export const fetchNodeChanges = async (
     variables: { lastBuildId, currentBuildId },
     query: `
       query ContentChanges($lastBuildId: Int!, $currentBuildId: Int!) {
-        drupalFeedInfo {
+        drupalFeedInfo:_drupalFeedInfo {
           typeName
           changes(lastBuild: $lastBuildId, currentBuild: $currentBuildId)
         }
