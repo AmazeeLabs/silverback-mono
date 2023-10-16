@@ -1,7 +1,7 @@
 import { ApplicationState } from '@amazeelabs/publisher-shared';
 import { bind } from '@react-rxjs/core';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { filter, switchMap } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 
@@ -34,9 +34,10 @@ function InfoPage() {
   return <Info historyItems={history} />;
 }
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root')!);
+
+root.render(
   <React.StrictMode>
     <InfoPage />
   </React.StrictMode>,
-  document.getElementById('root'),
 );

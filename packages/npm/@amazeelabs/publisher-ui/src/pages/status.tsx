@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 
 import Status from '../components/Status';
 import { useStatus } from '../utils/status';
@@ -9,9 +9,10 @@ function StatusPage() {
   return <Status status={status} />;
 }
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root')!);
+
+root.render(
   <React.StrictMode>
     <StatusPage />
   </React.StrictMode>,
-  document.getElementById('root'),
 );
