@@ -1,0 +1,9 @@
+name: Silverback Gatsby OAuth
+type: module
+description: 'Integration of Publisher with OAuth.'
+package: Silverback
+dependencies:
+  - silverback_gatsby:silverback_gatsby
+  - simple_oauth:simple_oauth
+  - consumers:consumers
+core_version_requirement: ^8 || ^9 || ^10
