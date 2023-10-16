@@ -201,24 +201,24 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
     $listFieldName = $feed->getListFieldName();
     $schema = [
       "extend type Query {",
-      "  $singleFieldName(id: String!): $typeName",
-      "  $listFieldName(offset: Int, limit: Int): [$typeName]!",
+      "  $singleFieldName(id: String!): $typeName @deprecated",
+      "  $listFieldName(offset: Int, limit: Int): [$typeName]! @deprecated",
     ];
 
     $schema[] = "}";
 
     if ($feed->isTranslatable()) {
       $schema[] = "extend type $typeName {";
-      $schema[] = "  id: String!";
-      $schema[] = "  drupalId: String!";
-      $schema[] = "  defaultTranslation: Boolean!";
-      $schema[] = "  langcode: String!";
-      $schema[] = "  translations: [$typeName!]!";
+      $schema[] = "  _id: String! @deprecated";
+      $schema[] = "  _drupalId: String! @deprecated";
+      $schema[] = "  _defaultTranslation: Boolean! @deprecated";
+      $schema[] = "  _langcode: String! @deprecated";
+      $schema[] = "  _translations: [$typeName!]! @deprecated";
       $schema[] = "}";
     } else {
       $schema[] = "extend type $typeName {";
-      $schema[] = "  id: String!";
-      $schema[] = "  drupalId: String!";
+      $schema[] = "  _id: String! @deprecated";
+      $schema[] = "  _drupalId: String! @deprecated";
       $schema[] = "}";
     }
 
@@ -256,7 +256,7 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
     foreach ($ast->definitions->getIterator() as $definition) {
       if ($definition instanceof ObjectTypeDefinitionNode) {
         $name = $definition->name->value;
-        $types[] = "extend type {$name} { _original_typename: String! }";
+        $types[] = "extend type {$name} { _original_typename: String! @deprecated }";
       }
     }
     return implode("\n", $types);
@@ -284,12 +284,12 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
 
     $registry->addFieldResolver(
       'Query',
-      'drupalFeedInfo',
+      '_drupalFeedInfo',
       $builder->fromValue(array_map(fn(FeedInterface $feed) => $feed->info(), $this->getFeeds($ast)))
     );
     $registry->addFieldResolver(
       'Query',
-      'drupalBuildId',
+      '_drupalBuildId',
       $builder->callback(function ($value, $args, ResolveContext $context) {
         // Make sure this is never cached.
         $context->mergeCacheMaxAge(0);
@@ -299,7 +299,7 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
       })
     );
 
-    $registry->addFieldResolver('Feed', 'changes', $builder->callback(function ($value, $args, ResolveContext $context) {
+    $registry->addFieldResolver('_Feed', 'changes', $builder->callback(function ($value, $args, ResolveContext $context) {
       // Make sure this is never cached.
       $context->mergeCacheMaxAge(0);
       /** @var \Drupal\silverback_gatsby\GatsbyUpdateTrackerInterface $tracker */
@@ -329,7 +329,7 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
       );
 
       $typeName = $feed->getTypeName();
-      $registry->addFieldResolver($typeName, 'drupalId', $idResolver);
+      $registry->addFieldResolver($typeName, '_drupalId', $idResolver);
       $feed->addExtensionResolvers($registry, $builder);
 
       if ($feed->isTranslatable()) {
@@ -345,16 +345,17 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
 
         $registry->addFieldResolver(
           $typeName,
-          'id',
+          '_id',
           $builder->produce('gatsby_build_id')
             ->map('id', $idResolver)
             ->map('langcode', $langcodeResolver)
         );
 
-        $registry->addFieldResolver($typeName, 'langcode', $langcodeResolver);
-        $registry->addFieldResolver($typeName, 'defaultTranslation', $feed->resolveDefaultTranslation());
-        $registry->addFieldResolver($typeName, 'translations', $feed->resolveTranslations());
-      } else {
+        $registry->addFieldResolver($typeName, '_langcode', $langcodeResolver);
+        $registry->addFieldResolver($typeName, '_defaultTranslation', $feed->resolveDefaultTranslation());
+        $registry->addFieldResolver($typeName, '_translations', $feed->resolveTranslations());
+      }
+      else {
         $registry->addFieldResolver(
           'Query', $feed->getSingleFieldName(),
           $feed->resolveItem(
@@ -362,7 +363,7 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
           )
         );
 
-        $registry->addFieldResolver($typeName, 'id', $idResolver);
+        $registry->addFieldResolver($typeName, '_id', $idResolver);
       }
     }
 
@@ -372,12 +373,12 @@ class SilverbackGatsbySchemaExtension extends DirectableSchemaExtensionPluginBas
     };
 
     $currentUser = $builder->produce('current_user_entity');
-    $addResolver('Query.currentUser', $currentUser);
+    $addResolver('Query._currentUser', $currentUser);
 
     $entityId = $builder->produce('entity_id')->map('entity', $builder->fromParent());
     $entityLabel = $builder->callback(fn(EntityInterface $value) => $value->label());
-    $addResolver('User.id', $entityId);
-    $addResolver('User.name', $entityLabel);
+    $addResolver('_User.id', $entityId);
+    $addResolver('_User.name', $entityLabel);
   }
 
 }

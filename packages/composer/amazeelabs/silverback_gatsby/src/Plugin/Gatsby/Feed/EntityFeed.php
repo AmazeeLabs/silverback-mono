@@ -196,7 +196,7 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
 
   public function getExtensionDefinition(DocumentNode $parentAst): string {
     $type = $this->typeName;
-    return "\nextend type Query { load{$type}Revision(id: String!, revision: String!) : $type }";
+    return "\nextend type Query { _load{$type}Revision(id: String!, revision: String!) : $type @deprecated }";
   }
 
   public function addExtensionResolvers(
@@ -218,7 +218,7 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
       ->map('language', $langResolver)
       ->map('revision_id', $builder->fromArgument('revision'))
     ;
-    $registry->addFieldResolver("Query", "load{$type}Revision", $resolver);
+    $registry->addFieldResolver("Query", "_load{$type}Revision", $resolver);
   }
 
 }

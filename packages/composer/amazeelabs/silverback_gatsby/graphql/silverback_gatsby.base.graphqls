@@ -1,4 +1,4 @@
-type Feed {
+type _Feed {
   typeName: String!
   translatable: Boolean!
   singleFieldName: String!
