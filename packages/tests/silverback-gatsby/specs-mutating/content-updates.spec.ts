@@ -2,13 +2,14 @@ import {
   drupal,
   drupalLogin,
   gatsby,
-  resetState,
+  resetDrupalState,
   waitForGatsby,
 } from '@amazeelabs/silverback-playwright';
 import { expect, PlaywrightTestArgs, test } from '@playwright/test';
 
 test.beforeAll(async () => {
-  await resetState();
+  await resetDrupalState();
+  await waitForGatsby();
 });
 
 test('basic updates', async ({ page }) => {

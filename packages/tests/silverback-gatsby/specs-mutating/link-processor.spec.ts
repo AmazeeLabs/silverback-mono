@@ -3,14 +3,15 @@ import {
   drupalLogin,
   drush,
   gatsby,
-  resetState,
+  resetDrupalState,
   waitForGatsby,
 } from '@amazeelabs/silverback-playwright';
 import { expect, test } from '@playwright/test';
 import { platform } from 'os';
 
 test.beforeAll(async () => {
-  await resetState();
+  await resetDrupalState();
+  await waitForGatsby();
 });
 
 test('test LinkProcessor', async ({ page }) => {

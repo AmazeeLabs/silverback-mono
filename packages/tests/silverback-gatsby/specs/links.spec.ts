@@ -1,7 +1,7 @@
 import { gatsby } from '@amazeelabs/silverback-playwright';
 import { expect, test } from '@playwright/test';
 
-import { getIframe } from '../common';
+import { getIframe } from '../../silverback-drupal/common';
 
 test('links open in parent frame, using parent frame base url, without iframe=true param in the url', async ({
   page,

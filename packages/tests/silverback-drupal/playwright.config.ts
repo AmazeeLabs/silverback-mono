@@ -9,12 +9,6 @@ export const config: PlaywrightTestConfig = {
       port: 8888,
       reuseExistingServer: !process.env.CI,
     },
-    {
-      command:
-        'pnpm run --filter "@-amazeelabs/silverback-gatsby" start > /tmp/gatsby.log 2>&1',
-      port: 8000,
-      reuseExistingServer: !process.env.CI,
-    },
   ],
   fullyParallel: true,
   forbidOnly: !!process.env.CI,

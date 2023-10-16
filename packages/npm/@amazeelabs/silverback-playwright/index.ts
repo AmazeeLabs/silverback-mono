@@ -1,9 +1,4 @@
-import {
-  devices,
-  expect,
-  PlaywrightTestArgs,
-  PlaywrightTestConfig,
-} from '@playwright/test';
+import { expect, PlaywrightTestArgs } from '@playwright/test';
 import { execSync } from 'child_process';
 
 export const gatsby = {
@@ -81,11 +76,10 @@ export const waitForGatsby = async () => {
   clearTimeout(timeout);
 };
 
-export const resetState = async () => {
+export const resetDrupalState = async () => {
   execSync(
     'pnpm run --filter "@-amazeelabs/silverback-drupal" snapshot-restore',
   );
-  await waitForGatsby();
 };
 
 export const drupalLogin = async (
@@ -103,51 +97,4 @@ export const drupalLogin = async (
 
 export const drupalLogout = async (page: PlaywrightTestArgs['page']) => {
   await page.goto(drupal.baseUrl + '/user/logout');
-};
-
-export const playwrightConfigDefaults: PlaywrightTestConfig = {
-  testDir: './specs',
-  webServer: [
-    {
-      command:
-        'pnpm run --filter "@-amazeelabs/silverback-drupal" start > /tmp/drupal.log 2>&1',
-      port: 8888,
-      reuseExistingServer: !process.env.CI,
-    },
-    {
-      command:
-        'pnpm run --filter "@-amazeelabs/silverback-gatsby" start > /tmp/gatsby.log 2>&1',
-      port: 8000,
-      reuseExistingServer: !process.env.CI,
-    },
-  ],
-  fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  maxFailures: 1,
-  retries: process.env.CI ? 1 : 0,
-  use: {
-    trace: 'on-first-retry',
-  },
-  reporter: 'list',
-  projects: [
-    {
-      name: 'setup',
-      testMatch: /setup\.ts/,
-    },
-    {
-      name: 'chromium',
-      testMatch: /\.*.spec\.ts/,
-      use: { ...devices['Desktop Chrome'] },
-      dependencies: ['setup'],
-    },
-  ],
-  // Initial gatsby build can take long.
-  timeout: 90_000,
-};
-
-export const playwrightConfigMutatingDefaults: PlaywrightTestConfig = {
-  ...playwrightConfigDefaults,
-  testDir: './specs-mutating',
-  fullyParallel: false,
-  workers: 1,
 };
