@@ -283,6 +283,7 @@ type Tag @entity(type: "taxonomy_term", bundle: "tag") {
 }
 
 type Page @entity(type: "node", bundle: "page") {
+  id: String! @resolveEntityId
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
   body: String @resolveProperty(path: "field_body.0.processed")
@@ -651,7 +652,7 @@ directive @menu(menu_id: String, menu_ids: [String!], item_type: String, max_lev
 
 directive @stringTranslation(contextPrefix: String) on OBJECT
 
-type Feed {
+type _Feed {
   typeName: String!
   translatable: Boolean!
   singleFieldName: String!
@@ -676,238 +677,238 @@ DEPRECATED, use @isTemplate
 directive @template on FIELD_DEFINITION
 
 extend type Query {
-  drupalBuildId: Int!
-  drupalFeedInfo: [Feed!]!
-  currentUser: User!
+  _drupalBuildId: Int! @deprecated
+  _drupalFeedInfo: [_Feed!]! @deprecated
+  _currentUser: _User! @deprecated
 }
 
-type User {
+type _User {
   id: String
   name: String
 }
 
 extend type Mutation {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
 extend type Query {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
 extend type Image {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
 extend type Tag {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
 extend type Page {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
 extend type ParagraphText {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
 extend type ParagraphReferences {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
 extend type GutenbergPage {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
 extend type Webform {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
 extend type Article {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
 extend type BlockTwoColumns {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
 extend type BlockColumn {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
 extend type BlockHtmlParagraph {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
 extend type BlockHtmlList {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
 extend type BlockHtmlQuote {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
 extend type BlockImage {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
 extend type BlockTeaser {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
 extend type MenuItem {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
 extend type MainMenu {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
 extend type FirstLevelMainMenu {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
 extend type GatsbyStringTranslation {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
 extend type CampaignUrl {
-  _original_typename: String!
+  _original_typename: String! @deprecated
 }
 
-extend type Feed {
-  _original_typename: String!
+extend type _Feed {
+  _original_typename: String! @deprecated
 }
 
 extend type Query {
-  loadImage(id: String!): Image
-  queryImages(offset: Int, limit: Int): [Image]!
+  _loadImage(id: String!): Image @deprecated
+  _queryImages(offset: Int, limit: Int): [Image]! @deprecated
 }
 
 extend type Image {
-  id: String!
-  drupalId: String!
-  defaultTranslation: Boolean!
-  langcode: String!
-  translations: [Image!]!
+  _id: String! @deprecated
+  _drupalId: String! @deprecated
+  _defaultTranslation: Boolean! @deprecated
+  _langcode: String! @deprecated
+  _translations: [Image!]! @deprecated
 }
 
 extend type Query {
-  loadImageRevision(id: String!, revision: String!): Image
+  _loadImageRevision(id: String!, revision: String!): Image @deprecated
 }
 
 extend type Query {
-  loadTag(id: String!): Tag
-  queryTags(offset: Int, limit: Int): [Tag]!
+  _loadTag(id: String!): Tag @deprecated
+  _queryTags(offset: Int, limit: Int): [Tag]! @deprecated
 }
 
 extend type Tag {
-  id: String!
-  drupalId: String!
+  _id: String! @deprecated
+  _drupalId: String! @deprecated
 }
 
 extend type Query {
-  loadTagRevision(id: String!, revision: String!): Tag
+  _loadTagRevision(id: String!, revision: String!): Tag @deprecated
 }
 
 extend type Query {
-  loadPage(id: String!): Page
-  queryPages(offset: Int, limit: Int): [Page]!
+  _loadPage(id: String!): Page @deprecated
+  _queryPages(offset: Int, limit: Int): [Page]! @deprecated
 }
 
 extend type Page {
-  id: String!
-  drupalId: String!
-  defaultTranslation: Boolean!
-  langcode: String!
-  translations: [Page!]!
+  _id: String! @deprecated
+  _drupalId: String! @deprecated
+  _defaultTranslation: Boolean! @deprecated
+  _langcode: String! @deprecated
+  _translations: [Page!]! @deprecated
 }
 
 extend type Query {
-  loadPageRevision(id: String!, revision: String!): Page
+  _loadPageRevision(id: String!, revision: String!): Page @deprecated
 }
 
 extend type Query {
-  loadGutenbergPage(id: String!): GutenbergPage
-  queryGutenbergPages(offset: Int, limit: Int): [GutenbergPage]!
+  _loadGutenbergPage(id: String!): GutenbergPage @deprecated
+  _queryGutenbergPages(offset: Int, limit: Int): [GutenbergPage]! @deprecated
 }
 
 extend type GutenbergPage {
-  id: String!
-  drupalId: String!
-  defaultTranslation: Boolean!
-  langcode: String!
-  translations: [GutenbergPage!]!
+  _id: String! @deprecated
+  _drupalId: String! @deprecated
+  _defaultTranslation: Boolean! @deprecated
+  _langcode: String! @deprecated
+  _translations: [GutenbergPage!]! @deprecated
 }
 
 extend type Query {
-  loadGutenbergPageRevision(id: String!, revision: String!): GutenbergPage
+  _loadGutenbergPageRevision(id: String!, revision: String!): GutenbergPage @deprecated
 }
 
 extend type Query {
-  loadWebform(id: String!): Webform
-  queryWebforms(offset: Int, limit: Int): [Webform]!
+  _loadWebform(id: String!): Webform @deprecated
+  _queryWebforms(offset: Int, limit: Int): [Webform]! @deprecated
 }
 
 extend type Webform {
-  id: String!
-  drupalId: String!
+  _id: String! @deprecated
+  _drupalId: String! @deprecated
 }
 
 extend type Query {
-  loadWebformRevision(id: String!, revision: String!): Webform
+  _loadWebformRevision(id: String!, revision: String!): Webform @deprecated
 }
 
 extend type Query {
-  loadArticle(id: String!): Article
-  queryArticles(offset: Int, limit: Int): [Article]!
+  _loadArticle(id: String!): Article @deprecated
+  _queryArticles(offset: Int, limit: Int): [Article]! @deprecated
 }
 
 extend type Article {
-  id: String!
-  drupalId: String!
-  defaultTranslation: Boolean!
-  langcode: String!
-  translations: [Article!]!
+  _id: String! @deprecated
+  _drupalId: String! @deprecated
+  _defaultTranslation: Boolean! @deprecated
+  _langcode: String! @deprecated
+  _translations: [Article!]! @deprecated
 }
 
 extend type Query {
-  loadArticleRevision(id: String!, revision: String!): Article
+  _loadArticleRevision(id: String!, revision: String!): Article @deprecated
 }
 
 extend type Query {
-  loadMainMenu(id: String!): MainMenu
-  queryMainMenus(offset: Int, limit: Int): [MainMenu]!
+  _loadMainMenu(id: String!): MainMenu @deprecated
+  _queryMainMenus(offset: Int, limit: Int): [MainMenu]! @deprecated
 }
 
 extend type MainMenu {
-  id: String!
-  drupalId: String!
-  defaultTranslation: Boolean!
-  langcode: String!
-  translations: [MainMenu!]!
+  _id: String! @deprecated
+  _drupalId: String! @deprecated
+  _defaultTranslation: Boolean! @deprecated
+  _langcode: String! @deprecated
+  _translations: [MainMenu!]! @deprecated
 }
 
 extend type Query {
-  loadFirstLevelMainMenu(id: String!): FirstLevelMainMenu
-  queryFirstLevelMainMenus(offset: Int, limit: Int): [FirstLevelMainMenu]!
+  _loadFirstLevelMainMenu(id: String!): FirstLevelMainMenu @deprecated
+  _queryFirstLevelMainMenus(offset: Int, limit: Int): [FirstLevelMainMenu]! @deprecated
 }
 
 extend type FirstLevelMainMenu {
-  id: String!
-  drupalId: String!
-  defaultTranslation: Boolean!
-  langcode: String!
-  translations: [FirstLevelMainMenu!]!
+  _id: String! @deprecated
+  _drupalId: String! @deprecated
+  _defaultTranslation: Boolean! @deprecated
+  _langcode: String! @deprecated
+  _translations: [FirstLevelMainMenu!]! @deprecated
 }
 
 extend type Query {
-  loadGatsbyStringTranslation(id: String!): GatsbyStringTranslation
-  queryGatsbyStringTranslations(offset: Int, limit: Int): [GatsbyStringTranslation]!
+  _loadGatsbyStringTranslation(id: String!): GatsbyStringTranslation @deprecated
+  _queryGatsbyStringTranslations(offset: Int, limit: Int): [GatsbyStringTranslation]! @deprecated
 }
 
 extend type GatsbyStringTranslation {
-  id: String!
-  drupalId: String!
+  _id: String! @deprecated
+  _drupalId: String! @deprecated
 }
 
 extend type GatsbyStringTranslation {
@@ -924,15 +925,15 @@ type GatsbyStringTranslationTranslation {
 }
 
 extend type Query {
-  loadCampaignUrl(id: String!): CampaignUrl
-  queryCampaignUrls(offset: Int, limit: Int): [CampaignUrl]!
+  _loadCampaignUrl(id: String!): CampaignUrl @deprecated
+  _queryCampaignUrls(offset: Int, limit: Int): [CampaignUrl]! @deprecated
 }
 
 extend type CampaignUrl {
-  id: String!
-  drupalId: String!
+  _id: String! @deprecated
+  _drupalId: String! @deprecated
 }
 
 extend type Query {
-  loadCampaignUrlRevision(id: String!, revision: String!): CampaignUrl
+  _loadCampaignUrlRevision(id: String!, revision: String!): CampaignUrl @deprecated
 }
