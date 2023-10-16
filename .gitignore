@@ -1,5 +1,6 @@
 _local
 node_modules
+.phpunit.result.cache
 
 # Local Netlify folder
 .netlify
