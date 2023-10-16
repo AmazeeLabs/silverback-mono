@@ -1,4 +1,4 @@
-import { Code, Content } from 'mdast';
+import { Code, Content, Parent } from 'mdast';
 import remarkParse from 'remark-parse';
 import { unified } from 'unified';
 
@@ -85,7 +85,7 @@ export type CodeBlock = {
 export function extractCodeBlocks(input: string): string {
   const root = unified().use(remarkParse).parse(input);
   return preprocess(
-    root.children.filter(isCodeBlock).map((block) => {
+    (root as Parent).children.filter(isCodeBlock).map((block) => {
       return {
         meta: block.meta || undefined,
         lang: block.lang,
