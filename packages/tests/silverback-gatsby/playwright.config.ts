@@ -18,7 +18,7 @@ export const config: PlaywrightTestConfig = {
   ],
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  maxFailures: 1,
+  maxFailures: process.env.CI ? 0 : 1,
   retries: process.env.CI ? 1 : 0,
   use: {
     trace: 'on-first-retry',
