@@ -29,7 +29,7 @@ runs:
           ${{ steps.node_version.outputs.NODE_VERSION }}
 
     - name: Install pnpm
-      run: npm install -g pnpm@8
+      run: npm install -g pnpm@8.6.12
       shell: bash
     - name: Tell pnpm to use Bash
       run: pnpm config set script-shell /bin/bash

@@ -63,6 +63,39 @@ jobs:
             echo "Success: Found no uncommitted changes"
           fi
 
+  template_tests:
+    name: Template tests (optional)
+    continue-on-error: true
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Commons
+        uses: ./.github/actions/commons
+
+      - name: Install dependencies
+        run: pnpm i
+
+      - name: Build packages
+        run: pnpm build
+
+      - name: Prepare template
+        run: pnpm --filter @-amazeelabs/silverback-template-tests run prepare-template
+
+      - name: Run template tests
+        run: cd /tmp/silverback-template && pnpm turbo:test
+
+      - name: Gatsby log
+        run: cat /tmp/gatsby.log || true
+        if: always()
+      - name: Drupal log
+        run: cat /tmp/drupal.log || true
+        if: always()
+
   drupal_updates:
     if: startsWith(github.head_ref, 'test-all/') == true
     name: Check for forgotten config changes

@@ -1,0 +1,22 @@
+{
+  "name": "@-amazeelabs/silverback-template-tests",
+  "version": "1.0.0",
+  "description": "Checks if silverback-template works with the latest changes from the monorepo.",
+  "author": "Amazee Labs",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@amazeelabs/eslint-config": "1.4.43",
+    "@amazeelabs/prettier-config": "1.1.3",
+    "@types/node": "20.8.5",
+    "eslint": "8.51.0",
+    "prettier": "3.0.3",
+    "tsx": "3.13.0",
+    "typescript": "5.2.2",
+    "zx": "^7.2.3"
+  },
+  "scripts": {
+    "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
+    "prepare-template": "tsx prepare-template.mts"
+  }
+}
