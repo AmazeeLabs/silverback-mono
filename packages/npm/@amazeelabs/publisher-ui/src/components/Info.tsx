@@ -388,7 +388,7 @@ export default function Info({
           </div>
         </div>
         <div
-          className={'mb-8 px-4 md:px-6 lg:px-10 xl:px-14 max-w-6xl mx-auto'}
+          className={'mb-8 px-4 md:px-6 lg:px-10 xl:px-14 max-w-7xl mx-auto'}
         >
           <Disclosure defaultOpen>
             {({ open }) => (
@@ -478,7 +478,7 @@ export default function Info({
             )}
           </Disclosure>
         </div>
-        <div className={'px-4 md:px-6 lg:px-10 xl:px-14 max-w-6xl mx-auto'}>
+        <div className={'px-4 md:px-6 lg:px-10 xl:px-14 max-w-7xl mx-auto'}>
           <div className={'pre-container'} id="build-history">
             <h2
               className={

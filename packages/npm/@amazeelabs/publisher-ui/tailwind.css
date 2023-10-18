@@ -31,8 +31,9 @@ body {
 }
 
 .pre-container pre {
-    @apply text-justify text-white mt-2 p-4 leading-[1.4] text-[13px];
+    @apply text-justify text-white mt-2 p-4 leading-[1.4] text-[13px] max-w-full overflow-x-auto whitespace-pre-wrap;
     background: rgb(44, 53, 57);
+    word-wrap: break-word;
 }
 
 /* Override Lazylog styles */
