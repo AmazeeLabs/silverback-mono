@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.4.0...@-amazeelabs/silverback_gatsby@2.4.1) (2023-10-18)
+
+### Bug Fixes
+
+- move publisher consumer initialization to a deploy hook
+  ([#1442](https://github.com/AmazeeLabs/silverback-mono/issues/1442))
+  ([4b25787](https://github.com/AmazeeLabs/silverback-mono/commit/4b2578718fb75125d997918039a810e22172ebfb))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [2.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.3.12...@-amazeelabs/silverback_gatsby@2.4.0) (2023-10-16)
 
 ### Features
