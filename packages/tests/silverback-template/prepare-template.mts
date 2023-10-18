@@ -17,6 +17,20 @@ await $`rm -rf /tmp/silverback-template`;
 await $`cd /tmp && git clone https://github.com/AmazeeLabs/silverback-template.git`;
 await $`cd /tmp/silverback-template && pnpm i`;
 
+console.log('👉 Make graphql version the same.');
+const graphqlVersion = JSON.parse(
+  `${await $`cd ${monorepoRoot}/packages/npm/@amazeelabs/codegen-gatsby-fragments && pnpm ls graphql --json`}`,
+)[0].dependencies.graphql.version;
+replaceGraphqlVersion(
+  `/tmp/silverback-template/apps/decap/package.json`,
+  graphqlVersion,
+);
+replaceGraphqlVersion(
+  `/tmp/silverback-template/packages/schema/package.json`,
+  graphqlVersion,
+);
+await $`cd /tmp/silverback-template && pnpm install --no-frozen-lockfile && pnpm dedupe`;
+
 console.log('👉 Make all monorepo public packages available for linking.');
 const monoPackages: Array<Package> = JSON.parse(
   `${await $`pnpm list -r --depth -1 --json`}`,
@@ -67,3 +81,9 @@ for (const name of Object.keys(composerJson.require)) {
 }
 fs.writeJSONSync(composerJsonPath, composerJson);
 await $`cd /tmp/silverback-template/apps/cms && composer update 'amazeelabs/*'`;
+
+function replaceGraphqlVersion(packageJsonPath: string, version: string) {
+  const packageJson = fs.readJSONSync(packageJsonPath);
+  packageJson.dependencies.graphql = version;
+  fs.writeJSONSync(packageJsonPath, packageJson);
+}
