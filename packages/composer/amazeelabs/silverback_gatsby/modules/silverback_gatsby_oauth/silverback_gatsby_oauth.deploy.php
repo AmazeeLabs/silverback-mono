@@ -2,14 +2,17 @@
 
 use Drupal\user\RoleInterface;
 
-function silverback_gatsby_oauth_install() {
+/**
+ * Set up the Publisher OAuth Consumer.
+ */
+function silverback_gatsby_oauth_deploy_set_consumers(array &$sandbox): string {
   // Skip for Silverback environments.
   // It might be used for OAuth development purpose only in Silverback
   // and can be set manually for this case.
   // Matches the default Publisher behavior
   // that disables Publisher OAuth for non Lagoon environments.
   if (getenv('SB_ENVIRONMENT')) {
-    return;
+    return t('Skipping for Silverback environment.');
   }
 
   // Check requirements.
@@ -57,5 +60,8 @@ function silverback_gatsby_oauth_install() {
         'publisher',
       ],
     ])->save();
+    return t('Created Publisher OAuth Consumer.');
   }
+
+  return t('Publisher OAuth Consumer already exists.');
 }
