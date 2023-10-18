@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher-ui@2.3.4...@amazeelabs/publisher-ui@2.4.0) (2023-10-18)
+
+### Features
+
+- width tweak to pulisher-ui
+  ([7f99be9](https://github.com/AmazeeLabs/silverback-mono/commit/7f99be9fd7bf68efabaed8dbb64118e9fe112932))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.3.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher-ui@2.3.3...@amazeelabs/publisher-ui@2.3.4) (2023-10-16)
 
 **Note:** Version bump only for package @amazeelabs/publisher-ui
