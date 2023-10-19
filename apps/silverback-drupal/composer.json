@@ -120,9 +120,6 @@
         "patches": {
             "drupal/core": {
                 "Add string context and location filters to the translate interface": "https://www.drupal.org/files/issues/2023-01-23/2123543-10.0.x-79.patch"
-            },
-            "drupal/gutenberg": {
-                "Fix JS errors": "https://www.drupal.org/files/issues/2023-07-28/gutenberg-js_errors_d10-3372307-10.patch"
             }
         }
     }
