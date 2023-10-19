@@ -15,10 +15,10 @@
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix"
   },
   "dependencies": {
-    "react-intl": "^6.4.7"
+    "react-intl": "^6.5.0"
   },
   "optionalDependencies": {
-    "@types/react": "^18.2.28",
+    "@types/react": "^18.2.29",
     "typescript": "^5.2.2"
   },
   "peerDependencies": {

@@ -46,7 +46,7 @@
         "drupal/default_content": "2.0.0-alpha2",
         "drupal/entity_usage": "2.0.0-beta12",
         "drupal/graphql": "4.5.0",
-        "drupal/gutenberg": "2.7.0",
+        "drupal/gutenberg": "2.8.0",
         "drupal/hal": "2.0.1",
         "drupal/key_auth": "2.1.0",
         "drupal/linkit": "6.1.2",
@@ -54,7 +54,7 @@
         "drupal/redirect": "1.9.0",
         "drupal/simple_oauth": "5.2.3",
         "drupal/typed_data": "1.0.0-beta2",
-        "drupal/webform": "6.2.0-rc1",
+        "drupal/webform": "6.2.0-rc2",
         "fenetikm/autoload-drupal": "1.0.0",
         "phpspec/prophecy-phpunit": "2.0.2"
     },

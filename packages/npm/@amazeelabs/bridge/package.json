@@ -15,7 +15,7 @@
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix"
   },
   "optionalDependencies": {
-    "@types/react": "^18.2.28",
+    "@types/react": "^18.2.29",
     "typescript": "^5.2.2",
     "vitest": "^0.34.6"
   },
