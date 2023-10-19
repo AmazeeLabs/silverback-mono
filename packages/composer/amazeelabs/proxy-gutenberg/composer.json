@@ -18,6 +18,6 @@
   ],
   "require": {
     "cweagans/composer-patches": "^1.7.3",
-    "drupal/gutenberg": "^2.7.0"
+    "drupal/gutenberg": "^2.8.0"
   }
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1ca85a568ec7afd71577be27cec17b90",
+    "content-hash": "1c73173da53694bc065c05f8ad74fa79",
     "packages": [
         {
             "name": "amazeelabs/default-content",
@@ -128,11 +128,11 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/proxy-gutenberg",
-                "reference": "0fb7030d68ace85ad9d538d8b6a11890bdaefc4a"
+                "reference": "7e821602f3a152d2c93b1534a54b7bf8db5b86b8"
             },
             "require": {
                 "cweagans/composer-patches": "^1.7.3",
-                "drupal/gutenberg": "^2.7.0"
+                "drupal/gutenberg": "^2.8.0"
             },
             "type": "library",
             "extra": {
@@ -282,11 +282,11 @@
         },
         {
             "name": "amazeelabs/silverback_gatsby",
-            "version": "2.3.12",
+            "version": "2.4.1",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gatsby",
-                "reference": "f8d2f4c9983a9e4896981b9d9c2c875c9488fdb2"
+                "reference": "cd8e015c8f9704cef90e94716e512d065506a313"
             },
             "type": "drupal-module",
             "extra": {
@@ -328,10 +328,10 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "c8f3d64292bf596c30ca0ac7366966e2cee07416"
+                "reference": "c321162519ee74e14079533186b42fc843fed7e6"
             },
             "require": {
-                "drupal/gutenberg": "^2.7.0"
+                "drupal/gutenberg": "^2.8.0"
             },
             "type": "drupal-module",
             "license": [
@@ -3792,17 +3792,17 @@
         },
         {
             "name": "drupal/gutenberg",
-            "version": "2.7.0",
+            "version": "2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/gutenberg.git",
-                "reference": "8.x-2.7"
+                "reference": "8.x-2.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/gutenberg-8.x-2.7.zip",
-                "reference": "8.x-2.7",
-                "shasum": "318b65830f7809ad554c9051c2a1f7a16f2c7e02"
+                "url": "https://ftp.drupal.org/files/projects/gutenberg-8.x-2.8.zip",
+                "reference": "8.x-2.8",
+                "shasum": "4fdcf7bc65e67063e5f266b733a93e8176ad7a79"
             },
             "require": {
                 "drupal/core": "^9 || ^10",
@@ -3812,8 +3812,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.7",
-                    "datestamp": "1678298357",
+                    "version": "8.x-2.8",
+                    "datestamp": "1697496069",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4302,20 +4302,21 @@
         },
         {
             "name": "drupal/webform",
-            "version": "6.2.0-rc1",
+            "version": "6.2.0-rc2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/webform.git",
-                "reference": "6.2.0-rc1"
+                "reference": "6.2.0-rc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/webform-6.2.0-rc1.zip",
-                "reference": "6.2.0-rc1",
-                "shasum": "66dbff946292e7e196c733fc6f8a4b0d63a3d9cc"
+                "url": "https://ftp.drupal.org/files/projects/webform-6.2.0-rc2.zip",
+                "reference": "6.2.0-rc2",
+                "shasum": "2f6c6b693dc4af73c81d2290b4e82a669f0aa2dc"
             },
             "require": {
-                "drupal/core": "^9.4 || ^10"
+                "drupal/core": "^9.4 || ^10",
+                "php": ">=8.1"
             },
             "require-dev": {
                 "drupal/address": "1.x-dev",
@@ -4323,16 +4324,16 @@
                 "drupal/captcha": "^1 || ^2",
                 "drupal/chosen": "3.0.x-dev",
                 "drupal/ckeditor": "1.0.x-dev",
-                "drupal/clientside_validation": "*",
+                "drupal/clientside_validation": "^3 || ^4",
                 "drupal/clientside_validation_jquery": "*",
-                "drupal/devel": "*",
+                "drupal/devel": "5.x-dev",
                 "drupal/entity": "1.x-dev",
-                "drupal/entity_print": "*",
+                "drupal/entity_print": "2.x-dev",
                 "drupal/group": "1.x-dev",
                 "drupal/hal": "1 - 2",
                 "drupal/jquery_ui": "1.x-dev",
-                "drupal/jquery_ui_checkboxradio": "*",
-                "drupal/jquery_ui_datepicker": "*",
+                "drupal/jquery_ui_checkboxradio": "2.x-dev",
+                "drupal/jquery_ui_datepicker": "2.x-dev",
                 "drupal/mailsystem": "4.x-dev",
                 "drupal/metatag": "1.x-dev",
                 "drupal/paragraphs": "1.x-dev",
@@ -4340,7 +4341,7 @@
                 "drupal/smtp": "1.x-dev",
                 "drupal/styleguide": "^1 || ^2",
                 "drupal/telephone_validation": "2.x-dev",
-                "drupal/token": "*",
+                "drupal/token": "1.x-dev",
                 "drupal/variationcache": "1.x-dev",
                 "drupal/webform_access": "*",
                 "drupal/webform_attachment": "*",
@@ -4360,8 +4361,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "6.2.0-rc1",
-                    "datestamp": "1696976940",
+                    "version": "6.2.0-rc2",
+                    "datestamp": "1697463934",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
