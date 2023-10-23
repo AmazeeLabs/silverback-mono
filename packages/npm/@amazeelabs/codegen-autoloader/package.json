@@ -1,0 +1,23 @@
+{
+  "name": "@amazeelabs/codegen-autoloader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test:static": "tsc --noEmit",
+    "test:unit": "vitest run"
+  },
+  "keywords": [],
+  "author": "Amazee Labs <development@amazeelabs.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@graphql-codegen/core": "4.0.0",
+    "typescript": "5.2.2",
+    "vitest": "0.34.6"
+  },
+  "dependencies": {
+    "@graphql-codegen/plugin-helpers": "^5.0.1",
+    "graphql": "16.8.1"
+  }
+}
