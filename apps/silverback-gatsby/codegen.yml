@@ -1,5 +1,8 @@
 overwrite: true
-schema: generated/schema.graphql
+schema:
+  - generated/schema.graphql
+  - overrides.graphql
+  - node_modules/**/**/directives.graphql
 documents:
   - ./src/**/*.{ts,tsx}
   - ./gatsby-node.ts
@@ -12,6 +15,11 @@ generates:
       noExport: true
       maybeValue: T | undefined
 
+  generated/autoloader.mjs:
+    plugins:
+      - '@amazeelabs/codegen-autoloader'
+    config:
+      context: gatsby
   generated/operations.ts:
     schema: ../silverback-drupal/generated/silverback_gatsby_preview.composed.graphqls
     documents:

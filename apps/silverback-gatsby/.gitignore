@@ -76,6 +76,7 @@ generated/types
 generated/translation_sources.json
 /generated/persisted-queries-map.json
 /generated/operations.ts
+/generated/autoloader.mjs
 
 _local
 /test-results
