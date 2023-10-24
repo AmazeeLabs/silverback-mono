@@ -1,1 +1,4 @@
+"""
+implementation: @amazeelabs/test-directives#echo
+"""
 directive @echo(msg: String!) repeatable on FIELD_DEFINITION

@@ -1,3 +1,6 @@
+"""
+implementation: @amazeelabs/gatsby-silverback-cloudinary#responsiveImage
+"""
 directive @responsiveImage(
   width: String
   height: String
