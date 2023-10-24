@@ -194,6 +194,9 @@ importers:
         specifier: 0.2.1
         version: 0.2.1
     devDependencies:
+      '@amazeelabs/codegen-autoloader':
+        specifier: workspace:*
+        version: link:../../packages/npm/@amazeelabs/codegen-autoloader
       '@amazeelabs/codegen-operation-ids':
         specifier: workspace:*
         version: link:../../packages/npm/@amazeelabs/codegen-operation-ids
