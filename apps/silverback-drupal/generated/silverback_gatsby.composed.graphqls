@@ -283,7 +283,7 @@ type Tag @entity(type: "taxonomy_term", bundle: "tag") {
 }
 
 type Page @entity(type: "node", bundle: "page") {
-  id: String! @resolveEntityId
+  id: String! @resolveEntityUuid
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
   body: String @resolveProperty(path: "field_body.0.processed")
