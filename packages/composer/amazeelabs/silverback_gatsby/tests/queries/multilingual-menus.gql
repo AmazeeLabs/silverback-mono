@@ -1,4 +1,7 @@
 query MultilingualMenus {
+  noLanguageDefined: loadMainMenu(id: "main") {
+    id
+  }
   en: loadMainMenu(id: "main:en") {
     id
   }

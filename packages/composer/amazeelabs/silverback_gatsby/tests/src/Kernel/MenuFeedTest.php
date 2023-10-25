@@ -168,6 +168,9 @@ class MenuFeedTest extends GraphQLTestBase {
 
     $query = $this->getQueryFromFile('multilingual-menus.gql');
     $this->assertResults($query, [], [
+      'noLanguageDefined' => [
+        'id' => 'main:en',
+      ],
       'en' => [
         'id' => 'main:en',
       ],
