@@ -49,8 +49,8 @@ class GatsbyUpdateHandlerTest extends EntityFeedTestBase {
 
     $diff = $this->tracker->diff(1, 3, $this->server->id());
     $this->assertEquals([
-      new GatsbyUpdate('Page', '1:en'),
-      new GatsbyUpdate('Page', '1:de'),
+      new GatsbyUpdate('Page', $node->uuid() . ':en'),
+      new GatsbyUpdate('Page', $node->uuid() . ':de'),
     ], $diff);
   }
 
@@ -84,6 +84,6 @@ class GatsbyUpdateHandlerTest extends EntityFeedTestBase {
     $article->save();
 
     $this->triggerProphecy
-      ->trigger($this->server->id(), new GatsbyUpdate('Page', '1:en'))->shouldHaveBeenCalledTimes(1);
+      ->trigger($this->server->id(), new GatsbyUpdate('Page', $page->uuid() . ':en'))->shouldHaveBeenCalledTimes(1);
   }
 }
