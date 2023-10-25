@@ -7,7 +7,7 @@ export const query = graphql`
       id
       title
     }
-    page(id: "Page:2:en") {
+    page(id: "Page:a38bce61-3640-4799-bacf-18ccc6e74216:en") {
       title
     }
   }

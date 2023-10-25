@@ -8,8 +8,8 @@ exports[`gatsby/content/GutenbergPage.gql 1`] = `
       "data": {
         "complete": {
           "__typename": "GutenbergPage",
-          "id": "[numeric]:en",
-          "drupalId": "[numeric]",
+          "id": "f9778402-1375-4bc0-a550-00610ad3865d:en",
+          "drupalId": "f9778402-1375-4bc0-a550-00610ad3865d",
           "title": "Gutenberg page",
           "langcode": "en",
           "body": [
@@ -42,7 +42,7 @@ exports[`gatsby/content/GutenbergPage.gql 1`] = `
                     {
                       "__typename": "BlockTeaser",
                       "image": {
-                        "id": "[numeric]:en"
+                        "id": "378fdfc0-05fa-4d50-aaed-3342cd5f844c:en"
                       },
                       "title": "Teaser",
                       "subtitle": "on left"
@@ -55,7 +55,7 @@ exports[`gatsby/content/GutenbergPage.gql 1`] = `
                     {
                       "__typename": "BlockImage",
                       "image": {
-                        "id": "[numeric]:en"
+                        "id": "fd3a7238-807a-483d-a703-c9b1b6b4a8e8:en"
                       },
                       "caption": "Just media on right"
                     },
@@ -79,8 +79,8 @@ exports[`gatsby/content/GutenbergPage.gql 1`] = `
         },
         "minimal": {
           "__typename": "GutenbergPage",
-          "id": "[numeric]:en",
-          "drupalId": "[numeric]",
+          "id": "af2bb5e4-237a-4e76-befe-e7a3d8dc699c:en",
+          "drupalId": "af2bb5e4-237a-4e76-befe-e7a3d8dc699c",
           "title": "Empty Gutenberg page",
           "langcode": "en",
           "body": [

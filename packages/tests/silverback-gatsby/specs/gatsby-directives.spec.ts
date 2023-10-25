@@ -18,6 +18,10 @@ test('templates', async ({ page }) => {
 
 test('@gatsby-both drupal custom schema', async ({ page }) => {
   await page.goto(`${gatsby.baseUrl}/custom-schema`);
-  await expect(page.locator('p:text-is("A page (Page:2:en)")')).toBeVisible();
+  await expect(
+    page.locator(
+      'p:text-is("A page (Page:a38bce61-3640-4799-bacf-18ccc6e74216:en)")',
+    ),
+  ).toBeVisible();
   await expect(page.locator('p:text-is("Load: A page")')).toBeVisible();
 });

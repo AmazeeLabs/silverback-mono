@@ -8,20 +8,20 @@ exports[`gatsby/content/Article.gql 1`] = `
       "data": {
         "complete": {
           "__typename": "Article",
-          "id": "[numeric]:en",
-          "drupalId": "[numeric]",
+          "id": "c997198a-a4a5-484a-8567-46ca6a24301a:en",
+          "drupalId": "c997198a-a4a5-484a-8567-46ca6a24301a",
           "title": "With everything",
           "langcode": "en",
           "body": "<p><strong>Article</strong> <em>body</em>.</p>\\n\\n<p>Pug is embedded 👇 </p>\\n\\n<article class=\\"media media--type-image media--view-mode-default\\" data-align=\\"center\\"><div class=\\"field field--name-field-media-image field--type-image field--label-visually_hidden\\">\\n    <div class=\\"field__label visually-hidden\\">Image</div>\\n              <div class=\\"field__item\\">  <img loading=\\"lazy\\" src=\\"/sites/default/files/2021-01/image_jpg_pug.jpg\\" width=\\"1920\\" height=\\"1080\\" alt=\\"Pug alt text\\" /></div>\\n          </div>\\n\\n  </article><p>Kitten goes in a separate field 👉</p>\\n",
           "image": {
-            "id": "[numeric]:en"
+            "id": "fd3a7238-807a-483d-a703-c9b1b6b4a8e8:en"
           },
           "tags": [
             {
-              "id": "[numeric]"
+              "id": "cfc1e9c7-3fb8-43a9-982a-756d72dc4f86"
             },
             {
-              "id": "[numeric]"
+              "id": "5abb8be2-d3ab-44ea-8dc1-dfdbaf02c08f"
             }
           ],
           "defaultTranslation": true,
@@ -44,8 +44,8 @@ exports[`gatsby/content/Article.gql 1`] = `
         },
         "minimal": {
           "__typename": "Article",
-          "id": "[numeric]:en",
-          "drupalId": "[numeric]",
+          "id": "80b65cc6-5f5f-4113-a52b-c00d3bd0bfe9:en",
+          "drupalId": "80b65cc6-5f5f-4113-a52b-c00d3bd0bfe9",
           "title": "Other article",
           "langcode": "en",
           "body": null,
@@ -74,20 +74,20 @@ exports[`gatsby/content/Article.gql 1`] = `
       "data": {
         "complete": {
           "__typename": "Article",
-          "id": "[numeric]:en",
-          "drupalId": "[numeric]",
+          "id": "c997198a-a4a5-484a-8567-46ca6a24301a:en",
+          "drupalId": "c997198a-a4a5-484a-8567-46ca6a24301a",
           "title": "With everything",
           "langcode": "en",
           "body": "<p><strong>Article</strong> <em>body</em>.</p>\\n\\n<p>Pug is embedded 👇 </p>\\n\\n<article class=\\"media media--type-image media--view-mode-default\\" data-align=\\"center\\"><div class=\\"field field--name-field-media-image field--type-image field--label-visually_hidden\\">\\n    <div class=\\"field__label visually-hidden\\">Image</div>\\n              <div class=\\"field__item\\">  <img loading=\\"lazy\\" src=\\"/sites/default/files/2021-01/image_jpg_pug.jpg\\" width=\\"1920\\" height=\\"1080\\" alt=\\"Pug alt text\\" /></div>\\n          </div>\\n\\n  </article><p>Kitten goes in a separate field 👉</p>\\n",
           "image": {
-            "id": "[numeric]:en"
+            "id": "fd3a7238-807a-483d-a703-c9b1b6b4a8e8:en"
           },
           "tags": [
             {
-              "id": "[numeric]"
+              "id": "cfc1e9c7-3fb8-43a9-982a-756d72dc4f86"
             },
             {
-              "id": "[numeric]"
+              "id": "5abb8be2-d3ab-44ea-8dc1-dfdbaf02c08f"
             }
           ],
           "defaultTranslation": true,
@@ -110,8 +110,8 @@ exports[`gatsby/content/Article.gql 1`] = `
         },
         "minimal": {
           "__typename": "Article",
-          "id": "[numeric]:en",
-          "drupalId": "[numeric]",
+          "id": "80b65cc6-5f5f-4113-a52b-c00d3bd0bfe9:en",
+          "drupalId": "80b65cc6-5f5f-4113-a52b-c00d3bd0bfe9",
           "title": "Other article",
           "langcode": "en",
           "body": null,

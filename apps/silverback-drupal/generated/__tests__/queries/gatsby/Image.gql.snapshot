@@ -8,8 +8,8 @@ exports[`gatsby/Image.gql 1`] = `
       "data": {
         "loadImage": {
           "__typename": "Image",
-          "id": "[numeric]:en",
-          "drupalId": "[numeric]",
+          "id": "fd3a7238-807a-483d-a703-c9b1b6b4a8e8:en",
+          "drupalId": "fd3a7238-807a-483d-a703-c9b1b6b4a8e8",
           "langcode": "en",
           "defaultTranslation": true,
           "translations": [

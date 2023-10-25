@@ -8,8 +8,8 @@ exports[`gatsby/Webform.gql 1`] = `
       "data": {
         "loadWebform": {
           "__typename": "Webform",
-          "id": "for_testing_confirmation_options",
-          "drupalId": "for_testing_confirmation_options",
+          "id": "452a69f0-cade-443f-8ba6-46b5fe92cedd",
+          "drupalId": "452a69f0-cade-443f-8ba6-46b5fe92cedd",
           "url": "http://127.0.0.1:8888/en/form/for-testing-confirmation-options",
           "title": "For testing confirmation options",
           "path": "/en/form/for-testing-confirmation-options"
