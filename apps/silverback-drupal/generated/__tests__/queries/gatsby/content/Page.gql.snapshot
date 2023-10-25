@@ -8,8 +8,8 @@ exports[`gatsby/content/Page.gql 1`] = `
       "data": {
         "basic": {
           "__typename": "Page",
-          "id": "[numeric]:en",
-          "drupalId": "[numeric]",
+          "id": "a38bce61-3640-4799-bacf-18ccc6e74216:en",
+          "drupalId": "a38bce61-3640-4799-bacf-18ccc6e74216",
           "title": "A page",
           "langcode": "en",
           "body": "<p>Some text.</p>\\n",
@@ -29,8 +29,8 @@ exports[`gatsby/content/Page.gql 1`] = `
         },
         "references": {
           "__typename": "Page",
-          "id": "[numeric]:en",
-          "drupalId": "[numeric]",
+          "id": "bb230ced-eb4d-495f-9571-50a7f6f69e67:en",
+          "drupalId": "bb230ced-eb4d-495f-9571-50a7f6f69e67",
           "title": "Page with paragraphs",
           "langcode": "en",
           "body": null,
@@ -50,14 +50,14 @@ exports[`gatsby/content/Page.gql 1`] = `
             {
               "__typename": "ParagraphReferences",
               "singleReference": {
-                "id": "[numeric]:en"
+                "id": "af2bb5e4-237a-4e76-befe-e7a3d8dc699c:en"
               },
               "references": [
                 {
-                  "id": "[numeric]:en"
+                  "id": "7702e639-4704-4599-a8b5-a65d88c61ea3:en"
                 },
                 {
-                  "id": "[numeric]:en"
+                  "id": "80b65cc6-5f5f-4113-a52b-c00d3bd0bfe9:en"
                 }
               ]
             }
