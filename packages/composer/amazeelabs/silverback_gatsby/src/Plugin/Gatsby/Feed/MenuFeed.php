@@ -228,7 +228,7 @@ class MenuFeed extends FeedBase implements ContainerFactoryPluginInterface {
         $resolver,
         $this->builder->callback(function ($value, $args, ResolveContext $context, ResolveInfo $info, FieldContext $fieldContext) {
           $langcode = $fieldContext->getContextValue('current_menu_language');
-          if ($langcode !== $value->language()->getId()) {
+          if ($langcode && $langcode !== $value->language()->getId()) {
             $clone = clone $value;
             $clone->set('langcode', $langcode);
             return $clone;
