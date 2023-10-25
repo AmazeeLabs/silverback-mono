@@ -138,11 +138,12 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     $node->save();
     $tracker->clear();
 
-    Node::create([
+    $post = Node::create([
       'type' => 'blog',
       'title' => 'Test',
       'status' => 0,
-    ])->save();
+    ]);
+    $post->save();
 
     $query = $this->getQueryFromFile('feed_info.gql');
     // All changes since build 1. Edited page and created post.
@@ -152,8 +153,8 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     ], [
       '_drupalBuildId' => 3,
       '_drupalFeedInfo' => $this->expectedFeedInfo([
-        'Page' => ['1:en'],
-        'Post' => ['2'],
+        'Page' => [$node->uuid() . ':en'],
+        'Post' => [$post->uuid()],
       ]),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
 
@@ -164,7 +165,7 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     ], [
       '_drupalBuildId' => 3,
       '_drupalFeedInfo' => $this->expectedFeedInfo([
-        'Page' => ['1:en'],
+        'Page' => [$node->uuid() . ':en'],
       ]),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
 
@@ -175,7 +176,7 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     ], [
       '_drupalBuildId' => 3,
       '_drupalFeedInfo' => $this->expectedFeedInfo([
-        'Post' => ['2'],
+        'Post' => [$post->uuid()],
       ]),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
@@ -234,7 +235,7 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     ], [
       // It should indicate that there has been a first build.
       '_drupalBuildId' => 5,
-      '_drupalFeedInfo' => $this->expectedFeedInfo(['Page' => ['2:en']]),
+      '_drupalFeedInfo' => $this->expectedFeedInfo(['Page' => [$node->uuid() . ':en']]),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
 
@@ -284,7 +285,7 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     ], [
       // It should indicate that there has been a first build.
       '_drupalBuildId' => 3,
-      '_drupalFeedInfo' => $this->expectedFeedInfo(['Page' => ['1:en']]),
+      '_drupalFeedInfo' => $this->expectedFeedInfo(['Page' => [$node->uuid() . ':en']]),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
 }

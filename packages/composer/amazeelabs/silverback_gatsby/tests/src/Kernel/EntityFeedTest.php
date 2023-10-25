@@ -42,8 +42,8 @@ class EntityFeedTest extends EntityFeedTestBase {
       ],
       '_queryPosts' => [
         [
-          '_id' => '1',
-          '_drupalId' => '1',
+          '_id' => $node->uuid(),
+          '_drupalId' => $node->uuid(),
           'title' => 'Test',
         ],
       ],
@@ -67,8 +67,8 @@ class EntityFeedTest extends EntityFeedTestBase {
       ],
       '_queryPages' => [
         [
-          '_id' => '1:en',
-          '_drupalId' => '1',
+          '_id' => $node->uuid() . ':en',
+          '_drupalId' => $node->uuid(),
           '_translations' => [
             [
               '_defaultTranslation' => true,
@@ -99,8 +99,8 @@ class EntityFeedTest extends EntityFeedTestBase {
       ],
       '_queryPages' => [
         [
-          '_id' => '1:zxx',
-          '_drupalId' => '1',
+          '_id' => $node->uuid() . ':zxx',
+          '_drupalId' => $node->uuid(),
           '_translations' => [
             [
               '_defaultTranslation' => true,
@@ -131,8 +131,8 @@ class EntityFeedTest extends EntityFeedTestBase {
       ],
       '_queryPages' => [
         [
-          '_id' => '1:und',
-          '_drupalId' => '1',
+          '_id' => $node->uuid() . ':und',
+          '_drupalId' => $node->uuid(),
           '_translations' => [
             [
               '_defaultTranslation' => true,
@@ -158,8 +158,8 @@ class EntityFeedTest extends EntityFeedTestBase {
     $metadata = $this->defaultCacheMetaData();
     $metadata->addCacheContexts(['user.node_grants:view']);
     $metadata->addCacheTags(['node:1', 'node_list']);
-    $this->assertResults($query, ['id' => '1:en'], [
-      '_loadPage' => null,
+    $this->assertResults($query, ['id' => $node->uuid() . ':en'], [
+      '_loadPage' => NULL,
       '_queryPages' => [
         null
       ],
@@ -184,8 +184,8 @@ class EntityFeedTest extends EntityFeedTestBase {
       '_loadPage' => null,
       '_queryPages' => [
         [
-          '_id' => '1:en',
-          '_drupalId' => '1',
+          '_id' => $node->uuid() . ':en',
+          '_drupalId' => $node->uuid(),
           '_translations' => [
             [
               '_defaultTranslation' => true,
@@ -210,12 +210,12 @@ class EntityFeedTest extends EntityFeedTestBase {
     $metadata = $this->defaultCacheMetaData();
     $metadata->addCacheContexts(['user.node_grants:view', 'static:language:en', 'static:language:de']);
     $metadata->addCacheTags(['node:1', 'node_list']);
-    $this->assertResults($query, ['id' => '1:de'], [
-      '_loadPage' => null,
+    $this->assertResults($query, ['id' => $node->uuid() . ':de'], [
+      '_loadPage' => NULL,
       '_queryPages' => [
         [
-          '_id' => '1:en',
-          '_drupalId' => '1',
+          '_id' => $node->uuid() . ':en',
+          '_drupalId' => $node->uuid(),
           '_translations' => [
             [
               '_defaultTranslation' => true,
@@ -242,14 +242,14 @@ class EntityFeedTest extends EntityFeedTestBase {
     $metadata->addCacheContexts(['user.node_grants:view', 'static:language:de', 'static:language:en']);
     $metadata->addCacheTags(['node:1', 'node_list']);
 
-    $this->assertResults($query, ['id' => '1:de'], [
+    $this->assertResults($query, ['id' => $node->uuid() . ':de'], [
       '_loadPage' => [
         "title" => "German"
       ],
       '_queryPages' => [
         [
-          '_id' => '1:de',
-          '_drupalId' => '1',
+          '_id' => $node->uuid() . ':de',
+          '_drupalId' => $node->uuid(),
           '_translations' => [
             [
               '_defaultTranslation' => false,
@@ -264,12 +264,12 @@ class EntityFeedTest extends EntityFeedTestBase {
     $metadata = $this->defaultCacheMetaData();
     $metadata->addCacheContexts(['user.node_grants:view', 'static:language:de', 'static:language:en']);
     $metadata->addCacheTags(['node:1', 'node_list']);
-    $this->assertResults($query, ['id' => '1:en'], [
-      '_loadPage' => null,
+    $this->assertResults($query, ['id' => $node->uuid() . ':en'], [
+      '_loadPage' => NULL,
       '_queryPages' => [
         [
-          '_id' => '1:de',
-          '_drupalId' => '1',
+          '_id' => $node->uuid() . ':de',
+          '_drupalId' => $node->uuid(),
           '_translations' => [
             [
               '_defaultTranslation' => false,
