@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.4.1...@-amazeelabs/silverback_gatsby@2.4.2) (2023-10-25)
+
+### Bug Fixes
+
+- fix menu resolving with no language provided
+  ([a5cafad](https://github.com/AmazeeLabs/silverback-mono/commit/a5cafadd6a4bf8cbeabde1de6df73c2012de87af))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.4.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.4.0...@-amazeelabs/silverback_gatsby@2.4.1) (2023-10-18)
 
 ### Bug Fixes
