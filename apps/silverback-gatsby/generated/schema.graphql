@@ -801,9 +801,9 @@ type Query {
   allDrupalCampaignUrl(filter: DrupalCampaignUrlFilterInput, sort: [DrupalCampaignUrlSortInput], skip: Int, limit: Int): DrupalCampaignUrlConnection!
   contact(name: StringQueryOperatorInput, email: EmailQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Contact
   allContact(filter: ContactFilterInput, sort: [ContactSortInput], skip: Int, limit: Int): ContactConnection!
-  customer(id: StringQueryOperatorInput, name: StringQueryOperatorInput, email: EmailQueryOperatorInput, gatsbyId: IDQueryOperatorInput, _xtypename: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Customer
+  customer(id: StringQueryOperatorInput, name: StringQueryOperatorInput, email: EmailQueryOperatorInput, _xtypename: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Customer
   allCustomer(filter: CustomerFilterInput, sort: [CustomerSortInput], skip: Int, limit: Int): CustomerConnection!
-  employee(id: StringQueryOperatorInput, role: StringQueryOperatorInput, name: StringQueryOperatorInput, email: EmailQueryOperatorInput, gatsbyId: IDQueryOperatorInput, _xtypename: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Employee
+  employee(id: StringQueryOperatorInput, role: StringQueryOperatorInput, name: StringQueryOperatorInput, email: EmailQueryOperatorInput, _xtypename: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Employee
   allEmployee(filter: EmployeeFilterInput, sort: [EmployeeSortInput], skip: Int, limit: Int): EmployeeConnection!
   imagesFromHtml(urlOriginal: StringQueryOperatorInput, urlAbsolute: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImagesFromHtml
   allImagesFromHtml(filter: ImagesFromHtmlFilterInput, sort: [ImagesFromHtmlSortInput], skip: Int, limit: Int): ImagesFromHtmlConnection!
@@ -2849,13 +2849,6 @@ input ContactSortInput {
   internal: InternalSortInput
 }
 
-input IDQueryOperatorInput {
-  eq: ID
-  ne: ID
-  in: [ID]
-  nin: [ID]
-}
-
 type CustomerConnection {
   totalCount: Int!
   edges: [CustomerEdge!]!
@@ -2878,7 +2871,6 @@ input CustomerFieldSelector {
   id: FieldSelectorEnum
   name: FieldSelectorEnum
   email: FieldSelectorEnum
-  gatsbyId: FieldSelectorEnum
   _xtypename: FieldSelectorEnum
   parent: NodeFieldSelector
   children: NodeFieldSelector
@@ -2903,7 +2895,6 @@ input CustomerFilterInput {
   id: StringQueryOperatorInput
   name: StringQueryOperatorInput
   email: EmailQueryOperatorInput
-  gatsbyId: IDQueryOperatorInput
   _xtypename: StringQueryOperatorInput
   parent: NodeFilterInput
   children: NodeFilterListInput
@@ -2914,7 +2905,6 @@ input CustomerSortInput {
   id: SortOrderEnum
   name: SortOrderEnum
   email: SortOrderEnum
-  gatsbyId: SortOrderEnum
   _xtypename: SortOrderEnum
   parent: NodeSortInput
   children: NodeSortInput
@@ -2944,7 +2934,6 @@ input EmployeeFieldSelector {
   role: FieldSelectorEnum
   name: FieldSelectorEnum
   email: FieldSelectorEnum
-  gatsbyId: FieldSelectorEnum
   _xtypename: FieldSelectorEnum
   parent: NodeFieldSelector
   children: NodeFieldSelector
@@ -2970,7 +2959,6 @@ input EmployeeFilterInput {
   role: StringQueryOperatorInput
   name: StringQueryOperatorInput
   email: EmailQueryOperatorInput
-  gatsbyId: IDQueryOperatorInput
   _xtypename: StringQueryOperatorInput
   parent: NodeFilterInput
   children: NodeFilterListInput
@@ -2982,7 +2970,6 @@ input EmployeeSortInput {
   role: SortOrderEnum
   name: SortOrderEnum
   email: SortOrderEnum
-  gatsbyId: SortOrderEnum
   _xtypename: SortOrderEnum
   parent: NodeSortInput
   children: NodeSortInput
@@ -3070,7 +3057,6 @@ type Customer implements Contact & Node {
   id: ID!
   name: String!
   email: Email!
-  gatsbyId: ID!
   _xtypename: String
   parent: Node
   children: [Node!]!
@@ -3082,7 +3068,6 @@ type Employee implements Contact & Node {
   role: String!
   name: String!
   email: Email!
-  gatsbyId: ID!
   _xtypename: String
   parent: Node
   children: [Node!]!
@@ -3396,3 +3381,4 @@ type ImageSharpResize {
   height: Int
   aspectRatio: Float
   originalName: String
+}
