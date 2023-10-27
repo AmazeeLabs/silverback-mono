@@ -5,6 +5,7 @@ import {
   extractImplementations,
   selectImplementation,
   printJsAutoload,
+  printDrupalAutoload,
   generateAutoloader,
   contextSuggestions,
 } from './lib';
@@ -179,6 +180,50 @@ describe('printJsAutoload', () => {
         '  myDirective: al0,',
         '};',
       ].join('\n'),
+    );
+  });
+});
+
+describe('printDrupalAutoload', () => {
+  it('prints an empty object if there are no implementations', () => {
+    expect(printDrupalAutoload({})).toEqual(JSON.stringify({}, null, 2));
+  });
+
+  it('prints static method resolvers', () => {
+    expect(
+      printDrupalAutoload({
+        myDirective: '\\Drupal\\my_module\\SomeClass::function',
+      }),
+    ).toEqual(
+      JSON.stringify(
+        {
+          myDirective: {
+            class: '\\Drupal\\my_module\\SomeClass',
+            method: 'function',
+          },
+        },
+        null,
+        2,
+      ),
+    );
+  });
+
+  it('prints symfony service resolvers', () => {
+    expect(
+      printDrupalAutoload({
+        myDirective: 'my.service::function',
+      }),
+    ).toEqual(
+      JSON.stringify(
+        {
+          myDirective: {
+            service: 'my.service',
+            method: 'function',
+          },
+        },
+        null,
+        2,
+      ),
     );
   });
 });

@@ -21,6 +21,7 @@ generates:
     config:
       context:
         - gatsby
+      mode: 'js'
   generated/operations.ts:
     schema: ../silverback-drupal/generated/silverback_gatsby_preview.composed.graphqls
     documents:

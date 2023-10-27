@@ -2,11 +2,15 @@ import {
   PluginFunction,
   PluginValidateFn,
 } from '@graphql-codegen/plugin-helpers';
-import { generateAutoloader, printJsAutoload } from './lib';
+import {
+  generateAutoloader,
+  printDrupalAutoload,
+  printJsAutoload,
+} from './lib';
 
 type Config = {
   context: Array<string>;
-  mode: 'js' | 'json';
+  mode: 'js' | 'drupal';
 };
 
 export const validate: PluginValidateFn<Config> = (_, __, config) => {
@@ -16,4 +20,8 @@ export const validate: PluginValidateFn<Config> = (_, __, config) => {
 };
 
 export const plugin: PluginFunction<Config> = (schema, _, config) =>
-  generateAutoloader(schema, config.context, printJsAutoload);
+  generateAutoloader(
+    schema,
+    config.context,
+    config.mode === 'js' ? printJsAutoload : printDrupalAutoload,
+  );

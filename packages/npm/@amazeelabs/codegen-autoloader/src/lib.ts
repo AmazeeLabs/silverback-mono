@@ -112,6 +112,49 @@ export const printJsAutoload = (implementations: Record<string, string>) => {
   ].join('\n');
 };
 
+type DrupalImplementation =
+  | {
+      service: string;
+      method: string;
+    }
+  | {
+      class: string;
+      method: string;
+    };
+
+function parseDrupalImplementation(
+  impl: string,
+): DrupalImplementation | undefined {
+  const [srvc, func] = impl.split('::');
+  if (srvc && func) {
+    if (srvc.startsWith('\\')) {
+      return { class: srvc, method: func };
+    } else {
+      return { service: srvc, method: func };
+    }
+  }
+}
+
+/**
+ * Print an autoloader from a dictionary of implementations.
+ */
+export const printDrupalAutoload = (
+  implementations: Record<string, string>,
+) => {
+  return JSON.stringify(
+    Object.fromEntries(
+      Object.keys(implementations)
+        .map((directive) => {
+          const impl = parseDrupalImplementation(implementations[directive]);
+          return impl ? [directive, impl] : undefined;
+        })
+        .filter((dir): dir is [string, DrupalImplementation] => !!dir),
+    ),
+    null,
+    2,
+  );
+};
+
 /**
  * Generate an autoloader from a graphql schema and a given context.
  */
