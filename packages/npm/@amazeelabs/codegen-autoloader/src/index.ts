@@ -2,17 +2,18 @@ import {
   PluginFunction,
   PluginValidateFn,
 } from '@graphql-codegen/plugin-helpers';
-import { generateAutoloader } from './lib';
+import { generateAutoloader, printJsAutoload } from './lib';
 
 type Config = {
-  context: string;
+  context: Array<string>;
+  mode: 'js' | 'json';
 };
 
 export const validate: PluginValidateFn<Config> = (_, __, config) => {
-  if (!config.context || !(typeof config.context === 'string')) {
+  if (!config.context || !Array.isArray(config.context)) {
     throw new Error('Missing autoloader context.');
   }
 };
 
 export const plugin: PluginFunction<Config> = (schema, _, config) =>
-  generateAutoloader(schema, config.context);
+  generateAutoloader(schema, config.context, printJsAutoload);
