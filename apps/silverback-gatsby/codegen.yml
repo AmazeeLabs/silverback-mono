@@ -19,7 +19,8 @@ generates:
     plugins:
       - '@amazeelabs/codegen-autoloader'
     config:
-      context: gatsby
+      context:
+        - gatsby
   generated/operations.ts:
     schema: ../silverback-drupal/generated/silverback_gatsby_preview.composed.graphqls
     documents:
