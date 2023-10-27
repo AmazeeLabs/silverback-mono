@@ -4,8 +4,9 @@ import {
   extractDocstrings,
   extractImplementations,
   selectImplementation,
-  printAutoload,
+  printJsAutoload,
   generateAutoloader,
+  contextSuggestions,
 } from './lib';
 
 describe('extractDocstrings', () => {
@@ -51,7 +52,7 @@ describe('extractImplementations', () => {
           'implementation: @my/package#function',
         ].join('\n'),
       ),
-    ).toEqual({ '': { package: '@my/package', export: 'function' } });
+    ).toEqual({ '': '@my/package#function' });
   });
 
   it('prefers the last implementation', () => {
@@ -64,7 +65,7 @@ describe('extractImplementations', () => {
           'implementation: @my/package#b',
         ].join('\n'),
       ),
-    ).toEqual({ '': { package: '@my/package', export: 'b' } });
+    ).toEqual({ '': '@my/package#b' });
   });
 
   it('extracts contextual implementations', () => {
@@ -78,8 +79,8 @@ describe('extractImplementations', () => {
         ].join('\n'),
       ),
     ).toEqual({
-      '': { package: '@my/package', export: 'a' },
-      gatsby: { package: '@my/package', export: 'b' },
+      '': '@my/package#a',
+      gatsby: '@my/package#b',
     });
   });
 
@@ -95,48 +96,81 @@ describe('extractImplementations', () => {
         ].join('\n'),
       ),
     ).toEqual({
-      '': { package: '@my/package', export: 'c' },
-      gatsby: { package: '@my/package', export: 'b' },
+      '': '@my/package#c',
+      gatsby: '@my/package#b',
     });
+  });
+});
+
+describe('contextSuggestions', () => {
+  it('returns an empty list if there are no contexts', () => {
+    expect(contextSuggestions([])).toEqual([]);
+  });
+  it('returns a single context', () => {
+    expect(contextSuggestions(['gatsby'])).toEqual(['gatsby']);
+  });
+  it('creates combined contexts, ordered by specificity', () => {
+    expect(contextSuggestions(['remix', 'gatsby', 'drupal'])).toEqual([
+      'drupal:gatsby:remix',
+      'drupal:gatsby',
+      'drupal:remix',
+      'gatsby:remix',
+      'drupal',
+      'gatsby',
+      'remix',
+    ]);
   });
 });
 
 describe('selectImplementation', () => {
   it('falls back to the default implementation if the context does not match', () => {
     expect(
-      selectImplementation('gatsby')({
-        '': { package: '@my/package', export: 'a' },
+      selectImplementation(['gatsby'])({
+        '': '@my/package#a',
       }),
-    ).toEqual({ package: '@my/package', export: 'a' });
+    ).toEqual('@my/package#a');
   });
 
   it('returns the implementation for the context if it exists', () => {
     expect(
-      selectImplementation('gatsby')({
-        '': { package: '@my/package', export: 'a' },
-        gatsby: { package: '@my/package', export: 'b' },
+      selectImplementation(['gatsby'])({
+        '': '@my/package#a',
+        gatsby: '@my/package#b',
       }),
-    ).toEqual({ package: '@my/package', export: 'b' });
+    ).toEqual('@my/package#b');
   });
 
-  it('returns undefined if there is no default implementation', () => {
+  it('returns undefined if there is no match and no default implementation', () => {
     expect(
-      selectImplementation('gatsby')({
-        nextjs: { package: '@my/package', export: 'b' },
+      selectImplementation(['gatsby'])({
+        nextjs: '@my/package#b',
+      }),
+    ).toEqual(undefined);
+  });
+
+  it('matches implementations that require multiple contexts', () => {
+    expect(
+      selectImplementation(['gatsby', 'cloudinary'])({
+        'gatsby:cloudinary': '@my/package#b',
+      }),
+    ).toEqual('@my/package#b');
+    expect(
+      selectImplementation(['gatsby'])({
+        'gatsby:cloudinary': '@my/package#b',
       }),
     ).toEqual(undefined);
   });
 });
 
-describe('printAutoload', () => {
+describe('printJsAutoload', () => {
   it('prints an empty object if there are no implementations', () => {
-    expect(printAutoload({})).toEqual('export default {\n};');
+    expect(printJsAutoload({})).toEqual('export default {\n};');
   });
 
   it('prints a single default implementation', () => {
     expect(
-      printAutoload({
-        myDirective: { package: '@my/package', export: 'function' },
+      printJsAutoload({
+        myDirective: '@my/package#function',
       }),
     ).toEqual(
       [
@@ -154,7 +188,8 @@ describe('generateAutoloader', () => {
     expect(
       generateAutoloader(
         buildSchema(`type Query { hello: String! }`),
-        'gatsby',
+        ['gatsby'],
+        printJsAutoload,
       ),
     ).toEqual(`export default {\n};`);
   });
@@ -173,7 +208,8 @@ describe('generateAutoloader', () => {
             'directive @whatever on FIELD_DEFINITION',
           ].join('\n'),
         ),
-        'gatsby',
+        ['gatsby'],
+        printJsAutoload,
       ),
     ).toEqual(
       [
@@ -206,7 +242,8 @@ describe('generateAutoloader', () => {
             'directive @whatever on FIELD_DEFINITION',
           ].join('\n'),
         ),
-        'gatsby',
+        ['gatsby'],
+        printJsAutoload,
       ),
     ).toEqual(
       [
@@ -236,7 +273,7 @@ describe('generateAutoloader', () => {
             'This is another comment',
             '',
             'implementation: @my/package#generic',
-            'implementation(gatsby): @my/package#gatsby',
+            'implementation(gatsby:cloudinary): @my/package#gatsby',
             '"""',
             'directive @anotherDirective on FIELD_DEFINITION',
             '"""',
@@ -245,7 +282,8 @@ describe('generateAutoloader', () => {
             'directive @whatever on FIELD_DEFINITION',
           ].join('\n'),
         ),
-        'gatsby',
+        ['gatsby', 'cloudinary'],
+        printJsAutoload,
       ),
     ).toEqual(
       [

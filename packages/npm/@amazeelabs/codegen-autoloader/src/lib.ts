@@ -1,10 +1,5 @@
 import type { GraphQLSchema } from 'graphql';
 
-type Implementation = {
-  package: string;
-  export: string;
-};
-
 /**
  * Extract all directive docstrings from a graphql schema.
  */
@@ -25,58 +20,109 @@ export const extractDocstrings = (
  */
 export const extractImplementations = (
   docstring: string,
-): Record<string, Implementation> =>
+): Record<string, string> =>
   Object.fromEntries(
     [
-      ...docstring.matchAll(
-        /^implementation(?:\(([^)]+)\))?:\s*([^#\s]+)#([^#\s]+)$/gm,
-      ),
+      ...docstring.matchAll(/^implementation(?:\(([^)]+)\))?:\s*([^\s]+)$/gm),
     ].map((match) => {
-      const [_, ctx, pkg, exp] = match;
-      return [ctx ?? '', { package: pkg, export: exp }];
+      const [_, ctx, impl] = match;
+      return [ctx ?? '', impl];
     }),
   );
+
+/**
+ * Generate all permutations for a given list of contexts, orderen by specificity.
+ */
+export const contextSuggestions = (contexts: Array<string>): Array<string> => {
+  return contexts.length > 0
+    ? [
+        ...new Set([
+          contexts.sort().join(':'),
+          ...[...new Array(contexts.length)].flatMap((_, index) => {
+            const copy = contexts.slice();
+            copy.sort();
+            copy.splice(index, 1);
+            return contextSuggestions(copy);
+          }),
+        ]),
+      ]
+        .sort()
+        .sort((a, b) => b.split(':').length - a.split(':').length)
+    : [];
+};
 
 /**
  * Select the implementation for a given context or fall back to the default implementation.
  */
 export const selectImplementation =
   (
-    context: string,
-  ): ((input: Record<string, Implementation>) => Implementation) =>
-  (input) =>
-    input[context] ?? input[''];
+    context: Array<string>,
+  ): ((input: Record<string, string>) => string | undefined) =>
+  (input) => {
+    const implementations = Object.fromEntries(
+      Object.keys(input).map((key) => [
+        key.split(':').sort().join(':'),
+        input[key],
+      ]),
+    );
+    const suggestions = contextSuggestions(context);
+    for (const suggestion of suggestions) {
+      if (implementations[suggestion]) {
+        return implementations[suggestion];
+      }
+    }
+    return input[''];
+  };
+
+type JsImplementation = {
+  package: string;
+  export: string;
+};
+
+function parseJsImplementation(impl: string): JsImplementation | undefined {
+  const [pkg, exp] = impl.split('#');
+  if (pkg && exp) {
+    return { package: pkg, export: exp };
+  }
+}
 
 /**
  * Print an autoloader from a dictionary of implementations.
  */
-export const printAutoload = (
-  implementations: Record<string, Implementation>,
-) =>
-  [
-    ...Object.keys(implementations)
+export const printJsAutoload = (implementations: Record<string, string>) => {
+  const jsImplementations = Object.keys(implementations)
+    .map((directive) => {
+      const impl = parseJsImplementation(implementations[directive]);
+      return impl ? { name: directive, impl } : undefined;
+    })
+    .filter((dir): dir is { name: string; impl: JsImplementation } => !!dir);
+
+  return [
+    ...jsImplementations
       .map(
-        (directive, index) =>
-          `import { ${implementations[directive].export} as al${index} } from "${implementations[directive].package}";`,
+        ({ impl }, index) =>
+          `import { ${impl.export} as al${index} } from "${impl.package}";`,
       )
       .filter((line) => !!line),
     'export default {',
-    ...Object.keys(implementations)
-      .map((directive, index) => `  ${directive}: al${index},`)
-      .filter((line) => !!line),
+    ...jsImplementations.map(
+      (directive, index) => `  ${directive.name}: al${index},`,
+    ),
     '};',
   ].join('\n');
+};
 
 /**
  * Generate an autoloader from a graphql schema and a given context.
  */
 export const generateAutoloader = (
   schema: GraphQLSchema,
-  context: string,
+  context: Array<string>,
+  printer: (input: Record<string, string>) => string,
 ): string => {
   const docstrings = extractDocstrings(schema);
   const selector = selectImplementation(context);
-  return printAutoload(
+  return printer(
     Object.fromEntries(
       Object.keys(docstrings)
         .map((directive) => {
@@ -85,7 +131,7 @@ export const generateAutoloader = (
           );
           return implementation ? [directive, implementation] : undefined;
         })
-        .filter((v): v is [string, Implementation] => Array.isArray(v)),
+        .filter((v): v is [string, string] => Array.isArray(v)),
     ),
   );
 };
