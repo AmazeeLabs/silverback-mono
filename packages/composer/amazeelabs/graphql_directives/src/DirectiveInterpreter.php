@@ -3,6 +3,7 @@
 namespace Drupal\graphql_directives;
 
 use Drupal\Component\Plugin\PluginManagerInterface;
+use Drupal\graphql\GraphQL\Resolver\Composite;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use GraphQL\Language\AST\ArgumentNode;
@@ -28,40 +29,58 @@ use GraphQL\Language\AST\TypeNode;
 use GraphQL\Language\AST\UnionTypeDefinitionNode;
 use GraphQL\Language\AST\ValueNode;
 
+/**
+ * Parse graphql schemas to extract directive annotations and build resolvers.
+ */
 class DirectiveInterpreter {
 
   /**
-   * @var \Drupal\graphql\GraphQL\Resolver\ResolverInterface[] $defaultValueMap
+   * Default value definitions for each possible type.
+   *
+   * @var \Drupal\graphql\GraphQL\Resolver\ResolverInterface[]
    */
   protected array $defaultValueMap;
 
   /**
-   * @var \Drupal\graphql\GraphQL\Resolver\ResolverInterface[][] $fieldResolvers
+   * All collected field resolvers.
+   *
+   * @var \Drupal\graphql\GraphQL\Resolver\ResolverInterface[][]
    */
   protected array $fieldResolvers = [];
 
   /**
-   * @var \Drupal\graphql\GraphQL\Resolver\ResolverInterface[] $typeResolvers
+   * All collected type resolvers.
+   *
+   * @var \Drupal\graphql\GraphQL\Resolver\ResolverInterface[]
    */
   protected array $typeResolvers = [];
 
   /**
+   * Retrieve field resolvers.
+   *
    * @return \Drupal\graphql\GraphQL\Resolver\ResolverInterface[][]
+   *   Nested map of resolvers, keyed by type name and field name.
    */
   public function getFieldResolvers(): array {
     return $this->fieldResolvers;
   }
 
   /**
+   * Retrieve type resolvers.
+   *
    * @return \Drupal\graphql\GraphQL\Resolver\ResolverInterface[]
+   *   Map of resolvers, keyed by type name.
    */
   public function getTypeResolvers(): array {
     return $this->typeResolvers;
   }
 
+  /**
+   * Constructor.
+   */
   public function __construct(
-    protected DocumentNode           $document,
-    protected ResolverBuilder        $builder,
+    protected DocumentNode $document,
+    protected ResolverBuilder $builder,
     protected PluginManagerInterface $directiveManager
   ) {
     $this->defaultValueMap = [
@@ -73,15 +92,24 @@ class DirectiveInterpreter {
     ];
   }
 
-  protected function addFieldResolver(string $type, string $field, ResolverInterface $resolver) {
+  /**
+   * Add a field resolver.
+   */
+  protected function addFieldResolver(string $type, string $field, ResolverInterface $resolver): void {
     $this->fieldResolvers[$type][$field] = $resolver;
   }
 
-  protected function addTypeResolver(string $type, ResolverInterface $resolver) {
+  /**
+   * Add a type resolver.
+   */
+  protected function addTypeResolver(string $type, ResolverInterface $resolver): void {
     $this->typeResolvers[$type] = $resolver;
   }
 
-  public function interpret() {
+  /**
+   * Interpret the document and build resolvers.
+   */
+  public function interpret() :void {
     // First pass, collect all type and default resolvers.
     foreach ($this->document->definitions as $definition) {
       if ($definition instanceof ObjectTypeDefinitionNode || $definition instanceof EnumTypeDefinitionNode) {
@@ -114,7 +142,12 @@ class DirectiveInterpreter {
     }
   }
 
-  protected function buildDefaultResolver(NodeList $annotations) {
+  /**
+   *
+   *
+   * @param \GraphQL\Language\AST\NodeList<Node> $annotations
+   */
+  protected function buildDefaultResolver(NodeList $annotations) : |ResolverInterface|Composite | ResolverInterface | Composite {
     $directives = [];
     $default = FALSE;
     foreach ($annotations as $annotation) {
@@ -140,6 +173,11 @@ class DirectiveInterpreter {
       ], $directives));
   }
 
+  /**
+   *
+   * @return null|ResolverInterface|Composite
+   * @param \GraphQL\Language\AST\NodeList<Node> $annotations
+   */
   protected function buildTypeResolver(NodeList $annotations) {
     $directives = [];
     foreach ($annotations as $annotation) {
@@ -165,11 +203,13 @@ class DirectiveInterpreter {
       ], $directives));
   }
 
-  protected function buildFieldResolver(TypeDefinitionNode $objectType, FieldDefinitionNode $field) {
+  /**
+   * Build the resolver for one specific field.
+   */
+  protected function buildFieldResolver(TypeDefinitionNode $objectType, FieldDefinitionNode $field) : ?ResolverInterface {
     /** @var \GraphQL\Language\AST\DirectiveNode[] $directives */
     $directives = array_values(array_filter(iterator_to_array($field->directives->getIterator()), function ($directive) {
-      return
-        $directive instanceof DirectiveNode &&
+      return $directive instanceof DirectiveNode &&
         ($directive->name->value === 'map' ||
         $this->directiveManager->hasDefinition($directive->name->value));
     }));
@@ -180,7 +220,7 @@ class DirectiveInterpreter {
     $currentFrame = [[], $field->type, FALSE];
 
     $split = [[]];
-    for($i = 0; $i < count($directives); $i++) {
+    for ($i = 0; $i < count($directives); $i++) {
       $directive = $directives[$i];
       if ($directive->name->value === 'map') {
         $split[] = [];
@@ -190,7 +230,7 @@ class DirectiveInterpreter {
       }
     }
 
-    while(!($currentFrame[1] instanceof NamedTypeNode)) {
+    while (!($currentFrame[1] instanceof NamedTypeNode)) {
       if ($currentFrame[1] instanceof NonNullTypeNode) {
         $currentFrame[2] = TRUE;
         $currentFrame[1] = $currentFrame[1]->type;
@@ -235,14 +275,16 @@ class DirectiveInterpreter {
   }
 
   /**
-   * @param \GraphQL\Language\AST\DirectiveNode[] $directives
-   * @param \GraphQL\Language\AST\TypeNode $type
-   * @param bool $nonNullable
+   * Build the resolver for a specific frame in the execution stack.
    *
-   * @return \Drupal\graphql\GraphQL\Resolver\ResolverInterface|null
-   * @throws \Drupal\graphql_directives\MissingDefaultException
+   * @param array<int,mixed> $directives
+   *   The list of directives to apply.
+   * @param \GraphQL\Language\AST\TypeNode $type
+   *   The type definition node.
+   * @param bool $nonNullable
+   *   Indicates if this field is nullable or not.
    */
-  protected function buildFrameResolver(array $directives, TypeNode $type, bool $nonNullable): ?ResolverInterface {
+  protected function buildFrameResolver(array $directives, TypeNode $type, bool $nonNullable): ? ?ResolverInterface {
     if (count($directives) === 0) {
       $resolver = $this->builder->fromParent();
     }
@@ -260,6 +302,9 @@ class DirectiveInterpreter {
       : $resolver;
   }
 
+  /**
+   * Build the default value resolver, apllied if the type is mandatory.
+   */
   protected function buildDefaultValue(TypeNode $type): ResolverInterface {
     if ($type instanceof NonNullTypeNode) {
       return $this->buildDefaultValue($type->type);
@@ -274,11 +319,20 @@ class DirectiveInterpreter {
     return $this->defaultValueMap[$type->name->value];
   }
 
+  /**
+   * Build the resolver for a specific directive.
+   */
   protected function buildDirectiveResolver(DirectiveNode $directive): ResolverInterface {
     $plugin = $this->directiveManager->createInstance($directive->name->value);
     return $plugin->buildResolver($this->builder, $this->buildParameters($directive));
   }
 
+  /**
+   * Build the parameter set for a directive.
+   *
+   * @return array<string,mixed>
+   *   Dictionary of arguments.
+   */
   protected function buildParameters(DirectiveNode $directive): array {
     $config = [];
     if ($directive->arguments) {
@@ -289,6 +343,9 @@ class DirectiveInterpreter {
     return $config;
   }
 
+  /**
+   * Recursively extract an argument value.
+   */
   protected function extractArgument(ValueNode $value): mixed {
     if ($value instanceof NullValueNode) {
       return NULL;
