@@ -3,7 +3,6 @@
 namespace Drupal\graphql_directives;
 
 use Drupal\Component\Plugin\PluginManagerInterface;
-use Drupal\graphql\GraphQL\Resolver\Composite;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use GraphQL\Language\AST\ArgumentNode;
@@ -143,11 +142,12 @@ class DirectiveInterpreter {
   }
 
   /**
-   *
+   * Determine the default resolver for given list of annotations.
    *
    * @param \GraphQL\Language\AST\NodeList<Node> $annotations
+   *   The list of annotations to parse.
    */
-  protected function buildDefaultResolver(NodeList $annotations) : |ResolverInterface|Composite | ResolverInterface | Composite {
+  protected function buildDefaultResolver(NodeList $annotations) : ?ResolverInterface {
     $directives = [];
     $default = FALSE;
     foreach ($annotations as $annotation) {
@@ -174,11 +174,12 @@ class DirectiveInterpreter {
   }
 
   /**
+   * Build a type resolver.
    *
-   * @return null|ResolverInterface|Composite
    * @param \GraphQL\Language\AST\NodeList<Node> $annotations
+   *   The list of annotations to parse.
    */
-  protected function buildTypeResolver(NodeList $annotations) {
+  protected function buildTypeResolver(NodeList $annotations) : ResolverInterface {
     $directives = [];
     foreach ($annotations as $annotation) {
       if ($annotation instanceof DirectiveNode) {
@@ -284,7 +285,7 @@ class DirectiveInterpreter {
    * @param bool $nonNullable
    *   Indicates if this field is nullable or not.
    */
-  protected function buildFrameResolver(array $directives, TypeNode $type, bool $nonNullable): ? ?ResolverInterface {
+  protected function buildFrameResolver(array $directives, TypeNode $type, bool $nonNullable): ?ResolverInterface {
     if (count($directives) === 0) {
       $resolver = $this->builder->fromParent();
     }
