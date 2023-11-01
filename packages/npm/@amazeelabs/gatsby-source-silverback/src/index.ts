@@ -3,3 +3,5 @@ export type {
   SilverbackResolver,
   SilverbackSource,
 } from './types.js';
+
+export * from './directives.js';

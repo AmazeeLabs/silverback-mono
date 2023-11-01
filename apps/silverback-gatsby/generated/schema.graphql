@@ -1,6 +1,14 @@
+directive @responsiveImage on FIELD_DEFINITION
+
 directive @sourceFrom on FIELD_DEFINITION
 
 directive @resolveBy on FIELD_DEFINITION
+
+directive @gatsbyNodes on FIELD_DEFINITION
+
+directive @gatsbyNode on FIELD_DEFINITION
+
+directive @responsiveImageSharp on FIELD_DEFINITION
 
 directive @echo on FIELD_DEFINITION
 
@@ -408,6 +416,8 @@ type Site implements Node {
     locale: String
   ): Date
   siteMetadata: SiteSiteMetadata
+  port: Int
+  host: String
   polyfill: Boolean
   pathPrefix: String
   jsxRuntime: String
@@ -575,7 +585,7 @@ type DrupalArticle implements Node {
   path: String!
   title: String!
   body: String
-  responsiveImage(width: Int, height: Int, sizes: [[Int!]!], transform: String): JSON
+  responsiveImage(width: Int, height: Int, sizes: [[Int!]!]): ResponsiveImage
   tags: [DrupalTag]!
   image: DrupalImage
   template: String
@@ -604,7 +614,7 @@ type DrupalGutenbergPage implements Node {
   translations: [DrupalGutenbergPage!]!
   path: String!
   title: String!
-  anotherResponsiveImage(width: Int, height: Int, sizes: [[Int!]!], transform: String): JSON
+  anotherResponsiveImage(width: Int, height: Int, sizes: [[Int!]!], transform: String): ResponsiveImage
   body: [DrupalRootBlock]!
   _original_typename: String!
   drupalId: String!
@@ -755,16 +765,16 @@ type DrupalCampaignUrl implements Node {
 
 type Query {
   drupalBuildId: Int!
-  value: String
-  argument(msg: String!): String
-  parent: String
   allContacts: [Contact]
   getPerson(id: ID!): Person
+  value: String!
+  argument(msg: String!): String!
+  parent: String!
   file(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, url: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, childrenImageSharp: ImageSharpFilterListInput, childImageSharp: ImageSharpFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): File
   allFile(filter: FileFilterInput, sort: [FileSortInput], skip: Int, limit: Int): FileConnection!
   directory(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Directory
   allDirectory(filter: DirectoryFilterInput, sort: [DirectorySortInput], skip: Int, limit: Int): DirectoryConnection!
-  site(buildTime: DateQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, jsxRuntime: StringQueryOperatorInput, trailingSlash: StringQueryOperatorInput, graphqlTypegen: BooleanQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
+  site(buildTime: DateQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput, port: IntQueryOperatorInput, host: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, jsxRuntime: StringQueryOperatorInput, trailingSlash: StringQueryOperatorInput, graphqlTypegen: BooleanQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
   allSite(filter: SiteFilterInput, sort: [SiteSortInput], skip: Int, limit: Int): SiteConnection!
   siteFunction(functionRoute: StringQueryOperatorInput, pluginName: StringQueryOperatorInput, originalAbsoluteFilePath: StringQueryOperatorInput, originalRelativeFilePath: StringQueryOperatorInput, relativeCompiledFilePath: StringQueryOperatorInput, absoluteCompiledFilePath: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SiteFunction
   allSiteFunction(filter: SiteFunctionFilterInput, sort: [SiteFunctionSortInput], skip: Int, limit: Int): SiteFunctionConnection!
@@ -780,9 +790,9 @@ type Query {
   allDrupalTag(filter: DrupalTagFilterInput, sort: [DrupalTagSortInput], skip: Int, limit: Int): DrupalTagConnection!
   drupalPage(remoteTypeName: StringQueryOperatorInput, translations: DrupalPageFilterListInput, remoteId: StringQueryOperatorInput, path: StringQueryOperatorInput, title: StringQueryOperatorInput, body: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, translation: DrupalPageFilterInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalPage
   allDrupalPage(filter: DrupalPageFilterInput, sort: [DrupalPageSortInput], skip: Int, limit: Int): DrupalPageConnection!
-  drupalArticle(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalArticleFilterListInput, path: StringQueryOperatorInput, title: StringQueryOperatorInput, body: StringQueryOperatorInput, responsiveImage: JSONQueryOperatorInput, tags: DrupalTagFilterListInput, image: DrupalImageFilterInput, template: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, translation: DrupalArticleFilterInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalArticle
+  drupalArticle(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalArticleFilterListInput, path: StringQueryOperatorInput, title: StringQueryOperatorInput, body: StringQueryOperatorInput, responsiveImage: ResponsiveImageQueryOperatorInput, tags: DrupalTagFilterListInput, image: DrupalImageFilterInput, template: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, translation: DrupalArticleFilterInput, childrenImagesFromHtml: ImagesFromHtmlFilterListInput, childImagesFromHtml: ImagesFromHtmlFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalArticle
   allDrupalArticle(filter: DrupalArticleFilterInput, sort: [DrupalArticleSortInput], skip: Int, limit: Int): DrupalArticleConnection!
-  drupalGutenbergPage(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalGutenbergPageFilterListInput, path: StringQueryOperatorInput, title: StringQueryOperatorInput, anotherResponsiveImage: JSONQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, translation: DrupalGutenbergPageFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalGutenbergPage
+  drupalGutenbergPage(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, translations: DrupalGutenbergPageFilterListInput, path: StringQueryOperatorInput, title: StringQueryOperatorInput, anotherResponsiveImage: ResponsiveImageQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, defaultTranslation: BooleanQueryOperatorInput, langcode: StringQueryOperatorInput, translation: DrupalGutenbergPageFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalGutenbergPage
   allDrupalGutenbergPage(filter: DrupalGutenbergPageFilterInput, sort: [DrupalGutenbergPageSortInput], skip: Int, limit: Int): DrupalGutenbergPageConnection!
   drupalWebform(remoteTypeName: StringQueryOperatorInput, remoteId: StringQueryOperatorInput, path: StringQueryOperatorInput, url: StringQueryOperatorInput, title: StringQueryOperatorInput, _original_typename: StringQueryOperatorInput, drupalId: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): DrupalWebform
   allDrupalWebform(filter: DrupalWebformFilterInput, sort: [DrupalWebformSortInput], skip: Int, limit: Int): DrupalWebformConnection!
@@ -1450,6 +1460,8 @@ type SiteEdge {
 input SiteFieldSelector {
   buildTime: FieldSelectorEnum
   siteMetadata: SiteSiteMetadataFieldSelector
+  port: FieldSelectorEnum
+  host: FieldSelectorEnum
   polyfill: FieldSelectorEnum
   pathPrefix: FieldSelectorEnum
   jsxRuntime: FieldSelectorEnum
@@ -1484,6 +1496,8 @@ type SiteGroupConnection {
 input SiteFilterInput {
   buildTime: DateQueryOperatorInput
   siteMetadata: SiteSiteMetadataFilterInput
+  port: IntQueryOperatorInput
+  host: StringQueryOperatorInput
   polyfill: BooleanQueryOperatorInput
   pathPrefix: StringQueryOperatorInput
   jsxRuntime: StringQueryOperatorInput
@@ -1498,6 +1512,8 @@ input SiteFilterInput {
 input SiteSortInput {
   buildTime: SortOrderEnum
   siteMetadata: SiteSiteMetadataSortInput
+  port: SortOrderEnum
+  host: SortOrderEnum
   polyfill: SortOrderEnum
   pathPrefix: SortOrderEnum
   jsxRuntime: SortOrderEnum
@@ -2101,7 +2117,7 @@ input DrupalArticleFilterInput {
   path: StringQueryOperatorInput
   title: StringQueryOperatorInput
   body: StringQueryOperatorInput
-  responsiveImage: JSONQueryOperatorInput
+  responsiveImage: ResponsiveImageQueryOperatorInput
   tags: DrupalTagFilterListInput
   image: DrupalImageFilterInput
   template: StringQueryOperatorInput
@@ -2116,6 +2132,13 @@ input DrupalArticleFilterInput {
   parent: NodeFilterInput
   children: NodeFilterListInput
   internal: InternalFilterInput
+}
+
+input ResponsiveImageQueryOperatorInput {
+  eq: ResponsiveImage
+  ne: ResponsiveImage
+  in: [ResponsiveImage]
+  nin: [ResponsiveImage]
 }
 
 input DrupalTagFilterListInput {
@@ -2212,7 +2235,7 @@ input DrupalGutenbergPageFilterInput {
   translations: DrupalGutenbergPageFilterListInput
   path: StringQueryOperatorInput
   title: StringQueryOperatorInput
-  anotherResponsiveImage: JSONQueryOperatorInput
+  anotherResponsiveImage: ResponsiveImageQueryOperatorInput
   _original_typename: StringQueryOperatorInput
   drupalId: StringQueryOperatorInput
   defaultTranslation: BooleanQueryOperatorInput
@@ -3034,6 +3057,8 @@ type Employee implements Contact & Node {
   children: [Node!]!
   internal: Internal!
 }
+
+scalar ResponsiveImage
 
 type ImagesFromHtml implements Node {
   urlOriginal: String!

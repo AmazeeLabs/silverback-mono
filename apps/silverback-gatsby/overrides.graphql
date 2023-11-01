@@ -24,12 +24,10 @@ type DrupalArticle {
     width: Int
     height: Int
     sizes: [[Int!]!]
-    transform: String
   ): ResponsiveImage
-    @responsiveImage(
+    @responsiveImageSharp(
       width: "$width"
       height: "$height"
       sizes: "$sizes"
-      transform: "$transform"
     )
 }

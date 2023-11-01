@@ -39,10 +39,9 @@ export const query = graphql`
         }
       }
       responsiveImage(
-        width: 650
-        height: 320
-        sizes: [[220, 210], [550, 530]]
-        transform: "bo_40px_solid_brown,co_rgb:20a020,e_colorize:50,o_10"
+        width: 150
+        height: 150
+        sizes: [[220, 210], [550, 530], [650, 630]]
       )
     }
   }

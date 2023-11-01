@@ -285,7 +285,7 @@ export const createPages: GatsbyNode['createPages'] = async (args, options) => {
 };
 
 export const createResolvers: GatsbyNode['createResolvers'] = async (
-  { createResolvers, cache }: CreateResolversArgs,
+  { createResolvers, cache, createNodeId, actions: {createNode}, reporter }: CreateResolversArgs,
   options,
 ) => {
   if (!validOptions(options)) {
@@ -320,6 +320,12 @@ export const createResolvers: GatsbyNode['createResolvers'] = async (
       const resolvers = createResolveConfig(
         buildSchema(schemaSource),
         availableDirectives,
+        {
+          cache,
+          createNode,
+          createNodeId,
+          reporter
+        }
       );
       createResolvers(
         Object.fromEntries(
