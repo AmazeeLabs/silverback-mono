@@ -22,6 +22,7 @@ module:
   filter: 0
   graphql: 0
   graphql_directives: 0
+  graphql_directives_test: 0
   gutenberg: 0
   gutenberg_custom: 0
   gutenberg_custom_blocks: 0

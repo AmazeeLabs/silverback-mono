@@ -1,3 +1,6 @@
+directive @autoloadStatic on FIELD_DEFINITION
+directive @autoloadService on FIELD_DEFINITION
+
 schema {
   query: Query
   mutation: Mutation
@@ -9,7 +12,10 @@ type Mutation {
   getRandomInt(randomInt: Int!): Int!
 }
 
-type Query
+type Query {
+  autoloadStatic: String @autoloadStatic
+  autoloadService: String @autoloadService
+}
 
 type Image @entity(type: "media", bundle: "image") {
   url: String!
@@ -45,7 +51,12 @@ type ParagraphReferences {
 type GutenbergPage @entity(type: "node", bundle: "gutenberg_page") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
-  anotherResponsiveImage(width: Int, height: Int, sizes: [[Int!]!], transform: String): ResponsiveImage
+  anotherResponsiveImage(
+    width: Int
+    height: Int
+    sizes: [[Int!]!]
+    transform: String
+  ): ResponsiveImage
   body: [RootBlock]!
     @resolveEditorBlocks(
       path: "body.value"
@@ -63,7 +74,12 @@ type Article @entity(type: "node", bundle: "article") {
   path: String! @isPath @resolveEntityPath
   title: String! @resolveProperty(path: "title.value")
   body: String @resolveProperty(path: "field_body.0.processed")
-  responsiveImage(width: Int, height: Int, sizes: [[Int!]!], transform: String): ResponsiveImage
+  responsiveImage(
+    width: Int
+    height: Int
+    sizes: [[Int!]!]
+    transform: String
+  ): ResponsiveImage
   tags: [Tag]! @resolveEntityReference(field: "field_tags")
   image: Image @resolveEntityReference(field: "field_image") @seek(pos: 0)
   template: String @isTemplate
