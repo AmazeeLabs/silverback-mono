@@ -35,8 +35,5 @@
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "jest --passWithNoTests",
     "test:watch": "jest --watch"
-  },
-  "volta": {
-    "node": "18.18.2"
   }
 }
