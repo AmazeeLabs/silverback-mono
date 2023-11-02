@@ -14,7 +14,7 @@ trait GraphQLDirectivesTestTrait {
   /**
    * Retrieve a query string from a file.
    */
-  public function getQueryFromFile(string $queryFile) : string {
+  public function getQueryFromFile($queryFile) {
     return file_get_contents($this->assetsDirectory . '/queries/' . $queryFile);
   }
 
