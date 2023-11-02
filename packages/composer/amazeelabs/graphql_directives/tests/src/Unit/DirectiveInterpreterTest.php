@@ -7,6 +7,7 @@ use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql_directives\DirectiveInterface;
 use Drupal\graphql_directives\DirectiveInterpreter;
+use Drupal\graphql_directives\GraphQL\Resolvers\Hashmap;
 use Drupal\graphql_directives\MapNestingException;
 use Drupal\graphql_directives\MissingDefaultException;
 use Drupal\graphql_directives\Plugin\GraphQL\Directive\Prop;
@@ -78,6 +79,7 @@ class DirectiveInterpreterTest extends UnitTestCase {
    */
   protected function setUp(): void {
     parent::setUp();
+    $this->autoloads = [];
     $this->directiveManager = $this->createMock(PluginManagerInterface::class);
 
     // The directive manager only knows about directives from @a to @z.
@@ -146,6 +148,18 @@ class DirectiveInterpreterTest extends UnitTestCase {
       ]));
   }
 
+  protected $autoloads = [];
+
+  /**
+   * Fill the autoloader for the test.
+   *
+   * @param array $autoloads
+   *   A map of autoload directives.
+   */
+  protected function setAutoloaded(array $autoloads) : void {
+    $this->autoloads = $autoloads;
+  }
+
   /**
    * Assert a given schema definition produces the expected resolver mapping.
    *
@@ -156,7 +170,7 @@ class DirectiveInterpreterTest extends UnitTestCase {
    */
   protected function assertResolvers(string $schema, array $expected) : void {
     $parsed = Parser::parse($schema);
-    $interpreter = new DirectiveInterpreter($parsed, $this->builder, $this->directiveManager);
+    $interpreter = new DirectiveInterpreter($parsed, $this->builder, $this->directiveManager, $this->autoloads);
     $interpreter->interpret();
     $this->assertEquals($expected, array_merge(
       $interpreter->getTypeResolvers(),
@@ -675,6 +689,88 @@ class DirectiveInterpreterTest extends UnitTestCase {
             ),
             $this->builder->map($this->builder->fromParent()),
         ),
+      ],
+    ]);
+  }
+
+  /**
+   * A directive that has been autoloaded produces a static autoload resolver.
+   */
+  public function testAutoloadedStaticDirective() : void {
+    $this->setAutoloaded([
+      "autoStatic" => ["class" => "MyClass", "method" => "test"],
+    ]);
+    $this->assertResolvers('type Query { a: String @autoStatic }', [
+      'Query' => [
+        'a' => $this->builder->produce('autoload')
+          ->map('service', $this->builder->fromValue(NULL))
+          ->map('class', $this->builder->fromValue('MyClass'))
+          ->map('method', $this->builder->fromValue('test'))
+          ->map('parent', $this->builder->fromParent())
+          ->map('args', new Hashmap([])),
+      ],
+    ]);
+  }
+
+  /**
+   * A directive that has been autoloaded produces a service autoload resolver.
+   */
+  public function testAutoloadedServiceDirective() : void {
+    $this->setAutoloaded([
+      "autoService" => ["service" => "my_service", "method" => "test"],
+    ]);
+    $this->assertResolvers('type Query { a: String @autoService }', [
+      'Query' => [
+        'a' => $this->builder->produce('autoload')
+          ->map('service', $this->builder->fromValue('my_service'))
+          ->map('class', $this->builder->fromValue(NULL))
+          ->map('method', $this->builder->fromValue('test'))
+          ->map('parent', $this->builder->fromParent())
+          ->map('args', new Hashmap([])),
+      ],
+    ]);
+  }
+
+  /**
+   * Static arguments are passed into autoload directives.
+   */
+  public function testAutoloadedStaticArguments() : void {
+    $this->setAutoloaded([
+      "autoStatic" => ["class" => "MyClass", "method" => "test"],
+    ]);
+    $this->assertResolvers('type Query { a: String @autoStatic(one: "a", two: 3) }', [
+      'Query' => [
+        'a' => $this->builder->produce('autoload')
+          ->map('service', $this->builder->fromValue(NULL))
+          ->map('class', $this->builder->fromValue('MyClass'))
+          ->map('method', $this->builder->fromValue('test'))
+          ->map('parent', $this->builder->fromParent())
+          ->map('args', new Hashmap([
+            'one' => $this->builder->fromValue('a'),
+            'two' => $this->builder->fromValue(3),
+          ])),
+      ],
+    ]);
+  }
+
+  /**
+   * Dynamic arguments are passed into autoload directives.
+   */
+  public function testAutoloadedDynamicArguments() : void {
+    $this->setAutoloaded([
+      "autoStatic" => ["class" => "MyClass", "method" => "test"],
+    ]);
+    $this->assertResolvers('type Query { a: String @autoStatic(one: "$one", two: "$") }', [
+      'Query' => [
+        'a' => $this->builder->produce('autoload')
+          ->map('service', $this->builder->fromValue(NULL))
+          ->map('class', $this->builder->fromValue('MyClass'))
+          ->map('method', $this->builder->fromValue('test'))
+          ->map('parent', $this->builder->fromParent())
+          ->map('args', new Hashmap([
+            'one' => $this->builder->fromArgument('one'),
+            'two' => $this->builder->fromParent(),
+          ])),
       ],
     ]);
   }

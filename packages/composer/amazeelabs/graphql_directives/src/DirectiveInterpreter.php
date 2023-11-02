@@ -5,6 +5,8 @@ namespace Drupal\graphql_directives;
 use Drupal\Component\Plugin\PluginManagerInterface;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
+use Drupal\graphql_directives\GraphQL\Resolvers\Hashmap;
+use Drupal\graphql_directives\Plugin\GraphQL\Directive\ArgumentTrait;
 use GraphQL\Language\AST\ArgumentNode;
 use GraphQL\Language\AST\DirectiveNode;
 use GraphQL\Language\AST\DocumentNode;
@@ -32,6 +34,7 @@ use GraphQL\Language\AST\ValueNode;
  * Parse graphql schemas to extract directive annotations and build resolvers.
  */
 class DirectiveInterpreter {
+  use ArgumentTrait;
 
   /**
    * Default value definitions for each possible type.
@@ -76,11 +79,16 @@ class DirectiveInterpreter {
 
   /**
    * Constructor.
+   *
+   * @param array<string,mixed> $autoloadDirectives
+   *   Dictionary of directives to autoload. Keys are directive names,
+   *   values are triples of (service, class, method).
    */
   public function __construct(
     protected DocumentNode $document,
     protected ResolverBuilder $builder,
-    protected PluginManagerInterface $directiveManager
+    protected PluginManagerInterface $directiveManager,
+    protected array $autoloadDirectives = [],
   ) {
     $this->defaultValueMap = [
       'ID' => $builder->fromValue('#'),
@@ -174,6 +182,13 @@ class DirectiveInterpreter {
   }
 
   /**
+   * Verify if a directive is implemented.
+   */
+  protected function directiveExists(string $name): bool {
+    return $this->directiveManager->hasDefinition($name) || array_key_exists($name, $this->autoloadDirectives);
+  }
+
+  /**
    * Build a type resolver.
    *
    * @param \GraphQL\Language\AST\NodeList<Node> $annotations
@@ -186,7 +201,7 @@ class DirectiveInterpreter {
         if ($annotation->name->value === 'default') {
           break;
         }
-        if ($this->directiveManager->hasDefinition($annotation->name->value)) {
+        if ($this->directiveExists($annotation->name->value)) {
           $directives[] = $annotation;
         }
       }
@@ -212,7 +227,7 @@ class DirectiveInterpreter {
     $directives = array_values(array_filter(iterator_to_array($field->directives->getIterator()), function ($directive) {
       return $directive instanceof DirectiveNode &&
         ($directive->name->value === 'map' ||
-        $this->directiveManager->hasDefinition($directive->name->value));
+        $this->directiveExists($directive->name->value));
     }));
 
     /** @var array{\GraphQL\Language\AST\DirectiveNode[], \GraphQL\Language\AST\TypeNode, bool}[] $frames */
@@ -324,6 +339,20 @@ class DirectiveInterpreter {
    * Build the resolver for a specific directive.
    */
   protected function buildDirectiveResolver(DirectiveNode $directive): ResolverInterface {
+    if (array_key_exists($directive->name->value, $this->autoloadDirectives)) {
+      $config = $this->autoloadDirectives[$directive->name->value];
+      $args = [];
+      $params = $this->buildParameters($directive);
+      foreach ($params as $key => $value) {
+        $args[$key] = $this->argumentResolver($value, $this->builder);
+      }
+      return $this->builder->produce('autoload')
+        ->map('service', $this->builder->fromValue(array_key_exists('service', $config) ? $config['service'] : NULL))
+        ->map('class', $this->builder->fromValue(array_key_exists('class', $config) ? $config['class'] : NULL))
+        ->map('method', $this->builder->fromValue($config['method']))
+        ->map('parent', $this->builder->fromParent())
+        ->map('args', new Hashmap($args));
+    }
     $plugin = $this->directiveManager->createInstance($directive->name->value);
     return $plugin->buildResolver($this->builder, $this->buildParameters($directive));
   }
