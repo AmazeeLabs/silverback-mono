@@ -194,7 +194,7 @@ class DirectiveInterpreter {
    * @param \GraphQL\Language\AST\NodeList<Node> $annotations
    *   The list of annotations to parse.
    */
-  protected function buildTypeResolver(NodeList $annotations) : ResolverInterface {
+  protected function buildTypeResolver(NodeList $annotations) : ?ResolverInterface {
     $directives = [];
     foreach ($annotations as $annotation) {
       if ($annotation instanceof DirectiveNode) {

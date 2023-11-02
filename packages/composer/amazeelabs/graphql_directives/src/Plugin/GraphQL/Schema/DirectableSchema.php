@@ -39,7 +39,7 @@ class DirectableSchema extends ComposableSchema {
    *
    * @codeCoverageIgnore
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): DirectableSchema {
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     return new static(
       $configuration,
       $plugin_id,
@@ -107,7 +107,7 @@ class DirectableSchema extends ComposableSchema {
   /**
    * {@inheritdoc}
    */
-  public function getResolverRegistry(): ResolverRegistry {
+  public function getResolverRegistry() {
     $registry = new ResolverRegistry();
     $extensions = $this->getExtensions();
     $builder = new ResolverBuilder();
