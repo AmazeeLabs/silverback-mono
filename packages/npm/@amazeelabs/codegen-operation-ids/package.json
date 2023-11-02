@@ -31,7 +31,7 @@
     "@graphql-codegen/typescript": "4.0.1",
     "@graphql-codegen/typescript-operations": "4.0.1",
     "change-case-all": "1.0.15",
-    "eslint": "8.51.0",
+    "eslint": "8.52.0",
     "graphql": "16.8.1",
     "prettier": "3.0.3",
     "typescript": "5.2.2",
