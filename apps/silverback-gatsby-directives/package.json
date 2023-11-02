@@ -8,7 +8,7 @@
     "@amazeelabs/gatsby-source-silverback": "workspace:*",
     "@amazeelabs/graphql-directives": "workspace:*",
     "@amazeelabs/test-directives": "workspace:*",
-    "gatsby": "5.12.7",
+    "gatsby": "5.12.9",
     "gatsby-plugin-pnpm": "1.2.10",
     "react": "18.2.0",
     "react-dom": "18.2.0"
@@ -16,9 +16,9 @@
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.43",
     "@amazeelabs/prettier-config": "1.1.3",
-    "@types/node": "16.18.59",
-    "@types/react": "18.2.29",
-    "eslint": "8.51.0",
+    "@types/node": "16.18.60",
+    "@types/react": "18.2.34",
+    "eslint": "8.52.0",
     "husky": "8.0.3",
     "prettier": "3.0.3",
     "typescript": "5.2.2"
