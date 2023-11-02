@@ -10,6 +10,12 @@ test('templates', async ({ page }) => {
   await expect(
     page.locator('p:text-is("Argument value: argument")'),
   ).toBeVisible();
+  await expect(
+    page.locator('p:text-is("Autoload static: gatsby value")'),
+  ).toBeVisible();
+  await expect(
+    page.locator('p:text-is("Autoload service: gatsby value")'),
+  ).toBeVisible();
   await expect(page.locator('td:text-is("Frank Sinatra")')).toBeVisible();
   await expect(page.locator('td:text-is("Elvis Presley")')).toBeVisible();
   await expect(page.locator('td:text-is("John Doe")')).toBeVisible();
