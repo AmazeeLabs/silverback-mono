@@ -127,7 +127,17 @@ class DirectableSchema extends ComposableSchema {
       }
     }
 
-    $interpreter = new DirectiveInterpreter($document, $builder, $this->directiveManager);
+    $autoload = [];
+
+    if (
+      array_key_exists('autoload_registry', $this->configuration) &&
+      $this->configuration['autoload_registry'] &&
+      file_exists($this->configuration['autoload_registry'])
+    ) {
+      $autoload = json_decode(file_get_contents($this->configuration['autoload_registry']), TRUE) ?? [];
+    }
+
+    $interpreter = new DirectiveInterpreter($document, $builder, $this->directiveManager, $autoload);
     $interpreter->interpret();
     foreach ($interpreter->getFieldResolvers() as $type => $fields) {
       foreach ($fields as $field => $resolver) {
@@ -158,6 +168,15 @@ class DirectableSchema extends ComposableSchema {
       '#default_value' => $this->configuration['schema_definition'],
       '#description' => $this->t(
         'Path to the schema definition file. Relative to webroot.'
+      ),
+    ];
+
+    $form['autoload_registry'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Autoload registry'),
+      '#default_value' => $this->configuration['autoload_registry'],
+      '#description' => $this->t(
+        'Path to the autoload registry JSON file. Relative to webroot.'
       ),
     ];
 

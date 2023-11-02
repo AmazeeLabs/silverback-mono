@@ -1,0 +1,7 @@
+directive @autoStatic on FIELD_DEFINITION
+directive @autoService on FIELD_DEFINITION
+
+type Query {
+  static: String @autoStatic
+  service: String @autoService
+}
