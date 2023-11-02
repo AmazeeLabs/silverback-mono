@@ -260,6 +260,10 @@ Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Seek".
 """
 directive @seek(pos: Int!) repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
 
+directive @autoloadStatic on FIELD_DEFINITION
+
+directive @autoloadService on FIELD_DEFINITION
+
 schema {
   query: Query
   mutation: Mutation
@@ -271,7 +275,10 @@ type Mutation {
   getRandomInt(randomInt: Int!): Int!
 }
 
-type Query
+type Query {
+  autoloadStatic: String @autoloadStatic
+  autoloadService: String @autoloadService
+}
 
 type Image @entity(type: "media", bundle: "image") {
   url: String!
