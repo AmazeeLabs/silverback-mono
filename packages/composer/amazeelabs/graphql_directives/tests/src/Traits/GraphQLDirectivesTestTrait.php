@@ -43,6 +43,7 @@ trait GraphQLDirectivesTestTrait {
       'schema_configuration' => [
         'directable' => [
           'schema_definition' => $directory . '/schema.graphqls',
+          'autoload_registry' => $directory . '/autoload.json',
           'extensions' => array_reduce(array_map(fn ($ext) => [$ext => $ext], $extensions), 'array_merge', []),
         ],
       ],

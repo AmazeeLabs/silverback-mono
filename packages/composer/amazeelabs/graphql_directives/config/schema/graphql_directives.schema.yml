@@ -8,6 +8,9 @@ graphql.schema.directable:
         schema_definition:
           label: Schema definition
           type: string
+        autoload_registry:
+          label: Autoload registry
+          type: string
         extensions:
           label: Enabled extensions
           type: sequence

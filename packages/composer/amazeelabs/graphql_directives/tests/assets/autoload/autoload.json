@@ -1,0 +1,10 @@
+{
+  "autoStatic": {
+    "class": "\\Drupal\\graphql_directives_test\\TestResolvers",
+    "method": "staticValue"
+  },
+  "autoService": {
+    "service": "graphql_directives_test.test",
+    "method": "containerValue"
+  }
+}
