@@ -1,6 +1,6 @@
 {
   "name": "@-silverback-drupal/gutenberg_custom_blocks",
-  "version": "1.0.74",
+  "version": "1.0.75",
   "private": true,
   "scripts": {
     "start": "pnpm drupal-js-build --css && pnpm drupal-js-build watch --css",
