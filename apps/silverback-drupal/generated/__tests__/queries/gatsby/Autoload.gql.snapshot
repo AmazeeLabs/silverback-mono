@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`gatsby/Autoload.gql 1`] = `
+{
+  "Gatsby Build & Gatsby Preview": {
+    "code": 200,
+    "data": {
+      "data": {
+        "autoloadStatic": "static value",
+        "autoloadService": "container value"
+      }
+    }
+  },
+  "Extra": {
+    "code": 200,
+    "data": {
+      "errors": [
+        {
+          "message": "Cannot query field \\"autoloadStatic\\" on type \\"Query\\"."
+        },
+        {
+          "message": "Cannot query field \\"autoloadService\\" on type \\"Query\\"."
+        }
+      ]
+    }
+  }
+}
+`;

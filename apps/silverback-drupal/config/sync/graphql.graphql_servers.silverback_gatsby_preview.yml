@@ -17,7 +17,9 @@ schema_configuration:
     extensions:
       silverback_gatsby: silverback_gatsby
       silverback_campaign_urls: 0
+      test_directable: 0
     schema_definition: ../graphqlrc.yml
+    autoload_registry: ../generated/autoloader.json
     build_trigger_on_save: 1
     build_webhook: 'http://localhost:8000/__refresh'
     build_url: ''

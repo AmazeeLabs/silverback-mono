@@ -1,4 +1,15 @@
-# Schema overrides to test attaching the @responsiveImage directive.
+"""
+implementation(drupal): \Drupal\graphql_directives_test\TestResolvers::staticValue
+implementation(gatsby): ../src/directives.mjs#gatsbyValue
+"""
+directive @autoloadStatic on FIELD_DEFINITION
+
+"""
+implementation(drupal): graphql_directives_test.test::containerValue
+implementation(gatsby): ../src/directives.mjs#gatsbyValue
+"""
+directive @autoloadService on FIELD_DEFINITION
+
 scalar ResponsiveImage
 
 # Patch Gatsby types that are created by gatsby-graphql-source-toolkit.
@@ -42,4 +53,7 @@ type Page {
 type Query {
   pages: [Page] @gatsbyNodes(type: "DrupalPage")
   page(id: ID!): Page @gatsbyNode(type: "DrupalPage", id: "$id")
+  autoloadStatic: String @autoloadStatic
+  autoloadService: String @autoloadService
 }
+

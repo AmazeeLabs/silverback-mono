@@ -15,8 +15,11 @@ query_complexity: null
 schema_configuration:
   silverback_gatsby_test_extra:
     extensions:
+      silverback_campaign_urls: 0
       silverback_gatsby: 0
+      test_directable: 0
     schema_definition: modules/custom/silverback_gatsby_test/graphql/silverback_gatsby_test_extra.graphqls
+    autoload_registry: ''
 persisted_queries_settings:
   silverback_graphql_persisted:
     weight: 0
