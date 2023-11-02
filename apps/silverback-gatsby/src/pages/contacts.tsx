@@ -3,6 +3,8 @@ import React from 'react';
 
 export const query = graphql`
   query ContactList {
+    autoloadStatic
+    autoloadService
     value
     parent
     argument(msg: "argument")
@@ -20,6 +22,8 @@ export default function Contacts(props: PageProps<ContactListQuery>) {
       <p>Schema value: {props.data.value}</p>
       <p>Parent value: {props.data.parent}</p>
       <p>Argument value: {props.data.argument}</p>
+      <p>Autoload static: {props.data.autoloadStatic}</p>
+      <p>Autoload service: {props.data.autoloadService}</p>
       <h1>Contacts</h1>
       <table>
         <th>
