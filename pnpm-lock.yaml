@@ -161,11 +161,11 @@ importers:
         specifier: workspace:*
         version: link:../../packages/npm/gatsby-plugin-schema-export
       gatsby-plugin-sharp:
-        specifier: 5.12.3
-        version: 5.12.3(gatsby@5.12.9)(graphql@16.8.1)
+        specifier: 5.12.1
+        version: 5.12.1(gatsby@5.12.9)(graphql@16.8.1)
       gatsby-transformer-sharp:
         specifier: 5.12.3
-        version: 5.12.3(gatsby-plugin-sharp@5.12.3)(gatsby@5.12.9)(graphql@16.8.1)
+        version: 5.12.3(gatsby-plugin-sharp@5.12.1)(gatsby@5.12.9)(graphql@16.8.1)
       html-react-parser:
         specifier: 4.2.10
         version: 4.2.10(react@18.2.0)
@@ -1512,7 +1512,7 @@ importers:
         version: 1.1.3(prettier@3.0.3)
       '@types/hast':
         specifier: ^2.3.4
-        version: 2.3.7
+        version: 2.3.4
       '@types/react':
         specifier: ^18.2.34
         version: 18.2.34
@@ -11679,8 +11679,8 @@ packages:
     dependencies:
       '@types/node': 20.8.10
 
-  /@types/hast@2.3.7:
-    resolution: {integrity: sha512-EVLigw5zInURhzfXUM65eixfadfsHKomGKUakToXo84t8gGIJuTcD2xooM2See7GyQ7DRtYjhCHnSUQez8JaLw==}
+  /@types/hast@2.3.4:
+    resolution: {integrity: sha512-wLEm0QvaoawEDoTRwzTXp4b4jpwiJDvR5KMnFnVodm3scufTlBOWRD6N1OBf9TZMhjlNsSfcO5V+7AF4+Vy+9g==}
     dependencies:
       '@types/unist': 2.0.9
     dev: false
@@ -20697,31 +20697,6 @@ packages:
     transitivePeerDependencies:
       - graphql
       - supports-color
-    dev: true
-
-  /gatsby-plugin-sharp@5.12.3(gatsby@5.12.9)(graphql@16.8.1):
-    resolution: {integrity: sha512-bEVhap/Ce6pzXXk/9U6Xug9+MmXwpZKzQZke8PxNBy1ouMZ2H4chgpcASnWpwnWkPvP+Fnehlh/whySDHmoLGw==}
-    engines: {node: '>=18.0.0'}
-    peerDependencies:
-      gatsby: ^5.0.0-next
-    dependencies:
-      '@babel/runtime': 7.23.2
-      async: 3.2.4
-      bluebird: 3.7.2
-      debug: 4.3.4(supports-color@9.4.0)
-      filenamify: 4.3.0
-      fs-extra: 11.1.1
-      gatsby: 5.12.9(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
-      gatsby-core-utils: 4.12.1
-      gatsby-plugin-utils: 4.12.3(gatsby@5.12.9)(graphql@16.8.1)
-      lodash: 4.17.21
-      probe-image-size: 7.2.3
-      semver: 7.5.4
-      sharp: 0.32.6
-    transitivePeerDependencies:
-      - graphql
-      - supports-color
-    dev: false
 
   /gatsby-plugin-typescript@5.12.1(gatsby@5.12.9):
     resolution: {integrity: sha512-NIigc9TnhjLam/WAQxvVLKpRgjOXzDDgetOt2F2qtO+1KjMuUgLxHdd613Z0JoSPGpi5ug0KG8U99gh9zge7jA==}
@@ -20866,7 +20841,7 @@ packages:
     transitivePeerDependencies:
       - encoding
 
-  /gatsby-transformer-sharp@5.12.3(gatsby-plugin-sharp@5.12.3)(gatsby@5.12.9)(graphql@16.8.1):
+  /gatsby-transformer-sharp@5.12.3(gatsby-plugin-sharp@5.12.1)(gatsby@5.12.9)(graphql@16.8.1):
     resolution: {integrity: sha512-unVF6XJX2W6XU1NzqsSPAHQJQa8L3XIFROqXsvlLvPNgYDyXdczV33XZGNg8XaLIbPWNo9eHwOPxzS5TvBz4Fg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
@@ -20878,7 +20853,7 @@ packages:
       common-tags: 1.8.2
       fs-extra: 11.1.1
       gatsby: 5.12.9(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
-      gatsby-plugin-sharp: 5.12.3(gatsby@5.12.9)(graphql@16.8.1)
+      gatsby-plugin-sharp: 5.12.1(gatsby@5.12.9)(graphql@16.8.1)
       gatsby-plugin-utils: 4.12.3(gatsby@5.12.9)(graphql@16.8.1)
       probe-image-size: 7.2.3
       semver: 7.5.4
@@ -22167,7 +22142,7 @@ packages:
   /hast-util-from-parse5@7.1.2:
     resolution: {integrity: sha512-Nz7FfPBuljzsN3tCQ4kCBKqdNhQE2l0Tn+X1ubgKBPRoiDIu1mL08Cfw4k7q71+Duyaw7DXDN+VTAp4Vh3oCOw==}
     dependencies:
-      '@types/hast': 2.3.7
+      '@types/hast': 2.3.4
       '@types/unist': 2.0.9
       hastscript: 7.2.0
       property-information: 6.4.0
@@ -22183,19 +22158,19 @@ packages:
   /hast-util-heading-rank@2.1.1:
     resolution: {integrity: sha512-iAuRp+ESgJoRFJbSyaqsfvJDY6zzmFoEnL1gtz1+U8gKtGGj1p0CVlysuUAUjq95qlZESHINLThwJzNGmgGZxA==}
     dependencies:
-      '@types/hast': 2.3.7
+      '@types/hast': 2.3.4
     dev: false
 
   /hast-util-parse-selector@3.1.1:
     resolution: {integrity: sha512-jdlwBjEexy1oGz0aJ2f4GKMaVKkA9jwjr4MjAAI22E5fM/TXVZHuS5OpONtdeIkRKqAaryQ2E9xNQxijoThSZA==}
     dependencies:
-      '@types/hast': 2.3.7
+      '@types/hast': 2.3.4
     dev: false
 
   /hast-util-select@5.0.5:
     resolution: {integrity: sha512-QQhWMhgTFRhCaQdgTKzZ5g31GLQ9qRb1hZtDPMqQaOhpLBziWcshUS0uCR5IJ0U1jrK/mxg35fmcq+Dp/Cy2Aw==}
     dependencies:
-      '@types/hast': 2.3.7
+      '@types/hast': 2.3.4
       '@types/unist': 2.0.9
       bcp-47-match: 2.0.3
       comma-separated-tokens: 2.0.3
@@ -22215,7 +22190,7 @@ packages:
   /hast-util-to-string@2.0.0:
     resolution: {integrity: sha512-02AQ3vLhuH3FisaMM+i/9sm4OXGSq1UhOOCpTLLQtHdL3tZt7qil69r8M8iDkZYyC0HCFylcYoP+8IO7ddta1A==}
     dependencies:
-      '@types/hast': 2.3.7
+      '@types/hast': 2.3.4
     dev: false
 
   /hast-util-whitespace@2.0.1:
@@ -22225,7 +22200,7 @@ packages:
   /hastscript@7.2.0:
     resolution: {integrity: sha512-TtYPq24IldU8iKoJQqvZOuhi5CyCQRAbvDOX0x1eW6rsHSxa/1i2CCiptNTotGHJ3VoHRGmqiv6/D3q113ikkw==}
     dependencies:
-      '@types/hast': 2.3.7
+      '@types/hast': 2.3.4
       comma-separated-tokens: 2.0.3
       hast-util-parse-selector: 3.1.1
       property-information: 6.4.0
@@ -30247,7 +30222,7 @@ packages:
   /rehype-parse@8.0.5:
     resolution: {integrity: sha512-Ds3RglaY/+clEX2U2mHflt7NlMA72KspZ0JLUJgBBLpRddBcEw3H8uYZQliQriku22NZpYMfjDdSgHcjxue24A==}
     dependencies:
-      '@types/hast': 2.3.7
+      '@types/hast': 2.3.4
       hast-util-from-parse5: 7.1.2
       parse5: 6.0.1
       unified: 10.1.2
@@ -30259,7 +30234,7 @@ packages:
       '@types/react': '>=17'
     dependencies:
       '@mapbox/hast-util-table-cell-style': 0.2.1
-      '@types/hast': 2.3.7
+      '@types/hast': 2.3.4
       '@types/react': 18.2.34
       hast-to-hyperscript: 10.0.3
       hast-util-whitespace: 2.0.1
@@ -30269,7 +30244,7 @@ packages:
   /rehype-slug@5.1.0:
     resolution: {integrity: sha512-Gf91dJoXneiorNEnn+Phx97CO7oRMrpi+6r155tTxzGuLtm+QrI4cTwCa9e1rtePdL4i9tSO58PeSS6HWfgsiw==}
     dependencies:
-      '@types/hast': 2.3.7
+      '@types/hast': 2.3.4
       github-slugger: 2.0.0
       hast-util-has-property: 2.0.1
       hast-util-heading-rank: 2.1.1
