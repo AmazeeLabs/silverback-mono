@@ -8,8 +8,6 @@ directive @gatsbyNodes on FIELD_DEFINITION
 
 directive @gatsbyNode on FIELD_DEFINITION
 
-directive @responsiveImageSharp on FIELD_DEFINITION
-
 directive @echo on FIELD_DEFINITION
 
 """Add date formatting options."""
@@ -585,7 +583,7 @@ type DrupalArticle implements Node {
   path: String!
   title: String!
   body: String
-  responsiveImage(width: Int, height: Int, sizes: [[Int!]!]): ResponsiveImage
+  responsiveImage(width: Int, height: Int, sizes: [[Int!]!], transform: String): ResponsiveImage
   tags: [DrupalTag]!
   image: DrupalImage
   template: String
