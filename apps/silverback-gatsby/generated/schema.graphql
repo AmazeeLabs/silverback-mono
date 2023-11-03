@@ -1,15 +1,3 @@
-directive @responsiveImage on FIELD_DEFINITION
-
-directive @sourceFrom on FIELD_DEFINITION
-
-directive @resolveBy on FIELD_DEFINITION
-
-directive @gatsbyNodes on FIELD_DEFINITION
-
-directive @gatsbyNode on FIELD_DEFINITION
-
-directive @echo on FIELD_DEFINITION
-
 """Add date formatting options."""
 directive @dateformat(formatString: String, locale: String, fromNow: Boolean, difference: String) on FIELD_DEFINITION
 
