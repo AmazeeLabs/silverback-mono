@@ -34,7 +34,7 @@ export const gatsbyNodes: SilverbackResolver = async (
 
 export const responsiveImageSharp: SilverbackResolver = async (originalImage: any, args: any, context: any) => {
     const responsiveImage = JSON.parse(originalImage);
-    const { cache, createNode, createNodeId, reporter } = context;
+    const { cache, createNode, createNodeId, reporter } = context.api;
     try {
       const responsiveImageResult: {
         originalSrc: string;
