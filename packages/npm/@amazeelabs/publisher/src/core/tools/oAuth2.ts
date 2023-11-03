@@ -284,7 +284,6 @@ export const getOAuth2AuthorizeUrl = (
   return client.authorizeURL({
     // Set on the OAuth2 provider.
     //redirect_uri: callbackUrl,
-    scope: oAuth2Config.scope,
     // https://auth0.com/docs/secure/attack-protection/state-parameters
     state: encodedState,
   });
@@ -320,11 +319,7 @@ export const isAuthenticated = async (req: Request): Promise<boolean> => {
       result = true;
     } else {
       try {
-        const refreshParams = {
-          grant_type: 'refresh_token',
-          scope: oAuth2Config.scope,
-        };
-        accessToken = await accessToken.refresh(refreshParams);
+        accessToken = await accessToken.refresh();
         persistAccessToken(accessToken, req);
         result = true;
       } catch (error) {

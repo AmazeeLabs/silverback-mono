@@ -1,7 +1,7 @@
 {
   "name": "@amazeelabs/silverback-playwright",
   "main": "./index.ts",
-  "version": "1.6.64",
+  "version": "1.6.65",
   "description": "Common code for e2e tests.",
   "author": "Amazee Labs",
   "license": "MIT",
@@ -10,8 +10,8 @@
     "@amazeelabs/eslint-config": "1.4.43",
     "@amazeelabs/prettier-config": "1.1.3",
     "@playwright/test": "1.39.0",
-    "@types/node": "20.8.7",
-    "eslint": "8.51.0",
+    "@types/node": "20.8.10",
+    "eslint": "8.52.0",
     "prettier": "3.0.3",
     "typescript": "5.2.2"
   },
