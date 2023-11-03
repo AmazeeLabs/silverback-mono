@@ -2,8 +2,3 @@ directive @sourceFrom(fn: String) on OBJECT
 directive @resolveBy(fn: String) repeatable on FIELD_DEFINITION
 directive @gatsbyNodes(type: String) on FIELD_DEFINITION
 directive @gatsbyNode(type: String, id: String) on FIELD_DEFINITION
-directive @responsiveImageSharp(
-  width: String
-  height: String
-  sizes: String
-) repeatable on FIELD_DEFINITION

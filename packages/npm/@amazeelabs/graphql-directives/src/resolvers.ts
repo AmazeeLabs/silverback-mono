@@ -5,12 +5,7 @@ import { flow, isString } from 'lodash-es';
 export function createResolveConfig(
   schema: GraphQLSchema,
   directives: Record<string, GraphQLFieldResolver<any, any>>,
-  gatsbyHelpers?: {
-    cache: any,
-    createNode: any,
-    createNodeId: any,
-    reporter: any,
-  }
+  helpers?: any
 ): Record<string, Record<string, GraphQLFieldResolver<any, any>>> {
   const mapping = extractResolverMapping(schema, directives);
   const config: Record<
@@ -22,7 +17,7 @@ export function createResolveConfig(
       config[type] = {};
     }
     Object.keys(mapping[type]).forEach((field) => {
-      config[type][field] = buildResolver(mapping[type][field], directives, gatsbyHelpers);
+      config[type][field] = buildResolver(mapping[type][field], directives, helpers);
     });
   });
   return config;
@@ -72,12 +67,7 @@ export function extractResolverMapping(
 export function buildResolver(
   config: Array<[string, Record<string, unknown>]>,
   directives: Record<string, Function>,
-  gatsbyHelpers?: {
-    cache: any,
-    createNode: any,
-    createNodeId: any,
-    reporter: any,
-  }
+  helpers?: any
 ): GraphQLFieldResolver<any, any> {
   return async (source, args, context, info) => {
     const fns = [
@@ -90,9 +80,11 @@ export function buildResolver(
           return directives[name](
             value,
             processDirectiveArguments(value, args, spec),
-            context,
+            {
+              ...context,
+              ...helpers,
+            },
             info,
-            gatsbyHelpers
           );
         };
       }),

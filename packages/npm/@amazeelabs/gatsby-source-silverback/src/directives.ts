@@ -32,14 +32,9 @@ export const gatsbyNodes: SilverbackResolver = async (
   ).entries;
 };
 
-export const responsiveImageSharp: SilverbackResolver = async (originalImage: any, args: any, context: any, info: any,
-  gatsbyHelpers?: {
-    cache: any,
-    createNode: any,
-    createNodeId: any,
-    reporter: any,
-  }) => {
+export const responsiveImageSharp: SilverbackResolver = async (originalImage: any, args: any, context: any) => {
     const responsiveImage = JSON.parse(originalImage);
+    const { cache, createNode, createNodeId, reporter } = context;
     try {
       const responsiveImageResult: {
         originalSrc: string;
@@ -61,9 +56,9 @@ export const responsiveImageSharp: SilverbackResolver = async (originalImage: an
 
       const file = await createRemoteFileNode({
         url: responsiveImage.src,
-        cache: gatsbyHelpers?.cache,
-        createNode: gatsbyHelpers?.createNode,
-        createNodeId: gatsbyHelpers?.createNodeId,
+        cache: cache,
+        createNode: createNode,
+        createNodeId: createNodeId,
       })
       const width = args.width;
       const height = args.height || undefined;
@@ -86,8 +81,8 @@ export const responsiveImageSharp: SilverbackResolver = async (originalImage: an
             srcSetBreakpoints: breakpoints,
             cropFocus: 'entropy'
           },
-          reporter: gatsbyHelpers?.reporter,
-          cache: gatsbyHelpers?.cache
+          reporter: reporter,
+          cache: cache
       });
       responsiveImageResult.src = fluidFileResult.src;
       responsiveImageResult.width = fluidFileResult.presentationWidth;

@@ -4,7 +4,6 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
-import { responsiveImage } from '@amazeelabs/gatsby-silverback-cloudinary';
 import { responsiveImageSharp } from '@amazeelabs/gatsby-source-silverback';
 import {
   echo,
@@ -37,7 +36,7 @@ export const plugins = [
       graphql_path: process.env.DRUPAL_GRAPHQL_PATH,
       auth_key: process.env.DRUPAL_AUTH_KEY,
       schema_configuration: './graphqlrc.yml',
-      directives: { echo, responsiveImage, responsiveImageSharp },
+      directives: { echo, responsiveImage: responsiveImageSharp },
       sources: { sourceCustomers, sourceEmployees },
     },
   },
