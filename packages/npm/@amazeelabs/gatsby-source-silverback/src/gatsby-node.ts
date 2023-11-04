@@ -223,19 +223,6 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
         const schema = buildSchema(schemaSource);
         args.actions.createTypes(cleanSchema(schemaSource));
 
-        // Create field extensions for all directives that could confuse Gatsby.
-        const directives = schemaSource.matchAll(/ @[a-zA-Z][a-zA-Z0-9]*/gm);
-
-        const directiveNames = new Set<string>();
-        // "default" is a gatsby internal directive and should not be added again.
-        directiveNames.add('default');
-        for (const directive of directives) {
-          const name = directive[0].substring(2);
-          if (!directiveNames.has(name)) {
-            directiveNames.add(name);
-            args.actions.createFieldExtension({ name });
-          }
-        }
         args.actions.createTypes([
           ...extractUnions(schema).map((name) =>
             args.schema.buildUnionType({
@@ -285,7 +272,7 @@ export const createPages: GatsbyNode['createPages'] = async (args, options) => {
 };
 
 export const createResolvers: GatsbyNode['createResolvers'] = async (
-  { createResolvers, cache }: CreateResolversArgs,
+  { createResolvers, cache, createNodeId, actions: {createNode}, reporter }: CreateResolversArgs,
   options,
 ) => {
   if (!validOptions(options)) {
@@ -320,6 +307,12 @@ export const createResolvers: GatsbyNode['createResolvers'] = async (
       const resolvers = createResolveConfig(
         buildSchema(schemaSource),
         availableDirectives,
+        {
+          cache,
+          createNode,
+          createNodeId,
+          reporter
+        }
       );
       createResolvers(
         Object.fromEntries(

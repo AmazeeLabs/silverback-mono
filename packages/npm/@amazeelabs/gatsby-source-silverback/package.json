@@ -20,6 +20,8 @@
     "@types/react": "18.2.34",
     "eslint": "8.52.0",
     "gatsby": "5.12.9",
+    "gatsby-plugin-sharp": "5.12.1",
+    "gatsby-source-filesystem": "5.12.0",
     "prettier": "3.0.3",
     "react": "18.2.0",
     "typescript": "5.2.2",

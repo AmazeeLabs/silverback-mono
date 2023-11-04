@@ -1,0 +1,41 @@
+_meta:
+  version: '1.0'
+  entity_type: media
+  uuid: 96b4a433-2c1e-445f-8ba8-758e155e7494
+  bundle: image
+  default_langcode: en
+  depends:
+    52faa9fc-7e42-43db-8b8f-b6af6cbaa14d: file
+default:
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  name:
+    -
+      value: 'Test image with face'
+  created:
+    -
+      value: 1698830325
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  field_media_image:
+    -
+      entity: 52faa9fc-7e42-43db-8b8f-b6af6cbaa14d
+      alt: 'a simple test image with a face'
+      title: ''
+      width: 1000
+      height: 500

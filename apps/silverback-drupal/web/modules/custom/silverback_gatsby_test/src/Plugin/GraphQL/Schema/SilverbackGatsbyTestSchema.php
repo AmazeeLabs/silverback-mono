@@ -60,7 +60,7 @@ class SilverbackGatsbyTestSchema extends ComposableSchema {
     $addResolver('Article.responsiveImage',
       $builder->compose(
         $builder->callback(function ($value) {
-          return ['src' => 'https://dummyimage.com/1000x500/078232/fff.jpg', 'width' => 1000, 'height' => 500];
+          return ['src' => 'http://localhost:8888/sites/default/files/2023-11/test_image_with_face.jpg', 'width' => 1000, 'height' => 500];
         }),
         $builder->produce('responsive_image')
           ->map('image', $builder->fromParent())

@@ -8,9 +8,7 @@ import {
   parse,
   print,
 } from 'graphql';
-import { flow, isString } from 'lodash-es';
-
-import { SilverbackResolver } from '../types';
+import { omit } from 'lodash-es';
 
 /**
  * Extract Object types with @sourceFrom directives.
@@ -68,8 +66,19 @@ export function cleanSchema(schema: string) {
       def.kind === Kind.DIRECTIVE_DEFINITION
     ) {
       return;
+    } else if (
+      def.kind === Kind.INTERFACE_TYPE_DEFINITION ||
+      def.kind === Kind.OBJECT_TYPE_DEFINITION
+    ) {
+      const { ...altered } = omit(def, ['directives']);
+      altered.fields = altered.fields?.map((field) =>
+        omit(field, ['directives']),
+      );
+      result.push(print(altered));
+    } else {
+      const { ...altered } = def;
+      result.push(print({ ...altered, directives: [] }));
     }
-    result.push(print(def));
   });
   return result.join('\n');
 }
