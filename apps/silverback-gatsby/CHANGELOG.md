@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gatsby@3.0.17...@-amazeelabs/silverback-gatsby@3.1.0) (2023-11-04)
+
+### Features
+
+- added a directive that uses the gatsby sharp plugin to resize and crop images
+  ([3ef2f61](https://github.com/AmazeeLabs/silverback-mono/commit/3ef2f6100557001b1cf8f1ddec23c9b818e3b94c))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [3.0.17](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gatsby@3.0.16...@-amazeelabs/silverback-gatsby@3.0.17) (2023-11-02)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-gatsby

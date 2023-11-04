@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/graphql-directives@1.1.4...@amazeelabs/graphql-directives@1.2.0) (2023-11-04)
+
+### Features
+
+- added a directive that uses the gatsby sharp plugin to resize and crop images
+  ([3ef2f61](https://github.com/AmazeeLabs/silverback-mono/commit/3ef2f6100557001b1cf8f1ddec23c9b818e3b94c))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/graphql-directives@1.1.3...@amazeelabs/graphql-directives@1.1.4) (2023-10-19)
 
 **Note:** Version bump only for package @amazeelabs/graphql-directives
