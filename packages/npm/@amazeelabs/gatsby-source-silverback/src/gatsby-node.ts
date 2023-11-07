@@ -227,14 +227,16 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
           ...extractUnions(schema).map((name) =>
             args.schema.buildUnionType({
               name,
-              resolveType: ({ __typename }) => __typename,
+              resolveType: ({ __typename, _original_typename }) =>
+                __typename || _original_typename,
             }),
           ),
           ...extractInterfaces(schema).map((name) =>
             args.schema.buildInterfaceType({
               name,
               interfaces: ['Node'],
-              resolveType: ({ __typename }) => __typename,
+              resolveType: ({ __typename, _original_typename }) =>
+                __typename || _original_typename,
               fields: {
                 id: 'ID!',
               },
@@ -272,7 +274,13 @@ export const createPages: GatsbyNode['createPages'] = async (args, options) => {
 };
 
 export const createResolvers: GatsbyNode['createResolvers'] = async (
-  { createResolvers, cache, createNodeId, actions: {createNode}, reporter }: CreateResolversArgs,
+  {
+    createResolvers,
+    cache,
+    createNodeId,
+    actions: { createNode },
+    reporter,
+  }: CreateResolversArgs,
   options,
 ) => {
   if (!validOptions(options)) {
@@ -311,8 +319,8 @@ export const createResolvers: GatsbyNode['createResolvers'] = async (
           cache,
           createNode,
           createNodeId,
-          reporter
-        }
+          reporter,
+        },
       );
       createResolvers(
         Object.fromEntries(
