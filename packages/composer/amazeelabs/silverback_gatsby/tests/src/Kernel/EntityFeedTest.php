@@ -487,4 +487,4 @@ class EntityFeedTest extends EntityFeedTestBase {
       ],
     ], $metadata);
   }
-
+}
