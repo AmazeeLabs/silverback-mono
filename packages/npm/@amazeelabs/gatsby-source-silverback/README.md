@@ -137,17 +137,6 @@ respective field. Any unknown directives are simply ignores.
 
 ### Available directives
 
-#### `@resolveBy(fn: String!)`
-
-Executes a javascript function to resolve the field. The function has to be
-registered in Gatsby configuration beforehand.
-
-```graphql
-type Employee {
-  role @resolveBy(fn: "resolveRole"): String!
-}
-```
-
 #### `@gatsbyNodes(type: String!)`
 
 Load all nodes of a given type or interface. Can be used for "get all" use cases
@@ -161,10 +150,10 @@ Load a single Gatsby node. Mostly used for displaying a single page.
 
 Other packages can provide directives to be plugged into the schema.
 
-These packages should have a `directives.graphql` file at their root and provide
-a function that calls a `registerDirective` callback that will be passed in. In
-`gatsby-config.mjs` (_note:_ it has to be ESM), load that function and pass it
-into the `directive_providers` configuration option of this Gatsby plugin.
+These packages should have a `directives.graphql` file at their root and expose
+any functions that should be used as directives. In `gatsby-config.mjs` (_note:_
+it has to be ESM), load that function and pass it into the `directives`
+configuration option of this Gatsby plugin.
 
 Example:
 
@@ -175,23 +164,19 @@ directive @echo(msg: String!) repeatable on FIELD_DEFINITION
 
 ```typescript
 //[my-package]/src/index.ts
-import type { registerDirective } from '@amazeelabs/gatsby-source-silverback';
-
-export function directives(register: registerDirective) {
-  register('echo', ({ msg }: { msg: string }) => msg);
-}
+export const echo = ({ msg }: { msg: string }) => msg;
 ```
 
 ```javascript
 // gatsby-config.mjs
-import { directives } from '@amazeelabs/test-directives';
+import { echo } from '@amazeelabs/test-directives';
 
 export const plugins = [
   {
     resolve: '@amazeelabs/gatsby-source-silverback',
     options: {
       schema_configuration: './',
-      directive_providers: [directives],
+      directives: { echo },
     },
   },
 ];
@@ -205,6 +190,30 @@ values. The mechanism is identical to the implementation in
 type Employee {
   testEcho(message: "Hello world") @echo(msg: "$message"): String!
 }
+```
+
+### Autoloading directives
+
+The
+[`@amazeelabs/codegen-autoloader`](https://github.com/AmazeeLabs/silverback-mono/blob/development/packages/npm/@amazeelabs/codegen-autoloader/README.md)
+package provides a more convenient way to inject new directives the schema. It's
+a [`graphql-codegen`](https://the-guild.dev/graphql/codegen) that produces a
+file with a single default export that can be passed into the `directives`
+configuration property.
+
+```javascript
+// gatsby-config.mjs
+import directives from './generated/directives.mjs';
+
+export const plugins = [
+  {
+    resolve: '@amazeelabs/gatsby-source-silverback',
+    options: {
+      schema_configuration: './',
+      directives,
+    },
+  },
+];
 ```
 
 ## Build-ID's
