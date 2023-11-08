@@ -24,7 +24,7 @@ RUN npm install -g neovim
 # Install phpactor
 RUN curl -Lo phpactor.phar https://github.com/phpactor/phpactor/releases/latest/download/phpactor.phar
 RUN chmod a+x phpactor.phar
-RUN mv phpactor.phar /usr/local/bin/phpactor
+RUN sudo mv phpactor.phar /usr/local/bin/phpactor
 
 RUN curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_0.40.2_Linux_x86_64.tar.gz" \
   && tar xf lazygit.tar.gz lazygit \
