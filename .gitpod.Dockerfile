@@ -20,9 +20,6 @@ RUN wget https://github.com/neovim/neovim/releases/download/v0.9.2/nvim-linux64.
 RUN sudo apt-get install -y fd-find
 RUN npm install -g neovim
 
-# Set pnpm script shell to bash
-RUN pnpm config set script-shell /usr/bin/bash
-
 # Install phpactor
 RUN curl -Lo phpactor.phar https://github.com/phpactor/phpactor/releases/latest/download/phpactor.phar
 RUN chmod a+x phpactor.phar

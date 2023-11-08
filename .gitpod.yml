@@ -1,6 +1,7 @@
 tasks:
   - name: Setup
-    init: pnpm install && pnpm build
+    init:
+      pnpm config set script-shell /usr/bin/bash && pnpm install && pnpm build
 
 image:
   file: .gitpod.Dockerfile
