@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/graphql_directives@2.2.0...@-amazeelabs/graphql_directives@2.3.0) (2023-11-08)
+
+### Features
+
+- **graphql:** autoload data producer
+  ([72a6641](https://github.com/AmazeeLabs/silverback-mono/commit/72a6641b40681a0f781c4cc3387cf6b6f6768d80))
+- **graphql:** autoload directives support in directable schema plugin
+  ([d301889](https://github.com/AmazeeLabs/silverback-mono/commit/d30188957cf63af9e299b771a03eaa2437d15e9f))
+- **graphql:** autoloaded directives
+  ([e6d4e18](https://github.com/AmazeeLabs/silverback-mono/commit/e6d4e18fc5d6d858fa81b5810a578f52a2f79459))
+- **graphql:** graphql hashmap resolution
+  ([2c4aeed](https://github.com/AmazeeLabs/silverback-mono/commit/2c4aeedd2b5febacc3c088db09085142fbac69f1))
+- **graphql:** typed input for graphql resolvers
+  ([47b5b63](https://github.com/AmazeeLabs/silverback-mono/commit/47b5b634fdbc995fee1ccacecdd83bc3ab9e7159))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [2.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/graphql_directives@2.1.1...@-amazeelabs/graphql_directives@2.2.0) (2023-10-10)
 
 ### Features

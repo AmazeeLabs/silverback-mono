@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.13.1...@amazeelabs/gatsby-source-silverback@1.13.2) (2023-11-08)
+
+### Bug Fixes
+
+- **gatsby:** adjust gatsby-source-silverback internal-field-change
+  ([1c913f6](https://github.com/AmazeeLabs/silverback-mono/commit/1c913f6b48cffb1718713647b3f80abbcbaf150b))
+- **gatsby:** fully scope id's imported via
+  [@source](https://github.com/source)From
+  ([ff33d33](https://github.com/AmazeeLabs/silverback-mono/commit/ff33d33ffd02758598937a8a671acd1d9b313171))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.13.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.13.0...@amazeelabs/gatsby-source-silverback@1.13.1) (2023-11-07)
 
 ### Bug Fixes

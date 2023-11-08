@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.4.3...@-amazeelabs/silverback_gatsby@3.0.0) (2023-11-08)
+
+### Bug Fixes
+
+- merge regression
+  ([2cecefe](https://github.com/AmazeeLabs/silverback-mono/commit/2cecefea69cc4a5c6d99de05a2a5240ac966a1b7))
+- merge regression
+  ([d49770b](https://github.com/AmazeeLabs/silverback-mono/commit/d49770b0c284045cb449b87f67861bf881933288))
+
+- refactor(gatsby)!: use UUID's in Drupal/Gatsby integration
+  ([cc56b4d](https://github.com/AmazeeLabs/silverback-mono/commit/cc56b4db69e68f7e7c324da31787b3251c8d476a))
+- refactor(graphql)!: prefix and hide fields internally used by
+  silverback_gatsby
+  ([3dbd10c](https://github.com/AmazeeLabs/silverback-mono/commit/3dbd10c0b12113622b68cf5ca797480fa828f27d))
+
+### BREAKING CHANGES
+
+- Gatsby uses UUID's instead of ID's when sourcing and updating entities from
+  Drupal.
+- Fields used by silverback_gatsby and gatsby-source-silverback are hidden and
+  prefixed now.
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.4.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.4.2...@-amazeelabs/silverback_gatsby@2.4.3) (2023-11-01)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gatsby

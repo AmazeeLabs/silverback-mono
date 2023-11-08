@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/test-directives@1.0.13...@amazeelabs/test-directives@1.1.0) (2023-11-08)
+
+### Features
+
+- **graphql:** add implementation hints to shared directives
+  ([577333f](https://github.com/AmazeeLabs/silverback-mono/commit/577333fb46a6e17bf98a592d0900257ea5ea87ba))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.0.13](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/test-directives@1.0.12...@amazeelabs/test-directives@1.0.13) (2023-11-07)
 
 **Note:** Version bump only for package @amazeelabs/test-directives
