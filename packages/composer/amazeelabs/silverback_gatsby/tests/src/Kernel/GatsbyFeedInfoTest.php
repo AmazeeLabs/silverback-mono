@@ -4,7 +4,14 @@ namespace Drupal\Tests\silverback_gatsby\Kernel;
 
 use Drupal\node\Entity\Node;
 
+/**
+ *
+ */
 class GatsbyFeedInfoTest extends EntityFeedTestBase {
+
+  /**
+   *
+   */
   protected function expectedFeedInfo($changes = []) {
     return [
       [
@@ -47,15 +54,21 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     ];
   }
 
+  /**
+   *
+   */
   public function testInitialFeed() {
     $query = $this->getQueryFromFile('feed_info.gql');
     $this->assertResults($query, [], [
-      // When no build happened yet, the build ID is -1
+      // When no build happened yet, the build ID is -1.
       '_drupalBuildId' => -1,
       '_drupalFeedInfo' => $this->expectedFeedInfo(),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
 
+  /**
+   *
+   */
   public function testInitialBuild() {
     $node = Node::create([
       'type' => 'page',
@@ -72,13 +85,15 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
 
+  /**
+   *
+   */
   public function testInitialPublishedBuild() {
     $node = Node::create([
       'type' => 'page',
       'title' => 'Test',
     ]);
     $node->save();
-
 
     $this->useBuildServer();
     $query = $this->getQueryFromFile('feed_info.gql');
@@ -105,6 +120,9 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
 
+  /**
+   *
+   */
   public function testMultipleBuilds() {
     $tracker = $this->container->get('silverback_gatsby.update_tracker');
     $node = Node::create([
@@ -125,6 +143,9 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
 
+  /**
+   *
+   */
   public function testCurrentBuildArgument() {
     $tracker = $this->container->get('silverback_gatsby.update_tracker');
     $node = Node::create([
@@ -181,6 +202,9 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
 
+  /**
+   *
+   */
   public function testNodePublish() {
     $tracker = $this->container->get('silverback_gatsby.update_tracker');
     // Create one initial published node so both build and preview server have
@@ -239,6 +263,9 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
 
+  /**
+   *
+   */
   public function testNodeUnpublish() {
     // Create an initial published node.
     $tracker = $this->container->get('silverback_gatsby.update_tracker');
@@ -288,3 +315,5 @@ class GatsbyFeedInfoTest extends EntityFeedTestBase {
       '_drupalFeedInfo' => $this->expectedFeedInfo(['Page' => [$node->uuid() . ':en']]),
     ], $this->defaultCacheMetaData()->mergeCacheMaxAge(0));
   }
+
+}
