@@ -57,14 +57,14 @@ type Query {
 ### Default values
 
 Since Drupal's data structures can't guarantee integrity, the graphql schema
-will enforce default values as much as possible. Whenever a type is used in a non-nullable position (no `!` at the end
-), it attempts to apply a default value if the value is `null`. The
-default value is determined by the type, e.g. `0` for `Int`, `false` for
-`Boolean`, `""` for `String` and `[]` for list types like `[String!]!`.
+will enforce default values as much as possible. Whenever a type is used in a
+non-nullable position (no `!` at the end ), it attempts to apply a default value
+if the value is `null`. The default value is determined by the type, e.g. `0`
+for `Int`, `false` for `Boolean`, `""` for `String` and `[]` for list types like
+`[String!]!`.
 
 For custom types, interface, unions or scalars, the `@default` directive can be
 used to start a directive chain that generates a default value.
-
 
 ```graphql
 scalar MyScalar @default @value(json: "\"bar\"")
@@ -387,6 +387,14 @@ class EchoDirective extends PluginBase implements DirectiveInterface {
   }
 }
 ```
+
+## Autoloading
+
+The
+[`@amazeelabs/codegen-autoloader`](https://github.com/AmazeeLabs/silverback-mono/blob/development/packages/npm/@amazeelabs/codegen-autoloader/README.md)
+provides a convenient option to add new directives using the `drupal` mode. The
+resulting JSON file is compatible to this modules `Autoload registry`
+configuration option.
 
 ## Schema Extensions
 
