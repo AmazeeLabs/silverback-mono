@@ -1,5 +1,6 @@
 """
-implementation: @amazeelabs/gatsby-silverback-cloudinary#responsiveImage
+implementation(gatsby): @amazeelabs/gatsby-source-silverback#responsiveImageSharp
+implementation(gatsby,cloudinary): @amazeelabs/gatsby-silverback-cloudinary#responsiveImage
 """
 directive @responsiveImage(
   width: String
