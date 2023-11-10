@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@3.0.0...@-amazeelabs/silverback_gatsby@3.0.1) (2023-11-10)
+
+### Bug Fixes
+
+- **gatsby:** add missing directive declarations
+  ([971c4e0](https://github.com/AmazeeLabs/silverback-mono/commit/971c4e072235640935f39c81c6493d86ec68df86))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [3.0.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@2.4.3...@-amazeelabs/silverback_gatsby@3.0.0) (2023-11-08)
 
 ### Bug Fixes
