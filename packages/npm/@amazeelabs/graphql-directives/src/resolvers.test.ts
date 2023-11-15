@@ -17,6 +17,14 @@ const echo: GraphQLFieldResolver<unknown, any, { msg: string }> = (
   { msg },
 ) => new Promise((resolve) => resolve(msg));
 
+const resolveToNull: GraphQLFieldResolver<unknown, any, {}> = () =>
+  new Promise((resolve) => resolve(null));
+
+const throwIfCalled: GraphQLFieldResolver<unknown, any, {}> = () =>
+  new Promise(() => {
+    throw 'parent is undefined';
+  });
+
 describe('extractResolverMapping', () => {
   it('extracts fields with attached directives', () => {
     expect(extractResolverMapping(schema, { echo })).toEqual({
@@ -71,6 +79,17 @@ describe('executeResolver', () => {
     expect(await resolver(undefined, {}, undefined, null as any)).toEqual(
       'my value',
     );
+  });
+
+  it('aborts a chain on null', async () => {
+    const resolver = buildResolver(
+      [
+        ['resolveToNull', {}],
+        ['throwIfCalled', {}],
+      ],
+      { resolveToNull, throwIfCalled },
+    );
+    expect(await resolver(undefined, {}, undefined, null as any)).toEqual(null);
   });
 });
 
