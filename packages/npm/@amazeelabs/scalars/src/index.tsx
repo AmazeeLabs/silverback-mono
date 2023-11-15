@@ -92,11 +92,14 @@ const isRelative = (url?: Url | LocationType) =>
   url?.startsWith('?') ||
   Boolean(url?.match(/^\/(?!\/)/));
 
+const isDownload = (url?: Url | LocationType) =>
+  isLocation(url) || Boolean(url?.match(/\.[0-9a-z]+$/i));
+
 const isLocation = (input?: Url | LocationType): input is LocationType =>
   typeof input !== 'string';
 
 export function Link({ href, search, hash, target, ...props }: LinkProps) {
-  if (isInternalTarget(target) && isRelative(href)) {
+  if (isInternalTarget(target) && isRelative(href) && !isDownload(href)) {
     return (
       <LinkComponent
         href={overrideUrlParameters(href, search, hash)}
