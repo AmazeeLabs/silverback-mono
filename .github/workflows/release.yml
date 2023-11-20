@@ -39,9 +39,6 @@ jobs:
       - name: Build packages
         run: pnpm build
 
-      - name: Add drupal.org ssh key
-        run: ssh-keyscan git.drupal.org >> ~/.ssh/known_hosts
-
       - name: Run static tests
         run: pnpm test:static
 
