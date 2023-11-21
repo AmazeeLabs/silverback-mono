@@ -1,4 +1,3 @@
-label: 'Wiederverwendbar Blöcke'
 display:
   default:
     display_title: Master
@@ -33,13 +32,9 @@ display:
         info:
           expose:
             label: Titel
-      title: 'Wiederverwendbar Blöcke'
       empty:
         area:
           content:
             value: 'Keine Blöcke gefunden.'
   page_1:
     display_title: Seite
-    display_options:
-      menu:
-        title: 'Wiederverwendbar Blöcke'

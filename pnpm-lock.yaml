@@ -57,9 +57,6 @@ importers:
       '@-amazeelabs/silverback_iframe_theme':
         specifier: workspace:*
         version: link:../../packages/composer/amazeelabs/silverback_iframe_theme
-      '@-silverback-drupal-config/webform':
-        specifier: workspace:*
-        version: link:config/webform
       '@-silverback-drupal/gutenberg_custom_blocks':
         specifier: workspace:*
         version: link:web/modules/custom/gutenberg_custom_blocks
@@ -73,8 +70,6 @@ importers:
       start-server-and-test:
         specifier: 2.0.1
         version: 2.0.1
-
-  apps/silverback-drupal/config/webform: {}
 
   apps/silverback-drupal/web/modules/custom/gutenberg_custom_blocks:
     dependencies:

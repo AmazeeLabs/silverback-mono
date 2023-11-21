@@ -1,7 +1,10 @@
+label: 'Blocs de contenu'
+description: 'Trouver et gérer les blocs de contenu.'
 display:
   default:
     display_title: 'Par défaut'
     display_options:
+      title: 'Blocs de contenu'
       fields:
         info:
           label: 'Description du bloc'
@@ -29,6 +32,9 @@ display:
           exposed_sorts_label: 'Trier par'
           sort_asc_label: Asc
           sort_desc_label: Desc
+      empty:
+        area_text_custom:
+          content: "Il n'y a pas de blocs de contenu disponibles."
       filters:
         info:
           expose:
@@ -41,3 +47,4 @@ display:
     display_options:
       menu:
         title: Blocs
+        description: 'Créer et modifier les blocs de contenu.'

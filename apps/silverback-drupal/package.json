@@ -28,7 +28,6 @@
     "@-amazeelabs/silverback_gutenberg": "workspace:*",
     "@-amazeelabs/silverback_iframe": "workspace:*",
     "@-amazeelabs/silverback_iframe_theme": "workspace:*",
-    "@-silverback-drupal-config/webform": "workspace:*",
     "@-silverback-drupal/gutenberg_custom_blocks": "workspace:*"
   },
   "devDependencies": {
