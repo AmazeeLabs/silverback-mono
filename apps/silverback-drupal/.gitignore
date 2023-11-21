@@ -50,3 +50,7 @@ setup-log.txt
 
 # Ignore phpunit result cache
 .phpunit.result.cache
+
+/.env.local
+/.env.local.example
+/.envrc

@@ -784,3 +784,15 @@ if ($env = getenv('SB_ENVIRONMENT')) {
     include $env_settings;
   }
 }
+
+// Silverback settings.
+$settings['skip_permissions_hardening'] = getenv('SB_ENVIRONMENT') === '1';
+
+if (getenv('SB_ENVIRONMENT')) {
+  $databases['default']['default'] = [
+    'database' => dirname(__FILE__) . '/files/.sqlite',
+    'prefix' => '',
+    'namespace' => 'Drupal\\Core\\Database\\Driver\\sqlite',
+    'driver' => 'sqlite',
+  ];
+}
