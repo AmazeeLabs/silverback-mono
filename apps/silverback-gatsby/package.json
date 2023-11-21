@@ -63,7 +63,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "pnpm codegen && pnpm translations:extract && source .envrc",
+    "build": "pnpm codegen && pnpm translations:extract",
     "build:gatsby": "pnpm translations:push_sources && gatsby build",
     "develop": "pnpm translations:push_sources && gatsby develop",
     "start": "publisher",

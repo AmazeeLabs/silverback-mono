@@ -16,10 +16,8 @@ source packages and tools.
 ### Requirements
 
 - Git
-- pnpm
-- Composer
-- [direnv](https://direnv.net/docs/installation.html) (don't forget about the
-  [hook installation](https://direnv.net/docs/hook.html)!)
+- Node.js + pnpm
+- PHP + Composer
 
 ### Setup
 

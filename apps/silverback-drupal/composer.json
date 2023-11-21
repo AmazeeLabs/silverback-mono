@@ -84,6 +84,9 @@
             ]
         },
         "drupal-scaffold": {
+            "allowed-packages": [
+                "amazeelabs/silverback-cli"
+            ],
             "locations": {
                 "web-root": "web/"
             }

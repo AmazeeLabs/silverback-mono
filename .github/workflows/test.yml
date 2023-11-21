@@ -91,7 +91,6 @@ jobs:
         run: |
           set -e
           cd apps/silverback-drupal
-          source .envrc
           set -x
           # Delete vendor dir to avoid potential issues with `composer install`.
           rm -rf vendor
