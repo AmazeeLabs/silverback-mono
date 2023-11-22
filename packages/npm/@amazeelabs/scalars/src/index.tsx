@@ -44,14 +44,15 @@ export function overrideUrlParameters(
   hash?: string,
 ): Url {
   if (isUrl(url)) {
-    if (url[0] === '/') {
+    if (['/','#','?','javascript:'].includes(url[0])) {
       return overrideUrlParameters(
         `relative://${url}` as Url,
         search,
         hash,
       ).replace('relative://', '') as Url;
     }
-    const parsed = qs.parseUrl(url);
+    const parsed = qs.parseUrl(url, {parseFragmentIdentifier: true});
+
     return qs.stringifyUrl(
       {
         url: parsed.url,
