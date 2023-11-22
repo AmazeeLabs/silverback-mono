@@ -60,7 +60,7 @@
     "eslint-plugin-promise": "6.1.1",
     "eslint-plugin-storybook": "0.6.15",
     "happy-dom": "12.10.3",
-    "imagetools-core": "4.1.0",
+    "imagetools-core": "5.0.0",
     "lodash": "4.17.21",
     "netlify-cli": "16.9.3",
     "postcss": "8.4.31",
@@ -71,7 +71,7 @@
     "tailwindcss": "3.3.5",
     "typescript": "5.2.2",
     "vite": "4.5.0",
-    "vite-imagetools": "5.1.2",
+    "vite-imagetools": "6.0.0",
     "vite-plugin-dts": "3.6.3",
     "vitest": "0.34.6",
     "zustand": "4.4.5"
