@@ -95,14 +95,14 @@ jobs:
           # Delete vendor dir to avoid potential issues with `composer install`.
           rm -rf vendor
           composer install
-          output=$(drush -y updb --cache-clear=0 2>&1)
+          output=$(pnpm drush -y updb --cache-clear=0 2>&1)
           if echo $output | grep -q 'No pending updates'
           then
             echo "No drupal updates found."
             exit 0
           fi
-          drush -y cr
-          drush -y cex
+          pnpm drush -y cr
+          pnpm drush -y cex
           cd -
           # Check Git changes ignoring the config translations.
           if [[ $(git status --porcelain -- apps/silverback-drupal/config ':!apps/silverback-drupal/config/sync/language') ]]
@@ -114,7 +114,7 @@ jobs:
             >&2 echo 'If this check failed due to a Drupal database update which changed the Drupal config:'
             >&2 echo '  - Checkout this branch locally'
             >&2 echo '  - Switch to Drupal directory'
-            >&2 echo '  - Run `composer i && silverback setup --no-config-import && drush cex -y`'
+            >&2 echo '  - Run `composer i && pnpm silverback setup --no-config-import && pnpm drush cex -y`'
             >&2 echo '  - Review the config changes'
             >&2 echo '  - Commit and push'
             >&2 echo ''
