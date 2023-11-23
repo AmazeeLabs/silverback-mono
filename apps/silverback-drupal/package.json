@@ -34,6 +34,6 @@
   "devDependencies": {
     "@amazeelabs/graphql-schema-test": "workspace:*",
     "jest": "29.7.0",
-    "start-server-and-test": "2.0.1"
+    "start-server-and-test": "2.0.3"
   }
 }
