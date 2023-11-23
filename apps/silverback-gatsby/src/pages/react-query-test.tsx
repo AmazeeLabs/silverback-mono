@@ -32,6 +32,9 @@ function usePersistedQuery<T extends AnyOperationId>(
         await (
           await fetch(url.toString(), {
             credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json',
+            },
           })
         ).json()
       ).data;
@@ -56,6 +59,9 @@ function usePersistedMutation<T extends AnyOperationId>(
             method: 'POST',
             body: JSON.stringify({ id, variables }),
             credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json',
+            },
           })
         ).json()
       ).data;

@@ -21,6 +21,9 @@ async function graphqlFetch<T extends AnyOperationId>(
       await (
         await fetch(url.toString(), {
           credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
         })
       ).json()
     ).data;
@@ -31,6 +34,9 @@ async function graphqlFetch<T extends AnyOperationId>(
           method: 'POST',
           body: JSON.stringify({ id, variables }),
           credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
         })
       ).json()
     ).data;
@@ -44,7 +50,8 @@ const Sitemap: React.FC = () => {
   useEffect(() => {
     (async () => {
       setPages(
-        (await graphqlFetch(GetPagesQuery, { offset: 0, limit: 2 }))._queryPages,
+        (await graphqlFetch(GetPagesQuery, { offset: 0, limit: 2 }))
+          ._queryPages,
       );
       const fetchRandomInt = async () => {
         setRandomInt(
