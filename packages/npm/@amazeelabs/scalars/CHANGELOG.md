@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.9](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.6.8...@amazeelabs/scalars@1.6.9) (2023-11-23)
+
+### Bug Fixes
+
+- support fragments in Link component
+  ([2b3620e](https://github.com/AmazeeLabs/silverback-mono/commit/2b3620e293dfb0163bf91228fa2947dcdc4eb3ff))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.6.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.6.7...@amazeelabs/scalars@1.6.8) (2023-11-15)
 
 ### Bug Fixes
