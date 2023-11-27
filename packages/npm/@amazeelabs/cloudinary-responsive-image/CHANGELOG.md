@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.13](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/cloudinary-responsive-image@1.6.12...@amazeelabs/cloudinary-responsive-image@1.6.13) (2023-11-27)
+
+**Note:** Version bump only for package @amazeelabs/cloudinary-responsive-image
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.6.12](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/cloudinary-responsive-image@1.6.11...@amazeelabs/cloudinary-responsive-image@1.6.12) (2023-11-02)
 
 **Note:** Version bump only for package @amazeelabs/cloudinary-responsive-image

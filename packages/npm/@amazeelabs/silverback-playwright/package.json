@@ -1,7 +1,7 @@
 {
   "name": "@amazeelabs/silverback-playwright",
   "main": "./index.ts",
-  "version": "1.6.65",
+  "version": "1.6.66",
   "description": "Common code for e2e tests.",
   "author": "Amazee Labs",
   "license": "MIT",
