@@ -49,6 +49,6 @@
     "prettier": "3.1.0"
   },
   "resolutions": {
-    "@graphql-tools/load": "^8.0.0"
+    "@graphql-tools/load": "^8.0.1"
   }
 }

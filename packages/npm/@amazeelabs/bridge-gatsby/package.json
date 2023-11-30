@@ -15,7 +15,7 @@
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix"
   },
   "optionalDependencies": {
-    "@types/react": "^18.2.38",
+    "@types/react": "^18.2.39",
     "typescript": "^5.3.2",
     "vitest": "^0.34.6"
   },
@@ -28,7 +28,7 @@
     "@amazeelabs/eslint-config": "1.4.43",
     "@amazeelabs/prettier-config": "1.1.3",
     "@swc/cli": "0.1.63",
-    "@swc/core": "1.3.99",
+    "@swc/core": "1.3.100",
     "@types/reach__router": "1.3.14"
   },
   "keywords": [],
