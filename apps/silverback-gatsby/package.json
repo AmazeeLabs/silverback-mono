@@ -25,7 +25,7 @@
     "gatsby-plugin-schema-export": "workspace:*",
     "gatsby-plugin-sharp": "5.12.3",
     "gatsby-transformer-sharp": "5.12.3",
-    "html-react-parser": "4.2.10",
+    "html-react-parser": "5.0.3",
     "netlify-cli": "16.9.3",
     "postcss-import": "15.1.0",
     "react": "18.2.0",
