@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.17](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-intl-rsc@1.1.16...@amazeelabs/react-intl-rsc@1.1.17) (2023-11-30)
+
+**Note:** Version bump only for package @amazeelabs/react-intl-rsc
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.16](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-intl-rsc@1.1.15...@amazeelabs/react-intl-rsc@1.1.16) (2023-11-27)
 
 **Note:** Version bump only for package @amazeelabs/react-intl-rsc
