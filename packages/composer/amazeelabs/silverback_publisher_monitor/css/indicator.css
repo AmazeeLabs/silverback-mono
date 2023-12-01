@@ -1,4 +1,19 @@
 /**
+ * Publisher indicator styles.
+ * Used when the indicator is not displayed as a drop button.
+ */
+.silverback-publisher-indicator-tab {
+  float: right !important;
+  background-color: var(--button-bg-color);
+  padding: 0.9em;
+}
+
+.silverback-publisher-indicator-tab a {
+  color: #565656 !important;
+  font-weight: bold;
+}
+
+/**
  * Publisher drop button styles.
  */
 .silverback-publisher-drop-button {
@@ -8,18 +23,22 @@
   top: 3px;
   right: 3px;
 }
+.silverback-publisher-indicator-tab .icon,
 .silverback-publisher-drop-button .icon {
   width: 1.25em;
   height: 1.25em;
   margin-right: 0.75em;
 }
+.silverback-publisher-indicator-tab .wrapper,
 .silverback-publisher-drop-button .wrapper {
   display: flex;
   align-items: center;
 }
+.silverback-publisher-indicator-tab .transparent,
 .silverback-publisher-drop-button .transparent {
   opacity: 0.25;
 }
+.silverback-publisher-indicator-tab .spinning,
 .silverback-publisher-drop-button .spinning {
   animation: spin 1s linear infinite;
   -webkit-animation: spin 1s linear infinite;
@@ -55,7 +74,6 @@
   margin-right: 0.5em;
 }
 
-
 .silverback-publisher-drop-button .toolbar-item.toolbar-item {
   /* Remove default padding from the toolbar item, since the dropbutton takes its own space. */
   padding: 0;
@@ -71,6 +89,9 @@
   border-radius: 0 !important;
 }
 
+.silverback-publisher-indicator-tab a,
+.silverback-publisher-indicator-tab a:hover,
+.silverback-publisher-indicator-tab a:focus,
 .silverback-publisher-drop-button .toolbar-item a:hover,
 .toolbar .silverback-publisher-drop-button .toolbar-item:hover,
 .silverback-publisher-drop-button .toolbar-item a:focus,
