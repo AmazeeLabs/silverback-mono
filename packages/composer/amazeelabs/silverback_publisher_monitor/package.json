@@ -1,6 +1,6 @@
 {
   "name": "@-amazeelabs/silverback_publisher_monitor",
-  "version": "2.3.11",
+  "version": "2.3.12",
   "main": "index.js",
   "scripts": {
     "version": "sync-composer-version"

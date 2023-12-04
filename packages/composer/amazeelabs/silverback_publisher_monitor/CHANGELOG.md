@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.12](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_publisher_monitor@2.3.11...@-amazeelabs/silverback_publisher_monitor@2.3.12) (2023-12-04)
+
+### Bug Fixes
+
+- styling when the permission is set to status only
+  ([#1466](https://github.com/AmazeeLabs/silverback-mono/issues/1466))
+  ([b7e1c1f](https://github.com/AmazeeLabs/silverback-mono/commit/b7e1c1fd442b5ffbd48c6367c5e261f8e16de670))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.3.11](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_publisher_monitor@2.3.10...@-amazeelabs/silverback_publisher_monitor@2.3.11) (2023-08-29)
 
 **Note:** Version bump only for package
