@@ -62,7 +62,7 @@
     "happy-dom": "12.10.3",
     "imagetools-core": "5.1.1",
     "lodash": "4.17.21",
-    "netlify-cli": "16.9.3",
+    "netlify-cli": "17.0.1",
     "postcss": "8.4.31",
     "prettier": "3.1.0",
     "react": "18.2.0",
