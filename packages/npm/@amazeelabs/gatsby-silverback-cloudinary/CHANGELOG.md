@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-silverback-cloudinary@1.2.4...@amazeelabs/gatsby-silverback-cloudinary@1.2.5) (2023-12-19)
+
+### Bug Fixes
+
+- broken context declaration for cloudinary resolver
+  ([f9ef855](https://github.com/AmazeeLabs/silverback-mono/commit/f9ef8555f92891cea717fb19de6e67f6ad34f9ec))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.2.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-silverback-cloudinary@1.2.3...@amazeelabs/gatsby-silverback-cloudinary@1.2.4) (2023-11-30)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-silverback-cloudinary
