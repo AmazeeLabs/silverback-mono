@@ -35,7 +35,7 @@ export const createTranslationQueryField = async (
                 context,
               ) => {
                 return (
-                  (await context.nodeModel.runQuery({
+                  (await context.nodeModel.findOne({
                     query: {
                       filter: {
                         langcode: { eq: args.langcode },
@@ -43,9 +43,8 @@ export const createTranslationQueryField = async (
                       },
                     },
                     type: source.internal.type,
-                    firstOnly: true,
                   })) ||
-                  (await context.nodeModel.runQuery({
+                  (await context.nodeModel.findOne({
                     query: {
                       filter: {
                         defaultTranslation: { eq: true },
@@ -53,7 +52,6 @@ export const createTranslationQueryField = async (
                       },
                     },
                     type: source.internal.type,
-                    firstOnly: true,
                   }))
                 );
               },
