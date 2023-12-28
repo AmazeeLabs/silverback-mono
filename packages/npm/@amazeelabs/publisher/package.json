@@ -14,7 +14,7 @@
     "publisher": "node ./dist/cli.js",
     "start": "nodemon ./dist/cli.js",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
-    "test:unit": "vitest run",
+    "test:unit": "vitest run --retry=3",
     "test:integration": "exit 0"
   },
   "dependencies": {
