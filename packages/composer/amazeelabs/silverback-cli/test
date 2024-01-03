@@ -52,7 +52,7 @@ function install_silverback_and_test {
     \$json['config']['allow-plugins']['dealerdirect/phpcodesniffer-composer-installer'] = true;
     file_put_contents('composer.json', json_encode(\$json, JSON_PRETTY_PRINT));
   "
-  composer install
+  composer install --no-interaction
   # Templates/starters may come with or without settings.php. Silverback CLI
   # needs it in advance. Make sure it exists.
   if [ -f "$1/web/sites/default/default.settings.php" ]; then
@@ -84,9 +84,9 @@ cd "$BASEDIR"
 composer create-project drupal/recommended-project "$TMP" --no-interaction
 (install_silverback_and_test "$TMP")
 
-echo "👉 Testing amazeeio/drupal-example-simple starter..."
+echo "👉 Testing lagoon-examples/drupal10-base starter..."
 TMP=$(mktemp -d)
 cd "$BASEDIR"
-git clone https://github.com/amazeeio/drupal-example-simple "$TMP"
+git clone https://github.com/lagoon-examples/drupal10-base "$TMP"
 cd "$TMP"
 (install_silverback_and_test "$TMP")
