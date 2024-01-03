@@ -72,7 +72,8 @@
             "drupal/core-composer-scaffold": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "phpstan/extension-installer": true,
-            "fenetikm/autoload-drupal": true
+            "fenetikm/autoload-drupal": true,
+            "php-http/discovery": true
         }
     },
     "extra": {
