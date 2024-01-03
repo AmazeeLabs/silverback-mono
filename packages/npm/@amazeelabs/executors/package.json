@@ -1,0 +1,36 @@
+{
+  "name": "@amazeelabs/executors",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "private": false,
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "scripts": {
+    "prep": "tsc && rollup -c",
+    "build": "pnpm prep",
+    "test:unit": "vitest run",
+    "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix"
+  },
+  "keywords": [],
+  "author": "Amazee Labs <development@amazeelabs.com>",
+  "license": "ISC",
+  "dependencies": {
+    "lodash-es": "^4.17.21"
+  },
+  "devDependencies": {
+    "@amazeelabs/eslint-config": "^1.4.43",
+    "@amazeelabs/prettier-config": "^1.1.3",
+    "@types/lodash-es": "^4.17.12",
+    "eslint": "^8.43.0",
+    "prettier": "^2.8.8",
+    "rollup": "^4.9.2",
+    "rollup-plugin-dts": "^6.1.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.0"
+  }
+}
