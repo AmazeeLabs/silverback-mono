@@ -1,0 +1,22 @@
+name: Temp
+on:
+  - pull_request
+jobs:
+  temp:
+    name: Temp
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Commons
+        uses: ./.github/actions/commons
+
+      - name: Install dependencies
+        run: pnpm i
+
+      - name: Check @amazeelabs/molecules:deploy
+        run: cd packages/npm/@amazeelabs/molecules && pnpm build-storybook
