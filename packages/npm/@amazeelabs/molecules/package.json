@@ -15,7 +15,7 @@
     "dev": "vite build --watch",
     "build": "vite build",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
-    "test:unit": "vitest run --passWithNoTests",
+    "test:unit": "vitest run --passWithNoTests && pnpm build-storybook",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",
     "storybook": "storybook dev -p 6007 --ci",
