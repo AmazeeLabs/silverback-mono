@@ -12,7 +12,7 @@ exports[`gatsby/content/Article.gql 1`] = `
           "drupalId": "c997198a-a4a5-484a-8567-46ca6a24301a",
           "title": "With everything",
           "langcode": "en",
-          "body": "<p><strong>Article</strong> <em>body</em>.</p>\\n\\n<p>Pug is embedded 👇 </p>\\n\\n<article class=\\"media media--type-image media--view-mode-default\\" data-align=\\"center\\"><div class=\\"field field--name-field-media-image field--type-image field--label-visually_hidden\\">\\n    <div class=\\"field__label visually-hidden\\">Image</div>\\n              <div class=\\"field__item\\">  <img loading=\\"lazy\\" src=\\"/sites/default/files/2021-01/image_jpg_pug.jpg\\" width=\\"1920\\" height=\\"1080\\" alt=\\"Pug alt text\\" /></div>\\n          </div>\\n\\n  </article><p>Kitten goes in a separate field 👉</p>\\n",
+          "body": "<p><strong>Article</strong> <em>body</em>.</p>\\n\\n<p>Pug is embedded 👇&nbsp;</p>\\n\\n<article class=\\"media media--type-image media--view-mode-default\\" data-align=\\"center\\">\\n  \\n      \\n  <div class=\\"field field--name-field-media-image field--type-image field--label-visually_hidden\\">\\n    <div class=\\"field__label visually-hidden\\">Image</div>\\n              <div class=\\"field__item\\">  <img loading=\\"lazy\\" src=\\"/sites/default/files/2021-01/image_jpg_pug.jpg\\" width=\\"1920\\" height=\\"1080\\" alt=\\"Pug alt text\\">\\n\\n</div>\\n          </div>\\n\\n  </article>\\n\\n\\n<p>Kitten goes&nbsp;in a separate field 👉</p>\\n",
           "image": {
             "id": "fd3a7238-807a-483d-a703-c9b1b6b4a8e8:en"
           },
@@ -78,7 +78,7 @@ exports[`gatsby/content/Article.gql 1`] = `
           "drupalId": "c997198a-a4a5-484a-8567-46ca6a24301a",
           "title": "With everything",
           "langcode": "en",
-          "body": "<p><strong>Article</strong> <em>body</em>.</p>\\n\\n<p>Pug is embedded 👇 </p>\\n\\n<article class=\\"media media--type-image media--view-mode-default\\" data-align=\\"center\\"><div class=\\"field field--name-field-media-image field--type-image field--label-visually_hidden\\">\\n    <div class=\\"field__label visually-hidden\\">Image</div>\\n              <div class=\\"field__item\\">  <img loading=\\"lazy\\" src=\\"/sites/default/files/2021-01/image_jpg_pug.jpg\\" width=\\"1920\\" height=\\"1080\\" alt=\\"Pug alt text\\" /></div>\\n          </div>\\n\\n  </article><p>Kitten goes in a separate field 👉</p>\\n",
+          "body": "<p><strong>Article</strong> <em>body</em>.</p>\\n\\n<p>Pug is embedded 👇&nbsp;</p>\\n\\n<article class=\\"media media--type-image media--view-mode-default\\" data-align=\\"center\\">\\n  \\n      \\n  <div class=\\"field field--name-field-media-image field--type-image field--label-visually_hidden\\">\\n    <div class=\\"field__label visually-hidden\\">Image</div>\\n              <div class=\\"field__item\\">  <img loading=\\"lazy\\" src=\\"/sites/default/files/2021-01/image_jpg_pug.jpg\\" width=\\"1920\\" height=\\"1080\\" alt=\\"Pug alt text\\">\\n\\n</div>\\n          </div>\\n\\n  </article>\\n\\n\\n<p>Kitten goes&nbsp;in a separate field 👉</p>\\n",
           "image": {
             "id": "fd3a7238-807a-483d-a703-c9b1b6b4a8e8:en"
           },

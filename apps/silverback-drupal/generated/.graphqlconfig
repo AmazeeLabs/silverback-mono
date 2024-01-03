@@ -6,6 +6,7 @@
       "Gatsby Build": {
         "url": "http://127.0.0.1:8888/silverback-gatsby",
         "headers": {
+          "Content-Type": "application/json",
           "api-key": "aadecf7602d1e19a66dd80d9b86b8fd9"
         },
         "introspect": false
@@ -13,6 +14,7 @@
       "Gatsby Preview": {
         "url": "http://127.0.0.1:8888/silverback-gatsby-preview",
         "headers": {
+          "Content-Type": "application/json",
           "api-key": "cdc2055f30d52e2b1a86f8a37cc6daaf"
         },
         "introspect": false
@@ -20,6 +22,7 @@
       "Extra": {
         "url": "http://127.0.0.1:8888/extra",
         "headers": {
+          "Content-Type": "application/json",
           "api-key": "aadecf7602d1e19a66dd80d9b86b8fd9"
         },
         "introspect": false
