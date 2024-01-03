@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/test-directives@1.1.4...@amazeelabs/test-directives@1.1.5) (2024-01-03)
+
+**Note:** Version bump only for package @amazeelabs/test-directives
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/test-directives@1.1.3...@amazeelabs/test-directives@1.1.4) (2023-12-21)
 
 **Note:** Version bump only for package @amazeelabs/test-directives

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.27](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/mzx@1.4.26...@amazeelabs/mzx@1.4.27) (2024-01-03)
+
+**Note:** Version bump only for package @amazeelabs/mzx
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.4.26](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/mzx@1.4.25...@amazeelabs/mzx@1.4.26) (2023-11-30)
 
 **Note:** Version bump only for package @amazeelabs/mzx
