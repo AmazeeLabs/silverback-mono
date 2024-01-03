@@ -1,0 +1,4 @@
+{
+  "extends": ["@amazeelabs/eslint-config"],
+  "root": true
+}
