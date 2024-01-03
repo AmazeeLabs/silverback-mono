@@ -15,19 +15,19 @@ exports[`gatsby/content/GutenbergPage.gql 1`] = `
           "body": [
             {
               "__typename": "BlockHtmlParagraph",
-              "html": "<p>A paragraph with a <a href=\\"/en/article/with-everything\\" data-type=\\"[EN] article\\" data-id=\\"[numeric]\\">link</a>.</p>\\n"
+              "html": "\\n<p>A paragraph with a <a href=\\"/en/article/with-everything\\" data-type=\\"[EN] article\\" data-id=\\"[numeric]\\">link</a>.</p>\\n"
             },
             {
               "__typename": "BlockHtmlList",
-              "html": "\\n<ul><li>unordered</li><li>list</li></ul>"
+              "html": "\\n<ul><li>unordered</li><li>list</li></ul>\\n"
             },
             {
               "__typename": "BlockHtmlList",
-              "html": "<ol><li>ordered</li><li>list</li></ol>"
+              "html": "\\n<ol><li>ordered</li><li>list</li></ol>\\n"
             },
             {
               "__typename": "BlockHtmlQuote",
-              "html": "<blockquote class=\\"wp-block-quote\\"><p>A quote</p><cite>With a citation.</cite></blockquote>\\n"
+              "html": "\\n<blockquote class=\\"wp-block-quote\\"><p>A quote</p><cite>With a citation.</cite></blockquote>\\n"
             },
             {
               "__typename": "BlockHtmlParagraph",
@@ -86,7 +86,7 @@ exports[`gatsby/content/GutenbergPage.gql 1`] = `
           "body": [
             {
               "__typename": "BlockHtmlParagraph",
-              "html": "<p></p>\\n"
+              "html": "\\n<p></p>\\n"
             }
           ],
           "defaultTranslation": true,
