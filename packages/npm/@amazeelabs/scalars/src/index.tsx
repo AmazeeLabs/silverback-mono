@@ -93,8 +93,14 @@ const isRelative = (url?: Url | LocationType) =>
   url?.startsWith('?') ||
   Boolean(url?.match(/^\/(?!\/)/));
 
-const isDownload = (url?: Url | LocationType) =>
-  isLocation(url) || Boolean(url?.match(/\.[0-9a-z]+$/i));
+export const isDownload = (url?: Url | LocationType) => {
+  const regex = /\.[0-9a-z]+$/i;
+  return url
+    ? isLocation(url)
+      ? Boolean(url.pathname.match(regex))
+      : Boolean(url.match(regex))
+    : false;
+};
 
 const isLocation = (input?: Url | LocationType): input is LocationType =>
   typeof input !== 'string';
