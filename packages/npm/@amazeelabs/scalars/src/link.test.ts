@@ -38,33 +38,27 @@ describe('overrideUrlParameters', () => {
   });
 
   it('works with just a search parameter', () => {
-    expect(overrideUrlParameters('?foo=bar' as Url)).toBe(
-        '?foo=bar',
-    );
+    expect(overrideUrlParameters('?foo=bar' as Url)).toBe('?foo=bar');
   });
 
   it('works with just javascript', () => {
     expect(overrideUrlParameters('javascript:void(0);' as Url)).toBe(
-        'javascript:void(0);',
+      'javascript:void(0);',
     );
   });
 
   it('works with mailto:', () => {
     expect(overrideUrlParameters('mailto:foo@bar.com' as Url)).toBe(
-        'mailto:foo@bar.com',
+      'mailto:foo@bar.com',
     );
   });
 
   it('works with a relative url and hash', () => {
-    expect(overrideUrlParameters('/foo#bar' as Url )).toBe(
-        '/foo#bar',
-    );
+    expect(overrideUrlParameters('/foo#bar' as Url)).toBe('/foo#bar');
   });
 
   it('works with just a hash', () => {
-    expect(overrideUrlParameters('#bar' as Url)).toBe(
-        '#bar',
-    );
+    expect(overrideUrlParameters('#bar' as Url)).toBe('#bar');
   });
 
   it('allows to add a hash', () => {
