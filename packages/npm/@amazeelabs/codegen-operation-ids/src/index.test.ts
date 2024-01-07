@@ -136,17 +136,14 @@ describe('mode: map', () => {
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
         "Home:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
-        loadPage(path: "/") {
-          ...Page
+        loadPage(path: \\"/\\") {
+          title
         }
-      }
-      fragment Page on Page {
-        title
       }",
       }
     `);
   });
-  it('de-duplicates fragments', async () => {
+  it('inlines multiple invocations', async () => {
     const result = await runPlugin([
       {
         location: 'a.gql',
@@ -166,15 +163,12 @@ describe('mode: map', () => {
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
         "Home:c620d8758f07daaf2feb128e0c3528520075759288d46dee708d324a6aa44ca7": "query Home {
-        loadPage(path: "/") {
-          ...Page
+        loadPage(path: \\"/\\") {
+          title
           related {
-            ...Page
+            title
           }
         }
-      }
-      fragment Page on Page {
-        title
       }",
       }
     `);
@@ -197,18 +191,12 @@ describe('mode: map', () => {
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
         "Home:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
-        loadPage(path: "/") {
-          ...Page
+        loadPage(path: \\"/\\") {
+          title
+          related {
+            title
+          }
         }
-      }
-      fragment Page on Page {
-        title
-        related {
-          ...RelatedPage
-        }
-      }
-      fragment RelatedPage on Page {
-        title
       }",
       }
     `);
@@ -236,12 +224,9 @@ describe('mode: map', () => {
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
         "Home:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
-        loadPage(path: "/") {
-          ...Page
+        loadPage(path: \\"/\\") {
+          title
         }
-      }
-      fragment Page on Page {
-        title
       }",
       }
     `);
@@ -275,18 +260,12 @@ describe('mode: map', () => {
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
         "Home:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
-        loadPage(path: "/") {
-          ...Page
+        loadPage(path: \\"/\\") {
+          title
+          related {
+            title
+          }
         }
-      }
-      fragment Page on Page {
-        title
-        related {
-          ...RelatedPage
-        }
-      }
-      fragment RelatedPage on Page {
-        title
       }",
       }
     `);
