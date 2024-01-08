@@ -30,12 +30,12 @@
     "@graphql-codegen/cli": "5.0.0",
     "@graphql-codegen/typescript": "4.0.1",
     "@graphql-codegen/typescript-operations": "4.0.1",
-    "change-case-all": "1.0.15",
+    "change-case-all": "2.1.0",
     "eslint": "8.56.0",
     "graphql": "16.8.1",
     "prettier": "3.1.1",
     "typescript": "5.3.3",
-    "vite": "4.5.1",
-    "vitest": "0.34.6"
+    "vite": "5.0.7",
+    "vitest": "1.0.4"
   }
 }
