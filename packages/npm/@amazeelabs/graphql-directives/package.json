@@ -24,7 +24,7 @@
     "@types/lodash-es": "4.17.12",
     "graphql": "16.8.1",
     "typescript": "5.3.3",
-    "vitest": "0.34.6"
+    "vitest": "1.0.4"
   },
   "keywords": [],
   "author": "AmazeeLabs <development@amazeelabs.com>"
