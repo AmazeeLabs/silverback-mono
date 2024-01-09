@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.13.7...@amazeelabs/gatsby-source-silverback@1.13.8) (2024-01-09)
+
+### Bug Fixes
+
+- fix Gatsby's `translation` field
+  ([35169c7](https://github.com/AmazeeLabs/silverback-mono/commit/35169c7b963859f552006be731f26cdd453b11f4))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.13.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.13.6...@amazeelabs/gatsby-source-silverback@1.13.7) (2024-01-03)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-source-silverback
