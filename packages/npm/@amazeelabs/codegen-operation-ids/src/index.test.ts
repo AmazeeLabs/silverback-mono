@@ -135,8 +135,8 @@ describe('mode: map', () => {
     ]);
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
-        "Home:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
-        loadPage(path: \\"/\\") {
+        "Home:37b18153e5d5ac538e6f4b371203b73e0b273d9ea2cd26c8b8eeed655c229db6": "query Home {
+        loadPage(path: "/") {
           title
         }
       }",
@@ -162,8 +162,8 @@ describe('mode: map', () => {
     ]);
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
-        "Home:c620d8758f07daaf2feb128e0c3528520075759288d46dee708d324a6aa44ca7": "query Home {
-        loadPage(path: \\"/\\") {
+        "Home:126fe24c4e0358d329a4f1699ece318fbe6c2a6c7f771f240402ccac2dcde676": "query Home {
+        loadPage(path: "/") {
           title
           related {
             title
@@ -190,8 +190,8 @@ describe('mode: map', () => {
     ]);
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
-        "Home:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
-        loadPage(path: \\"/\\") {
+        "Home:126fe24c4e0358d329a4f1699ece318fbe6c2a6c7f771f240402ccac2dcde676": "query Home {
+        loadPage(path: "/") {
           title
           related {
             title
@@ -223,8 +223,8 @@ describe('mode: map', () => {
     ]);
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
-        "Home:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
-        loadPage(path: \\"/\\") {
+        "Home:37b18153e5d5ac538e6f4b371203b73e0b273d9ea2cd26c8b8eeed655c229db6": "query Home {
+        loadPage(path: "/") {
           title
         }
       }",
@@ -259,8 +259,8 @@ describe('mode: map', () => {
     ]);
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
-        "Home:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
-        loadPage(path: \\"/\\") {
+        "Home:126fe24c4e0358d329a4f1699ece318fbe6c2a6c7f771f240402ccac2dcde676": "query Home {
+        loadPage(path: "/") {
           title
           related {
             title
@@ -330,7 +330,7 @@ describe('mode: ids', () => {
 
       export type OperationVariables<TQueryID extends OperationId<any, any>> =
         TQueryID['___query_variables'];
-      export const HomeQuery = "Home:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d" as OperationId<HomeQuery,HomeQueryVariables | undefined>;"
+      export const HomeQuery = "Home:37b18153e5d5ac538e6f4b371203b73e0b273d9ea2cd26c8b8eeed655c229db6" as OperationId<HomeQuery,HomeQueryVariables | undefined>;"
     `);
   });
 
