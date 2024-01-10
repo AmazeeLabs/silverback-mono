@@ -10,6 +10,8 @@ import {
   visit,
 } from 'graphql';
 
+import { inlineFragments } from './inline';
+
 class OperationIdVisitor extends ClientSideBaseVisitor {
   _extractFragments() {
     return [];
@@ -41,25 +43,6 @@ function queryId(node: OperationDefinitionNode) {
     .digest('hex')}`;
 }
 
-function listUsedFragments(
-  node: OperationDefinitionNode | FragmentDefinitionNode,
-  fragmentMap: Map<string, FragmentDefinitionNode>,
-) {
-  const fragments = new Set<string>();
-  visit(node, {
-    FragmentSpread(spread) {
-      fragments.add(spread.name.value);
-      const fragmentNode = fragmentMap.get(spread.name.value);
-      if (fragmentNode) {
-        listUsedFragments(fragmentNode, fragmentMap).forEach((nested) => {
-          fragments.add(nested);
-        });
-      }
-    },
-  });
-  return fragments;
-}
-
 export const plugin: PluginFunction<any, string> = async (
   schema,
   documents,
@@ -87,13 +70,7 @@ export const plugin: PluginFunction<any, string> = async (
   const idMap = new Map<string, string>();
   visit(allAst, {
     OperationDefinition(node) {
-      const query = [print(node)];
-      listUsedFragments(node, fragmentMap).forEach((fragment) => {
-        const fragmentNode = fragmentMap.get(fragment);
-        if (fragmentNode) {
-          query.push(print(fragmentNode));
-        }
-      });
+      const query = [print(inlineFragments(node, fragmentMap))];
       const id = queryId(node);
       operationMap.set(id, query.join('\n'));
       if (node.name) {
