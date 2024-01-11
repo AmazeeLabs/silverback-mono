@@ -107,7 +107,7 @@ describe('Image', () => {
         renderedClassName={'rendered-class'}
       />,
     );
-    expect(output).toMatchInlineSnapshot('"<div style=\\"position:relative;padding-bottom:75%\\"><picture style=\\"position:absolute;top:0;left:0;bottom:0;right:0\\"><img loading=\\"lazy\\" alt=\\"Alt text\\" width=\\"400\\" height=\\"300\\" src=\\"/test.jpg\\" class=\\"always-class rendered-class\\"/></picture></div>"');
+    expect(output).toMatchInlineSnapshot(`"<div style="position:relative;padding-bottom:75%"><picture style="position:absolute;top:0;left:0;bottom:0;right:0"><img loading="lazy" alt="Alt text" width="400" height="300" src="/test.jpg" class="always-class rendered-class"/></picture></div>"`);
   });
 
   it('adds a ready class when the image is loaded', () => {
