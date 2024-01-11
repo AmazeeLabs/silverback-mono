@@ -18,7 +18,7 @@
     "@amazeelabs/prettier-config": "1.1.3",
     "@amazeelabs/publisher-shared": "workspace:*",
     "@babel/core": "7.23.7",
-    "@headlessui/react": "1.7.17",
+    "@headlessui/react": "1.7.18",
     "@react-rxjs/core": "0.10.7",
     "@storybook/addon-actions": "7.6.7",
     "@storybook/addon-essentials": "7.6.7",
@@ -28,7 +28,7 @@
     "@storybook/manager-webpack5": "6.5.16",
     "@storybook/react": "7.6.7",
     "@storybook/testing-library": "0.2.2",
-    "@types/react": "18.2.46",
+    "@types/react": "18.2.47",
     "@types/react-dom": "18.2.18",
     "@types/react-lazylog": "4.5.4",
     "@vitejs/plugin-react": "4.2.1",
@@ -36,7 +36,7 @@
     "babel-loader": "9.1.3",
     "clsx": "2.1.0",
     "eslint": "8.56.0",
-    "postcss": "8.4.32",
+    "postcss": "8.4.33",
     "prettier": "3.1.1",
     "prop-types": "15.8.1",
     "react": "18.2.0",
@@ -44,8 +44,8 @@
     "react-lazylog": "4.5.3",
     "react-rxjs": "3.0.0-alpha.6",
     "rxjs": "7.8.1",
-    "tailwindcss": "3.4.0",
+    "tailwindcss": "3.4.1",
     "typescript": "5.3.3",
-    "vite": "5.0.7"
+    "vite": "5.0.11"
   }
 }
