@@ -1,20 +1,20 @@
 (function ($, Drupal, drupalSettings) {
-  "use strict";
+  'use strict';
 
   function removeIframeFromUrl(url) {
     // This is a simple implementation which does not consider hash and edge
     // cases. But it should be enough.
     return url
-      .replace(/\?iframe=true$/, "")
-      .replace(/\?iframe=true&/, "?")
-      .replace(/&iframe=true$/, "")
-      .replace(/&iframe=true&/, "&");
+      .replace(/\?iframe=true$/, '')
+      .replace(/\?iframe=true&/, '?')
+      .replace(/&iframe=true$/, '')
+      .replace(/&iframe=true&/, '&');
   }
 
   function prependBaseUrl(url, baseUrl) {
     // Again, a very simple implementation which only considers relative paths
     // starting from a slash.
-    if (url.indexOf("/") === 0 && url.indexOf("//") !== 0) {
+    if (url.indexOf('/') === 0 && url.indexOf('//') !== 0) {
       return baseUrl + url;
     }
   }
@@ -36,17 +36,19 @@
 
   // Pass the iframe command to the parent iframe.
   if (drupalSettings.iframeCommand) {
-    var iframeCommands = !Array.isArray(drupalSettings.iframeCommand) ? new Array(drupalSettings.iframeCommand) : drupalSettings.iframeCommand;
+    var iframeCommands = !Array.isArray(drupalSettings.iframeCommand)
+      ? new Array(drupalSettings.iframeCommand)
+      : drupalSettings.iframeCommand;
     if (iframeCommands.length > 0) {
       waitForParentIframe(function (parentIFrame) {
-        iframeCommands.forEach(function(iframeCommand) {
+        iframeCommands.forEach(function (iframeCommand) {
           var command = iframeCommand;
-          if (command.action === "redirect") {
+          if (command.action === 'redirect') {
             command = $.extend(true, {}, command, {
               path: removeIframeFromUrl(command.path),
             });
           }
-          parentIFrame.sendMessage(command, "*");
+          parentIFrame.sendMessage(command, '*');
         });
       });
       return;
@@ -57,23 +59,23 @@
   Drupal.behaviors.silverbackIframeRedirect = {
     attach: function (context) {
       // Check if there is a link with class `.js-iframe-parent-message`.
-      var $messageElements = $(".js-iframe-parent-message", context);
+      var $messageElements = $('.js-iframe-parent-message', context);
 
       // Check if there is a link with class `.js-iframe-parent-redirect` in
       // the current content, and trigger a parent redirect to that path.
-      var $redirectLinkElement = $(".js-iframe-parent-redirect", context);
+      var $redirectLinkElement = $('.js-iframe-parent-redirect', context);
       if ($redirectLinkElement.length > 0) {
         var redirectLink = $redirectLinkElement.get(0).pathname;
         waitForParentIframe(function (parentIFrame) {
           parentIFrame.sendMessage(
             {
-              action: "redirect",
+              action: 'redirect',
               path: redirectLink,
               messages: $messageElements.toArray().map(function (el) {
                 return el.innerText;
               }),
             },
-            "*"
+            '*',
           );
         });
       }
@@ -82,24 +84,24 @@
 
   // Ask parent for the base URL to adjust links.
   waitForParentIframe(function (parentIFrame) {
-    parentIFrame.sendMessage({ action: "getBaseUrl" }, "*");
+    parentIFrame.sendMessage({ action: 'getBaseUrl' }, '*');
   });
 
   // Update links using the given base URL.
-  window.addEventListener("message", (event) => {
+  window.addEventListener('message', (event) => {
     // The message looks like this:
     // [iFrameSizer]message:"silverback-iframe-base-url:http://localhost:8000"
     var prefix = '[iFrameSizer]message:"silverback-iframe-base-url:';
-    if (typeof event.data !== "string" || event.data.indexOf(prefix) !== 0) {
+    if (typeof event.data !== 'string' || event.data.indexOf(prefix) !== 0) {
       return;
     }
     var baseUrl = event.data.substr(
       prefix.length,
-      event.data.length - prefix.length - 1
+      event.data.length - prefix.length - 1,
     );
-    $("a:visible").each(function () {
+    $('a:visible').each(function () {
       var $this = $(this);
-      var href = $this.attr("href");
+      var href = $this.attr('href');
       if (!href) {
         return true;
       }
@@ -107,11 +109,11 @@
       // Exclude some links.
       if (
         // Drupal a11y links.
-        $this.hasClass("visually-hidden") ||
+        $this.hasClass('visually-hidden') ||
         // Commerce checkout "Edit" links.
-        $this.closest(".checkout-pane-review").length ||
+        $this.closest('.checkout-pane-review').length ||
         // Multistep form navigation links.
-        $this.closest(".form-actions").length
+        $this.closest('.form-actions').length
       ) {
         return true;
       }
@@ -121,14 +123,14 @@
       href = removeIframeFromUrl(href);
       // 2. Use parent frame base URL for relative links.
       href = prependBaseUrl(href, baseUrl);
-      $this.attr("href", href);
+      $this.attr('href', href);
       // 3. Open links in parent frame.
-      if ($this.attr("target") !== "_blank") {
-        $this.attr("target", "_parent");
+      if ($this.attr('target') !== '_blank') {
+        $this.attr('target', '_parent');
       }
       return true;
     });
     // This class is used by integration tests.
-    $("body").addClass("silverback-iframe-links-processed");
+    $('body').addClass('silverback-iframe-links-processed');
   });
 })(jQuery, Drupal, drupalSettings);

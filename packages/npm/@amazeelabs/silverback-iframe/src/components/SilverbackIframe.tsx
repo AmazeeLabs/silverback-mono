@@ -4,13 +4,13 @@ import React, { useRef, useState } from 'react';
 import {
   IframeCommandOther,
   IframeCommandScroll,
-  isIframeCommand
+  isIframeCommand,
 } from '../types/iframe-command';
 
 type OwnProps = {
   buildMessages: (htmlMessages: Array<string>) => JSX.Element | null;
   redirect: (url: string, htmlMessages?: Array<string>) => void;
-  scroll?: (to: string, iframeWrapper: HTMLElement) => void
+  scroll?: (to: string, iframeWrapper: HTMLElement) => void;
 };
 
 type Props = OwnProps & IframeResizer.IframeResizerProps;
@@ -24,7 +24,9 @@ export const SilverbackIframe = ({
   const silverbackIframeReference = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<IFrameObject>(null);
   const [iframeSeed, setIframeSeed] = useState<string | null>(null);
-  const [currentCommand, setCurrentCommand] = useState<IframeCommandOther | IframeCommandScroll>();
+  const [currentCommand, setCurrentCommand] = useState<
+    IframeCommandOther | IframeCommandScroll
+  >();
 
   return (
     <div className="silverback-iframe" ref={silverbackIframeReference}>
@@ -65,12 +67,19 @@ export const SilverbackIframe = ({
             } else {
               setCurrentCommand(message);
             }
-            if (message.action === 'scroll' && silverbackIframeReference && silverbackIframeReference.current) {
+            if (
+              message.action === 'scroll' &&
+              silverbackIframeReference &&
+              silverbackIframeReference.current
+            ) {
               // If the component received a scroll handler, then just call it.
               // Otherwise we fallback to a very simple scroll implementation.
               scroll
                 ? scroll(message.scroll, silverbackIframeReference.current)
-                : scrollIframe(message.scroll, silverbackIframeReference.current);
+                : scrollIframe(
+                    message.scroll,
+                    silverbackIframeReference.current,
+                  );
             }
           }}
         />
@@ -84,9 +93,9 @@ const scrollIframe = (to: string, iframeWrapper: HTMLElement) => {
   switch (to) {
     case 'top':
     default:
-      iframeWrapper.scrollIntoView({behavior: "smooth"});
+      iframeWrapper.scrollIntoView({ behavior: 'smooth' });
   }
-}
+};
 
 const updateUrlParameters = (
   uri: string,
