@@ -17,7 +17,7 @@ export type IframeCommandOther = {
 export type IframeCommandScroll = {
   action: 'scroll';
   scroll: string;
-}
+};
 
 export type IframeCommand =
   | IframeCommandGetBaseUrl
