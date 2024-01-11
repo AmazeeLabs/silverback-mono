@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/strangler-netlify",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "description": "Netlify function for facading legacy systems.",
   "type": "module",
   "main": "./build/index.js",
