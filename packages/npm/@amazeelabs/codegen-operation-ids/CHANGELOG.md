@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.32](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/codegen-operation-ids@0.1.31...@amazeelabs/codegen-operation-ids@0.1.32) (2024-01-11)
+
+### Bug Fixes
+
+- **SLB-202:** clone fragments before inlining
+  ([32ce924](https://github.com/AmazeeLabs/silverback-mono/commit/32ce9247e0c91fb1a80cf43e60a536b822069e7b))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [0.1.31](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/codegen-operation-ids@0.1.30...@amazeelabs/codegen-operation-ids@0.1.31) (2024-01-11)
 
 **Note:** Version bump only for package @amazeelabs/codegen-operation-ids
