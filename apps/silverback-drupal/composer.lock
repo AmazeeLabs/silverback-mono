@@ -784,16 +784,16 @@
         },
         {
             "name": "cloudinary/transformation-builder-sdk",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:cloudinary/php-transformation-builder-sdk.git",
-                "reference": "5cb90466be7f2ff35b02977295750504f8085b46"
+                "reference": "a88d3554ddffec3ecd2086bcbd1484757f6b78d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cloudinary/php-transformation-builder-sdk/zipball/5cb90466be7f2ff35b02977295750504f8085b46",
-                "reference": "5cb90466be7f2ff35b02977295750504f8085b46",
+                "url": "https://api.github.com/repos/cloudinary/php-transformation-builder-sdk/zipball/a88d3554ddffec3ecd2086bcbd1484757f6b78d8",
+                "reference": "a88d3554ddffec3ecd2086bcbd1484757f6b78d8",
                 "shasum": ""
             },
             "require": {
@@ -839,7 +839,7 @@
                 "email": "info@cloudinary.com",
                 "issues": "https://github.com/cloudinary/php-transformation-builder-sdk/issues"
             },
-            "time": "2023-10-04T13:11:09+00:00"
+            "time": "2024-01-07T13:57:38+00:00"
         },
         {
             "name": "colinodell/psr-testlogger",
