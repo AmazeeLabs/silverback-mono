@@ -8,8 +8,9 @@ import {
 
 export function inlineFragments<
   TNode extends ExecutableDefinitionNode | FieldNode,
->(target: TNode, fragments: Map<string, FragmentDefinitionNode>): TNode {
+>(node: TNode, fragments: Map<string, FragmentDefinitionNode>): TNode {
   const selections = [] as Array<SelectionNode>;
+  const target = structuredClone(node);
   target.selectionSet?.selections.forEach((sel) => {
     if (sel.kind === Kind.FRAGMENT_SPREAD) {
       const fragment = fragments.get(sel.name.value);
