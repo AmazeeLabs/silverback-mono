@@ -33,7 +33,7 @@ describe('mode: map', () => {
     ]);
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
-        "Home:37b18153e5d5ac538e6f4b371203b73e0b273d9ea2cd26c8b8eeed655c229db6": "query Home {
+        "HomeQuery:37b18153e5d5ac538e6f4b371203b73e0b273d9ea2cd26c8b8eeed655c229db6": "query Home {
         loadPage(path: "/") {
           title
         }
@@ -55,12 +55,12 @@ describe('mode: map', () => {
     ]);
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
-        "Home:37b18153e5d5ac538e6f4b371203b73e0b273d9ea2cd26c8b8eeed655c229db6": "query Home {
+        "HomeQuery:37b18153e5d5ac538e6f4b371203b73e0b273d9ea2cd26c8b8eeed655c229db6": "query Home {
         loadPage(path: "/") {
           title
         }
       }",
-        "Sitemap:58d3e46159d03193c571a8d6d2101a93456902d63a9b9d8c925f7d4cb8c69b0a": "query Sitemap {
+        "SitemapQuery:58d3e46159d03193c571a8d6d2101a93456902d63a9b9d8c925f7d4cb8c69b0a": "query Sitemap {
         loadPage(path: "/sitemap") {
           title
         }
@@ -88,12 +88,12 @@ describe('mode: map', () => {
     ]);
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
-        "Home:37b18153e5d5ac538e6f4b371203b73e0b273d9ea2cd26c8b8eeed655c229db6": "query Home {
+        "HomeQuery:37b18153e5d5ac538e6f4b371203b73e0b273d9ea2cd26c8b8eeed655c229db6": "query Home {
         loadPage(path: "/") {
           title
         }
       }",
-        "Sitemap:58d3e46159d03193c571a8d6d2101a93456902d63a9b9d8c925f7d4cb8c69b0a": "query Sitemap {
+        "SitemapQuery:58d3e46159d03193c571a8d6d2101a93456902d63a9b9d8c925f7d4cb8c69b0a": "query Sitemap {
         loadPage(path: "/sitemap") {
           title
         }
@@ -114,7 +114,7 @@ describe('mode: map', () => {
     ]);
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
-        "Home:37b18153e5d5ac538e6f4b371203b73e0b273d9ea2cd26c8b8eeed655c229db6": "query Home {
+        "HomeQuery:37b18153e5d5ac538e6f4b371203b73e0b273d9ea2cd26c8b8eeed655c229db6": "query Home {
         loadPage(path: "/") {
           title
         }
@@ -135,7 +135,7 @@ describe('mode: map', () => {
     ]);
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
-        "Home:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
+        "HomeQuery:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
         loadPage(path: "/") {
           title
         }
@@ -164,7 +164,7 @@ describe('mode: map', () => {
     ]);
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
-        "Home:e8b5953fe0f339244ebb14102eddc5d0e23259606de6f697574f69bfe468ac53": "query Home {
+        "HomeQuery:e8b5953fe0f339244ebb14102eddc5d0e23259606de6f697574f69bfe468ac53": "query Home {
         loadPage(path: "/") {
           title
           related {
@@ -199,7 +199,7 @@ describe('mode: map', () => {
     ]);
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
-        "Home:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
+        "HomeQuery:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
         loadPage(path: "/") {
           title
           related {
@@ -232,7 +232,7 @@ describe('mode: map', () => {
     ]);
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
-        "Home:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
+        "HomeQuery:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
         loadPage(path: "/") {
           title
         }
@@ -268,7 +268,7 @@ describe('mode: map', () => {
     ]);
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
-        "Home:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
+        "HomeQuery:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
         loadPage(path: "/") {
           title
           related {
@@ -339,7 +339,7 @@ describe('mode: ids', () => {
 
       export type OperationVariables<TQueryID extends OperationId<any, any>> =
         TQueryID['___query_variables'];
-      export const HomeQuery = "Home:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d" as OperationId<HomeQuery,HomeQueryVariables | undefined>;"
+      export const HomeQuery = "HomeQuery:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d" as OperationId<HomeQuery,HomeQueryVariables | undefined>;"
     `);
   });
 
@@ -374,7 +374,7 @@ describe('mode: ids', () => {
 
       export type OperationVariables<TQueryID extends OperationId<any, any>> =
         TQueryID['___query_variables'];
-      export const LoginMutation = "Login:10f1c5ac787ce93e9fe860ec9bb4a552967778d3873fbec2ce15fad2164da315" as OperationId<LoginMutation,LoginMutationVariables>;"
+      export const LoginMutation = "LoginMutation:10f1c5ac787ce93e9fe860ec9bb4a552967778d3873fbec2ce15fad2164da315" as OperationId<LoginMutation,LoginMutationVariables>;"
     `);
   });
 });
