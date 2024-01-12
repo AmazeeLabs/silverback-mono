@@ -22,8 +22,8 @@ const sets = [
     result: false,
   },
   {
-    case: 'getBaseUrl',
-    data: { action: 'getBaseUrl' },
+    case: 'init',
+    data: { action: 'init' },
     result: true,
   },
   {

@@ -45,6 +45,22 @@ const Webform: React.FC<
           marginLeft: '-0.25em',
           marginRight: '-0.25em',
         }}
+        cssStylesToInject={
+          location.search.includes('test-inject-css=true')
+            ? `
+                /*
+                  comment with special chars
+                  #$@;\`'()* 
+                */
+                * {
+                  color: green;
+                }
+                .form-item-optional-text-field {
+                  margin-bottom: 200px;
+                }
+              `
+            : undefined
+        }
       />
     </StandardLayout>
   );
