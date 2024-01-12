@@ -36,7 +36,9 @@ describe('inlineFragments', () => {
     const [A] = doc.definitions.filter(isFragmentDefinitionNode);
     const inlined = inlineFragments(query, new Map(Object.entries({ A })));
     expect(print(inlined)).toEqual(`{
-  myprop
+  ... on Query {
+    myprop
+  }
 }`);
   });
 
@@ -56,7 +58,9 @@ describe('inlineFragments', () => {
     const inlined = inlineFragments(query, new Map(Object.entries({ A })));
     expect(print(inlined)).toEqual(`{
   a {
-    myprop
+    ... on A {
+      myprop
+    }
   }
 }`);
   });
@@ -83,9 +87,13 @@ fragment B on B {
     expect(print(inlined)).toEqual(`{
   a {
     propA
-    propA
-    propB {
-      propC
+    ... on A {
+      propA
+      propB {
+        ... on B {
+          propC
+        }
+      }
     }
   }
 }`);
