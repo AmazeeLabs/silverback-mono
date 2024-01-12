@@ -9,17 +9,26 @@ import {
 export function inlineFragments<
   TNode extends ExecutableDefinitionNode | FieldNode,
 >(node: TNode, fragments: Map<string, FragmentDefinitionNode>): TNode {
-  const selections = [] as Array<SelectionNode>;
+  const selections: Array<SelectionNode> = [];
   const target = structuredClone(node);
   target.selectionSet?.selections.forEach((sel) => {
     if (sel.kind === Kind.FRAGMENT_SPREAD) {
       const fragment = fragments.get(sel.name.value);
       if (fragment) {
+        const fragmentSelections: Array<SelectionNode> = [];
         inlineFragments(fragment, fragments).selectionSet.selections.forEach(
           (sel) => {
-            selections.push(sel);
+            fragmentSelections.push(sel);
           },
         );
+        selections.push({
+          kind: Kind.INLINE_FRAGMENT,
+          typeCondition: fragment.typeCondition,
+          selectionSet: {
+            kind: Kind.SELECTION_SET,
+            selections: fragmentSelections,
+          },
+        });
       }
     } else if (sel.kind === Kind.FIELD && sel.selectionSet) {
       selections.push(inlineFragments(sel, fragments));

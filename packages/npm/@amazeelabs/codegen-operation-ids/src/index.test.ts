@@ -137,7 +137,9 @@ describe('mode: map', () => {
       {
         "HomeQuery:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
         loadPage(path: "/") {
-          title
+          ... on Page {
+            title
+          }
         }
       }",
       }
@@ -166,16 +168,22 @@ describe('mode: map', () => {
       {
         "HomeQuery:e8b5953fe0f339244ebb14102eddc5d0e23259606de6f697574f69bfe468ac53": "query Home {
         loadPage(path: "/") {
-          title
-          related {
-            path
-          }
-          related {
+          ... on Page {
             title
             related {
               path
             }
-            path
+          }
+          related {
+            ... on Page {
+              title
+              related {
+                path
+              }
+            }
+            ... on Page {
+              path
+            }
           }
         }
       }",
@@ -201,9 +209,13 @@ describe('mode: map', () => {
       {
         "HomeQuery:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
         loadPage(path: "/") {
-          title
-          related {
+          ... on Page {
             title
+            related {
+              ... on Page {
+                title
+              }
+            }
           }
         }
       }",
@@ -234,7 +246,9 @@ describe('mode: map', () => {
       {
         "HomeQuery:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
         loadPage(path: "/") {
-          title
+          ... on Page {
+            title
+          }
         }
       }",
       }
@@ -270,9 +284,13 @@ describe('mode: map', () => {
       {
         "HomeQuery:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
         loadPage(path: "/") {
-          title
-          related {
+          ... on Page {
             title
+            related {
+              ... on Page {
+                title
+              }
+            }
           }
         }
       }",
