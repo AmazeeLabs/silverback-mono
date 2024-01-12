@@ -11,6 +11,11 @@ type OwnProps = {
   buildMessages: (htmlMessages: Array<string>) => JSX.Element | null;
   redirect: (url: string, htmlMessages?: Array<string>) => void;
   scroll?: (to: string, iframeWrapper: HTMLElement) => void;
+  /**
+   * Not recommended for using in production.
+   * Because injecting CSS takes time and produces flashing.
+   */
+  cssStylesToInject?: string;
 };
 
 type Props = OwnProps & IframeResizer.IframeResizerProps;
@@ -19,6 +24,7 @@ export const SilverbackIframe = ({
   buildMessages,
   redirect,
   scroll,
+  cssStylesToInject,
   ...iframeResizerProps
 }: Props) => {
   const silverbackIframeReference = useRef<HTMLDivElement>(null);
@@ -50,9 +56,15 @@ export const SilverbackIframe = ({
             if (!isIframeCommand(message)) {
               return;
             }
-            if (message.action === 'getBaseUrl') {
+            if (message.action === 'init') {
               iframeRef.current?.sendMessage(
-                `silverback-iframe-base-url:${window.location.origin}`,
+                {
+                  silverbackIframe: {
+                    type: 'init',
+                    baseUrl: window.location.origin,
+                    injectStyles: cssStylesToInject,
+                  },
+                },
                 '*',
               );
               return;

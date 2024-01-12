@@ -82,23 +82,11 @@
     },
   };
 
-  // Ask parent for the base URL to adjust links.
   waitForParentIframe(function (parentIFrame) {
-    parentIFrame.sendMessage({ action: 'getBaseUrl' }, '*');
+    parentIFrame.sendMessage({ action: 'init' }, '*');
   });
 
-  // Update links using the given base URL.
-  window.addEventListener('message', (event) => {
-    // The message looks like this:
-    // [iFrameSizer]message:"silverback-iframe-base-url:http://localhost:8000"
-    var prefix = '[iFrameSizer]message:"silverback-iframe-base-url:';
-    if (typeof event.data !== 'string' || event.data.indexOf(prefix) !== 0) {
-      return;
-    }
-    var baseUrl = event.data.substr(
-      prefix.length,
-      event.data.length - prefix.length - 1,
-    );
+  var updateBaseUrlInLinks = (baseUrl) => {
     $('a:visible').each(function () {
       var $this = $(this);
       var href = $this.attr('href');
@@ -132,5 +120,58 @@
     });
     // This class is used by integration tests.
     $('body').addClass('silverback-iframe-links-processed');
+  };
+
+  var injectCssStyles = (styles) => {
+    var id = 'silverback-iframe-injected-styles';
+    var el = document.getElementById(id);
+    if (!el) {
+      el = document.createElement('style');
+      el.id = id;
+      document.head.appendChild(el);
+    }
+    el.textContent = styles;
+  };
+
+  window.addEventListener('message', (event) => {
+    var parsed = parseMessage(event.data);
+    if (!parsed) {
+      return;
+    }
+    if (parsed.type === 'init') {
+      updateBaseUrlInLinks(parsed.baseUrl);
+      if (parsed.injectStyles) {
+        injectCssStyles(parsed.injectStyles);
+      }
+    }
   });
+
+  /**
+   *
+   * @param {string} message
+   * @returns {{type: 'init', baseUrl: string, injectStyles: string | undefined} | null}
+   */
+  function parseMessage(message) {
+    if (typeof message !== 'string') {
+      return null;
+    }
+    var prefix = '[iFrameSizer]message:';
+    if (!message.startsWith(prefix)) {
+      return null;
+    }
+    var parsed = null;
+    try {
+      parsed = JSON.parse(message.substring(prefix.length));
+    } catch (e) {
+      return null;
+    }
+    if (
+      typeof parsed !== 'object' ||
+      typeof parsed.silverbackIframe !== 'object' ||
+      parsed.silverbackIframe.type !== 'init'
+    ) {
+      return null;
+    }
+    return parsed.silverbackIframe;
+  }
 })(jQuery, Drupal, drupalSettings);

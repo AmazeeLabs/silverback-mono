@@ -1,5 +1,5 @@
-export type IframeCommandGetBaseUrl = {
-  action: 'getBaseUrl';
+export type IframeCommandInit = {
+  action: 'init';
 };
 
 export type IframeCommandRedirect = {
@@ -20,14 +20,17 @@ export type IframeCommandScroll = {
 };
 
 export type IframeCommand =
-  | IframeCommandGetBaseUrl
+  | IframeCommandInit
   | IframeCommandRedirect
   | IframeCommandOther
   | IframeCommandScroll;
 
 export const isIframeCommand = (variable: any): variable is IframeCommand => {
   if (typeof variable === 'object' && typeof variable.action === 'string') {
-    if (['getBaseUrl', 'scroll'].includes(variable.action)) {
+    if (variable.action === 'init') {
+      return true;
+    }
+    if (variable.action === 'scroll' && typeof variable.scroll === 'string') {
       return true;
     }
     if (

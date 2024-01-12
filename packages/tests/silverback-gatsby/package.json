@@ -23,6 +23,8 @@
     "test:integration": "playwright install chromium && pnpm test:readonly && pnpm test:mutating",
     "test:readonly": "playwright test --pass-with-no-tests",
     "test:mutating": "playwright test --pass-with-no-tests -c playwright.config.mutating.ts",
+    "headed:readonly": "pnpm test:readonly --headed",
+    "headed:mutating": "pnpm test:mutating --headed",
     "dev:readonly": "DEBUG=pw:api pnpm test:readonly --ui",
     "dev:mutating": "DEBUG=pw:api pnpm test:mutating --ui"
   }
