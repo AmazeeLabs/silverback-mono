@@ -37,10 +37,9 @@ class OperationIdVisitor extends ClientSideBaseVisitor {
 }
 
 function queryId(node: OperationDefinitionNode) {
-  return `${node.name?.value ?? 'anonymous'}:${crypto
-    .createHash('sha256')
-    .update(print(node))
-    .digest('hex')}`;
+  return `${node.name?.value ?? 'anonymous'}${pascalCase(
+    node.operation,
+  )}:${crypto.createHash('sha256').update(print(node)).digest('hex')}`;
 }
 
 export const plugin: PluginFunction<any, string> = async (
