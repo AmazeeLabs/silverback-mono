@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gatsby-tests@1.1.198...@-amazeelabs/silverback-gatsby-tests@1.2.0) (2024-01-15)
+
+### Features
+
+- introduce cssStylesToInject prop for SilverbackIframe
+  ([2a4f2bb](https://github.com/AmazeeLabs/silverback-mono/commit/2a4f2bb8bc200071c17e802ecaf50ca678d5e03a))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.198](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gatsby-tests@1.1.197...@-amazeelabs/silverback-gatsby-tests@1.1.198) (2024-01-12)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-gatsby-tests
