@@ -1,0 +1,1 @@
+export { graphqlQuery } from './graphql';

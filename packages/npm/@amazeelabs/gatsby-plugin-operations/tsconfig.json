@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "CommonJS",
+    "resolveJsonModule": true,
+    "declaration": true,
+    "declarationDir": "build",
+    "lib": ["ESNext", "DOM"],
+    "outDir": "build"
+  },
+  "include": ["src"]
+}
