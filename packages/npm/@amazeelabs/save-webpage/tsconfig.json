@@ -5,6 +5,7 @@
     "module": "esnext",
     "strict": true,
     "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
     "outDir": "build"
   },
   "include": ["src"],

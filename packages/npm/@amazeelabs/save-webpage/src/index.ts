@@ -1,4 +1,4 @@
-import * as scrape from 'website-scraper';
+import scrape from 'website-scraper';
 
 export async function saveWebpage(args: {
   /**
