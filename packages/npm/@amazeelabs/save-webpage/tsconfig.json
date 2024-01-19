@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "skipLibCheck": true,
+    "outDir": "build"
+  },
+  "include": ["src"],
+  "$schema": "https://json.schemastore.org/tsconfig"
+}
