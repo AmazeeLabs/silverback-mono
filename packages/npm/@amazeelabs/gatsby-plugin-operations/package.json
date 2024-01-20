@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/gatsby-plugin-operations",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "",
   "type": "commonjs",
   "main": "build/index.js",
@@ -27,8 +27,8 @@
     "vitest": "^1.1.0"
   },
   "dependencies": {
+    "@babel/core": "^7.23.6",
     "@babel/preset-react": "^7.23.3",
-    "@babel/preset-typescript": "^7.23.3",
-    "@babel/core": "^7.23.6"
+    "@babel/preset-typescript": "^7.23.3"
   }
 }
