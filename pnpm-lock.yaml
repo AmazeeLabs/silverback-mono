@@ -761,13 +761,13 @@ importers:
       '@babel/core':
         specifier: ^7.23.6
         version: 7.23.7
-    devDependencies:
       '@babel/preset-react':
         specifier: ^7.23.3
         version: 7.23.3(@babel/core@7.23.7)
       '@babel/preset-typescript':
         specifier: ^7.23.3
         version: 7.23.3(@babel/core@7.23.7)
+    devDependencies:
       '@babel/types':
         specifier: ^7.23.6
         version: 7.23.6
@@ -26852,7 +26852,7 @@ packages:
       array-differ: 3.0.0
       array-union: 2.1.0
       arrify: 2.0.1
-      minimatch: 3.0.5
+      minimatch: 3.1.2
     dev: true
 
   /multiparty@4.2.3:
