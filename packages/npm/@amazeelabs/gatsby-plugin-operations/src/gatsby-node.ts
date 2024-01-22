@@ -3,6 +3,8 @@ import type { GatsbyNode } from 'gatsby';
 
 import { initialize } from './graphql.js';
 import babelPlugin from './plugin.js';
+import presetReact from '@babel/preset-react';
+import presetTypescript from '@babel/preset-react';
 
 export const onCreateBabelConfig: GatsbyNode['onCreateBabelConfig'] = (
   { actions },
@@ -22,8 +24,8 @@ export const preprocessSource: GatsbyNode['preprocessSource'] = (
   const result = transformSync(contents, {
     plugins: [[babelPlugin, options]],
     presets: [
-      '@babel/preset-react',
-      ['@babel/preset-typescript', { isTSX: true, allExtensions: true }],
+      presetReact,
+      [presetTypescript, { isTSX: true, allExtensions: true }],
     ],
   });
   return result?.code ? result.code : contents;
