@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-plugin-operations@1.1.2...@amazeelabs/gatsby-plugin-operations@1.1.3) (2024-01-22)
+
+### Bug Fixes
+
+- **SLB-202:** copy & paste import error 🤦
+  ([64b815c](https://github.com/AmazeeLabs/silverback-mono/commit/64b815c0b2008b28608bf549c4775c19b222ec65))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-plugin-operations@1.1.1...@amazeelabs/gatsby-plugin-operations@1.1.2) (2024-01-22)
 
 ### Bug Fixes
