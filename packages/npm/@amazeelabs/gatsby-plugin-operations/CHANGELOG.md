@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-plugin-operations@1.1.1...@amazeelabs/gatsby-plugin-operations@1.1.2) (2024-01-22)
+
+### Bug Fixes
+
+- **SLB-202:** resolve babel presets required by operations plugin
+  ([aafa5e6](https://github.com/AmazeeLabs/silverback-mono/commit/aafa5e664b4ab2b823b8853d6fbb30184bc1b287))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-plugin-operations@1.1.0...@amazeelabs/gatsby-plugin-operations@1.1.1) (2024-01-20)
 
 ### Bug Fixes
