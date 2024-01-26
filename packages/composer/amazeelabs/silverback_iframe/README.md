@@ -19,6 +19,14 @@ If there is `iframe=true` param in the URL, the module does:
 - Enables `silverback_iframe_theme`.
 - Removes `X-Frame-Options` header.
 - Adds `iframe=true` param to all outbound URLs.
+- adds [iframe-resizer](https://www.npmjs.com/package/iframe-resizer) library to
+  all pages
+- adds `iframeCommand.js` to all pages, the script
+  - passes iframe commands to the parent frame
+  - updates all visible links:
+    - they should point to the parent frame base url
+    - they should contain no `iframe=true` parameter
+    - they should target parent frame
 
 ## Installation
 

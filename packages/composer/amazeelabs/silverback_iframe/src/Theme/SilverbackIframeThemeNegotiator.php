@@ -20,12 +20,15 @@ class SilverbackIframeThemeNegotiator implements ThemeNegotiatorInterface {
   }
 
   public function determineActiveTheme(RouteMatchInterface $route_match) {
-    foreach ($this->themeExtensionList->getAllInstalledInfo() as $theme => $info) {
+    $themes = $this->themeExtensionList->getAllInstalledInfo();
+    foreach ($themes as $theme => $info) {
       if (($info['base theme'] ?? NULL) === 'silverback_iframe_theme') {
         return $theme;
       }
     }
-    return 'silverback_iframe_theme';
+    return isset($themes['silverback_iframe_theme'])
+      ? 'silverback_iframe_theme'
+      : NULL;
   }
 
 }
