@@ -3,8 +3,38 @@
 use Drupal\silverback_iframe\WebformSubmissionForm;
 use Drupal\webform\WebformInterface;
 
+function silverback_iframe_inject_resizer() {
+  if (!getenv('SB_ENVIRONMENT')) {
+    return FALSE;
+  }
+  return \Drupal::request()->query->get('iframe_resizer') === 'true';
+}
+
 function silverback_iframe_theme_enabled() {
   return \Drupal::request()->get('iframe') === 'true';
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function silverback_iframe_preprocess_page(&$variables) {
+  $injectJs = FALSE;
+
+  $variables['page']['#cache']['contexts'][] = 'url.query_args:iframe';
+  if (silverback_iframe_theme_enabled()) {
+    $injectJs = TRUE;
+  }
+
+  if (getenv('SB_ENVIRONMENT')) {
+    $variables['page']['#cache']['contexts'][] = 'url.query_args:iframe_resizer';
+    if (silverback_iframe_inject_resizer()) {
+      $injectJs = TRUE;
+    }
+  }
+
+  if ($injectJs) {
+    $variables['#attached']['library'][] = 'silverback_iframe/iframe_resizer';
+  }
 }
 
 /**
