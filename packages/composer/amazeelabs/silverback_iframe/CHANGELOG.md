@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_iframe@1.3.5...@-amazeelabs/silverback_iframe@1.4.0) (2024-01-26)
+
+### Features
+
+- introduce iframe_resizer mode
+  ([c37af9f](https://github.com/AmazeeLabs/silverback-mono/commit/c37af9f7f702bb7730bb4b13e8c2c26a01e225eb))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.3.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_iframe@1.3.4...@-amazeelabs/silverback_iframe@1.3.5) (2023-09-27)
 
 ### Bug Fixes
