@@ -1,5 +1,7 @@
 import scrape from 'website-scraper';
 
+type Options = Omit<Parameters<typeof scrape>[0], 'urls' | 'directory'>;
+
 export async function saveWebpage(args: {
   /**
    * URL of the target webpage.
@@ -13,11 +15,19 @@ export async function saveWebpage(args: {
    * Path to directory where downloaded files will be saved. Must not exist.
    */
   directory: string;
+  /**
+   * Other options to pass to website-scraper.
+   */
+  options: Options;
 }): Promise<void> {
   await scrape({
+    ...args.options,
     directory: args.directory,
     urls: [args.url],
-    plugins: args.content ? [new ReplaceContentPlugin(args.content)] : [],
+    plugins: [
+      ...(args.content ? [new ReplaceContentPlugin(args.content)] : []),
+      ...(args.options.plugins || []),
+    ],
   });
 }
 
