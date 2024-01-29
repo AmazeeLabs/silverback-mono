@@ -34,7 +34,7 @@ export async function saveWebpage(args: {
   /**
    * Other options to pass to website-scraper.
    */
-  options?: Options;
+  options?: Options | undefined;
 }): Promise<void> {
   await scrape({
     ...args.options,
