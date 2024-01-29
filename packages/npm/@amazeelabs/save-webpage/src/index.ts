@@ -34,7 +34,7 @@ export async function saveWebpage(args: {
   /**
    * Other options to pass to website-scraper.
    */
-  options: Options;
+  options?: Options;
 }): Promise<void> {
   await scrape({
     ...args.options,
@@ -42,7 +42,7 @@ export async function saveWebpage(args: {
     urls: [args.url],
     plugins: [
       ...(args.content ? [new ReplaceContentPlugin(args.content)] : []),
-      ...(args.options.plugins || []),
+      ...(args.options?.plugins || []),
     ],
   });
 }
