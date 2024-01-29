@@ -1,6 +1,23 @@
 import scrape from 'website-scraper';
 
-type Options = Omit<Parameters<typeof scrape>[0], 'urls' | 'directory'>;
+type Options = {
+  directory: string;
+  urlFilter?: (url: string) => boolean;
+  filenameGenerator?: string;
+  defaultFilename?: string;
+  prettifyUrls?: boolean;
+  request?: {
+    headers: {
+      [key: string]: any;
+    };
+  };
+  recursive?: boolean;
+  maxDepth?: number;
+  ignoreErrors?: boolean;
+  maxRecursiveDepth?: number;
+  requestConcurrency?: number;
+  plugins?: object[];
+};
 
 export async function saveWebpage(args: {
   /**
