@@ -1,7 +1,6 @@
 import scrape from 'website-scraper';
 
 type Options = {
-  directory: string;
   urlFilter?: (url: string) => boolean;
   filenameGenerator?: string;
   defaultFilename?: string;
