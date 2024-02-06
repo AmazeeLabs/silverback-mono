@@ -24,6 +24,13 @@ class UtilitiesTest extends GraphQLTestBase {
     $this->assertResults('{ foo }', [], ['foo' => 'bar']);
   }
 
+  function testValuePrimitives() {
+    $this->assertResults('{ primitiveString }', [], ['primitiveString' => 'foo']);
+    $this->assertResults('{ primitiveInt }', [], ['primitiveInt' => 42]);
+    $this->assertResults('{ primitiveFloat }', [], ['primitiveFloat' => 3.14]);
+    $this->assertResults('{ primitiveBoolean }', [], ['primitiveBoolean' => true]);
+  }
+
   function testSeekDirective() {
     $this->assertResults('{ seek }', [], ['seek' => 'two']);
   }

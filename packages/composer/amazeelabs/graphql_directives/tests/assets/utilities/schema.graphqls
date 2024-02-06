@@ -1,6 +1,10 @@
 directive @unknown on FIELD_DEFINITION
 
 type Query {
+  primitiveString: String! @value(string: "foo")
+  primitiveInt: Int! @value(int: 42)
+  primitiveFloat: Float! @value(float: 3.14)
+  primitiveBoolean: Boolean! @value(boolean: true)
   foo: String! @value(json: "\"bar\"")
   bar: String @unknown
   seek: String! @value(json: "[\"one\", \"two\"]") @seek(pos: 1)
