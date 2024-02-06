@@ -10,7 +10,7 @@ Create a GraphQL schema definition file, and annotate it with directives.
 
 ```graphql
 type Query {
-  hello: String @value(json: "\"Hello world!\"")
+  hello: String @value(string: "Hello world!")
 }
 ```
 
@@ -67,17 +67,17 @@ For custom types, interface, unions or scalars, the `@default` directive can be
 used to start a directive chain that generates a default value.
 
 ```graphql
-scalar MyScalar @default @value(json: "\"bar\"")
+scalar MyScalar @default @value(string: "bar")
 
 type Query {
   # This will emit `''`.
-  string: String! @value(json: "null")
+  string: String! @value
   # This will emit `0`.
-  int: Int! @value(json: "null")
+  int: Int! @value
   # This will emit `[]`.
-  list: [String!]! @value(json: "null")
+  list: [String!]! @value
   # This will emit `bar`
-  manual: MyScalar! @value(json: "null")
+  manual: MyScalar! @value
 }
 ```
 
@@ -117,7 +117,7 @@ Arguments that implement this behaviour are marked to be (dynamic).
 ```graphql
 type Query {
   static: Post @loadEntity(type: "node", id: "1")
-  parent: Post @value(json: "1") @loadEntity(type: "node", id: "$")
+  parent: Post @value(int: 1) @loadEntity(type: "node", id: "$")
   argument(id: String!): Post @loadEntity(type: "node", id: "$id")
 }
 ```
@@ -126,12 +126,17 @@ type Query {
 
 ### `@value`
 
-The `@value` directive allows you to define a static value for a field as a JSON
-encoded string.
+The `@value` directive allows you to define a static value for a field as primitive
+or a JSON encoded string. Without any arguments, it will emit `null`.
 
 ```graphql
 type Query {
-  hello: String @value(json: "\"Hello world!\"")
+  null: String @value
+  hello: String! @value(string: "Hello world!")
+  theAnswer: Int! @value(int: 42)
+  pi: Float! @value(float: 3.14)
+  true: Boolean! @value(float: true)
+  object: MyType! @value(json: "{\"foo\":\"bar\"}")
 }
 ```
 

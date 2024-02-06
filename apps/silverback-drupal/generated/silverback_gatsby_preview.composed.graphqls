@@ -130,7 +130,7 @@ Provide a static value as JSON string.
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Value".
 """
-directive @value(json: String!) repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
+directive @value(json: String, int: Int, float: Float, string: String, boolean: Boolean) repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
 
 """
 Pull a specific typed-data property from an entity.
@@ -468,7 +468,7 @@ Provide a static value as JSON string.
 Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Value".
 """
-directive @value(json: String!) repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
+directive @value(json: String, int: Int, float: Float, string: String, boolean: Boolean) repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
 
 """
 Pull a specific typed-data property from an entity.

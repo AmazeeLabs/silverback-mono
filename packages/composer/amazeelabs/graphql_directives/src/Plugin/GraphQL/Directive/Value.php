@@ -12,7 +12,11 @@ use Drupal\graphql_directives\DirectiveInterface;
  *   id = "value",
  *   description = "Provide a static value as JSON string.",
  *   arguments = {
- *     "json" = "String!",
+ *     "json" = "String",
+ *     "int" = "Int",
+ *     "float" = "Float",
+ *     "string" = "String",
+ *     "boolean" = "Boolean"
  *   }
  * )
  */
@@ -25,6 +29,14 @@ class Value extends PluginBase implements DirectiveInterface {
     ResolverBuilder $builder,
     array $arguments
   ) : ResolverInterface {
-    return $builder->fromValue(json_decode($arguments['json']));
+    if (array_key_exists('json', $arguments)) {
+      return $builder->fromValue(json_decode($arguments['json']));
+    }
+    foreach(['string', 'int', 'float', 'boolean'] as $key) {
+      if (array_key_exists($key, $arguments)) {
+        return $builder->fromValue($arguments[$key]);
+      }
+    }
+    return $builder->fromValue(NULL);
   }
 }

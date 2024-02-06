@@ -99,7 +99,11 @@ Provided by the "graphql_directives" module.
 Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Value".
 """
 directive @value(
-  json: String!
+  json: String
+  int: Int
+  float: Float
+  string: String
+  boolean: Boolean
 ) repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
 
 """
