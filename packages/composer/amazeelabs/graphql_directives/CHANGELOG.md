@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/graphql_directives@2.3.0...@-amazeelabs/graphql_directives@2.4.0) (2024-02-07)
+
+### Features
+
+- **SLB-255:** allow primitive values in [@value](https://github.com/value)
+  directive
+  ([e04ec1e](https://github.com/AmazeeLabs/silverback-mono/commit/e04ec1e8dc6045100275273983d520ff9cf14d56))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [2.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/graphql_directives@2.2.0...@-amazeelabs/graphql_directives@2.3.0) (2023-11-08)
 
 ### Features
