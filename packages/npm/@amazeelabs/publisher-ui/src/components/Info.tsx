@@ -5,11 +5,30 @@ import { Dialog, Disclosure, Transition } from '@headlessui/react';
 import { bind } from '@react-rxjs/core';
 import clsx from 'clsx';
 import React, { ComponentProps, Fragment, useState } from 'react';
+import { flushSync } from 'react-dom';
 import { LazyLog } from 'react-lazylog';
 import { ajax } from 'rxjs/ajax';
 
 import { createWebsocketUrl, useStatus } from '../utils/status';
 import Collapsible from './Collapsible';
+
+// Disable React batched updates to fix
+// https://github.com/melloware/react-logviewer/pull/22 without moving from
+// react-lazylog to @melloware/react-logviewer
+// TODO: Once https://github.com/melloware/react-logviewer/pull/22 and
+//  https://github.com/melloware/react-logviewer/issues/14 are solved:
+//    - Remove this workaround
+//    - Switch from react-lazylog to @melloware/react-logviewer
+//    - Adjust the styling (the "Auto scroll" checkbox might move around)
+//    - Use new cool features from @melloware/react-logviewer (e.g. enableLinks)
+const origSetState = React.Component.prototype.setState;
+React.Component.prototype.setState = function () {
+  flushSync(() => {
+    // @ts-ignore
+    // eslint-disable-next-line prefer-rest-params
+    origSetState.apply(this, arguments);
+  });
+};
 
 const clean$ = ajax({
   url: '/___status/clean',
