@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher-ui@2.4.7...@amazeelabs/publisher-ui@2.4.8) (2024-02-08)
+
+### Bug Fixes
+
+- a workaround for the missing output issue
+  ([71a78da](https://github.com/AmazeeLabs/silverback-mono/commit/71a78da4ffb21787f565defa9741905f94a9bbc8))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.4.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher-ui@2.4.6...@amazeelabs/publisher-ui@2.4.7) (2024-01-11)
 
 **Note:** Version bump only for package @amazeelabs/publisher-ui
