@@ -57,6 +57,14 @@ describe('executeResolver', () => {
       } as any),
     ).toEqual('parent value');
   });
+  it('passes through the the parent value if it does not have the property', async () => {
+    const resolver = buildResolver([['echo', { msg: '$' }]], { echo });
+    expect(
+      await resolver({ prop: 'parent value' }, {}, undefined, {
+        fieldName: 'p',
+      } as any),
+    ).toEqual({ prop: 'parent value' });
+  });
   it('passes through arguments', async () => {
     const resolver = buildResolver([['echo', { msg: '$msg' }]], { echo });
     expect(

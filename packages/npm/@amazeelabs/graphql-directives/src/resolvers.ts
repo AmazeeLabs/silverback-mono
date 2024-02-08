@@ -76,7 +76,12 @@ export function buildResolver(
   return async (source, args, context, info) => {
     const fns = [
       (parent: any) => {
-        return parent?.[info?.fieldName];
+        if (parent && info) {
+          if (Object.hasOwn(parent, info.fieldName)) {
+            return parent?.[info?.fieldName];
+          }
+        }
+        return parent;
       },
       ...config.map(([name, spec]) => {
         return async (parent: any) => {
