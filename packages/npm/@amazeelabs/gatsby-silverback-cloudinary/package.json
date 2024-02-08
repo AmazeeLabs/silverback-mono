@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/gatsby-silverback-cloudinary",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "main": "index.js",
   "types": "index.d.ts",
   "license": "MIT",

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/graphql-directives@1.2.5...@amazeelabs/graphql-directives@1.3.0) (2024-02-08)
+
+### Features
+
+- **graphql-directives:** pass through source value if appropriate
+  ([4366150](https://github.com/AmazeeLabs/silverback-mono/commit/4366150fd10f560961f3f6d300c9bf9f33781b04))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.2.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/graphql-directives@1.2.4...@amazeelabs/graphql-directives@1.2.5) (2024-01-11)
 
 **Note:** Version bump only for package @amazeelabs/graphql-directives
