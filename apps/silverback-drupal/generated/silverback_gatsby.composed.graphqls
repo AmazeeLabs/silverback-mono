@@ -53,6 +53,30 @@ Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\MenuItems".
 directive @resolveMenuItems(max_level: Int) repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
 
 """
+Provided by the "silverback_gatsby" module.
+Implemented in "Drupal\silverback_gatsby\Plugin\GraphQL\Directive\EntityTranslationsWithDefault".
+"""
+directive @entityTranslationsWithDefault repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
+
+"""
+Provided by the "silverback_gatsby" module.
+Implemented in "Drupal\silverback_gatsby\Plugin\GraphQL\Directive\MenuLangcode".
+"""
+directive @menuLangcode repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
+
+"""
+Provided by the "silverback_gatsby" module.
+Implemented in "Drupal\silverback_gatsby\Plugin\GraphQL\Directive\MenuTranslations".
+"""
+directive @menuTranslations repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
+
+"""
+Provided by the "silverback_gatsby" module.
+Implemented in "Drupal\silverback_gatsby\Plugin\GraphQL\Directive\SilverbackGatsbyEntityId".
+"""
+directive @silverbackGatsbyEntityId repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
+
+"""
 Provided by the "silverback_gutenberg" module.
 Implemented in "Drupal\silverback_gutenberg\Plugin\GraphQL\Directive\EditorBlockChildren".
 """
