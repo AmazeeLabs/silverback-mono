@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.16](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-default-content@1.1.15...@-amazeelabs/proxy-default-content@1.1.16) (2024-02-12)
+
+**Note:** Version bump only for package @-amazeelabs/proxy-default-content
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.15](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-default-content@1.1.14...@-amazeelabs/proxy-default-content@1.1.15) (2023-08-29)
 
 **Note:** Version bump only for package @-amazeelabs/proxy-default-content
