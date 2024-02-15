@@ -1,0 +1,2 @@
+# Directive for the "StringTranslationFeed" plugin.
+directive @translatableString(contextPrefix: String) on OBJECT
