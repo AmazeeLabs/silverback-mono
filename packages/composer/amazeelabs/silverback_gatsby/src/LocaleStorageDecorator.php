@@ -5,6 +5,7 @@ namespace Drupal\silverback_gatsby;
 use Drupal\locale\StringContextInterface;
 use Drupal\locale\StringStorageInterface;
 use Drupal\silverback_gatsby\Plugin\Gatsby\Feed\StringTranslationFeed;
+use Drupal\silverback_gatsby\Plugin\Gatsby\Feed\TranslatableStringFeed;
 
 class LocaleStorageDecorator implements StringStorageInterface, StringContextInterface {
 
@@ -85,6 +86,7 @@ class LocaleStorageDecorator implements StringStorageInterface, StringContextInt
     // reasons.
     if (!empty($string->context)) {
       $this->getGatsbyUpdateHandler()->handle(StringTranslationFeed::class, $string);
+      $this->getGatsbyUpdateHandler()->handle(TranslatableStringFeed::class, $string);
     }
     return $this;
   }
