@@ -1,0 +1,7 @@
+type Query
+
+type TranslatableString @translatableString(contextPrefix: "gatsby") {
+  source: String!
+  language: String!
+  translation: String
+}
