@@ -685,6 +685,8 @@ directive @menu(menu_id: String, menu_ids: [String!], item_type: String, max_lev
 
 directive @stringTranslation(contextPrefix: String) on OBJECT
 
+directive @translatableString(contextPrefix: String) on OBJECT
+
 type _Feed {
   typeName: String!
   translatable: Boolean!
