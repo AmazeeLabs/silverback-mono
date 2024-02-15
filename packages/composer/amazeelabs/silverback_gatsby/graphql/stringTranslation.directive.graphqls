@@ -1,4 +1,4 @@
 # Directive for the "StringTranslationFeed" plugin.
-directive @stringTranslation(
-  contextPrefix: String
-) on OBJECT
+# DEPRECATED: Use @translatableString instead, when working with a directive
+# based schema.
+directive @stringTranslation(contextPrefix: String) on OBJECT

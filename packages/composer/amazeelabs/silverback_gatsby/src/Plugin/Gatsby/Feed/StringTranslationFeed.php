@@ -15,6 +15,9 @@ use GraphQL\Language\AST\DocumentNode;
 /**
  * Feed plugin that creates Gatsby feeds based on Drupal string translations.
  *
+ * DEPRECATED: Use @translatableString instead, when working with a directive
+ * based schema.
+ *
  * @GatsbyFeed(
  *   id = "stringTranslation"
  * )
