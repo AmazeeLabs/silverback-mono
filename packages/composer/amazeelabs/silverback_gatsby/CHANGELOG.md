@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@3.1.0...@-amazeelabs/silverback_gatsby@3.1.1) (2024-02-16)
+
+### Bug Fixes
+
+- **SLB-269:** missing directives definition in directives.graphql
+  ([5898a65](https://github.com/AmazeeLabs/silverback-mono/commit/5898a6504a642cf8b26aafc4973ad9312243c36a))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [3.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@3.0.2...@-amazeelabs/silverback_gatsby@3.1.0) (2024-02-16)
 
 ### Features

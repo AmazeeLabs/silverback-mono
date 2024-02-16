@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.8.2...@-amazeelabs/silverback-drupal@2.8.3) (2024-02-16)
+
+### Bug Fixes
+
+- **SLB-269:** missing directives definition in directives.graphql
+  ([9522c57](https://github.com/AmazeeLabs/silverback-mono/commit/9522c576819edbb74766dce3f41f72409173a768))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.8.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.8.1...@-amazeelabs/silverback-drupal@2.8.2) (2024-02-16)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
