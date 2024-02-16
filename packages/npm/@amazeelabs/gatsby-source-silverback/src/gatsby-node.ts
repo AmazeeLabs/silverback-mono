@@ -183,7 +183,7 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
             },
           };
           if (node.id) {
-            Object.assign(node, {id: `${type}:${id}`})
+            Object.assign(node, { id: `${type}:${id}` });
           }
           gatsbyApi.actions.createNode(Object.assign({}, node, nodeMeta));
         });
@@ -204,11 +204,13 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       const config = await createSourcingConfig(args, executor, options);
       await createToolkitSchemaCustomization(config);
 
-      await createTranslationQueryField(
-        args,
-        createQueryExecutor(options),
-        options,
-      );
+      if (!options.schema_configuration) {
+        await createTranslationQueryField(
+          args,
+          createQueryExecutor(options),
+          options,
+        );
+      }
 
       args.actions.createTypes(`
         type Query {
