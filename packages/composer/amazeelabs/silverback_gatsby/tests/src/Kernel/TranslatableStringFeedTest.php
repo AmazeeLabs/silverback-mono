@@ -15,7 +15,10 @@ class TranslatableStringFeedTest extends GraphQLTestBase {
    */
   protected $strictConfigSchema = FALSE;
 
-  public static $modules = [
+  /**
+   * {@inheritdoc}
+   */
+  protected static $modules = [
     'locale',
     'graphql_directives',
     'silverback_gatsby',
@@ -24,15 +27,11 @@ class TranslatableStringFeedTest extends GraphQLTestBase {
 
   /**
    * The string storage.
-   *
-   * @var \Drupal\locale\StringStorageInterface
    */
   protected StringStorageInterface $storage;
 
   /**
    * The GraphQL query for listing operations.
-   *
-   * @var string
    */
   protected string $query = <<<'GQL'
     query {
@@ -50,8 +49,6 @@ class TranslatableStringFeedTest extends GraphQLTestBase {
 
   /**
    * The GraphQL query for loading a single operation.
-   *
-   * @var string
    */
   protected string $load = <<<'GQL'
     query load($id: String!) {
@@ -74,7 +71,12 @@ class TranslatableStringFeedTest extends GraphQLTestBase {
     parent::setUp();
     $this->storage = $this->container->get('locale.storage');
     $this->installSchema('silverback_gatsby', ['gatsby_update_log']);
-    $this->installSchema('locale', ['locales_source', 'locales_target', 'locales_location', 'locale_file']);
+    $this->installSchema('locale', [
+      'locales_source',
+      'locales_target',
+      'locales_location',
+      'locale_file',
+    ]);
     $schema = __DIR__ . '/../../schema/translatable-strings.graphql';
     $this->createTestServer(
       'directable',
@@ -144,17 +146,17 @@ class TranslatableStringFeedTest extends GraphQLTestBase {
 
     $this->assertResults($this->query, [], [
       '_queryTranslatableStrings' => [
-      [
-        '_id' => '1:en',
-        'source' => 'test source',
-        '_translations' => [
-          [
-            '_id' => '1:de',
-            'language' => 'de',
-            'translation' => 'test german',
+        [
+          '_id' => '1:en',
+          'source' => 'test source',
+          '_translations' => [
+            [
+              '_id' => '1:de',
+              'language' => 'de',
+              'translation' => 'test german',
+            ],
           ],
         ],
-      ],
       ],
     ], $metadata);
   }
@@ -170,6 +172,9 @@ class TranslatableStringFeedTest extends GraphQLTestBase {
     ], $metadata);
   }
 
+  /**
+   * Test loading a translated string.
+   */
   public function testLoadTranslatedString(): void {
     $metadata = $this->defaultCacheMetaData();
     $metadata->addCacheTags(['locale']);
@@ -198,4 +203,5 @@ class TranslatableStringFeedTest extends GraphQLTestBase {
       ],
     ], $metadata);
   }
+
 }
