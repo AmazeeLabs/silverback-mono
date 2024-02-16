@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.12](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.13.11...@amazeelabs/gatsby-source-silverback@1.13.12) (2024-02-16)
+
+### Bug Fixes
+
+- **SLB-269:** dont create translations field in fixed schema mode
+  ([4674cc3](https://github.com/AmazeeLabs/silverback-mono/commit/4674cc3681b7a44e9078a0b2ea7731786b95532b))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.13.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.13.10...@amazeelabs/gatsby-source-silverback@1.13.11) (2024-02-08)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-source-silverback
