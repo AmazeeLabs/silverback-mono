@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.8.1...@-amazeelabs/silverback-drupal@2.8.2) (2024-02-16)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.8.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.8.0...@-amazeelabs/silverback-drupal@2.8.1) (2024-02-16)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
