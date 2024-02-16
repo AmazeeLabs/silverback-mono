@@ -640,6 +640,8 @@ directive @isTemplate on FIELD_DEFINITION
 
 directive @stringTranslation(contextPrefix: String) on OBJECT
 
+directive @translatableString(contextPrefix: String) on OBJECT
+
 """
 Fetch an entity or entity revision based on id, rid or route
 
