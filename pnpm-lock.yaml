@@ -169,8 +169,8 @@ importers:
         specifier: 17.13.0
         version: 17.13.0(@types/express@4.17.21)(@types/node@16.18.70)
       postcss-import:
-        specifier: 15.1.0
-        version: 15.1.0(postcss@8.4.33)
+        specifier: 16.0.0
+        version: 16.0.0(postcss@8.4.33)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -443,7 +443,7 @@ importers:
         version: 5.3.3
       vitest:
         specifier: ^1.1.3
-        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@12.10.3)
+        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@13.2.0)
     devDependencies:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
@@ -475,7 +475,7 @@ importers:
         version: 5.3.3
       vitest:
         specifier: ^1.1.3
-        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@12.10.3)
+        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@13.2.0)
     devDependencies:
       '@amazeelabs/bridge':
         specifier: workspace:*
@@ -513,7 +513,7 @@ importers:
         version: 5.3.3
       vitest:
         specifier: ^1.1.3
-        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@12.10.3)
+        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@13.2.0)
     devDependencies:
       '@amazeelabs/bridge':
         specifier: workspace:*
@@ -585,7 +585,7 @@ importers:
         version: 5.3.3
       vitest:
         specifier: 1.1.3
-        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@12.10.3)
+        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@13.2.0)
 
   packages/npm/@amazeelabs/codegen-gatsby-fragments:
     dependencies:
@@ -601,7 +601,7 @@ importers:
         version: 5.3.3
       vitest:
         specifier: ^1.1.3
-        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@12.10.3)
+        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@13.2.0)
     devDependencies:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
@@ -666,7 +666,7 @@ importers:
         version: 5.0.11(@types/node@18.19.6)
       vitest:
         specifier: 1.1.3
-        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@12.10.3)
+        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@13.2.0)
 
   packages/npm/@amazeelabs/executors:
     dependencies:
@@ -788,7 +788,7 @@ importers:
         version: 5.3.3
       vitest:
         specifier: ^1.1.0
-        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@12.10.3)
+        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@13.2.0)
 
   packages/npm/@amazeelabs/gatsby-plugin-static-dirs:
     dependencies:
@@ -910,7 +910,7 @@ importers:
         version: 5.3.3
       vitest:
         specifier: 1.1.3
-        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@12.10.3)
+        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@13.2.0)
 
   packages/npm/@amazeelabs/graphql-directives:
     dependencies:
@@ -935,7 +935,7 @@ importers:
         version: 5.3.3
       vitest:
         specifier: 1.1.3
-        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@12.10.3)
+        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@13.2.0)
 
   packages/npm/@amazeelabs/graphql-schema-test:
     dependencies:
@@ -1080,8 +1080,8 @@ importers:
         specifier: 0.6.15
         version: 0.6.15(eslint@8.56.0)(typescript@5.3.3)
       happy-dom:
-        specifier: 12.10.3
-        version: 12.10.3
+        specifier: 13.2.0
+        version: 13.2.0
       imagetools-core:
         specifier: 6.0.4
         version: 6.0.4
@@ -1123,7 +1123,7 @@ importers:
         version: 3.7.0(@types/node@18.19.6)(typescript@5.3.3)(vite@5.0.11)
       vitest:
         specifier: 1.1.3
-        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@12.10.3)
+        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@13.2.0)
       zustand:
         specifier: 4.4.7
         version: 4.4.7(@types/react@18.2.47)(react@18.2.0)
@@ -1202,7 +1202,7 @@ importers:
         version: 5.0.11(@types/node@18.19.6)
       vitest:
         specifier: 1.1.3
-        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@12.10.3)
+        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@13.2.0)
 
   packages/npm/@amazeelabs/publisher:
     dependencies:
@@ -1639,7 +1639,7 @@ importers:
         version: 5.3.3
       vitest:
         specifier: ^1.1.3
-        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@12.10.3)
+        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@13.2.0)
     devDependencies:
       '@swc/cli':
         specifier: 0.1.63
@@ -1723,7 +1723,7 @@ importers:
         version: 5.3.3
       vitest:
         specifier: ^1.1.3
-        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@12.10.3)
+        version: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@13.2.0)
     devDependencies:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
@@ -12654,7 +12654,7 @@ packages:
       pathe: 1.1.2
       picocolors: 1.0.0
       sirv: 2.0.4
-      vitest: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@12.10.3)
+      vitest: 1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@13.2.0)
 
   /@vitest/utils@1.1.0:
     resolution: {integrity: sha512-z+s510fKmYz4Y41XhNs3vcuFTFhcij2YF7F8VQfMEYAAUfqQh0Zfg7+w9xdgFGhPf3tX3TicAe+8BDITk6ampQ==}
@@ -22192,14 +22192,12 @@ packages:
       uglify-js: 3.17.4
     dev: true
 
-  /happy-dom@12.10.3:
-    resolution: {integrity: sha512-JzUXOh0wdNGY54oKng5hliuBkq/+aT1V3YpTM+lrN/GoLQTANZsMaIvmHiHe612rauHvPJnDZkZ+5GZR++1Abg==}
+  /happy-dom@13.2.0:
+    resolution: {integrity: sha512-aeFD9M5d1sN618nOpWy/76IiU5/UJxdYydPdzpXxEn4r7MQByrmtoH1iU9v8v9bJJ0fMte6OAMy6rDD/mGawfg==}
+    engines: {node: '>=16.0.0'}
     dependencies:
-      css.escape: 1.5.1
       entities: 4.5.0
-      iconv-lite: 0.6.3
       webidl-conversions: 7.0.0
-      whatwg-encoding: 2.0.0
       whatwg-mimetype: 3.0.0
 
   /hard-rejection@2.1.0:
@@ -22805,6 +22803,7 @@ packages:
 
   /humanize-ms@1.2.1:
     resolution: {integrity: sha512-Fl70vYtsAFb/C06PTS9dZBo7ihau+Tu/DNCk/OyHhea07S+aeMWpFFkUaXRa8fI+ScZbEI8dfSxwY7gxZ9SAVQ==}
+    requiresBuild: true
     dependencies:
       ms: 2.1.3
 
@@ -29030,6 +29029,18 @@ packages:
       read-cache: 1.0.0
       resolve: 1.22.8
 
+  /postcss-import@16.0.0(postcss@8.4.33):
+    resolution: {integrity: sha512-e77lhVvrD1I2y7dYmBv0k9ULTdArgEYZt97T4w6sFIU5uxIHvDFQlKgUUyY7v7Barj0Yf/zm5A4OquZN7jKm5Q==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      postcss: ^8.0.0
+    dependencies:
+      postcss: 8.4.33
+      postcss-value-parser: 4.2.0
+      read-cache: 1.0.0
+      resolve: 1.22.8
+    dev: false
+
   /postcss-js@4.0.1(postcss@8.4.33):
     resolution: {integrity: sha512-dDLF8pEO191hJMtlHFPRa8xsizHaM82MLfNkUHdUtVEV3tgTp5oj+8qbEqYM57SLfc74KSbw//4SeJma2LRVIw==}
     engines: {node: ^12 || ^14 || >= 16}
@@ -32049,6 +32060,7 @@ packages:
   /smart-buffer@4.2.0:
     resolution: {integrity: sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg==}
     engines: {node: '>= 6.0.0', npm: '>= 3.0.0'}
+    requiresBuild: true
 
   /snake-case@3.0.4:
     resolution: {integrity: sha512-LAOh4z89bGQvl9pFfNF8V146i7o7/CqFPbqzYgP+yYzDIDeS9HaNFtXABamRW+AQzEVODcvE79ljJ+8a9YSdMg==}
@@ -32354,9 +32366,6 @@ packages:
   /sqlite3@5.1.7:
     resolution: {integrity: sha512-GGIyOiFaG+TUra3JIfkI/zGP8yZYLPQ0pl1bH+ODjiX57sPhrLU5sQJn1y9bDKZUFYkX1crlrPfSYt0BKKdkog==}
     requiresBuild: true
-    peerDependenciesMeta:
-      node-gyp:
-        optional: true
     dependencies:
       bindings: 1.5.0
       node-addon-api: 7.0.0
@@ -34376,6 +34385,7 @@ packages:
 
   /unique-slug@2.0.2:
     resolution: {integrity: sha512-zoWr9ObaxALD3DOPfjPSqxt4fnZiWblxHIgeWqW8x7UqDzEtHEQLzji2cuJYQFCU6KmoJikOYAZlrTHHebjx2w==}
+    requiresBuild: true
     dependencies:
       imurmurhash: 0.1.4
 
@@ -35360,7 +35370,7 @@ packages:
       - terser
     dev: true
 
-  /vitest@1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@12.10.3):
+  /vitest@1.1.3(@types/node@18.19.6)(@vitest/ui@1.1.3)(happy-dom@13.2.0):
     resolution: {integrity: sha512-2l8om1NOkiA90/Y207PsEvJLYygddsOyr81wLQ20Ra8IlLKbyQncWsGZjnbkyG2KwwuTXLQjEPOJuxGMG8qJBQ==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -35397,7 +35407,7 @@ packages:
       chai: 4.4.0
       debug: 4.3.4(supports-color@5.5.0)
       execa: 8.0.1
-      happy-dom: 12.10.3
+      happy-dom: 13.2.0
       local-pkg: 0.5.0
       magic-string: 0.30.5
       pathe: 1.1.2
@@ -35964,6 +35974,7 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       iconv-lite: 0.6.3
+    dev: true
 
   /whatwg-fetch@2.0.4:
     resolution: {integrity: sha512-dcQ1GWpOD/eEQ97k66aiEVpNnapVj90/+R+SXTPYGHpYBBypfKJEQjLrvMZ7YXbKm21gXd4NcuxUTjiv1YtLng==}
