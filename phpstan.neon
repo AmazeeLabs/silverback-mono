@@ -1,0 +1,3 @@
+parameters:
+	drupal:
+		drupal_root: apps/silverback-drupal
