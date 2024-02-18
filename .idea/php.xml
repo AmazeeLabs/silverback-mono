@@ -7,12 +7,35 @@
     <option name="transferred" value="true" />
   </component>
   <component name="PHPCodeSnifferOptionsConfiguration">
+    <option name="codingStandard" value="Drupal" />
+    <option name="customRuleset" value="$PROJECT_DIR$/apps/silverback-drupal/vendor/drupal/coder/coder_sniffer/Drupal" />
+    <option name="extensions" value="php,module,inc,install,test,profile,theme,css,info,txt,md,yml  " />
+    <option name="installedPaths" value="$PROJECT_DIR$/apps/silverback-drupal/vendor/drupal/coder/coder_sniffer" />
+    <option name="showSniffs" value="true" />
     <option name="transferred" value="true" />
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="8.1">
+  <component name="PhpCodeSniffer">
+    <phpcs_settings>
+      <PhpCSConfiguration beautifier_path="$PROJECT_DIR$/apps/silverback-drupal/vendor/bin/phpcbf" standards="Drupal;DrupalPractice;MySource;PEAR;PSR1;PSR12;PSR2;SlevomatCodingStandard;Squiz;VariableAnalysis;Zend" tool_path="$PROJECT_DIR$/apps/silverback-drupal/vendor/bin/phpcs" />
+    </phpcs_settings>
+  </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/apps/silverback-drupal/vendor" />
+      <path value="$PROJECT_DIR$/apps/silverback-drupal/web/core" />
+      <path value="$PROJECT_DIR$/apps/silverback-drupal/web/modules/contrib" />
+    </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.2">
     <option name="suggestChangeDefaultLanguageLevel" value="false" />
   </component>
+  <component name="PhpStan">
+    <PhpStan_settings>
+      <PhpStanConfiguration tool_path="$PROJECT_DIR$/apps/silverback-drupal/vendor/phpstan/phpstan/phpstan" />
+    </PhpStan_settings>
+  </component>
   <component name="PhpStanOptionsConfiguration">
+    <option name="level" value="8" />
     <option name="transferred" value="true" />
   </component>
   <component name="PhpUnit">
