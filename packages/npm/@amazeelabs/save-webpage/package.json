@@ -19,7 +19,7 @@
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.43",
     "@amazeelabs/prettier-config": "1.1.3",
-    "@types/website-scraper": "^1.2.10",
+    "@types/website-scraper": "1.2.10",
     "typescript": "5.3.3"
   },
   "keywords": [],
