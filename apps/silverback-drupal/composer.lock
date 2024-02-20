@@ -8,11 +8,11 @@
     "packages": [
         {
             "name": "amazeelabs/default-content",
-            "version": "1.2.13",
+            "version": "1.2.14",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/default-content",
-                "reference": "312ea271aa1483b30e477d28e37e8532d663df3a"
+                "reference": "822569010debe7f25396f9011b2ce06e7549448f"
             },
             "require": {
                 "amazeelabs/proxy-default-content": "^1.1.16"
@@ -325,11 +325,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "2.5.11",
+            "version": "2.5.12",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "629b75be2f5504a33a76d01007695cf3e87788de"
+                "reference": "24f7446908a1b5518b105482d7f233ccbe00e994"
             },
             "require": {
                 "drupal/gutenberg": "^2.8.0"
