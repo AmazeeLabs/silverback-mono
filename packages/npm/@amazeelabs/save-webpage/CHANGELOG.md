@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/save-webpage@1.2.4...@amazeelabs/save-webpage@1.2.5) (2024-02-20)
+
+**Note:** Version bump only for package @amazeelabs/save-webpage
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.2.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/save-webpage@1.2.3...@amazeelabs/save-webpage@1.2.4) (2024-01-29)
 
 **Note:** Version bump only for package @amazeelabs/save-webpage

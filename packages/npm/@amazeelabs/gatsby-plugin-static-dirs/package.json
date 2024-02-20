@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/gatsby-plugin-static-dirs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "gatsby-node.js",
   "type": "module",
