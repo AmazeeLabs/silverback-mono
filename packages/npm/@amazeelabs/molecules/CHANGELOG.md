@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.42](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/molecules@0.5.41...@amazeelabs/molecules@0.5.42) (2024-02-20)
+
+**Note:** Version bump only for package @amazeelabs/molecules
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [0.5.41](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/molecules@0.5.40...@amazeelabs/molecules@0.5.41) (2024-01-11)
 
 **Note:** Version bump only for package @amazeelabs/molecules
