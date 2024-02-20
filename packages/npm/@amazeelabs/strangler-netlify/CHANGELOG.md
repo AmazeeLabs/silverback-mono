@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.12](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/strangler-netlify@1.1.11...@amazeelabs/strangler-netlify@1.1.12) (2024-02-20)
+
+**Note:** Version bump only for package @amazeelabs/strangler-netlify
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/strangler-netlify@1.1.10...@amazeelabs/strangler-netlify@1.1.11) (2024-01-11)
 
 **Note:** Version bump only for package @amazeelabs/strangler-netlify
