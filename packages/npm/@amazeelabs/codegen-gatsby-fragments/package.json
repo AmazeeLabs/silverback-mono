@@ -17,19 +17,19 @@
     "graphql": "^16.8.1"
   },
   "optionalDependencies": {
-    "@graphql-codegen/plugin-helpers": "^5.0.1",
+    "@graphql-codegen/plugin-helpers": "^5.0.3",
     "typescript": "^5.3.3",
-    "vitest": "^1.1.3"
+    "vitest": "^1.3.0"
   },
   "keywords": [],
   "author": "AmazeeLabs <development@amazeelabs.com>",
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.43",
     "@amazeelabs/prettier-config": "1.1.3",
-    "@swc/cli": "0.1.63",
-    "@swc/core": "1.3.102",
+    "@swc/cli": "0.3.9",
+    "@swc/core": "1.4.2",
     "eslint": "8.56.0",
-    "prettier": "3.1.1",
+    "prettier": "3.2.5",
     "typescript": "5.3.3"
   }
 }
