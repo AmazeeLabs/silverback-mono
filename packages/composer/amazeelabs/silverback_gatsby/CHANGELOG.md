@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@3.1.1...@-amazeelabs/silverback_gatsby@3.1.2) (2024-02-28)
+
+### Bug Fixes
+
+- only add language to translatable content
+  ([b698696](https://github.com/AmazeeLabs/silverback-mono/commit/b698696039ee16ef2429b5aa926094b741c0b2e3))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [3.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@3.1.0...@-amazeelabs/silverback_gatsby@3.1.1) (2024-02-16)
 
 ### Bug Fixes
