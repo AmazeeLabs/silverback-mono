@@ -11,6 +11,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "peerDependencies": {
+    "gatsby-plugin-sharp": "^5"
+  },
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.43",
     "@amazeelabs/prettier-config": "1.1.3",
