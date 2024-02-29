@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher-ui@2.4.10...@amazeelabs/publisher-ui@2.4.11) (2024-02-29)
+
+**Note:** Version bump only for package @amazeelabs/publisher-ui
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.4.10](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher-ui@2.4.9...@amazeelabs/publisher-ui@2.4.10) (2024-02-20)
 
 **Note:** Version bump only for package @amazeelabs/publisher-ui

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.11](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge-gatsby@1.2.10...@amazeelabs/bridge-gatsby@1.2.11) (2024-02-29)
+
+**Note:** Version bump only for package @amazeelabs/bridge-gatsby
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.2.10](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge-gatsby@1.2.9...@amazeelabs/bridge-gatsby@1.2.10) (2024-02-20)
 
 **Note:** Version bump only for package @amazeelabs/bridge-gatsby
