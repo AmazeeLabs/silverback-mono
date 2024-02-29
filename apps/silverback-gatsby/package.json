@@ -53,7 +53,7 @@
     "babel-preset-gatsby": "3.13.1",
     "eslint": "8.56.0",
     "gatsby-source-filesystem": "5.13.1",
-    "husky": "8.0.3",
+    "husky": "9.0.7",
     "prettier": "3.2.5",
     "ts-node": "10.9.2",
     "typescript": "5.3.3"
