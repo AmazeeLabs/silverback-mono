@@ -19,7 +19,7 @@
     "@types/node": "16.18.82",
     "@types/react": "18.2.57",
     "eslint": "8.56.0",
-    "husky": "8.0.3",
+    "husky": "9.0.7",
     "prettier": "3.2.5",
     "typescript": "5.3.3"
   },
