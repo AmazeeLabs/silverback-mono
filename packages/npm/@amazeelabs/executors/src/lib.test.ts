@@ -50,7 +50,9 @@ test('structural argument matching', () => {
   registerExecutor(id, { y: 1 }, a);
   registerExecutor(id, { y: 2 }, b);
   registerExecutor(id, { y: 1, z: 1 }, c);
-  expect(() => createExecutor(id, { y: 3 })()).toThrow();
+  expect(() => createExecutor(id, { y: 3 })()).toThrow(
+    'No executor found for: x:{"y":3} Candidates: x:{"y":1} x:{"y":2} x:{"y":1,"z":1}',
+  );
   expect(() => createExecutor(id, { y: 1, z: 1 })()).not.toThrow();
   expect(() => createExecutor(id, { y: 1 })()).not.toThrow();
   expect(() => createExecutor(id, { y: 2 })()).not.toThrow();

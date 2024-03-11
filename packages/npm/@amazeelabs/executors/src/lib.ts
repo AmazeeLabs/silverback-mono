@@ -55,7 +55,7 @@ function getCandidates(id: string) {
 }
 
 function formatEntry(id: string | undefined, variables?: Record<string, any>) {
-  return `  ${id ? id : '*'}:${variables ? JSON.stringify(variables) : '*'}`;
+  return `${id ? id : '*'}:${variables ? JSON.stringify(variables) : '*'}`;
 }
 
 class ExecutorRegistryError extends Error {
@@ -75,7 +75,7 @@ class ExecutorRegistryError extends Error {
         'No executor found for:',
         formatEntry(id, variables),
         ...candidatesMessage,
-      ].join('\n'),
+      ].join(' '),
     );
     this.name = 'ExecutorRegistryError';
   }
