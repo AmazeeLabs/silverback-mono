@@ -29,12 +29,17 @@ class EntityFetch extends PluginBase implements DirectiveInterface {
    * @throws \Exception
    */
   public function buildResolver(ResolverBuilder $builder, array $arguments): ResolverInterface {
-    return $builder->produce('fetch_entity')
+    $resolver = $builder->produce('fetch_entity')
       ->map('type', $this->argumentResolver($arguments['type'], $builder))
       ->map('id', $this->argumentResolver($arguments['id'], $builder))
       ->map('revision_id', $this->argumentResolver($arguments['rid'], $builder))
-      ->map('language', $this->argumentResolver($arguments['language'], $builder))
-      ->map('operation', $this->argumentResolver($arguments['operation'], $builder));
+      ->map('language', $this->argumentResolver($arguments['language'], $builder));
+    // If empty, delegate to access_operation default value
+    // from the fetch_entity data producer.
+    if (!empty($arguments['operation'])) {
+      $resolver->map('access_operation', $this->argumentResolver($arguments['operation'], $builder));
+    }
+    return $resolver;
   }
 
 }
