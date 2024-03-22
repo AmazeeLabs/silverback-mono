@@ -1,0 +1,9 @@
+[dev]
+autoLaunch = false
+
+[build]
+publish = "site"
+
+[[edge_functions]]
+path = "/restricted/*"
+function = "token-auth"

@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es2019",
+    "module": "NodeNext",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": false,
+    "jsx": "react-jsx",
+    "outDir": "build"
+  },
+  "include": ["src"],
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Recommended"
+}
