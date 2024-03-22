@@ -1,0 +1,37 @@
+<html lang="en">
+  <head>
+    <title>Token authentication test</title>
+  </head>
+  <body>
+    <h1>Token authentication test</h1>
+    <p><a href="/restricted/">Restricted content</a></p>
+    <div id="status"></div>
+    <script>
+      (function () {
+        const result = fetch('/restricted/___status', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Not authenticated');
+          })
+          .then((data) => {
+            document.getElementById('status').innerHTML = [
+              '<p>Authenticated as: ' + data.name + ' (' + data.id + ')</p>',
+              '<form method="post" action="/restricted/___logout">',
+              '<input type="submit" value="Logout" />' + '</form>',
+            ].join('');
+          })
+          .catch((error) => {
+            document.getElementById('status').innerHTML =
+              '<p><a href="/restricted/___login">Login</a></p>';
+          });
+      })();
+    </script>
+  </body>
+</html>
