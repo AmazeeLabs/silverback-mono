@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "node16",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "declaration": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": false,
+    "jsx": "react-jsx",
+    "outDir": "build"
+  },
+  "include": ["src"],
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Recommended"
+}
