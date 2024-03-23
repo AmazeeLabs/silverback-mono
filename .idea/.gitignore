@@ -15,3 +15,5 @@
 /markdown.xml
 /misc.xml
 /inspectionProfiles/profiles_settings.xml
+# GitHub Copilot persisted chat sessions
+/copilot/chatSessions
