@@ -2,6 +2,8 @@
 autoLaunch = false
 
 [build]
+base = "packages/npm/@amazeelabs/token-auth-middleware"
+edge_functions = "netlify/edge-functions"
 publish = "site"
 
 [[edge_functions]]

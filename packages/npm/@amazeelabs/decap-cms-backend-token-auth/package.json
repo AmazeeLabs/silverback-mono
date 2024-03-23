@@ -26,6 +26,7 @@
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\"",
     "test:unit": "vitest run --passWithNoTests",
     "prep": "rm -rf build && tsc -p tsconfig.build.json",
+    "build": "pnpm prep",
     "watch": "tsc --watch -p tsconfig.build.json"
   },
   "dependencies": {
