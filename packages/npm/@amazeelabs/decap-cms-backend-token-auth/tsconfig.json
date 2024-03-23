@@ -8,6 +8,7 @@
     "declaration": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": false,
+    "moduleResolution": "node",
     "jsx": "react-jsx",
     "outDir": "build"
   },
