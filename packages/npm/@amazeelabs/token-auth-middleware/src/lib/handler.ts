@@ -269,7 +269,7 @@ export class TokenAuthHandler {
         url.pathname = this.basePath + '/___login';
       }
       url.searchParams.append('destination', req.url);
-      return Response.redirect(url, 302);
+      return Response.redirect(url.toString(), 302);
     }
 
     return new Response('Not authenticated', {
