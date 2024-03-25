@@ -27,6 +27,7 @@ import { fetchNodeChanges } from './helpers/fetch-node-changes.js';
 import {
   cleanSchema,
   extractInterfaces,
+  extractNodeTypes,
   extractSourceMapping,
   extractUnions,
 } from './helpers/schema.js';
@@ -247,7 +248,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
               },
             }),
           ),
-          ...Object.keys(extractSourceMapping(schema)).map((name) =>
+          ...extractNodeTypes(schema).map((name) =>
             args.schema.buildObjectType({
               name,
               interfaces: ['Node'],
