@@ -23,6 +23,8 @@ export type Options = {
   directives?: Record<string, Function>;
   // A list of functions that will be available as data source.
   sources?: Record<string, Function>;
+  // A list of functions that will be available as data source or directive.
+  autoload?: Record<string, Function>;
 };
 
 export const validOptions = (options: {
