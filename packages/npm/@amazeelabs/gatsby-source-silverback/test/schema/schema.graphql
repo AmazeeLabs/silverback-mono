@@ -24,3 +24,47 @@ type Employee implements Contact @sourceFrom(fn: "sourceEmployees") {
   name: String!
   email: Email!
 }
+
+# Arbitrary directive that produces values.
+directive @value repeatable on OBJECT
+# @type directive used by the Drupal module.
+directive @type on OBJECT
+# @default directive used by the Drupal module.
+directive @default on OBJECT
+
+# Should not show up in `extractNodeTypes`.
+# Regular types are not Nodes in Gatsby.
+type WithoutDirective {
+  id: ID!
+}
+
+# Should show up in `extractNodeTypes`
+# An unknown directive suggests that this type is sourced from somewhere.
+# e.g. @entity, @sourceFrom etc.
+type WithDirective @value {
+  id: ID!
+}
+
+# Should not show up in `extractNodeTypes`
+# @type is used by Drupal to resolve interfaces. This alone does not mean
+# the type is sourced from somewhere.
+type WithTypeDirective @type {
+  id: ID!
+}
+
+# Should not show up in `extractNodeTypes`
+# @default is used by Drupal to provide default values. Any directives
+# after this have to be ignored.
+type WithDefaultDirective @default @value {
+  id: ID!
+}
+
+# Should not show up in `extractNodeTypes`
+type WithTypeAndDefaultDirective @type @default @value {
+  id: ID!
+}
+
+# Should show up in `extractNodeTypes`
+type WithCustomAndDefaultDirective @value @default @value {
+  id: ID!
+}

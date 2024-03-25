@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 import {
   cleanSchema,
   extractInterfaces,
+  extractNodeTypes,
   extractSourceMapping,
   extractUnions,
 } from './schema.js';
@@ -23,6 +24,17 @@ describe('extractSourceMapping', () => {
       Customer: 'sourceCustomers',
       Employee: 'sourceEmployees',
     });
+  });
+});
+
+describe('extractNodeTypes', () => {
+  it('extracts types custom directives that suggest its sourced from somewhere', () => {
+    expect(extractNodeTypes(schema)).toEqual([
+      'Customer',
+      'Employee',
+      'WithDirective',
+      'WithCustomAndDefaultDirective',
+    ]);
   });
 });
 
@@ -61,6 +73,24 @@ describe('cleanSchema', () => {
         role: String!
         name: String!
         email: Email!
+      }
+      type WithoutDirective {
+        id: ID!
+      }
+      type WithDirective {
+        id: ID!
+      }
+      type WithTypeDirective {
+        id: ID!
+      }
+      type WithDefaultDirective {
+        id: ID!
+      }
+      type WithTypeAndDefaultDirective {
+        id: ID!
+      }
+      type WithCustomAndDefaultDirective {
+        id: ID!
       }"
     `);
   });
