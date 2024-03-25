@@ -198,19 +198,19 @@ The
 [`@amazeelabs/codegen-autoloader`](https://github.com/AmazeeLabs/silverback-mono/blob/development/packages/npm/@amazeelabs/codegen-autoloader/README.md)
 package provides a more convenient way to inject new directives the schema. It's
 a [`graphql-codegen`](https://the-guild.dev/graphql/codegen) that produces a
-file with a single default export that can be passed into the `directives`
+file with a single default export that can be passed into the `autoload`
 configuration property.
 
 ```javascript
 // gatsby-config.mjs
-import directives from './generated/directives.mjs';
+import autoload from './generated/autoload.mjs';
 
 export const plugins = [
   {
     resolve: '@amazeelabs/gatsby-source-silverback',
     options: {
       schema_configuration: './',
-      directives,
+      autoload,
     },
   },
 ];
