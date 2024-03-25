@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.16](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.13.15...@amazeelabs/gatsby-source-silverback@1.13.16) (2024-03-25)
+
+### Bug Fixes
+
+- **SLB-278:** improve gatsby node type detection
+  ([1816002](https://github.com/AmazeeLabs/silverback-mono/commit/1816002953609c7be3463c44d621bf65e8d0ee8a))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.13.15](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.13.14...@amazeelabs/gatsby-source-silverback@1.13.15) (2024-02-29)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-source-silverback
