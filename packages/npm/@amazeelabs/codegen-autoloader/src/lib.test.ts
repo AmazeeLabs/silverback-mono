@@ -341,4 +341,28 @@ describe('generateAutoloader', () => {
       ].join('\n'),
     );
   });
+  it('generates autoloader entries for @sourceFrom directives', () => {
+    expect(
+      generateAutoloader(
+        buildSchema(
+          [
+            'directive @sourceFrom(fn: String) on OBJECT',
+            'type A @sourceFrom(fn: "@my/package#function") { id: ID! }',
+            'type B @sourceFrom(fn: "./file.js#function") { id: ID! }',
+          ].join('\n'),
+        ),
+        ['gatsby', 'cloudinary'],
+        printJsAutoload,
+      ),
+    ).toEqual(
+      [
+        'import { function as al0 } from "@my/package";',
+        'import { function as al1 } from "./file.js";',
+        'export default {',
+        "  '@my/package#function': al0,",
+        "  './file.js#function': al1,",
+        '};',
+      ].join('\n'),
+    );
+  });
 });
