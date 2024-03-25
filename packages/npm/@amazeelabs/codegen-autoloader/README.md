@@ -101,6 +101,19 @@ generates:
     mode: 'js'
 ```
 
+## `@sourceFrom` support
+
+The `@sourceFrom` from the `@amazeelabs/gatsby-source-silverback` directive
+allows to specify Javascript functions that should be used to source data into
+the Gatsby data store. This package will include these functions in the
+autoloader output.
+
+```graphql
+type Page @sourceFrom(fn: "@my/package#pages") {
+  title: String!
+}
+```
+
 ## Output modes
 
 The `mode` configuration parameter allows to select the output mode. `js`

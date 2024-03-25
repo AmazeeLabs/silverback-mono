@@ -49,6 +49,7 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
     schema_configuration: Joi.string().optional(),
     directives: Joi.object().pattern(Joi.string(), Joi.function()).optional(),
     sources: Joi.object().pattern(Joi.string(), Joi.function()).optional(),
+    autoload: Joi.object().pattern(Joi.string(), Joi.function()).optional(),
   });
 
 const getForwardedHeaders = (url: URL) => ({
@@ -162,7 +163,10 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
 
       const sources = extractSourceMapping(schema);
       for (const type in sources) {
-        const resolver = options.sources?.[sources[type]];
+        const resolver =
+          options.autoload?.[sources[type]] ||
+          options.directives?.[sources[type]] ||
+          options.sources?.[sources[type]];
         if (!resolver) {
           gatsbyApi.reporter.error(
             `"${sources[type]}" on "${type}" is not a registered source function. Check the "sources" property of the "@amazeelabs/gatsby-source-silverback" plugin.`,
@@ -308,6 +312,7 @@ export const createResolvers: GatsbyNode['createResolvers'] = async (
   if (options.schema_configuration) {
     const availableDirectives = {
       ...(options.directives || {}),
+      ...(options.autoload || {}),
       gatsbyNode,
       gatsbyNodes,
     };

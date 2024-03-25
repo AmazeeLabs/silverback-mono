@@ -165,16 +165,38 @@ export const generateAutoloader = (
 ): string => {
   const docstrings = extractDocstrings(schema);
   const selector = selectImplementation(context);
-  return printer(
-    Object.fromEntries(
-      Object.keys(docstrings)
-        .map((directive) => {
-          const implementation = selector(
-            extractImplementations(docstrings[directive]),
-          );
-          return implementation ? [directive, implementation] : undefined;
-        })
-        .filter((v): v is [string, string] => Array.isArray(v)),
-    ),
+
+  const autoloader = Object.fromEntries(
+    Object.keys(docstrings)
+      .map((directive) => {
+        const implementation = selector(
+          extractImplementations(docstrings[directive]),
+        );
+        return implementation ? [directive, implementation] : undefined;
+      })
+      .filter((v): v is [string, string] => Array.isArray(v)),
   );
+
+  // Attach @sourceFrom autoload entries.
+  const typeMap = schema.getTypeMap();
+  for (const typeName in typeMap) {
+    const type = typeMap[typeName];
+    if (type.astNode?.directives) {
+      for (const directive of type.astNode.directives) {
+        if (directive.name.value === 'sourceFrom') {
+          const fn = directive.arguments?.find(
+            (arg) => arg.name.value === 'fn',
+          );
+          if (
+            fn?.value.kind === 'StringValue' &&
+            fn.value.value.includes('#')
+          ) {
+            autoloader[`'${fn.value.value}'`] = fn.value.value;
+          }
+        }
+      }
+    }
+  }
+
+  return printer(autoloader);
 };
