@@ -11,7 +11,7 @@
     "access": "public"
   },
   "dependencies": {
-    "commander": "^11.1.0",
+    "commander": "^12.0.0",
     "diff": "^5.2.0",
     "fs-extra": "^11.2.0",
     "js-yaml": "^4.1.0",
