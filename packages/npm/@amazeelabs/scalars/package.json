@@ -17,7 +17,7 @@
   "dependencies": {
     "@amazeelabs/bridge": "workspace:*",
     "hast-util-select": "^5.0.5",
-    "query-string": "^8.2.0",
+    "query-string": "^9.0.0",
     "rehype-parse": "^8.0.4",
     "rehype-react": "^7.2.0",
     "rehype-slug": "^5.1.0",
