@@ -164,9 +164,8 @@ export const sourceNodes: GatsbyNode['sourceNodes'] = async (
       for (const type in sources) {
         const resolver = options.sources?.[sources[type]];
         if (!resolver) {
-          gatsbyApi.reporter.error(
-            `"${sources[type]}" on "${type}" is not a registered source function. Check the "sources" property of the "@amazeelabs/gatsby-source-silverback" plugin.`,
-          );
+          // If there is no matching source function, just proceed. Maybe
+          // another instance of the plugin will handle this type.
           continue;
         }
         gatsbyApi.reporter.info(`Sourcing "${type}" from "${sources[type]}".`);
