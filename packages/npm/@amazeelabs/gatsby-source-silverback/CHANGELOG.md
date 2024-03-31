@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.13.17](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.13.16...@amazeelabs/gatsby-source-silverback@1.13.17) (2024-03-31)
+
+### Bug Fixes
+
+- **SLB-278:** ignore missing source functions
+  ([8c5c318](https://github.com/AmazeeLabs/silverback-mono/commit/8c5c31865ea9515de80eb3d633f60304e1e9032d))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.13.16](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.13.15...@amazeelabs/gatsby-source-silverback@1.13.16) (2024-03-25)
 
 ### Bug Fixes
