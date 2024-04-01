@@ -2,7 +2,7 @@
 
 exports[`extra/extraField.gql 1`] = `
 {
-  "Gatsby Build & Gatsby Preview": {
+  "Gatsby Build": {
     "code": 200,
     "data": {
       "errors": [
