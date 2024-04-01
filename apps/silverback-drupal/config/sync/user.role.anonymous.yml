@@ -13,4 +13,3 @@ is_admin: false
 permissions:
   - 'execute extra persisted graphql requests'
   - 'execute silverback_gatsby persisted graphql requests'
-  - 'execute silverback_gatsby_preview persisted graphql requests'

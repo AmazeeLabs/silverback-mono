@@ -30,7 +30,7 @@ generates:
         - drupal
       mode: 'drupal'
   generated/operations.ts:
-    schema: ../silverback-drupal/generated/silverback_gatsby_preview.composed.graphqls
+    schema: ../silverback-drupal/generated/silverback_gatsby.composed.graphqls
     documents:
       - ./queries/**/*.graphql
     plugins:
@@ -44,7 +44,7 @@ generates:
       preResolveTypes: false
 
   ../silverback-drupal/generated/persisted-queries-map.json:
-    schema: ../silverback-drupal/generated/silverback_gatsby_preview.composed.graphqls
+    schema: ../silverback-drupal/generated/silverback_gatsby.composed.graphqls
     documents:
       - ./queries/**/*.graphql
     plugins:
