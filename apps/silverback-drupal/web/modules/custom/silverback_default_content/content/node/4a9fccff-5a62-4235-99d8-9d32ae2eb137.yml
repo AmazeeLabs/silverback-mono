@@ -33,11 +33,6 @@ default:
     -
       alias: '/page-ä/!@$^&*(){}[]:"|;''<>,.3/`~-='
       langcode: en
-  external_preview_link:
-    -
-      uri: 'http://localhost:8000/en/page-%C3%A4/%21%40%24%5E%26%2A%28%29%7B%7D%5B%5D%3A%22%7C%3B%27%3C%3E%2C.3/%60~-%3D?preview=1'
-      title: 'Preview Path with special chars: /page-ä/!@$^&amp;*(){}[]:&quot;|;&#039;&lt;&gt;,.3/`~-='
-      options: {  }
   content_translation_source:
     -
       value: und

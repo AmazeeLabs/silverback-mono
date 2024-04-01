@@ -8,6 +8,7 @@ $excluded = [
   // Path aliases are created automatically on the node creation. They cause
   // troubles if exported to the default content.
   'path_alias',
+  'consumer',
 ];
 
 \AmazeeLabs\DefaultContent\Export::run('silverback_default_content', $excluded);
