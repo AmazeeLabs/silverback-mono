@@ -1,6 +1,7 @@
 {
   "name": "@-amazeelabs/schema-tests",
   "version": "1.0.1",
+  "private": true,
   "type": "module",
   "scripts": {
     "start": "pnpm run --filter @-amazeelabs/silverback-drupal start:silent",
