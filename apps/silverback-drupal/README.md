@@ -17,9 +17,6 @@
     [drupalNodes](../silverback-gatsby/src/gatsby-node-helpers/drupal-nodes.ts)
     on Gatsby side.
 
-There is a special GatsbyPreview user having the "Bypass content access control"
-permission. This one is used by Gatsby Preview to fetch unpublished content.
-
 ### Why not version 3 of Drupal GraphQL module
 
 [GraphQL module](https://www.drupal.org/project/graphql) version 3 comes with
