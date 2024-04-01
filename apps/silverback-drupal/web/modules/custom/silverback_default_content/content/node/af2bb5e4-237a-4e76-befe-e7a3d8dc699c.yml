@@ -41,6 +41,11 @@ default:
       value: false
   body:
     -
-      value: "<!-- wp:custom/root -->\r\n<main class=\"wp-block-custom-root\"><!-- wp:paragraph -->\r\n<p></p>\r\n<!-- /wp:paragraph --></main>\r\n<!-- /wp:custom/root -->"
+      value: |-
+        <!-- wp:custom/root -->
+        <main class="wp-block-custom-root"><!-- wp:paragraph -->
+        <p></p>
+        <!-- /wp:paragraph --></main>
+        <!-- /wp:custom/root -->
       format: gutenberg
       summary: ''
