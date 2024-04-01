@@ -1,0 +1,17 @@
+uuid: a26e5bf8-c0db-42c5-909c-90b5f05d4c17
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: News
+type: news
+description: 'For testing content hub.'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

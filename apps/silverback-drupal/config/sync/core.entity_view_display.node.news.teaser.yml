@@ -1,0 +1,34 @@
+uuid: ac9a5e45-978c-4614-8d44-ec316d6c73e2
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.news.field_tags
+    - node.type.news
+  module:
+    - silverback_external_preview
+    - user
+id: node.news.teaser
+targetEntityType: node
+bundle: news
+mode: teaser
+content:
+  external_preview_link:
+    type: external_preview_iframe_formatter
+    label: hidden
+    settings:
+      width: 100%
+      height: 900
+      view_live_link: true
+    third_party_settings: {  }
+    weight: -5
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_tags: true
+  langcode: true
