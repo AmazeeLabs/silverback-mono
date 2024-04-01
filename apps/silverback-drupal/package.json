@@ -16,10 +16,7 @@
     "snapshot-create": "pnpm silverback snapshot-create test -y",
     "snapshot-restore": "pnpm silverback snapshot-restore test",
     "clear": "pnpm drush cr",
-    "test:integration": "pnpm snapshot-restore && start-server-and-test start:silent 127.0.0.1:8888 schema:test",
     "schema:export": "pnpm drush silverback-gatsby:schema-export",
-    "schema:test": "pnpm jest --modulePathIgnorePatterns '^((?!generated).)*$' --testMatch '<rootDir>/generated/__tests__/test-queries.js'",
-    "schema:update": "pnpm schema:test -u",
     "content:export": "pnpm drush php-script web/modules/custom/silverback_default_content/export.php",
     "content:import": "pnpm drush php-script web/modules/custom/silverback_default_content/import.php"
   },
@@ -30,10 +27,5 @@
     "@-amazeelabs/silverback_iframe": "workspace:*",
     "@-amazeelabs/silverback_iframe_theme": "workspace:*",
     "@-silverback-drupal/gutenberg_custom_blocks": "workspace:*"
-  },
-  "devDependencies": {
-    "@amazeelabs/graphql-schema-test": "workspace:*",
-    "jest": "29.7.0",
-    "start-server-and-test": "2.0.3"
   }
 }

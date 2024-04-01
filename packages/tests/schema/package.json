@@ -1,0 +1,21 @@
+{
+  "name": "@-amazeelabs/schema-tests",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "pnpm run --filter @-amazeelabs/silverback-drupal start:silent",
+    "test:static": "tsc --noEmit && eslint '**/*.{ts,tsx,js,jsx}' --ignore-path='./.gitignore'",
+    "test:integration": "start-server-and-test http://127.0.0.1:8888/user/login vitest",
+    "update": "CI=true vitest -u",
+    "dev": "vitest --ui # for non phpstorm users"
+  },
+  "devDependencies": {
+    "@types/node": "^18.16.18",
+    "@vitest/ui": "^0.32.2",
+    "got": "^13.0.0",
+    "noop-tag": "^2.0.0",
+    "start-server-and-test": "^2.0.0",
+    "typescript": "^5.1.6",
+    "vitest": "^0.32.2"
+  }
+}
