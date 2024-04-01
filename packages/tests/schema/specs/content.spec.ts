@@ -184,10 +184,10 @@ describe('content', () => {
             "path": "/en/article/with-everything",
             "tags": [
               {
-                "id": "cfc1e9c7-3fb8-43a9-982a-756d72dc4f86",
+                "id": "cfc1e9c7-3fb8-43a9-982a-756d72dc4f86:en",
               },
               {
-                "id": "5abb8be2-d3ab-44ea-8dc1-dfdbaf02c08f",
+                "id": "5abb8be2-d3ab-44ea-8dc1-dfdbaf02c08f:en",
               },
             ],
             "template": null,

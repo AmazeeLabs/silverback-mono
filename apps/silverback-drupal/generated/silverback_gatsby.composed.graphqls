@@ -865,6 +865,9 @@ extend type Query {
 extend type Tag {
   _id: String! @deprecated
   _drupalId: String! @deprecated
+  _defaultTranslation: Boolean! @deprecated
+  _langcode: String! @deprecated
+  _translations: [Tag!]! @deprecated
 }
 
 extend type Query {
