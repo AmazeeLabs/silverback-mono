@@ -2,6 +2,8 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/packages/composer/amazeelabs/default-content/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/composer/amazeelabs/silverback-cli/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/apps/silverback-gatsby/public" />
       <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/.silverback-snapshots" />
       <excludeFolder url="file://$MODULE_DIR$/packages/npm/verdaccio-git/lib" />
