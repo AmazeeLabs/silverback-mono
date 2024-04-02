@@ -1,1 +1,1 @@
-export { createExecutor, registerExecutor, clearRegistry } from './lib.js';
+export { OperationExecutor, useExecutor } from './lib.js';
