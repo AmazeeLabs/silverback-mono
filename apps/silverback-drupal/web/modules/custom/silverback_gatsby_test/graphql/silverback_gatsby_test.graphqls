@@ -15,6 +15,24 @@ type Mutation {
 type Query {
   autoloadStatic: String @autoloadStatic
   autoloadService: String @autoloadService
+  contentHub(locale: String!, args: String): ContentHubView
+    @lang(code: "$locale")
+    @drupalView(id: "content_hub:default", args: "$args")
+}
+
+type ContentHubView {
+  total: Int!
+  rows: [News]!
+  filters: ContentHubViewFilters
+}
+
+type ContentHubViewFilters {
+  tag: [ViewFilter]!
+}
+
+type ViewFilter {
+  value: String!
+  label: String!
 }
 
 type Image @entity(type: "media", bundle: "image") {
@@ -85,8 +103,12 @@ type Article @entity(type: "node", bundle: "article") {
   template: String @isTemplate
 }
 
+type News {
+  title: String! @resolveProperty(path: "title.value")
+}
+
 union RootBlock @resolveEditorBlockType =
-    BlockTwoColumns
+  | BlockTwoColumns
   | BlockHtmlList
   | BlockHtmlParagraph
   | BlockHtmlQuote
@@ -94,7 +116,7 @@ union RootBlock @resolveEditorBlockType =
   | BlockTeaser
 
 union ContentBlock @resolveEditorBlockType =
-    BlockHtmlList
+  | BlockHtmlList
   | BlockHtmlParagraph
   | BlockHtmlQuote
   | BlockImage
