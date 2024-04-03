@@ -9,6 +9,16 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/npm/verdaccio-git/lib" />
       <excludeFolder url="file://$MODULE_DIR$/packages/npm/@amazeelabs/silverback-playwright/test-results" />
       <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/sites/default/files" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/graphql_directives" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/silverback_campaign_urls" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/silverback_cdn_redirect" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/silverback_cloudinary" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/silverback_external_preview" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/silverback_gatsby" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/silverback_graphql_persisted" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/silverback_gutenberg" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/silverback_iframe" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/silverback_translations" />
       <excludePattern pattern="dist" />
       <excludePattern pattern="build" />
       <excludePattern pattern=".cache" />
