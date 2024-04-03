@@ -126,8 +126,8 @@ type Query {
 
 ### `@value`
 
-The `@value` directive allows you to define a static value for a field as primitive
-or a JSON encoded string. Without any arguments, it will emit `null`.
+The `@value` directive allows you to define a static value for a field as
+primitive or a JSON encoded string. Without any arguments, it will emit `null`.
 
 ```graphql
 type Query {
@@ -358,6 +358,80 @@ type Post {
   related: [Post!]! @resolveEntityReference(field: "field_related")
 }
 ```
+
+### `@drupalView`
+
+Executes a Drupal view.
+
+```graphql
+type Query {
+  contentHub(locale: String!, args: String): ContentHubView!
+    @lang(code: "$locale")
+    @drupalView(id: "content_hub:default", args: "$args")
+}
+
+type ContentHubView {
+  total: Int!
+  rows: [Post!]!
+  filters: ContentHubViewFilters!
+}
+
+type ContentHubViewFilters {
+  tag: [ViewFilter!]!
+  category: [ViewFilter!]!
+}
+
+type ViewFilter {
+  value: String!
+  label: String!
+}
+```
+
+#### `id` argument
+
+View ID and display separated by colon. Example: `content_hub:default`.
+
+#### `args` argument
+
+Filters, page number, etc. in query string format. Example:
+`page=1&pageSize=9&contextualFilters=40/12&tag[]=1&type=foo`
+
+Reserved keys:
+
+- `page`: The page number. Starts from 1. Defaults to 1.
+- `pageSize`: The number of items per page. Defaults to 10.
+- `contextualFilters`: Contextual filter values, for example, `40/12/10`.
+
+The rest of keys are taken as filters.
+
+Array values are allowed in the format of NPM `query-string` package with
+`arrayFormat` set to `bracket`, e.g. `tag[]=1&tag[]=2`.
+
+#### Returning result
+
+The structure of the result is the following:
+
+```ts
+type Result = {
+  total: number;
+  items: [DrupalEntity];
+  filters: {
+    [filterKey: string]: Array<{
+      value: string;
+      label: string;
+    }>;
+  };
+};
+```
+
+#### Translations
+
+Use the `@lang` directive to set the language for the view. If the resulting
+entities have the chosen language, they will be returned in that language.
+
+If the results have to be filtered by the language, use
+`Content: Translation language (= Interface text language selected for page)`
+filter in the view.
 
 ## Extending
 
