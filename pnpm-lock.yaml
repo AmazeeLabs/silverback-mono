@@ -43,6 +43,9 @@ importers:
 
   apps/silverback-drupal:
     dependencies:
+      '@-amazeelabs/graphql_directives':
+        specifier: workspace:*
+        version: link:../../packages/composer/amazeelabs/graphql_directives
       '@-amazeelabs/silverback-cli':
         specifier: workspace:*
         version: link:../../packages/composer/amazeelabs/silverback-cli
@@ -1889,6 +1892,9 @@ importers:
 
   packages/tests/schema:
     devDependencies:
+      '@-amazeelabs/silverback-drupal':
+        specifier: workspace:*
+        version: link:../../../apps/silverback-drupal
       '@types/node':
         specifier: ^18.16.18
         version: 18.19.17

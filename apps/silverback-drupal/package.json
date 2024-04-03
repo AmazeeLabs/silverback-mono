@@ -21,6 +21,7 @@
     "content:import": "pnpm drush php-script web/modules/custom/silverback_default_content/import.php"
   },
   "dependencies": {
+    "@-amazeelabs/graphql_directives": "workspace:*",
     "@-amazeelabs/silverback-cli": "workspace:*",
     "@-amazeelabs/silverback_gatsby": "workspace:*",
     "@-amazeelabs/silverback_gutenberg": "workspace:*",
