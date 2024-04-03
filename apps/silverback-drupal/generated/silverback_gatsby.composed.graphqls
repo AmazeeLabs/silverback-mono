@@ -114,6 +114,14 @@ Implemented in "Drupal\silverback_cloudinary\Plugin\GraphQL\Directive\Responsive
 directive @responsiveImage(width: String, height: String, sizes: String, transform: String) repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
 
 """
+Executes a Drupal view.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\DrupalView".
+"""
+directive @drupalView(id: String!, args: String) repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
+
+"""
 Fetch an entity or entity revision based on id, rid or route
 
 Provided by the "silverback_gatsby" module.
@@ -302,6 +310,22 @@ type Mutation {
 type Query {
   autoloadStatic: String @autoloadStatic
   autoloadService: String @autoloadService
+  contentHub(locale: String!, args: String): ContentHubView @lang(code: "$locale") @drupalView(id: "content_hub:default", args: "$args")
+}
+
+type ContentHubView {
+  total: Int!
+  rows: [News]!
+  filters: ContentHubViewFilters
+}
+
+type ContentHubViewFilters {
+  tag: [ViewFilter]!
+}
+
+type ViewFilter {
+  value: String!
+  label: String!
 }
 
 type Image @entity(type: "media", bundle: "image") {
@@ -353,6 +377,10 @@ type Article @entity(type: "node", bundle: "article") {
   tags: [Tag]! @resolveEntityReference(field: "field_tags")
   image: Image @resolveEntityReference(field: "field_image") @seek(pos: 0)
   template: String @isTemplate
+}
+
+type News {
+  title: String! @resolveProperty(path: "title.value")
 }
 
 union RootBlock @resolveEditorBlockType = BlockTwoColumns | BlockHtmlList | BlockHtmlParagraph | BlockHtmlQuote | BlockImage | BlockTeaser
@@ -607,6 +635,14 @@ Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Seek".
 directive @seek(pos: Int!) repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
 
 """
+Executes a Drupal view.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\DrupalView".
+"""
+directive @drupalView(id: String!, args: String) repeatable on FIELD_DEFINITION
+
+"""
 Directive for the responsive_image data producer.
 
 Provided by the "silverback_cloudinary" module.
@@ -756,6 +792,18 @@ extend type Query {
   _original_typename: String! @deprecated
 }
 
+extend type ContentHubView {
+  _original_typename: String! @deprecated
+}
+
+extend type ContentHubViewFilters {
+  _original_typename: String! @deprecated
+}
+
+extend type ViewFilter {
+  _original_typename: String! @deprecated
+}
+
 extend type Image {
   _original_typename: String! @deprecated
 }
@@ -785,6 +833,10 @@ extend type Webform {
 }
 
 extend type Article {
+  _original_typename: String! @deprecated
+}
+
+extend type News {
   _original_typename: String! @deprecated
 }
 
