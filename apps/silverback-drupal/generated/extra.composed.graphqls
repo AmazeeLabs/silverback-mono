@@ -114,6 +114,14 @@ Implemented in "Drupal\silverback_cloudinary\Plugin\GraphQL\Directive\Responsive
 directive @responsiveImage(width: String, height: String, sizes: String, transform: String) repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
 
 """
+Executes a Drupal view.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\DrupalView".
+"""
+directive @drupalView(id: String!, args: String) repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
+
+"""
 Fetch an entity or entity revision based on id, rid or route
 
 Provided by the "silverback_gatsby" module.
