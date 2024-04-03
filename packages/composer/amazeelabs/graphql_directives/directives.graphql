@@ -227,3 +227,11 @@ Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Seek".
 directive @seek(
   pos: Int!
 ) repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
+
+"""
+Executes a Drupal view.
+
+Provided by the "graphql_directives" module.
+Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\DrupalView".
+"""
+directive @drupalView(id: String!, args: String) repeatable on FIELD_DEFINITION
