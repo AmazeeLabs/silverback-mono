@@ -37,7 +37,7 @@ export function useExecutor(id: string, variables?: Record<string, any>) {
 
   if (op) {
     if (typeof op.executor === 'function') {
-      return () => op.executor(id, variables);
+      return (vars?: Record<string, any>) => op.executor(id, vars);
     }
     return op.executor;
   }

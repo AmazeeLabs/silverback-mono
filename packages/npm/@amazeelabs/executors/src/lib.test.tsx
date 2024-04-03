@@ -15,7 +15,9 @@ function Consumer({
   variables?: Record<string, any>;
 }) {
   const executor = useExecutor(id, variables);
-  return <p>{typeof executor === 'function' ? executor() : executor}</p>;
+  return (
+    <p>{typeof executor === 'function' ? executor(variables) : executor}</p>
+  );
 }
 
 test('no operator', () => {
