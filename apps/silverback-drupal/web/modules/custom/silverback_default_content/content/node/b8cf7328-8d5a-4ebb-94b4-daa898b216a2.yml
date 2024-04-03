@@ -1,0 +1,49 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: b8cf7328-8d5a-4ebb-94b4-daa898b216a2
+  bundle: news
+  default_langcode: en
+  depends:
+    cfc1e9c7-3fb8-43a9-982a-756d72dc4f86: taxonomy_term
+    5abb8be2-d3ab-44ea-8dc1-dfdbaf02c08f: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'News with Tag 1 and Tag 2'
+  created:
+    -
+      value: 1711975545
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  field_tags:
+    -
+      entity: cfc1e9c7-3fb8-43a9-982a-756d72dc4f86
+    -
+      entity: 5abb8be2-d3ab-44ea-8dc1-dfdbaf02c08f
