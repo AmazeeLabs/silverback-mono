@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/executors@2.0.0...@amazeelabs/executors@2.0.1) (2024-04-03)
+
+### Bug Fixes
+
+- make executors accept arguments directly
+  ([6df6102](https://github.com/AmazeeLabs/silverback-mono/commit/6df61029cc0836f8e5be74ff7ebb7aa8108ad5a4))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [2.0.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/executors@1.1.5...@amazeelabs/executors@2.0.0) (2024-04-02)
 
 - refactor!: turn executors into react contexts
