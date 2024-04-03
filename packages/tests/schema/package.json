@@ -6,11 +6,16 @@
   "scripts": {
     "start": "pnpm run --filter @-amazeelabs/silverback-drupal start:silent",
     "test:static": "tsc --noEmit && eslint '**/*.{ts,tsx,js,jsx}' --ignore-path='./.gitignore'",
-    "test:integration": "start-server-and-test http://127.0.0.1:8888/user/login vitest",
-    "update": "CI=true vitest -u",
+    "test:integration": "start-server-and-test http://127.0.0.1:8888/user/login test:run",
+    "test:run": "pnpm test:readonly && pnpm test:mutating",
+    "test:readonly": "CI=true pnpm vitest --dir specs",
+    "test:mutating": "CI=true pnpm vitest --dir specs-mutating --single-thread",
+    "test:readonly:update": "pnpm test:readonly -u",
+    "test:mutating:update": "pnpm test:mutating -u",
     "dev": "vitest --ui # for non phpstorm users"
   },
   "devDependencies": {
+    "@-amazeelabs/silverback-drupal": "workspace:*",
     "@types/node": "^18.16.18",
     "@vitest/ui": "^0.32.2",
     "got": "^13.0.0",
