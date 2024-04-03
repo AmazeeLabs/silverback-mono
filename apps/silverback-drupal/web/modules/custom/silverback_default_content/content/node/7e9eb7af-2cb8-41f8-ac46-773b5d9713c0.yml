@@ -1,0 +1,111 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: 7e9eb7af-2cb8-41f8-ac46-773b5d9713c0
+  bundle: news
+  default_langcode: en
+  depends:
+    cfc1e9c7-3fb8-43a9-982a-756d72dc4f86: taxonomy_term
+default:
+  revision_uid:
+    -
+      target_id: 1
+  status:
+    -
+      value: true
+  uid:
+    -
+      target_id: 1
+  title:
+    -
+      value: 'News translated'
+  created:
+    -
+      value: 1711989684
+  promote:
+    -
+      value: false
+  sticky:
+    -
+      value: false
+  revision_translation_affected:
+    -
+      value: true
+  path:
+    -
+      alias: ''
+      langcode: en
+  content_translation_source:
+    -
+      value: und
+  content_translation_outdated:
+    -
+      value: false
+  field_tags:
+    -
+      entity: cfc1e9c7-3fb8-43a9-982a-756d72dc4f86
+translations:
+  de:
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    title:
+      -
+        value: 'News translated DE'
+    created:
+      -
+        value: 1711989687
+    promote:
+      -
+        value: false
+    sticky:
+      -
+        value: false
+    revision_translation_affected:
+      -
+        value: true
+    path:
+      -
+        alias: ''
+        langcode: de
+    content_translation_source:
+      -
+        value: en
+    content_translation_outdated:
+      -
+        value: false
+  fr:
+    status:
+      -
+        value: true
+    uid:
+      -
+        target_id: 1
+    title:
+      -
+        value: 'News translated FR'
+    created:
+      -
+        value: 1711989705
+    promote:
+      -
+        value: false
+    sticky:
+      -
+        value: false
+    revision_translation_affected:
+      -
+        value: true
+    path:
+      -
+        alias: ''
+        langcode: fr
+    content_translation_source:
+      -
+        value: en
+    content_translation_outdated:
+      -
+        value: false
