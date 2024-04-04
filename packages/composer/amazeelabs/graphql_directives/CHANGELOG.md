@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/graphql_directives@2.4.0...@-amazeelabs/graphql_directives@2.5.0) (2024-04-04)
+
+### Features
+
+- [@drupal](https://github.com/drupal)View directive
+  ([c770087](https://github.com/AmazeeLabs/silverback-mono/commit/c77008755f874cfe9339c2975f25e3cd24ac3d13))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [2.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/graphql_directives@2.3.0...@-amazeelabs/graphql_directives@2.4.0) (2024-02-07)
 
 ### Features
