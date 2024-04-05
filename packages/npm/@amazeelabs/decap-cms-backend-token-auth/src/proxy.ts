@@ -28,7 +28,7 @@ export async function githubProxy(
     /https:\/\/api\.github\.com/g,
     url.protocol + '//' + url.host + basePath,
   );
-  return new Response(content, {
+  return new Response(response.status === 204 ? null : content, {
     status: response.status,
     headers: header,
   });
