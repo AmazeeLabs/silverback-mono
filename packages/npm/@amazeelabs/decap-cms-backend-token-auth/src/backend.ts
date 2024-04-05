@@ -58,7 +58,7 @@ export class TokenAuthBackend implements Implementation {
       return {
         ...status,
         login: status.id,
-        useOpenAuthoring: true,
+        useOpenAuthoring: false,
       };
     } catch (e: unknown) {
       // User does not have a valid session.
