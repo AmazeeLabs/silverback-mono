@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/decap-cms-backend-token-auth@1.1.4...@amazeelabs/decap-cms-backend-token-auth@1.1.5) (2024-04-05)
+
+### Bug Fixes
+
+- **decap:** github proxy response status code test case
+  ([c104385](https://github.com/AmazeeLabs/silverback-mono/commit/c104385a7e95ef8262a21056cfc513682f774381))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/decap-cms-backend-token-auth@1.1.3...@amazeelabs/decap-cms-backend-token-auth@1.1.4) (2024-04-05)
 
 ### Bug Fixes
