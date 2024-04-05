@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/decap-cms-backend-token-auth@1.1.5...@amazeelabs/decap-cms-backend-token-auth@1.1.6) (2024-04-05)
+
+### Bug Fixes
+
+- **decap:** more robust empty response body handling
+  ([37e0465](https://github.com/AmazeeLabs/silverback-mono/commit/37e0465fc51803a54914938651e0bcb736b94e7a))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/decap-cms-backend-token-auth@1.1.4...@amazeelabs/decap-cms-backend-token-auth@1.1.5) (2024-04-05)
 
 ### Bug Fixes
