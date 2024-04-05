@@ -32,4 +32,21 @@ describe('createGithubProxy', () => {
       }),
     );
   });
+  it('handles 204 requests', async () => {
+    fetch.mockReturnValue(new Response(null, { status: 204 }));
+    const request = new Request('https://mysite.com/_github/merge', {
+      method: 'POST',
+    });
+    const result = await githubProxy(request, 'token', '/_github');
+    expect(fetch).toHaveBeenCalledWith('https://api.github.com/merge', {
+      method: 'POST',
+      body: null,
+      duplex: 'half',
+      headers: {
+        ...request.headers,
+        Authorization: 'Bearer token',
+      },
+    });
+    expect(result.status).toBe(204);
+  });
 });
