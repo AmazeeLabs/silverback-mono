@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.14.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.13.17...@amazeelabs/gatsby-source-silverback@1.14.0) (2024-04-05)
+
+### Features
+
+- allow [@responsive](https://github.com/responsive)ImageSharp to handle local
+  images
+  ([93edb53](https://github.com/AmazeeLabs/silverback-mono/commit/93edb534be05889ddcc9cc13fe1c4466ae7a21eb))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.13.17](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.13.16...@amazeelabs/gatsby-source-silverback@1.13.17) (2024-03-31)
 
 ### Bug Fixes
