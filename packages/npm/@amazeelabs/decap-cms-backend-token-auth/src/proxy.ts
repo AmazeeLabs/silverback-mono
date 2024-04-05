@@ -24,11 +24,13 @@ export async function githubProxy(
   header.delete('content-encoding');
   header.delete('content-length');
   // Replace urls in the response with proxied ones.
-  const content = (await response.text()).replace(
-    /https:\/\/api\.github\.com/g,
-    url.protocol + '//' + url.host + basePath,
-  );
-  return new Response(response.status === 204 ? null : content, {
+  const content = response.body
+    ? (await response.text()).replace(
+        /https:\/\/api\.github\.com/g,
+        url.protocol + '//' + url.host + basePath,
+      )
+    : null;
+  return new Response(content, {
     status: response.status,
     headers: header,
   });

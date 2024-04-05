@@ -36,6 +36,7 @@ describe('createGithubProxy', () => {
     fetch.mockReturnValue(new Response(null, { status: 204 }));
     const request = new Request('https://mysite.com/_github/merge', {
       method: 'POST',
+      body: null,
     });
     const result = await githubProxy(request, 'token', '/_github');
     expect(fetch).toHaveBeenCalledWith('https://api.github.com/merge', {
@@ -48,5 +49,6 @@ describe('createGithubProxy', () => {
       },
     });
     expect(result.status).toBe(204);
+    expect(result.body).toBe(null);
   });
 });
