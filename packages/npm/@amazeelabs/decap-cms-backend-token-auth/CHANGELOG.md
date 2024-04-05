@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/decap-cms-backend-token-auth@1.1.2...@amazeelabs/decap-cms-backend-token-auth@1.1.3) (2024-04-05)
+
+### Bug Fixes
+
+- **decap:** disable open authoring in token-auth backend
+  ([698a023](https://github.com/AmazeeLabs/silverback-mono/commit/698a023f98d1423e619a98ddaffc1b978a48f645))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/decap-cms-backend-token-auth@1.1.1...@amazeelabs/decap-cms-backend-token-auth@1.1.2) (2024-03-25)
 
 **Note:** Version bump only for package @amazeelabs/decap-cms-backend-token-auth
