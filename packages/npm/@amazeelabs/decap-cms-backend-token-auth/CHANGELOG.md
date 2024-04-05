@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/decap-cms-backend-token-auth@1.1.3...@amazeelabs/decap-cms-backend-token-auth@1.1.4) (2024-04-05)
+
+### Bug Fixes
+
+- **decap:** response status code 204 must not contain content
+  ([aef62c8](https://github.com/AmazeeLabs/silverback-mono/commit/aef62c8ec3b3bb2b7d22148b867ac454e144452a))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/decap-cms-backend-token-auth@1.1.2...@amazeelabs/decap-cms-backend-token-auth@1.1.3) (2024-04-05)
 
 ### Bug Fixes
