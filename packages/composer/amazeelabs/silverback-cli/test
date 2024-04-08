@@ -59,7 +59,7 @@ function install_silverback_and_test {
     cp -n "$1/web/sites/default/default.settings.php" "$1/web/sites/default/settings.php" || true
   fi
 
-  composer require amazeelabs/silverback-cli:@dev
+  composer require amazeelabs/silverback-cli:@dev --no-interaction
 
   source .envrc
   if ./vendor/bin/silverback setup; then
