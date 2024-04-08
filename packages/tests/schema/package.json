@@ -17,11 +17,11 @@
   "devDependencies": {
     "@-amazeelabs/silverback-drupal": "workspace:*",
     "@types/node": "^18.16.18",
-    "@vitest/ui": "^0.32.2",
-    "got": "^13.0.0",
+    "@vitest/ui": "^1.0.0",
+    "got": "^14.0.0",
     "noop-tag": "^2.0.0",
     "start-server-and-test": "^2.0.0",
     "typescript": "^5.1.6",
-    "vitest": "^0.32.2"
+    "vitest": "^1.0.0"
   }
 }
