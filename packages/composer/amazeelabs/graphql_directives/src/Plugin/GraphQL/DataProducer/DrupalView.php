@@ -106,7 +106,11 @@ class DrupalView extends DataProducerPluginBase {
         }
       }
 
-      $context->addCacheableDependency($view);
+      // There's no single method to get all views cache metadata. But the
+      // following should cover most of it.
+      $context->addCacheTags($view->getCacheTags());
+      $context->addCacheableDependency($view->storage);
+      $context->addCacheableDependency($view->display_handler->getCacheMetadata());
 
       return [
         '#info' => [
