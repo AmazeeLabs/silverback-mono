@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@graphql-codegen/plugin-helpers": "^5.0.3",
-    "@graphql-codegen/visitor-plugin-common": "^4.1.2"
+    "@graphql-codegen/visitor-plugin-common": "^5.1.0"
   },
   "peerDependencies": {
     "graphql": "> 14"
