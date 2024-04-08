@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/graphql_directives@2.5.0...@-amazeelabs/graphql_directives@2.5.1) (2024-04-08)
+
+### Bug Fixes
+
+- fix views caching
+  ([2d8e54d](https://github.com/AmazeeLabs/silverback-mono/commit/2d8e54d5fed38cdb979f87571afadee706ce1177))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [2.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/graphql_directives@2.4.0...@-amazeelabs/graphql_directives@2.5.0) (2024-04-04)
 
 ### Features
