@@ -159,12 +159,12 @@ describe('content', () => {
 
       <p>Pug is embedded 👇&nbsp;</p>
 
-      <article class=\\"media media--type-image media--view-mode-default\\" data-align=\\"center\\">
+      <article class="media media--type-image media--view-mode-default" data-align="center">
         
             
-        <div class=\\"field field--name-field-media-image field--type-image field--label-visually_hidden\\">
-          <div class=\\"field__label visually-hidden\\">Image</div>
-                    <div class=\\"field__item\\">  <img loading=\\"lazy\\" src=\\"/sites/default/files/2021-01/image_jpg_pug.jpg\\" width=\\"1920\\" height=\\"1080\\" alt=\\"Pug alt text\\">
+        <div class="field field--name-field-media-image field--type-image field--label-visually_hidden">
+          <div class="field__label visually-hidden">Image</div>
+                    <div class="field__item">  <img loading="lazy" src="/sites/default/files/2021-01/image_jpg_pug.jpg" width="1920" height="1080" alt="Pug alt text">
 
       </div>
                 </div>
@@ -341,7 +341,7 @@ describe('content', () => {
               {
                 "__typename": "BlockHtmlParagraph",
                 "html": "
-      <p>A paragraph with a <a href=\\"/en/article/with-everything\\" data-type=\\"[EN] article\\" data-id=\\"[numeric]\\">link</a>.</p>
+      <p>A paragraph with a <a href="/en/article/with-everything" data-type="[EN] article" data-id="[numeric]">link</a>.</p>
       ",
               },
               {
@@ -359,7 +359,7 @@ describe('content', () => {
               {
                 "__typename": "BlockHtmlQuote",
                 "html": "
-      <blockquote class=\\"wp-block-quote\\"><p>A quote</p><cite>With a citation.</cite></blockquote>
+      <blockquote class="wp-block-quote"><p>A quote</p><cite>With a citation.</cite></blockquote>
       ",
               },
               {
