@@ -10,14 +10,14 @@ describe('createGithubProxy', () => {
     fetch.mockReturnValue(
       new Response(
         JSON.stringify({
-          url: 'https://api.github.com/repos',
+          url: 'https://api.github.com/repos?foo=bar',
         }),
         { status: 200 },
       ),
     );
-    const request = new Request('https://mysite.com/_github/repos');
+    const request = new Request('https://mysite.com/_github/repos?foo=bar');
     const result = await githubProxy(request, 'token', '/_github');
-    expect(fetch).toHaveBeenCalledWith('https://api.github.com/repos', {
+    expect(fetch).toHaveBeenCalledWith('https://api.github.com/repos?foo=bar', {
       method: 'GET',
       body: null,
       duplex: 'half',
@@ -28,10 +28,11 @@ describe('createGithubProxy', () => {
     });
     expect(await result.text()).toBe(
       JSON.stringify({
-        url: 'https://mysite.com/_github/repos',
+        url: 'https://mysite.com/_github/repos?foo=bar',
       }),
     );
   });
+
   it('handles 204 requests', async () => {
     fetch.mockReturnValue(new Response(null, { status: 204 }));
     const request = new Request('https://mysite.com/_github/merge', {

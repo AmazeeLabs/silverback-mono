@@ -6,7 +6,7 @@ export async function githubProxy(
   const url = new URL(request.url);
   // Remove the base path from the request URL and pass the request to github.
   const path = url.pathname.replace(basePath, '');
-  const response = await fetch('https://api.github.com' + path, {
+  const response = await fetch('https://api.github.com' + path + url.search, {
     method: request.method,
     body: request.body,
     // @ts-ignore: "duplex" is not in the RequestInit type yet.
