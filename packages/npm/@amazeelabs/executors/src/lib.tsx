@@ -1,10 +1,5 @@
 import { isMatch } from 'lodash-es';
-import React, {
-  createContext,
-  PropsWithChildren,
-  useContext,
-  useState,
-} from 'react';
+import React, { createContext, PropsWithChildren, useContext } from 'react';
 
 type Executor =
   | any
@@ -22,11 +17,8 @@ type RegistryEntry = {
 
 const ExecutorsContext = createContext<{
   executors: RegistryEntry[];
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  addExecutors: (executors: RegistryEntry[]) => void;
 }>({
   executors: [],
-  addExecutors: () => {},
 });
 
 export function useExecutor(id: string, variables?: Record<string, any>) {
@@ -49,20 +41,30 @@ export function OperationExecutor({
   ...entry
 }: PropsWithChildren<RegistryEntry>) {
   const upstream = useContext(ExecutorsContext).executors;
-  const [executors, setExecutors] = useState<RegistryEntry[]>([
-    ...upstream,
-    entry,
-  ]);
+  const merged = mergeExecutors(upstream, [entry]);
   return (
     <ExecutorsContext.Provider
       value={{
-        executors,
-        addExecutors: (newExecutors) =>
-          setExecutors([...executors, ...newExecutors]),
+        executors: merged,
       }}
     >
       {children}
     </ExecutorsContext.Provider>
+  );
+}
+
+function executorMap(executors: RegistryEntry[]) {
+  return Object.fromEntries(
+    executors.map((ex) => [`${ex.id}:${JSON.stringify(ex.variables)}`, ex]),
+  );
+}
+
+function mergeExecutors(
+  oldExecutors: RegistryEntry[],
+  newExecutors: RegistryEntry[],
+): RegistryEntry[] {
+  return Object.values(
+    Object.assign({}, executorMap(oldExecutors), executorMap(newExecutors)),
   );
 }
 

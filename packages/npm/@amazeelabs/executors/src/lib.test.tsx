@@ -1,6 +1,12 @@
 // @vitest-environment jsdom
-import { cleanup, render, screen } from '@testing-library/react';
-import React from 'react';
+import {
+  act,
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+} from '@testing-library/react';
+import React, { PropsWithChildren, useState } from 'react';
 import { beforeEach, expect, test, vi } from 'vitest';
 
 import { OperationExecutor, useExecutor } from './lib';
@@ -142,4 +148,36 @@ test('static data resolution with arguments', () => {
     ),
   ).not.toThrow();
   expect(screen.getByText('static data')).toBeDefined();
+});
+
+test('static data updates', () => {
+  const id = 'x';
+
+  function Executor({ children }: PropsWithChildren) {
+    const [count, setCount] = useState(0);
+    return (
+      <>
+        <button onClick={() => setCount(count + 1)}>Up</button>
+        <OperationExecutor id={id} executor={count} variables={{ y: 1 }}>
+          {children}
+        </OperationExecutor>
+      </>
+    );
+  }
+
+  expect(() =>
+    render(
+      <Executor>
+        <Consumer id={id} variables={{ y: 1 }} />
+      </Executor>,
+    ),
+  ).not.toThrow();
+
+  expect(screen.getByText(0)).toBeDefined();
+
+  act(() => {
+    fireEvent.click(screen.getByText(/Up/));
+  });
+
+  expect(screen.getByText(1)).toBeDefined();
 });
