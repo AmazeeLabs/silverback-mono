@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/executors@2.0.1...@amazeelabs/executors@2.0.2) (2024-04-09)
+
+### Bug Fixes
+
+- remove state from executors context and deduplicate entries
+  ([4c5d2a7](https://github.com/AmazeeLabs/silverback-mono/commit/4c5d2a785505bd6a6b9b7cc12aea1c50c2e49936))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.0.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/executors@2.0.0...@amazeelabs/executors@2.0.1) (2024-04-03)
 
 ### Bug Fixes
