@@ -723,6 +723,7 @@ $settings['file_scan_ignore_directories'] = [
   'node_modules',
   'bower_components',
 ];
+$settings['extension_discovery_scan_tests'] = TRUE;
 
 /**
  * The default number of entities to update in a batch process.

@@ -36,8 +36,8 @@ export const config: PlaywrightTestConfig = {
       dependencies: ['setup'],
     },
   ],
-  // Initial gatsby build can take long.
-  timeout: 90_000,
+  // Initial gatsby build can take long. Also, we have few heavy tests.
+  timeout: 2 * 60 * 1000,
 };
 
 export default defineConfig(config);

@@ -6,7 +6,7 @@ module:
   block: 0
   block_content: 0
   breakpoint: 0
-  ckeditor: 0
+  ckeditor5: 0
   consumers: 0
   dblog: 0
   default_content: 0
