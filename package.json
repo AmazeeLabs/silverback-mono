@@ -26,6 +26,7 @@
     "commitizen": "4.3.0",
     "husky": "9.0.11",
     "lerna": "8.1.2",
+    "typescript": "5.4.4",
     "verdaccio": "5.29.2",
     "verdaccio-git": "workspace:*"
   },
