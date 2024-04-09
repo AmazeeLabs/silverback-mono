@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/decap-cms-backend-token-auth@1.1.6...@amazeelabs/decap-cms-backend-token-auth@1.1.7) (2024-04-09)
+
+### Bug Fixes
+
+- **SLB-310:** make sure get parameters are passed down to github
+  ([b9167c4](https://github.com/AmazeeLabs/silverback-mono/commit/b9167c4d2a51bd8a1127c47b37a4b19d4d9b46f0))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/decap-cms-backend-token-auth@1.1.5...@amazeelabs/decap-cms-backend-token-auth@1.1.6) (2024-04-05)
 
 ### Bug Fixes
