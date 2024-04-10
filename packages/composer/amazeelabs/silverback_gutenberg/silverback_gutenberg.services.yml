@@ -16,3 +16,6 @@ services:
     class: \Drupal\silverback_gutenberg\LinkedContentExtractor
   silverback_gutenberg.referenced_content_extractor:
     class: \Drupal\silverback_gutenberg\ReferencedContentExtractor
+  plugin.manager.block_mutator:
+    class: Drupal\silverback_gutenberg\BlockMutator\BlockMutatorManager
+    parent: default_plugin_manager

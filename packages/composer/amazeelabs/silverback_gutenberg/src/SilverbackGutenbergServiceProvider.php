@@ -6,6 +6,7 @@ use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\Core\DependencyInjection\ServiceProviderBase;
 use Drupal\silverback_gutenberg\Normalizer\GutenbergContentEntityNormalizer;
 use Drupal\silverback_gutenberg\Service\MediaService;
+use Symfony\Component\DependencyInjection\Reference;
 
 class SilverbackGutenbergServiceProvider extends ServiceProviderBase {
   public function alter(ContainerBuilder $container) {
@@ -21,6 +22,7 @@ class SilverbackGutenbergServiceProvider extends ServiceProviderBase {
     if ($container->has('default_content.content_entity_normalizer')) {
       $definition = $container->getDefinition('default_content.content_entity_normalizer');
       $definition->setClass(GutenbergContentEntityNormalizer::class);
+      $definition->addArgument(new Reference('plugin.manager.block_mutator'));
     }
   }
 }
