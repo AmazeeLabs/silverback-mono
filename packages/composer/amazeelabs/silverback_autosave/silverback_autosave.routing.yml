@@ -1,0 +1,7 @@
+silverback_autosave.admin_settings:
+  path: '/admin/config/content/silverback_autosave'
+  defaults:
+    _form: '\Drupal\silverback_autosave\Form\AutosaveFormSettingsForm'
+    _title: 'Silverback autosave settings'
+  requirements:
+    _permission: 'administer site configuration'

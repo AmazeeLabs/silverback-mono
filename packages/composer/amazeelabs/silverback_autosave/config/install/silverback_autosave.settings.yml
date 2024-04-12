@@ -1,0 +1,9 @@
+interval: 10000
+only_on_form_change: FALSE
+active_on:
+  content_entity_forms: TRUE
+notification:
+  active: TRUE
+  message: "Updating preview..."
+  delay: 1000
+allowed_content_entity_types: { }

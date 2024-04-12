@@ -1,0 +1,8 @@
+name: Silverback autosave
+type: module
+description: 'Adds autosave & preview feature on gutenberg nodes.'
+package: Content
+core_version_requirement: ^9.5 || ^10
+configure: silverback_autosave.admin_settings
+dependencies:
+  - drupal:system

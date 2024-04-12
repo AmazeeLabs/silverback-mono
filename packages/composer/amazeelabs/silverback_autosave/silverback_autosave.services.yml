@@ -1,0 +1,46 @@
+services:
+  silverback_autosave.entity_form_storage:
+    class: \Drupal\silverback_autosave\Storage\AutosaveEntityFormDatabaseStorage
+    arguments: ['@database', '@serialization.phpserialize']
+
+  form_validator.silverback_autosave:
+    public: false
+    class: \Drupal\silverback_autosave\Form\AutosaveFormValidator
+    decorates: form_validator
+    arguments:
+      [
+        '@form_validator.silverback_autosave.inner',
+        '@request_stack',
+        '@string_translation',
+        '@csrf_token',
+        '@logger.channel.form',
+        '@form_error_handler',
+      ]
+  form_builder.silverback_autosave:
+    public: false
+    class: \Drupal\silverback_autosave\Form\AutosaveFormBuilder
+    decorates: form_builder
+    # The decorated autosave form builder should be the first applied as it
+    # will not call further decorators, but directly override the core form
+    # builder by extending from it and just calling the parent methods.
+    decoration_priority: 10000
+    arguments:
+      [
+        '@form_builder.silverback_autosave.inner',
+        '@form_validator',
+        '@form_submitter',
+        '@form_cache',
+        '@module_handler',
+        '@event_dispatcher',
+        '@request_stack',
+        '@class_resolver',
+        '@element_info',
+        '@theme.manager',
+        '@?csrf_token',
+        '@silverback_autosave.entity_form_storage',
+      ]
+  form_error_handler.silverback_autosave:
+    public: false
+    class: Drupal\silverback_autosave\Form\AutosaveFormErrorHandler
+    decorates: form_error_handler
+    arguments: ['@form_error_handler.silverback_autosave.inner']

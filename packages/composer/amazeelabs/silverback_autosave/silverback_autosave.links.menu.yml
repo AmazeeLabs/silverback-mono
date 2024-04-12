@@ -1,0 +1,6 @@
+silverback_autosave.admin_settings:
+  title: 'Silverback autosave and preview settings'
+  parent: system.admin_config_content
+  description: 'Change interval and forms on which autosave is active.'
+  route_name: silverback_autosave.admin_settings
+  weight: -20
