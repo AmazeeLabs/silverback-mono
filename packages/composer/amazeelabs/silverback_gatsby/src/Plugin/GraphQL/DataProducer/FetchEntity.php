@@ -255,8 +255,8 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
         $context->mergeCacheMaxAge(0);
         // @todo Add DI to both.
         $service = \Drupal::service('silverback_autosave.entity_form_storage');
-         $form_id = "{$entity->getEntityTypeId()}_{$entity->bundle()}_edit_form";
-         $autosaved_state = $service->getEntityAndFormState($form_id, $entity->getEntityTypeId(), $entity->id(), $entity->language()->getId(), \Drupal::currentUser()->id());
+        $form_id = "{$entity->getEntityTypeId()}_{$entity->bundle()}_edit_form";
+        $autosaved_state = $service->getEntityAndFormState($form_id, $entity->getEntityTypeId(), $entity->id(), $entity->language()->getId(), \Drupal::currentUser()->id());
         /** @var \Drupal\Core\Entity\EntityInterface $autosaved_entity */
         $autosaved_entity = $autosaved_state['entity'] ?? NULL;
         /** @var \Drupal\Core\Form\FormStateInterface $autosaved_form_state */
@@ -264,7 +264,10 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
         if ($autosaved_entity && !empty($autosaved_form_state)) {
           $current_user_input = $autosaved_form_state->getUserInput();
           foreach ($autosaved_entity->getFields() as $name => $field) {
-            if (in_array($name, ['title', 'body']) || str_starts_with($name, 'field_')) {
+            if (in_array($name, [
+              'title',
+              'body',
+            ]) || str_starts_with($name, 'field_')) {
               if (isset($current_user_input[$name])) {
                 $field->setValue($current_user_input[$name]);
               }
