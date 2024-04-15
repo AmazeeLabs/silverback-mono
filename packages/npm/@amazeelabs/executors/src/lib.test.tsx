@@ -16,13 +16,19 @@ beforeEach(cleanup);
 function Consumer({
   id,
   variables,
+  accessToken,
 }: {
   id: string;
   variables?: Record<string, any>;
+  accessToken?: string;
 }) {
-  const executor = useExecutor(id, variables);
+  const executor = useExecutor(id, variables, accessToken);
   return (
-    <p>{typeof executor === 'function' ? executor(variables) : executor}</p>
+    <p>
+      {typeof executor === 'function'
+        ? executor(variables, accessToken)
+        : executor}
+    </p>
   );
 }
 
@@ -75,6 +81,22 @@ test('operation default operator with arguments', () => {
   expect(screen.getByText('bar')).toBeDefined();
 });
 
+test('operation with accessToken', () => {
+  const id = 'x';
+  const a = vi.fn();
+
+  expect(() =>
+    render(
+      <OperationExecutor id={id} executor={a} variables={{ y: 1 }}>
+        <Consumer id={id} variables={{ y: 1 }} accessToken="banana" />
+      </OperationExecutor>,
+    ),
+  ).not.toThrow();
+
+  expect(a).toHaveBeenCalledOnce();
+  expect(a).toHaveBeenCalledWith(id, { y: 1 }, 'banana');
+});
+
 test('structural argument matching', () => {
   const id = 'x';
   const a = vi.fn();
@@ -96,11 +118,11 @@ test('structural argument matching', () => {
   ).not.toThrow();
 
   expect(a).toHaveBeenCalledOnce();
-  expect(a).toHaveBeenCalledWith(id, { y: 1 });
+  expect(a).toHaveBeenCalledWith(id, { y: 1 }, undefined);
   expect(b).toHaveBeenCalledOnce();
-  expect(b).toHaveBeenCalledWith(id, { y: 2 });
+  expect(b).toHaveBeenCalledWith(id, { y: 2 }, undefined);
   expect(c).toHaveBeenCalledOnce();
-  expect(c).toHaveBeenCalledWith(id, { y: 1, z: 1 });
+  expect(c).toHaveBeenCalledWith(id, { y: 1, z: 1 }, undefined);
 });
 
 test('structural argument mismatch', () => {

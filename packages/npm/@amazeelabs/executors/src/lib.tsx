@@ -3,7 +3,11 @@ import React, { createContext, PropsWithChildren, useContext } from 'react';
 
 type Executor =
   | any
-  | ((id: string, variables: Record<string, any>) => any | Promise<any>);
+  | ((
+      id: string,
+      variables: Record<string, any>,
+      accessToken: string | undefined,
+    ) => any | Promise<any>);
 
 type VariablesMatcher =
   | Record<string, any>
@@ -21,7 +25,11 @@ const ExecutorsContext = createContext<{
   executors: [],
 });
 
-export function useExecutor(id: string, variables?: Record<string, any>) {
+export function useExecutor(
+  id: string,
+  variables?: Record<string, any>,
+  accessToken?: string,
+) {
   const { executors } = useContext(ExecutorsContext);
   const op = getCandidates(id, executors)
     .filter((entry) => matchVariables(entry.variables, variables))
@@ -29,7 +37,7 @@ export function useExecutor(id: string, variables?: Record<string, any>) {
 
   if (op) {
     if (typeof op.executor === 'function') {
-      return (vars?: Record<string, any>) => op.executor(id, vars);
+      return (vars?: Record<string, any>) => op.executor(id, vars, accessToken);
     }
     return op.executor;
   }
