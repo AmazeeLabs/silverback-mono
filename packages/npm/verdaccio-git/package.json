@@ -16,30 +16,30 @@
     "@verdaccio/streams": "^10.2.1",
     "file-system": "^2.2.2",
     "fs-extra": "^11.2.0",
-    "simple-git": "^3.22.0",
+    "simple-git": "^3.24.0",
     "sync-directory": "^6.0.5",
-    "tar": "^6.2.0"
+    "tar": "^6.2.1"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.43",
-    "@babel/preset-env": "7.24.0",
-    "@babel/preset-typescript": "7.23.3",
-    "@tsconfig/recommended": "1.0.3",
+    "@babel/preset-env": "7.24.4",
+    "@babel/preset-typescript": "7.24.1",
+    "@tsconfig/recommended": "1.0.6",
     "@types/express": "4.17.21",
     "@types/fs-extra": "11.0.4",
     "@types/jest": "29.5.12",
     "@types/mock-fs": "4.13.4",
-    "@types/node": "16.18.86",
-    "@types/tar": "6.1.11",
-    "@typescript-eslint/eslint-plugin": "7.1.1",
+    "@types/node": "16.18.96",
+    "@types/tar": "6.1.12",
+    "@typescript-eslint/eslint-plugin": "7.7.0",
     "@verdaccio/types": "10.8.0",
     "eslint": "8.57.0",
     "jest": "29.7.0",
     "mock-fs": "5.2.0",
     "prettier": "3.2.5",
     "standard-version": "9.5.0",
-    "typescript": "5.3.3",
-    "verdaccio": "5.29.2"
+    "typescript": "5.4.5",
+    "verdaccio": "5.30.3"
   },
   "keywords": [
     "verdaccio,plugin,storage,git,verdaccio-git"
