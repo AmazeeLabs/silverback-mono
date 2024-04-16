@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.97](https://github.com/AmazeeLabs/storage-git/compare/verdaccio-git@0.1.96...verdaccio-git@0.1.97) (2024-04-16)
+
+**Note:** Version bump only for package verdaccio-git
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [0.1.96](https://github.com/AmazeeLabs/storage-git/compare/verdaccio-git@0.1.95...verdaccio-git@0.1.96) (2024-04-08)
 
 **Note:** Version bump only for package verdaccio-git

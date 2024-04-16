@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.19](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.6.18...@amazeelabs/scalars@1.6.19) (2024-04-16)
+
+**Note:** Version bump only for package @amazeelabs/scalars
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.6.18](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.6.17...@amazeelabs/scalars@1.6.18) (2024-04-08)
 
 **Note:** Version bump only for package @amazeelabs/scalars

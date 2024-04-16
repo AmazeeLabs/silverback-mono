@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.8](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/codegen-autoloader@1.1.7...@amazeelabs/codegen-autoloader@1.1.8) (2024-04-16)
+
+**Note:** Version bump only for package @amazeelabs/codegen-autoloader
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/codegen-autoloader@1.1.6...@amazeelabs/codegen-autoloader@1.1.7) (2024-02-29)
 
 **Note:** Version bump only for package @amazeelabs/codegen-autoloader
