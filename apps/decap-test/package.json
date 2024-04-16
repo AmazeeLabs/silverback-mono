@@ -12,23 +12,23 @@
   "dependencies": {
     "@amazeelabs/decap-cms-backend-token-auth": "workspace:*",
     "@amazeelabs/token-auth-middleware": "workspace:*",
-    "@netlify/edge-functions": "^2.3.1",
-    "@netlify/functions": "^2.6.0",
+    "@netlify/edge-functions": "2.3.1",
+    "@netlify/functions": "2.6.0",
     "decap-cms-app": "3.1.9",
     "netlify-cli": "17.22.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.74",
-    "@types/react-dom": "^18.2.24",
-    "@typescript-eslint/eslint-plugin": "^7.5.0",
-    "@typescript-eslint/parser": "^7.5.0",
-    "@vitejs/plugin-react-swc": "^3.5.0",
-    "eslint": "^8.57.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.6",
-    "typescript": "^5.4.4",
-    "vite": "^5.2.0"
+    "@types/react": "18.2.78",
+    "@types/react-dom": "18.2.25",
+    "@typescript-eslint/eslint-plugin": "7.7.0",
+    "@typescript-eslint/parser": "7.5.0",
+    "@vitejs/plugin-react-swc": "3.5.0",
+    "eslint": "8.57.0",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "eslint-plugin-react-refresh": "0.4.6",
+    "typescript": "5.4.5",
+    "vite": "5.2.0"
   }
 }
