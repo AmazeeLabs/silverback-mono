@@ -33,11 +33,11 @@
         },
         {
             "name": "amazeelabs/graphql_directives",
-            "version": "2.5.1",
+            "version": "2.5.2",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/graphql_directives",
-                "reference": "3b3f9c1289913fd10846e5e0aa9f3e99be06d020"
+                "reference": "d3580345721bac810a89150d9efc22fe54cd80f6"
             },
             "require": {
                 "webmozart/glob": "^4.7.0"
@@ -325,11 +325,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "2.5.13",
+            "version": "2.5.14",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "a92436fe718fa02658088fbbc80f137202e941e8"
+                "reference": "5eba7b8cf9f87c90c1a307d86c5755c17be9aa7e"
             },
             "require": {
                 "drupal/gutenberg": "^2.8.0"
