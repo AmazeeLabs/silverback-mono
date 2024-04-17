@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/gatsby-fragments",
-  "version": "1.2.13",
+  "version": "1.2.14",
   "description": "Generates fragment.ts files from .gql files to append vendor prefix.",
   "author": "Amazee Labs",
   "main": "index.cjs",
@@ -23,12 +23,12 @@
     "@types/mock-fs": "4.13.4",
     "commander": "12.0.0",
     "eslint": "8.57.0",
-    "glob": "10.3.10",
+    "glob": "10.3.12",
     "jest": "29.7.0",
     "mock-fs": "5.2.0",
     "prettier": "3.2.5",
-    "rollup": "4.12.0",
-    "typescript": "5.3.3"
+    "rollup": "4.14.3",
+    "typescript": "5.4.5"
   },
   "scripts": {
     "build": "rollup -c rollup.config.mjs",

@@ -319,7 +319,11 @@ export type Markup = string & {
 };
 
 const rehypeAddClasses: Plugin<[{ [key: string]: string }], Element> =
-  (settings) => (tree) => {
+  (settings) =>
+  (
+    // @ts-ignore TODO (Philipp): Take a look at this.
+    tree,
+  ) => {
     Object.keys(settings || {}).forEach((matcher) => {
       const cls = settings[matcher];
       selectAll(matcher, tree).forEach((node) => {

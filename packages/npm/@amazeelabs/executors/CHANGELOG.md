@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/executors@2.0.3...@amazeelabs/executors@2.0.4) (2024-04-16)
+
+**Note:** Version bump only for package @amazeelabs/executors
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.0.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/executors@2.0.2...@amazeelabs/executors@2.0.3) (2024-04-16)
+
+**Note:** Version bump only for package @amazeelabs/executors
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.0.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/executors@2.0.1...@amazeelabs/executors@2.0.2) (2024-04-09)
 
 ### Bug Fixes

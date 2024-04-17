@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/schema-tests@1.0.7...@-amazeelabs/schema-tests@1.0.8) (2024-04-16)
+
+**Note:** Version bump only for package @-amazeelabs/schema-tests
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.0.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/schema-tests@1.0.6...@-amazeelabs/schema-tests@1.0.7) (2024-04-16)
+
+**Note:** Version bump only for package @-amazeelabs/schema-tests
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.0.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/schema-tests@1.0.5...@-amazeelabs/schema-tests@1.0.6) (2024-04-16)
+
+**Note:** Version bump only for package @-amazeelabs/schema-tests
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.0.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/schema-tests@1.0.4...@-amazeelabs/schema-tests@1.0.5) (2024-04-08)
 
 **Note:** Version bump only for package @-amazeelabs/schema-tests

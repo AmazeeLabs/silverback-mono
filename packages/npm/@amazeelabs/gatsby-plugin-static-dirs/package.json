@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/gatsby-plugin-static-dirs",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "gatsby-node.js",
   "type": "module",
@@ -15,8 +15,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "gatsby": "5.13.3",
-    "typescript": "5.3.3"
+    "gatsby": "5.13.4",
+    "typescript": "5.4.5"
   },
   "dependencies": {
     "serve-static": "^1.15.0"
