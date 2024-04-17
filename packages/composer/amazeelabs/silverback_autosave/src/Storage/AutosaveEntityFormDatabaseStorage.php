@@ -9,6 +9,10 @@ use Drupal\Core\Entity\EntityFormInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormState;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Logger\LoggerChannelInterface;
+use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\RequestOptions;
 
 /**
  * A database backend for autosave of entity forms.
@@ -30,6 +34,16 @@ class AutosaveEntityFormDatabaseStorage implements AutosaveEntityFormStorageInte
   protected $serializer;
 
   /**
+   * @var \GuzzleHttp\ClientInterface
+   */
+  protected $httpClient;
+
+  /**
+   * @var \Drupal\Core\Logger\LoggerChannelInterface
+   */
+  protected $logger;
+
+  /**
    * Constructs an AutosaveEntityStorage.
    *
    * @param \Drupal\Core\Database\Connection $connection
@@ -37,9 +51,11 @@ class AutosaveEntityFormDatabaseStorage implements AutosaveEntityFormStorageInte
    * @param \Drupal\Component\Serialization\SerializationInterface $serializer
    *   The serializer to use.
    */
-  public function __construct(Connection $connection, SerializationInterface $serializer) {
+  public function __construct(Connection $connection, SerializationInterface $serializer, ClientInterface $httpClient, LoggerChannelInterface $logger) {
     $this->connection = $connection;
     $this->serializer = $serializer;
+    $this->httpClient = $httpClient;
+    $this->logger = $logger;
   }
 
   /**
@@ -84,6 +100,21 @@ class AutosaveEntityFormDatabaseStorage implements AutosaveEntityFormStorageInte
           $serialized_form_state,
         ])
         ->execute();
+      try {
+        $this->httpClient->post((getenv('PREVIEW_URL') ?: 'http://localhost:8001') . '/__preview', [
+          RequestOptions::HEADERS => [
+            'Content-Type' => 'application/json',
+          ],
+          RequestOptions::JSON => [
+            'entity_type_id' => $entity_type_id,
+            'entity_id' => $entity_id,
+            'langcode' => $langcode,
+          ],
+        ]);
+      } catch (GuzzleException $exc) {
+        $this->logger->critical('Error while to update preview.');
+        $this->logger->critical($exc->getMessage());
+      }
     }
   }
 
