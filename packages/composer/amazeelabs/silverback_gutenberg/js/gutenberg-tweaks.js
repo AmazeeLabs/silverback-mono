@@ -31,7 +31,16 @@
         coreColumnsBlock.example.innerBlocks[0].innerBlocks.splice(1, 1);
       }
     },
+    // Disable fullscreen mode.
+    function () {
+      const isFullscreenMode = wp.data
+        .select('core/edit-post')
+        .isFeatureActive('fullscreenMode');
 
+      if (isFullscreenMode) {
+        wp.data.dispatch('core/edit-post').toggleFeature('fullscreenMode');
+      }
+    },
     // Remove most of the columns options.
     function () {
       var coreColumnsBlock = wp.blocks.getBlockType('core/columns');
