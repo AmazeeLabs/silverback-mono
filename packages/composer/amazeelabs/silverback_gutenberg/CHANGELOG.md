@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.15](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@2.5.14...@-amazeelabs/silverback_gutenberg@2.5.15) (2024-04-18)
+
+### Bug Fixes
+
+- **SLB-146:** hide gutenberg preview button and disable fullscreen mode
+  ([ab135fb](https://github.com/AmazeeLabs/silverback-mono/commit/ab135fbd51643a3b4157ab66cac607ff3f6c851b))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [2.5.14](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gutenberg@2.5.13...@-amazeelabs/silverback_gutenberg@2.5.14) (2024-04-16)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gutenberg
