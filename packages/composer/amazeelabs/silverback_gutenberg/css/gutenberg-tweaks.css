@@ -37,3 +37,8 @@ with cypress tests.*/
   filter: drop-shadow(2px 2px 5px #cc1818);
   background: white;
 }
+
+/* Hide the preview button. */
+.block-editor-post-preview__dropdown {
+  display: none;
+}
