@@ -122,7 +122,7 @@ function silverback_autosave_entity_update(EntityInterface $entity) {
  *
  * If the permissions of a user are changed, then we delete the autosave states
  * belonging to that user. It is possible that new permissions the user is
- * loosing the ability to access certain fields, but the autosave states contain
+ * losing the ability to access certain fields, but the autosave states contain
  * data for them.
  */
 function silverback_autosave_user_update(EntityInterface $user) {
