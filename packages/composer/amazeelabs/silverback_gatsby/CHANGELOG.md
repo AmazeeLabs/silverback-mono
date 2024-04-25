@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@3.2.0...@-amazeelabs/silverback_gatsby@3.3.0) (2024-04-25)
+
+### Features
+
+- **slb-146:** code style update on directive
+  ([d7212b9](https://github.com/AmazeeLabs/silverback-mono/commit/d7212b97acc099aa42d710bb82c8bb7cef52fb46))
+- **slb-146:** gutenberg autosave and live preview functionality
+  ([869d757](https://github.com/AmazeeLabs/silverback-mono/commit/869d757cae5b057fbfced015d6f16dc0d9c6e3f5))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [3.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@3.1.2...@-amazeelabs/silverback_gatsby@3.2.0) (2024-03-25)
 
 ### Features
