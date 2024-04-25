@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_autosave@1.1.1...@-amazeelabs/silverback_autosave@1.2.0) (2024-04-25)
+
+### Bug Fixes
+
+- library version and spelling
+  ([0be7c78](https://github.com/AmazeeLabs/silverback-mono/commit/0be7c788154342c7a6e9e62e7984865f26193021))
+
+### Features
+
+- debounce-based autosave
+  ([11806a5](https://github.com/AmazeeLabs/silverback-mono/commit/11806a57773c6b0d81ffe0388568cb11cc2825c6))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_autosave@1.1.0...@-amazeelabs/silverback_autosave@1.1.1) (2024-04-25)
 
 ### Bug Fixes
