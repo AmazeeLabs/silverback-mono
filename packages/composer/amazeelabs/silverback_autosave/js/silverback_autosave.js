@@ -84,7 +84,7 @@
         Drupal.autosaveForm.form.submit(function () {
           if (Drupal.autosaveForm.autosaveFormRunning) {
             Drupal.autosaveForm.autosaveFormRunning = false;
-            clearInterval(Drupal.autosaveForm.timer);
+            clearTimeout(Drupal.autosaveForm.timer);
             Drupal.autosaveForm.timer = null;
           }
         });
@@ -100,7 +100,7 @@
           !Drupal.autosaveForm.autosaveFormRunning &&
           Drupal.autosaveForm.timer
         ) {
-          clearInterval(Drupal.autosaveForm.timer);
+          clearTimeout(Drupal.autosaveForm.timer);
           Drupal.autosaveForm.timer = null;
         } else {
           return;
@@ -237,7 +237,7 @@
           ) {
             if (xmlhttprequest.status === 0 || xmlhttprequest.status >= 400) {
               Drupal.autosaveForm.autosaveFormRunning = false;
-              clearInterval(Drupal.autosaveForm.timer);
+              clearTimeout(Drupal.autosaveForm.timer);
               Drupal.autosaveForm.timer = null;
 
               if (!Drupal.autosaveForm.beforeUnloadCalled) {
@@ -308,13 +308,16 @@
             }, 500);
           }
 
-          Drupal.autosaveForm.timer = setInterval(function () {
-            if (!Drupal.ajax.instances.some(isAjaxing)) {
-              triggerAjaxSubmitWithoutProgressIndication(
-                Drupal.autosaveForm.autosave_submit_class,
-              );
-            }
-          }, Drupal.autosaveForm.interval);
+          $('body').on('click keyup', () => {
+            clearTimeout(Drupal.autosaveForm.timer);
+            Drupal.autosaveForm.timer = setTimeout(function () {
+              if (!Drupal.ajax.instances.some(isAjaxing)) {
+                triggerAjaxSubmitWithoutProgressIndication(
+                  Drupal.autosaveForm.autosave_submit_class,
+                );
+              }
+            }, Drupal.autosaveForm.interval);
+          });
         }
       }
 
