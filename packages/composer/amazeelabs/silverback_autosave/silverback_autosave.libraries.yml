@@ -1,0 +1,16 @@
+drupal.silverback_autosave:
+  version: VERSION
+  css:
+    theme:
+      css/silverback_autosave.css: {}
+  js:
+    js/silverback_autosave.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/drupal.dialog
+    - core/drupal.dialog.ajax
+    - core/drupal.ajax
+    - core/once
+    - gutenberg/edit-node

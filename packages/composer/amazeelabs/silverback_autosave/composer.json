@@ -1,0 +1,7 @@
+{
+  "name": "drupal/silverback_autosave",
+  "type": "drupal-module",
+  "description": "Adds autosave feature on forms.",
+  "license": "GPL-2.0-or-later",
+  "version": "1.0.0"
+}

@@ -16,7 +16,7 @@ use GraphQL\Deferred;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * TODO: Add an option to upstream "entity_load" to return null on missing
+ * @todo Add an option to upstream "entity_load" to return null on missing
  *       translation and remove this plugin.
  *
  * Loads a single entity.
@@ -135,6 +135,7 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
    *   The entity buffer service.
    * @param \Drupal\graphql\GraphQL\Buffers\EntityRevisionBuffer $entityRevisionBuffer
    *   The entity revision buffer service.
+   *
    * @codeCoverageIgnore
    */
   public function __construct(
@@ -211,7 +212,7 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
       : $this->entityBuffer->add($type, $id);
 
     return new Deferred(function () use ($type, $revisionId, $language, $bundles, $resolver, $context, $access, $accessUser, $accessOperation) {
-      /** @var $entity \Drupal\Core\Entity\EntityInterface */
+      /** @var \Drupal\Core\Entity\EntityInterface $entity */
       if (!$entity = $resolver()) {
         // If there is no entity with this id, add the list cache tags so that
         // the cache entry is purged whenever a new entity of this type is
@@ -228,7 +229,6 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
         // If the entity is not among the allowed bundles, don't return it.
         return NULL;
       }
-
 
       // Get the correct translation.
       if (isset($language) && $language !== $entity->language()->getId() && $entity instanceof TranslatableInterface) {
@@ -247,6 +247,33 @@ class FetchEntity extends DataProducerPluginBase implements ContainerFactoryPlug
         $context->addCacheableDependency($accessResult);
         if (!$accessResult->isAllowed()) {
           return NULL;
+        }
+      }
+
+      // Autosave: get autosaved values.
+      if (\Drupal::service('module_handler')->moduleExists('silverback_autosave')) {
+        $context->mergeCacheMaxAge(0);
+        // @todo Add DI to both.
+        $service = \Drupal::service('silverback_autosave.entity_form_storage');
+        $form_id = "{$entity->getEntityTypeId()}_{$entity->bundle()}_edit_form";
+        $autosaved_state = $service->getEntityAndFormState($form_id, $entity->getEntityTypeId(), $entity->id(), $entity->language()->getId(), \Drupal::currentUser()->id());
+        /** @var \Drupal\Core\Entity\EntityInterface $autosaved_entity */
+        $autosaved_entity = $autosaved_state['entity'] ?? NULL;
+        /** @var \Drupal\Core\Form\FormStateInterface $autosaved_form_state */
+        $autosaved_form_state = $autosaved_state['form_state'] ?? [];
+        if ($autosaved_entity && !empty($autosaved_form_state)) {
+          $current_user_input = $autosaved_form_state->getUserInput();
+          foreach ($autosaved_entity->getFields() as $name => $field) {
+            if (in_array($name, [
+              'title',
+              'body',
+            ]) || str_starts_with($name, 'field_')) {
+              if (isset($current_user_input[$name])) {
+                $field->setValue($current_user_input[$name]);
+              }
+            }
+          }
+          return $autosaved_entity;
         }
       }
 
