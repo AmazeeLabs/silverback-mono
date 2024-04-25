@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_autosave@1.1.0...@-amazeelabs/silverback_autosave@1.1.1) (2024-04-25)
+
+### Bug Fixes
+
+- autosave module namespace
+  ([41dc626](https://github.com/AmazeeLabs/silverback-mono/commit/41dc6262ecf9bb3803bd90a3e1e3545d085f0a3b))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # 1.1.0 (2024-04-25)
 
 ### Bug Fixes
