@@ -5,8 +5,6 @@ src/
 .eslintignore
 .eslintrc
 .gitignore
-.prettierignore
-.prettierrc
 config.yml
 test
 tsconfig.json

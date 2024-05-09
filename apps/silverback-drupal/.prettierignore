@@ -1,0 +1,4 @@
+config/sync
+generated
+web/modules/custom/silverback_default_content/content
+composer.lock

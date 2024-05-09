@@ -7,6 +7,7 @@
 /web/themes/contrib/
 /web/profiles/contrib/
 /web/libraries/
+/web/README.md
 
 # Ignore Drupal's file directory
 /web/sites/*/files/
@@ -54,3 +55,5 @@ setup-log.txt
 /.env.local
 /.env.local.example
 /.envrc
+
+web/modules/custom/silverback_gatsby_test/graphql/directives.graphqls
