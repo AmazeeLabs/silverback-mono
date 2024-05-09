@@ -15,4 +15,3 @@ generates:
       - ./test/graphql/**/*.gql
     plugins:
       - ./dist/index.cjs
-

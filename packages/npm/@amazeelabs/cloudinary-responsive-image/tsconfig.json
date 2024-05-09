@@ -7,7 +7,7 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["es2018", "dom", "WebWorker"],
+    "lib": ["es2018", "dom", "WebWorker"]
   },
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Recommended"

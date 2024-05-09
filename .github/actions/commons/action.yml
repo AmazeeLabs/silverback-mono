@@ -3,7 +3,6 @@ description: 'Commons for all workflows'
 runs:
   using: 'composite'
   steps:
-
     - name: Git mail
       run: git config --global user.email "kitt@amazee.com"
       shell: bash
@@ -51,7 +50,9 @@ runs:
       run: pnpm config set store-dir /tmp/cache/pnpm
       shell: bash
     - name: Set Playwright browsers dir
-      run: echo "PLAYWRIGHT_BROWSERS_PATH=/tmp/cache/playwright-browsers" >> $GITHUB_ENV
+      run:
+        echo "PLAYWRIGHT_BROWSERS_PATH=/tmp/cache/playwright-browsers" >>
+        $GITHUB_ENV
       shell: bash
     - name: Set Cypress cache dir
       run: echo "CYPRESS_CACHE_FOLDER=/tmp/cache/cypress-binary" >> $GITHUB_ENV

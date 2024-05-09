@@ -1,12 +1,12 @@
 edit:
   version: VERSION
   js:
-    js/root.js: { }
-    js/two-columns.js: { }
-    js/teaser.js: { }
+    js/root.js: {}
+    js/two-columns.js: {}
+    js/teaser.js: {}
   css:
     theme:
-      css/edit.css: { }
+      css/edit.css: {}
   dependencies:
     - gutenberg/edit-node
 
@@ -14,4 +14,4 @@ view:
   version: VERSION
   css:
     theme:
-      css/view.css: { }
+      css/view.css: {}

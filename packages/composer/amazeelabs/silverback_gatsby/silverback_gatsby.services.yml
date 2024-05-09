@@ -2,37 +2,37 @@ services:
   silverback_gatsby.feed_manager:
     class: Drupal\silverback_gatsby\Plugin\FeedPluginManager
     arguments:
-      - "Plugin/Gatsby/Feed"
-      - "@container.namespaces"
-      - "@module_handler"
+      - 'Plugin/Gatsby/Feed'
+      - '@container.namespaces'
+      - '@module_handler'
       - '\Drupal\silverback_gatsby\Plugin\FeedInterface'
       - '\Drupal\silverback_gatsby\Annotation\GatsbyFeed'
 
   silverback_gatsby.build_trigger:
     class: Drupal\silverback_gatsby\GatsbyBuildTrigger
     arguments:
-      - "@http_client"
-      - "@messenger"
-      - "@entity_type.manager"
+      - '@http_client'
+      - '@messenger'
+      - '@entity_type.manager'
 
   silverback_gatsby.update_trigger:
     class: Drupal\silverback_gatsby\GatsbyUpdateTrigger
     arguments:
-      - "@http_client"
-      - "@messenger"
-      - "@entity_type.manager"
+      - '@http_client'
+      - '@messenger'
+      - '@entity_type.manager'
 
   silverback_gatsby.update_tracker:
     class: Drupal\silverback_gatsby\GatsbyUpdateTracker
     arguments:
-      ["@database", "@current_user", "@silverback_gatsby.build_trigger"]
+      ['@database', '@current_user', '@silverback_gatsby.build_trigger']
 
   silverback_gatsby.update_handler:
     class: Drupal\silverback_gatsby\GatsbyUpdateHandler
     arguments:
-      - "@entity_type.manager"
-      - "@silverback_gatsby.update_tracker"
-      - "@silverback_gatsby.update_trigger"
+      - '@entity_type.manager'
+      - '@silverback_gatsby.update_tracker'
+      - '@silverback_gatsby.update_trigger'
 
   silverback_gatsby.menu_tree_storage:
     class: Drupal\silverback_gatsby\MenuTreeStorageDecorator
@@ -40,8 +40,8 @@ services:
     public: false
     arguments:
       [
-        "@silverback_gatsby.menu_tree_storage.inner",
-        "@silverback_gatsby.update_handler",
+        '@silverback_gatsby.menu_tree_storage.inner',
+        '@silverback_gatsby.update_handler',
       ]
 
   silverback_gatsby.reverse_proxy_middleware:

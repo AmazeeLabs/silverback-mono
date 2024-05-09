@@ -7,7 +7,9 @@ silverback_cdn_redirect.settings:
       label: 'Base URL of the frontend. Must have no trailing slash.'
     404_path:
       type: string
-      label: 'A path to 404 page in case if no redirect is found. Must start from a slash.'
+      label:
+        'A path to 404 page in case if no redirect is found. Must start from a
+        slash.'
     should_prefix_404_path:
       type: boolean
       label: 'Whether to add the language prefix to the 404 path.'
@@ -19,7 +21,9 @@ silverback_cdn_redirect.settings:
       label: 'Handle CSR pages with redirects instead of rewrites.'
     missing_translation_redirect_entity_types:
       type: sequence
-      label: 'Entity type IDs for which the missing translation redirect should be performed.'
+      label:
+        'Entity type IDs for which the missing translation redirect should be
+        performed.'
       sequence:
         type: string
         label: 'Entity type ID'

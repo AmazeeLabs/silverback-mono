@@ -19,7 +19,7 @@ export const query = graphql`
   query Article($remoteId: String!) {
     drupalArticle(_id: { eq: $remoteId }) {
       id
-      langcode:_langcode
+      langcode: _langcode
       path
       title
       body

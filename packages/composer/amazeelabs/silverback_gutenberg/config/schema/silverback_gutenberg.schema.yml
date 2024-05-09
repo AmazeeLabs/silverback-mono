@@ -5,7 +5,9 @@ silverback_gutenberg.settings:
     local_hosts:
       type: sequence
       nullable: true
-      label: 'URLs with these hosts will be turned to relative. If null, any absolute URLs will NOT be processed (BC behavior).'
+      label:
+        'URLs with these hosts will be turned to relative. If null, any absolute
+        URLs will NOT be processed (BC behavior).'
       sequence:
         type: string
         label: 'Host'

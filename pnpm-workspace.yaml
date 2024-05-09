@@ -1,8 +1,8 @@
 packages:
-  - "packages/composer/*/*"
-  - "packages/npm/*"
-  - "packages/npm/*/*"
-  - "packages/tests/*"
-  - "apps/*"
-  - "apps/silverback-drupal/config/*"
-  - "apps/silverback-drupal/web/modules/custom/*"
+  - 'packages/composer/*/*'
+  - 'packages/npm/*'
+  - 'packages/npm/*/*'
+  - 'packages/tests/*'
+  - 'apps/*'
+  - 'apps/silverback-drupal/config/*'
+  - 'apps/silverback-drupal/web/modules/custom/*'

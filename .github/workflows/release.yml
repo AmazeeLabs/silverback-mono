@@ -8,7 +8,6 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
-
       - uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSL_PRIVATE }}
@@ -22,7 +21,9 @@ jobs:
         uses: ./.github/actions/commons
 
       - name: Configure NPM token
-        run: echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" >> ~/.npmrc
+        run:
+          echo "//registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}" >>
+          ~/.npmrc
 
       - name: Add auth token for 127.0.0.1
         run: echo "//127.0.0.1:4873/:_authToken=foo" >> ~/.npmrc

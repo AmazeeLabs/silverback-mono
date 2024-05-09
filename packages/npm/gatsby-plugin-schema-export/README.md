@@ -11,7 +11,9 @@ pnpm add gatsby-plugin-schema-export
 ```
 
 ### Without options
+
 The generated schema will be written to `generated/schema.graphql`.
+
 ```js
 // gatsby-config.js
   ...
@@ -22,7 +24,9 @@ The generated schema will be written to `generated/schema.graphql`.
 ```
 
 ### With options
+
 The generated schema will be written to `schema/gatsbySchema.graphql`.
+
 ```js
 // gatsby-config.js
   ...
@@ -38,5 +42,6 @@ The generated schema will be written to `schema/gatsbySchema.graphql`.
 ```
 
 ## Usage
-The generated schema will be written to `generated/schema.graphql` unless the `dest` option is set.
 
+The generated schema will be written to `generated/schema.graphql` unless the
+`dest` option is set.

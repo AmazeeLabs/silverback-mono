@@ -14,14 +14,16 @@ type Query {
     @map
     @prop(key: "x")
   union: [TestUnion]!
-    @value(json: "[{\"type\": \"a\", \"y\":\"A\"},{\"type\": \"b\", \"z\":\"B\"}]")
+    @value(
+      json: "[{\"type\": \"a\", \"y\":\"A\"},{\"type\": \"b\", \"z\":\"B\"}]"
+    )
   interface: [TestInterface]!
-    @value(json: "[{\"type\": \"a\", \"y\":\"A\"},{\"type\": \"b\", \"z\":\"B\"}]")
+    @value(
+      json: "[{\"type\": \"a\", \"y\":\"A\"},{\"type\": \"b\", \"z\":\"B\"}]"
+    )
 }
 
-union TestUnion @prop(key: "type") =
-  | A
-  | B
+union TestUnion @prop(key: "type") = A | B
 
 interface TestInterface @prop(key: "type") {
   type: String!

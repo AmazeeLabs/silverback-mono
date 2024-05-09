@@ -3,7 +3,7 @@ export type ResponsiveImageConfig = {
   height?: number;
   sizes?: Array<Array<number>>;
   transform?: string;
-}
+};
 
 export type ResponsiveImage = {
   src: string;
@@ -11,4 +11,4 @@ export type ResponsiveImage = {
   sizes?: string;
   width?: number;
   height?: number;
-}
+};

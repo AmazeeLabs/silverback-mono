@@ -4,9 +4,9 @@ To be used with static websites, hosted on a CDN (e.g. Gatsby and Netlify).
 Solves two problems:
 
 1. Can resolve redirects that are not stored in CDN config, which is necessary,
-   since Drupal's redirect module creates a redirect for each path change,
-   which can be a lot. In that case, the redirect is resolved by rewriting the
-   request to Drupal.
+   since Drupal's redirect module creates a redirect for each path change, which
+   can be a lot. In that case, the redirect is resolved by rewriting the request
+   to Drupal.
 2. Rewrite paths not know by the CDN, to client-side rendered pages. Useful for
    pages that should not be rendered statically.
 
@@ -62,7 +62,7 @@ flowchart
 - Configure the catch-all redirect in `createPages`
   ```js
   createRedirect({
-    fromPath: "/*",
+    fromPath: '/*',
     toPath: `https://my-drupal.site/cdn-redirect/:splat`,
     statusCode: 200,
   });

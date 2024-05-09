@@ -3,12 +3,10 @@ on:
   - pull_request
 
 jobs:
-
   tests:
     name: Tests
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -68,7 +66,6 @@ jobs:
     name: Check for forgotten config changes
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout BASE
         uses: actions/checkout@v4
         with:

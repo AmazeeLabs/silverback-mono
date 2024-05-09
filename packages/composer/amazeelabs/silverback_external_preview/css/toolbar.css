@@ -5,130 +5,153 @@
 
 /* Tab appearance. */
 .toolbar .toolbar-bar .external-preview-toolbar-tab {
-    color: #222330;
-    background-color: #FFD23F;
+  color: #222330;
+  background-color: #ffd23f;
 }
 
 /* Set a fixed color on the inner span, or environment indicator turns it white */
 .toolbar .toolbar-bar .external-preview-toolbar-tab span {
-    color: #1a1a1a;
+  color: #1a1a1a;
 }
 
 .toolbar .toolbar-bar .toolbar-tab-disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .toolbar .toolbar-bar .toolbar-tab-disabled a {
-    pointer-events: none;
+  pointer-events: none;
 }
 .toolbar .external-preview-toolbar-tab .toolbar-icon-external-preview-live {
-    background-color: #81c071;
+  background-color: #81c071;
 }
 
 .toolbar .toolbar-bar .workspaces-toolbar-tab--is-default {
-    background-color: #81c071;
+  background-color: #81c071;
 }
 
 .toolbar-oriented .toolbar-bar .external-preview-toolbar-tab {
-    float: right; /* LTR */
+  float: right; /* LTR */
 }
 
-[dir="rtl"] .toolbar-oriented .toolbar-bar .external-preview-toolbar-tab {
-    float: left;
+[dir='rtl'] .toolbar-oriented .toolbar-bar .external-preview-toolbar-tab {
+  float: left;
 }
 
 @media (min-width: 16.5em) {
-    .toolbar:not(.toolbar-oriented) .toolbar-bar .external-preview-toolbar-tab {
-        float: right;
-    }
+  .toolbar:not(.toolbar-oriented) .toolbar-bar .external-preview-toolbar-tab {
+    float: right;
+  }
 
-    [dir="rtl"] .toolbar:not(.toolbar-oriented) .toolbar-bar .external-preview-toolbar-tab {
-        float: left;
-    }
+  [dir='rtl']
+    .toolbar:not(.toolbar-oriented)
+    .toolbar-bar
+    .external-preview-toolbar-tab {
+    float: left;
+  }
 }
 
 .toolbar .toolbar-bar .external-preview-toolbar-tab .toolbar-item {
-    width: 100%;
-    margin: 0;
-    text-align: left;
-    color: inherit;
+  width: 100%;
+  margin: 0;
+  text-align: left;
+  color: inherit;
 }
 
 .toolbar .toolbar-bar .external-preview-toolbar-tab .toolbar-item:hover,
 .toolbar .toolbar-bar .external-preview-toolbar-tab .toolbar-item:focus {
-    text-decoration: none;
+  text-decoration: none;
 }
 
-[dir="rtl"] .toolbar .toolbar-bar .external-preview-toolbar-tab .toolbar-item {
-    text-align: right;
+[dir='rtl'] .toolbar .toolbar-bar .external-preview-toolbar-tab .toolbar-item {
+  text-align: right;
 }
 
 .toolbar-oriented .toolbar-bar .external-preview-toolbar-tab .toolbar-item {
-    width: auto;
-    text-align: initial;
+  width: auto;
+  text-align: initial;
 }
 
 .toolbar .toolbar-icon-external-preview:before {
-    background-image: url("../icons/preview.svg");
-    transition: transform .5s ease-in-out;
+  background-image: url('../icons/preview.svg');
+  transition: transform 0.5s ease-in-out;
 }
 
 .toolbar .toolbar-icon-external-preview-live:before {
-    background-image: url("../icons/live.svg");
+  background-image: url('../icons/live.svg');
 }
 .toolbar .toolbar-bar .external-preview-toolbar-tab .toolbar-item:hover::before,
-.toolbar .toolbar-bar .external-preview-toolbar-tab .toolbar-item:focus::before{
-    transform: scale(1.05, 0.9);
+.toolbar
+  .toolbar-bar
+  .external-preview-toolbar-tab
+  .toolbar-item:focus::before {
+  transform: scale(1.05, 0.9);
 }
 
 @media all and (max-width: 766px) {
-    .toolbar-oriented .toolbar-bar .external-preview-toolbar-tab .toolbar-icon-external-preview {
-        width: auto;
-        max-width: 8em;
-    }
+  .toolbar-oriented
+    .toolbar-bar
+    .external-preview-toolbar-tab
+    .toolbar-icon-external-preview {
+    width: auto;
+    max-width: 8em;
+  }
 
-    .toolbar .toolbar-bar .external-preview-toolbar-tab .toolbar-icon-external-preview {
-        overflow: hidden;
-        padding-right: 1.3333em;
-        padding-left: 2.75em; /* LTR */
-        white-space: nowrap;
-        text-indent: 0;
-        text-overflow: ellipsis;
-    }
+  .toolbar
+    .toolbar-bar
+    .external-preview-toolbar-tab
+    .toolbar-icon-external-preview {
+    overflow: hidden;
+    padding-right: 1.3333em;
+    padding-left: 2.75em; /* LTR */
+    white-space: nowrap;
+    text-indent: 0;
+    text-overflow: ellipsis;
+  }
 
-    [dir=rtl] .toolbar .toolbar-bar .external-preview-toolbar-tab .toolbar-icon-external-preview {
-        padding-right: 2.75em;
-        padding-left: 1.3333em;
-    }
+  [dir='rtl']
+    .toolbar
+    .toolbar-bar
+    .external-preview-toolbar-tab
+    .toolbar-icon-external-preview {
+    padding-right: 2.75em;
+    padding-left: 1.3333em;
+  }
 
-    .toolbar .toolbar-bar .external-preview-toolbar-tab .toolbar-icon-external-preview:before {
-        left: 0.6667em; /* LTR */
-        width: 20px;
-        background-size: 100% auto;
-    }
+  .toolbar
+    .toolbar-bar
+    .external-preview-toolbar-tab
+    .toolbar-icon-external-preview:before {
+    left: 0.6667em; /* LTR */
+    width: 20px;
+    background-size: 100% auto;
+  }
 
-    [dir=rtl] .toolbar .toolbar-bar .external-preview-toolbar-tab .toolbar-icon-external-preview:before {
-        right: 0.6667em;
-        left: auto;
-    }
+  [dir='rtl']
+    .toolbar
+    .toolbar-bar
+    .external-preview-toolbar-tab
+    .toolbar-icon-external-preview:before {
+    right: 0.6667em;
+    left: auto;
+  }
 }
-
 
 /** Throbber **/
 .external-preview-toolbar-tab {
-    position: relative;
+  position: relative;
 }
 
 .external-preview-toolbar-tab .ajax-progress--throbber {
-    position: absolute;
-    top: 14px;
-    left: -2px;
+  position: absolute;
+  top: 14px;
+  left: -2px;
 }
 
 /** Dialog **/
-.external-preview-dialog .ui-helper-clearfix:before, .ui-helper-clearfix:after {
-    content: "";
-    display: table;
-    border-collapse: collapse;
+.external-preview-dialog .ui-helper-clearfix:before,
+.ui-helper-clearfix:after {
+  content: '';
+  display: table;
+  border-collapse: collapse;
 }
