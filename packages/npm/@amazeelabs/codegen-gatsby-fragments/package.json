@@ -25,11 +25,9 @@
   "author": "AmazeeLabs <development@amazeelabs.com>",
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.43",
-    "@amazeelabs/prettier-config": "1.1.3",
     "@swc/cli": "0.3.12",
     "@swc/core": "1.4.14",
     "eslint": "8.57.0",
-    "prettier": "3.2.5",
     "typescript": "5.4.5"
   }
 }

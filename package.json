@@ -7,6 +7,10 @@
   "scripts": {
     "build": "pnpm -r build",
     "commit": "pnpm git-cz",
+    "test:format": "pnpm test:format:root --check && pnpm test:format:workspaces --check",
+    "test:format:fix": "pnpm test:format:root --write && pnpm test:format:workspaces --write",
+    "test:format:root": "pnpm prettier --ignore-unknown '**/**'",
+    "test:format:workspaces": "pnpm --workspace-concurrency=1 -r exec prettier --ignore-unknown '**/**'",
     "test:static": "pnpm lerna run test:static --since",
     "test:static:all": "pnpm lerna run test:static",
     "test:unit": "pnpm lerna run test:unit --since",
@@ -20,12 +24,12 @@
     "postinstall": "husky install"
   },
   "devDependencies": {
-    "@amazeelabs/prettier-config": "1.1.3",
     "@commitlint/cli": "19.2.2",
     "@commitlint/config-conventional": "19.2.2",
     "commitizen": "4.3.0",
     "husky": "9.0.11",
     "lerna": "8.1.2",
+    "prettier": "3.2.5",
     "typescript": "5.4.5",
     "verdaccio": "5.30.3",
     "verdaccio-git": "workspace:*"
@@ -45,9 +49,6 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "lerna run --concurrency 1 --stream precommit --since HEAD --exclude-dependents"
     }
-  },
-  "dependencies": {
-    "prettier": "3.2.5"
   },
   "resolutions": {
     "sharp": "0.33.3",

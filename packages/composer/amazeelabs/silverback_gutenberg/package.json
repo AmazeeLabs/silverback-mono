@@ -15,11 +15,9 @@
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.43",
-    "@amazeelabs/prettier-config": "1.1.3",
     "@amazeelabs/sync-composer-version": "workspace:*",
     "@types/jest": "29.5.12",
     "eslint": "8.57.0",
-    "prettier": "3.2.5",
     "typescript": "5.4.5"
   }
 }

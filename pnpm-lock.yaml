@@ -11,14 +11,7 @@ overrides:
 importers:
 
   .:
-    dependencies:
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
     devDependencies:
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@commitlint/cli':
         specifier: 19.2.2
         version: 19.2.2(@types/node@20.12.7)(typescript@5.4.5)
@@ -34,6 +27,9 @@ importers:
       lerna:
         specifier: 8.1.2
         version: 8.1.2
+      prettier:
+        specifier: 3.2.5
+        version: 3.2.5
       typescript:
         specifier: 5.4.5
         version: 5.4.5
@@ -138,9 +134,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@types/jest':
         specifier: 29.5.12
         version: 29.5.12
@@ -253,9 +246,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@formatjs/cli':
         specifier: 6.2.9
         version: 6.2.9
@@ -298,9 +288,6 @@ importers:
       husky:
         specifier: 9.0.11
         version: 9.0.11
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
       ts-node:
         specifier: 10.9.2
         version: 10.9.2(@types/node@16.18.96)(typescript@5.4.5)
@@ -335,9 +322,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@types/node':
         specifier: 16.18.96
         version: 16.18.96
@@ -350,9 +334,6 @@ importers:
       husky:
         specifier: 9.0.11
         version: 9.0.11
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
       typescript:
         specifier: 5.4.5
         version: 5.4.5
@@ -446,9 +427,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@amazeelabs/sync-composer-version':
         specifier: workspace:*
         version: link:../../../npm/@amazeelabs/sync-composer-version
@@ -458,9 +436,6 @@ importers:
       eslint:
         specifier: 8.57.0
         version: 8.57.0
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
       typescript:
         specifier: 5.4.5
         version: 5.4.5
@@ -508,53 +483,12 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@2.8.8)
       '@swc/cli':
         specifier: 0.3.12
         version: 0.3.12(@swc/core@1.4.14)
       '@swc/core':
         specifier: 1.4.14
         version: 1.4.14
-
-  packages/npm/@amazeelabs/bridge-gatsby:
-    dependencies:
-      gatsby:
-        specifier: '>=5.13.4'
-        version: 5.13.4(@swc/core@1.4.14)(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.4.5)
-      react:
-        specifier: '>=18.2.0'
-        version: 18.2.0
-    optionalDependencies:
-      '@types/react':
-        specifier: ^18.2.78
-        version: 18.2.78
-      typescript:
-        specifier: ^5.4.5
-        version: 5.4.5
-      vitest:
-        specifier: ^1.5.0
-        version: 1.5.0(@types/node@20.12.7)(@vitest/ui@1.5.0)(happy-dom@13.10.1)
-    devDependencies:
-      '@amazeelabs/bridge':
-        specifier: workspace:*
-        version: link:../bridge
-      '@amazeelabs/eslint-config':
-        specifier: 1.4.43
-        version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@2.8.8)
-      '@swc/cli':
-        specifier: 0.3.12
-        version: 0.3.12(@swc/core@1.4.14)
-      '@swc/core':
-        specifier: 1.4.14
-        version: 1.4.14
-      '@types/reach__router':
-        specifier: 1.3.15
-        version: 1.3.15
 
   packages/npm/@amazeelabs/bridge-storybook:
     dependencies:
@@ -581,9 +515,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@2.8.8)
       '@swc/cli':
         specifier: 0.3.12
         version: 0.3.12(@swc/core@1.4.14)
@@ -603,9 +534,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@types/crypto-js':
         specifier: 4.2.2
         version: 4.2.2
@@ -615,9 +543,6 @@ importers:
       eslint:
         specifier: 8.57.0
         version: 8.57.0
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
       tsup:
         specifier: 8.0.2
         version: 8.0.2(postcss@8.4.38)(typescript@5.4.5)
@@ -666,9 +591,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@swc/cli':
         specifier: 0.3.12
         version: 0.3.12(@swc/core@1.4.14)
@@ -678,9 +600,6 @@ importers:
       eslint:
         specifier: 8.57.0
         version: 8.57.0
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
 
   packages/npm/@amazeelabs/codegen-operation-ids:
     dependencies:
@@ -694,9 +613,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@graphql-codegen/cli':
         specifier: 5.0.2
         version: 5.0.2(@types/node@20.12.7)(graphql@16.8.1)(typescript@5.4.5)
@@ -715,9 +631,6 @@ importers:
       graphql:
         specifier: 16.8.1
         version: 16.8.1
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
       typescript:
         specifier: 5.4.5
         version: 5.4.5
@@ -755,9 +668,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@2.8.8)
       '@octokit/types':
         specifier: 12.6.0
         version: 12.6.0
@@ -792,9 +702,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@testing-library/react':
         specifier: 14.3.1
         version: 14.3.1(react-dom@18.2.0)(react@18.2.0)
@@ -810,9 +717,6 @@ importers:
       eslint:
         specifier: 8.57.0
         version: 8.57.0
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
       rollup:
         specifier: 4.14.3
         version: 4.14.3
@@ -834,9 +738,6 @@ importers:
       '@amazeelabs/jest-preset':
         specifier: 1.3.47
         version: 1.3.47(@types/jest@29.5.12)(eslint@8.57.0)(jest@29.7.0)(react-dom@18.2.0)(react@18.2.0)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@rollup/plugin-commonjs':
         specifier: 25.0.7
         version: 25.0.7(rollup@4.14.3)
@@ -870,9 +771,6 @@ importers:
       mock-fs:
         specifier: 5.2.0
         version: 5.2.0
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
       rollup:
         specifier: 4.14.3
         version: 4.14.3
@@ -938,9 +836,6 @@ importers:
       '@amazeelabs/gatsby-source-silverback':
         specifier: workspace:*
         version: link:../gatsby-source-silverback
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@types/node':
         specifier: 16.18.96
         version: 16.18.96
@@ -950,9 +845,6 @@ importers:
       gatsby:
         specifier: 5.13.4
         version: 5.13.4(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.4.5)
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
       typescript:
         specifier: 5.4.5
         version: 5.4.5
@@ -996,9 +888,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@rollup/plugin-node-resolve':
         specifier: 15.2.3
         version: 15.2.3(rollup@4.14.3)
@@ -1023,9 +912,6 @@ importers:
       gatsby-source-filesystem:
         specifier: 5.13.1
         version: 5.13.1(gatsby@5.13.4)
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -1045,9 +931,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@2.8.8)
       '@types/lodash-es':
         specifier: 4.17.12
         version: 4.17.12
@@ -1076,9 +959,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@babel/core':
         specifier: 7.24.4
         version: 7.24.4
@@ -1181,9 +1061,6 @@ importers:
       postcss:
         specifier: 8.4.38
         version: 8.4.38
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -1245,9 +1122,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@rollup/plugin-node-resolve':
         specifier: 15.2.3
         version: 15.2.3(rollup@4.14.3)
@@ -1272,9 +1146,6 @@ importers:
       eslint:
         specifier: 8.57.0
         version: 8.57.0
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
       rollup:
         specifier: 4.14.3
         version: 4.14.3
@@ -1369,9 +1240,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@types/cookie-parser':
         specifier: 1.4.7
         version: 1.4.7
@@ -1405,9 +1273,6 @@ importers:
       nodemon:
         specifier: 3.1.0
         version: 3.1.0
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
       rollup:
         specifier: 4.14.3
         version: 4.14.3
@@ -1429,9 +1294,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@amazeelabs/publisher-shared':
         specifier: workspace:*
         version: link:../publisher-shared
@@ -1477,9 +1339,6 @@ importers:
       lit-html:
         specifier: 3.1.2
         version: 3.1.2
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
       rollup:
         specifier: 4.14.3
         version: 4.14.3
@@ -1501,9 +1360,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@2.8.8)
       rollup:
         specifier: 4.14.3
         version: 4.14.3
@@ -1522,9 +1378,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@amazeelabs/publisher-shared':
         specifier: workspace:*
         version: link:../publisher-shared
@@ -1588,9 +1441,6 @@ importers:
       postcss:
         specifier: 8.4.38
         version: 8.4.38
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
       prop-types:
         specifier: 15.8.1
         version: 15.8.1
@@ -1638,9 +1488,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@swc/cli':
         specifier: 0.3.12
         version: 0.3.12(@swc/core@1.4.14)
@@ -1650,9 +1497,6 @@ importers:
       eslint:
         specifier: 8.57.0
         version: 8.57.0
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
 
   packages/npm/@amazeelabs/save-webpage:
     dependencies:
@@ -1663,9 +1507,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@2.8.8)
       '@types/website-scraper':
         specifier: 1.2.10
         version: 1.2.10
@@ -1706,9 +1547,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@types/hast':
         specifier: ^2.3.4
         version: 2.3.10
@@ -1718,9 +1556,6 @@ importers:
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
-      prettier:
-        specifier: ^3.2.5
-        version: 3.2.5
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
@@ -1747,9 +1582,6 @@ importers:
       '@amazeelabs/jest-preset':
         specifier: 1.3.47
         version: 1.3.47(@types/jest@29.5.12)(eslint@8.57.0)(jest@29.7.0)(react-dom@18.2.0)(react@18.2.0)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@types/jest':
         specifier: 29.5.12
         version: 29.5.12
@@ -1762,9 +1594,6 @@ importers:
       jest:
         specifier: 29.7.0
         version: 29.7.0(@types/node@20.12.7)
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -1777,9 +1606,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@playwright/test':
         specifier: 1.43.1
         version: 1.43.1
@@ -1789,9 +1615,6 @@ importers:
       eslint:
         specifier: 8.57.0
         version: 8.57.0
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
       typescript:
         specifier: 5.4.5
         version: 5.4.5
@@ -1815,9 +1638,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@2.8.8)
       '@swc/cli':
         specifier: 0.3.12
         version: 0.3.12(@swc/core@1.4.14)
@@ -1835,9 +1655,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@2.8.8)
       '@netlify/edge-functions':
         specifier: 2.3.1
         version: 2.3.1
@@ -1944,9 +1761,6 @@ importers:
       mock-fs:
         specifier: 5.2.0
         version: 5.2.0
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
       standard-version:
         specifier: 9.5.0
         version: 9.5.0
@@ -1992,9 +1806,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@amazeelabs/silverback-iframe':
         specifier: workspace:*
         version: link:../../npm/@amazeelabs/silverback-iframe
@@ -2010,9 +1821,6 @@ importers:
       eslint:
         specifier: 8.57.0
         version: 8.57.0
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
       typescript:
         specifier: 5.4.5
         version: 5.4.5
@@ -2031,9 +1839,6 @@ importers:
       '@amazeelabs/gatsby-source-silverback':
         specifier: workspace:*
         version: link:../../npm/@amazeelabs/gatsby-source-silverback
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@amazeelabs/silverback-playwright':
         specifier: workspace:*
         version: link:../../npm/@amazeelabs/silverback-playwright
@@ -2046,9 +1851,6 @@ importers:
       eslint:
         specifier: 8.57.0
         version: 8.57.0
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
       typescript:
         specifier: 5.4.5
         version: 5.4.5
@@ -2061,9 +1863,6 @@ importers:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
-      '@amazeelabs/prettier-config':
-        specifier: 1.1.3
-        version: 1.1.3(prettier@3.2.5)
       '@playwright/test':
         specifier: 1.43.1
         version: 1.43.1
@@ -2073,9 +1872,6 @@ importers:
       eslint:
         specifier: 8.57.0
         version: 8.57.0
-      prettier:
-        specifier: 3.2.5
-        version: 3.2.5
       typescript:
         specifier: 5.4.5
         version: 5.4.5
@@ -2149,21 +1945,6 @@ packages:
       - supports-color
       - utf-8-validate
     dev: true
-
-  /@amazeelabs/prettier-config@1.1.3(prettier@2.8.8):
-    resolution: {integrity: sha512-8rXi0u74lJz6iKQZBhTb6A1ohdO2eD/KEt8ee71O5S6KqeKSmQID++6c934Sfo7EnUp8tXYA1qKbW8CipUXZAQ==}
-    peerDependencies:
-      prettier: ^2.8.6
-    dependencies:
-      prettier: 2.8.8
-    dev: true
-
-  /@amazeelabs/prettier-config@1.1.3(prettier@3.2.5):
-    resolution: {integrity: sha512-8rXi0u74lJz6iKQZBhTb6A1ohdO2eD/KEt8ee71O5S6KqeKSmQID++6c934Sfo7EnUp8tXYA1qKbW8CipUXZAQ==}
-    peerDependencies:
-      prettier: ^2.8.6
-    dependencies:
-      prettier: 3.2.5
 
   /@ampproject/remapping@2.3.0:
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
@@ -7058,11 +6839,11 @@ packages:
       detect-libc: 2.0.3
       https-proxy-agent: 5.0.1
       make-dir: 3.1.0
-      node-fetch: 2.6.12
+      node-fetch: 2.7.0
       nopt: 5.0.0
       npmlog: 5.0.1
       rimraf: 3.0.2
-      semver: 7.5.4
+      semver: 7.6.0
       tar: 6.2.1
     transitivePeerDependencies:
       - encoding
@@ -7075,11 +6856,11 @@ packages:
       detect-libc: 2.0.3
       https-proxy-agent: 5.0.1(supports-color@9.4.0)
       make-dir: 3.1.0
-      node-fetch: 2.6.12
+      node-fetch: 2.7.0
       nopt: 5.0.0
       npmlog: 5.0.1
       rimraf: 3.0.2
-      semver: 7.5.4
+      semver: 7.6.0
       tar: 6.2.1
     transitivePeerDependencies:
       - encoding
@@ -8150,7 +7931,7 @@ packages:
       '@octokit/request-error': 3.0.3
       '@octokit/types': 9.3.2
       is-plain-object: 5.0.0
-      node-fetch: 2.6.7
+      node-fetch: 2.7.0
       universal-user-agent: 6.0.1
     transitivePeerDependencies:
       - encoding
@@ -8567,6 +8348,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     bundledDependencies:
       - napi-wasm
 
@@ -11226,6 +11008,7 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@swc/core-darwin-x64@1.4.14:
@@ -11234,6 +11017,7 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@swc/core-linux-arm-gnueabihf@1.4.14:
@@ -11242,6 +11026,7 @@ packages:
     cpu: [arm]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@swc/core-linux-arm64-gnu@1.4.14:
@@ -11250,6 +11035,7 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@swc/core-linux-arm64-musl@1.4.14:
@@ -11258,6 +11044,7 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@swc/core-linux-x64-gnu@1.4.14:
@@ -11266,6 +11053,7 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@swc/core-linux-x64-musl@1.4.14:
@@ -11274,6 +11062,7 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@swc/core-win32-arm64-msvc@1.4.14:
@@ -11282,6 +11071,7 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@swc/core-win32-ia32-msvc@1.4.14:
@@ -11290,6 +11080,7 @@ packages:
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@swc/core-win32-x64-msvc@1.4.14:
@@ -11298,6 +11089,7 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
+    dev: true
     optional: true
 
   /@swc/core@1.4.14:
@@ -11323,9 +11115,11 @@ packages:
       '@swc/core-win32-arm64-msvc': 1.4.14
       '@swc/core-win32-ia32-msvc': 1.4.14
       '@swc/core-win32-x64-msvc': 1.4.14
+    dev: true
 
   /@swc/counter@0.1.3:
     resolution: {integrity: sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==}
+    dev: true
 
   /@swc/helpers@0.4.14:
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
@@ -11354,6 +11148,7 @@ packages:
     resolution: {integrity: sha512-/JLo/l2JsT/LRd80C3HfbmVpxOAJ11FO2RCEslFrgzLltoP9j8XIbsyDcfCt2WWyX+CM96rBoNM+IToAkFOugg==}
     dependencies:
       '@swc/counter': 0.1.3
+    dev: true
 
   /@szmarczak/http-timer@4.0.6:
     resolution: {integrity: sha512-4BAffykYOgO+5nzBWYwE3W90sBgLJoUPRWWcL8wlyiM8IB8ipJz3UMJ9KXQd1RKQXpKp8Tutn80HZtWsu2u76w==}
@@ -12074,7 +11869,7 @@ packages:
     resolution: {integrity: sha512-b3nLFGaGkJ9rzOcuXRfHkZMdjsawuDD0ENL9fzTophtBg8FJHSGbH7daXkEpcwy3v7Xol3pAvsmlYyFhR4pqJw==}
     dependencies:
       '@types/node': 20.12.7
-      '@types/unist': 2.0.10
+      '@types/unist': 3.0.2
       '@types/vfile-message': 2.0.0
     dev: false
 
@@ -12184,26 +11979,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
-
-  /@typescript-eslint/parser@5.62.0(eslint@7.32.0)(typescript@5.4.5):
-    resolution: {integrity: sha512-VlJEV0fOQ7BExOsHYAGrgbEiZoi8D+Bl2+f6V2RrXerRSylnp+ZBHmPvaIa8cz0Ajx7WO7Z5RqfgYg7ED1nRhA==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    peerDependencies:
-      eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
-      typescript: '*'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      '@typescript-eslint/scope-manager': 5.62.0
-      '@typescript-eslint/types': 5.62.0
-      '@typescript-eslint/typescript-estree': 5.62.0(typescript@5.4.5)
-      debug: 4.3.4(supports-color@5.5.0)
-      eslint: 7.32.0
-      typescript: 5.4.5
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
 
   /@typescript-eslint/parser@5.62.0(eslint@8.57.0)(typescript@5.4.5):
     resolution: {integrity: sha512-VlJEV0fOQ7BExOsHYAGrgbEiZoi8D+Bl2+f6V2RrXerRSylnp+ZBHmPvaIa8cz0Ajx7WO7Z5RqfgYg7ED1nRhA==}
@@ -16766,7 +16541,7 @@ packages:
     resolution: {integrity: sha512-DP3FpjsiDDvnQC1OJBsdOJZPuy7r0o6sepY2T5M3L/d2nrE23O/ErFkEqyY3ngVL1ZhTj/H0pCMNObZGkEOaaQ==}
     engines: {node: '>=12.20.0'}
     dependencies:
-      chalk: 5.2.0
+      chalk: 5.3.0
       filter-obj: 3.0.0
       is-plain-obj: 4.1.0
       jest-validate: 27.5.1
@@ -16775,7 +16550,7 @@ packages:
     resolution: {integrity: sha512-Soe5lerRg3erMRgYC0EC696/8dMCGpBzcQchFfi55Yrkja8F+P7cUt0LVTIg7u5ob5BexLZ/F1kO+ejmv+nq8w==}
     engines: {node: '>=14.18.0'}
     dependencies:
-      chalk: 5.2.0
+      chalk: 5.3.0
       is-plain-obj: 4.1.0
 
   /colors@1.4.0:
@@ -22517,212 +22292,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /gatsby@5.13.4(@swc/core@1.4.14)(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.4.5):
-    resolution: {integrity: sha512-ZV5LL4ipWO2HZSWHWdU2qwS++9tr+fxxF+ScbSwzukrrCTHjTq8+DkpfOMiY498lmTUZ5LvRvT0WQmuVx/gXVQ==}
-    engines: {node: '>=18.0.0'}
-    hasBin: true
-    requiresBuild: true
-    peerDependencies:
-      react: ^18.0.0 || ^0.0.0
-      react-dom: ^18.0.0 || ^0.0.0
-    dependencies:
-      '@babel/code-frame': 7.24.2
-      '@babel/core': 7.24.4
-      '@babel/eslint-parser': 7.24.1(@babel/core@7.24.4)(eslint@7.32.0)
-      '@babel/helper-plugin-utils': 7.24.0
-      '@babel/parser': 7.24.4
-      '@babel/runtime': 7.24.4
-      '@babel/traverse': 7.24.1
-      '@babel/types': 7.24.0
-      '@builder.io/partytown': 0.7.6
-      '@gatsbyjs/reach-router': 2.0.1(react-dom@18.2.0)(react@18.2.0)
-      '@gatsbyjs/webpack-hot-middleware': 2.25.3
-      '@graphql-codegen/add': 3.2.3(graphql@16.8.1)
-      '@graphql-codegen/core': 2.6.8(graphql@16.8.1)
-      '@graphql-codegen/plugin-helpers': 2.7.2(graphql@16.8.1)
-      '@graphql-codegen/typescript': 2.8.8(graphql@16.8.1)
-      '@graphql-codegen/typescript-operations': 2.5.13(graphql@16.8.1)
-      '@graphql-tools/code-file-loader': 7.3.23(@babel/core@7.24.4)(graphql@16.8.1)
-      '@graphql-tools/load': 8.0.2(graphql@16.8.1)
-      '@jridgewell/trace-mapping': 0.3.25
-      '@nodelib/fs.walk': 1.2.8
-      '@parcel/cache': 2.8.3(@parcel/core@2.8.3)
-      '@parcel/core': 2.8.3
-      '@pmmmwh/react-refresh-webpack-plugin': 0.5.11(react-refresh@0.14.0)(webpack@5.91.0)
-      '@sigmacomputing/babel-plugin-lodash': 3.3.5
-      '@types/http-proxy': 1.17.14
-      '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.57.0)(typescript@5.4.5)
-      '@typescript-eslint/parser': 5.62.0(eslint@7.32.0)(typescript@5.4.5)
-      '@vercel/webpack-asset-relocator-loader': 1.7.3
-      acorn-loose: 8.4.0
-      acorn-walk: 8.3.2
-      address: 1.2.2
-      anser: 2.1.1
-      autoprefixer: 10.4.19(postcss@8.4.38)
-      axios: 0.21.4(debug@4.3.4)
-      babel-jsx-utils: 1.1.0
-      babel-loader: 8.3.0(@babel/core@7.24.4)(webpack@5.91.0)
-      babel-plugin-add-module-exports: 1.0.4
-      babel-plugin-dynamic-import-node: 2.3.3
-      babel-plugin-remove-graphql-queries: 5.13.1(@babel/core@7.24.4)(gatsby@5.13.4)
-      babel-preset-gatsby: 3.13.2(@babel/core@7.24.4)(core-js@3.36.1)
-      better-opn: 2.1.1
-      bluebird: 3.7.2
-      body-parser: 1.20.1
-      browserslist: 4.23.0
-      cache-manager: 2.11.1
-      chalk: 4.1.2
-      chokidar: 3.6.0
-      common-tags: 1.8.2
-      compression: 1.7.4
-      cookie: 0.5.0
-      core-js: 3.36.1
-      cors: 2.8.5
-      css-loader: 5.2.7(webpack@5.91.0)
-      css-minimizer-webpack-plugin: 2.0.0(webpack@5.91.0)
-      css.escape: 1.5.1
-      date-fns: 2.30.0
-      debug: 4.3.4(supports-color@5.5.0)
-      deepmerge: 4.3.1
-      detect-port: 1.5.1
-      devcert: 1.2.2
-      dotenv: 8.6.0
-      enhanced-resolve: 5.16.0
-      error-stack-parser: 2.1.4
-      eslint: 7.32.0
-      eslint-config-react-app: 6.0.0(@typescript-eslint/eslint-plugin@5.62.0)(@typescript-eslint/parser@5.62.0)(babel-eslint@10.1.0)(eslint-plugin-flowtype@5.10.0)(eslint-plugin-import@2.29.1)(eslint-plugin-jsx-a11y@6.8.0)(eslint-plugin-react-hooks@4.6.0)(eslint-plugin-react@7.34.1)(eslint@7.32.0)(typescript@5.4.5)
-      eslint-plugin-flowtype: 5.10.0(eslint@8.57.0)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@5.62.0)(eslint@8.57.0)
-      eslint-plugin-jsx-a11y: 6.8.0(eslint@8.57.0)
-      eslint-plugin-react: 7.34.1(eslint@8.57.0)
-      eslint-plugin-react-hooks: 4.6.0(eslint@8.57.0)
-      eslint-webpack-plugin: 2.7.0(eslint@7.32.0)(webpack@5.91.0)
-      event-source-polyfill: 1.0.31
-      execa: 5.1.1
-      express: 4.19.2
-      express-http-proxy: 1.6.3
-      fastest-levenshtein: 1.0.16
-      fastq: 1.17.1
-      file-loader: 6.2.0(webpack@5.91.0)
-      find-cache-dir: 3.3.2
-      fs-exists-cached: 1.0.0
-      fs-extra: 11.2.0
-      gatsby-cli: 5.13.3
-      gatsby-core-utils: 4.13.1
-      gatsby-graphiql-explorer: 3.13.1
-      gatsby-legacy-polyfills: 3.13.1
-      gatsby-link: 5.13.1(@gatsbyjs/reach-router@2.0.1)(react-dom@18.2.0)(react@18.2.0)
-      gatsby-page-utils: 3.13.1
-      gatsby-parcel-config: 1.13.1(@parcel/core@2.8.3)
-      gatsby-plugin-page-creator: 5.13.1(gatsby@5.13.4)(graphql@16.8.1)
-      gatsby-plugin-typescript: 5.13.1(gatsby@5.13.4)
-      gatsby-plugin-utils: 4.13.1(gatsby@5.13.4)(graphql@16.8.1)
-      gatsby-react-router-scroll: 6.13.1(@gatsbyjs/reach-router@2.0.1)(react-dom@18.2.0)(react@18.2.0)
-      gatsby-script: 2.13.0(@gatsbyjs/reach-router@2.0.1)(react-dom@18.2.0)(react@18.2.0)
-      gatsby-telemetry: 4.13.1
-      gatsby-worker: 2.13.1
-      glob: 7.2.3
-      globby: 11.1.0
-      got: 11.8.6
-      graphql: 16.8.1
-      graphql-compose: 9.0.10(graphql@16.8.1)
-      graphql-http: 1.22.1(graphql@16.8.1)
-      graphql-tag: 2.12.6(graphql@16.8.1)
-      hasha: 5.2.2
-      invariant: 2.2.4
-      is-relative: 1.0.0
-      is-relative-url: 3.0.0
-      joi: 17.12.3
-      json-loader: 0.5.7
-      latest-version: 7.0.0
-      linkfs: 2.1.0
-      lmdb: 2.5.3
-      lodash: 4.17.21
-      meant: 1.0.3
-      memoizee: 0.4.15
-      micromatch: 4.0.5
-      mime: 3.0.0
-      mini-css-extract-plugin: 1.6.2(webpack@5.91.0)
-      mitt: 1.2.0
-      moment: 2.30.1
-      multer: 1.4.5-lts.1
-      node-fetch: 2.7.0
-      node-html-parser: 5.4.2
-      normalize-path: 3.0.0
-      null-loader: 4.0.1(webpack@5.91.0)
-      opentracing: 0.14.7
-      p-defer: 3.0.0
-      parseurl: 1.3.3
-      path-to-regexp: 0.1.7
-      physical-cpu-count: 2.0.0
-      platform: 1.3.6
-      postcss: 8.4.38
-      postcss-flexbugs-fixes: 5.0.2(postcss@8.4.38)
-      postcss-loader: 5.3.0(postcss@8.4.38)(webpack@5.91.0)
-      prompts: 2.4.2
-      prop-types: 15.8.1
-      query-string: 6.14.1
-      raw-loader: 4.0.2(webpack@5.91.0)
-      react: 18.2.0
-      react-dev-utils: 12.0.1(eslint@7.32.0)(typescript@5.4.5)(webpack@5.91.0)
-      react-dom: 18.2.0(react@18.2.0)
-      react-refresh: 0.14.0
-      react-server-dom-webpack: 0.0.0-experimental-c8b778b7f-20220825(react@18.2.0)(webpack@5.91.0)
-      redux: 4.2.1
-      redux-thunk: 2.4.2(redux@4.2.1)
-      resolve-from: 5.0.0
-      semver: 7.6.0
-      shallow-compare: 1.2.2
-      signal-exit: 3.0.7
-      slugify: 1.6.6
-      socket.io: 4.7.1
-      socket.io-client: 4.7.1
-      stack-trace: 0.0.10
-      string-similarity: 1.2.2
-      strip-ansi: 6.0.1
-      style-loader: 2.0.0(webpack@5.91.0)
-      style-to-object: 0.4.4
-      terser-webpack-plugin: 5.3.10(@swc/core@1.4.14)(webpack@5.91.0)
-      tmp: 0.2.3
-      true-case-path: 2.2.1
-      type-of: 2.0.1
-      url-loader: 4.1.1(file-loader@6.2.0)(webpack@5.91.0)
-      uuid: 8.3.2
-      webpack: 5.91.0(@swc/core@1.4.14)
-      webpack-dev-middleware: 4.3.0(webpack@5.91.0)
-      webpack-merge: 5.10.0
-      webpack-stats-plugin: 1.1.3
-      webpack-virtual-modules: 0.5.0
-      xstate: 4.38.3
-      yaml-loader: 0.8.1
-    optionalDependencies:
-      gatsby-sharp: 1.13.0
-    transitivePeerDependencies:
-      - '@swc/core'
-      - '@types/webpack'
-      - babel-eslint
-      - bufferutil
-      - clean-css
-      - csso
-      - encoding
-      - esbuild
-      - eslint-import-resolver-typescript
-      - eslint-import-resolver-webpack
-      - eslint-plugin-jest
-      - eslint-plugin-testing-library
-      - sockjs-client
-      - supports-color
-      - type-fest
-      - typescript
-      - uglify-js
-      - utf-8-validate
-      - vue-template-compiler
-      - webpack-cli
-      - webpack-dev-server
-      - webpack-hot-middleware
-      - webpack-plugin-serve
-    dev: false
-
   /gatsby@5.13.4(babel-eslint@10.1.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.4.5):
     resolution: {integrity: sha512-ZV5LL4ipWO2HZSWHWdU2qwS++9tr+fxxF+ScbSwzukrrCTHjTq8+DkpfOMiY498lmTUZ5LvRvT0WQmuVx/gXVQ==}
     engines: {node: '>=18.0.0'}
@@ -24434,6 +24003,7 @@ packages:
   /iconv-lite@0.6.3:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dependencies:
       safer-buffer: 2.1.2
 
@@ -25613,7 +25183,7 @@ packages:
     hasBin: true
     dependencies:
       async: 3.2.5
-      chalk: 4.1.0
+      chalk: 4.1.2
       filelist: 1.0.4
       minimatch: 3.1.2
     dev: true
@@ -25799,7 +25369,7 @@ packages:
     resolution: {integrity: sha512-LMIgiIrhigmPrs03JHpxUh2yISK3vLFPkAodPeo0+BuF7wA2FoQbkEg1u8gBYBThncu7e1oEDUfIXVuTqLRUjw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
-      chalk: 4.1.0
+      chalk: 4.1.2
       diff-sequences: 29.6.3
       jest-get-type: 29.6.3
       pretty-format: 29.7.0
@@ -26308,6 +25878,7 @@ packages:
 
   /jsbn@1.1.0:
     resolution: {integrity: sha512-4bYVV3aAMtDTTu4+xsDYa6sy9GyJ69/amsu9sYF2zqjiEoZA5xJi3BrfX3uY+/IekIu7MwdObdbDWpoZdBv3/A==}
+    requiresBuild: true
 
   /jscodeshift@0.15.2(@babel/preset-env@7.24.4):
     resolution: {integrity: sha512-FquR7Okgmc4Sd0aEDwqho3rEiKR3BdvuG9jfdHjLJ6JQoWSMpavug3AoIfnfWhxFlf+5pzQh8qjqz0DWFrNQzA==}
@@ -28768,7 +28339,7 @@ packages:
       array-differ: 3.0.0
       array-union: 2.1.0
       arrify: 2.0.1
-      minimatch: 3.0.5
+      minimatch: 3.1.2
     dev: true
 
   /multiparty@4.2.3:
@@ -28847,6 +28418,9 @@ packages:
   /napi-build-utils@1.0.2:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
     dev: false
+
+  /napi-wasm@1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
 
   /natural-compare-lite@1.4.0:
     resolution: {integrity: sha512-Tj+HTDSJJKaZnfiuw+iaF9skdPpTo2GtEly5JHnWV/hfv2Qj/9RKsGISQtLh2ox3l5EAGw487hnBee0sIJ6v2g==}
@@ -29285,6 +28859,7 @@ packages:
         optional: true
     dependencies:
       whatwg-url: 5.0.0
+    dev: true
 
   /node-fetch@2.7.0:
     resolution: {integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==}
@@ -29539,7 +29114,7 @@ packages:
     dependencies:
       hosted-git-info: 7.0.1
       is-core-module: 2.13.1
-      semver: 7.5.4
+      semver: 7.6.0
       validate-npm-package-license: 3.0.4
 
   /normalize-path@2.1.1:
@@ -29774,7 +29349,7 @@ packages:
       '@yarnpkg/parsers': 3.0.0-rc.46
       '@zkochan/js-yaml': 0.0.6
       axios: 1.6.8
-      chalk: 4.1.0
+      chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
       cliui: 8.0.1
@@ -30076,7 +29651,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       bl: 4.1.0
-      chalk: 4.1.0
+      chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
       is-interactive: 1.0.0
@@ -31835,6 +31410,7 @@ packages:
     resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
     engines: {node: '>=14'}
     hasBin: true
+    dev: true
 
   /pretty-bytes@5.6.0:
     resolution: {integrity: sha512-FFw039TmrBqFK8ma/7OL3sDz/VytdtJr044/QUJtH0wK9lb9jLq9tJyIxUwtQJHwar2BqtiA4iCWSwo9JLkzFg==}
@@ -34991,10 +34567,14 @@ packages:
 
   /sprintf-js@1.1.3:
     resolution: {integrity: sha512-Oo+0REFV59/rz3gfJNKQiBlwfHaSESl1pcGyABQsnnIfWOFt6JNj5gCog2U6MLZ//IGYD+nA8nI+mTShREReaA==}
+    requiresBuild: true
 
   /sqlite3@5.1.7:
     resolution: {integrity: sha512-GGIyOiFaG+TUra3JIfkI/zGP8yZYLPQ0pl1bH+ODjiX57sPhrLU5sQJn1y9bDKZUFYkX1crlrPfSYt0BKKdkog==}
     requiresBuild: true
+    peerDependenciesMeta:
+      node-gyp:
+        optional: true
     dependencies:
       bindings: 1.5.0
       node-addon-api: 7.1.0
@@ -36194,31 +35774,6 @@ packages:
       terser: 5.30.3
       webpack: 5.91.0(@swc/core@1.4.14)(esbuild@0.20.2)
     dev: true
-
-  /terser-webpack-plugin@5.3.10(@swc/core@1.4.14)(webpack@5.91.0):
-    resolution: {integrity: sha512-BKFPWlPDndPs+NGGCr1U59t0XScL5317Y0UReNrHaw9/FwhPENlq6bfgs+4yPfyP51vqC1bQ4rp1EfXW5ZSH9w==}
-    engines: {node: '>= 10.13.0'}
-    peerDependencies:
-      '@swc/core': '*'
-      esbuild: '*'
-      uglify-js: '*'
-      webpack: ^5.1.0
-    peerDependenciesMeta:
-      '@swc/core':
-        optional: true
-      esbuild:
-        optional: true
-      uglify-js:
-        optional: true
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.25
-      '@swc/core': 1.4.14
-      jest-worker: 27.5.1
-      schema-utils: 3.3.0
-      serialize-javascript: 6.0.2
-      terser: 5.30.3
-      webpack: 5.91.0(@swc/core@1.4.14)
-    dev: false
 
   /terser-webpack-plugin@5.3.10(esbuild@0.18.20)(webpack@5.91.0):
     resolution: {integrity: sha512-BKFPWlPDndPs+NGGCr1U59t0XScL5317Y0UReNrHaw9/FwhPENlq6bfgs+4yPfyP51vqC1bQ4rp1EfXW5ZSH9w==}
@@ -38606,46 +38161,6 @@ packages:
       - '@swc/core'
       - esbuild
       - uglify-js
-
-  /webpack@5.91.0(@swc/core@1.4.14):
-    resolution: {integrity: sha512-rzVwlLeBWHJbmgTC/8TvAcu5vpJNII+MelQpylD4jNERPwpBJOE2lEcko1zJX3QJeLjTTAnQxn/OJ8bjDzVQaw==}
-    engines: {node: '>=10.13.0'}
-    hasBin: true
-    peerDependencies:
-      webpack-cli: '*'
-    peerDependenciesMeta:
-      webpack-cli:
-        optional: true
-    dependencies:
-      '@types/eslint-scope': 3.7.7
-      '@types/estree': 1.0.5
-      '@webassemblyjs/ast': 1.12.1
-      '@webassemblyjs/wasm-edit': 1.12.1
-      '@webassemblyjs/wasm-parser': 1.12.1
-      acorn: 8.11.3
-      acorn-import-assertions: 1.9.0(acorn@8.11.3)
-      browserslist: 4.23.0
-      chrome-trace-event: 1.0.3
-      enhanced-resolve: 5.16.0
-      es-module-lexer: 1.5.0
-      eslint-scope: 5.1.1
-      events: 3.3.0
-      glob-to-regexp: 0.4.1
-      graceful-fs: 4.2.11
-      json-parse-even-better-errors: 2.3.1
-      loader-runner: 4.3.0
-      mime-types: 2.1.35
-      neo-async: 2.6.2
-      schema-utils: 3.3.0
-      tapable: 2.2.1
-      terser-webpack-plugin: 5.3.10(@swc/core@1.4.14)(webpack@5.91.0)
-      watchpack: 2.4.1
-      webpack-sources: 3.2.3
-    transitivePeerDependencies:
-      - '@swc/core'
-      - esbuild
-      - uglify-js
-    dev: false
 
   /webpack@5.91.0(@swc/core@1.4.14)(esbuild@0.18.20):
     resolution: {integrity: sha512-rzVwlLeBWHJbmgTC/8TvAcu5vpJNII+MelQpylD4jNERPwpBJOE2lEcko1zJX3QJeLjTTAnQxn/OJ8bjDzVQaw==}

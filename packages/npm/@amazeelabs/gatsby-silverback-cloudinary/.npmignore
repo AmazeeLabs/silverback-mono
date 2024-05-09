@@ -1,7 +1,6 @@
 src
 .eslintrc.js
 .lintstagedrc
-.prettierrc
 tsconfig.json
 !*.js
 !index.d.ts
