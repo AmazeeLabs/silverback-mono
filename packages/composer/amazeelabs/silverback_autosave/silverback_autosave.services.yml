@@ -1,12 +1,13 @@
 services:
   silverback_autosave.entity_form_storage:
     class: \Drupal\silverback_autosave\Storage\AutosaveEntityFormDatabaseStorage
-    arguments: [
-      '@database',
-      '@serialization.phpserialize',
-      '@http_client',
-      '@logger.channel.default',
-    ]
+    arguments:
+      [
+        '@database',
+        '@serialization.phpserialize',
+        '@http_client',
+        '@logger.channel.default',
+      ]
 
   form_validator.silverback_autosave:
     public: false

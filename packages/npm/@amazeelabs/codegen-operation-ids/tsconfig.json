@@ -8,7 +8,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": false,
-    "jsx": "react",
+    "jsx": "react"
   },
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Recommended"

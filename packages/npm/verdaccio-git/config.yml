@@ -1,7 +1,7 @@
 store:
   git:
-    storage: ".test/storage"
-    path: ".test/storage"
+    storage: '.test/storage'
+    path: '.test/storage'
 
 packages:
   '**':

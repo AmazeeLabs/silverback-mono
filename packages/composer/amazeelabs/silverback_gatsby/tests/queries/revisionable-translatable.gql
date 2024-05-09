@@ -1,15 +1,15 @@
 query {
-  a:_loadPageRevision(id: "1:en", revision: "1") {
+  a: _loadPageRevision(id: "1:en", revision: "1") {
     title
   }
   # This should be null, since the first revision has no german translation.
-  b:_loadPageRevision(id: "1:de", revision: "1") {
+  b: _loadPageRevision(id: "1:de", revision: "1") {
     title
   }
-  c:_loadPageRevision(id: "1:de", revision: "2") {
+  c: _loadPageRevision(id: "1:de", revision: "2") {
     title
   }
-  d:_loadPageRevision(id: "1:de", revision: "3") {
+  d: _loadPageRevision(id: "1:de", revision: "3") {
     title
   }
 }

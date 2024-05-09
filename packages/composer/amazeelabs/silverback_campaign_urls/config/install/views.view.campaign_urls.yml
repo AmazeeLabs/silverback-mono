@@ -72,7 +72,7 @@ display:
           hide_alter_empty: true
           action_title: Action
           include_exclude: exclude
-          selected_actions: {  }
+          selected_actions: {}
         campaign_url_source:
           id: campaign_url_source
           table: campaign_url
@@ -126,9 +126,9 @@ display:
           hide_alter_empty: true
           click_sort_column: value
           type: string
-          settings: {  }
+          settings: {}
           group_column: value
-          group_columns: {  }
+          group_columns: {}
           group_rows: true
           delta_limit: 0
           delta_offset: 0
@@ -193,7 +193,7 @@ display:
           settings:
             link_to_entity: false
           group_column: value
-          group_columns: {  }
+          group_columns: {}
           group_rows: true
           delta_limit: 0
           delta_offset: 0
@@ -259,7 +259,7 @@ display:
             thousand_separator: ''
             prefix_suffix: true
           group_column: value
-          group_columns: {  }
+          group_columns: {}
           group_rows: true
           delta_limit: 0
           delta_offset: 0
@@ -326,7 +326,7 @@ display:
             format_custom_false: ''
             format_custom_true: ''
           group_column: value
-          group_columns: {  }
+          group_columns: {}
           group_rows: true
           delta_limit: 0
           delta_offset: 0
@@ -393,7 +393,7 @@ display:
             custom_date_format: ''
             timezone: ''
           group_column: value
-          group_columns: {  }
+          group_columns: {}
           group_rows: true
           delta_limit: 0
           delta_offset: 0
@@ -460,7 +460,7 @@ display:
             custom_date_format: ''
             timezone: ''
           group_column: value
-          group_columns: {  }
+          group_columns: {}
           group_rows: true
           delta_limit: 0
           delta_offset: 0
@@ -557,7 +557,7 @@ display:
           perm: 'administer campaign urls'
       cache:
         type: tag
-        options: {  }
+        options: {}
       empty:
         area:
           id: area
@@ -572,8 +572,8 @@ display:
             value: 'There are no campaign urls to be displayed.'
             format: rich
           tokenize: false
-      sorts: {  }
-      arguments: {  }
+      sorts: {}
+      arguments: {}
       filters:
         combine:
           id: combine
@@ -594,7 +594,7 @@ display:
             use_operator: false
             operator: combine_op
             operator_limit_selection: false
-            operator_list: {  }
+            operator_list: {}
             identifier: combine
             required: false
             remember: false
@@ -615,15 +615,15 @@ display:
             multiple: false
             remember: false
             default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
+            default_group_multiple: {}
+            group_items: {}
           fields:
             campaign_url_source: campaign_url_source
             campaign_url_destination: campaign_url_destination
       style:
         type: table
         options:
-          grouping: {  }
+          grouping: {}
           row_class: ''
           default_row_class: true
           columns:
@@ -704,11 +704,11 @@ display:
           disable_sql_rewrite: false
           distinct: false
           replica: false
-          query_tags: {  }
-      relationships: {  }
-      header: {  }
-      footer: {  }
-      display_extenders: {  }
+          query_tags: {}
+      relationships: {}
+      header: {}
+      footer: {}
+      display_extenders: {}
     cache_metadata:
       max-age: 0
       contexts:
@@ -717,14 +717,14 @@ display:
         - url
         - url.query_args
         - user.permissions
-      tags: {  }
+      tags: {}
   page_campaign_urls:
     id: page_campaign_urls
     display_title: Page
     display_plugin: page
     position: 1
     display_options:
-      display_extenders: {  }
+      display_extenders: {}
       path: admin/config/search/campaign_url
     cache_metadata:
       max-age: 0
@@ -734,4 +734,4 @@ display:
         - url
         - url.query_args
         - user.permissions
-      tags: {  }
+      tags: {}

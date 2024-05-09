@@ -17,7 +17,9 @@ jobs:
         id: composer_diff
         uses: IonBazan/composer-diff-action@v1
         with:
-          base: ${{ github.event.pull_request.base.sha }}:apps/silverback-drupal/composer.lock
+          base:
+            ${{ github.event.pull_request.base.sha
+            }}:apps/silverback-drupal/composer.lock
           target: apps/silverback-drupal/composer.lock
       - uses: marocchino/sticky-pull-request-comment@v2
         if: ${{ steps.composer_diff.outputs.composer_diff }}
@@ -25,7 +27,7 @@ jobs:
           header: composer-diff
           message: |
             ## `composer.lock` changes
-            
+
             <details>
             <summary>Click to toggle table visibility</summary>
 

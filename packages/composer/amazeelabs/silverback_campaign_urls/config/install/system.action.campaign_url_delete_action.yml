@@ -10,4 +10,4 @@ id: campaign_url_delete_action
 label: 'Delete campaign url'
 type: campaign_url
 plugin: campaign_url_delete_action
-configuration: {  }
+configuration: {}

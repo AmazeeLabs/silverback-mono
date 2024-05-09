@@ -11,14 +11,14 @@ drupalSettings.gutenberg._listeners.init.push(
   function () {
     var coreColumnsAllowed =
       drupalSettings.editor.formats.gutenberg.editorSettings.allowedBlocks[
-        "core/columns"
+        'core/columns'
       ];
     var coreImageAllowed =
       drupalSettings.editor.formats.gutenberg.editorSettings.allowedBlocks[
-        "core/image"
+        'core/image'
       ];
     if (coreColumnsAllowed && !coreImageAllowed) {
-      var coreColumnsBlock = wp.blocks.getBlockType("core/columns");
+      var coreColumnsBlock = wp.blocks.getBlockType('core/columns');
       // Remove core/image from the example.
       coreColumnsBlock.example.innerBlocks[0].innerBlocks.splice(1, 1);
     }
@@ -26,7 +26,7 @@ drupalSettings.gutenberg._listeners.init.push(
 
   // Remove most of the columns options.
   function () {
-    var coreColumnsBlock = wp.blocks.getBlockType("core/columns");
+    var coreColumnsBlock = wp.blocks.getBlockType('core/columns');
     coreColumnsBlock.supports.inserter = false;
     coreColumnsBlock.supports.align = false;
     coreColumnsBlock.supports.__experimentalColor = false;
@@ -34,6 +34,6 @@ drupalSettings.gutenberg._listeners.init.push(
 
   // We never want inline images.
   function () {
-    wp.richText.unregisterFormatType("core/image");
-  }
+    wp.richText.unregisterFormatType('core/image');
+  },
 );

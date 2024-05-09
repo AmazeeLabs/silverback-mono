@@ -12,10 +12,7 @@
     "resolveJsonModule": false,
     "jsx": "react"
   },
-  "exclude": [
-    "./dist",
-    "src/**/__tests__/**"
-  ],
+  "exclude": ["./dist", "src/**/__tests__/**"],
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Recommended"
 }

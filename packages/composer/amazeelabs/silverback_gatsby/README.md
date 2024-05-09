@@ -8,15 +8,19 @@ automatically send incremental updates to Gatsby.
 [gatsby-source-silverback]:
   https://www.npmjs.com/package/@amazeelabs/gatsby-source-silverback
 
-
 ## BREAKING CHANGES
 
-In version 2, a couple of breaking changes have been introduced due to the new dependency on the
-`graphql_directives` module.
+In version 2, a couple of breaking changes have been introduced due to the new
+dependency on the `graphql_directives` module.
 
-* `@resolveEntityReference` and `@resolveEntityReferenceRevisions` do not support the `single` parameter any more. They can be chained with `@seek` instead.
-* Gutenberg directives moved to the `silverback_gutenberg` module and changed in naming and parameters. Refer to the generated directives for more information.
-* New default value handling requires either nullable custom type invocations, or `@default` directives on them. Refer to the `graphql_directives` module for more information.
+- `@resolveEntityReference` and `@resolveEntityReferenceRevisions` do not
+  support the `single` parameter any more. They can be chained with `@seek`
+  instead.
+- Gutenberg directives moved to the `silverback_gutenberg` module and changed in
+  naming and parameters. Refer to the generated directives for more information.
+- New default value handling requires either nullable custom type invocations,
+  or `@default` directives on them. Refer to the `graphql_directives` module for
+  more information.
 
 ## Getting started
 
@@ -27,16 +31,19 @@ composer require amazeelabs/silverback_gatsby
 drush en -y silverback_gatsby
 ```
 
-Create a GraphQL folder at the root of your project. This will contain all the schema definitions.
-To improve IDE support, you can export all the schema definitions in a single file:
+Create a GraphQL folder at the root of your project. This will contain all the
+schema definitions. To improve IDE support, you can export all the schema
+definitions in a single file:
 
 ```shell
 drush graphql:directives > graphql/directives.graphqls
 ```
 
-It is advised to ignore this file in version control and rather re-create it when needed.
+It is advised to ignore this file in version control and rather re-create it
+when needed.
 
-Now you can start to create the project schema defintion and fill in resolvers by using the directives provided.
+Now you can start to create the project schema defintion and fill in resolvers
+by using the directives provided.
 
 ```graphql
 schema {
@@ -54,10 +61,10 @@ type Page @entity(type: "node", bundle: "page") {
 }
 ```
 
-Now create a new GraphQL server configuration, use the `Directable` schema plugin
-and make sure to enable the "Silverback Gatsby" extension. The _Explorer_ or _Voyager_ screens should
-show root level fields for loading and querying our type (`loadPage`, `queryPages`) that you
-should be able to test now.
+Now create a new GraphQL server configuration, use the `Directable` schema
+plugin and make sure to enable the "Silverback Gatsby" extension. The _Explorer_
+or _Voyager_ screens should show root level fields for loading and querying our
+type (`loadPage`, `queryPages`) that you should be able to test now.
 
 ## Automatic creation of Gatsby pages
 
@@ -193,12 +200,12 @@ query MainMenu {
 
 The `@menu` directive also takes an optional `max_level` argument. It can be
 used to restrict the number of levels a type will include, which in turn can
-optimize caching and Gatsby build times.
-In many cases, the main page layout only displays the first level of menu items.
-When a new page is created and attached to the third level, Gatsby will still
-re-render all pages, because the menu that is used in the header changed. By
-separating this into two levels, we can make sure the outer layout really only
-changes when menu levels are changed that are displayed.
+optimize caching and Gatsby build times. In many cases, the main page layout
+only displays the first level of menu items. When a new page is created and
+attached to the third level, Gatsby will still re-render all pages, because the
+menu that is used in the header changed. By separating this into two levels, we
+can make sure the outer layout really only changes when menu levels are changed
+that are displayed.
 
 ```graphql
 type MainMenu @menu(menu_id: "main") {...}
@@ -271,12 +278,14 @@ Drupal entirely.
 ## Trigger a build
 
 There are multiple ways to trigger a Gatsby build:
+
 - on entity save
 - via the Drupal UI or Drush.
 
 ### On entity save
 
-On the _Build_ tab of the schema configuration, check the _Trigger a build on entity save_ checkbox.
+On the _Build_ tab of the schema configuration, check the _Trigger a build on
+entity save_ checkbox.
 
 ### Drupal UI
 

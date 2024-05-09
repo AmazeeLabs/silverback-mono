@@ -1,5 +1,5 @@
 query LoadPage($path: String!) {
   loadPage(path: $path) {
-    ... PageFull
+    ...PageFull
   }
 }

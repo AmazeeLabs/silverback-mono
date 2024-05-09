@@ -56,4 +56,3 @@ type Query {
   autoloadStatic: String @autoloadStatic
   autoloadService: String @autoloadService
 }
-

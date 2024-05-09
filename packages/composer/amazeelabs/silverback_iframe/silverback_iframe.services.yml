@@ -1,5 +1,4 @@
 services:
-
   silverback_iframe.theme.negotiator:
     class: Drupal\silverback_iframe\Theme\SilverbackIframeThemeNegotiator
     arguments: ['@extension.list.theme']

@@ -23,12 +23,14 @@ with cypress tests.*/
 }
 
 /* Do not trim the link suggestions. */
-.block-editor-link-control__search-item span.block-editor-link-control__search-item-title {
+.block-editor-link-control__search-item
+  span.block-editor-link-control__search-item-title {
   white-space: normal;
 }
 
 /* Avoid word wrap in the type label. */
-.block-editor-link-control__search-item .block-editor-link-control__search-item-type {
+.block-editor-link-control__search-item
+  .block-editor-link-control__search-item-type {
   white-space: pre;
 }
 

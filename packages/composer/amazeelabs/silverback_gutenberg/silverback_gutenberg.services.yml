@@ -5,7 +5,15 @@ services:
       - { name: event_subscriber }
   Drupal\silverback_gutenberg\LinkProcessor:
     class: Drupal\silverback_gutenberg\LinkProcessor
-    arguments: ['@path_alias.manager', '@config.factory', '@request_stack', '@module_handler', '@entity.repository', '@entity_type.manager']
+    arguments:
+      [
+        '@path_alias.manager',
+        '@config.factory',
+        '@request_stack',
+        '@module_handler',
+        '@entity.repository',
+        '@entity_type.manager',
+      ]
   plugin.manager.gutenberg_validator:
     class: Drupal\silverback_gutenberg\GutenbergValidation\GutenbergValidatorManager
     parent: default_plugin_manager

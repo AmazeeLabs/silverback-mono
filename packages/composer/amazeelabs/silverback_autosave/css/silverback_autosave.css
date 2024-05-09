@@ -10,6 +10,6 @@
 }
 
 #autosave-notification:before {
-  content: "\2714";
+  content: '\2714';
   padding-right: 10px;
 }

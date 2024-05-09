@@ -1,5 +1,7 @@
 name: Silverback Translations
-description: Provides a way for importing translation sources and exporting translated labels.
+description:
+  Provides a way for importing translation sources and exporting translated
+  labels.
 type: module
 package: Silverback
 core_version_requirement: ^8 || ^9 || ^10

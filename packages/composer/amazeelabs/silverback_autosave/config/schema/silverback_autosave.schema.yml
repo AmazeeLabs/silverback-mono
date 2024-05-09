@@ -9,7 +9,9 @@ silverback_autosave.settings:
       label: 'The interval used to trigger autosave.'
     only_on_form_change:
       type: boolean
-      label: 'Run autosave submission within the specified interval only if there was a form change.'
+      label:
+        'Run autosave submission within the specified interval only if there was
+        a form change.'
     active_on:
       type: mapping
       label: 'Active on'
@@ -50,4 +52,6 @@ silverback_autosave.messages:
   mapping:
     entity_saved_in_background_alert_message:
       type: string
-      label: 'The alert message to show to the user if the entity has been saved meanwhile in the background.'
+      label:
+        'The alert message to show to the user if the entity has been saved
+        meanwhile in the background.'

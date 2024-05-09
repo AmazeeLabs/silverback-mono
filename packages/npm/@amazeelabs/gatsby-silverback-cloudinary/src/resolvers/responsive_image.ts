@@ -33,7 +33,7 @@ export const resolveResponsiveImage = (
       // Make sure to not send an already URI encoded string as the image src,
       // otherwise we endup having double encoded src values, because the
       // cloudinary SDK also encodes the URI.
-      src: decodeURIComponent(responsiveImage.src || '')
+      src: decodeURIComponent(responsiveImage.src || ''),
     },
     config,
   );
