@@ -1,5 +1,18 @@
 # Change Log
 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.0.12](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/schema-tests@1.0.11...@-amazeelabs/schema-tests@1.0.12) (2024-05-09)
+
+**Note:** Version bump only for package @-amazeelabs/schema-tests
+
+
+
+
+
+# Change Log
+
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 

@@ -1,5 +1,18 @@
 # Change Log
 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.4.13](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher-ui@2.4.12...@amazeelabs/publisher-ui@2.4.13) (2024-05-09)
+
+**Note:** Version bump only for package @amazeelabs/publisher-ui
+
+
+
+
+
+# Change Log
+
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 

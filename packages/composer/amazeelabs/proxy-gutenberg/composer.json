@@ -1,7 +1,7 @@
 {
   "name": "amazeelabs/proxy-gutenberg",
   "type": "library",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Proxy package for drupal/gutenberg.",
   "homepage": "https://silverback.netlify.app",
   "license": "GPL-2.0+",

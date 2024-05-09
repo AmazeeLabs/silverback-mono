@@ -1,5 +1,18 @@
 # Change Log
 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.6.20](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.6.19...@amazeelabs/scalars@1.6.20) (2024-05-09)
+
+**Note:** Version bump only for package @amazeelabs/scalars
+
+
+
+
+
+# Change Log
+
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 

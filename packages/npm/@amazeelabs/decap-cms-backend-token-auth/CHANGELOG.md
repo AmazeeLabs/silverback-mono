@@ -1,5 +1,18 @@
 # Change Log
 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.1.10](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/decap-cms-backend-token-auth@1.1.9...@amazeelabs/decap-cms-backend-token-auth@1.1.10) (2024-05-09)
+
+**Note:** Version bump only for package @amazeelabs/decap-cms-backend-token-auth
+
+
+
+
+
+# Change Log
+
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 

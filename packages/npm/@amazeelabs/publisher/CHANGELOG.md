@@ -1,5 +1,18 @@
 # Change Log
 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.4.26](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.4.25...@amazeelabs/publisher@2.4.26) (2024-05-09)
+
+**Note:** Version bump only for package @amazeelabs/publisher
+
+
+
+
+
+# Change Log
+
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 

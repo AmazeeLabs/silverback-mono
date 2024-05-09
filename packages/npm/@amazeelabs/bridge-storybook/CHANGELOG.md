@@ -1,5 +1,18 @@
 # Change Log
 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.2.14](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge-storybook@1.2.13...@amazeelabs/bridge-storybook@1.2.14) (2024-05-09)
+
+**Note:** Version bump only for package @amazeelabs/bridge-storybook
+
+
+
+
+
+# Change Log
+
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 

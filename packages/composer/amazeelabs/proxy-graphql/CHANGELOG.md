@@ -1,5 +1,18 @@
 # Change Log
 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.1.11](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-graphql@1.1.10...@-amazeelabs/proxy-graphql@1.1.11) (2024-05-09)
+
+**Note:** Version bump only for package @-amazeelabs/proxy-graphql
+
+
+
+
+
+# Change Log
+
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 

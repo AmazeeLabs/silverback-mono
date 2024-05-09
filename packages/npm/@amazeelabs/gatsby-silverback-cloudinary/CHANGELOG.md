@@ -1,5 +1,18 @@
 # Change Log
 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.2.20](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-silverback-cloudinary@1.2.19...@amazeelabs/gatsby-silverback-cloudinary@1.2.20) (2024-05-09)
+
+**Note:** Version bump only for package @amazeelabs/gatsby-silverback-cloudinary
+
+
+
+
+
+# Change Log
+
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 

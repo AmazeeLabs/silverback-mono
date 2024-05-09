@@ -1,5 +1,18 @@
 # Change Log
 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.1.23](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/react-intl-rsc@1.1.22...@amazeelabs/react-intl-rsc@1.1.23) (2024-05-09)
+
+**Note:** Version bump only for package @amazeelabs/react-intl-rsc
+
+
+
+
+
+# Change Log
+
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 

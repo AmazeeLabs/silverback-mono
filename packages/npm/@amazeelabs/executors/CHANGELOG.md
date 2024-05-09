@@ -1,5 +1,18 @@
 # Change Log
 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.0.5](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/executors@2.0.4...@amazeelabs/executors@2.0.5) (2024-05-09)
+
+**Note:** Version bump only for package @amazeelabs/executors
+
+
+
+
+
+# Change Log
+
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
