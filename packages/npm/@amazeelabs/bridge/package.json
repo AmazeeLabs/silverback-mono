@@ -15,17 +15,17 @@
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix"
   },
   "optionalDependencies": {
-    "@types/react": "^18.2.78",
+    "@types/react": "^18.3.1",
     "typescript": "^5.4.5",
-    "vitest": "^1.5.0"
+    "vitest": "^1.6.0"
   },
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": "^18.3.1"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.43",
     "@swc/cli": "0.3.12",
-    "@swc/core": "1.4.14"
+    "@swc/core": "1.5.5"
   },
   "keywords": [],
   "author": "AmazeeLabs <development@amazeelabs.com>"

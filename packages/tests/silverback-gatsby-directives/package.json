@@ -8,8 +8,8 @@
   "devDependencies": {
     "@-amazeelabs/silverback-gatsby-directives": "workspace:*",
     "@amazeelabs/eslint-config": "1.4.43",
-    "@playwright/test": "1.43.1",
-    "@types/node": "20.12.7",
+    "@playwright/test": "1.44.0",
+    "@types/node": "20.12.11",
     "eslint": "8.57.0",
     "typescript": "5.4.5"
   },

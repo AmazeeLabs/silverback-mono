@@ -10,13 +10,13 @@
     "@amazeelabs/test-directives": "workspace:*",
     "gatsby": "5.13.4",
     "gatsby-plugin-pnpm": "1.2.10",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.43",
-    "@types/node": "16.18.96",
-    "@types/react": "18.2.78",
+    "@types/node": "16.18.97",
+    "@types/react": "18.3.1",
     "eslint": "8.57.0",
     "husky": "9.0.11",
     "typescript": "5.4.5"
