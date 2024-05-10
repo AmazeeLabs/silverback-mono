@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@amazeelabs/graphql-directives": "workspace:*",
-    "fetch-retry": "^5.0.6",
+    "fetch-retry": "^6.0.0",
     "gatsby-graphql-source-toolkit": "^2.0.4",
     "graphql": "16.8.1",
     "graphql-config": "5.0.3",
