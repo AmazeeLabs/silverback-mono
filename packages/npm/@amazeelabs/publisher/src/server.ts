@@ -149,11 +149,13 @@ const runServer = async (): Promise<HttpTerminator> => {
       createProxyMiddleware({
         target,
         changeOrigin: true,
-        onProxyReq: (proxyReq) => {
-          // Add a header to identify the request as a proxy request.
-          // This can be used to prevent redirect loops when the proxy target
-          // redirects to the proxy itself.
-          proxyReq.setHeader('SLB-Publisher-Proxy', 'true');
+        on: {
+          proxyReq: (proxyReq) => {
+            // Add a header to identify the request as a proxy request.
+            // This can be used to prevent redirect loops when the proxy target
+            // redirects to the proxy itself.
+            proxyReq.setHeader('SLB-Publisher-Proxy', 'true');
+          },
         },
       }),
     );
@@ -276,24 +278,27 @@ const runServer = async (): Promise<HttpTerminator> => {
   app.use(
     '/',
     //authMiddleware,
-    createProxyMiddleware(() => app.locals.isReady, {
+    createProxyMiddleware({
+      pathFilter: () => app.locals.isReady,
       target: `http://127.0.0.1:${getConfig().commands.serve.port}`,
       selfHandleResponse: true,
-      onProxyRes: responseInterceptor(async (responseBuffer, proxyRes) => {
-        if (!proxyRes.headers['content-type']?.includes('text/html')) {
-          return responseBuffer;
-        }
-        const response = responseBuffer.toString('utf8');
-        return response
-          .replace(
-            '</head>',
-            '<script src="/___status/elements.js"></script></head>',
-          )
-          .replace(
-            '</body>',
-            '<publisher-floater><publisher-status /></publisher-floater></body>',
-          );
-      }),
+      on: {
+        proxyRes: responseInterceptor(async (responseBuffer, proxyRes) => {
+          if (!proxyRes.headers['content-type']?.includes('text/html')) {
+            return responseBuffer;
+          }
+          const response = responseBuffer.toString('utf8');
+          return response
+            .replace(
+              '</head>',
+              '<script src="/___status/elements.js"></script></head>',
+            )
+            .replace(
+              '</body>',
+              '<publisher-floater><publisher-status /></publisher-floater></body>',
+            );
+        }),
+      },
     }),
   );
 

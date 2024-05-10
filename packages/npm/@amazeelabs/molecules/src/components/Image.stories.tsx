@@ -1,4 +1,4 @@
-import { ComponentStoryObj, DecoratorFn, Meta, Story } from '@storybook/react';
+import { Decorator, Meta, StoryFn, StoryObj } from '@storybook/react';
 import { pick } from 'lodash';
 
 import LandscapeOriginal from '../assets/landscape.jpg?metadata';
@@ -52,23 +52,23 @@ const Landscape = {
   ],
 };
 
-const FluidContainer: DecoratorFn = (story) => (
+const FluidContainer: Decorator = (story) => (
   <div className="w-96 p-4 border-dotted border-2 border-gray-400">
     {story()}
   </div>
 );
 
-const FixedContainer: DecoratorFn = (story) => (
+const FixedContainer: Decorator = (story) => (
   <div className="w-96 h-32 p-4 border-dotted border-2 border-gray-400">
     {story()}
   </div>
 );
 
-const ConstrainedContainer: DecoratorFn = (story) => (
+const ConstrainedContainer: Decorator = (story) => (
   <div className="max-w-[1000px]">{story()}</div>
 );
 
-export const Fluid: ComponentStoryObj<typeof Image> = {
+export const Fluid: StoryObj<typeof Image> = {
   decorators: [FluidContainer],
   args: {
     ...pick(Landscape.original, ['width', 'height', 'src']),
@@ -76,7 +76,7 @@ export const Fluid: ComponentStoryObj<typeof Image> = {
   },
 };
 
-export const FixedCover: ComponentStoryObj<typeof Image> = {
+export const FixedCover: StoryObj<typeof Image> = {
   decorators: [FixedContainer],
   args: {
     ...Fluid.args,
@@ -84,7 +84,7 @@ export const FixedCover: ComponentStoryObj<typeof Image> = {
   },
 };
 
-export const FixedContain: ComponentStoryObj<typeof Image> = {
+export const FixedContain: StoryObj<typeof Image> = {
   decorators: [FixedContainer],
   args: {
     ...Fluid.args,
@@ -92,7 +92,7 @@ export const FixedContain: ComponentStoryObj<typeof Image> = {
   },
 };
 
-export const DefaultFallback: ComponentStoryObj<typeof Image> = {
+export const DefaultFallback: StoryObj<typeof Image> = {
   decorators: [FluidContainer],
   args: {
     ...Fluid.args,
@@ -101,7 +101,7 @@ export const DefaultFallback: ComponentStoryObj<typeof Image> = {
   },
 };
 
-export const FadeIn: ComponentStoryObj<typeof Image> = {
+export const FadeIn: StoryObj<typeof Image> = {
   decorators: [FluidContainer],
   args: {
     ...Fluid.args,
@@ -111,7 +111,7 @@ export const FadeIn: ComponentStoryObj<typeof Image> = {
   },
 };
 
-export const CustomPlaceholder: Story = function Placeholder() {
+export const CustomPlaceholder: StoryFn = function Placeholder() {
   const { state } = useImageContext();
   if (state === 'loading') {
     return <p>🧘 Your image is being fetched.</p>;
@@ -122,7 +122,7 @@ export const CustomPlaceholder: Story = function Placeholder() {
   return <></>;
 };
 
-export const CustomLoadingPlaceholder: ComponentStoryObj<typeof Image> = {
+export const CustomLoadingPlaceholder: StoryObj<typeof Image> = {
   decorators: [FluidContainer],
   args: {
     ...FadeIn.args,
@@ -132,7 +132,7 @@ export const CustomLoadingPlaceholder: ComponentStoryObj<typeof Image> = {
   },
 };
 
-export const CustomErrorPlaceholder: ComponentStoryObj<typeof Image> = {
+export const CustomErrorPlaceholder: StoryObj<typeof Image> = {
   decorators: [FluidContainer],
   args: {
     ...FadeIn.args,
@@ -142,7 +142,7 @@ export const CustomErrorPlaceholder: ComponentStoryObj<typeof Image> = {
   },
 };
 
-export const Responsive: ComponentStoryObj<typeof Image> = {
+export const Responsive: StoryObj<typeof Image> = {
   parameters: {
     layout: 'fullscreen',
   },
@@ -152,7 +152,7 @@ export const Responsive: ComponentStoryObj<typeof Image> = {
   },
 };
 
-export const ResponsiveConstrained: ComponentStoryObj<typeof Image> = {
+export const ResponsiveConstrained: StoryObj<typeof Image> = {
   parameters: {
     layout: 'fullscreen',
   },
@@ -163,7 +163,7 @@ export const ResponsiveConstrained: ComponentStoryObj<typeof Image> = {
   },
 };
 
-export const ArtDirection: ComponentStoryObj<typeof Image> = {
+export const ArtDirection: StoryObj<typeof Image> = {
   parameters: {
     layout: 'fullscreen',
   },
@@ -178,7 +178,7 @@ export const ArtDirection: ComponentStoryObj<typeof Image> = {
   },
 };
 
-export const ArtDirectionConstrained: ComponentStoryObj<typeof Image> = {
+export const ArtDirectionConstrained: StoryObj<typeof Image> = {
   decorators: [ConstrainedContainer],
   parameters: {
     layout: 'fullscreen',
@@ -196,7 +196,7 @@ export const ArtDirectionConstrained: ComponentStoryObj<typeof Image> = {
   },
 };
 
-export const LazyLoading: Story = () => (
+export const LazyLoading: StoryFn = () => (
   <div>
     <Image
       {...pick(Landscape.original, ['src', 'width', 'height'])}
