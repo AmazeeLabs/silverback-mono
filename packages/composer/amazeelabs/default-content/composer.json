@@ -5,7 +5,7 @@
   "license": "GPL-2.0-or-later",
   "version": "1.2.16",
   "require": {
-    "amazeelabs/proxy-default-content": "^1.1.16"
+    "amazeelabs/proxy-default-content": "^1.1.18"
   },
   "autoload": {
     "psr-4": {
