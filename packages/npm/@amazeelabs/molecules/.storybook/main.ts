@@ -10,8 +10,8 @@ const config: StorybookConfig = {
     });
   },
   stories: [
-    '../src/docs/introduction.stories.mdx',
-    '../src/docs/**/*.stories.mdx',
+    '../src/docs/introduction.mdx',
+    '../src/docs/**/*.mdx',
     '../src/components/*.stories.tsx',
   ],
   addons: [
