@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.7](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@2.2.6...@-amazeelabs/silverback_cdn_redirect@2.2.7) (2024-05-10)
+
+**Note:** Version bump only for package @-amazeelabs/silverback_cdn_redirect
+
+
+
+
+
 ## [2.2.6](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_cdn_redirect@2.2.5...@-amazeelabs/silverback_cdn_redirect@2.2.6) (2024-05-09)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_cdn_redirect

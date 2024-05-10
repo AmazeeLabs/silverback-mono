@@ -1,6 +1,6 @@
 {
   "name": "@-amazeelabs/graphql_directives",
-  "version": "2.5.3",
+  "version": "2.5.4",
   "main": "index.js",
   "scripts": {
     "version": "sync-composer-version",

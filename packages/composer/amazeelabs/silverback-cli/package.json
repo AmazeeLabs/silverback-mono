@@ -1,6 +1,6 @@
 {
   "name": "@-amazeelabs/silverback-cli",
-  "version": "2.9.11",
+  "version": "2.9.12",
   "main": "index.js",
   "scripts": {
     "version": "sync-composer-version",
