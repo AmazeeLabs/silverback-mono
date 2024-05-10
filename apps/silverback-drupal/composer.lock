@@ -8,11 +8,11 @@
     "packages": [
         {
             "name": "amazeelabs/default-content",
-            "version": "1.2.16",
+            "version": "1.2.17",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/default-content",
-                "reference": "8c25d02de24c98e189441fcd0961393187cb8f70"
+                "reference": "242f7794dbf578dc0227c482751278ab82138cc8"
             },
             "require": {
                 "amazeelabs/proxy-default-content": "^1.1.18"
