@@ -1,4 +1,6 @@
 config/sync
 generated
 web/modules/custom/silverback_default_content/content
+web/modules/custom/gutenberg_custom_blocks
 composer.lock
+CHANGELOG.md
