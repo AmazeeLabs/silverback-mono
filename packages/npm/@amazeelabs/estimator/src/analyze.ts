@@ -56,14 +56,14 @@ const schemaProperties = {
   FIELD_ARGUMENT_DEFINITION: 0,
 
   /**
-   * Interface defintion
+   * Interface definition
    *
    * - implement a type resolver for this interface
    */
   INTERFACE_DEFINITION: 0,
 
   /**
-   * Union defintion
+   * Union definition
    *
    * - implement a type resolver for this union
    */
@@ -73,7 +73,7 @@ const schemaProperties = {
    * Definition of a custom input type
    *
    * - more complex data massaging, passing to resolvers
-   * - more complext state handlign in the frontend
+   * - more complex state handling in the frontend
    */
   INPUT_DEFINITION: 0,
 
@@ -183,7 +183,7 @@ export type Properties = keyof (typeof schemaProperties &
 /**
  * Usage of relevant directives within schema documents.
  *
- * If a directive is found on an element, it will be counted **instead** of the defintion
+ * If a directive is found on an element, it will be counted **instead** of the definition
  * of the element itself.
  */
 type DirectiveResults = Record<string, number>;
@@ -263,7 +263,7 @@ export function analyzeSchemas(
           }
         }
 
-        // Collect field defnitions on types.
+        // Collect field definitions on types.
         def.fields?.forEach((field) => {
           // Check if the field contains a known directive
           // and simply increment that one instead.
