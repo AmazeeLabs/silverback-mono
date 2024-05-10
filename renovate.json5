@@ -106,6 +106,14 @@
       ],
       enabled: false,
     },
+    {
+      // Disable major updates for eslint. Because TypeScript support isn't
+      // there yet:
+      // https://github.com/typescript-eslint/typescript-eslint/issues/8211
+      matchUpdateTypes: ['major'],
+      matchPackageNames: ['eslint'],
+      enabled: false,
+    },
   ],
 
   lockFileMaintenance: {
