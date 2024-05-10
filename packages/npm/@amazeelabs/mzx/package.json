@@ -18,7 +18,7 @@
     "prompts": "^2.4.2",
     "remark-parse": "^10.0.2",
     "unified": "^10.1.2",
-    "zx": "^7.2.3"
+    "zx": "^8.0.1"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.43",
