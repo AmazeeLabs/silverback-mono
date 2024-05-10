@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/gatsby-plugin-operations",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "",
   "type": "commonjs",
   "main": "build/index.js",
