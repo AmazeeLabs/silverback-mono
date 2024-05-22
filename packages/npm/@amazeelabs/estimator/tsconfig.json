@@ -2,8 +2,8 @@
   "compilerOptions": {
     "noEmit": true,
     "target": "ES2015",
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -11,6 +11,12 @@
     "resolveJsonModule": false,
     "jsx": "react"
   },
+  "include": [
+    "src",
+    "test",
+    "../../../../node_modules/.pnpm/vitest@1.6.0_@types+node@20.12.7/node_modules/vitest/globals.d.ts"
+  ],
+  "exclude": ["test/configs/broken"],
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Recommended"
 }
