@@ -271,7 +271,6 @@ const runServer = async (): Promise<HttpTerminator> => {
     createProxyMiddleware({
       pathFilter: () => app.locals.isReady,
       target: `http://127.0.0.1:${getConfig().commands.serve.port}`,
-      selfHandleResponse: true,
     }),
   );
 
