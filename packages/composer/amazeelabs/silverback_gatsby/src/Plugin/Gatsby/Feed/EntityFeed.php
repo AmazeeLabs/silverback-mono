@@ -116,10 +116,8 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
 
     // Special case for path alias.
     if ($context instanceof PathAlias) {
-      // @todo Add DI
       $path = $this->pathAliasManager->getPathByAlias($context->alias->value);
       if (preg_match('/node\/(\d+)/', $path, $matches)) {
-        // @todo Add DI
         $node = isset($matches[1]) ? Node::load($matches[1]) : NULL;
         if ($node) {
           // See SLB-281 for details.

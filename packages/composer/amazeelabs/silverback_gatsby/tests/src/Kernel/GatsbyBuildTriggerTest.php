@@ -10,6 +10,9 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use Prophecy\Argument;
 
+/**
+ *
+ */
 class GatsbyBuildTriggerTest extends KernelTestBase {
   use NotificationCheckTrait;
 
@@ -28,6 +31,7 @@ class GatsbyBuildTriggerTest extends KernelTestBase {
     'silverback_gatsby',
     'silverback_gatsby_example',
     'menu_link_content',
+    'path_alias',
   ];
 
   /**
@@ -40,6 +44,9 @@ class GatsbyBuildTriggerTest extends KernelTestBase {
    */
   protected $trigger;
 
+  /**
+   *
+   */
   protected function setUp() : void {
     parent::setUp();
     $this->setupClientProphecy();
@@ -58,12 +65,12 @@ class GatsbyBuildTriggerTest extends KernelTestBase {
       'schema_configuration' => [
         'directable' => [
           'extensions' => [
-            'silverback_gatsby' => 'silverback_gatsby'
+            'silverback_gatsby' => 'silverback_gatsby',
           ],
           'schema_definition' => __DIR__ . '/../../../modules/silverback_gatsby_example/graphql/silverback_gatsby_example.graphqls',
-          'build_webhook' => 'http://localhost:8000/__refresh'
-        ]
-      ]
+          'build_webhook' => 'http://localhost:8000/__refresh',
+        ],
+      ],
     ])->save();
 
     Server::create([
@@ -73,22 +80,28 @@ class GatsbyBuildTriggerTest extends KernelTestBase {
       'schema_configuration' => [
         'directable' => [
           'extensions' => [
-            'silverback_gatsby' => 'silverback_gatsby'
+            'silverback_gatsby' => 'silverback_gatsby',
           ],
           'schema_definition' => __DIR__ . '/../../../modules/silverback_gatsby_example/graphql/silverback_gatsby_example.graphqls',
-          'build_webhook' => 'http://localhost:9000/__refresh'
-        ]
-      ]
+          'build_webhook' => 'http://localhost:9000/__refresh',
+        ],
+      ],
     ])->save();
 
   }
 
+  /**
+   *
+   */
   public function testBeforeShutdown() {
     $this->trigger->trigger('foo', 1);
     // If _drupal_shutdown_function() is not called, no notifications go out.
     $this->checkTotalNotifications(0);
   }
 
+  /**
+   *
+   */
   public function testRequestException() {
     $this->clientProphecy->post(Argument::any(), Argument::any())
       ->willThrow(new RequestException('Invalid!', new Request('post', 'http://localhost:8000/__refresh')));
@@ -99,6 +112,9 @@ class GatsbyBuildTriggerTest extends KernelTestBase {
     $this->messengerProphecy->addError('Could not send build notification to server "http://localhost:8000/__refresh".')->shouldHaveBeenCalledTimes(1);
   }
 
+  /**
+   *
+   */
   public function testSingleTrigger() {
     $this->trigger->trigger('foo', 1);
     _drupal_shutdown_function();
@@ -106,6 +122,9 @@ class GatsbyBuildTriggerTest extends KernelTestBase {
     $this->checkBuildNotification('http://localhost:8000/__refresh', 1);
   }
 
+  /**
+   *
+   */
   public function testMultipleTriggers() {
     $this->trigger->trigger('foo', 1);
     $this->trigger->trigger('foo', 2);
@@ -114,6 +133,9 @@ class GatsbyBuildTriggerTest extends KernelTestBase {
     $this->checkBuildNotification('http://localhost:8000/__refresh', 2);
   }
 
+  /**
+   *
+   */
   public function testMultipleServers() {
     $this->trigger->trigger('foo', 1);
     $this->trigger->trigger('bar', 2);
@@ -122,4 +144,5 @@ class GatsbyBuildTriggerTest extends KernelTestBase {
     $this->checkBuildNotification('http://localhost:8000/__refresh', 1);
     $this->checkBuildNotification('http://localhost:9000/__refresh', 2);
   }
+
 }
