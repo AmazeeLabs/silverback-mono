@@ -2,10 +2,7 @@ import { ApplicationState } from '@amazeelabs/publisher-shared';
 import cors from 'cors';
 import express from 'express';
 import expressWs from 'express-ws';
-import {
-  createProxyMiddleware,
-  responseInterceptor,
-} from 'http-proxy-middleware';
+import { createProxyMiddleware } from 'http-proxy-middleware';
 import { createHttpTerminator } from 'http-terminator';
 import { HttpTerminator } from 'http-terminator/src/types';
 import path, { dirname } from 'path';
@@ -134,13 +131,6 @@ const runServer = async (): Promise<HttpTerminator> => {
     const result = await Build.findByPk(req.params.id);
     res.json(result);
   });
-
-  app.use(
-    '/___status/elements.js',
-    express.static(
-      path.resolve(__dirname, '../../publisher-elements/dist/elements.js'),
-    ),
-  );
 
   getConfig().proxy?.forEach(({ prefix, target }) => {
     app.use(
@@ -282,23 +272,6 @@ const runServer = async (): Promise<HttpTerminator> => {
       pathFilter: () => app.locals.isReady,
       target: `http://127.0.0.1:${getConfig().commands.serve.port}`,
       selfHandleResponse: true,
-      on: {
-        proxyRes: responseInterceptor(async (responseBuffer, proxyRes) => {
-          if (!proxyRes.headers['content-type']?.includes('text/html')) {
-            return responseBuffer;
-          }
-          const response = responseBuffer.toString('utf8');
-          return response
-            .replace(
-              '</head>',
-              '<script src="/___status/elements.js"></script></head>',
-            )
-            .replace(
-              '</body>',
-              '<publisher-floater><publisher-status /></publisher-floater></body>',
-            );
-        }),
-      },
     }),
   );
 
