@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.14](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/decap-cms-backend-token-auth@1.1.13...@amazeelabs/decap-cms-backend-token-auth@1.1.14) (2024-05-27)
+
+**Note:** Version bump only for package @amazeelabs/decap-cms-backend-token-auth
+
+
+
+
+
 ## [1.1.13](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/decap-cms-backend-token-auth@1.1.12...@amazeelabs/decap-cms-backend-token-auth@1.1.13) (2024-05-10)
 
 **Note:** Version bump only for package @amazeelabs/decap-cms-backend-token-auth
