@@ -23,7 +23,7 @@ export const config: PlaywrightTestConfig = {
   use: {
     trace: 'on-first-retry',
   },
-  reporter: 'list',
+  reporter: 'html',
   projects: [
     {
       name: 'setup',
