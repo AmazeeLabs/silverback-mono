@@ -8,6 +8,8 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\graphql\Entity\ServerInterface;
 use GuzzleHttp\Client;
+use GuzzleHttp\Cookie\CookieJar;
+use GuzzleHttp\RequestOptions;
 
 class GatsbyBuildTrigger implements GatsbyBuildTriggerInterface {
 
@@ -123,7 +125,22 @@ class GatsbyBuildTrigger implements GatsbyBuildTriggerInterface {
     $result = FALSE;
     $configuration = $serverEntity->get('schema_configuration')[$serverEntity->get('schema')];
     if (!empty($configuration['build_url'])) {
-      $response = $this->httpClient->get($configuration['build_url'] . '/build.json');
+      $buildJsonUrl = $configuration['build_url'] . '/build.json';
+      $httpOptions = [
+        RequestOptions::HTTP_ERRORS => FALSE,
+        RequestOptions::COOKIES => new CookieJar(),
+      ];
+      $response = $this->httpClient->get($buildJsonUrl, $httpOptions);
+      if (
+        $response->getStatusCode() === 401 &&
+        !empty($configuration['build_url_netlify_password'])
+      ) {
+        $response = $this->httpClient->post($buildJsonUrl, $httpOptions + [
+          RequestOptions::FORM_PARAMS => [
+            'password' => $configuration['build_url_netlify_password'],
+          ],
+        ]);
+      }
       if ($response->getStatusCode() === 200) {
         $content = json_decode($response->getBody()->getContents(), TRUE);
         $buildId = array_key_exists('drupalBuildId', $content) ? (int) $content['drupalBuildId'] : 0;
