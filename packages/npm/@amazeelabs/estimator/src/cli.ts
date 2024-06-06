@@ -49,8 +49,7 @@ program.command('analyze').action(async () => {
   if (isSuccess(result)) {
     console.log(result.value);
   } else {
-    console.error(result.cause.toString());
-    // TODO: exit code
+    throw result.cause.toString();
   }
 });
 
@@ -61,8 +60,7 @@ program.command('debug').action(async () => {
   if (isSuccess(result)) {
     console.log(result.value);
   } else {
-    console.error(result.cause.toString());
-    // TODO: exit code
+    throw result.cause.toString();
   }
 });
 
@@ -75,8 +73,7 @@ program.command('score').action(async () => {
   if (isSuccess(result)) {
     console.log(result.value);
   } else {
-    console.error(result.cause.toString());
-    // TODO: exit code
+    throw result.cause.toString();
   }
 });
 
@@ -88,8 +85,7 @@ program.command('write-history').action(async () => {
   if (isSuccess(result)) {
     console.log('History written');
   } else {
-    console.error(result.cause.toString());
-    // TODO: exit code
+    throw result.cause.toString();
   }
 });
 
@@ -106,8 +102,7 @@ program.command('estimate').action(async () => {
       `${velocity * diff} hours (${diff} points at ${velocity} hours per point)`,
     );
   } else {
-    console.error(result.cause.toString());
-    // TODO: exit code
+    throw result.cause.toString();
   }
 });
 
@@ -119,8 +114,7 @@ program.command('update').action(async () => {
   if (isSuccess(result)) {
     console.log('Update successful');
   } else {
-    console.error(result.cause.toString());
-    // TODO: exit code
+    throw result.cause.toString();
   }
 });
 
