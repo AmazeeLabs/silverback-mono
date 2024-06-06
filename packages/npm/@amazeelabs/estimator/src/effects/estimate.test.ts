@@ -28,3 +28,24 @@ test('returns the diff and velocity', async ({ effectValue, repo }) => {
     secondsPerPoint: 60,
   });
 });
+
+test('works if the parent commit does not contain the config', async ({
+  repo,
+  effectValue,
+}) => {
+  await repo.write('schema.graphql', 'type Query { hello: String }');
+  const commit = await repo.commit('Initial commit');
+  // Config is added "after" the parent commit.
+  await repo.write('.estimatorrc.yml', 'documents: ["*.graphql"]');
+  await repo.write(
+    'schema.graphql',
+    'type Query { hello: String! }\ntype Foo { bar: String }',
+  );
+  await repo.commit('Second commit');
+  await effectValue(writeHistory);
+  const result = await effectValue(estimate, { PARENT_COMMIT: commit.commit });
+  expect(result).toEqual({
+    diff: 8,
+    secondsPerPoint: 60,
+  });
+});

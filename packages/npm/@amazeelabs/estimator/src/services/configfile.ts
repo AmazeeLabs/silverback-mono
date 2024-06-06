@@ -1,5 +1,5 @@
 import { cosmiconfig, CosmiconfigResult } from 'cosmiconfig';
-import { Context, Data, Effect } from 'effect';
+import { Cache, Context, Data, Duration, Effect } from 'effect';
 
 class ConfigFileError extends Data.TaggedError('ConfigFileError')<{
   msg: string;
@@ -19,26 +19,36 @@ export class ConfigFile extends Context.Tag('ConfigFile')<
   IConfigFile
 >() {}
 
+const loadConfigFile = (directory: string) =>
+  Effect.tryPromise({
+    try: async () => {
+      const res = await cosmiconfig('estimator').search(directory);
+      return (
+        res || {
+          filepath: `${directory}/.estimatorrc.yml`,
+          config: {},
+          isEmpty: true,
+        }
+      );
+    },
+    catch: (error: any) => {
+      return new ConfigFileError({
+        msg: error.message,
+        filepath: error.filepath,
+      });
+    },
+  });
+
 export const makeConfigFile = (directory: string) =>
   Effect.gen(function* () {
+    const cache = yield* Cache.make({
+      timeToLive: Duration.infinity,
+      lookup: loadConfigFile,
+      capacity: 1,
+    });
     return {
-      content: Effect.tryPromise({
-        try: async () => {
-          const res = await cosmiconfig('estimator').search(directory);
-          return (
-            res || {
-              filepath: `${directory}/.estimatorrc.yml`,
-              config: {},
-              isEmpty: true,
-            }
-          );
-        },
-        catch: (error: any) => {
-          return new ConfigFileError({
-            msg: error.message,
-            filepath: error.filepath,
-          });
-        },
+      content: Effect.gen(function* () {
+        return yield* cache.get(directory);
       }),
     } satisfies IConfigFile;
   });
