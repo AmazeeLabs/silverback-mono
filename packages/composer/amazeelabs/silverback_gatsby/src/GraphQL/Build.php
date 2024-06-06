@@ -195,7 +195,7 @@ class Build extends EntityForm {
    */
   public function buildEntity(array $form, FormStateInterface $form_state) {
     $entity = clone $this->entity;
-    $entity->schema_configuration[$entity->schema] += $form_state->getValue('schema_configuration')[$entity->schema];
+    $entity->schema_configuration[$entity->schema] = array_merge($entity->schema_configuration[$entity->schema], $form_state->getValue('schema_configuration')[$entity->schema]);
     return $entity;
   }
 
