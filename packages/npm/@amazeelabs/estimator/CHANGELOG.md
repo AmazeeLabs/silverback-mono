@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/estimator@1.2.1...@amazeelabs/estimator@1.2.2) (2024-06-06)
+
+
+### Bug Fixes
+
+* **estimator:** cache config file results ([e5dbff3](https://github.com/AmazeeLabs/silverback-mono/commit/e5dbff353d9f85144e2e9e444555848697ee697f))
+
+
+
+
+
 ## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/estimator@1.2.0...@amazeelabs/estimator@1.2.1) (2024-06-05)
 
 
