@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/publisher",
-  "version": "2.4.29",
+  "version": "2.4.30",
   "type": "module",
   "publishConfig": {
     "access": "public"
@@ -18,7 +18,6 @@
     "test:integration": "exit 0"
   },
   "dependencies": {
-    "@amazeelabs/publisher-elements": "workspace:*",
     "@amazeelabs/publisher-shared": "workspace:*",
     "@amazeelabs/publisher-ui": "workspace:*",
     "@slack/webhook": "^7.0.2",

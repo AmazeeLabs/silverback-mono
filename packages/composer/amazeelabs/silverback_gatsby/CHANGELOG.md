@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@3.4.0...@-amazeelabs/silverback_gatsby@3.4.1) (2024-06-07)
+
+
+### Bug Fixes
+
+* **SLB-426:** overwrite the build entity values with the submitted ones ([3ba0aaf](https://github.com/AmazeeLabs/silverback-mono/commit/3ba0aaf8c98931268ca1c38a141698519f4d1576))
+
+
+
+
+
+# [3.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@3.3.2...@-amazeelabs/silverback_gatsby@3.4.0) (2024-05-29)
+
+
+### Features
+
+* **SLB-409:** support Netlify's password protected URLs ([7dbb876](https://github.com/AmazeeLabs/silverback-mono/commit/7dbb8760eb481842e0e2a2b070ddd0956432521e))
+
+
+
+
+
 ## [3.3.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@3.3.1...@-amazeelabs/silverback_gatsby@3.3.2) (2024-05-10)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gatsby

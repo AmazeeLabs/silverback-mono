@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/estimator@1.2.3...@amazeelabs/estimator@1.2.4) (2024-06-06)
+
+**Note:** Version bump only for package @amazeelabs/estimator
+
+
+
+
+
+## [1.2.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/estimator@1.2.2...@amazeelabs/estimator@1.2.3) (2024-06-06)
+
+
+### Bug Fixes
+
+* **estimator:** error exit code ([f83fd54](https://github.com/AmazeeLabs/silverback-mono/commit/f83fd5411fc47297125d941f3344979c9502e4b0))
+
+
+
+
+
+## [1.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/estimator@1.2.1...@amazeelabs/estimator@1.2.2) (2024-06-06)
+
+
+### Bug Fixes
+
+* **estimator:** cache config file results ([e5dbff3](https://github.com/AmazeeLabs/silverback-mono/commit/e5dbff353d9f85144e2e9e444555848697ee697f))
+
+
+
+
+
+## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/estimator@1.2.0...@amazeelabs/estimator@1.2.1) (2024-06-05)
+
+
+### Bug Fixes
+
+* npmignore ([790e38e](https://github.com/AmazeeLabs/silverback-mono/commit/790e38e2a32f49e795a3e202a2e33c4da36872ec))
+
+
+
+
+
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/estimator@1.1.4...@amazeelabs/estimator@1.2.0) (2024-06-05)
+
+
+### Features
+
+* full rewrite ([0a65df1](https://github.com/AmazeeLabs/silverback-mono/commit/0a65df1e68c0a387c13b6fa14f45dafd578bcee0))
+
+
+
+
+
 ## [1.1.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/estimator@1.1.3...@amazeelabs/estimator@1.1.4) (2022-07-21)
 
 **Note:** Version bump only for package @amazeelabs/estimator

@@ -153,6 +153,13 @@ class Build extends EntityForm {
         '#description' => $this->t('The frontend url that is the result of the build. With the scheme and without a trailing slash (https://www.example.com).'),
         '#default_value' => $configuration[$schema]['build_url'] ?? '',
       ];
+      $buildSettings['build_url_netlify_password'] = [
+        '#type' => 'textfield',
+        '#required' => FALSE,
+        '#title' => $this->t('Netlify password for "Build url"'),
+        '#description' => $this->t('If "Build url" is hosted on Netlify and is password protected.'),
+        '#default_value' => $configuration[$schema]['build_url_netlify_password'] ?? '',
+      ];
 
       /** @var \Drupal\graphql\Form\ServerForm $formObject */
       $formObject = $form_state->getFormObject();
@@ -188,7 +195,7 @@ class Build extends EntityForm {
    */
   public function buildEntity(array $form, FormStateInterface $form_state) {
     $entity = clone $this->entity;
-    $entity->schema_configuration[$entity->schema] += $form_state->getValue('schema_configuration')[$entity->schema];
+    $entity->schema_configuration[$entity->schema] = array_merge($entity->schema_configuration[$entity->schema], $form_state->getValue('schema_configuration')[$entity->schema]);
     return $entity;
   }
 
