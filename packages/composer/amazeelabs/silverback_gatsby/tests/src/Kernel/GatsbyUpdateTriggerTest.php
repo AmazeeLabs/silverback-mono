@@ -46,7 +46,7 @@ class GatsbyUpdateTriggerTest extends KernelTestBase {
   protected $trigger;
 
   /**
-   *
+   * {@inheritdoc}
    */
   protected function setUp() : void {
     parent::setUp();

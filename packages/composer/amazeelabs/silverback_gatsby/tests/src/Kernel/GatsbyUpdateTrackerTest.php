@@ -37,7 +37,7 @@ class GatsbyUpdateTrackerTest extends KernelTestBase {
   protected $tracker;
 
   /**
-   *
+   * {@inheritdoc}
    */
   protected function setUp() : void {
     parent::setUp();

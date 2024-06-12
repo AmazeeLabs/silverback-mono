@@ -36,7 +36,7 @@ class GatsbyUpdateHandlerTest extends EntityFeedTestBase {
   }
 
   /**
-   *
+   * {@inheritdoc}
    */
   protected function setUp() : void {
     parent::setUp();
