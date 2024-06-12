@@ -11,6 +11,9 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
+use Drupal\node\Entity\Node;
+use Drupal\path_alias\AliasManagerInterface;
+use Drupal\path_alias\Entity\PathAlias;
 use Drupal\silverback_gatsby\Plugin\FeedBase;
 use Drupal\silverback_gatsby\Plugin\GraphQL\DataProducer\GatsbyBuildId;
 use GraphQL\Language\AST\DocumentNode;
@@ -53,6 +56,12 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
    */
   protected ?ContentTranslationManagerInterface $contentTranslationManager;
 
+  /**
+   * The path alias manager.
+   *
+   * @var \Drupal\path_alias\AliasManagerInterface
+   */
+  protected $pathAliasManager;
 
   /**
    * {@inheritDoc}
@@ -67,9 +76,8 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->has('content_translation.manager')
-        ? $container->get('content_translation.manager')
-        : NULL
+      $container->has('content_translation.manager') ? $container->get('content_translation.manager') : NULL,
+      $container->get('path_alias.manager')
     );
   }
 
@@ -77,12 +85,14 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
     $config,
     $plugin_id,
     $plugin_definition,
-    ?ContentTranslationManagerInterface $contentTranslationManager
+    ?ContentTranslationManagerInterface $contentTranslationManager,
+    AliasManagerInterface $path_alias_manager
   ) {
     $this->type = $config['type'];
     $this->bundle = $config['bundle'] ?? NULL;
-    $this->access = $config['access'] ?? true;
+    $this->access = $config['access'] ?? TRUE;
     $this->contentTranslationManager = $contentTranslationManager;
+    $this->pathAliasManager = $path_alias_manager;
 
     parent::__construct(
       $config,
@@ -103,6 +113,19 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
    * {@inheritDoc}
    */
   public function getUpdateIds($context, ?AccountInterface $account) : array {
+
+    // Special case for path alias.
+    if ($context instanceof PathAlias) {
+      $path = $this->pathAliasManager->getPathByAlias($context->alias->value);
+      if (preg_match('/node\/(\d+)/', $path, $matches)) {
+        $node = isset($matches[1]) ? Node::load($matches[1]) : NULL;
+        if ($node) {
+          // See SLB-281 for details.
+          $context = $node;
+        }
+      }
+    }
+
     if (
       $context instanceof EntityInterface
       && $context->getEntityTypeId() === $this->type
@@ -123,7 +146,7 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
   /**
    * {@inheritDoc}
    */
-  public function resolveItem(ResolverInterface $id, ?ResolverInterface $langcode = null): ResolverInterface {
+  public function resolveItem(ResolverInterface $id, ?ResolverInterface $langcode = NULL): ResolverInterface {
     $resolver = $this->builder->produce('fetch_entity')
       ->map('type', $this->builder->fromValue($this->type))
       ->map('bundles', $this->builder->fromValue($this->bundle === NULL ? NULL : [$this->bundle]))
@@ -194,11 +217,17 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
     );
   }
 
+  /**
+   *
+   */
   public function getExtensionDefinition(DocumentNode $parentAst): string {
     $type = $this->typeName;
     return "\nextend type Query { _load{$type}Revision(id: String!, revision: String!) : $type @deprecated }";
   }
 
+  /**
+   *
+   */
   public function addExtensionResolvers(
     ResolverRegistryInterface $registry,
     ResolverBuilder $builder
@@ -209,15 +238,14 @@ class EntityFeed extends FeedBase implements ContainerFactoryPluginInterface {
       : $builder->fromArgument('id');
     $langResolver = $this->isTranslatable()
       ? $builder->produce('gatsby_extract_langcode')->map('id', $builder->fromArgument('id'))
-      : $builder->fromValue(null);
+      : $builder->fromValue(NULL);
     $resolver = $this->builder->produce('fetch_entity')
       ->map('type', $this->builder->fromValue($this->type))
       ->map('bundles', $this->builder->fromValue($this->bundle === NULL ? NULL : [$this->bundle]))
       ->map('access', $this->builder->fromValue($this->access))
       ->map('id', $idResolver)
       ->map('language', $langResolver)
-      ->map('revision_id', $builder->fromArgument('revision'))
-    ;
+      ->map('revision_id', $builder->fromArgument('revision'));
     $registry->addFieldResolver("Query", "_load{$type}Revision", $resolver);
   }
 

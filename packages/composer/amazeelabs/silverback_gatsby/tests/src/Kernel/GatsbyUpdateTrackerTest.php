@@ -7,6 +7,9 @@ use Drupal\KernelTests\KernelTestBase;
 use Drupal\silverback_gatsby\GatsbyUpdate;
 use Drupal\Tests\silverback_gatsby\Traits\NotificationCheckTrait;
 
+/**
+ *
+ */
 class GatsbyUpdateTrackerTest extends KernelTestBase {
   use NotificationCheckTrait;
 
@@ -25,6 +28,7 @@ class GatsbyUpdateTrackerTest extends KernelTestBase {
     'silverback_gatsby',
     'silverback_gatsby_example',
     'menu_link_content',
+    'path_alias',
   ];
 
   /**
@@ -32,7 +36,10 @@ class GatsbyUpdateTrackerTest extends KernelTestBase {
    */
   protected $tracker;
 
-  protected function setUp() : void{
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp() : void {
     parent::setUp();
     $this->setupClientProphecy();
     $this->installConfig('graphql');
@@ -44,12 +51,12 @@ class GatsbyUpdateTrackerTest extends KernelTestBase {
       'schema_configuration' => [
         'directable' => [
           'extensions' => [
-            'silverback_gatsby' => 'silverback_gatsby'
+            'silverback_gatsby' => 'silverback_gatsby',
           ],
           'schema_definition' => __DIR__ . '/../../../modules/silverback_gatsby_example/graphql/silverback_gatsby_example.graphqls',
-          'build_webhook' => 'http://localhost:8000/__refresh'
-        ]
-      ]
+          'build_webhook' => 'http://localhost:8000/__refresh',
+        ],
+      ],
     ])->save();
     Server::create([
       'schema' => 'directable',
@@ -58,16 +65,19 @@ class GatsbyUpdateTrackerTest extends KernelTestBase {
       'schema_configuration' => [
         'directable' => [
           'extensions' => [
-            'silverback_gatsby' => 'silverback_gatsby'
+            'silverback_gatsby' => 'silverback_gatsby',
           ],
           'schema_definition' => __DIR__ . '/../../../modules/silverback_gatsby_example/graphql/silverback_gatsby_example.graphqls',
-          'build_webhook' => 'http://localhost:8000/__refresh'
-        ]
-      ]
+          'build_webhook' => 'http://localhost:8000/__refresh',
+        ],
+      ],
     ])->save();
     $this->tracker = $this->container->get('silverback_gatsby.update_tracker');
   }
 
+  /**
+   *
+   */
   public function testNoBuilds() {
     $this->assertEquals(-1, $this->tracker->latestBuild('foo'));
     $this->assertEmpty($this->tracker->diff(1, 2, 'foo'));
@@ -75,6 +85,9 @@ class GatsbyUpdateTrackerTest extends KernelTestBase {
     $this->checkTotalNotifications(0);
   }
 
+  /**
+   *
+   */
   public function testSingleBuild() {
     $this->tracker->track('foo', 'Page', '1');
     $this->assertEquals(1, $this->tracker->latestBuild('foo'));
@@ -82,6 +95,9 @@ class GatsbyUpdateTrackerTest extends KernelTestBase {
     $this->checkTotalNotifications(1);
   }
 
+  /**
+   *
+   */
   public function testMultipleBuilds() {
     $this->tracker->track('foo', 'Page', '1');
     $this->tracker->track('foo', 'Page', '2');
@@ -91,6 +107,9 @@ class GatsbyUpdateTrackerTest extends KernelTestBase {
     );
   }
 
+  /**
+   *
+   */
   public function testDeferredBuild() {
     $this->tracker->track('foo', 'Page', '1', FALSE);
     $this->assertEquals(1, $this->tracker->latestBuild('foo'));
@@ -98,6 +117,9 @@ class GatsbyUpdateTrackerTest extends KernelTestBase {
     $this->checkTotalNotifications(0);
   }
 
+  /**
+   *
+   */
   public function testInvalidDiff() {
     $this->tracker->track('foo', 'Page', '1');
     $this->tracker->track('foo', 'Page', '2');
@@ -122,6 +144,9 @@ class GatsbyUpdateTrackerTest extends KernelTestBase {
     );
   }
 
+  /**
+   *
+   */
   public function testMultipleServers() {
     $this->tracker->track('foo', 'Page', '1');
     $this->tracker->track('foo', 'Page', '2');
@@ -132,13 +157,14 @@ class GatsbyUpdateTrackerTest extends KernelTestBase {
     $this->assertEquals(4, $this->tracker->latestBuild('bar'));
 
     $this->assertEquals([
-      new GatsbyUpdate('Page', '2')
+      new GatsbyUpdate('Page', '2'),
     ], $this->tracker->diff(1, 2, 'foo'));
 
     $this->assertEquals([], $this->tracker->diff(1, 2, 'bar'));
 
     $this->assertEquals([
-      new GatsbyUpdate('Page', '3')
+      new GatsbyUpdate('Page', '3'),
     ], $this->tracker->diff(3, 4, 'bar'));
   }
+
 }

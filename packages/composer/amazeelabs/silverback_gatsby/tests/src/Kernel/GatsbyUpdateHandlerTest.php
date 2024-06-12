@@ -6,8 +6,15 @@ use Drupal\Core\DependencyInjection\ContainerBuilder;
 use Drupal\node\Entity\Node;
 use Drupal\silverback_gatsby\GatsbyUpdate;
 use Drupal\silverback_gatsby\GatsbyUpdateTrigger;
+use Drupal\Tests\Traits\Core\PathAliasTestTrait;
 
+/**
+ *
+ */
 class GatsbyUpdateHandlerTest extends EntityFeedTestBase {
+
+  use PathAliasTestTrait;
+  public static $modules = ['path_alias'];
 
   /**
    * @var \Drupal\silverback_gatsby\GatsbyUpdateTracker|object|null
@@ -19,17 +26,27 @@ class GatsbyUpdateHandlerTest extends EntityFeedTestBase {
    */
   protected $triggerProphecy;
 
+  /**
+   *
+   */
   public function register(ContainerBuilder $container) {
     parent::register($container);
     $this->triggerProphecy = $this->prophesize(GatsbyUpdateTrigger::class);
     $container->set('silverback_gatsby.update_trigger', $this->triggerProphecy->reveal());
   }
 
+  /**
+   * {@inheritdoc}
+   */
   protected function setUp() : void {
     parent::setUp();
+    $this->installEntitySchema('path_alias');
     $this->tracker = $this->container->get('silverback_gatsby.update_tracker');
   }
 
+  /**
+   *
+   */
   public function testLogRelevantChanges() {
     $node = Node::create([
       'type' => 'page',
@@ -54,6 +71,9 @@ class GatsbyUpdateHandlerTest extends EntityFeedTestBase {
     ], $diff);
   }
 
+  /**
+   *
+   */
   public function testIgnoreIrrelevantChanges() {
     $node = Node::create([
       'type' => 'article',
@@ -68,6 +88,9 @@ class GatsbyUpdateHandlerTest extends EntityFeedTestBase {
     $this->assertEmpty($diff);
   }
 
+  /**
+   *
+   */
   public function testTriggerUpdates() {
     $page = Node::create([
       'type' => 'page',
@@ -86,4 +109,23 @@ class GatsbyUpdateHandlerTest extends EntityFeedTestBase {
     $this->triggerProphecy
       ->trigger($this->server->id(), new GatsbyUpdate('Page', $page->uuid() . ':en'))->shouldHaveBeenCalledTimes(1);
   }
+
+  /**
+   * Test case for testing the behavior when path alias triggers updates.
+   */
+  public function testPathAliasTriggerUpdates() {
+    $node = Node::create([
+      'type' => 'page',
+      'title' => 'Test',
+    ]);
+    $node->save();
+    $this->tracker->clear();
+    $this->createPathAlias('/node/1', '/test', 'en');
+    $this->tracker->clear();
+    // We expect two calls for the same page, as the path alias
+    // should also trigger a page build.
+    $this->triggerProphecy
+      ->trigger($this->server->id(), new GatsbyUpdate('Page', $node->uuid() . ':en'))->shouldHaveBeenCalledTimes(2);
+  }
+
 }
