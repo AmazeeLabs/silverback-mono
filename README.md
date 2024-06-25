@@ -2,8 +2,7 @@
 
 ## What is this?
 
-This is the the Amazee Labs _Silverback_ monorepo. A central hub for opens
-source packages and tools.
+This is the Amazee Labs _Silverback_ monorepo. A central hub for open source packages and tools.
 
 ## Directory structure
 
