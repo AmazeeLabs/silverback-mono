@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.43](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/codegen-operation-ids@0.1.42...@amazeelabs/codegen-operation-ids@0.1.43) (2024-06-26)
+
+
+### Bug Fixes
+
+* add type definitions to npm package ([3a24c5c](https://github.com/AmazeeLabs/silverback-mono/commit/3a24c5ccedcf85c7b81699d2eca03a89e72d3643))
+
+
+
+
+
 ## [0.1.42](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/codegen-operation-ids@0.1.41...@amazeelabs/codegen-operation-ids@0.1.42) (2024-06-26)
 
 **Note:** Version bump only for package @amazeelabs/codegen-operation-ids

@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/executors",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "",
   "types": "build/client.d.ts",
   "private": false,
