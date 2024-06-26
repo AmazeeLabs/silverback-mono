@@ -3,6 +3,7 @@
   "private": false,
   "version": "0.1.41",
   "type": "module",
+  "types": "./src/types.d.ts",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "publishConfig": {
@@ -13,7 +14,8 @@
     "dev": "vite",
     "test:watch": "vitest",
     "preview": "vite preview",
-    "build": "vite build && pnpm graphql-codegen",
+    "build": "pnpm prep",
+    "prep": "vite build && pnpm graphql-codegen",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
     "test:unit": "vitest run --passWithNoTests"
   },
