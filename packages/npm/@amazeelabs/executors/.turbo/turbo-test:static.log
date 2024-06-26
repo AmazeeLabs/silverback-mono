@@ -1,4 +1,0 @@
-
-> @amazeelabs/executors@1.0.0 test:static /Users/pmelab/Code/silverback-template/packages/executors
-> tsc --noEmit && eslint "**/*.{ts,tsx,js,jsx}" --ignore-path="./.gitignore" --fix
-
