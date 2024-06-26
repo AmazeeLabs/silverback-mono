@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.40](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gatsby@3.2.39...@-amazeelabs/silverback-gatsby@3.2.40) (2024-06-26)
+
+
+### Bug Fixes
+
+* use helper types from codegen package directly ([ddc14cb](https://github.com/AmazeeLabs/silverback-mono/commit/ddc14cb2eebe69951d96f6d170c6c53a9597ca51))
+
+
+
+
+
 ## [3.2.39](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gatsby@3.2.38...@-amazeelabs/silverback-gatsby@3.2.39) (2024-06-12)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-gatsby
