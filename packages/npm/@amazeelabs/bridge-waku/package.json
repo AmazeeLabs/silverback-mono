@@ -1,0 +1,53 @@
+{
+  "name": "@amazeelabs/bridge-waku",
+  "version": "1.0.0",
+  "description": "",
+  "private": false,
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "main": "build/client.js",
+  "types": "build/dts/client.d.ts",
+  "exports": {
+    ".": {
+      "react-server": {
+        "types": "./build/dts/server.d.ts",
+        "default": "./build/server.js"
+      },
+      "import": {
+        "types": "./build/dts/client.d.ts",
+        "default": "./build/client.js"
+      }
+    }
+  },
+  "scripts": {
+    "prep": "tsc",
+    "watch": "tsc --watch",
+    "build": "pnpm prep",
+    "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix"
+  },
+  "dependencies": {
+    "react-server-dom-webpack": "19.0.0-rc.0",
+    "server-only-context": "^0.1.0"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*"
+  },
+  "devDependencies": {
+    "waku": "0.21.0-alpha.2",
+    "@amazeelabs/bridge": "^1.5.15",
+    "@amazeelabs/eslint-config": "1.4.43",
+    "@amazeelabs/prettier-config": "1.1.3",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "eslint": "8.57.0",
+    "prettier": "3.2.5",
+    "typescript": "5.4.5"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

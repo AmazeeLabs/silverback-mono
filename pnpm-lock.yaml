@@ -472,7 +472,7 @@ importers:
     optionalDependencies:
       '@types/react':
         specifier: ^18.3.1
-        version: 18.3.1
+        version: 18.3.3
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
@@ -501,7 +501,7 @@ importers:
     optionalDependencies:
       '@types/react':
         specifier: ^18.3.1
-        version: 18.3.1
+        version: 18.3.3
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
@@ -521,6 +521,49 @@ importers:
       '@swc/core':
         specifier: 1.5.5
         version: 1.5.5
+
+  packages/npm/@amazeelabs/bridge-waku:
+    dependencies:
+      react:
+        specifier: '*'
+        version: 18.3.1
+      react-dom:
+        specifier: '*'
+        version: 18.3.1(react@18.3.1)
+      react-server-dom-webpack:
+        specifier: 19.0.0-rc.0
+        version: 19.0.0-rc.0(react-dom@18.3.1)(react@18.3.1)(webpack@5.91.0)
+      server-only-context:
+        specifier: ^0.1.0
+        version: 0.1.0(react@18.3.1)
+    devDependencies:
+      '@amazeelabs/bridge':
+        specifier: ^1.5.15
+        version: link:../bridge
+      '@amazeelabs/eslint-config':
+        specifier: 1.4.43
+        version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
+      '@amazeelabs/prettier-config':
+        specifier: 1.1.3
+        version: 1.1.3(prettier@3.2.5)
+      '@types/react':
+        specifier: ^18.3.3
+        version: 18.3.3
+      '@types/react-dom':
+        specifier: ^18.3.0
+        version: 18.3.0
+      eslint:
+        specifier: 8.57.0
+        version: 8.57.0
+      prettier:
+        specifier: 3.2.5
+        version: 3.2.5
+      typescript:
+        specifier: 5.4.5
+        version: 5.4.5
+      waku:
+        specifier: 0.21.0-alpha.2
+        version: 0.21.0-alpha.2(@types/node@20.14.9)(react-dom@18.3.1)(react-server-dom-webpack@19.0.0-rc.0)(react@18.3.1)
 
   packages/npm/@amazeelabs/cloudinary-responsive-image:
     dependencies:
@@ -1565,7 +1608,7 @@ importers:
         version: 8.0.5
       rehype-react:
         specifier: ^7.2.0
-        version: 7.2.0(@types/react@18.3.1)
+        version: 7.2.0(@types/react@18.3.3)
       rehype-slug:
         specifier: ^5.1.0
         version: 5.1.0
@@ -1584,7 +1627,7 @@ importers:
         version: 2.3.10
       '@types/react':
         specifier: ^18.3.1
-        version: 18.3.1
+        version: 18.3.3
       eslint:
         specifier: ^8.57.0
         version: 8.57.0
@@ -6035,6 +6078,7 @@ packages:
   /@humanwhocodes/config-array@0.5.0:
     resolution: {integrity: sha512-FagtKFz74XrTl7y6HCzQpwDfXP0yhxe9lHLD1UZxjvZIcbyRz8zTFF/yYNfSfzU414eDwZ1SrO0Qvtyf+wFMQg==}
     engines: {node: '>=10.10.0'}
+    deprecated: Use @eslint/config-array instead
     dependencies:
       '@humanwhocodes/object-schema': 1.2.1
       debug: 4.3.4(supports-color@5.5.0)
@@ -6052,9 +6096,11 @@ packages:
 
   /@humanwhocodes/object-schema@1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
+    deprecated: Use @eslint/object-schema instead
 
   /@humanwhocodes/object-schema@2.0.3:
     resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
+    deprecated: Use @eslint/object-schema instead
 
   /@hutson/parse-repository-url@3.0.2:
     resolution: {integrity: sha512-H9XAx3hc0BQHY6l+IFSWHDySypcXsvsuLhgYLUGywmJ5pswRVQJUHpOsobnLYp2ZUaUlKiKDrgWWhosOwAEM8Q==}
@@ -11770,7 +11816,7 @@ packages:
   /@types/react-dom@18.3.0:
     resolution: {integrity: sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==}
     dependencies:
-      '@types/react': 18.3.1
+      '@types/react': 18.3.3
     dev: true
 
   /@types/react-lazylog@4.5.4:
@@ -12577,7 +12623,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.24.1(@babel/core@7.24.5)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 5.2.12(@types/node@20.14.5)
+      vite: 5.2.12(@types/node@20.14.9)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -21368,6 +21414,7 @@ packages:
 
   /file-uri-to-path@1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+    requiresBuild: true
 
   /filelist@1.0.4:
     resolution: {integrity: sha512-w1cEuf3S+DrLCQL7ET6kz+gmlJdbq9J7yXCSjK/OZCPA+qEN1WyF4ZAf0YYJa4/shHJra2t/d/r8SV4Ji+x+8Q==}
@@ -32759,7 +32806,6 @@ packages:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       webpack: 5.91.0
-    dev: false
 
   /react-server-dom-webpack@19.0.0-rc.0(react-dom@19.0.0-rc.0)(react@19.0.0-rc.0)(webpack@5.91.0):
     resolution: {integrity: sha512-nnSBQnXKEgfgSx6veKJg3TdRmRyn+tyOuKwKdHCI1SuR+WL2JLDM+NfZrP5DFie7w5ZCNTjS/LdACV4YuRuxDg==}
@@ -33370,14 +33416,14 @@ packages:
       unified: 10.1.2
     dev: false
 
-  /rehype-react@7.2.0(@types/react@18.3.1):
+  /rehype-react@7.2.0(@types/react@18.3.3):
     resolution: {integrity: sha512-MHYyCHka+3TtzBMKtcuvVOBAbI1HrfoYA+XH9m7/rlrQQATCPwtJnPdkxKKcIGF8vc9mxqQja9r9f+FHItQeWg==}
     peerDependencies:
       '@types/react': '>=17'
     dependencies:
       '@mapbox/hast-util-table-cell-style': 0.2.1
       '@types/hast': 2.3.10
-      '@types/react': 18.3.1
+      '@types/react': 18.3.3
       hast-to-hyperscript: 10.0.3
       hast-util-whitespace: 2.0.1
       unified: 10.1.2
@@ -34308,10 +34354,18 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
+  /server-only-context@0.1.0(react@18.3.1):
+    resolution: {integrity: sha512-5Ba19yx9Bj9uSh40aZNsZNBvLF88tLY3na6QxWkqyrSLOSHPxtnzTs/JzjKwfac1NbHFlEodkN7T4M6UzvH2Ng==}
+    peerDependencies:
+      react: 19.0.0-rc.0
+    dependencies:
+      react: 18.3.1
+    dev: false
+
   /server-only-context@0.1.0(react@19.0.0-rc.0):
     resolution: {integrity: sha512-5Ba19yx9Bj9uSh40aZNsZNBvLF88tLY3na6QxWkqyrSLOSHPxtnzTs/JzjKwfac1NbHFlEodkN7T4M6UzvH2Ng==}
     peerDependencies:
-      react: next
+      react: 19.0.0-rc.0
     dependencies:
       react: 19.0.0-rc.0
     dev: false
@@ -38266,6 +38320,42 @@ packages:
       fsevents: 2.3.3
     dev: true
 
+  /vite@5.2.12(@types/node@20.14.9):
+    resolution: {integrity: sha512-/gC8GxzxMK5ntBwb48pR32GGhENnjtY30G4A0jemunsBkiEZFw60s8InGpN8gkhHEkjnRK1aSAxeQgwvFhUHAA==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': ^18.0.0 || >=20.0.0
+      less: '*'
+      lightningcss: ^1.21.0
+      sass: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      less:
+        optional: true
+      lightningcss:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+    dependencies:
+      '@types/node': 20.14.9
+      esbuild: 0.20.2
+      postcss: 8.4.38
+      rollup: 4.17.2
+    optionalDependencies:
+      fsevents: 2.3.3
+    dev: true
+
   /vitest@1.5.0(@types/node@20.14.5)(jsdom@24.1.0):
     resolution: {integrity: sha512-d8UKgR0m2kjdxDWX6911uwxout6GHS0XaGH1cksSIVVG8kRlE7G7aBw7myKQCvDI5dT4j7ZMa+l706BIORMDLw==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -38629,6 +38719,37 @@ packages:
       react-server-dom-webpack: 19.0.0-rc.0(react-dom@19.0.0-rc.0)(react@19.0.0-rc.0)(webpack@5.91.0)
       rsc-html-stream: 0.0.3
       vite: 5.2.12(@types/node@20.14.5)
+    transitivePeerDependencies:
+      - '@swc/helpers'
+      - '@types/node'
+      - less
+      - lightningcss
+      - sass
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+    dev: true
+
+  /waku@0.21.0-alpha.2(@types/node@20.14.9)(react-dom@18.3.1)(react-server-dom-webpack@19.0.0-rc.0)(react@18.3.1):
+    resolution: {integrity: sha512-dwCm9F89vuNWqUTi9BqWvzcXOQgmh1zvDaVQLI9dGx1C4a/1Iwyrbz5SbqjSxZaw7XDtIBG1AQ7Jpgut+Me2uw==}
+    engines: {node: ^20.8.0 || ^18.17.0}
+    hasBin: true
+    peerDependencies:
+      react: 19.0.0-rc.0
+      react-dom: 19.0.0-rc.0
+      react-server-dom-webpack: 19.0.0-rc.0
+    dependencies:
+      '@hono/node-server': 1.11.2
+      '@swc/core': 1.5.24
+      '@vitejs/plugin-react': 4.3.0(vite@5.2.12)
+      dotenv: 16.4.5
+      hono: 4.4.2
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-server-dom-webpack: 19.0.0-rc.0(react-dom@18.3.1)(react@18.3.1)(webpack@5.91.0)
+      rsc-html-stream: 0.0.3
+      vite: 5.2.12(@types/node@20.14.9)
     transitivePeerDependencies:
       - '@swc/helpers'
       - '@types/node'
