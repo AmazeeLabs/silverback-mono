@@ -1,11 +1,13 @@
+import {
+  AnyOperationId,
+  OperationResult,
+  OperationVariables,
+} from '@amazeelabs/codegen-operation-ids';
 import React, { useEffect, useState } from 'react';
 
 import {
-  AnyOperationId,
   GetPagesQuery,
   GetRandomIntMutation,
-  OperationResult,
-  OperationVariables,
 } from '../../generated/operations';
 
 async function graphqlFetch<T extends AnyOperationId>(
