@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/executors@2.0.7...@amazeelabs/executors@3.0.0) (2024-06-26)
+
+
+* refactor(SLB-353)!: new RSC compatible operations API ([3489f24](https://github.com/AmazeeLabs/silverback-mono/commit/3489f24edfb282d5c165388ec9586d11c92665e9))
+
+
+### BREAKING CHANGES
+
+* `useOperation` has been replaced by the `<Operation>`
+component.
+
+
+
+
+
 ## [2.0.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/executors@2.0.6...@amazeelabs/executors@2.0.7) (2024-05-10)
 
 **Note:** Version bump only for package @amazeelabs/executors
