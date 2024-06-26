@@ -1,4 +1,5 @@
 // @vitest-environment jsdom
+import { AnyOperationId, OperationId } from '@amazeelabs/codegen-operation-ids';
 import {
   act,
   cleanup,
@@ -6,10 +7,10 @@ import {
   render,
   screen,
 } from '@testing-library/react';
-import React, { PropsWithChildren, useState } from 'react';
+import { PropsWithChildren, useState } from 'react';
 import { beforeEach, expect, test, vi } from 'vitest';
 
-import { OperationExecutor, useExecutor } from './lib';
+import { OperationExecutorsProvider, useOperationExecutor } from './client';
 
 beforeEach(cleanup);
 
@@ -20,7 +21,7 @@ function Consumer({
   id: string;
   variables?: Record<string, any>;
 }) {
-  const executor = useExecutor(id, variables);
+  const executor = useOperationExecutor(id as AnyOperationId, variables);
   return (
     <p>{typeof executor === 'function' ? executor(variables) : executor}</p>
   );
@@ -33,9 +34,9 @@ test('no operator', () => {
 test('global default operator', () => {
   expect(() =>
     render(
-      <OperationExecutor executor={() => 'default'}>
+      <OperationExecutorsProvider executors={[{ executor: () => 'default' }]}>
         <Consumer id={'unknown'} />
-      </OperationExecutor>,
+      </OperationExecutorsProvider>,
     ),
   ).not.toThrow();
   expect(screen.getByText('default')).toBeDefined();
@@ -44,9 +45,11 @@ test('global default operator', () => {
 test('global default operator with arguments', () => {
   expect(() =>
     render(
-      <OperationExecutor executor={(_: any, vars: any) => vars.foo}>
+      <OperationExecutorsProvider
+        executors={[{ executor: (_: any, vars: any) => vars.foo }]}
+      >
         <Consumer id={'unknown'} variables={{ foo: 'bar' }} />
-      </OperationExecutor>,
+      </OperationExecutorsProvider>,
     ),
   ).not.toThrow();
   expect(screen.getByText('bar')).toBeDefined();
@@ -55,9 +58,16 @@ test('global default operator with arguments', () => {
 test('operation default operator', () => {
   expect(() =>
     render(
-      <OperationExecutor id={'a'} executor={() => 'operation a'}>
+      <OperationExecutorsProvider
+        executors={[
+          {
+            id: 'a' as OperationId<string, never>,
+            executor: () => 'operation a',
+          },
+        ]}
+      >
         <Consumer id={'a'} />
-      </OperationExecutor>,
+      </OperationExecutorsProvider>,
     ),
   ).not.toThrow();
 
@@ -67,31 +77,40 @@ test('operation default operator', () => {
 test('operation default operator with arguments', () => {
   expect(() =>
     render(
-      <OperationExecutor id={'a'} executor={(_: any, vars: any) => vars.foo}>
+      <OperationExecutorsProvider
+        executors={[
+          {
+            id: 'a' as OperationId<string, never>,
+            executor: (_: any, vars: any) => vars.foo,
+          },
+        ]}
+      >
         <Consumer id={'a'} variables={{ foo: 'bar' }} />
-      </OperationExecutor>,
+      </OperationExecutorsProvider>,
     ),
   ).not.toThrow();
   expect(screen.getByText('bar')).toBeDefined();
 });
 
 test('structural argument matching', () => {
-  const id = 'x';
+  const id = 'x' as AnyOperationId;
   const a = vi.fn();
   const b = vi.fn();
   const c = vi.fn();
 
   expect(() =>
     render(
-      <OperationExecutor id={id} executor={a} variables={{ y: 1 }}>
-        <OperationExecutor executor={b} id={id} variables={{ y: 2 }}>
-          <OperationExecutor executor={c} id={id} variables={{ y: 1, z: 1 }}>
-            <Consumer id={id} variables={{ y: 1, z: 1 }} />
-            <Consumer id={id} variables={{ y: 1 }} />
-            <Consumer id={id} variables={{ y: 2 }} />
-          </OperationExecutor>
-        </OperationExecutor>
-      </OperationExecutor>,
+      <OperationExecutorsProvider
+        executors={[
+          { id, executor: a, variables: { y: 1 } },
+          { id, executor: b, variables: { y: 2 } },
+          { id, executor: c, variables: { y: 1, z: 1 } },
+        ]}
+      >
+        <Consumer id={id} variables={{ y: 1, z: 1 }} />
+        <Consumer id={id} variables={{ y: 1 }} />
+        <Consumer id={id} variables={{ y: 2 }} />
+      </OperationExecutorsProvider>,
     ),
   ).not.toThrow();
 
@@ -103,21 +122,53 @@ test('structural argument matching', () => {
   expect(c).toHaveBeenCalledWith(id, { y: 1, z: 1 });
 });
 
-test('structural argument mismatch', () => {
-  const id = 'x';
+test('functional argument matching', () => {
+  const id = 'x' as AnyOperationId;
   const a = vi.fn();
   const b = vi.fn();
   const c = vi.fn();
 
   expect(() =>
     render(
-      <OperationExecutor id={id} executor={a} variables={{ y: 1 }}>
-        <OperationExecutor executor={b} id={id} variables={{ y: 2 }}>
-          <OperationExecutor executor={c} id={id} variables={{ y: 1, z: 1 }}>
-            <Consumer id={id} variables={{ y: 3 }} />
-          </OperationExecutor>
-        </OperationExecutor>
-      </OperationExecutor>,
+      <OperationExecutorsProvider
+        executors={[
+          { id, executor: a, variables: () => false },
+          { id, executor: b, variables: () => false },
+          { id, executor: c, variables: () => true },
+        ]}
+      >
+        <Consumer id={id} variables={{ y: 1, z: 1 }} />
+        <Consumer id={id} variables={{ y: 1 }} />
+        <Consumer id={id} variables={{ y: 2 }} />
+      </OperationExecutorsProvider>,
+    ),
+  ).not.toThrow();
+
+  expect(a).not.toHaveBeenCalled();
+  expect(b).not.toHaveBeenCalled();
+  expect(c).toHaveBeenCalledTimes(3);
+  expect(c).toHaveBeenCalledWith(id, { y: 1, z: 1 });
+  expect(c).toHaveBeenCalledWith(id, { y: 1 });
+  expect(c).toHaveBeenCalledWith(id, { y: 2 });
+});
+
+test('structural argument mismatch', () => {
+  const id = 'x' as AnyOperationId;
+  const a = vi.fn();
+  const b = vi.fn();
+  const c = vi.fn();
+
+  expect(() =>
+    render(
+      <OperationExecutorsProvider
+        executors={[
+          { id, executor: a, variables: { y: 1 } },
+          { id, executor: b, variables: { y: 2 } },
+          { id, executor: c, variables: { y: 1, z: 1 } },
+        ]}
+      >
+        <Consumer id={id} variables={{ y: 3 }} />
+      </OperationExecutorsProvider>,
     ),
   ).toThrow(
     'No executor found for: x:{"y":3} Candidates: x:{"y":1} x:{"y":2} x:{"y":1,"z":1}',
@@ -125,42 +176,46 @@ test('structural argument mismatch', () => {
 });
 
 test('static data resolution', () => {
-  const id = 'x';
+  const id = 'x' as AnyOperationId;
 
   expect(() =>
     render(
-      <OperationExecutor id={id} executor={() => 'static data'}>
+      <OperationExecutorsProvider executors={[{ id, executor: 'static data' }]}>
         <Consumer id={id} />
-      </OperationExecutor>,
+      </OperationExecutorsProvider>,
     ),
   ).not.toThrow();
   expect(screen.getByText('static data')).toBeDefined();
 });
 
 test('static data resolution with arguments', () => {
-  const id = 'x';
+  const id = 'x' as AnyOperationId;
 
   expect(() =>
     render(
-      <OperationExecutor id={id} executor={'static data'} variables={{ y: 1 }}>
+      <OperationExecutorsProvider
+        executors={[{ id, executor: 'static data', variables: { y: 1 } }]}
+      >
         <Consumer id={id} variables={{ y: 1 }} />
-      </OperationExecutor>,
+      </OperationExecutorsProvider>,
     ),
   ).not.toThrow();
   expect(screen.getByText('static data')).toBeDefined();
 });
 
 test('static data updates', () => {
-  const id = 'x';
+  const id = 'x' as AnyOperationId;
 
   function Executor({ children }: PropsWithChildren) {
     const [count, setCount] = useState(0);
     return (
       <>
         <button onClick={() => setCount(count + 1)}>Up</button>
-        <OperationExecutor id={id} executor={count} variables={{ y: 1 }}>
+        <OperationExecutorsProvider
+          executors={[{ id, executor: count, variables: { y: 1 } }]}
+        >
           {children}
-        </OperationExecutor>
+        </OperationExecutorsProvider>
       </>
     );
   }
@@ -180,4 +235,42 @@ test('static data updates', () => {
   });
 
   expect(screen.getByText(1)).toBeDefined();
+});
+
+test('fallback to functional', () => {
+  const id = 'x' as AnyOperationId;
+
+  expect(() =>
+    render(
+      <OperationExecutorsProvider
+        executors={[
+          { id, executor: () => 'global' },
+          { id, executor: () => 'functional', variables: () => true },
+          { id, executor: () => 'structural', variables: { foo: 'bar' } },
+        ]}
+      >
+        <Consumer id={id} variables={{ foo: 'baz' }} />
+      </OperationExecutorsProvider>,
+    ),
+  ).not.toThrow();
+  expect(screen.getByText('functional')).toBeDefined();
+});
+
+test('fallback to global', () => {
+  const id = 'x' as AnyOperationId;
+
+  expect(() =>
+    render(
+      <OperationExecutorsProvider
+        executors={[
+          { id, executor: () => 'global' },
+          { id, executor: () => 'functional', variables: () => false },
+          { id, executor: () => 'structural', variables: { foo: 'bar' } },
+        ]}
+      >
+        <Consumer id={id} variables={{ foo: 'baz' }} />
+      </OperationExecutorsProvider>,
+    ),
+  ).not.toThrow();
+  expect(screen.getByText('global')).toBeDefined();
 });

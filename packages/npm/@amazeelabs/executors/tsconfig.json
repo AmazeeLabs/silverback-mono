@@ -12,9 +12,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "declaration": true,
-    "declarationDir": "build/dts",
+    "declarationDir": "build",
     "outDir": "build",
+    "types": ["react/experimental"],
     "jsx": "react-jsx"
   },
-  "include": ["src"]
+  "include": ["src", "test"]
 }
