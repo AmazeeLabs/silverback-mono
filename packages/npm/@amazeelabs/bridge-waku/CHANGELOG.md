@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge-waku@1.1.1...@amazeelabs/bridge-waku@1.1.2) (2024-06-26)
+
+
+### Bug Fixes
+
+* bridge-waku types in npm package ([9a67000](https://github.com/AmazeeLabs/silverback-mono/commit/9a670008eb535087ca2aa803cd4f801315f353ee))
+
+
+
+
+
 ## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge-waku@1.1.0...@amazeelabs/bridge-waku@1.1.1) (2024-06-26)
 
 **Note:** Version bump only for package @amazeelabs/bridge-waku
