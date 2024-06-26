@@ -3,3 +3,4 @@ apps
 packages
 .turbo
 pnpm-lock.yaml
+CHANGELOG.md
