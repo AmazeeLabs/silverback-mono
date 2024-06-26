@@ -305,26 +305,9 @@ describe('mode: ids', () => {
   }
   it("adds utility types for working with operation id's", async () => {
     const result = await runPlugin([]);
-    expect(result).toMatchInlineSnapshot(`
-      "declare const OperationId: unique symbol;
-
-      export type OperationId<
-        TQueryResult extends any,
-        TQueryVariables extends any,
-      > = string & {
-        _opaque: typeof OperationId;
-        ___query_result: TQueryResult;
-        ___query_variables: TQueryVariables;
-      };
-
-      export type AnyOperationId = OperationId<any, any>;
-
-      export type OperationResult<TQueryID extends OperationId<any, any>> =
-        TQueryID['___query_result'];
-
-      export type OperationVariables<TQueryID extends OperationId<any, any>> =
-        TQueryID['___query_variables'];"
-    `);
+    expect(result).toMatchInlineSnapshot(
+      `"import type { OperationId } from '@amazeelabs/codegen-operation-ids';"`,
+    );
   });
 
   it('creates a typed id for each query', async () => {
@@ -339,24 +322,7 @@ describe('mode: ids', () => {
       },
     ]);
     expect(result).toMatchInlineSnapshot(`
-      "declare const OperationId: unique symbol;
-
-      export type OperationId<
-        TQueryResult extends any,
-        TQueryVariables extends any,
-      > = string & {
-        _opaque: typeof OperationId;
-        ___query_result: TQueryResult;
-        ___query_variables: TQueryVariables;
-      };
-
-      export type AnyOperationId = OperationId<any, any>;
-
-      export type OperationResult<TQueryID extends OperationId<any, any>> =
-        TQueryID['___query_result'];
-
-      export type OperationVariables<TQueryID extends OperationId<any, any>> =
-        TQueryID['___query_variables'];
+      "import type { OperationId } from '@amazeelabs/codegen-operation-ids';
       export const HomeQuery = "HomeQuery:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d" as OperationId<HomeQuery,HomeQueryVariables | undefined>;"
     `);
   });
@@ -374,24 +340,7 @@ describe('mode: ids', () => {
       },
     ]);
     expect(result).toMatchInlineSnapshot(`
-      "declare const OperationId: unique symbol;
-
-      export type OperationId<
-        TQueryResult extends any,
-        TQueryVariables extends any,
-      > = string & {
-        _opaque: typeof OperationId;
-        ___query_result: TQueryResult;
-        ___query_variables: TQueryVariables;
-      };
-
-      export type AnyOperationId = OperationId<any, any>;
-
-      export type OperationResult<TQueryID extends OperationId<any, any>> =
-        TQueryID['___query_result'];
-
-      export type OperationVariables<TQueryID extends OperationId<any, any>> =
-        TQueryID['___query_variables'];
+      "import type { OperationId } from '@amazeelabs/codegen-operation-ids';
       export const LoginMutation = "LoginMutation:10f1c5ac787ce93e9fe860ec9bb4a552967778d3873fbec2ce15fad2164da315" as OperationId<LoginMutation,LoginMutationVariables>;"
     `);
   });

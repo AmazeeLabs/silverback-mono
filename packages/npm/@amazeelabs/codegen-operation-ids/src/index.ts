@@ -83,24 +83,7 @@ export const plugin: PluginFunction<any, string> = async (
   }
 
   const document = [
-    `declare const OperationId: unique symbol;
-
-export type OperationId<
-  TQueryResult extends any,
-  TQueryVariables extends any,
-> = string & {
-  _opaque: typeof OperationId;
-  ___query_result: TQueryResult;
-  ___query_variables: TQueryVariables;
-};
-
-export type AnyOperationId = OperationId<any, any>;
-
-export type OperationResult<TQueryID extends OperationId<any, any>> =
-  TQueryID['___query_result'];
-
-export type OperationVariables<TQueryID extends OperationId<any, any>> =
-  TQueryID['___query_variables'];`,
+    `import type { OperationId } from '@amazeelabs/codegen-operation-ids';`,
   ];
 
   const visitor = new OperationIdVisitor(schema, [], config, {}, documents);

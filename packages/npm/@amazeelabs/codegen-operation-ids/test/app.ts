@@ -1,10 +1,12 @@
 import {
   AnyOperationId,
+  OperationResult,
+  OperationVariables,
+} from '../src/types';
+import {
   ListPagesQuery,
   LoadPageQuery,
   LoginMutation,
-  OperationResult,
-  OperationVariables,
 } from './generated/schema';
 
 declare function graphqlFetch<T extends AnyOperationId>(
@@ -16,7 +18,6 @@ async function app() {
   // Input and output of queries is strictly typed.
   const data = await graphqlFetch(LoadPageQuery, { path: '/' });
   console.log(data.loadPage?.title);
-  // @ts-expect-error
   console.log(data.loadPage?.weight);
 
   await graphqlFetch(LoginMutation, { user: 'admin', pass: 'admin' });
@@ -29,7 +30,6 @@ async function app() {
   await graphqlFetch(LoadPageQuery);
 
   // Invalid input will throw a type error.
-  // @ts-expect-error
   await graphqlFetch(LoadPageQuery, { path: undefined });
 }
 
