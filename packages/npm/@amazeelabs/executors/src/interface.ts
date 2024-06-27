@@ -2,7 +2,7 @@ import type {
   AnyOperationId,
   OperationVariables,
 } from '@amazeelabs/codegen-operation-ids';
-import type { PropsWithChildren, ReactNode } from 'react';
+import type { PropsWithChildren, ReactElement } from 'react';
 
 import type { ExecutorFunction, OperationProps, RegistryEntry } from './types';
 
@@ -12,7 +12,7 @@ export type Operation = <TOperation extends AnyOperationId>(
     : OperationProps<TOperation> & {
         variables: OperationVariables<TOperation>;
       },
-) => ReactNode;
+) => ReactElement;
 
 export type useOperationExecutor = <TOperation extends AnyOperationId>(
   id: TOperation,
@@ -21,4 +21,4 @@ export type useOperationExecutor = <TOperation extends AnyOperationId>(
 
 export type OperationExecutorsProvider = (
   props: PropsWithChildren<{ executors: Array<RegistryEntry<AnyOperationId>> }>,
-) => ReactNode;
+) => ReactElement;

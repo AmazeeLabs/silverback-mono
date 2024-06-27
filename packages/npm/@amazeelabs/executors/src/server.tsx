@@ -39,7 +39,7 @@ export const OperationExecutorsProvider: ProviderType = ({
     );
   }
   setRegistry(mergeExecutors(registry, executors));
-  return children;
+  return <>{children}</>;
 };
 
 export const useOperationExecutor: HookType = <
@@ -74,10 +74,12 @@ export const Operation: ComponentType = (async <
   try {
     const executor = useOperationExecutor(id, variables);
     if (executor instanceof Function) {
-      return children({ state: 'success', data: await executor(variables) });
+      return (
+        <>{children({ state: 'success', data: await executor(variables) })}</>
+      );
     }
-    return children({ state: 'success', data: executor });
+    return <>{children({ state: 'success', data: executor })}</>;
   } catch (error) {
-    return children({ state: 'error', error });
+    return <>{children({ state: 'error', error })}</>;
   }
 }) satisfies ServerComponentType as unknown as ComponentType;
