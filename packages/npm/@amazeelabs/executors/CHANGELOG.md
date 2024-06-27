@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/executors@3.0.1...@amazeelabs/executors@3.0.2) (2024-06-27)
+
+
+### Bug Fixes
+
+* OperationExecutorsProvider typing ([70759de](https://github.com/AmazeeLabs/silverback-mono/commit/70759de74abb09120bb47d2ecbcf07c90dc83966))
+
+
+
+
+
 ## [3.0.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/executors@3.0.0...@amazeelabs/executors@3.0.1) (2024-06-26)
 
 **Note:** Version bump only for package @amazeelabs/executors
