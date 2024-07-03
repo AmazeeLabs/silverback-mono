@@ -6,6 +6,7 @@ import { expect, test } from '@playwright/test';
     Delayed: 'Delayed: 2 + 3 = 5',
     Error: 'Error: I dont like 6es!',
     DelayedError: 'Error: I dont like 7s!',
+    Sum: 'Sum: 6',
   };
   Object.entries(cases).forEach(([label, expected]) => {
     test(`${render}: ${label}`, async ({ page }) => {

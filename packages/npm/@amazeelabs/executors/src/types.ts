@@ -70,7 +70,7 @@ expectType<RegistryEntryWithoutVariables>({
   executor: { hasVariables: false },
 });
 
-type OperationChildProps<TOperation extends AnyOperationId> =
+export type ExecutionState<T extends any> =
   | {
       state: 'loading';
     }
@@ -80,15 +80,37 @@ type OperationChildProps<TOperation extends AnyOperationId> =
     }
   | {
       state: 'updating';
-      data: OperationResult<TOperation>;
+      data: T;
     }
   | {
       state: 'success';
-      data: OperationResult<TOperation>;
+      data: T;
     };
 
-export type OperationProps<TOperation extends AnyOperationId> = {
+type Exact<a, b, left, right> = a extends b
+  ? b extends a
+    ? left
+    : right
+  : right;
+
+type OperationChildProps<
+  TOperation extends AnyOperationId,
+  TAll extends boolean,
+> = ExecutionState<
+  Exact<
+    TAll,
+    true,
+    Array<OperationResult<TOperation>>,
+    OperationResult<TOperation>
+  >
+>;
+
+export type OperationProps<
+  TOperation extends AnyOperationId,
+  TAll extends boolean,
+> = {
   id: TOperation;
-  children: (props: OperationChildProps<TOperation>) => ReactNode;
+  children: (props: OperationChildProps<TOperation, TAll>) => ReactNode;
   variables?: OperationVariables<TOperation>;
+  all?: TAll;
 };

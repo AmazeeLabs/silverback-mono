@@ -10,7 +10,11 @@ import {
 import { PropsWithChildren, useState } from 'react';
 import { beforeEach, expect, test, vi } from 'vitest';
 
-import { OperationExecutorsProvider, useOperationExecutor } from './client';
+import {
+  OperationExecutorsProvider,
+  useAllOperationExecutors,
+  useOperationExecutor,
+} from './client';
 
 beforeEach(cleanup);
 
@@ -24,6 +28,25 @@ function Consumer({
   const executor = useOperationExecutor(id as AnyOperationId, variables);
   return (
     <p>{typeof executor === 'function' ? executor(variables) : executor}</p>
+  );
+}
+
+function MultiConsumer({
+  id,
+  variables,
+}: {
+  id: string;
+  variables?: Record<string, any>;
+}) {
+  const executors = useAllOperationExecutors(id as AnyOperationId, variables);
+  return executors.length === 0 ? (
+    <p>No results</p>
+  ) : (
+    executors.map((executor, index) => (
+      <p key={index}>
+        {typeof executor === 'function' ? executor(variables) : executor}
+      </p>
+    ))
   );
 }
 
@@ -273,4 +296,39 @@ test('fallback to global', () => {
     ),
   ).not.toThrow();
   expect(screen.getByText('global')).toBeDefined();
+});
+
+test('multi without match', () => {
+  const id = 'x' as AnyOperationId;
+  expect(() =>
+    render(
+      <OperationExecutorsProvider
+        executors={[
+          { id, executor: () => 'functional', variables: () => false },
+          { id, executor: () => 'structural', variables: { foo: 'bar' } },
+        ]}
+      >
+        <MultiConsumer id={id} variables={{ foo: 'baz' }} />
+      </OperationExecutorsProvider>,
+    ),
+  ).not.toThrow();
+  expect(screen.getByText('No results')).toBeDefined();
+});
+
+test('multi with matches', () => {
+  const id = 'x' as AnyOperationId;
+  expect(() =>
+    render(
+      <OperationExecutorsProvider
+        executors={[
+          { id, executor: () => 'functional', variables: () => true },
+          { id, executor: () => 'structural', variables: { foo: 'bar' } },
+        ]}
+      >
+        <MultiConsumer id={id} variables={{ foo: 'bar' }} />
+      </OperationExecutorsProvider>,
+    ),
+  ).not.toThrow();
+  expect(screen.getByText('functional')).toBeDefined();
+  expect(screen.getByText('structural')).toBeDefined();
 });

@@ -1,6 +1,10 @@
+import {
+  AnyOperationId,
+  OperationVariables,
+} from '@amazeelabs/codegen-operation-ids';
 import { isMatch } from 'lodash-es';
 
-import { RegistryEntry } from './types.js';
+import { Executor, RegistryEntry } from './types.js';
 
 type VariablesMatcher =
   | Record<string, any>
@@ -11,20 +15,6 @@ export function mergeExecutors(
   newExecutors: RegistryEntry[],
 ): RegistryEntry[] {
   return [...oldExecutors, ...newExecutors];
-}
-
-export function findExecutor(
-  executors: RegistryEntry[],
-  id: string,
-  variables: any,
-) {
-  const op = getCandidates(id, executors)
-    .filter((entry) => matchVariables(entry.variables, variables))
-    .pop();
-  if (!op) {
-    throw new ExecutorRegistryError(executors, id, variables);
-  }
-  return op;
 }
 
 export function matchVariables(
@@ -40,19 +30,43 @@ export function matchVariables(
   return isMatch(variables, matcher);
 }
 
-export function getCandidates(id: string, registry: RegistryEntry[]) {
-  return (registry as Array<RegistryEntry>).filter(
-    (entry) => id === entry.id || entry.id === undefined,
-  );
-}
-
 function formatEntry(id: string | undefined, variables?: unknown) {
   return `${id ? id : '*'}:${variables ? JSON.stringify(variables) : '*'}`;
 }
 
+export function findExecutors<TOperation extends AnyOperationId>(
+  registry: RegistryEntry[],
+  id: TOperation,
+  variables: OperationVariables<TOperation>,
+): Array<Executor<TOperation>> {
+  return registry
+    .filter(
+      (entry) =>
+        (id === entry.id || entry.id === undefined) &&
+        matchVariables(entry.variables, variables),
+    )
+    .map((entry) => entry.executor);
+}
+
+export function findExecutor<TOperation extends AnyOperationId>(
+  registry: RegistryEntry[],
+  id: TOperation,
+  variables: OperationVariables<TOperation>,
+): Executor<TOperation> {
+  const result = findExecutors(registry, id, variables);
+  if (result.length > 0) {
+    return result.pop();
+  }
+  throw new ExecutorRegistryError(registry, id, variables);
+}
+
 export class ExecutorRegistryError extends Error {
-  constructor(registry: RegistryEntry[], id: string, variables?: unknown) {
-    const candidates = getCandidates(id, registry);
+  constructor(
+    registry: RegistryEntry[],
+    id: AnyOperationId,
+    variables?: unknown,
+  ) {
+    const candidates = registry.filter((entry) => id === entry.id);
     const candidatesMessage =
       candidates.length > 0
         ? [
