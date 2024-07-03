@@ -1,6 +1,7 @@
 'use client';
 import {
   AnyOperationId,
+  OperationResult,
   OperationVariables,
 } from '@amazeelabs/codegen-operation-ids';
 import {
@@ -104,26 +105,26 @@ function DelayedOperation<T extends any>({
 }
 
 function SingleOperation<TOperation extends AnyOperationId>(
-  props: Omit<OperationProps<TOperation, false>, 'all'>,
+  props: Omit<OperationProps<TOperation>, 'all'>,
 ) {
   const registry = useContext(ExecutorsContext).executors;
-  const executor = findExecutor(registry, props.id, props.variables);
+  const executor = findExecutor(registry, props.id, props.variables!);
   if (!(executor instanceof Function)) {
     return props.children({ state: 'success', data: executor });
   }
   return (
     <DelayedOperation
       {...props}
-      operation={() => executor(props.id, props.variables)}
+      operation={() => executor(props.id, props.variables!)}
     />
   );
 }
 
 function MultiOperation<TOperation extends AnyOperationId>(
-  props: Omit<OperationProps<TOperation, true>, 'all'>,
+  props: Omit<OperationProps<TOperation>, 'all'>,
 ) {
   const registry = useContext(ExecutorsContext).executors;
-  const executors = findExecutors(registry, props.id, props.variables);
+  const executors = findExecutors(registry, props.id, props.variables!);
 
   if (executors.every((exec) => !(exec instanceof Function))) {
     return props.children({ state: 'success', data: executors });
@@ -134,21 +135,17 @@ function MultiOperation<TOperation extends AnyOperationId>(
       operation={() =>
         Promise.all(
           executors.map((exec) =>
-            exec instanceof Function ? exec(props.id, props.variables) : exec,
+            exec instanceof Function ? exec(props.id, props.variables!) : exec,
           ),
-        )
+        ) as Promise<OperationResult<TOperation>>
       }
     />
   );
 }
 
-export const Operation: ComponentType = <
-  TOperation extends AnyOperationId,
-  TAll extends boolean,
->({
+export const Operation: ComponentType = <TOperation extends AnyOperationId>({
   all,
   ...props
-}: OperationProps<TOperation, TAll>) => {
-  // @ts-ignore: Not sure how to fix this, but typing works from the outside.
+}: OperationProps<TOperation>) => {
   return all ? <MultiOperation {...props} /> : <SingleOperation {...props} />;
 };

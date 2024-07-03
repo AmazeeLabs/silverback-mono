@@ -87,30 +87,26 @@ export type ExecutionState<T extends any> =
       data: T;
     };
 
-type Exact<a, b, left, right> = a extends b
-  ? b extends a
-    ? left
-    : right
-  : right;
-
-type OperationChildProps<
-  TOperation extends AnyOperationId,
-  TAll extends boolean,
-> = ExecutionState<
-  Exact<
-    TAll,
-    true,
-    Array<OperationResult<TOperation>>,
-    OperationResult<TOperation>
-  >
->;
-
-export type OperationProps<
-  TOperation extends AnyOperationId,
-  TAll extends boolean,
-> = {
-  id: TOperation;
-  children: (props: OperationChildProps<TOperation, TAll>) => ReactNode;
-  variables?: OperationVariables<TOperation>;
-  all?: TAll;
-};
+export type OperationProps<TOperation extends AnyOperationId> = (
+  | {
+      id: TOperation;
+      children: (
+        props: ExecutionState<OperationResult<TOperation>>,
+      ) => ReactNode;
+      all?: false | undefined;
+    }
+  | {
+      id: TOperation;
+      children: (
+        props: ExecutionState<Array<OperationResult<TOperation>>>,
+      ) => ReactNode;
+      all: true;
+    }
+) &
+  (undefined extends OperationVariables<TOperation>
+    ? {
+        variables?: never;
+      }
+    : {
+        variables: OperationVariables<TOperation>;
+      });
