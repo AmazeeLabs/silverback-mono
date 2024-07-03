@@ -79,13 +79,12 @@ type ServerComponentType = Promisify<ComponentType>;
 
 export const Operation: ComponentType = (async <
   TOperation extends AnyOperationId,
-  TAll extends boolean,
 >({
   id,
   variables,
   children,
   all,
-}: OperationProps<TOperation, TAll>) => {
+}: OperationProps<TOperation>) => {
   try {
     const executors = all
       ? findExecutors(getRegistry(), id, variables)
