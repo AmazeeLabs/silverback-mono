@@ -11,6 +11,11 @@ export const AddOperation = 'add_two_numbers' as OperationId<
   { a: number; b: number }
 >;
 
+export const NumberOperation = 'retrieve_a_number' as OperationId<
+  number,
+  undefined
+>;
+
 async function sleep(milliseconds: number) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
@@ -43,9 +48,28 @@ export const DelayedErrorAdd: RegistryEntry<typeof AddOperation> = {
 };
 
 export const DelayedAdd: RegistryEntry<typeof AddOperation> = {
+  id: AddOperation,
   executor: async (_, { a, b }) => {
     await sleep(1000);
     return { result: a + b };
+  },
+};
+
+const StaticNumber: RegistryEntry<typeof NumberOperation> = {
+  id: NumberOperation,
+  executor: 1,
+};
+
+const DynamicNumber: RegistryEntry<typeof NumberOperation> = {
+  id: NumberOperation,
+  executor: async () => 1 + 1,
+};
+
+const DelayedNumber: RegistryEntry<typeof NumberOperation> = {
+  id: NumberOperation,
+  executor: async () => {
+    await sleep(1000);
+    return 3;
   },
 };
 
@@ -79,6 +103,27 @@ export function Calc({
   );
 }
 
+function Sum({ Operation }: { Operation: ComponentType }) {
+  const label = 'Sum';
+  return (
+    <Operation id={NumberOperation} all={true}>
+      {(props) => {
+        if (props.state === 'loading') {
+          return <p data-testid={label}>Loading...</p>;
+        }
+        if (props.state === 'error') {
+          return <p data-testid={label}>Error: {`${props.error}`}</p>;
+        }
+        return (
+          <p data-testid={label}>
+            {label}: {props.data.reduce((a, b) => a + b, 0)}
+          </p>
+        );
+      }}
+    </Operation>
+  );
+}
+
 export function TestComponent({
   label,
   OperationExecutorsProvider,
@@ -90,13 +135,22 @@ export function TestComponent({
 }) {
   return (
     <OperationExecutorsProvider
-      executors={[DelayedAdd, HardcodedAdd, ErrorAdd, DelayedErrorAdd]}
+      executors={[
+        DelayedAdd,
+        HardcodedAdd,
+        ErrorAdd,
+        DelayedErrorAdd,
+        StaticNumber,
+        DynamicNumber,
+        DelayedNumber,
+      ]}
     >
       <h1>{label}</h1>
       <Calc label="Hardcoded" a={1} b={2} Operation={Operation} />
       <Calc label="Delayed" a={2} b={3} Operation={Operation} />
       <Calc label="Error" a={6} b={6} Operation={Operation} />
       <Calc label="DelayedError" a={7} b={7} Operation={Operation} />
+      <Sum Operation={Operation} />
     </OperationExecutorsProvider>
   );
 }

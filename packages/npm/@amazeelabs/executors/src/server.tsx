@@ -1,5 +1,6 @@
 import {
   AnyOperationId,
+  OperationResult,
   OperationVariables,
 } from '@amazeelabs/codegen-operation-ids';
 import { cache } from 'react';
@@ -7,10 +8,15 @@ import { cache } from 'react';
 import type {
   Operation as ComponentType,
   OperationExecutorsProvider as ProviderType,
+  useAllOperationExecutors as AllHookType,
   useOperationExecutor as HookType,
 } from './interface.js';
-import { ExecutorRegistryError, findExecutor, mergeExecutors } from './lib.js';
-import type { OperationProps, RegistryEntry } from './types.js';
+import { findExecutor, findExecutors, mergeExecutors } from './lib.js';
+import type {
+  ExecutorFunction,
+  OperationProps,
+  RegistryEntry,
+} from './types.js';
 
 function serverContext<T>(defaultValue: T): [() => T, (v: T) => void] {
   const getRef = cache(() => ({ current: defaultValue }));
@@ -47,15 +53,22 @@ export const useOperationExecutor: HookType = <
 >(
   id: TOperation,
   variables: OperationVariables<TOperation>,
-) => {
-  const op = findExecutor(getRegistry(), id, variables);
-  if (op) {
-    if (typeof op.executor === 'function') {
-      return (vars) => op.executor(id, vars);
-    }
-    return op.executor;
-  }
-  throw new ExecutorRegistryError(getRegistry(), id, variables);
+): ExecutorFunction<TOperation> => {
+  const executor = findExecutor(getRegistry(), id, variables);
+  return executor instanceof Function
+    ? (vars) => executor(id, vars)
+    : () => executor;
+};
+
+export const useAllOperationExecutors: AllHookType = <
+  TOperation extends AnyOperationId,
+>(
+  id: TOperation,
+  variables: OperationVariables<TOperation>,
+): Array<ExecutorFunction<TOperation>> => {
+  return findExecutors(getRegistry(), id, variables).map((exec) =>
+    exec instanceof Function ? (vars) => exec(id, vars) : () => exec,
+  );
 };
 
 type Promisify<T extends (...args: any) => any> = (
@@ -66,19 +79,34 @@ type ServerComponentType = Promisify<ComponentType>;
 
 export const Operation: ComponentType = (async <
   TOperation extends AnyOperationId,
+  TAll extends boolean,
 >({
   id,
   variables,
   children,
-}: OperationProps<TOperation>) => {
+  all,
+}: OperationProps<TOperation, TAll>) => {
   try {
-    const executor = useOperationExecutor(id, variables);
-    if (executor instanceof Function) {
+    const executors = all
+      ? findExecutors(getRegistry(), id, variables)
+      : [findExecutor(getRegistry(), id, variables)];
+    const results = await Promise.all(
+      executors.map((exec) =>
+        exec instanceof Function ? exec(id, variables) : exec,
+      ),
+    );
+    if (all) {
       return (
-        <>{children({ state: 'success', data: await executor(variables) })}</>
+        <>
+          {children({
+            state: 'success',
+            data: results as OperationResult<TOperation>,
+          })}
+        </>
       );
+    } else {
+      return <>{children({ state: 'success', data: results[0] })}</>;
     }
-    return <>{children({ state: 'success', data: executor })}</>;
   } catch (error) {
     return <>{children({ state: 'error', error })}</>;
   }
