@@ -95,13 +95,15 @@ class DrupalView extends DataProducerPluginBase {
 
       $form = $view->exposed_widgets;
       $filters = [];
-      foreach (Element::children($form) as $key) {
-        if (isset($form[$key]['#options'])) {
-          foreach ($form[$key]['#options'] as $value => $label) {
-            $filters[$key][] = [
-              'value' => (string) $value,
-              'label' => (string) $label,
-            ];
+      if (!empty($form)) {
+        foreach (Element::children($form) as $key) {
+          if (isset($form[$key]['#options'])) {
+            foreach ($form[$key]['#options'] as $value => $label) {
+              $filters[$key][] = [
+                'value' => (string)$value,
+                'label' => (string)$label,
+              ];
+            }
           }
         }
       }
