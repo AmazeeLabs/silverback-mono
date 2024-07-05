@@ -33,7 +33,9 @@ class EntityFetch extends PluginBase implements DirectiveInterface {
       ->map('type', $this->argumentResolver($arguments['type'], $builder))
       ->map('id', $this->argumentResolver($arguments['id'], $builder))
       ->map('revision_id', $this->argumentResolver($arguments['rid'], $builder))
-      ->map('language', $this->argumentResolver($arguments['language'], $builder));
+      ->map('language', $this->argumentResolver($arguments['language'], $builder))
+      ->map('preview_user_id', $this->argumentResolver($arguments['preview_user_id'], $builder))
+      ->map('preview_access_token', $this->argumentResolver($arguments['preview_access_token'], $builder));
     // If empty, delegate to access_operation default value
     // from the fetch_entity data producer.
     if (!empty($arguments['operation'])) {
