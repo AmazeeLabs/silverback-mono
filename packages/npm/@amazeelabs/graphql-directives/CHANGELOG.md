@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/graphql-directives@1.3.6...@amazeelabs/graphql-directives@1.3.7) (2024-07-05)
+
+
+### Bug Fixes
+
+* allow to pass schema strings createResolveConfig ([07b04f6](https://github.com/AmazeeLabs/silverback-mono/commit/07b04f62725789d1f106f60e7be2e436ad73c967))
+
+
+
+
+
 ## [1.3.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/graphql-directives@1.3.5...@amazeelabs/graphql-directives@1.3.6) (2024-05-10)
 
 **Note:** Version bump only for package @amazeelabs/graphql-directives
