@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\silverback_preview_link\Form;
 
+use chillerlan\QRCode\QRCode;
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\NestedArray;
@@ -165,11 +166,16 @@ final class PreviewLinkForm extends ContentEntityForm {
       $actionsDescription = $this->t('If a new link is generated, active preview link will get invalidated.');
     }
 
+    $externalPreviewUrlString = $externalPreviewUrl->setAbsolute()->toString();
+    $qrCode = (new QRCode)->render($externalPreviewUrlString);
+
     $form['preview_link'] = [
       '#theme' => 'preview_link',
       '#title' => $this->t('Preview link'),
       '#weight' => -9999,
       '#link_description' => $buttonsDescription,
+      '#preview_qr_code' => $qrCode,
+      '#preview_qr_alt' => $externalPreviewUrlString,
       '#actions_description' => $actionsDescription,
       '#remaining_lifetime' => $remainingAgeFormatted,
       '#preview_url' => NULL,
