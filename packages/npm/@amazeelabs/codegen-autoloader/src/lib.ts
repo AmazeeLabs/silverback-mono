@@ -112,6 +112,21 @@ export const printJsAutoload = (implementations: Record<string, string>) => {
   ].join('\n');
 };
 
+export const printJSONAutoload = (implementations: Record<string, string>) => {
+  return JSON.stringify(
+    Object.fromEntries(
+      Object.keys(implementations)
+        .map((directive) => {
+          const impl = parseJsImplementation(implementations[directive]);
+          return impl ? [directive, impl] : undefined;
+        })
+        .filter((dir): dir is [string, JsImplementation] => !!dir),
+    ),
+    null,
+    2,
+  );
+};
+
 type DrupalImplementation =
   | {
       service: string;
