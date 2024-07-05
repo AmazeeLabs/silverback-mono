@@ -8,6 +8,7 @@ import {
   printDrupalAutoload,
   generateAutoloader,
   contextSuggestions,
+  printJSONAutoload,
 } from './lib';
 
 describe('extractDocstrings', () => {
@@ -180,6 +181,31 @@ describe('printJsAutoload', () => {
         '  myDirective: al0,',
         '};',
       ].join('\n'),
+    );
+  });
+});
+
+describe('printJSONAutoload', () => {
+  it('prints an empty object if there are no implementations', () => {
+    expect(printJSONAutoload({})).toEqual('{}');
+  });
+
+  it('prints a single default implementation', () => {
+    expect(
+      printJSONAutoload({
+        myDirective: '@my/package#function',
+      }),
+    ).toEqual(
+      JSON.stringify(
+        {
+          myDirective: {
+            package: '@my/package',
+            export: 'function',
+          },
+        },
+        null,
+        2,
+      ),
     );
   });
 });

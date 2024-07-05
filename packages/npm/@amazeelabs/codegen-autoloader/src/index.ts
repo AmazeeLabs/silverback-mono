@@ -5,12 +5,13 @@ import {
 import {
   generateAutoloader,
   printDrupalAutoload,
+  printJSONAutoload,
   printJsAutoload,
 } from './lib';
 
 type Config = {
   context: Array<string>;
-  mode: 'js' | 'drupal';
+  mode: 'js' | 'drupal' | 'json';
 };
 
 export const validate: PluginValidateFn<Config> = (_, __, config) => {
@@ -19,9 +20,11 @@ export const validate: PluginValidateFn<Config> = (_, __, config) => {
   }
 };
 
+const modes = {
+  js: printJsAutoload,
+  drupal: printDrupalAutoload,
+  json: printJSONAutoload,
+};
+
 export const plugin: PluginFunction<Config> = (schema, _, config) =>
-  generateAutoloader(
-    schema,
-    config.context,
-    config.mode === 'js' ? printJsAutoload : printDrupalAutoload,
-  );
+  generateAutoloader(schema, config.context, modes[config.mode]);
