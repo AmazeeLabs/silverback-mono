@@ -261,6 +261,7 @@ final class PreviewLinkForm extends ContentEntityForm {
    *   The current state of the form.
    */
   public function resetLifetime(array &$form, FormStateInterface $form_state): void {
+    $form_state->setRebuild();
     $expiry = $this->getExpiry();
     $this->entity->setExpiry($expiry);
     $timezone = date_default_timezone_get();
