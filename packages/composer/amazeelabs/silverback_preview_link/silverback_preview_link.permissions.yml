@@ -1,0 +1,8 @@
+administer silverback preview link settings:
+  title: 'Administer Silverback preview link settings'
+  description: 'Allows the user to administer the preview link settings'
+  restrict access: TRUE
+
+generate silverback preview links:
+  title: 'Generate Silverback preview links'
+  description: 'Allows the user to generate a preview link for a piece of content'

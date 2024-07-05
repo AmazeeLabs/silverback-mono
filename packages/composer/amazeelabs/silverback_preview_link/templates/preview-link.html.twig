@@ -1,0 +1,8 @@
+<div class="preview-link">
+  <h2 class="preview-link__title hidden">{{ title }}</h2>
+  <p>{{ link_description }}</p>
+  {% if preview_url is not empty %}
+    <p><strong class="preview-link__link"><a href="{{ preview_url }}" target="_blank">{{ preview_url }}</a></strong></p>
+  {% endif %}
+  <p>{{ actions_description }}</p>
+</div>

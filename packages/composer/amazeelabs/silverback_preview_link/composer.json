@@ -1,0 +1,18 @@
+{
+  "name": "amazeelabs/silverback_preview_link",
+  "type": "drupal-module",
+  "version": "1.0.0",
+  "description": "Decoupled preview with access token.",
+  "homepage": "https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/composer/amazeelabs/silverback_preview_link#readme",
+  "license": "GPL-2.0+",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  ],
+  "require": {
+    "php": ">=8.2",
+    "drupal/dynamic_entity_reference": "^3 || ^4"
+  }
+}

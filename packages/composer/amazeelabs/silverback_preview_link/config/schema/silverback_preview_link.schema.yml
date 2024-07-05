@@ -1,0 +1,14 @@
+silverback_preview_link.settings:
+  type: config_object
+  mapping:
+    enabled_entity_types:
+      type: sequence
+      sequence:
+        type: sequence
+        sequence:
+          type: string
+    expiry_seconds:
+      type: integer
+    multiple_entities:
+      label: Whether Preview Links can reference multiple entities.
+      type: boolean

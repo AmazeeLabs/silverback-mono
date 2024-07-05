@@ -1,0 +1,5 @@
+silverback_preview_link.settings:
+  route_name: silverback_preview_link.settings
+  parent: system.admin_config_content
+  title: Silverback Preview Link
+  description: 'Manage preview link settings.'

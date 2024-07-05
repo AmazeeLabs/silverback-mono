@@ -1,0 +1,76 @@
+<?php
+
+use Drupal\silverback_preview_link\PreviewLinkUtility;
+use Drupal\silverback_preview_link\Routing\PreviewLinkRouteProvider;
+use Drupal\silverback_preview_link\PreviewLinkHooks;
+use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Access\AccessResultInterface;
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function silverback_preview_link_entity_type_alter(array &$entity_types): void {
+  $supported_entity_types = array_filter(
+    $entity_types,
+    [PreviewLinkUtility::class, 'isEntityTypeSupported'],
+  );
+
+  /** @var \Drupal\Core\Entity\ContentEntityType $type */
+  foreach ($supported_entity_types as $type) {
+    $providers = $type->getRouteProviderClasses() ?: [];
+    if (count($providers['silverback_preview_link'] ?? []) === 0) {
+      $providers['silverback_preview_link'] = PreviewLinkRouteProvider::class;
+      $type->setHandlerClass('route_provider', $providers);
+    }
+
+    if (!$type->hasLinkTemplate('preview-link-generate')) {
+      $type->setLinkTemplate('preview-link-generate', $type->getLinkTemplate('canonical') . '/generate-preview-link');
+    }
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function silverback_preview_link_cron(): void {
+  \Drupal::classResolver(PreviewLinkHooks::class)->cron();
+}
+
+/**
+ * Implements hook_theme().
+ */
+function silverback_preview_link_theme(array $existing, string $type, string $theme, string $path): array {
+  return [
+    'preview_link' => [
+      'path' => $path . '/templates',
+      'template' => 'preview-link',
+      'variables' => [
+        'title' => NULL,
+        'preview_url' => NULL,
+        'link_description' => NULL,
+        'actions_description' => NULL,
+        'remaining_lifetime' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_entity_field_access().
+ */
+function silverback_preview_link_entity_field_access(string $operation, FieldDefinitionInterface $field_definition, AccountInterface $account, FieldItemListInterface $items = NULL): AccessResultInterface {
+  $storageDefinition = $field_definition->getFieldStorageDefinition();
+  if ($storageDefinition->getTargetEntityTypeId() !== 'silverback_preview_link') {
+    return AccessResult::neutral();
+  }
+
+  if ($storageDefinition->getName() === 'entities' && $operation === 'edit') {
+    return AccessResult::forbiddenIf(\Drupal::configFactory()->get('silverback_preview_link.settings')->get('multiple_entities') !== TRUE)
+      ->addCacheTags(['config:preview_link.settings']);
+  }
+
+  return AccessResult::neutral();
+}

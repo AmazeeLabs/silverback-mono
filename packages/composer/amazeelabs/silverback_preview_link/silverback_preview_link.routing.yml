@@ -1,0 +1,8 @@
+silverback_preview_link.settings:
+  path: '/admin/config/content/silverback_preview_link'
+  defaults:
+    _form: '\Drupal\silverback_preview_link\Form\SettingsForm'
+    _title: 'Silverback preview link'
+    _description: 'Manage Preview link settings.'
+  requirements:
+    _permission: 'administer silverback preview link settings'

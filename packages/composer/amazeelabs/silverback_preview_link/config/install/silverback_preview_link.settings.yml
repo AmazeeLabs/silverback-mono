@@ -1,0 +1,3 @@
+enabled_entity_types: {}
+expiry_seconds : 86400
+multiple_entities: false
