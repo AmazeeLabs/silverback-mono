@@ -1,13 +1,16 @@
 import type { GraphQLFieldResolver, GraphQLSchema } from 'graphql';
-import { getArgumentValues, isObjectType } from 'graphql';
+import { buildSchema, getArgumentValues, isObjectType } from 'graphql';
 import { flow, isString } from 'lodash-es';
 
 export function createResolveConfig(
-  schema: GraphQLSchema,
+  schema: GraphQLSchema | string,
   directives: Record<string, GraphQLFieldResolver<any, any>>,
   api?: any,
 ): Record<string, Record<string, GraphQLFieldResolver<any, any>>> {
-  const mapping = extractResolverMapping(schema, directives);
+  const mapping = extractResolverMapping(
+    typeof schema === 'string' ? buildSchema(schema) : schema,
+    directives,
+  );
   const config: Record<
     string,
     Record<string, GraphQLFieldResolver<any, any>>

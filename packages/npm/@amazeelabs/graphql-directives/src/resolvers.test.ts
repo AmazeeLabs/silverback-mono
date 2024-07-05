@@ -103,7 +103,10 @@ describe('executeResolver', () => {
 
 describe('createResolveConfig', () => {
   it('creates a valid configuration', async () => {
-    const config = createResolveConfig(schema, { echo });
+    const config = createResolveConfig(
+      readFileSync('./src/test/schema.graphql').toString(),
+      { echo },
+    );
     const source = `
     query {
       value
