@@ -127,6 +127,7 @@ final class PreviewLinkForm extends ContentEntityForm {
       $query['preview_user_id'] = $this->currentUser()->id();
       $query['preview_access_token'] = $silverbackPreviewLink->getToken();
       $externalPreviewUrl->setOption('query', $query);
+      $externalPreviewUrlString = $externalPreviewUrl->setAbsolute()->toString();
     }
     else {
       \Drupal::messenger()->addError('Preview link is only available for nodes.');
@@ -144,30 +145,34 @@ final class PreviewLinkForm extends ContentEntityForm {
     $remainingSeconds = max(0, ($this->entity->getExpiry()?->getTimestamp() ?? 0) - $this->time->getRequestTime());
     $remainingAgeFormatted = $this->dateFormatter->formatInterval($remainingSeconds);
     $isNewToken = $this->linkExpiry->getLifetime() === $remainingSeconds;
+    $qrCode = NULL;
 
     if ($isNewToken) {
       $buttonsDescription = $this->t('<p><a href=":url" target="_blank">Live preview link</a> for <em>@entity_label</em>. Expires @lifetime after creation.</p>', [
-        ':url' => $externalPreviewUrl
-          ->setAbsolute()
-          ->toString(),
+        ':url' => $externalPreviewUrlString,
         '@entity_label' => $host->label(),
         '@lifetime' => $originalAgeFormatted,
       ]);
+      $qrCode = (new QRCode)->render($externalPreviewUrlString);
       $actionsDescription = NULL;
     }
     else {
-      $buttonsDescription = $this->t('<p><a href=":url" target="_blank">Live preview link</a> for <em>@entity_label</em>. Expires in @lifetime.</p>', [
-        ':url' => $externalPreviewUrl
-          ->setAbsolute()
-          ->toString(),
-        '@entity_label' => $host->label(),
-        '@lifetime' => $remainingAgeFormatted,
-      ]);
+      if ($remainingSeconds === 0) {
+        $buttonsDescription = $this->t('<p><a href=":url" target="_blank">Live preview link</a> for <em>@entity_label</em> has expired, reset link expiry or generate a new one.</p>', [
+          ':url' => $externalPreviewUrlString,
+          '@entity_label' => $host->label(),
+        ]);
+      }
+      else {
+        $buttonsDescription = $this->t('<p><a href=":url" target="_blank">Live preview link</a> for <em>@entity_label</em>. Expires in @lifetime.</p>', [
+          ':url' => $externalPreviewUrlString,
+          '@entity_label' => $host->label(),
+          '@lifetime' => $remainingAgeFormatted,
+        ]);
+        $qrCode = (new QRCode)->render($externalPreviewUrlString);
+      }
       $actionsDescription = $this->t('If a new link is generated, active preview link will get invalidated.');
     }
-
-    $externalPreviewUrlString = $externalPreviewUrl->setAbsolute()->toString();
-    $qrCode = (new QRCode)->render($externalPreviewUrlString);
 
     $form['preview_link'] = [
       '#theme' => 'preview_link',
