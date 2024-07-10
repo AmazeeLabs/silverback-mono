@@ -33,7 +33,10 @@ class EntityLoad extends PluginBase implements DirectiveInterface {
     // the entity from.
     if (!isset($arguments['uuid']) && !isset($arguments['id'])) {
       return $builder->produce('route_entity')
-        ->map('url', $builder->fromParent());
+        ->map('url', $builder->fromParent())
+        ->map('language', $builder->produce('url_language')
+          ->map('url', $builder->fromParent())
+      );
     }
 
     // All other cases require a "type" argument.
