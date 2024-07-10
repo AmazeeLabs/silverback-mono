@@ -13,7 +13,7 @@ class PreviewController extends ControllerBase {
    * Checks if the current user has access to the Preview app.
    */
   public function hasAccess() {
-    /** @var \Drupal\Core\Session\AccountProxyInterface $user */
+    /** @var \Drupal\Core\Session\AccountProxyInterface $userAccount */
     $userAccount = $this->currentUser();
     // Verify permission against User entity.
     $userEntity = User::load($userAccount->id());
