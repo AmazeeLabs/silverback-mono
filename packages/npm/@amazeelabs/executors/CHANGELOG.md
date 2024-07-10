@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/executors@3.0.3...@amazeelabs/executors@3.1.0) (2024-07-10)
+
+
+### Features
+
+* expose low level exeuctor retrieval functions ([60f0704](https://github.com/AmazeeLabs/silverback-mono/commit/60f0704599ac37bad7635f3dd93f8ed95f0ca282))
+
+
+
+
+
 ## [3.0.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/executors@3.0.2...@amazeelabs/executors@3.0.3) (2024-07-03)
 
 **Note:** Version bump only for package @amazeelabs/executors
