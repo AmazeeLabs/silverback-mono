@@ -18,6 +18,8 @@ import type {
   RegistryEntry,
 } from './types.js';
 
+export { findExecutor, findExecutors } from './lib.js';
+
 function serverContext<T>(defaultValue: T): [() => T, (v: T) => void] {
   const getRef = cache(() => ({ current: defaultValue }));
 

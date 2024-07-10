@@ -26,6 +26,8 @@ import type {
   RegistryEntry,
 } from './types.js';
 
+export { findExecutor, findExecutors } from './lib.js';
+
 const ExecutorsContext = createContext<{
   executors: RegistryEntry[];
 }>({
