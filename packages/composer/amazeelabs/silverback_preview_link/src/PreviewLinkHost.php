@@ -7,7 +7,6 @@ namespace Drupal\silverback_preview_link;
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\silverback_preview_link\PreviewLinkStorageInterface;
 
 /**
  * Service for relationships between preview links and entities they unlock.

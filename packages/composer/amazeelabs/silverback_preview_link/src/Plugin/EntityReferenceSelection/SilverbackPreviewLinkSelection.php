@@ -23,4 +23,3 @@ use Drupal\Core\Entity\Plugin\EntityReferenceSelection\DefaultSelection;
 final class SilverbackPreviewLinkSelection extends DefaultSelection {
 
 }
-

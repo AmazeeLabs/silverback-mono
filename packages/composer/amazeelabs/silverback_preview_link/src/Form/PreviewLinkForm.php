@@ -277,7 +277,7 @@ final class PreviewLinkForm extends ContentEntityForm {
     $this->entity->setExpiry($expiry);
     $timezone = date_default_timezone_get();
     $this->messenger()->addMessage($this->t('Preview link will now expire at %time.', [
-      '%time' => $this->dateFormatter->format($expiry->getTimestamp(), 'custom', 'd/m/y H:i', $timezone) . ' ('. $timezone .')',
+      '%time' => $this->dateFormatter->format($expiry->getTimestamp(), 'custom', 'd/m/y H:i', $timezone) . ' (' . $timezone . ')',
     ]));
   }
 
@@ -285,6 +285,7 @@ final class PreviewLinkForm extends ContentEntityForm {
    * Helper to reset the expiry.
    *
    * @return \DateTimeImmutable|false
+   *
    * @throws \Exception
    */
   private function getExpiry() {

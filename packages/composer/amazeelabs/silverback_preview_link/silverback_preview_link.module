@@ -1,13 +1,13 @@
 <?php
 
-use Drupal\silverback_preview_link\PreviewLinkUtility;
-use Drupal\silverback_preview_link\Routing\PreviewLinkRouteProvider;
-use Drupal\silverback_preview_link\PreviewLinkHooks;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Access\AccessResultInterface;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\Core\Access\AccessResult;
-use Drupal\Core\Access\AccessResultInterface;
+use Drupal\silverback_preview_link\PreviewLinkHooks;
+use Drupal\silverback_preview_link\PreviewLinkUtility;
+use Drupal\silverback_preview_link\Routing\PreviewLinkRouteProvider;
 
 /**
  * Implements hook_entity_type_alter().
