@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_autosave@1.2.2...@-amazeelabs/silverback_autosave@1.3.0) (2024-07-11)
+
+
+### Features
+
+* **SLB-416:** preview link ([#1542](https://github.com/AmazeeLabs/silverback-mono/issues/1542)) ([bd9d312](https://github.com/AmazeeLabs/silverback-mono/commit/bd9d31276d0ffb4da45cbe475ec03386d66cc722)), closes [#1547](https://github.com/AmazeeLabs/silverback-mono/issues/1547)
+
+
+
+
+
 ## [1.2.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_autosave@1.2.1...@-amazeelabs/silverback_autosave@1.2.2) (2024-05-10)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_autosave
