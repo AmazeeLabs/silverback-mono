@@ -1,0 +1,32 @@
+silverback_preview_link.settings:
+  path: '/admin/config/content/silverback_preview_link'
+  defaults:
+    _form: '\Drupal\silverback_preview_link\Form\SettingsForm'
+    _title: 'Silverback preview link'
+    _description: 'Manage Preview link settings.'
+  requirements:
+    _permission: 'administer silverback preview link settings'
+
+silverback_preview_link.preview.access:
+  path: '/preview/access'
+  defaults:
+    _controller: '\Drupal\silverback_preview_link\Controller\PreviewController::hasAccess'
+  methods: [POST]
+  requirements:
+    # Required for the refresh token.
+    _access: 'TRUE'
+    _format: 'json'
+  options:
+    _auth: ['oauth2']
+    no_cache: TRUE
+
+silverback_preview_link.preview_link.access:
+  path: '/preview/link-access'
+  defaults:
+    _controller: '\Drupal\silverback_preview_link\Controller\PreviewController::hasLinkAccess'
+  methods: [POST]
+  requirements:
+    _access: 'TRUE'
+    _format: 'json'
+  options:
+    no_cache: TRUE
