@@ -30,7 +30,7 @@ class PreviewController extends ControllerBase {
   }
 
   /**
-   *  Skip Drupal authentication if there is a valid preview token.
+   * Skip Drupal authentication if there is a valid preview token.
    */
   public function hasLinkAccess() {
     $requestContent = \Drupal::request()->getContent();
