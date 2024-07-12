@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@3.5.0...@-amazeelabs/silverback_gatsby@3.5.1) (2024-07-12)
+
+
+### Bug Fixes
+
+* **SLB-416:** update fetchEntity arguments ([#1551](https://github.com/AmazeeLabs/silverback-mono/issues/1551)) ([aed75e8](https://github.com/AmazeeLabs/silverback-mono/commit/aed75e8d55d662099e1e8ec0882ffc0b51506609))
+
+
+
+
+
 # [3.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@3.4.2...@-amazeelabs/silverback_gatsby@3.5.0) (2024-07-11)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.28](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.8.27...@-amazeelabs/silverback-drupal@2.8.28) (2024-07-12)
+
+
+### Bug Fixes
+
+* **SLB-416:** update fetchEntity arguments ([#1551](https://github.com/AmazeeLabs/silverback-mono/issues/1551)) ([aed75e8](https://github.com/AmazeeLabs/silverback-mono/commit/aed75e8d55d662099e1e8ec0882ffc0b51506609))
+
+
+
+
+
 ## [2.8.27](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.8.26...@-amazeelabs/silverback-drupal@2.8.27) (2024-07-11)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal
