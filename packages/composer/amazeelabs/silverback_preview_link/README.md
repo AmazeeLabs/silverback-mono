@@ -1,6 +1,7 @@
 # Silverback Preview Link
 
-Decoupled preview with access token. Integrates with Silverback autosave.
+Decoupled shareable preview with access token. Integrates with Silverback
+autosave.
 
 This module is inspired by
 [Preview Link](https://www.drupal.org/project/preview_link) but does not depend
