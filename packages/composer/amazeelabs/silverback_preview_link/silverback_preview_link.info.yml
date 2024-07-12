@@ -1,6 +1,7 @@
 name: 'Silverback Preview Link'
 type: module
-description: 'Decoupled preview with access token. Integrates with Silverback autosave.'
+description:
+  'Decoupled preview with access token. Integrates with Silverback autosave.'
 package: Silverback
 configure: silverback_preview_link.settings
 core_version_requirement: ^10 || ^11

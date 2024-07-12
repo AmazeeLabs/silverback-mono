@@ -1,12 +1,12 @@
 services:
   access_check.silverback_preview_link:
     class: Drupal\silverback_preview_link\Access\PreviewLinkAccessCheck
-    arguments: [ '@silverback_preview_link.host' ]
+    arguments: ['@silverback_preview_link.host']
     tags:
       - { name: access_check, applies_to: _access_preview_link }
   access_check.preview_enabled:
     class: Drupal\silverback_preview_link\Access\PreviewEnabledAccessCheck
-    arguments: [ '@config.factory' ]
+    arguments: ['@config.factory']
     tags:
       - { name: access_check, applies_to: _access_preview_enabled }
   silverback_preview_link.link_expiry:
@@ -19,4 +19,4 @@ services:
       - '@datetime.time'
   logger.channel.silverback_preview_link:
     parent: logger.channel_base
-    arguments: [ 'silverback_preview_link' ]
+    arguments: ['silverback_preview_link']
