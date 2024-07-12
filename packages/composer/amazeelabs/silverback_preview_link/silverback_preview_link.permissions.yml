@@ -5,4 +5,5 @@ administer silverback preview link settings:
 
 generate silverback preview links:
   title: 'Generate Silverback preview links'
-  description: 'Allows the user to generate a preview link for a piece of content'
+  description:
+    'Allows the user to generate a preview link for a piece of content'
