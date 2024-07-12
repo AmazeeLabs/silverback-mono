@@ -17,7 +17,9 @@ use Drupal\graphql_directives\Plugin\GraphQL\Directive\ArgumentTrait;
  *     "id" = "String",
  *     "rid" = "String",
  *     "language" = "String",
- *     "operation" = "String"
+ *     "operation" = "String",
+ *     "preview_user_id" = "String",
+ *     "preview_access_token" = "String"
  *   }
  * )
  */
