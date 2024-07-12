@@ -452,6 +452,12 @@ importers:
         specifier: workspace:*
         version: link:../../../npm/@amazeelabs/sync-composer-version
 
+  packages/composer/amazeelabs/silverback_preview_link:
+    devDependencies:
+      '@amazeelabs/sync-composer-version':
+        specifier: workspace:*
+        version: link:../../../npm/@amazeelabs/sync-composer-version
+
   packages/composer/amazeelabs/silverback_publisher_monitor:
     devDependencies:
       '@amazeelabs/sync-composer-version':
@@ -34357,7 +34363,7 @@ packages:
   /server-only-context@0.1.0(react@18.3.1):
     resolution: {integrity: sha512-5Ba19yx9Bj9uSh40aZNsZNBvLF88tLY3na6QxWkqyrSLOSHPxtnzTs/JzjKwfac1NbHFlEodkN7T4M6UzvH2Ng==}
     peerDependencies:
-      react: 19.0.0-rc.0
+      react: next
     dependencies:
       react: 18.3.1
     dev: false
@@ -34365,7 +34371,7 @@ packages:
   /server-only-context@0.1.0(react@19.0.0-rc.0):
     resolution: {integrity: sha512-5Ba19yx9Bj9uSh40aZNsZNBvLF88tLY3na6QxWkqyrSLOSHPxtnzTs/JzjKwfac1NbHFlEodkN7T4M6UzvH2Ng==}
     peerDependencies:
-      react: 19.0.0-rc.0
+      react: next
     dependencies:
       react: 19.0.0-rc.0
     dev: false
