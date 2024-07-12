@@ -1,0 +1,4 @@
+share:
+  version: VERSION
+  js:
+    js/share.js: {}

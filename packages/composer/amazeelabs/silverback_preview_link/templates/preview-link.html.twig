@@ -1,9 +1,20 @@
+{{ attach_library('silverback_preview_link/share') }}
 <div class="preview-link">
   <h2 class="preview-link__title hidden">{{ title }}</h2>
   <p>{{ link_description }}</p>
-  {% if preview_url is not empty %}
+  {% if display_url %}
     <p><strong class="preview-link__link"><a href="{{ preview_url }}" target="_blank">{{ preview_url }}</a></strong></p>
   {% endif %}
+  <div class="preview-link__share" style="display: none;">
+    <button class="button"
+            data-url="{{ preview_url }}"
+            data-title="{{ title }}"
+            data-text="{{ entity_label }}"
+    >
+      {{ 'Share 🔗'|t }}
+    </button>
+    <p class="preview-link__share-result"></p>
+  </div>
   {% if preview_qr_code is not empty %}
     <img src="{{ preview_qr_code }}" alt="{{ preview_qr_alt }}" width="200" height="200" />
   {% endif %}

@@ -177,13 +177,15 @@ final class PreviewLinkForm extends ContentEntityForm {
     $form['preview_link'] = [
       '#theme' => 'preview_link',
       '#title' => $this->t('Preview link'),
+      '#entity_label' => $host->label(),
       '#weight' => -9999,
       '#link_description' => $buttonsDescription,
       '#preview_qr_code' => $qrCode,
       '#preview_qr_alt' => $externalPreviewUrlString,
       '#actions_description' => $actionsDescription,
       '#remaining_lifetime' => $remainingAgeFormatted,
-      '#preview_url' => NULL,
+      '#preview_url' => $externalPreviewUrlString,
+      '#display_url' => FALSE,
     ];
 
     if (!$isNewToken) {
