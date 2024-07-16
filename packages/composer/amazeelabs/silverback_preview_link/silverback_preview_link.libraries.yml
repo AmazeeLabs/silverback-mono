@@ -1,0 +1,4 @@
+copy:
+  version: VERSION
+  js:
+    js/copy.js: {}
