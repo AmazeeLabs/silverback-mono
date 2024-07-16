@@ -3,7 +3,9 @@
     attach: function (context) {
       const copyText = document.querySelector('.preview-link__copy .form-text');
       const copyButton = document.querySelector('.preview-link__copy button');
-      const copyResult = document.querySelector('.preview-link__copy .form-item__description');
+      const copyResult = document.querySelector(
+        '.preview-link__copy .form-item__description',
+      );
 
       if (!copyText || !copyButton || !copyResult) {
         return;
@@ -20,14 +22,14 @@
         copyText.select();
         document.execCommand('copy');
         setSuccessMessage();
-      }
+      };
       if (navigator.clipboard) {
         copy = () => {
           navigator.clipboard.writeText(copyText.value).then(
-            () => (setSuccessMessage()),
-            (err) => (copyResult.textContent = 'Error: ' + err)
+            () => setSuccessMessage(),
+            (err) => (copyResult.textContent = 'Error: ' + err),
           );
-        }
+        };
       }
       copyButton.addEventListener('click', (event) => {
         event.preventDefault();
