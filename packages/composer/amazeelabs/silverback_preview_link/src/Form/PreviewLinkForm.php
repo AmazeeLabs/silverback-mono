@@ -146,25 +146,23 @@ final class PreviewLinkForm extends ContentEntityForm {
     $remainingAgeFormatted = $this->dateFormatter->formatInterval($remainingSeconds);
     $isNewToken = $this->linkExpiry->getLifetime() === $remainingSeconds;
     $qrCode = NULL;
+    $actionsDescription = NULL;
 
     if ($isNewToken) {
-      $buttonsDescription = $this->t('<p><a href=":url" target="_blank">Live preview link</a> for <em>@entity_label</em>. Expires @lifetime after creation.</p>', [
-        ':url' => $externalPreviewUrlString,
-        '@entity_label' => $host->label(),
+      $expiryDescription = $this->t('Expires @lifetime after creation.', [
         '@lifetime' => $originalAgeFormatted,
       ]);
       $qrCode = (new QRCode)->render($externalPreviewUrlString);
-      $actionsDescription = NULL;
     }
     else {
       if ($remainingSeconds === 0) {
-        $buttonsDescription = $this->t('<p><a href=":url" target="_blank">Live preview link</a> for <em>@entity_label</em> has expired, reset link expiry or generate a new one.</p>', [
+        $expiryDescription = $this->t('Live preview link</a> for <em>@entity_label</em> has expired, reset link expiry or generate a new one.', [
           ':url' => $externalPreviewUrlString,
           '@entity_label' => $host->label(),
         ]);
       }
       else {
-        $buttonsDescription = $this->t('<p><a href=":url" target="_blank">Live preview link</a> for <em>@entity_label</em>. Expires in @lifetime.</p>', [
+        $expiryDescription = $this->t('Live preview link for <em>@entity_label</em> expires in @lifetime.</p>', [
           ':url' => $externalPreviewUrlString,
           '@entity_label' => $host->label(),
           '@lifetime' => $remainingAgeFormatted,
@@ -178,12 +176,12 @@ final class PreviewLinkForm extends ContentEntityForm {
       '#theme' => 'preview_link',
       '#title' => $this->t('Preview link'),
       '#weight' => -9999,
-      '#link_description' => $buttonsDescription,
       '#preview_qr_code' => $qrCode,
       '#preview_qr_alt' => $externalPreviewUrlString,
+      '#expiry_description' => $expiryDescription,
       '#actions_description' => $actionsDescription,
       '#remaining_lifetime' => $remainingAgeFormatted,
-      '#preview_url' => NULL,
+      '#preview_url' => $externalPreviewUrlString,
     ];
 
     if (!$isNewToken) {
@@ -208,6 +206,7 @@ final class PreviewLinkForm extends ContentEntityForm {
       ];
     }
     unset($form['actions']['submit']);
+    $form['#attached']['library'][] = 'silverback_preview_link/copy';
 
     return $form;
   }
