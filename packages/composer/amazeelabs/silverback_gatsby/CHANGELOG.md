@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@3.5.1...@-amazeelabs/silverback_gatsby@3.6.0) (2024-07-17)
+
+
+### Features
+
+* **SLB-585:** add focal point GraphQL directive and data producer ([e317b5c](https://github.com/AmazeeLabs/silverback-mono/commit/e317b5cf1e75e80d6b4d5d376a62149f6fade98b))
+
+
+
+
+
 ## [3.5.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@3.5.0...@-amazeelabs/silverback_gatsby@3.5.1) (2024-07-12)
 
 
