@@ -54,3 +54,10 @@ Provided by the "silverback_gatsby" module.
 Implemented in "Drupal\silverback_gatsby\Plugin\GraphQL\Directive\ImageProps".
 """
 directive @imageProps repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
+
+"""
+Retrieve focal point coordinates for an image source.
+Provided by the "silverback_gatsby" module.
+Implemented in "Drupal\silverback_gatsby\Plugin\GraphQL\Directive\FocalPoint".
+"""
+directive @focalPoint repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
