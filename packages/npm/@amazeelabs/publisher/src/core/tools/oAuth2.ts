@@ -40,6 +40,10 @@ const ENCRYPTION_KEY =
  */
 export const oAuth2AuthCodeMiddleware: RequestHandler = ((): RequestHandler => {
   return async (req: Request, res: Response, next: NextFunction) => {
+    // Don't trigger authentication for the build process.
+    if (req.path === '/build.json') {
+      return next();
+    }
     if (await isAuthenticated(req)) {
       const accessPublisher = await hasPublisherAccess(req);
       if (accessPublisher) {
