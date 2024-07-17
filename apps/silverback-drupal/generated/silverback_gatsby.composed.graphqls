@@ -269,6 +269,14 @@ Implemented in "Drupal\graphql_directives\Plugin\GraphQL\Directive\Prop".
 directive @prop(key: String!) repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
 
 """
+Retrieve focal point coordinates for an image source.
+
+Provided by the "silverback_gatsby" module.
+Implemented in "Drupal\silverback_gatsby\Plugin\GraphQL\Directive\FocalPoint".
+"""
+directive @focalPoint repeatable on FIELD_DEFINITION | SCALAR | UNION | ENUM | INTERFACE | OBJECT
+
+"""
 Retrieve the language of an entity.
 
 Provided by the "graphql_directives" module.
