@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.9.0...@-amazeelabs/silverback-drupal@2.9.1) (2024-07-18)
+
+
+### Bug Fixes
+
+* **SLB-585:** add generated schema ([e3989d6](https://github.com/AmazeeLabs/silverback-mono/commit/e3989d62a08fcdf4ef3a4b26d5b434556a3a3648))
+
+
+
+
+
 # [2.9.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal@2.8.28...@-amazeelabs/silverback-drupal@2.9.0) (2024-07-17)
 
 

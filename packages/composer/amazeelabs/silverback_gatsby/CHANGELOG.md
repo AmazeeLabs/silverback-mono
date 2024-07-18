@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@3.6.0...@-amazeelabs/silverback_gatsby@3.6.1) (2024-07-18)
+
+
+### Bug Fixes
+
+* **SLB-585:** add focalPoint directive manually to directives.graphql ([7e5b3d3](https://github.com/AmazeeLabs/silverback-mono/commit/7e5b3d3f813c7cbebbe915ca595b8df0dfe53440))
+
+
+
+
+
 # [3.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@3.5.1...@-amazeelabs/silverback_gatsby@3.6.0) (2024-07-17)
 
 
