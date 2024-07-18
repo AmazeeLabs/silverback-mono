@@ -7,6 +7,14 @@ silverback_preview_link.settings:
   requirements:
     _permission: 'administer silverback preview link settings'
 
+silverback_preview_link.qr_code:
+  path: '/preview/qr-code/{base64_url}'
+  defaults:
+    _controller: '\Drupal\silverback_preview_link\Controller\PreviewController::getQRCode'
+  requirements:
+    # Keep it very generic, it's just to prevent anonymous access / bots.
+    _permission: 'access administration pages'
+
 silverback_preview_link.preview.access:
   path: '/preview/access'
   defaults:
