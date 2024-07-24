@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_preview_link@1.1.1...@-amazeelabs/silverback_preview_link@1.2.0) (2024-07-24)
+
+
+### Features
+
+* **SLB-416:** branded QR ([399b102](https://github.com/AmazeeLabs/silverback-mono/commit/399b102728179e9330f6cec403643439cd6a77e9))
+* **SLB-416:** copy preview link, refactor form ([3888116](https://github.com/AmazeeLabs/silverback-mono/commit/3888116ec334d6f01c1541e23187134f00ba9546))
+
+
+
+
+
 ## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_preview_link@1.1.0...@-amazeelabs/silverback_preview_link@1.1.1) (2024-07-12)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_preview_link
