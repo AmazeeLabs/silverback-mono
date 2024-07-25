@@ -45,7 +45,7 @@ export type PublisherConfig = {
      *
      * Example: "pnpm netlify deploy --dir=public --prodIfUnlocked"
      */
-    deploy: string;
+    deploy?: string;
     /**
      * Serve the build.
      */

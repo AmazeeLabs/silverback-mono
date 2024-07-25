@@ -13,7 +13,13 @@ export const buildDeployTask: TaskJob = async (controller) => {
 
   const attempts = 3;
   for (let attempt = 1; attempt <= attempts; attempt++) {
-    const process = run({ command: getConfig().commands.deploy, controller });
+    const command = getConfig().commands.deploy;
+    if (!command) {
+      // If command isn't set, consider the deploy task successful.
+      core.state.setDeployJobState('Success');
+      return true;
+    }
+    const process = run({ command, controller });
     const { exitCode } = await process.result;
     if (cancelled) {
       core.state.setDeployJobState('Error');
