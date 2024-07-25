@@ -4,7 +4,7 @@ import { join } from 'path';
 import { loadSync } from 'ts-import';
 
 import { core } from './core/core';
-import { getConfig, setConfig } from './core/tools/config';
+import { setConfig } from './core/tools/config';
 import { initDatabase } from './core/tools/database';
 import { runServer } from './server';
 
@@ -32,22 +32,6 @@ switch (command) {
     core.start();
     break;
 
-  case 'build-save':
-    if (!getConfig().persistentBuilds) {
-      console.error('Persistent builds are not configured.');
-      process.exit(1);
-    }
-    core.buildSave();
-    break;
-
-  case 'build-load':
-    if (!getConfig().persistentBuilds) {
-      console.error('Persistent builds are not configured.');
-      process.exit(1);
-    }
-    core.buildLoad();
-    break;
-
   case 'help':
   case '--help':
     console.log(`Usage: pnpm publisher [command]
@@ -55,10 +39,6 @@ switch (command) {
 Available commands:
 
 (no command): Start the server.
-
-build-save: Save the build. Copy persistentBuilds.buildPaths directories to persistentBuilds.saveTo dir.
-
-build-load: Load the build. Restore persistentBuilds.buildPaths directories from persistentBuilds.saveTo dir.
 `);
     break;
 

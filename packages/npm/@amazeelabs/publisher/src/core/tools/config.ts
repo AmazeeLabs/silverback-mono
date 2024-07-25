@@ -78,23 +78,6 @@ export type PublisherConfig = {
    */
   databaseUrl: string;
   /**
-   * Enables persistent builds. DEPRECATED: It slows down incremental builds.
-   */
-  persistentBuilds?: {
-    /**
-     * Paths to be persisted. Relative to the project root.
-     *
-     * Example: ["public", ".cache"]
-     */
-    buildPaths: Array<string>;
-    /**
-     * Where to save the persisted builds.
-     *
-     * Example: "persisted-store/saved-builds"
-     */
-    saveTo: string;
-  };
-  /**
    * Enables basic auth.
    */
   basicAuth?: {
