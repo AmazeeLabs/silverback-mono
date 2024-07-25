@@ -20,28 +20,6 @@ beforeEach(async () => {
   vi.clearAllMocks();
 });
 
-test('only the first build loads the saved build', async () => {
-  setConfig({
-    ...defaultConfig,
-    persistentBuilds: {
-      buildPaths: ['build', '.cache'],
-      saveTo: '/tmp/build',
-    },
-  });
-
-  const controller = new TaskController();
-
-  await buildTask()(controller);
-  expect(output).toContain('ℹ️ Loading the build\n');
-  expect(output).toContain('ℹ️ Saving the build\n');
-
-  output = [];
-
-  await buildTask()(controller);
-  expect(output).not.toContain('ℹ️ Loading the build\n');
-  expect(output).toContain('ℹ️ Saving the build\n');
-});
-
 test('buildRunTask stops the build queue', async () => {
   setConfig({
     ...defaultConfig,

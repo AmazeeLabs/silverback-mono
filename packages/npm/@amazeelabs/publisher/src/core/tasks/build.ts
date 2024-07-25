@@ -2,9 +2,7 @@ import { core } from '../core';
 import { saveBuildInfo } from '../tools/database';
 import { Queue, TaskJob } from '../tools/queue';
 import { buildDeployTask } from './build/buildDeploy';
-import { buildLoadTask } from './build/buildLoad';
 import { buildRunTask } from './build/buildRun';
-import { buildSaveTask } from './build/buildSave';
 import { serveStartTask } from './serve/serveStart';
 
 export const buildTask: (options?: { skipInitialBuild?: boolean }) => TaskJob =
@@ -45,10 +43,6 @@ export const buildTask: (options?: { skipInitialBuild?: boolean }) => TaskJob =
         resolve(false);
       });
 
-      if (core.state.getBuildNumber() === 1) {
-        queue.add({ job: buildLoadTask });
-      }
-
       if (!options?.skipInitialBuild) {
         queue.add({
           job: buildRunTask,
@@ -60,7 +54,6 @@ export const buildTask: (options?: { skipInitialBuild?: boolean }) => TaskJob =
 
       if (!options?.skipInitialBuild) {
         queue.add({ job: buildDeployTask });
-        queue.add({ job: buildSaveTask });
       }
 
       queue.run();
