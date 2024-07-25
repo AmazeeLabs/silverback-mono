@@ -4,13 +4,18 @@ import { TaskJob } from '../../tools/queue';
 import { run } from '../../tools/runner';
 
 export const serveStartTask: TaskJob = async (controller) => {
+  const serve = getConfig().commands.serve;
+  if (!serve) {
+    return true;
+  }
+
   if (core.serveProcess) {
     return true;
   }
 
   const promise = new Promise<void>((resolve) => {
     const _serveProcess = run({
-      command: getConfig().commands.serve.command,
+      command: serve.command,
       controller,
     });
     core.serveProcess = _serveProcess;
@@ -24,13 +29,13 @@ export const serveStartTask: TaskJob = async (controller) => {
         return true;
       });
     _serveProcess.output.subscribe((chunk) => {
-      if (chunk.includes(getConfig().commands.serve.readyPattern)) {
+      if (chunk.includes(serve.readyPattern)) {
         resolve();
       }
     });
   });
 
-  const timeout = getConfig().commands.serve.readyTimeout;
+  const timeout = serve.readyTimeout;
   const result = timeout
     ? await Promise.any([
         promise,

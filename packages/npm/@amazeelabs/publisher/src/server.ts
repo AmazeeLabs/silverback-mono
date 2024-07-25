@@ -265,14 +265,17 @@ const runServer = async (): Promise<HttpTerminator> => {
     next();
   });
 
-  app.use(
-    '/',
-    authMiddleware,
-    createProxyMiddleware({
-      pathFilter: () => app.locals.isReady,
-      target: `http://127.0.0.1:${getConfig().commands.serve.port}`,
-    }),
-  );
+  const servePort = getConfig().commands.serve?.port;
+  if (servePort) {
+    app.use(
+      '/',
+      authMiddleware,
+      createProxyMiddleware({
+        pathFilter: () => app.locals.isReady,
+        target: `http://127.0.0.1:${servePort}`,
+      }),
+    );
+  }
 
   const host = getConfig().publisherHost || '0.0.0.0';
   const port = getConfig().publisherPort;
