@@ -15,8 +15,8 @@ class Core {
 
   queue = new Queue();
 
-  start = (options?: { skipInitialBuild?: boolean }): void => {
-    this.queue.add({ job: buildTask(options) });
+  start = (): void => {
+    this.queue.add({ job: buildTask() });
     this.queue.run();
   };
 

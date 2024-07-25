@@ -43,16 +43,6 @@ test('start() should run the build task', async () => {
   ]);
 });
 
-test('skipInitialBuild option', async () => {
-  setConfig(defaultConfig);
-  core.start({ skipInitialBuild: true });
-  await core.queue.whenIdle;
-  expect(output).toStrictEqual([
-    'ℹ️ Starting command: "echo "serve"; while true; do sleep 86400; done"\n',
-    'serve\n',
-  ]);
-});
-
 test('multiple build() calls do queue a single build', async () => {
   setConfig(defaultConfig);
   await core.start();
