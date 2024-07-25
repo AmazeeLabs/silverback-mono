@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/graphql_directives@2.5.5...@-amazeelabs/graphql_directives@2.6.0) (2024-07-25)
+
+
+### Features
+
+* **slb-437:** url_language producer, entity load directive updates ([7c4fc6b](https://github.com/AmazeeLabs/silverback-mono/commit/7c4fc6bce00a27c90b4b9fd91ff035aa0d321708))
+
+
+
+
+
 ## [2.5.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/graphql_directives@2.5.4...@-amazeelabs/graphql_directives@2.5.5) (2024-07-04)
 
 **Note:** Version bump only for package @-amazeelabs/graphql_directives
