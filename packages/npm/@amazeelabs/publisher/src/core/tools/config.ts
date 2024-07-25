@@ -49,7 +49,7 @@ export type PublisherConfig = {
     /**
      * Serve the build.
      */
-    serve: {
+    serve?: {
       /**
        * Example: "pnpm gatsby serve"
        */
