@@ -2,10 +2,8 @@
 
 namespace Drupal\silverback_preview_link\Controller;
 
-use Drupal\Core\Cache\CacheableResponse;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\silverback_preview_link\QRCodeWithLogo;
 use Drupal\user\Entity\User;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -61,16 +59,6 @@ class PreviewController extends ControllerBase {
     return new JsonResponse([
       'access' => FALSE,
     ], 403);
-  }
-
-  /**
-   * Returns the QR SVG file.
-   */
-  public function getQRCode(string $base64_url): CacheableResponse {
-    $decodedUrl = base64_decode($base64_url);
-    $qrCode = new QRCodeWithLogo();
-    $result = $qrCode->getQRCode($decodedUrl);
-    return new CacheableResponse($result, 200, ['Content-Type' => 'image/svg+xml']);
   }
 
 }
