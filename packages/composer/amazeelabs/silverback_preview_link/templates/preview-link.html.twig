@@ -2,26 +2,24 @@
   <h2 class="preview-link__title hidden">{{ title }}</h2>
   {% if preview_url is not empty %}
     <div class="preview-link__copy js-form-item form-item js-form-type-textfield form-type--textfield">
-      <input id="preview-link__copy--text"
+      <input id="preview-link__copy-text"
              disabled
-             name="preview-link__copy--text"
+             name="preview-link__copy-text"
              type="text"
              value="{{ preview_url }}"
              size="32"
              class="form-text required form-element form-element--type-text form-element--api-textfield"
       >
       <button class="button">{{ 'Copy' }}</button>
-      <div id="preview-link__copy--result" class="form-item__description">
+      <div id="preview-link__copy-result" class="form-item__description">
         &nbsp;
       </div>
     </div>
   {% endif %}
-  {% if preview_qr_code_url is not empty %}
+  {% if preview_qr_code is not empty %}
     <div class="preview-link__qr">
       <p>{{ 'Scan the QR Code to open the preview on another device.' }}</p>
-      <div class="preview-link__qr--wrapper" style="display: flex; align-items: center; justify-content: center;">
-        <img src="{{ preview_qr_code_url }}" alt="{{ preview_url }}" width="250" height="250" />
-      </div>
+      <img src="{{ preview_qr_code }}" alt="{{ preview_qr_alt }}" width="200" height="200" />
     </div>
   {% endif %}
   {% if expiry_description is not empty %}
