@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_preview_link@1.4.0...@-amazeelabs/silverback_preview_link@1.5.0) (2024-07-27)
+
+
+### Features
+
+* **SLB-416:** re-remove branded qr code ([9f8518e](https://github.com/AmazeeLabs/silverback-mono/commit/9f8518e960a0ca93dab00430a1b059afb0478964))
+
+
+
+
+
 # [1.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_preview_link@1.3.0...@-amazeelabs/silverback_preview_link@1.4.0) (2024-07-27)
 
 
