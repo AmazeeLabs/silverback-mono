@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.32](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.4.31...@amazeelabs/publisher@2.4.32) (2024-07-28)
+
+
+### Bug Fixes
+
+* **SLB-449:** don't trigger authentication for the build process ([59c6480](https://github.com/AmazeeLabs/silverback-mono/commit/59c6480c2b1030f79ed198557e980899997197f1))
+
+
+
+
+
 ## [2.4.31](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.4.30...@amazeelabs/publisher@2.4.31) (2024-07-10)
 
 **Note:** Version bump only for package @amazeelabs/publisher
