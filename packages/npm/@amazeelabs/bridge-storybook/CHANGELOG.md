@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.18](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge-storybook@1.2.17...@amazeelabs/bridge-storybook@1.2.18) (2024-07-30)
+
+
+### Bug Fixes
+
+* don't override on-click handlers in storybook ([2bf1c60](https://github.com/AmazeeLabs/silverback-mono/commit/2bf1c600d61a89d7fd2643bc4fe983dbfa0d95d2))
+
+
+
+
+
 ## [1.2.17](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge-storybook@1.2.16...@amazeelabs/bridge-storybook@1.2.17) (2024-05-10)
 
 **Note:** Version bump only for package @amazeelabs/bridge-storybook
