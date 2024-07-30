@@ -49,17 +49,21 @@ export const useLocation: useLocationType = () => {
   ];
 };
 
-export const Link: LinkType = (props) => {
+export const Link: LinkType = ({ onClick, ...props }) => {
   const [, navigate] = useLocation();
   return (
     <a
       {...props}
-      onClick={(ev) => {
-        ev.preventDefault();
-        if (props.href) {
-          navigate(props.href);
-        }
-      }}
+      onClick={
+        onClick
+          ? onClick
+          : (ev) => {
+              ev.preventDefault();
+              if (props.href) {
+                navigate(props.href);
+              }
+            }
+      }
     >
       {props.children}
     </a>
