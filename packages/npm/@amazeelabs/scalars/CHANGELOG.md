@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.24](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.6.23...@amazeelabs/scalars@1.6.24) (2024-07-30)
+
+
+### Bug Fixes
+
+* scalars package dependencies ([b524184](https://github.com/AmazeeLabs/silverback-mono/commit/b524184b9b4734c9c951e77e7b3b17bcac420e08))
+
+
+
+
+
 ## [1.6.23](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.6.22...@amazeelabs/scalars@1.6.23) (2024-07-30)
 
 **Note:** Version bump only for package @amazeelabs/scalars
