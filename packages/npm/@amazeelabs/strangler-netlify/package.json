@@ -14,10 +14,6 @@
     "build": "rm -rf build && swc ./src -d ./build && tsc --emitDeclarationOnly",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix"
   },
-  "optionalDependencies": {
-    "typescript": "^5.4.5",
-    "vitest": "^1.6.0"
-  },
   "dependencies": {
     "@netlify/functions": "^2.6.3"
   },
@@ -25,6 +21,8 @@
     "react": "^18.3.1"
   },
   "devDependencies": {
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0",
     "@amazeelabs/eslint-config": "1.4.43",
     "@swc/cli": "0.3.12",
     "@swc/core": "1.5.5",

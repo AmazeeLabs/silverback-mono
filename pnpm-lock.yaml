@@ -1742,13 +1742,6 @@ importers:
       react:
         specifier: ^18.3.1
         version: 18.3.1
-    optionalDependencies:
-      typescript:
-        specifier: ^5.4.5
-        version: 5.4.5
-      vitest:
-        specifier: ^1.6.0
-        version: 1.6.0(@types/node@18.19.33)(@vitest/ui@1.6.0)
     devDependencies:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
@@ -1762,6 +1755,12 @@ importers:
       '@types/node':
         specifier: 18.19.33
         version: 18.19.33
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
+      vitest:
+        specifier: ^1.6.0
+        version: 1.6.0(@types/node@18.19.33)(@vitest/ui@1.6.0)
 
   packages/npm/@amazeelabs/sync-composer-version: {}
 
@@ -11929,6 +11928,7 @@ packages:
     resolution: {integrity: sha512-NR9+KrpSajr2qBVp/Yt5TU/rp+b5Mayi3+OlMlcg2cVCfRmcG5PWZ7S4+MG9PZ5gWBoc9Pd0BKSRViuBCRPu0A==}
     dependencies:
       undici-types: 5.26.5
+    dev: true
 
   /@types/node@20.12.11:
     resolution: {integrity: sha512-vDg9PZ/zi+Nqp6boSOT7plNuthRugEKixDv5sFTIpkE89MmNtEArAShI4mxuX2+UrLEe9pxC1vm2cjm9YlWbJw==}
@@ -35464,6 +35464,9 @@ packages:
   /sqlite3@5.1.7:
     resolution: {integrity: sha512-GGIyOiFaG+TUra3JIfkI/zGP8yZYLPQ0pl1bH+ODjiX57sPhrLU5sQJn1y9bDKZUFYkX1crlrPfSYt0BKKdkog==}
     requiresBuild: true
+    peerDependenciesMeta:
+      node-gyp:
+        optional: true
     dependencies:
       bindings: 1.5.0
       node-addon-api: 7.1.0
@@ -38464,6 +38467,7 @@ packages:
       - sugarss
       - supports-color
       - terser
+    dev: true
 
   /vite-node@1.6.0(@types/node@20.12.11):
     resolution: {integrity: sha512-de6HJgzC+TFzOu0NTC4RAIsyf/DY/ibWDYQUcuEA84EMHhcefTUGkjFHKKEJhQN4A+6I0u++kr3l36ZF2d7XRw==}
@@ -38601,6 +38605,7 @@ packages:
       rollup: 4.17.2
     optionalDependencies:
       fsevents: 2.3.3
+    dev: true
 
   /vite@5.2.11(@types/node@20.12.11):
     resolution: {integrity: sha512-HndV31LWW05i1BLPMUCE1B9E9GFbOu1MbenhS58FuK6owSO5qHm7GiCotrNY1YE5rMeQSFBGmT5ZaLEjFizgiQ==}
@@ -38949,6 +38954,7 @@ packages:
       - sugarss
       - supports-color
       - terser
+    dev: true
 
   /vitest@1.6.0(@types/node@20.12.11):
     resolution: {integrity: sha512-H5r/dN06swuFnzNFhq/dnz37bPXnq8xB2xB5JOVk8K09rUtoeNN+LHWkoQ0A/i3hvbUKKcCei9KpbxqHMLhLLA==}
