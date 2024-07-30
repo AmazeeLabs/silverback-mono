@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/bridge",
-  "version": "1.5.15",
+  "version": "1.5.16",
   "description": "Library for framework agnostic react.",
   "type": "module",
   "main": "./build/index.js",
@@ -18,12 +18,12 @@
     "react": "^18.3.1"
   },
   "devDependencies": {
-    "@types/react": "^18.3.1",
-    "typescript": "^5.4.5",
-    "vitest": "^1.6.0",
     "@amazeelabs/eslint-config": "1.4.43",
     "@swc/cli": "0.3.12",
-    "@swc/core": "1.5.5"
+    "@swc/core": "1.5.5",
+    "@types/react": "^18.3.1",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
   },
   "keywords": [],
   "author": "AmazeeLabs <development@amazeelabs.com>"

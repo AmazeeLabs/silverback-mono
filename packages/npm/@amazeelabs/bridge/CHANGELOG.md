@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.16](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge@1.5.15...@amazeelabs/bridge@1.5.16) (2024-07-30)
+
+
+### Bug Fixes
+
+* move bridge optionalDependencies to devDependencies ([d497045](https://github.com/AmazeeLabs/silverback-mono/commit/d49704543c0502dca8e7abf4365f1ab95df37678))
+
+
+
+
+
 ## [1.5.15](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge@1.5.14...@amazeelabs/bridge@1.5.15) (2024-05-10)
 
 **Note:** Version bump only for package @amazeelabs/bridge

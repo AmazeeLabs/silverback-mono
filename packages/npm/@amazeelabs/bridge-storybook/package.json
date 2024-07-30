@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/bridge-storybook",
-  "version": "1.2.19",
+  "version": "1.2.20",
   "description": "Bridge implementation for storybook.",
   "type": "module",
   "main": "./build/src/index.js",
@@ -19,13 +19,13 @@
     "react": ">=18.3.1"
   },
   "devDependencies": {
-    "@types/react": "^18.3.1",
-    "typescript": "^5.4.5",
-    "vitest": "^1.6.0",
     "@amazeelabs/bridge": "workspace:*",
     "@amazeelabs/eslint-config": "1.4.43",
     "@swc/cli": "0.3.12",
-    "@swc/core": "1.5.5"
+    "@swc/core": "1.5.5",
+    "@types/react": "^18.3.1",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
   },
   "keywords": [],
   "author": "AmazeeLabs <development@amazeelabs.com>"

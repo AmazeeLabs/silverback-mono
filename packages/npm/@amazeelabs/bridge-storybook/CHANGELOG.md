@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.20](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge-storybook@1.2.19...@amazeelabs/bridge-storybook@1.2.20) (2024-07-30)
+
+
+### Bug Fixes
+
+* move bridge optionalDependencies to devDependencies ([d497045](https://github.com/AmazeeLabs/silverback-mono/commit/d49704543c0502dca8e7abf4365f1ab95df37678))
+
+
+
+
+
 ## [1.2.19](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge-storybook@1.2.18...@amazeelabs/bridge-storybook@1.2.19) (2024-07-30)
 
 

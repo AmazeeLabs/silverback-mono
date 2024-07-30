@@ -1,5 +1,23 @@
 # Change Log
 
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [1.2.13](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/bridge-gatsby@1.2.12...@amazeelabs/bridge-gatsby@1.2.13) (2024-07-30)
+
+
+### Bug Fixes
+
+* move bridge optionalDependencies to devDependencies ([d497045](https://github.com/AmazeeLabs/silverback-mono/commit/d49704543c0502dca8e7abf4365f1ab95df37678))
+* prettier ([8941d6d](https://github.com/AmazeeLabs/silverback-mono/commit/8941d6d7d31cecf5b19909ccdfa4adcc9ae333c5))
+* re-add bridge-gatsby package.json ([1ba8d95](https://github.com/AmazeeLabs/silverback-mono/commit/1ba8d95205c1c97a180073d8f61f5d3bb466a0ae))
+
+
+
+
+
+# Change Log
+
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
