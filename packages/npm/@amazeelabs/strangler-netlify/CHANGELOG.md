@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.19](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/strangler-netlify@1.1.18...@amazeelabs/strangler-netlify@1.1.19) (2024-07-30)
+
+
+### Bug Fixes
+
+* strangler exports ([6c08715](https://github.com/AmazeeLabs/silverback-mono/commit/6c087152d5e3f7078da264124d5a9b8f81d89fe2))
+
+
+
+
+
 ## [1.1.18](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/strangler-netlify@1.1.17...@amazeelabs/strangler-netlify@1.1.18) (2024-07-30)
 
 
