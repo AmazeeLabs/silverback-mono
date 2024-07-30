@@ -24,21 +24,18 @@
     "remeda": "^1.61.0",
     "unified": "^10.1.2"
   },
-  "optionalDependencies": {
+  "peerDependencies": {
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "@swc/cli": "0.3.12",
+    "@swc/core": "1.5.5",
     "@amazeelabs/eslint-config": "1.4.43",
     "@types/hast": "^2.3.4",
     "@types/react": "^18.3.1",
     "eslint": "^8.57.0",
     "typescript": "^5.4.5",
     "vitest": "^1.6.0"
-  },
-  "peerDependencies": {
-    "react": "^18.3.1"
-  },
-  "devDependencies": {
-    "@amazeelabs/eslint-config": "1.4.43",
-    "@swc/cli": "0.3.12",
-    "@swc/core": "1.5.5"
   },
   "keywords": [],
   "author": "AmazeeLabs <development@amazeelabs.com>"

@@ -1659,10 +1659,16 @@ importers:
       unified:
         specifier: ^10.1.2
         version: 10.1.2
-    optionalDependencies:
+    devDependencies:
       '@amazeelabs/eslint-config':
         specifier: 1.4.43
         version: 1.4.43(eslint@8.57.0)(tailwindcss@3.4.3)(typescript@5.4.5)
+      '@swc/cli':
+        specifier: 0.3.12
+        version: 0.3.12(@swc/core@1.5.5)
+      '@swc/core':
+        specifier: 1.5.5
+        version: 1.5.5
       '@types/hast':
         specifier: ^2.3.4
         version: 2.3.10
@@ -1678,13 +1684,6 @@ importers:
       vitest:
         specifier: ^1.6.0
         version: 1.6.0(@types/node@20.14.9)(@vitest/ui@1.6.0)(happy-dom@14.10.1)
-    devDependencies:
-      '@swc/cli':
-        specifier: 0.3.12
-        version: 0.3.12(@swc/core@1.5.5)
-      '@swc/core':
-        specifier: 1.5.5
-        version: 1.5.5
 
   packages/npm/@amazeelabs/silverback-iframe:
     dependencies:
@@ -2041,6 +2040,7 @@ packages:
       - supports-color
       - tailwindcss
       - typescript
+    dev: true
 
   /@amazeelabs/jest-preset@1.3.47(@types/jest@29.5.12)(eslint@8.57.0)(jest@29.7.0)(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-oaL4QzQPGjAe5M5VGYbbupHRJYWgj9f82ZSlyxnyAOPFLpcAABCaX7tlqDfwDZNUeiUyRGIrZ8bTE/Sc9h4GHg==}
@@ -11756,7 +11756,6 @@ packages:
     resolution: {integrity: sha512-McWspRw8xx8J9HurkVBfYj0xKoE25tOFlHGdx4MJ5xORQrMGZNqJhVQWaIbm6Oyla5kYOXtDiopzKRJzEOkwJw==}
     dependencies:
       '@types/unist': 2.0.10
-    dev: false
 
   /@types/hast@3.0.4:
     resolution: {integrity: sha512-WPs+bbQw5aCj+x6laNGWLH3wviHtoCv/P3+otBhbOhJgG8qtpdAMlTCxLtsTWA7LH1Oh/bFCHsBn0TPS5m30EQ==}
@@ -12113,7 +12112,6 @@ packages:
 
   /@types/unist@2.0.10:
     resolution: {integrity: sha512-IfYcSBWE3hLpBg8+X2SEa8LVkJdJEkT2Ese2aaLs3ptGdVtABxndrMaxuFlQ1qdFf9Q5rDvDpxI3WwgvKFAsQA==}
-    dev: false
 
   /@types/unist@3.0.2:
     resolution: {integrity: sha512-dqId9J8K/vGi5Zr7oo212BGii5m3q5Hxlkwy3WpYuKPklmBEvsbMYYyLxAQpSffdLl/gdW0XUpKWFvYmyoWCoQ==}
@@ -20370,6 +20368,7 @@ packages:
       eslint: '>=7.0.0'
     dependencies:
       eslint: 8.57.0
+    dev: true
 
   /eslint-config-react-app@6.0.0(@typescript-eslint/eslint-plugin@5.62.0)(@typescript-eslint/parser@5.62.0)(babel-eslint@10.1.0)(eslint-plugin-flowtype@5.10.0)(eslint-plugin-import@2.29.1)(eslint-plugin-jsx-a11y@6.8.0)(eslint-plugin-react-hooks@4.6.2)(eslint-plugin-react@7.34.1)(eslint@7.32.0)(typescript@5.4.5):
     resolution: {integrity: sha512-bpoAAC+YRfzq0dsTk+6v9aHm/uqnDwayNAXleMypGl6CpxI9oXXscVHo4fk3eJPIn+rsbtNetB4r/ZIidFIE8A==}
@@ -20515,6 +20514,7 @@ packages:
   /eslint-plugin-no-only-tests@3.1.0:
     resolution: {integrity: sha512-Lf4YW/bL6Un1R6A76pRZyE1dl1vr31G/ev8UzIc/geCgFWyrKil8hVjYqWVKGB/UIGmb6Slzs9T0wNezdSVegw==}
     engines: {node: '>=5.0.0'}
+    dev: true
 
   /eslint-plugin-prettier@2.7.0(prettier@1.19.1):
     resolution: {integrity: sha512-CStQYJgALoQBw3FsBzH0VOVDRnJ/ZimUlpLm226U8qgqYJfPOY/CPK6wyRInMxh73HSKg5wyRwdS4BVYYHwokA==}
@@ -20534,6 +20534,7 @@ packages:
       eslint: ^7.0.0 || ^8.0.0
     dependencies:
       eslint: 8.57.0
+    dev: true
 
   /eslint-plugin-react-hooks@4.6.2(eslint@8.57.0):
     resolution: {integrity: sha512-QzliNJq4GinDBcD8gPB5v0wh6g8q3SUi6EFF0x8N/BL9PoVs0atuGc47ozMRyOWAKdwaZ5OnbOEa3WR+dSGKuQ==}
@@ -20583,6 +20584,7 @@ packages:
       eslint: '>=5.0.0'
     dependencies:
       eslint: 8.57.0
+    dev: true
 
   /eslint-plugin-storybook@0.8.0(eslint@8.57.0)(typescript@5.4.5):
     resolution: {integrity: sha512-CZeVO5EzmPY7qghO2t64oaFM+8FTaD4uzOEjHKp516exyTKo+skKAL9GI3QALS2BXhyALJjNtwbmr1XinGE8bA==}
@@ -20609,6 +20611,7 @@ packages:
       fast-glob: 3.3.2
       postcss: 8.4.38
       tailwindcss: 3.4.3(ts-node@10.9.2)
+    dev: true
 
   /eslint-scope@3.7.3:
     resolution: {integrity: sha512-W+B0SvF4gamyCTmUc+uITPY0989iXVfKvhwtmJocTaYoc/3khEHmEmvfY/Gn9HA9VV75jrQECsHizkNw1b68FA==}
