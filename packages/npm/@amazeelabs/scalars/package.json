@@ -3,7 +3,7 @@
   "version": "1.6.24",
   "description": "Common primitive type definitions.",
   "type": "module",
-  "main": "./build/index.js",
+  "main": "./build/src/index.js",
   "types": "./build/index.d.ts",
   "private": false,
   "sideEffects": false,
