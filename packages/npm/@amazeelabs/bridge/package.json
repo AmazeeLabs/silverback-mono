@@ -3,7 +3,7 @@
   "version": "1.5.16",
   "description": "Library for framework agnostic react.",
   "type": "module",
-  "main": "./build/index.js",
+  "main": "./build/src/index.js",
   "types": "./build/index.d.ts",
   "private": false,
   "sideEffects": false,
