@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.25](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.6.24...@amazeelabs/scalars@1.6.25) (2024-07-30)
+
+
+### Bug Fixes
+
+* scalars package exports ([6d66d14](https://github.com/AmazeeLabs/silverback-mono/commit/6d66d148f7bc2ce323f8efa1187e9553c9145128))
+
+
+
+
+
 ## [1.6.24](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/scalars@1.6.23...@amazeelabs/scalars@1.6.24) (2024-07-30)
 
 
