@@ -14,16 +14,14 @@
     "build": "rm -rf build && swc ./src -d ./build && tsc --emitDeclarationOnly",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix"
   },
-  "optionalDependencies": {
-    "@types/react": "^18.3.1",
-    "typescript": "^5.4.5",
-    "vitest": "^1.6.0"
-  },
   "peerDependencies": {
     "@storybook/addon-actions": ">=8.0.10",
     "react": ">=18.3.1"
   },
   "devDependencies": {
+    "@types/react": "^18.3.1",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0",
     "@amazeelabs/bridge": "workspace:*",
     "@amazeelabs/eslint-config": "1.4.43",
     "@swc/cli": "0.3.12",
