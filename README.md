@@ -15,9 +15,12 @@ packages and tools.
 
 ### Requirements
 
-- Git
-- Node.js + pnpm
-- PHP + Composer
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/)
+- [pnpm](https://pnpm.io/)
+- [PHP](https://www.php.net/)
+- [Composer](https://getcomposer.org/)
+- [direnv](https://direnv.net/)
 
 ### Setup
 
