@@ -1,6 +1,6 @@
+import { getConfigLocal } from '../../../tools/config';
+import { TaskJob } from '../../../tools/queue';
 import { core } from '../../core';
-import { getConfig } from '../../tools/config';
-import { TaskJob } from '../../tools/queue';
 import { run } from '../../tools/runner';
 
 export const buildDeployTask: TaskJob = async (controller) => {
@@ -13,7 +13,7 @@ export const buildDeployTask: TaskJob = async (controller) => {
 
   const attempts = 3;
   for (let attempt = 1; attempt <= attempts; attempt++) {
-    const command = getConfig().commands.deploy;
+    const command = getConfigLocal().commands.deploy;
     if (!command) {
       // If command isn't set, consider the deploy task successful.
       core.state.setDeployJobState('Success');

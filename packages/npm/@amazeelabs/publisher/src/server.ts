@@ -10,13 +10,14 @@ import referrerPolicy from 'referrer-policy';
 import { map, shareReplay, Subject } from 'rxjs';
 import { fileURLToPath } from 'url';
 
-import { core } from './core/core';
+import { stateNotify } from './notify';
 import {
   getAuthenticationMiddleware,
   isSessionRequired,
-} from './core/tools/authentication';
-import { getConfig } from './core/tools/config';
-import { getDatabase } from './core/tools/database';
+} from './tools/authentication';
+import { getConfig } from './tools/config';
+import { core } from './tools/core';
+import { getDatabase } from './tools/database';
 import {
   getOAuth2AuthorizeUrl,
   getPersistedAccessToken,
@@ -26,8 +27,7 @@ import {
   oAuth2AuthorizationCodeClient,
   persistAccessToken,
   stateMatches,
-} from './core/tools/oAuth2';
-import { stateNotify } from './notify';
+} from './tools/oAuth2';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -267,15 +267,15 @@ const runServer = async (): Promise<HttpTerminator> => {
     res.redirect('/oauth/login');
   });
 
-  const servePort = getConfig().commands.serve?.port;
-  if (servePort) {
+  const config = getConfig();
+  if (config.mode === 'local' && config.commands.serve?.port) {
     // Use the authentication middleware for the proxy.
     app.use(
       '/',
       authMiddleware,
       createProxyMiddleware({
         pathFilter: () => app.locals.isReady,
-        target: `http://127.0.0.1:${servePort}`,
+        target: `http://127.0.0.1:${config.commands.serve.port}`,
       }),
     );
   } else {

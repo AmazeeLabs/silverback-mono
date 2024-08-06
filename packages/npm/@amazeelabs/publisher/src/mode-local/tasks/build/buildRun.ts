@@ -1,6 +1,6 @@
+import { getConfigLocal } from '../../../tools/config';
+import { TaskJob } from '../../../tools/queue';
 import { core } from '../../core';
-import { getConfig } from '../../tools/config';
-import { TaskJob } from '../../tools/queue';
 import { run } from '../../tools/runner';
 import { cleanRunTask } from '../clean/cleanRun';
 
@@ -22,7 +22,7 @@ export const buildRunTask: TaskJob = async (controller) => {
         return false;
       }
     }
-    const { command, outputTimeout } = getConfig().commands.build;
+    const { command, outputTimeout } = getConfigLocal().commands.build;
     const process = run({
       command,
       outputTimeout,

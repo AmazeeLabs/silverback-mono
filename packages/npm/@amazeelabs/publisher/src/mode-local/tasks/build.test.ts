@@ -1,9 +1,9 @@
 import { beforeEach, expect, test, vi } from 'vitest';
 
+import { setConfig } from '../../tools/config';
+import { saveBuildInfo } from '../../tools/database';
+import { TaskController } from '../../tools/queue';
 import { core } from '../core';
-import { setConfig } from '../tools/config';
-import { saveBuildInfo } from '../tools/database';
-import { TaskController } from '../tools/queue';
 import { defaultConfig, reset } from '../tools/testing';
 import { buildTask } from './build';
 

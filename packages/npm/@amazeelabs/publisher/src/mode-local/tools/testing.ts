@@ -1,8 +1,8 @@
+import { clearConfig, PublisherConfigLocal } from '../../tools/config';
+import { OutputSubject } from '../../tools/output';
+import { Queue, TaskController } from '../../tools/queue';
 import { core } from '../core';
 import { serveStopTask } from '../tasks/serve/serveStop';
-import { clearConfig, PublisherConfig } from './config';
-import { OutputSubject } from './output';
-import { Queue, TaskController } from './queue';
 
 export const reset = async (): Promise<void> => {
   await serveStopTask(new TaskController());
@@ -13,8 +13,9 @@ export const reset = async (): Promise<void> => {
   clearConfig();
 };
 
-export const defaultConfig: PublisherConfig = {
+export const defaultConfig: PublisherConfigLocal = {
   publisherPort: 3000,
+  mode: 'local',
   commands: {
     clean: 'echo "clean"',
     build: {

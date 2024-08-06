@@ -2,8 +2,8 @@ import { ApplicationState } from '@amazeelabs/publisher-shared';
 import { Subscription } from 'rxjs';
 import { beforeEach, expect, test } from 'vitest';
 
+import { setConfig } from '../tools/config';
 import { core } from './core';
-import { setConfig } from './tools/config';
 import { defaultConfig, reset } from './tools/testing';
 
 let output: Array<string> = [];

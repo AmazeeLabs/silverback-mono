@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest';
 
+import { TaskController } from '../../tools/queue';
 import { core } from '../core';
-import { TaskController } from './queue';
 import { run } from './runner';
 
 // There are 3 attempts to kill a process using different signals. Each attempt

@@ -3,10 +3,10 @@ import { HttpTerminator } from 'http-terminator/src/types';
 import { join } from 'path';
 import { loadSync } from 'ts-import';
 
-import { core } from './core/core';
-import { setConfig } from './core/tools/config';
-import { initDatabase } from './core/tools/database';
 import { runServer } from './server';
+import { setConfig } from './tools/config';
+import { core } from './tools/core';
+import { initDatabase } from './tools/database';
 
 const configPath = join(process.cwd(), 'publisher.config.ts');
 if (!existsSync(configPath)) {

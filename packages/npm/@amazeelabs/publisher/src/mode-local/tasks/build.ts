@@ -1,6 +1,6 @@
+import { saveBuildInfo } from '../../tools/database';
+import { Queue, TaskJob } from '../../tools/queue';
 import { core } from '../core';
-import { saveBuildInfo } from '../tools/database';
-import { Queue, TaskJob } from '../tools/queue';
 import { buildDeployTask } from './build/buildDeploy';
 import { buildRunTask } from './build/buildRun';
 import { serveStartTask } from './serve/serveStart';

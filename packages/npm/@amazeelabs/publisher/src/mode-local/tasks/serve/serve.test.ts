@@ -1,8 +1,8 @@
 import { beforeEach, expect, test } from 'vitest';
 
+import { setConfig } from '../../../tools/config';
+import { TaskController } from '../../../tools/queue';
 import { core } from '../../core';
-import { setConfig } from '../../tools/config';
-import { TaskController } from '../../tools/queue';
 import { defaultConfig, reset } from '../../tools/testing';
 import { serveStartTask } from './serveStart';
 import { serveStopTask } from './serveStop';
