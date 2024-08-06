@@ -1,4 +1,4 @@
-import type { PublisherConfig } from './src/core/tools/config';
+import type { PublisherConfig } from './src/tools/config';
 
 // Do not use the exported `defineConfig` here, as internal imports break
 // ts-import process.
@@ -28,6 +28,7 @@ export default defineConfig({
     environmentType: process.env.OAUTH2_ENVIRONMENT_TYPE || 'development',
     grantType: 0, // AuthorizationCode
   },
+  mode: 'local',
   commands: {
     clean:
       'echo "clean starting"; sleep 1; echo "cleaned 50%"; sleep 1; echo "clean done"',

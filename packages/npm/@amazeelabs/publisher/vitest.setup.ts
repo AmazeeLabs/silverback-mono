@@ -1,3 +1,3 @@
 import { vi } from 'vitest';
 
-vi.mock('./src/core/tools/database');
+vi.mock('./src/tools/database');

@@ -1,12 +1,13 @@
+import { Core } from '../tools/core';
+import { OutputSubject } from '../tools/output';
+import { Queue } from '../tools/queue';
 import { state } from './state';
 import { buildTask } from './tasks/build';
 import { cleanRunTask } from './tasks/clean/cleanRun';
 import { serveStopTask } from './tasks/serve/serveStop';
-import { OutputSubject } from './tools/output';
-import { Queue } from './tools/queue';
 import { Process } from './tools/runner';
 
-class Core {
+class CoreLocal implements Core {
   state = state;
 
   serveProcess: Process | null = null;
@@ -15,24 +16,24 @@ class Core {
 
   queue = new Queue();
 
-  start = (): void => {
+  start = () => {
     this.queue.add({ job: buildTask() });
     this.queue.run();
   };
 
-  stop = async (): Promise<void> => {
+  stop = async () => {
     await this.queue.clear();
     await this.serveProcess?.kill();
   };
 
-  build = (): void => {
+  build = () => {
     // Consider any pending task a build task.
     if (!this.queue.hasPendingTasks()) {
       this.queue.add({ job: buildTask() });
     }
   };
 
-  clean = async (): Promise<void> => {
+  clean = async () => {
     await this.queue.clear();
     this.state.reset();
     this.queue.add({ job: serveStopTask });
@@ -41,4 +42,4 @@ class Core {
   };
 }
 
-export const core = new Core();
+export const core = new CoreLocal();

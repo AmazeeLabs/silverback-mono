@@ -1,9 +1,9 @@
 import { spawn } from 'child_process';
 import stripAnsi from 'strip-ansi';
 
+import { OutputSubject } from '../../tools/output';
+import { TaskController } from '../../tools/queue';
 import { core } from '../core';
-import { OutputSubject } from './output';
-import { TaskController } from './queue';
 import { terminate } from './terminate';
 
 type Result = {

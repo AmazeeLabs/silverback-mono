@@ -1,10 +1,10 @@
+import { getConfigLocal } from '../../../tools/config';
+import { TaskJob } from '../../../tools/queue';
 import { core } from '../../core';
-import { getConfig } from '../../tools/config';
-import { TaskJob } from '../../tools/queue';
 import { run } from '../../tools/runner';
 
 export const serveStartTask: TaskJob = async (controller) => {
-  const serve = getConfig().commands.serve;
+  const serve = getConfigLocal().commands.serve;
   if (!serve) {
     return true;
   }
