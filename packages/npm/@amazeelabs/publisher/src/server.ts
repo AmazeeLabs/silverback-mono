@@ -267,6 +267,7 @@ const runServer = async (): Promise<HttpTerminator> => {
 
   const servePort = getConfig().commands.serve?.port;
   if (servePort) {
+    // Use the authentication middleware for the proxy.
     app.use(
       '/',
       authMiddleware,
@@ -275,6 +276,12 @@ const runServer = async (): Promise<HttpTerminator> => {
         target: `http://127.0.0.1:${servePort}`,
       }),
     );
+  } else {
+    // When not serving, redirect to the status
+    // that will use the authentication middleware if needed.
+    app.get('/', async (req, res) => {
+      res.redirect('/___status/');
+    });
   }
 
   const host = getConfig().publisherHost || '0.0.0.0';
