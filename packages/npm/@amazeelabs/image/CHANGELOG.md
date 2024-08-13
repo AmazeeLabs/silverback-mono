@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/image@1.1.0...@amazeelabs/image@1.1.1) (2024-08-13)
+
+
+### Bug Fixes
+
+* **SLB-354:** add correct npmignore ([bfade86](https://github.com/AmazeeLabs/silverback-mono/commit/bfade865f25a3723c356fd64276ff526ef7ea9fc))
+* **SLB-354:** prettier ignores ([b02c34b](https://github.com/AmazeeLabs/silverback-mono/commit/b02c34b3a4f0ef2607de83e9b4034d051a8fd1e6))
+
+
+
+
+
 # 1.1.0 (2024-08-13)
 
 
