@@ -33,13 +33,13 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: [
     {
-      command: 'pnpm test:start',
-      url: 'http://127.0.0.1:8080/server',
+      command: 'pnpm test:dam',
+      url: 'http://127.0.0.1:8889/goats.jpg',
       reuseExistingServer: !process.env.CI,
     },
     {
-      command: 'pnpm test:dam',
-      url: 'http://127.0.0.1:8889/goats.jpg',
+      command: 'pnpm test:start',
+      url: 'http://127.0.0.1:8080/client',
       reuseExistingServer: !process.env.CI,
     },
   ],
