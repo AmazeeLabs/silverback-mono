@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/image@1.1.1...@amazeelabs/image@1.1.2) (2024-08-13)
+
+
+### Bug Fixes
+
+* **SLB-354:** don't auto-add client wrapper in server wrapper ([98ccbf1](https://github.com/AmazeeLabs/silverback-mono/commit/98ccbf19e286462ee95f0ba635e61fb7f8156963))
+* **SLB-354:** really use tsc ([48452ac](https://github.com/AmazeeLabs/silverback-mono/commit/48452acbea3dc10a0aa6fdef3c7e291fafbcf528))
+* **SLB-354:** use plain tsc instead of tsup ([f8f0a62](https://github.com/AmazeeLabs/silverback-mono/commit/f8f0a62cd7a52f5446e257a89f2077ea7c7fa5db))
+
+
+
+
+
 ## [1.1.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/image@1.1.0...@amazeelabs/image@1.1.1) (2024-08-13)
 
 
