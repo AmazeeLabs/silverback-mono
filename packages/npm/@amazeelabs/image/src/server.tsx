@@ -10,6 +10,7 @@ import { imageDimensionsFromData } from 'image-dimensions';
 import { cache, PropsWithChildren } from 'react';
 import sharp from 'sharp';
 
+import { ImageSettings as ClientImageSettings } from './client.js';
 import {
   calculateFocusExtraction,
   defaultImageSettings,
@@ -138,7 +139,7 @@ export function ImageSettings({
   ...settings
 }: PropsWithChildren<Partial<ImageSettingsType>>) {
   setSettings({ ...defaultImageSettings, ...settings });
-  return <>{children}</>;
+  return <ClientImageSettings {...settings}>{children}</ClientImageSettings>;
 }
 
 export async function Image({

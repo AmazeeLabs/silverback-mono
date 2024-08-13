@@ -12,8 +12,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "declaration": true,
-    "declarationDir": "build",
-    "outDir": "build",
+    "declarationDir": "dist",
+    "outDir": "dist",
     "types": ["react/experimental"],
     "jsx": "react-jsx"
   },
