@@ -23,7 +23,8 @@
     "test:integration": "playwright test",
     "test:cmd": "cd test && ../node_modules/waku/cli.js",
     "test:dev": "pnpm test:cmd dev",
-    "test:start": "pnpm test:cmd build && pnpm test:cmd start",
+    "test:build": "pnpm test:cmd build",
+    "test:start": "pnpm start-test test:dam http://localhost:8889/goats.jpg test:build && pnpm test:cmd start",
     "test:dam": "pnpm serve -p 8889 test/public",
     "test:all": "pnpm test:unit && pnpm test:static && pnpm test:integration"
   },
@@ -51,6 +52,7 @@
     "react": "^19.0.0-rc.0",
     "react-dom": "^19.0.0-rc.0",
     "serve": "^14.2.1",
+    "start-server-and-test": "2.0.3",
     "ts-expect": "^1.3.0",
     "tsup": "^8.0.1",
     "typescript": "5.4.5",
