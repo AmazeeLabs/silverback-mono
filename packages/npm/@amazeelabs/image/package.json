@@ -17,7 +17,7 @@
   },
   "scripts": {
     "prep": "pnpm tsup src/server.tsx src/client.tsx --format esm --dts",
-    "build": "pnpm build",
+    "build": "pnpm prep",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.eslintignore\"",
     "test:unit": "vitest run",
     "test:integration": "playwright test",
