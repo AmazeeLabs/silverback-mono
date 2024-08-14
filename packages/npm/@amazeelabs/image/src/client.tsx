@@ -4,6 +4,7 @@ import {
   createContext,
   forwardRef,
   PropsWithChildren,
+  useContext,
   useEffect,
   useRef,
 } from 'react';
@@ -56,11 +57,13 @@ export const Image = forwardRef(function Image(
   { focus, ...props }: ImageProps,
   ref,
 ) {
+  const alterSrc = useContext(ImageSettingsContext).alterSrc;
   const imageRef = useRef<HTMLImageElement | null>(null);
   useEffect(() => {
     const r = imageRef || ref;
     if (r.current && props.src) {
-      imageDimensions(props.src)
+      const url = alterSrc ? alterSrc(props.src) : props.src;
+      imageDimensions(url)
         .then((source) => {
           if (!r.current || !source) {
             return;
@@ -70,7 +73,7 @@ export const Image = forwardRef(function Image(
             props.width,
             props.height,
           );
-          r.current.style.backgroundImage = `url(${props.src})`;
+          r.current.style.backgroundImage = `url(${url})`;
           r.current.style.backgroundSize = 'cover';
           r.current.style.maxWidth = '100%';
 
@@ -84,8 +87,10 @@ export const Image = forwardRef(function Image(
           r.current.src = sizerImage(target.width, target.height);
           return;
         })
-        .catch((error) => console.error(error));
+        .catch((error) => {
+          throw error;
+        });
     }
-  }, [imageRef, ref, focus, props.width, props.height, props.src]);
+  }, [imageRef, ref, focus, props.width, props.height, props.src, alterSrc]);
   return <img ref={imageRef || ref} {...props} />;
 });

@@ -16,6 +16,7 @@ export type ImageSettings = {
   staticDir: string;
   outputDir: string;
   outputPath: string;
+  alterSrc?: (src: string) => string;
 };
 export const defaultImageSettings = {
   outputDir: 'dist/public',

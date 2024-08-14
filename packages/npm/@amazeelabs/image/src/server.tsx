@@ -10,7 +10,6 @@ import { imageDimensionsFromData } from 'image-dimensions';
 import { cache, PropsWithChildren } from 'react';
 import sharp from 'sharp';
 
-import { ImageSettings as ClientImageSettings } from './client.js';
 import {
   calculateFocusExtraction,
   defaultImageSettings,
@@ -21,7 +20,9 @@ import {
   inferTargetDimensions,
 } from './lib.js';
 
-async function prepareFile(url: string) {
+async function prepareFile(src: string) {
+  const alterSrc = getSettings().alterSrc;
+  const url = alterSrc ? alterSrc(src) : src;
   if (url.match(/https?:\/\//)) {
     const dir = await mkdtemp(`${tmpdir}${sep}`);
     const tmpFileName = `${dir}/${createHash('md5').update(url).digest('hex')}`;
@@ -29,11 +30,15 @@ async function prepareFile(url: string) {
       const fd = await open(tmpFileName);
       await fd.close();
     } catch (err) {
-      const result = await fetch(url);
-      const fileStream = createWriteStream(tmpFileName, { flags: 'wx' });
-      if (result.body) {
-        await finished(Readable.fromWeb(result.body as any).pipe(fileStream));
-      } else {
+      try {
+        const result = await fetch(url);
+        const fileStream = createWriteStream(tmpFileName, { flags: 'wx' });
+        if (result.body) {
+          await finished(Readable.fromWeb(result.body as any).pipe(fileStream));
+        } else {
+          throw `Unable to download ${url}.`;
+        }
+      } catch (err) {
         throw `Unable to download ${url}.`;
       }
     }
@@ -139,7 +144,7 @@ export function ImageSettings({
   ...settings
 }: PropsWithChildren<Partial<ImageSettingsType>>) {
   setSettings({ ...defaultImageSettings, ...settings });
-  return <ClientImageSettings {...settings}>{children}</ClientImageSettings>;
+  return <>{children}</>;
 }
 
 export async function Image({

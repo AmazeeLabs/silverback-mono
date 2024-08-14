@@ -13,6 +13,7 @@ test('client', async ({ page }) => {
     throw error;
   });
   await page.goto('http://localhost:8080/client');
+  await page.waitForTimeout(1000);
   // await expect(page).toHaveScreenshot({
   //   fullPage: true,
   // });
