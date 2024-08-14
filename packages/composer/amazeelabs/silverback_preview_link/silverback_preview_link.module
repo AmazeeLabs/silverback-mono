@@ -53,7 +53,8 @@ function silverback_preview_link_theme(array $existing, string $type, string $th
         'preview_url' => NULL,
         'preview_qr_code_url' => NULL,
         'expiry_description' => NULL,
-        'actions_description' => NULL
+        'actions_description' => NULL,
+        'display_gif' => FALSE,
       ],
     ],
   ];

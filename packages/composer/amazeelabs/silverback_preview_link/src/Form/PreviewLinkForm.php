@@ -153,6 +153,7 @@ final class PreviewLinkForm extends ContentEntityForm {
     $qrCodeUrlString = NULL;
     $actionsDescription = NULL;
     $previewLinkHasExpired = $remainingSeconds === 0;
+    $displayGif = \Drupal::state()->get('silverback_easter_mode') === '↑↑↓↓←→←→BA';
 
     if ($isNewToken) {
       $expiryDescription = $this->t('Expires @lifetime after creation.', [
@@ -192,6 +193,7 @@ final class PreviewLinkForm extends ContentEntityForm {
       '#preview_qr_code_url' => $qrCodeUrlString,
       '#expiry_description' => $expiryDescription,
       '#actions_description' => $actionsDescription,
+      '#display_gif' => $displayGif,
     ];
 
     if (!$isNewToken) {
