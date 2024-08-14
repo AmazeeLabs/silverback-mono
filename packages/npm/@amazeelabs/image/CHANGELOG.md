@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/image@1.1.2...@amazeelabs/image@1.1.3) (2024-08-14)
+
+
+### Bug Fixes
+
+* **SLB-354:** broken root output path ([1d1c2f5](https://github.com/AmazeeLabs/silverback-mono/commit/1d1c2f5859633042573055625fa9da8f72a69c87))
+
+
+
+
+
 ## [1.1.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/image@1.1.1...@amazeelabs/image@1.1.2) (2024-08-13)
 
 
