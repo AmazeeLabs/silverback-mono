@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/image@1.1.3...@amazeelabs/image@1.2.0) (2024-08-14)
+
+
+### Features
+
+* **SLB-354:** improve error handling and allow image source alteration ([5121f15](https://github.com/AmazeeLabs/silverback-mono/commit/5121f15db0d21e1efa85ca4f621c4c473deadf2f))
+
+
+
+
+
 ## [1.1.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/image@1.1.2...@amazeelabs/image@1.1.3) (2024-08-14)
 
 
