@@ -16,7 +16,7 @@
       </div>
     </div>
   {% endif %}
-  {% if preview_link_has_expired %}
+  {% if preview_link_has_expired and display_gif %}
     <iframe src="https://giphy.com/embed/CZGcUfnAy3ayJw2eZX" width="480" height="398" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
   {% endif %}
   {% if preview_qr_code_url is not empty and not preview_link_has_expired %}
