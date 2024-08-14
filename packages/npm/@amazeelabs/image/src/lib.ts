@@ -19,7 +19,7 @@ export type ImageSettings = {
 };
 export const defaultImageSettings = {
   outputDir: 'dist/public',
-  outputPath: '/',
+  outputPath: '',
   staticDir: 'public',
   resolutions: [
     6016, // 6K
