@@ -56,7 +56,7 @@ class QRCodeWithLogo {
 
       protected string $svgLogo;
 
-      // Logo scale in % of QR Code size, clamped to 10%-30%.
+      // Logo scale in % of QR Code size, clamped to 5%-15%.
       protected float $svgLogoScale = 0.20;
 
       // CSS class for the logo (defined in $svgDefs).
@@ -71,7 +71,7 @@ class QRCodeWithLogo {
 
       // Clamp logo scale.
       protected function set_svgLogoScale(float $svgLogoScale): void {
-        $this->svgLogoScale = max(0.05, min(0.3, $svgLogoScale));
+        $this->svgLogoScale = max(0.05, min(0.3, $svgLogoScale)) / 2;
       }
 
     };
