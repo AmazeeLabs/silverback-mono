@@ -152,6 +152,7 @@ final class PreviewLinkForm extends ContentEntityForm {
     $displayQRCode = TRUE;
     $qrCodeUrlString = NULL;
     $actionsDescription = NULL;
+    $previewLinkHasExpired = $remainingSeconds === 0;
 
     if ($isNewToken) {
       $expiryDescription = $this->t('Expires @lifetime after creation.', [
@@ -160,8 +161,8 @@ final class PreviewLinkForm extends ContentEntityForm {
       $qrCode = (new QRCode)->render($externalPreviewUrlString);
     }
     else {
-      if ($remainingSeconds === 0) {
-        $expiryDescription = $this->t('Live preview link</a> for <em>@entity_label</em> has expired, reset link expiry or generate a new one.', [
+      if ($previewLinkHasExpired) {
+        $expiryDescription = $this->t('⌛ <strong>Live preview link</a> for <em>@entity_label</em> has expired</strong>, reset link expiry or generate a new one.', [
           ':url' => $externalPreviewUrlString,
           '@entity_label' => $host->label(),
         ]);
@@ -186,6 +187,7 @@ final class PreviewLinkForm extends ContentEntityForm {
       '#theme' => 'preview_link',
       '#title' => $this->t('Preview link'),
       '#weight' => -9999,
+      '#preview_link_has_expired' => $previewLinkHasExpired,
       '#preview_url' => $externalPreviewUrlString,
       '#preview_qr_code_url' => $qrCodeUrlString,
       '#expiry_description' => $expiryDescription,
