@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_preview_link@1.6.0...@-amazeelabs/silverback_preview_link@1.6.1) (2024-08-14)
+
+
+### Bug Fixes
+
+* **SLB-458:** branded preview link qr ([#1566](https://github.com/AmazeeLabs/silverback-mono/issues/1566)) ([f2585b6](https://github.com/AmazeeLabs/silverback-mono/commit/f2585b65a5166303a45d12249b5bbd0f5769dc53))
+
+
+
+
+
 # [1.6.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_preview_link@1.5.0...@-amazeelabs/silverback_preview_link@1.6.0) (2024-08-14)
 
 
