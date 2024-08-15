@@ -67,7 +67,7 @@ class PreviewController extends ControllerBase {
    * Returns the QR SVG file.
    */
   public function getQRCode(string $base64_url): CacheableResponse {
-    $decodedUrl = base64_decode($base64_url);
+    $decodedUrl = base64_decode(str_replace(['_'], ['/'], $base64_url));
     $qrCode = new QRCodeWithLogo();
     $result = $qrCode->getQRCode($decodedUrl);
     return new CacheableResponse($result, 200, ['Content-Type' => 'image/svg+xml']);

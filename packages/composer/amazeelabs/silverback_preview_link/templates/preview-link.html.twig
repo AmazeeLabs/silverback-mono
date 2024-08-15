@@ -19,12 +19,18 @@
   {% if preview_link_has_expired and display_gif %}
     <iframe src="https://giphy.com/embed/CZGcUfnAy3ayJw2eZX" width="480" height="398" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
   {% endif %}
-  {% if preview_qr_code_url is not empty and not preview_link_has_expired %}
+  {% if preview_url is not empty and not preview_link_has_expired %}
     <div class="preview-link__qr">
       <p>{{ 'Scan the QR Code to open the preview on another device.' }}</p>
-      <div class="preview-link__qr--wrapper" style="display: flex; align-items: center; justify-content: center;">
-        <img src="{{ preview_qr_code_url }}" alt="{{ preview_url }}" width="300" height="300" />
-      </div>
+        <div class="preview-link__qr--wrapper" style="display: flex; align-items: center; justify-content: center;">
+          {% if preview_qr_code_url %}
+            <img src="{{ preview_qr_code_url }}" alt="{{ preview_url }}" width="300" height="300" />
+          {% elseif preview_qr_code_fallback is not empty %}
+            <img src="{{ preview_qr_code_fallback }}" alt="{{ preview_url }}" width="250" height="250" />
+          {% else %}
+            <p>{{ '❌ Error while generating the QR Code.' | t }}</p>
+          {% endif %}
+        </div>
     </div>
   {% endif %}
   {% if expiry_description is not empty %}

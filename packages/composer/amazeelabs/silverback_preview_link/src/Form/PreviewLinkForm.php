@@ -150,6 +150,7 @@ final class PreviewLinkForm extends ContentEntityForm {
     $remainingAgeFormatted = $this->dateFormatter->formatInterval($remainingSeconds);
     $isNewToken = $this->linkExpiry->getLifetime() === $remainingSeconds;
     $displayQRCode = TRUE;
+    $qrFallback = NULL;
     $qrCodeUrlString = NULL;
     $actionsDescription = NULL;
     $previewLinkHasExpired = $remainingSeconds === 0;
@@ -180,8 +181,19 @@ final class PreviewLinkForm extends ContentEntityForm {
     }
 
     if ($displayQRCode) {
-      $qrCodeEncodedUrl = base64_encode($externalPreviewUrlString);
-      $qrCodeUrlString = Url::fromRoute('silverback_preview_link.qr_code', ['base64_url' => $qrCodeEncodedUrl])->toString();
+      $qrCodeEncodedUrl = str_replace(['/'], ['_'], base64_encode($externalPreviewUrlString));
+      try {
+        $qrCodeUrlString = Url::fromRoute('silverback_preview_link.qr_code', ['base64_url' => $qrCodeEncodedUrl])->toString();
+      }
+      catch (\Exception $e) {
+        $this->logger('silverback_preview_link')->error('Failed to generate branded QR code: @message', ['@message' => $e->getMessage()]);
+        try {
+          $qrFallback = (new QRCode)->render($externalPreviewUrlString);
+        }
+        catch (\Exception $e) {
+          $this->logger('silverback_preview_link')->error('Failed to generate fallback QR code: @message', ['@message' => $e->getMessage()]);
+        }
+      }
     }
 
     $form['preview_link'] = [
@@ -191,6 +203,7 @@ final class PreviewLinkForm extends ContentEntityForm {
       '#preview_link_has_expired' => $previewLinkHasExpired,
       '#preview_url' => $externalPreviewUrlString,
       '#preview_qr_code_url' => $qrCodeUrlString,
+      '#preview_qr_code_fallback' => $qrFallback,
       '#expiry_description' => $expiryDescription,
       '#actions_description' => $actionsDescription,
       '#display_gif' => $displayGif,
