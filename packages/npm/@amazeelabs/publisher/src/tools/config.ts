@@ -1,3 +1,7 @@
+import { existsSync } from 'fs';
+import { join } from 'path';
+import { loadSync } from 'ts-import';
+
 import { OAuth2GrantTypes } from './oAuth2GrantTypes';
 
 type PublisherConfigBase = {
@@ -143,9 +147,73 @@ export type PublisherConfigLocal = PublisherConfigBase & {
 export type PublisherConfigGithubWorkflow = PublisherConfigBase & {
   /**
    * The build and deploy happen in a Github CI workflow.
+   *
+   * Publisher will use github-cli to trigger the workflow run.
+   *
+   * Ensure the following:
+   *  - github-cli is installed and accessible via the `gh` command
+   *  - GITHUB_TOKEN is set in the environment for authentication
    */
   mode: 'github-workflow';
-  // TODO: Add the rest of the properties.
+  /**
+   * The base URL of the publisher.
+   *
+   * Used to construct the workflow run status callback URL.
+   *
+   * Example: "https://build.example.com"
+   */
+  publisherBaseUrl: string;
+  /**
+   * The name of the workflow file.
+   *
+   * Example: "build.yml"
+   */
+  workflow: string;
+  /**
+   * The repository name.
+   *
+   * Example: "AmazeeLabs/project"
+   */
+  repo: string;
+  /**
+   * The branch name.
+   *
+   * Example: "dev"
+   */
+  ref: string;
+  /**
+   * The environment name.
+   *
+   * Example: "dev-cb"
+   *
+   * When Publisher needs to cancel a build, it will search for a workflow run
+   * with the run-name containing "[env: {env}]" patten, e.g. "[env: dev-cb]".
+   */
+  environment: string;
+  /**
+   * The environment variables to be set for the workflow run.
+   *
+   * Example: {
+   *   DRUPAL_URL: 'https://dev-cb.cms.example.com',
+   * }
+   */
+  environmentVariables?: Record<string, string>;
+  /**
+   * Additional inputs for the workflow.
+   *
+   * The `publisher_payload` input is reserved for the Publisher.
+   *
+   * Example:{
+   *   env: 'dev-cb',
+   * }
+   */
+  inputs?: Record<string, string>;
+  /**
+   * The timeout for the workflow run in milliseconds.
+   *
+   * Example: 1000 * 60 * 30
+   */
+  workflowTimeout: number;
 };
 
 export type PublisherConfig =
@@ -156,15 +224,31 @@ let _config: PublisherConfig | null = null;
 
 export const getConfig = (): PublisherConfig => {
   if (!_config) {
-    throw new Error('Config is not set');
+    const configPath = join(process.cwd(), 'publisher.config.ts');
+    if (!existsSync(configPath)) {
+      console.error(`Publisher config not found: ${configPath}`);
+      process.exit(1);
+    }
+    const config = loadSync(configPath, {
+      compiledJsExtension: '.cjs',
+    }).default;
+    setConfig(config);
   }
-  return _config;
+  return _config!;
 };
 
 export const getConfigLocal = (): PublisherConfigLocal => {
   const config = getConfig();
   if (config.mode !== 'local') {
     throw new Error('Config is not "local"');
+  }
+  return config;
+};
+
+export const getConfigGithubWorkflow = (): PublisherConfigGithubWorkflow => {
+  const config = getConfig();
+  if (config.mode !== 'github-workflow') {
+    throw new Error('Config is not "github-workflow"');
   }
   return config;
 };

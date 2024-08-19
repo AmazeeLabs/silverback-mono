@@ -16,7 +16,11 @@ export type Core = {
   build: () => void;
   clean: () => Promise<void>;
 };
+
+export type CoreGithubWorkflow = typeof coreGithubWorkflow;
+
 const mode = getConfig().mode;
+
 export const core: Core =
   mode === 'local'
     ? coreLocal

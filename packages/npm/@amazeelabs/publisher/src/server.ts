@@ -1,4 +1,7 @@
-import { ApplicationState } from '@amazeelabs/publisher-shared';
+import {
+  ApplicationState,
+  workflowStatusNotificationSchema,
+} from '@amazeelabs/publisher-shared';
 import cors from 'cors';
 import express from 'express';
 import expressWs from 'express-ws';
@@ -16,7 +19,7 @@ import {
   isSessionRequired,
 } from './tools/authentication';
 import { getConfig } from './tools/config';
-import { core } from './tools/core';
+import { core, CoreGithubWorkflow } from './tools/core';
 import { getDatabase } from './tools/database';
 import {
   getOAuth2AuthorizeUrl,
@@ -60,6 +63,8 @@ const runServer = async (): Promise<HttpTerminator> => {
   // Chromium based browsers employ strict-origin-when-cross-origin if no Referrer Policy set
   // @TODO see if we need to lock this down
   app.use(referrerPolicy());
+
+  app.use(express.json());
 
   app.use((req, res, next) => {
     res.set('Cache-control', 'no-cache');
@@ -265,6 +270,19 @@ const runServer = async (): Promise<HttpTerminator> => {
       console.log('Remove session', err);
     });
     res.redirect('/oauth/login');
+  });
+
+  app.post('/github-workflow-status', async (req, res) => {
+    const result = workflowStatusNotificationSchema.safeParse(req.body);
+    if (!result.success) {
+      console.error(result.error);
+      res.status(400).send('Invalid request\n');
+      return;
+    }
+    const { status, workflowRunUrl } = result.data;
+    (core as CoreGithubWorkflow).state.workflowRunUrl = workflowRunUrl;
+    (core as CoreGithubWorkflow).state.workflowState$.next(status);
+    res.send();
   });
 
   const config = getConfig();

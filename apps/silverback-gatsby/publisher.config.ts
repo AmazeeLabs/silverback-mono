@@ -1,6 +1,7 @@
 import { defineConfig } from '@amazeelabs/publisher';
 
 export default defineConfig({
+  mode: 'local',
   commands: {
     build: {
       command: 'pnpm build:gatsby',
