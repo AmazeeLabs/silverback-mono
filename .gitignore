@@ -1,8 +1,12 @@
 _local
-node_modules
 .phpunit.result.cache
 
 # Local Netlify folder
 .netlify
 
+# Node / Deno
+node_modules
 deno.lock
+
+# macOS files
+.DS_Store
