@@ -6,7 +6,6 @@ _local
 
 # Node / Deno
 node_modules
-.npmrc
 deno.lock
 
 # macOS files
