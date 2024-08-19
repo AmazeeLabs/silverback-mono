@@ -1,22 +1,8 @@
-import { existsSync } from 'fs';
 import { HttpTerminator } from 'http-terminator/src/types';
-import { join } from 'path';
-import { loadSync } from 'ts-import';
 
 import { runServer } from './server';
-import { setConfig } from './tools/config';
 import { core } from './tools/core';
 import { initDatabase } from './tools/database';
-
-const configPath = join(process.cwd(), 'publisher.config.ts');
-if (!existsSync(configPath)) {
-  console.error(`Publisher config not found: ${configPath}`);
-  process.exit(1);
-}
-const config = loadSync(configPath, {
-  compiledJsExtension: '.cjs',
-}).default;
-setConfig(config);
 
 core.output$.subscribe((chunk) => {
   process.stdout.write(chunk);

@@ -20,7 +20,6 @@
       <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/silverback_iframe" />
       <excludeFolder url="file://$MODULE_DIR$/apps/silverback-drupal/web/modules/contrib/silverback_translations" />
       <excludePattern pattern="dist" />
-      <excludePattern pattern="build" />
       <excludePattern pattern=".cache" />
       <excludePattern pattern=".vite" />
       <excludePattern pattern="test-results" />
