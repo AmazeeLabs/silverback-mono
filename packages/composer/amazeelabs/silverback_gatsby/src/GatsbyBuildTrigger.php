@@ -9,6 +9,7 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\graphql\Entity\ServerInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\Cookie\CookieJar;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
 
 class GatsbyBuildTrigger implements GatsbyBuildTriggerInterface {
@@ -54,6 +55,10 @@ class GatsbyBuildTrigger implements GatsbyBuildTriggerInterface {
    * {@inheritDoc}
    */
   public function triggerLatestBuild(string $server) : TranslatableMarkup {
+    $message = $this->t('No server found with id @server_id.', [
+      '@server_id' => $server,
+    ]);
+
     $servers = $this->entityTypeManager
       ->getStorage('graphql_server')
       ->loadByProperties(['name' => $server]);
@@ -67,7 +72,7 @@ class GatsbyBuildTrigger implements GatsbyBuildTriggerInterface {
     }
 
     $serverEntity = reset($servers);
-    if ($serverEntity instanceof ServerInterface) {
+    if ($serverEntity instanceof ServerInterface && is_string($serverEntity->id())) {
       // No dependency injection, prevent circular reference.
       /** @var \Drupal\silverback_gatsby\GatsbyUpdateTrackerInterface $updateTracker */
       $updateTracker = \Drupal::service('silverback_gatsby.update_tracker');
@@ -101,7 +106,7 @@ class GatsbyBuildTrigger implements GatsbyBuildTriggerInterface {
     });
     $silverbackGatsbyServer = reset($silverbackGatsbyServers);
 
-    if ($silverbackGatsbyServer instanceof ServerInterface) {
+    if ($silverbackGatsbyServer instanceof ServerInterface && is_string($silverbackGatsbyServer->id())) {
       return $this->triggerLatestBuild($silverbackGatsbyServer->id());
     }
 
@@ -116,12 +121,16 @@ class GatsbyBuildTrigger implements GatsbyBuildTriggerInterface {
    * If the build url is not configured, presume false so the build
    * will still happen.
    *
-   * @param string $latestBuildId
+   * @param int $latestBuildId
+   *   The latest build id.
    * @param \Drupal\graphql\Entity\ServerInterface $serverEntity
    *
    * @return bool
+   *   Whether the frontend is already up-to-date.
+   *
+   * @throws \GuzzleHttp\Exception\GuzzleException
    */
-  protected function isFrontendLatestBuild(int $latestBuildId, ServerInterface $serverEntity) {
+  protected function isFrontendLatestBuild(int $latestBuildId, ServerInterface $serverEntity): bool {
     $result = FALSE;
     $configuration = $serverEntity->get('schema_configuration')[$serverEntity->get('schema')];
     if (!empty($configuration['build_url'])) {
@@ -142,7 +151,13 @@ class GatsbyBuildTrigger implements GatsbyBuildTriggerInterface {
         ]);
       }
       if ($response->getStatusCode() === 200) {
-        $content = json_decode($response->getBody()->getContents(), TRUE);
+        $contents = $response->getBody()->getContents();
+
+        if (empty($contents)) {
+          return FALSE;
+        }
+
+        $content = json_decode($contents, TRUE);
         $buildId = array_key_exists('drupalBuildId', $content) ? (int) $content['drupalBuildId'] : 0;
         $result = $latestBuildId === $buildId;
       }
@@ -150,14 +165,33 @@ class GatsbyBuildTrigger implements GatsbyBuildTriggerInterface {
     return $result;
   }
 
-  protected function getWebhook($server_id) {
+  /**
+   * Get the webhook URL for a server.
+   *
+   * @param string $server_id
+   *   The server id.
+   *
+   * @return mixed|null
+   *   The webhook URL or NULL.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   */
+  protected function getWebhook(string $server_id): mixed {
     $server = $this->entityTypeManager
       ->getStorage('graphql_server')
       ->load($server_id);
+
+    if (!$server instanceof ServerInterface) {
+      return NULL;
+    }
+
     $schema_id = $server->get('schema');
+
     if (isset($server->get('schema_configuration')[$schema_id]['build_webhook'])) {
       return $server->get('schema_configuration')[$schema_id]['build_webhook'];
     }
+
     return NULL;
   }
 
@@ -181,11 +215,12 @@ class GatsbyBuildTrigger implements GatsbyBuildTriggerInterface {
         if (
           function_exists('_gatsby_build_monitor_state') &&
           // This detects the "build" webhook.
-          strpos($url, '/data_source/publish/') !== FALSE
+          str_contains($url, '/data_source/publish/')
         ) {
           _gatsby_build_monitor_state('building');
         }
-      } catch (\Exception $exc) {
+      }
+      catch (\Exception | GuzzleException $exc) {
         $this->messenger->addError('Could not send build notification to server "' . $url . '".');
         $this->messenger->addError($exc->getMessage());
       }
