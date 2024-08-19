@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.6.2](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@3.6.1...@-amazeelabs/silverback_gatsby@3.6.2) (2024-08-19)
+
+
+### Bug Fixes
+
+* **#1560:** handle null/empty response in isFrontendLatestBuild ([#1561](https://github.com/AmazeeLabs/silverback-mono/issues/1561)) ([22c7d22](https://github.com/AmazeeLabs/silverback-mono/commit/22c7d229c72bb6a450d017522094153e15c748b9)), closes [#1560](https://github.com/AmazeeLabs/silverback-mono/issues/1560)
+
+
+
+
+
 ## [3.6.1](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@3.6.0...@-amazeelabs/silverback_gatsby@3.6.1) (2024-07-18)
 
 
