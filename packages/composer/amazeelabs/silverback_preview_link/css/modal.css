@@ -1,0 +1,17 @@
+.preview-link .preview-link__copy,
+.preview-link p {
+  margin: 0;
+}
+
+.silverback-preview-link-entity-form .messages__header {
+  display: none;
+}
+
+.silverback-preview-link-entity-form .messages-list {
+  margin-block: 0;
+}
+
+.silverback-preview-link-entity-form .messages {
+  padding-block: 8px;
+  padding-inline: 0;
+}

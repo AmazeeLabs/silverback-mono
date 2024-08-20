@@ -232,6 +232,7 @@ final class PreviewLinkForm extends ContentEntityForm {
     }
     unset($form['actions']['submit']);
     $form['#attached']['library'][] = 'silverback_preview_link/copy';
+    $form['#attached']['library'][] = 'silverback_preview_link/modal';
 
     return $form;
   }

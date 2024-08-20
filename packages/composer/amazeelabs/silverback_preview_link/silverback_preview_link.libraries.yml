@@ -2,3 +2,8 @@ copy:
   version: VERSION
   js:
     js/copy.js: {}
+modal:
+  version: VERSION
+  css:
+    theme:
+      css/modal.css: {}
