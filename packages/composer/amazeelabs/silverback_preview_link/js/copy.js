@@ -26,7 +26,7 @@
         copy = () => {
           navigator.clipboard.writeText(copyText.value).then(
             () => setSuccessMessage(),
-            (err) => (console.log('Error: ' + err)),
+            (err) => console.log('Error: ' + err),
           );
         };
       }
