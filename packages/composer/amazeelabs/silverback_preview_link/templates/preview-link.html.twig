@@ -7,13 +7,10 @@
              name="preview-link__copy--text"
              type="text"
              value="{{ preview_url }}"
-             size="32"
+             size="28"
              class="form-text required form-element form-element--type-text form-element--api-textfield"
       >
-      <button class="button">{{ 'Copy' }}</button>
-      <div id="preview-link__copy--result" class="form-item__description">
-        &nbsp;
-      </div>
+      <button class="button button--primary">{{ 'Copy' }}</button>
     </div>
   {% endif %}
   {% if preview_link_has_expired and display_gif %}

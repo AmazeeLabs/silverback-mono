@@ -3,19 +3,18 @@
     attach: function (context) {
       const copyText = document.querySelector('.preview-link__copy .form-text');
       const copyButton = document.querySelector('.preview-link__copy button');
-      const copyResult = document.querySelector(
-        '.preview-link__copy .form-item__description',
-      );
 
-      if (!copyText || !copyButton || !copyResult) {
+      if (!copyText || !copyButton) {
         return;
       }
+
       const setSuccessMessage = () => {
-        const copySuccessMessage = Drupal.t('Link copied ✨ ready to share!');
-        copyResult.textContent = copySuccessMessage;
+        const originalLabel = copyButton.textContent;
+        const copySuccessLabel = Drupal.t('Copied ✨');
+        copyButton.textContent = copySuccessLabel;
         setTimeout(() => {
-          copyResult.textContent = ' ';
-        }, 3000);
+          copyButton.textContent = originalLabel;
+        }, 2000);
       };
       // Fallback for browsers that don't support navigator.clipboard.
       let copy = () => {
@@ -27,7 +26,7 @@
         copy = () => {
           navigator.clipboard.writeText(copyText.value).then(
             () => setSuccessMessage(),
-            (err) => (copyResult.textContent = 'Error: ' + err),
+            (err) => console.log('Error: ' + err),
           );
         };
       }
