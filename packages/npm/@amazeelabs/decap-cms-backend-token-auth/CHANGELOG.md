@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/decap-cms-backend-token-auth@1.1.14...@amazeelabs/decap-cms-backend-token-auth@1.2.0) (2024-09-03)
+
+
+### Features
+
+* let frontend know that user is logged in into decap cms ([edcb0b3](https://github.com/AmazeeLabs/silverback-mono/commit/edcb0b307f3af9e6100ba9d792357edfb576054c))
+
+
+
+
+
 ## [1.1.14](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/decap-cms-backend-token-auth@1.1.13...@amazeelabs/decap-cms-backend-token-auth@1.1.14) (2024-05-27)
 
 **Note:** Version bump only for package @amazeelabs/decap-cms-backend-token-auth
