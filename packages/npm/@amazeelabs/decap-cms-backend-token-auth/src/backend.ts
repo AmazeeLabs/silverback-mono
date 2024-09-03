@@ -54,6 +54,8 @@ export class TokenAuthBackend implements Implementation {
       const status = await this.client.status();
       // Authenticate against the delegate backend.
       await this.delegate.authenticate(status);
+      // Let frontend know that user is logged in.
+      sessionStorage.setItem('decap-cms-logged-in', '1');
       // Return status information.
       return {
         ...status,
@@ -79,6 +81,7 @@ export class TokenAuthBackend implements Implementation {
   async logout() {
     await this.client.logout();
     await this.delegate.logout();
+    sessionStorage.removeItem('decap-cms-logged-in');
   }
 
   /**
