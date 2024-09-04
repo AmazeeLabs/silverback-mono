@@ -46,9 +46,11 @@
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.43",
     "@octokit/types": "13.5.0",
+    "@types/js-cookie": "3.0.6",
     "@types/node": "18.19.33",
     "@types/react": "18.3.1",
     "@types/semaphore": "1.1.4",
+    "js-cookie": "3.0.5",
     "typescript": "5.4.5",
     "vitest": "1.6.0"
   },
