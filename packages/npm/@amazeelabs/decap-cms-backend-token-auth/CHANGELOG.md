@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/decap-cms-backend-token-auth@1.2.0...@amazeelabs/decap-cms-backend-token-auth@1.2.1) (2024-09-04)
+
+
+### Bug Fixes
+
+* replace sessionStorage with session cookie ([1119b5a](https://github.com/AmazeeLabs/silverback-mono/commit/1119b5ab73362fb9eee21e7887119a0ca3392eb3))
+
+
+
+
+
 # [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/decap-cms-backend-token-auth@1.1.14...@amazeelabs/decap-cms-backend-token-auth@1.2.0) (2024-09-03)
 
 
