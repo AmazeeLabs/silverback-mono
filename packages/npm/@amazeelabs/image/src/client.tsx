@@ -1,8 +1,5 @@
 'use client';
-import {
-  imageDimensionsFromData,
-  imageDimensionsFromStream,
-} from 'image-dimensions';
+import { imageDimensionsFromData } from 'image-dimensions';
 import {
   createContext,
   forwardRef,
