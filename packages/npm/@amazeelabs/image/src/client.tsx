@@ -1,5 +1,8 @@
 'use client';
-import { imageDimensionsFromStream } from 'image-dimensions';
+import {
+  imageDimensionsFromData,
+  imageDimensionsFromStream,
+} from 'image-dimensions';
 import {
   createContext,
   forwardRef,
@@ -45,7 +48,10 @@ async function imageDimensions(src: string) {
   if (!response.body) {
     throw new Error('Failed to fetch image');
   }
-  return imageDimensionsFromStream(response.body);
+  const buffer = await response.arrayBuffer();
+  const data = new Uint8Array(buffer);
+  const result = imageDimensionsFromData(data);
+  return result;
 }
 
 function sizerImage(width: number, height: number) {

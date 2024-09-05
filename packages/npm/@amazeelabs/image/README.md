@@ -36,6 +36,12 @@ export function MyComponent() {
   eagerly loaded and should be used for critical images above the fold. All
   other images are lazyily loaded by default.
 
+## Settings
+
+There is an optional `<ImageSettings>` context provider that allows to define a
+`alterSrc` function to adjust image urls before they are rendered. That might be
+used by frameworks to adjust images urls based on the environment.
+
 ## Opinions
 
 The following opinions are built into the component and allow for a very simple
