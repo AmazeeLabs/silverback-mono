@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/image@1.2.0...@amazeelabs/image@1.2.1) (2024-09-05)
+
+
+### Bug Fixes
+
+* **SLB-354:** client dimension calculation ([cf7efca](https://github.com/AmazeeLabs/silverback-mono/commit/cf7efca781503ecd9685e429138e1cc26d1fc6d4))
+* **SLB-354:** eslint ([09c6260](https://github.com/AmazeeLabs/silverback-mono/commit/09c626089d6a97ae8004e11a8aab3a2c468eeef1))
+
+
+
+
+
 # [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/image@1.1.3...@amazeelabs/image@1.2.0) (2024-08-14)
 
 
