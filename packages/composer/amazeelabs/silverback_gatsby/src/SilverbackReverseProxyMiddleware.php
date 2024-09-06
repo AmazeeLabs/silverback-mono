@@ -37,7 +37,7 @@ class SilverbackReverseProxyMiddleware implements HttpKernelInterface {
   /**
    * {@inheritDoc}
    */
-  public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = TRUE): Response {
+  public function handle(Request $request, $type = HttpKernelInterface::MAIN_REQUEST, $catch = TRUE): Response {
     foreach (['Proto', 'Host', 'Port', 'For'] as $header) {
       if ($request->headers->has('SLB-Forwarded-' . $header)) {
         $request->headers->set('X-Forwarded-' . $header, $request->headers->get('SLB-Forwarded-' . $header));

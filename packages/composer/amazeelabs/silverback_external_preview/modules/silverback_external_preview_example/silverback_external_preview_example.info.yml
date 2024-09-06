@@ -4,4 +4,4 @@ description: 'Example External Preview url alter implementation.'
 package: Silverback
 dependencies:
   - silverback_external_preview:silverback_external_preview
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^8 || ^9 || ^10 || ^11

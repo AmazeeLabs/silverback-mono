@@ -11,7 +11,7 @@ abstract class EntityFeedTestBase extends GraphQLTestBase {
 
   protected $strictConfigSchema = FALSE;
 
-  public static $modules = [
+  protected static $modules = [
     'text',
     'path_alias',
     'graphql_directives',

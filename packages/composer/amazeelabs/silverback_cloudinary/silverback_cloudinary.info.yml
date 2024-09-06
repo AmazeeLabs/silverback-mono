@@ -4,4 +4,4 @@ description: 'GraphQL extension to integrate with Cloudinary.'
 package: Silverback
 dependencies:
   - graphql:graphql (>=8.x-4.0)
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^9 || ^10 || ^11

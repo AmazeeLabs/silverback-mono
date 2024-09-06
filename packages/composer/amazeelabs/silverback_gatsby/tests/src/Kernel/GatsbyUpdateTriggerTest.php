@@ -22,7 +22,7 @@ class GatsbyUpdateTriggerTest extends KernelTestBase {
   /**
    * @var string[]
    */
-  public static $modules = [
+  protected static $modules = [
     'language',
     'user',
     'node',

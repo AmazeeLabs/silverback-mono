@@ -18,7 +18,7 @@ use Drupal\Tests\TestFileCreationTrait;
 
 class EditorDirectivesTest extends GraphQLTestBase {
   use GraphQLDirectivesTestTrait;
-  public static $modules = [
+  protected static $modules = [
     'graphql_directives',
     'text',
     'file',

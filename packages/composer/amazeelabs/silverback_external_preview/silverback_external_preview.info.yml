@@ -2,7 +2,7 @@ name: Silverback External Preview
 description: Provides a UI to preview pages on external websites.
 package: Silverback
 type: module
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^8 || ^9 || ^10 || ^11
 dependencies:
   - drupal:link
   - drupal:path_alias

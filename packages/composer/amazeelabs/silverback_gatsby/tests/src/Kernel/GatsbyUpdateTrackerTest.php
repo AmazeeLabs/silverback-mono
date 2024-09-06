@@ -18,7 +18,7 @@ class GatsbyUpdateTrackerTest extends KernelTestBase {
   /**
    * @var string[]
    */
-  public static $modules = [
+  protected static $modules = [
     'language',
     'user',
     'node',

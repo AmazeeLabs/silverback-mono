@@ -14,7 +14,7 @@ use Drupal\Tests\Traits\Core\PathAliasTestTrait;
 class GatsbyUpdateHandlerTest extends EntityFeedTestBase {
 
   use PathAliasTestTrait;
-  public static $modules = ['path_alias'];
+  protected static $modules = ['path_alias'];
 
   /**
    * @var \Drupal\silverback_gatsby\GatsbyUpdateTracker|object|null
