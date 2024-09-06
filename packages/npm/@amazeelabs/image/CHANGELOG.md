@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/image@1.2.1...@amazeelabs/image@1.3.0) (2024-09-06)
+
+
+### Features
+
+* **SLB-354:** center client images by default ([e2b8de9](https://github.com/AmazeeLabs/silverback-mono/commit/e2b8de912cbceb602bd6a0b9bf88dc282015b7ee))
+
+
+
+
+
 ## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/image@1.2.0...@amazeelabs/image@1.2.1) (2024-09-05)
 
 
