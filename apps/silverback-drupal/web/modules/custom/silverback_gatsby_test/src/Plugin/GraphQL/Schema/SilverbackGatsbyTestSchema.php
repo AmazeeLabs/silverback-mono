@@ -8,8 +8,8 @@ use Drupal\graphql\GraphQL\Resolver\ResolverInterface;
 use Drupal\graphql\GraphQL\ResolverBuilder;
 use Drupal\graphql\GraphQL\ResolverRegistry;
 use Drupal\graphql\GraphQL\ResolverRegistryInterface;
+use Drupal\graphql_directives\Plugin\GraphQL\Schema\DirectableSchema;
 use Drupal\node\NodeInterface;
-use Drupal\silverback_gatsby\GraphQL\ComposableSchema;
 
 /**
  * @Schema(
@@ -17,7 +17,7 @@ use Drupal\silverback_gatsby\GraphQL\ComposableSchema;
  *   name = "Silverback Gatsby Test Schema",
  * )
  */
-class SilverbackGatsbyTestSchema extends ComposableSchema {
+class SilverbackGatsbyTestSchema extends DirectableSchema {
 
   public function getResolverRegistry(): ResolverRegistryInterface {
     $builder = new ResolverBuilder();

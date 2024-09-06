@@ -2,8 +2,8 @@ name: Silverback Gatsby Test
 description: Test helpers.
 package: Custom
 type: module
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^8 || ^9 || ^10 || ^11
 
 dependencies:
-  - silverback_gutenberg
-  - silverback_cloudinary
+  - silverback_gutenberg:silverback_gutenberg
+  - silverback_cloudinary:silverback_cloudinary

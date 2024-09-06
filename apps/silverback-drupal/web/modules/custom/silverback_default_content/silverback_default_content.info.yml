@@ -1,6 +1,6 @@
 name: Default content for Silverback Drupal
 package: Custom
 type: module
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^8 || ^9 || ^10 || ^11
 dependencies:
   - default_content:default_content

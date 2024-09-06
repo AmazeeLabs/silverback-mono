@@ -9,7 +9,7 @@ use Drupal\Tests\Traits\Core\PathAliasTestTrait;
 class EntityFeedTest extends EntityFeedTestBase {
   use PathAliasTestTrait;
 
-  public static $modules = ['path_alias'];
+  protected static $modules = ['path_alias'];
 
   public function register(ContainerBuilder $container) {
     parent::register($container);
