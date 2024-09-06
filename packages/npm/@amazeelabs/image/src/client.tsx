@@ -80,13 +80,11 @@ export const Image = forwardRef(function Image(
           r.current.style.backgroundSize = 'cover';
           r.current.style.maxWidth = '100%';
 
-          if (focus) {
-            r.current.style.backgroundPosition = calculateFocusPosition(
-              r.current.naturalWidth,
-              r.current.naturalHeight,
-              focus,
-            );
-          }
+          r.current.style.backgroundPosition = calculateFocusPosition(
+            r.current.naturalWidth,
+            r.current.naturalHeight,
+            focus || [r.current.naturalWidth / 2, r.current.naturalHeight / 2],
+          );
           r.current.src = sizerImage(target.width, target.height);
           return;
         })
