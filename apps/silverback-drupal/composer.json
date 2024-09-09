@@ -19,6 +19,7 @@
     }
   ],
   "require": {
+    "php": "^8.3 <8.4",
     "amazeelabs/default-content": "@dev",
     "amazeelabs/graphql_directives": "@dev",
     "amazeelabs/proxy-drupal-core": "@dev",
@@ -62,9 +63,6 @@
   },
   "prefer-stable": true,
   "config": {
-    "platform": {
-      "php": "8.1.13"
-    },
     "sort-packages": true,
     "allow-plugins": {
       "composer/installers": true,
