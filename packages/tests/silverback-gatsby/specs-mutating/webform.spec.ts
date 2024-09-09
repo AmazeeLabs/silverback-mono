@@ -73,7 +73,7 @@ test('confirmation type: inline', async ({ page }) => {
   await submitWebform(page);
 
   expect(await page.innerHTML('.status-messages-inner')).toContain(
-    'Test message with&nbsp;<strong>some bold text.</strong>',
+    '<div>Test message with <strong>some bold text.</strong></div>',
   );
   expect(await page.$('iframe')).toBeNull();
 });
@@ -83,7 +83,7 @@ test('confirmation type: message', async ({ page }) => {
   await submitWebform(page);
 
   expect(await page.innerHTML('.status-messages-inner')).toContain(
-    'Test message with&nbsp;<strong>some bold text.</strong>',
+    '<div>Test message with <strong>some bold text.</strong></div>',
   );
   expect(await page.$('iframe')).not.toBeNull();
 });
@@ -115,7 +115,7 @@ test('confirmation type: url_message', async ({ page }) => {
   await page.waitForNavigation();
 
   expect(await page.innerHTML('.status-messages-inner')).toContain(
-    'Test message with&nbsp;<strong>some bold text.</strong>',
+    '<div>Test message with <strong>some bold text.</strong></div>',
   );
   expect(
     [
@@ -184,22 +184,15 @@ const setConfirmationOption = async (
   );
 
   if (options?.addMessage === true) {
-    const editorFrame = (await (
-      await page.waitForSelector(
-        '.form-item--confirmation-message-value-value .cke_wysiwyg_frame',
-      )
-    )?.contentFrame())!;
-    // Filling with an empty string helps Playwright do the things right.
-    await editorFrame.fill('body', '');
-    await editorFrame.fill('body', 'Test message with ');
-    await page.click(
-      '.form-item--confirmation-message-value-value .cke_button__bold',
-    );
+    await page
+      .getByLabel('Editor editing area: main.')
+      .fill('Test message with ');
+    await page.getByLabel('Bold').click();
     await page.keyboard.type('some bold text.');
   }
   if (typeof options?.addMessage === 'string') {
-    await page.click('a[role="button"]:has-text("Source")');
-    await page.fill('#cke_1_contents textarea', options.addMessage);
+    await page.getByLabel('Source').click();
+    await page.getByLabel('Source code editing area').fill(options.addMessage);
   }
 
   if (options?.setRedirectUrl) {

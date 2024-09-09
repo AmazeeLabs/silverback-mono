@@ -1,41 +1,39 @@
-uuid: 977d5899-afe3-45db-9d2e-bf4eb0da3a20
+uuid: f5098a0c-477f-4ef5-9773-12812189af27
 langcode: en
 status: true
 dependencies:
   config:
     - filter.format.rich
   module:
-    - ckeditor
+    - ckeditor5
 format: rich
-editor: ckeditor
+editor: ckeditor5
 settings:
   toolbar:
-    rows:
-      -
-        -
-          name: Formatting
-          items:
-            - Bold
-            - Italic
-        -
-          name: Links
-          items:
-            - DrupalLink
-            - DrupalUnlink
-        -
-          name: Lists
-          items:
-            - BulletedList
-            - NumberedList
-        -
-          name: Media
-          items:
-            - Blockquote
-            - DrupalMediaLibrary
-        -
-          name: Tools
-          items:
-            - Source
-  plugins: {  }
+    items:
+      - bold
+      - italic
+      - '|'
+      - link
+      - '|'
+      - bulletedList
+      - numberedList
+      - '|'
+      - blockQuote
+      - drupalMedia
+      - '|'
+      - sourceEditing
+  plugins:
+    ckeditor5_list:
+      properties:
+        reversed: true
+        startIndex: true
+      multiBlock: true
+    ckeditor5_sourceEditing:
+      allowed_tags: {  }
+    linkit_extension:
+      linkit_enabled: false
+    media_media:
+      allow_view_mode_override: false
 image_upload:
   status: false
