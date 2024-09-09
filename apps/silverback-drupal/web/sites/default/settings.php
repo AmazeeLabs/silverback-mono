@@ -776,6 +776,10 @@ $settings['config_sync_directory'] = '../config/sync';
 global $content_directories;
 $content_directories['sync'] = $app_root . '/../content/sync';
 
+// Some test modules are enabled. Drupal will error on the requirements check if
+// this setting is not set.
+$settings['extension_discovery_scan_tests'] = TRUE;
+
 $settings['silverback_graphql_persisted_map'] = '../generated/persisted-queries-map.json';
 
 if ($env = getenv('SB_ENVIRONMENT')) {
