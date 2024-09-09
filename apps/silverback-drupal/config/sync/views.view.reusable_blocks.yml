@@ -6,9 +6,9 @@ dependencies:
     - block_content.type.reusable_block
     - field.storage.block_content.body
   module:
-    0: block_content
-    2: user
-    3: gutenberg
+    - block_content
+    - gutenberg
+    - user
   enforced:
     module:
       - gutenberg
@@ -230,6 +230,7 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
+          pagination_heading_level: h4
       exposed_form:
         type: basic
         options:
