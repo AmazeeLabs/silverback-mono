@@ -26,6 +26,7 @@ class MenuFeedTest extends GraphQLTestBase {
     $this->itemCount = 0;
     // Silverback Gatsby setup.
     $this->installSchema('silverback_gatsby', ['gatsby_update_log']);
+    $this->installEntitySchema('path_alias');
     $this->createTestServer(
       'directable',
       '/gatsby',

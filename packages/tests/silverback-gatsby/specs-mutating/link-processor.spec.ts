@@ -74,7 +74,10 @@ test('test LinkProcessor', async ({ page }) => {
   await page.click('button[aria-label="Toggle block inserter"]');
   await page.click('.block-editor-inserter__menu :text-is("Media")');
   await page.click('button:text-is("Media Library") >> nth=-1');
-  await page.check('input[name="media_library_select_form[0]"]');
+  await page
+    .locator('input[name^="media_library_select_form"]')
+    .first()
+    .check();
   await page.click('button:text-is("Insert")');
   await page.fill('[aria-label="Write caption…"]', 'link');
   await page.keyboard.press(
