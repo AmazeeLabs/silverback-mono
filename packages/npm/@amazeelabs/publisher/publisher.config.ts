@@ -16,7 +16,7 @@ export default defineConfig({
   // oAuth2 takes precedence.
   oAuth2: {
     clientId: process.env.OAUTH2_CLIENT_ID || 'publisher',
-    clientSecret: process.env.OAUTH2_CLIENT_ID || 'publisher',
+    clientSecret: process.env.OAUTH2_CLIENT_SECRET || 'publisher',
     // Applies for ResourceOwnerPassword only.
     scope: process.env.OAUTH2_SCOPE || 'publisher',
     tokenHost: process.env.OAUTH2_TOKEN_HOST || 'http://127.0.0.1:8888',

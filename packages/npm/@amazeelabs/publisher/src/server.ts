@@ -253,18 +253,6 @@ const runServer = async (): Promise<HttpTerminator> => {
     res.redirect('/oauth/login');
   });
 
-  app.get('*', (req, res, next) => {
-    if (!req.app.locals.isReady) {
-      if (req.accepts('text/html')) {
-        res.redirect(302, `/___status/status.html?dest=${req.originalUrl}`);
-      } else {
-        res.status(404);
-      }
-      res.end();
-    }
-    next();
-  });
-
   const servePort = getConfig().commands.serve?.port;
   if (servePort) {
     // Use the authentication middleware for the proxy.
@@ -283,6 +271,18 @@ const runServer = async (): Promise<HttpTerminator> => {
       res.redirect('/___status/');
     });
   }
+
+  app.get('*', (req, res, next) => {
+    if (!req.app.locals.isReady) {
+      if (req.accepts('text/html')) {
+        res.redirect(302, `/___status/status.html?dest=${req.originalUrl}`);
+      } else {
+        res.status(404);
+      }
+      res.end();
+    }
+    next();
+  });
 
   const host = getConfig().publisherHost || '0.0.0.0';
   const port = getConfig().publisherPort;
