@@ -6,7 +6,6 @@ settings:
   default_reset_button_label: Réinitialiser
   default_delete_button_label: Supprimer
   default_form_confidential_message: 'Ce formulaire est confidentiel. Vous devez vous <a href="[site:login-url]/logout?destination=[current-page:url:relative]">déconnecter</a> pour l''utiliser.'
-  default_form_access_denied_message: 'Veuillez vous connecter pour accéder à ce formulaire.'
   default_form_required_label: 'Indique si le champs est requis'
   default_wizard_prev_button_label: '< Précédent'
   default_wizard_next_button_label: 'Suivant >'
@@ -26,7 +25,6 @@ settings:
   default_confirmation_message: 'Nouvelle soumission ajoutée à [webform:title]'
   default_confirmation_back_label: 'Retour au formulaire'
   default_submission_label: '[webform_submission:submitted-to]: Soumission #[webform_submission:serial]'
-  default_submission_access_denied_message: 'Veuillez vous connecter pour accéder à cette soumission.'
   default_submission_locked_message: 'Cette soumission a été verrouillée.'
   default_autofill_message: 'Cette soumission a été pré-remplie grâce à votre précédente soumission.'
   dialog_options:
@@ -39,8 +37,6 @@ settings:
 element:
   empty_message: '{Vide}'
   default_more_title: Plus
-file:
-  file_private_redirect_message: 'Veuillez vous connecter accéder au fichier transféré.'
 mail:
   default_body_html: "<p>Envoyé le [webform_submission:created]</p>\r\n<p>Envoyé par : [webform_submission:user]</p>\r\n<p>Les valeurs soumises sont :</p>\r\n[webform_submission:values]\n"
 test:

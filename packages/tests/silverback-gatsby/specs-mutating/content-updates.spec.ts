@@ -5,7 +5,7 @@ import {
   resetDrupalState,
   waitForGatsby,
 } from '@amazeelabs/silverback-playwright';
-import { expect, PlaywrightTestArgs, test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 
 test.beforeAll(async () => {
   await resetDrupalState();
@@ -21,7 +21,7 @@ test('basic updates', async ({ page }) => {
 
   await page.goto(`${drupal.baseUrl}/node/add/article`);
   await page.type('#edit-title-0-value', title);
-  await fillCkeditor(page, initialBodyText);
+  await page.getByLabel('Editor editing area: main.').fill(initialBodyText);
   await page.click('#edit-submit');
   await waitForGatsby();
 
@@ -31,7 +31,7 @@ test('basic updates', async ({ page }) => {
   await expect(page.locator('body')).toContainText(initialBodyText);
 
   await page.goto(`${drupal.baseUrl}${pagePath}/edit`);
-  await fillCkeditor(page, updatedBodyText);
+  await page.getByLabel('Editor editing area: main.').fill(updatedBodyText);
   await page.click('#edit-submit');
   await waitForGatsby();
 
@@ -74,11 +74,3 @@ test('create unpublished content, then publish it, then unpublish it again', asy
   await page.goto(gatsby.baseUrl);
   await expect(page.locator(`a:text-is("${title}")`)).not.toBeVisible();
 });
-
-const fillCkeditor = async (page: PlaywrightTestArgs['page'], text: string) => {
-  const editorFrame = (await (
-    await page.waitForSelector('iframe.cke_wysiwyg_frame')
-  )?.contentFrame())!;
-  await editorFrame.fill('body', '');
-  await editorFrame.fill('body', text);
-};
