@@ -44,6 +44,7 @@
     "drupal/core-recommended": "10.2.6",
     "drupal/default_content": "2.0.0-alpha2",
     "drupal/entity_usage": "2.0.0-beta12",
+    "drupal/focal_point": "^2.1",
     "drupal/graphql": "4.7.0",
     "drupal/gutenberg": "2.8.0",
     "drupal/hal": "2.0.2",
