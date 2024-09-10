@@ -16,9 +16,13 @@ runs:
       with:
         php-version: '8.3'
 
+    # Update SQLite so it is compatible with Drupal 11.
+    # Solution from https://github.com/actions/runner-images/issues/9033#issuecomment-1857780470
     - name: Check sqlite3 version
+      shell: bash
       run: sqlite3 --version
     - name: Reinstall sqlite3
+      shell: bash
       run: |
         set -e
         download_link="https://www.sqlite.org/2023/sqlite-tools-linux-x64-3440200.zip"
@@ -26,6 +30,7 @@ runs:
         unzip "/tmp/$(basename "$download_link")" -d /tmp
         sudo install /tmp/sqlite3 /usr/local/bin/
     - name: Check sqlite3 version
+      shell: bash
       run: sqlite3 --version
 
     - name: Read .nvmrc
