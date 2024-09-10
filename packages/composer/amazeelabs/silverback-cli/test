@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
+echo "SQLite version:"
+sqlite3 --version
+
 BASEDIR="$( cd "$(dirname "$0")" > /dev/null 2>&1 ; pwd -P )"
 
 function _cleanup {
