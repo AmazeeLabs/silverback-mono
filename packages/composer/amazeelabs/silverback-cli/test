@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-echo "System SQLite version:"
-sqlite3 --version
-echo "PHP SQLite version:"
-php -r "printf(\"%s\n\", (new PDO('sqlite::memory:'))->query('select sqlite_version()')->fetch()[0]);"
-
 BASEDIR="$( cd "$(dirname "$0")" > /dev/null 2>&1 ; pwd -P )"
 
 function _cleanup {
