@@ -20,7 +20,7 @@ class SnapshotCreate extends SnapshotBase {
   /**
    * {@inheritDoc}
    */
-  protected function execute(InputInterface $input, OutputInterface $output) {
+  protected function execute(InputInterface $input, OutputInterface $output): int {
     parent::execute($input, $output);
 
     $path = $this->getSnapshotStorageDirectory($input);

@@ -58,7 +58,7 @@ class SilverbackCommand extends Command {
   /**
    * {@inheritdoc}
    */
-  protected function execute(InputInterface $input, OutputInterface $output) {
+  protected function execute(InputInterface $input, OutputInterface $output): int {
     if (!file_exists('composer.json')) {
       $output->writeln('<error>composer.json not found. Please run this command from composer based Drupal installations root directory.</>');
       exit(1);

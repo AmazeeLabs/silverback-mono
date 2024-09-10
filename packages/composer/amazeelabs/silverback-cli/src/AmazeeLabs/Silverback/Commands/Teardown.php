@@ -13,7 +13,7 @@ class Teardown extends SilverbackCommand {
     $this->setDescription('Delete the current site.');
   }
 
-  protected function execute(InputInterface $input, OutputInterface $output) {
+  protected function execute(InputInterface $input, OutputInterface $output): int {
     parent::execute($input, $output);
     if ($this->fileSystem->exists('web/sites/default/files')) {
       $this->cleanDir('web/sites/default/files');

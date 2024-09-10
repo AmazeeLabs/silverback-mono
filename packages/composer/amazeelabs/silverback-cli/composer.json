@@ -6,7 +6,7 @@
   "version": "2.9.12",
   "require": {
     "nelexa/zip": "^4.0.2",
-    "drush/drush": "^10 || ^11 || ^12",
+    "drush/drush": "^10 || ^11 || ^12 || ^13",
     "vlucas/phpdotenv": "^5.6.0",
     "ext-json": "*"
   },
