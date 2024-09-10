@@ -24,6 +24,7 @@ export default defineConfig({
       formats: ['cjs', 'es'],
     },
   },
+  // @ts-ignore
   test: {
     environment: 'happy-dom',
   },
