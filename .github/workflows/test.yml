@@ -5,7 +5,7 @@ on:
 jobs:
   tests:
     name: Tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -77,7 +77,7 @@ jobs:
   drupal_updates:
     if: startsWith(github.head_ref, 'test-all/') == true
     name: Check for forgotten config changes
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout BASE
         uses: actions/checkout@v4
