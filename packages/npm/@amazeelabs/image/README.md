@@ -20,27 +20,11 @@ export function MyComponent() {
 }
 ```
 
-## Properties
+There is also a `<ImageSettings>` context provider that allows to define some
+global settings.
 
-- `src`: The URL of the image to display. Can be either a real url (starting
-  with `http://` or `https://`), a relative path or the path of a file in the
-  "static" folder (starting with `/`) of the respective framework.
-- `width`: Required. The largest displayed width. Has to be a `number`.
-- `height`: Optional. The corresponding height. If provided, the image will be
-  cropped, otherwise it will just be scaled.
-- `focus`: Optional. The focus point of the image. The image will be cropped
-  around this point. The value is an array with two numbers, the first one
-  representing the x-coordinate and the second one the y-coordinate based on the
-  original image size.
-- `priority`: Optional boolean value. If set to `true`, the image will be
-  eagerly loaded and should be used for critical images above the fold. All
-  other images are lazyily loaded by default.
-
-## Settings
-
-There is an optional `<ImageSettings>` context provider that allows to define a
-`alterSrc` function to adjust image urls before they are rendered. That might be
-used by frameworks to adjust images urls based on the environment.
+For a detailed list of properties of both, please refer to the type information
+in the source code.
 
 ## Opinions
 
