@@ -3,7 +3,7 @@ import { Image, ImageSettings } from '../../../src/server.js';
 export default function Index() {
   return (
     <ImageSettings
-      outputDir="dist/public/images"
+      outputDir="public/images"
       outputPath="/images"
       alterSrc={(src) => src.replace('9999', '8889')}
     >
