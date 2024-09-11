@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/image@1.3.0...@amazeelabs/image@1.4.0) (2024-09-11)
+
+
+### Features
+
+* **SLB-354:** support png transparency ([4320505](https://github.com/AmazeeLabs/silverback-mono/commit/43205058da4acb827008a3eb924a866a13f96bc8))
+
+
+
+
+
 # [1.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/image@1.2.1...@amazeelabs/image@1.3.0) (2024-09-06)
 
 
