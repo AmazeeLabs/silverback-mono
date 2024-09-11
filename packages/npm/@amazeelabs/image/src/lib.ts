@@ -4,20 +4,70 @@ export type ImageProps = Omit<
   DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>,
   'srcSet' | 'width' | 'height' | 'loading' | 'decoding' | 'fetchPriority'
 > & {
+  /**
+   * The URL of the image to display. This can be a URL, an absolute or relative file path.
+   */
+  src?: string | undefined;
+  /**
+   * The largest width in pixels this image is going to be displayed at.
+   * In most cases this should be the "desktop" display width.
+   *
+   * This will be the largest image generated. For full-screen header images,
+   * a maximum width has to be defined still, since there are weird screens
+   * out there.
+   */
   width: number;
+  /**
+   * A fixed height for the image in pixels. If provided, the image will be
+   * cropped to meet the defined aspect ratio.
+   *
+   * As with "width", this should be the largest displayed height, which is
+   * usually the "desktop" display height.
+   */
   height?: number;
+  /**
+   * A pair of coordinates to define the focus point of the image. The first
+   * one is the x-coordinate, the second one is the y-coordinate. Both are
+   * relative to the top-left corner of the *original* image.
+   */
   focalPoint?: [number, number];
+  /**
+   * A single property to switch between important and lazy-loaded images.
+   * It controls the `loading` and `decoding` attributes.
+   * Images are lazy by default. Only for "above the fold" images (hero, headers...),
+   * "priority" should be set to `true`.
+   */
   priority?: boolean;
-  breakpoints?: Array<number>;
 };
 
 export type ImageSettings = {
+  /**
+   * A list of common device widths to optimize for. Defaults to a sensible list,
+   * but can be overridden if necessary.
+   */
   resolutions: Array<number>;
+  /**
+   * The directory to prepend if a relative file path is provided to `src`.
+   * The main use case are images stored in Storybook's `static` directory,
+   * that are shared with the production build.
+   */
   staticDir: string;
+  /**
+   * The directory to write optimized images to.
+   */
   outputDir: string;
+  /**
+   * The frontend path where optimized images are served from. Has to route to
+   * `outputDir`.
+   */
   outputPath: string;
+  /**
+   * Alter the `src` attribute before it is processed. This can be useful if
+   * images are rendered on the client side and the host has to be adjusted.
+   */
   alterSrc?: (src: string) => string;
 };
+
 export const defaultImageSettings = {
   outputDir: 'dist/public',
   outputPath: '',
