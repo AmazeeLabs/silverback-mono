@@ -31,6 +31,8 @@ export default function Index() {
       />
       <h2>Remote file</h2>
       <Image src="http://localhost:9999/goats.jpg" width={500} />
+      <h2>PNG</h2>
+      <Image src="/logo.png" width={500} />
     </ImageSettings>
   );
 }

@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto';
 import { createWriteStream } from 'node:fs';
 import { mkdir, mkdtemp, open, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { sep } from 'node:path';
+import { extname, sep } from 'node:path';
 import { Readable } from 'node:stream';
 import { finished } from 'node:stream/promises';
 
@@ -56,9 +56,10 @@ async function createDerivative(
 ) {
   const outputDir = getSettings().outputDir;
   const outputPath = getSettings().outputPath;
+  const ext = extname(filename);
   const fn = `${createHash('md5')
     .update(JSON.stringify({ ...target, filename, focalPoint }))
-    .digest('hex')}.jpg`;
+    .digest('hex')}.${ext === '.png' ? 'png' : 'jpg'}`;
 
   const derivative = `${outputDir}/${fn}`;
   await mkdir(outputDir, { recursive: true });
@@ -81,7 +82,9 @@ async function createDerivative(
       fit: 'cover',
       position: sharp.strategy.attention,
     });
-    const resized = await pipeline.toFormat('jpg').toBuffer();
+    const resized = await pipeline
+      .toFormat(ext === '.png' ? 'png' : 'jpg')
+      .toBuffer();
     await writeFile(derivative, resized);
   }
   return `${outputPath}/${fn}`;
