@@ -52,12 +52,12 @@ async function createDerivative(
   filename: string,
   source: Dimensions,
   target: Dimensions,
-  focus: Focus | undefined,
+  focalPoint: Focus | undefined,
 ) {
   const outputDir = getSettings().outputDir;
   const outputPath = getSettings().outputPath;
   const fn = `${createHash('md5')
-    .update(JSON.stringify({ ...target, filename, focus }))
+    .update(JSON.stringify({ ...target, filename, focalPoint }))
     .digest('hex')}.jpg`;
 
   const derivative = `${outputDir}/${fn}`;
@@ -68,12 +68,12 @@ async function createDerivative(
   } catch (err) {
     const img = await readFile(filename);
     const pipeline = sharp(img);
-    if (focus) {
+    if (focalPoint) {
       pipeline.extract(
         calculateFocusExtraction(
           [source.width, source.height],
           [target.width, target.height],
-          focus,
+          focalPoint,
         ),
       );
     }
@@ -150,7 +150,7 @@ export function ImageSettings({
 export async function Image({
   width,
   height,
-  focus,
+  focalPoint,
   priority,
   ...props
 }: ImageProps) {
@@ -167,7 +167,7 @@ export async function Image({
       decoding={priority ? 'async' : 'auto'}
       // eslint-disable-next-line react/no-unknown-property
       fetchPriority={priority ? 'high' : 'auto'}
-      src={await transformSrc(filename, source, target, focus)}
+      src={await transformSrc(filename, source, target, focalPoint)}
       srcSet={await transformSrcSet(
         filename,
         source,
@@ -177,7 +177,7 @@ export async function Image({
           target.width * 2,
           ...getSettings().resolutions.filter((w) => w < target.width),
         ],
-        focus,
+        focalPoint,
       )}
       sizes={props.sizes || `(min-width: ${width}px) ${width}px, 100vw`}
       data-src={props.src}

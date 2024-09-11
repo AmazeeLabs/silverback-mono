@@ -15,11 +15,21 @@ export default function Index() {
       <h2>Portrait without focus</h2>
       <Image src="/goats.jpg" width={150} height={300} />
       <h2>Portrait with manual focus</h2>
-      <Image src="/goats.jpg" width={150} height={300} focus={[380, 180]} />
+      <Image
+        src="/goats.jpg"
+        width={150}
+        height={300}
+        focalPoint={[380, 180]}
+      />
       <h2>Landscape without focus</h2>
       <Image src="/goats.jpg" width={300} height={100} />
       <h2>Landscape with manual focus</h2>
-      <Image src="/goats.jpg" width={300} height={100} focus={[380, 140]} />
+      <Image
+        src="/goats.jpg"
+        width={300}
+        height={100}
+        focalPoint={[380, 140]}
+      />
       <h2>Remote file</h2>
       <Image src="http://localhost:9999/goats.jpg" width={500} />
     </ClientImageSettings>
