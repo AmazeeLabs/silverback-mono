@@ -6,6 +6,7 @@ import {
   useContext,
   useEffect,
   useRef,
+  useState,
 } from 'react';
 
 import {
@@ -30,7 +31,6 @@ export function ImageSettings({
   children,
   ...settings
 }: PropsWithChildren<Partial<ImageSettingsType>>) {
-  console.log('settings', settings.alterSrc);
   return (
     <ImageSettingsContext.Provider
       value={{ ...defaultImageSettings, ...settings }}
@@ -47,36 +47,64 @@ function sizerImage(width: number, height: number) {
 
 export const Image = forwardRef(function Image(
   { src, focalPoint, ...props }: ImageProps,
-  ref,
+  forwardRef,
 ) {
   const alterSrc = useContext(ImageSettingsContext).alterSrc;
   const alteredSrc = alterSrc && src ? alterSrc(src) : src;
-  const imageRef = useRef<HTMLImageElement | null>(null);
+  const localRef = useRef<HTMLImageElement | null>(null);
+  const ref = (forwardRef || localRef) as typeof localRef;
+  const [dimensions, setDimensions] = useState<
+    { width: number; height: number } | undefined
+  >();
   useEffect(() => {
-    const r = imageRef || ref;
-    if (r.current && alteredSrc) {
-      const source = {
-        width: r.current.naturalWidth,
-        height: r.current.naturalHeight,
-      };
-      if (!r.current || !source) {
-        return;
+    if (!dimensions && ref.current) {
+      if (ref.current.naturalWidth && ref.current.naturalHeight) {
+        setDimensions({
+          width: ref.current.naturalWidth,
+          height: ref.current.naturalHeight,
+        });
+      } else {
+        const interval = setInterval(() => {
+          if (
+            ref.current &&
+            ref.current.naturalWidth &&
+            ref.current.naturalHeight
+          ) {
+            setDimensions({
+              width: ref.current.naturalWidth,
+              height: ref.current.naturalHeight,
+            });
+          }
+        }, 200);
+        return () => window.clearInterval(interval);
       }
-      const target = inferTargetDimensions(source, props.width, props.height);
-      r.current.style.backgroundImage = `url(${alteredSrc})`;
-      r.current.style.backgroundSize = 'cover';
-      r.current.style.maxWidth = '100%';
+    }
+  }, [dimensions, setDimensions, ref]);
 
-      r.current.style.backgroundPosition = calculateFocusPosition(
-        r.current.naturalWidth,
-        r.current.naturalHeight,
-        focalPoint || [r.current.naturalWidth / 2, r.current.naturalHeight / 2],
+  useEffect(() => {
+    if (ref.current && alteredSrc && dimensions) {
+      const target = inferTargetDimensions(
+        dimensions,
+        props.width,
+        props.height,
       );
-      r.current.src = sizerImage(target.width, target.height);
+      ref.current.style.backgroundImage = `url(${alteredSrc})`;
+      ref.current.style.backgroundSize = 'cover';
+      ref.current.style.maxWidth = '100%';
+
+      ref.current.style.backgroundPosition = calculateFocusPosition(
+        ref.current.naturalWidth,
+        ref.current.naturalHeight,
+        focalPoint || [
+          ref.current.naturalWidth / 2,
+          ref.current.naturalHeight / 2,
+        ],
+      );
+      ref.current.src = sizerImage(target.width, target.height);
       return;
     }
   }, [
-    imageRef,
+    dimensions,
     ref,
     focalPoint,
     props.width,
@@ -84,5 +112,5 @@ export const Image = forwardRef(function Image(
     alteredSrc,
     alterSrc,
   ]);
-  return <img src={alteredSrc} ref={imageRef || ref} {...props} />;
+  return <img src={alteredSrc} ref={ref} {...props} />;
 });
