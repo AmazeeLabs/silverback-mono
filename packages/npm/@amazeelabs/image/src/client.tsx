@@ -1,5 +1,4 @@
 'use client';
-import { imageDimensionsFromData } from 'image-dimensions';
 import {
   createContext,
   forwardRef,
@@ -7,6 +6,7 @@ import {
   useContext,
   useEffect,
   useRef,
+  useState,
 } from 'react';
 
 import {
@@ -31,6 +31,7 @@ export function ImageSettings({
   children,
   ...settings
 }: PropsWithChildren<Partial<ImageSettingsType>>) {
+  console.log('settings', settings.alterSrc);
   return (
     <ImageSettingsContext.Provider
       value={{ ...defaultImageSettings, ...settings }}
@@ -40,60 +41,40 @@ export function ImageSettings({
   );
 }
 
-async function imageDimensions(src: string) {
-  const response = await fetch(src);
-  if (!response.body) {
-    throw new Error('Failed to fetch image');
-  }
-  const buffer = await response.arrayBuffer();
-  const data = new Uint8Array(buffer);
-  const result = imageDimensionsFromData(data);
-  return result;
-}
-
 function sizerImage(width: number, height: number) {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"></svg>`;
   return `data:image/svg+xml;base64,${base64(svg)}`;
 }
 
 export const Image = forwardRef(function Image(
-  { focalPoint, ...props }: ImageProps,
+  { src, focalPoint, ...props }: ImageProps,
   ref,
 ) {
   const alterSrc = useContext(ImageSettingsContext).alterSrc;
+  const alteredSrc = alterSrc && src ? alterSrc(src) : src;
   const imageRef = useRef<HTMLImageElement | null>(null);
   useEffect(() => {
     const r = imageRef || ref;
-    if (r.current && props.src) {
-      const url = alterSrc ? alterSrc(props.src) : props.src;
-      imageDimensions(url)
-        .then((source) => {
-          if (!r.current || !source) {
-            return;
-          }
-          const target = inferTargetDimensions(
-            source,
-            props.width,
-            props.height,
-          );
-          r.current.style.backgroundImage = `url(${url})`;
-          r.current.style.backgroundSize = 'cover';
-          r.current.style.maxWidth = '100%';
+    if (r.current && alteredSrc) {
+      const source = {
+        width: r.current.naturalWidth,
+        height: r.current.naturalHeight,
+      };
+      if (!r.current || !source) {
+        return;
+      }
+      const target = inferTargetDimensions(source, props.width, props.height);
+      r.current.style.backgroundImage = `url(${alteredSrc})`;
+      r.current.style.backgroundSize = 'cover';
+      r.current.style.maxWidth = '100%';
 
-          r.current.style.backgroundPosition = calculateFocusPosition(
-            r.current.naturalWidth,
-            r.current.naturalHeight,
-            focalPoint || [
-              r.current.naturalWidth / 2,
-              r.current.naturalHeight / 2,
-            ],
-          );
-          r.current.src = sizerImage(target.width, target.height);
-          return;
-        })
-        .catch((error) => {
-          throw error;
-        });
+      r.current.style.backgroundPosition = calculateFocusPosition(
+        r.current.naturalWidth,
+        r.current.naturalHeight,
+        focalPoint || [r.current.naturalWidth / 2, r.current.naturalHeight / 2],
+      );
+      r.current.src = sizerImage(target.width, target.height);
+      return;
     }
   }, [
     imageRef,
@@ -101,8 +82,8 @@ export const Image = forwardRef(function Image(
     focalPoint,
     props.width,
     props.height,
-    props.src,
+    alteredSrc,
     alterSrc,
   ]);
-  return <img ref={imageRef || ref} {...props} />;
+  return <img src={alteredSrc} ref={imageRef || ref} {...props} />;
 });
