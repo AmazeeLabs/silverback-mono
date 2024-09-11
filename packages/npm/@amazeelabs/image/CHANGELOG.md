@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.2](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/image@1.4.1...@amazeelabs/image@1.4.2) (2024-09-11)
+
+
+### Bug Fixes
+
+* **SLB-354:** cover cases where natural dimensions are not immediately there ([1abdefb](https://github.com/AmazeeLabs/silverback-mono/commit/1abdefb6fa9f80971379c8c7e4f53019d796d146))
+
+
+
+
+
 ## [1.4.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/image@1.4.0...@amazeelabs/image@1.4.1) (2024-09-11)
 
 
