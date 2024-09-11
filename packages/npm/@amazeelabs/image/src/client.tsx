@@ -57,7 +57,7 @@ function sizerImage(width: number, height: number) {
 }
 
 export const Image = forwardRef(function Image(
-  { focus, ...props }: ImageProps,
+  { focalPoint, ...props }: ImageProps,
   ref,
 ) {
   const alterSrc = useContext(ImageSettingsContext).alterSrc;
@@ -83,7 +83,10 @@ export const Image = forwardRef(function Image(
           r.current.style.backgroundPosition = calculateFocusPosition(
             r.current.naturalWidth,
             r.current.naturalHeight,
-            focus || [r.current.naturalWidth / 2, r.current.naturalHeight / 2],
+            focalPoint || [
+              r.current.naturalWidth / 2,
+              r.current.naturalHeight / 2,
+            ],
           );
           r.current.src = sizerImage(target.width, target.height);
           return;
@@ -92,6 +95,14 @@ export const Image = forwardRef(function Image(
           throw error;
         });
     }
-  }, [imageRef, ref, focus, props.width, props.height, props.src, alterSrc]);
+  }, [
+    imageRef,
+    ref,
+    focalPoint,
+    props.width,
+    props.height,
+    props.src,
+    alterSrc,
+  ]);
   return <img ref={imageRef || ref} {...props} />;
 });

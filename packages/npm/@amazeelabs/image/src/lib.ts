@@ -6,7 +6,7 @@ export type ImageProps = Omit<
 > & {
   width: number;
   height?: number;
-  focus?: [number, number];
+  focalPoint?: [number, number];
   priority?: boolean;
   breakpoints?: Array<number>;
 };
