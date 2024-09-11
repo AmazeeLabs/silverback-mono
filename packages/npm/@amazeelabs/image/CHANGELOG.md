@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/image@1.4.0...@amazeelabs/image@1.4.1) (2024-09-11)
+
+
+### Bug Fixes
+
+* **SLB-354:** esling violation ([fd579cf](https://github.com/AmazeeLabs/silverback-mono/commit/fd579cf99f27220afa3f40e27ff6630fd6580eac))
+
+
+### Reverts
+
+* Revert "refactor(SLB-354): simplify client-side images" ([004931b](https://github.com/AmazeeLabs/silverback-mono/commit/004931b8f0e59c50293c20fed52bbaa52b962f56))
+
+
+
+
+
 # [1.4.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/image@1.3.0...@amazeelabs/image@1.4.0) (2024-09-11)
 
 
