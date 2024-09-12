@@ -4,3 +4,4 @@ packages
 .turbo
 pnpm-lock.yaml
 CHANGELOG.md
+.devbox
