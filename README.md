@@ -15,12 +15,12 @@ packages and tools.
 
 ### Requirements
 
-- [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/)
-- [pnpm](https://pnpm.io/)
-- [PHP](https://www.php.net/)
-- [Composer](https://getcomposer.org/)
-- [direnv](https://direnv.net/)
+- Install [devbox](https://www.jetify.com/devbox/docs/installing_devbox/)
+- Install [direnv](https://direnv.net/docs/installation.html) (and don't forget
+  about the [hook](https://direnv.net/docs/hook.html))
+
+With `devbox` and `direnv` installed, switching to the project directory will
+automatically load the proper versions of PHP/Node.js/etc into the environment.
 
 ### Setup
 
