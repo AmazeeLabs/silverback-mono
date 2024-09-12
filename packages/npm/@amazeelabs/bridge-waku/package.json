@@ -1,6 +1,6 @@
 {
   "name": "@amazeelabs/bridge-waku",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Bridge implementation for waku.",
   "private": false,
   "sideEffects": false,
