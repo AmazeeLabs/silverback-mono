@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.11](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/decap-test@0.0.10...@-amazeelabs/decap-test@0.0.11) (2024-09-13)
+
+**Note:** Version bump only for package @-amazeelabs/decap-test
+
+
+
+
+
 ## [0.0.10](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/decap-test@0.0.9...@-amazeelabs/decap-test@0.0.10) (2024-09-04)
 
 **Note:** Version bump only for package @-amazeelabs/decap-test
