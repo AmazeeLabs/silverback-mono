@@ -18,6 +18,7 @@ import {
   ImageProps,
   ImageSettings as ImageSettingsType,
   inferTargetDimensions,
+  validateFocus,
 } from './lib.js';
 
 async function prepareFile(src: string) {
@@ -170,7 +171,12 @@ export async function Image({
       decoding={priority ? 'async' : 'auto'}
       // eslint-disable-next-line react/no-unknown-property
       fetchPriority={priority ? 'high' : 'auto'}
-      src={await transformSrc(filename, source, target, focalPoint)}
+      src={await transformSrc(
+        filename,
+        source,
+        target,
+        validateFocus(focalPoint),
+      )}
       srcSet={await transformSrcSet(
         filename,
         source,
@@ -180,7 +186,7 @@ export async function Image({
           target.width * 2,
           ...getSettings().resolutions.filter((w) => w < target.width),
         ],
-        focalPoint,
+        validateFocus(focalPoint),
       )}
       sizes={props.sizes || `(min-width: ${width}px) ${width}px, 100vw`}
       data-src={props.src}

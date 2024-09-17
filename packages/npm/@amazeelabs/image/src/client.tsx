@@ -15,6 +15,7 @@ import {
   type ImageProps,
   type ImageSettings as ImageSettingsType,
   inferTargetDimensions,
+  validateFocus,
 } from './lib.js';
 
 function base64(content: string) {
@@ -95,7 +96,7 @@ export const Image = forwardRef(function Image(
       ref.current.style.backgroundPosition = calculateFocusPosition(
         ref.current.naturalWidth,
         ref.current.naturalHeight,
-        focalPoint || [
+        validateFocus(focalPoint) || [
           ref.current.naturalWidth / 2,
           ref.current.naturalHeight / 2,
         ],
