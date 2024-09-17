@@ -131,7 +131,7 @@ export type PublisherConfig = {
    * Example: (new Map()).set('X-Frame-Options', 'deny')
    * The above would set the "X-Frame-Options" response header to "deny".
    */
-  responseHeaders?: Map<string, string>,
+  responseHeaders?: Map<string, string>;
   /**
    * Proxy settings.
    *

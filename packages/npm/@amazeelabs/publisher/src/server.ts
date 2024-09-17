@@ -72,9 +72,11 @@ const runServer = async (): Promise<HttpTerminator> => {
     // if we have a Map with two items: key1 => value1, key2 => value2, then
     // the spread operator applied on the Map would return
     // [["key1", "value1"], ["key2", "value2"]].
-    [...(getConfig().responseHeaders || new Map<string, string>())].map(responseHeader => {
-      res.set(responseHeader[0], responseHeader[1]);
-    });
+    [...(getConfig().responseHeaders || new Map<string, string>())].map(
+      (responseHeader) => {
+        res.set(responseHeader[0], responseHeader[1]);
+      },
+    );
     next();
   });
 
