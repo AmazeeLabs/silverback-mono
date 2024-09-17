@@ -30,7 +30,7 @@ export type ImageProps = Omit<
    * one is the x-coordinate, the second one is the y-coordinate. Both are
    * relative to the top-left corner of the *original* image.
    */
-  focalPoint?: [number, number];
+  focalPoint?: Array<number>;
   /**
    * A single property to switch between important and lazy-loaded images.
    * It controls the `loading` and `decoding` attributes.
@@ -112,6 +112,15 @@ export function inferTargetDimensions(
 }
 
 export type Focus = [number, number];
+
+export function validateFocus(
+  focus: Array<number> | undefined,
+): Focus | undefined {
+  if (!focus || focus.length === 2) {
+    return focus as Focus;
+  }
+  console.warn('Invalid focus point:', focus);
+}
 
 export function calculateFocusExtraction(
   source: readonly [number, number],
