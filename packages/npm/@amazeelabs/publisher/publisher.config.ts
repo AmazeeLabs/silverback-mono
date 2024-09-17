@@ -45,4 +45,8 @@ export default defineConfig({
     },
   },
   databaseUrl: './test/database.sqlite',
+  responseHeaders: new Map()
+    .set('X-Frame-Options', 'deny')
+    .set('X-Content-Type-Options', 'nosniff')
+    .set('Content-Security-Policy', "frame-ancestors 'none'"),
 });

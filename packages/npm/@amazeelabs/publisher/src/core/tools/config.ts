@@ -126,6 +126,13 @@ export type PublisherConfig = {
     origin: Array<string>;
   };
   /**
+   * A Map of response headers that should be added to every route.
+   *
+   * Example: (new Map()).set('X-Frame-Options', 'deny')
+   * The above would set the "X-Frame-Options" response header to "deny".
+   */
+  responseHeaders?: Map<string, string>;
+  /**
    * Proxy settings.
    *
    * Example:

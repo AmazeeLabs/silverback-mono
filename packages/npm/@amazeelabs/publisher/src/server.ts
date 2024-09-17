@@ -66,6 +66,20 @@ const runServer = async (): Promise<HttpTerminator> => {
     next();
   });
 
+  // Add any configured response headers which should apply on every route.
+  app.use((req, res, next) => {
+    // The spread operator applied on a Map generates a 2D key-value array. So
+    // if we have a Map with two items: key1 => value1, key2 => value2, then
+    // the spread operator applied on the Map would return
+    // [["key1", "value1"], ["key2", "value2"]].
+    [...(getConfig().responseHeaders || new Map<string, string>())].map(
+      (responseHeader) => {
+        res.set(responseHeader[0], responseHeader[1]);
+      },
+    );
+    next();
+  });
+
   core.state.applicationState$.subscribe((state) => {
     app.locals.isReady = state === ApplicationState.Ready;
     stateNotify(state);
