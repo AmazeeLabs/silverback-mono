@@ -1,9 +1,38 @@
 settings:
+  default_form_open_message: 'Dieses Formular ist noch nicht für Eingaben geöffnet.'
+  default_form_close_message: 'Dieses Formular ist leider für neue Eingaben geschlossen.'
+  default_form_exception_message: 'Dieses Webformular kann nicht angezeigt werden. Bitte wenden Sie sich an den Administrator der Website.'
   default_submit_button_label: Absenden
   default_reset_button_label: Zurücksetzen
   default_delete_button_label: Löschen
+  default_form_confidential_message: 'Dieses Formular ist vertraulich. Sie müssen sich <a href="[site:login-url]/logout?destination=[current-page:url:relative]">abmelden</a>, um es abzuschicken.'
+  default_form_required_label: 'Kennzeichnet ein Pflichtfeld'
+  default_wizard_prev_button_label: '< Zurück'
+  default_wizard_next_button_label: 'Nächstes >'
+  default_wizard_start_label: Beginn
+  default_wizard_confirmation_label: Vollständig
+  default_wizard_toggle_show_label: 'Alle anzeigen'
+  default_wizard_toggle_hide_label: 'Alle ausblenden'
   default_preview_next_button_label: Vorschau
+  default_preview_prev_button_label: '< Zurück'
   default_preview_label: Vorschau
+  default_preview_title: '[webform:title]: Vorschau'
+  default_preview_message: 'Bitte überprüfen Sie Ihre Eingabe. Ihre Eingabe ist erst abgeschlossen, wenn Sie die Taste „Absenden“ gedrückt haben!'
+  default_draft_button_label: 'Entwurf speichern'
+  default_draft_saved_message: 'Eingabe gespeichert. Sie können später zu diesem Formular zurückkehren und die aktuellen Werte wiederherstellen.'
+  default_draft_loaded_message: 'Es wurde ein teilweise ausgefülltes Formular gefunden. Bitte füllen Sie die restlichen Teile aus.'
+  default_draft_pending_single_message: 'Es gibt einen ausstehenden Entwurf für dieses Webformular. <a href="#">Den ausstehenden Entwurf laden</a>.'
+  default_draft_pending_multiple_message: 'Es gibt ausstehende Entwürfe für dieses Webformular. <a href="#">Ausstehende Entwürfe anzeigen</a>.'
+  default_confirmation_message: 'Neue Eingabe zu [webform:title] hinzugefügt.'
+  default_confirmation_back_label: 'Zurück zum Formular'
+  default_submission_label: '[webform_submission:submitted-to]: Eingabe #[webform_submission:serial]'
+  default_submission_exception_message: 'Diese Eingabe kann nicht bearbeitet werden. Bitte kontaktieren Sie den Administrator der Website.'
+  default_submission_locked_message: 'Diese Eingabe wurde gesperrt.'
+  default_previous_submission_message: 'Sie haben dieses Webformular bereits abgeschickt. <a href="#">Sehen Sie sich Ihre vorherige Eingabe an</a>.'
+  default_previous_submissions_message: 'Dieses Webformular wurde bereits eingegeben. <a href="#">Vorherige Eingaben anzeigen</a>.'
+  default_autofill_message: 'Diese Eingabe wurde automatisch mit Ihrer vorherigen Eingabe ausgefüllt.'
+  default_limit_total_message: 'Weitere Eingaben sind nicht zulässig.'
+  default_limit_user_message: 'Weitere Eingaben sind nicht zulässig.'
   dialog_options:
     narrow:
       title: Schmal
@@ -12,4 +41,53 @@ settings:
     wide:
       title: Breit
 element:
+  empty_message: '{Leer}'
   default_more_title: Zusätzlich
+  default_section_title_tag: h2
+mail:
+  default_from_name: '[site:name]'
+  default_subject: 'Webformulareingabe von: [webform_submission:source-title]'
+  default_body_text: "Eingegeben am [webform_submission:created]\r\nEingegeben von: [webform_submission:user]\r\n\r\nEingegebene Werte sind:\r\n[webform_submission:values]\n"
+  default_body_html: "<p>Eingegeben am [webform_submission:created]</p>\r\n<p>Eingegeben von: [webform_submission:user]</p>\r\n<p>Eingegebene Werte sind:</p>\r\n[webform_submission:values]\n"
+test:
+  types: |
+    checkbox:
+      - true
+    color:
+      - '#ffffcc'
+      - '#ffffcc'
+      - '#ccffff'
+    email:
+      - 'example@example.com'
+      - 'test@test.com'
+      - 'random@random.com'
+    language_select:
+      - en
+    machine_name:
+      - 'loremipsum'
+      - 'oratione'
+      - 'dixisset'
+    tel:
+      - '123-456-7890'
+      - '098-765-4321'
+    textarea:
+      - 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Negat esse eam, inquit, propter se expetendam. Primum Theophrasti, Strato, physicum se voluit; Id mihi magnum videtur. Itaque mihi non satis videmini considerare quod iter sit naturae quaeque progressio. Quare hoc videndum est, possitne nobis hoc ratio philosophorum dare. Est enim tanti philosophi tamque nobilis audacter sua decreta defendere.'
+      - 'Huius, Lyco, oratione locuples, rebus ipsis ielunior. Duo Reges: constructio interrete. Sed haec in pueris; Sed utrum hortandus es nobis, Luci, inquit, an etiam tua sponte propensus es? Sapiens autem semper beatus est et est aliquando in dolore; Immo videri fortasse. Paulum, cum regem Persem captum adduceret, eodem flumine invectio? Et ille ridens: Video, inquit, quid agas;'
+      - 'Quae cum dixisset, finem ille. Quamquam non negatis nos intellegere quid sit voluptas, sed quid ille dicat. Progredientibus autem aetatibus sensim tardeve potius quasi nosmet ipsos cognoscimus. Gloriosa ostentatio in constituendo summo bono. Qui-vere falsone, quaerere mittimus-dicitur oculis se privasse; Duarum enim vitarum nobis erunt instituta capienda. Comprehensum, quod cognitum non habet? Qui enim existimabit posse se miserum esse beatus non erit. Causa autem fuit huc veniendi ut quosdam hinc libros promerem. Nunc omni virtuti vitium contrario nomine opponitur.'
+    text_format:
+      - value: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Negat esse eam, inquit, propter se expetendam. Primum Theophrasti, Strato, physicum se voluit; Id mihi magnum videtur. Itaque mihi non satis videmini considerare quod iter sit naturae quaeque progressio. Quare hoc videndum est, possitne nobis hoc ratio philosophorum dare. Est enim tanti philosophi tamque nobilis audacter sua decreta defendere.</p>'
+      - value: '<p>Huius, Lyco, oratione locuples, rebus ipsis ielunior. Duo Reges: constructio interrete. Sed haec in pueris; Sed utrum hortandus es nobis, Luci, inquit, an etiam tua sponte propensus es? Sapiens autem semper beatus est et est aliquando in dolore; Immo videri fortasse. Paulum, cum regem Persem captum adduceret, eodem flumine invectio? Et ille ridens: Video, inquit, quid agas;</p>'
+      - value: '<p>Quae cum dixisset, finem ille. Quamquam non negatis nos intellegere quid sit voluptas, sed quid ille dicat. Progredientibus autem aetatibus sensim tardeve potius quasi nosmet ipsos cognoscimus. Gloriosa ostentatio in constituendo summo bono. Qui-vere falsone, quaerere mittimus-dicitur oculis se privasse; Duarum enim vitarum nobis erunt instituta capienda. Comprehensum, quod cognitum non habet? Qui enim existimabit posse se miserum esse beatus non erit. Causa autem fuit huc veniendi ut quosdam hinc libros promerem. Nunc omni virtuti vitium contrario nomine opponitur.</p>'
+    url:
+      - 'http://example.com'
+      - 'http://test.com'
+    webform_email_confirm:
+      - 'example@example.com'
+      - 'test@test.com'
+      - 'random@random.com'
+    webform_email_multiple:
+      - 'example@example.com, test@test.com, random@random.com'
+    webform_time:
+      - '09:00'
+      - '17:00'
+  names: "first_name:\r\n  - 'John'\r\n  - 'Paul'\r\n  - 'Ringo'\r\n  - 'George'\r\nlast_name:\r\n  - 'Lennon'\r\n  - 'McCartney'\r\n  - 'Starr'\r\n  - 'Harrison'\r\naddress:\r\n  - '10 Main Street'\r\n  - '11 Brook Alley Road. APT 1'\r\nzip:\r\n  - '11111'\r\n  - '12345'\r\n  - '12345-6789'\r\npostal_code:\r\n  - '11111'\r\n  - '12345'\r\n  - '12345-6789'\r\nphone:\r\n  - '123-456-7890'\r\n  - '098-765-4321'\r\nfax:\r\n  - '123-456-7890'\r\n  - '098-765-4321'\r\ncity:\r\n  - 'Springfield'\r\n  - 'Pleasantville'\r\n  - 'Hill Valley'\r\nurl:\r\n  - 'http://example.com'\r\n  - 'http://test.com'\r\ndefault:\r\n  - 'Loremipsum'\r\n  - 'Oratione'\r\n  - 'Dixisset'\n"

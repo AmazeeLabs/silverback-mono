@@ -10,6 +10,7 @@ display:
           label: Quelle
           separator: ', '
         campaign_url_destination:
+          label: Ziel
           separator: ', '
         status_code:
           separator: ', '

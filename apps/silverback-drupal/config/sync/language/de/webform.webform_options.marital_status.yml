@@ -1,0 +1,7 @@
+label: Familienstand
+category: Demographisch
+options: |
+  Single: Single
+  Verheiratet: verheiratet
+  geschieden: geschieden
+  verwitwet: verwitwet

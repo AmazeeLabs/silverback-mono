@@ -1,3 +1,5 @@
+label: Webformular-Eingaben
+description: 'Standardansichten für die Anzeige von Webformular-Eingaben.'
 display:
   default:
     display_title: Master
@@ -22,6 +24,7 @@ display:
             offset_label: Versatz
       fields:
         sid:
+          label: '#'
           separator: ', '
         in_draft:
           label: Entwurf
@@ -38,16 +41,28 @@ display:
       header:
         result:
           content: '@start - @end von @total wird angezeigt'
+      empty:
+        area_text_custom:
+          content: 'Keine Eingaben verfügbar.'
       arguments:
         in_draft:
           exception:
             title: Alle
-  embed_administer:
+      title: Webformular-Eingaben
+  embed_default:
+    display_title: 'Eingebettet: Standard'
     display_options:
+      display_description: 'Webformular-Eingaben anzeigen.'
+  embed_administer:
+    display_title: 'Eingebettet: Administrator'
+    display_options:
+      display_description: 'Webformular-Eingaben verwalten'
       fields:
         webform_submission_bulk_form:
+          label: 'Massenverarbeitungsformular für Webformular-Eingaben'
           action_title: Aktion
         sid:
+          label: '#'
           separator: ', '
         in_draft:
           label: Entwurf
@@ -62,6 +77,7 @@ display:
           label: Erstellt
           separator: ', '
         completed:
+          label: Abgeschlossen
           separator: ', '
         remote_addr:
           label: IP-Adresse
@@ -69,6 +85,9 @@ display:
         operations:
           label: Aktionen
       filters:
+        in_draft:
+          expose:
+            label: 'Ist Entwurf'
         sticky:
           expose:
             label: 'am Anfang von Listen'
@@ -76,11 +95,15 @@ display:
           expose:
             label: Gesperrt
   embed_manage:
+    display_title: 'Eingebettet: Verwalten'
     display_options:
+      display_description: 'Webformular-Eingaben verwalten'
       fields:
         webform_submission_bulk_form:
+          label: 'Massenverarbeitungsformular für Webformular-Eingaben'
           action_title: Aktion
         sid:
+          label: '#'
           separator: ', '
         in_draft:
           label: Entwurf
@@ -95,6 +118,7 @@ display:
           label: Erstellt
           separator: ', '
         completed:
+          label: Abgeschlossen
           separator: ', '
         remote_addr:
           label: IP-Adresse
@@ -106,6 +130,9 @@ display:
           label: Aktionen
           text: Bearbeiten
       filters:
+        in_draft:
+          expose:
+            label: 'Ist Entwurf'
         sticky:
           expose:
             label: 'am Anfang von Listen'
@@ -113,9 +140,12 @@ display:
           expose:
             label: Gesperrt
   embed_review:
+    display_title: 'Eingebettet: Überprüfung'
     display_options:
+      display_description: 'Webformular-Eingaben überprüfen'
       fields:
         sid:
+          label: '#'
           separator: ', '
         in_draft:
           label: Entwurf
@@ -130,6 +160,7 @@ display:
           label: Erstellt
           separator: ', '
         completed:
+          label: Abgeschlossen
           separator: ', '
         remote_addr:
           label: IP-Adresse
@@ -138,6 +169,9 @@ display:
           label: Aktionen
           text: Ansicht
       filters:
+        in_draft:
+          expose:
+            label: 'Ist Entwurf'
         sticky:
           expose:
             label: 'am Anfang von Listen'

@@ -1,0 +1,8 @@
+label: 'Likert: Würden Sie'
+category: Likert
+options: |
+  1: Definitiv Nicht
+  2: Wahrscheinlich nicht
+  3: Nicht sicher
+  4: Wahrscheinlich
+  5: Definitiv

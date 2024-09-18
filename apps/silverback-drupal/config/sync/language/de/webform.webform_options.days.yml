@@ -1,1 +1,10 @@
+label: Tage
 category: 'Datum und Uhrzeit'
+options: |
+  Sonntag: Sonntag
+  Montag: Montag
+  Dienstag: Dienstag
+  Mittwoch: Mittwoch
+  Donnerstag: Donnerstag
+  Freitag: Freitag
+  Samstag: Samstag

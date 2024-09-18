@@ -1,2 +1,8 @@
 label: Größe
 category: Allgemein
+options: |
+  Extra klein: Extra klein
+  Klein: Klein
+  Mittel: Mittel
+  Groß: Groß
+  Extra groß: Extra groß

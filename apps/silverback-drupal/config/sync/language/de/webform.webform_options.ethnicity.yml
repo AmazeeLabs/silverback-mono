@@ -1,0 +1,11 @@
+label: Volkszugehörigkeit
+category: Demographisch
+options: |
+  Kaukasisch: Kaukasisch
+  'Latino/Hispanisch': 'Latino/Hispanisch'
+  'Nahöstlich': 'Nahöstlich'
+  Afrikanisch: Afrikanisch
+  Karibisch: Karibisch
+  'Südasiatisch':'Südasiatisch'
+  'Ostasiatisch': 'Ostasiatisch'
+  Gemischt: Gemischt

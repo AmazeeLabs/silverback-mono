@@ -1,1 +1,5 @@
+label: Ja/Nein
 category: Allgemein
+options: |
+  Ja: Ja
+  Nein: Nein

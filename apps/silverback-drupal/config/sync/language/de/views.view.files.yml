@@ -28,6 +28,7 @@ display:
           label: 'Verwendet in'
           alter:
             path: 'admin/content/files/usage/{{ fid }}'
+          format_plural_string: !!binary MSBTdGVsbGUDQGNvdW50IFN0ZWxsZW4=
       pager:
         options:
           tags:
@@ -75,6 +76,7 @@ display:
           label: 'Registrierendes Modul'
         count:
           label: 'Anzahl der Verwendung'
+          format_plural_string: !!binary MQNAY291bnQ=
       pager:
         options:
           tags:

@@ -10,6 +10,7 @@ display:
           label: Source
           separator: ', '
         campaign_url_destination:
+          label: Destination
           separator: ', '
         status_code:
           separator: ', '
