@@ -7,12 +7,6 @@
     },
   ],
 
-  // Manually control versions for
-  ignorePaths: [
-    // Node.js
-    '.nvmrc',
-  ],
-
   // This changes the behaviour of "stabilityDays"
   // - from the standard "create PR and add a stabilityDays check to it"
   // - to "create PR, but do not include updates for packages which did not pass
@@ -75,8 +69,8 @@
       automerge: false,
     },
     {
-      // Do not update "engines" field in package.json files.
-      matchDepTypes: ['engines'],
+      // Do not update Node.js and the package manager.
+      matchDepTypes: ['engines', 'packageManager'],
       enabled: false,
     },
 
@@ -112,6 +106,14 @@
       // https://github.com/typescript-eslint/typescript-eslint/issues/8211
       matchUpdateTypes: ['major'],
       matchPackageNames: ['eslint'],
+      enabled: false,
+    },
+    {
+      // Disable major updates for iframe-resizer-react. The old version still
+      // works and we have e2e tests for it. We will update if it stops working
+      // in modern browsers.
+      matchUpdateTypes: ['major'],
+      matchPackageNames: ['iframe-resizer-react'],
       enabled: false,
     },
   ],
