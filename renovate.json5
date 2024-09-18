@@ -76,6 +76,18 @@
 
     // Package-specific rules.
     {
+      // TODO: Remove once https://www.drupal.org/project/webform is ready for
+      //  Drupal 11.
+      matchUpdateTypes: ['major'],
+      matchPackageNames: [
+        'drupal/core',
+        'drupal/core-dev',
+        'drupal/core-recommended',
+        'drupal/core-composer-scaffold',
+      ],
+      enabled: false,
+    },
+    {
       matchPackageNames: [
         // Something is wrong with the "unified" ecosystem.
         // Example:
