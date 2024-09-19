@@ -93,17 +93,10 @@ test('confirmation type: url', async ({ page }) => {
     setRedirectUrl: '/en/article/with-everything',
   });
   await submitWebform(page);
-  await page.waitForNavigation();
+  await page.waitForURL(/\/en\/article\/with-everything/);
 
-  expect(
-    [
-      // It's important to ensure that we are redirected to Gatsby, not to
-      // Drupal.
-      `${gatsby.baseUrl}/en/article/with-everything`,
-      // We may have a trailing slash in the URL.
-      `${gatsby.baseUrl}/en/article/with-everything/`,
-    ].includes(page.url()),
-  ).toBeTruthy();
+  // It's important to ensure that we are redirected to Gatsby, not to Drupal.
+  expect(page.url()).toContain(gatsby.baseUrl);
 });
 
 test('confirmation type: url_message', async ({ page }) => {
@@ -112,20 +105,13 @@ test('confirmation type: url_message', async ({ page }) => {
     setRedirectUrl: '/en/article/other',
   });
   await submitWebform(page);
-  await page.waitForNavigation();
+  await page.waitForURL(/\/en\/article\/other/);
 
   expect(await page.innerHTML('.status-messages-inner')).toContain(
     '<div>Test message with <strong>some bold text.</strong></div>',
   );
-  expect(
-    [
-      // It's important to ensure that we are redirected to Gatsby, not to
-      // Drupal.
-      `${gatsby.baseUrl}/en/article/other`,
-      // We may have a trailing slash in the URL.
-      `${gatsby.baseUrl}/en/article/other/`,
-    ].includes(page.url()),
-  ).toBeTruthy();
+  // It's important to ensure that we are redirected to Gatsby, not to Drupal.
+  expect(page.url()).toContain(gatsby.baseUrl);
 });
 
 test('confirmation type: none', async ({ page }) => {
