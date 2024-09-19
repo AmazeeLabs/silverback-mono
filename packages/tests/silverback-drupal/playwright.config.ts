@@ -15,7 +15,8 @@ export const config: PlaywrightTestConfig = {
   maxFailures: 1,
   retries: process.env.CI ? 1 : 0,
   use: {
-    trace: 'on-first-retry',
+    trace: process.env.CI ? 'retain-on-failure' : 'on',
+    actionTimeout: 10_000,
   },
   reporter: 'html',
   projects: [
