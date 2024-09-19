@@ -177,9 +177,7 @@ test('linkit translations', async ({ page }) => {
     platform() === 'darwin' ? 'Meta+a' : 'Control+a',
   );
   await page.click('[aria-label="Link"]');
-  await page
-    .getByPlaceholder('Suchen oder URL eingeben')
-    .fill('German Translation');
+  await page.getByPlaceholder('Search or type url').fill('German Translation');
 
   await expect(
     page.locator('.block-editor-link-control__search-item-title'),
