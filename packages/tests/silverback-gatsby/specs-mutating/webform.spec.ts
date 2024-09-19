@@ -207,5 +207,5 @@ const setConfirmationOption = async (
 const submitWebform = async (page: PlaywrightTestArgs['page']) => {
   await page.goto(`${gatsby.baseUrl}/en/form/for-testing-confirmation-options`);
   const iframe = await getIframe(page);
-  await iframe.click('text=Submit');
+  await iframe.getByRole('button', { name: 'Submit' }).click();
 };
