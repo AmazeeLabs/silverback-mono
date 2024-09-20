@@ -113,14 +113,6 @@
       enabled: false,
     },
     {
-      // Disable major updates for eslint. Because TypeScript support isn't
-      // there yet:
-      // https://github.com/typescript-eslint/typescript-eslint/issues/8211
-      matchUpdateTypes: ['major'],
-      matchPackageNames: ['eslint'],
-      enabled: false,
-    },
-    {
       // Disable major updates for iframe-resizer-react. The old version still
       // works and we have e2e tests for it. We will update if it stops working
       // in modern browsers.
