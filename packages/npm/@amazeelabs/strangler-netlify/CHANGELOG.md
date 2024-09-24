@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/strangler-netlify@1.1.19...@amazeelabs/strangler-netlify@1.2.0) (2024-09-24)
+
+
+### Features
+
+* **SLB-469:** allow to preprocess incoming strangler requests ([14f3eda](https://github.com/AmazeeLabs/silverback-mono/commit/14f3edaa29ac4c389b715aa731eaad726ce3e824))
+
+
+
+
+
 ## [1.1.19](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/strangler-netlify@1.1.18...@amazeelabs/strangler-netlify@1.1.19) (2024-07-30)
 
 
