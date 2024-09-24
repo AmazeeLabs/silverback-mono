@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/strangler-netlify@1.2.0...@amazeelabs/strangler-netlify@1.2.1) (2024-09-24)
+
+
+### Bug Fixes
+
+* **SLB-469:** "applies"-logic based on original url ([3f3db86](https://github.com/AmazeeLabs/silverback-mono/commit/3f3db863841a2aa80eaa265d686764f1aa53711b))
+
+
+
+
+
 # [1.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/strangler-netlify@1.1.19...@amazeelabs/strangler-netlify@1.2.0) (2024-09-24)
 
 
