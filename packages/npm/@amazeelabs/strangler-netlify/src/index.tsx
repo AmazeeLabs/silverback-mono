@@ -33,6 +33,12 @@ export function createStrangler(
   const handler: Handler = async (originalEvent) => {
     // Pass the request to the legacy applications.
     for (const legacySystem of legacySystems) {
+      // Check if we even want to proxy this request.
+      // Skip if the urlFilter exists and returns false.
+      const originalUrl = new URL(originalEvent.rawUrl);
+      if (legacySystem.applies && !legacySystem.applies(originalUrl)) {
+        continue;
+      }
       const event =
         (await legacySystem.preprocess?.(originalEvent)) ?? originalEvent;
       const targetUrl = new URL(legacySystem.url);
@@ -45,11 +51,6 @@ export function createStrangler(
         'SLB-Forwarded-Host': url.host,
         'SLB-Forwarded-Port': url.port,
       };
-      // Check if we even want to proxy this request.
-      // Skip if the urlFilter exists and returns false.
-      if (legacySystem.applies && !legacySystem.applies(url)) {
-        continue;
-      }
       url.protocol = targetUrl.protocol;
       url.host = targetUrl.host;
       try {
