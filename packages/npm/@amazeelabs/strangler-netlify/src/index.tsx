@@ -1,4 +1,4 @@
-import { Handler } from '@netlify/functions';
+import { Handler, HandlerEvent } from '@netlify/functions';
 
 export type LegacySystem = {
   /**
@@ -12,6 +12,13 @@ export type LegacySystem = {
    */
   applies?: (url: URL) => boolean;
   /**
+   * Alter the HandlerEvent to the legacy system.
+   * If this function returns undefined, the original event will be sent.
+   */
+  preprocess?: (
+    event: HandlerEvent,
+  ) => HandlerEvent | Promise<HandlerEvent> | undefined;
+  /**
    * Alter the legacy system response. If this function returns undefined, the
    * response will be ignored. If the function is not defined, the response will
    * always be returned as is.
@@ -23,9 +30,11 @@ export function createStrangler(
   legacySystems: Array<LegacySystem>,
   notFoundContent: string = '<p>Not found</p>',
 ) {
-  const handler: Handler = async (event) => {
-    //Pass the request to the legacy applications.
+  const handler: Handler = async (originalEvent) => {
+    // Pass the request to the legacy applications.
     for (const legacySystem of legacySystems) {
+      const event =
+        (await legacySystem.preprocess?.(originalEvent)) ?? originalEvent;
       const targetUrl = new URL(legacySystem.url);
       const url = new URL(event.rawUrl);
       const headers = {
