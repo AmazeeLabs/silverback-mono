@@ -10,8 +10,8 @@
     "composer-exit-on-patch-failure": true,
     "patches": {
       "drupal/core": {
-        "Catch-All routes (#2741939)": "https://git.drupalcode.org/project/drupal/-/merge_requests/443/diffs.patch",
-        "Wrong language field labels after drupal_rebuild()": "https://www.drupal.org/files/issues/2021-12-01/3221375-27-workaround.patch"
+        "#2741939 Catch-All routes (Is required for amazeelabs/silverback_cdn_redirect. But now amazeelabs/silverback_cdn_redirect has this patch in its own composer.json)": "https://git.drupalcode.org/project/drupal/-/merge_requests/443/diffs.patch",
+        "#3221375 Wrong language field labels after drupal_rebuild() (Sometimes the bug appears on old multilingua projects)": "https://www.drupal.org/files/issues/2021-12-01/3221375-27-workaround.patch"
       }
     }
   },
