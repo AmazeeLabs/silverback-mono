@@ -4,5 +4,17 @@
   "version": "2.2.8",
   "description": "Provide redirect information to CDNs.",
   "homepage": "https://github.com/AmazeeLabs/silverback-mono/tree/development/packages/composer/amazeelabs/silverback_cdn_redirect#readme",
-  "license": "GPL-2.0+"
+  "license": "GPL-2.0+",
+  "extra": {
+    "enable-patching": true,
+    "composer-exit-on-patch-failure": true,
+    "patches": {
+      "drupal/core": {
+        "#2741939 Catch-All routes (Required for silverback_cdn_redirect.handle route)": "https://git.drupalcode.org/project/drupal/-/merge_requests/443/diffs.patch"
+      }
+    }
+  },
+  "require": {
+    "cweagans/composer-patches": "^1.7.3"
+  }
 }
