@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2e441421e28a837e9f6c1f6bffb3f86a",
+    "content-hash": "a28904dcdfe011b75200503dc9f8ecc8",
     "packages": [
         {
             "name": "amazeelabs/default-content",
@@ -12,12 +12,23 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/default-content",
-                "reference": "242f7794dbf578dc0227c482751278ab82138cc8"
+                "reference": "2c5dd8945b29004b424434c91a7bb7dff399a779"
             },
             "require": {
-                "amazeelabs/proxy-default-content": "^1.1.18"
+                "cweagans/composer-patches": "^1.7.3",
+                "drupal/default_content": "^2.0.0-alpha1"
             },
             "type": "package",
+            "extra": {
+                "enable-patching": true,
+                "composer-exit-on-patch-failure": true,
+                "patches": {
+                    "drupal/default_content": {
+                        "Allow to alter exported fields (Used by custom module of silverback-template to clean the default content exports)": "https://www.drupal.org/files/issues/2022-11-07/default_content_hook_exported_fields-3181075-7.patch",
+                        "Paragraphs support": "https://www.drupal.org/files/issues/2022-05-09/2698425-173.patch"
+                    }
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "AmazeeLabs\\DefaultContent\\": "src/AmazeeLabs/DefaultContent"
@@ -33,11 +44,11 @@
         },
         {
             "name": "amazeelabs/graphql_directives",
-            "version": "2.6.0",
+            "version": "2.6.1",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/graphql_directives",
-                "reference": "cbe57dd2d258795f057a549762ee6d9bbcc07768"
+                "reference": "11327e47c03f12ee1b252971a90698dc19726fac"
             },
             "require": {
                 "webmozart/glob": "^4.7.0"
@@ -60,106 +71,15 @@
             }
         },
         {
-            "name": "amazeelabs/proxy-default-content",
-            "version": "1.1.18",
-            "dist": {
-                "type": "path",
-                "url": "../../packages/composer/amazeelabs/proxy-default-content",
-                "reference": "2182828a329d268de0be9e68acf471085a831553"
-            },
-            "require": {
-                "cweagans/composer-patches": "^1.7.3",
-                "drupal/default_content": "^2.0.0-alpha1"
-            },
-            "type": "library",
-            "extra": {
-                "enable-patching": true,
-                "composer-exit-on-patch-failure": true,
-                "patches": {
-                    "drupal/default_content": {
-                        "Allow to alter exported fields": "https://www.drupal.org/files/issues/2022-11-07/default_content_hook_exported_fields-3181075-7.patch",
-                        "Paragraphs support": "https://www.drupal.org/files/issues/2022-05-09/2698425-173.patch"
-                    }
-                }
-            },
-            "license": [
-                "GPL-2.0+"
-            ],
-            "description": "Proxy package for drupal/default_content.",
-            "homepage": "https://silverback.netlify.app",
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
-            "name": "amazeelabs/proxy-drupal-core",
-            "version": "1.1.15",
-            "dist": {
-                "type": "path",
-                "url": "../../packages/composer/amazeelabs/proxy-drupal-core",
-                "reference": "41473b684d76a16e0c831eaf0365f84d50217ae8"
-            },
-            "require": {
-                "cweagans/composer-patches": "^1.7.3",
-                "drupal/core-recommended": "^9 || ^10"
-            },
-            "type": "library",
-            "extra": {
-                "enable-patching": true,
-                "composer-exit-on-patch-failure": true,
-                "patches": {
-                    "drupal/core": {
-                        "Catch-All routes (#2741939)": "https://git.drupalcode.org/project/drupal/-/merge_requests/443/diffs.patch",
-                        "Wrong language field labels after drupal_rebuild()": "https://www.drupal.org/files/issues/2021-12-01/3221375-27-workaround.patch"
-                    }
-                }
-            },
-            "license": [
-                "GPL-2.0+"
-            ],
-            "description": "Proxy package for drupal/core.",
-            "homepage": "https://silverback.netlify.app",
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
-            "name": "amazeelabs/proxy-gutenberg",
-            "version": "1.3.4",
-            "dist": {
-                "type": "path",
-                "url": "../../packages/composer/amazeelabs/proxy-gutenberg",
-                "reference": "ea020570798567f5af41421bcbaaa93184a15798"
-            },
-            "require": {
-                "cweagans/composer-patches": "^1.7.3",
-                "drupal/gutenberg": "^2.8.0"
-            },
-            "type": "library",
-            "extra": {
-                "enable-patching": true,
-                "composer-exit-on-patch-failure": true,
-                "patches": []
-            },
-            "license": [
-                "GPL-2.0+"
-            ],
-            "description": "Proxy package for drupal/gutenberg.",
-            "homepage": "https://silverback.netlify.app",
-            "transport-options": {
-                "relative": true
-            }
-        },
-        {
             "name": "amazeelabs/silverback-cli",
-            "version": "2.9.12",
+            "version": "2.9.13",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback-cli",
-                "reference": "1d23fe18f2575883027650ada073be5c153957ac"
+                "reference": "eb99db602108cce01911f48c33bd24e3bdd926a3"
             },
             "require": {
-                "drush/drush": "^10 || ^11 || ^12",
+                "drush/drush": "^10 || ^11 || ^12 || ^13",
                 "ext-json": "*",
                 "nelexa/zip": "^4.0.2",
                 "vlucas/phpdotenv": "^5.6.0"
@@ -201,11 +121,11 @@
         },
         {
             "name": "amazeelabs/silverback_campaign_urls",
-            "version": "1.0.8",
+            "version": "1.0.9",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_campaign_urls",
-                "reference": "365919410526d335aa9bc1ae5699ed531dfb3fc4"
+                "reference": "b709e6efa5277fcf8b10b04540b30f62fde16908"
             },
             "type": "drupal-module",
             "license": [
@@ -219,13 +139,25 @@
         },
         {
             "name": "amazeelabs/silverback_cdn_redirect",
-            "version": "2.2.7",
+            "version": "2.2.9",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_cdn_redirect",
-                "reference": "0ba83630ca2e926fb84a880434e936cbca311b52"
+                "reference": "4a2ab0c1f9076f49bdf7175df9a0e6fefa4d116f"
+            },
+            "require": {
+                "cweagans/composer-patches": "^1.7.3"
             },
             "type": "drupal-module",
+            "extra": {
+                "enable-patching": true,
+                "composer-exit-on-patch-failure": true,
+                "patches": {
+                    "drupal/core": {
+                        "#2741939 Catch-All routes (Required for silverback_cdn_redirect.handle route)": "https://git.drupalcode.org/project/drupal/-/merge_requests/443/diffs.patch"
+                    }
+                }
+            },
             "license": [
                 "GPL-2.0+"
             ],
@@ -237,11 +169,11 @@
         },
         {
             "name": "amazeelabs/silverback_cloudinary",
-            "version": "1.4.4",
+            "version": "1.4.5",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_cloudinary",
-                "reference": "3488e79468f3fc870ac174e34a726b8e45a4f967"
+                "reference": "5ed4a1d3b5aa7a8b011e66a345b4d2e41b36e4b0"
             },
             "require": {
                 "cloudinary/cloudinary_php": "^2"
@@ -265,11 +197,11 @@
         },
         {
             "name": "amazeelabs/silverback_external_preview",
-            "version": "2.0.6",
+            "version": "2.0.7",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_external_preview",
-                "reference": "85ec7528495a76ddfd6e5e270433a9fd32bc1aac"
+                "reference": "9fd6e749a8019f3c9db2316ea9c6363952a49384"
             },
             "type": "drupal-module",
             "license": [
@@ -283,11 +215,11 @@
         },
         {
             "name": "amazeelabs/silverback_gatsby",
-            "version": "3.6.2",
+            "version": "3.6.3",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gatsby",
-                "reference": "686f512e2baf799126dc50591640e8a46529c734"
+                "reference": "99d7784e3028a13c39f2ec0b1032ba6bc6f15255"
             },
             "type": "drupal-module",
             "extra": {
@@ -308,11 +240,11 @@
         },
         {
             "name": "amazeelabs/silverback_graphql_persisted",
-            "version": "1.1.9",
+            "version": "1.1.10",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_graphql_persisted",
-                "reference": "51a34de90fe7496319a02e49ec785a552063fe79"
+                "reference": "c03e330fc59f4907499ea543db4ffbb338fc3e82"
             },
             "type": "drupal-module",
             "license": [
@@ -325,11 +257,11 @@
         },
         {
             "name": "amazeelabs/silverback_gutenberg",
-            "version": "2.5.18",
+            "version": "2.5.19",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "d9a9d8a43f1b0f1191cc9ce6c12405832299bc86"
+                "reference": "f12be43aace27168e7c07b8628bb6346c8ab8ac7"
             },
             "require": {
                 "drupal/gutenberg": "^2.8.0"
@@ -346,11 +278,11 @@
         },
         {
             "name": "amazeelabs/silverback_iframe",
-            "version": "1.4.2",
+            "version": "1.4.3",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_iframe",
-                "reference": "975db6f469698cff8df1dd189911222cb21a591b"
+                "reference": "410169fbe0879c1c85da0788fc5f683ee8471805"
             },
             "type": "drupal-module",
             "license": [
@@ -364,11 +296,11 @@
         },
         {
             "name": "amazeelabs/silverback_iframe_theme",
-            "version": "1.4.2",
+            "version": "1.4.3",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_iframe_theme",
-                "reference": "7f0610f42e8f9dd8faf3c5fa75212ff432cc45ce"
+                "reference": "acb4f762ef103587fb912aaeceede9846888a87c"
             },
             "type": "drupal-theme",
             "license": [
@@ -382,11 +314,11 @@
         },
         {
             "name": "amazeelabs/silverback_translations",
-            "version": "1.0.7",
+            "version": "1.0.8",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_translations",
-                "reference": "ed86b66b8d882de052fbbdab46503810db815ff3"
+                "reference": "2e4e242a8bf122cf1bd68b2f2f7f365d9b47ce62"
             },
             "type": "drupal-module",
             "license": [
@@ -14215,8 +14147,6 @@
     "stability-flags": {
         "amazeelabs/default-content": 20,
         "amazeelabs/graphql_directives": 20,
-        "amazeelabs/proxy-drupal-core": 20,
-        "amazeelabs/proxy-gutenberg": 20,
         "amazeelabs/silverback-cli": 20,
         "amazeelabs/silverback_campaign_urls": 20,
         "amazeelabs/silverback_cdn_redirect": 20,

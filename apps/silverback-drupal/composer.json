@@ -22,8 +22,6 @@
     "php": "^8.3 <8.4",
     "amazeelabs/default-content": "@dev",
     "amazeelabs/graphql_directives": "@dev",
-    "amazeelabs/proxy-drupal-core": "@dev",
-    "amazeelabs/proxy-gutenberg": "@dev",
     "amazeelabs/silverback-cli": "@dev",
     "amazeelabs/silverback_campaign_urls": "@dev",
     "amazeelabs/silverback_cdn_redirect": "@dev",
