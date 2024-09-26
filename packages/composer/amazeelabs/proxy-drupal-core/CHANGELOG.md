@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.16](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-drupal-core@1.1.15...@-amazeelabs/proxy-drupal-core@1.1.16) (2024-09-26)
+
+**Note:** Version bump only for package @-amazeelabs/proxy-drupal-core
+
+
+
+
+
 ## [1.1.15](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-drupal-core@1.1.14...@-amazeelabs/proxy-drupal-core@1.1.15) (2024-05-10)
 
 **Note:** Version bump only for package @-amazeelabs/proxy-drupal-core

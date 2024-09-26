@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.5](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-gutenberg@1.3.4...@-amazeelabs/proxy-gutenberg@1.3.5) (2024-09-26)
+
+**Note:** Version bump only for package @-amazeelabs/proxy-gutenberg
+
+
+
+
+
 ## [1.3.4](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/proxy-gutenberg@1.3.3...@-amazeelabs/proxy-gutenberg@1.3.4) (2024-05-10)
 
 **Note:** Version bump only for package @-amazeelabs/proxy-gutenberg
