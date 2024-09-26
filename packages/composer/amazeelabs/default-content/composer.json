@@ -4,8 +4,19 @@
   "type": "package",
   "license": "GPL-2.0-or-later",
   "version": "1.2.17",
+  "extra": {
+    "enable-patching": true,
+    "composer-exit-on-patch-failure": true,
+    "patches": {
+      "drupal/default_content": {
+        "Allow to alter exported fields (Used by custom module of silverback-template to clean the default content exports)": "https://www.drupal.org/files/issues/2022-11-07/default_content_hook_exported_fields-3181075-7.patch",
+        "Paragraphs support": "https://www.drupal.org/files/issues/2022-05-09/2698425-173.patch"
+      }
+    }
+  },
   "require": {
-    "amazeelabs/proxy-default-content": "^1.1.18"
+    "drupal/default_content": "^2.0.0-alpha1",
+    "cweagans/composer-patches": "^1.7.3"
   },
   "autoload": {
     "psr-4": {
