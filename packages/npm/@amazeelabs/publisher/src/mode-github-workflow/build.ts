@@ -65,7 +65,11 @@ async function runWorkflow(args: {
   controller: TaskController;
 }): Promise<boolean> {
   return new Promise<boolean>((resolve) => {
-    core.output$.next('Starting the workflow', 'info');
+    if (args.clean) {
+      core.output$.next('Starting the workflow (clean build 🧹)', 'info');
+    } else {
+      core.output$.next('Starting the workflow', 'info');
+    }
 
     const timeout = setTimeout(() => {
       core.output$.next('Timeout reached', 'error');
