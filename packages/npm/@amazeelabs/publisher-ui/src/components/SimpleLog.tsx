@@ -5,6 +5,13 @@ import { webSocket } from 'rxjs/webSocket';
 export default function SimpleLog({ url }: { url: string }) {
   const ref = useRef<HTMLDivElement | null>(null);
 
+  const clearData = () => {
+    if (!ref.current) {
+      return;
+    }
+    ref.current.innerHTML = '';
+  };
+
   const appendData = (data: string) => {
     if (!ref.current) {
       return;
@@ -52,13 +59,24 @@ export default function SimpleLog({ url }: { url: string }) {
         tap({
           next: () => {
             if (isConnectionLost) {
+              console.log('SimpleLog: Connection restored');
               isConnectionLost = false;
+              clearData();
               appendData('[Connection restored]');
             }
           },
           error: () => {
+            console.log('SimpleLog: Connection lost');
             isConnectionLost = true;
             appendData('[Connection lost. Trying to reconnect...]');
+          },
+          complete: () => {
+            console.log(
+              'SimpleLog: Connection closed, throwing an error to trigger a retry',
+            );
+            isConnectionLost = true;
+            // We don't expect this. Throw an error to trigger a retry.
+            throw new Error('Connection closed');
           },
         }),
         retry({ delay: 5000 }),
