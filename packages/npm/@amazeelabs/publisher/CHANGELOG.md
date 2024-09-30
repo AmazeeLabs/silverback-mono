@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.4.36...@amazeelabs/publisher@2.5.0) (2024-09-30)
+
+
+### Features
+
+* add "github-workflow" mode ([de1c92e](https://github.com/AmazeeLabs/silverback-mono/commit/de1c92ef6f3f3889874621a6a16e91f9475da473))
+
+
+
+
+
 ## [2.4.36](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.4.35...@amazeelabs/publisher@2.4.36) (2024-09-17)
 
 **Note:** Version bump only for package @amazeelabs/publisher

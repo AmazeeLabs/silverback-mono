@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gatsby@3.2.60...@-amazeelabs/silverback-gatsby@3.3.0) (2024-09-30)
+
+
+### Features
+
+* add "github-workflow" mode ([de1c92e](https://github.com/AmazeeLabs/silverback-mono/commit/de1c92ef6f3f3889874621a6a16e91f9475da473))
+
+
+
+
+
 ## [3.2.60](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gatsby@3.2.59...@-amazeelabs/silverback-gatsby@3.2.60) (2024-09-26)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-gatsby

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.18](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher-ui@2.4.17...@amazeelabs/publisher-ui@2.4.18) (2024-09-30)
+
+
+### Bug Fixes
+
+* wsod no more ([6150709](https://github.com/AmazeeLabs/silverback-mono/commit/6150709af96e9c52b89a7048644f5d90e4d73715))
+
+
+
+
+
 ## [2.4.17](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher-ui@2.4.16...@amazeelabs/publisher-ui@2.4.17) (2024-08-16)
 
 **Note:** Version bump only for package @amazeelabs/publisher-ui
