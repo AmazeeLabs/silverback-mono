@@ -12,25 +12,5 @@ export default defineConfig({
       },
     },
   },
-  optimizeDeps: {
-    esbuildOptions: {
-      plugins: [
-        {
-          // Necessary due to wrong export definition in react-virtualized:
-          // https://github.com/bvaughn/react-virtualized/issues/1212
-          name: 'resolve-fixup',
-          setup(build) {
-            build.onResolve({ filter: /react-virtualized/ }, async () => {
-              return {
-                path: path.resolve(
-                  '../../../../node_modules/.pnpm/react-lazylog@4.5.3_react-dom@18.2.0_react@18.2.0/node_modules/react-virtualized/dist/umd/react-virtualized.js',
-                ),
-              };
-            });
-          },
-        },
-      ],
-    },
-  },
   plugins: [react()],
 });
