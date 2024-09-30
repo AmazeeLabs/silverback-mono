@@ -40,30 +40,22 @@ body {
   word-wrap: break-word;
 }
 
-/* Override Lazylog styles */
-
-div.react-lazylog-searchbar {
-  @apply bg-gray-200;
+/* As close to the previous Lazylog styles as possible */
+.simple-log {
+  @apply mt-2 p-4 text-[12px] max-w-full overflow-x-auto whitespace-pre-wrap;
+  background: rgb(44, 53, 57);
+  word-wrap: break-word;
+  line-height: 19px;
+  font-family: Monaco, monospace;
+  font-weight: 400;
+  color: #d6d6d6;
+  overflow: auto;
+  height: 100%;
 }
 
-.react-lazylog-searchbar .react-lazylog-searchbar-input {
-  @apply bg-gray-300 border-gray-300 text-white mb-2 md:mb-0;
-}
-
-.react-lazylog-searchbar .react-lazylog-searchbar-matches {
-  @apply text-blue-500;
-}
-
-.react-lazylog-searchbar-filter svg {
-  @apply text-blue-500 fill-blue-500;
-}
-
-.ReactVirtualized__Grid.ReactVirtualized__List {
-  @apply bg-gray-200;
-}
-
-.ReactVirtualized__List svg {
-  @apply text-white stroke-white;
+.simple-log a {
+  @apply text-turquoise-500;
+  text-decoration: underline;
 }
 
 /* SVG styles */
