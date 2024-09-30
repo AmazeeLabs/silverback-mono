@@ -10,8 +10,8 @@
     "start": "vite",
     "build": "vite build --base=/___status/",
     "test:static": "tsc --noEmit && eslint \"**/*.{ts,tsx,js,jsx}\" --ignore-path=\"./.gitignore\" --fix",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.43",
@@ -42,6 +42,7 @@
     "react-lazylog": "4.5.3",
     "react-rxjs": "3.0.0-alpha.6",
     "rxjs": "7.8.1",
+    "storybook": "8.0.10",
     "tailwindcss": "3.4.3",
     "typescript": "5.4.5",
     "vite": "5.2.11"
