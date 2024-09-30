@@ -21,7 +21,6 @@ class CoreGithubWorkflow implements Core {
   queue = new Queue();
 
   start = () => {
-    this.queue.add({ job: buildTask() });
     this.queue.run();
   };
 
