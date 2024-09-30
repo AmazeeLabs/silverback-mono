@@ -12,7 +12,7 @@ export default {
 
 export const Init: StoryObj<typeof Status> = {
   args: {
-    status: null,
+    status: ApplicationState.Starting,
   },
 };
 export const Error: StoryObj<typeof Status> = {
