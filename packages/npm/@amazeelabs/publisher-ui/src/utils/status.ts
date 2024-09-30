@@ -1,6 +1,6 @@
 import { ApplicationState } from '@amazeelabs/publisher-shared';
 import { bind } from '@react-rxjs/core';
-import { delayWhen, retryWhen, Subject, timer } from 'rxjs';
+import { retry, Subject } from 'rxjs';
 import { webSocket } from 'rxjs/webSocket';
 
 const defaultStatus: ApplicationState | null = null;
@@ -22,16 +22,11 @@ function createWebsocket() {
   }
   return webSocket<ApplicationState | null>({
     url,
-  });
+  }).pipe(retry({ delay: 5000 }));
 }
 
 export const updates$ = createWebsocket();
 
-const [statusHook] = bind(
-  updates$.pipe(
-    retryWhen((errors) => errors.pipe(delayWhen(() => timer(5000)))),
-  ),
-  defaultStatus,
-);
+const [statusHook] = bind(updates$, defaultStatus);
 
 export const useStatus = statusHook;
