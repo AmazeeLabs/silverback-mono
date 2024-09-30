@@ -6,11 +6,11 @@ import { bind } from '@react-rxjs/core';
 import clsx from 'clsx';
 import React, { ComponentProps, Fragment, useState } from 'react';
 import { flushSync } from 'react-dom';
-import { LazyLog } from 'react-lazylog';
 import { ajax } from 'rxjs/ajax';
 
 import { createWebsocketUrl, useStatus } from '../utils/status';
 import Collapsible from './Collapsible';
+import SimpleLog from './SimpleLog';
 
 // Disable React batched updates to fix
 // https://github.com/melloware/react-logviewer/pull/22 without moving from
@@ -316,11 +316,14 @@ function scrollToBuildHistory() {
 
 export default function Info({
   historyItems,
+  isStorybook,
 }: {
   historyItems: ComponentProps<typeof History>['historyItems'];
+  isStorybook?: boolean;
 }) {
-  const logsSocket = createWebsocketUrl('/___status/logs');
-  const [followLog, setFollowLog] = useState(true);
+  const logsSocket = isStorybook
+    ? '__storybook__'
+    : createWebsocketUrl('/___status/logs');
   return (
     <div className={'md:m-4'}>
       <div className={'max-w-full bg-gray-900 pb-16 md:pb-24'}>
@@ -464,31 +467,7 @@ export default function Info({
                   >
                     <Disclosure.Panel className={'pb-20'}>
                       <div style={{ height: 500, marginTop: 5 }}>
-                        {logsSocket ? (
-                          <>
-                            <LazyLog
-                              enableSearch={true}
-                              follow={followLog}
-                              websocket={true}
-                              url={logsSocket}
-                              selectableLines={true}
-                            />
-                            <div
-                              className={
-                                'flex justify-end absolute -bottom-12 left-0'
-                              }
-                            >
-                              <label className={'mb-3 inline-block'}>
-                                <input
-                                  type="checkbox"
-                                  checked={followLog}
-                                  onChange={() => setFollowLog(!followLog)}
-                                />{' '}
-                                Auto scroll
-                              </label>
-                            </div>
-                          </>
-                        ) : null}
+                        {logsSocket ? <SimpleLog url={logsSocket} /> : null}
                       </div>
                     </Disclosure.Panel>
                   </Collapsible>

@@ -1633,9 +1633,6 @@ importers:
       '@types/react-dom':
         specifier: 18.3.0
         version: 18.3.0
-      '@types/react-lazylog':
-        specifier: 4.5.4
-        version: 4.5.4
       '@vitejs/plugin-react':
         specifier: 4.2.1
         version: 4.2.1(vite@5.2.11)
@@ -12651,13 +12648,6 @@ packages:
     resolution: {integrity: sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==}
     dependencies:
       '@types/react': 18.3.3
-    dev: true
-
-  /@types/react-lazylog@4.5.4:
-    resolution: {integrity: sha512-HYP+lVRyE0c+fGT+IGHMqzQS5X9I7oaQ3iZczor2MQyLUXyAZRv2AJoEcYjH1QNPDIc+vMBSteyuSuw8tkGJ5Q==}
-    dependencies:
-      '@types/react': 18.3.3
-      immutable: 4.3.7
     dev: true
 
   /@types/react-redux@7.1.33:
@@ -25543,10 +25533,6 @@ packages:
   /immutable@3.8.2:
     resolution: {integrity: sha512-15gZoQ38eYjEjxkorfbcgBKBL6R7T459OuK+CpcWt7O3KF4uPCx2tD0uFETlUDIyo+1789crbMhTvQBSR5yBMg==}
     engines: {node: '>=0.10.0'}
-
-  /immutable@4.3.7:
-    resolution: {integrity: sha512-1hqclzwYwjRDFLjcFxOM5AYkkG0rpFPpr1RLPMEuGczoS7YA8gLhy8SWXYRAA/XwfEHpfo3cw5JGioS32fnMRw==}
-    dev: true
 
   /import-fresh@2.0.0:
     resolution: {integrity: sha512-eZ5H8rcgYazHbKC3PG4ClHNykCSxtAhxSSEM+2mb+7evD2CKF5V7c0dNum7AdpDh0ZdICwZY9sRSn8f+KH96sg==}
