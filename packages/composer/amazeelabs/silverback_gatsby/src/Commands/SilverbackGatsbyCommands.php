@@ -80,12 +80,23 @@ class SilverbackGatsbyCommands extends DrushCommands {
    * @param string $server
    *   The server id.
    *
+   * @option force
+   *   Force a build even if the frontend is already up-to-date.
+   *
    * @command silverback-gatsby:build
    * @aliases sgb
    * @usage silverback-gatsby:build [server_id]
    */
-  public function triggerBuild($server) {
-    $this->buildTrigger->triggerLatestBuild($server);
+  public function triggerBuild($server, $options = ['force' => FALSE]) {
+    if ($options['force']) {
+      /** @var \Drupal\silverback_gatsby\GatsbyUpdateTrackerInterface $updateTracker */
+      $updateTracker = \Drupal::service('silverback_gatsby.update_tracker');
+      $latestBuildId = $updateTracker->latestBuild($server);
+      $this->buildTrigger->trigger($server, $latestBuildId);
+    }
+    else {
+      $this->buildTrigger->triggerLatestBuild($server);
+    }
   }
 
 }
