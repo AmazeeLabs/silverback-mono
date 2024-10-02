@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.4](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.5.3...@amazeelabs/publisher@2.5.4) (2024-10-02)
+
+
+### Reverts
+
+* Revert "chore: increase oauth session to 12h" ([f83023c](https://github.com/AmazeeLabs/silverback-mono/commit/f83023cae116b1ef6613ad41fc8eead52bfba0fc))
+* Revert "chore: protect history routes with auth" ([8a8ca50](https://github.com/AmazeeLabs/silverback-mono/commit/8a8ca5061d8a3a7ce55ad158b6954b117ea561ba))
+
+
+
+
+
 ## [2.5.3](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/publisher@2.5.2...@amazeelabs/publisher@2.5.3) (2024-10-02)
 
 **Note:** Version bump only for package @amazeelabs/publisher
