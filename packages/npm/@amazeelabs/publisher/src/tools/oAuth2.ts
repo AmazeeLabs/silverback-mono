@@ -27,8 +27,8 @@ declare module 'express-session' {
 }
 
 // In seconds
-export const SESSION_MAX_AGE = 60 * 60 * 12;
-export const ACCESS_TOKEN_EXPIRATION_TIME = 60 * 60 * 12;
+export const SESSION_MAX_AGE = 300;
+export const ACCESS_TOKEN_EXPIRATION_TIME = 300;
 
 const ENCRYPTION_KEY =
   process.env.ENCRYPTION_KEY || crypto.randomBytes(32).toString('hex');
