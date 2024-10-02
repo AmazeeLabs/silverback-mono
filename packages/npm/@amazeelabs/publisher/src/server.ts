@@ -137,7 +137,6 @@ const runServer = async (): Promise<HttpTerminator> => {
     ws.on('close', sub.unsubscribe);
   });
 
-  app.use('/___status/history', authMiddleware);
   app.get('/___status/history', async (req, res) => {
     const { Build } = await getDatabase();
     const result = await Build.findAll({
@@ -146,7 +145,6 @@ const runServer = async (): Promise<HttpTerminator> => {
     res.json(result);
   });
 
-  app.use('/___status/history/:id', authMiddleware);
   app.get('/___status/history/:id', async (req, res) => {
     const { Build } = await getDatabase();
     const result = await Build.findByPk(req.params.id);
