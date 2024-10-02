@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.144](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal-tests@1.1.143...@-amazeelabs/silverback-drupal-tests@1.1.144) (2024-10-02)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-drupal-tests
+
+
+
+
+
 ## [1.1.143](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-drupal-tests@1.1.142...@-amazeelabs/silverback-drupal-tests@1.1.143) (2024-09-26)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-drupal-tests

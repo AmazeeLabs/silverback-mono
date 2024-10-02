@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.7.0](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@3.6.3...@-amazeelabs/silverback_gatsby@3.7.0) (2024-10-02)
+
+
+### Features
+
+* add --force flag to drush silverback-gatsby:build command ([4c0c61a](https://github.com/AmazeeLabs/silverback-mono/commit/4c0c61ab2a8800bbca88e4fc19c4c7fc62e41c33))
+
+
+
+
+
 ## [3.6.3](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback_gatsby@3.6.2...@-amazeelabs/silverback_gatsby@3.6.3) (2024-09-09)
 
 **Note:** Version bump only for package @-amazeelabs/silverback_gatsby
