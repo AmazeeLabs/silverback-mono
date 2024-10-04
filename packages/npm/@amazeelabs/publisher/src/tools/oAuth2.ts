@@ -28,7 +28,6 @@ declare module 'express-session' {
 
 // In seconds
 export const SESSION_MAX_AGE = 300;
-export const ACCESS_TOKEN_EXPIRATION_TIME = 300;
 
 const ENCRYPTION_KEY =
   process.env.ENCRYPTION_KEY || crypto.randomBytes(32).toString('hex');
@@ -319,7 +318,7 @@ export const isAuthenticated = async (req: Request): Promise<boolean> => {
   let result = false;
   let accessToken = getPersistedAccessToken(req);
   if (accessToken) {
-    if (!accessToken.expired(ACCESS_TOKEN_EXPIRATION_TIME)) {
+    if (!accessToken.expired()) {
       result = true;
     } else {
       try {
