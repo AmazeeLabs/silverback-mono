@@ -1,5 +1,7 @@
 import { defineConfig } from '@amazeelabs/publisher';
 
+// AXXX Testing CI
+
 export default defineConfig({
   mode: 'local',
   commands: {
