@@ -32,6 +32,7 @@ describe('extractNodeTypes', () => {
     expect(extractNodeTypes(schema)).toEqual([
       'Customer',
       'Employee',
+      'Celebrity',
       'WithDirective',
       'WithCustomAndDefaultDirective',
     ]);
@@ -71,6 +72,11 @@ describe('cleanSchema', () => {
       type Employee implements Contact {
         id: ID!
         role: String!
+        name: String!
+        email: Email!
+      }
+      type Celebrity implements Contact {
+        id: ID!
         name: String!
         email: Email!
       }

@@ -25,6 +25,12 @@ type Employee implements Contact @sourceFrom(fn: "sourceEmployees") {
   email: Email!
 }
 
+type Celebrity implements Contact {
+  id: ID!
+  name: String!
+  email: Email!
+}
+
 # Arbitrary directive that produces values.
 directive @value repeatable on OBJECT
 # @type directive used by the Drupal module.
