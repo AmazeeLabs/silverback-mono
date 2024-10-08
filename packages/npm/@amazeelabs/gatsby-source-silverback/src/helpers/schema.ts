@@ -45,13 +45,16 @@ export function extractNodeTypes(schema: GraphQLSchema) {
 
   for (const type of Object.values(schema.getTypeMap())) {
     if (isObjectType(type)) {
+      const interfaces = type.astNode?.interfaces?.map(
+        (iface) => iface.name.value,
+      );
       const directives = (type.astNode?.directives || [])
         .map((dir) => dir.name.value)
         .filter((dir) => dir !== 'type');
       const firstDefault = directives.indexOf('default');
       const relevantDirectives =
         firstDefault === -1 ? directives : directives.slice(0, firstDefault);
-      if (relevantDirectives.length > 0) {
+      if (relevantDirectives.length > 0 || interfaces?.length) {
         sources.push(type.name);
       }
     }
