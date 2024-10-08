@@ -9,7 +9,7 @@ concurrency:
 jobs:
   release:
     name: Release
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
       - uses: webfactory/ssh-agent@v0.9.0
         with:
