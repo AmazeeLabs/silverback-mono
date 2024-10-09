@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.14.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.14.6...@amazeelabs/gatsby-source-silverback@1.14.7) (2024-10-09)
+
+
+### Bug Fixes
+
+* allow arbitrary types to implement interfaces in gatsby ([b60b379](https://github.com/AmazeeLabs/silverback-mono/commit/b60b3790bb2c4cca56b03082a1b394372873b068))
+
+
+
+
+
 ## [1.14.6](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.14.5...@amazeelabs/gatsby-source-silverback@1.14.6) (2024-07-05)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-source-silverback
