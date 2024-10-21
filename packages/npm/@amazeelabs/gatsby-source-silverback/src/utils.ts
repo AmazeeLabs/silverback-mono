@@ -23,6 +23,8 @@ export type Options = {
   directives?: Record<string, Function>;
   // A list of functions that will be available as data source.
   sources?: Record<string, Function>;
+  // Request timeout for GraphQL queries in milliseconds. Defaults to 60_000.
+  request_timeout?: number;
 };
 
 export const validOptions = (options: {
