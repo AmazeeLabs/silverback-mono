@@ -167,4 +167,22 @@ class GatsbyUpdateTrackerTest extends KernelTestBase {
     ], $this->tracker->diff(3, 4, 'bar'));
   }
 
+  public function testDuplicateItems() {
+    $this->tracker->track('foo', 'Page', '1');
+    $this->tracker->track('foo', 'Page', '2');
+
+    // Simulate a new PHP request to track a duplicate. Otherwise, it won't be
+    // tracked.
+    $this->tracker->clear();
+
+    // Add a duplicate entry.
+    $this->tracker->track('foo', 'Page', '2');
+
+    // Expect no duplicates in the diff.
+    $this->assertEquals(
+      [new GatsbyUpdate('Page', '2')],
+      $this->tracker->diff(1, 3, 'foo')
+    );
+  }
+
 }
