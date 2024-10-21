@@ -20,19 +20,23 @@ export const createQueryExecutor = (
     throw "No Drupal Url defined. Can't instantiate query executor.";
   }
   const url = `${new URL(options.drupal_url).origin}${options.graphql_path}`;
-  const executor = createNetworkQueryExecutor(url, {
-    headers: {
-      ...options?.headers,
-      ...(options?.auth_user && options?.auth_pass
-        ? {
-            Authorization: `Basic ${Buffer.from(
-              `${options.auth_user}:${options.auth_pass}`,
-            ).toString('base64')}`,
-          }
-        : {}),
-      ...(options?.auth_key ? { 'api-key': options.auth_key } : {}),
+  const executor = createNetworkQueryExecutor(
+    url,
+    {
+      headers: {
+        ...options?.headers,
+        ...(options?.auth_user && options?.auth_pass
+          ? {
+              Authorization: `Basic ${Buffer.from(
+                `${options.auth_user}:${options.auth_pass}`,
+              ).toString('base64')}`,
+            }
+          : {}),
+        ...(options?.auth_key ? { 'api-key': options.auth_key } : {}),
+      },
     },
-  });
+    options.request_timeout,
+  );
   return wrapQueryExecutorWithQueue(executor, {
     concurrency: options.query_concurrency || 10,
   });
@@ -44,12 +48,12 @@ export const createQueryExecutor = (
 export function createNetworkQueryExecutor(
   uri: string,
   fetchOptions: RequestInit = {},
+  timeout = 60_000,
 ): IQueryExecutor {
   return async function execute(args) {
     const { query, variables, operationName } = args;
 
     let response;
-    const timeout = 60_000;
     const signal = timeoutSignal(timeout);
     signal.onabort = () =>
       console.error(

@@ -54,6 +54,8 @@ The following configuration options are supported:
   GraphQL query. Defaults to 100.
 - `type_prefix` **(optional)**: A prefix to be added to all generated GraphQL
   types. Defaults to `Drupal`.
+- `request_timeout` **(optional)**: The timeout for the GraphQL requests in
+  milliseconds. Defaults to 60_000.
 
 The optional credential parameters can be used to enable different workflows. On
 production, they can be omitted to make sure Drupal handles these requests

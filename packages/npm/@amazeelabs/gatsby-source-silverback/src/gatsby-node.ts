@@ -49,6 +49,7 @@ export const pluginOptionsSchema: GatsbyNode['pluginOptionsSchema'] = ({
     schema_configuration: Joi.string().optional(),
     directives: Joi.object().pattern(Joi.string(), Joi.function()).optional(),
     sources: Joi.object().pattern(Joi.string(), Joi.function()).optional(),
+    request_timeout: Joi.number().optional().min(1),
   });
 
 const getForwardedHeaders = (url: URL) => ({
