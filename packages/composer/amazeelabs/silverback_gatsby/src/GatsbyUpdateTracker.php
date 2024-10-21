@@ -81,6 +81,7 @@ class GatsbyUpdateTracker implements GatsbyUpdateTrackerInterface {
       ->condition('id', $lastBuild, '>')
       ->condition('id', $currentBuild, '<=')
       ->condition('server', $server)
+      ->distinct()
       ->execute()
       ->fetchAll());
   }
