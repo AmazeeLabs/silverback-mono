@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.15.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.14.7...@amazeelabs/gatsby-source-silverback@1.15.0) (2024-10-21)
+
+
+### Features
+
+* configurable graphql request timeout ([1ebcd2f](https://github.com/AmazeeLabs/silverback-mono/commit/1ebcd2f6d786b71a9140c8a9258508070cd31bd1))
+
+
+
+
+
 ## [1.14.7](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-source-silverback@1.14.6...@amazeelabs/gatsby-source-silverback@1.14.7) (2024-10-09)
 
 

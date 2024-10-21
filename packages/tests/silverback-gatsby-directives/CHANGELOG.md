@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.184](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gatsby-directives-tests@1.1.183...@-amazeelabs/silverback-gatsby-directives-tests@1.1.184) (2024-10-21)
+
+**Note:** Version bump only for package @-amazeelabs/silverback-gatsby-directives-tests
+
+
+
+
+
 ## [1.1.183](https://github.com/AmazeeLabs/silverback-mono/compare/@-amazeelabs/silverback-gatsby-directives-tests@1.1.182...@-amazeelabs/silverback-gatsby-directives-tests@1.1.183) (2024-10-09)
 
 **Note:** Version bump only for package @-amazeelabs/silverback-gatsby-directives-tests
