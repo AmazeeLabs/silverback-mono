@@ -11,6 +11,7 @@ import {
 } from 'graphql';
 
 import { inlineFragments } from './inline';
+import { scanFragments } from './scan';
 
 class OperationIdVisitor extends ClientSideBaseVisitor {
   _extractFragments() {
@@ -30,16 +31,17 @@ class OperationIdVisitor extends ClientSideBaseVisitor {
 
     return `export const ${operationResultType} = "${queryId(
       node,
+      print(node),
     )}" as OperationId<${operationResultType},${operationVariablesTypes}${
       hasRequiredVariables ? '' : ' | undefined'
     }>;`;
   }
 }
 
-function queryId(node: OperationDefinitionNode) {
+function queryId(node: OperationDefinitionNode, content: string) {
   return `${node.name?.value ?? 'anonymous'}${pascalCase(
     node.operation,
-  )}:${crypto.createHash('sha256').update(print(node)).digest('hex')}`;
+  )}:${crypto.createHash('sha256').update(content).digest('hex')}`;
 }
 
 export const plugin: PluginFunction<any, string> = async (
@@ -69,9 +71,24 @@ export const plugin: PluginFunction<any, string> = async (
   const idMap = new Map<string, string>();
   visit(allAst, {
     OperationDefinition(node) {
-      const query = [print(inlineFragments(node, fragmentMap))];
-      const id = queryId(node);
-      operationMap.set(id, query.join('\n'));
+      const query = [
+        print(
+          config.fragments === 'inline'
+            ? inlineFragments(node, fragmentMap)
+            : node,
+        ),
+      ];
+      if (config.fragments === 'attach') {
+        scanFragments(node, fragmentMap).forEach((name) => {
+          const fragment = fragmentMap.get(name);
+          if (fragment) {
+            query.push(print(fragment));
+          }
+        });
+      }
+      const queryString = query.join('\n');
+      const id = queryId(node, queryString);
+      operationMap.set(id, queryString);
       if (node.name) {
         idMap.set(node.name.value, id);
       }
