@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.18](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-fragments@1.2.17...@amazeelabs/gatsby-fragments@1.2.18) (2024-10-23)
+
+
+### Performance Improvements
+
+* **gatsby-fragments:** add option to aggregate all fragments into one file ([55aa992](https://github.com/AmazeeLabs/silverback-mono/commit/55aa9923ff6efa5648eaec76bb232a83dceee5c8))
+
+
+
+
+
 ## [1.2.17](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/gatsby-fragments@1.2.16...@amazeelabs/gatsby-fragments@1.2.17) (2024-05-10)
 
 **Note:** Version bump only for package @amazeelabs/gatsby-fragments

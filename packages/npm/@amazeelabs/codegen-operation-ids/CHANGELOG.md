@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/codegen-operation-ids@0.1.44...@amazeelabs/codegen-operation-ids@0.2.0) (2024-10-23)
+
+
+### Features
+
+* **operation-ids:** choose between inline, attach and skip fragments ([bd2214e](https://github.com/AmazeeLabs/silverback-mono/commit/bd2214e7810f326286f135015220253a1ffa1127))
+
+
+
+
+
 ## [0.1.44](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/codegen-operation-ids@0.1.43...@amazeelabs/codegen-operation-ids@0.1.44) (2024-10-23)
 
 
