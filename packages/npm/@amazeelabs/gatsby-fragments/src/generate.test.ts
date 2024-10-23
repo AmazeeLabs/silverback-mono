@@ -10,6 +10,7 @@ describe('generate', () => {
   });
   const fragmentsPath = '/fragments';
   const gqlMocks = {
+    '/out': {},
     '/fragments': {
       'ContentArticle.gql': `fragment ContentBlog on ContentBlog {
         __typename
@@ -71,5 +72,36 @@ describe('generate', () => {
     mock(gqlMocks);
     await generate({ path: fragmentsPath });
     expect(typeScriptFilesContains(fragmentsPath, 'on Drupal')).toBe(true);
+  });
+
+  it('all fragments aggregated into one file without prefix', async () => {
+    mock(gqlMocks);
+    await generate({
+      path: fragmentsPath,
+      skip: true,
+      aggregate: '/out/aggregate.ts',
+    });
+    const content = readFileSync('/out/aggregate.ts', { encoding: 'utf-8' });
+    expect(content).toEqual(`import {graphql} from 'gatsby';
+export const fragment = graphql\`fragment MediaImage on MediaImage {
+        __typename
+        url
+      }
+fragment ContentPage on ContentPage {
+        __typename
+        title
+        articleReference {
+          ... on ContentArticle {
+            title
+          }
+        }
+      }
+fragment ContentBlog on ContentBlog {
+        __typename
+        title
+        headerImage {
+          ...MediaImage
+        }
+      }\`;`);
   });
 });
