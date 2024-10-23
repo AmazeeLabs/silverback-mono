@@ -99,3 +99,34 @@ fragment B on B {
 }`);
   });
 });
+
+it('inlines mixed fragments', () => {
+  const doc = parse(`query {
+  a {
+    propA
+    ... on A {
+      propB {
+        ...B
+      }
+    }
+  }
+}
+fragment B on B {
+  propC
+}`);
+  const [query] = doc.definitions.filter(isOperationDefinitionNode);
+  const [B] = doc.definitions.filter(isFragmentDefinitionNode);
+  const inlined = inlineFragments(query, new Map(Object.entries({ B })));
+  expect(print(inlined)).toEqual(`{
+  a {
+    propA
+    ... on A {
+      propB {
+        ... on B {
+          propC
+        }
+      }
+    }
+  }
+}`);
+});
