@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.44](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/codegen-operation-ids@0.1.43...@amazeelabs/codegen-operation-ids@0.1.44) (2024-10-23)
+
+
+### Bug Fixes
+
+* properly resolve fragments nested within inline fragments ([fb55e1d](https://github.com/AmazeeLabs/silverback-mono/commit/fb55e1d606a37fc57b37ed437463ca4983b251ee))
+
+
+
+
+
 ## [0.1.43](https://github.com/AmazeeLabs/silverback-mono/compare/@amazeelabs/codegen-operation-ids@0.1.42...@amazeelabs/codegen-operation-ids@0.1.43) (2024-06-26)
 
 
