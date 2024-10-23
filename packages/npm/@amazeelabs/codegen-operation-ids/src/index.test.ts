@@ -19,8 +19,16 @@ const schema = buildSchema(`
   `);
 
 describe('mode: map', () => {
-  function runPlugin(documents: Array<Types.DocumentFile>) {
-    return plugin(schema, documents, {}, { outputFile: 'map.json' });
+  function runPlugin(
+    documents: Array<Types.DocumentFile>,
+    mode: 'inline' | 'attach' | undefined = 'inline',
+  ) {
+    return plugin(
+      schema,
+      documents,
+      { fragments: mode },
+      { outputFile: 'map.json' },
+    );
   }
 
   it('creates a map entry for a single operation', async () => {
@@ -123,7 +131,7 @@ describe('mode: map', () => {
     `);
   });
 
-  it('adds used fragments', async () => {
+  it('adds used fragments inline', async () => {
     const result = await runPlugin([
       {
         location: 'a.gql',
@@ -135,7 +143,7 @@ describe('mode: map', () => {
     ]);
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
-        "HomeQuery:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
+        "HomeQuery:dc086da112964a8f85ae0520dab3fa68a84e067ee6aa8b0e06305f4cb5e9898a": "query Home {
         loadPage(path: "/") {
           ... on Page {
             title
@@ -145,6 +153,30 @@ describe('mode: map', () => {
       }
     `);
   });
+
+  it('attaches used fragments', async () => {
+    const result = await runPlugin([
+      {
+        location: 'a.gql',
+        document: parse(`
+        fragment Page on Page { title }
+        query Home { loadPage(path: "/") { ...Page } }
+        `),
+      },
+    ]);
+    expect(JSON.parse(result)).toMatchInlineSnapshot(`
+      {
+        "HomeQuery:dc086da112964a8f85ae0520dab3fa68a84e067ee6aa8b0e06305f4cb5e9898a": "query Home {
+        loadPage(path: "/") {
+          ... on Page {
+            title
+          }
+        }
+      }",
+      }
+    `);
+  });
+
   it('inlines multiple invocations', async () => {
     const result = await runPlugin([
       {
@@ -166,7 +198,7 @@ describe('mode: map', () => {
     ]);
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
-        "HomeQuery:e8b5953fe0f339244ebb14102eddc5d0e23259606de6f697574f69bfe468ac53": "query Home {
+        "HomeQuery:9e615243c0c61d86531091aa395544df99db822d94d50a761c2809d61caf3164": "query Home {
         loadPage(path: "/") {
           ... on Page {
             title
@@ -190,6 +222,59 @@ describe('mode: map', () => {
       }
     `);
   });
+
+  it('attaches multiple invocations', async () => {
+    const result = await runPlugin(
+      [
+        {
+          location: 'a.gql',
+          document: parse(`
+        fragment Page on Page { title, related { path } }
+        fragment Teaser on Page { path }
+        query Home {
+          loadPage(path: "/") {
+            ...Page,
+            related {
+              ...Page
+              ...Teaser
+            }
+          }
+        }
+        `),
+        },
+      ],
+      'attach',
+    );
+    expect(JSON.parse(result)).toMatchInlineSnapshot(`
+      {
+        "HomeQuery:c25b93055bb9dce4d474a8e9031df3842a686ad4ad1b3ce2806ef528eb5b1c47": "query Home {
+        loadPage(path: "/") {
+          ...Page
+          related {
+            ...Page
+            ...Teaser
+          }
+        }
+      }
+      fragment Page on Page {
+        title
+        related {
+          path
+        }
+      }
+      fragment Page on Page {
+        title
+        related {
+          path
+        }
+      }
+      fragment Teaser on Page {
+        path
+      }",
+      }
+    `);
+  });
+
   it('adds nested fragments', async () => {
     const result = await runPlugin([
       {
@@ -207,7 +292,7 @@ describe('mode: map', () => {
     ]);
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
-        "HomeQuery:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
+        "HomeQuery:7f81601e1df0c179be7354f3f834201b9615d0ea191d4ba5f83bb45b0bfe052d": "query Home {
         loadPage(path: "/") {
           ... on Page {
             title
@@ -218,6 +303,44 @@ describe('mode: map', () => {
             }
           }
         }
+      }",
+      }
+    `);
+  });
+
+  it('attaches nested fragments', async () => {
+    const result = await runPlugin(
+      [
+        {
+          location: 'a.gql',
+          document: parse(`
+        fragment RelatedPage on Page { title }
+        fragment Page on Page { title, related { ...RelatedPage } }
+        query Home {
+          loadPage(path: "/") {
+            ...Page,
+          }
+        }
+        `),
+        },
+      ],
+      'attach',
+    );
+    expect(JSON.parse(result)).toMatchInlineSnapshot(`
+      {
+        "HomeQuery:fe7f24087d5deae03464a1e58e1c5a50cd6dbbbf4b4e68c41e5f6b9f2f947d3c": "query Home {
+        loadPage(path: "/") {
+          ...Page
+        }
+      }
+      fragment Page on Page {
+        title
+        related {
+          ...RelatedPage
+        }
+      }
+      fragment RelatedPage on Page {
+        title
       }",
       }
     `);
@@ -244,7 +367,7 @@ describe('mode: map', () => {
     ]);
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
-        "HomeQuery:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
+        "HomeQuery:dc086da112964a8f85ae0520dab3fa68a84e067ee6aa8b0e06305f4cb5e9898a": "query Home {
         loadPage(path: "/") {
           ... on Page {
             title
@@ -282,7 +405,7 @@ describe('mode: map', () => {
     ]);
     expect(JSON.parse(result)).toMatchInlineSnapshot(`
       {
-        "HomeQuery:37d40553a898c4026ba372c8f42af3df9c3451953b65695b823a8e1e7b5fd90d": "query Home {
+        "HomeQuery:7f81601e1df0c179be7354f3f834201b9615d0ea191d4ba5f83bb45b0bfe052d": "query Home {
         loadPage(path: "/") {
           ... on Page {
             title
