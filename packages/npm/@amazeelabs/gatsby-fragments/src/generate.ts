@@ -6,6 +6,8 @@ export const defaultFragmentsPath = './src/fragments/commons';
 
 export type Options = {
   path?: string;
+  aggregate?: string;
+  skip?: boolean;
 };
 
 export const generate = (options: Options) => {
@@ -23,6 +25,7 @@ export const generate = (options: Options) => {
   }
 
   const files = sync(`${fragmentsPath}/**/*.gql`);
+  const aggregate: Array<string> = [];
   for (const filePath of files) {
     const gqlData = readFileSync(filePath, { encoding: 'utf-8' });
     const fileDirectory: string = path.dirname(filePath);
@@ -34,18 +37,35 @@ export const generate = (options: Options) => {
     const tsFilePath: string = path.resolve(fileDirectory, tsFileName);
 
     let tsData: string = gqlData;
-    // Use _original_typename for relevant __typename.
-    tsData = tsData = tsData.replace(
-      /__typename/g,
-      '__typename:_original_typename',
+    if (!options.skip) {
+      // Use _original_typename for relevant __typename.
+      tsData = tsData = tsData.replace(
+        /__typename/g,
+        '__typename:_original_typename',
+      );
+      // Prefix with Drupal.
+      tsData = tsData.replace(/\son\s(\w+)\s{/g, ' on Drupal$1 {');
+    }
+
+    if (options.aggregate) {
+      aggregate.push(gqlData);
+    } else {
+      writeFileSync(
+        tsFilePath,
+        [
+          `import {graphql} from 'gatsby';`,
+          `export const fragment = graphql\`${tsData}\`;`,
+        ].join('\n'),
+      );
+    }
+  }
+  if (options.aggregate) {
+    writeFileSync(
+      options.aggregate,
+      [
+        `import {graphql} from 'gatsby';`,
+        `export const fragment = graphql\`${aggregate.join('\n')}\`;`,
+      ].join('\n'),
     );
-    // Prefix with Drupal.
-    tsData = tsData.replace(/\son\s(\w+)\s{/g, ' on Drupal$1 {');
-    tsData = `import { graphql } from 'gatsby';
-export const fragment = graphql\`
-  ${tsData}
-\`;
-`;
-    writeFileSync(tsFilePath, tsData);
   }
 };
