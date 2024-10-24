@@ -13,7 +13,7 @@
   "devDependencies": {
     "@amazeelabs/eslint-config": "1.4.43",
     "@types/jest": "29.5.12",
-    "eslint": "8.57.0",
+    "eslint": "9.11.1",
     "prettier": "3.2.5",
     "typescript": "5.4.5"
   }

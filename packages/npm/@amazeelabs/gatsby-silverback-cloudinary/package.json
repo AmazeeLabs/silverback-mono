@@ -12,11 +12,11 @@
     "@amazeelabs/eslint-config": "1.4.43",
     "@amazeelabs/gatsby-source-silverback": "workspace:*",
     "@types/node": "16.18.97",
-    "eslint": "8.57.0",
+    "eslint": "9.11.1",
     "gatsby": "5.13.4",
     "typescript": "5.4.5",
     "vite": "5.2.11",
-    "vitest": "1.6.0"
+    "vitest": "2.1.1"
   },
   "scripts": {
     "build": "tsc",

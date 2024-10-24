@@ -53,13 +53,13 @@
     "@types/node": "16.18.97",
     "@types/simple-oauth2": "5.0.7",
     "esbuild": "0.21.1",
-    "eslint": "8.57.0",
+    "eslint": "9.11.1",
     "nodemon": "3.1.0",
     "rollup": "4.17.2",
     "rollup-plugin-dts": "6.1.0",
     "rollup-plugin-esbuild": "6.1.1",
     "typescript": "5.4.5",
-    "vitest": "1.6.0"
+    "vitest": "2.1.1"
   },
   "engines": {
     "node": ">=16"
