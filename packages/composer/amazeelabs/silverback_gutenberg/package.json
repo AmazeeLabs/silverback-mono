@@ -17,7 +17,7 @@
     "@amazeelabs/eslint-config": "1.4.43",
     "@amazeelabs/sync-composer-version": "workspace:*",
     "@types/jest": "29.5.12",
-    "eslint": "8.57.0",
+    "eslint": "9.11.1",
     "typescript": "5.4.5"
   }
 }

@@ -4,15 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a28904dcdfe011b75200503dc9f8ecc8",
+    "content-hash": "ecb31f80ca69bc84d21572af07fa444e",
     "packages": [
         {
             "name": "amazeelabs/default-content",
-            "version": "1.2.17",
+            "version": "1.2.18",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/default-content",
-                "reference": "2c5dd8945b29004b424434c91a7bb7dff399a779"
+                "reference": "d02b6f0b8bc091d3c0a9157e14f8b45b3dc250fb"
             },
             "require": {
                 "cweagans/composer-patches": "^1.7.3",
@@ -215,11 +215,11 @@
         },
         {
             "name": "amazeelabs/silverback_gatsby",
-            "version": "3.6.3",
+            "version": "3.7.1",
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gatsby",
-                "reference": "99d7784e3028a13c39f2ec0b1032ba6bc6f15255"
+                "reference": "21665a7ce32418046c17af24b590f50177f73a55"
             },
             "type": "drupal-module",
             "extra": {
@@ -261,10 +261,10 @@
             "dist": {
                 "type": "path",
                 "url": "../../packages/composer/amazeelabs/silverback_gutenberg",
-                "reference": "f12be43aace27168e7c07b8628bb6346c8ab8ac7"
+                "reference": "b92f418e12943a2c412659fef2f27fe5942354b3"
             },
             "require": {
-                "drupal/gutenberg": "^2.8.0"
+                "drupal/gutenberg": "^3.0.5"
             },
             "type": "drupal-module",
             "license": [
@@ -3548,20 +3548,20 @@
         },
         {
             "name": "drupal/gutenberg",
-            "version": "2.11.0",
+            "version": "3.0.5",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/gutenberg.git",
-                "reference": "8.x-2.11"
+                "reference": "3.0.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/gutenberg-8.x-2.11.zip",
-                "reference": "8.x-2.11",
-                "shasum": "d88d5969e96b493f46ed2355b66661a153582ff0"
+                "url": "https://ftp.drupal.org/files/projects/gutenberg-3.0.5.zip",
+                "reference": "3.0.5",
+                "shasum": "1a53da41261145a4e1c1b7c52a7a5d853639389f"
             },
             "require": {
-                "drupal/core": "^9 || ^10 || ^11",
+                "drupal/core": "^9.5 || ^10",
                 "ext-json": "*",
                 "php": ">=7.4"
             },
@@ -3571,8 +3571,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-2.11",
-                    "datestamp": "1723623338",
+                    "version": "3.0.5",
+                    "datestamp": "1728492453",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -14166,6 +14166,6 @@
     "platform": {
         "php": "^8.3 <8.4"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }

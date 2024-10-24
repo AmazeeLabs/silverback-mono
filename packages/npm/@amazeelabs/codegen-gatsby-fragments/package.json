@@ -19,7 +19,7 @@
   "optionalDependencies": {
     "@graphql-codegen/plugin-helpers": "^5.0.3",
     "typescript": "^5.4.5",
-    "vitest": "^1.6.0"
+    "vitest": "^2.1.1"
   },
   "keywords": [],
   "author": "AmazeeLabs <development@amazeelabs.com>",
@@ -27,7 +27,7 @@
     "@amazeelabs/eslint-config": "1.4.43",
     "@swc/cli": "0.3.12",
     "@swc/core": "1.5.5",
-    "eslint": "8.57.0",
+    "eslint": "9.11.1",
     "typescript": "5.4.5"
   }
 }
